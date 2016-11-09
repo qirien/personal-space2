@@ -1,7 +1,10 @@
 init -1:
     # BACKGROUNDS
     image cuttlefish = "bg/cuttlefish-logo.jpg"
-    image bg stars = "bg/starscape.jpg"
+    image bg stars = "bg/stars.jpg"
+    image bg stars_animated:
+        "bg/stars.jpg"
+        linear 10.0 zoom 0.5
     image bg earth = "bg/earth.jpg"
     image bg farm_exterior = "bg/farm-exterior.jpg"
     image bg farm_exterior flip = im.Flip("bg/farm-exterior.jpg", horizontal = True)
@@ -172,7 +175,7 @@ init -1:
 
     # GUI
     image ctc_blink:
-           "GUI/ctc.png"
+           "gui/ctc.png"
            linear 0.75 alpha 1.0
            linear 0.75 alpha 0.0
            repeat 
