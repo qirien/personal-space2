@@ -2,10 +2,34 @@
 
 == GRAPHICS
 
-=== BACKGROUNDS
+=== Backgrounds
 
 ==== Public Domain
 
 The following images are in the public domain.
 
 stars.jpg by NASA, <https://www.nasa.gov/feature/goddard/2016/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought>
+
+=== Character Sprites
+
+"Our Personal Space 2" Character Sprites are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
+
+.License
+****
+"Our Personal Space 2" Character Sprites © 2014-2015 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+
+This artwork is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This artwork is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.
+****
+
+.License
+****
+"Our Personal Space 2" Character Sprites © 2014-2015 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+
+This artwork is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>.
+****
