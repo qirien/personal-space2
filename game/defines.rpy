@@ -34,3 +34,20 @@ define her_name = "Kelly"
 define his_nickname = "dear"
 define her_nickname = "lover"
 define kid_name = "Terra"
+
+# Custom transitions, positions, etc.
+define fade = Fade(0.2, 0.2, 0.2)
+define midleft = Position(xpos=0.35, xanchor=0.5)        
+define midright = Position(xpos=0.65, xanchor=0.5)
+define quarterleft = Position(xpos=0.22, xanchor=0.5)
+define quarterright = Position(xpos=0.78, xanchor=0.5)
+define farleft = Position(xpos=-0.30, xanchor=0)
+define farright = Position(xpos=1.0, xanchor=0)    
+define sitting = Position(ypos=0.45, yanchor=0)
+define squatting = Position(ypos=0.25, yanchor=0)
+define standing = Position(ypos= 1.0, yanchor = 1.0)
+
+# Variables used in the game
+define is_nude = False
+define is_pregnant = False
+define wearing_dress = False # TODO: do we still use these in OPS2?

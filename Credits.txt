@@ -8,7 +8,15 @@
 
 The following images are in the public domain.
 
-stars.jpg by NASA, <https://www.nasa.gov/feature/goddard/2016/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought>
+Starscape <stars.jpg> by NASA, <https://www.nasa.gov/feature/goddard/2016/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought>
+
+Mongolian Yurt <farm-exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
+
+Yurt Interior <farm-interior.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/yurt-holiday-travel-camping-1441610/>, by Sabine van Erp
+
+RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:RoscheiderHof-rathaus-2008-8.jpg>, by Dorothea Witter-Rieder.
+
+Fields <fields.jpg> by Andrea Landaker
 
 === Character Sprites
 
