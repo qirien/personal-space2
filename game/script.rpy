@@ -7,7 +7,7 @@ label start:
 
     scene bg stars with fade
     scene bg stars_animated
-    # TODO: import names, stats, etc from OPS1, or ask user to fill them in
+    # TODO: import names, stats, etc from OPS1, or ask user to fill them in; make this a screen
     if (mp.baby_name):
         $ his_name = mp.jack_name
         $ her_name = mp.kelly_name

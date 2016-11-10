@@ -55,13 +55,13 @@ define gui.interface_text_color = '#ffffff'
 ## Fonts and Font Sizes ########################################################
 
 ## The font used for in-game text.
-define gui.default_font = "DejaVuSans.ttf"
+define gui.default_font = "fonts/RobotoSlab-Regular.ttf"
 
 ## The font used for character names.
-define gui.name_font = "DejaVuSans.ttf"
+define gui.name_font = "fonts/RobotoSlab-Regular.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_font = "DejaVuSans.ttf"
+define gui.interface_font = "fonts/Questrial-Regular.otf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 22
@@ -85,8 +85,8 @@ define gui.title_text_size = 50
 ## Main and Game Menus #########################################################
 
 ## The images used for the main and game menus.
-define gui.main_menu_background = "gui/main_menu.png"
-define gui.game_menu_background = "gui/game_menu.png"
+define gui.main_menu_background = "bg/stars.jpg"
+define gui.game_menu_background = "bg/stars.jpg"
 
 ## Should we show the name and version of the game?
 define gui.show_name = True
