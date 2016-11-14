@@ -2,6 +2,25 @@
 
 define mp = MultiPersistent("MetasepiaGames")
 
+# Declare gameplay variables
+
+# PARENT
+
+# Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
+define demanding = 0
+# Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
+define responsive = 0
+
+# CHILD
+
+# Amount of emotional intelligence, how loved and secure child feels
+define attachment = 0
+# Reponsibility and ability to work hard, practical knowledge
+define competence = 0
+# Confidence, autonomy
+define indepedence = 0
+
+
 # Declare characters used by this game .
 define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
 
