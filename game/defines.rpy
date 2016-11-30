@@ -20,12 +20,19 @@ define competence = 0
 # Confidence, autonomy
 define indepedence = 0
 
+define sex_ed_biology = False
+define sex_ed_commitment = False
+define sex_ed_babycreation = False
+define sex_ed_goodfeeling = False
+define sex_ed_birthcontrol = False
+
 
 # Declare characters used by this game .
 define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
 
 define her = DynamicCharacter("her_name", color="#84b766", image="her", ctc="ctc_blink", ctc_position="nestled") #light mint green
-define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red 
+define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
+define kid = DynamicCharacter("kid_name", color="#e361ef", image="kid", ctc="ctc_blink", ctc_position="nestled") #pinkish purple
 
 define naomi = Character("Sister Naomi Grayson", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #light gray
 define pavel = Character("Mayor Pavel Grayson", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #dark gray
@@ -41,7 +48,6 @@ define julia = Character("Julia Nguyen", color="#e7b1cb", image="julia", ctc="ct
 define martin = Character("Martín Perón", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
 
 define van = Character("Van Nguyen", color="#7788fc", image="van", ctc="ctc_blink", ctc_position="nestled")
-define kid = Character("Kid", color="#7788fc", image="kid", ctc="ctc_blink", ctc_position="nestled")
 
 
 define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray

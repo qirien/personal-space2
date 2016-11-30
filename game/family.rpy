@@ -14,7 +14,7 @@ label family1:
     "Sleeping..."
     show black with dissolve
     hide black with dissolve
-    him serious "(I can't sleep now. They both need me. But what should I do?)"
+    "No, I couldn't sleep while they both needed me. But what should I do?"
     menu:
         "Take [kid_name] for a walk.":
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
@@ -113,16 +113,16 @@ label family1:
     
     return
     
+# 10 Earth mos. old
+label family2:
+    "Family 2 Event"
+    return
 
 #####################################################
 #
 # TODDLER
 #
 #####################################################
-# 10 Earth mos. old
-label family2:
-    "Family 2 Event"
-    return
 
 # 18 Earth mos. old
 label family3:
@@ -187,8 +187,131 @@ label family12:
 #####################################################    
 
 # 8 Earth years old
+# Sex Education
 label family13:
-    "Family 13 Event"
+    scene bg fields with fade
+    show him at midright
+    #show kid at midleft
+    with dissolve
+    kid "Dad, I have a question."
+    him "What is it?"
+    
+    # TODO: Is this different based on earlier decisions?
+    kid "So, you need a man and a woman to make a baby, right?"
+    him "Right..."
+    kid "Well, how, exactly, does that work? I mean, I know they come together, but . . . how?"
+    him "Let me think about the best way to explain that to you..."
+    menu:
+        "She's not ready for this":
+            him "Maybe when your'e older. That's not something you need to worry about right now."
+            kid "But I am worried about it right now!"
+            him "Ask your mom, then."
+            kid "Why can't you just tell me?"
+            him "I just... I just can't! So quit asking!"
+            "I felt a little bad, but really, she's asking the wrong person!  That's [her_name]'s job!"
+        "Give a vague metaphor":
+            him "Well, you know, it's like, uh, like bees carry pollen?  And they fertilize the flowers so fruits can grow? It's . . . kind of like that."
+            kid "I know that! But how does it work? Where's the pollen, and what's the flower?"
+            him "Well, males and females have different parts, so the male part is like the pollen, and the female part is like the flower."
+            kid "I don't get it."
+            him "Ah, yeah, well . . . hey, look, that crabird landed on top of one of the goats!"
+            kid "What does that have to do with it?"
+            him "Nothing. Time to collect fertilizer! Here's your shovel."
+            "Whew, that was a close one!  I'd better figure out what to say next time. Or maybe [her_name] could talk to her about it."
+        "Keep it simple":
+            him "The man has sperm and when they come together with the woman's egg, it can make a baby."
+            kid "Where does he get the sperm?"
+            him "His body can make them."
+            kid "Okay, but the egg is inside the woman, right? So how does the sperm get there?"
+            him "That happens during sex."
+            kid "But... what is sex, exactly?"
+            "She's not giving up, is she?! I don't want her to imagine something wrong."
+            $ sex_ed_counter = 0
+            label sex_ed:
+                if (sex_ed_counter >= 3): #short attention span!
+                        kid "I like playing with babies. But I don't want to have to take care of one all the time."
+                        him "Not now. Maybe someday. Then I can be a grandpa."
+                        kid "Ha ha, then I'll call you Grandpa Dad."
+                        him "I wish you could meet your real grandparents."
+                        kid "Your parents? What would we do?"
+                        him "Maybe you'd ride horses together, or bake cookies, or play with the dogs."
+                        kid "Grandma Grayson said that if we get some more sugar on the next shuttle we can make cookies." # TODO: Make sure she's not dead
+                        him "You'll let me have one, right?"
+                        kid "Sure, dad."                        
+                        return #done with event
+            menu:
+                "What should I tell her about sex?"
+                "Tell her the biology facts." if not sex_ed_biology:
+                    him "A man's penis can go inside the woman's vagina and put the sperm there when they have sex."
+                    kid "Oh."
+                    "She thought about it for a minute."
+                    kid "And that's how you and Mom made me?"
+                    him "That's how."
+                    kid "Huh. Are you sure?"
+                    him "Sure as you're sitting here asking me if I'm sure."
+                    $ sex_ed_biology = True
+                    $ sex_ed_counter += 1
+                    jump sex_ed
+                "Emphasize committment and marriage." if not sex_ed_commitment:
+                    him "Sex is an important part of marriage. It makes you feel closer together, and you show your love for your spouse in a special way."
+                    if (not sex_ed_biology):
+                        kid "Okay, but what is it?!"
+                    else:
+                       kid "So you have to be married to have sex?"
+                       him "Well, it's special enough you don't do it with just anyone. You want to be sure they're someone you want to give your whole heart to, someone you can really trust in the long run."                    
+                    $ sex_ed_commitment = True
+                    $ sex_ed_counter += 1
+                    jump sex_ed
+                "Tell her the baby-creation part." if not sex_ed_babycreation:
+                    him "Sex is how babies are made, so it's kind of a big deal. You  need a mom and a dad who are going to stay together and be good parents for the baby."
+                    if (not sex_ed_biology):
+                        kid "Okay, but what is it?!"
+                    else:
+                        kid "So it always makes a baby?"
+                        him "No, not always. But that's how babies start. Not just humans, but animals, too."
+                        kid "Like our baby goat? His parents had sex?"
+                        him "Well, with animals we usually call it 'mating', but, yeah."
+                    $ sex_ed_babycreation = True
+                    $ sex_ed_counter += 1
+                    jump sex_ed
+                "Explain how good it feels." if not sex_ed_goodfeeling:
+                    him "It feels really good to have sex together."
+                    if (not sex_ed_biology):
+                        kid "Okay, but what is it?!"
+                    else:
+                        kid "Okay, can I try it?"
+                        him "No! I mean, not yet. Someday. When you're much older."
+                        kid "Why not?"
+                    $ sex_ed_counter += 1                        
+                    $ sex_ed_goodfeeling
+                    jump sex_ed                    
+                "Talk about birth control." if not sex_ed_birthcontrol:
+                    him "If the man and woman aren't ready for a baby, there's ways to have sex without making a baby."
+                    if (not sex_ed_biology):
+                        kid "Okay, but what is sex?!"
+                    else:
+                        kid "Oh. How do you know if you're ready for a baby?"
+                        him "Well, both people need to be ready to take care of it, and to know that they're going to stay together and give the baby good parents."
+                        kid "Are you going to have another baby?"
+                        # TODO: change this based on number of kids, etc?
+                        him "Maybe. That's up to me and your mom."
+                    $ sex_ed_counter += 1
+                    $ sex_ed_birthcontrol
+                    jump sex_ed
+                "That's enough details for now.":
+                    him "Anyway, that's all you need to know for now."
+            
+        "Tell her all the details":
+            "I told her everything I knew about sex - biology, emotional effects, irresponsible sex, birth control, hormones..."
+            kid "Ha ha, look, there's a crabird sitting on that goat's head."
+            him ". . . have you been listening at all?"
+            kid "Not really. It was kind of boring."
+            him "Huh. Sorry."
+            kid "I'm going to go chase it off. Ooh, or maybe we should shoot it and eat it for dinner."
+            him "No way, you might shoot the goat!"
+            kid "Will you take me hunting sometime soon? I looooove crabird meat. It's so good. I could eat every day."
+            # TODO: Make this a choice or dependent on choices?
+            him "Yeah, let's go tomorrow morning before school. We'll get up early and catch them before they get warmed up."
     return
 
 # 8.7 Earth years old

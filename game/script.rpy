@@ -25,7 +25,7 @@ label start:
     him normal "If I could go back, would I change anything? I don't even know."
     him "When you were first born, it was a struggle just to get through each day."  
     
-    # TODO: show some sort of inter-scene screen, with kids' ages and other info?
+    # TODO: show some sort of inter-scene screen
     # There are 196 27-hour days per year on Talaam, and 356 24-hour days on Earth
     $ year = 1
     while (year < 30):
@@ -44,7 +44,7 @@ label start:
         scene black with fade
         call expression "work" + str(year)
         
-        # TODO: Get farm input
+        # TODO: Get farm input, with kids' ages and farm/community info
         $ year += 1
    
     return
