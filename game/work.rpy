@@ -1,52 +1,52 @@
 ## Work Events
 
 label work1:
-    "work 1 Event"
+    "Want some bees? They'll permanently use one square but will yield honey with a moderate amount of work and may increase yield of some other squares."
     return
 
 
 label work2:
-    "work 2 Event"
+    "Take your daughter to work day... is every day."
     return
 
 
 label work3:
-    "work 3 Event"
+    "Your family reacts to crops you've been planting."
     return
 
 
 label work4:
-    "work 4 Event"
+    "Lots of goats!  Keep/sell/give/slaughter."
     return
 
 
 label work5:
-    "work 5 Event"
+    "Making sausage out of goat/crabird meat. Charcuterie!"
     return
 
 
 label work6:
-    "work 6 Event"
+    "Fungus disaster strikes!"
     return
 
 
 label work7:
-    "work 7 Event"
+    "Miners want cheap/fast/calorie-dense food. Will you cater to their needs?"
     return
 
 
 label work8:
-    "work 8 Event"
+    "Squash bugs!  The miners must have brought them from Earth on the shuttle!"
     return
 
 
 label work9:
-    "work 9 Event"
+    "Solanine in potatoes; how bad can they get before you toss them?"
     return
 
 
 label work10:
-    "work 10 Event"
+    "Terra helps out with some simple things, but she isn't very good at it. Do you redo it, make her redo it, or spend some time teaching her better? Do you have her help in the future?"
     return
 
 

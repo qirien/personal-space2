@@ -72,6 +72,18 @@ define sitting = Position(ypos=0.45, yanchor=0)
 define squatting = Position(ypos=0.25, yanchor=0)
 define standing = Position(ypos= 1.0, yanchor = 1.0)
 
+# Baby positions for being held
+define rightbaby = Position(xpos=1.0, xanchor=1.0, ypos=430)
+define quarterrightbaby = Position(xpos=0.78, xanchor=0.5, ypos=430)
+define midrightbaby = Position(xpos=0.65, xanchor=0.5, ypos=430)    
+define centerbaby = Position(xpos=0.5, xanchor=0.5, ypos=430)
+define midleftbaby = Position(xpos=0.35, xanchor=0.5, ypos=430)  
+define quarterleftbaby = Position(xpos=0.22, xanchor=0.5, ypos=430)
+define leftbaby = Position(xpos=0, xanchor=0.0, ypos=430)
+
+# Kid positions for really short people
+define centerkid = Position(xpos = 0.5, xanchor = 0.5, ypos = 0.75)
+
 # Variables used in the game
 define is_nude = False
 define is_pregnant = False

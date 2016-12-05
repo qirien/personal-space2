@@ -1,7 +1,27 @@
 ## Family Events
 
 # 3 Earth mos. old
+# CAN'T STOP CRYING!!
 label family1:
+    "Terra's been crying for hours, no one knows why.  Everyone's tired and spent."
+    menu:
+        "Take her for a walk":
+            $ responsive += 1
+            call attachment_increase
+        "Ask someone else for help":
+            $ responsive += 1
+            $ demanding += 1            
+        "Let Kelly handle it":
+            $ responsive += 0 # TODO: Do we ever subtract points?
+        "Let Terra cry":
+            $ demanding += 1
+            call independence_increase
+            
+    call competence_increase
+    return
+    
+    # Actual scene
+    # TODO: delete above when ready for prose
     # TODO: check expressions, positions
     scene bg farm_interior with fade
     show him concerned at midright
@@ -115,7 +135,19 @@ label family1:
     
 # 10 Earth mos. old
 label family2:
-    "Family 2 Event"
+    "Terra is getting into everything and Kelly's got a surgery and Jack's in charge at home of ten month old Terra."
+    menu:
+        "Make a play pen for her":
+            $ demanding += 1
+            call independence_increase
+        "Strap her on and try to get some work done":
+            $ demanding += 1
+            $ responsive += 1
+            call competence_increase
+        "Play with her":
+            $ responsive += 1
+            call attachment_increase
+ 
     return
 
 #####################################################
@@ -189,9 +221,27 @@ label family12:
 # 8 Earth years old
 # Sex Education
 label family13:
+    "Terra wonders where babies come from."
+    menu:
+        "She's not ready.":
+            $ demanding += 1
+        "Give a vague metaphor.":
+            call increase_independence
+        "Keep it simple":
+            $ responsive += 1
+            $ demanding += 1
+            call increase_competence
+            call increase_attachment
+        "Give a detailed explanation.":
+            $ responsive += 1
+            call increase_attachment
+        
+    return
+    
+    # TODO: uncomment above when ready for prose, and make sure variables are changing properly
     scene bg fields with fade
     show him at midright
-    #show kid at midleft
+    show kid at midleft
     with dissolve
     kid "Dad, I have a question."
     him "What is it?"
@@ -315,8 +365,39 @@ label family13:
     return
 
 # 8.7 Earth years old
+# Teacher Troubles
 label family14:
-    "Family 14 Event"
+    "Terra is having problems at school and taking it out on her little sibling."
+    menu:
+        "Demand that her teacher fix the problem":
+            $ responsive += 1
+            call increase_attachment
+        "Brainstorm ways Terra could work it out":
+            $ demanding += 1
+            $ responsive += 1
+            $ increase_competence
+            $ increase_independence
+            $ increase_attachment
+        "Terra should quit asking you and solve her problem herself.":
+            $ demanding += 1
+            $ increase_independence
+        
+    return
+     
+    # TODO: Finish this
+    scene bg farm_interior with fade
+    #show kid at midleft
+    #show brother crying at quarterleft with dissolve
+    show him at midright with moveinright
+    
+    him surprised "Whoa, what's going on?"
+    kid "He's annoying me!"
+    bro "She hit me!"
+    kid "You should stop being so annoying!"
+    him "Hey, hey, both of you go sit on your beds and cool off."
+    her "They've been like that ever since I got home. Something's bothering [kid_name], but she won't tell me what it is."
+    
+    
     return
 
 # 9.4 Earth years old
