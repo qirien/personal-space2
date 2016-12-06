@@ -1,21 +1,57 @@
 ## Community Events
 label community1:
-    "Community 1 Event"
+    "Some new colonists arrived from Earth, sent by Rare Earth Tech."
+    # TODO: Introduce new colonist characters; establish old ones 
+    menu:
+        "Welcome them warmly! Introduce yourself to everyone."
+            $ colonists += 1
+        "Let them come to you."
     return
 
 
 label community2:
-    "Community 2 Event"
+    "New colonists interpret their contracts more literally. They want to put all their crops in the community center before taking some for themselves."
+    # TODO: have the new colonist quote the contract so players know what the exact terms are.
+    menu:
+        "Agree with their more literal interpretation."
+            $ colonists += 1 #would this also affect the miner's ease of transition later on?
+        "Push to have each farmer store most of their own crops. It's more efficient, right?"
+            $ luddites += 1
     return
 
 
 label community3:
-    "Community 3 Event"
+    "The old colonists sometimes accidentally leave the new colonists out of stuff, like women's bath night or goat meat distribution (aka BBQ)."
+    menu:
+        "We'll try to be better about inviting everyone next time."
+        #TO DO: make option to ask someone to do it, or hope someone else does it. If you hope someone else does it, no one does it.
+        "I'll personally make the calendar more accurate, and put a reminder on the village discussion forum."
+            $ colonists += 1
+            # TODO: what if he forgets?
+        "I'll ask the mayor to write upcoming events on a white board outside the storeroom."
+            $ luddites += 1
     return
 
 
 label community4:
-    "Community 4 Event"
+    "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
+    "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
+    "Should we start rationing food?"
+    menu:
+        "Yes, ration food as much as possible. Otherwise we will have hungry miners."
+            $ miners += 2
+        "Ration a little. We don't want to starve ourselves."
+            $ miners += 1
+        "No, don't ration food. The miners can hunt and forage."
+            $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
+    "How will we issue currency?"
+    menu:
+        "Use pieces of whittled wood."
+            $ luddites += 1
+        "Use an encrypted form of digital currency."
+        "Use the one printer to print rudimentary banknotes."
+            
+        # TO DO: do more research and think through the consequences of these choices. Make a variable for each one.
     return
 
 
