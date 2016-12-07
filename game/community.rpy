@@ -6,6 +6,7 @@ label community1:
         "Welcome them warmly! Introduce yourself to everyone.":
             $ colonists += 1
         "Let them come to you.":
+            $ pass
     return
 
 
@@ -24,7 +25,8 @@ label community3:
     "The old colonists sometimes accidentally leave the new colonists out of stuff, like women's bath night or goat meat distribution (aka BBQ)."
     menu:
         "We'll try to be better about inviting everyone next time.":
-        #TO DO: make option to ask someone to do it, or hope someone else does it. If you hope someone else does it, no one does it.
+            $ pass
+        #TODO: make option to ask someone to do it, or hope someone else does it. If you hope someone else does it, no one does it.
         "I'll personally make the calendar more accurate, and put a reminder on the village discussion forum.":
             $ colonists += 1
             # TODO: what if he forgets?
@@ -61,11 +63,11 @@ label community4:
 label community5:
     show pete midright
     show julia midleft
-    "Pete and Julia accidentally left a tablet outside during a solar flare."
+    "Pete and Helen accidentally left a tablet outside during a solar flare."
     "The tablet was completely ruined. The same week, their other tablet was out for repairs."
-    "They missed watching movies and keeping in touch with everyone. But they found that they were more creative about how to entertain themselves."
-    # TO DO: How does the player hear about this?
-    # TO DO: determine just how durable the tablets are. They could probably survive being submerged, stepped on, etc. 
+    "They missed watching movies and reading books and keeping in touch with everyone. But they found that they were more creative about how to entertain themselves."
+    # TO DO: How does the player hear about this?  Maybe Pete asks to use his to submit his weekly report or make a request or something?
+    # TO DO: determine just how durable the tablets are. They could probably survive being submerged, stepped on, etc. Maybe run over by a tractor?  Poor Pete, he runs over everything!  :-(
     pete "It made me wonder if I would be happier living on my own, with no ties to any company or colony."
     pete "What would you think if someone left the colony?"
     menu:

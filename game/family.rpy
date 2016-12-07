@@ -148,6 +148,7 @@ label family2:
             $ responsive += 1
             call attachment_increase
  
+    # TODO: Perhaps they join the daycare coop at the end of this scene?
     return
 
 #####################################################
@@ -158,12 +159,37 @@ label family2:
 
 # 18 Earth mos. old
 label family3:
-    "Family 3 Event"
+    "Terra keeps putting sticks and rocks in her mouth."
+    menu:
+        "Make her a chewing toy":
+            $ responsive += 1
+            call attachment_increase
+        "Give her something she can chew on.": #like a woodenspoon
+            $ responsive += 1
+            $ demanding += 1
+            call competence_increase
+            call attachment_increase
+            call independence_increase
+        "Slap her hand away every time she reaches for them.":
+            $ demanding += 1
+        "Let her mouth them. It's good for her immune system, right?":
+            call independence_increase
     return
 
 # 2 Earth years old
+# TODO: Rachel, want to fill some of these in?  You have a kid this age...
 label family4:
-    "Family 4 Event"
+    "Terra gets hurt toddling around while Jack is in charge.  Is it serious or not?"
+    menu:
+        "Run to the doctor's office and let Kelly handle it.":
+            $ responsive += 1
+        "Hold her for a few minutes and see how bad it is":
+            $ demanding += 1
+            $ responsive += 1
+            call independence_increase
+        "Put her somewhere safe and get back to work; you don't have time to take her in for every little thing.":
+            $ demanding += 1
+            
     return
 
 # 2.7 Earth years old
@@ -184,17 +210,55 @@ label family6:
 
 # 4 Earth years old
 label family7:
-    "Family 7 Event"
+    "Terra talks back when asked to pick up her toys, saying \"I hate you!\""
+    menu:
+        "What do you say?"
+        "There's consequences for such disrespect!":
+            $ demanding += 1
+        "How can you say that after all I do for you?":
+            $ responsive += 1
+        "You don't really mean that!":
+            $ responsive += 1
+        "I can see you're upset. When you're ready to talk respectfully, we can try to solve the problem.":
+            $ demanding += 1
+            $ responsive += 1
+            call increase_competence
+            call increase_affection
+            # TODO: She continues to talk rudely, has to go to timeout, user has to be patient through a zillion menus until she finally calms down
     return
 
 # 5 Earth years old
 label family8:
-    "Family 8 Event"
+    "First day of school! She's a little nervous, but not screaming and crying."
+    # TODO: how would the first day be different in a 1 room schoolhouse?
+    menu:
+        "Cheerfully give her a goodbye hug.":
+            $ demanding += 1
+            $ responsive += 1
+            call independence_increase
+            call competence_increase
+            call attachment_increase
+        "Admonish her to behave.":
+            $ demanding += 1
+            call competence_increase
+        "Talk about how nervous she is.":
+            $ responsive += 1
+            call attachment_increase
+                
     return
 
 # 5.5 Earth years old
 label family9:
-    "Family 9 Event"
+    "It's some holiday that we can decide on later! Terra doesn't want to do some tradition."
+    menu:
+        "Keep the tradition.":
+            $ demanding += 1
+        "Make a new tradition":
+            $ responsive += 1        
+        "Keep the tradition and make a new tradition":
+            $ demanding += 1
+            $ responsive += 1
+        
     return
 
 # 6.2 Earth years old

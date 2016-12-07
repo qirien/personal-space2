@@ -29,6 +29,11 @@ label start:
     # There are 196 27-hour days per year on Talaam, and 356 24-hour days on Earth
     $ year = 1
     while (year < 30):
+        # Autosave
+        $ renpy.force_autosave(take_screenshot=True)
+        $ renpy.choice_for_skipping()
+        $ renpy.notify("{vspace=540}{color=#000}{space=40}Autosaving...{/color}")
+        
         scene black with fade
         centered "Year [year]\n\nFamily"
         scene black with fade
@@ -42,9 +47,13 @@ label start:
         scene black with fade
         centered "Year [year]\n\nWork"
         scene black with fade
-        call expression "work" + str(year)
         
-        # TODO: Get farm input, with kids' ages and farm/community info
+        # TODO: Get farm input, show kids' ages and farm/community info
+        $ potatoes = True
+        # Defaults for now        
+        $ period = "work"
+        call events_run_period
+        
         $ year += 1
    
     return

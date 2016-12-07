@@ -22,3 +22,22 @@ label baby_positions:
     kid "I'm kinda short, but I have feet unlike everyone else, so it's OK!"
     show kid normal at centerkid with move
     kid "But I could stand farther up as long as I have feet!"
+    
+    
+label test_positions:
+    "left"
+    show her normal at left
+    "quarterleft"
+    show him normal at quarterleft
+    "midleft"
+    show pavel at midleft, behind sara
+    "center"
+    show sara at center
+    "midright"
+    show lily at midright
+    "quarterright"
+    show brennan at quarterright
+    "right"
+    show natalia at right
+    "end test positions"
+    return
