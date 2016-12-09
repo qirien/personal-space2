@@ -194,12 +194,29 @@ label family4:
 
 # 2.7 Earth years old
 label family5:
-    "Family 5 Event"
-    return
+    "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
+    menu:
+        "Force-feed her some rice.":
+            $ demanding += 1
+        "Tell her we don't have that food right now and keep the food out longer.":
+            call independence_increase
+        "Ask a neighbor for the food she wants.":
+            $ responsive += 1            
+        # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
 
 # 3.5 Earth years old
 label family6:
-    "Family 6 Event"
+    "Terra wants your attention while you're trying to relax"
+    menu:
+        "Play with her just enough for her to get less bored and play a little more on her own.":
+            call independence_increase
+        "Give her your complete attention.":
+            $ responsive += 1
+        "Tell her to stop bothering you.":
+            $ demanding += 1
+            $ responsive -= 1
+            # TODO: is subtracting variables allowed?
+            # TODO: I'm not sure if this situation would increase independence (since the child has to play on their own more) or decrease it (since it means they want to get parental attention EVEN MORE).
     return
 
 #####################################################
@@ -230,7 +247,7 @@ label family7:
 # 5 Earth years old
 label family8:
     "First day of school! She's a little nervous, but not screaming and crying."
-    # TODO: how would the first day be different in a 1 room schoolhouse?
+    # TODO: how would the first day be different in a 1 room schoolhouse? Maybe she'll see a familiar face in a babysitter there?
     menu:
         "Cheerfully give her a goodbye hug.":
             $ demanding += 1
