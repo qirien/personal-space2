@@ -7,7 +7,7 @@ label family1:
     menu:
         "Take her for a walk":
             $ responsive += 1
-            call attachment_increase
+            call increase_attachment
         "Ask someone else for help":
             $ responsive += 1
             $ demanding += 1            
@@ -15,9 +15,9 @@ label family1:
             $ responsive += 0 # TODO: Do we ever subtract points?
         "Let Terra cry":
             $ demanding += 1
-            call independence_increase
+            call increase_independence
             
-    call competence_increase
+    call increase_competence
     return
     
     # Actual scene
@@ -139,14 +139,14 @@ label family2:
     menu:
         "Make a play pen for her":
             $ demanding += 1
-            call independence_increase
+            call increase_independence
         "Strap her on and try to get some work done":
             $ demanding += 1
             $ responsive += 1
-            call competence_increase
+            call increase_competence
         "Play with her":
             $ responsive += 1
-            call attachment_increase
+            call increase_attachment
  
     # TODO: Perhaps they join the daycare coop at the end of this scene?
     return
@@ -163,17 +163,17 @@ label family3:
     menu:
         "Make her a chewing toy":
             $ responsive += 1
-            call attachment_increase
+            call increase_attachment
         "Give her something she can chew on.": #like a woodenspoon
             $ responsive += 1
             $ demanding += 1
-            call competence_increase
-            call attachment_increase
-            call independence_increase
+            call increase_competence
+            call increase_attachment
+            call increase_independence
         "Slap her hand away every time she reaches for them.":
             $ demanding += 1
         "Let her mouth them. It's good for her immune system, right?":
-            call independence_increase
+            call increase_independence
     return
 
 # 2 Earth years old
@@ -186,7 +186,7 @@ label family4:
         "Hold her for a few minutes and see how bad it is":
             $ demanding += 1
             $ responsive += 1
-            call independence_increase
+            call increase_independence
         "Put her somewhere safe and get back to work; you don't have time to take her in for every little thing.":
             $ demanding += 1
             
@@ -196,20 +196,26 @@ label family4:
 label family5:
     "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
     menu:
-        "Force-feed her some rice.":
+        "Force-feed her some rice.": #Or make her sit at the table until she eats everything on her plate?
             $ demanding += 1
         "Tell her we don't have that food right now and keep the food out longer.":
-            call independence_increase
+            $ demanding += 1
+            call increase_independence
+            call increase_attachment
         "Ask a neighbor for the food she wants.":
-            $ responsive += 1            
+            $ responsive += 1
+                        
         # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
+        # So, the parenting variables (demanding and responsive), are just increased by one
+        # But, since the child variables (independence, attachment, and competence) depend on
+        # the parenting variables, we don't want to just add one, we want to call our functions instead.  That's the current mechanics, anyway - might require some playtesting and tweaking.
 
 # 3.5 Earth years old
 label family6:
     "Terra wants your attention while you're trying to relax"
     menu:
         "Play with her just enough for her to get less bored and play a little more on her own.":
-            call independence_increase
+            call increase_independence
         "Give her your complete attention.":
             $ responsive += 1
         "Tell her to stop bothering you.":
@@ -217,6 +223,8 @@ label family6:
             $ responsive -= 1
             # TODO: is subtracting variables allowed?
             # TODO: I'm not sure if this situation would increase independence (since the child has to play on their own more) or decrease it (since it means they want to get parental attention EVEN MORE).
+            
+        # TODO: Perhaps this leads to the discussion of whether or not to have another child, as they feel Terra would benefit from a playmate. Or maybe just more time with friends?
     return
 
 #####################################################
@@ -252,15 +260,15 @@ label family8:
         "Cheerfully give her a goodbye hug.":
             $ demanding += 1
             $ responsive += 1
-            call independence_increase
-            call competence_increase
-            call attachment_increase
+            call increase_independence
+            call increase_competence
+            call increase_attachment
         "Admonish her to behave.":
             $ demanding += 1
-            call competence_increase
+            call increase_competence
         "Talk about how nervous she is.":
             $ responsive += 1
-            call attachment_increase
+            call increase_attachment
                 
     return
 
@@ -280,7 +288,18 @@ label family9:
 
 # 6.2 Earth years old
 label family10:
-    "Family 10 Event"
+    "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
+    menu:
+        "Yell at her to be more careful":
+            $ demanding +=1 
+        "Ask how it happened and require her to do extra chores to make up for it.":
+            $ demanding += 1
+            $ responsive += 1
+            $ competence += 1
+            $ independence += 1
+        "Tell her it's all right, she can't be expected to take care of things at her age.":
+            $ responsive += 1
+            call increase_attachment
     return
 
 # 6.8 Earth years old
@@ -459,7 +478,7 @@ label family14:
             $ increase_competence
             $ increase_independence
             $ increase_attachment
-        "Terra should quit asking you and solve her problem herself.":
+        "Terra should quit asking you and stop bothering her brother.":
             $ demanding += 1
             $ increase_independence
         
@@ -483,7 +502,19 @@ label family14:
 
 # 9.4 Earth years old
 label family15:
-    "Family 15 Event"
+    "Terra wants to have a sleepover for her birthday and invite some friends over.  But they're boys..."
+    menu:
+        "No. Absolutely not!":
+            $ demanding += 1
+        "Work out a compromise":
+            $ demanding += 1
+            $ responsive += 1
+            call increase_competence
+            call increase_attachment
+            # they can stay for a late party and then Jack will drive them home
+        "Of course, whatever you want!":
+            $ responsive += 1
+            call increase_attachment
     return
 
 # 10 Earth years old

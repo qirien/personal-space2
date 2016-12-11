@@ -1,20 +1,20 @@
 # Library of functions we call that have to do with game variables, etc.
 
-label attachment_increase:
+label increase_attachment:
     if (responsive <= 0):
         $ attachment += 1
     else:
         $ attachment += (responsive/(year/2.0)) * 2
     return
     
-label competence_increase:
+label increase_competence:
     if (demanding <= 0):
         $ competence += 1
     else:    
         $ competence += (demanding/(year/2.0)) * 2
     return
     
-label independence_increase:
+label increase_independence:
     if (responsive <= 0):
         $ independence += 1
     else:
