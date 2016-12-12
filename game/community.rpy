@@ -114,7 +114,7 @@ label community11:
         "Reassure and accept":
             $ miners += 1
             $ colonists += 1 
-        "Remind them that farming is the really vital work."
+        "Remind them that farming is the really vital work.":
             $ pass
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
     return

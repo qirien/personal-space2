@@ -179,17 +179,19 @@ label family3:
 # 2 Earth years old
 # TODO: Rachel, want to fill some of these in?  You have a kid this age...
 label family4:
-    "Terra gets hurt toddling around while Jack is in charge.  Is it serious or not?"
+    "Toilet training! She's learning it, but she has an accident."
     menu:
-        "Run to the doctor's office and let Kelly handle it.":
+        "Clean it up for her. She'll learn eventually.":
             $ responsive += 1
-        "Hold her for a few minutes and see how bad it is":
+        "Have her help you clean it up, then reward her later for just trying to go to the bathroom.":
             $ demanding += 1
             $ responsive += 1
             call increase_independence
-        "Put her somewhere safe and get back to work; you don't have time to take her in for every little thing.":
+        "Punish her every time she has an accident":
             $ demanding += 1
             
+            
+        # perhaps also a discussion about is she too young, should they give up, everyone's tired of washing diapers.  Maybe she should just LIVE OUTSIDE?!
     return
 
 # 2.7 Earth years old
@@ -270,6 +272,7 @@ label family8:
             $ responsive += 1
             call increase_attachment
                 
+    # TODO: Have a baby here if you decided to.
     return
 
 # 5.5 Earth years old
@@ -295,8 +298,8 @@ label family10:
         "Ask how it happened and require her to do extra chores to make up for it.":
             $ demanding += 1
             $ responsive += 1
-            $ competence += 1
-            $ independence += 1
+            call increase_competence += 1
+            call increase_independence += 1
         "Tell her it's all right, she can't be expected to take care of things at her age.":
             $ responsive += 1
             call increase_attachment
@@ -304,7 +307,20 @@ label family10:
 
 # 6.8 Earth years old
 label family11:
-    "Family 11 Event"
+    "Manners at the dinner table!  Terra used to know how to say Please and Thank You, but lately she's forgotten or is testing the limits."
+    menu:
+        "I raised you to talk better than that!":
+            $ demanding += 1
+            call increase_competence
+        "I expect you to say 'please' when you ask for something, and 'thank you' when someone helps you. Try again.":
+            # she keeps asking rudely a billion times, do you give up and give her what she wants, get mad, set a consequence, or simply ignore her until she talks politely?
+            $ demanding += 1
+            $ responsive += 1
+            call increase_competence
+            call increase_affection
+        "Give her what she wants.":
+            $ responsive += 1
+            call increase_independence
     return
 
 # 7.4 Earth years old
@@ -519,12 +535,36 @@ label family15:
 
 # 10 Earth years old
 label family16:
-    "Family 16 Event"
+    "You ask Terra to clean up her stuff (school supplies, rock collection, 'precious things', etc). She says it is clean and she likes it that way."
+    menu:
+        "Help her make a box for her most special things and choose some things to give away.":
+            # charity for Luddites?
+            $ demanding += 1
+            $ responsive += 1
+            $ call increase_competence
+            $ call increase_independence
+            $ call increase_affection
+        "Throw her stuff away when she's at school.":
+            $ demanding += 1
+        "Demand she clean it up now or be grounded.":
+            $ demanding += 1
+            $ call increase_competence
+        "Let her keep it. If a little mess makes her happy, what's the big deal?":
+            $ responsive += 1
     return
 
 # 10.5 Earth years old
 label family17:
-    "Family 17 Event"
+    "She won't stop crying. She won't even explain what the problem is. She's making the other kid(s) cry and the entire house is filled with her wails."
+    menu:
+        "Shut up or I'll give you something to REALLY cry about!":
+            $ demanding += 1
+        "Go for a walk and let her calm down.":
+            call increase_independence
+        "Bring her some tissues and rub her back.":
+            $ responsive += 1
+            
+        # TODO: Finally it comes out that one of her friends doesn't want to be her friend anymore. May have something to do with community tensions.  You can help her work out a plan of action, sympathize, or tell her that's how life is.
     return
 
 # 11.1 Earth years old
@@ -534,12 +574,42 @@ label family18:
 
 # 11.8 Earth years old
 label family19:
-    "Family 19 Event"
+    "You're sending an e-mail to the farming committee and looking for a photo you took of some crops when you find a pornographic video stored on the tablet."
+    menu:
+        "I can't believe you would do such a thing! You're grounded from using the tablet for a month!":
+            $ demanding += 1
+        "Tell me about how this got here.":
+           "She found it accidentally but was fascinated so she watched it."
+           menu:
+               "Make a plan for how to avoid pornography in the future.":
+                   $ demanding += 1
+                   $ responsive += 1
+               "Tell her to never do that again.":
+                   $ demanding += 1
+               "She's old enough to be responsible for her own viewing habits.":
+                   $ responsive += 1
+           
+           return
+           
+       "Watch it. Maybe it's a good one.":
+           "It's not. The acting is bad and it's not romantic at all."
+       "It's not your problem.":
+           $ pass
     return
 
 # 12.4 Earth years old
 label family20:
-    "Family 20 Event"
+    "Terra wants to learn a musical instrument.  The colony doesn't have any or anyone who plays that instrument."
+    menu:
+        "FInd a way to make one and find a teacher who at least knows something about music.":
+            $ responsive += 1
+            $ call increase_attachment
+            $ call increase_competence
+        "Encourage her to pick a different instrument.":
+            $ demanding += 1
+            $ call increase_competence
+        "Playing music is pointless; why don't you learn something useful?":
+            $ call increase_independence
     return
     
 #####################################################
@@ -550,7 +620,15 @@ label family20:
 
 # 13 Earth years old
 label family21:
-    "Family 21 Event"
+    "Terra's sarcastic humor is hurting people's feelings."
+    menu:
+        "Punish her.":
+            $ demanding += 1
+        "Explain the language you expect around your house.":
+            $ demanding += 1
+            $ responsive += 1
+        "Say nothing.":
+            $ responsive += 1
     return
 
 # 13.6 Earth years old
@@ -560,7 +638,19 @@ label family22:
 
 # 14.2 Earth years old
 label family23:
-    "Family 23 Event"
+        "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
+        menu:
+            "Ask her to set herself a deadline to finish her homework":
+                $ demanding += 1
+                $ responsive += 1
+                call increase_independence
+                call increase_competence
+                call increase_affection
+            "Tell her if she's not done in ten minutes then she'll lose all tablet time this week.":
+                # And no listening to music while doing homework!  How can you concentrate like that?!
+                $ demanding += 1
+            "Let her talk. It's good for her.":
+                $ pass
     return
 
 # 14.8 Earth years old
