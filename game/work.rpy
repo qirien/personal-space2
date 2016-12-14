@@ -15,17 +15,28 @@ label work2:
 
 
 label work3:
-    "Your family reacts to crops you've been planting."
+    "Making sausage out of goat/crabird meat. Charcuterie!"
     return
 
 
 label work4:
-    "Lots of goats!  Keep/sell/give/slaughter."
+    "You had a decent harvest, but a salesman from RET offers some hybrid wheat seeds that he claims will be the most productive crop you've ever seen."
+    "The only problem is, the seeds are infertile, so you'd have to buy them every year."
+    "In fact, he'll only sell them to you if you sign a contract to buy some from him every year for the next ten Talaam years."
+    menu:
+        "Sign a wheat contract?"
+                "Yes":
+                    $ colony += 1
+                    # you sold your soul but can now grow wheat.
+                "No":
+                    $ luddites += 1
+                    # the luddites approve and offer to get you started with some of their heirloom wheat instead
+    
     return
 
 
 label work5:
-    "Making sausage out of goat/crabird meat. Charcuterie!"
+    "Your family reacts to crops you've been planting."
     return
 
 
@@ -40,7 +51,8 @@ label work7:
 
 
 label work8:
-    "Squash bugs!  The miners must have brought them from Earth on the shuttle!"
+   "You throw out your back."
+   "People from your favorite faction help you, or not."
     return
 
 
