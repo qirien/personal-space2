@@ -1,4 +1,7 @@
 ## Family Events
+# 
+# Each family event has several parenting choices.  The decisions for the month
+# will affect how much the child's stats increase that month.
 
 # 3 Earth mos. old
 # CAN'T STOP CRYING!!
@@ -6,8 +9,7 @@ label family1:
     "Terra's been crying for hours, no one knows why.  Everyone's tired and spent."
     menu:
         "Take her for a walk":
-            $ responsive += 1
-            call increase_attachment
+            $ responsive += 1            
         "Ask someone else for help":
             $ responsive += 1
             $ demanding += 1            
@@ -15,9 +17,7 @@ label family1:
             $ responsive += 0 # TODO: Do we ever subtract points?
         "Let Terra cry":
             $ demanding += 1
-            call increase_independence
             
-    call increase_competence
     return
     
     # Actual scene
@@ -139,14 +139,14 @@ label family2:
     menu:
         "Make a play pen for her":
             $ demanding += 1
-            call increase_independence
+            
         "Strap her on and try to get some work done":
             $ demanding += 1
             $ responsive += 1
-            call increase_competence
+            
         "Play with her":
             $ responsive += 1
-            call increase_attachment
+            
  
     # TODO: Perhaps they join the daycare coop at the end of this scene?
     return
@@ -163,17 +163,15 @@ label family3:
     menu:
         "Make her a chewing toy":
             $ responsive += 1
-            call increase_attachment
+            
         "Give her something she can chew on.": #like a woodenspoon
             $ responsive += 1
             $ demanding += 1
-            call increase_competence
-            call increase_attachment
-            call increase_independence
+            
         "Slap her hand away every time she reaches for them.":
             $ demanding += 1
         "Let her mouth them. It's good for her immune system, right?":
-            call increase_independence
+            $ responsive += 1
     return
 
 # 2 Earth years old
@@ -186,7 +184,7 @@ label family4:
         "Have her help you clean it up, then reward her later for just trying to go to the bathroom.":
             $ demanding += 1
             $ responsive += 1
-            call increase_independence
+            
         "Punish her every time she has an accident":
             $ demanding += 1
             
@@ -202,22 +200,21 @@ label family5:
             $ demanding += 1
         "Tell her we don't have that food right now and keep the food out longer.":
             $ demanding += 1
-            call increase_independence
-            call increase_attachment
+         
         "Ask a neighbor for the food she wants.":
             $ responsive += 1
                         
         # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
-        # So, the parenting variables (demanding and responsive), are just increased by one
-        # But, since the child variables (independence, attachment, and competence) depend on
-        # the parenting variables, we don't want to just add one, we want to call our functions instead.  That's the current mechanics, anyway - might require some playtesting and tweaking.
+        # Still working with the best way to use these.  Basically, the child variables depend on the parenting variables, so I wrote a function to increase them so we can easily change the formula we use.
+        # Currently, the child variables are increased each year automatically based on that year's decisions, so all we have to do in this file is worry about demanding and responsive.
 
 # 3.5 Earth years old
 label family6:
     "Terra wants your attention while you're trying to relax"
     menu:
         "Play with her just enough for her to get less bored and play a little more on her own.":
-            call increase_independence
+            $ responsive += 1
+            $ demanding += 1
         "Give her your complete attention.":
             $ responsive += 1
         "Tell her to stop bothering you.":
@@ -249,8 +246,8 @@ label family7:
         "I can see you're upset. When you're ready to talk respectfully, we can try to solve the problem.":
             $ demanding += 1
             $ responsive += 1
-            call increase_competence
-            call increase_affection
+            
+            
             # TODO: She continues to talk rudely, has to go to timeout, user has to be patient through a zillion menus until she finally calms down
     return
 
@@ -262,15 +259,13 @@ label family8:
         "Cheerfully give her a goodbye hug.":
             $ demanding += 1
             $ responsive += 1
-            call increase_independence
-            call increase_competence
-            call increase_attachment
+        
         "Admonish her to behave.":
             $ demanding += 1
-            call increase_competence
+            
         "Talk about how nervous she is.":
             $ responsive += 1
-            call increase_attachment
+            
                 
     # TODO: Have a baby here if you decided to.
     return
@@ -297,12 +292,11 @@ label family10:
             $ demanding +=1 
         "Ask how it happened and require her to do extra chores to make up for it.":
             $ demanding += 1
-            $ responsive += 1
-            call increase_competence += 1
-            call increase_independence += 1
+            $ responsive += 1          
+            
         "Tell her it's all right, she can't be expected to take care of things at her age.":
             $ responsive += 1
-            call increase_attachment
+            
     return
 
 # 6.8 Earth years old
@@ -311,16 +305,15 @@ label family11:
     menu:
         "I raised you to talk better than that!":
             $ demanding += 1
-            call increase_competence
+            
         "I expect you to say 'please' when you ask for something, and 'thank you' when someone helps you. Try again.":
             # she keeps asking rudely a billion times, do you give up and give her what she wants, get mad, set a consequence, or simply ignore her until she talks politely?
             $ demanding += 1
-            $ responsive += 1
-            call increase_competence
-            call increase_affection
+            $ responsive += 1            
+            
         "Give her what she wants.":
             $ responsive += 1
-            call increase_independence
+            
     return
 
 # 7.4 Earth years old
@@ -342,15 +335,14 @@ label family13:
         "She's not ready.":
             $ demanding += 1
         "Give a vague metaphor.":
-            call increase_independence
+            $ responsive += 1
         "Keep it simple":
             $ responsive += 1
-            $ demanding += 1
-            call increase_competence
-            call increase_attachment
+            $ demanding += 1          
+            
         "Give a detailed explanation.":
             $ responsive += 1
-            call increase_attachment
+            
         
     return
     
@@ -413,6 +405,7 @@ label family13:
                     "She thought about it for a minute."
                     kid "And that's how you and Mom made me?"
                     him "That's how."
+                    "She looked away for a minute, and I could almost see her processing this new information."
                     kid "Huh. Are you sure?"
                     him "Sure as you're sitting here asking me if I'm sure."
                     $ sex_ed_biology = True
@@ -487,7 +480,7 @@ label family14:
     menu:
         "Demand that her teacher fix the problem":
             $ responsive += 1
-            call increase_attachment
+            
         "Brainstorm ways Terra could work it out":
             $ demanding += 1
             $ responsive += 1
@@ -524,13 +517,11 @@ label family15:
             $ demanding += 1
         "Work out a compromise":
             $ demanding += 1
-            $ responsive += 1
-            call increase_competence
-            call increase_attachment
+            $ responsive += 1       
             # they can stay for a late party and then Jack will drive them home
         "Of course, whatever you want!":
             $ responsive += 1
-            call increase_attachment
+            
     return
 
 # 10 Earth years old
@@ -541,14 +532,10 @@ label family16:
             # charity for Luddites?
             $ demanding += 1
             $ responsive += 1
-            $ call increase_competence
-            $ call increase_independence
-            $ call increase_affection
-        "Throw her stuff away when she's at school.":
-            $ demanding += 1
+        "Throw her stuff away when she's at school.": # Hmmm, do we need a passive-aggressive variable?!
+            $ responsive -= 1
         "Demand she clean it up now or be grounded.":
             $ demanding += 1
-            $ call increase_competence
         "Let her keep it. If a little mess makes her happy, what's the big deal?":
             $ responsive += 1
     return
@@ -560,7 +547,8 @@ label family17:
         "Shut up or I'll give you something to REALLY cry about!":
             $ demanding += 1
         "Go for a walk and let her calm down.":
-            call increase_independence
+            $ demanding += 1
+            $ responsive += 1
         "Bring her some tissues and rub her back.":
             $ responsive += 1
             
@@ -575,10 +563,17 @@ label family18:
 # 11.8 Earth years old
 label family19:
     "You're sending an e-mail to the farming committee and looking for a photo you took of some crops when you find a pornographic video stored on the tablet."
+    "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
     menu:
-        "I can't believe you would do such a thing! You're grounded from using the tablet for a month!":
-            $ demanding += 1
-        "Tell me about how this got here.":
+       "I can't believe you would do such a thing! You're grounded from using the tablet for a month!":
+           $ demanding += 1
+       "Watch it. Maybe it's a good one.":
+            "It's not. The acting is bad and it's not romantic at all."
+            $ demanding -= 1
+           # Terra catches you and you have to try to justify yourself?           
+       "It's not your problem.":
+           $ demanding -= 1            
+       "Tell me about how this got here.":
            "She found it accidentally but was fascinated so she watched it."
            menu:
                "Make a plan for how to avoid pornography in the future.":
@@ -589,12 +584,8 @@ label family19:
                "She's old enough to be responsible for her own viewing habits.":
                    $ responsive += 1
            
+           "Great discussion"
            return
-           
-       "Watch it. Maybe it's a good one.":
-           "It's not. The acting is bad and it's not romantic at all."
-       "It's not your problem.":
-           $ pass
     return
 
 # 12.4 Earth years old
@@ -603,13 +594,12 @@ label family20:
     menu:
         "FInd a way to make one and find a teacher who at least knows something about music.":
             $ responsive += 1
-            $ call increase_attachment
-            $ call increase_competence
         "Encourage her to pick a different instrument.":
             $ demanding += 1
-            $ call increase_competence
+            $ responsive += 1
         "Playing music is pointless; why don't you learn something useful?":
-            $ call increase_independence
+            $ responsive -= 1
+            $ demanding += 1
     return
     
 #####################################################
@@ -638,19 +628,16 @@ label family22:
 
 # 14.2 Earth years old
 label family23:
-        "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
-        menu:
-            "Ask her to set herself a deadline to finish her homework":
-                $ demanding += 1
-                $ responsive += 1
-                call increase_independence
-                call increase_competence
-                call increase_affection
-            "Tell her if she's not done in ten minutes then she'll lose all tablet time this week.":
-                # And no listening to music while doing homework!  How can you concentrate like that?!
-                $ demanding += 1
-            "Let her talk. It's good for her.":
-                $ pass
+    "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
+    menu:
+        "Ask her to set herself a deadline to finish her homework":
+            $ demanding += 1
+            $ responsive += 1   
+        "Tell her if she's not done in ten minutes then she'll lose all tablet time this week.":
+            # And no listening to music while doing homework!  How can you concentrate like that?!
+            $ demanding += 1
+        "Let her talk. It's good for her.":
+            $ pass
     return
 
 # 14.8 Earth years old
@@ -660,7 +647,27 @@ label family24:
 
 # 15.5 Earth years old
 label family25:
-    "Family 25 Event"
+    "Terra sure has been spending a lot of time with some boy. They were holding hands... does she have a boyfriend?"
+    menu:
+        "Talk to her about it":
+            him "Are you guys pretty serious?"
+            kid "Yeah, for like the past month!"
+            
+            # Make this a loop where you choose lots of things to say
+            menu:
+                "You're too young for a boyfriend!":
+                    $ demanding += 1
+                "Are you thinking about marriage?":
+                    $ demanding += 1
+                "What are your plans?":
+                    $ responsive += 1
+                "Tell me about him":
+                    $ responsive += 1
+                "Have you thought about birth control?":
+                    $ demanding += 1
+        "It's none of your business.":
+            $ responsive -= 1
+        
     return
 
 # 16.1 Earth years old

@@ -9,8 +9,10 @@ init -100:
     
     # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
     define demanding = 0
+    define total_demanding = 0
     # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
     define responsive = 0
+    define total_responsive = 0
     
     # CHILD
     

@@ -40,7 +40,8 @@ label squash1:
                 $ pass # only successful if community level high enough?
         "Forget the squash for this season":
                 $ pass # less food to eat
-    	    
+    return
+    
 label squash2:
     "Some squash plants are looking sickly... you recognize the pesky squash bugs from Earth!  They must have come in on a shuttle somehow!"
     menu:
@@ -52,11 +53,14 @@ label squash2:
                 $ pass #they cause trouble later
             "Try and get the new folks to fix the problem. They started it, after all!":
                 $ miners -= 1
-			
+                
+    return
+   
 label squash3:
     "If you didn't get rid of the squash bugs, they come back stronger than ever!  You can't grow squash for several years."
     "If you did get rid of them, congratulations!  You have lots of squash."
-	
+    return
+    
 label goats1:
     "Your goats reproduced and now you have a lot of them!  Once all these kids grow up they will need more space."
     menu:
@@ -96,4 +100,4 @@ label beans1:
     "You had a good bean harvest this year.  Now that you've dried them, they will last a long time."
     
 label beans2:
-    "It's been a cold spring. The bean plants haven't even germinated yet.".
+    "It's been a cold spring. The bean plants haven't even germinated yet."

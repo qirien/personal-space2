@@ -25,12 +25,12 @@ label work4:
     "In fact, he'll only sell them to you if you sign a contract to buy some from him every year for the next ten Talaam years."
     menu:
         "Sign a wheat contract?"
-                "Yes":
-                    $ colony += 1
-                    # you sold your soul but can now grow wheat.
-                "No":
-                    $ luddites += 1
-                    # the luddites approve and offer to get you started with some of their heirloom wheat instead
+        "Yes":
+            $ colony += 1
+            # you sold your soul but can now grow wheat.
+        "No":
+            $ luddites += 1
+            # the luddites approve and offer to get you started with some of their heirloom wheat instead
     
     return
 
@@ -53,7 +53,7 @@ label work7:
 label work8:
    "You throw out your back."
    "People from your favorite faction help you, or not."
-    return
+   return
 
 
 label work9:

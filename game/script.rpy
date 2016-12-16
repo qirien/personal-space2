@@ -34,10 +34,21 @@ label start:
         $ renpy.choice_for_skipping()
         $ renpy.notify("{vspace=540}{color=#000}{space=40}Autosaving...{/color}")
         
+        # Reset our variables while keeping a running total
+        $ total_demanding += demanding
+        $ demanding = 0
+        $ total_responsive += responsive
+        $ responsive = 0
+        
         scene black with fade
         centered "Year [year]\n\nFamily"
         scene black with fade
         call expression "family" + str(year)
+        
+        # Increase child stats based on this year's parenting decisions
+        call increase_attachment
+        call increase_competence
+        call increase_independence
         
         scene black with fade
         centered "Year [year]\n\nCommunity"
