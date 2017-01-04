@@ -46,7 +46,7 @@ label community4:
             $ miners += 2
         "Ration a little--the stuff we don't like anyway. We don't want to starve ourselves.":
             $ miners += 1
-        "No, don't ration food. The miners can hunt and forage.":
+        "No, don't ration food. The miners can hunt and forage. This taxation wasn't in our contract.":
             $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
     "How will we issue currency?"
     menu:

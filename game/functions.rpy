@@ -17,3 +17,9 @@ label increase_independence:
     $ independence += (demanding + responsive) / 2.0
     return
     
+
+# I would like community events to be affected by the player's current parenting style. I want to make a function that returns the players current parenting style. 
+# commenting it out for now until I can come back and think about it some more
+
+# label get_attachment:
+#   return $ responsive / 2.0 
