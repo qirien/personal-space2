@@ -557,7 +557,24 @@ label family17:
 
 # 11.1 Earth years old
 label family18:
-    "Family 18 Event"
+    "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
+    menu:
+        "FInd a way to get her a bike":
+                "A bike is an essential part of childhood!  How will you do it?"
+                menu:
+                        "Ask if she can help out someone who has a bike and then get to use it.":
+                                $ responsive += 1
+                                $ demanding += 1
+                        "Make a bike out of spare parts.":
+                                $ responsive += 1
+                        "Ask [her_name] to help you make a bike out of spare parts.":
+                                $ responsive += 1
+                                #maybe also relationship with wife improves?
+        "There's just no bikes. Deal with it.":
+                $ demanding += 1
+        "Sympathize, and suggest some alternatives.":
+                "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
+                $ responsive += 1
     return
 
 # 11.8 Earth years old

@@ -18,7 +18,23 @@ label increase_independence:
     return
     
 
-# I would like community events to be affected by the player's current parenting style. I want to make a function that returns the players current parenting style. 
+# Returns the players current parenting style.
+# Should be one of authoritative, authoritarian, permissive, passive, or neglectful
+init -100 python:
+    def get_parenting_style():
+        if (attachment >= year):
+            if (demanding >= year):
+                return "authoritative"
+            else:
+                return "permissive"
+        else:
+           if (demanding >= year):
+               return "authoritarian"
+           else:
+                return "passive"
+        return "passive"
+        
+    
 # commenting it out for now until I can come back and think about it some more
 # This might have to be calculated on a case-by-case basis, since different "times" of the year will have different total possible stat totals.
 

@@ -11,6 +11,11 @@ label work1:
 
 label work2:
     "Take your daughter to work day... is every day."
+    $ style = get_parenting_style()
+    if (style== "authoritative") or (style == "authoritarian"):
+        "She is pretty helpful and gets a lot done!"
+    else:
+        "She sulks and you have to threaten and cajole her to do anything.  It would have been faster to do it yourself!"
     return
 
 

@@ -97,3 +97,4 @@ init -100:
     define miners = 0
     define luddites = 0
     define jellies = 0
+    define year = 0
