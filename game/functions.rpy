@@ -22,13 +22,13 @@ label increase_independence:
 # Should be one of authoritative, authoritarian, permissive, passive, or neglectful
 init -100 python:
     def get_parenting_style():
-        if (attachment >= year):
-            if (demanding >= year):
+        if (total_attachment >= year):
+            if (total_demanding >= year):
                 return "authoritative"
             else:
                 return "permissive"
         else:
-           if (demanding >= year):
+           if (total_demanding >= year):
                return "authoritarian"
            else:
                 return "passive"

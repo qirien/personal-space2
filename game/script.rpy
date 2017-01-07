@@ -40,6 +40,7 @@ label start:
         $ total_responsive += responsive
         $ responsive = 0
         
+        # FAMILY EVENTS (parenting/home life)
         scene black with fade
         centered "Year [year]\n\nFamily"
         scene black with fade
@@ -50,20 +51,23 @@ label start:
         call increase_competence
         call increase_independence
         
+        # COMMUNITY EVENTS (building community, helping factions)
         scene black with fade
         centered "Year [year]\n\nCommunity"
         scene black with fade
         call expression "community" + str(year)
         
+        # WORK EVENTS (farming)
         scene black with fade
         centered "Year [year]\n\nWork"
         scene black with fade
-        
-        # TODO: Get farm input, show kids' ages and farm/community info
         $ potatoes = True
         # Defaults for now        
         $ period = "work"
         call events_run_period
+        
+        # CHOOSE FOR NEXT YEAR
+        # TODO: Get farm input, show kids' ages and farm/community info
         
         $ year += 1
    
