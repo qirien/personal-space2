@@ -196,7 +196,7 @@ label family4:
 label family5:
     "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
     menu:
-        "Force-feed her some rice.": #Or make her sit at the table until she eats everything on her plate?
+        "Make her stay at the table until she eats everything on her plate.": 
             $ demanding += 1
         "Tell her we don't have that food right now and keep the food out longer.":
             $ demanding += 1

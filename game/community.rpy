@@ -39,7 +39,13 @@ label community3:
 label community4:
     "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
     "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
+    "The colony has a town meeting to determine how to deal with the situation."
     # It will take 4 Earth years for the miners to arrive.
+    "Who will represent our colony's needs to Rare Earth Tech?"
+        #Authoritative parenting-style=voted by a majority
+        #Autoritarian=voted by a plurality
+        #Permissive=nominated, but didn't win
+        #Passive=you are not nominated
     "Should we start rationing food?"
     menu:
         "Yes, ration food as much as possible. Otherwise we will have hungry miners.":
@@ -84,7 +90,14 @@ label community5:
 
 
 label community6:
-    "The new colonists are afraid to go out walking past the colony. Take "
+    "A new colonist is afraid to go out walking past the colony."
+    menu:
+        "Tell them they're right to be afraid":
+            $ miners += 1 
+            # increases their dependence on the corporation
+        "Encourage them to explore.":
+            $ luddites += 1
+            $ colony += 1
     return
 
 
@@ -94,7 +107,8 @@ label community7:
 
 
 label community8:
-    "Your child is going to kindergarten."
+    "Your child is going to kindergarten. Parent-teacher conference."
+    #Feedback on parenting style from teacher. You talk to some other parents while you're there. 
     return
 
 
