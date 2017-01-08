@@ -49,21 +49,22 @@ label community4:
             $ pass
         "My friend Thuc. I think that would be funny.":
             $ pass
-         $ style = get_parenting_style()
-            if (style== "authoritative"):
-                "Your fellow colonists elected you to be the new representative."
-                $ is_liason = True
-                return
-            elif(style == "authoritarian"):
-                "You, Sarah, and Sister Naomi were nominated. You had the most votes, but not the majority."
-                $ is_liason = True
-                return
-            elif(style == "permissive"):
-                "You were nominated, but Sarah was elected as the new representative."
-                return
-            else:
-                "Sarah is elected as the new representative."
-                #TODO: does the order of these options matter for variable settings?
+    "We listened to the results of the election."
+    $ style = get_parenting_style()
+    if (style== "authoritative"):
+        "Your fellow colonists elected you to be the new representative."
+        $ is_liason = True
+        return
+    elif(style == "authoritarian"):
+        "You, Sarah, and Sister Naomi were nominated. You had the most votes, but not the majority."
+        $ is_liason = True
+        return
+    elif(style == "permissive"):
+        "You were nominated, but Sarah was elected as the new representative."
+        return
+    else:
+        "Sarah is elected as the new representative."
+        #TODO: does the order of these options matter for variable settings?
 
 
 label community5:
@@ -121,14 +122,15 @@ label community6:
 
 label community7:
      "A new colonist is afraid to go out walking past the colony."
-    menu:
-        "Tell them they're right to be afraid":
+     "What do you tell them?"
+     menu:
+         "Tell them they're right to be afraid":
             $ miners += 1 
             # increases their dependence on the corporation
-        "Encourage them to explore.":
+         "Encourage them to explore.":
             $ luddites += 1
             $ colony += 1
-    return
+     return
 
 
 label community8:
@@ -136,7 +138,7 @@ label community8:
     #Feedback on parenting style from teacher. You talk to some other parents while you're there."
     #TODO: Who else has children?
     $ style = get_parenting_style()
-        if (style== "authoritative") or (style == "authoritarian"):
+    if (style== "authoritative") or (style == "authoritarian"):
         "She is a good student and helps the others too."
     else:
         "She isn't doing very well. You should read more with her at home."
