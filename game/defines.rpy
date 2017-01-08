@@ -91,10 +91,10 @@ init -100:
     define is_nude = False
     define is_pregnant = False
     define wearing_dress = False # TODO: do we still use these in OPS2?
+    define is_liason = False
     
     # Community. The higher the variable, the better your relationship with that group is.
     define colonists = 0
     define miners = 0
     define luddites = 0
     define jellies = 0
-    define year = 0

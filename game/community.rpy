@@ -37,38 +37,69 @@ label community3:
 
 
 label community4:
-    "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
-    "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
+    "Rare Earth Tech says that they need a liason from the colony."
     "The colony has a town meeting to determine how to deal with the situation."
-    # It will take 4 Earth years for the miners to arrive.
     "Who will represent our colony's needs to Rare Earth Tech?"
-        #Authoritative parenting-style=voted by a majority
-        #Autoritarian=voted by a plurality
-        #Permissive=nominated, but didn't win
-        #Passive=you are not nominated
-    "Should we start rationing food?"
+    "We are accepting nominations."
+    "Who will you nominate? You may not nominated yourself."
     menu:
-        "Yes, ration food as much as possible. Otherwise we will have hungry miners.":
-            $ miners += 2
-        "Ration a little--the stuff we don't like anyway. We don't want to starve ourselves.":
-            $ miners += 1
-        "No, don't ration food. The miners can hunt and forage. This taxation wasn't in our contract.":
-            $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
-    "How will we issue currency?"
-    menu:
-        "Use pieces of whittled wood.":
-            $ luddites += 1
-        "Use Rare Earth's encrypted form of digital currency.":
-            $ miners += 1
-        "Use the one printer to print rudimentary banknotes.":
-            $ colonists += 1
-            
-        # TODO: do more research and think through the consequences of these choices. Make a variable for each one.
-        # TODO: Why is your vote the deciding one? Are you on some kind of colonist preservation committee?
-    return
+        "Sister Naomi, our religious leader and childcare leader.":
+            $ pass
+        "My wife's friend Sara. She doesn't seem too busy.":
+            $ pass
+        "My friend Thuc. I think that would be funny.":
+            $ pass
+         $ style = get_parenting_style()
+            if (style== "authoritative"):
+                "Your fellow colonists elected you to be the new representative."
+                $ is_liason = True
+                return
+            elif(style == "authoritarian"):
+                "You, Sarah, and Sister Naomi were nominated. You had the most votes, but not the majority."
+                $ is_liason = True
+                return
+            elif(style == "permissive"):
+                "You were nominated, but Sarah was elected as the new representative."
+                return
+            else:
+                "Sarah is elected as the new representative."
+                #TODO: does the order of these options matter for variable settings?
 
 
 label community5:
+    "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
+    "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
+    # It will take 4 Earth years for the miners to arrive.
+    if is_liason:
+        "Should we start rationing food?"
+        menu:
+            "Yes, ration food as much as possible. Otherwise we will have hungry miners.":
+                $ miners += 2
+            "Ration a little--the stuff we don't like anyway. We don't want to starve ourselves.":
+                $ miners += 1
+            "No, don't ration food. The miners can hunt and forage. This taxation wasn't in our contract.":
+                $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
+        "How will we issue currency?"
+        menu:
+            "Use pieces of whittled wood.":
+                $ luddites += 1
+            "Use Rare Earth's encrypted form of digital currency.":
+                $ miners += 1
+            "Use the one printer to print rudimentary banknotes.":
+                $ colonists += 1
+    # TODO: do more research and think through the consequences of these choices (replace with more reasonable ones?). Make a variable for each one.
+    else:
+        show sarah midright
+        sarah "The miners won't arrive for another four Earth years."
+        sarah "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+        sarah "Next harvest we'll start accepting canned goods as well."
+        sarah "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
+        sarah "I'll be grading your crops against the RET standards."
+        
+    return
+
+
+label community6:
     show pete midright
     show julia midleft
     "Pete and Helen accidentally left a tablet outside during a solar flare."
@@ -88,9 +119,8 @@ label community5:
             $ miners += 1
     return
 
-
-label community6:
-    "A new colonist is afraid to go out walking past the colony."
+label community7:
+     "A new colonist is afraid to go out walking past the colony."
     menu:
         "Tell them they're right to be afraid":
             $ miners += 1 
@@ -101,14 +131,16 @@ label community6:
     return
 
 
-label community7:
-    "Community 7 Event"
-    return
-
-
 label community8:
     "Your child is going to kindergarten. Parent-teacher conference."
-    #Feedback on parenting style from teacher. You talk to some other parents while you're there. 
+    #Feedback on parenting style from teacher. You talk to some other parents while you're there."
+    #TODO: Who else has children?
+    $ style = get_parenting_style()
+        if (style== "authoritative") or (style == "authoritarian"):
+        "She is a good student and helps the others too."
+    else:
+        "She isn't doing very well. You should read more with her at home."
+        #TODO: More detail
     return
 
 
