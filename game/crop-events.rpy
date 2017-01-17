@@ -1,6 +1,30 @@
 # Crop-specific work events
 
+label carrot1:
+    "You harvest carrots, but many are bent and twisted."
+    menu:
+        "Till the soil better. Must be rocks.":
+                "Lots of work, next year better carrots."
+        "Must be something in the soil. Avoid planting carrots for a year.":
+                "No carrots allowed next year."
+        "Who cares, they taste the same.":
+                "Same problem next year."
+                
+label carrot2:
+        if (carrots_fallow):
+                "Your carrots are growing bigger than last time! Seems like you got rid of the pests that were deforming them."
+        else:
+                "Your carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
+                # take care of pests somehow
 
+label carrot3:
+        "You have tons of carrots!  [kid_name] eats them all the time, which is good, but her hands are turning yellow..."
+        menu: 
+                "No more carrots!":
+                        "Dad, you're so mean!"
+                "It's harmless, she'll be fine.":
+                        "You get some dirty looks from other parents, but you're pretty sure they're just jealous that they don't have as many carrots."
+        
 label potato1:
     "Solanine in a batch of forgotten potatoes; how bad can they get before you toss them?"
     menu:

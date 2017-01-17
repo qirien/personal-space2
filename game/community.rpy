@@ -70,7 +70,7 @@ label community4:
 label community5:
     "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
     "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
-    # It will take 4 Earth years for the miners to arrive.
+    # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
         "Should we start rationing food?"
         menu:
