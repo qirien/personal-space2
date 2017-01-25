@@ -61,10 +61,11 @@ label start:
         scene black with fade
         centered "Year [year]\n\nWork"
         scene black with fade
-        $ potatoes = True
-        # Defaults for now        
-        $ period = "work"
-        call events_run_period
+        # TODO: replace test code
+        $ crops = ["beans", "potatoes", "goats"]         
+        $ work_event = get_next_work_event()
+        
+        call expression work_event
         
         # CHOOSE FOR NEXT YEAR
         # TODO: Get farm input, show kids' ages and farm/community info

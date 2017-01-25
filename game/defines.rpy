@@ -93,6 +93,36 @@ init -100:
     define wearing_dress = False # TODO: do we still use these in OPS2?
     define is_liason = False
     
+    # Work/crops
+    define crops = []
+    # Dictionary containing the number of events seen for each crop 
+    define number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
+    # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10)
+    define crop_info = (["corn",         8, 4, 8, 7],    # Grains
+                        ["potatoes",     8, 5, 7, 6],
+                        ["wheat",        8, 6, 8, 10],
+                        ["peppers",      2, 6, 5, 5],    # "Fruits"
+                        ["tomatoes",     3, 5, 6, 6],
+                        ["plums",        3, 3, 8, 7],
+                        ["plums2",       3, 3, 8, 2],    # Perennials are easier after year 1
+                        ["squash",       4, 5, 5, 4],
+                        ["strawberries", 1, 3, 7, 6],
+                        ["strawberries2",1, 3, 7, 6],
+                        ["blueberries",  3, 3, 9, 9],
+                        ["blueberries2", 3, 3, 9, 4],
+                        ["beans",        6, 7, 2, 7],   # Legumes
+                        ["snow peas",    3, 5, 2, 4],
+                        ["peanuts",      7, 6, 5, 8],
+                        ["carrots",      3, 5, 4, 4],   # Root Vegetables
+                        ["beets",        3, 4, 4, 4],
+                        ["turnips",      3, 5, 3, 4],
+                        ["onions",       4, 3, 7, 4],
+                        ["garlic",       3, 4, 7, 4],
+                        ["cabbage",      2, 4, 4, 3],   # Leafy greens
+                        ["spinach",      3, 6, 4, 4],
+                        ["broccoli",     3, 5, 3, 3],
+                        ["goats",       10, 7, 7, 5])   # Miscellaneous
+    
     # Community. The higher the variable, the better your relationship with that group is.
     define colonists = 0
     define miners = 0
