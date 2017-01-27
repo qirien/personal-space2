@@ -115,8 +115,7 @@ label community6:
             $ colony += 1
         "I could understand that. Sometimes I feel the same way.":
             $ luddites += 1
-        "I would remind them of the contract they signed and ask them to obey it to the letter.": 
-            # TODO: this option doesn't seem very natural?
+        "I guess they would have to forfeit any help from Rare Earth Tech": 
             $ miners += 1
     return
 
@@ -136,23 +135,38 @@ label community7:
 label community8:
     "Your child is going to kindergarten. Parent-teacher conference."
     #Feedback on parenting style from teacher. You talk to some other parents while you're there."
-    #TODO: Who else has children?
+    #TODO: how does Terra get along with Helen and Pete's child (closest to her in age)?
     $ style = get_parenting_style()
     if (style== "authoritative") or (style == "authoritarian"):
         "She is a good student and helps the others too."
     else:
         "She isn't doing very well. You should read more with her at home."
-        #TODO: More detail
+        #TODO: I'm not sure if this should be in community. 
     return
 
 
 label community9:
-    "Community 9 Event"
+    "Pete wants to go camping."
+    "He says that guys need more bonding time together, and they should all go hunting at the same time."
+    menu:
+        "Sounds fun! Go with him and invite your friends." 
+        #you learn the particulars of how to camp safe from radiation.
+            $ luddites += 1
+            $ colonists += 1
+        "Sounds dangerous. I have to focus on farming right now anyway."
+            $ miners += 1
+            #not sure which side colonists +1 should go on for this one. 
     return
 
 
 label community10:
-    "Community 10 Event"
+    "Martin Peron is dying of cancer. He wants your advice. Who do you think should take care of his farm?"
+    menu:
+        "Tomás, his oldest son, and Joanna Nguyen, his wife."
+            $ colonists += 1 #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
+        "Let Natalia, his wife, scale back how they'd like."
+            $ luddites += 1
+        #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
     return
 
 
@@ -165,11 +179,21 @@ label community11:
         "Remind them that farming is the really vital work.":
             $ pass
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
+     # Does Brennan show up with the miners, or is that too fan-servicey?
     return
 
 
 label community12:
-    "Community 12 Event"
+    "You find out that your miner isn't good at cooking and has been living off emergency rations."
+    "It's not just 'your' miner; many of the rations given to the miners have spoiled since they're too tired to cook and completely offput by the strange tastes."
+    "How should the community react?" #TODO: depends on if you were elected earlier; otherwise you're limited to helping just your miner.
+    menu:
+        "Organize cooking lessons for the miners."
+            $ colonists += 1
+        "Suggest that each family share dinner with their miners in exchange for their rations."
+            $ miners += 1
+        "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes."
+            $luddites += 1
     return
 
 
