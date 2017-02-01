@@ -120,28 +120,45 @@ label community6:
     return
 
 label community7:
-     "A new colonist is afraid to go out walking past the colony."
-     "What do you tell them?"
-     menu:
-         "Tell them they're right to be afraid":
-            $ miners += 1 
-            # increases their dependence on the corporation
-         "Encourage them to explore.":
+     "Some people were compensated more than others for their jobs as colonists."
+     "At a farmer's meeting, you mention that the work is worth it to help your parents live comfortably."
+     "Thuc says that he almost paid Rare Earth Tech for the chance to come, despite you feeling that he's more qualified because of his experience with sustainable farming techniques."
+     "Rare Earth Tech paid off Ilian's considerable restaurant supply startup debts."
+     "None of the new colonists were compensated."
+     "Why didn't Rare Earth Tech deal more fairly with its employees?"
+     if is_liason:
+        menu:
+            "I don't know. That seems pretty unfair. I'll ask them in my next letter."
             $ luddites += 1
+            "From a business standpoint, it makes more sense to negotiate salary with each employee individually."
+            $ miners += 1 
+            "We're all here now, so let's help each other.":
             $ colony += 1
+        else:
+            "Sarah made some kind of excuse for Rare Earth Tech's econimizing."
      return
 
 
 label community8:
-    "Your child is going to kindergarten. Parent-teacher conference."
-    #Feedback on parenting style from teacher. You talk to some other parents while you're there."
-    #TODO: how does Terra get along with Helen and Pete's child (closest to her in age)?
-    $ style = get_parenting_style()
-    if (style== "authoritative") or (style == "authoritarian"):
-        "She is a good student and helps the others too."
+    "You get to tell Rare Earth Tech what luxuries you want from Earth."
+    "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. her_name wants some Gouda cheese."
+    if is_liason:
+        "You need to find out what everyone else wants too, and send a brief message summarizing it."
+        #talk to various villagers. include a bicycle?
+        show natalia left
+        with dissolve
+        natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be."
+        "What will you write? You have a limited amount of characters." #plausible?
+        menu:
+            "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin."
+            pass
+            "Cancer medicine for Martin." #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
+            $ asked_only_medicine = True
+            pass
+        "I sent the message."
     else:
-        "She isn't doing very well. You should read more with her at home."
-        #TODO: I'm not sure if this should be in community. 
+        "We told Sarah that we wanted toilet paper and Gouda cheese."
+    
     return
 
 
@@ -172,43 +189,90 @@ label community10:
 
 label community11:
     "Miners arrive. You meet their leader and 'your' family's miner. You get to know your miner a bit better."
-    menu:
-        "Reassure and accept":
-            $ miners += 1
-            $ colonists += 1 
-        "Remind them that farming is the really vital work.":
-            $ pass
+    "The luxuries from Earth arrive."
+    if asked_only_medicine:
+        "The exact medicine for Martin came! They included a bunch of other stuff, but not much of what other people asked for."
+        "The Peron family is crying happily."
+        her "Hey, where's the Gouda cheese? I was really looking forward to it."
+        "Other people complain that they didn't get what they wanted. Some of it is humorous."
+    else:
+        "They sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
+        natalia "This isn't the kind of medicine we needed! This is useless!"
+        natalia "Did you tell them what kind of medicine Martin needed?"
+        him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
+        her "Oooh, Gouda cheese!"
+        "Other people got what they wanted, but not the Perons."
+     # I don't have an increase in stats for this one, because I'll use the asked_only_medicine variable later to determine some other things, the end of which can have the stat increase. 
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
      # Does Brennan show up with the miners, or is that too fan-servicey?
     return
 
 
 label community12:
+    #I'm not sure if the timeline on this makes sense. Wouldn't you find out a little sooner than the next Talaam year?
     "You find out that your miner isn't good at cooking and has been living off emergency rations."
     "It's not just 'your' miner; many of the rations given to the miners have spoiled since they're too tired to cook and completely offput by the strange tastes."
+    "When they do cook, they tend to favor familiar Earth foods, and they love meat. They burn through their meat ration very quickly."
     "How should the community react?" #TODO: depends on if you were elected earlier; otherwise you're limited to helping just your miner.
     menu:
         "Organize cooking lessons for the miners."
             $ colonists += 1
-        "Suggest that each family share dinner with their miners in exchange for their rations."
+        "Suggest that each family share dinner with their miners in exchange for their rations." #or indulge them?
             $ miners += 1
         "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes."
-            $luddites += 1
+            $ luddites += 1
     return
 
 
 label community13:
-    "Community 13 Event"
+    "Miners find a beautiful cave while digging."
+    "Dr. Lily attends a brief expedition and discovers a vertabrate without an exoskeleton, which is very rare on Talaam because of the radiation."
+    if is_liason: 
+        "Dr. Lily asks you to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
+        "Rare Earth Tech says the miners are okay to continue their excavation however they see fit."
+    else:
+        "Sara asked Rare Earth Tech to halt the mining on Dr. Lily's behalf, but they didn't stop."
+        "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
+    #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
+    #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
     return
 
 
 label community14:
-    "Community 14 Event"
+    "Pete and Helen, and their child, leave their home on the colony because they feel Rare Earth Tech is immoral."
+    "They plan to leave almost everything provided by Rare Earth Tech, with the exception of some aluminum sheeting to protect from radiation. They're also taking about a third of their cattle."
+    "They announce it on the community message board."
+    "Dr. Lily joins them."
+    if asked_only_medicine: 
+        "No one else joined them."
+    else:
+        "Tomás Peron and Joanna Nguyen leave with them as well."
+        $ luddites += 1
+    "How do you react?"
+    menu:
+        "Warn them that they are doomed."
+        "Tell them that you understand their decision but that you are sad to see them go."
+        $ colonists += 1
+        "Joke that you wish you could join them."
+    if is_liason:
+        "What do you do with Pete and Helen's remaining cattle?"
+        menu:
+            "Ask Thuc if any of his kids can look after them."
+            $ colonists += 1
+            #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
+            "Take them for your own farm!"
+            #not sure if I want this as a real option
+            pass
+            "Wait for a volunteer. Ilian volunteers."
+            $ miners += 1
+            #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
+    else:
     return
 
 
 label community15:
-    "Community 15 Event"
+    "Losing members of the community is difficult. Some of the younger memebers of the community step up."
+    "Miranda Peron (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
     return
 
 

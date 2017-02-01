@@ -92,6 +92,7 @@ init -100:
     define is_pregnant = False
     define wearing_dress = False # TODO: do we still use these in OPS2?
     define is_liason = False
+    define asked_only_medicine = False
     
     # Work/crops
     define crops = []
