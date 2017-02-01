@@ -129,13 +129,14 @@ label community7:
      if is_liason:
         menu:
             "I don't know. That seems pretty unfair. I'll ask them in my next letter."
-            $ luddites += 1
+                $ luddites += 1
             "From a business standpoint, it makes more sense to negotiate salary with each employee individually."
-            $ miners += 1 
+                $ miners += 1 
             "We're all here now, so let's help each other.":
-            $ colony += 1
-        else:
-            "Sarah made some kind of excuse for Rare Earth Tech's econimizing."
+                $ colony += 1
+     else:
+        "Sarah made some kind of excuse for Rare Earth Tech's econimizing."
+     
      return
 
 
@@ -151,10 +152,10 @@ label community8:
         "What will you write? You have a limited amount of characters." #plausible?
         menu:
             "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin."
-            pass
+                $ pass
             "Cancer medicine for Martin." #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
-            $ asked_only_medicine = True
-            pass
+                $ asked_only_medicine = True
+                $ pass
         "I sent the message."
     else:
         "We told Sarah that we wanted toilet paper and Gouda cheese."
@@ -166,13 +167,11 @@ label community9:
     "Pete wants to go camping."
     "He says that guys need more bonding time together, and they should all go hunting at the same time."
     menu:
-        "Sounds fun! Go with him and invite your friends." 
-        #you learn the particulars of how to camp safe from radiation.
+        "Sounds fun! Go with him and invite your friends." #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
             $ colonists += 1
         "Sounds dangerous. I have to focus on farming right now anyway."
-            $ miners += 1
-            #not sure which side colonists +1 should go on for this one. 
+            $ miners += 1 #not sure which side colonists +1 should go on for this one. 
     return
 
 
@@ -247,26 +246,27 @@ label community14:
         "No one else joined them."
     else:
         "Tomás Peron and Joanna Nguyen leave with them as well."
-        $ luddites += 1
+    $ luddites += 1
     "How do you react?"
     menu:
         "Warn them that they are doomed."
         "Tell them that you understand their decision but that you are sad to see them go."
-        $ colonists += 1
+            $ colonists += 1
         "Joke that you wish you could join them."
     if is_liason:
         "What do you do with Pete and Helen's remaining cattle?"
         menu:
             "Ask Thuc if any of his kids can look after them."
-            $ colonists += 1
+                $ colonists += 1
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
             "Take them for your own farm!"
             #not sure if I want this as a real option
-            pass
+                $ pass
             "Wait for a volunteer. Ilian volunteers."
-            $ miners += 1
+                $ miners += 1
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
     else:
+        "Pete and Helen's cattle went to Ilian, who wanted to keep track of them."
     return
 
 
