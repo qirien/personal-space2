@@ -529,7 +529,7 @@ label family16:
     "You ask Terra to clean up her stuff (school supplies, rock collection, 'precious things', etc). She says it is clean and she likes it that way."
     menu:
         "Help her make a box for her most special things and choose some things to give away.":
-            # charity for Luddites?
+            # charity for Luddites? # it would be in the right timeframe
             $ demanding += 1
             $ responsive += 1
         "Throw her stuff away when she's at school.": # Hmmm, do we need a passive-aggressive variable?!

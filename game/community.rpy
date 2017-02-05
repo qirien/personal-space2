@@ -3,6 +3,8 @@ label community1:
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     # TODO: Introduce new colonist characters; establish old ones 
     menu:
+        "How do you greet them?"
+        
         "Welcome them warmly! Introduce yourself to everyone.":
             $ colonists += 1
         "Let them come to you.":
@@ -25,6 +27,8 @@ label community2:
 label community3:
     "The old colonists sometimes accidentally leave the new colonists out of stuff, like women's bath night or goat meat distribution (aka BBQ)."
     menu:
+        "How do you help them?"
+        
         "We'll try to be better about inviting everyone next time.":
             $ pass
         #TODO: make option to ask someone to do it, or hope someone else does it. If you hope someone else does it, no one does it.
@@ -41,8 +45,9 @@ label community4:
     "The colony has a town meeting to determine how to deal with the situation."
     "Who will represent our colony's needs to Rare Earth Tech?"
     "We are accepting nominations."
-    "Who will you nominate? You may not nominated yourself."
     menu:
+        "Who will you nominate? You may not nominated yourself."
+        
         "Sister Naomi, our religious leader and childcare leader.":
             $ pass
         "My wife's friend Sara. She doesn't seem too busy.":
@@ -128,9 +133,9 @@ label community7:
      "Why didn't Rare Earth Tech deal more fairly with its employees?"
      if is_liason:
         menu:
-            "I don't know. That seems pretty unfair. I'll ask them in my next letter."
+            "I don't know. That seems pretty unfair. I'll ask them in my next letter.":
                 $ luddites += 1
-            "From a business standpoint, it makes more sense to negotiate salary with each employee individually."
+            "From a business standpoint, it makes more sense to negotiate salary with each employee individually.":
                 $ miners += 1 
             "We're all here now, so let's help each other.":
                 $ colony += 1
@@ -151,9 +156,9 @@ label community8:
         natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be."
         "What will you write? You have a limited amount of characters." #plausible?
         menu:
-            "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin."
+            "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin.":
                 $ pass
-            "Cancer medicine for Martin." #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
+            "Cancer medicine for Martin.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
                 $ asked_only_medicine = True
                 $ pass
         "I sent the message."
@@ -167,10 +172,10 @@ label community9:
     "Pete wants to go camping."
     "He says that guys need more bonding time together, and they should all go hunting at the same time."
     menu:
-        "Sounds fun! Go with him and invite your friends." #you learn the particulars of how to camp safe from radiation.
+        "Sounds fun! Go with him and invite your friends.": #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
             $ colonists += 1
-        "Sounds dangerous. I have to focus on farming right now anyway."
+        "Sounds dangerous. I have to focus on farming right now anyway.":
             $ miners += 1 #not sure which side colonists +1 should go on for this one. 
     return
 
@@ -178,9 +183,9 @@ label community9:
 label community10:
     "Martin Peron is dying of cancer. He wants your advice. Who do you think should take care of his farm?"
     menu:
-        "Tomás, his oldest son, and Joanna Nguyen, his wife."
+        "Tomás, his oldest son, and Joanna Nguyen, his wife.":
             $ colonists += 1 #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
-        "Let Natalia, his wife, scale back how they'd like."
+        "Let Natalia, his wife, scale back how they'd like.":
             $ luddites += 1
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
     return
@@ -214,12 +219,13 @@ label community12:
     "When they do cook, they tend to favor familiar Earth foods, and they love meat. They burn through their meat ration very quickly."
     "How should the community react?" #TODO: depends on if you were elected earlier; otherwise you're limited to helping just your miner.
     menu:
-        "Organize cooking lessons for the miners."
+        "Organize cooking lessons for the miners.":
             $ colonists += 1
-        "Suggest that each family share dinner with their miners in exchange for their rations." #or indulge them?
+        "Suggest that each family share dinner with their miners in exchange for their rations.": #or indulge them?
             $ miners += 1
-        "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes."
+        "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes.":
             $ luddites += 1
+    #Do the miners resort to stealing? Elect a sherriff?
     return
 
 
@@ -249,20 +255,22 @@ label community14:
     $ luddites += 1
     "How do you react?"
     menu:
-        "Warn them that they are doomed."
-        "Tell them that you understand their decision but that you are sad to see them go."
+        "Warn them that they are doomed.":
+            $ pass
+        "Tell them that you understand their decision but that you are sad to see them go.":
             $ colonists += 1
-        "Joke that you wish you could join them."
+        "Joke that you wish you could join them.":
+            $ pass
     if is_liason:
         "What do you do with Pete and Helen's remaining cattle?"
         menu:
-            "Ask Thuc if any of his kids can look after them."
+            "Ask Thuc if any of his kids can look after them.":
                 $ colonists += 1
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
-            "Take them for your own farm!"
+            "Take them for your own farm!":
             #not sure if I want this as a real option
                 $ pass
-            "Wait for a volunteer. Ilian volunteers."
+            "Wait for a volunteer. Ilian volunteers.":
                 $ miners += 1
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
     else:
@@ -277,52 +285,118 @@ label community15:
 
 
 label community16:
-    "Community 16 Event"
+    "Trade with luddites: is it permitted in the contract?"
+    "Luddites want to trade a few calves for medical supplies."
+    "Also, you chat about the hardships of living without tech."
+    #if the mode of currency stays a choice, how does it play in here?
+    "Do you trade with the luddites?"
+    menu:
+        "yes.":
+            $ luddites += 1
+            $ trade_with_luddites = True
+        "no.":
+            $ pass
     return
 
 
 label community17:
-    "Community 17 Event"
+    "Harvest festival"
+    #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
+    # the obsession causes you to.... ???
+    # also if you meet with the luddites, Pete can answer questions about cattle health.
+    # if BOTH luddites and miners are there, they start trade negotiations?
     return
 
 
 label community18:
-    "Community 18 Event"
+    "The miners complain that a herd of cattle ran through their camp, making a huge mess and eating their scant herb gardens."
+    "Then a farmer complains that a similar thing happened, only the cows ate some young crops."
+    "How do you approach the problem? You know it was probably the luddites."
+    menu:
+        "Track down Pete and ask him what happened.":
+        #if you talk to Pete, he explains that they were herding the cattle from their winter caves to summer camps and they couldn't keep up with them, because a large animal scared them into stampeding, basically.
+        #THEN, if your relationship with the miners and colonists is good enough, they accept your explanation and
+            $ luddites += 1
+        #but if your relationship isn't good enough, they demand compensation.
+        "Compensate the offended parties with currency.":
+            $ miners += 1
+        "Apologize, but don't compensate them. The luddites are a force of nature now.":
+            $ pass
     return
 
 
 label community19:
-    "Community 19 Event"
+    "Crabirds devestate this year's harvest."
+    #one of the newer farming families wants to join the luddites?
+    #later in the year, there are fewer cows, since some calves died of starvation. The miners are desperate for beef and might even trade guns with the luddites??
+    #TODO: finish this
     return
 
 
 label community20:
-    "Community 20 Event"
+    "Dr. Lily tells you her findings living with the luddites."
+    "She tells you more about the vertebrates living in the caves, and the parasite in the thready jellyfish."
+    "She feels like she's going to die soon, so she has moved in with Miranda Peron." #is Miranda married to a miner by now? might make a good event for a bit earlier.
+    "Should she be allowed to move back to the colony?"
+    menu:
+        "No.":
+            $ pass
+        "Yes.":
+            $ luddites += 1
+    "Dr. Lily dies in a few months." #TODO: her burial spot depends on your decision earlier.
     return
 
 
 label community21:
-    "Community 21 Event"
+    "Miners are using the stimulent weed a lot."
+    "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
+    "RET forbids miners to use this drug."
+    "Do you attempt to enforce this?"
+    menu:
+        "Yes":
+            $ miners += 1 #there are some bad side effects which affect their mining if they continue. Maybe in the next event."
+        "No.":
+            $ luddites += 1
     return
 
 
 label community22:
-    "Community 22 Event"
+    "Miners moving on to start mining the next mountain, which is near the luddites's winter quarters by the sea."
+    "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
+    "What do you do?"
+    menu:
+        "Ask a coalition of farmers and miners to force the luddites out of the cave.":
+            $ miners += 1
+        "Not your problem. Do nothing.":
+            $ luddites -= 2 #TODO: minuses a problem? this seems like kind of a boring option?
+        "Petition RET and the miners to choose a different location for now.":
+            $ luddites += 1
+        "Ask a coalition of farmers and luddites to force the miners to a different site.": #implausible?
+            $ pass
     return
 
 
 label community23:
-    "Community 23 Event"
+    "RET wants to switch to artificial meat."
+    "You hate how it tastes."
+    "Make the switch?"
+    menu:
+        "Yes.":
+            $ miners += 1 #miners equal the interests of RET here
+        "No.":
+            $ luddites += 1
+        "Make a convincing case for meat.":
+            $ colonists += 1
     return
 
 
 label community24:
-    "Community 24 Event"
+    "A woman dies or is injured in childbirth."
     return
 
 
 label community25:
-    "Community 25 Event"
+    "A luddite or a miner is dating someone in the colony"
     return
 
 
@@ -342,7 +416,7 @@ label community28:
 
 
 label community29:
-    "Community 29 Event"
+    "Big fight!!"
     return
 
 
