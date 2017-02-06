@@ -2,7 +2,7 @@
 
 # Default crop event, if no other crop event can be found
 label default_crop_event:
-    "The year passed by in a blur: tilling, planting, weeding, harvesting."   
+    "The year passed by in a blur: tilling, planting, weeding, harvesting.  The endless cycle of life on the farm."   
     return
 
 label carrots1:
@@ -193,10 +193,13 @@ label spinach2:
 label spinach3:
     "You planted your spinach earlier and it's almost to full size."
     "But something has been eating the plants. You haven't seen anything, but when you check on the spinach, there's definitely bites taken out."
-    menu:
-        "Check the surveillance cameras":
+    $ spinach_cameras = False
+    menu spinach_3_menu:
+        "Check the surveillance cameras" if (not spinach_cameras):
             "You train the farm's cameras on the spinach plot, but the next day when you look at the video, none of the motion sensors were triggered.  You scan through the video but can't find anything that's eating them." 
             "Looks like you'll have to find out the old-fashioned way."
+            $ spinach_cameras = True
+            jump spinach_3_menu
         "Check on your spinach at night":
             "After [kid_name] and [her_name] went to bed, you snuck out of the house to examine your spinach plants.  Your flashlight catches something small and slimy -- it looks like a slug!"
             menu:
@@ -208,11 +211,13 @@ label spinach3:
                     "You put some tasty smelling bait in the middle of a hole covered with boards."
                     "In the morning, the hole was full of slugs, just waiting for you to murder them."
                     "You make some more traps and check them every morning."
-                    "The slugs will regret their incursion into your garden."
+                    "The slugs will regret their incursion into your domain."
                 "Just pick the spinach early":
                     jump spinach_pick_early
         "Just pick the spinach early":
             jump spinach_pick_early
+            
+    return
 
 label spinach_pick_early:
     "It'd be too much work to kill all the slugs. You might as well just harvest the spinach early and then there won't be anything for them to eat."
@@ -223,5 +228,6 @@ label spinach_pick_early:
     "This is something that you cannot forgive."
     "This means war."
     "Your nights are filled with killing slugs."
-    "They appear in your dreams, giant slugs with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam is just an empty spot in the vast blackness of space."    
+    "They appear in your dreams, giant slugs with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam is just an empty spot in the vast blackness of space."
+    "Finally, their numbers are greatly reduced, and you can rest.  Until the next invasion..."    
     return

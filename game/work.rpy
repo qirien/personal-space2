@@ -50,7 +50,7 @@ label work5:
 
 # Year 18, 11.1 years old
 label work6:
-    "Fungus disaster strikes!"
+    "Add on addition to the house as family grows and Terra needs her own space?"
     return
 
 # Year 21, 13 years old
@@ -61,18 +61,28 @@ label work7:
 
 # Year 24, 14.8 years old
 label work8:
-   "You throw out your back."
-   "People from your favorite faction help you, or not."
+   "Terra accidentally flips the tractor over while doing her chores, and gets hurt."
+   "[her_name] argues that you shouldn't have her do such dangerous chores."
+   menu:
+       "That's the only way to learn!":
+           $ pass
+       "You're right":
+           $ pass
+       "I just need to teach her better.":
+           $ pass
+   "This turns into an argument about Terra's future - [her_name] doesn't want her stuck on this backward planet working on a farm for the rest of her life, and you ask 'what's wrong with working on a farm for the rest of your life?!'"
+   "The truth is [her_name] still misses Earth and wants Terra to be able to experience it.  Discussion about college/training/future."
    return
 
 # Year 27, 16.7 years old
 label work9:
-    "Work 9"
+    "You throw out your back."
+    "People from your favorite faction and your family help you, or not."
     return
 
 # Year 30, 18 years old
 label work10:
-
+    "Summary of how awesome your farm is (or not)"
     return
 
     

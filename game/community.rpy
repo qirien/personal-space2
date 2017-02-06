@@ -44,9 +44,10 @@ label community4:
     "Rare Earth Tech says that they need a liason from the colony."
     "The colony has a town meeting to determine how to deal with the situation."
     "Who will represent our colony's needs to Rare Earth Tech?"
+    # explanation of why this is separate from the mayor
     "We are accepting nominations."
     menu:
-        "Who will you nominate? You may not nominated yourself."
+        "Who will you nominate? You may not nominate yourself."
         
         "Sister Naomi, our religious leader and childcare leader.":
             $ pass
@@ -61,14 +62,14 @@ label community4:
         $ is_liason = True
         return
     elif(style == "authoritarian"):
-        "You, Sarah, and Sister Naomi were nominated. You had the most votes, but not the majority."
+        "You, Sara, and Sister Naomi were nominated. You had the most votes, but not the majority."
         $ is_liason = True
         return
     elif(style == "permissive"):
-        "You were nominated, but Sarah was elected as the new representative."
+        "You were nominated, but Sara was elected as the new representative."
         return
     else:
-        "Sarah is elected as the new representative."
+        "Sara is elected as the new representative."
         #TODO: does the order of these options matter for variable settings?
 
 
@@ -87,7 +88,7 @@ label community5:
                 $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
         "How will we issue currency?"
         menu:
-            "Use pieces of whittled wood.":
+            "Use pieces of whittled wood.": # maybe checks/IOUs instead?
                 $ luddites += 1
             "Use Rare Earth's encrypted form of digital currency.":
                 $ miners += 1
@@ -95,12 +96,12 @@ label community5:
                 $ colonists += 1
     # TODO: do more research and think through the consequences of these choices (replace with more reasonable ones?). Make a variable for each one.
     else:
-        show sarah midright
-        sarah "The miners won't arrive for another four Earth years."
-        sarah "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
-        sarah "Next harvest we'll start accepting canned goods as well."
-        sarah "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
-        sarah "I'll be grading your crops against the RET standards."
+        show Sara midright
+        Sara "The miners won't arrive for another four Earth years."
+        Sara "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+        Sara "Next harvest we'll start accepting canned goods as well."
+        Sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
+        Sara "I'll be grading your crops against the RET standards."
         
     return
 
@@ -140,14 +141,14 @@ label community7:
             "We're all here now, so let's help each other.":
                 $ colony += 1
      else:
-        "Sarah made some kind of excuse for Rare Earth Tech's econimizing."
+        "Sara made some kind of excuse for Rare Earth Tech's econimizing."
      
      return
 
 
 label community8:
     "You get to tell Rare Earth Tech what luxuries you want from Earth."
-    "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. her_name wants some Gouda cheese."
+    "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese."
     if is_liason:
         "You need to find out what everyone else wants too, and send a brief message summarizing it."
         #talk to various villagers. include a bicycle?
@@ -163,7 +164,7 @@ label community8:
                 $ pass
         "I sent the message."
     else:
-        "We told Sarah that we wanted toilet paper and Gouda cheese."
+        "We told Sara that we wanted toilet paper and Gouda cheese."
     
     return
 
@@ -188,6 +189,7 @@ label community10:
         "Let Natalia, his wife, scale back how they'd like.":
             $ luddites += 1
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
+        # Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
     return
 
 
@@ -208,7 +210,8 @@ label community11:
         "Other people got what they wanted, but not the Perons."
      # I don't have an increase in stats for this one, because I'll use the asked_only_medicine variable later to determine some other things, the end of which can have the stat increase. 
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
-     # Does Brennan show up with the miners, or is that too fan-servicey?
+     # Does Martin die if he doesn't get the medicine?
+     # Does Brennan show up with the miners as their RET liason?
     return
 
 
@@ -226,12 +229,13 @@ label community12:
         "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes.":
             $ luddites += 1
     #Do the miners resort to stealing? Elect a sherriff?
+    #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
     return
 
 
 label community13:
     "Miners find a beautiful cave while digging."
-    "Dr. Lily attends a brief expedition and discovers a vertabrate without an exoskeleton, which is very rare on Talaam because of the radiation."
+    "Dr. Lily attends a brief expedition and discovers a vertebrate without an exoskeleton, which is very rare on Talaam because of the radiation."
     if is_liason: 
         "Dr. Lily asks you to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
         "Rare Earth Tech says the miners are okay to continue their excavation however they see fit."
@@ -240,11 +244,13 @@ label community13:
         "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
     #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
     #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
+    #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
+    # Pete should be a vocal opponent of the mining to foreshadow next month.
     return
 
 
 label community14:
-    "Pete and Helen, and their child, leave their home on the colony because they feel Rare Earth Tech is immoral."
+    "Pete and Helen, and their child, leave their home on the colony because they feel Rare Earth Tech is immoral and they don't like being controlled and pushed around."
     "They plan to leave almost everything provided by Rare Earth Tech, with the exception of some aluminum sheeting to protect from radiation. They're also taking about a third of their cattle."
     "They announce it on the community message board."
     "Dr. Lily joins them."
@@ -268,7 +274,8 @@ label community14:
                 $ colonists += 1
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
             "Take them for your own farm!":
-            #not sure if I want this as a real option
+            #not sure if I want this as a real option.
+            # Maybe offer them to the miners?
                 $ pass
             "Wait for a volunteer. Ilian volunteers.":
                 $ miners += 1
@@ -279,7 +286,7 @@ label community14:
 
 
 label community15:
-    "Losing members of the community is difficult. Some of the younger memebers of the community step up."
+    "Losing members of the community is difficult. Some of the younger memebers of the community step up." # Sister Naomi dies?  Or has another stroke, this time so bad that she is essentially a vegetable.  Who should care for her?  Pavel can't do it alone
     "Miranda Peron (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
     return
 
@@ -302,7 +309,7 @@ label community16:
 label community17:
     "Harvest festival"
     #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
-    # the obsession causes you to.... ???
+    # the obsession causes you to.... ??? throw crops into the sea?
     # also if you meet with the luddites, Pete can answer questions about cattle health.
     # if BOTH luddites and miners are there, they start trade negotiations?
     return
@@ -326,7 +333,7 @@ label community18:
 
 
 label community19:
-    "Crabirds devestate this year's harvest."
+    "Crabirds devestate this year's harvest." #perhaps because of the luddite's migratory patterns? They inadvertently(?) drove the crabirds your way?
     #one of the newer farming families wants to join the luddites?
     #later in the year, there are fewer cows, since some calves died of starvation. The miners are desperate for beef and might even trade guns with the luddites??
     #TODO: finish this
@@ -344,13 +351,14 @@ label community20:
         "Yes.":
             $ luddites += 1
     "Dr. Lily dies in a few months." #TODO: her burial spot depends on your decision earlier.
+    # Or perhaps she simply walks into the ocean one day and never returns
     return
 
 
 label community21:
     "Miners are using the stimulent weed a lot."
     "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
-    "RET forbids miners to use this drug."
+    "RET forbids miners to use this drug."  #Or maybe RET requires miners to use this drug?  Or, they don't forbid it, but they pay based on what you mine, so if you take it you can work faster and earn more money.  Do you (personally, the colony?) still grow it?
     "Do you attempt to enforce this?"
     menu:
         "Yes":
@@ -372,12 +380,13 @@ label community22:
         "Petition RET and the miners to choose a different location for now.":
             $ luddites += 1
         "Ask a coalition of farmers and luddites to force the miners to a different site.": #implausible?
+            # Organize a passive resistance, strike, etc.  A petition from lots of farmers saying they will leave the colony if the luddites are not protected?  Only works if you have really high scores with everyone.
             $ pass
     return
 
 
 label community23:
-    "RET wants to switch to artificial meat."
+    "RET wants to switch to artificial meat."  #I like the idea of doing something with artificial meat, but let's keep thinking about this.  Maybe RET announces they will not send anymore live animals, but instead an artificial meat lab, and you can decide to phase out your animals or breed them more? 
     "You hate how it tastes."
     "Make the switch?"
     menu:
@@ -385,21 +394,22 @@ label community23:
             $ miners += 1 #miners equal the interests of RET here
         "No.":
             $ luddites += 1
-        "Make a convincing case for meat.":
+        "Make a convincing case for meat.": #provides fertilizer, hair for wool, milk, leather
             $ colonists += 1
     return
 
 
 label community24:
-    "A woman dies or is injured in childbirth."
+    "A woman dies or is injured in childbirth."  # Perhaps they blame [her_name] and Julia, leading to increased tensions?  Or perhaps it was a teenager with a miner boyfriend and so people blame the miner for getting her pregnant?  Or perhaps it was one of the luddites who refused to call for help from the colony until it was too late? Terra comments on how having kids is dangerous and thinks about her own future.
     return
 
 
 label community25:
-    "A luddite or a miner is dating someone in the colony"
+    "A luddite or a miner is dating someone in the colony."
     return
 
 
+# Maybe Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
 label community26:
     "Community 26 Event"
     return
@@ -409,7 +419,7 @@ label community27:
     "Community 27 Event"
     return
 
-
+# Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.  
 label community28:
     "Community 28 Event"
     return
@@ -419,7 +429,7 @@ label community29:
     "Big fight!!"
     return
 
-
+# Rebuilding, aftermath of big fight.
 label community30:
     "Community 30 Event"
     return

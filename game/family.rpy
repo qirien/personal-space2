@@ -586,6 +586,7 @@ label family19:
            $ demanding += 1
        "Watch it. Maybe it's a good one.":
             "It's not. The acting is bad and it's not romantic at all."
+            "It's not bad enough to be funny, though -- just bad."
             $ demanding -= 1
            # Terra catches you and you have to try to justify yourself?           
        "It's not your problem.":
