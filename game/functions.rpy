@@ -19,7 +19,7 @@ label increase_independence:
     
 
 # Returns the players current parenting style.
-# Should be one of authoritative, authoritarian, permissive, passive, or neglectful
+# Should be one of authoritative, authoritarian, permissive, or passive
 init -100 python:
     def get_parenting_style():
         if (total_attachment >= year):
@@ -51,7 +51,7 @@ init python:
             # Call the next set event
             event_number = year // 3
             event_name = "work" + str(event_number)
-            return "event_name"
+            return event_name
         else:
             # Find a good crop event
             possible_events = []
@@ -67,7 +67,10 @@ init python:
                     
             num_possible_events = len(possible_events)
             if (num_possible_events > 0):
-                random_event = renpy.random.choice(possible_events)            
+                random_event = renpy.random.choice(possible_events)
+                crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
+                number_events_seen[crop_name] += 1
+                print "Picked event: " + random_event
                 return random_event
             else:
                 return "default_crop_event"

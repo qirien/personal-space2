@@ -102,7 +102,7 @@ label community5:
         Sara "Next harvest we'll start accepting canned goods as well."
         Sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         Sara "I'll be grading your crops against the RET standards."
-        
+        # TODO: when/where are crops preserved?  Does Ilian have machines/employees that do this? Or are farmers supposed to do this before taking to the storehouse?
     return
 
 
@@ -356,7 +356,7 @@ label community20:
 
 
 label community21:
-    "Miners are using the stimulent weed a lot."
+    "Miners are using the stimulant weed a lot." #we called it "fire grass" in the first one
     "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
     "RET forbids miners to use this drug."  #Or maybe RET requires miners to use this drug?  Or, they don't forbid it, but they pay based on what you mine, so if you take it you can work faster and earn more money.  Do you (personally, the colony?) still grow it?
     "Do you attempt to enforce this?"

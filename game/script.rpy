@@ -62,7 +62,7 @@ label start:
         centered "Year [year]\n\nWork"
         scene black with fade
         # TODO: replace test code
-        $ crops = ["beans", "potatoes", "goats"]         
+        $ crops = ["beans", "potatoes", "goats", "carrots", "squash", "tomatoes", "plums", "spinach", ]         
         $ work_event = get_next_work_event()
         
         call expression work_event

@@ -15,7 +15,6 @@ label carrots1:
                 $ carrots_fallow = True
         "Who cares, they taste the same.":
                 "I didn't do anything about it.."
-                
     return
                 
 label carrots2:
@@ -157,20 +156,26 @@ label tomatoes3:
         "These are so juicy and sweet that [her_name] likes to just go out and eat them for lunch."
     else:
         "Finally, you have a good tomato harvest.  Time for salsa, spaghetti sauce, and maybe even some pizza!"
+        
+    return
     
 label plums1:
     "You don't get any harvest this year, but you tend your plums carefully."
+    return
     
 # Several years later
 label plums2:
     "Finally, your spring is punctuated by beautiful pink blossoms on your plum trees."
     # Depending on pollination, you get a few or a lot of plums
+    return
 
 label beans1:
     "You had a good bean harvest this year.  Now that you've dried them, they will last a long time."
+    return
     
 label beans2:
     "It's been a cold spring. The bean plants haven't even germinated yet."
+    return
     
 label spinach1:
     "Your spinach is looking good!"
@@ -179,6 +184,7 @@ label spinach1:
             "Yum, smaller, more tender greens, but less food."
         "Wait until it's fully grown":
             "Larger harvest. more bitter taste.  more food/less happiness"
+    return
     
 label spinach2:
     "You had a heat wave and your spinach failed to germinate.  It doesn't usually get that hot, so maybe you could try again? But you only have enough seeds to plant one more batch."

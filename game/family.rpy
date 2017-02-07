@@ -2,6 +2,8 @@
 # 
 # Each family event has several parenting choices.  The decisions for the month
 # will affect how much the child's stats increase that month.
+#
+# TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
 
 # 3 Earth mos. old
 # CAN'T STOP CRYING!!
@@ -377,7 +379,7 @@ label family13:
             him "Nothing. Time to collect fertilizer! Here's your shovel."
             "Whew, that was a close one!  I'd better figure out what to say next time. Or maybe [her_name] could talk to her about it."
         "Keep it simple":
-            him "The man has sperm and when they come together with the woman's egg, it can make a baby."
+            him "The man has sperm and when one of them comes together with the woman's egg, it can make a baby."
             kid "Where does he get the sperm?"
             him "His body can make them."
             kid "Okay, but the egg is inside the woman, right? So how does the sperm get there?"
@@ -589,9 +591,9 @@ label family19:
             "It's not bad enough to be funny, though -- just bad."
             $ demanding -= 1
            # Terra catches you and you have to try to justify yourself?           
-       "It's not your problem.":
+       "It's not a big deal. Do nothing.":
            $ demanding -= 1            
-       "Tell me about how this got here.":
+       "Ask her about how this got here.":
            "She found it accidentally but was fascinated so she watched it."
            menu:
                "Make a plan for how to avoid pornography in the future.":
@@ -602,7 +604,6 @@ label family19:
                "She's old enough to be responsible for her own viewing habits.":
                    $ responsive += 1
            
-           "Great discussion"
            return
     return
 
@@ -641,7 +642,18 @@ label family21:
 
 # 13.6 Earth years old
 label family22:
-    "Family 22 Event"
+    "Terra refuses to bathe, even though she's getting stinky."
+    menu:
+        "You'll take a bath, or I'll throw you in the river!":
+            $ demanding += 1
+        "If you decide not to take a bath, you'll need to sleep in the barn with the other stinky things.":
+            $ demanding += 1
+            $ responsive += 1
+        "I hate bathing, too. Maybe if we all stink we won't notice it so much?":
+            $ responsive += 1
+        "Why don't you want to take a bath?":
+            $ responsive += 1
+        
     return
 
 # 14.2 Earth years old
@@ -660,7 +672,7 @@ label family23:
 
 # 14.8 Earth years old
 label family24:
-    "Family 24 Event"
+    "Add in something community-related here."
     return
 
 # 15.5 Earth years old
@@ -690,22 +702,69 @@ label family25:
 
 # 16.1 Earth years old
 label family26:
-    "Family 26 Event"
+    "She disagrees with your recent community decision! She calls you a fascist/spineless worm/panderer."
+    menu:
+        "Listen to her.":
+            "You agree with some of her points, and explain some things she didn't know about."
+            "She still disagrees with you, but you can tell she's thinking about it."
+            $ demanding += 1
+            $ responsive += 1
+        "You don't know what you're talking about!":
+            $ demanding += 1
+        "Promise to make a better decision next time":
+            $ responsive += 1
+        "Laugh it off.":
+            $ pass
     return
 
 # 16.7 Earth years old
 label family27:
-    "Family 27 Event"
+    "[kid_name] comes home smelling like fire grass."
+    "You knew that the miners smoked it, but it hasn't been popular among the colonists... until now."
+    # TODO: change this based on choices in community events.
+    # TODO: give a chance to talk about fire grass earlier
+    menu:
+        "What's that smell? What have you been up to?":
+            $ demanding += 1
+        "Hmm, seems like you've been smoking fire grass.  Tell me about it.":
+            $ responsive += 1
+            menu:
+                "Tell her your concerns.":
+                    $ demanding += 1
+                "Tell her to invite you next time":
+                    $ responsive += 1
+                "Tell her she better not smoke it again, it's not good for her!":
+                    $ responsive -= 1
+                    $ demanding += 1
+        "Say nothing. It's just a plant, right?":
+            $ pass
+              
     return
 
 # 17.3 Earth years old
 label family28:
-    "Family 28 Event"
+    "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
+    "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
+    menu:
+        "Listen, then make suggestions":
+            $ demanding += 1
+            $ responsive += 1
+        "You don't know what you're talking about!":
+            $ demanding += 1
+        "Support her somewhat-crazy idea.":
+            $ responsive += 1
     return
 
 # 18 Earth years old
 label family29:
-    "Family 29 Event"
+    "Big crisis! Foreshadows ending! She says she hates you for some reason and never wants to see you again!"
+    menu:
+        "Threaten to disown her":
+            $ demanding += 1
+        "Make sure she knows you love her":
+            $ responsive += 1
+        "Argue with her":
+            $ pass
     return
 
 # 18.6 Earth years old (ENDING)
