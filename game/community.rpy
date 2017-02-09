@@ -194,7 +194,16 @@ label community10:
 
 
 label community11:
-    "Miners arrive. You meet their leader and 'your' family's miner. You get to know your miner a bit better."
+    "Miners arrive. You meet their leader, Bandile, who introduces the miner welcome program."
+    "Your family will get to know one miner through weekly dinners."
+    "The miner you've been assigned is Ian."
+    him "Nice to meet you Ian. How was the trip over?"
+    ian "Fine."
+    him "Did it take a while to adjust to living in such a small space?"
+    ian "No."
+    him "What do you like to do in your free time?"
+    ian "Look at the stars."
+    "I feel like we're playing 20 questions here! He's probably overhwelmed from the arrival."
     "The luxuries from Earth arrive."
     if asked_only_medicine:
         "The exact medicine for Martin came! They included a bunch of other stuff, but not much of what other people asked for."
@@ -210,7 +219,7 @@ label community11:
         "Other people got what they wanted, but not the Perons."
      # I don't have an increase in stats for this one, because I'll use the asked_only_medicine variable later to determine some other things, the end of which can have the stat increase. 
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
-     # Does Martin die if he doesn't get the medicine?
+     # Does Martin die if he doesn't get the medicine? #Yes. TO DO: Make Martin die if he doesn't get the medicine.
      # Does Brennan show up with the miners as their RET liason?
     return
 
