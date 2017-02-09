@@ -51,7 +51,7 @@ init -100:
     define martin = Character("Martín Perón", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
     
     define van = Character("Van Nguyen", color="#7788fc", image="van", ctc="ctc_blink", ctc_position="nestled")
-    
+    define ian = Character("Ian", color="#ee670b", image="van", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
     
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")

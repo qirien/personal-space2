@@ -97,7 +97,7 @@ label squash3:
 label goats1:
     "Your goats reproduced and now you have a lot of them!  Once all these kids grow up they will need more space."
     menu:
-            "Smuggle some to the Luddites":
+            "Smuggle some to the Luddites": #only if you're past community_14
                 $ luddites += 1
             "Send to the storehouse":
                 $ colony += 1
@@ -207,7 +207,7 @@ label spinach3:
             $ spinach_cameras = True
             jump spinach_3_menu
         "Check on your spinach at night":
-            "After [kid_name] and [her_name] went to bed, you snuck out of the house to examine your spinach plants.  Your flashlight catches something small and slimy -- it looks like a slug!"
+            "After [kid_name] and [her_name] went to bed, you snuck out of the house to examine your spinach plants.  Your flashlight catches something small and slimy -- it looks like a slug!" #maybe these should be snails, since they might be able to deal with the radiation better? or am I overthinking it?
             menu:
                 "Hand pick them off":
                     "You spend the night plucking off slugs and putting them in a bucket. And the next night.  And the next night.  There's fewer each night, but it's tedious work."
