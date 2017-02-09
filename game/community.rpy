@@ -96,12 +96,12 @@ label community5:
                 $ colonists += 1
     # TODO: do more research and think through the consequences of these choices (replace with more reasonable ones?). Make a variable for each one.
     else:
-        show Sara midright
-        Sara "The miners won't arrive for another four Earth years."
-        Sara "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
-        Sara "Next harvest we'll start accepting canned goods as well."
-        Sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
-        Sara "I'll be grading your crops against the RET standards."
+        show sara midright
+        sara "The miners won't arrive for another four Earth years."
+        sara "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+        sara "Next harvest we'll start accepting canned goods as well."
+        sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
+        sara "I'll be grading your crops against the RET standards."
         # TODO: when/where are crops preserved?  Does Ilian have machines/employees that do this? Or are farmers supposed to do this before taking to the storehouse?
     return
 

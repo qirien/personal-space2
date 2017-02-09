@@ -70,7 +70,7 @@ label start:
         # CHOOSE FOR NEXT YEAR
         # TODO: Get farm input, show kids' ages and farm/community info
         
-        $ current_crops = [""] * farm_size
+        $ crops = [""] * farm_size
         call screen plan_farm
         
         $ year += 1
