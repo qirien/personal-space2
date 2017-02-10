@@ -230,13 +230,23 @@ label community12:
     "It's not just 'your' miner; many of the rations given to the miners have spoiled since they're too tired to cook and completely offput by the strange tastes."
     "When they do cook, they tend to favor familiar Earth foods, and they love meat. They burn through their meat ration very quickly."
     "How should the community react?" #TODO: depends on if you were elected earlier; otherwise you're limited to helping just your miner.
-    menu:
-        "Organize cooking lessons for the miners.":
-            $ colonists += 1
-        "Suggest that each family share dinner with their miners in exchange for their rations.": #or indulge them?
-            $ miners += 1
-        "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes.":
-            $ luddites += 1
+    if is_liason:
+        menu:
+            "Suggest that each family share dinner with their miners in exchange for their rations.":
+                $ miners += 1
+                #you find out that they don't have very many spices at all, and share recipes.
+            "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes.":
+                $ pass
+                #some miners steal food from farms, including one of Pete's cows, and he gets very angry, as it affects future calving.
+                #you form a militia and hand out guns to the colonist volunteers, who take turns guarding the border between miners and luddites.
+            "Allow them to buy extra meat, but at a high price."
+                $ pass #just an idea I had, but I'm not sure where it's going.
+    else:
+        menu:
+            "Ask Ian about his favorite foods and recipes.":
+                $ miners += 1
+            "Not your problem": #jump to the same event
+                $ pass
     #Do the miners resort to stealing? Elect a sherriff?
     #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
     return
