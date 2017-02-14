@@ -71,6 +71,7 @@ label community4:
     else:
         "Sara is elected as the new representative."
         #TODO: does the order of these options matter for variable settings?
+        #should a leader of the militia be elected here as well?
 
 
 label community5:
@@ -238,6 +239,7 @@ label community12:
             "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes.":
                 $ pass
                 #some miners steal food from farms, including one of Pete's cows, and he gets very angry, as it affects future calving.
+                #you ask Bandile about what happened to the cows, but he just gives a cryptic answer.
                 #you form a militia and hand out guns to the colonist volunteers, who take turns guarding the border between miners and luddites.
             "Allow them to buy extra meat, but at a high price."
                 $ pass #just an idea I had, but I'm not sure where it's going.
@@ -245,7 +247,7 @@ label community12:
         menu:
             "Ask Ian about his favorite foods and recipes.":
                 $ miners += 1
-            "Not your problem": #jump to the same event
+            "Not your problem": #jump to the same event as "refuse to help them" (above)
                 $ pass
     #Do the miners resort to stealing? Elect a sherriff?
     #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
@@ -253,14 +255,16 @@ label community12:
 
 
 label community13:
-    "Miners find a beautiful cave while digging."
+    "Ian tells you that the miners found a beautiful cave while digging."
     "Dr. Lily attends a brief expedition and discovers a vertebrate without an exoskeleton, which is very rare on Talaam because of the radiation."
     if is_liason: 
         "Dr. Lily asks you to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
         "Rare Earth Tech says the miners are okay to continue their excavation however they see fit."
+        "You talk to Bandile about what it would take to halt the mining. He says the colony would have to compensate him for the time they can't work."
+        #if your relationship with colonists is high enough, you can collect enough money for them to halt mining for two days while Lily does research, and she won't leave?? with the luddites.
     else:
         "Sara asked Rare Earth Tech to halt the mining on Dr. Lily's behalf, but they didn't stop."
-        "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
+    "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
     #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
     #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
     #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
@@ -270,7 +274,7 @@ label community13:
 
 label community14:
     "Pete and Helen, and their child, leave their home on the colony because they feel Rare Earth Tech is immoral and they don't like being controlled and pushed around."
-    "They plan to leave almost everything provided by Rare Earth Tech, with the exception of some aluminum sheeting to protect from radiation. They're also taking about a third of their cattle."
+    "They plan to leave almost everything provided by Rare Earth Tech, with the exception of some metal foam sheeting to protect from radiation. They're also taking about a third of their cattle."
     "They announce it on the community message board."
     "Dr. Lily joins them."
     if asked_only_medicine: 
@@ -330,7 +334,7 @@ label community17:
     #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
     # the obsession causes you to.... ??? throw crops into the sea?
     # also if you meet with the luddites, Pete can answer questions about cattle health.
-    # if BOTH luddites and miners are there, they start trade negotiations?
+    # if BOTH luddites and miners are there, they start trade negotiations? affects the fire grass event later.
     return
 
 
@@ -353,6 +357,7 @@ label community18:
 
 label community19:
     "Crabirds devestate this year's harvest." #perhaps because of the luddite's migratory patterns? They inadvertently(?) drove the crabirds your way?
+    #maybe everyone is eating more of the Crabirds's natural predator?
     #one of the newer farming families wants to join the luddites?
     #later in the year, there are fewer cows, since some calves died of starvation. The miners are desperate for beef and might even trade guns with the luddites??
     #TODO: finish this
@@ -370,20 +375,21 @@ label community20:
         "Yes.":
             $ luddites += 1
     "Dr. Lily dies in a few months." #TODO: her burial spot depends on your decision earlier.
-    # Or perhaps she simply walks into the ocean one day and never returns
+    # Or perhaps she simply walks into the ocean one day and never returns #oOooooOoo
     return
 
 
 label community21:
-    "Miners are using the stimulant weed a lot." #we called it "fire grass" in the first one
+    "Miners are using the stimulant weed a lot. It helps them mine more for longer, which gives them more pay." #we called it "fire grass" in the first one
     "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
-    "RET forbids miners to use this drug."  #Or maybe RET requires miners to use this drug?  Or, they don't forbid it, but they pay based on what you mine, so if you take it you can work faster and earn more money.  Do you (personally, the colony?) still grow it?
-    "Do you attempt to enforce this?"
+    "RET doesn't have an official stance on fire weed. The long-term side effects aren't well known."  #Or maybe RET requires miners to use this drug?  Or, they don't forbid it, but they pay based on what you mine, so if you take it you can work faster and earn more money.  Do you (personally, the colony?) still grow it?
+    "What do you do about it?"
     menu:
-        "Yes":
-            $ miners += 1 #there are some bad side effects which affect their mining if they continue. Maybe in the next event."
-        "No.":
-            $ luddites += 1
+        "Have miners receive a recommended daily allowance of fire weed at their next checkup":
+            $ miners += 1 
+        "Don't allow colonists to buy it.": # if you're trading with the luddites.
+        "Nothing.":
+            $ luddites += 1 #there are some bad side effects which affect their mining if they continue. Maybe in the next event?
     return
 
 
@@ -392,15 +398,17 @@ label community22:
     "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
     "What do you do?"
     menu:
-        "Ask a coalition of farmers and miners to force the luddites out of the cave.":
+        "Form a militia with the miners to force the luddites out of the cave.":
             $ miners += 1
         "Not your problem. Do nothing.":
             $ luddites -= 2 #TODO: minuses a problem? this seems like kind of a boring option?
         "Petition RET and the miners to choose a different location for now.":
             $ luddites += 1
-        "Ask a coalition of farmers and luddites to force the miners to a different site.": #implausible?
+        "Form a militia with the luddites to force the miners to a different site.":
             # Organize a passive resistance, strike, etc.  A petition from lots of farmers saying they will leave the colony if the luddites are not protected?  Only works if you have really high scores with everyone.
+            # if you form a militia, someone gets injured or maimed
             $ pass
+            #as a result of this event, some of the miners and colonists petition RET to go home a few years earlier than their contract, because the unrest is distrubing? (this would put the shuttle coming at the last event)
     return
 
 
@@ -420,6 +428,7 @@ label community23:
 
 label community24:
     "A woman dies or is injured in childbirth."  # Perhaps they blame [her_name] and Julia, leading to increased tensions?  Or perhaps it was a teenager with a miner boyfriend and so people blame the miner for getting her pregnant?  Or perhaps it was one of the luddites who refused to call for help from the colony until it was too late? Terra comments on how having kids is dangerous and thinks about her own future.
+    "The kids are really into fire grass this summer."
     return
 
 
@@ -435,7 +444,16 @@ label community26:
 
 
 label community27:
-    "Community 27 Event"
+    "Fire grass has some long-term side effects. Insomnia is a big problem."
+    #depending on your relationship levels, different people ask you for help.
+    "What do you advise? They aren't even using it anymore."
+    menu:
+        "Read a book.":
+            $ pass
+        "Work through it.":
+            $ pass
+        "Ask a doctor.":
+            $ miners += 1
     return
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.  
@@ -445,10 +463,11 @@ label community28:
 
 
 label community29:
-    "Big fight!!"
+    "Big fight!!" #or should community 22 be the big fight?
     return
 
 # Rebuilding, aftermath of big fight.
+# many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 label community30:
     "Community 30 Event"
     return
