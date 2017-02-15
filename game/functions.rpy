@@ -57,12 +57,12 @@ init python:
             possible_events = []
             for crop_name in crops:
                 #get the number of the next event for this crop
-                print "Crop: " + crop_name
+                #print "Crop: " + crop_name
                 next_event = number_events_seen[crop_name] + 1
                 event_label = crop_name + str(next_event)
-                print "Event: " + event_label
+                #print "Event: " + event_label
                 if renpy.has_label(event_label):
-                    print "Event found!"
+                    #print "Event found!"
                     possible_events.append(event_label) 
                     
             num_possible_events = len(possible_events)
@@ -70,7 +70,7 @@ init python:
                 random_event = renpy.random.choice(possible_events)
                 crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
                 number_events_seen[crop_name] += 1
-                print "Picked event: " + random_event
+                #print "Picked event: " + random_event
                 return random_event
             else:
                 return "default_crop_event"

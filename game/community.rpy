@@ -241,7 +241,7 @@ label community12:
                 #some miners steal food from farms, including one of Pete's cows, and he gets very angry, as it affects future calving.
                 #you ask Bandile about what happened to the cows, but he just gives a cryptic answer.
                 #you form a militia and hand out guns to the colonist volunteers, who take turns guarding the border between miners and luddites.
-            "Allow them to buy extra meat, but at a high price."
+            "Allow them to buy extra meat, but at a high price.":
                 $ pass #just an idea I had, but I'm not sure where it's going.
     else:
         menu:
@@ -388,6 +388,7 @@ label community21:
         "Have miners receive a recommended daily allowance of fire weed at their next checkup":
             $ miners += 1 
         "Don't allow colonists to buy it.": # if you're trading with the luddites.
+            $ pass
         "Nothing.":
             $ luddites += 1 #there are some bad side effects which affect their mining if they continue. Maybe in the next event?
     return
@@ -467,7 +468,8 @@ label community29:
     return
 
 # Rebuilding, aftermath of big fight.
-# many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
+# many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?  
+# I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
 label community30:
     "Community 30 Event"
     return
