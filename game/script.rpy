@@ -61,14 +61,11 @@ label start:
         scene black with fade
         centered "Year [year]\n\nWork"
         scene black with fade
-        # TODO: replace test code
-        $ crops = ["beans", "potatoes", "goats", "carrots", "squash", "tomatoes", "plums", "spinach", ]         
-        $ work_event = get_next_work_event()
         
+        $ work_event = get_next_work_event()        
         call expression work_event
         
         # CHOOSE FOR NEXT YEAR
-        # TODO: Get farm input, show kids' ages and farm/community info
         
         $ crops = [""] * farm_size
         call screen plan_farm

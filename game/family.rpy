@@ -209,6 +209,7 @@ label family5:
         # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
         # Still working with the best way to use these.  Basically, the child variables depend on the parenting variables, so I wrote a function to increase them so we can easily change the formula we use.
         # Currently, the child variables are increased each year automatically based on that year's decisions, so all we have to do in this file is worry about demanding and responsive.
+    return
 
 # 3.5 Earth years old
 label family6:

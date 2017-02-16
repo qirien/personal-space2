@@ -41,9 +41,14 @@ init -100 python:
 # label get_attachment:
 #   return $ responsive / 2.0 
 
-
-# Function to find the right work event for this year
 init python:
+    # Return the index of a crop in crop_info given its name
+    def get_crop_index(crop_name):
+        crop_names = [row[0] for row in crop_info]
+        index = crop_names.index(crop_name) # find the crop's index in crop_info
+        return index
+        
+    # Find the right work event for this year
     def get_next_work_event():
         #Every 3 years there is a set event; other years are crop events.
         # This means we need 10 set events and at least 20 crop events.
@@ -56,21 +61,22 @@ init python:
             # Find a good crop event
             possible_events = []
             for crop_name in crops:
-                #get the number of the next event for this crop
-                #print "Crop: " + crop_name
-                next_event = number_events_seen[crop_name] + 1
-                event_label = crop_name + str(next_event)
-                #print "Event: " + event_label
-                if renpy.has_label(event_label):
-                    #print "Event found!"
-                    possible_events.append(event_label) 
+                if (crop_name != ""):
+                    #get the number of the next event for this crop
+                    print "Crop: " + crop_name
+                    next_event = number_events_seen[crop_name] + 1
+                    event_label = crop_name + str(next_event)
+                    print "Event: " + event_label
+                    if renpy.has_label(event_label):
+                        print "Event found!"
+                        possible_events.append(event_label) 
                     
             num_possible_events = len(possible_events)
             if (num_possible_events > 0):
                 random_event = renpy.random.choice(possible_events)
                 crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
                 number_events_seen[crop_name] += 1
-                #print "Picked event: " + random_event
+                print "Picked event: " + random_event
                 return random_event
             else:
                 return "default_crop_event"

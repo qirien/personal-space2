@@ -105,36 +105,38 @@ init -100:
     # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10).  Also whether the crop is currently enabled or not.
     # TODO: add income
     # TODO: add limits to maximum amount allowed
-    define crop_info = (["corn",         8, 4, 8, 7, False],    # Grains
-                        ["potatoes",     8, 5, 7, 6, True],
-                        ["wheat",        8, 6, 8, 10,False],
-                        ["peppers",      2, 6, 5, 5, False],    # "Fruits"
-                        ["tomatoes",     3, 5, 6, 6, True],
-                        ["plums",        3, 3, 8, 7, False],
-                        ["plums+",       3, 3, 8, 2, False],    # Perennials are easier after year 1
-                        ["squash",       4, 5, 5, 4, True],
-                        ["strawberries", 1, 3, 7, 6, False],
-                        ["strawberries+",1, 3, 7, 6, False],
-                        ["blueberries",  3, 3, 9, 9, False],
-                        ["blueberries+", 3, 3, 9, 4, False],
-                        ["beans",        6, 7, 2, 7, True],   # Legumes
-                        ["snow peas",    3, 5, 2, 4, False],
-                        ["peanuts",      7, 6, 5, 8, False],
-                        ["carrots",      3, 5, 4, 4, True],   # Root Vegetables
-                        ["beets",        3, 4, 4, 4, False],
-                        ["turnips",      3, 5, 3, 4, False],
-                        ["onions",       4, 3, 7, 4, False],
-                        ["garlic",       3, 4, 7, 4, False],
-                        ["cabbage",      2, 4, 4, 3, False],   # Leafy greens
-                        ["spinach",      3, 6, 4, 4, True],
-                        ["broccoli",     3, 5, 3, 3, False],
-                        ["goats",       10, 7, 7, 5, True])   # Miscellaneous
+    $ crop_info = (["corn",         8, 4, 8, 7, False, 100],    # Grains
+                        ["potatoes",     8, 5, 7, 6, True,  100],
+                        ["wheat",        8, 6, 8, 10,False, 100],
+                        ["peppers",      2, 6, 5, 5, False, 100],    # "Fruits"
+                        ["tomatoes",     3, 5, 6, 6, True,  100],
+                        ["plums",        3, 3, 8, 7, False, 1],
+                        ["plums+",       3, 3, 8, 2, False, 1],    # Perennials are easier after year 1
+                        ["squash",       4, 5, 5, 4, True,  100],
+                        ["strawberries", 1, 3, 7, 6, False, 2],
+                        ["strawberries+",1, 3, 7, 6, False, 2],
+                        ["blueberries",  3, 3, 9, 9, False, 2],
+                        ["blueberries+", 3, 3, 9, 4, False, 2],
+                        ["beans",        6, 7, 2, 7, True,  100],   # Legumes
+                        ["snow peas",    3, 5, 2, 4, False, 100],
+                        ["peanuts",      7, 6, 5, 8, False, 100],
+                        ["carrots",      3, 5, 4, 4, True,  100],   # Root Vegetables
+                        ["beets",        3, 4, 4, 4, False, 100],
+                        ["turnips",      3, 5, 3, 4, False, 100],
+                        ["onions",       4, 3, 7, 4, False, 100],
+                        ["garlic",       3, 4, 7, 4, False, 100],
+                        ["cabbage",      2, 4, 4, 3, False, 100],   # Leafy greens
+                        ["spinach",      3, 6, 4, 4, True,  100],
+                        ["broccoli",     3, 5, 3, 3, False, 100],
+                        ["goats",       10, 7, 7, 5, True,  1])   # Miscellaneous
     
+    define NAME_INDEX = 0
     define CALORIES_INDEX = 1
     define NUTRITION_INDEX = 2
     define FUN_INDEX = 3
     define WORK_INDEX = 4
     define ENABLED_INDEX = 5
+    define MAXIMUM_INDEX = 6
     
     $ total_calories = 0
     $ total_nutrition = 0

@@ -104,7 +104,9 @@ label goats1:
             "Slaughter for meat":
                 $ pass #family happiness/food increase?
             "Allocate more land for goats":
-                $ pass # goats take up two squares now.
+                $ goats_index = get_crop_index("goats")
+                $ crop_info[goats_index][MAXIMUM_INDEX] += 1
+                # goats take up another square now.
     return
                 
 label goats2:
@@ -237,3 +239,8 @@ label spinach_pick_early:
     "They appear in your dreams, giant slugs with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam is just an empty spot in the vast blackness of space."
     "Finally, their numbers are greatly reduced, and you can rest.  Until the next invasion..."    
     return
+    
+label strawberries1:
+    "Your strawberry plants did really well this year! Not only did you get extra strawberries, but you have enough runners that you could plant more next year if you wanted."
+    $ strawberries_index = get_crop_index("strawberries")
+    $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
