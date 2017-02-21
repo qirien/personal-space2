@@ -242,7 +242,7 @@ label community12:
                 #you ask Bandile about what happened to the cows, but he just gives a cryptic answer.
                 #you form a militia and hand out guns to the colonist volunteers, who take turns guarding the border between miners and luddites.
             "Allow them to buy extra meat, but at a high price.":
-                $ pass #just an idea I had, but I'm not sure where it's going.
+                $ pass #choosing this can contribute to a food shortage later on? or would the crabird plague do that?
     else:
         menu:
             "Ask Ian about his favorite foods and recipes.":
@@ -356,10 +356,19 @@ label community18:
 
 
 label community19:
-    "Crabirds devestate this year's harvest." #perhaps because of the luddite's migratory patterns? They inadvertently(?) drove the crabirds your way?
-    #maybe everyone is eating more of the Crabirds's natural predator?
+    "The luddites have been eating a lot of the crabbirds' natural predators, the wolf slugs." 
+    "As a result, crabirds devestate this season's harvest."
+    "There is enough stored food for everyone to live off of for the winter, but not for all the livestock."
+    "How do you deal with this problem?"
+    menu:
+        "Give extra cattle to the luddites, where some might survive by grazing.":
+            #The miners are desperate for beef later and might even trade guns with the luddites??
+            $ luddites += 1
+        "Make a lot of preserved meat jerky.":
+            $ colonists += 1
+        "Invite the miners for an epic barbeque.":
+            $ miners += 1
     #one of the newer farming families wants to join the luddites?
-    #later in the year, there are fewer cows, since some calves died of starvation. The miners are desperate for beef and might even trade guns with the luddites??
     #TODO: finish this
     return
 
@@ -380,9 +389,9 @@ label community20:
 
 
 label community21:
-    "Miners are using the stimulant weed a lot. It helps them mine more for longer, which gives them more pay." #we called it "fire grass" in the first one
+    "Miners are using fire grass a lot. It helps them mine more for longer, which gives them more pay." #we called it "fire grass" in the first one
     "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
-    "RET doesn't have an official stance on fire weed. The long-term side effects aren't well known."  #Or maybe RET requires miners to use this drug?  Or, they don't forbid it, but they pay based on what you mine, so if you take it you can work faster and earn more money.  Do you (personally, the colony?) still grow it?
+    "RET doesn't have an official stance on fire weed. The long-term side effects aren't well known."  
     "What do you do about it?"
     menu:
         "Have miners receive a recommended daily allowance of fire weed at their next checkup":
@@ -399,6 +408,7 @@ label community22:
     "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
     "What do you do?"
     menu:
+        #this feels like it escalated really quickly. Talk with both parties before the menu?
         "Form a militia with the miners to force the luddites out of the cave.":
             $ miners += 1
         "Not your problem. Do nothing.":
@@ -409,7 +419,6 @@ label community22:
             # Organize a passive resistance, strike, etc.  A petition from lots of farmers saying they will leave the colony if the luddites are not protected?  Only works if you have really high scores with everyone.
             # if you form a militia, someone gets injured or maimed
             $ pass
-            #as a result of this event, some of the miners and colonists petition RET to go home a few years earlier than their contract, because the unrest is distrubing? (this would put the shuttle coming at the last event)
     return
 
 
@@ -429,18 +438,20 @@ label community23:
 
 label community24:
     "A woman dies or is injured in childbirth."  # Perhaps they blame [her_name] and Julia, leading to increased tensions?  Or perhaps it was a teenager with a miner boyfriend and so people blame the miner for getting her pregnant?  Or perhaps it was one of the luddites who refused to call for help from the colony until it was too late? Terra comments on how having kids is dangerous and thinks about her own future.
+    "RET says they are no longer going to supply temporary birth control and recommends sterilzation or timing."
     "The kids are really into fire grass this summer."
     return
 
 
 label community25:
-    "A luddite or a miner is dating someone in the colony."
+    "Miners have a lot more money than farmers. They start employing young people as servants to do their household chores and look after their children."
     return
 
 
-# Maybe Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
+# Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
 label community26:
-    "Community 26 Event"
+    "Miranda predicts increased solar flare activity this year."
+    "How do you prepare?"
     return
 
 
@@ -459,7 +470,8 @@ label community27:
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.  
 label community28:
-    "Community 28 Event"
+    "Everyone around Mayor Grayson has noticed that his mental state has been declining."
+    "When he is in one of his lucid moments, he decides to step down from his position as mayor."
     return
 
 
