@@ -94,6 +94,8 @@ init -100:
     $ is_liason = False
     $ asked_only_medicine = False
     $ trade_with_luddites = False
+    $ invited_luddites = False
+    $ invited_miners = False
     
     # FARM 
     # Work/crops

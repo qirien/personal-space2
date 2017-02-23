@@ -330,8 +330,18 @@ label community16:
 
 
 label community17:
-    "Harvest festival"
+    "It's time for the harvest festival! Usually you eat a big meal and the kids go around begging desserts off everyone."
+    "This year you're in charge. Who will you invite?"
+    menu:
+        if (luddites >= 10 AND miners >=10): "The miners and the luddites.":
+        if (luddites >= 10): "The luddites.":
+            $ invited_luddites = True
+        if (miners >= 10): "The miners.":
+            $ invited_miners = True
+        else:
+            "The usual--all the other colonists.":
     #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
+    #TODO: find a real way to do if AND?
     # the obsession causes you to.... ??? throw crops into the sea?
     # also if you meet with the luddites, Pete can answer questions about cattle health.
     # if BOTH luddites and miners are there, they start trade negotiations? affects the fire grass event later.
