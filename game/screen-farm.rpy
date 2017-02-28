@@ -104,9 +104,17 @@ screen plan_farm:
                             selected ((crop_index == j) and (not max_crops_reached))
                             # TODO: Add alternate action to get more crop info?
                         
-            textbutton "Accept Plan":
-                xalign 1.0
-                action Return()
+            hbox:
+                null width 200
+                textbutton "Default":
+                    action [
+                                set_default_crops,
+                                Return()
+                            ]
+                null width 500
+                textbutton "Accept Plan":
+                    xalign 1.0
+                    action Return()
                 
                 
                 
@@ -117,3 +125,9 @@ init python:
         crops[index] = crop_name
         
     SetCrop = renpy.curry(set_crop)
+    
+    # Use our default test crops
+    def set_default_crops():
+        global crops
+        crops = list(test_crops)
+        

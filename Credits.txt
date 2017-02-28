@@ -18,6 +18,13 @@ RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, deriv
 
 Fields <fields.jpg> by Andrea Landaker
 
+=== GUI
+
+All GUI images are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
+
+Textbox vegetation texture by Eric Matyas, http://www.soundimage.org
+
+
 === Character Sprites
 
 "Our Personal Space 2" Character Sprites are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.

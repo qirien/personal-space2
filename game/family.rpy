@@ -177,8 +177,24 @@ label family3:
     return
 
 # 2 Earth years old
-# TODO: Rachel, want to fill some of these in?  You have a kid this age...
 label family4:
+    "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
+    menu:
+        "Make her stay at the table until she eats everything on her plate.": 
+            $ demanding += 1
+        "Tell her we don't have that food right now and keep the food out longer.":
+            $ demanding += 1
+         
+        "Ask a neighbor for the food she wants.":
+            $ responsive += 1
+                        
+        # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
+        # Still working with the best way to use these.  Basically, the child variables depend on the parenting variables, so I wrote a function to increase them so we can easily change the formula we use.
+        # Currently, the child variables are increased each year automatically based on that year's decisions, so all we have to do in this file is worry about demanding and responsive.  
+    return
+
+# 2.7 Earth years old
+label family5:
     "Toilet training! She's learning it, but she has an accident."
     menu:
         "Clean it up for her. She'll learn eventually.":
@@ -192,23 +208,6 @@ label family4:
             
             
         # perhaps also a discussion about is she too young, should they give up, everyone's tired of washing diapers.  Maybe she should just LIVE OUTSIDE?!
-    return
-
-# 2.7 Earth years old
-label family5:
-    "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
-    menu:
-        "Make her stay at the table until she eats everything on her plate.": 
-            $ demanding += 1
-        "Tell her we don't have that food right now and keep the food out longer.":
-            $ demanding += 1
-         
-        "Ask a neighbor for the food she wants.":
-            $ responsive += 1
-                        
-        # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
-        # Still working with the best way to use these.  Basically, the child variables depend on the parenting variables, so I wrote a function to increase them so we can easily change the formula we use.
-        # Currently, the child variables are increased each year automatically based on that year's decisions, so all we have to do in this file is worry about demanding and responsive.
     return
 
 # 3.5 Earth years old
@@ -236,6 +235,7 @@ label family6:
 #####################################################
 
 # 4 Earth years old
+# Back-Talking
 label family7:
     "Terra talks back when asked to pick up her toys, saying \"I hate you!\""
     menu:
@@ -255,6 +255,7 @@ label family7:
     return
 
 # 5 Earth years old
+# First Day of School
 label family8:
     "First day of school! She's a little nervous, but not screaming and crying."
     # TODO: how would the first day be different in a 1 room schoolhouse? Maybe she'll see a familiar face in a babysitter there?
@@ -274,6 +275,7 @@ label family8:
     return
 
 # 5.5 Earth years old
+# Holiday Traditions
 label family9:
     "It's some holiday that we can decide on later! Terra doesn't want to do some tradition."
     menu:
@@ -288,6 +290,7 @@ label family9:
     return
 
 # 6.2 Earth years old
+# Damages Tablet
 label family10:
     "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
     menu:
@@ -303,6 +306,7 @@ label family10:
     return
 
 # 6.8 Earth years old
+# Dinner Table Manners
 label family11:
     "Manners at the dinner table!  Terra used to know how to say Please and Thank You, but lately she's forgotten or is testing the limits."
     menu:
@@ -320,8 +324,20 @@ label family11:
     return
 
 # 7.4 Earth years old
+# Growing Independence
 label family12:
-    "Family 12 Event"
+    "[kid_name] wants to walk to a friends' house after school and walk home. It's pretty far, but she's been there before."
+    "Still, you can't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+    menu:
+        "No way. You'll go with her.":
+            $ demanding += 1
+        "Talk to the friends' parents.":
+            # It turns out an older sibling will accompany them.
+            $ demanding += 1
+            $ responsive += 1
+        "Sure, she's a big girl now.":
+            $ responsive += 1
+            
     return
     
 #####################################################
@@ -513,6 +529,7 @@ label family14:
     return
 
 # 9.4 Earth years old
+# Sleepover?!
 label family15:
     "Terra wants to have a sleepover for her birthday and invite some friends over.  But they're boys..."
     menu:
@@ -528,6 +545,7 @@ label family15:
     return
 
 # 10 Earth years old
+# Cleaning her room
 label family16:
     "You ask Terra to clean up her stuff (school supplies, rock collection, 'precious things', etc). She says it is clean and she likes it that way."
     menu:
@@ -544,6 +562,7 @@ label family16:
     return
 
 # 10.5 Earth years old
+# Unexplained crying
 label family17:
     "She won't stop crying. She won't even explain what the problem is. She's making the other kid(s) cry and the entire house is filled with her wails."
     menu:
@@ -559,6 +578,7 @@ label family17:
     return
 
 # 11.1 Earth years old
+# Wants a bike!
 label family18:
     "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
     menu:
@@ -581,6 +601,7 @@ label family18:
     return
 
 # 11.8 Earth years old
+# Pornography...
 label family19:
     "You're sending an e-mail to the farming committee and looking for a photo you took of some crops when you find a pornographic video stored on the tablet."
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
@@ -609,6 +630,7 @@ label family19:
     return
 
 # 12.4 Earth years old
+# Musical Instrument
 label family20:
     "Terra wants to learn a musical instrument.  The colony doesn't have any or anyone who plays that instrument."
     menu:
@@ -629,6 +651,7 @@ label family20:
 #####################################################
 
 # 13 Earth years old
+# Sarcastic Humor
 label family21:
     "Terra's sarcastic humor is hurting people's feelings."
     menu:
@@ -642,6 +665,7 @@ label family21:
     return
 
 # 13.6 Earth years old
+# Bathing is still a necessity
 label family22:
     "Terra refuses to bathe, even though she's getting stinky."
     menu:
@@ -655,9 +679,9 @@ label family22:
         "Why don't you want to take a bath?":
             $ responsive += 1
         
-    return
-
+return
 # 14.2 Earth years old
+# Chatting with friends on family tablet
 label family23:
     "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
     menu:
@@ -672,11 +696,22 @@ label family23:
     return
 
 # 14.8 Earth years old
+# Alcohol, drugs
 label family24:
-    "Add in something community-related here."
+    "[her_name] asks you about fire grass. Seems like a lot of people have been talking about it lately."
+    menu:
+        "You're never to go near it, do you hear me?":
+            $ demanding += 1
+        "Explain what it is and why people are concerned.":
+            # Conversation also turns to Pete's distillery and alcohol
+            $ demanding += 1
+            $ responsive += 1
+        "Give her some of your stash.":
+            $ responsive += 1
     return
 
 # 15.5 Earth years old
+# A boy...friend?
 label family25:
     "Terra sure has been spending a lot of time with some boy. They were holding hands... does she have a boyfriend?"
     menu:
@@ -702,6 +737,7 @@ label family25:
     return
 
 # 16.1 Earth years old
+# Talking Politics
 label family26:
     "She disagrees with your recent community decision! She calls you a fascist/spineless worm/panderer."
     menu:
@@ -719,6 +755,7 @@ label family26:
     return
 
 # 16.7 Earth years old
+# Fire grass
 label family27:
     "[kid_name] comes home smelling like fire grass."
     "You knew that the miners smoked it, but it hasn't been popular among the colonists... until now."
@@ -743,6 +780,7 @@ label family27:
     return
 
 # 17.3 Earth years old
+# Terra's plans for future
 label family28:
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
     "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
@@ -757,6 +795,7 @@ label family28:
     return
 
 # 18 Earth years old
+# Terra blames you for some big crisis!
 label family29:
     "Big crisis! Foreshadows ending! She says she hates you for some reason and never wants to see you again!"
     menu:

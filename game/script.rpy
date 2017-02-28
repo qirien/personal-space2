@@ -28,7 +28,7 @@ label start:
     # TODO: show some sort of inter-scene screen
     # There are 196 27-hour days per year on Talaam, and 356 24-hour days on Earth
     $ year = 1
-    while (year < 30):
+    while (year <= 30):
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.choice_for_skipping()

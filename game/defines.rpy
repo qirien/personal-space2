@@ -101,12 +101,17 @@ init -100:
     # Work/crops
     $ farm_size = 16
     $ crops = []
+    $ test_crops = [    "potatoes", "potatoes", "beans", "beans", 
+                        "carrots", "carrots", "spinach", "spinach", 
+                        "goats", "squash", "squash", "squash", 
+                        "potatoes", "potatoes", "", ""]
     $ crop_index = 0
     # Dictionary containing the number of events seen for each crop 
     $ number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
     # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10).  Also whether the crop is currently enabled or not.
     # TODO: add income
     # TODO: add limits to maximum amount allowed
+    $ crop_index = 1
     $ crop_info = (["corn",         8, 4, 8, 7, False, 100],    # Grains
                         ["potatoes",     8, 5, 7, 6, True,  100],
                         ["wheat",        8, 6, 8, 10,False, 100],
@@ -144,6 +149,8 @@ init -100:
     $ total_nutrition = 0
     $ total_fun = 0
     $ total_work = 0
+    
+    $ carrots_fallow = False
     
     # Community. The higher the variable, the better your relationship with that group is.
     $ colonists = 0

@@ -72,6 +72,8 @@ label community4:
         "Sara is elected as the new representative."
         #TODO: does the order of these options matter for variable settings?
         #should a leader of the militia be elected here as well?
+        
+    return
 
 
 label community5:
@@ -333,13 +335,15 @@ label community17:
     "It's time for the harvest festival! Usually you eat a big meal and the kids go around begging desserts off everyone."
     "This year you're in charge. Who will you invite?"
     menu:
-        if ((luddites >= 10) and (miners >=10)): "The miners and the luddites.":
-        if (luddites >= 10): "The luddites.":
+        "The miners and the luddites." if ((luddites >= 10) and (miners >=10)):
             $ invited_luddites = True
-        if (miners >= 10): "The miners.":
             $ invited_miners = True
-        else:
-            "The usual--all the other colonists.":
+        "The luddites." if (luddites >= 10): 
+            $ invited_luddites = True
+        "The miners." if (miners >= 10): 
+            $ invited_miners = True
+        "The usual--all the other colonists.":
+            $ pass
     #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
     #TODO: find a real way to do if AND?
     # the obsession causes you to.... ??? throw crops into the sea?
