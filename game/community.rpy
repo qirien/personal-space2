@@ -333,7 +333,7 @@ label community17:
     "It's time for the harvest festival! Usually you eat a big meal and the kids go around begging desserts off everyone."
     "This year you're in charge. Who will you invite?"
     menu:
-        if (luddites >= 10 AND miners >=10): "The miners and the luddites.":
+        if ((luddites >= 10) and (miners >=10)): "The miners and the luddites.":
         if (luddites >= 10): "The luddites.":
             $ invited_luddites = True
         if (miners >= 10): "The miners.":
