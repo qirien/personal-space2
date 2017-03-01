@@ -27,7 +27,7 @@ label work4:
     menu:
         "Sign a wheat contract?"
         "Yes":
-            $ colony += 1
+            $ colonists += 1
             # you sold your soul but can now grow wheat.
         "No":
             $ luddites += 1

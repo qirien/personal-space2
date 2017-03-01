@@ -100,7 +100,7 @@ label goats1:
             "Smuggle some to the Luddites": #only if you're past community_14
                 $ luddites += 1
             "Send to the storehouse":
-                $ colony += 1
+                $ colonists += 1
             "Slaughter for meat":
                 $ pass #family happiness/food increase?
             "Allocate more land for goats":

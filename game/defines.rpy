@@ -1,36 +1,20 @@
+# Declare global static variables, images, characters, etc.
 init -100:
-# Declare global variables, images, characters, etc.
+
+    # Static indices that will never change
+    define NAME_INDEX = 0
+    define CALORIES_INDEX = 1
+    define NUTRITION_INDEX = 2
+    define FUN_INDEX = 3
+    define WORK_INDEX = 4
+    define ENABLED_INDEX = 5
+    define MAXIMUM_INDEX = 6
+
     
     define mp = MultiPersistent("MetasepiaGames")
     
-    # Declare gameplay variables
-    
-    # PARENT
-    
-    # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
-    $ demanding = 0
-    $ total_demanding = 0
-    # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
-    $ responsive = 0
-    $ total_responsive = 0
-    
-    # CHILD
-    
-    # Amount of emotional intelligence, how loved and secure child feels
-    $ attachment = 0
-    # Reponsibility and ability to work hard, practical knowledge
-    $ competence = 0
-    # Confidence, autonomy
-    $ independence = 0
-    
-    $ sex_ed_biology = False
-    $ sex_ed_commitment = False
-    $ sex_ed_babycreation = False
-    $ sex_ed_goodfeeling = False
-    $ sex_ed_birthcontrol = False
-    
-    
-    # Declare characters used by this game .
+    # Declare characters
+    # TODO: Remove unused
     define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
     
     define her = DynamicCharacter("her_name", color="#84b766", image="her", ctc="ctc_blink", ctc_position="nestled") #light mint green
@@ -55,13 +39,6 @@ init -100:
     
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
-    
-    # Default names
-    $ his_name = "Jack"
-    $ her_name = "Kelly"
-    $ his_nickname = "dear"
-    $ her_nickname = "lover"
-    $ kid_name = "Terra"
     
     # Custom transitions, positions, etc.
     define fade = Fade(0.2, 0.2, 0.2)
@@ -91,69 +68,4 @@ init -100:
     $ is_nude = False
     $ is_pregnant = False
     $ wearing_dress = False # TODO: do we still use these in OPS2?
-    $ is_liason = False
-    $ asked_only_medicine = False
-    $ trade_with_luddites = False
-    $ invited_luddites = False
-    $ invited_miners = False
     
-    # FARM 
-    # Work/crops
-    $ farm_size = 16
-    $ crops = []
-    $ test_crops = [    "potatoes", "potatoes", "beans", "beans", 
-                        "carrots", "carrots", "spinach", "spinach", 
-                        "goats", "squash", "squash", "squash", 
-                        "potatoes", "potatoes", "", ""]
-    $ crop_index = 0
-    # Dictionary containing the number of events seen for each crop 
-    $ number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
-    # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10).  Also whether the crop is currently enabled or not.
-    # TODO: add income
-    # TODO: add limits to maximum amount allowed
-    $ crop_index = 1
-    $ crop_info = (["corn",         8, 4, 8, 7, False, 100],    # Grains
-                        ["potatoes",     8, 5, 7, 6, True,  100],
-                        ["wheat",        8, 6, 8, 10,False, 100],
-                        ["peppers",      2, 6, 5, 5, False, 100],    # "Fruits"
-                        ["tomatoes",     3, 5, 6, 6, True,  100],
-                        ["plums",        3, 3, 8, 7, False, 1],
-                        ["plums+",       3, 3, 8, 2, False, 1],    # Perennials are easier after year 1
-                        ["squash",       4, 5, 5, 4, True,  100],
-                        ["strawberries", 1, 3, 7, 6, False, 2],
-                        ["strawberries+",1, 3, 7, 6, False, 2],
-                        ["blueberries",  3, 3, 9, 9, False, 2],
-                        ["blueberries+", 3, 3, 9, 4, False, 2],
-                        ["beans",        6, 7, 2, 7, True,  100],   # Legumes
-                        ["snow peas",    3, 5, 2, 4, False, 100],
-                        ["peanuts",      7, 6, 5, 8, False, 100],
-                        ["carrots",      3, 5, 4, 4, True,  100],   # Root Vegetables
-                        ["beets",        3, 4, 4, 4, False, 100],
-                        ["turnips",      3, 5, 3, 4, False, 100],
-                        ["onions",       4, 3, 7, 4, False, 100],
-                        ["garlic",       3, 4, 7, 4, False, 100],
-                        ["cabbage",      2, 4, 4, 3, False, 100],   # Leafy greens
-                        ["spinach",      3, 6, 4, 4, True,  100],
-                        ["broccoli",     3, 5, 3, 3, False, 100],
-                        ["goats",       10, 7, 7, 5, True,  1])   # Miscellaneous
-    
-    define NAME_INDEX = 0
-    define CALORIES_INDEX = 1
-    define NUTRITION_INDEX = 2
-    define FUN_INDEX = 3
-    define WORK_INDEX = 4
-    define ENABLED_INDEX = 5
-    define MAXIMUM_INDEX = 6
-    
-    $ total_calories = 0
-    $ total_nutrition = 0
-    $ total_fun = 0
-    $ total_work = 0
-    
-    $ carrots_fallow = False
-    
-    # Community. The higher the variable, the better your relationship with that group is.
-    $ colonists = 0
-    $ miners = 0
-    $ luddites = 0
-    $ jellies = 0

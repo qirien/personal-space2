@@ -1,5 +1,0 @@
-#!/bin/bash
-
-mkdir -p new-sprites
-
-find . -maxdepth 1 -iname "*.png" -exec convert -gravity South -chop 0x35 -resize x550 -quality 95 '{}' new-sprites/'{}' \;

@@ -99,7 +99,7 @@ label community5:
                 $ colonists += 1
     # TODO: do more research and think through the consequences of these choices (replace with more reasonable ones?). Make a variable for each one.
     else:
-        show sara midright
+        show sara at midright
         sara "The miners won't arrive for another four Earth years."
         sara "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
         sara "Next harvest we'll start accepting canned goods as well."
@@ -110,8 +110,8 @@ label community5:
 
 
 label community6:
-    show pete midright
-    show julia midleft
+    show pete at midright
+    show helen at midleft
     "Pete and Helen accidentally left a tablet outside during a solar flare."
     "The tablet was completely ruined. The same week, their other tablet was out for repairs."
     "They missed watching movies and reading books and keeping in touch with everyone. But they found that they were more creative about how to entertain themselves."
@@ -121,7 +121,7 @@ label community6:
     pete "What would you think if someone left the colony?"
     menu:
         "I'd think they were very irresponsible.":
-            $ colony += 1
+            $ colonists += 1
         "I could understand that. Sometimes I feel the same way.":
             $ luddites += 1
         "I guess they would have to forfeit any help from Rare Earth Tech": 
@@ -142,7 +142,7 @@ label community7:
             "From a business standpoint, it makes more sense to negotiate salary with each employee individually.":
                 $ miners += 1 
             "We're all here now, so let's help each other.":
-                $ colony += 1
+                $ colonists += 1
      else:
         "Sara made some kind of excuse for Rare Earth Tech's econimizing."
      
@@ -155,7 +155,7 @@ label community8:
     if is_liason:
         "You need to find out what everyone else wants too, and send a brief message summarizing it."
         #talk to various villagers. include a bicycle?
-        show natalia left
+        show natalia at left
         with dissolve
         natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be."
         "What will you write? You have a limited amount of characters." #plausible?
@@ -548,9 +548,11 @@ label community29:
     #it's an account from about 7 years ago? about the cattle thing, but indignently whiney and kind of overblown.
     "They give permission to use force against the luddites if they are hindering mining operations."
     #it goes to both the liason and the head miner. If you're not the liason, Sara calls a town meeting to discuss it.
-    if ((luddites >= 12) and (miners >=12)): "Are the luddites getting out of hand?" #this is wrong, but I don't know what is right! do I use a jump command? I think there is a way to display text based on stats, but I can't remember.
+    if ((luddites >= 12) and (miners >=12)): 
+        "Are the luddites getting out of hand?" #this is wrong, but I don't know what is right! do I use a jump command? I think there is a way to display text based on stats, but I can't remember.
     "You explain to RET that force isn't necessary" 
-    if ((luddites <= 5) and (miners <=5)): "You hear gunshots. The miners are attacking the luddites!?"
+    if ((luddites <= 5) and (miners <=5)): 
+        "You hear gunshots. The miners are attacking the luddites!?"
     #Lm - you can warn the luddites and some of them take shelter with you
     #lM - you can join the miners in driving away the luddites (do you actually kill them?)
     return
@@ -560,6 +562,7 @@ label community29:
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
 label community30:
     "The latest shuttles from RET have arrived."
-    if ((luddites >= 12) and (miners >=12)): "New miners are arriving to replace the ones who are leaving. You're kind of sad to see some of them go."
+    if ((luddites >= 12) and (miners >=12)): 
+        "New miners are arriving to replace the ones who are leaving. You're kind of sad to see some of them go."
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return
