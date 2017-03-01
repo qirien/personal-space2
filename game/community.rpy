@@ -466,6 +466,30 @@ label community25:
 label community26:
     "Miranda predicts increased solar flare activity this year."
     "How do you prepare?"
+    menu:
+        "Plant more beets.":
+            $ colonists += 1
+        "Ask Pete for some brewer's yeast" if (luddites >= 10):
+            $ colonists += 2
+        "Ask Zaina if the miners have found any calcium or magnesium" if (miners >= 10):
+            $ colonists += 2
+        #these are all "natural" ways to help the body get rid of toxins
+    "Will you warn people outside the colony about the solar flares?"
+    menu:
+        "Warn the luddites and the miners" if ((luddites >= 12) and (miners >=12)):
+            #TODO: test these numbers
+            $ miners += 1 
+            $ luddites += 1
+            "You warn both the luddites and the miners."
+        "Warn the luddites." if (luddites >= 12): 
+            $ luddites += 1
+            "You warn the luddites."
+            "The luddites are starting work on building water barriers around their winter homes. They've planted lots of guords so they can fill them with water when they're dry."
+        "Warn the miners." if (miners >= 12): 
+            $ miners += 1 
+            "You warn the miners."
+        "I won't warn anyone.":
+            $ pass
     return
 
 
@@ -480,22 +504,62 @@ label community27:
             $ pass
         "Ask a doctor.":
             $ miners += 1
+            #the doctor might suggest biofeedback exercises
     return
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.  
 label community28:
     "Everyone around Mayor Grayson has noticed that his mental state has been declining."
     "When he is in one of his lucid moments, he decides to step down from his position as mayor."
+    "He asked you to not let him be a burden on the colony."
+    "You schedule a town meeting with the other colonists to decide who the new mayor should be."
+    "Also... who is going to take care of Mayor Grayson?"
+    #TODO:Go to past if_liason events and have some consultation with the mayor so that it's more clear what the mayor actually does. He makes decisions that will help the colonists the most in the long run.
+    "Colonists are divided about if the new mayor should be a farmer with firsthand experience of growing food, or someone more detached from farming."
+    "They decide on some basic qualifications and reconvene the next night to decide."
+    "The next evening, some miners arrive and ask why they weren't invited?"
+    "Their logic is that since they're also RET employees, they should be allowed to nominate a candidate for mayor."
+    "There are more miners than colonists; if the miners act together they could control who becomes the mayor."
+    "Will you let them join the election?"
+    menu:
+        "Let them vote, but not nominate.":
+            $ pass
+        "Let them nominate a candidate for mayor.":
+            $ miners += 3
+        "Don't let them vote or nominate a candidate for mayor.":
+            $ colonists += 1
+            $ miners -= 1
+            #resulting unrest? would the luddites get involved too?
+    "Mayor Grayson doesn't have any family to take care of him. How should the colony help him?"
+    #I'm not sure if this is really the player's decision; it might play out more like a community discussion. 
+    menu:
+        "Assign him to a family and let him 'help' with the community daycare.":
+             $ pass
+             #is there a family that wants to take him in?
+        "The colony doesn't have the resources to look after him. Give him a humane death." if (colonists <= 8):
+             $ colonists -= 1
+        "Ask Mayor Graysen what he wants.":
+             $ pass
     return
 
 
 label community29:
-    "Big fight!!" #or should community 22 be the big fight?
+    "RET reports that they've heard from a miner that the luddites are hurting RET business interests." 
+    #it's an account from about 7 years ago? about the cattle thing, but indignently whiney and kind of overblown.
+    "They give permission to use force against the luddites if they are hindering mining operations."
+    #it goes to both the liason and the head miner. If you're not the liason, Sara calls a town meeting to discuss it.
+    if ((luddites >= 12) and (miners >=12)): "Are the luddites getting out of hand?" #this is wrong, but I don't know what is right! do I use a jump command? I think there is a way to display text based on stats, but I can't remember.
+    "You explain to RET that force isn't necessary" 
+    if ((luddites <= 5) and (miners <=5)): "You hear gunshots. The miners are attacking the luddites!?"
+    #Lm - you can warn the luddites and some of them take shelter with you
+    #lM - you can join the miners in driving away the luddites (do you actually kill them?)
     return
 
 # Rebuilding, aftermath of big fight.
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?  
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
 label community30:
-    "Community 30 Event"
+    "The latest shuttles from RET have arrived."
+    if ((luddites >= 12) and (miners >=12)): "New miners are arriving to replace the ones who are leaving. You're kind of sad to see some of them go."
+    #TODO: fill in the various endings, figure out what the threshold numbers should be
     return
