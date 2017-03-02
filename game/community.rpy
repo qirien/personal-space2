@@ -318,7 +318,7 @@ label community15:
 
 label community16:
     "Trade with luddites: is it permitted in the contract?"
-    "Luddites want to trade a few calves for medical supplies."
+    "Luddites want to trade a few calves for medical supplies." # [her_name] is not supposed to treat them at the clinic, but she does anyway?
     "Also, you chat about the hardships of living without tech."
     #if the mode of currency stays a choice, how does it play in here?
     "Do you trade with the luddites?"

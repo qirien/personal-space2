@@ -3,6 +3,8 @@
 # Each family event has several parenting choices.  The decisions for the month
 # will affect how much the child's stats increase that month.
 #
+# "demanding" and "responsive" are just for the current year and affect how much the child's stats increase that month.
+# "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month (?).
 # TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
 
 # 3 Earth mos. old
@@ -11,14 +13,18 @@ label family1:
     "Terra's been crying for hours, no one knows why.  Everyone's tired and spent."
     menu:
         "Take her for a walk":
-            $ responsive += 1            
+            $ responsive += 1 
+            $ permissive += 1
         "Ask someone else for help":
             $ responsive += 1
-            $ demanding += 1            
+            $ demanding += 1
+            $ authoritative += 1                        
         "Let Kelly handle it":
             $ responsive += 0 # TODO: Do we ever subtract points?
-        "Let Terra cry":
+            $ neglectful += 1
+        "Let Terra cry":            
             $ demanding += 1
+            $ authoritarian += 1
             
     return
     
@@ -91,6 +97,7 @@ label family1:
             "Maybe I wasn't cut out to be a dad. What kind of dad leaves when there's trouble?"
             "But this was a trouble I couldn't fix. What was the point in sticking around, when everything I did just seemed to make it worse?"
             "That's what I told myself, but I still felt like a traitor."
+            "..."
             "I was a traitor."
             menu:
                 "Go back and apologize.":
@@ -101,11 +108,11 @@ label family1:
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
                     "She didn't say anything, just lay her head back down and stared at [kid_name] blankly."
                     him sad "[her_name]... I'm sorry. I shouldn't have left. I'm here, now."
-                    "She still didn't respond, even when I picked up the squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
+                    "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
                     "As I left the room, [her_name] said something I've never forgotten."
                     her annoyed "Don't ever leave us again."
                 "Spend the night in the barn":
-                    "I couldn't go back there. I was already frayed and broken and ready to snap. My brain felt like a sparking circuit, and I worried I might hurt someone or make a mistake."
+                    "I couldn't go back there. I was already frayed and broken and ready to snap. My brain felt like a sparking circuit, and I worried that if I stayed, I might hurt someone or make a big mistake."
                     scene bg barn with fade
                     "I lay down on the hay in the barn and closed my eyes. [kid_name]'s screams echoed in my head so loudly I sat up and looked around. But there was no one there."
                     "Sleep was a long time in coming."
@@ -141,14 +148,16 @@ label family2:
     menu:
         "Make a play pen for her":
             $ demanding += 1
-            
+            $ authoritarian += 1            
         "Strap her on and try to get some work done":
             $ demanding += 1
             $ responsive += 1
-            
+            $ authoritative += 1
+        "Just let her play. She probably won't die.":
+            $ neglectful += 1
         "Play with her":
             $ responsive += 1
-            
+            $ permissive += 1
  
     # TODO: Perhaps they join the daycare coop at the end of this scene?
     return
@@ -165,15 +174,17 @@ label family3:
     menu:
         "Make her a chewing toy":
             $ responsive += 1
-            
+            $ permissive += 1            
         "Give her something she can chew on.": #like a woodenspoon
             $ responsive += 1
             $ demanding += 1
-            
+            $ authoritative += 1            
         "Slap her hand away every time she reaches for them.":
             $ demanding += 1
+            $ authoritarian += 1
         "Let her mouth them. It's good for her immune system, right?":
             $ responsive += 1
+            $ neglectful += 1
     return
 
 # 2 Earth years old
@@ -182,11 +193,15 @@ label family4:
     menu:
         "Make her stay at the table until she eats everything on her plate.": 
             $ demanding += 1
+            $ authoritarian += 1
         "Tell her we don't have that food right now and keep the food out longer.":
             $ demanding += 1
-         
+            $ authoritative += 1
         "Ask a neighbor for the food she wants.":
             $ responsive += 1
+            $ permissive += 1
+        "Let [her_name] deal with it.":
+            $ neglectful += 1
                         
         # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
         # Still working with the best way to use these.  Basically, the child variables depend on the parenting variables, so I wrote a function to increase them so we can easily change the formula we use.
@@ -197,14 +212,19 @@ label family4:
 label family5:
     "Toilet training! She's learning it, but she has an accident."
     menu:
-        "Clean it up for her. She'll learn eventually.":
+        "Just clean it up. She'll learn eventually.":
             $ responsive += 1
+            $ neglectful += 1
         "Have her help you clean it up, then reward her later for just trying to go to the bathroom.":
             $ demanding += 1
             $ responsive += 1
-            
+            $ authoritative += 1
         "Punish her every time she has an accident":
             $ demanding += 1
+            $ authoritarian += 1
+        "Promise her a big reward if she can stay dry all day":
+            $ responsive += 1
+            $ permissive += 1
             
             
         # perhaps also a discussion about is she too young, should they give up, everyone's tired of washing diapers.  Maybe she should just LIVE OUTSIDE?!
@@ -217,13 +237,19 @@ label family6:
         "Play with her just enough for her to get less bored and play a little more on her own.":
             $ responsive += 1
             $ demanding += 1
+            $ authoritative += 1
         "Give her your complete attention.":
             $ responsive += 1
+            $ permissive += 1
         "Tell her to stop bothering you.":
             $ demanding += 1
             $ responsive -= 1
+            $ authoritarian += 1
             # TODO: is subtracting variables allowed?
             # TODO: I'm not sure if this situation would increase independence (since the child has to play on their own more) or decrease it (since it means they want to get parental attention EVEN MORE).
+        "Go into your room and lock the door.":
+            $ responsive -= 1
+            $ neglectful += 1
             
         # TODO: Perhaps this leads to the discussion of whether or not to have another child, as they feel Terra would benefit from a playmate. Or maybe just more time with friends?
     return
@@ -242,14 +268,18 @@ label family7:
         "What do you say?"
         "There's consequences for such disrespect!":
             $ demanding += 1
+            $ authoritarian += 1
         "How can you say that after all I do for you?":
             $ responsive += 1
+            $ permissive += 1
         "You don't really mean that!":
             $ responsive += 1
         "I can see you're upset. When you're ready to talk respectfully, we can try to solve the problem.":
             $ demanding += 1
             $ responsive += 1
-            
+            $ authoritative += 1
+        "Just ignore her. Maybe next time you will not bother making her clean up her toys.":
+            $ neglectful += 1
             
             # TODO: She continues to talk rudely, has to go to timeout, user has to be patient through a zillion menus until she finally calms down
     return
@@ -260,15 +290,18 @@ label family8:
     "First day of school! She's a little nervous, but not screaming and crying."
     # TODO: how would the first day be different in a 1 room schoolhouse? Maybe she'll see a familiar face in a babysitter there?
     menu:
+        "Leave when she's not looking.":
+            $ neglectful += 1
         "Cheerfully give her a goodbye hug.":
             $ demanding += 1
             $ responsive += 1
-        
+            $ authoritative += 1
         "Admonish her to behave.":
             $ demanding += 1
-            
+            $ authoritarian += 1            
         "Talk about how nervous she is.":
             $ responsive += 1
+            $ permissive += 1
             
                 
     # TODO: Have a baby here if you decided to.
@@ -279,13 +312,18 @@ label family8:
 label family9:
     "It's some holiday that we can decide on later! Terra doesn't want to do some tradition."
     menu:
+        "Traditions are pointless. Why celebrate at all?":
+            $ neglectful += 1
         "Keep the tradition.":
             $ demanding += 1
+            $ authoritarian += 1            
         "Make a new tradition":
-            $ responsive += 1        
+            $ responsive += 1
+            $ permissive += 1
         "Keep the tradition and make a new tradition":
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1            
         
     return
 
@@ -294,14 +332,18 @@ label family9:
 label family10:
     "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
     menu:
+        "Do nothing. She'll learn eventually on her own.":
+            $ neglectful += 1
         "Yell at her to be more careful":
             $ demanding +=1 
+            $ authoritarian += 1
         "Ask how it happened and require her to do extra chores to make up for it.":
             $ demanding += 1
             $ responsive += 1          
-            
+            $ authoritative += 1
         "Tell her it's all right, she can't be expected to take care of things at her age.":
             $ responsive += 1
+            $ permissive += 1
             
     return
 
@@ -312,14 +354,17 @@ label family11:
     menu:
         "I raised you to talk better than that!":
             $ demanding += 1
-            
+            $ authoritarian += 1
         "I expect you to say 'please' when you ask for something, and 'thank you' when someone helps you. Try again.":
             # she keeps asking rudely a billion times, do you give up and give her what she wants, get mad, set a consequence, or simply ignore her until she talks politely?
             $ demanding += 1
             $ responsive += 1            
-            
+            $ authoritative += 1
         "Give her what she wants.":
             $ responsive += 1
+            $ permissive += 1
+        "Maybe next time you'll eat by yourself.":
+            $ neglectful += 1
             
     return
 
@@ -331,12 +376,17 @@ label family12:
     menu:
         "No way. You'll go with her.":
             $ demanding += 1
+            $ authoritarian += 1
         "Talk to the friends' parents.":
             # It turns out an older sibling will accompany them.
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "Sure, she's a big girl now.":
             $ responsive += 1
+            $ permissive += 1
+        "Sounds like a pain. Just say she can't go.":
+            $ neglectful += 1
             
     return
     
@@ -353,15 +403,17 @@ label family13:
     menu:
         "She's not ready.":
             $ demanding += 1
+            $ authoritarian += 1
         "Give a vague metaphor.":
             $ responsive += 1
+            $ neglectful += 1
         "Keep it simple":
             $ responsive += 1
             $ demanding += 1          
-            
+            $ authoritative += 1
         "Give a detailed explanation.":
             $ responsive += 1
-            
+            $ permissive += 1
         
     return
     
@@ -499,16 +551,14 @@ label family14:
     menu:
         "Demand that her teacher fix the problem":
             $ responsive += 1
-            
+            $ permissive += 1            
         "Brainstorm ways Terra could work it out":
             $ demanding += 1
             $ responsive += 1
-            $ increase_competence
-            $ increase_independence
-            $ increase_attachment
+            $ authoritative += 1
         "Terra should quit asking you and stop bothering her brother.":
             $ demanding += 1
-            $ increase_independence
+            $ authoritarian += 1
         
     return
      
@@ -533,14 +583,19 @@ label family14:
 label family15:
     "Terra wants to have a sleepover for her birthday and invite some friends over.  But they're boys..."
     menu:
+        "I don't have time to supervise all your little friends.":
+            $ neglectful += 1
         "No. Absolutely not!":
             $ demanding += 1
+            $ authoritarian += 1
         "Work out a compromise":
             $ demanding += 1
-            $ responsive += 1       
+            $ responsive += 1
+            $ authoritative += 1
             # they can stay for a late party and then Jack will drive them home
         "Of course, whatever you want!":
             $ responsive += 1
+            $ permissive += 1
             
     return
 
@@ -553,12 +608,16 @@ label family16:
             # charity for Luddites? # it would be in the right timeframe
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "Throw her stuff away when she's at school.": # Hmmm, do we need a passive-aggressive variable?!
             $ responsive -= 1
+            $ permissive += 1
         "Demand she clean it up now or be grounded.":
             $ demanding += 1
+            $ authoritarian += 1
         "Let her keep it. If a little mess makes her happy, what's the big deal?":
             $ responsive += 1
+            $ neglectful += 1
     return
 
 # 10.5 Earth years old
@@ -566,13 +625,18 @@ label family16:
 label family17:
     "She won't stop crying. She won't even explain what the problem is. She's making the other kid(s) cry and the entire house is filled with her wails."
     menu:
+        "Leave. You can't handle all the noise!":
+            $ neglectful += 1
         "Shut up or I'll give you something to REALLY cry about!":
             $ demanding += 1
+            $ authoritarian += 1
         "Go for a walk and let her calm down.":
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "Bring her some tissues and rub her back.":
             $ responsive += 1
+            $ permissive += 1
             
         # TODO: Finally it comes out that one of her friends doesn't want to be her friend anymore. May have something to do with community tensions.  You can help her work out a plan of action, sympathize, or tell her that's how life is.
     return
@@ -588,16 +652,23 @@ label family18:
                         "Ask if she can help out someone who has a bike and then get to use it.":
                                 $ responsive += 1
                                 $ demanding += 1
+                                $ authoritative += 1
                         "Make a bike out of spare parts.":
                                 $ responsive += 1
+                                $ permissive += 1
                         "Ask [her_name] to help you make a bike out of spare parts.":
                                 $ responsive += 1
+                                $ permissive += 1
                                 #maybe also relationship with wife improves?
         "There's just no bikes. Deal with it.":
+                $ neglectful += 1
+        "If she wants a bike, she'll have to be old enough to do the bike job.":
                 $ demanding += 1
+                $ authoritarian += 1
         "Sympathize, and suggest some alternatives.":
                 "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
                 $ responsive += 1
+                $ authoritative += 1                
     return
 
 # 11.8 Earth years old
@@ -608,23 +679,29 @@ label family19:
     menu:
        "I can't believe you would do such a thing! You're grounded from using the tablet for a month!":
            $ demanding += 1
+           $ authoritarian += 1
        "Watch it. Maybe it's a good one.":
             "It's not. The acting is bad and it's not romantic at all."
             "It's not bad enough to be funny, though -- just bad."
             $ demanding -= 1
+            $ permissive += 1
            # Terra catches you and you have to try to justify yourself?           
        "It's not a big deal. Do nothing.":
-           $ demanding -= 1            
+           $ demanding -= 1
+           $ neglectful += 1
        "Ask her about how this got here.":
            "She found it accidentally but was fascinated so she watched it."
            menu:
                "Make a plan for how to avoid pornography in the future.":
                    $ demanding += 1
                    $ responsive += 1
+                   $ authoritative += 1
                "Tell her to never do that again.":
                    $ demanding += 1
+                   $ authoritarian += 1
                "She's old enough to be responsible for her own viewing habits.":
                    $ responsive += 1
+                   $ permissive += 1
            
            return
     return
@@ -636,12 +713,18 @@ label family20:
     menu:
         "FInd a way to make one and find a teacher who at least knows something about music.":
             $ responsive += 1
+            $ permissive += 1
         "Encourage her to pick a different instrument.":
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "Playing music is pointless; why don't you learn something useful?":
             $ responsive -= 1
             $ demanding += 1
+            $ authoritarian += 1
+        "Too bad.":
+            $ responsive -= 1
+            $ neglectful += 1
     return
     
 #####################################################
@@ -657,11 +740,16 @@ label family21:
     menu:
         "Punish her.":
             $ demanding += 1
+            $ authoritarian += 1
         "Explain the language you expect around your house.":
             $ demanding += 1
             $ responsive += 1
-        "Say nothing.":
+            $ authoritative += 1
+        "Explain how it makes people feel and beg her to be more considerate.":
             $ responsive += 1
+            $ permissive += 1
+        "Say nothing.":
+            $ neglectful += 1
     return
 
 # 13.6 Earth years old
@@ -669,15 +757,21 @@ label family21:
 label family22:
     "Terra refuses to bathe, even though she's getting stinky."
     menu:
+        "Just avoid her. She'll get the message eventually.":
+            $ neglectful += 1
         "You'll take a bath, or I'll throw you in the river!":
             $ demanding += 1
+            $ authoritarian += 1
         "If you decide not to take a bath, you'll need to sleep in the barn with the other stinky things.":
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "I hate bathing, too. Maybe if we all stink we won't notice it so much?":
             $ responsive += 1
+            $ permissive += 1
         "Why don't you want to take a bath?":
             $ responsive += 1
+            # TODO: work something out
         
 return
 # 14.2 Earth years old
@@ -687,12 +781,16 @@ label family23:
     menu:
         "Ask her to set herself a deadline to finish her homework":
             $ demanding += 1
-            $ responsive += 1   
+            $ responsive += 1
+            $ authoritative += 1
         "Tell her if she's not done in ten minutes then she'll lose all tablet time this week.":
             # And no listening to music while doing homework!  How can you concentrate like that?!
             $ demanding += 1
+            $ authoritarian += 1
         "Let her talk. It's good for her.":
-            $ pass
+            $ permissive += 1
+        "Take the tablet. You should have priority.":
+            $ neglectful += 1
     return
 
 # 14.8 Earth years old
@@ -702,12 +800,17 @@ label family24:
     menu:
         "You're never to go near it, do you hear me?":
             $ demanding += 1
+            $ authoritarian += 1
         "Explain what it is and why people are concerned.":
             # Conversation also turns to Pete's distillery and alcohol
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "Give her some of your stash.":
             $ responsive += 1
+            $ permissive += 1
+        "Give her a vague answer and get back to work.":
+            $ neglectful += 1
     return
 
 # 15.5 Earth years old
@@ -719,20 +822,27 @@ label family25:
             him "Are you guys pretty serious?"
             kid "Yeah, for like the past month!"
             
-            # Make this a loop where you choose lots of things to say
+            # TODO: Make this a loop where you choose lots of things to say
+            # but only increase one parenting variable somehow
             menu:
                 "You're too young for a boyfriend!":
                     $ demanding += 1
+                    $ authoritarian += 1
                 "Are you thinking about marriage?":
                     $ demanding += 1
+                    $ authoritative += 1
                 "What are your plans?":
                     $ responsive += 1
+                    $ authoritative += 1
                 "Tell me about him":
                     $ responsive += 1
+                    $ permissive += 1
                 "Have you thought about birth control?":
                     $ demanding += 1
+                    $ permissive += 1
         "It's none of your business.":
             $ responsive -= 1
+            $ neglectful += 1
         
     return
 
@@ -746,12 +856,15 @@ label family26:
             "She still disagrees with you, but you can tell she's thinking about it."
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "You don't know what you're talking about!":
             $ demanding += 1
+            $ authoritarian += 1
         "Promise to make a better decision next time":
             $ responsive += 1
+            $ permissive += 1
         "Laugh it off.":
-            $ pass
+            $ neglectful += 1
     return
 
 # 16.7 Earth years old
@@ -764,18 +877,22 @@ label family27:
     menu:
         "What's that smell? What have you been up to?":
             $ demanding += 1
+            $ authoritarian += 1
         "Hmm, seems like you've been smoking fire grass.  Tell me about it.":
             $ responsive += 1
             menu:
                 "Tell her your concerns.":
                     $ demanding += 1
+                    $ authoritative += 1
                 "Tell her to invite you next time":
                     $ responsive += 1
+                    $ permissive += 1
                 "Tell her she better not smoke it again, it's not good for her!":
                     $ responsive -= 1
                     $ demanding += 1
+                    $ authoritarian += 1
         "Say nothing. It's just a plant, right?":
-            $ pass
+            $ neglectful += 1
               
     return
 
@@ -788,10 +905,15 @@ label family28:
         "Listen, then make suggestions":
             $ demanding += 1
             $ responsive += 1
+            $ authoritative += 1
         "You don't know what you're talking about!":
             $ demanding += 1
+            $ authoritarian += 1
         "Support her somewhat-crazy idea.":
             $ responsive += 1
+            $ permissive += 1
+        "She'll do what she wants. No point in talking to her about it.":
+            $ neglectful += 1
     return
 
 # 18 Earth years old
@@ -801,10 +923,14 @@ label family29:
     menu:
         "Threaten to disown her":
             $ demanding += 1
+            $ authoritarian += 1
         "Make sure she knows you love her":
             $ responsive += 1
+            $ authoritative += 1
         "Argue with her":
-            $ pass
+            $ permissive += 1
+        "Let her go.":
+            $ neglectful += 1
     return
 
 # 18.6 Earth years old (ENDING)

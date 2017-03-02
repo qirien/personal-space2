@@ -22,17 +22,32 @@ label increase_independence:
 # Should be one of authoritative, authoritarian, permissive, or passive
 init -100 python:
     def get_parenting_style():
-        if (total_attachment >= year):
-            if (total_demanding >= year):
-                return "authoritative"
-            else:
-                return "permissive"
+        # Return the highest.  If two are equal, return the better one.
+        # If no stat is above year/3, return "inconsistent"
+        if ((authoritative <= year/3) and
+            (authoritarian <= year/3) and
+            (permissive <= year/3) and
+            (neglectful <= year/3)):
+                return "inconsistent"
         else:
-           if (total_demanding >= year):
-               return "authoritarian"
-           else:
-                return "passive"
-        return "passive"
+           if ((authoritative >= authoritarian) and
+               (authoritative >= permissive) and
+               (authoritative >= neglectful)):
+                return "authoritative"
+           elif ((authoritarian >= authoritative) and
+                  (authoritarian >= permissive) and
+                  (authoritarian >= neglectful)):
+                return "authoritarian"
+           elif ((permissive >= authoritarian) and
+                  (permissive >= authoritative) and
+                  (permissive >= neglectful)):
+                return "permissive"
+           elif ((neglectful >= authoritarian) and
+                  (neglectful >= authoritative) and
+                  (neglectful >= permissive)):
+                return "neglectful"
+        
+        return "inconsistent"
         
     
 # commenting it out for now until I can come back and think about it some more

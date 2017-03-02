@@ -2,6 +2,9 @@
 ## MAIN
 
 ## The game starts here.
+#
+# TODO: Add parenting class tutorial near the beginning
+# TODO: Parenting variables for each style, detect inconsistent parenting. Warn halfway.
 
 label start:
     
@@ -16,6 +19,11 @@ label start:
         # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
         responsive = 0
         total_responsive = 0
+        # The Four Parenting Styles
+        authoritarian = 0
+        authoritative = 0
+        permissive = 0
+        neglectful = 0
         # Default names
         his_name = "Jack"
         her_name = "Kelly"
