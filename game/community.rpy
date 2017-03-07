@@ -89,15 +89,6 @@ label community5:
                 $ miners += 1
             "No, don't ration food. The miners can hunt and forage. This taxation wasn't in our contract.":
                 $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
-        "How will we issue currency?"
-        menu:
-            "Use pieces of whittled wood.": # maybe checks/IOUs instead?
-                $ luddites += 1
-            "Use Rare Earth's encrypted form of digital currency.":
-                $ miners += 1
-            "Use the one printer to print rudimentary banknotes.":
-                $ colonists += 1
-    # TODO: do more research and think through the consequences of these choices (replace with more reasonable ones?). Make a variable for each one.
     else:
         show sara at midright
         sara "The miners won't arrive for another four Earth years."
@@ -188,7 +179,9 @@ label community10:
     "Martin Peron is dying of cancer. He wants your advice. Who do you think should take care of his farm?"
     menu:
         "Tomás, his oldest son, and Joanna Nguyen, his wife.":
-            $ colonists += 1 #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
+            $ colonists += 1
+            $ miners += 1
+            #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
         "Let Natalia, his wife, scale back how they'd like.":
             $ luddites += 1
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
@@ -220,10 +213,16 @@ label community11:
         him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
         her "Oooh, Gouda cheese!"
         "Other people got what they wanted, but not the Perons."
-     # I don't have an increase in stats for this one, because I'll use the asked_only_medicine variable later to determine some other things, the end of which can have the stat increase. 
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
-     # Does Martin die if he doesn't get the medicine? #Yes. TO DO: Make Martin die if he doesn't get the medicine.
+     # Does Martin die if he doesn't get the medicine? #actually... he dies either way? is that stupid?
      # Does Brennan show up with the miners as their RET liason?
+    if asked_only_medicine:
+        "Thanks to the cancer medicine, Martin is able to work on the farm for a few more months before dying a peaceful death."
+        $ miners += 1
+        $ colonists += 1
+    else:
+        "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
+        $ luddites += 1
     return
 
 
@@ -263,10 +262,25 @@ label community13:
         "Dr. Lily asks you to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
         "Rare Earth Tech says the miners are okay to continue their excavation however they see fit."
         "You talk to Bandile about what it would take to halt the mining. He says the colony would have to compensate him for the time they can't work."
+        if (colonists >= 10):
+            "You convince the other colonists to compensate the miners to halt mining for two days."
+            "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
+            jump cave_explored
+        else:
+            "You ask the other colonists if they'd be willing to compensate the miners to stop the mining, but they aren't willing."
+            jump cave_unexplored
         #if your relationship with colonists is high enough, you can collect enough money for them to halt mining for two days while Lily does research, and she won't leave?? with the luddites.
     else:
         "Sara asked Rare Earth Tech to halt the mining on Dr. Lily's behalf, but they didn't stop."
-    "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
+        jump cave_unexplored
+            
+    label cave_unexplored: 
+        m "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
+    return
+    
+    label cave_explored:
+        m "The miners explode the cave to access more minerals deeper down. At least Dr. Lily got to document the life forms there."
+        m "Next weekend, some miners are gambling away their new fortunes."
     #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
     #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
     #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
