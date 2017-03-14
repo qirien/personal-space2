@@ -214,7 +214,7 @@ label community11:
         her "Oooh, Gouda cheese!"
         "Other people got what they wanted, but not the Perons."
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
-     # Does Martin die if he doesn't get the medicine? #actually... he dies either way? is that stupid?
+     # Does Martin die if he doesn't get the medicine? #actually... he dies either way? is that stupid?  I think he should die either way, but with the meds he gets another six months.
      # Does Brennan show up with the miners as their RET liason?
     if asked_only_medicine:
         "Thanks to the cancer medicine, Martin is able to work on the farm for a few more months before dying a peaceful death."
@@ -285,6 +285,7 @@ label community13:
     #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
     #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
     # Pete should be a vocal opponent of the mining to foreshadow next month.
+    # Perhaps something tragic, like someone decides to do a sit-in to protest the mining, but the miners don't know about it, and they get blown up as the excavation continues?
     return
 
 
