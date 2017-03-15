@@ -418,7 +418,7 @@ label community20:
 
 
 label community21:
-    "Miners are using fire grass a lot. It helps them mine more for longer, which gives them more pay." #we called it "fire grass" in the first one
+    "Miners are using fire grass a lot. It helps them mine more for longer, which gives them more pay."
     "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
     "RET doesn't have an official stance on fire weed. The long-term side effects aren't well known."  
     "What do you do about it?"
@@ -466,11 +466,41 @@ label community23:
 
 
 label community24:
-    "A woman dies or is injured in childbirth."  # Perhaps they blame [her_name] and Julia, leading to increased tensions?  Or perhaps it was a teenager with a miner boyfriend and so people blame the miner for getting her pregnant?  Or perhaps it was one of the luddites who refused to call for help from the colony until it was too late? Terra comments on how having kids is dangerous and thinks about her own future.
-    "RET says they are no longer going to supply temporary birth control and recommends sterilzation or timing."
-    "The kids are really into fire grass this summer."
+    #Terra comments on how having kids is dangerous and thinks about her own future.
+    
+    #at a town meeting
+    show him at midright
+    show her concerned at midleft
+    
+    her "One of the mining women almost died having a stillborn baby."
+    her "She had been mining right until the day before she went into labor. Overwork was definitely a factor."
+    her "Will RET compensate her for her loss? She's still working even though she ought to rest."
+    him "Good question. I'll ask them."
+    "How will you word the query?"
+    menu:
+        "A miner overworked while pregnant and the fetus died before birth; will she receive compensation?":
+            $ miners += 1
+        "Please compensate the miner who lost her baby due to overwork.":
+            $ miners += 2
+        "We're experiencing health setbacks due to overwork. May colonists and miners take paid vacation days?":
+            $ colonists += 1
+    
+    him "That reminds me, RET told me that due to the cost of shipping, they will no longer provide temporary birth control."
+    him "RET recommends using the rhythm method."
+    her "Are they serious? Does that include the miner's families?"
+    him "Yes, although children born on Terra must stay here."
+    julia "Luckily my time of fertility is ending, but for some of you this will be most inconvenient."
+    ilian "No kidding. I've got enough mouths to feed at the moment."
+    sara "[her_name], do you have any advice for us?"
+    her "For women with regular cycles, tracking the time of ovulation works fairly well."
+    her "Couples may wish to exercise their creativity if they wish to avoid conception yet remain intimate during the woman's fertile time."
+    her "So, [his_name], is RET trying to grow the colony?"
+    him "I honestly think it's just economic. Miranda, do you know if any of the local plants could be used as birth control?"
+    #todo: set up Miranda as a character
+    #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
+    #consequences if you said not to trade for it in community 21
+    
     return
-
 
 label community25:
     "Miners have a lot more money than farmers. They start employing young people as servants to do their household chores and look after their children."
