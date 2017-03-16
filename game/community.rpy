@@ -1,14 +1,31 @@
 ## Community Events
 label community1:
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
-    # TODO: Introduce new colonist characters; establish old ones 
+    "After the introductions, you get in line with your friend Thuc to have some soup."
+    thuc "It's pretty exciting to have some new faces around!"
+    him "How's it going? Julia couldn't make it?"
+    thuc "No, she was too worn out."
+    ilian "I wish I could have stayed home. After talking to people all day the last thing I want to see is more people."
+    him "At least there's free soup."
+    ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff we're going to taste it."
+    "You get your soup and sit with some of the new colonists."
+    him "Hi, I'm [his_name]."
+    zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
+    him "Nice to meet you, Zaina and Kevin. Where will you be living?"
+    zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working."
+    kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
+    him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
+    kevin "Yes. Usually when a company invests a bunch of money into a research project they would expect to make a profit."
+    "What do you think the colony's purpose is?"
     menu:
-        "How do you greet them?"
-        
-        "Welcome them warmly! Introduce yourself to everyone.":
+        "Yep, making money is our goal.":
+            $ miners += 1
+        "I came to this colony for the excitement of exploration and to live a simpler life, not to worry about profit margins.":
+            $ luddites += 1
+        "Profits are important to RET, but at the end of the day, working together to do things we couldn't do alone is what keeps me going.":
             $ colonists += 1
-        "Let them come to you.":
-            $ pass
+    "You continue talking and then head home."
+    #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
     return
 
 
@@ -192,13 +209,13 @@ label community10:
 label community11:
     "Miners arrive. You meet their leader, Bandile, who introduces the miner welcome program."
     "Your family will get to know one miner through weekly dinners."
-    "The miner you've been assigned is Ian."
-    him "Nice to meet you Ian. How was the trip over?"
-    ian "Fine."
+    "The miner you've been assigned is Chaco."
+    him "Nice to meet you Chaco. How was the trip over?"
+    chaco "Fine."
     him "Did it take a while to adjust to living in such a small space?"
-    ian "No."
+    chaco "No."
     him "What do you like to do in your free time?"
-    ian "Look at the stars."
+    chaco "Look at the stars."
     "I feel like we're playing 20 questions here! He's probably overhwelmed from the arrival."
     "The luxuries from Earth arrive."
     if asked_only_medicine:
@@ -214,10 +231,9 @@ label community11:
         her "Oooh, Gouda cheese!"
         "Other people got what they wanted, but not the Perons."
      # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
-     # Does Martin die if he doesn't get the medicine? #actually... he dies either way? is that stupid?  I think he should die either way, but with the meds he gets another six months.
      # Does Brennan show up with the miners as their RET liason?
     if asked_only_medicine:
-        "Thanks to the cancer medicine, Martin is able to work on the farm for a few more months before dying a peaceful death."
+        "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
         $ miners += 1
         $ colonists += 1
     else:
@@ -228,8 +244,8 @@ label community11:
 
 label community12:
     #I'm not sure if the timeline on this makes sense. Wouldn't you find out a little sooner than the next Talaam year?
-    "You find out that your miner isn't good at cooking and has been living off emergency rations."
-    "It's not just 'your' miner; many of the rations given to the miners have spoiled since they're too tired to cook and completely offput by the strange tastes."
+    "You find out that Chaco isn't good at cooking and has been living off emergency rations."
+    "It's not just Chaco; many of the rations given to the miners have spoiled since they're too tired to cook and completely offput by the strange tastes."
     "When they do cook, they tend to favor familiar Earth foods, and they love meat. They burn through their meat ration very quickly."
     "How should the community react?" #TODO: depends on if you were elected earlier; otherwise you're limited to helping just your miner.
     if is_liason:
@@ -246,7 +262,7 @@ label community12:
                 $ pass #choosing this can contribute to a food shortage later on? or would the crabird plague do that?
     else:
         menu:
-            "Ask Ian about his favorite foods and recipes.":
+            "Ask Chaco about his favorite foods and recipes.":
                 $ miners += 1
             "Not your problem": #jump to the same event as "refuse to help them" (above)
                 $ pass
@@ -256,7 +272,7 @@ label community12:
 
 
 label community13:
-    "Ian tells you that the miners found a beautiful cave while digging."
+    "Chaco tells you that the miners found a beautiful cave while digging."
     "Dr. Lily attends a brief expedition and discovers a vertebrate without an exoskeleton, which is very rare on Talaam because of the radiation."
     if is_liason: 
         "Dr. Lily asks you to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
