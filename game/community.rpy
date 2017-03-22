@@ -158,25 +158,62 @@ label community7:
 
 
 label community8:
-    "You get to tell Rare Earth Tech what luxuries you want from Earth."
-    "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese."
+    "Rare Earth Tech has some extra space on the shuttle for Earth luxuries"
+    "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
     if is_liason:
-        "You need to find out what everyone else wants too, and send a brief message summarizing it."
-        #talk to various villagers. include a bicycle?
-        show natalia at left
-        with dissolve
-        natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be."
-        "What will you write? You have a limited amount of characters." #plausible?
+        "You need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
+        $ talked_about_luxuries_counter = 0
+        label talk_about_luxuries:
+            if (talked_about_luxuries_counter >= 4):
+                    him "Oh, it's already the afternoon! I need to send in my report right away."
+                    jump write_report
         menu:
-            "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin.":
-                $ pass
-            "Cancer medicine for Martin.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
-                $ asked_only_medicine = True
-                $ pass
-        "I sent the message."
+            "Who will you talk to about what Earth luxuries they want?"
+            "Natalia" if not talked_to_Natalia:
+                show natalia at left
+                with dissolve
+                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be. [her_name] said he needed Vemurafenib." #TODO:if you want to make this harder, have the player go ask her what the medication is.
+                $ talked_about_luxuries_counter += 1
+                $ talked_to_Natalia = True
+                jump talk_about_luxuries
+            "Thuc Nguyen" if not talked_to_Thuc:
+                show thuc at left
+                with dissolve
+                thuc "I'd like to grow peanuts. Regular, unroasted peanuts will work fine for cultivation purposes."
+                $ talked_about_luxuries_counter += 1
+                $ talked_to_Thuc = True
+                jump talk_about_luxuries
+            "Sara" if not talked_to_Sara:
+                show sara at right with dissolve
+                sara "Oh, I don't know if this is possible, but I would really, really love a bicycle."
+                $ talked_about_luxuries_counter += 1
+                $ talked_to_Sara = True
+                jump talk_about_luxuries
+            "Kevin" if not talked_to_Kevin:
+                show Kevin at left with dissolve
+                kevin "This is an extremely inefficient way to gather information. Could you not have contacted me electronically?"
+                him "Yes, but you might not have responded in time. I need to tell them by the end of the day!"
+                kevin "Very well. Are they sending new tablet batteries like I requested?"
+                him "Yes, yes, don't worry about that. Ask for something that will boost your morale."
+                kevin "Wouldn't being reminded of the Earth I'll never return to lower my morale?"
+                him "It sounds like you don't want anything."
+                kevin "I would like a bagel."
+                $ talked_about_luxuries_counter += 1
+                $ talked_to_Kevin = True
+                jump talk_about_luxuries
+            #TODO: Add more people
+        label write_report:
+            "What will you write? You have a limited amount of characters." #plausible?
+            menu:
+                "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin.":
+                    $ pass
+                "Vemurafenib for Martin.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
+                    $ asked_only_medicine = True
+                    $ pass
+            "I sent the message."
     else:
         "We told Sara that we wanted toilet paper and Gouda cheese."
-    
+        #TODO: Maybe Sara asks you to go ask everyone? better alt
     return
 
 
