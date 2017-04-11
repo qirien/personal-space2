@@ -5,6 +5,7 @@
 #
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Parenting variables for each style, detect inconsistent parenting. Warn halfway.
+# TODO: Make variables more object oriented?
 
 label start:
     

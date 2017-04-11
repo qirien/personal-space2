@@ -579,25 +579,119 @@ label family14:
     return
 
 # 9.4 Earth years old
-# Sleepover?!
+# Allowance?
 label family15:
-    "Terra wants to have a sleepover for her birthday and invite some friends over.  But they're boys..."
+    "Terra wants some money. She read about something called 'an allowance' in a book and wants to buy foods/clothes/toys? that she wants!"
     menu:
-        "I don't have time to supervise all your little friends.":
+        "No.":
             $ neglectful += 1
-        "No. Absolutely not!":
+        "Start an allowance based on completing chores and being good.":
             $ demanding += 1
             $ authoritarian += 1
-        "Work out a compromise":
+        "Require her to write up her projected expenses to help determine the amount of the allowance.":
             $ demanding += 1
             $ responsive += 1
             $ authoritative += 1
-            # they can stay for a late party and then Jack will drive them home
-        "Of course, whatever you want!":
+        # Also probably something about she is now responsible for certain expenditures
+        "Sure, here you go.":
             $ responsive += 1
             $ permissive += 1
             
     return
+
+    kid "Dad, I need some money. Can I have an allowance?"
+    menu:
+        "What should I say?"
+        "Why do you want an allowance?":
+            him "Why do you want an allowance?"
+            kid "Sometimes there's things I want to buy!"
+            him "Like what?"
+            kid "Like fruit, or cool socks, or my friend is selling these jumpropes that she made, or I want to print things."
+            menu:
+                "What should I say?"
+                "I can understand that.":
+                    him "I can understand that. Sounds like you want to be responsible for your own money, instead of asking us about everything?"
+                    kid "Yeah! I just want to do it myself."
+                    jump allowance_how
+                "You don't need those things!":
+                    him "Those aren't things you even need!"
+                    kid "No, but I really really really really really really want them!"
+                    jump allowance_how
+                "If there's something you want, I'll buy it for you.":
+                    him "If you want something, I can buy it for you."
+                    kid "Daaad, I want to buy it myself!"
+                    jump allowance_how
+                "We don't have the money for that":
+                    him "We don't have any extra money for things like that."
+                    kid "Really? Not even five cents?" # TODO: currency check?
+                    jump allowance_how
+        "An allowance?! You already have everything you need!":
+            $ demanding += 1
+            him "You already have everything you need. Isn't that enough?"
+            kid "But I really really want a jumprope!"
+            him "You have plenty of toys to play with! Stop complaining! You're so spoiled!"
+            kid "I'm not spoiled! Everyone else plays jump rope and I'm the only one that doesn't have one. You're just being mean!"
+            him "You need to learn that you can't always have everything you want!"
+            kid "You need to learn to share!"
+            him "You can't speak that way to me! You're grounded! Go to your room!"
+            kid "Dad, you're not being fair, you just hate me!"
+            him "I SAID GO TO YOUR ROOM!"
+            $ authoritarian += 1
+            # TODO: Kelly comes home and chides you for yelling.
+            return
+        "No.":
+            him "No."
+            kid "Why not?"
+            him "You don't need one."
+            kid "I do need one!"
+            him "I said no! Quit bothering me about it!"
+            kid "You're so mean!"
+            $ neglectful += 1
+            return
+            
+    return
+    
+label allowance_how:
+    "(This is tricky... what kind of allowance should I give her?)"
+    menu:
+        "What should I say?"
+        "Make a proposal.":
+            him "You'll need to write up a proposal."
+            kid "A proposal? Seriously?"
+            him "Yup. List your expenses, why you think you should have them, and then list possible sources of income."
+            kid "That'll be a lot of work!"
+            him "Getting money always takes work."
+            kid "I guess I could do that."
+        "You can have a small amount.":
+            him "You can have 25 cents a week." # TODO: currency check?
+            kid "25 cents?! That's almost nothing! It'll take me months to save up enough for a jumprope!"
+            him "You can earn more doing extra chores if you want."
+            kid "Like when I do the dishes and stuff?"
+            him "Not your regular chores, extra chores."
+            kid "That's mean."
+            him "It's up to you. If you want to start right now, you can muck out the barn for a dollar."
+            kid "It's so stinky! I hate mucking out the barn!"
+            him "Your choice. Better decide soon, though, because I'm about to go do it."
+            kid "Okay! Okay! I'll go muck out the barn!"
+            him "Great!"
+        "You can have a large amount, but only if you are good and do your chores.":
+            him "You can have five dollars a week if you do all your chores and are good." # TODO: currency check?
+            kid "Oh. So basically I'll never get an allowance?"
+            him "That's up to you."
+            kid "But you never think I'm 'good'! Even when I try really hard and do nice things for everyone and don't hit [baby_name] and do extra chores you never even notice!"
+            menu:
+                "What should I say?"
+                "You'll just have to try harder.":
+                    him "I guess you'll just have to try harder."
+                    kid "There's no point. Forget it."
+                "I'll make a list of specific things.":
+                    him "'Being good' is kind of vague. I'll make a list of specific things, and you can earn a certain amount for each thing you do right that week."
+                    kid "So even if I make a mistake I can still have some allowance?"
+                    him "Yeah, I don't expect you to be perfect, but I do expect you to try to improve, OK?"
+                    kid "Okay, I guess."
+                    
+    return
+        
 
 # 10 Earth years old
 # Cleaning her room

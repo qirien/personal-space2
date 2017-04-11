@@ -7,7 +7,7 @@ label community1:
     thuc "No, she was too worn out."
     ilian "I wish I could have stayed home. After talking to people all day the last thing I want to see is more people."
     him "At least there's free soup."
-    ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff we're going to taste it."
+    ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "You get your soup and sit with some of the new colonists."
     him "Hi, I'm [his_name]."
     zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
