@@ -1,6 +1,9 @@
 # Declare global static variables, images, characters, etc.
 init -100:
 
+    # Static layout variables
+    define LEFT_COLUMN_WIDTH = 300
+    
     # Static indices that will never change
     define NAME_INDEX = 0
     define CALORIES_INDEX = 1

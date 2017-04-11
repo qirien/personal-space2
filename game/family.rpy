@@ -31,7 +31,7 @@ label family1:
     # Actual scene
     # TODO: delete above when ready for prose
     # TODO: check expressions, positions
-    scene bg farm_interior with fade
+    scene farm_interior with fade
     show him concerned at midright
     show her concerned at midleft
 
@@ -53,21 +53,21 @@ label family1:
             her happy "Okay, good idea."
             "I snuggled her into her baby carrier and closed the door behind me."
             # TODO night overlay
-            scene bg farm_exterior with fade
+            scene farm_exterior with fade
             show him normal at center with dissolve
             him normal "There now, little [kid_name], how's that?"
             "..."
             "She's still crying. I better get further from the house so I don't keep up [her_name]."
-            scene bg fields with fade
+            scene fields with fade
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
             "I reminded myself that she wouldn't cry forever, that this was just one night, even as I felt like sobbing alongside her with exhaustion."
             "I hated feeling so helpless."
-            scene bg moon with fade
+            scene moon with fade
             "I wonder if [kid_name] felt the same way?"
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
             "We walked the fields for at least an hour; maybe more."
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
-            scene bg farm_interior with fade
+            scene farm_interior with fade
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
             "Finally, she was sleeping in her crib, and I fell into bed."
             
@@ -88,11 +88,11 @@ label family1:
             "Or maybe I'd try to get some sleep in the barn."
             her angry "You can't just leave me here with a screaming baby!"
             "[kid_name] and [her_name] wailed in unison, and their tears wrenched at my heart, but I just couldn't take it anymore."
-            scene bg farm_exterior with fade
+            scene farm_exterior with fade
             "I stepped out into the night, closing the door gently with what little control I had left. I started to run."
-            scene bg fields with fade
+            scene fields with fade
             "The crying faded from my ears the further I got from the house, but I could still hear the cries echoing in my head. I ran faster."
-            scene bg moon with fade
+            scene moon with fade
             "I reached the end of our fields, out of breath, legs and chest aching. The pain felt good; I deserved it."
             "Maybe I wasn't cut out to be a dad. What kind of dad leaves when there's trouble?"
             "But this was a trouble I couldn't fix. What was the point in sticking around, when everything I did just seemed to make it worse?"
@@ -103,7 +103,7 @@ label family1:
                 "Go back and apologize.":
                     "I had to make things right."
                     "I ran back to the house. I could still hear [kid_name]'s crying even from outside."
-                    scene bg bedroom with fade
+                    scene bedroom with fade
                     "[her_name] was lying on the bed with her arm around [kid_name], her face streaked with red from crying."
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
                     "She didn't say anything, just lay her head back down and stared at [kid_name] blankly."
@@ -113,7 +113,7 @@ label family1:
                     her annoyed "Don't ever leave us again."
                 "Spend the night in the barn":
                     "I couldn't go back there. I was already frayed and broken and ready to snap. My brain felt like a sparking circuit, and I worried that if I stayed, I might hurt someone or make a big mistake."
-                    scene bg barn with fade
+                    scene barn with fade
                     "I lay down on the hay in the barn and closed my eyes. [kid_name]'s screams echoed in my head so loudly I sat up and looked around. But there was no one there."
                     "Sleep was a long time in coming."
                     
@@ -245,13 +245,27 @@ label family6:
             $ demanding += 1
             $ responsive -= 1
             $ authoritarian += 1
-            # TODO: is subtracting variables allowed?
-            # TODO: I'm not sure if this situation would increase independence (since the child has to play on their own more) or decrease it (since it means they want to get parental attention EVEN MORE).
         "Go into your room and lock the door.":
             $ responsive -= 1
             $ neglectful += 1
             
-        # TODO: Perhaps this leads to the discussion of whether or not to have another child, as they feel Terra would benefit from a playmate. Or maybe just more time with friends?
+    "Sometimes you despair of ever having a minute to yourself."
+    # TODO: Discussion of whether or not to have another child, as they feel Terra would benefit from a playmate. Or maybe just more time with friends?
+    her "Hey, want to have another kid?"
+    menu:
+        "What should I say?"
+        "Are you kidding?!":
+            him "No way!"
+            $ year6_have_baby = False
+        "It would be efficient":
+            him "It's probably more efficient to have them closer together."
+            $ year6_have_baby = True            
+        "If you're ready.":
+            him "We can if you want to -- you're the one that has to host them for nine months." 
+            $ year6_have_baby = True
+        "Sure! Anytime!":
+            him "Yeah! I love kids!"
+            $ year6_have_baby = True            
     return
 
 #####################################################
@@ -303,10 +317,48 @@ label family8:
             $ responsive += 1
             $ permissive += 1
             
-                
+    if (year6_have_baby):
+        "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
+        "A few weeks after school started, [her_name] went into labor in the middle of the night."
+        # TODO: Depending on faction, contact someone different to watch Terra?
+        call baby_delivery
+        
+    else:
+        her "Now that [kid_name]'s in school, maybe it's time for us to have another baby?"
+        menu:
+            "What should I say?"
+            "Are you kidding?!":
+                him "No way!"
+                $ year8_have_baby = False
+            "It would be efficient":
+                him "It's probably more efficient to have them closer together."
+                $ year8_have_baby = True            
+            "If you're ready.":
+                him "We can if you want to -- you're the one that has to host them for nine months." 
+                $ year8_have_baby = True
+            "Sure! Anytime!":
+                him "Yeah! I love kids!"
+                $ year8_have_baby = True
     # TODO: Have a baby here if you decided to.
     return
 
+label baby_delivery:
+    scene clinic with fade
+    her pregnant concerned "Oh no, I remember this part. This is awful!"
+    him determined "You did it once, you can do it again! Just a little bit more and then you'll be done!"
+    her pregnant angry "You say 'a little bit', but I know it's going to be a few hours!"
+    him normal "What's a few hours in the grand scheme of things? Hang in there!"
+    her pregnant annoyed "You're fired as my cheerleader."
+    him happy "I'm fired? You're the one that's on fire! Look at you, awesome momma!"
+    her pregnant angry "I am literally in as much pain as if I were on fire!"
+    him concerned "I know; I'm just trying to help you stay positive."
+    her pregnant annoyed "Just shut up and rub my back."
+    him happy "OK! One back rub, coming right up!"
+    her pregnant normal "You forgot the 'shut up' part."
+    him normal "..."
+    "Finally, the baby was born. A boy!"
+    #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot?     
+    
 # 5.5 Earth years old
 # Holiday Traditions
 label family9:
@@ -345,6 +397,12 @@ label family10:
             $ responsive += 1
             $ permissive += 1
             
+    if (year8_have_baby):
+        "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
+        "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
+        "A few weeks after school started, [her_name] went into labor in the middle of the night."
+        # TODO: Depending on faction, contact someone different to watch Terra?
+        call baby_delivery            
     return
 
 # 6.8 Earth years old
@@ -418,7 +476,7 @@ label family13:
     return
     
     # TODO: uncomment above when ready for prose, and make sure variables are changing properly
-    scene bg fields with fade
+    scene fields with fade
     show him at midright
     show kid at midleft
     with dissolve
@@ -563,7 +621,7 @@ label family14:
     return
      
     # TODO: Finish this
-    scene bg farm_interior with fade
+    scene farm_interior with fade
     #show kid at midleft
     #show brother crying at quarterleft with dissolve
     show him at midright with moveinright
@@ -599,29 +657,37 @@ label family15:
             
     return
 
+    # TODO: Modify allowance_amount based on this event and do something with it.
     kid "Dad, I need some money. Can I have an allowance?"
+    him "[kid_name], I have no problem with ants. I already allow ants."
+    kid "Ha ha. That doesn't even make sense. So can I?"
     menu:
         "What should I say?"
         "Why do you want an allowance?":
+            $ responsive += 1
             him "Why do you want an allowance?"
             kid "Sometimes there's things I want to buy!"
             him "Like what?"
-            kid "Like fruit, or cool socks, or my friend is selling these jumpropes that she made, or I want to print things."
+            kid "Like fruit, or cool socks, or my friend is selling these jumpropes that she made, or sometimes I want to print things."
             menu:
                 "What should I say?"
                 "I can understand that.":
+                    $ responsive += 1
                     him "I can understand that. Sounds like you want to be responsible for your own money, instead of asking us about everything?"
                     kid "Yeah! I just want to do it myself."
                     jump allowance_how
                 "You don't need those things!":
+                    $ demanding += 1
                     him "Those aren't things you even need!"
-                    kid "No, but I really really really really really really want them!"
+                    kid "No, but I really really really really really really want them! Do I need to say 'really' more times?"
                     jump allowance_how
                 "If there's something you want, I'll buy it for you.":
+                    $ demanding -= 1
                     him "If you want something, I can buy it for you."
                     kid "Daaad, I want to buy it myself!"
                     jump allowance_how
                 "We don't have the money for that":
+                    $ demanding += 1
                     him "We don't have any extra money for things like that."
                     kid "Really? Not even five cents?" # TODO: currency check?
                     jump allowance_how
@@ -632,14 +698,34 @@ label family15:
             him "You have plenty of toys to play with! Stop complaining! You're so spoiled!"
             kid "I'm not spoiled! Everyone else plays jump rope and I'm the only one that doesn't have one. You're just being mean!"
             him "You need to learn that you can't always have everything you want!"
-            kid "You need to learn to share!"
-            him "You can't speak that way to me! You're grounded! Go to your room!"
+            kid "{b}You{/b} need to learn to share!"
+            him "You can't speak that way to me! Go to your room!"
             kid "Dad, you're not being fair, you just hate me!"
             him "I SAID GO TO YOUR ROOM!"
             $ authoritarian += 1
-            # TODO: Kelly comes home and chides you for yelling.
+            
+            # Kelly comes home and chides you for yelling.
+            her "Hey, [his_name]."
+            him "Welcome home."
+            her "Where's [kid_name]?"
+            him "In her room. She wants an allowance."
+            her "Oh, that's a good idea."
+            him "Not you too!"
+            her "What, you never had an allowance?"
+            him "No. My parents handled the money. If I wanted money, I had to work for someone else."
+            her "So you don't want to pay her anything."
+            him "No! That's not how the world works."
+            her "But she wants to earn some money."
+            him "She wants to {b}have{/b} money, anyway."
+            her "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
+            him "She shouldn't get paid to help out her family."
+            her "Why not? You do."
+            him "...Fine, whatever, as long as you handle it."
+            
             return
         "No.":
+            $ responsive -= 1
+            $ demanding -= 1
             him "No."
             kid "Why not?"
             him "You don't need one."
@@ -656,13 +742,16 @@ label allowance_how:
     menu:
         "What should I say?"
         "Make a proposal.":
-            him "You'll need to write up a proposal."
-            kid "A proposal? Seriously?"
+            $ demanding += 1
+            him "You'll need to write up a budget proposal."
+            kid "A budget proposal? Seriously?"
             him "Yup. List your expenses, why you think you should have them, and then list possible sources of income."
             kid "That'll be a lot of work!"
             him "Getting money always takes work."
             kid "I guess I could do that."
+            $ authoritative += 1
         "You can have a small amount.":
+            $ responsive += 1
             him "You can have 25 cents a week." # TODO: currency check?
             kid "25 cents?! That's almost nothing! It'll take me months to save up enough for a jumprope!"
             him "You can earn more doing extra chores if you want."
@@ -674,7 +763,16 @@ label allowance_how:
             him "Your choice. Better decide soon, though, because I'm about to go do it."
             kid "Okay! Okay! I'll go muck out the barn!"
             him "Great!"
+            $ authoritative += 1
+        "You can have a large amount.":
+            $ responsive += 1
+            him "You can have five dollars a week."
+            kid "Really? Starting when?"
+            him "Right now! Here you go."
+            kid "Awesome! I'll be able to buy all sorts of stuff!"
+            $ permissive += 1
         "You can have a large amount, but only if you are good and do your chores.":
+            $ demanding += 1
             him "You can have five dollars a week if you do all your chores and are good." # TODO: currency check?
             kid "Oh. So basically I'll never get an allowance?"
             him "That's up to you."
@@ -684,11 +782,13 @@ label allowance_how:
                 "You'll just have to try harder.":
                     him "I guess you'll just have to try harder."
                     kid "There's no point. Forget it."
+                    $ authoritarian += 1
                 "I'll make a list of specific things.":
                     him "'Being good' is kind of vague. I'll make a list of specific things, and you can earn a certain amount for each thing you do right that week."
                     kid "So even if I make a mistake I can still have some allowance?"
                     him "Yeah, I don't expect you to be perfect, but I do expect you to try to improve, OK?"
                     kid "Okay, I guess."
+                    $ authoritative += 1
                     
     return
         
@@ -740,29 +840,29 @@ label family17:
 label family18:
     "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
     menu:
-        "FInd a way to get her a bike":
-                "A bike is an essential part of childhood!  How will you do it?"
-                menu:
-                        "Ask if she can help out someone who has a bike and then get to use it.":
-                                $ responsive += 1
-                                $ demanding += 1
-                                $ authoritative += 1
-                        "Make a bike out of spare parts.":
-                                $ responsive += 1
-                                $ permissive += 1
-                        "Ask [her_name] to help you make a bike out of spare parts.":
-                                $ responsive += 1
-                                $ permissive += 1
-                                #maybe also relationship with wife improves?
+        "Find a way to get her a bike":
+            "A bike is an essential part of childhood!  How will you do it?"
+            menu:
+                    "Ask if she can help out someone who has a bike and then get to use it.":
+                            $ responsive += 1
+                            $ demanding += 1
+                            $ authoritative += 1
+                    "Make a bike out of spare parts.":
+                            $ responsive += 1
+                            $ permissive += 1
+                    "Ask [her_name] to help you make a bike out of spare parts.":
+                            $ responsive += 1
+                            $ permissive += 1
+                            #maybe also relationship with wife improves?
         "There's just no bikes. Deal with it.":
-                $ neglectful += 1
+            $ neglectful += 1
         "If she wants a bike, she'll have to be old enough to do the bike job.":
-                $ demanding += 1
-                $ authoritarian += 1
+            $ demanding += 1
+            $ authoritarian += 1
         "Sympathize, and suggest some alternatives.":
-                "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
-                $ responsive += 1
-                $ authoritative += 1                
+            "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
+            $ responsive += 1
+            $ authoritative += 1                
     return
 
 # 11.8 Earth years old

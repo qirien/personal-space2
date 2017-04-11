@@ -12,8 +12,16 @@ screen plan_farm:
             yfill True
             label "Farm Plan for Year " + str(year):
                 xalign 0.5
-            hbox:
+            hbox:                
                 xfill True
+                
+                # family details here
+                vbox:
+                    xsize LEFT_COLUMN_WIDTH
+                    label "[his_name] and [her_name]'s family"
+                    text "Kids:"                         
+                    text "[kid_name], [earth_year] earth years"
+                
                 # crop details here
                 vbox:
                     xalign 0.5
@@ -82,31 +90,39 @@ screen plan_farm:
                     text "Fun:          " + str(total_fun)
                     text "Work:         " + str(total_work)                 
             
-            # Show crops that we can choose from
-            vpgrid:
-                xfill True
-                cols 8
-                spacing 2
-                draggable True
-                mousewheel True
-                #scrollbars "horizotal"
+            hbox:
+                # Community info
+                vbox: 
+                    xsize LEFT_COLUMN_WIDTH
+                    label "Community"
+                    text "Message Board"
                 
-                for j in range(0, len(crop_info)):
-                    if (crop_info[j][ENABLED_INDEX]):
-                        $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])                        
-                        textbutton crop_info[j][NAME_INDEX]:
-                            xysize (50,50) 
-                            action [
-                                    SetVariable("crop_index", j),
-                                    renpy.restart_interaction # This makes the screen refresh
-                            ]
-                            sensitive (not max_crops_reached)
-                            selected ((crop_index == j) and (not max_crops_reached))
-                            # TODO: Add alternate action to get more crop info?
+            
+                # Show crops that we can choose from
+                vpgrid:
+                    xfill True
+                    cols 4
+                    spacing 2
+                    draggable True
+                    mousewheel True
+                    #scrollbars "horizotal"
+                    
+                    for j in range(0, len(crop_info)):
+                        if (crop_info[j][ENABLED_INDEX]):
+                            $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])                        
+                            textbutton crop_info[j][NAME_INDEX]:
+                                xysize (50,50) 
+                                action [
+                                        SetVariable("crop_index", j),
+                                        renpy.restart_interaction # This makes the screen refresh
+                                ]
+                                sensitive (not max_crops_reached)
+                                selected ((crop_index == j) and (not max_crops_reached))
+                                # TODO: Add alternate action to get more crop info?
                         
             hbox:
-                null width 200
-                textbutton "Default":
+                null width LEFT_COLUMN_WIDTH
+                textbutton "Auto":
                     action [
                                 set_default_crops,
                                 Return()

@@ -8,8 +8,7 @@ label increase_attachment:
     $ attachment += responsive / 2.0
     return
     
-label increase_competence:
-   
+label increase_competence:  
     $ competence += demanding / 2.0
     return
     
@@ -18,11 +17,14 @@ label increase_independence:
     return
     
 
-# Returns the players current parenting style.
-# Should be one of authoritative, authoritarian, permissive, or passive
 init -100 python:
+
+    # Returns the players current parenting style.
+    # Should be one of authoritative, authoritarian, permissive, or passive
+    # or inconsistent if none are very high.        
+    # Return the highest.  If two are equal, return the better one.
     def get_parenting_style():
-        # Return the highest.  If two are equal, return the better one.
+        
         # If no stat is above year/3, return "inconsistent"
         if ((authoritative <= year/3) and
             (authoritarian <= year/3) and
@@ -50,11 +52,6 @@ init -100 python:
         return "inconsistent"
         
     
-# commenting it out for now until I can come back and think about it some more
-# This might have to be calculated on a case-by-case basis, since different "times" of the year will have different total possible stat totals.
-
-# label get_attachment:
-#   return $ responsive / 2.0 
 
 init python:
     # Return the index of a crop in crop_info given its name

@@ -14,13 +14,16 @@ label start:
     
     # PARENTS
     python:        
+        # Demanding and Reponsive may change by more or less than 1 each year
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
         demanding = 0
         total_demanding = 0
         # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
         responsive = 0
         total_responsive = 0
+        
         # The Four Parenting Styles
+        # Only one of these should be increased each year (each type of event?)
         authoritarian = 0
         authoritative = 0
         permissive = 0
@@ -30,8 +33,11 @@ label start:
         her_name = "Kelly"
         his_nickname = "dear"
         her_nickname = "lover"
-        kid_name = "Terra"            
-    
+        kid_name = "Terra"
+        
+        year6_have_baby = False
+        year8_have_baby = False
+        
     # CHILD    
     python:
         # Amount of emotional intelligence, how loved and secure child feels
@@ -46,6 +52,8 @@ label start:
         sex_ed_babycreation = False
         sex_ed_goodfeeling = False
         sex_ed_birthcontrol = False
+        
+        allowance_amount = 0
     
     
     # COMMUNITY
@@ -131,11 +139,18 @@ label start:
     him "When you were first born, it was a struggle just to get through each day."  
     
     # TODO: show some sort of inter-scene screen
-    # There are 196 27-hour days per year on Talaam, and 356 24-hour days on Earth
     $ year = 1
+
     
-    # The Loop of Life
+    #####################################################################    
+    # The Loop of Life                                                  #
+    #####################################################################
+    
     while (year <= 30):
+        # There are 196 27-hour days per year on Talaam, and 365 24-hour days on Earth
+        $ hours = year * 196.0 * 27.0
+        $ earth_year = hours / 24.0 / 365.25
+        $ earth_year = round(earth_year, 1)
         
         # Reset our variables while keeping a running total
         $ total_demanding += demanding
@@ -143,16 +158,18 @@ label start:
         $ total_responsive += responsive
         $ responsive = 0
         
+        # WORK EVENTS (farming)
+        scene black with fade
+        centered "Year [year]\n\nWork"
+        scene black with fade        
+        $ work_event = get_next_work_event()        
+        call expression work_event
+        
         # FAMILY EVENTS (parenting/home life)
         scene black with fade
         centered "Year [year]\n\nFamily"
         scene black with fade
         call expression "family" + str(year)
-        
-        # Increase child stats based on this year's parenting decisions
-        call increase_attachment
-        call increase_competence
-        call increase_independence
         
         # COMMUNITY EVENTS (building community, helping factions)
         scene black with fade
@@ -160,13 +177,10 @@ label start:
         scene black with fade
         call expression "community" + str(year)
         
-        # WORK EVENTS (farming)
-        scene black with fade
-        centered "Year [year]\n\nWork"
-        scene black with fade
-        
-        $ work_event = get_next_work_event()        
-        call expression work_event
+        # Increase child stats based on this year's parenting decisions
+        call increase_attachment
+        call increase_competence
+        call increase_independence        
         
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)
