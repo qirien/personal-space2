@@ -95,10 +95,10 @@ label family1:
             scene moon with fade
             "I reached the end of our fields, out of breath, legs and chest aching. The pain felt good; I deserved it."
             "Maybe I wasn't cut out to be a dad. What kind of dad leaves when there's trouble?"
-            "But this was a trouble I couldn't fix. What was the point in sticking around, when everything I did just seemed to make it worse?"
+            "But this was trouble I couldn't fix. What was the point in sticking around, when everything I did just seemed to make it worse?"
             "That's what I told myself, but I still felt like a traitor."
             "..."
-            "I was a traitor."
+            "I {b}was{/b} a traitor."
             menu:
                 "Go back and apologize.":
                     "I had to make things right."
@@ -357,10 +357,10 @@ label baby_delivery:
     her pregnant normal "You forgot the 'shut up' part."
     him normal "..."
     "Finally, the baby was born. A boy!"
-    #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot?     
+    #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot? Let the player choose bro_name     
     
 # 5.5 Earth years old
-# Holiday Traditions
+# Holiday Traditions (or maybe honesty?)
 label family9:
     "It's some holiday that we can decide on later! Terra doesn't want to do some tradition."
     menu:
@@ -605,7 +605,7 @@ label family13:
 # 8.7 Earth years old
 # Teacher Troubles
 label family14:
-    "Terra is having problems at school and taking it out on her little sibling."
+    "Terra is having problems at school and taking it out on her little sibling." # TODO: What if she doesn't have a little sibling?
     menu:
         "Demand that her teacher fix the problem":
             $ responsive += 1
@@ -620,7 +620,6 @@ label family14:
         
     return
      
-    # TODO: Finish this
     scene farm_interior with fade
     #show kid at midleft
     #show brother crying at quarterleft with dissolve
@@ -629,10 +628,176 @@ label family14:
     him surprised "Whoa, what's going on?"
     kid "He's annoying me!"
     bro "She hit me!"
-    kid "You should stop being so annoying!"
+    kid "You wouldn't shut up! I asked you to quit humming but you're doing it just to annoy me!"
     him "Hey, hey, both of you go sit on your beds and cool off."
     her "They've been like that ever since I got home. Something's bothering [kid_name], but she won't tell me what it is."
+    him "I'll talk to her."
+    her "Good, I'll talk to [bro_name]."
     
+    menu:
+        "What should I say?"
+        "You know better than to hit your brother!":
+            $ demanding += 1
+            him angry "You know better than to hit your brother! That violence is unacceptable!"
+            kid "Oh, of course you take his side!"
+            him annoyed "Well, yeah, you were the one hitting."
+            kid "He was trying to get me in trouble! I'm always in trouble."                     
+        "You seem really upset.":
+            $ responsive += 1
+            him concerned "You seem really upset. What's going on?"
+            kid "Of course I'm upset! [bro_name]'s always getting me in trouble!"
+        "I'm disappointed you and your brother weren't getting along.":
+            $ demanding += 1            
+            him concerned "I'm disappointed you and your brother weren't getting along."
+            kid "Do you know how hard it is to be nice when someone is humming the same annoying song in your ear over and over?!"
+        "(Say nothing)":
+            $ responsive += 1
+            him serious "..."
+            "I sat down next to her, ready to listen."            
+            kid "..."
+            him concerned "..."
+            "It took a few moments, but she finally said,"
+            kid "He's always trying to get me in trouble!"            
+    
+    him sad "That sounds tough. But it seems like there's something else bothering you."
+    kid "Not really."
+    him concerned "Maybe something at school?"
+    kid "..."
+    menu:
+        "What should I say?"
+        "How's your teacher?":
+            him surprised "Everything okay with your teacher?"
+            kid "She's so mean! She's always telling me what to do!"
+        "How are your friends?":
+            him surprised "Everything okay with your friends?"
+            kid "Yeah, they're okay. We're all mad about our teacher, though. She's always telling us what to do!"            
+        "How are you feeling?":
+            him surprised "Are you feeling okay?"
+            kid "I'm not sick or anything. Just tired of everyone telling me what to do!"
+        "(Say nothing)":            
+            him serious "..."
+            "I put my arm around her, trying to show her that I was there for her. Words just weren't good enough."
+            "She didn't lean into me, but she didn't push me away, either."
+            kid "I just wish everyone would stop telling me what to do!"
+            
+    him surprised "Isn't that your teacher's job?"
+    kid "No! She's supposed to be teaching me useful things like math and reading, not making me do busy work all day!"
+    menu:
+        "What should I say?"
+        "You need to listen to your teacher.":
+            $ demanding += 1
+            him serious "She's your teacher. She knows what she's doing, and you need to respect her and obey her."
+            kid "Even if she's wrong?"
+            him angry "Yes! You're the kid; your job is to obey! She's the adult; her job is to teach."
+            kid "Why am I even talking to you about this?!"
+            him annoyed "I'm trying to help you."
+            kid "No, you just want to make me do what you want!"
+            him angry "The only things I want you to do are things that are good for you!"
+            kid "It feels like everyone's just being mean."
+            "I could feel I was getting angry. She wasn't listening at all!"
+            menu:
+                "(Leave the room)":
+                    him annoyed "We'll talk more about it later."
+                    "I couldn't think straight when I was so angry. I didn't want to end up saying or doing something I'd regret."
+                    "But I couldn't just let her get away with hitting her brother, either."
+                    "In the end, we took away her computer pad time for a week. I don't know if it helped; we had to do that several times. She didn't use the computer pad for several months because she kept hitting her brother."
+                    "Was this normal? I don't think my brother and sister and I fought like that."
+                    "Or maybe we did, but we outgrew it? Was this just a phase?"
+                    "I felt like I was trying to harvest tomatoes in the dark."
+                    $ authoritarian += 1
+                    return
+                "(Make her understand)":
+                    $ responsive -= 5
+                    "I got right up in her face and gripped her arms, tighter than I meant to."
+                    him angry "We are not being mean! We are trying to teach you how to be a decent human being! But it's really hard when you keep hitting people and disobeying us!"
+                    kid "Ow, dad, that hurts!"
+                    him angry "Did you hear what I said?!"
+                    kid "Yeah, just let go! Let go!"
+                    her concerned "Why don't you let me talk to her for awhile, [his_name]?"
+                    him annoyed "Go for it. Not that it'll do any good."
+                    her angry "[his_name]!"
+                    him angry "She's so selfish! She never listens! She just thinks everything is about her all the time!"
+                    her angry "I wonder where she could have learned that?!"
+                    him annoyed "Oh, so it's my fault [kid_name]'s a selfish brat? You had nothing to do with it?"
+                    her annoyed "Where is she going to learn how to be calm when she's angry if we don't show her how?"
+                    him angry "!"
+                    her concerned "..."
+                    him sad "..."
+                    kid "..."
+                    "I left. Maybe I shouldn't have said all those things. But [kid_name]'s rebellious attitude got to me every time."
+                    "She made me so mad..."
+                    "I guess, in that way, I understood a little bit of how [bro_name] made her mad."
+                    "What a hypocrite... I expected her to be a paragon of calmness when someone was annoying her, but when she annoyed me, I flipped out just like she did."
+                    "I almost... I could have hit her."
+                    "Half of me wondered if it would have helped, while the other half was horrified I'd even considered it."
+                    "What kind of father am I?"
+                    $ authoritarian += 1                    
+                    return
+                
+        "Tell me about it.":
+            $ responsive += 1
+            him serious "Tell me about it."
+            kid "We have to write our spelling words ten times each! Ten times! And I don't need to study them at all because I already know them!"
+            him concerned "That does sound frustrating."
+            kid "Yeah, and when I asked her if I could do something else, she didn't even listen; she just said no!"
+            menu:
+                "What should I say?"
+                "That was really mean!":
+                    $ responsive += 1
+                    him surprised "That was really mean!"
+                    kid "Yeah! School is so boring!"
+                    him concerned "Yeah, you shouldn't have to do boring work! I'll go talk to your teacher."
+                    kid "Yeah. She shouldn't make us do stuff like that."
+                    "I talked to the teacher and managed to cajole her into letting [kid_name] write her words only five times each."
+                    "[kid_name] seemed pretty happy about it, so I guess I did the right thing?"
+                    $ permissive += 1
+                    return 
+                "You need to listen to your teacher.":
+                    $ demanding += 1
+                    him serious "You need to listen to your teacher."
+                    kid "But she's wrong!"
+                    him concerned "Maybe so, but she deserves a certain amount of respect."
+                    him serious "And so does your brother."
+                    kid "And so do I!"
+                    him annoyed "You'll need to apologize to your teacher and your brother, and you won't be able to use the computer pad for games or play with friends this week." 
+                    $ authoritarian += 1
+                    "She didn't like it, but she did what her teacher asked. She still had problems with hitting her brother, so she wasn't able to play with friends or use the computer pad for a long time."
+                    "How long would it take for her to get the message?!"
+                    return
+                "What did you want to do instead?":
+                    him surprised "What did you want to do instead?"
+                    kid "Read my book."
+                    him serious "Well, spelling is still something you should study. Does this happen all the time?"
+                    kid "Yes."
+                    him concerned "Maybe we could ask if you could do a higher level of spelling words?"
+                    kid "Ugh, that'd be even more work!"
+                    him normal "It'd be less boring."
+                    kid "I guess. I still don't want to write them ten times. My hand gets sore. And what's the point of writing by hand, anyway? You and mom never write by hand. It's a waste of paper."
+                    him happy "One problem at a time, [kid_name]. Let's send your teacher a note. Do you want to type it, or write it."
+                    kid "Type it!"
+                    "We wrote to her teacher, and Terra asked if she could have harder spelling words and type them instead of handwrite them."
+                    "I wasn't sure what her teacher would say, but at least I helped Terra with her problem at school."
+                    him serious "Now, there's one more thing."
+                    kid "What's that?"
+                    him annoyed "You hit your brother. How can you make it up to him?"
+                    kid "How is he going to make it up to ME for annoying me?!"
+                    him concerned "Don't worry about what he will do; you just decide what you will do."
+                    kid "I don't know. Not him anymore, I guess."
+                    him annoyed "I expect you to apologize to him and do something kind for him."
+                    kid "I can't do that!"
+                    him normal "I'll ask you later tonight and you can tell me what you chose."
+                    kid "Ugh. Fine. But you should also ask {b}him{/b} to stop annoying {b}me{/b}!"
+                    "That's what she said, but at dinner she set the table for [bro_name], and I heard her mutter 'sorry' to him, too."
+                    "It's not shiny happy ending I wanted, but maybe she learned something?"
+                    "At least we worked things out with her teacher."
+                    $ authoritative += 1
+                    return
+        "You're just whining.":
+            him "Quit whining and don't hit your brother."
+            kid "But...!"
+            "I left before she could complain more. What more needed to be said?"
+            $ neglectful += 1
+            return    
     
     return
 

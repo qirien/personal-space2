@@ -34,6 +34,7 @@ label start:
         his_nickname = "dear"
         her_nickname = "lover"
         kid_name = "Terra"
+        bro_name = "Aeron"
         
         year6_have_baby = False
         year8_have_baby = False
