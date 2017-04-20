@@ -1,4 +1,17 @@
 ## Community Events
+
+# A short event that plays to introduce the community
+# Feel free to change this if you want. It should be fairly short and remind
+# everyone of the characters and situation.
+label community_intro:
+    "Luckily, we weren't alone on Talaam. There were several hundred other colonists here, now. Enough to feel like a real community, and not just  a few struggling pioneers."
+    # show Julia and Ilian?
+    "There were some I got along with..."
+    # show Thuc and Natalia and Pete?
+    "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
+    return
+    
+
 label community1:
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, you get in line with your friend Thuc to have some soup."

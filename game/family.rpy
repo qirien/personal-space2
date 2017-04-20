@@ -7,6 +7,31 @@
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month (?).
 # TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
 
+# Intro event
+label family_intro:
+    "Things used to be so simple. All you needed was a clean diaper, milk, and some love."
+    "Now... I don't even know what you need from me."
+    "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
+
+    #scene bedroom with fade         
+    her "[his_name]."
+    him "Mrmph?"
+    her "[kid_name]'s crying."
+    "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
+    "It was my turn to help her at night."
+    him "Okay..."
+    "I changed her diaper as quietly as I could. I tried not to disturb [her_name], but I could tell she was still awake." 
+    "I got out the bottle to feed [kid_name]. I was so tired, but I laid her down next to me and watched her in the shadowy moonlight, her tiny cheeks working to eat."
+    "She was too little to hold the bottle herself, but she lifted her hands in jerky movements that brushed against me."
+    "I dozed off and dropped the bottle."
+    "Maybe I could prop it up somehow and sleep while she ate? I had a vague feeling that might not be a good idea."
+    "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."
+    "She finally finished the bottle, dozing off right away for once."
+    "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
+    "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
+    "And it did make me feel like more of a dad, instead of just the husband of a mother, if that makes any sense." 
+    return
+
 # 3 Earth mos. old
 # CAN'T STOP CRYING!!
 label family1:

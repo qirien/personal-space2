@@ -3,6 +3,25 @@
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting." 
     return
+    
+# Year 1, 3 mo. old    
+label work_intro:
+    scene fields with fade
+    "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
+    "Over the past two years, with a lot of trial and error, I'd found crops and varieties that worked well."
+    "I still had a lot of decisions to make, though, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
+    menu:
+        "Would you like to see the Farming Tutorial?"
+        "Yes.":
+            # TODO: Show screenshots to illustrate this.
+            "The middle of the screen shows the farm layout."
+            "On the right is the current farm's stats."
+            "Below that, I can choose what crops should go where."
+            "On the left, I can see stats for the selected crop."
+            "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
+        "No.":
+            $ pass
+    return                  
 
 # Year 3, 18 mo. old
 label work1:

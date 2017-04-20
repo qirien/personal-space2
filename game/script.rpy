@@ -6,6 +6,7 @@
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Parenting variables for each style, detect inconsistent parenting. Warn halfway.
 # TODO: Make variables more object oriented?
+# TODO: Make inter-scene screens overlays coming in the upper left corner to make the interface take less time and be less annoying.
 
 label start:
     
@@ -72,6 +73,9 @@ label start:
         
     # FARM
     python:
+        year = 1
+        earth_year = 1
+        
         # Work/crops
         farm_size = 16
         crops = []
@@ -120,8 +124,8 @@ label start:
         carrots_fallow = False
            
     # Prologue
-    scene bg stars with fade
-    scene bg stars_animated
+    scene stars with fade
+    scene stars_animated
     # TODO: import names, stats, etc from OPS1, or ask user to fill them in; make this a screen
     if (mp.baby_name):
         $ his_name = mp.jack_name
@@ -140,8 +144,21 @@ label start:
     him "When you were first born, it was a struggle just to get through each day."  
     
     # TODO: show some sort of inter-scene screen
-    $ year = 1
 
+    # Introduction Scenes
+    call family_intro
+    call work_intro
+    
+    # Initial farm setup
+    $ crops = [""] * farm_size
+    call screen plan_farm
+    
+    call community_intro
+    
+    scene stars with fade
+    "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
+    "But you changed, and our community changed as new settlers arrived and situations changed."
+    "I suppose I changed, too."
     
     #####################################################################    
     # The Loop of Life                                                  #
