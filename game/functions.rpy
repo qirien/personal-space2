@@ -59,6 +59,15 @@ init python:
         crop_names = [row[0] for row in crop_info]
         index = crop_names.index(crop_name) # find the crop's index in crop_info
         return index
+
+    # Return the number of Earth years given years Talaam years.
+    # There are 196 27-hour days per year on Talaam, 
+    # and 365 24-hour days on Earth        
+    def get_earth_years(years):
+        hours = years * 196.0 * 27.0
+        earth_years = hours / 24.0 / 365.25
+        earth_years = round(earth_years, 1)
+        return earth_years
         
     # Find the right work event for this year
     def get_next_work_event():

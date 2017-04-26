@@ -6,7 +6,8 @@
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Parenting variables for each style, detect inconsistent parenting. Warn halfway.
 # TODO: Make variables more object oriented?
-# TODO: Make inter-scene screens overlays coming in the upper left corner to make the interface take less time and be less annoying.
+# TODO: Make inter-scene screens overlays coming in the upper left corner to make the interface take less time and be less annoying?
+# TODO: Use "window hide" and "window show" during interscene screens if needed
 
 label start:
     
@@ -37,6 +38,8 @@ label start:
         kid_name = "Terra"
         bro_name = "Aeron"
         
+        bro_birth_year = 0
+        bro_age = 0
         year6_have_baby = False
         year8_have_baby = False
         
@@ -165,10 +168,10 @@ label start:
     #####################################################################
     
     while (year <= 30):
-        # There are 196 27-hour days per year on Talaam, and 365 24-hour days on Earth
-        $ hours = year * 196.0 * 27.0
-        $ earth_year = hours / 24.0 / 365.25
-        $ earth_year = round(earth_year, 1)
+        $ earth_year = get_earth_years(year)
+        
+        if (bro_birth_year != 0):
+            $ bro_age = year - bro_birth_year            
         
         # Reset our variables while keeping a running total
         $ total_demanding += demanding

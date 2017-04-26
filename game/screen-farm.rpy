@@ -21,6 +21,8 @@ screen plan_farm:
                     label "[his_name] and [her_name]'s family"
                     text "Kids:"                         
                     text "[kid_name], [earth_year] earth years"
+                    if (bro_birth_year != 0):
+                        text "[bro_name], [bro_age] earth years"
                 
                 # crop details here
                 vbox:

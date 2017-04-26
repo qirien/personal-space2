@@ -29,7 +29,7 @@ label family_intro:
     "She finally finished the bottle, dozing off right away for once."
     "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
     "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
-    "And it did make me feel like more of a dad, instead of just the husband of a mother, if that makes any sense." 
+    "And it did make me feel like more of a \"dad\", instead of just \"the husband of a mother\", if that makes any sense." 
     return
 
 # 3 Earth mos. old
@@ -70,6 +70,7 @@ label family1:
     "No, I couldn't sleep while they both needed me. But what should I do?"
     menu:
         "Take [kid_name] for a walk.":
+            $ responsive += 1
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
             her concerned "It's not too cold out, is it?"
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
@@ -95,8 +96,12 @@ label family1:
             scene farm_interior with fade
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
             "Finally, she was sleeping in her crib, and I fell into bed."
+            $ authoritative += 1
+            $ permissive += 1
+            return
             
         "Ask someone else for help.":
+            $ responsive += 1
             "I wish I could ask my parents, but they're light years away. I'm not sure who else we could ask, though."
             him concerned "Maybe we should ask someone else for help. Someone who knows more about babies."
             her annoyed "Who's going to know more about [kid_name] than us?!"
@@ -105,8 +110,11 @@ label family1:
             him concerned "Here, I'll hold her, and you go do some research or ask around or whatever."
             "[her_name] went outside to do some reading while I held [kid_name]. I paced restlessly, holding the baby in different positions until [her_name] returned."
             "She had a big list of things to try, and we tried them all.  I don't know if the white noise and the bath worked, or if she finally just wore herself out, but eventually she stopped crying and fell asleep."
+            $ authoritative += 1
+            return
             
         "Let [her_name] handle it.":
+            $ responsive -= 1
             "[her_name] knows more about this kind of thing than I do. I pushed open the door of our tiny house."
             her annoyed "Where are you going?!"
             him annoyed "You figure it out. I'm going for a walk."
@@ -126,6 +134,7 @@ label family1:
             "I {b}was{/b} a traitor."
             menu:
                 "Go back and apologize.":
+                    $ responsive += 1
                     "I had to make things right."
                     "I ran back to the house. I could still hear [kid_name]'s crying even from outside."
                     scene bedroom with fade
@@ -136,14 +145,18 @@ label family1:
                     "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
                     "As I left the room, [her_name] said something I've never forgotten."
                     her annoyed "Don't ever leave us again."
+                    $ neglectful += 1
+                    return
                 "Spend the night in the barn":
                     "I couldn't go back there. I was already frayed and broken and ready to snap. My brain felt like a sparking circuit, and I worried that if I stayed, I might hurt someone or make a big mistake."
                     scene barn with fade
                     "I lay down on the hay in the barn and closed my eyes. [kid_name]'s screams echoed in my head so loudly I sat up and looked around. But there was no one there."
                     "Sleep was a long time in coming."
-                    
+                    $ neglectful += 1
+                    return
             
         "Let [kid_name] cry.":
+            $ demanding += 1
             him normal "Sometimes babies cry. Since nothing we're doing is helping, let's just set her down and take a break."
             her concerned "We can't take a break. We're her parents!"
             him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
@@ -164,6 +177,9 @@ label family1:
             "[her_name] laughed, just for a second, and it was the most beautiful sound I'd heard all day. She put on some music with a good beat, and then came over and joined our dancing."
             "[kid_name] didn't know what to make of it, but we certainly felt better after our crazy midnight dancing."
             "I don't know if it was the music or dancing or if she just tired herself out, but eventually [kid_name] fell asleep and we followed suit."
+            $ authoritative += 1
+            $ authoritarian += 1
+            return
     
     return
     
@@ -349,22 +365,71 @@ label family8:
         call baby_delivery
         
     else:
-        her "Now that [kid_name]'s in school, maybe it's time for us to have another baby?"
+        $ year8_have_baby = True        
+        her concerned "It's a good thing [kid_name]'s in school... since I think I'm pregnant."
+        him surprised "What, really? I thought we decided to wait!"
+        her annoyed "Well, sometimes these things happen anyway."
+        him concerned "Are you sure?"
+        her surprised "Yes, I ran the test myself."
         menu:
             "What should I say?"
-            "Are you kidding?!":
-                him "No way!"
-                $ year8_have_baby = False
-            "It would be efficient":
-                him "It's probably more efficient to have them closer together."
-                $ year8_have_baby = True            
-            "If you're ready.":
-                him "We can if you want to -- you're the one that has to host them for nine months." 
-                $ year8_have_baby = True
-            "Sure! Anytime!":
-                him "Yeah! I love kids!"
-                $ year8_have_baby = True
-    # TODO: Have a baby here if you decided to.
+            "How are we going to do this?":
+                him annoyed "Well, this is just great."
+                her annoyed "What do you care? It's not like you have to be pregnant for nine months!"
+                him angry "We don't have enough food for another baby! Where will they sleep? We don't even know what we're doing with [kid_name]!"
+                her sad "I know it's hard, but..."
+                him concerned "I'm sorry. Hey. Don't cry."
+                her angry "I'll cry if I want to! Especially if my husband is yelling at me!"
+                him angry "Fine, I'm sorry! I just..."
+                show him concerned with dissolve
+                extend "It's a lot to take in."
+                label pregnancy_alone:                
+                    her concerned "I need us to be on the same side.  "
+                    show her sad with dissolve
+                    extend "I can't do this alone."
+                    him determined "You're not alone. I'll always be on your side."
+                    him happy "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
+                    her normal "Then I don't have anything to worry about."
+                    him normal "Nope."
+                    "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
+                    "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
+                    "How long had she known and worried by herself?"
+                    "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
+                    her concerned "You're still worried."
+                    him normal "So are you."
+                    her serious "Yes. But not as much."
+                    him serious "We'll figure it out."
+            "We can do this!":
+                him serious "This is...this is..."
+                her surprised "What?"
+                him happy "This is awesome!"
+                her annoyed "I don't feel awesome, I'll tell you that much."
+                him surprised "Hey, is that why you've been so tired lately?"
+                her serious "Probably so."
+                him normal "Any morning sickness? I haven't noticed you eating differently."
+                her normal "Not yet. "
+                show her concerned with dissolve
+                extend "I can't believe we're doing this again..."
+                him normal "We're pros, now! It'll be so much easier!"
+                her annoyed "What part of this is easy?!"
+                him flirt "Well, conceiving the baby was pretty easy..."
+                her flirt "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."                
+                him surprised "How would that even work? Like, the baby would start large and shrink as they got older?"
+                her normal "Yeah, that doesn't make much sense, I guess."                
+                him happy "I love you even when you don't make sense."
+                her concerned "Oh, [his_name]. I love you too. I'm so glad you're with me."
+                him concerned "Hey, are you crying?"
+                her normal "Just a little. Stupid pregnancy hormones."
+                him happy "Here, you can wipe your tears on my shirt."
+                her flirt "Now that's true love."                
+            "How do you feel about it?":
+                him surprised "How do you feel about it?"
+                her concerned "I don't know. Worried, I guess."
+                him concerned "Yeah, how will this even work?"
+                her sad "I don't know if I can do this..."
+                him serious "Hey, don't cry, it'll be okay."
+                jump pregnancy_alone   
+  
     return
 
 label baby_delivery:
@@ -382,6 +447,7 @@ label baby_delivery:
     her pregnant normal "You forgot the 'shut up' part."
     him normal "..."
     "Finally, the baby was born. A boy!"
+    $ bro_birth_year = year
     #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot? Let the player choose bro_name     
     
 # 5.5 Earth years old
@@ -450,6 +516,9 @@ label family11:
             $ neglectful += 1
             
     return
+    
+    "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
+    
 
 # 7.4 Earth years old
 # Growing Independence
@@ -501,6 +570,7 @@ label family13:
     return
     
     # TODO: uncomment above when ready for prose, and make sure variables are changing properly
+    # TODO: Is this because Mom is pregnant again?  Miscarriage -> hysterectomy?
     scene fields with fade
     show him at midright
     show kid at midleft
@@ -515,12 +585,14 @@ label family13:
     him "Let me think about the best way to explain that to you..."
     menu:
         "She's not ready for this":
-            him "Maybe when your'e older. That's not something you need to worry about right now."
+            $ demanding += 1
+            him "Maybe when you're older. That's not something you need to worry about right now."
             kid "But I am worried about it right now!"
             him "Ask your mom, then."
             kid "Why can't you just tell me?"
             him "I just... I just can't! So quit asking!"
             "I felt a little bad, but really, she's asking the wrong person!  That's [her_name]'s job!"
+            $ authoritarian += 1
         "Give a vague metaphor":
             him "Well, you know, it's like, uh, like bees carry pollen?  And they fertilize the flowers so fruits can grow? It's . . . kind of like that."
             kid "I know that! But how does it work? Where's the pollen, and what's the flower?"
@@ -530,7 +602,9 @@ label family13:
             kid "What does that have to do with it?"
             him "Nothing. Time to collect fertilizer! Here's your shovel."
             "Whew, that was a close one!  I'd better figure out what to say next time. Or maybe [her_name] could talk to her about it."
+            $ neglectful += 1
         "Keep it simple":
+            $ responsive += 1            
             him "The man has sperm and when one of them comes together with the woman's egg, it can make a baby."
             kid "Where does he get the sperm?"
             him "His body can make them."
@@ -549,7 +623,8 @@ label family13:
                         him "Maybe you'd ride horses together, or bake cookies, or play with the dogs."
                         kid "Grandma Grayson said that if we get some more sugar on the next shuttle we can make cookies." # TODO: Make sure she's not dead
                         him "You'll let me have one, right?"
-                        kid "Sure, dad."                        
+                        kid "Sure, dad."
+                        $ authoritative += 1                                                                                
                         return #done with event
             menu:
                 "What should I tell her about sex?"
@@ -566,6 +641,7 @@ label family13:
                     $ sex_ed_counter += 1
                     jump sex_ed
                 "Emphasize committment and marriage." if not sex_ed_commitment:
+                    $ demanding += 1
                     him "Sex is an important part of marriage. It makes you feel closer together, and you show your love for your spouse in a special way."
                     if (not sex_ed_biology):
                         kid "Okay, but what is it?!"
@@ -587,7 +663,7 @@ label family13:
                     $ sex_ed_babycreation = True
                     $ sex_ed_counter += 1
                     jump sex_ed
-                "Explain how good it feels." if not sex_ed_goodfeeling:
+                "Explain how good it feels." if not sex_ed_goodfeeling:                    
                     him "It feels really good to have sex together."
                     if (not sex_ed_biology):
                         kid "Okay, but what is it?!"
@@ -613,8 +689,11 @@ label family13:
                     jump sex_ed
                 "That's enough details for now.":
                     him "Anyway, that's all you need to know for now."
+                    $ sex_ed_counter = 3 # this will cut out to baby discussion
+                    jump sex_ed                   
             
         "Tell her all the details":
+            $ responsive += 1
             "I told her everything I knew about sex - biology, emotional effects, irresponsible sex, birth control, hormones..."
             kid "Ha ha, look, there's a crabird sitting on that goat's head."
             him ". . . have you been listening at all?"
@@ -625,12 +704,13 @@ label family13:
             kid "Will you take me hunting sometime soon? I looooove crabird meat. It's so good. I could eat every day."
             # TODO: Make this a choice or dependent on choices?
             him "Yeah, let's go tomorrow morning before school. We'll get up early and catch them before they get warmed up."
+            $ permissive += 1
     return
 
 # 8.7 Earth years old
 # Teacher Troubles
 label family14:
-    "Terra is having problems at school and taking it out on her little sibling." # TODO: What if she doesn't have a little sibling?
+    "Terra is having problems at school and taking it out on her little sibling."
     menu:
         "Demand that her teacher fix the problem":
             $ responsive += 1
