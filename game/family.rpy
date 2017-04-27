@@ -365,7 +365,11 @@ label family8:
         call baby_delivery
         
     else:
-        $ year8_have_baby = True        
+        $ year8_have_baby = True
+        scene farm_interior with fade
+        show her normal at midleft
+        show him normal at midright
+        with dissolve        
         her concerned "It's a good thing [kid_name]'s in school... since I think I'm pregnant."
         him surprised "What, really? I thought we decided to wait!"
         her annoyed "Well, sometimes these things happen anyway."
@@ -518,6 +522,134 @@ label family11:
     return
     
     "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
+    "Even [bro_name] usually had something to say."
+    "They weren't always peaceful, though..."
+    kid "Beans again? Ugh."
+    him "You can put Special Sauce on them if you want."
+    "We called it \"Special Sauce\", but it was really just homemade ketchup. With a few other secret ingredients to make it healthier."
+    kid "Yeah, gimme the sauce."
+    if (year6_have_baby):
+        bro "Gimme sauce!"
+    else:
+        bro "Ya ya ya ya."
+    her "Say \"please\" when you ask for something."
+    "[kid_name] knew this; she used to say \"please\" and \"thank you\" all the time. But not today."
+    menu:
+        "What should I say?"
+        "Here you go.":
+            $ responsive += 1
+            him serious "Here you go."
+            "It wasn't worth making a big deal over."
+            "Maybe it was just a one-time thing."
+            kid "Gimme the potatoes."
+            "Or maybe not."
+            menu:
+                "What should I do?"
+                "Just pass her the potatoes.":
+                    "I just passed them to her. I mean, they were just words, right? She'd learn eventually..."
+                    $ permissive += 1
+                    return                                                            
+                "Say something about it.":
+                    "[her_name] was about to pass the potatoes, but I stopped her. I took the sauce back."
+            
+        "Say \"please\"":
+            $ demanding += 1
+            $ responsive += 1
+            him "We say \"please\" when we ask for something, and \"thank you\" when someone does something for us."
+            kid "C'mon, pass me the sauce!"
+        "Where are your manners?!":
+            him "Where are your manners? I raised you to speak better than that!"
+            kid "C'mon, pass me the sauce!"
+        "I'm eating outside.":
+            him "I'm eating outside."
+            "Maybe that would get the message across. I just couldn't deal with that kind of garbage right now."
+            "I took the special sauce with me."
+            $ neglectful += 1
+            return
+            
+    "She was not going to talk to me like that!"
+    $ manners_grounded_days = 0
+    $ manners_patience_count = 0
+    menu manners_patience:
+        "What should I say?"
+        "(Send her to her room with no dinner)" if (manners_grounded_days >= 2):
+            him angry "Go to your room!"
+            her surprised "[his_name], calm down. It's not that big of a deal."
+            him annoyed "It is a big deal! I will not have a rude daughter like that in our house!"
+            her annoyed "Well we sure aren't kicking her out just because she didn't say \"please\"!"
+            him determined "She can come out whenever she's ready to say \"please\"."
+            kid "That'll be NEVER!"
+            her angry "Oh, sure, we'll just starve our kids until they do what we want! Is your ego that important to you!?"
+            him angry "It's not my ego! It's basic human decency!"
+            her annoyed "Sure, you just keep telling yourself that."
+            "[kid_name] didn't come out of her room at all that evening. What a stubborn kid..."
+            "Hopefully she learned her lesson."
+            $ authoritarian += 1
+            
+        "(Ignore her until she asks politely)" if (manners_patience_count >= 4):
+            him happy "So, [her_name], what did you work on today?"
+            her concerned "I've been researching--" 
+            kid "Pass the sauce!"
+            him normal "Go on."
+            her concerned "I've been researching the nutritional properties of crabird eggs."
+            him surprised "I didn't know you could eat the eggs!"
+            kid "I JUST WANT SOME FOOD!"
+            if (year6_have_baby):
+                bro "Me, me me!"
+            else:
+                bro "Wahhhhh!"
+            her normal "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
+            kid "You guys are so mean! I just want some food!"
+            her concerned "-high levels of certain amino acids."
+            kid "Ugh! Fine! PLEASE pass the sauce!"
+            if (year6_have_baby):
+                bro "Peas!"
+            else:
+                bro "Wahhhhh!"
+        
+            him happy "Here you go, [kid_name]. Thanks for asking politely."
+            kid "You're mean."
+            her "I think the word you're looking for is \"thank you\"."
+            "She just glared at us and then dug in to her beans and sauce."
+            "I decided to save that one for another time."
+            if (manners_grounded_days >= 1):
+                "She was already grounded."
+            $ authoritative += 1
+            return
+        "I will wait as long as I need to." if (manners_patience_count >= 2):
+            him determined "I will wait as long as I need to."
+            kid "Can I have the sauce?"
+            him "I expect you to use the word \"please\"."
+            $ manners_patience_count += 1
+            jump manners_patience 
+            
+        "If you keep talking rudely, you'll be grounded!":
+            $ demanding += 1
+            kid "Gimme the sauce!"
+            him angry "Okay, you're grounded for another day."
+            $ manners_grounded_days += 1
+            if (manners_grounded_days > 1):
+                him "That makes [grounded_days] days, now. Is this really worth it?"
+            jump manners_patience
+            
+        "As soon as you ask politely, I will pass them to you.":
+            $ demanding += 1
+            $ responsive += 1
+            kid "What? I just want some sauce and beans!"
+            him annoyed "Then ask politely."
+            kid "Gimme the sauce!"
+            $ manners_patience_count += 1            
+            jump manners_patience
+            
+        "(Just pass them to her)" if ((manners_patience_count + manners_grounded_days) >= 1):
+            $ responsive += 1
+            "I gave up. I didn't have the time or patience to wait for her to decide to use a stupid word like \"please\"."
+            if (manners_grounded_days > 0):
+                "And now she was grounded as well."
+            else:
+                "What a pointless battle."
+            $ permissive += 1
+            return
     
 
 # 7.4 Earth years old

@@ -1,4 +1,4 @@
-init -1:
+init -10:
     # BACKGROUNDS
     image cuttlefish = "bg/cuttlefish-logo.jpg"
     image stars = "bg/stars.jpg"
