@@ -61,10 +61,10 @@ define gui.default_font = "fonts/RobotoSlab-Regular.ttf"
 define gui.name_font = "fonts/RobotoSlab-Regular.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_font = "fonts/Questrial-Regular.otf"
+define gui.interface_font = "fonts/SP-Marker Font.otf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 22
+define gui.text_size = 20
 
 ## The size of character names.
 define gui.name_text_size = 30
@@ -79,7 +79,7 @@ define gui.label_text_size = 28
 define gui.notify_text_size = 16
 
 ## The size of the game's title.
-define gui.title_text_size = 50
+define gui.title_text_size = 60
 
 
 ## Main and Game Menus #########################################################
@@ -107,8 +107,8 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 140
-define gui.name_ypos = -40
+define gui.name_xpos = 170
+define gui.name_ypos = 15
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -132,10 +132,10 @@ define gui.namebox_tile = False
 ## number of pixels relative to the left or top side of the textbox, or 0.5 to
 ## center.
 define gui.text_xpos = 268
-define gui.text_ypos = 50
+define gui.text_ypos = 60
 
 ## The maximum width of dialogue text, in pixels.
-define gui.text_width = 744
+define gui.text_width = 750
 
 ## The horizontal alignment of the dialogue text. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -149,7 +149,7 @@ define gui.text_xalign = 0.0
 
 ## The width and height of a button, in pixels. If None, Ren'Py computes a size.
 define gui.button_width = None
-define gui.button_height = 36
+define gui.button_height = None #36
 
 ## The borders on each side of the button, in left, top, right, bottom order.
 define gui.button_borders = Borders(4, 4, 4, 4)

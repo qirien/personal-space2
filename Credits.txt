@@ -22,7 +22,14 @@ Fields <fields.jpg> by Andrea Landaker
 
 All GUI images are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
 
-Textbox vegetation texture by Eric Matyas, http://www.soundimage.org
+Textbox vegetation and wood textures by Eric Matyas, http://www.soundimage.org
+
+Textbox twig frame by Firkin from "Poems and Pictures", 1865
+
+=== Fonts
+Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>
+SP-Marker Font by SizzlePrint, <http://www.sizzleprint.com/fonts/>
+Roboto Slab by Christian Robertson, <https://www.fontsquirrel.com/license/roboto-slab>
 
 
 === Character Sprites

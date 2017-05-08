@@ -119,6 +119,8 @@ screen say(who, what):
     # on the phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
+        
+    imagebutton xpos 1025 ypos 595 auto "gui/menubutton_%s.png" action ShowMenu("save")
 
 
 style window is default
@@ -924,9 +926,7 @@ style history_window is empty
 
 style history_name is gui_label
 style history_name_text is gui_label_text
-style history_text is gui_text
-
-style history_text is gui_text
+style history_text is say_dialogue
 
 style history_label is gui_label
 style history_label_text is gui_label_text
