@@ -44,8 +44,8 @@ define gui.insensitive_color = '#8866557f'
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
-define gui.muted_color = '#446644'
-define gui.hover_muted_color = '#779955'
+define gui.muted_color = '#779955'
+define gui.hover_muted_color = '#446644'
 
 ## The colors used for dialogue and menu choice text.
 define gui.text_color = '#ffffff'
@@ -149,7 +149,7 @@ define gui.text_xalign = 0.0
 
 ## The width and height of a button, in pixels. If None, Ren'Py computes a size.
 define gui.button_width = None
-define gui.button_height = None #36
+define gui.button_height = None
 
 ## The borders on each side of the button, in left, top, right, bottom order.
 define gui.button_borders = Borders(4, 4, 4, 4)
@@ -174,16 +174,15 @@ define gui.button_text_insensitive_color = gui.insensitive_color
 # 1.0 is right).
 define gui.button_text_xalign = 0.0
 
-
 ## These variables override settings for different kinds of buttons. Please see
 ## the gui documentation for the kinds of buttons available, and what each is
 ## used for.
 ##
 ## These customizations are used by the default interface:
 
-define gui.radio_button_borders = Borders(25, 4, 4, 4)
+define gui.radio_button_borders = Borders(30, 4, 4, 4)
 
-define gui.check_button_borders = Borders(25, 4, 4, 4)
+define gui.check_button_borders = Borders(30, 4, 4, 4)
 
 define gui.confirm_button_text_xalign = 0.5
 
@@ -258,13 +257,13 @@ define gui.notify_ypos = 45
 define gui.choice_spacing = 22
 
 ## Buttons in the navigation section of the main and game menus.
-define gui.navigation_spacing = 4
+define gui.navigation_spacing = 10
 
 ## Controls the amount of spacing between preferences.
 define gui.pref_spacing = 10
 
 ## Controls the amount of spacing between preference buttons.
-define gui.pref_button_spacing = 0
+define gui.pref_button_spacing = 5
 
 ## The spacing between file page buttons.
 define gui.page_spacing = 0

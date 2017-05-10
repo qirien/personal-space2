@@ -441,7 +441,7 @@ label family8:
     return
 
 label baby_delivery:
-    scene clinic with fade
+    #scene clinic with fade
     her pregnant concerned "Oh no, I remember this part. This is awful!"
     him determined "You did it once, you can do it again! Just a little bit more and then you'll be done!"
     her pregnant angry "You say 'a little bit', but I know it's going to be a few hours!"
@@ -456,7 +456,9 @@ label baby_delivery:
     him normal "..."
     "Finally, the baby was born. A boy!"
     $ bro_birth_year = year
-    #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot? Let the player choose bro_name     
+    #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot? Let the player choose bro_name    
+    
+    return
     
 # 5.5 Earth years old
 # Holiday Traditions (or maybe honesty?)

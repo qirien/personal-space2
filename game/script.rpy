@@ -18,6 +18,7 @@ label start:
     python:        
         # Demanding and Reponsive may change by more or less than 1 each year
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
+        # Max for each is 30
         demanding = 0
         total_demanding = 0
         # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
@@ -45,6 +46,7 @@ label start:
         
     # CHILD    
     python:
+        # CHILD STATS. Maximum at end-game is 30.
         # Amount of emotional intelligence, how loved and secure child feels
         attachment = 0
         # Reponsibility and ability to work hard, practical knowledge
@@ -173,12 +175,6 @@ label start:
         if (bro_birth_year != 0):
             $ bro_age = year - bro_birth_year            
         
-        # Reset our variables while keeping a running total
-        $ total_demanding += demanding
-        $ demanding = 0
-        $ total_responsive += responsive
-        $ responsive = 0
-        
         # WORK EVENTS (farming)
         scene black with fade
         centered "Year [year]\n\nWork"
@@ -201,7 +197,13 @@ label start:
         # Increase child stats based on this year's parenting decisions
         call increase_attachment
         call increase_competence
-        call increase_independence        
+        call increase_independence
+
+        # Reset our variables while keeping a running total
+        $ total_demanding += demanding
+        $ demanding = 0
+        $ total_responsive += responsive
+        $ responsive = 0        
         
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)

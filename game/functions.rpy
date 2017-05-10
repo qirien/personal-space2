@@ -5,11 +5,11 @@ label increase_attachment:
         # $ attachment += 1
     # else:
         # $ attachment += (responsive/(year/2.0)) * 2
-    $ attachment += responsive / 2.0
+    $ attachment += responsive
     return
     
 label increase_competence:  
-    $ competence += demanding / 2.0
+    $ competence += demanding
     return
     
 label increase_independence:
