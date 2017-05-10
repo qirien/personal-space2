@@ -12,13 +12,13 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Our Personal Space 2")
+define config.name = _("OPS2: Space to Grow")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
 ## this to False to hide the title.
 
-define gui.show_name = True
+define gui.show_name = False
 
 
 ## The version of the game.
@@ -29,14 +29,14 @@ define config.version = "0.1"
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
-define gui.about = _("Created by Metasepia Games\n\nhttp://metasepia.icecavern.net")
+define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepia.icecavern.net}http://metasepia.icecavern.net{/a}")
 
 
 ## A short name for the game used for executables and directories in the built
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "OurPersonalSpace2"
+define build.name = "OPS2_SpaceToGrow"
 
 
 ## Sounds and music ############################################################

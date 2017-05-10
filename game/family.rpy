@@ -98,7 +98,6 @@ label family1:
             "Finally, she was sleeping in her crib, and I fell into bed."
             $ authoritative += 1
             $ permissive += 1
-            return
             
         "Ask someone else for help.":
             $ responsive += 1
@@ -111,7 +110,6 @@ label family1:
             "[her_name] went outside to do some reading while I held [kid_name]. I paced restlessly, holding the baby in different positions until [her_name] returned."
             "She had a big list of things to try, and we tried them all.  I don't know if the white noise and the bath worked, or if she finally just wore herself out, but eventually she stopped crying and fell asleep."
             $ authoritative += 1
-            return
             
         "Let [her_name] handle it.":
             $ responsive -= 1
@@ -146,14 +144,12 @@ label family1:
                     "As I left the room, [her_name] said something I've never forgotten."
                     her annoyed "Don't ever leave us again."
                     $ neglectful += 1
-                    return
                 "Spend the night in the barn":
                     "I couldn't go back there. I was already frayed and broken and ready to snap. My brain felt like a sparking circuit, and I worried that if I stayed, I might hurt someone or make a big mistake."
                     scene barn with fade
                     "I lay down on the hay in the barn and closed my eyes. [kid_name]'s screams echoed in my head so loudly I sat up and looked around. But there was no one there."
                     "Sleep was a long time in coming."
-                    $ neglectful += 1
-                    return
+                    $ neglectful += 1                    
             
         "Let [kid_name] cry.":
             $ demanding += 1
@@ -179,7 +175,12 @@ label family1:
             "I don't know if it was the music or dancing or if she just tired herself out, but eventually [kid_name] fell asleep and we followed suit."
             $ authoritative += 1
             $ authoritarian += 1
-            return
+    
+
+    "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
+    "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfishly I had felt, and underlying everything, a deep exhaustion that magnified everything."
+    him serious "She really needs us, doesn't she?"
+    her sleeping "Zzzzzz..."
     
     return
     
@@ -200,6 +201,9 @@ label family2:
             $ responsive += 1
             $ permissive += 1
  
+    # Sister Naomi volunteers to watch Terra at her house while Jack and 
+    # Kelly have a date. After a quiet evening, they finally get around to
+    # talking about childraising plans
     # TODO: Perhaps they join the daycare coop at the end of this scene?
     return
 
@@ -211,7 +215,7 @@ label family2:
 
 # 18 Earth mos. old
 label family3:
-    "Terra keeps putting sticks and rocks in her mouth."
+    "Terra keeps putting sticks and rocks in her mouth on a family camping trip!"
     menu:
         "Make her a chewing toy":
             $ responsive += 1
@@ -273,7 +277,7 @@ label family5:
 
 # 3.5 Earth years old
 label family6:
-    "Terra wants your attention while you're trying to relax"
+    "Terra wants your attention while you're trying to relax on a lazy Sunday afternoon"
     menu:
         "Play with her just enough for her to get less bored and play a little more on her own.":
             $ responsive += 1
@@ -318,7 +322,7 @@ label family6:
 # 4 Earth years old
 # Back-Talking
 label family7:
-    "Terra talks back when asked to pick up her toys, saying \"I hate you!\""
+    "Terra gets a new toy: some blocks! But later she talks back when asked to pick up her toys, saying \"I hate you!\""
     menu:
         "What do you say?"
         "There's consequences for such disrespect!":
