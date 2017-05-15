@@ -35,26 +35,6 @@ label family_intro:
 # 3 Earth mos. old
 # CAN'T STOP CRYING!!
 label family1:
-    "Terra's been crying for hours, no one knows why.  Everyone's tired and spent."
-    menu:
-        "Take her for a walk":
-            $ responsive += 1 
-            $ permissive += 1
-        "Ask someone else for help":
-            $ responsive += 1
-            $ demanding += 1
-            $ authoritative += 1                        
-        "Let Kelly handle it":
-            $ responsive += 0 # TODO: Do we ever subtract points?
-            $ neglectful += 1
-        "Let Terra cry":            
-            $ demanding += 1
-            $ authoritarian += 1
-            
-    return
-    
-    # Actual scene
-    # TODO: delete above when ready for prose
     # TODO: check expressions, positions
     scene farm_interior with fade
     show him concerned at midright
@@ -483,21 +463,158 @@ label family9:
 # 6.2 Earth years old
 # Damages Tablet
 label family10:
-    "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
-    menu:
-        "Do nothing. She'll learn eventually on her own.":
-            $ neglectful += 1
-        "Yell at her to be more careful":
-            $ demanding +=1 
-            $ authoritarian += 1
-        "Ask how it happened and require her to do extra chores to make up for it.":
-            $ demanding += 1
-            $ responsive += 1          
-            $ authoritative += 1
-        "Tell her it's all right, she can't be expected to take care of things at her age.":
-            $ responsive += 1
-            $ permissive += 1
-            
+    "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
+    if (year6_have_baby):
+        "Inbetween [bro_name]'s diaper changes and climbing on everything and reorganizing everything he could reach..."
+        "...he was a happy, easygoing kid."
+        "He and [kid_name] sometimes even played together."
+        "She had stacked up the blocks into a mountain, and had setup some little figurines at the base."
+        kid "[bro_name]! Look what I built! Here's the volcano. And here's us."
+        "She walked the figurines up the mountain until they reached the top. [bro_name] made to touch the blocks, but she stopped him."
+        kid "No no, it's hot."
+        bro "Hot?"
+        "She had the parent figurines give warnings."
+        kid "\"It's so hot!\" \"Don't fall in!\""
+        kid "Here's [bro_name]. Uh-oh, he's getting close to the edge!"        
+        "She dropped one of the figurines into the \"volcano\" while making a disturbingly accurate crying sound. [bro_name] just watched. He was probably happy to get any attention from her at all, but..."
+        menu:
+            "Should I say something?"
+            "Wait and see.":
+                "I waited to see what [kid_name] would do."
+                kid "\"I'll save you!\""
+                "She had the family hold hands and lower her figurine into the volcano, and she fished her brother out."
+                kid "Gotcha! Whew, that was close!"
+                bro "I in there?"
+                kid "Yeah, you were in the lava! But we got you out."
+                bro "Hot?"
+                kid "No, it's not hot anymore."
+                "He pushed the side of the volcano, and the blocks tumbled down."
+                "She looked furious."
+                kid "[bro_name]! No, no, no, no!"
+                menu:
+                    "What should I say?"
+                    "Stop yelling at him!":
+                        $ demanding += 1
+                        him "Stop yelling at your brother!"
+                        kid "He wrecked my volcano!"
+                        him "They're his blocks, too. You need to share!"
+                        kid "I was sharing!"
+                        him "Well, it's his turn, now!"
+                        kid "No! I'm in the middle of a game!"
+                        him "Go to your room!"
+                        kid "You ruined everything!"
+                        "She stomped off, and [bro_name] started crying. I tried to comfort him, but it was difficult when I was so angry."
+                        him "(How does a little six-year-old know how to make me so mad?!)"
+                        $ authoritarian += 1
+                    "Hey, it's an earthquake!":
+                        $ responsive += 1
+                        him "Ahhh, earthquake! Can the family survive?"
+                        "I pulled my figurine out of the pile of blocks."
+                        him "\"Don't worry, I'll save you!\""
+                        "I dug around, trying to get the other figurines out. I got [kid_name]'s and handed it to her."
+                        him "Quick, we've got to get [bro_name] and mom!"
+                        "We rummaged through the blocks until we pulled out their two figurines. I handed [bro_name] his."
+                        kid "Now run away from the lava!"
+                        him "Ahhhh, lava!"
+                        "We made our guys run down the pile of blocks."
+                        menu:
+                            "Keep playing with them.":
+                                "The three of us played natural disaster-escaping family until bedtime."
+                                # TODO: have some farming consequences?
+                                $ permissive += 1
+                            "Compliment them on getting along.":
+                                $ demanding += 1
+                                him "You two sure have been getting along well. It's great to see you playing happily together."
+                                "I'm pretty sure [kid_name] heard me, but she was already on to the next thing and didn't respond."
+                                "I left them to it while I went to change the oil in my tractor. Hopefully they'd get along for awhile."
+                                $ authoritative += 1
+            "Leave them alone.":
+                "Nobody was sad; they didn't need me to interfere."
+                "Besides, the tractor needed an oil change."
+                $ neglectful += 1
+            "Scold [kid_name].":
+                $ demanding += 1
+                him "[kid_name]! Don't drop your brother in the volcano!"
+                "She looked at me defiantly, then shoved the blocks, burying all the figurines. One tipped and fell on [bro_name], who started crying."
+                kid "Earthquake! The volcano's erupting! There's lava everywhere! Ahhhhhh!"
+                bro "Wahhhhh!"
+                kid "We all died."
+                bro "All died."
+                kid "Except me. I ran away."
+                him "Terra..."
+                kid "And now I live by myself in the jungle."
+                "[bro_name] reached for his figurine, but she pulled it out first and put it up high where he couldn't reach."
+                kid "You can't play with him. He's dead."
+                bro "I want it!"
+                kid "Nope. Dead means dead forever. All gone."
+                bro "Not all gone!"
+                him "[kid_name], that's enough. If you can't get along with [bro_name], then you'll need to go to your room."
+                "I gave [bro_name] his figure. He looked at it suspiciously, as if trying to tell from its appearance whether it was still okay to play with after being \"dead\"."
+                kid "Dad, you're ruining the game!"
+                menu:
+                    "Scold her some more.":
+                        him "No, {b}you{/b} are ruining the game! How does it make [bro_name] feel to have you killing off his guy?"
+                        kid "It's just a game!"
+                        him "Even in a game you can't be a jerk to everyone!"
+                        kid "You're a jerk!"
+                        him "That's enough! Go to your room!"
+                        kid "You go to your room!"
+                        "I picked her up. She'd gotten heavier, but my adrenaline was up now and I lifted her easily and dropped her into her room."
+                        "I meant to set her down, but she struggled right as we reached the doorway and she kicked my wrist."
+                        "She dropped to the floor and her head hit her bed post."
+                        kid "Wahhhhhhhhh!"
+                        menu:
+                            "What should I say?"
+                            "That's what you get for disobeying.":
+                                him "That's what you get for disobeying your father!"
+                                kid "You hurt me!"
+                                him "..."
+                                kid "You're so mean..."
+                                "I turned away. She was trying to make me feel guilty, but none of this would have happened if she had just done what I asked!"
+                                $ responsive -= 1
+                                $ authoritarian += 1
+                            "I'm sorry.":
+                                him "I'm sorry, [kid_name]. I didn't mean for you to hit your head."
+                                kid "Yes, you did. You're always mean to me."
+                                "I turned away. I couldn't make her accept my apology. But hopefully she'd remember what I'd said."
+                                $ authoritarian += 1
+
+                    "Suggest they play something else.":
+                        him "Why don't we make a road for the guys instead?"
+                        "I started laying out some blocks in a path. [kid_name] just watched me for a minute, but [bro_name] brought his figure over and banged it on the block path happily."
+                        "I made a building out of blocks."
+                        him "Here's the school."
+                        "[kid_name] made a path going off a different way."
+                        kid "And here's the community center."
+                        him "Here, [bro_name], why don't you use these blocks here?"
+                        "I cleared out a little space for him and stacked some blocks up in a way that would be hard to knock down."
+                        "He knocked it down anyway, banging his figurine on the blocks as if it was jumping."
+                        him "Ha ha, maybe that's the junk pile."
+                        "They played together for a while and I snuck off. Hopefully I still had time to change the oil in the tractor."
+                        $ responsive += 1
+                        $ authoritative += 1
+                
+                
+                
+                
+
+    # She doesn't have a little brother, so instead she's playing on the tablet                    
+    else:
+        "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
+        menu:
+            "Do nothing. She'll learn eventually on her own.":
+                $ neglectful += 1
+            "Yell at her to be more careful":
+                $ demanding +=1 
+                $ authoritarian += 1
+            "Ask how it happened and require her to do extra chores to make up for it.":
+                $ demanding += 1
+                $ responsive += 1          
+                $ authoritative += 1
+            "Tell her it's all right, she can't be expected to take care of things at her age.":
+                $ responsive += 1
+                $ permissive += 1
+                
     if (year8_have_baby):
         "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
         "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
@@ -1221,6 +1338,7 @@ label family16:
             $ responsive += 1
             $ neglectful += 1
     return
+   
 
 # 10.5 Earth years old
 # Unexplained crying

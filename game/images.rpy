@@ -5,15 +5,17 @@ init -10:
     image stars_animated:
         "bg/stars.jpg"
         linear 10.0 zoom 0.5
-    image earth = "bg/earth.jpg"
     image farm_exterior = "bg/farm-exterior.jpg"
     image farm_exterior flip = im.Flip("bg/farm-exterior.jpg", horizontal = True)
-    image farm_exterior flip burned = "bg/farm-exterior-burned.jpg"
+    image farm_interior = "bg/farm-interior.jpg"
+    image farm_interior flip = im.Flip("bg/farm-interior.jpg", horizontal = True)    
+    image fields = "bg/fields.jpg"
+
+
+    # OPS 1 images we aren't using yet.
+    image earth = "bg/earth.jpg"    
     image porch = "bg/farm-porch.jpg"
     image wedding = "bg/wedding.jpg"
-    image farm_interior = "bg/farm-interior.jpg"
-    image farm_interior flip = im.Flip("bg/farm-interior.jpg", horizontal = True)
-    image fields = "bg/fields.jpg"
     image fields flip = im.Flip("bg/fields.jpg", horizontal = True)
     image colony_ship_bunk = "bg/colony-ship-bunk.jpg"
     image talam = "bg/talam.jpg"
