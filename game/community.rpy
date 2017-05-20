@@ -39,6 +39,7 @@ label community1:
             $ colonists += 1
     "You continue talking and then head home."
     #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
+    # Maybe something about building a park/playground for everyone? 
     return
 
 
@@ -557,7 +558,7 @@ label community24:
     him "Yes, although children born on Terra must stay here."
     julia "Luckily my time of fertility is ending, but for some of you this will be most inconvenient."
     ilian "No kidding. I've got enough mouths to feed at the moment."
-    sara "[her_name], do you have any advice for us?"
+    sara "Dr. [her_name], do you have any advice for us?"
     her "For women with regular cycles, tracking the time of ovulation works fairly well."
     her "Couples may wish to exercise their creativity if they wish to avoid conception yet remain intimate during the woman's fertile time."
     her "So, [his_name], is RET trying to grow the colony?"

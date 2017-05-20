@@ -6,6 +6,7 @@
 # "demanding" and "responsive" are just for the current year and affect how much the child's stats increase that month.
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month (?).
 # TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
+# TODO: Use something that will randomize choice order after we've done a lot of testing
 
 # Intro event
 label family_intro:
@@ -211,6 +212,78 @@ label family3:
             $ responsive += 1
             $ neglectful += 1
     return
+    
+    scene farm_interior with fade
+    show him at midright
+    show her at midleft
+    show kid at center
+    him concerned "Whew, I thought I'd never finish harvesting all those potatoes!" # TODO: Change to some crop he's actually growing this year.
+    her surprised "You're all done?"
+    kid "All done!"
+    him happy "Yeah!"
+    her happy "Good job! I'm glad they're doing so well."
+    him normal "I think I'm going to take it easy for a few days..."
+    her concerned "Yeah..."
+    show her happy with dissolve
+    exted " Hey, you know what we've never done?"
+    him flirting "I can think of a lot of things."
+    her annoyed "As a family?"
+    him surprised "Oh. No, what?"
+    her happy "Gone on vacation!"
+    him annoyed "You went to the ocean that one time..."
+    her annoyed "Like I said, as a family."
+    him surprised "Where do you want to go? There's no hotels or anything..."
+    her surprised "I thought maybe we could go camping?"
+    him happy "That sounds great! I love camping!"
+    "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug." # TODO: animate this?
+    him "You want to go camping too, huh, [kid_name]? Sleep outside?"
+    kid "Outside!"
+    "She squirmed to get down, then toddled over the door and banged on it with her hands."
+    her normal "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
+    him normal "I know the perfect spot! Let's go tonight!"
+    her flirting "I think we'll need a little time to get a few things together. How about tomorrow?"
+    him happy "Okay, tomorrow! Right after you're done at the clinic!"
+    him surprised "Oh...can you really leave? What if something happens while you're gone?"
+    her determined "Everything will be fine. I'll take a radio so they can contact me if there's an emergency."
+    
+    scene path with fade
+    "The next day, we packed up some food and makeshift bedrolls and some equipment for starting fires."
+    "[her_name] and I took turns carrying the equipment and carrying [kid_name]. She liked to walk, but she walked so slowly because she wanted to stop and look at every rock, bug, and bush."
+    
+    scene sunset with fade
+    "Finally, we arrived."
+    him flirting "Remember this spot?"
+    her flirting "It seems kind of familiar... though I mostly remember the food."
+    him surprised "The food?"
+    her happy "Yeah, you made such a delicious picnic dinner!"
+    show her flirting with dissolve
+    extend " And then we stayed out here all night long..."
+    him happy "Oh, so you do remember!"
+    her normal "Of course I do. It's a beautiful place."
+    "I held [her_name] close for a minute, both of us savoring the memory."
+    her surprised "Oh! Where's [kid_name]?!"
+    "We had just set her down, and already she had wandered off. We both scanned the area. No point in worrying yet, right?"
+    him normal "She's just behind that bush."
+    "She was chewing on some of the leaves."
+    her concerned "Oh no! Are these poisonous?! I can't remember..."
+    "[her_name] got the leaves out of [kid_name]'s mouth. Hopefully she hadn't eaten too many..."
+    
+    # TODO: Finish this.
+    
+    menu:
+        "Make her a chewing toy":
+            $ responsive += 1
+            $ permissive += 1            
+        "Give her something she can chew on.": #like a woodenspoon
+            $ responsive += 1
+            $ demanding += 1
+            $ authoritative += 1            
+        "Slap her hand away every time she reaches for them.":
+            $ demanding += 1
+            $ authoritarian += 1
+        "Let her mouth them. It's good for her immune system, right?":
+            $ responsive += 1
+            $ neglectful += 1
 
 # 2 Earth years old
 label family4:
@@ -228,9 +301,6 @@ label family4:
         "Let [her_name] deal with it.":
             $ neglectful += 1
                         
-        # TODO: I don't completely understand when to call the function to increase it rather than the variable. How would you do this one, Andrea?
-        # Still working with the best way to use these.  Basically, the child variables depend on the parenting variables, so I wrote a function to increase them so we can easily change the formula we use.
-        # Currently, the child variables are increased each year automatically based on that year's decisions, so all we have to do in this file is worry about demanding and responsive.  
     return
 
 # 2.7 Earth years old
@@ -598,7 +668,8 @@ label family10:
                 
                 
 
-    # She doesn't have a little brother, so instead she's playing on the tablet                    
+    # She doesn't have a little brother, so instead she's playing on the tablet              
+    # TODO: Finish this
     else:
         "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
         menu:
