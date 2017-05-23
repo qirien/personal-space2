@@ -534,11 +534,77 @@ label family9:
 # Damages Tablet
 label family10:
     "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
+    "[kid_name] came home from school and I gave her a snack."
     if (year6_have_baby):
-        "Inbetween [bro_name]'s diaper changes and climbing on everything and reorganizing everything he could reach..."
-        "...he was a happy, easygoing kid."
-        "He and [kid_name] sometimes even played together."
+        "[bro_name] wanted a snack, too, so I sliced up some tomatoes." # TODO: or whatever crop we planted?
+    menu:
+        "What should I say?"
+        "How was school today?":
+            him "How was school today?"
+            kid "Okay."
+            him "..."
+            kid "..."
+            if (year6_have_baby):
+                him "[bro_name] and I rode the tractor all over today plowing the fields and mixing in the compost."
+            else:
+                him "I plowed the fields today. Gotta mix in all that fertilzer."
+            kid "Okay."
+        "What was the funniest thing that happened today?":
+            $ responsive += 1
+            him "What was the funniest thing that happened today?"
+            kid "The funniest?"
+            him "Or just a funny thing. Maybe there were a lot."
+            kid "Hmmm.... Well, we talked about what we wanted to be when we grew up."
+            him "Oh yeah?"
+            kid "The teacher asked #TODO:friend_name first, and she said she wanted to be a crabird."
+            him "Ha ha, wow, that'd be weird."
+            kid "Yeah! And then I thought, if I could be anything, I'd like to be a spaceship so I could take people anywhere they wanted to go."
+            him "A spaceship, huh?"
+            kid "Yeah, we could go to Earth whenever we wanted, and I could meet my grandparents, and get stuff people wanted."
+            him "Who knows, maybe you'll be a pilot or something?"
+            kid "Or I might invent teleporters."
+            him "I would love that."            
+        "What did you learn today?":
+            $ demanding += 1
+            him "So, what did you learn today?"
+            kid "Nothing."
+            him "Right, because you already know everything."
+            kid "Yup."
+            him "So what did you discuss today?"
+            kid "Stuff."
+            him "Such as?"
+            kid "Dad, why does it take so long for ships to get here from Earth?"
+            him "Oh, is that what you talked about at school?"
+            kid "No, I just want to know."
+            him "Well, I guess it's hard to make something go that fast. And it's really far."
+            kid "Sometimes I wonder if Earth really exists."
+            him "It definitely does. I was born there."
+            kid "It's just so hard to imagine."
+            him "Yeah, I bet it seems so foreign..."
+            kid "It is. All those cities, so many people... it's just weird."
+        "(Don't say anything)":
+            him "..."
+            kid "..."
+            "She ate her snack in silence."
+        
+    if (year6_have_baby):
+        "She finished her snack and got out the blocks. I cleaned up the kitchen a bit and [bro_name] wandered over to play with her."
+        "It still amazed me to see the two of them playing together. Two tiny people, that hadn't even existed several years ago..."
+        "They were quite different, though. When [kid_name] was his age, she was climbing on everything and pulling down everything she could reach."
+        "[bro_name] was a more easygoing kid."
+        "I love [kid_name], but it would've been a challenge to have two kids like that..."
+        "He was finally getting old enough to play with [kid_name], though he was still learning how."
         "She had stacked up the blocks into a mountain, and had setup some little figurines at the base."
+        menu:
+            "What should I say?"
+            "Compliment them on playing well.":
+                $ demanding += 1
+                $ responsive += 1
+                him "I'm glad to see you playing happily together."
+                "I tousled their hair. I know I'm probably biased, but they seemed like the cutest kids in the universe to me."
+                "They didn't seem to even notice I was there, and just kept playing."
+            "Just keep watching.":
+                "I didn't want to ruin the moment, so I just watched them."
         kid "[bro_name]! Look what I built! Here's the volcano. And here's us."
         "She walked the figurines up the mountain until they reached the top. [bro_name] made to touch the blocks, but she stopped him."
         kid "No no, it's hot."
@@ -560,7 +626,7 @@ label family10:
                 kid "No, it's not hot anymore."
                 "He pushed the side of the volcano, and the blocks tumbled down."
                 "She looked furious."
-                kid "[bro_name]! No, no, no, no!"
+                kid "[bro_name]! No, no, NO!!!"
                 menu:
                     "What should I say?"
                     "Stop yelling at him!":
@@ -589,12 +655,12 @@ label family10:
                         "We made our guys run down the pile of blocks."
                         menu:
                             "Keep playing with them.":
-                                "The three of us played natural disaster-escaping family until bedtime."
+                                "The three of us played natural disaster-escaping family until dinner time."
                                 # TODO: have some farming consequences?
                                 $ permissive += 1
                             "Compliment them on getting along.":
                                 $ demanding += 1
-                                him "You two sure have been getting along well. It's great to see you playing happily together."
+                                him "Good job getting along."
                                 "I'm pretty sure [kid_name] heard me, but she was already on to the next thing and didn't respond."
                                 "I left them to it while I went to change the oil in my tractor. Hopefully they'd get along for awhile."
                                 $ authoritative += 1
@@ -655,22 +721,24 @@ label family10:
                         "I made a building out of blocks."
                         him "Here's the school."
                         "[kid_name] made a path going off a different way."
-                        kid "And here's the community center."
+                        kid "And here's the storehouse. I'm going to get all the chocolate."
                         him "Here, [bro_name], why don't you use these blocks here?"
                         "I cleared out a little space for him and stacked some blocks up in a way that would be hard to knock down."
                         "He knocked it down anyway, banging his figurine on the blocks as if it was jumping."
                         him "Ha ha, maybe that's the junk pile."
                         "They played together for a while and I snuck off. Hopefully I still had time to change the oil in the tractor."
                         $ responsive += 1
-                        $ authoritative += 1
-                
-                
-                
-                
+                        $ authoritative += 1                
 
     # She doesn't have a little brother, so instead she's playing on the tablet              
-    # TODO: Finish this
     else:
+        kid "Can I use the computer pad?"
+        him "Sure, here you go. Be careful, okay?"
+        kid "I will."
+        "She loaded up the kid's science app that she liked, and I went to go change the oil in the tractor."
+        "It was probably an hour or so later that I went back in to check on her."
+        # TODO: Finish this
+            
         "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
         menu:
             "Do nothing. She'll learn eventually on her own.":

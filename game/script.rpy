@@ -18,7 +18,7 @@ label start:
     python:        
         # Demanding and Reponsive may change by more or less than 1 each year
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
-        # Max for each is 30
+        # Max for each is about 30
         demanding = 0
         total_demanding = 0
         # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
