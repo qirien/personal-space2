@@ -44,15 +44,47 @@ label community1:
 
 
 label community2:
-    "New colonists interpret their contracts more literally. They want to put all their crops in the community center before taking some for themselves."
-    # TODO: have the new colonist quote the contract so players know what the exact terms are.
+    "You've run out of storage space in your cellar, so you take the extras over to the storehouse."
+    kevin "I'm aware that it's less efficient. But if I don't bring you my whole harvest, you'll have no idea how much food I'm making. Plus it's in our contract."
+    ilian "I trust you to not hoard food, but I do appreciate your thoroughness. As long as you can manage bringing it all over."
+    ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and they can have more variety in their diet."
+    him "Sure, do you like spinach?" #to do:is there a way to call a vegetable that has been planted?
+    kevin "It doesn't really matter to me. They're all edible, right?"
+    ilian "You know, Kevin and Zaina brought me everything that they harvested. Apparently that's the way we've supposed to have been doing it all along."
+    him "Huh, really? How in the world do you have time to farm?"
+    kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
+    him "'It's so much more than a pastime for us!'"#to himself
+    kevin "I need to get going, but I will take some of what [his_name] brought, if that's okay."
+    ilian "That's what I'm here for."
+    #kevin leaves
+    ilian "We probably should start doing things the way it is in the contract."
+    ilian "I know it seems less efficient, but it gives us more control in the case of a famine."
+    him "What if the storehouse burns down? Then we'll all have nothing."
+    ilian "Or some alien varmint could eat it all no matter where it is."
+    ilian "Look, I'm just telling you what our contract says. Do you want to read the fine print? I have it here on my tablet."
     menu:
-        "Agree with their more literal interpretation.":
+        "Actually, yes.":
+            jump contract
+        "No, I believe you.":
+             $ pass
+    label after_contract:
+    ilian "Will you start bringing your whole harvest in or not?"
+    menu:
+        "Should I bring my whole harvest in to the storehouse?"
+        "I can bring in the whole harvest.":
             $ colonists += 1 
             $ miners += 1 #would this also affect the miner's ease of transition later on? yes, so I should TODO: another variable for this event?
         "Push to have each farmer store most of their own crops. It's more efficient, right?":
             $ luddites += 1
     return
+    
+    label contract: #to do: make this a different font with a white paper fade-in so it looks all businessy
+        "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists. Farmers will farm 3 acres to the best of their ability as weather permits."   
+        "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."  
+        "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
+        "Colonist couples of childbearing age must attempt to replace themselves through reproduction. Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
+        "RET reserves the right to amend this document as it sees fit."
+    jump after_contract
 
 
 label community3:
@@ -504,7 +536,7 @@ label community22:
     "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
     "What do you do?"
     menu:
-        #this feels like it escalated really quickly. Talk with both parties before the menu?
+        #this feels like it escalated really quickly. Talk with both parties before the menu? depending on your relationship.
         "Form a militia with the miners to force the luddites out of the cave.":
             $ miners += 1
         "Not your problem. Do nothing.":
@@ -520,6 +552,7 @@ label community22:
 
 label community23:
     "RET wants to switch to artificial meat."  #I like the idea of doing something with artificial meat, but let's keep thinking about this.  Maybe RET announces they will not send anymore live animals, but instead an artificial meat lab, and you can decide to phase out your animals or breed them more? 
+    #this even doesn't have to be about meat either.
     "You hate how it tastes."
     "Make the switch?"
     menu:
