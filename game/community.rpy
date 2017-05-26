@@ -140,8 +140,18 @@ label community4:
 
 
 label community5:
-    "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
-    "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
+    "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
+    "RET sent an instantaneous communication with advice on how to proceed."
+    "It said:"
+    $ style = get_parenting_style()
+    if (style== "authoritative"):
+        "You'll be getting 50 new miner neighbors in 4 Earth years. Please figure out the most efficient way to feed them."
+        return
+    elif(style == "authoritarian"):
+        "50 miners are coming. Prepare to feed them, and institute currency so that they can pay you for what they eat."
+        return
+    elif(style == "permissive"):
+        "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
         "Should we start rationing food?"
