@@ -88,18 +88,43 @@ label community2:
 
 
 label community3:
-    "The old colonists sometimes accidentally leave the new colonists out of stuff, like women's bath night or goat meat distribution (aka BBQ)."
+    thuc "What the heck. Did you just do that?"
+    him "Yes, I did. With the bonuses from my cavalry, my legendary general, and my superior navy from starting on an island, I can conquer Russia in one turn!"
+    pete "That's the last time I let you start as Tonga!"
+    thuc "I think you just won the game."
+    him "I don't know, there might be a way for you to make a religious conquest!"
+    thuc "Nope. I resign."
+    pete "Well, that was a good game. I should have chosen a better starting location, but I thought gold would be more important than it was."
+    him "Same time next month?"
+    pete "Yes, I think so. I'll send out a reminder on the community bulletin."
+    him "Okay, but can we call it something other than game night? All the new colonists will think we're a bunch of nerds."
+    pete "Well, we are a bunch of nerds."
+    him "Fine, then they'll believe me when I tell everyone I'm going to an intensive research session with you!"
+    pete "Ha! Fine by me. As long as everyone else calls it that no one will know the difference."
+    "A few months later, Kevin asks about it." #why are you talking to Kevin
+    kevin "The colony documentation didn't mention anything about intensive research sessions. Are they optional? I keep hearing about people attending them."
+    him "Oh, those. Yes, you just need to set something up with Pete."
+    kevin "What do you research? Pete isn't equipped to help with fieldwork."
+    him "I happen to have some research interests outside of fieldwork."
+    kevin "Are you secretly into art history or something?"
+    him "No, it's far more mundane. That's just what we call our monthly game night."
+    kevin "Seriously? Why didn't you tell me sooner? I love playing games."
+    him "I didn't want the new colonists to think I was being frivolous with my time."
+    kevin "Face-to-face socialization is highly recommended by RET's psychologists."
+    kevin "I think someone would be worried if you DIDN'T have any time to relax."
+    him "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
+    kevin "Come on. That's just what they told their grandkids. Let me come to your game night!"
+    him "Okay, come then! We need someone to shake things up."
+    kevin "But what about the other new colonists?"
     menu:
-        "How do you help them?"
-        
-        "We'll try to be better about inviting everyone next time.":
-            $ pass
-        #TODO: make option to ask someone to do it, or hope someone else does it. If you hope someone else does it, no one does it.
-        "I'll personally make the calendar more accurate, and put a reminder on the village discussion forum.":
+        "Sure, invite them all! We can reserve the town hall.":
             $ colonists += 1
-            # TODO: what if he forgets?
-        "I'll ask the mayor to write upcoming events on a white board outside the storeroom.":
-            $ luddites += 1
+        "They can make their own game night if they want.":
+            $ luddites += 1 #rationale: the luddites are a product of the colonists becoming more fractured
+        "I'll ask Pavel to remind them to make socialization a priority.":
+            $ pass #I kind of want the compromise option to do nothing
+            #TO DO: make narrative consequences for this actions in this event to round things out.
+
     return
 
 
