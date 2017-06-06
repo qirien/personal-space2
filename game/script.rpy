@@ -70,6 +70,8 @@ label start:
         trade_with_luddites = False
         invited_luddites = False
         invited_miners = False
+        whole_harvest_to_storehouse = False
+        town_hall_games = False
         # Community groups. The higher the variable, the better your relationship with that group is.
         colonists = 0
         miners = 0

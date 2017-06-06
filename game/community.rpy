@@ -121,13 +121,13 @@ label community3:
         "Sure, invite them all! We can reserve the town hall.":
             $ colonists += 1
             $ town_hall_games = True
-        jump invite_all
+            jump invite_all
         "They can make their own game night if they want.":
             $ luddites += 1 #rationale: the luddites are a product of the colonists becoming more fractured
-        jump no_invite
+            jump no_invite
         "I'll ask Pavel, the mayor, to remind them to make socialization a priority.":
             $ pass
-        jump ask_pavel
+            jump ask_pavel
         
     label invite_all:
         "Next month, we invited everyone to town hall to game night."
