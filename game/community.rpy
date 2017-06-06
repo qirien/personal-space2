@@ -28,7 +28,7 @@ label community1:
     zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working."
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
     him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
-    kevin "Yes. Usually when a company invests a bunch of money into a research project they would expect to make a profit."
+    kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
     "What do you think the colony's purpose is?"
     menu:
         "Yep, making money is our goal.":
@@ -45,16 +45,16 @@ label community1:
 
 label community2:
     "You've run out of storage space in your cellar, so you take the extras over to the storehouse."
-    kevin "I'm aware that it's less efficient. But if I don't bring you my whole harvest, you'll have no idea how much food I'm making. Plus it's in our contract."
+    kevin "I'm aware that it's less efficient. But if I don't bring you my whole harvest, you won't know how much food I'm making. It's also part of our contract."
     ilian "I trust you to not hoard food, but I do appreciate your thoroughness. As long as you can manage bringing it all over."
     ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and they can have more variety in their diet."
     him "Sure, do you like spinach?" #to do:is there a way to call a vegetable that has been planted?
-    kevin "It doesn't really matter to me. They're all edible, right?"
+    kevin "A variety of foodstuffs is beneficial to anyone's diet."
     ilian "You know, Kevin and Zaina brought me everything that they harvested. Apparently that's the way we've supposed to have been doing it all along."
     him "Huh, really? How in the world do you have time to farm?"
     kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
     him "'It's so much more than a pastime for us!'"#to himself
-    kevin "I need to get going, but I will take some of what [his_name] brought, if that's okay."
+    kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
     ilian "That's what I'm here for."
     #kevin leaves
     ilian "We probably should start doing things the way it is in the contract."
@@ -73,7 +73,8 @@ label community2:
         "Should I bring my whole harvest in to the storehouse?"
         "I can bring in the whole harvest.":
             $ colonists += 1 
-            $ miners += 1 #would this also affect the miner's ease of transition later on? yes, so I should TODO: another variable for this event?
+            $ miners += 1 #TODO: another variable for this event?
+            $ whole_harvest_to_storehouse = True
         "Push to have each farmer store most of their own crops. It's more efficient, right?":
             $ luddites += 1
     return
@@ -88,7 +89,7 @@ label community2:
 
 
 label community3:
-    thuc "What the heck. Did you just do that?"
+    thuc "What the heck. Did you just do that?" #is heck too Mormon
     him "Yes, I did. With the bonuses from my cavalry, my legendary general, and my superior navy from starting on an island, I can conquer Russia in one turn!"
     pete "That's the last time I let you start as Tonga!"
     thuc "I think you just won the game."
@@ -102,48 +103,82 @@ label community3:
     him "Fine, then they'll believe me when I tell everyone I'm going to an intensive research session with you!"
     pete "Ha! Fine by me. As long as everyone else calls it that no one will know the difference."
     "A few months later, Kevin asks about it." #why are you talking to Kevin
-    kevin "The colony documentation didn't mention anything about intensive research sessions. Are they optional? I keep hearing about people attending them."
-    him "Oh, those. Yes, you just need to set something up with Pete."
-    kevin "What do you research? Pete isn't equipped to help with fieldwork."
+    kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
+    him "Oh, those. It's just people talking to Pete about stuff."
+    kevin "How does he assist in research? Pete isn't equipped to help with fieldwork."
     him "I happen to have some research interests outside of fieldwork."
-    kevin "Are you secretly into art history or something?"
+    kevin "He's a librarian, right? Is your hobby art history or something similar?"
     him "No, it's far more mundane. That's just what we call our monthly game night."
-    kevin "Seriously? Why didn't you tell me sooner? I love playing games."
+    kevin "I would love to play games with others. Why was this information hidden?"
     him "I didn't want the new colonists to think I was being frivolous with my time."
     kevin "Face-to-face socialization is highly recommended by RET's psychologists."
-    kevin "I think someone would be worried if you DIDN'T have any time to relax."
+    kevin "It may feel frivolous, but it can actually increase your productivity."
     him "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
-    kevin "Come on. That's just what they told their grandkids. Let me come to your game night!"
+    kevin "That's simply what they told their grandchildren. Let me come to your game night!"
     him "Okay, come then! We need someone to shake things up."
-    kevin "But what about the other new colonists?"
+    kevin "Shall I invite the other new colonists as well?"
     menu:
         "Sure, invite them all! We can reserve the town hall.":
             $ colonists += 1
+            $ town_hall_games = True
+        jump invite_all
         "They can make their own game night if they want.":
             $ luddites += 1 #rationale: the luddites are a product of the colonists becoming more fractured
-        "I'll ask Pavel to remind them to make socialization a priority.":
-            $ pass #I kind of want the compromise option to do nothing
-            #TO DO: make narrative consequences for this actions in this event to round things out.
-
-    return
-
+        jump no_invite
+        "I'll ask Pavel, the mayor, to remind them to make socialization a priority.":
+            $ pass
+        jump ask_pavel
+        
+    label invite_all:
+        "Next month, we invited everyone to town hall to game night."
+        "Only three or four people showed up, including Kevin, but they were happy to play games with us."
+        return
+        
+    label no_invite:
+        "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
+        "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
+        return
+         
+    label ask_pavel:
+        "I asked Pavel to remind everyone to remember to get to know the new colonists."
+        "He sent an annoucement to the community bulletin."
+        "I don't know if anyone actually did anything about it, but the thought was there."
+        return
 
 label community4:
-    "Rare Earth Tech says that they need a liason from the colony."
-    "The colony has a town meeting to determine how to deal with the situation."
-    "Who will represent our colony's needs to Rare Earth Tech?"
-    # explanation of why this is separate from the mayor
-    "We are accepting nominations."
+    "Pavel, our mayor, called a town meeting."
+    pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
+    pavel "This is what it said:"
+    #TODO: separate style for RET messages?
+    $ style = get_parenting_style()
+    if (style== "authoritative"):
+        "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+        return
+    elif(style == "authoritarian"):
+        "We need a designated contact with the colony that you trust. Send your decision."
+        return
+    elif(style == "permissive"):
+        "You should probably choose someone to represent the colonist's interests to us."
+    else:
+        "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+    pavel "It's my job to encourage whatever is best for the colony."
+    pavel "I don't want you to ever question my loyalty. We need someone else for this job."
+    pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
+    pavel "They'll have to tell us what RET wants and convince us to change if necessary."
+    pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
+    pavel "I doubt anyone will volunteer for extra work, so we'd like everyone to nominate someone tonight."
+    pavel "Then we'll vote on the nominations."
+    #TODO: chatter between colonists would make this scene more lively and/or amusing
     menu:
         "Who will you nominate? You may not nominate yourself."
         
         "Sister Naomi, our religious leader and childcare leader.":
             $ pass
-        "My wife's friend Sara. She doesn't seem too busy.":
+        "My wife's friend Sara. She's familiar with colony politics since she assists the mayor.":
             $ pass
         "My friend Thuc. I think that would be funny.":
             $ pass
-    "We listened to the results of the election."
+    "After the nominations, we voted for our favorite candidate."
     $ style = get_parenting_style()
     if (style== "authoritative"):
         "Your fellow colonists elected you to be the new representative."
@@ -160,7 +195,6 @@ label community4:
         "Sara is elected as the new representative."
         #TODO: does the order of these options matter for variable settings?
         #should a leader of the militia be elected here as well?
-        
     return
 
 
@@ -170,23 +204,34 @@ label community5:
     "It said:"
     $ style = get_parenting_style()
     if (style== "authoritative"):
-        "You'll be getting 50 new miner neighbors in 4 Earth years. Please figure out the most efficient way to feed them."
+        "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
         return
     elif(style == "authoritarian"):
-        "50 miners are coming. Prepare to feed them, and institute currency so that they can pay you for what they eat."
+        "50 miners are arriving in 4 Earth years. Prepare to feed them, and institute currency so that they can pay you for what they eat."
         return
     elif(style == "permissive"):
         "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
+    else:
+        "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
-        "Should we start rationing food?"
+        if whole_harvest_to_storehouse = True:
+            ilian "Well, in what I thought was a colossal waste of resources, a few farmers are already bringing their whole harvest to the storehouse."
+            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
+            ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
+        else: 
+            ilian "I don't know how much food you guys are storing, so I have no idea if we'll have enough food for them or not."
+            ilian "If worst comes to worst, they could farm instead of mining, which I'm sure RET would be THRILLED with."
+        "How should we prepare?"
         menu:
-            "Yes, ration food as much as possible. Otherwise we will have hungry miners.":
+            "Have all the farmers bring their whole harvest to Ilian instead of storing it individually, and encourage them to grow extra grain and beans.":
                 $ miners += 2
-            "Ration a little--the stuff we don't like anyway. We don't want to starve ourselves.":
+            "Have farmers bring in a certain amount of surplus each harvest.":
                 $ miners += 1
-            "No, don't ration food. The miners can hunt and forage. This taxation wasn't in our contract.":
-                $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
+            "Don't set aside food for the miners. They can hunt and forage. This taxation wasn't in our contract.":
+                $ luddites -= 1 
+                # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
+                #but if farmers have their own storage, they can more easily trade under-the-table with luddites.
     else:
         show sara at midright
         sara "The miners won't arrive for another four Earth years."
@@ -199,22 +244,34 @@ label community5:
 
 
 label community6:
+    #if town_hall_games = True, make the background the town hall. else it's at Pete's house.
     show pete at midright
+    thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
+    him "Yes, and I promise to start in the Northern Hemisphere this time."
+    pete "Your Antarctica strategy was stupid."
+    him "What's stupid is trying the same losing strategy every time and hoping it will win."
+    pete "Ouch. Can we keep score on your tablet? Ours is out for repairs."
+    him "What do you mean? Don't you both have one?"
     show helen at midleft
-    "Pete and Helen accidentally left a tablet outside during a solar flare."
-    "The tablet was completely ruined. The same week, their other tablet was out for repairs."
-    "They missed watching movies and reading books and keeping in touch with everyone. But they found that they were more creative about how to entertain themselves."
-    # TODO: How does the player hear about this?  Maybe Pete asks to use his to submit his weekly report or make a request or something?
-    # TODO: determine just how durable the tablets are. They could probably survive being submerged, stepped on, etc. Maybe run over by a tractor?  Poor Pete, he runs over everything!  :-(
-    pete "It made me wonder if I would be happier living on my own, with no ties to any company or colony."
-    pete "What would you think if someone left the colony?"
+    helen "No, because SOMEONE left it out during a solar flare."
+    pete "And SOMEONE dropped the other one from the counter for the last time."
+    him "That must be rough."
+    pete "Actually I've found it strangely freeing. I used to constantly check my tablet for new messages. Now I know how unimportant most of them were."
+    pete "I can focus more of my attention on what I'm doing."
+    pete "And since I'm not a farmer, it's not like I need to calculate complicated soil stuff."
+    helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    pete "I don't know about me. I kind of like feeling like a hermit with no ties to any company or colony."
+    thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
     menu:
-        "I'd think they were very irresponsible.":
+        "What do you think?"
+        "We need each other to survive.":
             $ colonists += 1
-        "I could understand that. Sometimes I feel the same way.":
+        "I understand wanting to be away from it all. It's part of the reason I came here.":
             $ luddites += 1
-        "I guess they would have to forfeit any help from Rare Earth Tech": 
+        "It sounds nice and all, but we have an obligation to help RET feed their miners now.": 
             $ miners += 1
+            
+        #TODO:flesh out the menu options; make different scene endings based on them
     return
 
 label community7:
