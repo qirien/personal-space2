@@ -95,13 +95,13 @@ label community3:
     thuc "I think you just won the game."
     him "I don't know, there might be a way for you to make a religious conquest!"
     thuc "Nope. I resign."
-    pete "Well, that was a good game. I should have chosen a better starting location, but I thought gold would be more important than it was."
+    pete "Well, that was a good game. I should have situated myself better from the beginning. I got caught up in collecting gold instead of buildin' an army."
     him "Same time next month?"
-    pete "Yes, I think so. I'll send out a reminder on the community bulletin."
-    him "Okay, but can we call it something other than game night? All the new colonists will think we're a bunch of nerds."
+    pete "Yes, I reckon so. I'll remind you on the community bulletin."
+    him "Can we call it something other than game night? All the new colonists will think we're a bunch of nerds."
     pete "Well, we are a bunch of nerds."
     him "Fine, then they'll believe me when I tell everyone I'm going to an intensive research session with you!"
-    pete "Ha! Fine by me. As long as everyone else calls it that no one will know the difference."
+    pete "Ha! Fine by me. As long as everyone else calls it that they'll be none the wiser."
     "A few months later, Kevin asks about it." #why are you talking to Kevin
     kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
     him "Oh, those. It's just people talking to Pete about stuff."
@@ -200,21 +200,21 @@ label community4:
 
 label community5:
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
-    "RET sent an instantaneous communication with advice on how to proceed."
-    "It said:"
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
-        "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
-        return
-    elif(style == "authoritarian"):
-        "50 miners are arriving in 4 Earth years. Prepare to feed them, and institute currency so that they can pay you for what they eat."
-        return
-    elif(style == "permissive"):
-        "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
-    else:
-        "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
+        "RET sent me an instantaneous communication with advice on how to proceed."
+        "It said:"
+        $ style = get_parenting_style()
+        if (style== "authoritative"):
+            "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
+            return
+        elif(style == "authoritarian"):
+            "50 miners are arriving in 4 Earth years. Prepare to feed them, and institute currency so that they can pay you for what they eat."
+            return
+        elif(style == "permissive"):
+            "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
+        else:
+            "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
         if whole_harvest_to_storehouse = True:
             ilian "Well, in what I thought was a colossal waste of resources, a few farmers are already bringing their whole harvest to the storehouse."
             ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
@@ -226,21 +226,75 @@ label community5:
         menu:
             "Have all the farmers bring their whole harvest to Ilian instead of storing it individually, and encourage them to grow extra grain and beans.":
                 $ miners += 2
+                jump whole_harvest_required
             "Have farmers bring in a certain amount of surplus each harvest.":
                 $ miners += 1
-            "Don't set aside food for the miners. They can hunt and forage. This taxation wasn't in our contract.":
-                $ luddites -= 1 
-                # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
-                #but if farmers have their own storage, they can more easily trade under-the-table with luddites.
+                jump ration_harvest
+            "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
+                $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
+                jump no_formal_rationing
     else:
         show sara at midright
+        "Sara called you in to discuss the latest news from RET."
+        sara "RET is sending miners to start mining the Indium that Zaina and Kevin found."
         sara "The miners won't arrive for another four Earth years."
-        sara "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+        if whole_harvest_to_storehouse = True:
+            sara "Ilian tells me that we'll have enough food for them if we start storing a little now."
+        else:
+            sara "We're not sure if we'll have enough food for them or not."
+        sara "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
         sara "Next harvest we'll start accepting canned goods as well."
         sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         sara "I'll be grading your crops against the RET standards."
+        sara "There's something I need your help with though. Some of the other farmers aren't excited about storing their surplus in the storehouse."
+        him "Really? Like who?"
+        sara "Pete and Martin are the ones you know the best."
+        him "I'll talk to them." #this could also be a choice... how neglectful do you want to be
+        jump talk_about_food_storage
         # TODO: when/where are crops preserved?  Does Ilian have machines/employees that do this? Or are farmers supposed to do this before taking to the storehouse?
     return
+    
+    label whole_harvest_required:
+    ilian "I'll need some help to build silos for the wheat."
+    him "Wait, you mean it's not going into vacuum-sealed cans?"
+    ilian "We don't have enough metal for that. But we can build big covered containers."
+    him "This way we'll definitely have enough for the miners, right?"
+    ilian "Yes. They won't even need to forage, unless they want some extra meat."
+    jump ration_harvest
+    
+    label ration_harvest:
+    ilian "I support your plan, but I'm worried about how we'll enforce it."
+    ilian "Some of the other farmers are reluctant to centrally locate food."
+    him "Oh? Like who?"
+    ilian "Like Pete and Martin."
+    ilian "I think they'd listen to you if you tried to persuade them though."
+    ilian "We'll pay credits for their surplus, which they can use to buy other crops."
+    him "I'll talk to them."
+    jump talk_about_food_storage
+    
+    label talk_about_food_storage:
+    him "Hey Pete. How are your cattle doing?"
+    pete "Surprisingly hale for living on an alien planet."
+    him "Great. There's something I want to ask you about."
+    menu:
+        "How do you approach the subject?"
+        "I heard that you're not storing much surplus in the storehouse.":
+            $ pass
+            jump pete_no_storehouse
+        "Could you start storing more surplus in the storehouse?":
+            $ pass
+            jump pete_no_storehouse #are you okay with having a choice that has no impact on the story
+            
+    label pete_no_storehouse:
+    pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
+    pete "I have yet to successfully make a hard cheese that doesn't mold right away."
+    pete "The best way to store my surplus is to keep growing this herd."
+    #could have a choice here about how to respond, but you can't really change his mind. or try to bring up the credits thing, and he insists that the colony wouldn't let him starve.
+    him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
+    pete "Don't mention it." #more pete-style way to say this?
+    #TODO: conversation with Martin
+    return
+    
 
 
 label community6:
@@ -248,17 +302,17 @@ label community6:
     show pete at midright
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
     him "Yes, and I promise to start in the Northern Hemisphere this time."
-    pete "Your Antarctica strategy was stupid."
-    him "What's stupid is trying the same losing strategy every time and hoping it will win."
-    pete "Ouch. Can we keep score on your tablet? Ours is out for repairs."
+    pete "Your Antarctica strategy had no sense whatsoever."
+    him "Trying the same losing strategy every time and hoping it will win has no sense."
+    pete "I'll make you eat your words yet. Can we keep track of score on your tablet? Ours is out for repairs."
     him "What do you mean? Don't you both have one?"
     show helen at midleft
     helen "No, because SOMEONE left it out during a solar flare."
-    pete "And SOMEONE dropped the other one from the counter for the last time."
+    pete "And SOMEONE left their tablet in spittin' distance of a cow."
     him "That must be rough."
     pete "Actually I've found it strangely freeing. I used to constantly check my tablet for new messages. Now I know how unimportant most of them were."
     pete "I can focus more of my attention on what I'm doing."
-    pete "And since I'm not a farmer, it's not like I need to calculate complicated soil stuff."
+    pete "I do my feed calculations by hand for the cattle."
     helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
     pete "I don't know about me. I kind of like feeling like a hermit with no ties to any company or colony."
     thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
