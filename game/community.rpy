@@ -292,7 +292,18 @@ label community5:
     #could have a choice here about how to respond, but you can't really change his mind. or try to bring up the credits thing, and he insists that the colony wouldn't let him starve.
     him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
     pete "Don't mention it." #more pete-style way to say this?
-    #TODO: conversation with Martin
+    #change scene
+    him "So Martin, how's your farm doing?"
+    martin "Pretty good considering that we're on an alien planet!"
+    martin "But recently some of our turkeys got sick and we couldn't even eat their meat after they died."
+    him "How about your beans, are they doing well?"
+    martin "Yes! We eat them about as fast as we can grow them."
+    him "I was thinking if you had some extras, you could store them in the storehouse."
+    martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
+    martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
+    him "It works well now, but at some point we'll need to take everything to the storehouse so everyone can get a variety of food."
+    martin "Well if anyone wants our food they can come here and trade for it."
+    #TODO: choice in conversation with Martin?
     return
     
 
@@ -310,22 +321,42 @@ label community6:
     helen "No, because SOMEONE left it out during a solar flare."
     pete "And SOMEONE left their tablet in spittin' distance of a cow."
     him "That must be rough."
-    pete "Actually I've found it strangely freeing. I used to constantly check my tablet for new messages. Now I know how unimportant most of them were."
-    pete "I can focus more of my attention on what I'm doing."
-    pete "I do my feed calculations by hand for the cattle."
+    pete "Actually I've found it liberating. I used to perpetually check my tablet for new messages. Now I know how useless most of them were."
+    pete "I can completely think about what I'm doing."
+    pete "I do my feed calculations for the cattle by hand."
     helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
-    pete "I don't know about me. I kind of like feeling like a hermit with no ties to any company or colony."
+    pete "I don't know about me. I kind of like feeling like I'm completely on my own."
     thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
     menu:
         "What do you think?"
         "We need each other to survive.":
             $ colonists += 1
-        "I understand wanting to be away from it all. It's part of the reason I came here.":
+            him "We need each other to survive. There's no way one person could survive on their own out here."
+            pete "Is that really true? I've been out there on my own before--there's good foraging and hunting."
+            him "Maybe you could survive on your own, but what about your family?"
+            pete "They can help forage too!"
+            pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
+            pete "It's definitely more reliable to live in a community where we can help each other."
+        "I understand wanting to be away from it all.":
             $ luddites += 1
-        "It sounds nice and all, but we have an obligation to help RET feed their miners now.": 
+            him "I understand wanting to be away from it all. It's part of the reason I came here."
+            pete "We don't have to deal with inane government interference or rules made for the sake of havin' 'em."
+            him "Although some of RETs demands have felt that way..."
+            pete "True. But you can see where they're coming from for the most part."
+            pete "And they're not in our face about it. I could go camping tonight and they'd be none the wiser."
+            him "Yeah, as long as your cows were okay with it."
+        "We have an obligation to help RET feed their miners now.": 
             $ miners += 1
-            
-        #TODO:flesh out the menu options; make different scene endings based on them
+            him "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
+            him "If we all went rogue, those miners would starve to death."
+            him "And we wouldn't be holding up our end of the bargain. It's expensive to send us out here."
+            pete "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I wouldn't feel badly about changing my side of things."
+            him "What do you mean?"
+            pete "What if we don't have enough food for all these miners?"
+            pete "If that happens, you bet I'm going to look after me and my own first."
+            pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
+            pere "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
+            him "Good point. I hope we can mange."
     return
 
 label community7:
