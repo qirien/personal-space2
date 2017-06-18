@@ -301,8 +301,8 @@ label community5:
     him "I was thinking if you had some extras, you could store them in the storehouse."
     martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
-    him "It works well now, but at some point we'll need to take everything to the storehouse so everyone can get a variety of food."
-    martin "Well if anyone wants our food they can come here and trade for it."
+    him "It works well now, but soon I'll be trading credits instead of food." #player decision?
+    martin "Well if anyone wants our food they can come here for it."
     #TODO: choice in conversation with Martin?
     return
     
@@ -355,29 +355,68 @@ label community6:
             pete "What if we don't have enough food for all these miners?"
             pete "If that happens, you bet I'm going to look after me and my own first."
             pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
-            pere "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
+            pete "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
             him "Good point. I hope we can mange."
     return
 
 label community7:
-     "Some people were compensated more than others for their jobs as colonists."
-     "At a farmer's meeting, you mention that the work is worth it to help your parents live comfortably."
-     "Thuc says that he almost paid Rare Earth Tech for the chance to come, despite you feeling that he's more qualified because of his experience with sustainable farming techniques."
-     "Rare Earth Tech paid off Ilian's considerable restaurant supply startup debts."
-     "None of the new colonists were compensated."
-     "Why didn't Rare Earth Tech deal more fairly with its employees?"
-     if is_liason:
+    pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
+    pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
+    pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
+    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come here."
+    him "At least I know that my parents are taken care of."
+    kevin "What do you mean?"
+    him "RET gave me a bunch of money that I used for their retirement fund."
+    kevin "They made me no such offer."
+    thuc "I practically had to pay RET to let me come. What gives?"
+    him "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
+    ilian "Maybe some of us were happy to leave our Earth lives behind."
+    helen "This is a new one for me. Ilian has a secret past?"
+    ilian "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
+    ilian "RET said they would take care of it."
+    helen "Do you know if they did?"
+    ilian "I haven't heard from any debt collectors since."
+    kevin "You may have noticed but it's very difficult for people on Earth to contact you here."
+    ilian "It was win-win for me."
+    kevin "I was so intent on coming to Terra that I didn't think to negotiate compensation."
+    thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
+    him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
+    thuc "Or 8! Fewer pieces to ship."
+    kevin "Did your children suffer developmental delays because of the journey?"
+    thuc "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
+    thuc "They're not necessarily reading sooner, but we genuinely need their help on the farm."
+    thuc "They have more responsibilities than I did at their age, so they have to grow up fast."
+    thuc "And none of my family are getting paid for completely transplanting our lives here."
+    if is_liason:
+        thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
-            "I don't know. That seems pretty unfair. I'll ask them in my next letter.":
-                $ luddites += 1
-            "From a business standpoint, it makes more sense to negotiate salary with each employee individually.":
+            "I'll ask them in my next e-mail.":
                 $ miners += 1 
-            "We're all here now, so let's help each other.":
+                thuc "E-mail? Not an insta-com?"
+                him "I only get so many instant communication slots."
+                thuc "But by the time they get your e-mail no one will remember me."
+                him "I think RET has bigger things to worry about."
+                thuc "Fine, an e-mail is fine."
+            "From a business standpoint, you're stuck here. You don't have any leverage anymore.":
+                $ luddites += 1
+                thuc "I sure do have leverage!"
+                thuc "I could decide to leave the colony!"
+                him "You wouldn't seriously consider that."
+                helen "I don't know, he looks pretty serious."
+                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people." 
+                thuc "I just don't like the idea that I have no power over my life."
+            "I hear you, but let's focus on the here and now.":
                 $ colonists += 1
-     else:
-        "Sara made some kind of excuse for Rare Earth Tech's econimizing."
-     
-     return
+                him "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
+                him "Let's leave the past in the past."
+                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+    else:
+        thuc "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
+        sara "I heard that RET is economizing, but I can ask."
+        thuc "Thanks."
+        # better non-liason option?
+    return
 
 
 label community8:
