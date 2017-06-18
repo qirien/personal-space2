@@ -566,6 +566,7 @@ label community24:
     #todo: set up Miranda as a character
     #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
     #consequences if you said not to trade for it in community 21
+    # Maybe Kelly offers to perform sterilizations, though she's not an expert. "I'd rather perform sterilizations than abortions".
     
     return
 
