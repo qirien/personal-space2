@@ -28,7 +28,7 @@ label community1:
     zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working."
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
     him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
-    kevin "Yes. Usually when a company invests a bunch of money into a research project they would expect to make a profit."
+    kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
     "What do you think the colony's purpose is?"
     menu:
         "Yep, making money is our goal.":
@@ -44,49 +44,141 @@ label community1:
 
 
 label community2:
-    "New colonists interpret their contracts more literally. They want to put all their crops in the community center before taking some for themselves."
-    # TODO: have the new colonist quote the contract so players know what the exact terms are.
+    "You've run out of storage space in your cellar, so you take the extras over to the storehouse."
+    kevin "I'm aware that it's less efficient. But if I don't bring you my whole harvest, you won't know how much food I'm making. It's also part of our contract."
+    ilian "I trust you to not hoard food, but I do appreciate your thoroughness. As long as you can manage bringing it all over."
+    ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and they can have more variety in their diet."
+    him "Sure, do you like spinach?" #to do:is there a way to call a vegetable that has been planted?
+    kevin "A variety of foodstuffs is beneficial to anyone's diet."
+    ilian "You know, Kevin and Zaina brought me everything that they harvested. Apparently that's the way we've supposed to have been doing it all along."
+    him "Huh, really? How in the world do you have time to farm?"
+    kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
+    him "'It's so much more than a pastime for us!'"#to himself
+    kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
+    ilian "That's what I'm here for."
+    #kevin leaves
+    ilian "We probably should start doing things the way it is in the contract."
+    ilian "I know it seems less efficient, but it gives us more control in the case of a famine."
+    him "What if the storehouse burns down? Then we'll all have nothing."
+    ilian "Or some alien varmint could eat it all no matter where it is."
+    ilian "Look, I'm just telling you what our contract says. Do you want to read the fine print? I have it here on my tablet."
     menu:
-        "Agree with their more literal interpretation.":
+        "Actually, yes.":
+            jump contract
+        "No, I believe you.":
+             $ pass
+    label after_contract:
+    ilian "Will you start bringing your whole harvest in or not?"
+    menu:
+        "Should I bring my whole harvest in to the storehouse?"
+        "I can bring in the whole harvest.":
             $ colonists += 1 
-            $ miners += 1 #would this also affect the miner's ease of transition later on? yes, so I should TODO: another variable for this event?
+            $ miners += 1 #TODO: another variable for this event?
+            $ whole_harvest_to_storehouse = True
         "Push to have each farmer store most of their own crops. It's more efficient, right?":
             $ luddites += 1
     return
+    
+    label contract: #to do: make this a different font with a white paper fade-in so it looks all businessy
+        "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists. Farmers will farm 3 acres to the best of their ability as weather permits."   
+        "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."  
+        "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
+        "Colonist couples of childbearing age must attempt to replace themselves through reproduction. Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
+        "RET reserves the right to amend this document as it sees fit."
+    jump after_contract
 
 
 label community3:
-    "The old colonists sometimes accidentally leave the new colonists out of stuff, like women's bath night or goat meat distribution (aka BBQ)."
+    thuc "What the heck. Did you just do that?" #is heck too Mormon
+    him "Yes, I did. With the bonuses from my cavalry, my legendary general, and my superior navy from starting on an island, I can conquer Russia in one turn!"
+    pete "That's the last time I let you start as Tonga!"
+    thuc "I think you just won the game."
+    him "I don't know, there might be a way for you to make a religious conquest!"
+    thuc "Nope. I resign."
+    pete "Well, that was a good game. I should have situated myself better from the beginning. I got caught up in collecting gold instead of buildin' an army."
+    him "Same time next month?"
+    pete "Yes, I reckon so. I'll remind you on the community bulletin."
+    him "Can we call it something other than game night? All the new colonists will think we're a bunch of nerds."
+    pete "Well, we are a bunch of nerds."
+    him "Fine, then they'll believe me when I tell everyone I'm going to an intensive research session with you!"
+    pete "Ha! Fine by me. As long as everyone else calls it that they'll be none the wiser."
+    "A few months later, Kevin asks about it." #why are you talking to Kevin
+    kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
+    him "Oh, those. It's just people talking to Pete about stuff."
+    kevin "How does he assist in research? Pete isn't equipped to help with fieldwork."
+    him "I happen to have some research interests outside of fieldwork."
+    kevin "He's a librarian, right? Is your hobby art history or something similar?"
+    him "No, it's far more mundane. That's just what we call our monthly game night."
+    kevin "I would love to play games with others. Why was this information hidden?"
+    him "I didn't want the new colonists to think I was being frivolous with my time."
+    kevin "Face-to-face socialization is highly recommended by RET's psychologists."
+    kevin "It may feel frivolous, but it can actually increase your productivity."
+    him "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
+    kevin "That's simply what they told their grandchildren. Let me come to your game night!"
+    him "Okay, come then! We need someone to shake things up."
+    kevin "Shall I invite the other new colonists as well?"
     menu:
-        "How do you help them?"
-        
-        "We'll try to be better about inviting everyone next time.":
-            $ pass
-        #TODO: make option to ask someone to do it, or hope someone else does it. If you hope someone else does it, no one does it.
-        "I'll personally make the calendar more accurate, and put a reminder on the village discussion forum.":
+        "Sure, invite them all! We can reserve the town hall.":
             $ colonists += 1
-            # TODO: what if he forgets?
-        "I'll ask the mayor to write upcoming events on a white board outside the storeroom.":
-            $ luddites += 1
-    return
-
+            $ town_hall_games = True
+            jump invite_all
+        "They can make their own game night if they want.":
+            $ luddites += 1 #rationale: the luddites are a product of the colonists becoming more fractured
+            jump no_invite
+        "I'll ask Pavel, the mayor, to remind them to make socialization a priority.":
+            $ pass
+            jump ask_pavel
+        
+    label invite_all:
+        "Next month, we invited everyone to town hall to game night."
+        "Only three or four people showed up, including Kevin, but they were happy to play games with us."
+        return
+        
+    label no_invite:
+        "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
+        "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
+        return
+         
+    label ask_pavel:
+        "I asked Pavel to remind everyone to remember to get to know the new colonists."
+        "He sent an annoucement to the community bulletin."
+        "I don't know if anyone actually did anything about it, but the thought was there."
+        return
 
 label community4:
-    "Rare Earth Tech says that they need a liason from the colony."
-    "The colony has a town meeting to determine how to deal with the situation."
-    "Who will represent our colony's needs to Rare Earth Tech?"
-    # explanation of why this is separate from the mayor
-    "We are accepting nominations."
+    "Pavel, our mayor, called a town meeting."
+    pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
+    pavel "This is what it said:"
+    #TODO: separate style for RET messages?
+    $ style = get_parenting_style()
+    if (style== "authoritative"):
+        "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+        return
+    elif(style == "authoritarian"):
+        "We need a designated contact with the colony that you trust. Send your decision."
+        return
+    elif(style == "permissive"):
+        "You should probably choose someone to represent the colonist's interests to us."
+    else:
+        "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+    pavel "It's my job to encourage whatever is best for the colony."
+    pavel "I don't want you to ever question my loyalty. We need someone else for this job."
+    pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
+    pavel "They'll have to tell us what RET wants and convince us to change if necessary."
+    pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
+    pavel "I doubt anyone will volunteer for extra work, so we'd like everyone to nominate someone tonight."
+    pavel "Then we'll vote on the nominations."
+    #TODO: chatter between colonists would make this scene more lively and/or amusing
     menu:
         "Who will you nominate? You may not nominate yourself."
         
         "Sister Naomi, our religious leader and childcare leader.":
             $ pass
-        "My wife's friend Sara. She doesn't seem too busy.":
+        "My wife's friend Sara. She's familiar with colony politics since she assists the mayor.":
             $ pass
         "My friend Thuc. I think that would be funny.":
             $ pass
-    "We listened to the results of the election."
+    "After the nominations, we voted for our favorite candidate."
     $ style = get_parenting_style()
     if (style== "authoritative"):
         "Your fellow colonists elected you to be the new representative."
@@ -103,72 +195,228 @@ label community4:
         "Sara is elected as the new representative."
         #TODO: does the order of these options matter for variable settings?
         #should a leader of the militia be elected here as well?
-        
     return
 
 
 label community5:
-    "Indium is discovered. Rare Earth Tech warns them that 50 miners are on the way. They tell the colonists to start stockpiling preserves for the miners and to institute currency."
-    "Since instantaneous communications to Earth are limited to a few hundred characters, it's not clear how exactly they are supposed to prepare."
+    "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
-        "Should we start rationing food?"
+        "RET sent me an instantaneous communication with advice on how to proceed."
+        "It said:"
+        $ style = get_parenting_style()
+        if (style== "authoritative"):
+            "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
+            return
+        elif(style == "authoritarian"):
+            "50 miners are arriving in 4 Earth years. Prepare to feed them, and institute currency so that they can pay you for what they eat."
+            return
+        elif(style == "permissive"):
+            "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
+        else:
+            "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
+        if whole_harvest_to_storehouse = True:
+            ilian "Well, in what I thought was a colossal waste of resources, a few farmers are already bringing their whole harvest to the storehouse."
+            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
+            ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
+        else: 
+            ilian "I don't know how much food you guys are storing, so I have no idea if we'll have enough food for them or not."
+            ilian "If worst comes to worst, they could farm instead of mining, which I'm sure RET would be THRILLED with."
+        "How should we prepare?"
         menu:
-            "Yes, ration food as much as possible. Otherwise we will have hungry miners.":
+            "Have all the farmers bring their whole harvest to Ilian instead of storing it individually, and encourage them to grow extra grain and beans.":
                 $ miners += 2
-            "Ration a little--the stuff we don't like anyway. We don't want to starve ourselves.":
+                jump whole_harvest_required
+            "Have farmers bring in a certain amount of surplus each harvest.":
                 $ miners += 1
-            "No, don't ration food. The miners can hunt and forage. This taxation wasn't in our contract.":
-                $ luddites -= 1 # TODO: This might be better represented by another variable. If the player chooses this, the luddites will be in competition with the miners over hunting and foraging grounds.
+                jump ration_harvest
+            "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
+                $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
+                jump no_formal_rationing
     else:
         show sara at midright
+        "Sara called you in to discuss the latest news from RET."
+        sara "RET is sending miners to start mining the Indium that Zaina and Kevin found."
         sara "The miners won't arrive for another four Earth years."
-        sara "We will start rationing the food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+        if whole_harvest_to_storehouse = True:
+            sara "Ilian tells me that we'll have enough food for them if we start storing a little now."
+        else:
+            sara "We're not sure if we'll have enough food for them or not."
+        sara "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
         sara "Next harvest we'll start accepting canned goods as well."
         sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         sara "I'll be grading your crops against the RET standards."
+        sara "There's something I need your help with though. Some of the other farmers aren't excited about storing their surplus in the storehouse."
+        him "Really? Like who?"
+        sara "Pete and Martin are the ones you know the best."
+        him "I'll talk to them." #this could also be a choice... how neglectful do you want to be
+        jump talk_about_food_storage
         # TODO: when/where are crops preserved?  Does Ilian have machines/employees that do this? Or are farmers supposed to do this before taking to the storehouse?
     return
+    
+    label whole_harvest_required:
+    ilian "I'll need some help to build silos for the wheat."
+    him "Wait, you mean it's not going into vacuum-sealed cans?"
+    ilian "We don't have enough metal for that. But we can build big covered containers."
+    him "This way we'll definitely have enough for the miners, right?"
+    ilian "Yes. They won't even need to forage, unless they want some extra meat."
+    jump ration_harvest
+    
+    label ration_harvest:
+    ilian "I support your plan, but I'm worried about how we'll enforce it."
+    ilian "Some of the other farmers are reluctant to centrally locate food."
+    him "Oh? Like who?"
+    ilian "Like Pete and Martin."
+    ilian "I think they'd listen to you if you tried to persuade them though."
+    ilian "We'll pay credits for their surplus, which they can use to buy other crops."
+    him "I'll talk to them."
+    jump talk_about_food_storage
+    
+    label talk_about_food_storage:
+    him "Hey Pete. How are your cattle doing?"
+    pete "Surprisingly hale for living on an alien planet."
+    him "Great. There's something I want to ask you about."
+    menu:
+        "How do you approach the subject?"
+        "I heard that you're not storing much surplus in the storehouse.":
+            $ pass
+            jump pete_no_storehouse
+        "Could you start storing more surplus in the storehouse?":
+            $ pass
+            jump pete_no_storehouse #are you okay with having a choice that has no impact on the story
+            
+    label pete_no_storehouse:
+    pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
+    pete "I have yet to successfully make a hard cheese that doesn't mold right away."
+    pete "The best way to store my surplus is to keep growing this herd."
+    #could have a choice here about how to respond, but you can't really change his mind. or try to bring up the credits thing, and he insists that the colony wouldn't let him starve.
+    him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
+    pete "Don't mention it." #more pete-style way to say this?
+    #change scene
+    him "So Martin, how's your farm doing?"
+    martin "Pretty good considering that we're on an alien planet!"
+    martin "But recently some of our turkeys got sick and we couldn't even eat their meat after they died."
+    him "How about your beans, are they doing well?"
+    martin "Yes! We eat them about as fast as we can grow them."
+    him "I was thinking if you had some extras, you could store them in the storehouse."
+    martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
+    martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
+    him "It works well now, but soon I'll be trading credits instead of food." #player decision?
+    martin "Well if anyone wants our food they can come here for it."
+    #TODO: choice in conversation with Martin?
+    return
+    
 
 
 label community6:
+    #if town_hall_games = True, make the background the town hall. else it's at Pete's house.
     show pete at midright
+    thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
+    him "Yes, and I promise to start in the Northern Hemisphere this time."
+    pete "Your Antarctica strategy had no sense whatsoever."
+    him "Trying the same losing strategy every time and hoping it will win has no sense."
+    pete "I'll make you eat your words yet. Can we keep track of score on your tablet? Ours is out for repairs."
+    him "What do you mean? Don't you both have one?"
     show helen at midleft
-    "Pete and Helen accidentally left a tablet outside during a solar flare."
-    "The tablet was completely ruined. The same week, their other tablet was out for repairs."
-    "They missed watching movies and reading books and keeping in touch with everyone. But they found that they were more creative about how to entertain themselves."
-    # TODO: How does the player hear about this?  Maybe Pete asks to use his to submit his weekly report or make a request or something?
-    # TODO: determine just how durable the tablets are. They could probably survive being submerged, stepped on, etc. Maybe run over by a tractor?  Poor Pete, he runs over everything!  :-(
-    pete "It made me wonder if I would be happier living on my own, with no ties to any company or colony."
-    pete "What would you think if someone left the colony?"
+    helen "No, because SOMEONE left it out during a solar flare."
+    pete "And SOMEONE left their tablet in spittin' distance of a cow."
+    him "That must be rough."
+    pete "Actually I've found it liberating. I used to perpetually check my tablet for new messages. Now I know how useless most of them were."
+    pete "I can completely think about what I'm doing."
+    pete "I do my feed calculations for the cattle by hand."
+    helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    pete "I don't know about me. I kind of like feeling like I'm completely on my own."
+    thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
     menu:
-        "I'd think they were very irresponsible.":
+        "What do you think?"
+        "We need each other to survive.":
             $ colonists += 1
-        "I could understand that. Sometimes I feel the same way.":
+            him "We need each other to survive. There's no way one person could survive on their own out here."
+            pete "Is that really true? I've been out there on my own before--there's good foraging and hunting."
+            him "Maybe you could survive on your own, but what about your family?"
+            pete "They can help forage too!"
+            pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
+            pete "It's definitely more reliable to live in a community where we can help each other."
+        "I understand wanting to be away from it all.":
             $ luddites += 1
-        "I guess they would have to forfeit any help from Rare Earth Tech": 
+            him "I understand wanting to be away from it all. It's part of the reason I came here."
+            pete "We don't have to deal with inane government interference or rules made for the sake of havin' 'em."
+            him "Although some of RETs demands have felt that way..."
+            pete "True. But you can see where they're coming from for the most part."
+            pete "And they're not in our face about it. I could go camping tonight and they'd be none the wiser."
+            him "Yeah, as long as your cows were okay with it."
+        "We have an obligation to help RET feed their miners now.": 
             $ miners += 1
+            him "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
+            him "If we all went rogue, those miners would starve to death."
+            him "And we wouldn't be holding up our end of the bargain. It's expensive to send us out here."
+            pete "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I wouldn't feel badly about changing my side of things."
+            him "What do you mean?"
+            pete "What if we don't have enough food for all these miners?"
+            pete "If that happens, you bet I'm going to look after me and my own first."
+            pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
+            pete "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
+            him "Good point. I hope we can mange."
     return
 
 label community7:
-     "Some people were compensated more than others for their jobs as colonists."
-     "At a farmer's meeting, you mention that the work is worth it to help your parents live comfortably."
-     "Thuc says that he almost paid Rare Earth Tech for the chance to come, despite you feeling that he's more qualified because of his experience with sustainable farming techniques."
-     "Rare Earth Tech paid off Ilian's considerable restaurant supply startup debts."
-     "None of the new colonists were compensated."
-     "Why didn't Rare Earth Tech deal more fairly with its employees?"
-     if is_liason:
+    pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
+    pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
+    pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
+    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come here."
+    him "At least I know that my parents are taken care of."
+    kevin "What do you mean?"
+    him "RET gave me a bunch of money that I used for their retirement fund."
+    kevin "They made me no such offer."
+    thuc "I practically had to pay RET to let me come. What gives?"
+    him "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
+    ilian "Maybe some of us were happy to leave our Earth lives behind."
+    helen "This is a new one for me. Ilian has a secret past?"
+    ilian "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
+    ilian "RET said they would take care of it."
+    helen "Do you know if they did?"
+    ilian "I haven't heard from any debt collectors since."
+    kevin "You may have noticed but it's very difficult for people on Earth to contact you here."
+    ilian "It was win-win for me."
+    kevin "I was so intent on coming to Terra that I didn't think to negotiate compensation."
+    thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
+    him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
+    thuc "Or 8! Fewer pieces to ship."
+    kevin "Did your children suffer developmental delays because of the journey?"
+    thuc "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
+    thuc "They're not necessarily reading sooner, but we genuinely need their help on the farm."
+    thuc "They have more responsibilities than I did at their age, so they have to grow up fast."
+    thuc "And none of my family are getting paid for completely transplanting our lives here."
+    if is_liason:
+        thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
-            "I don't know. That seems pretty unfair. I'll ask them in my next letter.":
-                $ luddites += 1
-            "From a business standpoint, it makes more sense to negotiate salary with each employee individually.":
+            "I'll ask them in my next e-mail.":
                 $ miners += 1 
-            "We're all here now, so let's help each other.":
+                thuc "E-mail? Not an insta-com?"
+                him "I only get so many instant communication slots."
+                thuc "But by the time they get your e-mail no one will remember me."
+                him "I think RET has bigger things to worry about."
+                thuc "Fine, an e-mail is fine."
+            "From a business standpoint, you're stuck here. You don't have any leverage anymore.":
+                $ luddites += 1
+                thuc "I sure do have leverage!"
+                thuc "I could decide to leave the colony!"
+                him "You wouldn't seriously consider that."
+                helen "I don't know, he looks pretty serious."
+                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people." 
+                thuc "I just don't like the idea that I have no power over my life."
+            "I hear you, but let's focus on the here and now.":
                 $ colonists += 1
-     else:
-        "Sara made some kind of excuse for Rare Earth Tech's econimizing."
-     
-     return
+                him "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
+                him "Let's leave the past in the past."
+                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+    else:
+        thuc "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
+        sara "I heard that RET is economizing, but I can ask."
+        thuc "Thanks."
+        # better non-liason option?
+    return
 
 
 label community8:
@@ -504,7 +752,7 @@ label community22:
     "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
     "What do you do?"
     menu:
-        #this feels like it escalated really quickly. Talk with both parties before the menu?
+        #this feels like it escalated really quickly. Talk with both parties before the menu? depending on your relationship.
         "Form a militia with the miners to force the luddites out of the cave.":
             $ miners += 1
         "Not your problem. Do nothing.":
@@ -520,6 +768,7 @@ label community22:
 
 label community23:
     "RET wants to switch to artificial meat."  #I like the idea of doing something with artificial meat, but let's keep thinking about this.  Maybe RET announces they will not send anymore live animals, but instead an artificial meat lab, and you can decide to phase out your animals or breed them more? 
+    #this even doesn't have to be about meat either.
     "You hate how it tastes."
     "Make the switch?"
     menu:

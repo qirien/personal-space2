@@ -173,11 +173,18 @@ init -10:
     image goat_flip = im.Flip("sprites/goat.png", horizontal = True)
     image goat_small = im.FactorScale("sprites/goat.png", 0.85)
     image seastar = "sprites/seastar.png"
-  
 
     # GUI
+    image tomato = "gui/cropicons/tomato.png"
+    image beans = "gui/cropicons/beans.png"
+    image carrot = "gui/cropicons/carrot.png"
+    image goat = "gui/cropicons/goat.png"
+    image potato = "gui/cropicons/potato.png"
+    image spinach = "gui/cropicons/spinach.png"
+    image squash = "gui/cropicons/squash.png"
     image ctc_blink:
            "gui/ctc.png"
            linear 0.75 alpha 1.0
            linear 0.75 alpha 0.0
            repeat 
+           
