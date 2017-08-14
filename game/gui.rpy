@@ -67,7 +67,7 @@ define gui.interface_font = "fonts/SP-Marker Font.otf"
 define gui.text_size = 20
 
 ## The size of character names.
-define gui.name_text_size = 30
+define gui.name_text_size = 26
 
 ## The size of text in the game's user interface.
 define gui.interface_text_size = 24

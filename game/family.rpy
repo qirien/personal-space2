@@ -76,7 +76,7 @@ label family1:
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
             scene farm_interior with fade
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
-            "Finally, she was sleeping in her crib, and I fell into bed."
+            "Finally, she was sleeping in bed, and I fell into bed next to her and [her_name]."
             $ authoritative += 1
             $ permissive += 1
             
@@ -159,7 +159,7 @@ label family1:
     
 
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
-    "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfishly I had felt, and underlying everything, a deep exhaustion that magnified everything."
+    "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
     him serious "She really needs us, doesn't she?"
     her sleeping "Zzzzzz..."
     

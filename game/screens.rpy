@@ -124,8 +124,6 @@ screen say(who, what):
 
 
 style window is default
-style say_label is default
-style say_dialogue is default
 style say_thought is say_dialogue
 
 style namebox is default

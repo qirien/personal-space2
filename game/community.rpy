@@ -153,14 +153,13 @@ label community4:
     $ style = get_parenting_style()
     if (style== "authoritative"):
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
-        return
     elif(style == "authoritarian"):
         "We need a designated contact with the colony that you trust. Send your decision."
-        return
     elif(style == "permissive"):
         "You should probably choose someone to represent the colonist's interests to us."
     else:
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+        
     pavel "It's my job to encourage whatever is best for the colony."
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
     pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
@@ -207,21 +206,21 @@ label community5:
         $ style = get_parenting_style()
         if (style== "authoritative"):
             "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
-            return
         elif(style == "authoritarian"):
             "50 miners are arriving in 4 Earth years. Prepare to feed them, and institute currency so that they can pay you for what they eat."
-            return
         elif(style == "permissive"):
             "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
         else:
             "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
-        if whole_harvest_to_storehouse = True:
+            
+        if (whole_harvest_to_storehouse == True):
             ilian "Well, in what I thought was a colossal waste of resources, a few farmers are already bringing their whole harvest to the storehouse."
             ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
             ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
         else: 
             ilian "I don't know how much food you guys are storing, so I have no idea if we'll have enough food for them or not."
             ilian "If worst comes to worst, they could farm instead of mining, which I'm sure RET would be THRILLED with."
+            
         "How should we prepare?"
         menu:
             "Have all the farmers bring their whole harvest to Ilian instead of storing it individually, and encourage them to grow extra grain and beans.":
@@ -238,7 +237,7 @@ label community5:
         "Sara called you in to discuss the latest news from RET."
         sara "RET is sending miners to start mining the Indium that Zaina and Kevin found."
         sara "The miners won't arrive for another four Earth years."
-        if whole_harvest_to_storehouse = True:
+        if (whole_harvest_to_storehouse == True):
             sara "Ilian tells me that we'll have enough food for them if we start storing a little now."
         else:
             sara "We're not sure if we'll have enough food for them or not."
