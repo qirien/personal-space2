@@ -196,23 +196,6 @@ label family2:
 
 # 18 Earth mos. old
 label family3:
-    "Terra keeps putting sticks and rocks in her mouth on a family camping trip!"
-    menu:
-        "Make her a chewing toy":
-            $ responsive += 1
-            $ permissive += 1            
-        "Give her something she can chew on.": #like a woodenspoon
-            $ responsive += 1
-            $ demanding += 1
-            $ authoritative += 1            
-        "Slap her hand away every time she reaches for them.":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Let her mouth them. It's good for her immune system, right?":
-            $ responsive += 1
-            $ neglectful += 1
-    return
-    
     scene farm_interior with fade
     show him at midright
     show her at midleft
@@ -225,7 +208,7 @@ label family3:
     him normal "I think I'm going to take it easy for a few days..."
     her concerned "Yeah..."
     show her happy with dissolve
-    exted " Hey, you know what we've never done?"
+    extend " Hey, you know what we've never done?"
     him flirting "I can think of a lot of things."
     her annoyed "As a family?"
     him surprised "Oh. No, what?"
@@ -239,7 +222,7 @@ label family3:
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
     kid "Outside!"
     "She squirmed to get down, then toddled over the door and banged on it with her hands."
-    her normal "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
+    her concerned "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
     him normal "I know the perfect spot! Let's go tonight!"
     her flirting "I think we'll need a little time to get a few things together. How about tomorrow?"
     him happy "Okay, tomorrow! Right after you're done at the clinic!"
@@ -247,10 +230,25 @@ label family3:
     her determined "Everything will be fine. I'll take a radio so they can contact me if there's an emergency."
     
     scene path with fade
+    show him at midright
+    show her at midleft
+    show kid at center
+    with moveinleft
     "The next day, we packed up some food and makeshift bedrolls and some equipment for starting fires."
     "[her_name] and I took turns carrying the equipment and carrying [kid_name]. She liked to walk, but she walked so slowly because she wanted to stop and look at every rock, bug, and bush."
     
-    scene sunset with fade
+    hide him
+    hide her
+    hide kid
+    with moveoutright
+    
+    # TODO: get background.
+    # scene sunset with fade
+    show him at midright
+    show her at midleft
+    show kid at center
+    with moveinleft
+    
     "Finally, we arrived."
     him flirting "Remember this spot?"
     her flirting "It seems kind of familiar... though I mostly remember the food."
@@ -262,29 +260,89 @@ label family3:
     her normal "Of course I do. It's a beautiful place."
     "I held [her_name] close for a minute, both of us savoring the memory."
     her surprised "Oh! Where's [kid_name]?!"
-    "We had just set her down, and already she had wandered off. We both scanned the area. No point in worrying yet, right?"
-    him normal "She's just behind that bush."
-    "She was chewing on some of the leaves."
+    "We had just set her down, and already she had wandered off. We both scanned the area. I tried not to be too worried... she couldn't have gone far, right?"
+    her concerned "I don't see her! Where is she?!"
+    him "[kid_name]! [kid_name]!"
+    "She was too young to respond or come running back. [her_name] was heading back the way we had come, calling out with increasing urgency."
+    "It had been only about five minutes since we had seen her, but my mind started to fill with all the terrible things that could have happened to her."
+    "But then I saw our daughter, sitting on the other side of a large rock."
+    him determined "She's over here!"
+    "She was chewing on some sticks she found on the ground."
     her concerned "Oh no! Are these poisonous?! I can't remember..."
-    "[her_name] got the leaves out of [kid_name]'s mouth. Hopefully she hadn't eaten too many..."
-    
-    # TODO: Finish this.
+    "[her_name] got the sticks out of [kid_name]'s mouth while I checked Dr. Lily's  plants guide on my computer pad. [kid_name] just smiled and showed us her tiny teeth."
+    him normal "Looks like that plant's harmless."
+    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field equipped with a homing beacon to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
+    her concerned "I'm sorry, [her_name]. I should have been watching her closer."
+    him surprised "That's just what I was going to say!"
+    "[kid_name] strained against [her_name]'s arms and twisted and writhed, trying to get down."
+    her sad "Oof! This girl is getting heavy!"
+    "[her_name] set her down, but she went right back over to her sticks and began chewing on them again."
+    "We gave each other exasperated looks and then laughed."
+    him happy "Clearly, this girl needs something to gnaw on."
+    her flirting "Got anything our little hamster can cut her teeth on?"
+    him concerned "Maybe..."
     
     menu:
+        "What should I do?"
         "Make her a chewing toy":
             $ responsive += 1
             $ permissive += 1            
-        "Give her something she can chew on.": #like a woodenspoon
+            him normal "I'm going to make her a chew toy!"
+            her happy "I think she'd like that."
+            "I got some of the sticks she loved so much and carved them smooth so they would be nice and clean and without splinters."
+            "I made sure there were no sharp ends and then gave them to her."
+            "She grabbed them from me, but then frowned and picked up some other sticks off the ground."
+            her surprised "I guess she likes the bark?"
+            him annoyed "Well that was a lot of work for nothing."
+        "Give her something else she can chew on.": #like a woodenspoon
+            "I pulled open my pack and rifled through it. There must be something in here she can put in her mouth, right?"
+            "I found a carrot."
+            her surprised "Oh, I've never fed her carrots before."
+            him normal "Well, I think she has enough teeth to give it a try."
+            "I cut into a long, thin strip and handed it to her."
+            "She gnawed on it thoughtfully for a few minutes."
+            her normal "Hmm, looks like she likes it!"
+            "...and then she spit out the chewed-up shreds."
+            him normal "It's better than chewing on sticks, right?"
+            her concerned "Probably?"
             $ responsive += 1
             $ demanding += 1
             $ authoritative += 1            
-        "Slap her hand away every time she reaches for them.":
+        "Don't let her put them in her mouth.":
+            him serious "No no, [her_name]. Not in your mouth."
+            "She went for them again, but I held her back."
+            him determined "You can't just put everything your mouth. No."
+            kid "No! No no no no no!"
+            her annoyed "You can't just tell her 'no' about everything."
+            him annoyed "She shouldn't be chewing on those."
+            her normal "Then show her what she can chew on."
+            "[her_name] handed her an apple."
+            her "This is for chewing!"
+            "[kid_name] took the apple and put her mouth on it, but she couldn't figure out how to take a bite with her tiny mouth."
+            him normal "Here, I'll cut it up."
+            "I made long, thin sticks of apple so she could fit them in her mouth but couldn't choke on them."
             $ demanding += 1
             $ authoritarian += 1
         "Let her mouth them. It's good for her immune system, right?":
+            him normal "Those sticks are fine. They're not poisonous."
+            her concerned "But, they're really dirty! She's going to get sick. Animals have probably peed all over them."
+            him annoyed "We're outside. That's a totally normal thing."
+            her annoyed "That doesn't mean I want to feed it to my baby!"
+            him determined "She's not a baby anymore. She's a nature explorer! Right, [kid_name]?"
+            "[kid_name] sensed my enthusiasm and smiled widely, waving her sticks at us."
             $ responsive += 1
             $ neglectful += 1
-
+    "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, she struggled to get to sleep in this strange place, and it was tricky trying to keep an eye on her when we set her down."
+    "When it started to get dark, we were both exhausted."
+    him flirting "I was going to suggest some romantic star gazing, but..."
+    her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
+    him normal "Yeah, I'm tired, too. But wasn't this great?"
+    her normal "It was a nice change of scenery. And that sunset was gorgeous."
+    him flirting "Just like you."
+    her happy "Good night, [his_nickname]."
+    him normal "Good night, [her_nickname]."
+            
+            
 # 2 Earth years old
 label family4:
     "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
