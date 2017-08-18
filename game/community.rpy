@@ -282,7 +282,7 @@ label community5:
             jump pete_no_storehouse
         "Could you start storing more surplus in the storehouse?":
             $ pass
-            jump pete_no_storehouse #are you okay with having a choice that has no impact on the story
+            jump pete_no_storehouse #this choice has no impact on the story
             
     label pete_no_storehouse:
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
@@ -300,7 +300,7 @@ label community5:
     him "I was thinking if you had some extras, you could store them in the storehouse."
     martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
-    him "It works well now, but soon I'll be trading credits instead of food." #player decision?
+    him "It works well now, but soon I'll be trading credits instead of food." #player decision instead of the non-decision above?
     martin "Well if anyone wants our food they can come here for it."
     #TODO: choice in conversation with Martin?
     return
@@ -314,7 +314,7 @@ label community6:
     him "Yes, and I promise to start in the Northern Hemisphere this time."
     pete "Your Antarctica strategy had no sense whatsoever."
     him "Trying the same losing strategy every time and hoping it will win has no sense."
-    pete "I'll make you eat your words yet. Can we keep track of score on your tablet? Ours is out for repairs."
+    pete "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
     him "What do you mean? Don't you both have one?"
     show helen at midleft
     helen "No, because SOMEONE left it out during a solar flare."
@@ -359,10 +359,14 @@ label community6:
     return
 
 label community7:
+    zaina "The fossil record near here contain many animals that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
+    zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
+    zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
+    zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
     pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
     pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
-    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come here."
+    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam."
     him "At least I know that my parents are taken care of."
     kevin "What do you mean?"
     him "RET gave me a bunch of money that I used for their retirement fund."
@@ -419,9 +423,19 @@ label community7:
 
 
 label community8:
-    "Rare Earth Tech has some extra space on the shuttle for Earth luxuries"
-    "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
+    #TODO: define the talked_to variables as false in the defines? document
     if is_liason:
+        "Urgent insta-com from RET!"
+        $ style = get_parenting_style()
+        if (style== "authoritative"):
+            "We have extra space on the shuttle. What Earth luxuries would the colony like?"
+        elif(style == "authoritarian"):
+            "Tell us what extras to put on the shuttle by this evening."
+        elif(style == "permissive"):
+            "If you want Earth goodies, tell us what to put in the shuttle by tonight!"
+        else:
+            jump no_luxuries
+        "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
         "You need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
         $ talked_about_luxuries_counter = 0
         label talk_about_luxuries:
@@ -433,7 +447,7 @@ label community8:
             "Natalia" if not talked_to_Natalia:
                 show natalia at left
                 with dissolve
-                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be. [her_name] said he needed Vemurafenib." #TODO:if you want to make this harder, have the player go ask her what the medication is.
+                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be. [her_name] said he needed Vemurafecholoronib." #TODO:if you want to make this harder, have the player go ask her what the medication is.
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Natalia = True
                 jump talk_about_luxuries
@@ -441,12 +455,15 @@ label community8:
                 show thuc at left
                 with dissolve
                 thuc "I'd like to grow peanuts. Regular, unroasted peanuts will work fine for cultivation purposes."
+                thuc "Then I can make peanut stew and peanut butter!"
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Thuc = True
                 jump talk_about_luxuries
             "Sara" if not talked_to_Sara:
                 show sara at right with dissolve
                 sara "Oh, I don't know if this is possible, but I would really, really love a bicycle."
+                sara "I'm terrible with horses and I hate how they just eat more of our food."
+                sara "A bicycle wouldn't get hurt by radiation and can go faster in some situations."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Sara = True
                 jump talk_about_luxuries
@@ -458,23 +475,62 @@ label community8:
                 him "Yes, yes, don't worry about that. Ask for something that will boost your morale."
                 kevin "Wouldn't being reminded of the Earth I'll never return to lower my morale?"
                 him "It sounds like you don't want anything."
-                kevin "I would like a bagel."
+                kevin "I would like the remaining episodes of the show Tulip House."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Kevin = True
+                jump talk_about_luxuries
+            "Pavel" if not talked_to_Pavel:
+                show Pavel at left with dissolve
+                pavel "Oh, there are so many things I miss."
+                pavel "Sushi, wine, tempura, Krem de la Krem donuts, French fries, falafal, fried chicken,"
+                pavel "those really cheap frozen pizzas from Glosemitto's, slow-roasted coffee, Fabrielle brand pelmeni,"
+                pavel "sourdough bread, calamari, egg rolls but especially the sweet-and-sour sauce with lots of high fructose corn syrup,"
+                pavel "Goods Inside cereal, homogenized milk, cotton candy, cheesecake, tuna salad, Michele's meat-alike paste,"
+                pavel "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cheese really."
+                pavel "And that's just the food I miss!"
+                him "Wow. Well, it needs to be non-perishable or at least have a long shelf life, so I think that eliminates most of the things on your list."
+                him "I could put you down for curry powder though."
+                pavel "Oh, well make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
+                him "I'll see what I--"
+                pavel "Wait, wouldn't it make more sense to grow the spices so I can make my own curry powder?"
+                him "Sure."
+                pavel "Okay, so just ask them to send me seeds for all the spices in PatiPal's Extra Hot Curry Powder along with a recipe."
+                him "Hmm. I need to put this in an insta-com."
+                pavel "Oh dear. How did they not tell you about this sooner?"
+                him "I think they only knew about the extra space on the shuttle this morning."
+                pavel "You are going to have to cram a lot into that message!"
+                $ talked_about_luxuries_counter += 1
+                $ talked_to_Pavel = True
                 jump talk_about_luxuries
             #TODO: Add more people
         label write_report:
             "What will you write? You have a limited amount of characters." #plausible?
-            menu:
-                "Toilet paper, cheese, peanut butter, lemon juice, and medicine for Martin.":
+            menu:#TODO: Make the options make sense regarding character count and above player decisions. Or just say "you don't have enough space to ask for everything specifically."
+                "Toilet paper, Gouda cheese culture, peanuts, a bicycle, and cancer medicine for Martin.":
                     $ pass
-                "Vemurafenib for Martin.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
+                "Vemurafecholoronib for Martin, TP, G-cheese, peanuts, and bicycle.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
                     $ asked_only_medicine = True
                     $ pass
             "I sent the message."
     else:
-        "We told Sara that we wanted toilet paper and Gouda cheese."
-        #TODO: Maybe Sara asks you to go ask everyone? better alt
+        sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
+        sara "What would you like?"
+        him "Let me think about that."
+        sara "I need to know right now."
+        him "Hmm. How about some good old Earth toilet paper?"
+        sara "Great. I can shorted that to TP in the insta-comm."
+        him "Hopefully they won't send me a textbook on Topological Planning."
+        sara "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
+        #TODO: Maybe Sara asks you to go ask everyone? better alt?
+    return
+        
+    label no_luxuries:
+    show him at left with dissolve
+    show her at right with dissolve
+    him "Man, I really miss Earth toilet paper."
+    her "Wouldn't it be great if RET sent some on the next shuttle?"
+    him "Yeah, that's never going to happen."
+    
     return
 
 
