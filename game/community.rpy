@@ -435,8 +435,10 @@ label community8:
             "If you want Earth goodies, tell us what to put in the shuttle by tonight!"
         else:
             jump no_luxuries
-        "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
-        "You need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
+        "RET must be talking about the shuttle coming with the miners."
+        "I'm not sure why they couldn't have asked about our preferences sooner."
+        "I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
+        "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
         $ talked_about_luxuries_counter = 0
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
@@ -447,7 +449,11 @@ label community8:
             "Natalia" if not talked_to_Natalia:
                 show natalia at left
                 with dissolve
-                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be. [her_name] said he needed Vemurafecholoronib." #TODO:if you want to make this harder, have the player go ask her what the medication is.
+                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be." 
+                him "What medication does he need?"
+                natalia "[her_name] said he needed Vemurafecholoronib. Let's see... 500 mg for six months and 1000 mg for another 6 months." 
+                him "Won't RET be sending this anyway?"
+                natalia "They told [her_name] that it wasn't possible, but maybe you can do something."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Natalia = True
                 jump talk_about_luxuries
@@ -502,16 +508,18 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Pavel = True
                 jump talk_about_luxuries
-            #TODO: Add more people
+            #TODO: Add more people?
         label write_report:
-            "What will you write? You have a limited amount of characters." #plausible?
-            menu:#TODO: Make the options make sense regarding character count and above player decisions. Or just say "you don't have enough space to ask for everything specifically."
-                "Toilet paper, Gouda cheese culture, peanuts, a bicycle, and cancer medicine for Martin.":
-                    $ pass
-                "Vemurafecholoronib for Martin, TP, G-cheese, peanuts, and bicycle.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
-                    $ asked_only_medicine = True
-                    $ pass
-            "I sent the message."
+            "What should I write?"
+            if talked_to_Natalia:
+                "I don't have enough room to ask for Martin's specific medicine and dosage and all the other things people wanted."
+                menu:
+                    "Specify the medication and dosage. Do your best with the other stuff.":
+                        $ asked_only_medicine = True
+                    "Maximize happiness and ask for everyone else's stuff specifically.":
+                        $ pass
+            else:
+                "I sent the message."
     else:
         sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
         sara "What would you like?"
@@ -535,14 +543,46 @@ label community8:
 
 
 label community9:
-    "Pete wants to go camping."
-    "He says that guys need more bonding time together, and they should all go hunting at the same time."
+    #where is this
+    pete "Hey, [his_name]!"
+    him "Hi Pete."
+    pete "How's the farm?"
+    him "Doing okay I guess."
+    pete "I miss having guy's night!"
+    him "Yeah. Things got really busy with our last harvest and we never really picked it up again."
+    pete "I was thinking we could make up for lost time and have a campout."
+    him "Isn't living here enough like camping?"
+    pete "Yes, except the hunting is no good around the colony."
+    pete "We'll only go a few miles out. Until we find a herd of those land lobsters."
+    "What do you tell Pete?"
     menu:
-        "Sounds fun! Go with him and invite your friends.": #you learn the particulars of how to camp safe from radiation.
+        "Sounds fun! Go with him and invite Thuc": #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
             $ colonists += 1
+            pete "We have two radiation-proof tents that RET sent with us."
+            pete "I don't like relying on them for so many things though, so I'm going to try out my own radiation-shielding tent."
+            him "Are we the guinea pigs?"
+            pete "No, I'll use the radiation detector on my tablet, and we'll use the RET tents."
+            pete "Bring something to sleep on and some food. And get a bow and arrow from the community center."
+            him "Can't we trap them or poison them?"
+            pete "Not as fun, and the poison would get in the meat."
+            "You tell Thuc about the campout and he joins you."
+            "After sleeping in tents, you wake up early to catch the land lobsters while they're active."
+            pete "You scare them between these two boulders, and then Thuc and I'll take 'em out."
+            him "Try not to lose anymore arrows."
+            "You carefully make your way around so that you're opposite Pete and Thuc."
+            him "HELLO LAND LOBSTERS! Do you think you'd taste good with some butter and cream?"
+            "The creatures notice you, but they don't form a herd in the way cows or sheep do."
+            "They scatter in all directions. Luckily, a few head between the boulders."
+            pete "I hit one!"
+            thuc "It's still alive!"
+            "Pete chases down the wounded animal."
+            #TODO: should Pete get wounded here? some kind of decision?
         "Sounds dangerous. I have to focus on farming right now anyway.":
-            $ miners += 1 #not sure which side colonists +1 should go on for this one. 
+            $ miners += 1 #not sure which side colonists +1 should go on for this one.
+            him "What happens if you get pinched by one of those things? It doesn't sound safe."
+            pete "That's the whole point! Gets your blood moving."
+            him "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
     return
 
 
