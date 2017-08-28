@@ -435,8 +435,10 @@ label community8:
             "If you want Earth goodies, tell us what to put in the shuttle by tonight!"
         else:
             jump no_luxuries
-        "Besides a new battery for my tractor, I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
-        "You need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
+        "RET must be talking about the shuttle coming with the miners."
+        "I'm not sure why they couldn't have asked about our preferences sooner."
+        "I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
+        "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
         $ talked_about_luxuries_counter = 0
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
@@ -447,7 +449,11 @@ label community8:
             "Natalia" if not talked_to_Natalia:
                 show natalia at left
                 with dissolve
-                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be. [her_name] said he needed Vemurafecholoronib." #TODO:if you want to make this harder, have the player go ask her what the medication is.
+                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be." 
+                him "What medication does he need?"
+                natalia "[her_name] said he needed Vemurafecholoronib. Let's see... 500 mg for six months and 1000 mg for another 6 months." 
+                him "Won't RET be sending this anyway?"
+                natalia "They told [her_name] that it wasn't possible, but maybe you can do something."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Natalia = True
                 jump talk_about_luxuries
@@ -502,16 +508,18 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Pavel = True
                 jump talk_about_luxuries
-            #TODO: Add more people
+            #TODO: Add more people?
         label write_report:
-            "What will you write? You have a limited amount of characters." #plausible?
-            menu:#TODO: Make the options make sense regarding character count and above player decisions. Or just say "you don't have enough space to ask for everything specifically."
-                "Toilet paper, Gouda cheese culture, peanuts, a bicycle, and cancer medicine for Martin.":
-                    $ pass
-                "Vemurafecholoronib for Martin, TP, G-cheese, peanuts, and bicycle.": #this option will help Martin live another year, and Joanna and Tomas don't join the Luddites with this option. Change to a more specific, long name, to justify it having to take up a lot of characters.
-                    $ asked_only_medicine = True
-                    $ pass
-            "I sent the message."
+            "What should I write?"
+            if talked_to_Natalia:
+                "I don't have enough room to ask for Martin's specific medicine and dosage and all the other things people wanted."
+                menu:
+                    "Specify the medication and dosage. Do your best with the other stuff.":
+                        $ asked_only_medicine = True
+                    "Maximize happiness and ask for everyone else's stuff specifically.":
+                        $ pass
+            else:
+                "I sent the message."
     else:
         sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
         sara "What would you like?"
@@ -535,25 +543,113 @@ label community8:
 
 
 label community9:
-    "Pete wants to go camping."
-    "He says that guys need more bonding time together, and they should all go hunting at the same time."
+    #where is this
+    pete "Hey, [his_name]!"
+    him "Hi Pete."
+    pete "How's the farm?"
+    him "Doing okay I guess."
+    pete "I miss having guy's night!"
+    him "Yeah. Things got really busy with our last harvest and we never really picked it up again."
+    pete "What do you say to accompanying me on a hunting expedition?"
+    him "Now?"
+    pete "No, this weekend. We can camp overnight so we can get further from the colony."
+    him "Is that really necessary?"
+    pete "Yes, the hunting is no good around the colony. I think all the strange animal sounds scares off the smaller creatures."
+    pete "We'll only go a few miles out. Until we find a herd of those grass crabs."
+    "What do you tell Pete?"
     menu:
-        "Sounds fun! Go with him and invite your friends.": #you learn the particulars of how to camp safe from radiation.
+        "Sounds fun! Go with him and invite Thuc": #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
             $ colonists += 1
+            pete "We have two radiation-proof tents that RET sent with us."
+            pete "I don't like relying on them for so many things though, so I'm going to try out my own radiation-shielding tent."
+            him "Are we the guinea pigs?"
+            pete "No, I'll use the radiation detector on my tablet in my homemade tents, and we'll use the RET tents."
+            pete "Bring something to sleep on and some food. And get a bow and arrow from the community center."
+            him "Can't we trap them or poison them?"
+            pete "Not as fun, and the poison would get in the meat."
+            him "I'm going to bring some twine to set some traps then."
+            pete "Pansy."
+            "You tell Thuc about the campout and he joins you."
+            "You find a group of grass crabs and observe them for a while."
+            "You set some traps around the area."
+            "After sleeping in tents, you wake up early to catch the grass crabs while they're active."
+            pete "You scare them between these two boulders, and then Thuc and I'll take 'em out."
+            him "Try not to lose anymore arrows."
+            thuc "I won't lose them but I will definitely loose them."
+            him "..."
+            "You carefully make your way around so that you're opposite Pete and Thuc."
+            him "HELLO LAND LOBSTERS! Do you think you'd taste good with some butter and cream?"
+            "The creatures notice you, but they don't form a herd in the way cows or sheep do."
+            "They scatter in all directions. Luckily, a few head between the boulders."
+            pete "I hit one!"
+            thuc "It's still alive!"
+            "Pete chases down the wounded animal and kills it with his knife."
+            "You find that you've trapped another two, but you can't carry that much back, so you let one of them go."
+            him "This is going to be delicious."
+            pete "Let's eat some and then head back."
+            "After making a fire, a solar flare warning comes up on the radio."
+            #too much stuff for one event and no decision?"
+            pete "Fantastic. I can test my homemade solar tent."
+            pete "Now I can just reach out of our tent and move the sensor..."
+            him "What did you make your homemade tent out of anyway?"
+            pete "The fabric is leather. That doesn't do anything for radiation."
+            pete "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
+            pete "And it appears to reduce solar radiation! Too bad it's completely dark in there."
+            "After eating some of the meat, you and Pete and Thuch bring the rest back to the colony."
+            pete "We process cattle all the time, so we can butcher the grass crab in our butchery. I'll make sure you get some."
+            him "Thanks Pete."
+            #TODO: should Pete get wounded here? some kind of decision?
         "Sounds dangerous. I have to focus on farming right now anyway.":
-            $ miners += 1 #not sure which side colonists +1 should go on for this one. 
+            $ miners += 1 #not sure which side colonists +1 should go on for this one.
+            him "What happens if you get pinched by one of those things? It doesn't sound safe."
+            pete "That's the whole point! Gets your blood moving."
+            him "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
+            "Pete went hunting on his own. He brought you back some jerky from the land crab he killed."
+            him "This is delicious."
+            pete "It took me nearly all day to finally hit one. Then I had to chase it down!"
+            him "Was it worth it?"
+            pete "Hell yes! Herding cattle is fine for everyday, but every once in a while I need some excitement in my life."
     return
 
 
 label community10:
-    "Martin Peron is dying of cancer. He wants your advice. Who do you think should take care of his farm?"
+    her "I'm leaving for work now. Goodbye honey!"
+    him "Bye [her_name}. Oh, and don't forget that we're having dinner with the Perons tonight."
+    her "I wonder what they wanted to talk about..."
+    him "Maybe they're just being friendly?"
+    "After weeding and clearing out old growth, Terra comes home from school."
+    "You make a simple salad together, and when [her_name] arrives you head over to the Peron's."
+    natalia "Thanks for coming over. We're just finishing up the rice."
+    matin "We made a turkey bean soup. It should go well with your salad."
+    #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
+    "After the meal, Terra runs off to play with the kids."
+    martin "As you may have heard, I have skin cancer."
+    her "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
+    martin "I know! You are not the only one who knows, however."
+    natalia "The more people who know about your disease, the more people who can help us!"
+    martin "I have a few more months to live, but already I'm experiencing fatigue and pain that hamper my work."
+    martin "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
+    natalia "The don't seem as passionate about the farm as you are."
+    him "But now that they're older, don't you have more time to work on the farm?"
+    natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, and knitting new clothes."
+    natalia "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
+    him "Isn't the corn really important for feeding everyone else's animals?"
+    martin "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
+    him "What are your older kids interested in, if not farming?"
+    natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
+    natalia "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
+    martin "And she is a fine writer."
+    natalia "Well she can write and help grow our food!"
+    natalia "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
+    martin "And Mateo is still too young to do much more than harvest corn and feed the flocks."
+    martin "What would you do in my position? Who do you think should take care of the farm?"
     menu:
-        "Tomás, his oldest son, and Joanna Nguyen, his wife.":
+        "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
             $ colonists += 1
             $ miners += 1
             #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
-        "Let Natalia, his wife, scale back how they'd like.":
+        "Let Natalia scale back the farm. Let their children pursue their dreams.":
             $ luddites += 1
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
         # Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
