@@ -293,11 +293,12 @@ label family3:
             "I made sure there were no sharp ends and then gave them to her."
             "She grabbed them from me, but then frowned and picked up some other sticks off the ground."
             her surprised "I guess she likes the bark?"
+            "I kept giving her the ones I had made, but she didn't want them at all."
             him annoyed "Well that was a lot of work for nothing."
-        "Give her something else she can chew on.": #like a woodenspoon
+        "Give her something else she can chew on.": 
             "I pulled open my pack and rifled through it. There must be something in here she can put in her mouth, right?"
             "I found a carrot."
-            her surprised "Oh, I've never fed her carrots before."
+            her surprised "Oh, I've never fed her carrots before. She's not going to choke on them, is she?"
             him normal "Well, I think she has enough teeth to give it a try."
             "I cut into a long, thin strip and handed it to her."
             "She gnawed on it thoughtfully for a few minutes."
@@ -319,8 +320,12 @@ label family3:
             "[her_name] handed her an apple."
             her "This is for chewing!"
             "[kid_name] took the apple and put her mouth on it, but she couldn't figure out how to take a bite with her tiny mouth."
-            him normal "Here, I'll cut it up."
-            "I made long, thin sticks of apple so she could fit them in her mouth but couldn't choke on them."
+            "She threw it in the dirt."
+            him angry "Hey, stop that! Now no one wants to eat it."
+            her annoyed "Relax, it's just a little dirt."
+            "She rinsed the apple off with our water bottle and took a bite."
+            her happy "Yum! See, [kid_name]? Yummy apple!"
+            "[kid_name] gnawed on it a little more. She could make better progress now that there were some uneven surfaces to work with, but eventually she threw it in the dirt again."            
             $ demanding += 1
             $ authoritarian += 1
         "Let her mouth them. It's good for her immune system, right?":
@@ -332,33 +337,212 @@ label family3:
             "[kid_name] sensed my enthusiasm and smiled widely, waving her sticks at us."
             $ responsive += 1
             $ neglectful += 1
-    "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, she struggled to get to sleep in this strange place, and it was tricky trying to keep an eye on her when we set her down."
+    "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
     "When it started to get dark, we were both exhausted."
     him flirting "I was going to suggest some romantic star gazing, but..."
     her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
-    him normal "Yeah, I'm tired, too. But wasn't this great?"
+    him normal "Yeah, I'm exhausted. But wasn't this great?"
     her normal "It was a nice change of scenery. And that sunset was gorgeous."
     him flirting "Just like you."
     her happy "Good night, [his_nickname]."
     him normal "Good night, [her_nickname]."
+    return
             
             
 # 2 Earth years old
 label family4:
-    "Terra won't eat what you want her to eat. We're having jerky, rice, and potatoes for dinner, but all she wants to eat is something we don't have right now."
+    "Months passed by in a busy blur of planting and harvesting."
+    "[kid_name] learned several new words every day, and her little fingers that used to be so clumsy were now holding crayons and picking up tiny grains of rice."
+    "...and then throwing them on the floor."
+    kid "No rice!"
+    her "That's what's for dinner, sweetie."
+    him "You know daddy's friend Mr. Thuc? He worked hard to grow that rice, so let's not waste it, okay?"
+    kid "Yucky."
+    "[her_name] took away [kid_name]'s plate before she could throw any more of it on the floor."
+    her "It is kind of plain."
+    # TODO: Change based on recent plants grown? Or does that not make sense because everyone's giving them to the storehouse now?
+    him "I think it tastes better with the onions and beans."
+    her "Yeah, they're a little bland, too. Maybe it needs more salt?"
+    him "Try the beans, [kid_name]. Yum!"
+    "I put one on her plate and she pushed it right back at me."
+    kid "Yucky."
+    her "Ooh, I know just what this needs. I'll be right back."
+    hide her with moveoutleft
+    "I tried not to feel offended that she didn't like the beans I had cooked. It wasn't gourmet cuisine, but I had added some herbs and cooked it to just the right consistency."
+    "I thought it was pretty good. But maybe I just wasn't as picky."
+    him concerned "You haven't eaten a thing all dinner!"
+    kid "I want applesauce."
+    him annoyed "We don't have applesauce. Right now we're having rice and beans."
+    kid "Applesauce!"
+    him determined "Where'd you even get applesauce from? I haven't seen it at the storehouse for a long time."
+    kid "Travis' mom made it."
+    "Travis' mom - that would be Helen. [kid_name] had been over there for coop daycare today. Somehow she always had sweet things for the kids to eat."
+    "Sweet things to ruin their tastebuds for real food."
     menu:
-        "Make her stay at the table until she eats everything on her plate.": 
+        "What should I say?"
+        "You must eat this dinner.":
             $ demanding += 1
-            $ authoritarian += 1
-        "Tell her we don't have that food right now and keep the food out longer.":
-            $ demanding += 1
-            $ authoritative += 1
-        "Ask a neighbor for the food she wants.":
-            $ responsive += 1
-            $ permissive += 1
-        "Let [her_name] deal with it.":
-            $ neglectful += 1
+            him angry "You're not leaving the table until you eat all of this food."
+            kid "Yucky!"
+            him serious "Then you'll stay here."
+            "She picked up a grain of rice, looked me right in the eyes, and threw it on the floor."
+            "I put it right back on her plate."
+            him annoyed "You still have to eat it."
+            "She slid off her chair and made to run away, but I put her right back in it."
+            him serious "No. Eat your dinner."
+            kid "No! Yucky!"
+            "She squirmed in my hands and started to slide out so I gripped her arms more tightly and held her in place on my lap."
+            him serious "Eat. Your. Dinner."
+            kid "No! No no no no no no!"
+            "She was screaming now, and her screams turned into crying and thrashing. She kicked the table and my cup of water tipped over, splashing us both."
+            show her with moveinleft
+            her surprised "What's going on out here?!"
+            him angry "She's a disobedient, ungrateful brat!"
+            kid "Wahhhhhhh!"
+            her annoyed "[his_name], go outside and calm down."
+            menu:
+                "What should I do?"
+                "Leave":
+                    him determined "..."
+                    "I handed [kid_name] to [her_name] and tried not to slam the door on my way out."
+                    scene house_exterior with fade
+                    "I hated how spoiled [kid_name] was acting."
+                    "I hated [her_name] telling me what to do."
+                    "...I hated that she was right."
+                    "How could I expect [kid_name] to control her actions if I was getting this angry over food?"
+                    "On the other hand, we couldn't just let her eat whatever she wanted, even if we did happen to have it around."
+                    "I didn't know what to do."
+                    "Finally I came back home. [her_name] and [kid_name] were snuggled up on the bed reading a book together."
+                    "[kid_name]'s plate of food sat on the table, untouched."
+                    "[her_name] looked at me like I was a naughty dog or something. I bristled." 
+                    menu:
+                        "What should I do?"
+                        "Give them a hug":
+                            $ responsive += 1
+                            "I bent over and hugged them both."
+                            "I just wanted to show them that I loved them. That was more important than anything else."
+                            "I sat down next to [her_name] and she laid her head on my shoulder. [kid_name] slid off her lap, and I closed my eyes to rest for a moment."
+                            "When I opened them, [kid_name] was sitting at the table, eating her food."
+                            "I felt like a fool, but I decided to just leave it alone."
+                        "Demand [kid_name] finish her food.":
+                            $ demanding += 1
+                            him serious "Feeling better? Okay, now it's time to finish your dinner."
+                            her annoyed "[his_name]..."
+                            kid "No! Yucky!"
+                            "And we started all over again..."                            
+                        "Apologize":
+                            $ responsive += 1
+                            him sad "I... I'm sorry. I was out of control."
+                            "[her_name] squeezed my hand and gave me a little smile."
+                            her normal "It's okay."
+                            kid "You hurted me!"
+                            him serious "I'm sorry, [kid_name]. I was not trying to hurt you. I'm trying to help you eat healthy foods to grow big and strong."
+                            "[kid_name] seemed to think about this for a moment, then went to the table and carefully spooned up a bit of beans."
+                            "She brought it over near my mouth."
+                            kid "Daddy, eat it."
+                            "I opened my mouth and allowed her to feed me."
+                            him normal "Mmmm! Yum!"
+                            "She spooned some into her own mouth and copied me."
+                            kid "Mmmm! Yum!"
+                            him happy "That's my girl!" 
                         
+                        "Eat your dinner.":
+                            "Maybe no one else was hungry, but I was."
+                            "I sat down and started to eat."
+                            "[her_name] soon joined me."
+                            "I didn't say anything to [kid_name], just shoveled beans and rice into my mouth in silence."
+                            "When I left the table to wash my plate, she walked over and ate her rice. She carefully pushed the beans to one side."
+                            "I didn't have the energy to argue with her anymore."
+                    
+                "Don't leave":
+                    $ demanding += 1
+                    him angry "No! Nobody's leaving this table until [kid_name] eats her dinner!"
+                    her annoyed "[his_name]..."
+                    "That's when [kid_name] bit my wrist."
+                    him surprised "Yeow!"
+                    "I didn't think I'd be the kind of parent that spanked their kid."
+                    him angry "You do NOT hurt your family!"
+                    "But I did."
+                    him determined "You show your parents respect!"
+                    kid "Wahhhhhh!"
+                    "Part of me still thinks she deserved it."
+                    her angry "[his_name], stop! That's enough!"
+                    "But I know when I was a kid, I hated being spanked."
+                    "Maybe it changed my behavior for a short time, but mostly I just felt mad at my dad for being out of control."
+                    "I have a lot more sympathy for him now."
+                    "I realized, though, that I can't earn [kid_name]'s respect or teach her not to hurt people by spanking her."
+                    
+            $ authoritarian += 1
+                        
+        "I'll see if I can get you some applesauce.":
+            $ responsive += 1
+            him serious "Okay, sweetie, I'll see if I can get you some applesauce."
+            "We didn't have any applesauce, but we did have a few apples."
+            "I cut them up and put them in a pot with a little water and turned on the stove."
+            her surprised "Are you making something else? I thought you liked the beans."
+            him determined "I like them, but [kid_name] really wants some applesauce."
+            her annoyed "So you're just going to make her some?"
+            him surprised "Well, yeah, we don't have any already made, right?"
+            her angry "You worked hard to make dinner today! She shouldn't get some special thing just because she's being picky!"
+            him annoyed "Well, I'm making applesauce. Maybe in the meantime you can get her to eat the rest of her food."
+            her annoyed "Why do I always have to be the bad guy?"
+            him "No one's making you."
+            her angry "But if I don't, you'll spoil her!"
+            "She left the room and I heard her coaxing [kid_name] to try to eat her beans. She was trying to be patient, but she sounded more and more frustrated the longer she tried."
+            "Finally the apples were soft and I could mash them up."
+            him normal "Here you go, [kid_name]!"
+            "She gobbled up the applesauce, but didn't touch her rice or beans."
+            her annoyed "That is not a healthy dinner."
+            him serious "She won't get malnutrition from eating a bowl of applesauce, right?"
+            her annoyed "Eventually, she might. If she doesn't eat anything else."
+            him annoyed "You worry too much. She'll be fine."
+            $ permissive += 1
+            
+        "(Say nothing.)":
+            "I didn't really care what she ate. [her_name] could deal with [kid_name] when she got back."
+        "You can eat it or not, but there won't be more dinner.":
+            $ demanding += 1
+            $ responsive += 1
+            him serious "This is what's for dinner. You can eat it or not."
+            kid "Yucky."
+            him normal "You don't have to like it. But I think it's pretty good."
+            "I closed my eyes and savored the feel of the chunky beans and onions, each individual grain of rice, the melding of starch and protein and amino acids and whatever else is in food."
+            "[kid_name] looked at me skeptically."
+            him normal "Well, I guess if you're hungry then eventually you'll eat."
+            "She slid down off her chair and toddled over to the pantry. She stood on her tiptoes to grab a jar of pickles and brought it to the table."
+            kid "I want pickles."
+            menu:
+                "What should I say?"
+                "No pickles.":
+                    him "No pickles. Eat your rice and beans if you're hungry."
+                "You can have some pickles after you eat your dinner.":
+                    $ demanding += 1
+                    $ responsive += 1
+                    him "You can have some pickles after you eat your dinner."
+                    "Was this bribery or positive reinforcement? I wasn't sure, and honestly, I was starting to not care. I just wanted dinner to be over."
+                    kid "Pickles now!"
+                    him "After dinner."
+                    kid "Dinner yucky!"
+                    him "..."
+                    kid "..."
+                    "I ate my food, pretending not to care about what [kid_name] did. When I was done, I opened the jar of pickles and put three on my plate."
+                    him happy "Yay, I finished my dinner, I can eat pickles!"
+                    "[kid_name] was not convinced. She reached for the pickle jar, but I pushed it away."
+                    him normal "After dinner."
+                    
+                "Whatever, eat pickles, I don't even care anymore.":
+                    $ responsive += 1
+                    him annoyed "Whatever, eat pickles! I don't even care anymore."
+                    "She ate half the jar of pickles, and nothing else."
+                    
+                    $ permissive += 1
+                    return
+                    
+            "She scowled at me and left the table. I guess she really hated rice and beans. Hopefully she'd learn to like them, though; we ate them a lot."
+            "If she was really hungry, she'd eat anything... right?"
+            "I was pretty sure she wasn't starving. I wasn't going to turn dinnertime into a theatrical power struggle."
+            "And, sure enough, the next time we had rice and beans she just ate them without complaining."
+            $ authoritative += 1                                            
     return
 
 # 2.7 Earth years old
@@ -385,6 +569,8 @@ label family5:
 
 # 3.5 Earth years old
 label family6:
+    "I remembered when she was so small and crying incosolably; I couldn't wait for her to learn to talk."
+    "Now she was like a perpetual motion machine of questions and opinions."
     "Terra wants your attention while you're trying to relax on a lazy Sunday afternoon"
     menu:
         "Play with her just enough for her to get less bored and play a little more on her own.":
