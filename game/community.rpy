@@ -381,7 +381,7 @@ label community7:
     ilian "I haven't heard from any debt collectors since."
     kevin "You may have noticed but it's very difficult for people on Earth to contact you here."
     ilian "It was win-win for me."
-    kevin "I was so intent on coming to Terra that I didn't think to negotiate compensation."
+    kevin "I was so intent on coming to Talaam that I didn't think to negotiate compensation."
     thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
     him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
     thuc "Or 8! Fewer pieces to ship."
@@ -424,11 +424,18 @@ label community7:
 
 label community8:
     #TODO: define the talked_to variables as false in the defines? document
+    # These are local variables that are only used here, so we can define them here.
+    talked_to_Natalia = False
+    talked_to_Thuc = False
+    talked_to_Sara = False
+    talked_to_Kevin = False
+    talked_to_Pavel = False
+    
     if is_liason:
         "Urgent insta-com from RET!"
         $ style = get_parenting_style()
         if (style== "authoritative"):
-            "We have extra space on the shuttle. What Earth luxuries would the colony like?"
+            "We have extra space on the shuttle (10kg). What Earth luxuries would the colony like?"
         elif(style == "authoritarian"):
             "Tell us what extras to put on the shuttle by this evening."
         elif(style == "permissive"):
@@ -462,6 +469,7 @@ label community8:
                 with dissolve
                 thuc "I'd like to grow peanuts. Regular, unroasted peanuts will work fine for cultivation purposes."
                 thuc "Then I can make peanut stew and peanut butter!"
+                # TODO: if you do this, then allow the user to plant peanuts also
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Thuc = True
                 jump talk_about_luxuries
@@ -470,6 +478,7 @@ label community8:
                 sara "Oh, I don't know if this is possible, but I would really, really love a bicycle."
                 sara "I'm terrible with horses and I hate how they just eat more of our food."
                 sara "A bicycle wouldn't get hurt by radiation and can go faster in some situations."
+                # Would she also want one so that her son could use it?
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Sara = True
                 jump talk_about_luxuries
@@ -526,7 +535,7 @@ label community8:
         him "Let me think about that."
         sara "I need to know right now."
         him "Hmm. How about some good old Earth toilet paper?"
-        sara "Great. I can shorted that to TP in the insta-comm."
+        sara "Great. I can shorten that to TP in the insta-comm."
         him "Hopefully they won't send me a textbook on Topological Planning."
         sara "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
         #TODO: Maybe Sara asks you to go ask everyone? better alt?
@@ -565,7 +574,9 @@ label community9:
             pete "I don't like relying on them for so many things though, so I'm going to try out my own radiation-shielding tent."
             him "Are we the guinea pigs?"
             pete "No, I'll use the radiation detector on my tablet in my homemade tents, and we'll use the RET tents."
-            pete "Bring something to sleep on and some food. And get a bow and arrow from the community center."
+            pete "Bring something to sleep on and some food. And get a bow and arrow from the community center." 
+            # We had rifles in the previous game; might want to use those or say why you're not using them
+            # Also, might want to do some more hunting research; Pete probably knows what he's doing.
             him "Can't we trap them or poison them?"
             pete "Not as fun, and the poison would get in the meat."
             him "I'm going to bring some twine to set some traps then."
@@ -575,12 +586,12 @@ label community9:
             "You set some traps around the area."
             "After sleeping in tents, you wake up early to catch the grass crabs while they're active."
             pete "You scare them between these two boulders, and then Thuc and I'll take 'em out."
-            him "Try not to lose anymore arrows."
+            him "Try not to lose any arrows."
             thuc "I won't lose them but I will definitely loose them."
             him "..."
-            "You carefully make your way around so that you're opposite Pete and Thuc."
+            "You carefully make your way around so that you're opposite Pete and Thuc." #This could also be a good place for a choice - being in the wrong place could get you trampled or shot at?
             him "HELLO LAND LOBSTERS! Do you think you'd taste good with some butter and cream?"
-            "The creatures notice you, but they don't form a herd in the way cows or sheep do."
+            "The creatures notice you, but they don't form a herd in the way cows or sheep do." # This could be a place for a choice
             "They scatter in all directions. Luckily, a few head between the boulders."
             pete "I hit one!"
             thuc "It's still alive!"
@@ -589,14 +600,14 @@ label community9:
             him "This is going to be delicious."
             pete "Let's eat some and then head back."
             "After making a fire, a solar flare warning comes up on the radio."
-            #too much stuff for one event and no decision?"
+            #too much stuff for one event and no decision? 
             pete "Fantastic. I can test my homemade solar tent."
             pete "Now I can just reach out of our tent and move the sensor..."
             him "What did you make your homemade tent out of anyway?"
             pete "The fabric is leather. That doesn't do anything for radiation."
             pete "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
             pete "And it appears to reduce solar radiation! Too bad it's completely dark in there."
-            "After eating some of the meat, you and Pete and Thuch bring the rest back to the colony."
+            "After eating some of the meat, you and Pete and Thuc bring the rest back to the colony."
             pete "We process cattle all the time, so we can butcher the grass crab in our butchery. I'll make sure you get some."
             him "Thanks Pete."
             #TODO: should Pete get wounded here? some kind of decision?
