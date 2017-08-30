@@ -1,5 +1,10 @@
 # Crop-specific work events
 
+# TODO: First person or third person?
+# TODO: Some crop events kind of assume that you'll get the next crop event
+# the next year.  If you don't plant that crop the next year, some events
+# should reset.  
+
 # Default crop event, if no other crop event can be found
 label default_crop_event:
     "The year passed by in a blur: tilling, planting, weeding, harvesting.  The endless cycle of life on the farm."   
@@ -122,13 +127,13 @@ label tomatoes1:
     "The tomatoes were looking so good, but a lot of them have sunken rotten areas on the bottom."
     menu:
         "Do some research":
-            "Looks like blossom-end rot.  If you add some more calcium to the soil and water more evenly, this shouldn't happen next time."
+            "Looks like blossom-end rot.  If I add some more calcium to the soil and water more evenly, this shouldn't happen next time."
             $ tomatoes1_action = "research"
         "Just cut it off":
-            "Most of the tomato is fine.  You're canning most of them, anyway, so who cares if you have to throw a bit away."
+            "Most of the tomato is fine.  I'm canning most of them, anyway, so who cares if I have to throw part away?"
             $ tomatoes1_action = "cut"
         "Add more fertilizer":
-            "Next time you'll add more fertilizer; that should help."
+            "Next time I'll add more fertilizer; that should help."
             $ tomatoes1_action = "fertilize"            
     return
     
@@ -137,7 +142,7 @@ label tomatoes2:
     if (tomatoes1_action == "research"):
         "The tomatoes look much better this year!"
         menu:
-            "You can choose which fruits to save seeds from for planting next year."
+            "I can choose which fruits to save seeds from for planting next year."
             "First tomatoes":
                 $ tomatoes2_action = "early harvest"
             "Biggest tomatoes":

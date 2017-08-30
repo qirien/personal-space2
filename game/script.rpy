@@ -71,7 +71,7 @@ label start:
         invited_luddites = False
         invited_miners = False
         whole_harvest_to_storehouse = False
-        town_hall_games = False
+        town_hall_games = False        
         # Community groups. The higher the variable, the better your relationship with that group is.
         colonists = 0
         miners = 0
@@ -141,7 +141,6 @@ label start:
         "Our Personal Space 1 data found. Please verify data."
         "Parents [his_name] and [her_name] gave birth to child [kid_name]"
         
-
     show him happy
     him "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     him normal "Of course, I knew it'd be a lot of work too. But, like most hard work, I figured it'd be worth it."
@@ -164,7 +163,7 @@ label start:
     
     scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
-    "But you changed, and our community changed as new settlers arrived and situations changed."
+    "But you changed, [kid_name], and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
     
     #####################################################################    
