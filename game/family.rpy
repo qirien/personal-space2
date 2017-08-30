@@ -1653,7 +1653,7 @@ label family23:
     return
 
 # 14.8 Earth years old
-# Alcohol, drugs
+# Alcohol, drugs, fashion
 label family24:
     "[her_name] asks you about fire grass. Seems like a lot of people have been talking about it lately."
     menu:
