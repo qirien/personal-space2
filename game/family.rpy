@@ -542,6 +542,7 @@ label family4:
             "If she was really hungry, she'd eat anything... right?"
             "I was pretty sure she wasn't starving. I wasn't going to turn dinnertime into a theatrical power struggle."
             "And, sure enough, the next time we had rice and beans she just ate them without complaining."
+            "Sometimes I just didn't understand [kid_name]."
             $ authoritative += 1                                            
     return
 
@@ -1009,24 +1010,10 @@ label family10:
 # 6.8 Earth years old
 # Dinner Table Manners
 label family11:
-    "Manners at the dinner table!  Terra used to know how to say Please and Thank You, but lately she's forgotten or is testing the limits."
-    menu:
-        "I raised you to talk better than that!":
-            $ demanding += 1
-            $ authoritarian += 1
-        "I expect you to say 'please' when you ask for something, and 'thank you' when someone helps you. Try again.":
-            # she keeps asking rudely a billion times, do you give up and give her what she wants, get mad, set a consequence, or simply ignore her until she talks politely?
-            $ demanding += 1
-            $ responsive += 1            
-            $ authoritative += 1
-        "Give her what she wants.":
-            $ responsive += 1
-            $ permissive += 1
-        "Maybe next time you'll eat by yourself.":
-            $ neglectful += 1
-            
-    return
-    
+    scene farm_interior with fade
+    show him normal at midleft
+    show her normal at midright
+    show kid normal at center
     "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
     "Even [bro_name] usually had something to say."
     "They weren't always peaceful, though..."
@@ -1189,25 +1176,6 @@ label family12:
 # 8 Earth years old
 # Sex Education
 label family13:
-    "Terra wonders where babies come from."
-    menu:
-        "She's not ready.":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Give a vague metaphor.":
-            $ responsive += 1
-            $ neglectful += 1
-        "Keep it simple":
-            $ responsive += 1
-            $ demanding += 1          
-            $ authoritative += 1
-        "Give a detailed explanation.":
-            $ responsive += 1
-            $ permissive += 1
-        
-    return
-    
-    # TODO: uncomment above when ready for prose, and make sure variables are changing properly
     # TODO: Is this because Mom is pregnant again?  Miscarriage -> hysterectomy?
     scene fields with fade
     show him at midright
@@ -1348,21 +1316,6 @@ label family13:
 # 8.7 Earth years old
 # Teacher Troubles
 label family14:
-    "Terra is having problems at school and taking it out on her little sibling."
-    menu:
-        "Demand that her teacher fix the problem":
-            $ responsive += 1
-            $ permissive += 1            
-        "Brainstorm ways Terra could work it out":
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Terra should quit asking you and stop bothering her brother.":
-            $ demanding += 1
-            $ authoritarian += 1
-        
-    return
-     
     scene farm_interior with fade
     #show kid at midleft
     #show brother crying at quarterleft with dissolve
@@ -1417,13 +1370,17 @@ label family14:
         "How are you feeling?":
             him surprised "Are you feeling okay?"
             kid "I'm not sick or anything. Just tired of everyone telling me what to do!"
+            him "Everyone?"
+            kid "Especially teachers!"
         "(Say nothing)":            
             him serious "..."
             "I put my arm around her, trying to show her that I was there for her. Words just weren't good enough."
             "She didn't lean into me, but she didn't push me away, either."
             kid "I just wish everyone would stop telling me what to do!"
+            him surprised "Is there someone in particular?"
+            kid "My teacher is so mean."
             
-    him surprised "Isn't that your teacher's job?"
+    him surprised "Isn't telling you what to do kind of your teacher's job?"
     kid "No! She's supposed to be teaching me useful things like math and reading, not making me do busy work all day!"
     menu:
         "What should I say?"
@@ -1451,7 +1408,7 @@ label family14:
                     return
                 "(Make her understand)":
                     $ responsive -= 5
-                    "I got right up in her face and gripped her arms, tighter than I meant to."
+                    "I got right up in her face and gripped her arms, tightly so she couldn't wriggle away."
                     him angry "We are not being mean! We are trying to teach you how to be a decent human being! But it's really hard when you keep hitting people and disobeying us!"
                     kid "Ow, dad, that hurts!"
                     him angry "Did you hear what I said?!"
@@ -1547,33 +1504,18 @@ label family14:
 # 9.4 Earth years old
 # Allowance?
 label family15:
-    "Terra wants some money. She read about something called 'an allowance' in a book and wants to buy foods/clothes/toys? that she wants!"
-    menu:
-        "No.":
-            $ neglectful += 1
-        "Start an allowance based on completing chores and being good.":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Require her to write up her projected expenses to help determine the amount of the allowance.":
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        # Also probably something about she is now responsible for certain expenditures
-        "Sure, here you go.":
-            $ responsive += 1
-            $ permissive += 1
-            
-    return
-
+    scene farm_interior with fade
+    show him normal at midright
+    show kid normal at midleft
     # TODO: Modify allowance_amount based on this event and do something with it.
     kid "Dad, I need some money. Can I have an allowance?"
-    him "[kid_name], I have no problem with ants. I already allow ants."
+    him happy "[kid_name], I have no problem with ants. I already 'allow ants.'  Get it??"
     kid "Ha ha. That doesn't even make sense. So can I?"
     menu:
         "What should I say?"
         "Why do you want an allowance?":
             $ responsive += 1
-            him "Why do you want an allowance?"
+            him surprised "Why do you want an allowance?"
             kid "Sometimes there's things I want to buy!"
             him "Like what?"
             kid "Like fruit, or cool socks, or my friend is selling these jumpropes that she made, or sometimes I want to print things."
@@ -1587,7 +1529,9 @@ label family15:
                 "You don't need those things!":
                     $ demanding += 1
                     him "Those aren't things you even need!"
-                    kid "No, but I really really really really really really want them! Do I need to say 'really' more times?"
+                    kid "No, but I really really really really really really want them! Do I need to say 'really' more times? Maybe a googol times?"
+                    kid "Really really really really really really..."
+                    him annoyed "I think I get the picture."
                     jump allowance_how
                 "If there's something you want, I'll buy it for you.":
                     $ demanding -= 1
@@ -1608,7 +1552,7 @@ label family15:
             him "You need to learn that you can't always have everything you want!"
             kid "{b}You{/b} need to learn to share!"
             him "You can't speak that way to me! Go to your room!"
-            kid "Dad, you're not being fair, you just hate me!"
+            kid "You should go to your room. Dad, you just hate me!"
             him "I SAID GO TO YOUR ROOM!"
             $ authoritarian += 1
             
@@ -1627,8 +1571,9 @@ label family15:
             him "She wants to {b}have{/b} money, anyway."
             her "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
             him "She shouldn't get paid to help out her family."
-            her "Why not? You do."
+            her annoyed "Why not? You do."
             him "...Fine, whatever, as long as you handle it."
+            # TODO: should this end differently?
             
             return
         "No.":
@@ -1704,21 +1649,134 @@ label allowance_how:
 # 10 Earth years old
 # Cleaning her room
 label family16:
-    "You ask Terra to clean up her stuff (school supplies, rock collection, 'precious things', etc). She says it is clean and she likes it that way."
+    "The way you grew up was pretty different from how your mother and I grew up on Earth. You had never experienced things like grocery stores, school fundraisers, football games, or trains."
+    "But some things were pretty similar to my own childhood."
+    him annoyed "Yes, you need to clean your room today."
+    kid "But I like it messy! It feels comfortable and I know where everything is!"
+    him serious "Really? Where's your hairbrush?"
+    kid "I... I could find it if I had to!"
+    him annoyed "You have to. Right now."
+    kid "Ugh, I know where everything {b}else{/b} is!"
+    him surprised "How can you even have this much stuff? Where did this all come from?"
+    kid "I like to collect things."
+    him annoyed "Can't you just pick one thing? I mean, you have shells, rocks, and bottlecaps. And that's not even counting every school art project you've ever made, old plastic containers from rations, and -- what {b}are{/b} these?"
+    kid "It's my origami zoo!"
+    him surprised "Didn't you make that like five years ago?"
+    kid "Yes, and I still love it!"
+    kid "Besides, it's not like we can get new things all the time. Every thing is precious."
     menu:
-        "Help her make a box for her most special things and choose some things to give away.":
-            # charity for Luddites? # it would be in the right timeframe
+        "What should I say?"
+        "Clean it up or be grounded.":
             $ demanding += 1
+            him serious "You need to clean it up right now or you'll be grounded."
+            kid "Right now?!"
+            him annoyed "Yes, right now."
+            "I left her to clean it up. She's a big girl now; she doesn't need my help to clean her room."
+            "When I came back, it was pretty clean..."
+            "...until I looked under her bed."
+            "She had just shoved everything under there."
+            him angry "[kid_name]!"
+            kid "What?"
+            menu:
+                "What should I do?"
+                "Tell her to clean it up and she's grounded.":
+                    him angry "That's it, you're grounded. Also, clean this up right now!"
+                    kid "I don't know how!"
+                    him annoyed "Well, you better figure it out quick. You have one hour."
+                    kid "Or what?!"
+                    him serious "Do you want to find out?"
+                    "Tears sprang to her eyes, but I had no pity. It's not like I was asking her to do something hard; just make her room neat. She had to learn."
+                    $ authoritarian += 1
+                "Ask her to fix the problem":
+                    him serious "What do you need to do here?"
+                    kid "What? The room is clean."
+                    him serious "When I say 'clean', I don't mean 'everything under the bed'. I expect every item to be in a container that is meant for that specific type of item."
+                    kid "That'll take forever!"
+                    him "It might take a while, but I know you can do it."
+                    kid "I just... I don't know where everything goes!"
+                    him "Let me help you. Let's break it down one thing at a time."
+                    "I spent several hours helping her organize her room. Hopefully she could do it better on her own next time."
+                    $ authoritative += 1
+                "Just throw it all away.":
+                    $ responsive -= 2
+                    "I didn't say anything. I just took it all out back and dumped it in a pile."
+                    "Some of it could probably be recycled, but why should that be my job?"
+                    "Then I lit it on fire."
+                    "[kid_name] came running out and screamed when she saw the blaze." 
+                    kid "No! Stop! I'll clean it up!"
+                    him serious "If you won't take care of your things, then you don't get to have things."
+                    kid "You are the worst dad ever!"
+                    him annoyed "Also, you're grounded. You didn't do what I asked and you spoke to me rudely."
+                    "She burst into tears."
+                    "When [her_name] came home, [kid_name] sobbed out the entire story to her. [her_name] didn't say anything, but she shot me an angry look over the top of [kid_name]'s head."
+                    "After [kid_name] cried herself to sleep, [her_name] turned to me."
+                    her annoyed "You burned all her things?"
+                    him serious "She wouldn't clean her room. It was just a bunch of junk, anyway."
+                    her angry "It wasn't junk to her!"
+                    him angry "Well, she should've taken better care of it!"
+                    her annoyed "Well, it'll be hard for her to learn how now that she doesn't have anything to take care of."
+                    him annoyed "I think she learned her lesson."
+                    her angry "She learned that she can't trust you! She learned that you don't care about her at all! Just about satisfying your own ego."
+                    him angry "This isn't about me!"
+                    her concerned "You can't even see it, can you?"
+                    him serious "All I see is a spoiled little girl who maybe finally learned a lesson."
+                    her serious "I wish we could've talked about it together before you did that."
+                    him annoyed "Yeah, well, you weren't here."
+                    her sad "..."
+                    him annoyed "..."
+                    $ authoritarian += 1
+                    
+        "I won't make you clean it.":
             $ responsive += 1
-            $ authoritative += 1
-        "Throw her stuff away when she's at school.": # Hmmm, do we need a passive-aggressive variable?!
-            $ responsive -= 1
+            him concerned "I guess it's not hurting anyone for you to keep this stuff around..."
+            kid "Yeah, it'd be a waste of time to clean it up. It'd just get messy again, right?"
+            him serious "Yeah..."
+            "Mostly I just didn't have the energy to make her do anything about it. And, it wasn't that important, right?"
             $ permissive += 1
-        "Demand she clean it up now or be grounded.":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Let her keep it. If a little mess makes her happy, what's the big deal?":
+        "I'll help you organize them.":
             $ responsive += 1
+            him serious "It sounds like you don't know where to start. I'll help you organize this stuff."
+            kid "I guess, if you really want to."
+            "I spent about two hours sorting through little bags and boxes and bins full of random items that I didn't even know we had."
+            "We used the old food containers to organize it into some kind of order."
+            him "Now it's your job to make sure it stays organized."
+            kid "Why? It'll just get messy again."
+            him "Not if you maintain it!"
+            kid "I don't think that's going to happen."
+            menu:
+                "What should I do?"
+                "Hold her accountable.":
+                    $ demanding += 1
+                    him serious "Well, every week we'll check on your room. If you've kept it organized, you won't have any work to do. If it's gotten messy, you'll need to clean it by yourself."
+                    kid "All by myself!"
+                    him normal "If you're going to keep all these things, then you're responsible for keeping them organized. I'll help you by checking on it each week."
+                    kid "Ugh, what a pain."
+                    him serious "If you need help figuring something out, I'll help you. But if you don't keep things organized, then I will give them away."
+                    kid "You're so mean!"
+                    him normal "Let me know if you need any help, okay?"
+                    $ authoritative += 1
+                "Do this again next time.":                    
+                    him normal "Then I'll help you clean it again."
+                    kid "Okay, if you really want to."
+                    $ permissive += 1
+        "Maybe you could share some of it?":
+            $ demanding += 1
+            him surprised "Maybe you could give some of it away?"
+            kid "Give away my precious things?!"
+            # TODO: change depending on favorite faction?
+            him serious "Not all of them, but I know Trevor and his family don't have access to all the stuff at the storehouse or the printers anymore."
+            kid "Give away my precious things to {b}Trevor{/b}?!"
+            him normal "Maybe his little sister."
+            kid "She does like animals..."
+            him concerned "She would probably play with it more than you do..."
+            kid "Well, maybe I can give a few things away, but not everything!"
+            him "Okay, let's make some piles. We'll give some things away, and the stuff you want to keep we can organize so you can find things better."
+            kid "I don't need to be able to find things better."
+            "I ignored her and just got started."
+            $ authoritative += 1
+        "I don't care.":
+            him annoyed "I don't actually care. It's your room, whatever."
+            kid "Yeah, exactly."
             $ neglectful += 1
     return
    
