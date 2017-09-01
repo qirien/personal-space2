@@ -425,11 +425,11 @@ label community7:
 label community8:
     #TODO: define the talked_to variables as false in the defines? document
     # These are local variables that are only used here, so we can define them here.
-    talked_to_Natalia = False
-    talked_to_Thuc = False
-    talked_to_Sara = False
-    talked_to_Kevin = False
-    talked_to_Pavel = False
+    $ talked_to_Natalia = False
+    $ talked_to_Thuc = False
+    $ talked_to_Sara = False
+    $ talked_to_Kevin = False
+    $ talked_to_Pavel = False
     
     if is_liason:
         "Urgent insta-com from RET!"
@@ -830,14 +830,115 @@ label community17:
         "The miners and the luddites." if ((luddites >= 10) and (miners >=10)):
             $ invited_luddites = True
             $ invited_miners = True
+            jump ludditesandminers
         "The luddites." if (luddites >= 10): 
             $ invited_luddites = True
+            jump justluddites
         "The miners." if (miners >= 10): 
             $ invited_miners = True
+            jump justminers
         "The usual--all the other colonists.":
             $ pass
+            jump justcolony
+            
+    label ludditesandminers:
+        "Pete offered to host, and slaughtered a bull for the occasion."
+        "Almost all the miners came, bringing some bean stew."
+        bandile "This beef is amazing. Do you have any extra I could buy from you?"
+        pete "You know, credits are not worth that much too me right now."
+        pete "We can always use more beans though."
+        bandile "Credits are the one thing we have!"
+        pete "I don't have a tablet, and I asked RET to delete my name from their records when I left, so I actually have no way of using credits."
+        bandile "We've also got lots of rocks?"
+        pete "Any metals?"
+        bandile "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
+        pete "Great. Now I just need to figure out how to make a bellows!"
+        "The luddites brought a strange seafood dish."
+        jump jellyfishside
+        
+    label justluddites:
+        "Pete offered to host, and slaughtered a bull for the occasion."
+        "He also brought a strange side dish."
+        jump jellyfishside
+        
+    label jellyfishside:
+        him "So... what is this?"
+        pete "Out by the ocean, sometimes you can find these creatures with a bunch of spiny arms."
+        pete "They start stacking on top of one another and they send off these giant eggs"
+        him "Is it safe to eat?"
+        pete "As far as I can tell, it is."
+        pete "Try some. It's delicious."
+        menu:
+            "Try it.":
+                "It tastes cool and slippery, and a little fishy."
+                "It's been so long since you've had anything that tasted unusual."
+                "You can't decide if you love it or hate it."
+                $ pass
+                #TODO: set up the variable for here
+            "Don't try it.":
+                him "I'll pass."
+                pete "Suit yourself."
+                $ pass
+        him "Can you come do a class on cattle health? You're the only expert around." #see community 14 for who got the cattle
+        pete "I could, if you can give me a few more tools."
+        pete "I can live without most things, but I could use another good knife and some twine."
+        him "I think we can arrange for that."
+        jump justcolony
+        
+    label justminers:
+        "We invited the miners to join us. After all, their success is what enables us to continue to live here."
+        bandile "We didn't have time to go hunting, but we DO have time to soak beans."
+        him "Is this a soup or a dip? It smells... different."
+        bandile "Neither. Either. Both! Try some."
+        menu:
+            "Try it.":
+                "You dip your bread into the very organic-appearing, thick brown dip."
+                "It tastes like beans, with a strange combination of spices."
+                "It's not like anything you've ever tasted before. It's exciting to try something new"
+                $ pass
+                #TODO: set up the variable for here too?
+            "Don't try it.":
+                him "I'll pass."
+                bandile "You don't like beans?"
+                him "I'll stick to what I know."
+                $ pass
+        jump justcolony
+        
+    label justcolony:
+        "You set your dish next to the ones from the other families on the buffet table."
+        "Everyone helps themselves and sits down--some on tables and some on the ground."
+        martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
+        him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
+        "Martin takes a bite."
+        martin "It's not bad. But you should be careful not to mix it too much after you add the flour."
+        him "I know..."
+        martin "You might have been better off just leaving out the flour completely."
+        him "Did you try Thuc's goat curry? Where did he get the spices for that?"
+        pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
+        him "It's been so long since I've had these kinds of spices. It tastes amazing."
+        pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
+        thuc "Thanks to you my children know the difference between cumin and cardamom!"
+        him "Which goat are we eating tonight?"
+        thuc "Shorts."
+        pavel "That's a weird name for a goat."
+        thuc "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
+        thuc "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
+        julia "Oh, and don't forget Cape!"
+        julia "Last year Gardenia insisted on wearing this cape she made everywhere."
+        julia "She brought it out today to dress up for the begging."
+        "After the children finished eating, they ran around with pails of water."
+        "After cleaning your plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
+        "You hand out corn fritters to the children who clean your plate, cup, and utensils."
+        "You and Thuc bring out the special treat you made together. It's made with rice and corn and the kids notice it eagerly."
+        "They start cleaning the serving dishes and you make a show of inspecting their work and giving them the rice-corn treat."
+        "Of course, a few other adults are busy saving leftovers and helping the smallest children clean dishes."
+        pavel "It's a shame we don't have any candy to give them."
+        julia "I miss it too, but that stuff is so unhealthy."
+        julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
+        thuc "They still sound pretty entitled to me!"
+        him "Some things never change."
+            
     #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
-    #TODO: find a real way to do if AND?
     # the obsession causes you to.... ??? throw crops into the sea?
     # also if you meet with the luddites, Pete can answer questions about cattle health.
     # if BOTH luddites and miners are there, they start trade negotiations? affects the fire grass event later.
