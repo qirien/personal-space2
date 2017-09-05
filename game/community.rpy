@@ -284,6 +284,14 @@ label community5:
             $ pass
             jump pete_no_storehouse #this choice has no impact on the story
             
+    label no_formal_rationing:
+    him "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
+    him "Worst-case scenario, they have to farm for a bit instead of mining all the time."
+    ilian "Are you sure? I don't really want to be eaten if we run out of food."
+    him "I think people could survive on the wild resources available, as long as they know what they are."
+    ilian "Okay, whatever you say."
+    return
+            
     label pete_no_storehouse:
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
     pete "I have yet to successfully make a hard cheese that doesn't mold right away."
@@ -483,7 +491,7 @@ label community8:
                 $ talked_to_Sara = True
                 jump talk_about_luxuries
             "Kevin" if not talked_to_Kevin:
-                show Kevin at left with dissolve
+                show kevin at left with dissolve
                 kevin "This is an extremely inefficient way to gather information. Could you not have contacted me electronically?"
                 him "Yes, but you might not have responded in time. I need to tell them by the end of the day!"
                 kevin "Very well. Are they sending new tablet batteries like I requested?"
@@ -495,7 +503,7 @@ label community8:
                 $ talked_to_Kevin = True
                 jump talk_about_luxuries
             "Pavel" if not talked_to_Pavel:
-                show Pavel at left with dissolve
+                show pavel at left with dissolve
                 pavel "Oh, there are so many things I miss."
                 pavel "Sushi, wine, tempura, Krem de la Krem donuts, French fries, falafal, fried chicken,"
                 pavel "those really cheap frozen pizzas from Glosemitto's, slow-roasted coffee, Fabrielle brand pelmeni,"
@@ -632,7 +640,7 @@ label community10:
     "After weeding and clearing out old growth, Terra comes home from school."
     "You make a simple salad together, and when [her_name] arrives you head over to the Peron's."
     natalia "Thanks for coming over. We're just finishing up the rice."
-    matin "We made a turkey bean soup. It should go well with your salad."
+    martin "We made a turkey bean soup. It should go well with your salad."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
     "After the meal, Terra runs off to play with the kids."
     martin "As you may have heard, I have skin cancer."
@@ -752,12 +760,12 @@ label community13:
         jump cave_unexplored
             
     label cave_unexplored: 
-        m "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
+        "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
     return
     
     label cave_explored:
-        m "The miners explode the cave to access more minerals deeper down. At least Dr. Lily got to document the life forms there."
-        m "Next weekend, some miners are gambling away their new fortunes."
+        "The miners explode the cave to access more minerals deeper down. At least Dr. Lily got to document the life forms there."
+        "Next weekend, some miners are gambling away their new fortunes."
     #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
     #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
     #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
@@ -824,6 +832,7 @@ label community16:
 
 
 label community17:
+    $ ate_jellyfish = False
     "It's time for the harvest festival! Usually you eat a big meal and the kids go around begging desserts off everyone."
     "This year you're in charge. Who will you invite?"
     menu:
@@ -873,8 +882,7 @@ label community17:
                 "It tastes cool and slippery, and a little fishy."
                 "It's been so long since you've had anything that tasted unusual."
                 "You can't decide if you love it or hate it."
-                $ pass
-                #TODO: set up the variable for here
+                $ ate_jellyfish = True
             "Don't try it.":
                 him "I'll pass."
                 pete "Suit yourself."
@@ -905,6 +913,7 @@ label community17:
         jump justcolony
         
     label justcolony:
+        #which background? this is the end for all the other events as well. maybe don't have the luddites host if it's too complicated, or devise alternate small talk.
         "You set your dish next to the ones from the other families on the buffet table."
         "Everyone helps themselves and sits down--some on tables and some on the ground."
         martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
@@ -938,11 +947,34 @@ label community17:
         thuc "They still sound pretty entitled to me!"
         him "Some things never change."
             
-    #TODO: depending on your levels with the miners and luddites, you can invite them. If you invite the luddites, they decide to host, and if you eat the jellyfish they serve, you become obsessed with jellyfish for a while.
-    # the obsession causes you to.... ??? throw crops into the sea?
+    if ate_jellyfish:
+        #move to a later, more sparse event?
+        "After the dinner, you can't stop thinking about the seafood that Pete brought."
+        him "I wonder what they look like." #to self
+        "You write an e-mail to Dr. Naomi asking if she has any pictures."
+        "She responds via the instant messaging software. Guess she hasn't given up all technology."
+        naomi "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
+        naomi "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish."
+        naomi "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
+        "You feel relieved and look at the photos of the creature out of water and the drawings."
+        "You start making your own drawings, and send a few back to Naomi."
+        naomi "Did you eat some of this jellyfish at the feast?"
+        him "Yes, I did. Are they in season?"
+        naomi "I find your interest in them highly unusual."
+        him "Why? Aren't they beautiful creatures?"
+        naomi "Yes. But when was the last time you took the time to draw an animal?"
+        him "..."
+        naomi "I suspect that the creature contains a parasite that affects human brains."
+        him "And you just let Pete serve it to everyone?"
+        naomi "I have a suspicion, but no proof. Their fondness for the jellyfish seems harmeless."
+        him "Huh. Well let me know if you guys start selling jellyfish sweaters."
+        return
+    else:
+        return
+    
+    #more likely to take a later risk if you have the parasite? doesn't have to be just like toxoplasmosis.
     # also if you meet with the luddites, Pete can answer questions about cattle health.
     # if BOTH luddites and miners are there, they start trade negotiations? affects the fire grass event later.
-    return
 
 
 label community18:
