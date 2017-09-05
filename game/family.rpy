@@ -11,7 +11,6 @@
 # Intro event
 label family_intro:
     "Things used to be so simple. All you needed was a clean diaper, milk, and some love."
-    "Now... I don't even know what you need from me."
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
 
     #scene bedroom with fade         
@@ -167,6 +166,95 @@ label family1:
     
 # 10 Earth mos. old
 label family2:
+    "Farming's hard work, no doubt about it. No sick days or vacations, either."
+    "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil"
+    "Even knowing the seeds are hiding there, it still feels like a miracle whenever they pop out of the ground into young seedlings."
+    "I had only a few rows to go when I got a transmission from [her_name] on the radio."
+    
+    her radio "[his_name]! I'm leaving right now! There's an emergency at the clinic."
+    him surprised "Okay, I'll take care of things here."
+    her radio "[kid_name]'s in her crib. Bye!"
+    
+    "We had worked out a pretty good schedule, where I would get up early and try to get my most intensive farm work done in the mornings."
+    "Then I'd come home at lunchtime and [her_name] would head over to the clinic for appointments and drop-ins."
+    "But this sounded like something that couldn't wait."
+    "[her_name] didn't say if [kid_name] was asleep or not..."
+    menu:
+        "What should I do?"
+        "Go straight home.":
+            $ responsive += 1
+            "I didn't want to leave [kid_name] alone. If she was asleep, I could setup the baby monitor and go back out to work."
+            "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
+            "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"            
+            
+        "Ask [her_name] for more information.":
+            $ responsive += 1
+            him serious "Hey, is [kid_name] asleep? Did you setup the baby monitor?"
+            "I waited for a few minutes, but [her_name] didn't respond. She was probably on the other channel talking to whoever had the emergency."
+            "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
+            "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
+            
+        "Finish up the last few rows and then go home.":
+            $ demanding += 1
+            "[kid_name] could wait a few minutes while I finished this up. I hated leaving things half-done."
+            "It ended up taking almost an hour, but I sure felt satisfied to have finished the entire field."
+            "But as I headed for home, I could hear [kid_name] crying urgently."          
+            "When I finally walked into her room, she looked at me with a hurt, betrayed expression. She couldn't really talk yet, but her eyes said it all."
+            "All she needed was someone she could depend on, and I had failed at the most basic task: being there."            
+            
+    "I managed to calm [kid_name] down with some snuggles and a snack."
+    "I built a house out of block with her, but then my mind started to wander."
+    "I was hoping to get a lot more done today. I had to get these seeds in the ground right away, or my whole schedule would be off and our crop yield would suffer."    
+    "If there had been a big accident, [her_name] might be needed at the clinic tomorrow, too, so I couldn't just put everything off."
+    
+    "Maybe I could get some things done during her nap? I checked the clock. No, she wouldn't be ready for that for a few more hours."
+    
+    "She brought me a picture book and I read it to her, but my mind was still racing for how I could get my work done."
+    
+    menu:
+        "What should I do?"
+        "Stay and play with her.":
+            $ responsive += 1
+            "[kid_name] clearly was enjoying our time together; I should try to do the same."
+            "People kept telling me she'd grow up fast, but so far it felt very slow."
+            "I tried to be in the moment with [kid_name] and do what she wanted to do as the hours stretched on."
+            "We had lunch together and went for a walk and started some beans cooking for dinner."
+            "I tried to wear her out by crawling all around the yard with her."
+            "I checked the time again and again until finally it was naptime."
+            "[kid_name] seemed to sense my eagerness to leave, though, or maybe she just missed her routine with her mom, because she didn't want to go to sleep."
+            "I rushed out and was able to at least start on another field before she woke up."
+            $ permissive += 1
+            
+        "Try and do some work at home.":
+            $ responsive += 1
+            "There were a few things I could do at home -- researching, planning, checking the surveillance cameras..."
+            "So I worked on those while [her_name] crawled around, took all the pots and pans out of the cupboards, and banged on them."
+            "She pulled the blankets and sheets off all the beds trying to climb up and bounce on them."
+            "We played peek-a-boo for a bit, but then she kept trying to grab my computer pad."
+            
+            "Seems like she wanted a turn, but I couldn't do any of my work without the computer pad."
+            menu:
+                "What should I do?"
+                "Let her watch a show.":
+                    "I turned on a show she liked. I didn't really have much else to do, so I ended up just watching it with her until naptime."
+                    $ permissive += 1
+                "Take her outside to play while you work.":
+                    "She might have more fun outside. I dragged a chair out there where I could sit and work."
+                    "She grabbed at my screen again. I could already tell she was a stubborn child!"
+                    menu:
+                        "What should I do?"
+                        "Show her something fun to do.":
+                            "Seems like she just needed an idea of something else to do."
+                            "I brought out a big bowl filled with water, and a funnel and a cup. I set them down on the dirt and showed her how to scoop up water with the cup and pour it in the funnel to make mud."
+                            "She happily played in the water and mud until naptime, and I finished the research paper I was reading."
+                        "Yell at her to stop.":
+                            him angry "[kid_name], stop it! I'm working! You go play."
+                            "This just seemed to make her mad."
+                            # TODO: To Be Continued...
+                         
+        "Put her in the backpack and go back to work."
+        "Leave her in her crib."
+    
     "Terra is getting into everything and Kelly's got a surgery and Jack's in charge at home of ten month old Terra."
     menu:
         "Make a play pen for her":
@@ -569,7 +657,7 @@ label family5:
 
 # 3.5 Earth years old
 label family6:
-    "I remembered when she was so small and crying incosolably; I couldn't wait for her to learn to talk."
+    "I remember when [kid_name] was so small and crying incosolably; I couldn't wait for her to learn to talk."
     "Now she was like a perpetual motion machine of questions and opinions."
     "Terra wants your attention while you're trying to relax on a lazy Sunday afternoon"
     menu:

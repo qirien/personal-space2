@@ -425,11 +425,11 @@ label community7:
 label community8:
     #TODO: define the talked_to variables as false in the defines? document
     # These are local variables that are only used here, so we can define them here.
-    talked_to_Natalia = False
-    talked_to_Thuc = False
-    talked_to_Sara = False
-    talked_to_Kevin = False
-    talked_to_Pavel = False
+    $ talked_to_Natalia = False
+    $ talked_to_Thuc = False
+    $ talked_to_Sara = False
+    $ talked_to_Kevin = False
+    $ talked_to_Pavel = False
     
     if is_liason:
         "Urgent insta-com from RET!"
