@@ -166,6 +166,7 @@ label family1:
     
 # 10 Earth mos. old
 label family2:
+    $ family2_work_done = 0
     "Farming's hard work, no doubt about it. No sick days or vacations, either."
     "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil"
     "Even knowing the seeds are hiding there, it still feels like a miracle whenever they pop out of the ground into young seedlings."
@@ -196,6 +197,7 @@ label family2:
             
         "Finish up the last few rows and then go home.":
             $ demanding += 1
+            $ family2_work_done += 1
             "[kid_name] could wait a few minutes while I finished this up. I hated leaving things half-done."
             "It ended up taking almost an hour, but I sure felt satisfied to have finished the entire field."
             "But as I headed for home, I could hear [kid_name] crying urgently."          
@@ -203,11 +205,11 @@ label family2:
             "All she needed was someone she could depend on, and I had failed at the most basic task: being there."            
             
     "I managed to calm [kid_name] down with some snuggles and a snack."
-    "I built a house out of block with her, but then my mind started to wander."
+    "I built a house out of blocks with her, but then my mind started to wander."
     "I was hoping to get a lot more done today. I had to get these seeds in the ground right away, or my whole schedule would be off and our crop yield would suffer."    
     "If there had been a big accident, [her_name] might be needed at the clinic tomorrow, too, so I couldn't just put everything off."
     
-    "Maybe I could get some things done during her nap? I checked the clock. No, she wouldn't be ready for that for a few more hours."
+    "Maybe I could get some things done during [kid_name]'s nap? I checked the clock. No, she wouldn't be ready for that for a few more hours."
     
     "She brought me a picture book and I read it to her, but my mind was still racing for how I could get my work done."
     
@@ -223,6 +225,7 @@ label family2:
             "I checked the time again and again until finally it was naptime."
             "[kid_name] seemed to sense my eagerness to leave, though, or maybe she just missed her routine with her mom, because she didn't want to go to sleep."
             "I rushed out and was able to at least start on another field before she woke up."
+            # TODO: lower crop yield
             $ permissive += 1
             
         "Try and do some work at home.":
@@ -236,44 +239,243 @@ label family2:
             menu:
                 "What should I do?"
                 "Let her watch a show.":
-                    "I turned on a show she liked. I didn't really have much else to do, so I ended up just watching it with her until naptime."
+                    $ responsive += 1
+                    "I turned on a show she liked. I really didn't have anything else I could do at home without my computer pad, so I ended up just watching it with her until naptime."
                     $ permissive += 1
                 "Take her outside to play while you work.":
+                    $ family2_work_done += 1
                     "She might have more fun outside. I dragged a chair out there where I could sit and work."
-                    "She grabbed at my screen again. I could already tell she was a stubborn child!"
+                    "She crawled around for a few minutes, but then she crawled back and pulled herself up to stand using my leg."
+                    "She grabbed at my screen again. This was one stubborn child!"
                     menu:
                         "What should I do?"
+                        "Let her watch a show.":
+                            $ responsive += 1
+                            "I turned on a show she liked. I really didn't have anything else I could do at home without my computer pad, so I ended up just watching it with her until naptime."
+                            $ permissive += 1
                         "Show her something fun to do.":
+                            $ responsive += 1
+                            $ demanding += 1
+                            $ family2_work_done += 1
                             "Seems like she just needed an idea of something else to do."
                             "I brought out a big bowl filled with water, and a funnel and a cup. I set them down on the dirt and showed her how to scoop up water with the cup and pour it in the funnel to make mud."
                             "She happily played in the water and mud until naptime, and I finished the research paper I was reading."
+                            $ authoritative += 1
                         "Yell at her to stop.":
+                            $ demanding += 1
+                            $ family2_work_done += 1
                             him angry "[kid_name], stop it! I'm working! You go play."
                             "This just seemed to make her mad."
-                            # TODO: To Be Continued...
+                            kid angry "Aaa! Aaaa! Aaaaaaa!"
+                            "I ignored her. I stood up and worked on my computer pad that way, trying to ignore her shouts and tugs on my pants."
+                            "It was pretty hard to concentrate, but I did manage to make my way through the research paper I was reading."
+                            $ authoritarian += 1                           
                          
-        "Put her in the backpack and go back to work."
-        "Leave her in her crib."
-    
-    "Terra is getting into everything and Kelly's got a surgery and Jack's in charge at home of ten month old Terra."
-    menu:
-        "Make a play pen for her":
-            $ demanding += 1
-            $ authoritarian += 1            
-        "Strap her on and try to get some work done":
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Just let her play. She probably won't die.":
+        "Put her in the backpack and go back to work.":
+            him happy "Alright, [kid_name], want to go ride the tractor? Huh? Do you?"
+            "I don't know how much of my words she understood, but she sensed my excitement and smiled up at me."
+            him normal "Yeah! Let me just put you in the backpack..."
+            him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
+            him happy "There we go! We're going to go make plants grow!"
+            kid happy "Daa!"
+            scene bg tractor with fade
+            "We got on the tractor and I drove back to the field that needed planting."
+            "I had to kind of sit on the edge of the seat so that there was room behind me for the backpack. It wasn't the comfiest seat, but it worked."
+            "Terra cooed and kicked and played with my hair and seemed to enjoy the ride..."
+            "...for about ten minutes."
+            kid normal "Aaaa!"
+            him happy "I know! Isn't this fun?!"
+            kid angry "Aaa! Aaaaaah!"
+            him surprised "I guess it's probably pretty boring for you, huh?"
+            kid normal "..."
+            him concerned "Sorry, baby, but we have to get this work done, or we won't have food to eat."
+            kid angry "Aaaa!"
+            "She kicked her legs more, in frustration now. She pushed against me, trying to worm her way out of the backpack, but she was strapped in tight."
+            "I tried to think about what would help her be happy while I worked on these fields for the next hour or two."
+            $ family2_activity_count = 0
+            $ family2_sung = False
+            $ family2_eat = False
+            $ family2_play = False
+            $ family2_talk = False
+            menu family2_baby_activities:
+                "Sing a song." if not family2_sung:
+                    $ family2_activity_count += 1
+                    $ family2_sung = True
+                    $ family2_work_done += 1
+                    $ responsive += 1
+                    "I tried to remember some songs she might like."
+                    him surprised "Do you know 'Head, shoulders, knees, and toes?"
+                    "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that I learned in elementary school Spanish class, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
+                    him normal "You like that?"
+                    kid normal "Aaa, baaa baa baa, daa."
+                    him happy "Yeah!"
+                    kid angry "..."
+                    him concerned "I need to learn some more songs!"
+                    jump family2_baby_activities
+                    
+                "Give her something to eat." if not family2_eat:
+                    $ family2_activity_count += 1
+                    $ family2_eat = True
+                    $ family2_work_done += 1
+                    $ responsive += 1
+                    him surprised "Are you hungry, [kid_name]? I didn't bring any food..."
+                    him happy "What am I saying? I live on a farm; I'm surrounded by food!"
+                    "I jumped down and ran over to a field I had planted several weeks earlier."
+                    him normal "Looks like it's time to thin these out, anyway. Want some sprouts?"
+                    "I started thinning the little sprouts, handing some up to her to munch on."
+                    "She spit some of them out on the back of my neck, but she wasn't crying, so that was good."
+                    "I thinned the whole row and turned back to sit down at the tractor."
+                    kid angry "Aaaa!"
+                    jump family2_baby_activities
+                    
+                "Give her something to play with." if not family2_play:
+                    $ family2_activity_count += 1
+                    $ family2_play = True
+                    $ family2_work_done += 1
+                    $ responsive += 1
+                    him surprised "You probably want something to play with, huh? I didn't bring any toys..."
+                    him happy "But kids have been growing up since before toys were invented, so I think we'll be okay! Here, have a stick."
+                    "She took the stick and stuck it in her mouth. Then she whacked my head with it."
+                    him sad "Ouch."
+                    "Then she dropped it."
+                    him annoyed "I'm not going to get much done if I have to keep picking up your stick. Don't drop it, okay?"
+                    "She held onto it for several minutes, whacking my head or chewing on it, or whatever she was doing. It was hard to see her while she was in the backpack."
+                    "And then she dropped it."
+                    kid angry "Aaaa!"
+                    jump family2_baby_activities
+                    
+                "Talk to her." if not family2_talk:
+                    $ family2_activity_count += 1
+                    $ family2_talk = True
+                    $ family2_work_done += 1
+                    $ responsive += 1
+                    him surprised "You feeling lonely back there? Don't worry, we're together, [kid_name]!"
+                    kid angry "Baa, baaaaaa!"
+                    him surprised "Ooh, are you turning into a sheep? Your arm is so soft, it's like a little lamb. Baa, baa!"
+                    kid happy "Baa, baa!"
+                    him happy "Yeah, you're a little sheep! Or maybe you're a baby cow?"
+                    kid normal "..."
+                    him normal "You know, a cow. Moo, moo?"
+                    kid normal "Maa, maaa."
+                    him happy "Did you say 'mama'? Ha ha, don't let mom hear you comparing her to a cow. She wouldn't like that."
+                    kid angry "Aaaa!"
+                    him surprised "Hey, don't worry, I won't tell her. Ummm, hmmm, what else should we talk about?"
+                    kid angry "Aaaa!"
+                    him normal "Yeah, I don't want to talk about politics either. Why don't I tell you about plants?"
+                    kid normal "Aaa?"
+                    him normal "Plants need water, sunlight, and nutrients from the soil to survive. But if you want them to grow big and strong, you have to make sure they have the right amounts of all of these."
+                    kid angry "Aaah! Aaa! Aaaaaaaa!"
+                    him annoyed "Okay, you don't have to scream, we don't have to talk about plants if you don't want to."
+                    jump family2_baby_activities
+                
+                "Yell at her.":
+                    $ demanding += 1
+                    $ responsive -= 2
+                    $ family2_work_done += 5
+                    him angry "Be quiet and let me work!"
+                    kid angry "Waaah!"
+                    him determined "Sorry, [kid_name], but the work has to be done. And I'm going to keep you safe while I do it."                    
+                    $ authoritarian += 1
+                    
+                "Give up and let her cry." if ((family2_activity_count >= 1) and (family2_activity_count < 4)):
+                    $ demanding += 1
+                    $ family2_work_done += 5
+                    him concerned "I'm sorry, [kid_name], but I just need to get this work done. I know it's boring for you, but you'll survive, okay?"
+                    $ authoritative += 1
+                    
+                "Give up and go home." if ((family2_activity_count >= 1) and (family2_activity_count < 4)):
+                    $ responsive += 1
+                    him concerned "You're probably pretty uncomfortable and bored back there, huh? I guess I'll have to just do this another time."                    
+                    $ permissive += 1
+                    
+                "Finish up and go home." if (family2_activity_count >= 4):
+                    $ demanding += 1
+                    him happy "Guess what, [kid_name]?? We're all done!"
+                    kid angry "Aaa!"
+                    him normal "Yeah! We did it!"
+                    "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
+                    $ authoritarian += 1
+                               
+        "Leave her in her crib.":
+            "I put her in her crib. She wouldn't like it, but she'd be safe enough there for a few hours while I finished the planting."
+            "Sure enough, she cried as soon as I set her down. I turned on the baby monitor, but turned the volume on my receiver down so I couldn't hear her screaming."
+            "I closed the door, hopped on the tractor and sped away from the house."
+            "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
+            "After about an hour she finally stopped crying; maybe she had fallen asleep."
+            "Or maybe she finally realized that I wasn't going to come back until I was done."
+            $ family2_work_done += 5
             $ neglectful += 1
-        "Play with her":
-            $ responsive += 1
-            $ permissive += 1
- 
-    # Sister Naomi volunteers to watch Terra at her house while Jack and 
-    # Kelly have a date. After a quiet evening, they finally get around to
-    # talking about childraising plans
-    # TODO: Perhaps they join the daycare coop at the end of this scene?
+    
+    "Late that night, after I fed [kid_name] dinner and she had fallen asleep, [her_name] finally came home."
+    "She trudged into the house, looking at least as tired as I felt."
+    "I caught her up in a big hug and kissed her twice."
+    him surprised "Rough day?"
+    her concerned "Yeah. We had to operate... it wasn't pretty, but everyone survived." # TODO: make this someone we know? more details? parent of a kid so that Sister Naomi's offer makes more sense?
+    him concerned "Do you want to talk about it?"
+    her determined "No, I just want to eat!"
+    "I had left the beans on the stove for her, and made her up a plate of them."
+    "Once she had taken a few bites, she finally looked at me."
+    her concerned "How was [kid_name]?"
+    him normal "She did okay."
+    
+    if (family2_work_done <= 2):
+        # TODO: lower crop yield    
+        him normal "I didn't get much done, but she had a good time."
+    else:
+        him normal "I managed to get all my work done, though she didn't like it very much."
+        
+    "[her_name] nodded, and ate another spoonful of beans. She seemed to be thinking about something."
+    
+    her determined "[his_name], we need help."
+    him annoyed "With what?"
+    her annoyed "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Trevor was?"
+    him surprised "Terrorizing the clinic's cotton ball supplies?"
+    her determined "No! He was at Sister Naomi's."
+    him normal "Oh, well, that was nice of her."
+    her normal "She offered to let [kid_name] come, too."
+    him happy "That sounds great!"
+    her determined "Good, I'm glad you agree. Fridays are our days, so all the little kids will come over to our house on Fridays."
+    him surprised "What? I thought you just said she'd be at Sister Naomi's!"
+    her normal "It's a childcare co-op. Each of the families takes one day a week to have the kids over to their house. Sister Naomi doesn't have any kids, but she volunteered to be in the rotation anyway to help us out."
+    him normal "So... [kid_name] will be at other houses four days a week, and we'll have all the kids over once a week?"
+    her normal "That's how it works."
+    him concerned "..."
+    her concerned "I...thought it would be a good thing, for everyone."
+    menu:
+        "You should have asked me first.":
+            him annoyed "You should have talked to me about it first. After all, I'll be watching them half the time."
+            her annoyed "It's obviously more efficient and better for everyone. I thought you would see that."
+            him angry "You can't just make these kinds of decisions without me! We're both her parents!"
+            her angry "I'm going to have to be at the clinic a lot more in the next few weeks, so you'll need to watch her."
+            him annoyed "You're doing it again! We need to decide these things together!"
+            her annoyed "There's nothing to decide. There's only one real choice if both of us are going to continue to work full time."
+            him concerned "We both have to work; it's in our contract."
+            her "..."
+            him "..."
+            her surprised "So what do you think we should do?"
+            him concerned "I think we should join the childcare co-op."
+            her annoyed "I agree."
+            him happy "Good! That wasn't so hard, was it?"
+            her determined "I don't really understand the point, but if we solved the problem and everyone's happy, then that's great."                     
+            
+        "This'll be great!":
+            him happy "This will be great! I can concentrate on work during most of the week, and concentrate on [kid_name] on Fridays."
+            her normal "[kid_name] and three other toddlers."
+            him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
+            her happy "I'm glad you agree."
+            him flirting "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
+            her flirting "I hope so."
+        "I've never watched four toddlers before.":
+            him surprised "Four toddlers at once?! I can barely handle one!"
+            her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
+            him determined "I guess we'll find out."
+            her flirting "Well, I'm sure you'll do just fine, Mr. Superdad."
+            him happy "Superdad? Have I earned that title?"
+            her happy "I'm pretty sure you have."
+            if (family2_work_done >= 5):
+                "I felt a twinge of guilt as she said that. I hadn't been a super dad today at all; super farmer, maybe, but I'd let Terra cry in order to get my work done..."
+                "Still, I don't see what I could have done differently."
+    
     return
 
 #####################################################
@@ -283,6 +485,7 @@ label family2:
 #####################################################
 
 # 18 Earth mos. old
+# Camping trip, putting everything in her mouth
 label family3:
     scene farm_interior with fade
     show him at midright
@@ -438,6 +641,7 @@ label family3:
             
             
 # 2 Earth years old
+# Picky eater!
 label family4:
     "Months passed by in a busy blur of planting and harvesting."
     "[kid_name] learned several new words every day, and her little fingers that used to be so clumsy were now holding crayons and picking up tiny grains of rice."
@@ -635,6 +839,7 @@ label family4:
     return
 
 # 2.7 Earth years old
+# Toilet Training
 label family5:
     "Toilet training! She's learning it, but she has an accident."
     menu:
@@ -657,6 +862,7 @@ label family5:
     return
 
 # 3.5 Earth years old
+# Incessant questions
 label family6:
     "I remember when [kid_name] was so small and crying incosolably; I couldn't wait for her to learn to talk."
     "Now she was like a perpetual motion machine of questions and opinions."
