@@ -132,27 +132,30 @@ label start:
            
     # Prologue
     scene stars with fade
-    # TODO: import names, stats, etc from OPS1, or ask user to fill them in; make this a screen
-    if (mp.baby_name):
+    if (mp.his_name):
         $ his_name = mp.jack_name
         $ her_name = mp.kelly_name
-        $ kid_name = mp.baby_name
-        "Our Personal Space 1 data found. Please verify data."
-        show him at midleft
-        show her at midright
-        show kid at center
-        # TODO: Make this look like a photograph/computer pad.
-        menu name_change_loop:
-            "Parents [his_name] and [her_name] gave birth to child [kid_name].\nIs this correct?"
-            "Yes, continue.":
-                $ pass
-            "No, change names.":
-                $his_name = renpy.input("Husband's Name", default=his_name)
-                $her_name = renpy.input("Wife's Name", default=her_name)
-                $kid_name = renpy.input("Baby girl's Name", default=kid_name)
-                jump name_change_loop
+        if (mp.kid_name):
+            $ kid_name = mp.baby_name           
         
-    scene stars_animated                
+    show her at midleft
+    show kid at center
+    show him at midright    
+    # TODO: Make this look like a photograph/computer pad. 
+    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous as usual, and our daughter [kid_name]."
+    "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
+    "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
+    menu name_change_loop:        
+        "Are those names correct?"              
+        "Yes, continue.":
+            $ pass
+        "No, change names.":
+            $his_name = renpy.input("Husband's Name", default=his_name)
+            $her_name = renpy.input("Wife's Name", default=her_name)
+            $kid_name = renpy.input("Baby girl's Name", default=kid_name)
+            jump name_change_loop
+        
+    scene stars_animated with fade                
     show him happy
     him "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     him normal "Of course, I knew it'd be a lot of work too. But, like most hard work, I figured it'd be worth it."
