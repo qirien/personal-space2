@@ -200,6 +200,7 @@ style input:
     xmaximum gui.text_width
     xalign gui.text_xalign
     text_align gui.text_xalign
+    color gui.idle_color
 
 ## Choice screen ###############################################################
 ##
