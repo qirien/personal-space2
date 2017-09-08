@@ -30,6 +30,7 @@ Textbox twig frame by Firkin from "Poems and Pictures", 1865
 Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>
 SP-Marker Font by SizzlePrint, <http://www.sizzleprint.com/fonts/>
 Roboto Slab by Christian Robertson, <https://www.fontsquirrel.com/license/roboto-slab>
+Fotograami Flower Font by Khaled Aldousari, <http://www.dafont.com/fotograami-flower.font>
 
 
 === Character Sprites

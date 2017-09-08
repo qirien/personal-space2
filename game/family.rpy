@@ -877,10 +877,12 @@ label family6:
     her surprised "Why, did you want to do something?"
     him normal "Nope! I want to do a whole lot of nothing today. It's been a crazy week."
     her concerned "Yeah, harvest time is always like that, isn't it?"
-    him happy "But now I'm done! Just for this weekend, I want to relax... I'll start some new plants on Monday."
+    him happy "But now I'm done! Just for this morning, I want to relax..."
     her happy "A relaxing weekend... sounds nice."
     him surprised "You don't have any appointments today?"
     her normal "No, after this crazy week I moved them all to next week. So unless someone gets injured I've got the whole weekend at home."
+    him normal "One of us needs to help can food this afternoon at the storehouse."
+    her "But not right now."
     "We sat next to each other, her head on my shoulder, just enjoying the peace and quiet and being together."
     # TODO: show eyes closed
     kid normal "Dad."
@@ -889,14 +891,16 @@ label family6:
     him "...Yeah?"
     kid angry "Listen to me!"
     him "I'm listening."
-    kid annoyed "You can't be listening because you're sleeping. Wake up, daddy, wake up!"
+    kid annoyed "You can't be listening. You're sleeping. Wake up, daddy, wake up!"
     him "I'm awake, I'm just closing my eyes."
-    kid "Wake up and listen!"
-    him determined "All right, I'm listening."
-    kid "What are we going to do today? I want to go see grandma."
+    kid angry "Wake up and listen!"
+    him determined "All right, I'm listening. What?!"
+    kid normal "What are we going to do today? I want to go see grandma."
+    him surprised "Grandma? Your grandparents all live on Earth..."
     her normal "That's Sister Naomi. She said the kids could call her grandma."
-    her concerned "But she's probably busy today, [kid_name]. We're just going to stay at home and relax today."
-    
+    her concerned "But she's probably busy today, [kid_name]. We're just going to stay at home and relax this morning."
+    kid happy "I wanna go swimming!"
+    # TODO: finish this 
     
     
     "Terra wants your attention while you're trying to relax on a lazy Sunday afternoon"
