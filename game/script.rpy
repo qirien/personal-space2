@@ -146,7 +146,7 @@ label start:
     "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
     "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
     menu name_change_loop:        
-        "Are those names correct?"              
+        "[his_name], [her_name], and [kid_name]... Are those names correct?"              
         "Yes, continue.":
             $ pass
         "No, change names.":

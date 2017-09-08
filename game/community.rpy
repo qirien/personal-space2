@@ -294,11 +294,11 @@ label community5:
             
     label pete_no_storehouse:
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
-    pete "I have yet to successfully make a hard cheese that doesn't mold right away."
+    pete "I can't even make cheese that doesn't mold right away."
     pete "The best way to store my surplus is to keep growing this herd."
     #could have a choice here about how to respond, but you can't really change his mind. or try to bring up the credits thing, and he insists that the colony wouldn't let him starve.
     him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
-    pete "Don't mention it." #more pete-style way to say this?
+    pete "Glad you understand."
     #change scene
     him "So Martin, how's your farm doing?"
     martin "Pretty good considering that we're on an alien planet!"
@@ -328,9 +328,9 @@ label community6:
     helen "No, because SOMEONE left it out during a solar flare."
     pete "And SOMEONE left their tablet in spittin' distance of a cow."
     him "That must be rough."
-    pete "Actually I've found it liberating. I used to perpetually check my tablet for new messages. Now I know how useless most of them were."
-    pete "I can completely think about what I'm doing."
-    pete "I do my feed calculations for the cattle by hand."
+    pete "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
+    pete "I can concentrate on what I'm doing."
+    pete "I don't even mind doing my feed calculations for the cattle by hand."
     helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
     pete "I don't know about me. I kind of like feeling like I'm completely on my own."
     thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
