@@ -870,7 +870,7 @@ label family6:
 
     scene farm_interior with fade
     show him at midleft
-    show her at midright
+    show her at center
     show kid at right
     with dissolve
     him determined "I sure hope you have nothing planned for today."
@@ -885,21 +885,153 @@ label family6:
     her "But not right now."
     "We sat next to each other, her head on my shoulder, just enjoying the peace and quiet and being together."
     # TODO: show eyes closed
+    show kid at midright with move
     kid normal "Dad."
     him "..."
+    show kid at quarterleft with move
     kid annoyed "Dad!"
     him "...Yeah?"
     kid angry "Listen to me!"
     him "I'm listening."
     kid annoyed "You can't be listening. You're sleeping. Wake up, daddy, wake up!"
     him "I'm awake, I'm just closing my eyes."
+    show kid at midright with move
     kid angry "Wake up and listen!"
     him determined "All right, I'm listening. What?!"
-    kid normal "What are we going to do today? I want to go see grandma."
+    kid normal "What are we doing today? I want to go see grandma."
     him surprised "Grandma? Your grandparents all live on Earth..."
     her normal "That's Sister Naomi. She said the kids could call her grandma."
     her concerned "But she's probably busy today, [kid_name]. We're just going to stay at home and relax this morning."
     kid happy "I wanna go swimming!"
+    her sleeping "What do you think, [his_name]?"
+    menu:
+        "What should I say?"
+        "Don't make me decide.":
+            him angry "Don't put this all on me! You decide what to do; I'm lying right here."
+            her annoyed "So you don't want to do anything together."
+            him annoyed "We're together right now, aren't we?"
+            her determined "Not really."
+            him determined "I'm not going anywhere."
+            her annoyed "Fine. [kid_name], I'll take you swimming. Seems like daddy needs a little 'me time' so he can get back to his usual jolly self."
+            "They left, but I couldn't relax even though the house was finally quiet."
+            "I deserved a little time to myself now and then, right?!"
+            $ neglectful += 1
+            
+        "[kid_name] can play on the computer pad so we can relax.":
+            $ responsive += 1
+            him surprised "Here, [kid_name], why don't you play Bubble Bee while mom and dad chill out?"
+            her annoyed "Really? We're going to spend our relaxing morning listening to that stupid game?"
+            him annoyed "You wanted me to decide, so I decided."
+            kid "Bubble Bee!"
+            $ permissive += 1
+            
+        "Let's go swimming.":
+            $ responsive += 1
+            him normal "It is a nice day out; let's go swimming!"
+            her concerned "But the water's so cold, and it's so stressful taking her there because we always have to be watching her so closely."
+            him happy "She'll learn to swim faster with practice! C'mon, [kid_name], get your suit on!"
+            her determined "I guess if we're going together..."
+            menu:
+                "You can stay here if you want.":
+                    $ marriage_strength += 1
+                    him surprised "Why don't you stay here and rest? I know you've had a tough week."
+                    her surprised "Are you sure?"
+                    him normal "Yeah! [kid_name] and I will have fun!"
+                    her sad "Oh, thank you, [his_name]. I didn't know how to say it, but I'm just so exhausted."
+                    "I was too, but not so exhausted I couldn't go swimming."
+                    "Besides, it felt good to help out [her_name]."
+                "Come on; it'll be fun!":
+                    him happy "Come on, it'll be fun!"
+                    her concerned "I suppose..."
+                    
+            $ permissive += 1
+            
+        "Maybe we can do both?":
+            him surprised "Maybe we can do both somehow?"
+            her concerned "We only have a few hours... what did you have in mind?"
+            menu:
+                "Let's relax for an hour and then go swimming.":
+                    him normal "[kid_name], we're going to relax here for one hour. Here, I'll set a timer so you can see."
+                    kid "One hour?!"
+                    him determined "Yes, you need to find something to do for one hour while mom and dad take a break. Then we'll all go swimming!"
+                    her happy "Maybe you can take your animals swimming in the sink until it's time to go?"                    
+                    "I waited for her to throw a fit or refuse, but I guess she liked the idea of her little toy animals going swimming, because she ran off to get them."
+                    hide her with moveoutleft
+                    him concerned "You know she's going to make a big mess over there, right?"
+                    her normal "I am not even thinking about that right now. I'm thinking about how lovely it is to be snuggled up to you right here, right now."
+                    him flirting "Mmmm, this is pretty nice..."
+                    her determined "And it's just water, so don't worry."
+                    him concerned "She's getting out the soap..."
+                    her surprised "Then it's just soap and water... right?"
+                    him normal "Right. How much of a mess can she make in an hour?"
+                    "It turned out she could make quite a large mess of soap suds and water in fifteen minutes, but we all pitched in with towels and then hung them out and headed to the swimming hole together."
+                    $ authoritative += 1
+                "Let's relax together.":
+                    him happy "Why don't we watch a movie together or something?"
+                    her concerned "I guess we could do that."
+                    "It took us half an hour to find a movie that we thought we would all enjoy."
+                    "[kid_name] settled in on my lap for the first part of the animated comedy. [her_name] and I laughed at the situational irony and witty comebacks, while [kid_name] mainly laughed at the silly faces and fart jokes."
+                    "[kid_name] kept interrupting the movie with questions, and I wasn't sure whether I should teach her to be quiet during movies, or if I should answer her questions."
+                    kid "Why is the mommy mad?"
+                    menu:
+                        "What should I do?"
+                        "Tell her to be quiet.":
+                            him determined "Shhh, just watch."
+                            kid normal "Maybe the mommy is just mean."
+                            him annoyed "Shhhh!"
+                            kid angry "..."
+                        "Give a quick explanation.":
+                            $ responsive += 1
+                            him normal "The kid was supposed to take out the trash, not play with the trash."
+                            kid normal "But why doesn't she like the robot?"
+                            him determined "Shhhh, we'll talk about it more later."
+                            kid angry "Maybe she's just mean."
+                            him annoyed "..."
+                        "Pause the movie and talk about what happened.":
+                            $ responsive += 1
+                            $ demanding += 1
+                            him normal "The kid was supposed to take out the trash, not play with the trash."
+                            kid normal "But why doesn't she like the robot?"
+                            him determined "Because the kid was building a robot when he was supposed to be doing chores. Like if we asked you to pick up your toys, and you built a big tower instead."
+                            kid "I like big towers!"
+                            him normal "I do, too, but it's more important to obey your mom and dad."
+                            kid "No, it's not."
+                            her surprised "Why don't we just continue the movie?"
+                            
+                    $ authoritative += 1
+                    
+        "No way. We're sitting right here while [kid_name] plays quietly.":
+            $ demanding += 1
+            him determined "No. Mom and dad are relaxing, and you, [kid_name] are going to go play quietly."
+            kid angry "I want to go swimming!"
+            him annoyed "You decided not to play quietly. Now go to your room."
+            kid angry "No! I'm going swimming!"
+            "She ran for the front door. Part of me wondered how far she'd get if I just let her go, but another part of me knew I couldn't try it."
+            "I caught her up and carried her to her room."
+            "As soon as I let her go, she threw herself against the door and tried to run back out."
+            "So I locked her in."
+            "We had installed a latch up high on the outside so that she would stay in her own room at night."
+            "Sometimes, we just needed to be separate for a while to calm down. I knew she'd be safe in there."
+            her concerned "..."
+            him determined "..."
+            "But it was kind of hard to relax when she was banging on the door and yelling at the top of her lungs."                       
+            $ authoritarian += 1
+                
+                    
+    # TODO: change this to parenting class?
+    scene farm_interior with fade
+    him surprised "That's something I can't figure out -- how can I tell when doing things with [kid_name] is being a loving parent, and when I'm just spoiling her."
+    her concerned "I know what you mean... I guess it depends on your motivation."
+    him determined "Should that matter?"
+    her determined "Well, yeah... if you're just doing what [kid_name] wants because you're afraid she'll throw a fit, or you just want to do the easiest thing, then that's going to teach her the wrong thing."
+    her normal "But if you think about it and decide that doing something with [kid_name] is what's best for the family, then I think it's the right thing to do."
+    him concerned "Yeah... but it's not always that simple."
+    her determined "No matter what, though, we need to do everything with love. I want her to always feel loved and accepted at home. When she has troubles, I want us to be the ones she trusts to listen and help with compassion."
+    him normal "I can't imagine her growing up... it feels like she's been little forever."
+    her normal "Yeah... I can hardly remember what life was like before we had [kid_name]... what did we even do all day?"
+    
+                    
+                
     # TODO: finish this 
     
     

@@ -44,6 +44,8 @@ label start:
         year6_have_baby = False
         year8_have_baby = False
         
+        marriage_strength = 0
+        
     # CHILD    
     python:
         # CHILD STATS. Maximum at end-game is 30.
