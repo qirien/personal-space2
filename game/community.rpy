@@ -89,7 +89,7 @@ label community2:
 
 
 label community3:
-    thuc "What the heck. Did you just do that?" #is heck too Mormon
+    thuc "No. No way! Did you just do that?"
     him "Yes, I did. With the bonuses from my cavalry, my legendary general, and my superior navy from starting on an island, I can conquer Russia in one turn!"
     pete "That's the last time I let you start as Tonga!"
     thuc "I think you just won the game."
@@ -367,7 +367,7 @@ label community6:
     return
 
 label community7:
-    zaina "The fossil record near here contain many animals that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
+    zaina "The fossil record near here contains many animals that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
     zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
     zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
@@ -431,8 +431,6 @@ label community7:
 
 
 label community8:
-    #TODO: define the talked_to variables as false in the defines? document
-    # These are local variables that are only used here, so we can define them here.
     $ talked_to_Natalia = False
     $ talked_to_Thuc = False
     $ talked_to_Sara = False
@@ -630,6 +628,7 @@ label community9:
             menu:
                 "Tackle the crab.":
                     $ luddites += 1
+                    #I want the injured-hand option to result in making less money that month, if we do the currency thing.
                     "You tackle grass crab from behind, easily outweighing it."
                     "The crab releases Pete and tries wildly to pinch you, but the claw isn't flexible enough to reach you while you're on its back."
                     "Pete stabs the crab, but cuts your arm in the process."
@@ -716,17 +715,21 @@ label community10:
             $ colonists += 1
             $ miners += 1
             #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
+            #another possible way to improve the iteractivity here would be to help martin compose an argument about why Tomas and Joanna should care about the farm.
         "Let Natalia scale back the farm. Let their children pursue their dreams.":
             $ luddites += 1
+            #then what happens to the corn everyone needs? they need to decide on how to take care of that. Maybe when Pete leaves it's not as much of an issue, since there is less cattle to feed over the winter.
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
         # Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
     return
 
 
 label community11:
+    
     "Miners arrive. You meet their leader, Bandile, who introduces the miner welcome program."
     "Your family will get to know one miner through weekly dinners."
     "The miner you've been assigned is Chaco."
+    #make this a menu
     him "Nice to meet you Chaco. How was the trip over?"
     chaco "Fine."
     him "Did it take a while to adjust to living in such a small space?"
@@ -735,26 +738,95 @@ label community11:
     chaco "Look at the stars."
     "I feel like we're playing 20 questions here! He's probably overhwelmed from the arrival."
     "The luxuries from Earth arrive."
+    him "New batteries for almost everythign! And a few new tablets."
     if asked_only_medicine:
-        "The exact medicine for Martin came! They included a bunch of other stuff, but not much of what other people asked for."
+        "The exact medicine for Martin came! They included a bunch of other stuff, but some of it wasn't exactly what wanted."
         "The Peron family is crying happily."
-        her "Hey, where's the Gouda cheese? I was really looking forward to it."
-        "Other people complain that they didn't get what they wanted. Some of it is humorous."
+        her "Hey, where's the Gouda cheese culture? I was really looking forward to it."
+        
+        #refer back to community8 for this
+        if talked_to_Thuc:
+            thuc "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
+        else:
+            thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
+            
+        if talked_to_Sara:
+            sara "I asked for a bicycle, is that here?"
+            him "No, I'm sorry. I couldn't fit everything into the message."
+            sara "A bike would probably get tons of flat tires around here anyway."
+            him "This looks like a software upgrade for the 3D printer though!"
+        else:
+            sara "It looks like there's a software upgrade here for the 3D printer."
+            
+        if talked_to_Kevin:
+            kevin "Did they send the rest of Tulip House?"
+            him "I'm not sure. There's a big hard drive here for the library though!"
+            kevin "There's bound to be something good in there."
+        else:
+            kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
+            him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+            kevin "Looking forward to it!"
+        
+        pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
+        him "Oh, I hope so!"
+        pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+        
+        if talked_to_Pavel:
+            him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+            pavel "I'm so happy right now!"
+        else:
+            pass
+        
     else:
-        "They sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
+        "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
         natalia "This isn't the kind of medicine we needed! This is useless!"
-        natalia "Did you tell them what kind of medicine Martin needed?"
-        him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
-        her "Oooh, Gouda cheese!"
-        "Other people got what they wanted, but not the Perons."
-     # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
-     # Does Brennan show up with the miners as their RET liason?
+
+        if is_liason:
+            natalia "Did you tell them what kind of medicine Martin needed?"
+            him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
+        else:
+            natalia "Sara, why didn't you tell them the exact kind of medicine Martin needed?"
+            sara "I'm sorry, I thought they knew what he needed! I just put medicine."
+            
+        her "Oooh, Gouda cheese culture!"
+            
+        if talked_to_Thuc:
+            thuc "I can start frowing these peanuts right away!"
+        else:
+            thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
+        
+        if talked_to_Sara:
+            sara "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
+        else:
+            sara "It looks like there's a software upgrade here for the 3D printer."
+            
+        if talked_to_Kevin:
+            kevin "Did they send the rest of Tulip House?"
+            him "I'm not sure. There's a big hard drive here for the library though!"
+            kevin "There's bound to be something good in there."
+        else:
+            kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
+            him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+            kevin "Looking forward to it!"
+                        
+        pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
+        him "Oh, I hope so!"
+        pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+        
+        if talked_to_Pavel:
+            him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+            pavel "I'm so happy right now!"
+        else:
+            pass
+         # This is about a third through the game, which should be about right. It gives the luddites some time to establish themselves. 
+         # Does Brennan show up with the miners as their RET liason?
     if asked_only_medicine:
         "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
         $ miners += 1
         $ colonists += 1
     else:
         "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
+        #what happens to his farm? follow-up on community10
         $ luddites += 1
     return
 
