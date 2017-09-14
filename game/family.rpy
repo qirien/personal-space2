@@ -51,6 +51,7 @@ label family1:
     menu:
         "Take [kid_name] for a walk.":
             $ responsive += 1
+            $ marriage_strength += 1            
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
             her concerned "It's not too cold out, is it?"
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
@@ -92,6 +93,7 @@ label family1:
             $ authoritative += 1
             
         "Let [her_name] handle it.":
+            $ marriage_strength -= 1
             $ responsive -= 1
             "[her_name] knows more about this kind of thing than I do. I pushed open the door of our tiny house."
             her annoyed "Where are you going?!"
@@ -444,6 +446,7 @@ label family2:
     her concerned "I...thought it would be a good thing, for everyone."
     menu:
         "You should have asked me first.":
+            $ marriage_strength -= 1
             him annoyed "You should have talked to me about it first. After all, I'll be watching them half the time."
             her annoyed "It's obviously more efficient and better for everyone. I thought you would see that."
             him angry "You can't just make these kinds of decisions without me! We're both her parents!"
@@ -460,6 +463,7 @@ label family2:
             her determined "I don't really understand the point, but if we solved the problem and everyone's happy, then that's great."                     
             
         "This'll be great!":
+            $ marriage_strength += 1
             him happy "This will be great! I can concentrate on work during most of the week, and concentrate on [kid_name] on Fridays."
             her normal "[kid_name] and three other toddlers."
             him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
@@ -467,6 +471,7 @@ label family2:
             him flirting "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
             her flirting "I hope so."
         "I've never watched four toddlers before.":
+            $ marriage_strength += 1
             him surprised "Four toddlers at once?! I can barely handle one!"
             her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
             him determined "I guess we'll find out."
@@ -668,7 +673,7 @@ label family4:
     him annoyed "We don't have applesauce. Right now we're having rice and beans."
     kid "Ap'sos!"
     him determined "Where'd you even get applesauce from? I haven't seen it at the storehouse for a long time."
-    kid "Travis' mom made it."
+    kid "Travis mommy."
     "Travis' mom - that would be Helen. [kid_name] had been over there for coop daycare today. Somehow she always had sweet things for the kids to eat."
     "Sweet things to ruin their tastebuds for real food."
     menu:
@@ -696,6 +701,7 @@ label family4:
             menu:
                 "What should I do?"
                 "Leave":
+                    $ marriage_strength -= 1
                     him determined "..."
                     "I handed [kid_name] to [her_name] and tried not to slam the door on my way out."
                     scene house_exterior with fade
@@ -712,6 +718,7 @@ label family4:
                         "What should I do?"
                         "Give them a hug":
                             $ responsive += 1
+                            $ marriage_strength += 1
                             "I bent over and hugged them both."
                             "I just wanted to show them that I loved them. That was more important than anything else."
                             "I sat down next to [her_name] and she laid her head on my shoulder. [kid_name] slid off her lap, and I closed my eyes to rest for a moment."
@@ -725,6 +732,7 @@ label family4:
                             "And we started all over again..."                            
                         "Apologize":
                             $ responsive += 1
+                            $ marriage_strength += 1
                             him sad "I... I'm sorry. I was out of control."
                             "[her_name] squeezed my hand and gave me a little smile."
                             her normal "It's okay."
@@ -793,6 +801,15 @@ label family4:
             
         "(Say nothing.)":
             "I didn't really care what she ate. [her_name] could deal with [kid_name] when she got back."
+            "I just wanted to eat my dinner in peace. I ate quickly."
+            "Just as [her_name] came back, I stood up."
+            him determined "Gotta go check on something."
+            her annoyed "Right now? We were having family dinner together..."
+            him normal "Sorry."            
+            her surprised "[kid_name], why aren't you eating your beans?!"
+            kid angry "Ap'sos!"
+            "I just barely escaped in time."            
+            $ neglectful += 1
         "You can eat it or not, but there won't be more dinner.":
             $ demanding += 1
             $ responsive += 1
@@ -842,7 +859,7 @@ label family4:
 # 2.7 Earth years old
 # Toilet Training
 label family5:
-    "Toilet training! She's learning it, but she has an accident."
+    "Toilet training! She's learning it, but she has an accident. Every day."
     menu:
         "Just clean it up. She'll learn eventually.":
             $ responsive += 1
@@ -856,8 +873,7 @@ label family5:
             $ authoritarian += 1
         "Promise her a big reward if she can stay dry all day":
             $ responsive += 1
-            $ permissive += 1
-            
+            $ permissive += 1            
             
         # perhaps also a discussion about is she too young, should they give up, everyone's tired of washing diapers.  Maybe she should just LIVE OUTSIDE?!
     return
@@ -884,7 +900,9 @@ label family6:
     him normal "One of us needs to help can food this afternoon at the storehouse."
     her "But not right now."
     "We sat next to each other, her head on my shoulder, just enjoying the peace and quiet and being together."
-    # TODO: show eyes closed
+    show him sleeping
+    show her sleeping
+    with dissolve
     show kid at midright with move
     kid normal "Dad."
     him "..."
@@ -902,12 +920,25 @@ label family6:
     him surprised "Grandma? Your grandparents all live on Earth..."
     her normal "That's Sister Naomi. She said the kids could call her grandma."
     her concerned "But she's probably busy today, [kid_name]. We're just going to stay at home and relax this morning."
-    kid happy "I wanna go swimming!"
+    kid normal "Why?"
+    her normal "Daddy and I are a little tired. It's been a busy week!"
+    kid normal "Why so busy?"
+    her determined "It's harvest time, which means daddy has a lot to do, and people are more likely to get hurt because they push themselves too hard."
+    kid "Why?"
+    her surprised "That's a good question! Why is that, [his_name]? Why are people so foolish and don't know their own limits?"
+    him annoyed "I don't know what you're talking about."
+    her flirting "Oh, so you don't need this painkiller prescription, then?"
+    him determined "I didn't say that!"
+    kid normal "Why you taking medicine, daddy?"
+    him normal "Because I had to lift heavy things all week and my back's killing me."
+    kid normal "Daddy, are you dying?"
+    him surprised "What? No, no! It just hurts a lot."    
+    kid happy "OK, good, because I wanna go swimming!"
     her sleeping "What do you think, [his_name]?"
     menu:
         "What should I say?"
         "Don't make me decide.":
-            him angry "Don't put this all on me! You decide what to do; I'm lying right here."
+            him angry "Don't put this all on me! You decide what to do; I'm just going to lie right here."
             her annoyed "So you don't want to do anything together."
             him annoyed "We're together right now, aren't we?"
             her determined "Not really."
@@ -923,13 +954,29 @@ label family6:
             her annoyed "Really? We're going to spend our relaxing morning listening to that stupid game?"
             him annoyed "You wanted me to decide, so I decided."
             kid "Bubble Bee!"
+            "I turned the volume down low and [her_name] and I lay dozing on the couch together."
+            "We even had time to play a round of the video game we liked to play together."
+            her happy "It's been too long since we did something like this together!"
+            him flirting "Yeah, we've gotten pretty bad at this game."
+            her flirting "Good thing we've gotten better at some other things."
+            him surprised "We have?"
+            her normal "Yeah, like... cooking. I love your cooking."
+            him normal "I've always been good at cooking."
+            her flirting "That's what I thought, but however good you were before, you're even better now."
+            him concerned "I should cook more often."
+            her concerned "Yes, you should. Maybe tonight?"
+            him surprised "I thought you were making...wait, are we talking about actual cooking, or, you know, 'cooking'?"
+            her happy "Both!"
+            him normal "Then let's cook together, [her_nickname]!"
+            
+            $ marriage_strength += 1
             $ permissive += 1
             
         "Let's go swimming.":
             $ responsive += 1
             him normal "It is a nice day out; let's go swimming!"
-            her concerned "But the water's so cold, and it's so stressful taking her there because we always have to be watching her so closely."
-            him happy "She'll learn to swim faster with practice! C'mon, [kid_name], get your suit on!"
+            her concerned "But the water's so cold, and it's so stressful taking her there because we always have to be watching her so closely. She thinks she can swim, you know."
+            him happy "She'll learn to swim faster with practice! C'mon, [kid_name], grab a towel!"
             her determined "I guess if we're going together..."
             menu:
                 "You can stay here if you want.":
@@ -940,10 +987,12 @@ label family6:
                     her sad "Oh, thank you, [his_name]. I didn't know how to say it, but I'm just so exhausted."
                     "I was too, but not so exhausted I couldn't go swimming."
                     "Besides, it felt good to help out [her_name]."
+                    
                 "Come on; it'll be fun!":
                     him happy "Come on, it'll be fun!"
                     her concerned "I suppose..."
                     
+            call family6_swimming
             $ permissive += 1
             
         "Maybe we can do both?":
@@ -965,6 +1014,9 @@ label family6:
                     her surprised "Then it's just soap and water... right?"
                     him normal "Right. How much of a mess can she make in an hour?"
                     "It turned out she could make quite a large mess of soap suds and water in fifteen minutes, but we all pitched in with towels and then hung them out and headed to the swimming hole together."
+                    "We'd have to airdry after swimming, because we used every towel in the house cleaning her mess. But we managed."
+                    call family6_swimming
+                    
                     $ authoritative += 1
                 "Let's relax together.":
                     him happy "Why don't we watch a movie together or something?"
@@ -1019,8 +1071,14 @@ label family6:
                 
                     
     # TODO: change this to parenting class?
-    scene farm_interior with fade
-    him surprised "That's something I can't figure out -- how can I tell when doing things with [kid_name] is being a loving parent, and when I'm just spoiling her."
+    scene black with fade
+    "Later that night, after [kid_name] went to bed, [her_name] and I took a walk together."
+    scene fields with fade
+    show him at midright
+    show her at center
+    with moveinright
+    #show overlay night
+    him surprised "That's something I can't figure out -- how can I tell when doing things with [kid_name] is being a loving parent, and when I'm just spoiling her?"
     her concerned "I know what you mean... I guess it depends on your motivation."
     him determined "Should that matter?"
     her determined "Well, yeah... if you're just doing what [kid_name] wants because you're afraid she'll throw a fit, or you just want to do the easiest thing, then that's going to teach her the wrong thing."
@@ -1029,48 +1087,67 @@ label family6:
     her determined "No matter what, though, we need to do everything with love. I want her to always feel loved and accepted at home. When she has troubles, I want us to be the ones she trusts to listen and help with compassion."
     him normal "I can't imagine her growing up... it feels like she's been little forever."
     her normal "Yeah... I can hardly remember what life was like before we had [kid_name]... what did we even do all day?"
-    
-                    
-                
-    # TODO: finish this 
-    
-    
-    "Terra wants your attention while you're trying to relax on a lazy Sunday afternoon"
-    menu:
-        "Play with her just enough for her to get less bored and play a little more on her own.":
-            $ responsive += 1
-            $ demanding += 1
-            $ authoritative += 1
-        "Give her your complete attention.":
-            $ responsive += 1
-            $ permissive += 1
-        "Tell her to stop bothering you.":
-            $ demanding += 1
-            $ responsive -= 1
-            $ authoritarian += 1
-        "Go into your room and lock the door.":
-            $ responsive -= 1
-            $ neglectful += 1
-            
-    "Sometimes you despair of ever having a minute to yourself."
-    # TODO: Discussion of whether or not to have another child, as they feel Terra would benefit from a playmate. Or maybe just more time with friends?
-    her "Hey, want to have another kid?"
+    him happy "Whatever we wanted!"
+    her concerned "Yeah... but it was kind of empty, wasn't it? Incomplete?"
+    him concerned "I don't know; do you feel that way?"
+    her determined "A little. In fact, I kind of..."
+    him surprised "What?"
+    her surprised "Should we have another kid? I worry [kid_name] will be too spoiled by herself, and it will be nice to have someone here for her to play with."
+    him concerned "I don't know... those baby years were rough. It's still rough!"
+    her determined "I feel like I'm ready for it... if you are."
+                        
     menu:
         "What should I say?"
-        "Are you kidding?!":
-            him "No way!"
+        "No way!":
+            him annoyed "No way!"
+            her surprised "Are you sure?"
+            him determined "Yeah, I'm sure! It's crazy enough with one kid, there's no way I could handle two!"
+            her concerned "Oh."
+            him concerned "..."
+            her sad "Like... never?"
+            him sad "I don't know. Not now, that's for sure."
+            her determined "Well, think about it. I would like to have at least one more kid sometime. And I think sooner is better than later."            
             $ year6_have_baby = False
         "It would be efficient":
-            him "It's probably more efficient to have them closer together."
+            him surprised "It's probably more efficient to have them closer together."
+            her normal "Yeah, if we wait too long they won't really want to play together."
+            him normal "And we'll forget all the tricks we learned!"
             $ year6_have_baby = True            
         "If you're ready.":
-            him "We can if you want to -- you're the one that has to host them for nine months." 
+            him surprised "We can if you want to -- you're the one that has to host them for nine months." 
             $ year6_have_baby = True
         "Sure! Anytime!":
-            him "Yeah! I love kids!"
-            $ year6_have_baby = True            
+            him happy "Yeah! I love kids!"
+            her happy "Oh, good! I'm so glad we feel the same way!"
+            $ year6_have_baby = True
+        "I'm not ready yet.":
+            him concerned "I... I don't think I'm ready yet. I'm sorry, [her_name]. I just feel like one kid is already more than I can handle right now."
+            her concerned "It's okay. I'm the one that gets pregnant, but I can't have another baby by myself... I need you to be ready, too."
+            $ year6_have_baby = False
+            
+            
+    if (year6_have_baby):
+        "That's what we said, but [her_name] didn't get pregnant right away."
+
     return
 
+# Helped function for event 6 if they go swimming    
+label family6_swimming:
+    # scene bg swimming_hole with fade
+    # TODO: CG or interesting movement/sprites here?
+    scene stream with fade
+    show him at midleft
+    show kid at midright
+    with dissolve
+    "It was pretty fun to swim with [kid_name]; she tried to hard to swim but she kept doggy paddling instead."
+    him "Big arms! Big arms!"
+    kid "My arms are big! So big!"
+    him "Scoop the water! Come on!"
+    kid "I scooping, I scooping!"
+    "After an hour or so we lay in the sun to warm up, and then we went home."    
+    return
+    
+    
 #####################################################
 #
 # SMALL CHILD
@@ -1099,6 +1176,10 @@ label family7:
             $ neglectful += 1
             
             # TODO: She continues to talk rudely, has to go to timeout, user has to be patient through a zillion menus until she finally calms down
+            
+    if (year6_have_baby):
+        "I had almost forgotten about having another kid when we found out [her_name] was pregnant."
+        "I guess we were really doing this baby thing again!"
     return
 
 # 5 Earth years old

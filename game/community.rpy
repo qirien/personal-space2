@@ -738,7 +738,7 @@ label community11:
     chaco "Look at the stars."
     "I feel like we're playing 20 questions here! He's probably overhwelmed from the arrival."
     "The luxuries from Earth arrive."
-    him "New batteries for almost everythign! And a few new tablets."
+    him "New batteries for almost everything! And a few new tablets."
     if asked_only_medicine:
         "The exact medicine for Martin came! They included a bunch of other stuff, but some of it wasn't exactly what wanted."
         "The Peron family is crying happily."
@@ -791,7 +791,7 @@ label community11:
         her "Oooh, Gouda cheese culture!"
             
         if talked_to_Thuc:
-            thuc "I can start frowing these peanuts right away!"
+            thuc "I can start growing these peanuts right away!"
         else:
             thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
         
