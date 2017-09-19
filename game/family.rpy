@@ -413,19 +413,29 @@ label family2:
     "She trudged into the house, looking at least as tired as I felt."
     "I caught her up in a big hug and kissed her twice."
     him surprised "Rough day?"
-    her concerned "Yeah. We had to operate... it wasn't pretty, but everyone survived." # TODO: make this someone we know? more details? parent of a kid so that Sister Naomi's offer makes more sense?
-    him concerned "Do you want to talk about it?"
-    her determined "No, I just want to eat!"
-    "I had left the beans on the stove for her, and made her up a plate of them."
-    "Once she had taken a few bites, she finally looked at me."
-    her concerned "How was [kid_name]?"
-    him normal "She did okay."
+    her concerned "Yeah. We had to operate... it wasn't pretty, but she survived."
+    him concerned "Operate?! Sounds serious... who was it?"
+    her sad "Helen. She had appendicitis."
+    him surprised "Have you ever fixed one of those before?"
+    her determined "No, I just watched one during my residency. I've done some simulations, since it's a common procedure... but the real thing is quite different."
+    him determined "It's a good thing you have a real nurse helping you out now."
+    her concerned "Yeah...I hope Helen will be okay."
+    "I made her up a plate of beans while we talked."
+    "From the way she devoured them, I guess she hadn't eaten all day."    
+    him concerned "How'd Pete take it?"
+    her flirting "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
+    him surprised "What about Trevor? That kid is the cutest hurricane of destruction I've ever seen."
+    her normal "I know. It's hard to believe he's just a year older than [kid_name]..."    
+
+    her concerned "How was [kid_name]? I guess she's asleep now?"
+    him normal "Yeah, she's asleep. "
+    
     
     if (family2_work_done <= 2):
         # TODO: lower crop yield    
-        him normal "I didn't get much done, but she had a good time."
+        extend "I didn't get much done, but she had a good time."
     else:
-        him normal "I managed to get all my work done, though she didn't like it very much."
+        extend "I managed to get all my work done, though she didn't like it very much."
         
     "[her_name] nodded, and ate another spoonful of beans. She seemed to be thinking about something."
     
@@ -460,12 +470,14 @@ label family2:
             him concerned "I think we should join the childcare co-op."
             her annoyed "I agree."
             him happy "Good! That wasn't so hard, was it?"
-            her determined "I don't really understand the point, but if we solved the problem and everyone's happy, then that's great."                     
+            her determined "So, you just want to make all the decisions?"
+            him annoyed "I want us to make them together."
+            her annoyed "Yeah. Together."
             
         "This'll be great!":
             $ marriage_strength += 1
             him happy "This will be great! I can concentrate on work during most of the week, and concentrate on [kid_name] on Fridays."
-            her normal "[kid_name] and three other toddlers."
+            her normal "[kid_name] and three other toddlers. Including Trevor."
             him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
             her happy "I'm glad you agree."
             him flirting "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
@@ -474,7 +486,7 @@ label family2:
             $ marriage_strength += 1
             him surprised "Four toddlers at once?! I can barely handle one!"
             her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
-            him determined "I guess we'll find out."
+            him determined "I guess we'll find out. Hopefully they're not all like Trevor."
             her flirting "Well, I'm sure you'll do just fine, Mr. Superdad."
             him happy "Superdad? Have I earned that title?"
             her happy "I'm pretty sure you have."
