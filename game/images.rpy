@@ -1,15 +1,20 @@
 init -10:
     # BACKGROUNDS
+    image bedroom = "bg/bedroom.jpg"
+    image bedroom_overlay = "bg/bedroom-overlay.png"    
     image cuttlefish = "bg/cuttlefish-logo.jpg"
-    image stars = "bg/stars.jpg"
-    image stars_animated:
-        "bg/stars.jpg"
-        linear 10.0 zoom 0.5
+    
     image farm_exterior = "bg/farm-exterior.jpg"
     image farm_exterior flip = im.Flip("bg/farm-exterior.jpg", horizontal = True)
     image farm_interior = "bg/farm-interior.jpg"
     image farm_interior flip = im.Flip("bg/farm-interior.jpg", horizontal = True)    
     image fields = "bg/fields.jpg"
+    image night_overlay = "bg/night.png"
+    image pond = "bg/pond.jpg"    
+    image stars = "bg/stars.jpg"
+    image stars_animated:
+        "bg/stars.jpg"
+        linear 10.0 zoom 0.5
 
 
     # OPS 1 images we aren't using yet.
@@ -20,13 +25,11 @@ init -10:
     image colony_ship_bunk = "bg/colony-ship-bunk.jpg"
     image talam = "bg/talam.jpg"
     image talaam_space = "bg/talaam-from-space.jpg"
-    image pond = "bg/pond.jpg"
     image path = "bg/path.jpg"
     image laundry = "bg/laundry.jpg"
     image library = "bg/library.jpg"
     image classroom = "bg/classroom.jpg"
     image clinic = "bg/clinic.jpg"
-    image bedroom = "bg/bedroom.jpg"
     image sunset = "bg/sunset.jpg"
     image machine_shop = "bg/machine-shop.jpg"
     image workshop = "bg/workshop.jpg"
@@ -51,9 +54,7 @@ init -10:
     image cg_good = "bg/good-ending.jpg"
     image cg_earth = "bg/cg-3.png"
 
-    image night = "bg/night.png"
     image bathhouse_overlay = "bg/bathhouse-overlay.png"
-    image bedroom_covers = "bg/bedroom-overlay.png"
     image computer_pad = "bg/computer-pad.png"
     image underwater = "bg/underwater-overlay.png"
     image pond_overlay = "bg/pond-overlay.png"

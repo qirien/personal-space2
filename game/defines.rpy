@@ -60,13 +60,14 @@ init -100:
     define standing = Position(ypos= 1.0, yanchor = 1.0)
     
     # Baby positions for being held
-    define rightbaby = Position(xpos=1.0, xanchor=1.0, ypos=430)
-    define quarterrightbaby = Position(xpos=0.78, xanchor=0.5, ypos=430)
-    define midrightbaby = Position(xpos=0.65, xanchor=0.5, ypos=430)    
-    define centerbaby = Position(xpos=0.5, xanchor=0.5, ypos=430)
-    define midleftbaby = Position(xpos=0.35, xanchor=0.5, ypos=430)  
-    define quarterleftbaby = Position(xpos=0.22, xanchor=0.5, ypos=430)
-    define leftbaby = Position(xpos=0, xanchor=0.0, ypos=430)
+    define baby_ypos = 540
+    define rightbaby = Position(xpos=1.0, xanchor=1.0, ypos=baby_ypos)
+    define quarterrightbaby = Position(xpos=0.78, xanchor=0.5, ypos=baby_ypos)
+    define midrightbaby = Position(xpos=0.65, xanchor=0.5, ypos=baby_ypos)    
+    define centerbaby = Position(xpos=0.5, xanchor=0.5, ypos=baby_ypos)
+    define midleftbaby = Position(xpos=0.35, xanchor=0.5, ypos=baby_ypos)  
+    define quarterleftbaby = Position(xpos=0.22, xanchor=0.5, ypos=baby_ypos)
+    define leftbaby = Position(xpos=0, xanchor=0.0, ypos=baby_ypos)
     
     # Kid positions for really short people
     define centerkid = Position(xpos = 0.5, xanchor = 0.5, ypos = 0.75)

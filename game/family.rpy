@@ -13,13 +13,20 @@ label family_intro:
     "Things used to be so simple. All you needed was a clean diaper, milk, and some love."
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
 
-    #scene bedroom with fade         
-    her "[his_name]."
-    him "Mrmph?"
-    her "[kid_name]'s crying."
+    scene bedroom with fade
+    show him sleeping at midleft, squatting
+    show her sleeping at midright, squatting
+    show baby girl at centerbaby, squatting
+    show bedroom_overlay
+    show night_overlay
+    with dissolve
+    her sleeping "[his_name]."
+    him sleeping "Mrmph?"
+    her concerned "[kid_name]'s crying."
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
-    him "Okay..."
+    him concerned "Okay..."
+    show her sleeping with dissolve
     "I changed her diaper as quietly as I could. I tried not to disturb [her_name], but I could tell she was still awake." 
     "I got out the bottle to feed [kid_name]. I was so tired, but I laid her down next to me and watched her in the shadowy moonlight, her tiny cheeks working to eat."
     "She was too little to hold the bottle herself, but she lifted her hands in jerky movements that brushed against me."
@@ -39,6 +46,7 @@ label family1:
     scene farm_interior with fade
     show him concerned at midright
     show her concerned at midleft
+    show baby girl at midleftbaby
 
     her "I just wish I knew why she was still crying! Even if I couldn't help her, at least I'd know I wasn't overlooking something."
     him sad "I know. It's been hours..."
@@ -53,15 +61,22 @@ label family1:
             $ responsive += 1
             $ marriage_strength += 1            
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
+            show him at center with move
+            show baby at centerbaby with move
             her concerned "It's not too cold out, is it?"
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
             her sad "Are you sure? I know you're tired, too..."
             him happy "If she's still crying in a few hours, it'll be your turn."
             her happy "Okay, good idea."
             "I snuggled her into her baby carrier and closed the door behind me."
-            # TODO night overlay
+            hide him
+            hide baby
+            with moveoutleft
             scene farm_exterior with fade
-            show him normal at center with dissolve
+            show him normal at center
+            show baby girl at centerbaby
+            show night_overlay
+            with dissolve
             him normal "There now, little [kid_name], how's that?"
             "..."
             "She's still crying. I better get further from the house so I don't keep up [her_name]."
