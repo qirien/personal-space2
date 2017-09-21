@@ -62,6 +62,10 @@ define config.has_voice = False
 
 # define config.main_menu_music = "main-menu-theme.ogg"
 
+## Images
+
+#define config.automatic_images = [ ' ', '-', '/' ]
+
 
 ## Transitions #################################################################
 ##

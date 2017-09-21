@@ -15,6 +15,10 @@ label community_intro:
 label community1:
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, you get in line with your friend Thuc to have some soup."
+    scene community_center with fade
+    show thuc at midright
+    show him normal at center
+    show ilian at midleft
     thuc "It's pretty exciting to have some new faces around!"
     him "How's it going? Julia couldn't make it?"
     thuc "No, she was too worn out."
@@ -22,6 +26,10 @@ label community1:
     him "At least there's free soup."
     ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "You get your soup and sit with some of the new colonists."
+    scene community_center with fade
+    show him normal at midleft
+    show zaina at center
+    show kevin at midright
     him "Hi, I'm [his_name]."
     zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
     him "Nice to meet you, Zaina and Kevin. Where will you be living?"

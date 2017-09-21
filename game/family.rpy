@@ -62,7 +62,7 @@ label family1:
             $ marriage_strength += 1            
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
             show him at center with move
-            show baby at centerbaby with move
+            show baby girl at centerbaby with move
             her concerned "It's not too cold out, is it?"
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
             her sad "Are you sure? I know you're tired, too..."
@@ -73,14 +73,21 @@ label family1:
             hide baby
             with moveoutleft
             scene farm_exterior with fade
-            show him normal at center
-            show baby girl at centerbaby
-            show night_overlay
-            with dissolve
+            show night_overlay with dissolve            
+            show him concerned at center behind night_overlay
+            show baby girl at centerbaby behind night_overlay
+            with moveinright
             him normal "There now, little [kid_name], how's that?"
             "..."
             "She's still crying. I better get further from the house so I don't keep up [her_name]."
+            hide him
+            hide baby
+            with moveoutleft
             scene fields with fade
+            show night_overlay with dissolve            
+            show him determined at center behind night_overlay
+            show baby girl at centerbaby behind night_overlay
+            with moveinright            
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
             "I reminded myself that she wouldn't cry forever, that this was just one night, even as I felt like sobbing alongside her with exhaustion."
             "I hated feeling so helpless."
@@ -153,17 +160,29 @@ label family1:
             him normal "Sometimes babies cry. Since nothing we're doing is helping, let's just set her down and take a break."
             her concerned "We can't take a break. We're her parents!"
             him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
+            show him at center with move
+            show baby at centerbaby with move
+            show him at quarterright
+            show baby at quarterrightbaby
+            with move
+            show him at squatting
+            show baby at sitting
+            with move
+            show him at standing with move
             "We set [kid_name] down and I set a timer for ten minutes."
+            show him at midright with move
             "We listened to her scream while we did the dishes together silently."
             "[her_name] started crying, too."
             her sad "Why am I so bad at this?"
-            him serious "You've been doing a perfect job all day! It's not your fault."
+            him determined "You've been doing a perfect job all day! It's not your fault."
             her sad "Maybe if she had a different mom she wouldn't cry so much."
             him angry "No way!"
+            show him at center with move
             him concerned "I've seen you with her; you give her everything she needs. You're patient, loving, and hard-working. She's our daughter, and we're the parents she needs!"
             him sad "We're the parents she's got, and we'll raise her, no matter what!"
             "I held [her_name] for a while and she seemed to calm down a little. When the timer went off, I dashed for the cradle before [her_name] could respond."
             him happy "Now I'm going to try to be as awesome a parent as you've been all day. You just get some sleep or read a book or whatever you want to do! I got this!"
+            # TODO: add dancing with baby animation here?
             "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
             her normal "[his_name]... You don't have to try to impress me."
             him happy "What's that? [kid_name] and I can't hear you; we're having too much fun."
@@ -296,7 +315,7 @@ label family2:
             him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
             him happy "There we go! We're going to go make plants grow!"
             kid happy "Daa!"
-            scene bg tractor with fade
+            scene tractor with fade
             "We got on the tractor and I drove back to the field that needed planting."
             "I had to kind of sit on the edge of the seat so that there was room behind me for the backpack. It wasn't the comfiest seat, but it worked."
             "Terra cooed and kicked and played with my hair and seemed to enjoy the ride..."
@@ -731,7 +750,7 @@ label family4:
                     $ marriage_strength -= 1
                     him determined "..."
                     "I handed [kid_name] to [her_name] and tried not to slam the door on my way out."
-                    scene house_exterior with fade
+                    scene farm_exterior with fade
                     "I hated how spoiled [kid_name] was acting."
                     "I hated [her_name] telling me what to do."
                     "...I hated that she was right."
@@ -1160,7 +1179,7 @@ label family6:
 
 # Helped function for event 6 if they go swimming    
 label family6_swimming:
-    # scene bg swimming_hole with fade
+    scene pond with fade
     # TODO: CG or interesting movement/sprites here?
     scene stream with fade
     show him at midleft

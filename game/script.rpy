@@ -140,9 +140,9 @@ label start:
         if (mp.kid_name):
             $ kid_name = mp.baby_name           
         
-    show her at midleft
+    show her normal at midleft
     show kid at center
-    show him at midright    
+    show him normal at midright    
     # TODO: Make this look like a photograph/computer pad. 
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous as usual, and our daughter [kid_name]."
     "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
