@@ -7,6 +7,7 @@
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month (?).
 # TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
 # TODO: Use something that will randomize choice order after we've done a lot of testing
+# TODO: Some choices only appear after a certain amount of time?
 
 # Intro event
 label family_intro:
@@ -1243,7 +1244,7 @@ label family7:
     kid "But animals don't sleep in beds."
     him surprised "Don't you sometimes pretend they are people?"
     kid "No, they are animals that can talk like people. But they are still animals."
-    her concerned "Say 'thank you'."
+    her concerned "Just say 'thank you', [kid_name]"
     kid "Thank you, daddy."
     her normal "Good, now open this one."
     "[her_name] had made a little doll family out of cotton balls and first aid tape. A mom, a dad, a girl, and a little baby. She had drawn cute faces on the tape."
@@ -1259,6 +1260,7 @@ label family7:
     him normal "Now it's time to put everything away, okay?"
     kid "No. I'm not done."
     her concerned "Come on, [kid_name], it's bedtime."
+    "I reached for the toy in her hand but she twisted away."
     kid "No! Go away!"
     menu: 
         "What should I do?"
@@ -1267,9 +1269,116 @@ label family7:
             him angry "You do NOT talk to your parents like that!"
             kid "You don't talk to me like that!"
             $ authoritarian += 1
-        "Argue with her.":
-            him annoyed "Stop it, [kid_name]. Put these away and get ready for bed."
+        "Try to convince her.":
+            $ responsive += 1
+            him annoyed "Stop it, [kid_name]. We have to put the toys away or we might step on them and break them."
             kid "No! You're mean!"
+            "I wasn't making very much progress... I needed to try something else."
+            menu family7_cleanup_convince_menu:
+                "What should I do?"
+                "Convince her with logic.":
+                    him normal "If you like having toys, then you're responsible for taking care of those toys. Part of taking care of toys is putting them away."
+                    kid "No! I'm still playing!"
+                    him determined "Look at the clock. You can see it's bedtime."
+                    kid "I'm not tired!"
+                    "This wasn't working."
+                    jump family7_cleanup_convince_menu
+                    
+                "Bribe her.":
+                    him normal "If you put your toys away now, I'll read you a story!"
+                    kid "Two stories!"
+                    menu:
+                        "What should I say?"
+                        "One story. Come on, let's clean up!":
+                            $ demanding += 1
+                            him "One story. Come on, let's clean up together!"                            
+                        "Sure, two stories.":
+                            him "Okay, fine, two stories."
+                            kid "How about three stories?"
+                            him "How about we clean up right now or we won't have time for any stories?"
+                            
+                    "I put a piece of furniture in the box and waited."                    
+                    "She put one in, too."
+                    "Together we cleaned up the mess, and then I tucked her in with her story reward."
+                    him normal "Good night, [kid_name]."
+                    $ permissive += 1                                        
+                "Threaten her.":
+                    $ demanding += 1
+                    him angry "You clean these up right now or...."
+                    menu:
+                        "What should I say?"
+                        "...or I'll throw them away!":
+                            him angry "You clean these up right now or I'll throw them all away!"
+                            kid "No! Don't throw away my toys!"
+                            him annoyed "Then clean them up!"
+                            kid "No!"
+                            "She's not cleaning them up..."
+                            menu:
+                                "What should I do?"
+                                "Throw the toys away.":
+                                    "I had spent hours making those stupid pieces of tiny furniture. Could I really throw them all away?"
+                                    "Did I have a choice? I said that I would, so that's what I was going to do."
+                                    "I gathered them up in the box and marched out the door."
+                                    her concerned "[his_name]?!"
+                                    her angry "You can't just throw those away! I worked hard on them!"
+                                    him annoyed "We have to be consistent! If I said I would do something, then I'll do it!"
+                                    her annoyed "That would be wasteful. Let me put them away and we can think about it later when we're not so upset."
+                                    "The way she said 'we' left no doubt that she meant me."
+                                    him angry "Fine. But don't give them back to her until we talk about it together."
+                                    "I didn't even think about whether [her_name] was willing to carry out my threat or not. But we were in this together; we had to be unified."
+                                    "And I probably shouldn't have made such a drastic threat in the first place."
+                                    # TODO: Do we need a "trust" variable that keeps track of whether the parents keep their word?
+                                "Put them away.":
+                                    "I wasn't going to throw away something I had worked so hard on. I gathered up all the toys in the box and hid them away. Maybe I'd get them out when she'd forgotten about it." 
+                                "Give her another chance.":
+                                    "I picked up the box and started putting pieces into it in slow motion."
+                                    kid "No, stop, daddy, I'll clean up!"
+                                    "She helped put all the pieces away so fast we were done in under a minute. I couldn't believe she had thrown a fit about such a simple thing."
+                                    menu:
+                                        "What should I say?"
+                                        "I'm glad you decided to clean up.":
+                                            $ responsive += 1
+                                            him normal "I'm glad you decided to clean up. Now you can play with your toys tomorrow."
+                                            kid "..."
+                                        "See? That wasn't so hard.":
+                                            him determined "See? That wasn't so hard. Next time just clean up when I ask."
+                                            kid "..."
+                                        "I hope you learned your lesson.":
+                                            him determined "I hope you learned your lesson, [kid_name]."
+                                            kid "I learned that you are mean."                                            
+                            $ authoritarian += 1
+                        "...or you won't be able to play with them tomorrow.":
+                            him determined "Clean these up now or you won't be able to play with them tomorrow."
+                            kid "No!"
+                            "She's not cleaning them up..."
+                            "I put the pieces in the box and hid them away."
+                            kid "Give me my toys!"
+                            him annoyed "No!"
+                            show him determined with dissolve
+                            extend " I mean, you decided not to clean them up, so now you may not play with them."
+                            kid "You're mean!"
+                            him annoyed "You decided not to clean up; that's what happens."
+                            her normal "Anyway, now it's bedtime! As soon as you brush your teeth, I'll read you a story."
+                            $ authoritative += 1
+                            
+                            
+                        "...or you'll be sorry!"
+                        "...or you'll have no computer pad time this week!" 
+                "Make it a game.":
+                    
+            
+        "Don't make her clean up.":
+            $ responsive += 1
+            him surprised "Okay, if it means that much to you I guess you can leave them out."
+            her determined "It is time for bed, though. Come on, [kid_name]."
+            kid "I'm not going to bed! I'm not tired!"
+            "The last thing I wanted was to get stuck arguing with a four year old for hours."
+            him sad "I, uh, I need to go check on the goats."
+            "I fled out the front door just as the wailing started."
+            "I felt a twinge of guilt, but shoved it aside. [her_name] was much better at this sort of thing; I'd just be in the way."
+            $ neglectful += 1
+            return
+            
         "Take a deep breath.":
             "I took a deep  breath. I don't know why she was so upset all of a sudden, but me yelling at her wouldn't help the situation any."
             "I realized I had some other options."
@@ -1282,6 +1391,11 @@ label family7:
                 # TODO: finish this
     
     
+    kid "Wait, wait!"
+    him normal "What is it?"
+    kid "I need a drink of water."
+    him "You're not a prisoner; get some water if you want."
+    kid "I want you to bring it to me."
     "Terra gets a new toy: some blocks! But later she talks back when asked to pick up her toys, saying \"I hate you!\""
     menu:
         "What do you say?"
@@ -2606,6 +2720,10 @@ label family22:
 return
 # 14.2 Earth years old
 # Chatting with friends on family tablet
+# Address several statistics: teens that spend more time on screens and less doing actual stuff
+# are more depressed, get less sleep, and feel more lonely and left out.
+# Solutions include: screen-free time, a new hobby, helping her setup a hangout space/time 
+# with friends, etc.
 label family23:
     "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
     menu:

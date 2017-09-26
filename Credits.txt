@@ -10,13 +10,19 @@ The following images are in the public domain.
 
 Starscape <stars.jpg> by NASA, <https://www.nasa.gov/feature/goddard/2016/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought>
 
-Mongolian Yurt <farm-exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
+Mongolian Yurt <farm_exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
 
-Yurt Interior <farm-interior.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/yurt-holiday-travel-camping-1441610/>, by Sabine van Erp
+Yurt Interior <farm_interior.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/yurt-holiday-travel-camping-1441610/>, by Sabine van Erp
 
 RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:RoscheiderHof-rathaus-2008-8.jpg>, by Dorothea Witter-Rieder.
 
 Fields <fields.jpg> by Andrea Landaker
+
+Bedroom <bedroom.jpg> by Andrea Landaker
+
+Path <path.jpg> by Andrea Landaker
+
+Pond <pond.jpg> by Andrea Landaker
 
 === GUI
 
@@ -25,6 +31,8 @@ All GUI images are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
 Textbox vegetation and wood textures by Eric Matyas, http://www.soundimage.org
 
 Textbox twig frame by Firkin from "Poems and Pictures", 1865
+
+Crop icons by Rachel Helps.
 
 === Fonts
 Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>
@@ -39,7 +47,7 @@ Fotograami Flower Font by Khaled Aldousari, <http://www.dafont.com/fotograami-fl
 
 .License
 ****
-"Our Personal Space 2" Character Sprites © 2014-2015 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+"Our Personal Space 2" Character Sprites © 2014-2017 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
 
 This artwork is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -52,7 +60,7 @@ If not, see <http://www.gnu.org/licenses/>.
 
 .License
 ****
-"Our Personal Space 2" Character Sprites © 2014-2015 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+"Our Personal Space 2" Character Sprites © 2014-2017 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
 
 This artwork is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>.
 ****
