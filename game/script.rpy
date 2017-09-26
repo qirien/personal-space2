@@ -144,7 +144,7 @@ label start:
     show kid at center
     show him normal at midright    
     # TODO: Make this look like a photograph/computer pad. 
-    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous as usual, and our daughter [kid_name]."
+    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
     "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
     "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
     menu name_change_loop:        
