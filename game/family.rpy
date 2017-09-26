@@ -1290,7 +1290,7 @@ label family8:
                     "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
                     her concerned "You're still worried."
                     him normal "So are you."
-                    her serious "Yes. But not as much."
+                    her serious "Yes. But it'll be okay."
                     him serious "We'll figure it out."
             "We can do this!":
                 him serious "This is...this is..."
@@ -1517,7 +1517,7 @@ label family10:
                 "[bro_name] reached for his figurine, but she pulled it out first and put it up high where he couldn't reach."
                 kid "You can't play with him. He's dead."
                 bro "I want it!"
-                kid "Nope. Dead means dead forever. All gone."
+                kid "Nope. Dead is forever. All gone."
                 bro "Not all gone!"
                 him "[kid_name], that's enough. If you can't get along with [bro_name], then you'll need to go to your room."
                 "I gave [bro_name] his figure. He looked at it suspiciously, as if trying to tell from its appearance whether it was still okay to play with after being \"dead\"."
@@ -1547,7 +1547,7 @@ label family10:
                             "I'm sorry.":
                                 him "I'm sorry, [kid_name]. I didn't mean for you to hit your head."
                                 kid "Yes, you did. You're always mean to me."
-                                "I turned away. I couldn't make her accept my apology. But hopefully she'd remember what I'd said."
+                                "I tried to hug her but she turned away. I couldn't make her accept my apology. But hopefully she'd remember what I'd said."
                                 $ authoritarian += 1
 
                     "Suggest they play something else.":
@@ -1634,7 +1634,6 @@ label family11:
                     return                                                            
                 "Say something about it.":
                     "[her_name] was about to pass the potatoes, but I stopped her. I took the sauce back."
-            
         "Say \"please\"":
             $ demanding += 1
             $ responsive += 1
