@@ -11,7 +11,7 @@
 
 # Intro event
 label family_intro:
-    "Things used to be so simple. All you needed was a clean diaper, milk, and some love."
+    "All you needed was a clean diaper, milk, and some love."
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
 
     scene bedroom with fade
@@ -1268,20 +1268,65 @@ label family7:
             $ demanding += 1
             him angry "You do NOT talk to your parents like that!"
             kid "You don't talk to me like that!"
+            "The way her eyes sparked with rebellion lit my anger like a barrel of gunpowder."
+            menu family7_anger_menu:
+                "What should I do?"
+                "Yell at her.":
+                    him annoyed "You are not the boss around here! Show some respect"
+                    kid "You are not the boss of me!"
+                    him angry "Oh yes I am!"
+                    call family7_angry_ending
+                "Spank her.":
+                    "I had to show her. I had to make her realize that she was a tiny powerless child and she had to obey me!"
+                    "I grabbed her and put her face down on my lap."
+                    kid "No, no, daddy, no, don't spank me! I'll clean up! Stop! Just stop!"
+                    her surprised "[his_name]!"
+                    him "You are"
+                    "(whack)"
+                    him "NOT the"
+                    "(whack)"
+                    him "boss!"
+                    "(whack)"
+                    call family7_angry_ending
+                "Guilt trip her.":
+                    him determined "Your mother and I worked hard to make your birthday awesome. And you won't even clean up your toys?!"
+                    kid "No. I'm still playing."
+                    "I wasn't getting through to her. I felt like I had to make her understand!"
+                    him angry "You are not the boss! You do what your parents say, not the other way around!"
+                    call family7_angry_ending
+                "Take a deep breath.":
+                    "I tried to breathe deeply and calm down. If I did something while I was angry, it might be something I'd regret."
+                    "But that sick desire to prove I was the boss, to make her afraid of me, to force her to obey, was still there."
+                    menu:
+                        "What should I do?"
+                        "Ask [her_name] for help.":
+                            him concerned "[her_name], can you handle this? I just...can't, right now."
+                            her determined "Good idea."
+                            kid "Yeah, good idea."
+                            "I walked out of the house before I could explode. I didn't want to be a yelling-spanking-angry dad, but I didn't know how else to handle [kid_name] when she got this way."
+                        "Walk away.":
+                            "I walked out of the house before I could explode. I didn't want to be a yelling-spanking-angry dad, but I didn't know how else to handle [kid_name] when she got this way."
+                        "Talk to [kid_name].":
+                            him annoyed "You're being really rude. That's not how you talk to adults."
+                            kid "Yes it is!"
+                            him angry "You are not the boss!"
+                            call family7_angry_ending
             $ authoritarian += 1
         "Try to convince her.":
             $ responsive += 1
             him annoyed "Stop it, [kid_name]. We have to put the toys away or we might step on them and break them."
             kid "No! You're mean!"
             "I wasn't making very much progress... I needed to try something else."
+            $ family7_logic = False
             menu family7_cleanup_convince_menu:
                 "What should I do?"
-                "Convince her with logic.":
+                "Convince her with logic." if (not family7_logic):
                     him normal "If you like having toys, then you're responsible for taking care of those toys. Part of taking care of toys is putting them away."
                     kid "No! I'm still playing!"
                     him determined "Look at the clock. You can see it's bedtime."
                     kid "I'm not tired!"
                     "This wasn't working."
+                    $ family7_logic = True
                     jump family7_cleanup_convince_menu
                     
                 "Bribe her.":
@@ -1293,16 +1338,15 @@ label family7:
                             $ demanding += 1
                             him "One story. Come on, let's clean up together!"                            
                         "Sure, two stories.":
-                            him "Okay, fine, two stories."
+                            him determined "Okay, fine, two stories."
                             kid "How about three stories?"
-                            him "How about we clean up right now or we won't have time for any stories?"
-                            
+                            him annoyed "How about we clean up right now or we won't have time for any stories?"                          
                     "I put a piece of furniture in the box and waited."                    
                     "She put one in, too."
-                    "Together we cleaned up the mess, and then I tucked her in with her story reward."
-                    him normal "Good night, [kid_name]."
-                    $ permissive += 1                                        
-                "Threaten her.":
+                    "[her_name] helped, and together we cleaned up the mess."
+                    $ permissive += 1         
+                    call family7_bedtime
+                "Set consequences.":
                     $ demanding += 1
                     him angry "You clean these up right now or...."
                     menu:
@@ -1325,27 +1369,19 @@ label family7:
                                     her annoyed "That would be wasteful. Let me put them away and we can think about it later when we're not so upset."
                                     "The way she said 'we' left no doubt that she meant me."
                                     him angry "Fine. But don't give them back to her until we talk about it together."
-                                    "I didn't even think about whether [her_name] was willing to carry out my threat or not. But we were in this together; we had to be unified."
-                                    "And I probably shouldn't have made such a drastic threat in the first place."
+                                    "I didn't even think about whether [her_name] was willing to carry out my threat or not. We were in this together; we had to be unified."
+                                    "But I probably shouldn't have made such a drastic threat in the first place."
+                                    "I couldn't just let [kid_name] get away with stuff, either."
+                                    "Sometimes, I just didn't know what to do."                                    
                                     # TODO: Do we need a "trust" variable that keeps track of whether the parents keep their word?
                                 "Put them away.":
                                     "I wasn't going to throw away something I had worked so hard on. I gathered up all the toys in the box and hid them away. Maybe I'd get them out when she'd forgotten about it." 
+                                    call family7_bedtime
                                 "Give her another chance.":
                                     "I picked up the box and started putting pieces into it in slow motion."
                                     kid "No, stop, daddy, I'll clean up!"
                                     "She helped put all the pieces away so fast we were done in under a minute. I couldn't believe she had thrown a fit about such a simple thing."
-                                    menu:
-                                        "What should I say?"
-                                        "I'm glad you decided to clean up.":
-                                            $ responsive += 1
-                                            him normal "I'm glad you decided to clean up. Now you can play with your toys tomorrow."
-                                            kid "..."
-                                        "See? That wasn't so hard.":
-                                            him determined "See? That wasn't so hard. Next time just clean up when I ask."
-                                            kid "..."
-                                        "I hope you learned your lesson.":
-                                            him determined "I hope you learned your lesson, [kid_name]."
-                                            kid "I learned that you are mean."                                            
+                                    call family7_she_cleaned_up                                            
                             $ authoritarian += 1
                         "...or you won't be able to play with them tomorrow.":
                             him determined "Clean these up now or you won't be able to play with them tomorrow."
@@ -1359,14 +1395,32 @@ label family7:
                             kid "You're mean!"
                             him annoyed "You decided not to clean up; that's what happens."
                             her normal "Anyway, now it's bedtime! As soon as you brush your teeth, I'll read you a story."
-                            $ authoritative += 1
+                            $ authoritative += 1 
+                            call family7_bedtime
+                        "...or you'll get a spanking!":
+                            him annoyed "You clean these up right now or you'll get a spanking!"
+                            her concerned "[his_name]..."
+                            "[kid_name] looked at me, as if trying to gauge how serious I was."
+                            "I put on my meanest face. It wasn't hard; I felt like a rattlesnake, shaking my warning rattle, daring her to make one wrong step..."
+                            "She folded her arms and looked up at me defiantly."
+                            kid "No."
+                            "Now I had to decide if I was bluffing or not. Was it really worth making such a threat over cleaning up toys?"
+                            "But it wasn't just about cleaning up toys; it was about her challenging my authority and teaching her that she really did have to do what mom and dad said."
+                            "I didn't know any other way to show her that."
+                            "So I spanked her."
+                            "She cried."
+                            $ responsive -= 2
+                            "[her_name] put her to bed, glaring at me whenever I tried to help."
+                            "Finally I gave up trying to help and just sat down on the couch and tried to catch up on my email."
+                            her annoyed "Really? Spanking? That's the best you could do?"
+                            him annoyed "I didn't see you jumping in with any bright ideas!"
+                            her angry "I didn't think you were serious!"
+                            him angry "There's no point in making a threat if you're not willing to carry it out!"
+                            her concerned "Then maybe you shouldn't make threats like that."
+                            him annoyed "Fine. Next time you can handle it; show me what a 'good' parent does."
+                            her annoyed "Fine. I will."
+                            $ authoritarian += 1 
                             
-                            
-                        "...or you'll be sorry!"
-                        "...or you'll have no computer pad time this week!" 
-                "Make it a game.":
-                    
-            
         "Don't make her clean up.":
             $ responsive += 1
             him surprised "Okay, if it means that much to you I guess you can leave them out."
@@ -1376,8 +1430,7 @@ label family7:
             him sad "I, uh, I need to go check on the goats."
             "I fled out the front door just as the wailing started."
             "I felt a twinge of guilt, but shoved it aside. [her_name] was much better at this sort of thing; I'd just be in the way."
-            $ neglectful += 1
-            return
+            $ permissive += 1
             
         "Take a deep breath.":
             "I took a deep  breath. I don't know why she was so upset all of a sudden, but me yelling at her wouldn't help the situation any."
@@ -1386,39 +1439,191 @@ label family7:
                 "What should I say?"
                 "Why are you so mad?":
                     him surprised "Why are you so mad?"
-                "Clean this up or you won't be able to play with them tomorrow":
+                    kid "You won't let me play with my toys!"
+                    him normal "You can play with them more tomorrow. But right now we need to clean them up because it's bedtime."
+                    kid "I'm not tired!"
+                    jump family7_patience_menu
+                "Clean this up or you won't be able to play with them tomorrow.":
                     him determined "You need to clean these up or you won't be able to play with your new toys tomorrow."
-                # TODO: finish this
-    
-    
+                    kid "No! I'm not done playing!"
+                    jump family7_patience_menu
+                "You wish you could play more.":
+                    him concerned "You wish you could play with your toys more."
+                    kid "Yeah! I'm having too much fun."
+                    "I gave her a hug and stroked her hair."
+                    him normal "It has been fun to play together. I hope we can play more tomorrow."
+                    kid "I'm not tired!"
+                    menu family7_patience_menu:
+                        "What should I say?"
+                        "Too bad! It's time for bed!":
+                            him angry "Too bad! It's time to clean up and go to bed!"
+                            kid "No! You can't make me!"
+                            "Some part of me took that as a challenge. I {b}would{/b} make her clean up and go to bed!"
+                            jump family7_anger_menu
+                            
+                        "You may not feel tired, but it's bedtime.":
+                            him surprised "You probably don't feel tired right now, huh?"
+                            kid "Nope!"
+                            him normal "But it's bedtime, so we're going to clean up. As soon as all the toys are in the box, we will read a story."
+                            kid "I don't want a story! I want to play!"
+                            menu:
+                                "What should I do?"
+                                "Set a consequence and a time limit.":
+                                    him normal "I know you wish you could play, but it's time to clean up. If you decide not to clean up, you will not be able to play with these toys tomorrow. You have five minutes."
+                                    "I left the room and started a timer on my computer pad. I did some deep breathing."
+                                    "I had kept my cool so far, but, man, this kid really knew how to rile me up."
+                                    "I had to remind myself that she wasn't doing it on purpose; she was just testing her limits. This was a totally normal four-year-old thing to do."
+                                    "I just had to stay calm and be clear and firm."
+                                    "...Why was that so hard?!"
+                                    "[her_name] followed me and gave my shoulders a squeeze."
+                                    her surprised "You are being so patient with her!"
+                                    him annoyed "Maybe too patient. Why is she acting so bratty, anyway?"
+                                    her concerned "She might just be tired. She woke up pretty early this morning."
+                                    "I heard clanking coming from the other room. Peeking around the corner, I saw that she had started putting the toys in the box."
+                                    call family7_she_cleaned_up
+                                    $ authoritative += 1
+                                    call family7_bedtime
+                                "Give up.":
+                                    jump family7_give_up
+                                "Demand she clean up now.":
+                                    him angry "You clean these up right now!"
+                                    kid "No!"
+                                    jump family7_anger_menu
+                        "Fine; don't go to bed. I'm done.":
+                            label family7_give_up:
+                                $ responsive -= 1
+                                him angry "Fine! Don't go to bed and don't clean up! Grow up to be a lazy moron for all I care!"
+                                "I left the house in a flash of anger."
+                                "I just didn't have enough patience. Or maybe I was doing this all wrong."
+                                "Or maybe [kid_name] was just a bratty kid."
+                                "Either way, I couldn't take it anymore."
+                                $ neglectful += 1
+                    
+                "Make cleaning up a game.":
+                    $ responsive += 1
+                    $ demanding += 1
+                    him surprised "Uh-oh! Do you hear that?!"
+                    kid "Hear what?"
+                    him normal "It's the [kid_name] Crane! It's here to cleanup the toys for us!"
+                    kid "Where?"
+                    "I grabbed her by the ankles so she dangled upside down." # TODO: add animation here
+                    him happy "Right here! Look at those powerful hands!"
+                    "She hesitated. I think she could sense it was kind of a trick."
+                    him normal "I wonder how many toys the crane can hold at one time?!"
+                    "She grabbed a handful of toys, spreading her fingers wide to catch as many as she could."
+                    kid "This many!"
+                    him "Wow! That's so many! Now the crane drops them in the box!"
+                    "I maneuvered her over the box and she let go of the toys and squealed with delight."
+                    kid "Again!"
+                    "I repeated the process several times. [her_name] took pity on me and helped cleanup a few stragglers."
+                    "I helped [kid_name] down."
+                    kid "That was fun, daddy! [kid_name] Crane should come every night!"
+                    "Uh-oh... what had I started?!"
+                    her flirt "And now it's time for bed!"
+                    $ authoritative += 1            
+                    call family7_bedtime
+            
+    if (year6_have_baby):
+        scene black with fade
+        "The next day, we found out [her_name] was pregnant."
+        "I felt overwhelmed. I could barely function as a dad of one kid, much less two!"
+        "Sometimes, I was amazed that humanity had ever managed to survive past childhood."
+        "There was no choice but to keep trying. Maybe in nine months I'd be a better dad than I was now?"
+        "I had the feeling it would take more than the passage of time to make a better parent out of me."
+            
+    return
+
+label family7_bedtime:
+    "I read her a story and kissed her good night."
+    "She grabbed my neck and kissed me back."
+    kid "I love you, daddy."
+    him normal "I love you, [kid_name]. Happy birthday."
+    "I turned out the light and stepped out of the room."
+    show night_overlay with dissolve
     kid "Wait, wait!"
     him normal "What is it?"
     kid "I need a drink of water."
-    him "You're not a prisoner; get some water if you want."
+    him "Okay, go get some water if you want."
     kid "I want you to bring it to me."
-    "Terra gets a new toy: some blocks! But later she talks back when asked to pick up her toys, saying \"I hate you!\""
+    "Oh boy. I wasn't sure I had enough patience for this."
     menu:
-        "What do you say?"
-        "There's consequences for such disrespect!":
-            $ demanding += 1
-            $ authoritarian += 1
-        "How can you say that after all I do for you?":
+        "What should I do?"
+        "Bring her the water.":
             $ responsive += 1
-            $ permissive += 1
-        "You don't really mean that!":
-            $ responsive += 1
-        "I can see you're upset. When you're ready to talk respectfully, we can try to solve the problem.":
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Just ignore her. Maybe next time you will not bother making her clean up her toys.":
-            $ neglectful += 1
+            "I could bring her one cup of water, right?"
+            him normal "Here you go."
+            "I set down the cup and turned to leave."
+            kid "Daddy?"
+            him annoyed "What?"
+            kid "I need a hug."
+            "I could do one hug, right?"
+            "She wrapped her arms around my neck and didn't want to let go. She was still so small; she'd learned a lot in her short little life, but she still had a long way to go."
+            "After a minute I extricated myself and patted her hand."
+            him "Good night, [kid_name]."
+            kid "Goodnight."
             
-            # TODO: She continues to talk rudely, has to go to timeout, user has to be patient through a zillion menus until she finally calms down
+        "Politely refuse.":
+            $ demanding += 1
+            him determined "You can do that. Good night, sweetie."
+            kid "Daddy!"
+            him annoyed "It's time to go to sleep. I love you, good night."
+            kid "...good night."
             
-    if (year6_have_baby):
-        "I had almost forgotten about having another kid when we found out [her_name] was pregnant."
-        "I guess we were really doing this baby thing again!"
+        "Tell her how you feel.":
+            him annoyed "[kid_name], I just used up all my patience trying to get you to clean up your toys and I am about to explode!"
+            kid "Daddy..."
+            him determined "So, good night!"
+            kid "...good night."
+    return
+    
+label family7_she_cleaned_up:
+    menu:
+        "What should I say?"
+        "I'm glad you decided to clean up.":
+            $ responsive += 1
+            him normal "I'm glad you decided to clean up. Now you can play with your toys tomorrow."
+            kid "..."
+        "See? That wasn't so hard.":
+            him determined "See? That wasn't so hard. Next time just clean up when I ask."
+            kid "..."
+        "I hope you learned your lesson.":
+            him determined "I hope you learned your lesson, [kid_name]."
+            kid "I learned you are mean."            
+    return
+        
+label family7_angry_ending:
+    $ responsive -= 5
+    "I picked her up and put her in her room. She pounded her tiny fists on my back but I was so filled with rage and adrenaline that I barely felt them."
+    him determined "Stay in your room until you can talk with respect!"
+    kid "No I won't!"
+    "She tried to make a run for it but I caught her arm and pushed her back in. She landed with a thump on the hard floor."
+    "I closed the door before she could make another attempt to escape."
+    him angry "You are not the boss! You are a spoiled, whiny, powerless child and {b}I{/b} am the boss of {b}you{/b}!"
+    "She started crying. I locked the door from the outside."
+    "She threw herself against it, the wood creaking, and started pounding on the door."
+    kid "Let me out!"
+    "She still didn't understand why she was so wrong."
+    him annoyed "You stay in there until you're ready to quit being such a brat!"
+    her angry "..."
+    "The house was suddenly quiet. The only sound was [kid_name]'s sobs, muffled only slightly by the door."
+    "[kid_name] cried herself to sleep, and I tried to read through my emails, but it was hard to concentrate."
+    "[her_name] didn't talk to me either; she wouldn't even look at me. I think she was disappointed in me. That brought all my anger back to the surface again."
+    him annoyed "You were a lot of help back there."
+    her concerned "You scared me."
+    him surprised "I scared {b}you{/b}?"
+    her sad "I didn't think you were that kind of person. The kind of person that has to make others feel bad so he can make himself feel better."
+    him angry "I'm not! You think I should just let her get away with that kind of disrespect?!"
+    her determined "I think there's better ways than intimidation, yes. Do you really want [kid_name] to be afraid of you?"
+    him annoyed "Maybe she should be afraid enough to show some manners."
+    her annoyed "Respect doesn't come from fear. It comes from trust. And you just destroyed hers."
+    kid "Mommy?"
+    her concerned "What is it, dear?"
+    "[kid_name] ran in and hid her face in [her_name]'s lap. The she spoke, so quietly that I could barely hear."
+    kid "I peed in my bed."
+    "[her_name] shot me a glare, as if [kid_name]'s bladder problems were my fault. She was probably peeing in the bed on purpose to try to get even with us!"
+    "I started to stand up, but [her_name] beat me to it."
+    her determined "I'll handle this. I don't trust you right now."
+    $ marriage_strength -= 1
     return
 
 # 5 Earth years old
