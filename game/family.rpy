@@ -1531,6 +1531,43 @@ label family7:
         "There was no choice but to keep trying. Maybe in nine months I'd be a better dad than I was now?"
         "I had the feeling it would take more than the passage of time to make a better parent out of me."
             
+    "I wanted to be a better parent."
+    "But I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
+    "Did I really have time for one more thing?"
+    menu:
+        "What should I do?"
+        "Take a parenting class":
+            "I asked around to see if anyone was willing to teach a parenting class."
+            "Sister Naomi thought that was a great idea. Soon me and a few other moms and dads were gathered at the community center. There were even some parents that I thought already knew everything."
+            call parenting_class1
+        "Do some reading":
+            "I tried to read some parenting books, but they all seemed to conflict with each other."
+            "One book said to love your kids no matter what; another said to make sure not to spoilt your child by doing whatever they said. One said to never let a baby cry; another said that it's okay for babies to cry sometimes." 
+            "The few things they agreed on were things I already knew; being a parent is hard, and kids need parents."
+        "Do nothing":
+            "I didn't have time for this. And, really, our ancestors didn't have time to read parenting books and humans turned out okay, so why should I have to turn it into some huge complicated thing?"
+        "Discuss it with [her_name]":
+            "I decided to talk to [her_name] about it. We were both [kid_name]'s parents, after all!"
+            scene bedroom with fade
+            show him sleeping at midleft, squatting
+            show her sleeping at midright, squatting
+            show bedroom_overlay
+            show night_overlay
+            with dissolve
+            
+            him determined "Hey, [her_name]?"
+            her surprised "What?"
+            him surprised "Do you think we should be doing something differently? As parents, I mean?"
+            her concerned "Maybe...I don't have any experience here, so it's hard to know if we're doing the right thing."
+            him concerned "Yeah, I feel that way, too.  I wish I could talk to my parents about it."
+            her flirt "I have the feeling that 140 characters isn't going to be enough space for much useful parenting advice."
+            him "Well, we have some good parents here, right?"
+            her determined "Yeah... maybe? I've never really thought about the other adults as parents, mostly just as people."
+            him "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
+            her normal "Yeah, I'll ask her!"
+            scene black with fade
+            "After [her_name] talked to her, Sister Naomi agreed to host a parenting workshop one night a week. Her husband, Mayor Grayson, offered to watch the kids so anyone who wanted to could attend."
+            call parenting_class
     return
 
 label family7_bedtime:
