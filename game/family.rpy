@@ -1567,7 +1567,7 @@ label family7:
             her normal "Yeah, I'll ask her!"
             scene black with fade
             "After [her_name] talked to her, Sister Naomi agreed to host a parenting workshop one night a week. Her husband, Mayor Grayson, offered to watch the kids so anyone who wanted to could attend."
-            call parenting_class
+            call parenting_class1
     return
 
 label family7_bedtime:

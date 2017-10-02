@@ -12,6 +12,14 @@ init -10:
 
 
     # GUI
+    
+    image computer_pad = "gui/computer pad.png"
+    image computer_pad_with_screen = LiveComposite( 
+        (1280, 720),
+        (0,0), "gui/computer pad.png",
+        (0,0), "gui/computer pad screen.png")
+    
+    # Farming icons
     image tomato = "gui/crop icons/tomato.png"
     image beans = "gui/crop icons/beans.png"
     image carrot = "gui/crop icons/carrot.png"

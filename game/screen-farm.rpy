@@ -8,7 +8,10 @@
 
 screen plan_farm:
     frame:
+        background  "computer_pad_with_screen"
+        # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
         vbox:
+            area (50, 30, 1180, 660)           
             yfill True
             label "Farm Plan for Year " + str(year):
                 xalign 0.5
@@ -18,7 +21,8 @@ screen plan_farm:
                 # family details here
                 vbox:
                     xsize LEFT_COLUMN_WIDTH
-                    label "[his_name] and [her_name]'s family"
+                    # TODO: Add a small family photo
+                    label "[his_name] and [her_name]'s Family"
                     text "Kids:"                         
                     text "[kid_name], [earth_year] earth years"
                     if (bro_birth_year != 0):
@@ -96,8 +100,9 @@ screen plan_farm:
                 # Community info
                 vbox: 
                     xsize LEFT_COLUMN_WIDTH
-                    label "Community"
-                    text "Message Board"
+                    label "Community" # TODO: have cute icons for these, like on a phone?
+                    textbutton "Message Board" action Show("messages")
+                    textbutton "Parenting Manual" action Show("parenting_manual_screen")
                 
             
                 # Show crops that we can choose from
@@ -135,7 +140,30 @@ screen plan_farm:
                     action Return()
                 
                 
-                
+screen parenting_manual_screen:
+    modal True
+    zorder 1
+    frame:
+        xalign 0.5
+        yalign 0.5
+        vbox:
+            label "Parenting Manual"
+            hbox:
+                vbox:
+                    label "Table of Contents"
+                    textbutton "Infant (0-1)"
+                    textbutton "Toddler (2-3)"
+                    textbutton "Preschooler (4-5)"
+                    textbutton "Young Child (6-8)"
+                    textbutton "Tween (9-11)"
+                    textbutton "Young Teen (12-14)"
+                    textbutton "Teenager (15-18)"
+                vbox:
+                    label "Infant"
+                    text "Development\nNeeds"
+            textbutton "Return" yalign 1.0 action Hide("parenting_manual_screen")
+    
+    
 init python:
     
     # Set the crop in our farm array and update the total stats for the farm

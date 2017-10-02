@@ -27,12 +27,15 @@ Pond <pond.jpg> by Andrea Landaker
 === GUI
 
 All GUI images are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
-
-Textbox vegetation and wood textures by Eric Matyas, http://www.soundimage.org
-
-Textbox twig frame by Firkin from "Poems and Pictures", 1865
-
 Crop icons by Rachel Helps.
+
+The following images are licensed under CC-BY-4.0:
+Texture Images (vegetation, wood) by Eric Matyas, <http://www.soundimage.org>
+
+The following images used as part of the GUI are in the public domain:
+
+Camera Lens by RG1024, <https://openclipart.org/detail/20295/camera-lens>
+Textbox twig frame by Firkin from "Poems and Pictures", 1865
 
 === Fonts
 Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>
