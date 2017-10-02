@@ -1,4 +1,5 @@
-# Screen to display messages every month        
+# Screen to display messages every month
+# TODO: Make this more interactive than the previous type, or use NVL mode like last time?
 screen messages:
     frame:
         background  "computer_pad_with_screen"
