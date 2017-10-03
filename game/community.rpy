@@ -305,6 +305,7 @@ label community5:
     pete "I can't even make cheese that doesn't mold right away."
     pete "The best way to store my surplus is to keep growing this herd."
     #could have a choice here about how to respond, but you can't really change his mind. or try to bring up the credits thing, and he insists that the colony wouldn't let him starve.
+    #powdered or canned milk? canned beef?
     him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
     pete "Glad you understand."
     #change scene
@@ -313,7 +314,7 @@ label community5:
     martin "But recently some of our turkeys got sick and we couldn't even eat their meat after they died."
     him "How about your beans, are they doing well?"
     martin "Yes! We eat them about as fast as we can grow them."
-    him "I was thinking if you had some extras, you could store them in the storehouse."
+    him "I was thinking if you had some extras, you could can them and store them in the storehouse."
     martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
     him "It works well now, but soon I'll be trading credits instead of food." #player decision instead of the non-decision above?
@@ -840,21 +841,40 @@ label community11:
 
 
 label community12:
+    $ sara_investigates = False
     #I'm not sure if the timeline on this makes sense. Wouldn't you find out a little sooner than the next Talaam year?
-    "You find out that Chaco isn't good at cooking and has been living off emergency rations."
-    "It's not just Chaco; many of the rations given to the miners have spoiled since they're too tired to cook and completely offput by the strange tastes."
-    "When they do cook, they tend to favor familiar Earth foods, and they love meat. They burn through their meat ration very quickly."
+    chaco "This is delicious."
+    him "Thank you. The vegetables are freshly picked!"
+    him "What do you usually cook for yourself?"
+    chaco "Mostly meat."
+    him "And what else?"
+    chaco "Eggs or beans."
+    him "Anything fresh?"
+    chaco "I like fresh fruit. We don't get a lot of that."
+    chaco "Sometimes I just eat corn flour and water mixed together."
+    him "Corn flour? I don't think anyone has been producing corn flour."
+    him "Isn't that one of the emergency rations?"
+    chaco "No one told me it had to be an emergency."
+    chaco "Everyone eats it. It's one of my favorite things."
+    him "What about the canned goods and fresh vegetables we gave you?"
+    chaco "Some families cook with them. I don't."
+    him "You mean they're just rotting somewhere?"
+    chaco "I don't have time to cook it, and I don't have a pot to cook it in."
+    him "Well you shouldn't let all those vegetables go to waste!"
+    chaco "Sorry, I just never asked for all that food."
+
     "How should the community react?" #TODO: depends on if you were elected earlier; otherwise you're limited to helping just your miner.
     if is_liason:
         menu:
-            "Suggest that each family share dinner with their miners in exchange for their rations.":
+            "Suggest that each family share dinner with their miners in exchange for their unused rations.":
                 $ miners += 1
                 #you find out that they don't have very many spices at all, and share recipes.
             "Refuse to help them. They'll learn soon enough that the spice of hunger covers a variety of strange tastes.":
                 $ pass
+                jump no_food_help
                 #some miners steal food from farms, including one of Pete's cows, and he gets very angry, as it affects future calving.
                 #you ask Bandile about what happened to the cows, but he just gives a cryptic answer.
-                #you form a militia and hand out guns to the colonist volunteers, who take turns guarding the border between miners and luddites.
+                #you form a militia and hand out guns to the colonist volunteers, who take turns guarding the border between miners and colonists.
             "Allow them to buy extra meat, but at a high price.":
                 $ pass #choosing this can contribute to a food shortage later on? or would the crabird plague do that?
     else:
@@ -862,7 +882,145 @@ label community12:
             "Ask Chaco about his favorite foods and recipes.":
                 $ miners += 1
             "Not your problem": #jump to the same event as "refuse to help them" (above)
+                jump no_food_help
                 $ pass
+                
+    label no_food help:
+        him "Oh, and I need a pound of ground beef."
+        ilian "Unfortunately, we are completely out of beef."
+        him "What?"
+        ilian "We're completely out of beef."
+        him "I heard you, but I didn't believe you. I thought we had plenty of beef."
+        ilian "Well, first the miners maxxed out their alottment. So we're completely out of canned beef. Then for one of Pete's cows went missing."
+        ilian "And the missing cows was a dairy cow, so we're also low on milk."
+        him "Well, did it just wander off?"
+        ilian "I just know what Pete told me, which is that a cows is gone and he isn't going to slaughter any more until he builds the herd back up."
+        him "Is there going to be an investigation or something?"
+        ilian "Not my problem."
+        him "Well I happen to really like beef, and my daughter likes milk. I want to find out what happened."
+        ilian "Go ahead and ask Pete, he knows what happened."
+        
+        "Since Pete lives far away, you e-mail him to get the details."
+        "In Pete's reply, he e-mailed you, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
+
+        pete "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
+        pete "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
+        pete "They had to wake up the cow and push her; I can tell they had a hard time but I bet they had some treat to get her to move."
+        pete "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
+        pete "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
+        pete "We'll have to live without beef for a while so that we can give everyone some next season."
+        
+        "That night, Pavel sent you a message."
+        pavel "[his_name], we have to find out what happened to that cow."
+        him "It sounded like the miners stole it."
+        pavel "Yes, it did sound that way. We need to ask the miners what they know."
+        him "And investigate on the sly...?"
+        pavel "Exactly. Can you come with me tomorrow morning? I was able to arrange a meeting with Bandile."
+        him "Sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
+        pavel "You were the first person I asked."
+        him "Is it because I'm a guy?"
+        pavel "Hmmm. Now that you mention it, probably. Three-quarters of the miners are men, so it just seemed like a guy's thing."
+        menu:
+            "Let's ask Sara if she wants to come too.":
+                $ colonists += 1
+                $ sara_investigates = True
+                "You messaged Sara about meeting Bandile tomorrow morning, and she agreed to come with you."
+            "Let's go by ourselves."
+                pass
+        
+        if sara_investigates:
+            "The next day, you meet Pavel and Sara on the road to the miner's village."
+            sara "You guys can talk to Bandile. I'll say I'm really into cooking and ask one of the wives what she knows about the cow."
+            pavel "Actually, most of the couples who came along are both miners."
+            pavel "There are a few people who don't work in the mines though."
+            pavel "I think I'm more into cooking than you are. How about I do the recipe swap thing and you can grill Bandile?"
+            sara "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
+            him "Sounds good."
+            jump mining_village
+        else:
+            "The next day, you meet Pavel on the road to the miner's village."
+            him "I think one of us should talk to Bandile while the other tries to talk to some of the other people in the miners' village."
+            pavel "I've been meaning to ask them about their recipes. Are you comfortable talking to Bandile?"
+            him "I think I can do that."
+            jump mining_village
+            
+        label mining_village:
+            "As you approach the mining village for the first time, you see a few columns of smoke rising in the wet morning air."
+            pavel "Bandile said he'd meet us just outside the mine. I think that's where their control station is."
+            "You walk through the village on the way to the control station higher up on the foothill."
+            "Rivulets of waste water flow down the road as you approach. It doesn't smell like urine, so it's probably leftovers from washing."
+            "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than yours, if that's even possible."
+            "You see a short woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
+            "Pavel stops and asks her a question about her laundry, and they start talking. He motions for you to continue without him."
+            "You arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
+            bandile "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
+            
+            if sara_investigates:
+                bandile "Hello, you must be the people Pavel wanted me to talk to. So there's a missing cow, is there?"
+                sara "Yes. Have you seen any cows around here? The cow's tracks came this way."
+                bandile "Sorry, but we haven't. The only stuff I keep track of is what's going in and out of that mine. Otherwise, I don't really care."
+                sara "I know one cow might seem insignificant, but it provided a fair amount of milk every day, and could have given birth to a calf this season."
+                bandile "We're not exactly milk-drinkers around here. I don't need fancy food as long as it sustains me."
+                sara "True, but it might make a big difference for the morale of some of your miners. I hear a lot of them love beef."
+                bandile "Nothing wrong with loving beef."
+                sara "No, there isn't. Unless that love leads them to desperate measures."
+                bandile "Good thing we have plenty of food then. I wouldn't want RET to have to reassign some of us to be farmers. I don't think they'd be happy about that."
+                sara "We have plenty of food, just not beef."
+                bandile "I guess we're fine then. Now if you don't mind, I need to get back to work."
+                
+                "You exit and head down the mountain. Pavel waves and joins you."
+                pavel "How was your conversation with Bandile?"
+                him "Not great. I can't tell if he's hiding something or just defensive."
+                sara "Bandile acts like it doesn't matter what they eat, as long as they're alive."
+                pavel "I imagine that's how most employers feel about their miners."
+                sara "I don't know why he's playing it so cool. Everyone loves food, right?"
+                him "If he acted too concerned about food, then he'd have to admit the missing cow is partially his problem."
+                pavel "Well I found out from Lisa that the cow was here, but it escaped a few nights ago."
+                him "Did she say why they stole it?"
+                pavel "Yes. She said that RET is behind on their payments, so they wanted to do RET a favor and pay themselves with one of the cows RET owns."
+                him "Behind on their payments of invented credits? How does that happen?"
+                pavel "I think they are just having some technical difficulties. Anyway, they wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
+                sara "Aww, they have community events too!"
+                him "So is the cow just out there somewhere?"
+                pavel "Yes, and I guess we'll see if it can make its way home."
+                him "We have to tell Pete!"
+                
+                jump tell_Pete
+                
+            else:
+                bandile "Hello, you must be the person Pavel sent to talk with me. So there's a missing cow, is there?"
+                him "Yeah. Pete says that he thinks it was one of your miners. Is that possible?"
+                bandile "I think we would have noticed if someone had stolen a cow."
+                bandile "Did you see any cows in the village as you walked up?"
+                him "No, but you could have slaughtered it already."
+                bandile "How would we have slaughtered it? We have plenty of heavy machinery for cutting through stone but they are too big for cutting up one small cow. Also it would completely mangle the meat."
+                him "I don't know how you would have slaughtered it. I'm just asking if you know anything about this missing cow."
+                bandile "And I'm telling you that if you don't see or smell any cows, I don't think they're here."
+                him "okay, thanks for telling me."
+                
+                "You exit and head down the mountain. Pavel waves and joins you."
+                pavel "How was your conversation with Bandile?"
+                him "Not great. I can't tell if he's hiding something or just defensive."
+                pavel "Understandable."
+                pavel "I met Lisa and she was a fairly good source of information."
+                him "Do they have the cow hiding in one of these communal buildings?"
+                pavel "No, it sounds like they did bring the cow here, and they were planning to slaughter it for a special occasion, but it escaped in the night a few days ago."
+                him "Oh. What was the occasion?"
+                pavel "One of their teenagers passed some complicated tests and they're going to allow her to operate heavy machinery."
+                him "Wow. I mean, that does seem worth celebrating. But they shouldn't steal our cow."
+                pavel "I think they would see it differently. Our contract states that all the crops we grow are property of RET. They were promised compensation, but RET is behind on their payments."
+                pavel "They were just taking what they saw as their pay. At least, that's what Lisa said. She also said there was a bit of an argument when the cow came into town. Pete's not the only cattle herder around here."
+                him "But if everyone just took whatever food they thought they deserved, that would be chaos!"
+                him "So is the cow just out there somewhere?"
+                pavel "Yes, and I guess we'll see if it can make its way home."
+                him "We have to tell Pete!"
+                jump tell_Pete
+                
+        label Pavel_remeet:
+            pavel "I'll explain the situation to Pete. He might want to go looking for the cow."
+            "Later I heard that Pete went looking for the cow but never found her."
+        
+        
     #Do the miners resort to stealing? Elect a sherriff?
     #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
     return
