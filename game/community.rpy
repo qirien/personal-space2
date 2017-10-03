@@ -37,7 +37,7 @@ label community1:
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
     him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
     kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
-    "What do you think the colony's purpose is?"
+    "What do I think the colony's purpose is?"
     menu:
         "Yep, making money is our goal.":
             $ miners += 1
@@ -177,7 +177,7 @@ label community4:
     pavel "Then we'll vote on the nominations."
     #TODO: chatter between colonists would make this scene more lively and/or amusing
     menu:
-        "Who will you nominate? You may not nominate yourself."
+        "Who should I nominate? I can't nominate myself."
         
         "Sister Naomi, our religious leader and childcare leader.":
             $ pass
@@ -188,15 +188,15 @@ label community4:
     "After the nominations, we voted for our favorite candidate."
     $ style = get_parenting_style()
     if (style== "authoritative"):
-        "Your fellow colonists elected you to be the new representative."
+        "My fellow colonists elected me to be the new representative."
         $ is_liason = True
         return
     elif(style == "authoritarian"):
-        "You, Sara, and Sister Naomi were nominated. You had the most votes, but not the majority."
+        "Sara, and Sister Naomi and I were nominated. I had the most votes, but not the majority."
         $ is_liason = True
         return
     elif(style == "permissive"):
-        "You were nominated, but Sara was elected as the new representative."
+        "I was nominated, but Sara was elected as the new representative."
         return
     else:
         "Sara is elected as the new representative."
@@ -467,7 +467,7 @@ label community8:
                     him "Oh, it's already the afternoon! I need to send in my report right away."
                     jump write_report
         menu:
-            "Who will you talk to about what Earth luxuries they want?"
+            "Who will I talk to about what Earth luxuries they want?"
             "Natalia" if not talked_to_Natalia:
                 show natalia at left
                 with dissolve
@@ -580,7 +580,7 @@ label community9:
     him "Is that really necessary?"
     pete "Yes, the hunting is no good around the colony. I think all the strange animal sounds scares off the smaller creatures."
     pete "We'll only go a few miles out. Until we find a herd of those grass crabs."
-    "What do you tell Pete?"
+    "What do I tell Pete?"
     menu:
         "Sounds fun! Go with him and invite Thuc": #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
@@ -694,7 +694,7 @@ label community10:
     her "I wonder what they wanted to talk about..."
     him "Maybe they're just being friendly?"
     "After weeding and clearing out old growth, Terra comes home from school."
-    "You make a simple salad together, and when [her_name] arrives you head over to the Peron's."
+    "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
     natalia "Thanks for coming over. We're just finishing up the rice."
     martin "We made a turkey bean soup. It should go well with your salad."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
@@ -735,8 +735,8 @@ label community10:
 
 label community11:
     
-    "Miners arrive. You meet their leader, Bandile, who introduces the miner welcome program."
-    "Your family will get to know one miner through weekly dinners."
+    "Miners arrive. I meet their leader, Bandile, who introduces the miner welcome program."
+    "My family will get to know one miner through weekly dinners."
     "The miner you've been assigned is Chaco."
     #make this a menu
     him "Nice to meet you Chaco. How was the trip over?"
@@ -881,7 +881,7 @@ label community12:
         menu:
             "Ask Chaco about his favorite foods and recipes.":
                 $ miners += 1
-            "Not your problem": #jump to the same event as "refuse to help them" (above)
+            "Not my problem": #jump to the same event as "refuse to help them" (above)
                 jump no_food_help
                 $ pass
                 
@@ -900,8 +900,8 @@ label community12:
         him "Well I happen to really like beef, and my daughter likes milk. I want to find out what happened."
         ilian "Go ahead and ask Pete, he knows what happened."
         
-        "Since Pete lives far away, you e-mail him to get the details."
-        "In Pete's reply, he e-mailed you, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
+        "Since Pete lives far away, I e-mailed him to get the details."
+        "In Pete's reply, he e-mailed me, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
 
         pete "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
         pete "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
@@ -910,7 +910,7 @@ label community12:
         pete "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
         pete "We'll have to live without beef for a while so that we can give everyone some next season."
         
-        "That night, Pavel sent you a message."
+        "That night, Pavel sent me a message."
         pavel "[his_name], we have to find out what happened to that cow."
         him "It sounded like the miners stole it."
         pavel "Yes, it did sound that way. We need to ask the miners what they know."
@@ -945,14 +945,14 @@ label community12:
             jump mining_village
             
         label mining_village:
-            "As you approach the mining village for the first time, you see a few columns of smoke rising in the wet morning air."
+            "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
             pavel "Bandile said he'd meet us just outside the mine. I think that's where their control station is."
-            "You walk through the village on the way to the control station higher up on the foothill."
-            "Rivulets of waste water flow down the road as you approach. It doesn't smell like urine, so it's probably leftovers from washing."
-            "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than yours, if that's even possible."
-            "You see a short woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
-            "Pavel stops and asks her a question about her laundry, and they start talking. He motions for you to continue without him."
-            "You arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
+            "We walk through the village on the way to the control station higher up on the foothill."
+            "Rivulets of waste water flow down the road as we approach. It doesn't smell like urine, so it's probably leftovers from washing."
+            "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than mine, if that's even possible."
+            "We walk by a short woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
+            "Pavel stops and asks her a question about her laundry, and they start talking. He motions for me to continue without him."
+            "I arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
             bandile "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
             
             if sara_investigates:
@@ -968,7 +968,7 @@ label community12:
                 sara "We have plenty of food, just not beef."
                 bandile "I guess we're fine then. Now if you don't mind, I need to get back to work."
                 
-                "You exit and head down the mountain. Pavel waves and joins you."
+                "We exit and head down the mountain. Pavel waves and joins you."
                 pavel "How was your conversation with Bandile?"
                 him "Not great. I can't tell if he's hiding something or just defensive."
                 sara "Bandile acts like it doesn't matter what they eat, as long as they're alive."
@@ -998,7 +998,7 @@ label community12:
                 bandile "And I'm telling you that if you don't see or smell any cows, I don't think they're here."
                 him "okay, thanks for telling me."
                 
-                "You exit and head down the mountain. Pavel waves and joins you."
+                "I exit and head down the mountain. Pavel waves and joins you."
                 pavel "How was your conversation with Bandile?"
                 him "Not great. I can't tell if he's hiding something or just defensive."
                 pavel "Understandable."
@@ -1027,18 +1027,18 @@ label community12:
 
 
 label community13:
-    "Chaco tells you that the miners found a beautiful cave while digging."
+    "Chaco tells me that the miners found a beautiful cave while digging."
     "Dr. Lily attends a brief expedition and discovers a vertebrate without an exoskeleton, which is very rare on Talaam because of the radiation."
     if is_liason: 
-        "Dr. Lily asks you to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
+        "Dr. Lily asks me to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
         "Rare Earth Tech says the miners are okay to continue their excavation however they see fit."
-        "You talk to Bandile about what it would take to halt the mining. He says the colony would have to compensate him for the time they can't work."
+        "I talk to Bandile about what it would take to halt the mining. He says the colony would have to compensate him for the time they can't work."
         if (colonists >= 10):
-            "You convince the other colonists to compensate the miners to halt mining for two days."
+            "I convince the other colonists to compensate the miners to halt mining for two days."
             "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
             jump cave_explored
         else:
-            "You ask the other colonists if they'd be willing to compensate the miners to stop the mining, but they aren't willing."
+            "I ask the other colonists if they'd be willing to compensate the miners to stop the mining, but they aren't willing."
             jump cave_unexplored
         #if your relationship with colonists is high enough, you can collect enough money for them to halt mining for two days while Lily does research, and she won't leave?? with the luddites.
     else:
@@ -1070,21 +1070,21 @@ label community14:
     else:
         "Tomás Peron and Joanna Nguyen leave with them as well."
     $ luddites += 1
-    "How do you react?"
+    "What do I say?"
     menu:
         "Warn them that they are doomed.":
             $ pass
-        "Tell them that you understand their decision but that you are sad to see them go.":
+        "Tell them that I  understand their decision but that am sad to see them go.":
             $ colonists += 1
-        "Joke that you wish you could join them.":
+        "Joke that I wish I could join them.":
             $ pass
     if is_liason:
-        "What do you do with Pete and Helen's remaining cattle?"
+        "What do I do with Pete and Helen's remaining cattle?"
         menu:
             "Ask Thuc if any of his kids can look after them.":
                 $ colonists += 1
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
-            "Take them for your own farm!":
+            "Take them for my own farm!":
             #not sure if I want this as a real option.
             # Maybe offer them to the miners?
                 $ pass
@@ -1105,9 +1105,9 @@ label community15:
 label community16:
     "Trade with luddites: is it permitted in the contract?"
     "Luddites want to trade a few calves for medical supplies." # [her_name] is not supposed to treat them at the clinic, but she does anyway?
-    "Also, you chat about the hardships of living without tech."
+    "Also, I chat about the hardships of living without tech."
     #if the mode of currency stays a choice, how does it play in here?
-    "Do you trade with the luddites?"
+    "Do I trade with the luddites?"
     menu:
         "yes.":
             $ luddites += 1
@@ -1119,8 +1119,8 @@ label community16:
 
 label community17:
     $ ate_jellyfish = False
-    "It's time for the harvest festival! Usually you eat a big meal and the kids go around begging desserts off everyone."
-    "This year you're in charge. Who will you invite?"
+    "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
+    "This year I'm in charge of inviting guests. Who will I invite?"
     menu:
         "The miners and the luddites." if ((luddites >= 10) and (miners >=10)):
             $ invited_luddites = True
@@ -1200,7 +1200,7 @@ label community17:
         
     label justcolony:
         #which background? this is the end for all the other events as well. maybe don't have the luddites host if it's too complicated, or devise alternate small talk.
-        "You set your dish next to the ones from the other families on the buffet table."
+        "I set my dish next to the ones from the other families on the buffet table."
         "Everyone helps themselves and sits down--some on tables and some on the ground."
         martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
         him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
@@ -1222,13 +1222,13 @@ label community17:
         julia "Last year Gardenia insisted on wearing this cape she made everywhere."
         julia "She brought it out today to dress up for the begging."
         "After the children finished eating, they ran around with pails of water."
-        "After cleaning your plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
-        "You hand out corn fritters to the children who clean your plate, cup, and utensils."
-        "You and Thuc bring out the special treat you made together. It's made with rice and corn and the kids notice it eagerly."
+        "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
+        "I hand out corn fritters to the children who clean your plate, cup, and utensils."
+        "Thuc and I bring out the special treat we made together. It's made with rice and corn and the kids notice it eagerly."
         "They start cleaning the serving dishes and you make a show of inspecting their work and giving them the rice-corn treat."
         "Of course, a few other adults are busy saving leftovers and helping the smallest children clean dishes."
-        pavel "It's a shame we don't have any candy to give them."
-        julia "I miss it too, but that stuff is so unhealthy."
+        pavel "It's a shame we don't have any chocolate to give them." 
+        julia "I miss it too."
         julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
         thuc "They still sound pretty entitled to me!"
         him "Some things never change."
@@ -1237,13 +1237,13 @@ label community17:
         #move to a later, more sparse event?
         "After the dinner, you can't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
-        "You write an e-mail to Dr. Naomi asking if she has any pictures."
+        "I write an e-mail to Dr. Naomi asking if she has any pictures."
         "She responds via the instant messaging software. Guess she hasn't given up all technology."
         naomi "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
         naomi "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish."
         naomi "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
-        "You feel relieved and look at the photos of the creature out of water and the drawings."
-        "You start making your own drawings, and send a few back to Naomi."
+        "I feel relief just looking at the photos of the creature out of water and the drawings."
+        "I start making my own drawings, and send a few back to Naomi."
         naomi "Did you eat some of this jellyfish at the feast?"
         him "Yes, I did. Are they in season?"
         naomi "I find your interest in them highly unusual."
@@ -1266,7 +1266,7 @@ label community17:
 label community18:
     "The miners complain that a herd of cattle ran through their camp, making a huge mess and eating their scant herb gardens."
     "Then a farmer complains that a similar thing happened, only the cows ate some young crops."
-    "How do you approach the problem? You know it was probably the luddites."
+    "How should I approach the problem? I know it was probably the luddites."
     menu:
         "Track down Pete and ask him what happened.":
         #if you talk to Pete, he explains that they were herding the cattle from their winter caves to summer camps and they couldn't keep up with them, because a large animal scared them into stampeding, basically.
@@ -1284,7 +1284,7 @@ label community19:
     "The luddites have been eating a lot of the crabbirds' natural predators, the wolf slugs." 
     "As a result, crabirds devestate this season's harvest."
     "There is enough stored food for everyone to live off of for the winter, but not for all the livestock."
-    "How do you deal with this problem?"
+    "How do I deal with this problem?"
     menu:
         "Give extra cattle to the luddites, where some might survive by grazing.":
             #The miners are desperate for beef later and might even trade guns with the luddites??
@@ -1299,8 +1299,8 @@ label community19:
 
 
 label community20:
-    "Dr. Lily tells you her findings living with the luddites."
-    "She tells you more about the vertebrates living in the caves, and the parasite in the thready jellyfish."
+    "Dr. Lily tells me her findings living with the luddites."
+    "She tells me more about the vertebrates living in the caves, and the parasite in the thready jellyfish."
     "She feels like she's going to die soon, so she has moved in with Miranda Peron." #is Miranda married to a miner by now? might make a good event for a bit earlier.
     "Should she be allowed to move back to the colony?"
     menu:
@@ -1317,7 +1317,7 @@ label community21:
     "Miners are using fire grass a lot. It helps them mine more for longer, which gives them more pay."
     "They are getting it from the luddites, who have been farming it." #TODO: does your decision to trade (or not) with luddites affect the miners?
     "RET doesn't have an official stance on fire weed. The long-term side effects aren't well known."  
-    "What do you do about it?"
+    "What do I do about it?"
     menu:
         "Have miners receive a recommended daily allowance of fire weed at their next checkup":
             $ miners += 1 
@@ -1331,12 +1331,12 @@ label community21:
 label community22:
     "Miners moving on to start mining the next mountain, which is near the luddites's winter quarters by the sea."
     "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
-    "What do you do?"
+    "What do I do?"
     menu:
         #this feels like it escalated really quickly. Talk with both parties before the menu? depending on your relationship.
         "Form a militia with the miners to force the luddites out of the cave.":
             $ miners += 1
-        "Not your problem. Do nothing.":
+        "Not my problem. Do nothing.":
             $ luddites -= 2 #TODO: minuses a problem? this seems like kind of a boring option?
         "Petition RET and the miners to choose a different location for now.":
             $ luddites += 1
@@ -1350,7 +1350,7 @@ label community22:
 label community23:
     "RET wants to switch to artificial meat."  #I like the idea of doing something with artificial meat, but let's keep thinking about this.  Maybe RET announces they will not send anymore live animals, but instead an artificial meat lab, and you can decide to phase out your animals or breed them more? 
     #this even doesn't have to be about meat either.
-    "You hate how it tastes."
+    "I hate how it tastes."
     "Make the switch?"
     menu:
         "Yes.":
@@ -1373,7 +1373,7 @@ label community24:
     her "She had been mining right until the day before she went into labor. Overwork was definitely a factor."
     her "Will RET compensate her for her loss? She's still working even though she ought to rest."
     him "Good question. I'll ask them."
-    "How will you word the query?"
+    "How will I word the query?"
     menu:
         "A miner overworked while pregnant and the fetus died before birth; will she receive compensation?":
             $ miners += 1
@@ -1408,7 +1408,7 @@ label community25:
 # Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
 label community26:
     "Miranda predicts increased solar flare activity this year."
-    "How do you prepare?"
+    "How do we prepare?"
     menu:
         "Plant more beets.":
             $ colonists += 1
@@ -1417,7 +1417,7 @@ label community26:
         "Ask Zaina if the miners have found any calcium or magnesium" if (miners >= 10):
             $ colonists += 2
         #these are all "natural" ways to help the body get rid of toxins
-    "Will you warn people outside the colony about the solar flares?"
+    "Will I warn people outside the colony about the solar flares?"
     menu:
         "Warn the luddites and the miners" if ((luddites >= 12) and (miners >=12)):
             #TODO: test these numbers
@@ -1439,7 +1439,7 @@ label community26:
 label community27:
     "Fire grass has some long-term side effects. Insomnia is a big problem."
     #depending on your relationship levels, different people ask you for help.
-    "What do you advise? They aren't even using it anymore."
+    "What do I advise? They aren't even using it anymore."
     menu:
         "Read a book.":
             $ pass
@@ -1454,8 +1454,8 @@ label community27:
 label community28:
     "Everyone around Mayor Grayson has noticed that his mental state has been declining."
     "When he is in one of his lucid moments, he decides to step down from his position as mayor."
-    "He asked you to not let him be a burden on the colony."
-    "You schedule a town meeting with the other colonists to decide who the new mayor should be."
+    "He asked me to not let him be a burden on the colony."
+    "I schedule a town meeting with the other colonists to decide who the new mayor should be."
     "Also... who is going to take care of Mayor Grayson?"
     #TODO:Go to past if_liason events and have some consultation with the mayor so that it's more clear what the mayor actually does. He makes decisions that will help the colonists the most in the long run.
     "Colonists are divided about if the new mayor should be a farmer with firsthand experience of growing food, or someone more detached from farming."
@@ -1463,7 +1463,7 @@ label community28:
     "The next evening, some miners arrive and ask why they weren't invited?"
     "Their logic is that since they're also RET employees, they should be allowed to nominate a candidate for mayor."
     "There are more miners than colonists; if the miners act together they could control who becomes the mayor."
-    "Will you let them join the election?"
+    "Should I let them join the election?"
     menu:
         "Let them vote, but not nominate.":
             $ pass
@@ -1493,9 +1493,9 @@ label community29:
     #it goes to both the liason and the head miner. If you're not the liason, Sara calls a town meeting to discuss it.
     if ((luddites >= 12) and (miners >=12)): 
         "Are the luddites getting out of hand?" #this is wrong, but I don't know what is right! do I use a jump command? I think there is a way to display text based on stats, but I can't remember.
-    "You explain to RET that force isn't necessary" 
+    "I explain to RET that force isn't necessary" 
     if ((luddites <= 5) and (miners <=5)): 
-        "You hear gunshots. The miners are attacking the luddites!?"
+        "I hear gunshots. The miners are attacking the luddites!?"
     #Lm - you can warn the luddites and some of them take shelter with you
     #lM - you can join the miners in driving away the luddites (do you actually kill them?)
     return
@@ -1506,6 +1506,6 @@ label community29:
 label community30:
     "The latest shuttles from RET have arrived."
     if ((luddites >= 12) and (miners >=12)): 
-        "New miners are arriving to replace the ones who are leaving. You're kind of sad to see some of them go."
+        "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return
