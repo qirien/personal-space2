@@ -38,7 +38,6 @@ define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepia.icecaver
 
 define build.name = "OPS2_SpaceToGrow"
 
-
 ## Sounds and music ############################################################
 
 ## These three variables control which mixers are shown to the player by

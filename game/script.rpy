@@ -172,12 +172,11 @@ label start:
     # Introduction Scenes
     call family_intro
     call work_intro
+    call community_intro    
     
     # Initial farm setup
     $ crops = [""] * farm_size
     call screen plan_farm
-    
-    call community_intro
     
     scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
@@ -195,22 +194,28 @@ label start:
             $ bro_age = year - bro_birth_year            
         
         # WORK EVENTS (farming)
+        window hide
         scene black with fade
         centered "Year [year]\n\nWork"
         scene black with fade        
-        $ work_event = get_next_work_event()        
+        $ work_event = get_next_work_event()
+        window show        
         call expression work_event
         
         # FAMILY EVENTS (parenting/home life)
+        window hide
         scene black with fade
         centered "Year [year]\n\nFamily"
         scene black with fade
+        window show
         call expression "family" + str(year)
         
         # COMMUNITY EVENTS (building community, helping factions)
+        window hide
         scene black with fade
         centered "Year [year]\n\nCommunity"
         scene black with fade
+        window show
         call expression "community" + str(year)
         
         # Increase child stats based on this year's parenting decisions
