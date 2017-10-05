@@ -9,6 +9,7 @@ label community_intro:
     "There were some I got along with..."
     # show Thuc and Natalia and Pete?
     "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
+    "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but we learned to get along."
     return
     
 
@@ -930,7 +931,7 @@ label community12:
 #            "Ask Chaco about his favorite foods and recipes.":
 #                $ miners += 1
 #            "Not my problem": #jump to the same event as "refuse to help them" (above)
-#                jump no_food_help
+#                jump beef_shortage
 #                $ pass
                 
     label beef_shortage:
@@ -942,10 +943,10 @@ label community12:
         ilian "Well, first the miners maxxed out their alottment. So we're completely out of canned beef. Then for one of Pete's cows went missing."
         ilian "And the missing cows was a dairy cow, so we're also low on milk."
         him "Well, did it just wander off?"
-        ilian "I just know what Pete told me, which is that a cows is gone and he isn't going to slaughter any more until he builds the herd back up."
+        ilian "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
         him "Is there going to be an investigation or something?"
         ilian "Not my problem."
-        him "Well I happen to really like beef, and my daughter likes milk. I want to find out what happened."
+        him "Well I happen to really like beef, and my daughter likes milk. I want to find out what happened." #I thought they drank goat milk from their goats?
         ilian "Go ahead and ask Pete, he knows what happened."
         
         "Since Pete lives far away, I e-mailed him to get the details."
@@ -973,8 +974,11 @@ label community12:
             "Let's ask Sara if she wants to come too.":
                 $ colonists += 1
                 $ sara_investigates = True
+                
                 "You messaged Sara about meeting Brennan tomorrow morning, and she agreed to come with you."
-            "Let's go by ourselves."
+            "Let's go by ourselves.":
+
+
                 pass
         
         if sara_investigates:
@@ -1009,7 +1013,7 @@ label community12:
                 brennan "Hello, and welcome. So there's a missing cow, is there?"
                 sara "Yes. Have you seen any cows around here? The cow's tracks came this way."
                 brennan "Sorry, but we haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
-                sara "I know one cow might seem insignificant, but it provided a fair amount of milk every day, and could have given birth to a calf this season."
+                sara "I know one cow might seem insignificant, but it provided a fair amount of milk every day, and could have given birth to a calf this season." #what about goat milk?
                 brennan "That is a problem. I hope you find the missing cow."
                 sara "I hope we do too. I hear a lot of your miners love beef."
                 brennan "Nothing wrong with loving beef."

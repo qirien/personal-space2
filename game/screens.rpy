@@ -247,6 +247,9 @@ style choice_button_text is default:
 ## menus.
 
 screen quick_menu():
+    ## Setup our custom hotkeys    
+    key "q" action QuickSave() 
+    key "l"  action QuickLoad() 
 
     # Ensure this appears on top of other screens.
     zorder 100
@@ -258,14 +261,14 @@ screen quick_menu():
         xalign 0.5
         yalign 0.75
 
-        textbutton _("Back") action Rollback()
-        textbutton _("History") action ShowMenu('history')
-        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
-        textbutton _("Save") action ShowMenu('save')
-        textbutton _("Q.Save") action QuickSave()
-        textbutton _("Q.Load") action QuickLoad()
-        textbutton _("Prefs") action ShowMenu('preferences')
+        # textbutton _("Back") action Rollback()
+        # textbutton _("History") action ShowMenu('history')
+        # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+        # textbutton _("Auto") action Preference("auto-forward", "toggle")
+        # textbutton _("Save") action ShowMenu('save')
+        # textbutton _("Q.Save") action QuickSave()
+        # textbutton _("Q.Load") action QuickLoad()
+        # textbutton _("Prefs") action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
@@ -921,16 +924,14 @@ screen history():
             label _("The dialogue history is empty.")
 
 
-style history_window is empty
-
 style history_name is gui_label
 style history_name_text is gui_label_text
-style history_text is say_dialogue
+style history_text is say_text
 
 style history_label is gui_label
 style history_label_text is gui_label_text
 
-style history_window:
+style history_window is empty:
     xfill True
     ysize gui.history_height
 
@@ -980,7 +981,6 @@ screen help():
             spacing 15
 
             hbox:
-
                 textbutton _("Keyboard") action SetScreenVariable("device", "keyboard")
                 textbutton _("Mouse") action SetScreenVariable("device", "mouse")
 
@@ -1029,6 +1029,14 @@ screen keyboard_help():
         label _("Page Down")
         text _("Rolls forward to later dialogue.")
 
+    hbox:
+        label "Q"
+        text _("Make a Quicksave.")
+
+    hbox:
+        label "L"
+        text _("Load Quicksave.")
+        
     hbox:
         label "H"
         text _("Hides the user interface.")
@@ -1098,7 +1106,7 @@ style help_button is gui_button
 style help_button_text is gui_button_text
 style help_label is gui_label
 style help_label_text is gui_label_text
-style help_text is gui_text
+style help_text is say_text
 
 style help_button:
     properties gui.button_properties("help_button")
