@@ -1822,9 +1822,13 @@ label baby_delivery:
     him happy "Okay! Let's see... you look like a..."
     $bro_name = renpy.input("Baby's Name", default=bro_name)
     
-    
-    
-    #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot? Let the player choose bro_name    
+    her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."    
+    "It took me a long time to get used to [bro_name]'s cleft lip. But the look wasn't the hardest part of it -- it was how hard it was to feed him."
+    "It took half an hour just to feed him one bottle, and I had to help squeeze the bottle for him. His cleft lip made it harder for him to get the suction he needed to get the milk out of the bottle."
+    "And he couldn't really breastfeed well at all."
+    "[kid_name] kind of understood that [bro_name] needed a lot of attention, and we tried to include her in taking care of him and everything else we did."
+    "Still, she probably ended up resenting him a little. And I could understand why."
+    "Hopefully they'd learn to love each other."
     
     return
     
