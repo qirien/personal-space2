@@ -1,4 +1,5 @@
 # Declare global static variables, images, characters, etc.
+# DO NOT declare variables that will change or should be saved in saved games here!
 init -100:
 
     # Static layout variables
@@ -12,8 +13,8 @@ init -100:
     define WORK_INDEX = 4
     define ENABLED_INDEX = 5
     define MAXIMUM_INDEX = 6
-
     
+    # Variables persistent across all Metasepia games
     define mp = MultiPersistent("MetasepiaGames")
     
     # Declare characters

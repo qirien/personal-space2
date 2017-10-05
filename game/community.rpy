@@ -635,10 +635,11 @@ label community9:
             "It's lying down and not moving. Pete approaches, knife in hand."
             "Suddenly, the animal pinches Pete's leg with its front claw!"
             pete "Yeeeowch!"
+            # TODO: Should this be a timed menu?
             menu:
                 "Tackle the crab.":
                     $ luddites += 1
-                    #I want the injured-hand option to result in making less money that month, if we do the currency thing.
+                    #TODO: I want the injured-hand option to result in making less money that month, if we do the currency thing.
                     "You tackle grass crab from behind, easily outweighing it."
                     "The crab releases Pete and tries wildly to pinch you, but the claw isn't flexible enough to reach you while you're on its back."
                     "Pete stabs the crab, but cuts your arm in the process."
@@ -741,7 +742,7 @@ label community11:
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
-    sara "Wow, those guys are built."
+    sara "Wow, those guys are built. The women, too -- solid!"
     her "Yeah, I'd expect that miners have to be in good physical condition."
     him "They look pretty strong. Almost as strong as all the farmers we have here."
     her "Farmers have to be in good physical condition too!"
@@ -749,7 +750,11 @@ label community11:
     "I was about to introduce myself to one of the miners when I saw a familiar face."
     #BRENNAN ON SCREEN. he looks the same
     #say different things based on if you had an affair with him in OPS??
-    him "Hello Brennan."
+    # Unfortunately, I did not save that variable persistently... I think the canonical OPS1 story is
+    # that Kelly and Brennan were close friends, but nothing concrete ever happened between
+    # them. So Jack definitely doesn't like him, but doesn't have a great reason.
+    # Is Kelly here, too? Could be interesting...
+    him "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
     him "No, no one mentioned it. Are you here to help [her_name] with her job again?"
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."

@@ -87,18 +87,19 @@ label start:
         
         # Work/crops
         farm_size = 16
-        crops = []
+        crops = Crops(farm_size)
         test_crops = [    "potatoes", "potatoes", "beans", "beans", 
                             "carrots", "carrots", "spinach", "spinach", 
                             "goats", "squash", "squash", "squash", 
                             "potatoes", "potatoes", "", ""]
-        crop_index = 0
+
         # Dictionary containing the number of events seen for each crop 
         number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
         # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10).  Also whether the crop is currently enabled or not.
         # TODO: add income
         # TODO: add limits to maximum amount allowed
-        crop_index = 1
+        # TODO: you can't move perennials once placed
+        crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         crop_info = (["corn",         8, 4, 8, 7, False, 100],    # Grains
                             ["potatoes",     8, 5, 7, 6, True,  100],
                             ["wheat",        8, 6, 8, 10,False, 100],
@@ -175,7 +176,7 @@ label start:
     call community_intro    
     
     # Initial farm setup
-    $ crops = [""] * farm_size
+    $ crops = Crops(farm_size)
     call screen plan_farm
     
     scene stars with fade
@@ -234,9 +235,11 @@ label start:
         $ renpy.notify("Autosaving...")
         # CHOOSE FOR NEXT YEAR
         
-        $ crops = [""] * farm_size
+        scene black with fade
+        window hide
+        $ crops = Crops(farm_size)
         call screen plan_farm
-        
         $ year += 1
+        window show        
    
     return

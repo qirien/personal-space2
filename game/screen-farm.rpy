@@ -71,13 +71,13 @@ screen crop_details_screen():
             xalign 0.5
             xsize 200
             
-            $ crop_name = crop_info[crop_index][NAME_INDEX]
+            $ crop_name = crop_info[crop_info_index][NAME_INDEX]
             label crop_name.capitalize()
-            text "Calories:     " + str(crop_info[crop_index][CALORIES_INDEX])
-            text "Nutrition:    " + str(crop_info[crop_index][NUTRITION_INDEX])
-            text "Fun:          " + str(crop_info[crop_index][FUN_INDEX])
-            text "Work:         " + str(crop_info[crop_index][WORK_INDEX])
-            #text "Income: " + str(crop_info[crop_index][5])
+            text "Calories:     " + str(crop_info[crop_info_index][CALORIES_INDEX])
+            text "Nutrition:    " + str(crop_info[crop_info_index][NUTRITION_INDEX])
+            text "Fun:          " + str(crop_info[crop_info_index][FUN_INDEX])
+            text "Work:         " + str(crop_info[crop_info_index][WORK_INDEX])
+            #text "Income: " + str(crop_info[crop_info_index][5])
           
         # Crop layout area
         vbox:
@@ -92,7 +92,7 @@ screen crop_details_screen():
                 #scrollbars "vertical"
                 side_xalign 0.5
                 for i in range(0, farm_size):
-                    $ max_crops_reached = (crops.count(crop_info[crop_index][NAME_INDEX]) >= crop_info[crop_index][MAXIMUM_INDEX])          
+                    $ max_crops_reached = (crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])          
                     if (crops[i] == ""):
                         textbutton "(_)":
                             xysize (50,50)
@@ -119,7 +119,7 @@ screen crop_details_screen():
             $ total_fun = 0
             $ total_work = 0
             # Totaling crops attributes        
-            for i in range(0, len(crops)):
+            for i in range(0, crops.len()):
                 if (crops[i] != ""):
                     $ crop_names = [row[NAME_INDEX] for row in crop_info]
                     $ index = crop_names.index(crops[i]) # find the crop's index in crop_info                
@@ -149,11 +149,11 @@ screen crop_details_screen():
                 textbutton crop_info[j][NAME_INDEX]:
                     xysize (50,50) 
                     action [
-                            SetVariable("crop_index", j),
+                            SetVariable("crop_info_index", j),
                             renpy.restart_interaction # This makes the screen refresh
                     ]
                     sensitive (not max_crops_reached)
-                    selected ((crop_index == j) and (not max_crops_reached))
+                    selected ((crop_info_index == j) and (not max_crops_reached))
                     # TODO: Add alternate action to get more crop info?
             
                 
@@ -192,5 +192,5 @@ init python:
     # Use our default test crops
     def set_default_crops():
         global crops
-        crops = list(test_crops)
+        crops.setDefault()
         

@@ -54,6 +54,39 @@ init -100 python:
     
 
 init python:
+    
+    class Crop(renpy.store.object):
+        def __init__(self, name=""):
+            self.name = name
+            
+    
+    ##
+    # CROPS OBJECT
+    #
+    class Crops(renpy.store.object):
+        # Initialize as an empty field of a certain size
+        def __init__(self, size):
+            self.items = [""] * size
+            
+        # Set the crop at [index] to [crop_name]
+        def __setitem__(self, key, value):
+            self.items[key] = value
+            
+        def __getitem__(self, key): 
+            return self.items[key]
+            
+        def count(self, value):
+            return self.items.count(value)
+            
+        def len(self):
+            return len(self.items)
+            
+        # Just use the default crops.
+        # TODO: Update this to randomly select from current crops? 
+        def setDefault():
+            self.items = list(test_crops)
+        
+    
     # Return the index of a crop in crop_info given its name
     def get_crop_index(crop_name):
         crop_names = [row[0] for row in crop_info]
