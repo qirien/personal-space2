@@ -54,12 +54,6 @@ init -100 python:
     
 
 init python:
-    
-    class Crop(renpy.store.object):
-        def __init__(self, name=""):
-            self.name = name
-            
-    
     ##
     # CROPS OBJECT
     #
@@ -83,7 +77,7 @@ init python:
             
         # Just use the default crops.
         # TODO: Update this to randomly select from current crops? 
-        def setDefault():
+        def setDefault(self):
             self.items = list(test_crops)
         
     

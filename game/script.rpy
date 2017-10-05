@@ -4,10 +4,8 @@
 ## The game starts here.
 #
 # TODO: Add parenting class tutorial near the beginning
-# TODO: Parenting variables for each style, detect inconsistent parenting. Warn halfway.
-# TODO: Make variables more object oriented?
+# TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Make inter-scene screens overlays coming in the upper left corner to make the interface take less time and be less annoying?
-# TODO: Use "window hide" and "window show" during interscene screens if needed
 
 label start:
     
@@ -98,7 +96,7 @@ label start:
         # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10).  Also whether the crop is currently enabled or not.
         # TODO: add income
         # TODO: add limits to maximum amount allowed
-        # TODO: you can't move perennials once placed
+        # TODO: make it so you can't move perennials once placed
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         crop_info = (["corn",         8, 4, 8, 7, False, 100],    # Grains
                             ["potatoes",     8, 5, 7, 6, True,  100],
@@ -109,7 +107,7 @@ label start:
                             ["plums+",       3, 3, 8, 2, False, 1],    # Perennials are easier after year 1
                             ["squash",       4, 5, 5, 4, True,  100],
                             ["strawberries", 1, 3, 7, 6, False, 2],
-                            ["strawberries+",1, 3, 7, 6, False, 2],
+                            ["strawberries+",1, 3, 7, 5, False, 2],
                             ["blueberries",  3, 3, 9, 9, False, 2],
                             ["blueberries+", 3, 3, 9, 4, False, 2],
                             ["beans",        6, 7, 2, 7, True,  100],   # Legumes
@@ -235,7 +233,7 @@ label start:
         $ renpy.notify("Autosaving...")
         # CHOOSE FOR NEXT YEAR
         
-        scene black with fade
+        scene fields with fade
         window hide
         $ crops = Crops(farm_size)
         call screen plan_farm

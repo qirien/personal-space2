@@ -120,6 +120,7 @@ screen say(who, what):
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
         
+    # here's our watering can MENU button
     imagebutton xpos 1025 ypos 595 auto "gui/menubutton_%s.png" action ShowMenu("save")
 
 

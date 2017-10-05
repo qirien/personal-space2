@@ -454,6 +454,7 @@ label family2:
     him surprised "Have you ever fixed one of those before?"
     her determined "No, I just watched one during my residency. I've done some simulations, since it's a common procedure... but the real thing is quite different."
     him determined "It's a good thing you have a real nurse helping you out now."
+    "That reminded me of Brennan. I was so glad that smug ladies' man was off the planet! [her_name] seemed to be thinking about something else, though." 
     her concerned "Yeah...I hope Helen will be okay."
     "I made her up a plate of beans while we talked."
     "From the way she devoured them, I guess she hadn't eaten all day."    
@@ -527,7 +528,11 @@ label family2:
             her happy "I'm pretty sure you have."
             if (family2_work_done >= 5):
                 "I felt a twinge of guilt as she said that. I hadn't been a super dad today at all; super farmer, maybe, but I'd let Terra cry in order to get my work done..."
-                "Still, I don't see what I could have done differently."
+                "[her_name] saw the look on my face and stroked my face."
+                her surprised "What is it?"
+                him sad "Today was... it was a long day."
+                "She leaned her head on my shoulder and sighed."
+                her concerned "Me too, [his_nickname]. But we're still here, together, all three of us."                
     
     return
 
@@ -1559,9 +1564,9 @@ label family7:
             her surprised "What?"
             him surprised "Do you think we should be doing something differently? As parents, I mean?"
             her concerned "Maybe...I don't have any experience here, so it's hard to know if we're doing the right thing."
-            him concerned "Yeah, I feel that way, too.  I wish I could talk to my parents about it."
+            him concerned "Yeah...  I wish I could talk to my parents about it."
             her flirt "I have the feeling that 140 characters isn't going to be enough space for much useful parenting advice."
-            him "Well, we have some good parents here, right?"
+            him "Well, there's some good parents here, right?"
             her determined "Yeah... maybe? I've never really thought about the other adults as parents, mostly just as people."
             him "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
             her normal "Yeah, I'll ask her!"
@@ -1762,6 +1767,9 @@ label family8:
 
 label baby_delivery:
     #scene clinic with fade
+    show him at midleft
+    show her at center
+    with dissolve
     her pregnant concerned "Oh no, I remember this part. This is awful!"
     him determined "You did it once, you can do it again! Just a little bit more and then you'll be done!"
     her pregnant angry "You say 'a little bit', but I know it's going to be a few hours!"
@@ -1774,8 +1782,48 @@ label baby_delivery:
     him happy "OK! One back rub, coming right up!"
     her pregnant normal "You forgot the 'shut up' part."
     him normal "..."
+    show julia at midright with moveinright
+    scene black with fade
+    scene clinic with fade
+    show him at midleft
+    show her at center
+    show julia at midright
+    with dissolve
     "Finally, the baby was born. A boy!"
     $ bro_birth_year = year
+    
+    "...but he didn't look like [kid_name] did when she was born."
+    him surprised "Is... is he missing some of his lip?"
+    julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."
+    her surprised "Oh my..."
+    menu:
+        "What should I say?"
+        "We'll get through this.":
+            him concerned "[her_name]... it's okay. We'll get through this."
+            her sad "I know, it's just... he looks so different than I was expecting..."
+        "What an ugly child.":
+            him determined "That is the ugliest child I have ever seen."
+            julia "[his_name]!"
+            her sad "[his_name]...I'm sorry."
+            him surprised "It's not your fault! I'm just saying whatever pops into my head."
+        "He's my son!":
+            him happy "Wow, this kid looks so goofy, he's definitely my son."
+            her concerned "[his_name]..."
+            "I bundled him up and held him close."
+            
+    julia "Repairing a cleft lip is a simple surgical procedure. But don't worry about that right now. Just hold your new baby!"
+    "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
+    him normal "Awww, don't worry little guy! We'll take care of you, no matter what."
+    her normal "We can't call him 'little guy'. What's his name?"
+    him determined "We talked about lots of names..."
+    her determined "You let me choose [kid_name]'s name. Now you pick this baby's name."
+    him surprised "Really? You trust me to name him?"
+    her flirt "As long as it's one of the names we both agreed on."
+    him happy "Okay! Let's see... you look like a..."
+    $bro_name = renpy.input("Baby's Name", default=bro_name)
+    
+    
+    
     #TODO: Finish delivery. Baby has some birth defect - cleft lip, club foot? Let the player choose bro_name    
     
     return
