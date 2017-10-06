@@ -160,11 +160,9 @@ label start:
     scene stars_animated with fade                
     show him happy
     him "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
-    him normal "Of course, I knew it'd be a lot of work too. But, like most hard work, I figured it'd be worth it."
-    him "Even now that you're grown, I still think about your childhood."
-    him concerned "Was I there for you? Did I do enough? Was I the dad you needed?"
+    him normal "Of course, I knew it'd be a lot of work too. But, being a dad was a different kind of work than I had ever done before."
     him normal "If I could go back, would I change anything? I don't even know."
-    him "When you were first born, it was a struggle just to get through each day."  
+    him "When [kid_name] was first born, it was a struggle just to get through each day..."  
     
     # TODO: show some sort of inter-scene screen
 
