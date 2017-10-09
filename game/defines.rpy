@@ -73,6 +73,22 @@ init -100:
     # Kid positions for really short people
     define centerkid = Position(xpos = 0.5, xanchor = 0.5, ypos = 0.75)
     
+    # Transform to randomly pace quickly back and forth
+    transform pace_back_and_forth:
+        choice:            
+            linear random_float() xalign 0.5
+            pause 0.1
+        choice:
+            linear random_float() xalign 0.25
+            pause 0.1
+        choice:
+            linear random_float() xalign 0.75
+            pause 0.1
+        choice:
+            linear random_float() xalign random_float()
+            pause 0.1
+        repeat                        
+    
     # Variables used in the game
     $ is_nude = False
     $ is_pregnant = False

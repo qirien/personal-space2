@@ -120,8 +120,8 @@ screen say(who, what):
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
         
-    # here's our watering can MENU button
-    imagebutton xpos 1025 ypos 595 auto "gui/menubutton_%s.png" action ShowMenu("save")
+        # here's our watering can MENU button
+        imagebutton xpos 1025 ypos 595 auto "gui/menubutton_%s.png" action ShowMenu("save")
 
 
 style window is default
@@ -668,7 +668,7 @@ screen file_slots(title):
 
                 textbutton _("<") action FilePagePrevious()
 
-                textbutton _("{#auto_page}A") action FilePage("auto")
+                textbutton _("{#auto_page}A") action FilePage("auto") # TODO: Disable saving of Autosaves, and if loaded, make a different page the default
 
                 textbutton _("{#quick_page}Q") action FilePage("quick")
 

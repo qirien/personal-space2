@@ -24,6 +24,8 @@ Path <path.jpg> by Andrea Landaker
 
 Pond <pond.jpg> by Andrea Landaker
 
+Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://openclipart.org/detail/171268/boxing-glove> by netalloy
+
 === GUI
 
 All GUI images are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.

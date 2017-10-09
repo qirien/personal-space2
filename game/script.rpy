@@ -129,9 +129,12 @@ label start:
         total_work = 0
         
         # Crop event variables
-        carrots_fallow = False
+        carrots_fallow = False        
            
+    #######################################################################            
     # Prologue
+    #######################################################################
+    $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
     if (mp.his_name):
         $ his_name = mp.jack_name
@@ -156,6 +159,8 @@ label start:
             $her_name = renpy.input("Wife's Name", default=her_name)
             $kid_name = renpy.input("Baby girl's Name", default=kid_name)
             jump name_change_loop
+        "Omake":
+            jump omake
         
     scene stars_animated with fade                
     show him happy

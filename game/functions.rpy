@@ -1,5 +1,28 @@
 # Library of functions we call that have to do with game variables, etc.
 
+##
+# DYNAMIC MOUSE CURSOR 
+##
+#TODO: remove if we end up not using this
+init 1 python:
+    def change_cursor(type="default"):
+        persistent.mouse = type
+        if type == "default":
+            setattr(config, "mouse", None)
+        elif type == "punch":
+            setattr(config, "mouse", {"default": [("gui/punch.png", 6, 6)]})
+            
+    if not hasattr(persistent, "mouse"):
+        change_cursor()
+    else:
+        change_cursor(persistent.mouse)
+
+    def random_float():
+        return renpy.random.random()
+##
+# PARENTING FUNCTIONS
+##
+
 label increase_attachment:
     # if (responsive <= 0):
         # $ attachment += 1
