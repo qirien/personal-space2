@@ -1811,7 +1811,7 @@ label baby_delivery:
             her concerned "[his_name]..."
             "I bundled him up and held him close."
             
-    julia "Repairing a cleft lip is a simple surgical procedure. But don't worry about that right now. Just hold your new baby!"
+    julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him normal "Awww, don't worry little guy! We'll take care of you, no matter what."
     her normal "We can't call him 'little guy'. What's his name?"
@@ -1822,7 +1822,8 @@ label baby_delivery:
     him happy "Okay! Let's see... you look like a..."
     $bro_name = renpy.input("Baby's Name", default=bro_name)
     
-    her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."    
+    her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."
+    scene farm_interior with fade    
     "It took me a long time to get used to [bro_name]'s cleft lip. But the look wasn't the hardest part of it -- it was how hard it was to feed him."
     "It took half an hour just to feed him one bottle, and I had to help squeeze the bottle for him. His cleft lip made it harder for him to get the suction he needed to get the milk out of the bottle."
     "And he couldn't really breastfeed well at all."
@@ -2055,10 +2056,24 @@ label family10:
     # She doesn't have a little brother, so instead she's playing on the tablet              
     else:
         kid "Can I use the computer pad?"
-        him "Sure, here you go. Be careful, okay?"
-        kid "I will."
-        "She loaded up the kid's science app that she liked, and I went to go change the oil in the tractor."
+        him surprised "What are you going to do on it?"
+        kid "Can I play Goose Life?"
+        "Goose Life? It was a pretty stupid game, mostly just tapping moving things on the screen. But it was addictive, so she liked it."
+        menu:
+            "What should I say?"
+            "Fine, whatever.":
+                $ reponsive += 1
+                him annoyed "Fine, whatever."
+                kid "Yay!"                
+            "No, something else.":
+                $ demanding += 1
+                him determined "No, choose something else."
+                kid "Well, Science Kids is pretty fun, too."
+                him normal "That sounds better."
+
+        "She sat on the floor and was soon engrossed, and I went to go change the oil in the tractor."
         "It was probably an hour or so later that I went back in to check on her."
+        
         # TODO: Finish this
             
         "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
