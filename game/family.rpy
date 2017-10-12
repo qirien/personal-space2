@@ -2976,36 +2976,128 @@ label family18:
 # 11.8 Earth years old
 # Pornography...
 label family19:
-    "You're sending an e-mail to the farming committee and looking for a photo you took of some crops when you find a pornographic video stored on the tablet."
+    $ family19_notlikethat = False
+    $ family19_questions = False
+    "You're sending an e-mail to the farming committee and looking for a photo you took of some crops when you find a pornographic video stored on the computer pad."
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
     menu:
-       "I can't believe you would do such a thing! You're grounded from using the tablet for a month!":
+        "What should I do?"
+        "Punish Terra.":
            $ demanding += 1
+           him annoyed "[kid_name]!"
+           kid "What?"
+           him "I found your pornography on the computer pad."
+           kid "Dad, I can explain--"
+           him "I don't want to hear it. I can't believe you would watch that filth."
+           kid "I just--"
+           him annoyed "No. You are grounded -- from using the computer pad, from hanging out with friends, everything!"
+           kid "Dad, you won't even let me talk!"
+           him angry "There's nothing to discuss! I don't ever want to find you doing something like that again!"
+           kid angry "Ugh, you don't even listen!"
            $ authoritarian += 1
-       "Watch it. Maybe it's a good one.":
-            "It's not. The acting is bad and it's not romantic at all."
-            "It's not bad enough to be funny, though -- just bad."
-            $ demanding -= 1
-            $ permissive += 1
-           # Terra catches you and you have to try to justify yourself?           
-       "It's not a big deal. Do nothing.":
+        "Watch the video.":
            $ demanding -= 1
-           $ neglectful += 1
-       "Ask her about how this got here.":
-           "She found it accidentally but was fascinated so she watched it."
-           menu:
-               "Make a plan for how to avoid pornography in the future.":
+           "You start watching it and immediately cringe."
+           "There's nothing romantic or even erotic about it -- it's designed solely to ramp up hormones and get to a climax as fast as possible."
+           "And the rough foreplay seems a lot like rape -- not something you'd want [kid_name] to think was normal."           
+           kid surprised "Dad, what are you watching?"
+           him "I found this video on here. Looks like something you found?"
+           kid blushing "Oh. That."
+           jump family19_porn_chat                   
+        "It's not a big deal. Do nothing.":
+            "Teenagers are going to watch porn. There's not anything you can do to stop it."
+            $ demanding -= 1
+            $ neglectful += 1
+        "Ask her about it.":
+            $ responsive += 1
+            him concerned "[kid_name], come sit with me for a minute."
+            kid surprised "What is it, dad?"
+            him determined "What can you tell me about this pornography on the computer pad?"
+            kid "I don't know."
+            him surprised "I know that it's from when you were using it."
+            kid "Yeah..."
+            "She falls silent. You sense that she wants to leave, but she also has questions that she doesn't know how to ask."
+           
+            menu family19_porn_chat:
+               "What should I say?"
+               "That was probably an accident, right?":
                    $ demanding += 1
                    $ responsive += 1
+                   him "That was probably an accident, right?"
+                   kid "...yeah."
+                   him "I know sometimes pornography can come up when you're not even looking for it."
+                   kid "Yeah, I wasn't! I was just looking up something about a book I was reading."
+                   him "I know. I probably should have talked to you about it before, but I didn't. It's kind of hard for me to talk about sometimes, since sex is such a private thing."
+                   kid "Then why do people make videos like that?"
+                   him "That's a good question. I know a lot of them are trying to make money. Some are trying to express themselves."
+                   kid "I just... I just couldn't stop watching it."
+                   him "I know -- our brains are wired to respond to sex very strongly. And at your age, it's probably something you're curious about."
+                   kid "Yeah, kind of."
+                   him "That's why it helps to have a plan ahead of time, so the thinking part of your brain can be more in control."
+                   kid "A plan?"
+                   him "Yeah. If you see pornography, close the computer pad and come bring it to me. I won't be mad; I'll just help you decide what to do."
+                   kid "..."
+                   him "Will you do that?"
+                   kid "...Yeah."
+                   him "And if you have questions about sex, I hope you'll ask me or mom."
+                   kid "..."
+                   him "..."
+                   kid "Does it hurt?"
+                   him "Not usually, if you're doing it right. Good sex is when you're both trying to help the other person feel good and show your love for them."
+                   "She didn't look at me, and I could tell she had a lot on her mind. But it was hard for her to say what she was thinking."
+                   "I reached over and hugged her."
+                   him "I hope you know that I love you."
+                   kid "Yeah."
+                   "She hugged me back, only briefly, but it made me remember that she was still young, and she still depended on me for love and truth and guidance."
+                   "Hopefully I was doing okay."
                    $ authoritative += 1
-               "Tell her to never do that again.":
+               "Never look at this kind of garbage again!":
+                   $ demanding += 1
+                   him annoyed "You must never look at this kind of thing again."
+                   kid "..."
+                   him angry "Did you hear me?!"
+                   kid "I heard you!"
+                   "She stomped off. She was so temperamental these days, it was hard to get through to her. But I wouldn't stop trying."                   
                    $ demanding += 1
                    $ authoritarian += 1
-               "She's old enough to be responsible for her own viewing habits.":
-                   $ responsive += 1
+               "You're old enough to be responsible for you watch.":
+                   him "Well, you're old enough to be responsible for what you watch."
+                   kid sad "Okay..."
                    $ permissive += 1
-           
-           return
+               "You know that real sex isn't like that, right?" if (not family19_notlikethat):
+                   $ responsive += 1
+                   him "You know that real sex isn't like that, right?"
+                   kid "Oh, uh, yeah."
+                   "She tried to sound confident in her answer but failed."
+                   "I felt like I had something more I needed to teach her, but I wasn't sure how to say it..."
+                   $ family19_notlikethat = True
+                   jump family19_porn_chat                   
+               "Pornography is addictive.":
+                   $ demanding += 1
+                   him determined "Pornography is addictive."
+                   kid "What do you mean?"
+                   "I had to remember that [kid_name] had grown up much more sheltered than I had... We lived in a small town with a small school." 
+                   "All the analogies I thought of were things she had no experience with -- drugs, smoking, even sugar was something she had very little knowledge of."
+                   him concerned "Well...it tries to make you feel a certain way. Your body is programmed to want to do things that make it feel that way."
+                   kid "So I'm a robot now?"
+                   him "Not at all. You also have a brain and free will, so you can decide if the things your body wants are good for you."
+                   kid "How do you know?"
+                   him "Well, how did the video make you feel?"
+                   kid "Yucky. But I couldn't stop watching it..."
+                   him "Sounds like you understand the addictiveness I'm talking about."
+                   kid "..."
+                   him "That's why you need to decide with your brain ahead of time what to do if you see something that's not good for you."
+                   "She looked pensive, and I wished I could have read her thoughts to know what she was thinking."
+                   kid "Can I go now?"                   
+                   him "Um, yeah."
+                   $ authoritative += 1 
+               "Do you have any questions about sex?" if (not family19_questions):
+                   $ responsive += 1
+                   him "Do you have any questions about sex?"
+                   kid "What? No!"
+                   "I could tell she did have questions; she just didn't know how to ask them. Or maybe she didn't know what to ask."
+                   $ family19_questions = True
+                   jump family19_porn_chat
     return
 
 # 12.4 Earth years old
