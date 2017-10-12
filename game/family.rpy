@@ -2020,7 +2020,7 @@ label family10:
                         kid "You go to your room!"
                         "I picked her up. She'd gotten heavier, but my adrenaline was up now and I lifted her easily and dropped her into her room."
                         "I meant to set her down, but she struggled right as we reached the doorway and she kicked my wrist."
-                        "She dropped to the floor and her head hit her bed post."
+                        "I tried to set her down gently but I kind of dropped her and her head hit her bed post."
                         kid "Wahhhhhhhhh!"
                         menu:
                             "What should I say?"
@@ -2065,17 +2065,24 @@ label family10:
             "Fine, whatever.":
                 $ reponsive += 1
                 him annoyed "Fine, whatever."
-                kid "Yay!"                
+                kid "Yay!"
+                $ neglectful += 1
+                jump family10_ending
             "No, something else.":
                 $ demanding += 1
                 him determined "No, choose something else."
-                kid "Science Kids is pretty fun, I guess."
+                kid normal "Science Kids is pretty fun, I guess."
                 him normal "That sounds better."
+            "You can play it for fifteen minutes and then you need to choose something else.":
+                $ responsive += 1
+                $ demanding += 1
+                him "You can play it for fifteen minutes and then you need to do something else. Here, I'll set a timer."
+                kid happy "Okay."
 
         "She sat on the floor and was soon engrossed, and I went to go change the oil in the tractor."
         "It was probably an hour or so later that I went back in to check on her."
         "I opened the door, and she looked up guiltily. She quickly swiped her app away and tried to smile at me."
-        kid "Hi, dad."
+        kid normal "Hi, dad."
         menu:
             "What should I do?"
             "Ask her about it":
@@ -2098,35 +2105,39 @@ label family10:
                 "I had no proof...but her expression told me she was hiding something."
             "Ask for the truth.":
                 him determined "Tell me the truth."
-                kid "I did!"
-                him "I know you're lying!"                   
-            
+                kid angry "I did!"
+                him angry "I know you're lying!"            
             "Go back to work.":
                 "She might have been lying, but I didn't have time to figure it out. I had to get back to work."
                 $ neglectful += 1
                 jump family10_ending
             
-        # TODO: Finish this
     menu:
         "What should I do?"
         "Talk about why lying is bad.":
             $ responsive += 1
             him concerned "When you lie, I can't trust what you say. I want to be able to trust you."
             kid "I know."
-            him "Lying is not allowed. I don't want you to ever lie to me."
+            him "I don't want you to ever lie to me, okay?"
             kid "Okay."
             $ permissive += 1            
         "Punish her.":
             $ demanding += 1
             him angry "I can't believe you lied to me! You're grounded for a month!"
+            kid angry "You're so mean!"
+            him annoyed "I wouldn't have to get mean if you would just do what you're told."
             $ authoritarian += 1
         "Take away the computer pad.":
             $ responsive += 1
             $ demanding += 1
             "I took the computer pad and put it up high."
-            him "I'm disappointed you disobeyed, and I'm also disappointed that you lied to me about it. You may not use the computer pad for a week."
-            kid "I'm sorry, dad! I just really wanted to play it."
-            him "I know. But if I can't trust you with the computer pad and to tell the truth about it, then you cannot use it."
+            him annoyed "I'm disappointed you disobeyed, and I'm also disappointed that you lied to me about it. You may not use the computer pad for a week."
+            kid sad "I just really wanted to play it!"
+            him concerned "I know. But if I can't trust you with the computer pad and to tell the truth about it, then you cannot use it."
+            kid angry "That's not fair!"
+            him determined "I'm not going to negotiate about this. You'll have to find something else to do."
+            kid "...you're mean."
+            him normal "Sometimes."
             $ authoritative += 1            
 
     label family10_ending:
@@ -2150,7 +2161,7 @@ label family11:
     "They weren't always peaceful, though..."
     kid "Beans again? Ugh."
     him "You can put Special Sauce on them if you want."
-    "We called it \"Special Sauce\", but it was really just homemade ketchup. With a few other secret ingredients to make it healthier."
+    "We called it \"Special Sauce\", but it was really just homemade ketchup. With fruit instead of sugar."
     kid "Yeah, gimme the sauce."
     if (year6_have_baby):
         bro "Gimme sauce!"
@@ -2222,7 +2233,7 @@ label family11:
             else:
                 bro "Wahhhhh!"
             her normal "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
-            kid "You guys are so mean! I just want some food!"
+            kid "You're starving your child here!"
             her concerned "-high levels of certain amino acids."
             kid "Ugh! Fine! PLEASE pass the sauce!"
             if (year6_have_baby):
@@ -2317,7 +2328,7 @@ label family13:
     # TODO: Is this different based on earlier decisions?
     kid "So, you need a man and a woman to make a baby, right?"
     him "Right..."
-    kid "Well, how, exactly, does that work? I mean, I know they come together, but . . . how?"
+    kid "Well, how, exactly, does that work? I mean, I know they come together, but... how?"
     him "Let me think about the best way to explain that to you..."
     menu:
         "She's not ready for this":
@@ -2383,7 +2394,7 @@ label family13:
                         kid "Okay, but what is it?!"
                     else:
                        kid "So you have to be married to have sex?"
-                       him "Well, it's special enough you don't do it with just anyone. You want to be sure they're someone you want to give your whole heart to, someone you can really trust in the long run."                    
+                       him "Well, it's special enough you don't do it with just anyone. You want to be sure they're someone you want to give your whole heart to, someone you can really trust in the long run."                       
                     $ sex_ed_commitment = True
                     $ sex_ed_counter += 1
                     jump sex_ed
@@ -2437,7 +2448,7 @@ label family13:
             him "Huh. Sorry."
             kid "I'm going to go chase it off. Ooh, or maybe we should shoot it and eat it for dinner."
             him "No way, you might shoot the goat!"
-            kid "Will you take me hunting sometime soon? I looooove crabird meat. It's so good. I could eat every day."
+            kid "Will you take me hunting sometime soon? I looooove crabird meat. It's so good. I could eat it every day."
             # TODO: Make this a choice or dependent on choices?
             him "Yeah, let's go tomorrow morning before school. We'll get up early and catch them before they get warmed up."
             $ permissive += 1
