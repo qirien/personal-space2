@@ -106,7 +106,7 @@ label parenting_class1:
     naomi "Love is the vehicle through which we deliver a child's needs. Just love won't feed a child, or teach him to work hard. But we provide all these things with love."
     natalia "Not just feeling love, but doing the things your child needs most to grow."
     naomi "And if you try to teach these things without love, a child will not want to learn and will not feel safe making the mistakes he needs to make to learn."
-    him surprised "Do we really want our kids to feel safe making mistakes? That sounds dangerous."
+    her surprised "Do we really want our kids to feel safe making mistakes? That sounds dangerous."
     naomi "As parents, part of your job is protect kids from making terrible, life-altering mistakes. But without making small mistakes, they will not learn for themselves."
     helen "I guess Trevor could have never learned to walk without falling so many times."
     natalia "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings." 

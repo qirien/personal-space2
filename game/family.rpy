@@ -2069,35 +2069,73 @@ label family10:
             "No, something else.":
                 $ demanding += 1
                 him determined "No, choose something else."
-                kid "Well, Science Kids is pretty fun, too."
+                kid "Science Kids is pretty fun, I guess."
                 him normal "That sounds better."
 
         "She sat on the floor and was soon engrossed, and I went to go change the oil in the tractor."
         "It was probably an hour or so later that I went back in to check on her."
-        
-        # TODO: Finish this
-            
-        "Terra drops the family tablet and a crack forms.  It's still usable, but annoying"
+        "I opened the door, and she looked up guiltily. She quickly swiped her app away and tried to smile at me."
+        kid "Hi, dad."
         menu:
-            "Do nothing. She'll learn eventually on her own.":
-                $ neglectful += 1
-            "Yell at her to be more careful":
-                $ demanding +=1 
-                $ authoritarian += 1
-            "Ask how it happened and require her to do extra chores to make up for it.":
-                $ demanding += 1
-                $ responsive += 1          
-                $ authoritative += 1
-            "Tell her it's all right, she can't be expected to take care of things at her age.":
+            "What should I do?"
+            "Ask her about it":
                 $ responsive += 1
-                $ permissive += 1
+                him surprised "Were you playing Goose Life?"
+                kid "No..."
+            "Accuse her":
+                $ demanding += 1
+                him angry "You were playing Goose Life! When I told you not to!"
+                kid "No I wasn't!"
+            "Do nothing":
+                "I didn't have time for this. She wasn't in any danger, and I needed to get back to work."
+                $ neglectful += 1
+                jump family10_ending
                 
-    if (year8_have_baby):
-        "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
-        "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
-        "A few weeks after school started, [her_name] went into labor in the middle of the night."
-        # TODO: Depending on faction, contact someone different to watch Terra?
-        call baby_delivery            
+        menu:
+            "What should I do?"
+            "Investigate the computer pad.":
+                "I grabbed the computer pad, but I couldn't tell what she had been doing."
+                "I had no proof...but her expression told me she was hiding something."
+            "Ask for the truth.":
+                him determined "Tell me the truth."
+                kid "I did!"
+                him "I know you're lying!"                   
+            
+            "Go back to work.":
+                "She might have been lying, but I didn't have time to figure it out. I had to get back to work."
+                $ neglectful += 1
+                jump family10_ending
+            
+        # TODO: Finish this
+    menu:
+        "What should I do?"
+        "Talk about why lying is bad.":
+            $ responsive += 1
+            him concerned "When you lie, I can't trust what you say. I want to be able to trust you."
+            kid "I know."
+            him "Lying is not allowed. I don't want you to ever lie to me."
+            kid "Okay."
+            $ permissive += 1            
+        "Punish her.":
+            $ demanding += 1
+            him angry "I can't believe you lied to me! You're grounded for a month!"
+            $ authoritarian += 1
+        "Take away the computer pad.":
+            $ responsive += 1
+            $ demanding += 1
+            "I took the computer pad and put it up high."
+            him "I'm disappointed you disobeyed, and I'm also disappointed that you lied to me about it. You may not use the computer pad for a week."
+            kid "I'm sorry, dad! I just really wanted to play it."
+            him "I know. But if I can't trust you with the computer pad and to tell the truth about it, then you cannot use it."
+            $ authoritative += 1            
+
+    label family10_ending:
+        if (year8_have_baby):
+            "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
+            "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
+            "A few weeks after school started, [her_name] went into labor in the middle of the night."
+            # TODO: Depending on faction, contact someone different to watch Terra?
+            call baby_delivery            
     return
 
 # 6.8 Earth years old
