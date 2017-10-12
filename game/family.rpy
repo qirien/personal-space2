@@ -2058,7 +2058,8 @@ label family10:
         kid "Can I use the computer pad?"
         him surprised "What are you going to do on it?"
         kid "Can I play Goose Life?"
-        "Goose Life? It was a pretty stupid game, mostly just tapping moving things on the screen. But it was addictive, so she liked it."
+        him annoyed "Goose Life?"
+        "It was a pretty stupid game, mostly just tapping moving things on the screen. But it was addictive, so she liked it."
         menu:
             "What should I say?"
             "Fine, whatever.":
