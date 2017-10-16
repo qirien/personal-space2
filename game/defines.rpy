@@ -14,6 +14,11 @@ init -100:
     define ENABLED_INDEX = 5
     define MAXIMUM_INDEX = 6
     
+    # Static variables used for endings
+    define ATTACHMENT_GOOD = 20
+    define COMPETENCE_GOOD = 20
+    define INDEPENDENCE_GOOD = 20
+    
     # Variables persistent across all Metasepia games
     define mp = MultiPersistent("MetasepiaGames")
     

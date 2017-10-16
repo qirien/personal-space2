@@ -2317,7 +2317,42 @@ label family12:
 # 8 Earth years old
 # Sex Education
 label family13:
-    # TODO: Is this because Mom is pregnant again?  Miscarriage -> hysterectomy?
+    
+    "Several months ago, we found out [her_name] was expecting again. We hadn't really planned for another baby... but we hadn't actively prevented it, either."
+    "I guess I was getting used to having kids. When I looked back at the time before I was a father, it seemed so long ago."
+    "It was hard to even remember when it was just [her_name] and me..."
+    "We brought the kids to the clinic so that they could see their new sibling via ultrasound."
+    scene clinic with fade
+    show him at midright
+    show her at center
+    show kid at midleft
+    show bro at quarterleft
+    with dissolve
+    
+    her normal "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
+    him surprised "Was that it?"
+    her concerned "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
+    him normal "You could have asked the nurse to help, right?"
+    her normal "Yeah, but I wanted it to be just our family."
+    kid "Is that a hand?"
+    her happy "Yes! There's the baby - you can see the little mouth, and the hand."
+    him "Wow, that really makes it seem real."
+    her flirting "That's because it is real."
+    bro "That's in your tummy?"    
+    kid "It's not her tummy, it's her uterus. Only girls have them."
+    "[bro_name] looked disappointed."
+    bro "Why?"
+    him "Men and women have mostly the same parts, but a few different parts so they can come together and make babies."
+    her "We still have a long time before this baby is born, but that's good. We need time to get ready!"
+    bro "Babies cry a lot."
+    him "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
+    kid "So how come [bro_name] still cries all the time?"
+    bro "I do not!"
+    her "I cry sometimes, too. Sometimes words just aren't enough."
+    "I helped [her_name] put away the ultrasound machine, and we started to walk back home."
+    scene path with fade
+    "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and I on ahead."
+    
     scene fields with fade
     show him at midright
     show kid at midleft
@@ -2452,7 +2487,10 @@ label family13:
             # TODO: Make this a choice or dependent on choices?
             him "Yeah, let's go tomorrow morning before school. We'll get up early and catch them before they get warmed up."
             $ permissive += 1
-    return
+    
+    
+    # TODO: miscarriage?
+    return    
 
 # 8.7 Earth years old
 # Teacher Troubles
@@ -2999,7 +3037,7 @@ label family19:
            $ demanding -= 1
            "You start watching it and immediately cringe."
            "There's nothing romantic or even erotic about it -- it's designed solely to ramp up hormones and get to a climax as fast as possible."
-           "And the rough foreplay seems a lot like rape -- not something you'd want [kid_name] to think was normal."           
+           "And the rough foreplay seems uncomfortably like rape -- not something you'd want [kid_name] to think was normal."           
            kid surprised "Dad, what are you watching?"
            him "I found this video on here. Looks like something you found?"
            kid blushing "Oh. That."
@@ -3076,7 +3114,7 @@ label family19:
                    $ demanding += 1
                    him determined "Pornography is addictive."
                    kid "What do you mean?"
-                   "I had to remember that [kid_name] had grown up much more sheltered than I had... We lived in a small town with a small school." 
+                   "I had to remember that [kid_name] had grown up much more sheltered than I had... This was a small town with a small school." 
                    "All the analogies I thought of were things she had no experience with -- drugs, smoking, even sugar was something she had very little knowledge of."
                    him concerned "Well...it tries to make you feel a certain way. Your body is programmed to want to do things that make it feel that way."
                    kid "So I'm a robot now?"
@@ -3130,6 +3168,22 @@ label family20:
 # 13 Earth years old
 # Sarcastic Humor
 label family21:
+    scene farm_interior with fade
+    show him at midleft
+    show kid at center
+    show bro at midright
+    with dissolve
+    
+    "Lately, [kid_name] and [bro_name] had been playing a video game together. I thought it would be good for them, to help them bond and learn to cooperate, but sometimes it just made them both frustrated..."
+    bro "The aliens are coming on the left! I'm going to go get the laser sword."
+    kid "Oh yeah, that's real smart. The laser sword? That's the weakest weapon in the game against those guys!"
+    bro "I like the laser sword..."
+    kid "'I like the laser sword. Stand still, aliens, so I can hit you with my super wimpy weapon.' They're going to crush you if you try that."
+    bro "Well, what do you think I should use?"
+    kid "Duh! The sniper blaster! They're weak against blast damage and you can keep your distance!"
+    bro "I haven't unlocked that one yet..."
+    
+    # TODO: finish this
     "Terra's sarcastic humor is hurting people's feelings."
     menu:
         "Punish her.":

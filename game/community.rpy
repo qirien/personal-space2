@@ -1048,6 +1048,7 @@ label community12:
                     brennan "Another person would notice if someone was lagging behind, or unhappy for some reason. That's the supervisor."
                     brennan "Surely you have a project manager for the colony's agricultural work?"
                     him "We all trust each other to do our jobs."
+                    brennan "Of course. How... quaint."
                 else:
                     pass
                 brennan "I need to get back to work. I hope you can find the missing cow."
@@ -1218,7 +1219,7 @@ label community17:
         
     label jellyfishside:
         him "So... what is this?"
-        pete "Out by the ocean, sometimes you can find these creatures with a bunch of spiny arms."
+        pete "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
         pete "They start stacking on top of one another and they send off these giant eggs"
         him "Is it safe to eat?"
         pete "As far as I can tell, it is."
@@ -1228,6 +1229,7 @@ label community17:
                 "It tastes cool and slippery, and a little fishy."
                 "It's been so long since you've had anything that tasted unusual."
                 "You can't decide if you love it or hate it."
+                "But before you know it, you've eaten the whole thing."
                 $ ate_jellyfish = True
             "Don't try it.":
                 him "I'll pass."
@@ -1255,6 +1257,7 @@ label community17:
                 him "I'll pass."
                 brennan "You don't like beans?"
                 him "I'll stick to what I know."
+                brennan "How very... predictable of you."
                 $ pass
         jump justcolony
         
@@ -1312,7 +1315,7 @@ label community17:
         him "..."
         naomi "I suspect that the creature contains a parasite that affects human brains."
         him "And you just let Pete serve it to everyone?"
-        naomi "I have a suspicion, but no proof. Their fondness for the jellyfish seems harmeless."
+        naomi "I have a suspicion, but no proof. Their fondness for the jellyfish seems harmless."
         him "Huh. Well let me know if you guys start selling jellyfish sweaters."
         return
     else:
@@ -1442,10 +1445,10 @@ label community24:
         "We're experiencing health setbacks due to overwork. May colonists and miners take paid vacation days?":
             $ colonists += 1
     
-    him "That reminds me, RET told me that due to the cost of shipping, they will no longer provide temporary birth control."
+    him "That reminds me, RET told me that due to the cost of shipping, they will no longer provide temporary birth control."  # in month 14 of OPS1, Kelly says that there's only enough birth control for 6 more months. I guess we are assuming that more arrived with the shuttle that arrived, but none will be coming on future shuttles?
     him "RET recommends using the rhythm method."
     her "Are they serious? Does that include the miner's families?"
-    him "Yes, although children born on Terra must stay here."
+    him "Yes, although children born on Talaam must stay here."
     julia "Luckily my time of fertility is ending, but for some of you this will be most inconvenient."
     ilian "No kidding. I've got enough mouths to feed at the moment."
     sara "Dr. [her_name], do you have any advice for us?"
@@ -1457,6 +1460,7 @@ label community24:
     #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
     #consequences if you said not to trade for it in community 21
     # Maybe Kelly offers to perform sterilizations, though she's not an expert. "I'd rather perform sterilizations than abortions".
+    # Using sheep intestines as condoms?  TMI?
     
     return
 

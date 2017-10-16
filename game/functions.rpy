@@ -24,10 +24,6 @@ init 1 python:
 ##
 
 label increase_attachment:
-    # if (responsive <= 0):
-        # $ attachment += 1
-    # else:
-        # $ attachment += (responsive/(year/2.0)) * 2
     $ attachment += responsive
     return
     
