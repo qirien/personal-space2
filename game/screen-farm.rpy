@@ -40,7 +40,7 @@ screen plan_farm:
                         xsize LEFT_COLUMN_WIDTH
                         label "Community" # TODO: have cute icons for these, like on a phone?
                         textbutton "Message Board" action Show("messages")
-                        textbutton "Parenting Manual" action Show("parenting_manual_screen")
+                        textbutton "Parenting Handbook" action Show("parenting_handbook")
                     
                 # crop details here          
                 vbox:
@@ -154,31 +154,7 @@ screen crop_details_screen():
                     ]
                     sensitive (not max_crops_reached)
                     selected ((crop_info_index == j) and (not max_crops_reached))
-                    # TODO: Add alternate action to get more crop info?
-            
-                
-screen parenting_manual_screen:
-    modal True
-    zorder 1
-    frame:
-        xalign 0.5
-        yalign 0.5
-        vbox:
-            label "Parenting Manual"
-            hbox:
-                vbox:
-                    label "Table of Contents"
-                    textbutton "Infant (0-1)"
-                    textbutton "Toddler (2-3)"
-                    textbutton "Preschooler (4-5)"
-                    textbutton "Young Child (6-8)"
-                    textbutton "Tween (9-11)"
-                    textbutton "Young Teen (12-14)"
-                    textbutton "Teenager (15-18)"
-                vbox:
-                    label "Infant"
-                    text "Development\nNeeds"
-            textbutton "Return" yalign 1.0 action Hide("parenting_manual_screen")
+                    # TODO: Add alternate action to get more crop info?            
     
     
 init python:

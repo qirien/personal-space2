@@ -19,6 +19,23 @@ init 1 python:
 
     def random_float():
         return renpy.random.random()
+
+## 
+# Menu Randomization
+##
+
+# TODO: change this to True to start shuffling menus
+default shuffle_menu = False
+
+init python:
+    renpy_menu = menu
+
+    def menu(items):
+        items = list(items)
+        if (shuffle_menu):
+            renpy.random.shuffle(items)
+        return renpy_menu(items)
+        
 ##
 # PARENTING FUNCTIONS
 ##

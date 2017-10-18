@@ -444,6 +444,9 @@ label family2:
             $ family2_work_done += 5
             $ neglectful += 1
     
+    scene farm_interior with fade
+    show him at midright with dissolve
+    show her at midleft with moveinleft
     "Late that night, after I fed [kid_name] dinner and she had fallen asleep, [her_name] finally came home."
     "She trudged into the house, looking at least as tired as I felt."
     "I caught her up in a big hug and kissed her twice."
@@ -727,7 +730,7 @@ label family4:
     him determined "Where'd you even get applesauce from? I haven't seen it at the storehouse for a long time."
     kid "Travis mommy."
     "Travis' mom - that would be Helen. [kid_name] had been over there for coop daycare today. Somehow she always had sweet things for the kids to eat."
-    "Sweet things to ruin their tastebuds for real food."
+    "...Sweet things to ruin their tastebuds for real food."
     menu:
         "What should I say?"
         "You must eat this dinner.":
@@ -3175,28 +3178,129 @@ label family21:
     with dissolve
     
     "Lately, [kid_name] and [bro_name] had been playing a video game together. I thought it would be good for them, to help them bond and learn to cooperate, but sometimes it just made them both frustrated..."
-    bro "The aliens are coming on the left! I'm going to go get the laser sword."
+    bro "Aliens on the left! I'll get the laser sword."
     kid "Oh yeah, that's real smart. The laser sword? That's the weakest weapon in the game against those guys!"
     bro "I like the laser sword..."
-    kid "'I like the laser sword. Stand still, aliens, so I can hit you with my super wimpy weapon.' They're going to crush you if you try that."
+    "She used a whiny kid voice to mock him."
+    kid "'I like the laser sword. Stand still so I can hit you with my super wimpy weapon.' They're going to crush you if you try that."
     bro "Well, what do you think I should use?"
-    kid "Duh! The sniper blaster! They're weak against blast damage and you can keep your distance!"
-    bro "I haven't unlocked that one yet..."
-    
-    # TODO: finish this
-    "Terra's sarcastic humor is hurting people's feelings."
+    kid "Duh! The sniper blaster! They're weak against blast damage and you can keep your distance so you don't die in like five seconds like you do every time!"
+    bro "I hate the scope; it's too hard."
+    kid "It's only hard if you're a total n00b." # TODO: make up some Talaam slang here?
     menu:
-        "Punish her.":
+        "What should I do?"
+        "Say something.":
             $ demanding += 1
-            $ authoritarian += 1
-        "Explain the language you expect around your house.":
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Explain how it makes people feel and beg her to be more considerate.":
-            $ responsive += 1
-            $ permissive += 1
+            him determined "[kid_name], that's not nice."
+            "She didn't look up, just shrugged as they continued their battle."
+            kid "Sorry."
+            "They kept playing, but soon [bro_name] made a mistake."
+            kid "Really? You didn't see that guy whose been slobbering over your shoulder for the last ten minutes?"
+            bro "I did, but I couldn't move in time!"
+            him annoyed "Pause your game and listen to me!"
+            kid "I can't pause it; it's online. We still have a chance to beat Trevor if [bro_name] would stop rolling on the ground like a baby."
+            bro "I'm hiding!"
+            menu:
+                "What should I say?"
+                "Turn it off now.":
+                    $ demanding += 1
+                    him angry "Turn it off now!"
+                    kid "Seriously, dad?"
+                    him annoyed "Yes. Right now."
+                    kid "Ugh! Fine. There. What's so important you couldn't wait for five minutes?"                            
+                "Turn it off as soon as the round is over.":
+                    $ responsive += 1
+                    him determined "Turn it off as soon as the round is over."
+                    kid "Okay, fine."
+                    "They finished the round, and lost. Trevor's avatar did a triple backflip and grinned mockingly. I could see why [kid_name] wanted to beat him."
+                    kid "What is it?"
+                    
+            menu:
+                "What should I say?"
+                "No more video games.":
+                    $ demanding += 1                    
+                    him angry "No more video games."
+                    "That got their attention."
+                    kid "WHAT?! No more video games? Why?"
+                    him annoyed "You're being rude to your brother. That's not allowed."
+                    kid "For how long?"                    
+                    bro "For me, too?"
+                    # TODO: FInish this
+                    
+                    $ authoritarian += 1
+                "You're hurting [bro_name]'s feelings.":
+                    $ responsive += 1
+                    him concerned "You're hurting [bro_name]'s feelings."
+                    kid "I'm not trying to be rude or anything, I'm trying to help him get better at this game."
+                    bro "No, you're just being mean!"
+                    him determined "What you're doing isn't helping him at all. If you want to help him, you need to be more positive and don't get mad about mistakes."
+                    kid "Well, he also needs to stop making stupid mistakes!"
+                    him concerned "Do you remember when you first started playing? Wasn't it pretty hard?"
+                    kid "Yeah, but I wasn't {b}that{/b} bad."
+                    him surprised "Didn't you make a lot of mistakes, too?"
+                    kid "Yeah, but not like that! I mean, seriously, who picks the laser sword?!"
+                    bro "I just want to play it my way."
+                    menu:
+                        "What should I say?"
+                        "Maybe you shouldn't play together.":
+                            him concerned "Maybe you shouldn't play this game together."
+                            bro "No! I want to play with [kid_name]!"
+                            kid "Yeah, we do want to play together."
+                            him determined "Then act like it."
+                            $ permissive += 1
+                        "You can play together if you are polite.":
+                            $ demanding += 1
+                            him determined "You can play together as long as you are being polite. You're on the same team, remember?"
+                            kid "Okay, but, [bro_name] can you pick a different weapon next time?"
+                            bro "Yeah, I guess."
+                            him normal "Okay! That's more like it!"
+                            $ authoritarian += 1
+                        "Just do better next time.":
+                            him annoyed "Just do better next time."
+                            $ permissive += 1
+                "I expect kind language.":
+                    $ responsive += 1
+                    him concerned "I expect kind language from everyone in our house."
+                    kid "I'm just trying to help him!"
+                    him determined "Then you can help him politely."
+                    kid "Okay, can you PLEASE not use the laser sword?"
+                    bro "But I like it!"
+                    kid "See?! Being polite didn't work!"
+                    him concerned "Being polite isn't just about the words you say; it's your attitude and how you say them. Would you want someone to tell you how to play?"
+                    kid "I don't need anyone to tell me how to play."
+                    him annoyed "Well, [bro_name] feels the same way. Let him play his way."
+                    kid "Or else what?"
+                    menu:
+                        "What should I say?"
+                        "Or you won't be able to play video games.":
+                            $ demanding += 1
+                            him determined "If you can't be polite, you won't be able to play video games."
+                            kid "What?! That's so unfair!"
+                            him annoyed "That's the rule."
+                            kid "Ugh, fine. Can we get back to our game now?"
+                            him "Yes."
+                            $ authoritative += 1
+                        "Or you will have to muck out the barn instead.":
+                            $ demanding += 1
+                            him determined "If you can't talk politely, you can go muck out the barn instead."
+                            kid "What?! That doesn't even make sense!"
+                            him annoyed "That's the rule."
+                            kid "That's a dumb rule."
+                            him "..."
+                            bro "Can we play now?"
+                            him "Yes."
+                            $ authoritative += 1
+                        "I don't know; just be polite!":
+                            him angry "I don't know! Why don't you just be polite; then you won't have to find out!"
+                            bro "Can we play now?"
+                            him "Yes."
+                            $ permissive += 1
+                "Quit being so rude!":
+                    him angry "Quit being so rude!"
+                    her "Alright! Fine! You don't have to yell."
+                    $ authoritarian += 1
         "Say nothing.":
+            $ demanding -= 1
             $ neglectful += 1
     return
 

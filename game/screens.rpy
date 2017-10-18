@@ -216,17 +216,24 @@ screen choice(items):
 
     vbox:
         for i in items:
-            textbutton i.caption action i.action
+            if (i.chosen): #This allows ths user to see which choices they have made in the past
+                textbutton i.caption action i.action style "choice_chosen"
+            else:
+                textbutton i.caption action i.action
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
 
-
 style choice_vbox is vbox
 style choice_button is button
 style choice_button_text is button_text
+style choice_chosen is choice_button:
+    background "#333a"
+    
+style choice_chosen_text is choice_button_text:
+    italic True
 
 style choice_vbox:
     xalign 0.5
