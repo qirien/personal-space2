@@ -3,15 +3,15 @@
 # Each family event has several parenting choices.  The decisions for the month
 # will affect how much the child's stats increase that month.
 #
-# "demanding" and "responsive" are just for the current year and affect how much the child's stats increase that month.
+# "demanding" and "responsive" are just for the current year and affect how much the child's stats increase that month.  They may increase 
+# (or in some cases, decrease) by 1-5 each month.
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month (?).
 # TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
-# TODO: Use something that will randomize choice order after we've done a lot of testing
-# TODO: Some choices only appear after a certain amount of time?
+# TODO: randomize choice order after we've done a lot of testing
 
 # Intro event
 label family_intro:
-    "All you needed was a clean diaper, milk, and some love."
+    "All [kid_name] needed was a clean diaper, milk, and some love."
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
 
     scene bedroom with fade
@@ -54,8 +54,10 @@ label family1:
     "I knew she was exhausted. She had been carrying [kid_name] around all day and feeding her every few hours."
     "I wanted to help, but I had spent the whole day cleaning out the barn and was spent.  All I could think about was sleeping."
     "Sleeping..."
-    show black with dissolve
-    hide black with dissolve
+    window hide
+    show black with irisin
+    hide black with irisout
+    window show
     "No, I couldn't sleep while they both needed me. But what should I do?"
     menu:
         "Take [kid_name] for a walk.":
@@ -193,7 +195,12 @@ label family1:
             $ authoritative += 1
             $ authoritarian += 1
     
-
+    scene bedroom with fade
+    show him sleeping at midleft, squatting
+    show her sleeping at midright, squatting
+    show baby girl at centerbaby, squatting
+    show bedroom_overlay
+    with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
     him determined "She really needs us, doesn't she?"
@@ -457,7 +464,7 @@ label family2:
     him surprised "Have you ever fixed one of those before?"
     her determined "No, I just watched one during my residency. I've done some simulations, since it's a common procedure... but the real thing is quite different."
     him determined "It's a good thing you have a real nurse helping you out now."
-    "That reminded me of Brennan. I was so glad that smug ladies' man was off the planet! [her_name] seemed to be thinking about something else, though." 
+    "[her_name] seemed to be thinking about something else, though." 
     her concerned "Yeah...I hope Helen will be okay."
     "I made her up a plate of beans while we talked."
     "From the way she devoured them, I guess she hadn't eaten all day."    
@@ -3076,7 +3083,7 @@ label family19:
                    kid "Yeah, kind of."
                    him "That's why it helps to have a plan ahead of time, so the thinking part of your brain can be more in control."
                    kid "A plan?"
-                   him "Yeah. If you see pornography, close the computer pad and come bring it to me. I won't be mad; I'll just help you decide what to do."
+                   him "Yeah. If you see pornography, bring the computer pad to me. I won't be mad; I'll just help you decide what to do."
                    kid "..."
                    him "Will you do that?"
                    kid "...Yeah."
@@ -3089,7 +3096,7 @@ label family19:
                    "I reached over and hugged her."
                    him "I hope you know that I love you."
                    kid "Yeah."
-                   "She hugged me back, only briefly, but it made me remember that she was still young, and she still depended on me for love and truth and guidance."
+                   "She hugged me back, only briefly, but it reminded me that she was in some ways still a kid, and she still depended on me for love and truth and guidance."
                    "Hopefully I was doing okay."
                    $ authoritative += 1
                "Never look at this kind of garbage again!":
@@ -3187,6 +3194,7 @@ label family21:
     kid "Duh! The sniper blaster! They're weak against blast damage and you can keep your distance so you don't die in like five seconds like you do every time!"
     bro "I hate the scope; it's too hard."
     kid "It's only hard if you're a total n00b." # TODO: make up some Talaam slang here?
+    "[bro_name] was almost in tears. [kid_name] was focused on the game and didn't seem to notice."
     menu:
         "What should I do?"
         "Say something.":
@@ -3212,7 +3220,8 @@ label family21:
                     $ responsive += 1
                     him determined "Turn it off as soon as the round is over."
                     kid "Okay, fine."
-                    "They finished the round, and lost. Trevor's avatar did a triple backflip and grinned mockingly. I could see why [kid_name] wanted to beat him."
+                    "They finished the round, and lost. Trevor's avatar did a triple backflip over their motionless avatars and grinned mockingly. I could see why [kid_name] wanted to beat him."
+                    "She quit the game and turned to me."
                     kid "What is it?"
                     
             menu:
@@ -3225,9 +3234,40 @@ label family21:
                     him annoyed "You're being rude to your brother. That's not allowed."
                     kid "For how long?"                    
                     bro "For me, too?"
-                    # TODO: FInish this
-                    
-                    $ authoritarian += 1
+                    menu:
+                        "What should I say?"
+                        "Just do something else for awhile.":
+                            him normal "Just go and do something else for awhile."
+                            kid "For how long?!"
+                            him "At least for today. We'll see if you can be polite and earn your video game priveleges back."
+                            kid "That's mean."
+                            $ authoritative += 1
+                        "You're both done for a week!":
+                            him annoyed "No video games for either of you for a week!"
+                            bro "But I didn't do anything!"
+                            kid "I didn't do anything either! I was just trying to help him get better at this game!"
+                            him "You heard me."
+                            kid "But... but that's not fair!"
+                            him "Sometimes life isn't fair. Guess you'll learn to deal with it."
+                            bro "You're a mean dad!"
+                            kid "Yeah!"
+                            him normal "Yup, sometimes I have to be Mean Dad."
+                            kid "Come on, [bro_name], let's go play outside."
+                            bro "Yeah."
+                            "Hmmm. Somehow I had turned [kid_name]'s animosity towards [bro_name] into animosity towards me. I guess that was better?"
+                            $ authoritarian += 1
+                        "[bro_name] can still play.":
+                            him determined "[bro_name], you were talking politely; you may still play."
+                            bro "I don't want to play without [kid_name]! I'd just lose..."
+                            kid "Yeah, you would."
+                            him normal "Then maybe it's time to do something else."
+                            $ authoritarian += 1
+                    "I felt kind of bad taking away their video games, but it was the simplest solution I could see to the problem."
+                    "But soon enough, they were fighting again..."
+                    kid "Can you just run like a normal person without swinging your arms around like a jellyfish?!"
+                    bro "I'm not trying to!"
+                    "Maybe siblings just always fought, and there was nothing I could do about it..."
+                    return
                 "You're hurting [bro_name]'s feelings.":
                     $ responsive += 1
                     him concerned "You're hurting [bro_name]'s feelings."
@@ -3302,6 +3342,31 @@ label family21:
         "Say nothing.":
             $ demanding -= 1
             $ neglectful += 1
+            
+    "They went back to playing. Hopefully they'd get along better now."
+    menu:
+        "What should I do?"
+        "Stay and watch.":
+            # TODO: productivity penalty?
+            "I stayed and watched for a little while. [bro_name]'s avatar got killed, and [kid_name] grunted in frustration."
+            kid "[bro_name]!"
+            bro "Sorry!"            
+            "[kid_name] glanced over at me and sighed."
+            kid "It's okay."
+            bro "Watch out for the mines; that's what killed me."
+            kid "Where is their flag?"
+            bro "I can climb the tower and find it!"
+            kid "Try it."
+            bro "Ohhh! Trevor got me! But I saw the flag; it's right behind you, under that bench!"
+            kid "Yeah! Got it!"
+            bro "Now get back! Stay away from the tower!"
+            kid "Almost there..."
+            bro "He's chasing you... but he's too slow! Yeah! We did it!"
+            kid "Yeah!"
+            "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
+            "I guess they could get along, when they wanted to."
+        "Get back to work.":
+            "Hopefully they would get along; I didn't have time to stick around and find out."
     return
 
 # 13.6 Earth years old

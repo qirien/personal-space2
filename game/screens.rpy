@@ -114,14 +114,17 @@ screen say(who, what):
             window:
                 style "namebox"
                 text who id "who"
-
+        
+    # here's our watering can MENU button
+    # TODO: This doesn't hide with 'window' because it is not inside of 'window'...
+    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"                     
+           
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
         
-        # here's our watering can MENU button
-        imagebutton xpos 1025 ypos 595 auto "gui/menubutton_%s.png" action ShowMenu("save")
+    
 
 
 style window is default

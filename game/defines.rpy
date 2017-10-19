@@ -19,6 +19,8 @@ init -100:
     define COMPETENCE_GOOD = 20
     define INDEPENDENCE_GOOD = 20
     
+    define MAX_YEARS = 30
+    
     # Variables persistent across all Metasepia games
     define mp = MultiPersistent("MetasepiaGames")
     
@@ -55,15 +57,24 @@ init -100:
     
     # Custom transitions, positions, etc.
     define fade = Fade(0.2, 0.2, 0.2)
+    define irisout = CropMove(0.5, "irisout")
+    define irisin = CropMove(0.5, "irisin")
+    define topcenter = Position(xpos=0.5, ypos=0.0, yanchor=0.0)
     define midleft = Position(xpos=0.35, xanchor=0.5)        
     define midright = Position(xpos=0.65, xanchor=0.5)
     define quarterleft = Position(xpos=0.22, xanchor=0.5)
-    define quarterright = Position(xpos=0.78, xanchor=0.5)
+    define quarterright = Position(xpos=0.78, xanchor=0.5)    
     define farleft = Position(xpos=-0.30, xanchor=0)
     define farright = Position(xpos=1.0, xanchor=0)    
     define sitting = Position(ypos=0.45, yanchor=0)
     define squatting = Position(ypos=0.25, yanchor=0)
     define standing = Position(ypos= 1.0, yanchor = 1.0)
+    transform slideinpausefade:
+        xalign 1.25
+        yalign 0.05
+        linear 1.5 xalign 0.05
+        pause 1.0
+        linear 1.0 alpha 0.0
     
     # Baby positions for being held
     define baby_ypos = 540

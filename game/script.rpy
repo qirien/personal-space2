@@ -163,11 +163,11 @@ label start:
             jump omake
         
     scene stars_animated with fade                
-    show him happy
-    him "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
-    him normal "Of course, I knew it'd be a lot of work too. But, being a dad was a different kind of work than I had ever done before."
-    him normal "If I could go back, would I change anything? I don't even know."
-    him "When [kid_name] was first born, it was a struggle just to get through each day..."  
+    "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
+    "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
+    "But being a dad was a different kind of work than I had ever done before."
+    "If I could go back, would I change anything? I don't even know."
+    "When [kid_name] was first born, it was a struggle just to get through each day..."  
     
     # TODO: show some sort of inter-scene screen
 
@@ -182,42 +182,31 @@ label start:
     
     scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
-    "But you changed, [kid_name], and our community changed as new settlers arrived and situations changed."
+    "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
     
     #####################################################################    
     # The Loop of Life                                                  #
     #####################################################################
-    
-    while (year <= 30):
+    while (year <= MAX_YEARS):
         $ earth_year = get_earth_years(year)
         
         if (bro_birth_year != 0):
             $ bro_age = year - bro_birth_year            
         
-        # WORK EVENTS (farming)
-        window hide
-        scene black with fade
-        centered "Year [year]\n\nWork"
-        scene black with fade        
-        $ work_event = get_next_work_event()
-        window show        
+        # WORK EVENTS (farming)        
+        call interscene_text(year, "Work")        
+        #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
+        # hide screen interscene #with dissolve       
+        $ work_event = get_next_work_event()                
         call expression work_event
         
         # FAMILY EVENTS (parenting/home life)
-        window hide
-        scene black with fade
-        centered "Year [year]\n\nFamily"
-        scene black with fade
-        window show
+        call interscene_text(year, "Family")        
         call expression "family" + str(year)
         
         # COMMUNITY EVENTS (building community, helping factions)
-        window hide
-        scene black with fade
-        centered "Year [year]\n\nCommunity"
-        scene black with fade
-        window show
+        call interscene_text(year, "Community")
         call expression "community" + str(year)
         
         # Increase child stats based on this year's parenting decisions
@@ -235,12 +224,11 @@ label start:
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
         # CHOOSE FOR NEXT YEAR
-        
-        scene fields with fade
-        window hide
+
+        hide screen say        
+        scene stars with fade
         $ crops = Crops(farm_size)
         call screen plan_farm
-        $ year += 1
-        window show        
+        $ year += 1        
    
     return
