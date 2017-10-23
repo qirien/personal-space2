@@ -2267,18 +2267,20 @@ label family11:
             $ manners_patience_count += 1
             jump manners_patience 
             
-        "If you keep talking rudely, you'll be grounded!":
+        "If you keep talking rudely, you'll be grounded!" if (manners_grounded_days < 7):            
             $ demanding += 1
+            him annoyed "If you keep talking rudely, you'll be grounded!"
             kid "Gimme the sauce!"
             him angry "Okay, you're grounded for another day."
             $ manners_grounded_days += 1
             if (manners_grounded_days > 1):
-                him "That makes [grounded_days] days, now. Is this really worth it?"
+                him "That makes [manners_grounded_days] days, now. Is this really worth it?"
             jump manners_patience
             
-        "As soon as you ask politely, I will pass them to you.":
+        "As soon as you ask politely, I will pass them to you." if (manners_patience_count < 2):
             $ demanding += 1
             $ responsive += 1
+            him determined "As soon as you ask politely, I will pass them to you."
             kid "What? I just want some sauce and beans!"
             him annoyed "Then ask politely."
             kid "Gimme the sauce!"
@@ -2583,7 +2585,7 @@ label family14:
             him annoyed "I'm trying to help you."
             kid "No, you just want to make me do what you want!"
             him angry "The only things I want you to do are things that are good for you!"
-            kid "It feels like everyone's just being mean."
+            kid "It feels like everyone's just being mean. Everyone hates me."
             "I could feel I was getting angry. She wasn't listening at all!"
             menu:
                 "(Leave the room)":
@@ -2672,7 +2674,7 @@ label family14:
                     him annoyed "You hit your brother. How can you make it up to him?"
                     kid "How is he going to make it up to ME for annoying me?!"
                     him concerned "Don't worry about what he will do; you just decide what you will do."
-                    kid "I don't know. Not him anymore, I guess."
+                    kid "I'm supposed to do something nice for him when he's been annoying me all afternoon?!"
                     him annoyed "I expect you to apologize to him and do something kind for him."
                     kid "I can't do that!"
                     him normal "I'll ask you later tonight and you can tell me what you chose."
