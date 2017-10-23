@@ -2,6 +2,9 @@
 #
 # Write wiki-style like this:
 # https://patreon.renpy.org/wiki.html
+#
+# Include information from this:
+# https://www.cdc.gov/ncbddd/childdevelopment/positiveparenting/index.html
               
 screen parenting_handbook:
     modal True
@@ -24,4 +27,4 @@ screen parenting_handbook:
                 vbox:
                     label "Infant"
                     text "Development\nNeeds"
-            textbutton "Return" yalign 1.0 action Hide("parenting_manual_screen")
+            textbutton "Return" yalign 1.0 action Hide("parenting_handbook")

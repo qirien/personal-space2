@@ -1,5 +1,6 @@
 # Declare global static variables, images, characters, etc.
-# DO NOT declare variables that will change or should be saved in saved games here!
+# DO NOT declare variables that will change or should be saved 
+# in saved games here! Those go in script.rpy
 init -100:
 
     # Static layout variables
@@ -24,7 +25,10 @@ init -100:
     # Variables persistent across all Metasepia games
     define mp = MultiPersistent("MetasepiaGames")
     
+    ##
     # Declare characters
+    ## 
+    
     # TODO: Remove unused
     define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
     
@@ -55,7 +59,9 @@ init -100:
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
     
+    ##
     # Custom transitions, positions, etc.
+    ##
     define fade = Fade(0.2, 0.2, 0.2)
     define irisout = CropMove(0.5, "irisout")
     define irisin = CropMove(0.5, "irisin")
@@ -73,7 +79,7 @@ init -100:
         xalign 1.25
         yalign 0.05
         linear 1.5 xalign 0.05
-        pause 1.0
+        pause 2.0
         linear 1.0 alpha 0.0
     
     # Baby positions for being held
@@ -105,8 +111,10 @@ init -100:
             pause 0.1
         repeat                        
     
-    # Variables used in the game
-    $ is_nude = False
-    $ is_pregnant = False
-    $ wearing_dress = False # TODO: do we still use these in OPS2?
+    ##
+    # Music
+    ##
+    
+    # TODO: add songs
+    define audio.maintheme = ""
     

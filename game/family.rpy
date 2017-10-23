@@ -1070,7 +1070,7 @@ label family6:
                     him determined "Yes, you need to find something to do for one hour while mom and dad take a break. Then we'll all go swimming!"
                     her happy "Maybe you can take your animals swimming in the sink until it's time to go?"                    
                     "I waited for her to throw a fit or refuse, but I guess she liked the idea of her little toy animals going swimming, because she ran off to get them."
-                    hide her with moveoutleft
+                    hide kid with moveoutleft
                     him concerned "You know she's going to make a big mess over there, right?"
                     her normal "I am not even thinking about that right now. I'm thinking about how lovely it is to be snuggled up to you right here, right now."
                     him flirt "Mmmm, this is pretty nice..."
@@ -2340,6 +2340,7 @@ label family13:
     with dissolve
     
     her normal "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
+    # TODO: add ultrasound pic?
     him surprised "Was that it?"
     her concerned "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
     him normal "You could have asked the nurse to help, right?"
@@ -3143,7 +3144,11 @@ label family19:
                    $ responsive += 1
                    him "Do you have any questions about sex?"
                    kid "What? No!"
-                   "I could tell she did have questions; she just didn't know how to ask them. Or maybe she didn't know what to ask."
+                   if (not sex_ed_biology):
+                       "She probably had a lot of questions; I certainly hadn't explained much to her."
+                       "But if she wasn't willing to ask them..."
+                   else:
+                       "I could tell she did have questions; she just didn't know how to ask them. Or maybe she didn't know what to ask."
                    $ family19_questions = True
                    jump family19_porn_chat
     return
@@ -3412,6 +3417,9 @@ label family23:
             $ permissive += 1
         "Take the tablet. You should have priority.":
             $ neglectful += 1
+            
+    # Afterwards, depending on your attitude, she may come and ask 
+    # your opinion of some new music she found.
     return
 
 # 14.8 Earth years old
