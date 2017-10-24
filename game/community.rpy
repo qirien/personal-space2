@@ -747,7 +747,8 @@ label community11:
     him "They look pretty strong. Almost as strong as all the farmers we have here."
     her "Farmers have to be in good physical condition too!"
     sara "Pavel is already greeting everyone. Let's join him."
-    "I was about to introduce myself to one of the miners when I saw a familiar face."
+    "I was about to introduce myself to one of the miners when I saw someone with amazing red hair."
+    "Wait a minute, I recognize him!"
     #BRENNAN ON SCREEN. he looks the same
     #say different things based on if you had an affair with him in OPS??
     # Unfortunately, I did not save that variable persistently... I think the canonical OPS1 story is
@@ -759,16 +760,18 @@ label community11:
     him "No, no one mentioned it. Are you here to help [her_name] with her job again?"
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
+    her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
+    brennan "I'm really happy to be breathing fresh air, with my feet on solid ground again."
     brennan "How is your daughter? How old is she now in Earth years?"
     him "She's almost seven. You still don't look a day over 30."
     brennan "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
     him "..."
+    brennan "You don't look like you've aged too badly, considering how much sun you must get."
     brennan "Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I help gather everyone, and the wagon makes for an improptu stage."
     brennan "Thank you for the warm welcome! We're planning on staying here a good eight Earth years, and some of us for the rest of our lives." #check years
     brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
     brennan "I sent out the assignments a while ago, so try to find each other!"
-    #should the miner leader be just Brennan to cut down on the character art??
     "After asking around, I found our miner."
     #make this a menu
     him "Nice to meet you Chaco. How was the trip over?"
@@ -923,6 +926,7 @@ label community12:
                 chaco "Yes, I do. We usually have a barbeque when we get past our mining quota."
                 him "That sounds fun."
                 chaco "It is."
+                $ miners += 1
                 $ know_BBQ = True
             "Do you know about the missing cow?":
                 him "Hey did you hear about the missing cow?"
@@ -1069,12 +1073,20 @@ label community12:
                 jump tell_Pete
                 
         label message_Bandile:
-            "I sent Bandile a message asking about the cow." #write his exact reply
-            "Bandile explained that the miners had lots of credits, but what they really wanted was another barbeque."
-            "He had told the miners that there wasn't anymore beef available, but two of them went on a renegade mission to steal the cow."
+            # $ luddites += 1 not sure if this makes sense
+            "I sent Bandile a message asking about the cow." #e-mail/message UI thing
+            "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
+            "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
+            "We were buying beef and having barbeques almost fortnighly, and everyone really enjoyed them."
+            "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
+            "I heard that two of our miners went on a renegade mission to steal the cow."
             "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
+            "Some of our miners completely understand why we need to save the cows for calving. A few either don't understand or don't care."
             "Someone let the cow go the next day and no one has seen it since."
-            "I told Pete what I found out. He asked me if anyone would punish the theives and went looking for the cow."
+            "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
+            "I talked to the men who took the cow and they agreed to give Pete 100 credits each as an apology."
+            "That was the end of the message."
+            "I told Pete what I found out. He was happy about the credits, but still unhappy that his cow was gone."
             "I don't think he ever found her."
         
         label tell_Pete:
@@ -1088,20 +1100,132 @@ label community12:
 
 
 label community13:
-    "Chaco tells me that the miners found a beautiful cave while digging."
-    "Dr. Lily attends a brief expedition and discovers a vertebrate without an exoskeleton, which is very rare on Talaam because of the radiation."
+    "I awoke one morning to knocking on my door, and Terra asking me to answer the door."
+    lily "[his_name], we must act at once. Zaina told me about an enormous natural cave that the miners are set to run into tomorrow."
+    lily "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
+    lily "Not to mention that a natural cave could be an exciting destination for family day trips!"
+    lily "Although the mile-long descent might be a bit much for young children."
+    him "That sounds really interesting, but can we discuss it later? I'd like to get some more sleep."
     if is_liason: 
-        "Dr. Lily asks me to tell Rare Earth Tech about the unusual creatures to get them to halt mining operations in the cave."
-        "Rare Earth Tech says the miners are okay to continue their excavation however they see fit."
-        "I talk to Brennan about what it would take to halt the mining. He says the colony would have to compensate him for the time they can't work."
-        if (colonists >= 10):
-            "I convince the other colonists to compensate the miners to halt mining for two days."
-            "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
-            jump cave_explored
-        else:
-            "I ask the other colonists if they'd be willing to compensate the miners to stop the mining, but they aren't willing."
-            jump cave_unexplored
-        #if your relationship with colonists is high enough, you can collect enough money for them to halt mining for two days while Lily does research, and she won't leave?? with the luddites.
+        lily "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
+        him "Alright. What do you need me to ask?"
+        lily "Tell them to delay the mining on that branch of the mine until we can fully explore it."
+        him "Do they already know about the cave?"
+        lily "Have you told them about it? Then no."
+        him "Do you know what specific branch it is?"
+        lily "Yes, Zaina mentioned it, let me look it up."
+        lily "She says it's the third branch off the descent shaft. The one they call little Durban." #Durban is a South African town
+        him "Alright. I wrote: 'Please halt mining on little Durban. Natural cave found.'"
+        lily "I hope that I can still endure a cave exploration. It has been a long time since I've done any climbing."
+        him "I've seen you walking around town. I bet you can handle it."
+        lily "I can walk, but crawling around is a completely different thing."
+        lily "Aged bodies do not heal as quickly as young ones like yours."
+        him "Oh, they already replied. They said to go with whatever Brennan says."
+        lily "I can't believe this. Tell them I said to stop the mining!"
+        him "I can't send another message for twenty-four more hours."
+        lily "Fine. Let's go find Brennan then."
+        him "You talk to Brennan. I need to make breakfast."
+        lily "I'm afraid that my concerns may be dismissed due to my age and stature."
+        lily "Your company would lend my petition credibility."
+        him "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
+        "Not to mention a nap to take this afternoon, if I can manage it."
+        "It's still dark outside. As we walk to the mines, Dr. Lily tells me about her latest research."
+        "When we arrive, the control station is empty."
+        him "Well, we tried, but he's not here. Let's just send him a message."
+        lily "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
+        him "I have no idea."
+        "Dr. Lily knocks on the door of a nearby hut. She knocks for several minutes until she gets an answer."
+        lily "He said Brennan lives over here."
+        "She knocks on his door. A voice comes from behind the door."
+        brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
+        lily "We're not here to ask for a personal day."
+        "He opens the door."
+        brennan "Oh, sorry. I thought you were someone else."
+        brennan "Who do I owe for the pleasure of your visit?"
+        lily "Zaina. She told me that you are about to mine through an underground cave today or tomorrow."
+        lily "I would like to explore the cave. Once you reach the cave, I urge you to delay mining activity in order to allow for data collection."
+        brennan "Oh dear. The one in little Durban? We did run into the cave last night just before quitting for the day."
+        lily "Is there any way you can delay mining on that branch?"
+        brennan "I don't know. What will RET think?"
+        him "We asked them, and they said to defer to your judgement."
+        lily "I've never had the opportunity to study a cave here before. I believe it would be beneficial for our entire community."
+        brennan "The thing is, it's off of the descent tunnel. If it were just a branch it would be fine to leave for a few days or months."
+        brennan "But the most promising deposits are still deeper down! Even if I have all of our miners work on branches, their mining won't be as effective as digging deeper and then branching."
+        brennan "Zaina made a bunch of frequency tables if you're curious."
+        lily "But an opportunity like this is unprecedented. And what we study may impact those frequency tables."
+        brennan "More data is good for mining, definitely. How long do you need to explore the caves?"
+        lily "How long can you give me?"
+        brennan "I can definitely give you 8 hours."
+        lily "I need at least two days. Depending on how extensive the cave is, I might need months."
+        brennan "I'm willing to give you and Zaina two days. And I want updated frequency tables from Zaina."
+        lily "I will inform Zaina. Can you supply us with headlamps and radios?"
+        brennan "Yes. You'll need your own rope system and support personelle though."
+        lily "I'll go get Zaina now. [his_name], can you be our support person?"
+        him "I really need to get back to the farm."
+        lily "You can work on your farm. We just need someone to listen to the radio so that we can call for help if something happens."
+        him "I can do that."
+        "Dr. Lily told me her radio frequency, and I went home to work."
+        "I listened to Dr. Lily and Zaina chatting with each other while they explored the cave. Miranda Peron, Dr. Lily's research assistant, came too."
+        "She and Zaina took lots of photos, and Zaina took some rock samples." #put in actual conversations? or just summarize it all?
+        "They were still exploring when [her_name] came back from work and we listened to it in the background."
+        "As I was going to bed, they reported that they were done for the day and made it out safely."
+        "The next day, I turned the radio on to find that Lily and Zaina were already exploring the cave again."
+        "They breathlessly related how they found a pool of water with eyeless snail-like fish."
+        "Dr. Lily reported finding a vertebrate without a shell or exoskeleton, which she said was the first she'd ever seen."
+        "She got some video footage, but wasn't able to capture it. She said it looks kind of like a newt."
+        lily "[his_name], we need more time to explore this cave. If they mine through this, they might destroy animals that don't exist anywhere else."
+        lily "A vertabrate like this without a shell could be invaluable to our research."
+        lily "Tell Brennan we can't mine this cave until we explore it further."
+        him "Hey, I'm the liason between RET and the colonists, not between the colonists and the miners. Tell him yourself."
+        lily "I'm not proficient in presuasive rhetoric. And I don't have strong ties to other colonists through friendships or family."
+        lily "Would you please talk to Brennan as a personal favor?"
+        menu:
+            "Yes.":
+                him "Okay. We've come this far."
+                him "How would Brennan benefit from stopping the mining? Zaina, do you need more data?"
+                zaina "I have about as much as I can use, but I fully support Lily's research."
+                lily "Knowing more about our planet benefits everyone."
+                him "I'm on my way. Let's talk to Brennan together."
+                "I walked over to the camp. We found Brennan reading a book near his hut."
+                brennan "How the expedition?"
+                zaina "It was fantastic. The cave's beauty is beyond the capacity of verbal description."
+                lily "We found a very unusual species that could help us understand life on this planet."
+                brennan "Great. I'm glad that no one was hurt and that you could collect some data."
+                zaina "I have updated frequency tables for you--small tweaks, mostly."
+                brennan "Thank you!" #winning smile
+                him "Oh, can I see some of the pictures of the cave? Brennan, do you want to see too?"
+                brennan "Sure."
+                "Zaina showed us the photos of the cave on her tablet."
+                zaina "Unfortunately the newt-thing's habitat and the cave pond are in the mining trajectory."
+                zaina "Normally I would have been able to see the water with my imaging tools, but some layers were very resistant to radiation."
+                brennan "I see. We'll have to watch out for the water and drain it when we get to that point."
+                "Lily looks like she's about to cry."
+                him "Maybe you could go around it? Then you wouldn't have to worry about all that water."
+                brennan "We're bound to hit the water sooner or later. Might as well get it over with."
+                him "Lily really, really wants a few more days to study the cave. Is there any kind of side tunnel you could work on?"
+                brennan "That's what we've been doing the last two days. We really need to get back to the main descent tunnel so we can get to the right level for the metals we need."
+                him "What would it take to halt the mining for two days?"
+                brennan "If you compensated the miners with credits for the days they couldn't work, they would probably be happy. But I would still be two days behind schedule."
+                zaina "But if you go ahead with the mining, it might damage your relations with the other colonists, who are very much in favor of research."
+                brennan "Look, if you can get the credits together by midnight, I'll tell the miners that they can have paid vacation for the next two days."
+                "We hurriedly messaged everyone, and started going door-to-door to explain the situation."
+                if (colonists >= 10):
+                    #if we implement currency, ask how much to donate
+                    "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
+                    "We reached the goal by 11:30pm."
+                    "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
+                    "They even managed to capture a few of the newt-like creatures."
+                    jump cave_explored
+                else:
+                    "A lot of people donated a few credits here and there, but it wasn't enough to pay the miners for one day, let alone two."
+                    "We gave up around midnight, returning the credits to those who donated."
+                    #sit-in protest from Lily and Miranda? Would that make sense?
+                
+            "No.":
+                him "Sorry, I've already talked to Brennan more than I normally would for you."
+                him "I'm happy that you were able to explore the cave, but I don't think we can justify asking Brennan for more time when he's already doing you a favor."
+                lily "I understand."
+
     else:
         "Sara asked Rare Earth Tech to halt the mining on Dr. Lily's behalf, but they didn't stop."
         jump cave_unexplored
