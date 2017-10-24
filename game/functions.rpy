@@ -26,7 +26,6 @@ init 1 python:
 
 # TODO: change this to True to start shuffling menus
 default shuffle_menu = False
-
 init python:
     renpy_menu = menu
 

@@ -72,7 +72,9 @@ screen crop_details_screen():
             xsize 200
             
             $ crop_name = crop_info[crop_info_index][NAME_INDEX]
+            $ imagefile = "gui/crop icons/" + crop_name + ".png" 
             label crop_name.capitalize()
+            add imagefile
             text "Calories:     " + str(crop_info[crop_info_index][CALORIES_INDEX])
             text "Nutrition:    " + str(crop_info[crop_info_index][NUTRITION_INDEX])
             text "Fun:          " + str(crop_info[crop_info_index][FUN_INDEX])
@@ -94,6 +96,8 @@ screen crop_details_screen():
                 for i in range(0, farm_size):
                     $ max_crops_reached = (crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])          
                     if (crops[i] == ""):
+                        $ imagefile = "gui/crop icons/blank.png" 
+                        #imagebutton idle imagefile xysize (50,50) action [ SetCrop(i, ""), renpy.restart_interaction ] sensitive (not max_crops_reached)
                         textbutton "(_)":
                             xysize (50,50)
                             action [
@@ -102,12 +106,15 @@ screen crop_details_screen():
                                 ]
                             sensitive (not max_crops_reached)
                     else:
-                        textbutton "(" + crops[i][:2] + ")":
-                            xysize (50,50)
-                            action [
-                                SetCrop(i, ""),
-                                renpy.restart_interaction # This makes the screen refresh
-                                ]                                                                            
+                        $ imagefile = "gui/crop icons/" + crops[i] + ".png"
+                        imagebutton idle imagefile xysize (50,50) action [ SetCrop(i, ""), renpy.restart_interaction ]
+                        # Old textbuttons
+                        #textbutton "(" + crops[i][:2] + ")":
+                        #    xysize (50,50)
+                        #    action [
+                        #        SetCrop(i, ""),
+                        #        renpy.restart_interaction # This makes the screen refresh
+                        #        ]                                                                            
     
         # Totals so far                                                    
         vbox:

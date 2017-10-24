@@ -93,35 +93,34 @@ label start:
 
         # Dictionary containing the number of events seen for each crop 
         number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
-        # Tuple containing the crop name, calories, nutrition, fun, and work (scale of 0-10).  Also whether the crop is currently enabled or not.
         # TODO: add income
-        # TODO: add limits to maximum amount allowed
         # TODO: make it so you can't move perennials once placed
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
-        crop_info = (["corn",         8, 4, 8, 7, False, 100],    # Grains
-                            ["potatoes",     8, 5, 7, 6, True,  100],
-                            ["wheat",        8, 6, 8, 10,False, 100],
-                            ["peppers",      2, 6, 5, 5, False, 100],    # "Fruits"
-                            ["tomatoes",     3, 5, 6, 6, True,  100],
-                            ["plums",        3, 3, 8, 7, False, 1],
-                            ["plums+",       3, 3, 8, 2, False, 1],    # Perennials are easier after year 1
-                            ["squash",       4, 5, 5, 4, True,  100],
-                            ["strawberries", 1, 3, 7, 6, False, 2],
-                            ["strawberries+",1, 3, 7, 5, False, 2],
-                            ["blueberries",  3, 3, 9, 9, False, 2],
-                            ["blueberries+", 3, 3, 9, 4, False, 2],
-                            ["beans",        6, 7, 2, 7, True,  100],   # Legumes
-                            ["snow peas",    3, 5, 2, 4, False, 100],
-                            ["peanuts",      7, 6, 5, 8, False, 100],
-                            ["carrots",      3, 5, 4, 4, True,  100],   # Root Vegetables
-                            ["beets",        3, 4, 4, 4, False, 100],
-                            ["turnips",      3, 5, 3, 4, False, 100],
-                            ["onions",       4, 3, 7, 4, False, 100],
-                            ["garlic",       3, 4, 7, 4, False, 100],
-                            ["cabbage",      2, 4, 4, 3, False, 100],   # Leafy greens
-                            ["spinach",      3, 6, 4, 4, True,  100],
-                            ["broccoli",     3, 5, 3, 3, False, 100],
-                            ["goats",       10, 7, 7, 5, True,  1])   # Miscellaneous        
+        # Tuple containing the crop name, calories, nutrition, fun, work, currently enabled, and maximum allowed.        
+        crop_info =     (["corn",         8, 4, 8, 7, False, 100],    # Grains
+                        ["potatoes",     8, 5, 7, 6, True,  100],
+                        ["wheat",        8, 6, 8, 10,False, 100],
+                        ["peppers",      2, 6, 5, 5, False, 100],    # "Fruits"
+                        ["tomatoes",     3, 5, 6, 6, True,  100],
+                        ["plums",        3, 3, 8, 7, False, 1],
+                        ["plums+",       3, 3, 8, 2, False, 1],    # Perennials are easier after year 1
+                        ["squash",       4, 5, 5, 4, True,  100],
+                        ["strawberries", 1, 3, 7, 6, False, 2],
+                        ["strawberries+",1, 3, 7, 5, False, 2],
+                        ["blueberries",  3, 3, 9, 9, False, 2],
+                        ["blueberries+", 3, 3, 9, 4, False, 2],
+                        ["beans",        6, 7, 2, 7, True,  100],   # Legumes
+                        ["snow peas",    3, 5, 2, 4, False, 100],
+                        ["peanuts",      7, 6, 5, 8, False, 100],
+                        ["carrots",      3, 5, 4, 4, True,  100],   # Root Vegetables
+                        ["beets",        3, 4, 4, 4, False, 100],
+                        ["turnips",      3, 5, 3, 4, False, 100],
+                        ["onions",       4, 3, 7, 4, False, 100],
+                        ["garlic",       3, 4, 7, 4, False, 100],
+                        ["cabbage",      2, 4, 4, 3, False, 100],   # Leafy greens
+                        ["spinach",      3, 6, 4, 4, True,  100],
+                        ["broccoli",     3, 5, 3, 3, False, 100],
+                        ["goats",       10, 7, 7, 5, True,  1])   # Miscellaneous        
         
         total_calories = 0
         total_nutrition = 0
