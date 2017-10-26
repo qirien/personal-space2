@@ -7,17 +7,16 @@
 # TODO: show kids' ages and farm/community info
 
 screen plan_farm:
+    style_prefix "plan_farm"
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 22 color "FFFFFF"
+        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
         textbutton "?" xpos 1077 ypos 22 action Jump("tutorial_ask")
         textbutton "             " xpos 1085 ypos 22 action ShowMenu("preferences")
         vbox:
             area (60, 50, 1160, 630)           
             yfill True
-            label "Farm Plan for Year " + str(year):
-                xalign 0.5
             hbox:                
                 xfill True
                 yfill True
@@ -44,7 +43,9 @@ screen plan_farm:
                     
                 # crop details here          
                 vbox:
-                    yalign 0.5                    
+                    yalign 0
+                    label "Farm Plan for Year " + str(year):
+                        xalign 0.5                    
                     use crop_details_screen
                     
                     hbox:
@@ -86,7 +87,10 @@ screen crop_details_screen():
             xalign 0.5
             label "Layout"
             vpgrid:
-                cols 4
+                if (farm_size <= 16):
+                    cols 4
+                else:
+                    cols 8
                 spacing 5
                 draggable True
                 mousewheel True
@@ -107,7 +111,13 @@ screen crop_details_screen():
                             sensitive (not max_crops_reached)
                     else:
                         $ imagefile = "gui/crop icons/" + crops[i] + ".png"
-                        imagebutton idle imagefile xysize (50,50) action [ SetCrop(i, ""), renpy.restart_interaction ]
+                        imagebutton:
+                            idle imagefile 
+                            xysize (50,50)
+                            anchor (0.5, 0.5)
+                            align  (0.5, 0.5)
+                            action [ SetCrop(i, ""), renpy.restart_interaction ] 
+                            at highlight_imagebutton
                         # Old textbuttons
                         #textbutton "(" + crops[i][:2] + ")":
                         #    xysize (50,50)
@@ -144,6 +154,7 @@ screen crop_details_screen():
     # Show crops that we can choose from
     vpgrid:
         xfill True
+        # TODO: change this based on number of enabled crops?
         cols 4
         spacing 2
         draggable True
@@ -152,15 +163,18 @@ screen crop_details_screen():
         
         for j in range(0, len(crop_info)):
             if (crop_info[j][ENABLED_INDEX]):
-                $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])                        
-                textbutton crop_info[j][NAME_INDEX]:
-                    xysize (50,50) 
-                    action [
-                            SetVariable("crop_info_index", j),
-                            renpy.restart_interaction # This makes the screen refresh
-                    ]
+                $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
+                $ imagefile = "gui/crop icons/" + crop_info[j][NAME_INDEX] + ".png"
+                imagebutton:
+                    idle imagefile 
+                    xysize (50,50)
+                    anchor (0.5, 0.5)
+                    align  (0.5, 0.5)
                     sensitive (not max_crops_reached)
                     selected ((crop_info_index == j) and (not max_crops_reached))
+                    action [ SetVariable("crop_info_index", j), renpy.restart_interaction ] 
+                    at highlight_imagebutton
+                    
                     # TODO: Add alternate action to get more crop info?            
     
     
@@ -177,3 +191,10 @@ init python:
         global crops
         crops.setDefault()
         
+# Custom styles for the farm planning screen
+style plan_farm_label is label
+style plan_farm_hbox is hbox:
+    background "#000"
+style plan_farm_label_text is label_text:
+    color "#fff"
+    

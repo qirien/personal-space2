@@ -17,39 +17,59 @@ init python:
 # GUI Configuration Variables
 ################################################################################
 
+# COLOR PALETTE
+# Thanks to Google's Material Desing Color Tool,
+# https://material.io/color/#!/?view.left=0&view.right=1&primary.color=558B2F&secondary.color=ccbb99
+
+# Mossy green
+define green_med   = "#558b2f"
+define green_light = "#85bb5c"
+define green_dark  = "#255d00"
+
+# Tan
+define tan_med   = "#ccbb99"
+define tan_light = "#ffedca"
+define tan_dark  = "#9b8b6b"
+
+# Shades of Gray
+define white = "#ffffff"
+define gray_light = "#aaaaaa"
+define gray_dark  = "#5a5a5a"
+define black = "#000000"
+
 
 ## Colors ######################################################################
 ##
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#446644'
+define gui.accent_color = green_med
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = '#ccbb99'
+define gui.idle_color = tan_med
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
-define gui.idle_small_color = '#aaaaaa'
+define gui.idle_small_color = tan_light
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = '#779955'
+define gui.hover_color = tan_light
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = '#ffffff'
+define gui.selected_color = white
 
 ## The color used for a text button when it cannot be selected.
-define gui.insensitive_color = '#8866557f'
+define gui.insensitive_color = tan_dark
 
 ## Colors used for the portions of bars that are not filled in. These are not
 ## used directly, but are used when re-generating bar image files.
-define gui.muted_color = '#779955'
-define gui.hover_muted_color = '#446644'
+define gui.muted_color = green_med
+define gui.hover_muted_color = green_dark
 
 ## The colors used for dialogue and menu choice text.
-define gui.text_color = '#ffffff'
-define gui.interface_text_color = '#ffffff'
+define gui.text_color = white
+define gui.interface_text_color = white
 
 
 ## Fonts and Font Sizes ########################################################

@@ -75,12 +75,6 @@ init -100:
     define sitting = Position(ypos=0.45, yanchor=0)
     define squatting = Position(ypos=0.25, yanchor=0)
     define standing = Position(ypos= 1.0, yanchor = 1.0)
-    transform slideinpausefade:
-        xalign 1.25
-        yalign 0.05
-        linear 1.5 xalign 0.05
-        pause 2.0
-        linear 1.0 alpha 0.0
     
     # Baby positions for being held
     define baby_ypos = 540
@@ -94,6 +88,27 @@ init -100:
     
     # Kid positions for really short people
     define centerkid = Position(xpos = 0.5, xanchor = 0.5, ypos = 0.75)
+
+    # Slide in from the right to the left, pause, then fade out. Used for monthly interscene screen
+    transform slideinpausefade:
+        xalign 1.25
+        yalign 0.05
+        linear 1.5 xalign 0.05
+        pause 2.0
+        linear 1.0 alpha 0.0
+        
+    # Highlight when moused over
+    transform highlight_imagebutton:
+        xanchor 0.5
+        yanchor 0.5
+        xalign 0.5
+        yalign 0.5
+        on hover:
+            zoom 1.0
+            alpha 1.0
+        on idle:
+            zoom 0.8
+            alpha 0.8
     
     # Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:

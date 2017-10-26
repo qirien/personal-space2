@@ -19,14 +19,6 @@ init -10:
         (0,0), "gui/computer pad.png",
         (0,0), "gui/computer pad screen.png")
     
-    # Farming icons
-    image tomato = "gui/crop icons/tomato.png"
-    image beans = "gui/crop icons/beans.png"
-    image carrot = "gui/crop icons/carrot.png"
-    image goat = "gui/crop icons/goat.png"
-    image potato = "gui/crop icons/potato.png"
-    image spinach = "gui/crop icons/spinach.png"
-    image squash = "gui/crop icons/squash.png"
     image ctc_blink:
            "gui/ctc.png"
            linear 0.75 alpha 1.0

@@ -118,7 +118,7 @@ label start:
                         ["onions",       4, 3, 7, 4, False, 100],
                         ["garlic",       3, 4, 7, 4, False, 100],
                         ["cabbage",      2, 4, 4, 3, False, 100],   # Leafy greens
-                        ["spinach",      3, 6, 4, 4, True,  100],
+                        ["spinach",      2, 6, 4, 4, True,  100],
                         ["broccoli",     3, 5, 3, 3, False, 100],
                         ["goats",       10, 7, 7, 5, True,  1])   # Miscellaneous        
         
@@ -176,10 +176,10 @@ label start:
     call community_intro    
     
     # Initial farm setup
+    scene stars with fade    
     $ crops = Crops(farm_size)
     call screen plan_farm
     
-    scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
     "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
