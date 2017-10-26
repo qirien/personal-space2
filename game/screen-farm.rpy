@@ -14,52 +14,59 @@ screen plan_farm:
         text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
         textbutton "?" xpos 1077 ypos 22 action Jump("tutorial_ask")
         textbutton "             " xpos 1085 ypos 22 action ShowMenu("preferences")
-        vbox:
-            area (60, 50, 1160, 630)           
+        vbox:            
+            area (60, 50, 1150, 620)           
             yfill True
             hbox:                
                 xfill True
                 yfill True
                 
-                vbox:
-                    yfill True
+                vbox:                    
                     # family details here
-                    vbox:
-                        xsize LEFT_COLUMN_WIDTH
-                        # TODO: Add a small family photo
-                        label "[his_name] and [her_name]'s Family"
-                        text "Kids:"                         
-                        text "[kid_name], [earth_year] earth years"
-                        if (bro_birth_year != 0):
-                            text "[bro_name], [bro_age] earth years"
-                                        # Community info
-
-                    # community/reference details
-                    vbox: 
-                        xsize LEFT_COLUMN_WIDTH
-                        label "Community" # TODO: have cute icons for these, like on a phone?
-                        textbutton "Message Board" action Show("messages")
-                        textbutton "Parenting Handbook" action Show("parenting_handbook")
+                    frame:
+                        yfill True                        
+                        background gray_light
+                        has vbox
+                        vbox:
+                            xsize LEFT_COLUMN_WIDTH
+                            # TODO: Add a small family photo
+                            label "[his_name] and [her_name]'s Family"
+                            text "Kids:"                         
+                            text "[kid_name], [earth_year] earth years"
+                            if (bro_birth_year != 0):
+                                text "[bro_name], [bro_age] earth years"
+                                            # Community info
+    
+                        # community/reference details
+                        vbox: 
+                            xsize LEFT_COLUMN_WIDTH
+                            label "Community" # TODO: have cute icons for these, like on a phone?
+                            textbutton "Message Board" action Show("messages")
+                            textbutton "Parenting Handbook" action Show("parenting_handbook")
                     
                 # crop details here          
-                vbox:
-                    yalign 0
-                    label "Farm Plan for Year " + str(year):
-                        xalign 0.5                    
-                    use crop_details_screen
-                    
-                    hbox:
-                        xfill True
-                        null width LEFT_COLUMN_WIDTH
-                        textbutton "Auto":
+                frame:
+                    yfill True
+                    background gray_dark
+                    style_prefix "crop_details"                    
+                    vbox:                    
+                        label "Farm Plan for Year " + str(year):
                             xalign 0.5
-                            action [
-                                        set_default_crops,
-                                        Return()
-                                    ]
-                        textbutton "Accept Plan":
-                            xalign 1.0
-                            action Return()
+                        
+                        use crop_details_screen                         
+                        
+                        hbox:
+                            xfill True
+                            null width LEFT_COLUMN_WIDTH
+                            textbutton "Auto":
+                                xalign 0.5
+                                action [
+                                            set_default_crops,
+                                            Return()
+                                        ]
+                            textbutton "Accept Plan":
+                                xalign 1.0
+                                action Return()
 
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
@@ -85,6 +92,7 @@ screen crop_details_screen():
         # Crop layout area
         vbox:
             xalign 0.5
+            xsize 400
             label "Layout"
             vpgrid:
                 if (farm_size <= 16):
@@ -101,7 +109,6 @@ screen crop_details_screen():
                     $ max_crops_reached = (crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])          
                     if (crops[i] == ""):
                         $ imagefile = "gui/crop icons/blank.png" 
-                        #imagebutton idle imagefile xysize (50,50) action [ SetCrop(i, ""), renpy.restart_interaction ] sensitive (not max_crops_reached)
                         textbutton "(_)":
                             xysize (50,50)
                             action [
@@ -118,13 +125,32 @@ screen crop_details_screen():
                             align  (0.5, 0.5)
                             action [ SetCrop(i, ""), renpy.restart_interaction ] 
                             at highlight_imagebutton
-                        # Old textbuttons
-                        #textbutton "(" + crops[i][:2] + ")":
-                        #    xysize (50,50)
-                        #    action [
-                        #        SetCrop(i, ""),
-                        #        renpy.restart_interaction # This makes the screen refresh
-                        #        ]                                                                            
+                             
+            # Show crops that we can choose from
+            vpgrid:
+                # TODO: change this based on number of enabled crops?
+                cols 4
+                spacing 2
+                draggable True
+                mousewheel True        
+                #scrollbars "horizotal"
+                
+                for j in range(0, len(crop_info)):
+                    if (crop_info[j][ENABLED_INDEX]):
+                        $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
+                        $ imagefile = "gui/crop icons/" + crop_info[j][NAME_INDEX] + ".png"
+                        imagebutton:
+                            idle imagefile 
+                            xysize (50,50)
+                            anchor (0.5, 0.5)
+                            align  (0.5, 0.5)
+                            sensitive (not max_crops_reached)
+                            selected ((crop_info_index == j) and (not max_crops_reached))
+                            action [ SetVariable("crop_info_index", j), renpy.restart_interaction ] 
+                            at highlight_imagebutton
+                            
+                            # TODO: Add alternate action to get more crop info?            
+                        
     
         # Totals so far                                                    
         vbox:
@@ -151,31 +177,6 @@ screen crop_details_screen():
             text "Fun:          " + str(total_fun)
             text "Work:         " + str(total_work)                 
     
-    # Show crops that we can choose from
-    vpgrid:
-        xfill True
-        # TODO: change this based on number of enabled crops?
-        cols 4
-        spacing 2
-        draggable True
-        mousewheel True
-        #scrollbars "horizotal"
-        
-        for j in range(0, len(crop_info)):
-            if (crop_info[j][ENABLED_INDEX]):
-                $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
-                $ imagefile = "gui/crop icons/" + crop_info[j][NAME_INDEX] + ".png"
-                imagebutton:
-                    idle imagefile 
-                    xysize (50,50)
-                    anchor (0.5, 0.5)
-                    align  (0.5, 0.5)
-                    sensitive (not max_crops_reached)
-                    selected ((crop_info_index == j) and (not max_crops_reached))
-                    action [ SetVariable("crop_info_index", j), renpy.restart_interaction ] 
-                    at highlight_imagebutton
-                    
-                    # TODO: Add alternate action to get more crop info?            
     
     
 init python:
@@ -192,9 +193,32 @@ init python:
         crops.setDefault()
         
 # Custom styles for the farm planning screen
-style plan_farm_label is label
-style plan_farm_hbox is hbox:
-    background "#000"
+style plan_farm_label is label:
+    background green_dark
+    xfill True
+
 style plan_farm_label_text is label_text:
-    color "#fff"
+    color white
+    font "fonts/Questrial-Regular.otf"
     
+style plan_farm_button_text is button_text:
+    font "fonts/Questrial-Regular.otf"
+    idle_color green_med
+    hover_color green_dark
+    
+style plan_farm_text is text:
+    color black
+    
+# Custom styles for the crop details part of the screen
+style crop_details_vpgrid is vpgrid:
+    xalign 0.5
+    
+style crop_details_label is plan_farm_label:
+    background tan_dark
+    
+style crop_details_label_text is plan_farm_label_text:
+    color black    
+    
+style crop_details_button_text is plan_farm_button_text:
+    idle_color tan_med
+    hover_color tan_light

@@ -176,7 +176,7 @@ label start:
     call community_intro    
     
     # Initial farm setup
-    scene stars with fade    
+    scene gray_dark with fade    
     $ crops = Crops(farm_size)
     call screen plan_farm
     
@@ -225,7 +225,7 @@ label start:
         # CHOOSE FOR NEXT YEAR
 
         hide screen say        
-        scene stars with fade
+        scene gray_dark with fade
         $ crops = Crops(farm_size)
         call screen plan_farm
         $ year += 1        
