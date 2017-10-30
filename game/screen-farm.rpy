@@ -194,17 +194,17 @@ init python:
         
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
-    background green_dark
+    background tan_dark
     xfill True
 
 style plan_farm_label_text is label_text:
-    color white
+    color black
     font "fonts/Questrial-Regular.otf"
     
 style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
-    idle_color green_med
-    hover_color green_dark
+    idle_color tan_dark
+    hover_color tan_med
     
 style plan_farm_text is text:
     color black
@@ -214,11 +214,11 @@ style crop_details_vpgrid is vpgrid:
     xalign 0.5
     
 style crop_details_label is plan_farm_label:
-    background tan_dark
+    background green_dark
     
 style crop_details_label_text is plan_farm_label_text:
     color black    
     
 style crop_details_button_text is plan_farm_button_text:
-    idle_color tan_med
-    hover_color tan_light
+    idle_color green_med
+    hover_color green_light   

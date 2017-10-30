@@ -1,6 +1,19 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
+label tests:
+    menu:
+        "Which test would you like to run?"
+        "Family Events.":
+            call test_family
+        "Positions":
+            call test_positions
+            call baby_positions
+        "Omake":
+            call omake
+        
+    return
+
 label test_family:
     
     $ year = 1

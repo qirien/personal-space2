@@ -158,8 +158,8 @@ label start:
             $her_name = renpy.input("Wife's Name", default=her_name)
             $kid_name = renpy.input("Baby girl's Name", default=kid_name)
             jump name_change_loop
-        "Omake":
-            jump omake
+        "Test Menu":
+            jump tests
         
     scene stars_animated with fade                
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."

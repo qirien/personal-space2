@@ -3423,6 +3423,60 @@ return
 # Solutions include: screen-free time, a new hobby, helping her setup a hangout space/time 
 # with friends, etc.
 label family23:
+    "It hadn't really been a big deal to share our computer pad with the kids when they were small."
+    "On Earth we had been used to everyone having their own, but lots of things were different here on Talaam."
+    "But lately, [kid_name] was on there all the time..."
+    scene farm_interior with fade
+    show kid at midright with dissolve
+    show him at midleft with moveinleft
+    him surprised "Hey, [kid_name], I need to use the computer pad. Can you finish up, please?"
+    kid "Dad, I'm doing my homework!"
+    him normal "With headphones on?"
+    kid "Listening to music helps me concentrate!"
+    show him at center with move
+    "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other."
+    him annoyed "Does texting help you concentrate, too?"
+    kid "Yes!"
+    menu:
+        "No texting during homework.":
+            him angry "No texting during homework! It's distracting!"
+            kid "What?!"
+            him annoyed "You heard what I said."
+            $ parenting_style = get_parenting_style()
+            if (parenting_style == "authoritarian"):
+                kid "Whatever."
+                him angry "Don't talk back to me!"
+                kid "Okay, dad."
+                $ authoritarian += 1
+                
+            elif (parenting_style == "authoritative"):
+                kid "That's really unreasonable, dad. Can you please just trust me to get my homework done in my own way?"
+                him surprised "What are you suggesting?"
+                kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and when you're done I won't text while I'm finishing up."
+                him determined "You think you can be done in thirty minutes."
+                kid "I know I can!"
+                menu:
+                    "What should I say?"
+                    "No. No texting during homework."
+                    "Yes, that sounds reasonable."
+                
+            elif (parenting_style == "permissive"):
+                kid "Daaaad, that's just not fair! You've always let me do that before!"
+                him angry "I didn't know you were doing it!"
+                kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"
+                
+                
+            else:
+                kid "Oh, now suddenly you care about my homework?!"
+                
+        "What are you guys talking about?"
+        "Do you do this all the time?"
+        "Why don't you meet in person?"
+        "When do you think you'll be done?"
+        "I need to use the computer pad; hand it over."
+    
+    
+    
     "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
     menu:
         "Ask her to set herself a deadline to finish her homework":
