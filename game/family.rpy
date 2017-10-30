@@ -3457,9 +3457,11 @@ label family23:
                 kid "I know I can!"
                 menu:
                     "What should I say?"
-                    "No. No texting during homework."
-                    "Yes, that sounds reasonable."
-                
+                    "No. No texting during homework.":
+                        him "No. You may not text during homework!"
+                    "Yes, that sounds reasonable.":
+                        him "Yes... that sounds pretty reasonable."
+                    # TODO: finish this
             elif (parenting_style == "permissive"):
                 kid "Daaaad, that's just not fair! You've always let me do that before!"
                 him angry "I didn't know you were doing it!"
