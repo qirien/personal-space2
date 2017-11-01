@@ -2976,23 +2976,173 @@ label family16:
 # 10.5 Earth years old
 # Unexplained crying
 label family17:
-    "She won't stop crying. She won't even explain what the problem is. She's making the other kid(s) cry and the entire house is filled with her wails."
+    "I know parents aren't supposed to have favorite kids, but..."
     menu:
-        "Leave. You can't handle all the noise!":
-            $ neglectful += 1
-        "Shut up or I'll give you something to REALLY cry about!":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Go for a walk and let her calm down.":
-            $ demanding += 1
+        "[kid_name] was my favorite.":
+            "[kid_name] was my favorite. She was so expressive and dramatic and full of life. She always wanted to talk to me."
+            "Sure, when she was angry, she was a volcano! But she'd also still snuggle up to me and tell me she loved me."
+            "I also loved [bro_name], of course. But he was content to do things quietly, by himself, so I didn't spend as much time with him."            
+        "[bro_name] was my favorite.":
+            "[bro_name] was my favorite. He was so much easier and was content to do his own thing, instead of bugging me and getting in trouble all the time."
+        "I refused to even think about having a favorite kid.":
+            "No. I wasn't going to allow myself to have a favorite kid. I loved them both, even though they were very different."
+            "[kid_name] was always expressive and loved to talk and have people pay attention to her."
+            "[bro_name] was a lot quieter. He was happy just doing his own thing most of the time."
+    
+    "But even he had problems sometimes."
+    scene farm_exterior with fade
+    show him at center with moveinright
+    
+    "I came back from working one day to hear loud wails emanating from the house."
+    him surprised "Is that... [bro_name]?"
+    "I also heard some shouting."
+    kid angry "Stop crying! Be quiet! You're giving me a headache!"
+    "The weeping just got louder."
+    kid sad "Stop, you're going to get snot all over my bed! What's your problem, anyway?!"
+    menu:
+        "What should I do?"
+        "Hurry and go help.":
             $ responsive += 1
-            $ authoritative += 1
-        "Bring her some tissues and rub her back.":
+            "I quickened my pace and arrived on the scene."
+        "Leave them alone.":
+            $ responsive -= 1
+            $ demanding -= 1
+            "I didn't want to get in the middle of that mess. I decided I had some more work I really should get done before I went home."
+            kid angry "Get- Off- My- BED!"
+            "There was a loud THUMP - probably the sound of [kid_name] pushing [bro_name] off her bed and onto the floor."
+            bro "Owwwww! Wahhhhhhh!"
+            "The wailing increased in volume and I decided this was not a problem that was going to solve itself."
+        "Listen some more.":
+            $ demanding += 1
+            "I decided to eavesdrop a bit to find out what was going on."
+            kid angry "Get- Off- My- BED!"
+            "There was a loud THUMP - probably the sound of [kid_name] pushing [bro_name] off her bed and onto the floor."
+            bro "Owwwww! Wahhhhhhh!"
+            "The wailing increased in volume and I decided I'd better go in."            
+    
+    scene farm_interior with fade
+    show bro sad at midright, squatting
+    show kid angry at center
+    with dissolve
+    show him at midleft with moveinleft
+    
+    him surprised "What's going on here?"
+    kid sad "[bro_name] keeps crying and he won't stop or even tell me what's going on and he's making a huge mess!"
+    "[kid_name] was almost as upset as [bro_name], who was still crying uncontrollably. His face was red and snot streamed down from his nose."
+    menu:
+        "What should I do?"
+        "Get [bro_name] a handkerchief.":
             $ responsive += 1
-            $ permissive += 1
-            
-        # TODO: Finally it comes out that one of her friends doesn't want to be her friend anymore. May have something to do with community tensions.  You can help her work out a plan of action, sympathize, or tell her that's how life is.
+            "I didn't say anything, just got a handkerchief for [bro_name] and handed it to him. He wiped his nose, and soon the handkerchief was completely saturated."
+            "I got a few more, and sat by him as he continued to cry."
+            kid "What's wrong with him?! We just came home from school and when he saw the bread was gone he freaked out!" 
+        "Ask [kid_name] for more details":
+            him concerned "How did this start?"
+            kid "I don't know! We just came home from school and we were going to have a snack but there wasn't any bread and he started freaking out."
+        "Tell [bro_name] to be quiet.":
+            $ demanding += 1
+            him determined "[bro_name], you need to stop crying."
+            "He just wailed even louder."
+            kid "What's wrong with him?! We just came home from school and when he saw the bread was gone he freaked out!"
+        "Ask [bro_name] what's wrong.":
+            him concerned "What's wrong, [bro_name]?"
+            bro "There's (sniff) no (sniff) bread!"
+            kid "He's been like that since we got home from school."
+        
+    him determined "[her_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
+    kid "I don't know how I'm supposed to get any homework done with that racket."
+    him annoyed "Then go to the library, or the clinic, or wherever you need to, okay?"
+    "She sighed. I wasn't sure if she was just annoyed at the inconvenience, or if she was really worried about [bro_name], but she took the computer pad and left."
+    "I turned my attention to [bro_name], who was working his way through handkerchief number three."
+    
+    $ cry_duration = 0
+    menu family17_cry_loop:
+        "What should I do?"
+        "Think about it from [bro_name]'s point of view.":
+            $ responsive += 1
+            "It wasn't that unusual for us to be out of bread; we didn't have it all the time. But [bro_name] did really like it."
+            "I had eaten the last two pieces with my lunch. Maybe he had been looking forward to eating them?"
+            "That didn't seem worth throwing a fit about, though... maybe something happened at school?"
+            $ cry_duration += 1
+            if (cry_duration >= 2):
+                jump family17_aftercry
+            else:
+                jump family17_cry_loop
+        "Ask him what happened at school.":
+            him surprised "Did something happen at school?"
+            "It was like he didn't even hear me. He just kept crying."
+            $ cry_duration += 1
+            if (cry_duration >= 2):
+                jump family17_aftercry
+            else:
+                jump family17_cry_loop
+        "Yell at him.":
+            $ demanding += 1
+            him angry "Quit crying and tell me what's wrong! I can't help you if you won't talk about it!"
+            "He just cried even louder."
+            $ cry_duration += 1
+            jump family17_angry
+        "Just sit quietly with him.":
+            $ responsive += 1
+            "I didn't know what to do, so I just sat down next to him."
+            "I patted his back. That's supposed to be reassuring, right?"
+            "..."
+            "After a few minutes, he was still crying."
+            $ cry_duration += 1
+            if (cry_duration >= 2):
+                jump family17_aftercry
+            else:
+                jump family17_cry_loop                        
+    
+    him concerned "Hey, I want to help you. Whatever the problem is, we can fix it."
+    bro "I want (sniff) bread!"
+    "At least he was talking now. Maybe we were making some progress?"
+    him surprised "Bread? Really? This whole thing is just about bread?"
+    bro "I really like it! I wanted to have it when I got home!"
+    menu:
+        "What should I do?"
+        "Apologize for eating it.":
+            $ responsive += 1
+            him sad "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
+            bro "I want bread!"            
+        "Acknowledge his feelings.":
+            $ responsive += 1
+            him sad "You were pretty disappointed when you came home and the bread was gone, huh?"
+            "He nodded."
+        "Tell him to accept facts.":
+            him determined "Well, the bread's gone, and that's all there is to it. Crying won't bring it back."
+            bro "But I want bread!"
+        "Ask what this is really about.":
+            him annoyed "[bro_name], you can't be this upset about bread. That's just not that important. What's really going on here?"
+            bro "It's important to me!"
+        # TODO: Finally it comes out that a friend/teacher was mean? May have something to do with community tensions.  You can help him work out a plan of action, sympathize, or tell him that's how life is.
     return
+
+label family17_angry:
+    him annoyed "You're too old to be throwing tantrums like this! You're blubbering like a baby!"
+    bro "I... can't help it (sniff)"
+    him determined "You can help it, and you will. This is no way for a kid your age to behave."
+    "If anything, his crying got worse. I started to feel really frustrated. I wanted to help [bro_name], but nothing I was doing was helping!"
+    menu:
+        "What should I do?"
+        "Spank him.":
+            $ responsive -= 5
+            him annoyed "Stop crying or you'll get a spanking!"
+            "He continued crying as if I hadn't said anything."
+            "His disobedience was really infuriating!"
+            him angry "You want to cry?! Fine, I'll give you something to REALLY cry about!"
+            "(whack)"
+            "(whack)"
+            "(whack)"
+            "His crying increased, but I was done. I couldn't help him; nobody could. He was just impossible!"
+            "I stomped out of the room, out of the house, but I could still hear him."
+            "How could a child make me feel so helpless?!"
+            $ authoritarian += 1
+        "Leave him alone.":
+            him annoyed "Cry here all afternoon if you want to; I'm not going to wait around for you."
+            $ neglectful += 1
+    return
+            
 
 # 11.1 Earth years old
 # Wants a bike!
@@ -3450,9 +3600,9 @@ label family23:
                 $ authoritarian += 1
                 
             elif (parenting_style == "authoritative"):
-                kid "That's really unreasonable, dad. Can you please just trust me to get my homework done in my own way?"
+                kid "That's really unfair, dad. Can you please just trust me to get my homework done in my own way?"
                 him surprised "What are you suggesting?"
-                kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and when you're done I won't text while I'm finishing up."
+                kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
                 him determined "You think you can be done in thirty minutes."
                 kid "I know I can!"
                 menu:
@@ -3470,6 +3620,7 @@ label family23:
                 
             else:
                 kid "Oh, now suddenly you care about my homework?!"
+                him surprised "Of course I care about your homework!"
                 
         "What are you guys talking about?"
         "Do you do this all the time?"
