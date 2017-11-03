@@ -54,15 +54,16 @@ label community1:
 
 label community2:
     "You've run out of storage space in your cellar, so you take the extras over to the storehouse."
-    kevin "I'm aware that it's less efficient. But if I don't bring you my whole harvest, you won't know how much food I'm making. It's also part of our contract."
-    ilian "I trust you to not hoard food, but I do appreciate your thoroughness. As long as you can manage bringing it all over."
-    ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and they can have more variety in their diet."
+    kevin "It is part of our contract that I bring you my whole harvest, even if I will consume all of it."
+    ilian "I do appreciate your thoroughness. I hope it wasn't too much trouble to show me your buckets of tomatoes and squash."
+    ilian "For things that keep a long time, you don't have to bring them right away."
+    ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and he can have more variety in his diet."
     him "Sure, do you like spinach?" #to do:is there a way to call a vegetable that has been planted?
     kevin "A variety of foodstuffs is beneficial to anyone's diet."
-    ilian "You know, Kevin and Zaina brought me everything that they harvested. Apparently that's the way we've supposed to have been doing it all along."
+    ilian "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we've supposed to have been doing it all along."
     him "Huh, really? How in the world do you have time to farm?"
     kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
-    him "'It's so much more than a pastime for us!'"#to himself
+    him "It might be an amusing pastime for you, but it's our survival you're talking about here."
     kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
     ilian "That's what I'm here for."
     #kevin leaves
@@ -78,22 +79,30 @@ label community2:
              $ pass
     label after_contract:
     ilian "Will you start bringing your whole harvest in or not?"
+    him "How about I can write down the amount I harvest and I'll bring in the surplus? Or I could take a picture."
+    ilian "I'm pretty sure I could trust you, but it's better if I can measure it all so we can be consistent."
+    him "Okay, I see your point."
     menu:
         "Should I bring my whole harvest in to the storehouse?"
         "I can bring in the whole harvest.":
             $ colonists += 1 
-            $ miners += 1 #TODO: another variable for this event?
+            $ miners += 1
             $ whole_harvest_to_storehouse = True
-        "Push to have each farmer store most of their own crops. It's more efficient, right?":
+            #TODO: make this add to the future stress variable
+        "I will keep storing most of my own crops.":
             $ luddites += 1
     return
     
-    label contract: #to do: make this a different font with a white paper fade-in so it looks all businessy
-        "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists. Farmers will farm 3 acres to the best of their ability as weather permits."   
-        "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."  
-        "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
-        "Colonist couples of childbearing age must attempt to replace themselves through reproduction. Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
-        "RET reserves the right to amend this document as it sees fit."
+    label contract: #to do: make this a different font with a white paper fade-in so it looks all businessy. something weird is happening with it right now.
+        computer "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists." 
+        computer "Farmers will farm 3 acres to the best of their ability as weather permits."   
+        computer "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager" 
+        computer "to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."  
+        computer "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations" 
+        computer "and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
+        computer "Colonist couples of childbearing age must attempt to replace themselves through reproduction." 
+        computer "Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
+        computer "RET reserves the right to amend this document as it sees fit."
     jump after_contract
 
 
@@ -161,11 +170,11 @@ label community4:
     #TODO: separate style for RET messages?
     $ style = get_parenting_style()
     if (style== "authoritative"):
-        "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+        "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
     elif(style == "authoritarian"):
-        "We need a designated contact with the colony that you trust. Send your decision."
+        "We need a designated contact with the colony that u trust. Send ur decision."
     elif(style == "permissive"):
-        "You should probably choose someone to represent the colonist's interests to us."
+        "U shld choose some1 2 represent the colony 2 us."
     else:
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
         
@@ -207,6 +216,10 @@ label community4:
 
 
 label community5:
+    $ talked_cans = False
+    $ talked_credits = False
+    $ require_whole_harvest = False
+    $ rationing = False
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
@@ -214,16 +227,16 @@ label community5:
         "It said:"
         $ style = get_parenting_style()
         if (style== "authoritative"):
-            "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
+            "50 new miner neighbors are coming in 4 Earth years. Plz feed them when they come."
         elif(style == "authoritarian"):
-            "50 miners are arriving in 4 Earth years. Prepare to feed them, and institute currency so that they can pay you for what they eat."
+            "50 miners are arriving in 4 Earth years. Prepare 2 feed them, and create $ so that they can pay u 4 what they eat."
         elif(style == "permissive"):
-            "We're sending fifty miners your way, so if you could feed them, that would be great. They'll have money to pay for it."
+            "We're sending fifty miners ur way, so if u could feed them, that would be g8. They'll have $."
         else:
-            "50 new miner neighbors are coming in 4 Earth years. Please figure out the most efficient way to feed them."
+            "50 new miner neighbors are coming in 4 Earth years. Feed them."
             
         if (whole_harvest_to_storehouse == True):
-            ilian "Well, in what I thought was a colossal waste of resources, a few farmers are already bringing their whole harvest to the storehouse."
+            ilian "Well, a few farmers are already bringing their whole harvest to the storehouse."
             ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
             ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
         else: 
@@ -234,9 +247,11 @@ label community5:
         menu:
             "Have all the farmers bring their whole harvest to Ilian instead of storing it individually, and encourage them to grow extra grain and beans.":
                 $ miners += 2
+                $ require_whole_harvest = True
                 jump whole_harvest_required
             "Have farmers bring in a certain amount of surplus each harvest.":
                 $ miners += 1
+                $ rationing = True
                 jump ration_harvest
             "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
                 $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
@@ -258,6 +273,7 @@ label community5:
         him "Really? Like who?"
         sara "Pete and Martin are the ones you know the best."
         him "I'll talk to them." #this could also be a choice... how neglectful do you want to be
+        $ rationing = True
         jump talk_about_food_storage
         # TODO: when/where are crops preserved?  Does Ilian have machines/employees that do this? Or are farmers supposed to do this before taking to the storehouse?
     return
@@ -265,7 +281,7 @@ label community5:
     label whole_harvest_required:
     ilian "I'll need some help to build silos for the wheat."
     him "Wait, you mean it's not going into vacuum-sealed cans?"
-    ilian "We don't have enough metal for that. But we can build big covered containers."
+    ilian "Well, yes it is. It's just a few giant cans instead of lots of little ones."
     him "This way we'll definitely have enough for the miners, right?"
     ilian "Yes. They won't even need to forage, unless they want some extra meat."
     jump ration_harvest
@@ -305,10 +321,28 @@ label community5:
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
     pete "I can't even make cheese that doesn't mold right away."
     pete "The best way to store my surplus is to keep growing this herd."
-    #could have a choice here about how to respond, but you can't really change his mind. or try to bring up the credits thing, and he insists that the colony wouldn't let him starve.
-    #powdered or canned milk? canned beef?
-    him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
-    pete "Glad you understand."
+    label convince_Pete:
+    menu:
+        "Is that really the best way?"
+        "We could can some of the meat and milk." if not talked_cans:
+            him "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
+            him "Canning milk is an option too."
+            him "How about it?"
+            pete "I don't think anyone should have to eat canned meat, not when they live next to me!"
+            him "Well, they're your cows."
+            $ talked_cans = True
+            jump convince_Pete
+        "You'll need credits to get other food." if not talked_credits:
+            him "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
+            him "How will you afford vegetables and grain?"
+            pete "Plenty of people are willing to trade for or buy milk and beef."
+            pete "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either."
+            pete "I prefer to deal directly with my customers."
+            $ talked_credits = True
+            jump convince_Pete
+        "I guess that's what Pete is going to do.":
+            him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
+            pete "Glad you understand."
     #change scene
     him "So Martin, how's your farm doing?"
     martin "Pretty good considering that we're on an alien planet!"
@@ -318,9 +352,25 @@ label community5:
     him "I was thinking if you had some extras, you could can them and store them in the storehouse."
     martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
-    him "It works well now, but soon I'll be trading credits instead of food." #player decision instead of the non-decision above?
-    martin "Well if anyone wants our food they can come here for it."
-    #TODO: choice in conversation with Martin?
+    if require_whole_harvest:
+        him "Starting from now on, you'll need to bring in your harvest to Ilian if you want other crops."
+        him "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
+        martin "What if I don't want to do that?"
+        him "It's in your contract."
+        martin "Well the way we've been doing it has been working just fine."
+        him "We didn't have fifty extra mouths to feed then."
+    elif rationing:
+        him "Starting from now on, I need you to bring in twenty percent of your harvest."
+        him "That number may change, but this is the easiest way to start storing a little food for the miners."
+        martin "What if I don't have enough food to bring in twenty percent?"
+        him "Then bring in ten percent. Just try to keep track so we have an idea of how much food we have collectively."
+        martin "Alright. I'll do it."
+        him "Thank you."
+    else:
+        him "It works well now, but soon we'll be trading credits instead of food."
+        martin "I'm happy to take your credits then."
+        him "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
+        martin "Good to know."
     return
     
 
@@ -411,6 +461,7 @@ label community7:
     if is_liason:
         thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
+            "What will you do for Thuc?"
             "I'll ask them in my next e-mail.":
                 $ miners += 1 
                 thuc "E-mail? Not an insta-com?"
@@ -435,8 +486,29 @@ label community7:
     else:
         thuc "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
         sara "I heard that RET is economizing, but I can ask."
-        thuc "Thanks."
-        # better non-liason option?
+        thuc "Thanks. Do you think RET will do anything, [his_name]?"
+        menu:
+            "What do you think RET should do for Thuc?"
+            "They should make a big donation for you.":
+                $ miners += 1 
+                thuc "Right?"
+                him "What charity would you choose?"
+                thuc "Something to promote sustainable agriculture in developing nations like this one."
+                him "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
+                thuc "Burn!"
+            "They won't do anything. RET has you right where they want you.":
+                $ luddites += 1
+                him "You're stuck here. You have no choice but to be an employee of RET."
+                thuc "I could decide to leave the colony!"
+                him "You wouldn't seriously consider that."
+                helen "I don't know, he looks pretty serious."
+                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people." 
+                thuc "I just don't like the idea that I have no power over my life."
+            "They probably won't do anything, but we have more important things to worry about.":
+                $ colonists += 1
+                him "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
+                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     return
 
 
@@ -446,17 +518,19 @@ label community8:
     $ talked_to_Sara = False
     $ talked_to_Kevin = False
     $ talked_to_Pavel = False
+    $ no_luxuries = False
     
     if is_liason:
         "Urgent insta-com from RET!"
         $ style = get_parenting_style()
         if (style== "authoritative"):
-            "We have extra space on the shuttle (10kg). What Earth luxuries would the colony like?"
+            "Have 10kg Xtra space on the shuttle. What Earth luxuries u like?"
         elif(style == "authoritarian"):
             "Tell us what extras to put on the shuttle by this evening."
         elif(style == "permissive"):
-            "If you want Earth goodies, tell us what to put in the shuttle by tonight!"
+            "If u want Earth goods, tell us what u want by 2night!"
         else:
+            no_luxuries = True
             jump no_luxuries
         "RET must be talking about the shuttle coming with the miners."
         "I'm not sure why they couldn't have asked about our preferences sooner."
@@ -465,8 +539,12 @@ label community8:
         $ talked_about_luxuries_counter = 0
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
+                if is_liason: 
                     him "Oh, it's already the afternoon! I need to send in my report right away."
                     jump write_report
+                else:
+                    "I told Sara what everyone wanted, and she wrote the report."
+                    return
         menu:
             "Who will I talk to about what Earth luxuries they want?"
             "Natalia" if not talked_to_Natalia:
@@ -545,6 +623,7 @@ label community8:
                         $ pass
             else:
                 "I sent the message."
+                return
     else:
         sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
         sara "What would you like?"
@@ -554,8 +633,9 @@ label community8:
         sara "Great. I can shorten that to TP in the insta-comm."
         him "Hopefully they won't send me a textbook on Topological Planning."
         sara "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
-        #TODO: Maybe Sara asks you to go ask everyone? better alt?
-    return
+        sara "Can you help me ask everyone else what they want? I have a list here of people you know and could ask pretty easily."
+        him "Okay, yeah, I can do that."
+        jump talk_about_luxuries
         
     label no_luxuries:
     show him at left with dissolve
@@ -750,10 +830,7 @@ label community11:
     "I was about to introduce myself to one of the miners when I saw someone with amazing red hair."
     "Wait a minute, I recognize him!"
     #BRENNAN ON SCREEN. he looks the same
-    #say different things based on if you had an affair with him in OPS??
-    # Unfortunately, I did not save that variable persistently... I think the canonical OPS1 story is
-    # that Kelly and Brennan were close friends, but nothing concrete ever happened between
-    # them. So Jack definitely doesn't like him, but doesn't have a great reason.
+    # Jack definitely doesn't like him, but doesn't have a great reason.
     # Is Kelly here, too? Could be interesting...
     him "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
@@ -781,98 +858,113 @@ label community11:
     him "What do you like to do in your free time?"
     chaco "Look at the stars."
     "I feel like we're playing 20 questions here! He's probably overhwelmed from the arrival."
-    brennan "We might need some help unpacking. RET sent a package for you guys, so come unpack it!"
-    him "I can help you with that."
-    him "New batteries for almost everything! And a few new tablets."
-    if asked_only_medicine:
-        "The exact medicine for Martin came! They included a bunch of other stuff, but some of it wasn't exactly what wanted."
-        "The Peron family is crying happily."
-        her "Hey, where's the Gouda cheese culture? I was really looking forward to it."
-        
-        #refer back to community8 for this
-        if talked_to_Thuc:
-            thuc "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
-        else:
-            thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
-            
-        if talked_to_Sara:
-            sara "I asked for a bicycle, is that here?"
-            him "No, I'm sorry. I couldn't fit everything into the message."
-            sara "A bike would probably get tons of flat tires around here anyway."
-            him "This looks like a software upgrade for the 3D printer though!"
-        else:
-            sara "It looks like there's a software upgrade here for the 3D printer."
-            
-        if talked_to_Kevin:
-            kevin "Did they send the rest of Tulip House?"
-            him "I'm not sure. There's a big hard drive here for the library though!"
-            kevin "There's bound to be something good in there."
-        else:
-            kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
-            him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
-            kevin "Looking forward to it!"
-        
-        pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
-        him "Oh, I hope so!"
-        pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
-        
-        if talked_to_Pavel:
-            him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-            pavel "I'm so happy right now!"
-        else:
-            pass
-        
+    #TODO:no luxuries option
+    if no_luxuries:
+        jump no_luxuries
     else:
-        "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
-        natalia "This isn't the kind of medicine we needed! This is useless!"
+        brennan "We might need some help unpacking. RET sent a package for you guys, so come unpack it!"
+        him "I can help you with that."
+        him "New batteries for almost everything! And a few new tablets."
+        if asked_only_medicine:
+            "The exact medicine for Martin came! They included a bunch of other stuff, but some of it wasn't exactly what wanted."
+            "The Peron family is crying happily."
+            her "Hey, where's the Gouda cheese culture? I was really looking forward to it."
+            
+            #refer back to community8 for this
+            if talked_to_Thuc:
+                thuc "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
+            else:
+                thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
+                
+            if talked_to_Sara:
+                sara "I asked for a bicycle, is that here?"
+                him "No, I'm sorry. I couldn't fit everything into the message."
+                sara "A bike would probably get tons of flat tires around here anyway."
+                him "This looks like a software upgrade for the 3D printer though!"
+            else:
+                sara "It looks like there's a software upgrade here for the 3D printer."
+                
+            if talked_to_Kevin:
+                kevin "Did they send the rest of Tulip House?"
+                him "I'm not sure. There's a big hard drive here for the library though!"
+                kevin "There's bound to be something good in there."
+            else:
+                kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
+                him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+                kevin "Looking forward to it!"
+            
+            pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            him "Oh, I hope so!"
+            pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            
+            if talked_to_Pavel:
+                him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+                pavel "I'm so happy right now!"
+            else:
+                pass
+            
+        else:
+            "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
+            natalia "This isn't the kind of medicine we needed! This is useless!"
 
-        if is_liason:
-            natalia "Did you tell them what kind of medicine Martin needed?"
-            him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
-        else:
-            natalia "Sara, why didn't you tell them the exact kind of medicine Martin needed?"
-            sara "I'm sorry, I thought they knew what he needed! I just put medicine."
+            if is_liason:
+                natalia "Did you tell them what kind of medicine Martin needed?"
+                him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
+            else:
+                natalia "Sara, why didn't you tell them the exact kind of medicine Martin needed?"
+                sara "I'm sorry, I thought they knew what he needed! I just put medicine."
+                
+            her "Oooh, Gouda cheese culture!"
+                
+            if talked_to_Thuc:
+                thuc "I can start growing these peanuts right away!"
+            else:
+                thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
             
-        her "Oooh, Gouda cheese culture!"
+            if talked_to_Sara:
+                sara "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
+            else:
+                sara "It looks like there's a software upgrade here for the 3D printer."
+                
+            if talked_to_Kevin:
+                kevin "Did they send the rest of Tulip House?"
+                him "I'm not sure. There's a big hard drive here for the library though!"
+                kevin "There's bound to be something good in there."
+            else:
+                kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
+                him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+                kevin "Looking forward to it!"
+                            
+            pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            him "Oh, I hope so!"
+            pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
             
-        if talked_to_Thuc:
-            thuc "I can start growing these peanuts right away!"
+            if talked_to_Pavel:
+                him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+                pavel "I'm so happy right now!"
+            else:
+                pass
+        if asked_only_medicine:
+            "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
+            $ miners += 1
+            $ colonists += 1
         else:
-            thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
-        
-        if talked_to_Sara:
-            sara "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
-        else:
-            sara "It looks like there's a software upgrade here for the 3D printer."
-            
-        if talked_to_Kevin:
-            kevin "Did they send the rest of Tulip House?"
-            him "I'm not sure. There's a big hard drive here for the library though!"
-            kevin "There's bound to be something good in there."
-        else:
-            kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
-            him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
-            kevin "Looking forward to it!"
-                        
-        pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
-        him "Oh, I hope so!"
-        pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
-        
-        if talked_to_Pavel:
-            him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-            pavel "I'm so happy right now!"
-        else:
-            pass
-    if asked_only_medicine:
-        "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
-        $ miners += 1
-        $ colonists += 1
-    else:
+            "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
+            #what happens to his farm? follow-up on community10
+            $ luddites += 1
+    return
+
+    label no_luxuries:
+        brennan "Can you help us unpack?"
+        him "That's what we came out here for."
+        natalia "Did RET send any medicine for Martin?"
+        brennan "No, sorry, I think they just sent some new batteries and stuff."
+        natalia "They don't care what happens to us!"
+        martin "I would have liked to live a little longer, but in the end, we can only do so much."
         "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
         #what happens to his farm? follow-up on community10
         $ luddites += 1
-    return
-
+        return
 
 label community12:
     $ sara_investigates = False

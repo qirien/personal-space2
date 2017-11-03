@@ -58,6 +58,7 @@ init -100:
     
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+    define computer = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
     
     ##
     # Custom transitions, positions, etc.
