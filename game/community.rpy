@@ -364,8 +364,7 @@ label community5:
         pass
     #change scene
     him "So Martin, how's your farm doing?"
-    martin "Pretty good considering that we're on an alien planet!"
-    martin "But recently some of our turkeys got sick and we couldn't even eat their meat after they died."
+    martin "Recently some of our turkeys got sick and we couldn't even eat their meat after they died."
     him "How about your beans, are they doing well?"
     martin "Yes! We eat them about as fast as we can grow them."
     him "I was thinking if you had some extras, you could can them and store them in the storehouse."
@@ -378,6 +377,12 @@ label community5:
         him "It's in your contract."
         martin "Well the way we've been doing it has been working just fine."
         him "We didn't have fifty extra mouths to feed then."
+        martin "And we don't now! I think you're overreacting. We have plenty of food."
+        him "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
+        martin "We eat most of our crops the same day we harvest them. But we do try to store a little extra."
+        him "I get what you're saying. Just write down how much you eat and tell Ilian."
+        him "Then if you have extra, bring that in once a week and he can calculate how your crops are doing."
+        martin "Okay, I think I can do that. But I still think this is excessive."
     elif rationing:
         him "Starting from now on, I need you to bring in twenty percent of your harvest."
         him "That number may change, but this is the easiest way to start storing a little food for the miners."
@@ -443,6 +448,17 @@ label community6:
             pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
             pete "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
             him "Good point. I hope we can mange."
+    if require_whole_harvest:
+        thuc "Speaking of food, Ilian just sent out a message that we don't have to bring in our whole harvest anymore."
+        thuc "He has enough data, and he sent out a table of who should bring in how much."
+        thuc "It ended up being about twenty percent for most farmers." #TODO: is this a reasonable amount?
+        pete "I deliver directly to my customers, so I've just been sending Ilian my stats."
+        thuc "I guess it doesn't really make sense to bring in a calf either."
+        pete "Nope."
+        him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
+        thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
+    else:
+        pass
     return
 
 label community7:
