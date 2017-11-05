@@ -220,6 +220,8 @@ label community5:
     $ talked_credits = False
     $ require_whole_harvest = False
     $ rationing = False
+    $ talked_something = False
+    $ talked_canning_dairy = False
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     if is_liason:
@@ -266,7 +268,7 @@ label community5:
         else:
             sara "We're not sure if we'll have enough food for them or not."
         sara "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
-        sara "Next harvest we'll start accepting canned goods as well."
+        sara "Next harvest we'll start accepting canned goods as well. You can can large amounts in the storehouse, or bring in what you can at home."
         sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         sara "I'll be grading your crops against the RET standards."
         sara "There's something I need your help with though. Some of the other farmers aren't excited about storing their surplus in the storehouse."
@@ -300,14 +302,8 @@ label community5:
     him "Hey Pete. How are your cattle doing?"
     pete "Surprisingly hale for living on an alien planet."
     him "Great. There's something I want to ask you about."
-    menu:
-        "How do you approach the subject?"
-        "I heard that you're not storing much surplus in the storehouse.":
-            $ pass
-            jump pete_no_storehouse
-        "Could you start storing more surplus in the storehouse?":
-            $ pass
-            jump pete_no_storehouse #this choice has no impact on the story
+    him "I heard that you're not storing much surplus in the storehouse."
+    jump pete_no_storehouse
             
     label no_formal_rationing:
     him "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
@@ -319,14 +315,13 @@ label community5:
             
     label pete_no_storehouse:
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
-    pete "I can't even make cheese that doesn't mold right away."
+    pete "I can't make cheese that doesn't mold right away."
     pete "The best way to store my surplus is to keep growing this herd."
     label convince_Pete:
     menu:
         "Is that really the best way?"
-        "We could can some of the meat and milk." if not talked_cans:
+        "We could can some of the meat." if not talked_cans:
             him "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
-            him "Canning milk is an option too."
             him "How about it?"
             pete "I don't think anyone should have to eat canned meat, not when they live next to me!"
             him "Well, they're your cows."
@@ -340,9 +335,33 @@ label community5:
             pete "I prefer to deal directly with my customers."
             $ talked_credits = True
             jump convince_Pete
+        "If we canned some beef, then we'd have meat even if your herd died suddenly." if not talked_something:
+            him "What if one day you wake up and your whole herd of cattle is gone?"
+            him "If you canned some meat, then we would at least have something."
+            pete "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
+            pete "Plus I think canned meat is revolting. I would rather just eat vegetables."
+            $ talked_something = True
+            jump convince_Pete
+        "We could can some of the dairy products." if not talked_canning_dairy:
+            him "We could try making dried milk powder or clarified butter, which would last a long time."
+            pete "Why would we do that when we have plenty of fresh stuff?"
+            him "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
+            him "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
+            pete "Hmm. That is a good point."
+            $ talked_canning_dairy = True
+            jump convince_Pete
         "I guess that's what Pete is going to do.":
             him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
             pete "Glad you understand."
+            jump canning_dairy
+            
+    label canning_dairy:
+    if talked_canning_dairy:
+        pete "I'll look into canning some milk and butter though."
+        him "Great!"
+        $ colonists += 1
+    else:
+        pass
     #change scene
     him "So Martin, how's your farm doing?"
     martin "Pretty good considering that we're on an alien planet!"
@@ -530,8 +549,8 @@ label community8:
         elif(style == "permissive"):
             "If u want Earth goods, tell us what u want by 2night!"
         else:
-            no_luxuries = True
-            jump no_luxuries
+            $ no_luxuries = True
+            jump luxuries_absent
         "RET must be talking about the shuttle coming with the miners."
         "I'm not sure why they couldn't have asked about our preferences sooner."
         "I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
@@ -637,7 +656,7 @@ label community8:
         him "Okay, yeah, I can do that."
         jump talk_about_luxuries
         
-    label no_luxuries:
+    label luxuries_absent:
     show him at left with dissolve
     show her at right with dissolve
     him "Man, I really miss Earth toilet paper."
@@ -811,7 +830,8 @@ label community10:
             $ luddites += 1
             #then what happens to the corn everyone needs? they need to decide on how to take care of that. Maybe when Pete leaves it's not as much of an issue, since there is less cattle to feed over the winter.
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
-        # Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
+        #Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
+        #right now this choice doesn't affect who gets the farm.
     return
 
 
@@ -946,11 +966,12 @@ label community11:
                 pass
         if asked_only_medicine:
             "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
+            "Tomás and Joanna took a break from working in the lab to learn all they could from him."
+            "They promised to help with the corn and turkeys."
             $ miners += 1
             $ colonists += 1
         else:
-            "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
-            #what happens to his farm? follow-up on community10
+            jump Martin_dead_sooner
             $ luddites += 1
     return
 
@@ -961,14 +982,22 @@ label community11:
         brennan "No, sorry, I think they just sent some new batteries and stuff."
         natalia "They don't care what happens to us!"
         martin "I would have liked to live a little longer, but in the end, we can only do so much."
-        "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
-        #what happens to his farm? follow-up on community10
+        jump Martin_dead
         $ luddites += 1
+        
+        label Martin_dead_sooner:
+            "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
+            "Tomás and Joanna Nguyen decide to help out, but they aren't prepared to take full responsibility for the farm."
+            "Hopefully they can learn what they need to know from Natalia and their neighbors."
+            #TODO: should community 10's decision affect this?
         return
 
 label community12:
     $ sara_investigates = False
     $ know_BBQ = False
+    #if require_whole_harvest
+    # if rationing
+    #else
                 
     label beef_shortage:
         him "Oh, and I need a pound of ground beef."
