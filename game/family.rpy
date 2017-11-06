@@ -1889,7 +1889,7 @@ label family10:
             him "Or just a funny thing. Maybe there were a lot."
             kid "Hmmm.... Well, we talked about what we wanted to be when we grew up."
             him "Oh yeah?"
-            kid "The teacher asked #TODO:friend_name first, and she said she wanted to be a crabird."
+            kid "The teacher asked Oleg first, and he said he wanted to be a crabird."
             him "Ha ha, wow, that'd be weird."
             kid "Yeah! And then I thought, if I could be anything, I'd like to be a spaceship so I could take people anywhere they wanted to go."
             him "A spaceship, huh?"
@@ -2841,7 +2841,7 @@ label allowance_how:
 # 10 Earth years old
 # Cleaning her room
 label family16:
-    "The way you grew up was pretty different from how your mother and I grew up on Earth. You had never experienced things like grocery stores, school fundraisers, football games, or trains."
+    "The way my kids grew up was pretty different from how [her_name] and I grew up on Earth. They never experienced things like grocery stores, school fundraisers, football games, or trains."
     "But some things were pretty similar to my own childhood."
     him annoyed "Yes, you need to clean your room today."
     kid "But I like it messy! It feels comfortable and I know where everything is!"
@@ -2970,6 +2970,15 @@ label family16:
             him annoyed "I don't actually care. It's your room, whatever."
             kid "Yeah, exactly."
             $ neglectful += 1
+            
+    "That night at dinner, [bro_name] was quiet."
+    him surprised "What are you thinking about, [bro_name]?"
+    bro "I miss Sister Naomi."
+    him surprised "You do?"
+    "The whole community was saddened by her death, though none of us were really surprised."
+    bro "Yeah...We used to always stop by her house after school and she'd have an apple or piece of bread for us. Sometimes she even had candy."
+    kid "I miss her, too."
+    # TODO: Add something more; pondering death in general    
     return
    
 
@@ -3003,7 +3012,11 @@ label family17:
         "What should I do?"
         "Hurry and go help.":
             $ responsive += 1
-            "I quickened my pace and arrived on the scene."
+            "I quickened my pace and, just before I entered the house, overheard [kid_name] yelling."        
+            kid angry "Get- Off- My- BED!"
+            "There was a loud THUMP - probably the sound of [kid_name] pushing [bro_name] off her bed and onto the floor."
+            bro "Owwwww! Wahhhhhhh!"
+            him determined "Stop!"
         "Leave them alone.":
             $ responsive -= 1
             $ demanding -= 1
@@ -3045,14 +3058,23 @@ label family17:
             "He just wailed even louder."
             kid "What's wrong with him?! We just came home from school and when he saw the bread was gone he freaked out!"
         "Ask [bro_name] what's wrong.":
+            $ responsive += 1
             him concerned "What's wrong, [bro_name]?"
             bro "There's (sniff) no (sniff) bread!"
             kid "He's been like that since we got home from school."
+        "Chastise [kid_name] for pushing [bro_name].":
+            $ demanding += 1
+            him determined "[kid_name], you shouldn't have pushed [bro_name] off your bed."
+            kid "I already asked politely like a hundred times! He shouldn't be on my bed, anyway!"
+            "It was true -- her pillow was all wet."
+            him annoyed "What started all of this?"
+            kid "We just came home from school and he saw the bread was all gone and he completely freaked out."
         
     him determined "[her_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
     kid "I don't know how I'm supposed to get any homework done with that racket."
     him annoyed "Then go to the library, or the clinic, or wherever you need to, okay?"
     "She sighed. I wasn't sure if she was just annoyed at the inconvenience, or if she was really worried about [bro_name], but she took the computer pad and left."
+    hide kid with moveoutleft
     "I turned my attention to [bro_name], who was working his way through handkerchief number three."
     
     $ cry_duration = 0
@@ -3065,7 +3087,7 @@ label family17:
             "That didn't seem worth throwing a fit about, though... maybe something happened at school?"
             $ cry_duration += 1
             if (cry_duration >= 2):
-                jump family17_aftercry
+                jump family17_after_cry
             else:
                 jump family17_cry_loop
         "Ask him what happened at school.":
@@ -3073,7 +3095,7 @@ label family17:
             "It was like he didn't even hear me. He just kept crying."
             $ cry_duration += 1
             if (cry_duration >= 2):
-                jump family17_aftercry
+                jump family17_after_cry
             else:
                 jump family17_cry_loop
         "Yell at him.":
@@ -3090,32 +3112,152 @@ label family17:
             "After a few minutes, he was still crying."
             $ cry_duration += 1
             if (cry_duration >= 2):
-                jump family17_aftercry
+                jump family17_after_cry
             else:
                 jump family17_cry_loop                        
     
-    him concerned "Hey, I want to help you. Whatever the problem is, we can fix it."
-    bro "I want (sniff) bread!"
-    "At least he was talking now. Maybe we were making some progress?"
-    him surprised "Bread? Really? This whole thing is just about bread?"
-    bro "I really like it! I wanted to have it when I got home!"
-    menu:
-        "What should I do?"
-        "Apologize for eating it.":
-            $ responsive += 1
-            him sad "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
-            bro "I want bread!"            
-        "Acknowledge his feelings.":
-            $ responsive += 1
-            him sad "You were pretty disappointed when you came home and the bread was gone, huh?"
-            "He nodded."
-        "Tell him to accept facts.":
-            him determined "Well, the bread's gone, and that's all there is to it. Crying won't bring it back."
-            bro "But I want bread!"
-        "Ask what this is really about.":
-            him annoyed "[bro_name], you can't be this upset about bread. That's just not that important. What's really going on here?"
-            bro "It's important to me!"
-        # TODO: Finally it comes out that a friend/teacher was mean? May have something to do with community tensions.  You can help him work out a plan of action, sympathize, or tell him that's how life is.
+    label family17_after_cry:                
+        him concerned "Hey, I want to help you. Whatever the problem is, we can fix it."
+        bro "I want (sniff) bread!"
+        "At least he was talking now. Maybe we were making some progress?"
+        him surprised "Bread? Really? This whole thing is just about bread?"
+        bro "I really like it! I wanted to have it when I got home! But it was all gone.  Wahhhhhhhh!"
+        $ sniffle_duration = 0
+        menu family17_sniffle_loop:
+            "What should I do?"
+            "Apologize for eating it.":
+                $ responsive += 1
+                him sad "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
+                bro "I want bread!"
+                $ sniffle_duration += 1
+                if (sniffle_duration >= 2):
+                    jump family17_after_sniffle
+                jump family17_sniffle_loop
+            "Acknowledge his feelings.":
+                $ responsive += 1
+                him sad "You were pretty disappointed when you came home and the bread was gone, huh?"
+                "He nodded."
+                jump family17_sniffle_loop
+            "Tell him to accept facts.":
+                $ demanding += 1
+                him determined "Well, the bread's gone, and that's all there is to it. Crying won't bring it back."
+                bro "But I want bread!"
+                jump family17_sniffle_loop
+            "Ask what this is really about.":
+                $ demanding += 1
+                him annoyed "[bro_name], you can't be this upset about bread. That's just not that important. What's really going on here?"
+                bro "It's important to me!"
+                jump family17_sniffle_loop
+                
+    label family17_after_sniffle:
+        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out." # TODO: some way to ask about this in parenting class? or research it in a parenting manual (tantrums vs meltdowns)?  Some options only available if you've read the right database entry?
+        him concerned "I'm glad you're calming down; now we can work on solving the problem."
+        bro "I can have some bread?"
+        menu:
+            "What should I say?"
+            "I will find you some!":
+                $ responsive += 1
+                him determined "[bro_name], I can tell this is super important to you. So I'm going to go out there and find you some bread, no matter what it takes!"
+                bro "Really?"
+                jump family17_quest
+                
+            "Let's work something else out.":
+                him normal "Well, we're all out. But we have plenty of other food."
+                bro "But I really want bread!"
+                him surprised "We have applesauce and potatoes and even some crabird jerky - don't you want some of those?"
+                bro "No. They aren't bread."
+                him annoyed "We don't have bread all the time. Sometimes you just have to eat other things."
+                "He started crying again."
+                bro "I want bread!"
+                menu:
+                    "What should I say?"
+                    "No bread. Eat something else.":
+                        him determined "We have no bread. Eat something else."
+                        bro "Wahhhhhhhh!"
+                        "He was getting way too upset about this. Maybe he just needed some time alone."
+                        $ neglectful += 1 
+                    "You're so spoiled!":
+                        him angry "You're so spoiled! You can't just expect to eat whatever you like every day!"
+                        bro "Wahhhhhhhh!"
+                        "His wailing was so obnoxious, I now understood how [kid_name] had felt. It made me furious."
+                        jump family17_angry
+                    "If you want it so badly, you can go find some.":
+                        him angry "If you want bread so badly, you can go and find some! I don't have time to coddle you."
+                        bro "Wahhhhhhhh!"
+                        $ authoritarian += 1
+                    "If it's that important to you, then let's go find some.":
+                        him concerned "I guess if it's that important to you, we can try and find some."
+                        bro "Really?"
+                        jump family17_quest                        
+                "I left him alone and went back to work. His wails followed me to the fields. Even when I was out of hearing range, they pounded in my head like a hammer of guilt."
+                "When I checked on him an hour later, he was asleep."
+                him surprised "What was that all about?"
+                "Kids were impossible to understand, sometimes."
+                return
+                    
+            "I'll help you get some.":
+                $ responsive += 1
+                $ demanding += 1
+                him determined "I'm not going to do it for you. But if you really want bread, I can help you figure out a way to get some."
+                bro "How?"
+                him "An adventure!"
+                bro "Really?"
+                
+            
+    label family17_quest:
+        # TODO: crop consequences
+        him determined "Yup. QUEST ACCEPTED!"
+        notify "Quest Accepted: Find [bro_name] some bread!"
+        bro "Can I come?"
+        him normal "Of course! If we're going on a quest, we need a party of adventurers! And perhaps a noble steed!"
+        "I threw a water bottle and some crabird jerky in my pack and we set off."
+        scene barn with fade
+        show lettie at midright with dissolve
+        show him at midleft
+        show bro at quarterleft
+        with moveinleft
+        him determined "Come, noble steed! We embark on a quest to satiate the hunger of this innocent boy!"
+        bro "With bread!"
+        "We saddled her up with a pad behind the saddle for [bro_name] to sit on. He held on tight to my waist and we set off for town."
+        bro "Where are we going to find bread?"
+        him surprised "Someone in town probably has some... but who?"
+        menu:
+            "Who should I ask about bread?"
+            "Ilian, the storehouse manager":
+                "I cringed a bit, but I thought grumpy old Ilian would probably be the most likely to have bread."
+                scene storehouse with fade
+                show ilian at midright with dissolve
+                show him at midleft
+                show bro at quarterleft
+                with moveinleft
+                him normal "Ilian! How are you?"
+                "He sighed, got up from the cans he was organizing, and came over to the counter."
+                ilian "What do you want?"
+                him surprised "Doesn't anyone ever come here just to hang out with you?"
+                ilian "No."
+                him normal "Huh. We should fix that sometime."
+                ilian "Please don't. Just tell me what you want so I can get back to work."
+                him determined "We need some bread!"
+                "I patted [bro_name] on the head, but he clung to my leg timidly. I could see why; Ilian was scowling at us like we were a couple of weevils."
+                ilian "Bread, huh? Not wheat?"
+                him normal "Nope. It's gotta be bread."
+                ilian "Don't have any."
+                him surprised "You don't have any bread?"
+                ilian "Of course not. Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
+                "I checked the time. It was getting late. We didn't have time to look anywhere else, especially since the farms were so spread out."
+                him determined "Guess we'll be making our own bread, then."
+                "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."                                
+                
+            "Pavel Grayson, the mayor"
+            "Pete, leader of the luddites"
+            "Thuc, my friend"
+            
+        scene path with fade
+        "[bro_name] and I were both engrossed in our own thoughts on the ride back home."
+        "But as we approached home, [bro_name] broke the silence."
+        ""
+        
+            # TODO: Finally it comes out that a friend/teacher was mean? May have something to do with community tensions.  You can help him work out a plan of action, sympathize, or tell him that's how life is.
     return
 
 label family17_angry:
@@ -3125,7 +3267,7 @@ label family17_angry:
     "If anything, his crying got worse. I started to feel really frustrated. I wanted to help [bro_name], but nothing I was doing was helping!"
     menu:
         "What should I do?"
-        "Spank him.":
+        "Threaten him.":
             $ responsive -= 5
             him annoyed "Stop crying or you'll get a spanking!"
             "He continued crying as if I hadn't said anything."
@@ -3650,7 +3792,8 @@ label family23:
     return
 
 # 14.8 Earth years old
-# Alcohol, drugs, fashion
+# Death, alcohol, drugs, fashion
+# Lettie dies.
 label family24:
     "[her_name] asks you about fire grass. Seems like a lot of people have been talking about it lately."
     menu:

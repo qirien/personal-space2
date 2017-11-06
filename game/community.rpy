@@ -673,17 +673,17 @@ label community8:
         jump talk_about_luxuries
         
     label luxuries_absent:
-    show him at left with dissolve
-    show her at right with dissolve
-    him "Man, I really miss Earth toilet paper."
-    her "Wouldn't it be great if RET sent some on the next shuttle?"
-    him "Yeah, that's never going to happen."
+        show him at left with dissolve
+        show her at right with dissolve
+        him "Man, I really miss Earth toilet paper."
+        her "Wouldn't it be great if RET sent some on the next shuttle?"
+        him "Yeah, that's never going to happen."
     
     return
 
 
 label community9:
-    #where is this
+    #where is this? Maybe the river?
     pete "Hey, [his_name]!"
     him "Hi Pete."
     pete "How's the farm?"
@@ -1464,7 +1464,7 @@ label community17:
         brennan "This beef is amazing. Do you have any extra I could buy from you?"
         pete "You know, credits are not worth that much too me right now."
         pete "We can always use more beans though."
-        brennan "Credits are the one thing we have!"
+        brennan "Credits are the only thing we have!"
         pete "I don't have a tablet, and I asked RET to delete my name from their records when I left, so I actually have no way of using credits."
         brennan "We've also got lots of rocks?"
         pete "Any metals?"
@@ -1524,6 +1524,7 @@ label community17:
         
     label justcolony:
         #which background? this is the end for all the other events as well. maybe don't have the luddites host if it's too complicated, or devise alternate small talk.
+        # Have some kind of bonfire background?
         "I set my dish next to the ones from the other families on the buffet table."
         "Everyone helps themselves and sits down--some on tables and some on the ground."
         martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
@@ -1561,22 +1562,22 @@ label community17:
         #move to a later, more sparse event?
         "After the dinner, you can't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
-        "I write an e-mail to Dr. Naomi asking if she has any pictures."
+        "I write an e-mail to Dr. Lily asking if she has any pictures."
         "She responds via the instant messaging software. Guess she hasn't given up all technology."
-        naomi "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
-        naomi "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish."
-        naomi "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
+        lily "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
+        lily "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish."
+        lily "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
         "I feel relief just looking at the photos of the creature out of water and the drawings."
-        "I start making my own drawings, and send a few back to Naomi."
-        naomi "Did you eat some of this jellyfish at the feast?"
+        "I start making my own drawings, and send a few back to Lily."
+        lily "Did you eat some of this jellyfish at the feast?"
         him "Yes, I did. Are they in season?"
-        naomi "I find your interest in them highly unusual."
+        lily "I find your interest in them highly unusual."
         him "Why? Aren't they beautiful creatures?"
-        naomi "Yes. But when was the last time you took the time to draw an animal?"
+        lily "Yes. But when was the last time you took the time to draw an animal?"
         him "..."
-        naomi "I suspect that the creature contains a parasite that affects human brains."
+        lily "I suspect that the creature contains a parasite that affects human brains."
         him "And you just let Pete serve it to everyone?"
-        naomi "I have a suspicion, but no proof. Their fondness for the jellyfish seems harmless."
+        lily "I have a suspicion, but no proof. Their fondness for the jellyfish seems harmless."
         him "Huh. Well let me know if you guys start selling jellyfish sweaters."
         return
     else:
