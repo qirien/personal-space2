@@ -251,7 +251,7 @@ label community5:
                 $ miners += 2
                 $ require_whole_harvest = True
                 jump whole_harvest_required
-            "Have farmers bring in a certain amount of surplus each harvest.":
+            "Have farmers bring in a certain amount of surplus each harvest, and encourage them to grow more food.":
                 $ miners += 1
                 $ rationing = True
                 jump ration_harvest
@@ -553,7 +553,6 @@ label community8:
     $ talked_to_Sara = False
     $ talked_to_Kevin = False
     $ talked_to_Pavel = False
-    $ no_luxuries = False
     
     if is_liason:
         "Urgent insta-com from RET!"
@@ -852,8 +851,12 @@ label community10:
 
 
 label community11:
+    $ chaco_questions = 0
     #The shuttle should return to Earth with the mined material as soon as it is full.
     "The shuttle is set to arrive today!" #make this a family conversation?
+    kid "I wonder what the new people will look like."
+    him "Well, they'll look like we do. We're all humans."
+    her "Unless aliens have secretly taken over Earth!"
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
@@ -882,19 +885,103 @@ label community11:
     brennan "You don't look like you've aged too badly, considering how much sun you must get."
     brennan "Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I help gather everyone, and the wagon makes for an improptu stage."
-    brennan "Thank you for the warm welcome! We're planning on staying here a good eight Earth years, and some of us for the rest of our lives." #check years
+    brennan "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
     brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
-    brennan "I sent out the assignments a while ago, so try to find each other!"
+    brennan "I sent out the assignments already, so try to find each other!"
     "After asking around, I found our miner."
-    #make this a menu
-    him "Nice to meet you Chaco. How was the trip over?"
-    chaco "Fine."
-    him "Did it take a while to adjust to living in such a small space?"
-    chaco "No."
-    him "What do you like to do in your free time?"
-    chaco "Look at the stars."
-    "I feel like we're playing 20 questions here! He's probably overhwelmed from the arrival."
-    #TODO:no luxuries option
+    him "Nice to meet you Chaco."
+    menu chaco_coversation_loop:
+        "What should I ask him?"
+        "How was the shuttle ride?":
+            him "How was the trip over?"
+            chaco "Fine."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop
+        "Was it hard to adjust?":
+            him "Did it take a while to adjust to living in such a small space?"
+            chaco "No."
+            him "I felt so cramped when I came over. Sometimes I just wanted some fresh air so badly, I felt like I would die."
+            chaco "They gave us sleeping medicine part of the time."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "Do you have any hobbies?":
+            him "What do you like to do in your free time?"
+            chaco "Look at the stars."
+            him "Well this is a great place for stargazing. We've had to invent a lot of new constellations though."
+            chaco "Sounds interesting."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "Do you have a family?":
+            him "Is anyone waiting for you back on Earth?"
+            chaco "No."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "What is your favorite color?":
+            him "What's your favorite color?"
+            chaco "Blue."
+            him "Light blue or dark blue?"
+            chaco "Dark blue."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "What do you like to eat?":
+            him "What's your favorite food?"
+            chaco "Steak."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "What do you think of Brennan?":
+            him "How do you like Brennan?"
+            chaco "He talks too much. And he worries too much."
+            him "Sounds about right."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "Are you religious?":
+            him "Do you believe in God?"
+            chaco "Yes."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop            
+        "What is your blood type?":
+            him "What's your blood type?"
+            chaco "O positive."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop
+        "How tall are you?":
+            him "How tall are you?"
+            chaco "172 centimeters."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop
+        "If you were stuck on a desert island with all of your coworkers, who would you eat first?":
+            him "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
+            chaco "Hmmm. Whoever died first."
+            him "That's a practical answer."
+            chaco "I'm practical."
+            $ chaco_questions += 1
+            if (chaco_questions >= 4):
+                jump twenty_questions
+            jump chaco_coversation_loop
+            
+    label twenty_questions:
+        "I feel like we're playing 20 questions here! He's probably overwhelmed from the arrival."
+        
     if no_luxuries:
         jump no_luxuries
     else:
@@ -1011,225 +1098,229 @@ label community11:
 label community12:
     $ sara_investigates = False
     $ know_BBQ = False
-    #if require_whole_harvest
-    # if rationing
-    #else
-                
-    label beef_shortage:
-        him "Oh, and I need a pound of ground beef."
-        ilian "Unfortunately, we are completely out of beef."
-        him "What?"
-        ilian "We're completely out of beef."
-        him "I heard you, but I didn't believe you. I thought we had plenty of beef."
-        ilian "Well, first the miners maxxed out their alottment. So we're completely out of canned beef. Then one of Pete's cows went missing."
-        ilian "It was also a dairy cow, so we're low on milk."
-        him "Well, did it just wander off?"
-        ilian "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
-        him "Is there going to be an investigation or something?"
-        ilian "Not my problem. We've got lots of chicken meat if you're desperate for meat."
-        him "Well I happen to really like beef, and my family likes butter. I want to find out what happened."
-        ilian "Go ahead and ask Pete, he knows what happened."
-        
-        "Since Pete lives far away, I e-mailed him to get the details."
-        "In Pete's reply, he e-mailed me, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
-
-        pete "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
-        "I rolled my eyes. Like that would fool anyone."
-        pete "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
-        pete "They had to wake up the cow and push her; I can tell they had a hard time but I bet they had some treat to get her to move."
-        pete "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
-        pete "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
-        pete "We'll have to live without beef for a while so that we can give everyone some next season."
-        
-        "That night we had Chaco over for dinner again as part of our welcome miner program."
-        "It was a habit now, and after a few weeks, Chaco got more comfortable with us and talked more."
-        him "Thanks for helping with the dishes, Chaco."
-        chaco "You're welcome. Thanks for the food."
-        chaco "I brought my telescope like you asked. I can show you some stars." 
-        chaco "We might be able to see Earth if it's clear."
-        him "Great. I think Terra will love that."
-        "Seeing Earth, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silouetted in the sunset."
-        "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and freeways and the bustle of cities." #believable?
-        him "It shows how far away we really are."
-        kid "How far away are we?"
-        chaco "About four light years." #more precise answer?
-        "We looked at the sky."
-        him "Oh, a shooting star!"
-        kid "I saw it! I saw it!"
-        "I want to see if he knows anything about the missing cow. What should I ask?"
-        menu:
-            "Do you eat beef often?":
-                him "Do you eat beef often?"
-                chaco "Yes, I do. We usually have a barbeque when we get past our mining quota."
-                him "That sounds fun."
-                chaco "It is."
-                $ miners += 1
-                $ know_BBQ = True
-            "Do you know about the missing cow?":
-                him "Hey did you hear about the missing cow?"
-                "Chaco keeps looking at the sky, his face inscrutible."
-                chaco "No?"
-                him "Pete said that one of his cows went missing."
-                him "He said the cow's tracks were going towards the miner camp."
-                chaco "Hmmm. I don't know anything about that."
-                him "Pete said there wouldn't be any more beef this season."
-                chaco "No more beef? That's not good."
-        "Chaco packed up his telescope and went home."
-        
-        "Later on, Pavel sent me a message."
-        pavel "[his_name], we have to find out what happened to that cow."
-        if know_BBQ:
-            him "I heard from Chaco that they have barbeques when they mine over quota."
-        else:
-            pass
-        pavel "Hmm. We need to ask the miners what they know."
-        pavel "I know beef is really popular in South African and Chilean cuisine, and I think most of the miners are from those two countries."
-        pavel "Can you come with me tomorrow morning? I was able to arrange a meeting with Brennan."
-        him "...sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
-        pavel "You were the first person I asked."
-        him "Is it because I'm a guy?"
-        pavel "And you're interested in what happened to the cow! Three-quarters of the miners are men, so it just seemed like a guy's thing."
-        menu:
-            "Let's ask Sara if she wants to come too.":
-                $ colonists += 1
-                $ sara_investigates = True
-                "You messaged Sara about meeting Brennan tomorrow morning, and she agreed to come with you."
-            "Let's go by ourselves.":
-                pass
-        
-        if sara_investigates:
-            "The next day, you meet Pavel and Sara on the road to the miner's village."
-            sara "You guys can talk to Brennan. I'll say I'm really into cooking and ask one of the wives what she knows about the cow."
-            pavel "Actually, most of the couples who came along are both miners."
-            pavel "There are a few people who don't work in the mines though."
-            pavel "I think I can talk at length about cooking better than you can. How about I do the recipe swap thing and you can grill Brennan?"
-            sara "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
-            him "Sounds good."
-            jump mining_village
-        else:
-            "The next day, you meet Pavel on the road to the miner's village."
-            him "I think one of us should talk to Brennan while the other tries to talk to some of the other people in the miners' village."
-            pavel "I've been meaning to ask one of the cooks about her recipes. Are you comfortable talking to Brennan?"
-            him "I guess. Sometimes I want to punch his pretty face, but I can restrain myself."
-            pavel "He means well."
-            jump mining_village
+    if require_whole_harvest or rationing:
+        label beef_shortage:
+            him "Oh, and I need a pound of ground beef."
+            ilian "Unfortunately, we are completely out of beef."
+            him "What?"
+            ilian "We're completely out of beef."
+            him "I heard you, but I didn't believe you. I thought we had plenty of beef."
+            ilian "Well, first the miners maxxed out their alottment. So we're completely out of canned beef. Then one of Pete's cows went missing."
+            ilian "It was also a dairy cow, so we're low on milk."
+            him "Well, did it just wander off?"
+            ilian "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
+            him "Is there going to be an investigation or something?"
+            ilian "Not my problem. We've got lots of chicken meat if you're desperate for meat."
+            him "Well I happen to really like beef, and my family likes butter. I want to find out what happened."
+            ilian "Go ahead and ask Pete, he knows what happened."
             
-        label mining_village:
-            "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
-            pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
-            "We walk through the village on the way to the control station, which is higher up on the foothill."
-            "Rivulets of waste water flow down the road as we approach. It doesn't smell like urine, so it's probably leftovers from washing."
-            "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than mine, if that's even possible."
-            "We walk by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
-            "Pavel stops and asks her a question about her laundry, and they start talking. He motions for me to continue without him."
-            "I arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
-            brennan "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
+            "Since Pete lives far away, I e-mailed him to get the details."
+            "In Pete's reply, he e-mailed me, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
+
+            pete "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
+            "I rolled my eyes. Like that would fool anyone."
+            pete "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
+            pete "They had to wake up the cow and push her; I can tell they had a hard time but I bet they had some treat to get her to move."
+            pete "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
+            pete "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
+            pete "We'll have to live without beef for a while so that we can give everyone some next season."
+            
+            "That night we had Chaco over for dinner again as part of our welcome miner program."
+            "It was a habit now, and after a few weeks, Chaco got more comfortable with us and talked more."
+            him "Thanks for helping with the dishes, Chaco."
+            chaco "You're welcome. Thanks for the food."
+            chaco "I brought my telescope like you asked. I can show you some stars." 
+            chaco "We might be able to see Earth if it's clear."
+            him "Great. I think Terra will love that."
+            "Seeing Earth, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silouetted in the sunset."
+            "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and freeways and the bustle of cities." #believable?
+            him "It shows how far away we really are."
+            kid "How far away are we?"
+            chaco "About four light years." #more precise answer?
+            "We looked at the sky."
+            him "Oh, a shooting star!"
+            kid "I saw it! I saw it!"
+            "I want to see if he knows anything about the missing cow. What should I ask?"
+            menu:
+                "Do you eat beef often?":
+                    him "Do you eat beef often?"
+                    chaco "Yes, I do. We usually have a barbeque when we get past our mining quota."
+                    him "That sounds fun."
+                    chaco "It is."
+                    $ miners += 1
+                    $ know_BBQ = True
+                "Do you know about the missing cow?":
+                    him "Hey did you hear about the missing cow?"
+                    "Chaco keeps looking at the sky, his face inscrutible."
+                    chaco "No?"
+                    him "Pete said that one of his cows went missing."
+                    him "He said the cow's tracks were going towards the miner camp."
+                    chaco "Hmmm. I don't know anything about that."
+                    him "Pete said there wouldn't be any more beef this season."
+                    chaco "No more beef? That's not good."
+            "Chaco packed up his telescope and went home."
+            
+            "Later on, Pavel sent me a message."
+            pavel "[his_name], we have to find out what happened to that cow."
+            if know_BBQ:
+                him "I heard from Chaco that they have barbeques when they mine over quota."
+            else:
+                pass
+            pavel "Hmm. We need to ask the miners what they know."
+            pavel "I know beef is really popular in South African and Chilean cuisine, and I think most of the miners are from those two countries."
+            pavel "Can you come with me tomorrow morning? I was able to arrange a meeting with Brennan."
+            him "...sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
+            pavel "You were the first person I asked."
+            him "Is it because I'm a guy?"
+            pavel "And you're interested in what happened to the cow! Three-quarters of the miners are men, so it just seemed like a guy's thing."
+            menu:
+                "Let's ask Sara if she wants to come too.":
+                    $ colonists += 1
+                    $ sara_investigates = True
+                    "You messaged Sara about meeting Brennan tomorrow morning, and she agreed to come with you."
+                "Let's go by ourselves.":
+                    pass
             
             if sara_investigates:
-                brennan "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
-                brennan "I do have some tea though, if you would like some."
-                sara "I would like some."
-                him "No thanks."
-                "Brennan serves Sara some tea."
-                brennan "So there's a missing cow, is there?"
-                sara "Yes. Have you seen any cows around here? The cow's tracks came this way."
-                brennan "Sorry, but I haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
-                if know_BQQ:
-                    sara "I heard that your team likes to have a barbeque when they make it past their mining quota. It seems like you might help supply the beef for that?"
-                    brennan "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
-                    sara "Okay, who is their supervisor then?"
-                    brennan "His name is Bandile. He's down in the mines all day though. You could try messaging him."
-                else:
-                    pass
-                brennan "I hope you find the missing cow."
-                brennan "Now if you don't mind, I need to get back to work."
-                
-                "We exit and head down the mountain. Pavel waves and joins us."
-                pavel "How was your conversation with Brennan?"
-                him "Not great. I can't tell if he's hiding something or just defensive."
-                sara "Brennan acts like it doesn't matter what they eat, as long as they're alive."
-                pavel "I imagine that's how most employers feel about their miners."
-                sara "I don't know why he's playing it so cool. Everyone loves food, right?"
-                him "If he acted too concerned about food, then he'd have to admit the missing cow is partially his problem."
-                pavel "For what?"
-                pavel "They wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
-                sara "Aww, they have community events too!"
-                if know_BQQ:
-                    sara "Brennan said that the miners's supervisor, Bandile, is in charge of the celebrations."
-                    sara "He recommended messaging him. Can you do that [his_name]?"
-                    him "Yes. I want to get to the bottom of this."
-                    jump message_Bandile
-                else:
-                    him "Where do we go from here?"
-                    pavel "I'll tell Pete what I found out. Circumstantial evidence."
-                    jump tell_Pete
-                
+                "The next day, you meet Pavel and Sara on the road to the miner's village."
+                sara "You guys can talk to Brennan. I'll say I'm really into cooking and ask one of the wives what she knows about the cow."
+                pavel "Actually, most of the couples who came along are both miners."
+                pavel "There are a few people who don't work in the mines though."
+                pavel "I think I can talk at length about cooking better than you can. How about I do the recipe swap thing and you can grill Brennan?"
+                sara "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
+                him "Sounds good."
+                jump mining_village
             else:
-                brennan "Hello, [his_name].  We don't have any extra chairs, so I'm afraid you'll have to stand."
-                brennan "I do have some tea though, if you would like some."
-                him "No thanks."
-                "Brennan sipped his tea."
-                brennan "How's [her_name] doing? I haven't seen her much since I arrived."
-                him "Just fine, thanks."
-                brennan "So there's a missing cow, is there?"
-                him "Yeah. Pete says that he thinks it was one of your miners. Is that possible?"
-                brennan "I think we would have noticed if someone had stolen a cow."
-                him "No, but you could have slaughtered it already."
-                brennan "How would we have slaughtered it? We have plenty of heavy machinery for cutting through stone but they are too big for cutting up one small cow. Also it would completely mangle the meat."
-                him "I don't know how you would have slaughtered it."
-                if know_BBQ:
-                    him "Chaco told me that you often have barbeques. Is that right?"
-                    brennan "Yeah, the miners's supervisor organizes them every so often. Keeps morale up."
-                    him "I thought you were the supervisor."
-                    brennan "No, I'm the project manager."
-                    him "What's the difference?"
-                    brennan "I tell everyone how fast the mining has to go for us to be on schedule."
-                    brennan "It's not just a monthly check-in kind of thing. I have daily plans for our project, and have to make changes on the fly based on what the miners find, or if someone gets injured."
-                    brennan "It's like if we all went on a long walk to the ocean. Probably one of us would be the navigator, making sure we were going the right direction and ready to camp at nightfall. That's me."
-                    brennan "Another person would notice if someone was lagging behind, or unhappy for some reason. That's the supervisor."
-                    brennan "Surely you have a project manager for the colony's agricultural work?"
-                    him "We all trust each other to do our jobs."
-                    brennan "Of course. How... quaint."
-                else:
-                    pass
-                brennan "I need to get back to work. I hope you can find the missing cow."
-                him "I hope so too."
-                "I exit and head down the mountain. Pavel waves and joins me."
-                pavel "How was your conversation with Brennan?"
-                him "Not great. I can't tell if he's hiding something or not."
-                pavel "Understandable."
-                pavel "I met Lisa and she seemed to know something, but didn't say exactly what she knew."
-                him "Do they have the cow hiding in one of these communal buildings?"
-                pavel "I don't know. I do know that they were planning to celebrate a special occasion, probably with some meat."
-                him "Oh. What was the occasion?"
-                pavel "One of their teenagers passed some complicated tests and they're going to allow her to operate heavy machinery."
-                him "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
-                pavel "No, just that they wished they had some beef."
-                him "Where do we go from here?"
-                pavel "I'll tell Pete what I found out. Circumstantial evidence."  
-                jump tell_Pete
+                "The next day, you meet Pavel on the road to the miner's village."
+                him "I think one of us should talk to Brennan while the other tries to talk to some of the other people in the miners' village."
+                pavel "I've been meaning to ask one of the cooks about her recipes. Are you comfortable talking to Brennan?"
+                him "I guess. Sometimes I want to punch his pretty face, but I can restrain myself."
+                pavel "He means well."
+                jump mining_village
                 
-        label message_Bandile:
-            # $ luddites += 1 not sure if this makes sense
-            "I sent Bandile a message asking about the cow." #e-mail/message UI thing
-            "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
-            "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
-            "We were buying beef and having barbeques almost fortnighly, and everyone really enjoyed them."
-            "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
-            "I heard that two of our miners went on a renegade mission to steal the cow."
-            "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
-            "Some of our miners completely understand why we need to save the cows for calving. A few either don't understand or don't care."
-            "Someone let the cow go the next day and no one has seen it since."
-            "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
-            "I talked to the men who took the cow and they agreed to give Pete 100 credits each as an apology."
-            "That was the end of the message."
-            "I told Pete what I found out. He was happy about the credits, but still unhappy that his cow was gone."
-            "I don't think he ever found her."
-        
-        label tell_Pete:
-            pavel "I'll explain the situation to Pete. He'd want to know what we found out."
-            "Later I heard that Pete went looking for the cow but never found her."
-        
+            label mining_village:
+                "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
+                pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
+                "We walk through the village on the way to the control station, which is higher up on the foothill."
+                "Rivulets of waste water flow down the road as we approach. It doesn't smell like urine, so it's probably leftovers from washing."
+                "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than mine, if that's even possible."
+                "We walk by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
+                "Pavel stops and asks her a question about her laundry, and they start talking. He motions for me to continue without him."
+                "I arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
+                brennan "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
+                
+                if sara_investigates:
+                    brennan "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
+                    brennan "I do have some tea though, if you would like some."
+                    sara "I would like some."
+                    him "No thanks."
+                    "Brennan serves Sara some tea."
+                    brennan "So there's a missing cow, is there?"
+                    sara "Yes. Have you seen any cows around here? The cow's tracks came this way."
+                    brennan "Sorry, but I haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
+                    if know_BQQ:
+                        sara "I heard that your team likes to have a barbeque when they make it past their mining quota. It seems like you might help supply the beef for that?"
+                        brennan "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
+                        sara "Okay, who is their supervisor then?"
+                        brennan "His name is Bandile. He's down in the mines all day though. You could try messaging him."
+                    else:
+                        pass
+                    brennan "I hope you find the missing cow."
+                    brennan "Now if you don't mind, I need to get back to work."
+                    
+                    "We exit and head down the mountain. Pavel waves and joins us."
+                    pavel "How was your conversation with Brennan?"
+                    him "Not great. I can't tell if he's hiding something or just defensive."
+                    sara "Brennan acts like it doesn't matter what they eat, as long as they're alive."
+                    pavel "I imagine that's how most employers feel about their miners."
+                    sara "I don't know why he's playing it so cool. Everyone loves food, right?"
+                    him "If he acted too concerned about food, then he'd have to admit the missing cow is partially his problem."
+                    pavel "For what?"
+                    pavel "They wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
+                    sara "Aww, they have community events too!"
+                    if know_BQQ:
+                        sara "Brennan said that the miners's supervisor, Bandile, is in charge of the celebrations."
+                        sara "He recommended messaging him. Can you do that [his_name]?"
+                        him "Yes. I want to get to the bottom of this."
+                        jump message_Bandile
+                    else:
+                        him "Where do we go from here?"
+                        pavel "I'll tell Pete what I found out. Circumstantial evidence."
+                        jump tell_Pete
+                    
+                else:
+                    brennan "Hello, [his_name].  We don't have any extra chairs, so I'm afraid you'll have to stand."
+                    brennan "I do have some tea though, if you would like some."
+                    him "No thanks."
+                    "Brennan sipped his tea."
+                    brennan "How's [her_name] doing? I haven't seen her much since I arrived."
+                    him "Just fine, thanks."
+                    brennan "So there's a missing cow, is there?"
+                    him "Yeah. Pete says that he thinks it was one of your miners. Is that possible?"
+                    brennan "I think we would have noticed if someone had stolen a cow."
+                    him "No, but you could have slaughtered it already."
+                    brennan "How would we have slaughtered it? We have plenty of heavy machinery for cutting through stone but they are too big for cutting up one small cow. Also it would completely mangle the meat."
+                    him "I don't know how you would have slaughtered it."
+                    if know_BBQ:
+                        him "Chaco told me that you often have barbeques. Is that right?"
+                        brennan "Yeah, the miners's supervisor organizes them every so often. Keeps morale up."
+                        him "I thought you were the supervisor."
+                        brennan "No, I'm the project manager."
+                        him "What's the difference?"
+                        brennan "I tell everyone how fast the mining has to go for us to be on schedule."
+                        brennan "It's not just a monthly check-in kind of thing. I have daily plans for our project, and have to make changes on the fly based on what the miners find, or if someone gets injured."
+                        brennan "It's like if we all went on a long walk to the ocean. Probably one of us would be the navigator, making sure we were going the right direction and ready to camp at nightfall. That's me."
+                        brennan "Another person would notice if someone was lagging behind, or unhappy for some reason. That's the supervisor."
+                        brennan "Surely you have a project manager for the colony's agricultural work?"
+                        him "We all trust each other to do our jobs."
+                        brennan "Of course. How... quaint."
+                    else:
+                        pass
+                    brennan "I need to get back to work. I hope you can find the missing cow."
+                    him "I hope so too."
+                    "I exit and head down the mountain. Pavel waves and joins me."
+                    pavel "How was your conversation with Brennan?"
+                    him "Not great. I can't tell if he's hiding something or not."
+                    pavel "Understandable."
+                    pavel "I met Lisa and she seemed to know something, but didn't say exactly what she knew."
+                    him "Do they have the cow hiding in one of these communal buildings?"
+                    pavel "I don't know. I do know that they were planning to celebrate a special occasion, probably with some meat."
+                    him "Oh. What was the occasion?"
+                    pavel "One of their teenagers passed some complicated tests and they're going to allow her to operate heavy machinery."
+                    him "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
+                    pavel "No, just that they wished they had some beef."
+                    him "Where do we go from here?"
+                    pavel "I'll tell Pete what I found out. Circumstantial evidence."  
+                    jump tell_Pete
+                    
+            label message_Bandile:
+                # $ luddites += 1 not sure if this makes sense
+                "I sent Bandile a message asking about the cow." #e-mail/message UI thing
+                "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
+                "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
+                "We were buying beef and having barbeques almost fortnighly, and everyone really enjoyed them."
+                "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
+                "I heard that two of our miners went on a renegade mission to steal the cow."
+                "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
+                "Some of our miners completely understand why we need to save the cows for calving. A few either don't understand or don't care."
+                "Someone let the cow go the next day and no one has seen it since."
+                "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
+                "I talked to the men who took the cow and they agreed to give Pete 100 credits each as an apology."
+                "That was the end of the message."
+                "I told Pete what I found out. He was happy about the credits, but still unhappy that his cow was gone."
+                "I don't think he ever found her."
+            
+            label tell_Pete:
+                pavel "I'll explain the situation to Pete. He'd want to know what we found out."
+                "Later I heard that Pete went looking for the cow but never found her."
+    else:
+        brennan "I keep asking about our food rations and Ilian keeps evading my answers. Um... you do have food for us, don't you?"
+        him "Nope, we don't have any food!"
+        him "Guess your miners have to hunt and forage now!"
+        him "Don't worry, Pete can teach you."
+        brennan "We're completely behind schedule now! RET might go bankrupt! You suck!"
+        #TODO: finish this
+        return
         
     #Do the miners resort to stealing? Elect a sherriff?
     #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
