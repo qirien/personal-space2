@@ -1510,7 +1510,9 @@ label community14:
 
 
 label community15:
-    "Losing members of the community is difficult. Some of the younger memebers of the community step up." # Sister Naomi dies?  Or has another stroke, this time so bad that she is essentially a vegetable.  Who should care for her?  Pavel can't do it alone
+    "Losing members of the community is difficult. Some of the younger memebers of the community step up." 
+    # Sister Naomi dies.  Who steps up as spiritual leader?  Perhaps there is no longer a central spiritual leader, but each faith community simply has their own leaders, leading to increased fragmentation.
+    # Dr. Lily has a stroke and worries about her progress being lost if she should die.
     "Miranda Peron (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
     return
 

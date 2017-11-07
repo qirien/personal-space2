@@ -921,6 +921,135 @@ label family4:
 # 2.7 Earth years old
 # Toilet Training
 label family5:
+    "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, run, and jump. She learned several new words every day."
+    "When I thought back to the tiny helpless creature she was just two years ago, it was hard to even believe this was the same person."
+    
+    "Learning some things was harder than others, though."
+    "Once she could pull her pants up and down by herself, we taught her how to use the toilet."
+    "She understood what it was for, and did pretty well for the first few days, as long as we reminded her all the time."
+    "It made me wonder: are we training her, or ourselves?"
+    "Then we had one day where I don't think she made it to the toilet on time even once."
+    scene farm_interior with fade
+    show him at midright
+    show her at midleft
+    with dissolve
+    her annoyed "That is the third mess of pee I've cleaned up today!"
+    him flirting "Ahh, you're ahead of me, I've only cleaned up two."
+    her concerned "At least now she's finally asleep...I thought she was getting this!"
+    him concerned "I thought so too..."
+    her sad "I can't keep doing this much laundry. Something has to change."
+    
+    menu:
+        "What should I say?"
+        "We can't give up. We just have to get through this.":
+            $ demanding += 1
+            him determined "We can't give up. We just have to get through this."
+            her annoyed "Okay, then you can do the laundry."
+            him determined "I'll do [kid_name]'s laundry if you do the rest."
+            her determined "That's a deal."
+            him surprised "But maybe we also need a different strategy."
+            her surprised "Like what?"
+        "Maybe we should give up for now.":
+            $ responsive += 1
+            him sad "Maybe she's not ready..."
+            her surprised "You want to go back to diapers?"
+            him determined "It shouldn't be this hard!"
+            her concerned "I think she can do it. But we need to change our approach."
+            him concerned "I guess we shouldn't give up until we've at least tried something..."
+            
+        "We need a different approach.":
+            $ demanding += 1
+            $ responsive += 1
+            him surprised "Maybe we need a different approach."
+            her surprised "Like what?"
+            
+    $ family5_punishment = ""
+    $ family5_reward = ""
+    $ family5_research = False
+    menu family5_strategy:
+        "What should I say?"
+        "She should have consequences for accidents." if ((family5_punishment == "") or (family5_punishment == "be spanked")):
+            $ demanding += 1
+            him determined "I think [kid_name] needs to have some consequences for having an accident."
+            her concerned "What kind of consequences?"
+            menu:
+                "What should I say?"
+                "She should help clean up her mess.":
+                    him normal "She can help clean up her mess."
+                    her annoyed "That'll be more work than if we just cleaned it up ourselves!"
+                    him surprised "Yes, but maybe it'll help her learn from it?"
+                    her concerned "I guess it might..."
+                    $ family5_punishment = "clean up her mess"
+                    jump family5_strategy
+                "She should go to timeout.":
+                    him determined "She should go to timeout for as long as it takes us to clean it up."
+                    her annoyed "How are we going to enforce that while we're cleaning up the mess?"
+                    him concerned "We'll make it work."
+                    her concerned "I guess that might work."
+                    $ family5_punishment = "go to timeout"
+                    jump family5_strategy
+                "She should not be able to use the computer pad.":
+                    him determined "She should not be able to use the computer pad."
+                    her surprised "How is that relevant?"
+                    him concerned "I don't know; it's the only punishment I could think of."
+                    $ family5_punishment = "not use the computer pad"
+                    jump family5_strategy
+                "We should spank her." if (family5_punishment != "be spanked"):
+                    him annoyed "We should just spank her whenever she has an accident."
+                    her angry "Are you serious?! I don't know much about parenting, but even I know that's a bad idea."
+                    him surprised "Why is that?"
+                    her determined "There's a famous study about this. When parents spanked their kids for accidents, the kids didn't do any better at using the bathroom -- they did worse!"
+                    him surprised "So what does your study say worked with the kids?"
+                    her concerned "I don't remember. I just remember spanking was the least effective strategy."
+                    $ family5_punishment = "be spanked"
+                    jump family5_strategy
+                    
+        "She should have rewards for success." if (family5_reward == ""):
+            $ responsive += 1
+            him normal "We need some kind of reward."
+            her concerned "What did you have in mind?"
+            menu:
+                "What reward should I suggest?"
+                "A small reward just for sitting on the toilet.":
+                    him determined "I think she needs to sit on the toilet more. Maybe we should reward her just for trying."
+                    her determined "I thought we were past that stage, but maybe we could do that. It's not like we have tons of candy lying around, though..."
+                    him concerned "It doesn't have to be candy... maybe five minutes of her favorite computer pad game? Or a spoonful of applesauce?"
+                    her normal "She does love applesauce."
+                    him normal "Okay, I'll make up a batch of applesauce."
+                    $ family5_reward = "small"
+                    jump family5_strategy
+                "A big reward if she can stay dry all day.":
+                    him determined "I think she should get a big reward if she can stay dry all day."
+                    her annoyed "You really think she can do that?"
+                    him normal "She did that one day last week!"
+                    her normal "That's true...but what kind of reward should she get?"
+                    him surprised "What about some new underwear?"
+                    her normal "Yeah, she could use some more anyway. I could decorate them with her to make it more fun."
+                    him "Maybe I could take her for a ride on Lettie with me sometime, too."
+                    her happy "Oh yeah, she loves that!"
+                    $ family5_reward = "big"
+                    jump family5_strategy
+        "We should research this first." if (not family5_research):
+            him determined "Actually, I want to do some research first."
+            her determined "Good idea. Let's both do some research and talk more in twenty minutes."
+            "We snuggled up together on the couch, reading on our computer pads. It was not the most romantic topic, but I was glad we were working together."
+            "I read about several scientific studies on toilet training. They all found that punishment was not as effective as rewards, and that praise and encouragement were important, too."
+            "But no matter what strategy was used, accidents and regression were pretty normal for kids this age."
+            "There were several different strategies people recommended, but they all agreed that parents should be positive and not make the child feel bad for accidents."
+            jump family5_strategy
+            
+        "We should remind her more often.":
+            him concerned "Maybe we just need to remind her more often?"
+            her concerned "I don't know; today I reminded her, but she didn't go, and five minutes later she had an accident."
+        "I think that's a good plan."
+        
+        
+        "Have [kid_name] help clean up her messes."
+        "We can give her a big reward if she stays dry all day."
+        "We should punish her for accidents."
+        "We should reward her every time she tries to use the bathroom."
+        
+    
     "Toilet training! She's learning it, but she has an accident. Every day."
     menu:
         "Just clean it up. She'll learn eventually.":
@@ -3137,16 +3266,25 @@ label family17:
                 $ responsive += 1
                 him sad "You were pretty disappointed when you came home and the bread was gone, huh?"
                 "He nodded."
+                $ sniffle_duration += 1
+                if (sniffle_duration >= 2):
+                    jump family17_after_sniffle
                 jump family17_sniffle_loop
             "Tell him to accept facts.":
                 $ demanding += 1
                 him determined "Well, the bread's gone, and that's all there is to it. Crying won't bring it back."
                 bro "But I want bread!"
+                $ sniffle_duration += 1
+                if (sniffle_duration >= 2):
+                    jump family17_after_sniffle
                 jump family17_sniffle_loop
             "Ask what this is really about.":
                 $ demanding += 1
                 him annoyed "[bro_name], you can't be this upset about bread. That's just not that important. What's really going on here?"
                 bro "It's important to me!"
+                $ sniffle_duration += 1
+                if (sniffle_duration >= 2):
+                    jump family17_after_sniffle
                 jump family17_sniffle_loop
                 
     label family17_after_sniffle:
@@ -3159,6 +3297,7 @@ label family17:
                 $ responsive += 1
                 him determined "[bro_name], I can tell this is super important to you. So I'm going to go out there and find you some bread, no matter what it takes!"
                 bro "Really?"
+                $ permissive += 1
                 jump family17_quest
                 
             "Let's work something else out.":
@@ -3202,12 +3341,13 @@ label family17:
                 bro "How?"
                 him "An adventure!"
                 bro "Really?"
+                $ authoritative += 1
                 
             
     label family17_quest:
         # TODO: crop consequences
         him determined "Yup. QUEST ACCEPTED!"
-        notify "Quest Accepted: Find [bro_name] some bread!"
+        $ renpy.notify("Quest Accepted: Find [bro_name] some bread!")
         bro "Can I come?"
         him normal "Of course! If we're going on a quest, we need a party of adventurers! And perhaps a noble steed!"
         "I threw a water bottle and some crabird jerky in my pack and we set off."
@@ -3224,7 +3364,7 @@ label family17:
         menu:
             "Who should I ask about bread?"
             "Ilian, the storehouse manager":
-                "I cringed a bit, but I thought grumpy old Ilian would probably be the most likely to have bread."
+                "I cringed, but I thought grumpy old Ilian would probably be the most likely to have bread."
                 scene storehouse with fade
                 show ilian at midright with dissolve
                 show him at midleft
@@ -3248,16 +3388,114 @@ label family17:
                 him determined "Guess we'll be making our own bread, then."
                 "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."                                
                 
-            "Pavel Grayson, the mayor"
-            "Pete, leader of the luddites"
-            "Thuc, my friend"
-            
+            "Pavel Grayson, the mayor":
+                "Mayor Grayson knew everyone. He would probably have some idea."
+                scene community_center with fade
+                show pavel sad at midright with dissolve
+                show him normal at midleft
+                show bro normal at quarterleft
+                with moveinleft
+                "When I went to see him, though, he looked so haggard and forlorn that I almost turned right around."
+                "Ever since his wife died about two years ago, he hadn't been the same."
+                him surprised "Mayor Grayson! Hey, how are you doing?"
+                pavel normal "Oh, it's [his_name]. Yes, I'm fine. And you? I see you brought young, ah, your young son along with you."
+                "I didn't blame him for not remembering [bro_name]'s name. The community was growing while the mayor's memory was weakening."
+                bro "Dad and I are on a quest!"
+                pavel sad "Are you, young fellow? Isn't that wonderful, to spend that time with your father..."
+                "He trailed off, a faraway look in his eyes."
+                bro "Do you miss Sister Naomi?"
+                pavel "Sorry, what's that?"
+                menu: 
+                    "What should I do?"
+                    "Shush [bro_name]":
+                        him annoyed "[bro_name]! Don't ask him that!"
+                        pavel "Now now, [his_name]. I like to run a transparent government! You can ask me anything, [bro_name]."
+                        bro "I just wondered if you were thinking about Sister Naomi."                        
+                    "Let [bro_name] talk.":
+                        bro "I just wondered if you were thinking about Sister Naomi."
+                    
+                pavel normal "Oh yes, very much. I can almost feel her right next to me, though, sometimes..."
+                bro "Like a ghost?"
+                pavel "Perhaps a bit like a ghost. Or a powerful memory."
+                bro "She made the best candy."
+                pavel "She did, didn't she! I couldn't eat any of it, of course, with my diabetes, but when she'd make it I'd just inhale the scent and that was almost as good."
+                bro "She even smelled like candy."
+                pavel sad "Yes, now that you mention it, that's exactly what she smelled like. So sweet..."
+                "I was worried we were bothering the Mayor by talking about his dead wife so much, but he didn't seem upset. Even as tears glistened in the corners of his eyes, he had a fond smile on his face."
+                him concerned "..."
+                pavel normal "But, you didn't come here to reminisce with me! What brings you to my office?"
+                "I had almost forgotten about the bread. It seemed a little silly, now."                
+                menu:
+                    "What should I say?"
+                    "Nothing, just wanted to say hi.":
+                        him normal "No reason. We just wanted to see you and say hi."
+                    "We're searching for some bread.":
+                        him determined "[bro_name] really wants some bread to eat, but his selfish dad ate it all for lunch."
+                        pavel "Some bread, eh?  I see..."
+                        bro "Do you have any?"
+                        pavel "No, I don't. You could check with the wheat farmers, but they'd probably charge a high price for it."
+                        him normal "Okay, thanks Mayor."
+                pavel "You should come by more often - maybe on your way home from school, [bro_name]?"
+                bro "You don't have candy, do you?"
+                pavel "Ha ha ha, no, I don't have candy. But I'll see if I can find something good for you. And we can remember Naomi, together."
+                bro "Okay."
+                "As we left, the sun was setting. It was too late to go anywhere else, so we headed home."
+                
+            "Pete, leader of the luddites":
+                him determined "Let's go ask Pete."
+                bro "Mister Pete is scary."
+                him surprised "What, really? Pete?"
+                bro "Yeah. He yelled at me one time when I was walking too close to his cows."
+                him concerned "Yeah, he... Pete doesn't like people interfering with him."
+                bro "Is he going to yell at us if we ask for bread?"
+                him normal "No way; he's a friend of mine. Come on; there's no need to be scared of him."
+                "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]. He was so quiet that he didn't always get much attention, but his little arms held me tight as we rode and I got the feeling he was feeling better."
+                scene farm_exterior flip with fade
+                show pete at midright with dissolve
+                show him normal at midleft
+                show bro normal at quarterleft
+                with moveinleft
+                him surprised "Hey, Pete. How's it going?"
+                pete "[his_name]. Whoa, is this your little [bro_name]? He's gotten big."
+                him normal "He's doing pretty good. Hope he hasn't been bothering you or your herd."
+                pete "Nah, some of the other kids try and scare the cows, playing some kinda game where they try and make 'em run. But I don't think [bro_name]'s one of them."
+                "I waited for [bro_name] to say something, but he seemed pretty scared of Pete. He just held my hand tight and looked down at the ground."
+                menu:
+                    "What should I do?"
+                    "Mention him yelling at [bro_name].":
+                        him surprised "Really? He says you yelled at him the other day."
+                        pete "Did I? Maybe I thought he was one of the other kids. Getting to be a lot of them, I can't keep them all straight."
+                        him normal "Yeah, me neither! They should all wear nametags or something."
+                        pete "Heh. We could brand 'em."
+                        him happy "Ha ha, yeah, really."
+                        "I laughed, but then looked down at [bro_name], who was clutching my hand even harder and had his face pressed against my leg."
+                        pete "Kid, I'm joking! Man, where'd you get such a serious kid?"
+                        him normal "I guess someone in our family should be serious."
+                        pete "Ain't going to be you, that's for sure. Anyway, what brings you all the way out here? Don't have cheese to trade, if that's what your after."                        
+                        him determined "No, we're actually looking for some bread."
+                    "Ask about bread.":
+                        him determined "So, we're actually here because we're looking for some bread."
+                pete "You think I got bread?"
+                him concerned "I thought I'd check."
+                pete "Nah, wheat's too much of a pain. Got corn and cows and that's about it."
+                him surprised "Want to trade a bit of cornmeal for this crabird jerky?"
+                pete "All I got are kernels. You gotta grind 'em yourself."
+                him normal "Sure, I can do that."
+                "Maybe we could make some cornbread. It wasn't what [bro_name] had in mind, but we didn't have time to look anywhere else, and it was the best I could do."
+                him "Thanks, Pete. See you around."
+                pete "See you. Take it easy, kid."
+                            
         scene path with fade
+        show lettie at center
+        show him normal at center
+        show bro normal at center
+        with dissolve
+        show night_overlay
         "[bro_name] and I were both engrossed in our own thoughts on the ride back home."
         "But as we approached home, [bro_name] broke the silence."
-        ""
-        
-            # TODO: Finally it comes out that a friend/teacher was mean? May have something to do with community tensions.  You can help him work out a plan of action, sympathize, or tell him that's how life is.
+        bro "I like riding with you, dad."
+        him "I like riding with you, [bro_name]."
+        "We didn't find any bread, but [bro_name] seemed to be feeling better. Maybe hanging out with dad was what he really needed."
     return
 
 label family17_angry:
