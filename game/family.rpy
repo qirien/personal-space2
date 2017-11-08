@@ -14,13 +14,7 @@ label family_intro:
     "All [kid_name] needed was a clean diaper, milk, and some love."
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
 
-    scene bedroom with fade
-    show him sleeping at midleft, squatting
-    show her sleeping at midright, squatting
-    show baby girl at centerbaby, squatting
-    show bedroom_overlay
-    show night_overlay
-    with dissolve
+    call bedroom_scene(True)    
     her sleeping "[his_name]."
     him sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
@@ -143,10 +137,20 @@ label family1:
                     "I had to make things right."
                     "I ran back to the house. I could still hear [kid_name]'s crying even from outside."
                     scene bedroom with fade
+                    show her sad at midright, squatting
+                    show baby girl at centerbaby, squatting
+                    show bedroom_overlay
+                    show night_overlay
+                    with dissolve
+                    show him concerned at midleft with moveinleft
                     "[her_name] was lying on the bed with her arm around [kid_name], her face streaked with red from crying."
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
                     "She didn't say anything, just lay her head back down and stared at [kid_name] blankly."
                     him sad "[her_name]... I'm sorry. I shouldn't have left. I'm here, now."
+                    show him at center with move
+                    show him at quarterleft
+                    show baby at quarterleftbaby
+                    with move
                     "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
                     "As I left the room, [her_name] said something I've never forgotten."
                     her annoyed "Don't ever leave us again."
@@ -462,7 +466,7 @@ label family2:
     him concerned "Operate?! Sounds serious... who was it?"
     her sad "Helen. She had appendicitis."
     him surprised "Have you ever fixed one of those before?"
-    her determined "No, I just watched one during my residency. I've done some simulations, since it's a common procedure... but the real thing is quite different."
+    her determined "No, but I did a surgical rotation where I helped perform one. But it's quite different to be the one in charge."
     him determined "It's a good thing you have a real nurse helping you out now."
     "[her_name] seemed to be thinking about something else, though." 
     her concerned "Yeah...I hope Helen will be okay."
@@ -926,9 +930,8 @@ label family5:
     
     "Learning some things was harder than others, though."
     "Once she could pull her pants up and down by herself, we taught her how to use the toilet."
-    "She understood what it was for, and did pretty well for the first few days, as long as we reminded her all the time."
-    "It made me wonder: are we training her, or ourselves?"
-    "Then we had one day where I don't think she made it to the toilet on time even once."
+    "She understood what it was for, and did pretty well for the first few days."
+    "Then we had several days where she hardly ever made it to the toilet on time."
     scene farm_interior with fade
     show him at midright
     show her at midleft
@@ -938,6 +941,8 @@ label family5:
     her concerned "At least now she's finally asleep...I thought she was getting this!"
     him concerned "I thought so too..."
     her sad "I can't keep doing this much laundry. Something has to change."
+    him flirting "We could keep her in the barn with Lettie!"
+    her sad "I'm seriously considering it..."
     
     menu:
         "What should I say?"
@@ -954,9 +959,8 @@ label family5:
             him sad "Maybe she's not ready..."
             her surprised "You want to go back to diapers?"
             him determined "It shouldn't be this hard!"
-            her concerned "I think she can do it. But we need to change our approach."
-            him concerned "I guess we shouldn't give up until we've at least tried something..."
-            
+            her concerned "I think she can do it; she seems like she wants to use the toilet. But we need to change our approach."
+            him concerned "I guess if she's cooperative we might just need to try something else..."            
         "We need a different approach.":
             $ demanding += 1
             $ responsive += 1
@@ -966,6 +970,8 @@ label family5:
     $ family5_punishment = ""
     $ family5_reward = ""
     $ family5_research = False
+    $ family5_prepared = False
+    $ family5_method = ""
     menu family5_strategy:
         "What should I say?"
         "She should have consequences for accidents." if ((family5_punishment == "") or (family5_punishment == "be spanked")):
@@ -1034,39 +1040,206 @@ label family5:
             her determined "Good idea. Let's both do some research and talk more in twenty minutes."
             "We snuggled up together on the couch, reading on our computer pads. It was not the most romantic topic, but I was glad we were working together."
             "I read about several scientific studies on toilet training. They all found that punishment was not as effective as rewards, and that praise and encouragement were important, too."
-            "But no matter what strategy was used, accidents and regression were pretty normal for kids this age."
+            "But no matter what strategy was used, accidents and regression were pretty normal for kids this age."             
             "There were several different strategies people recommended, but they all agreed that parents should be positive and not make the child feel bad for accidents."
+            "I shared what I found with [her_name]."
+            her normal "I read about some different training methods. One idea is to have the kid drink a lot so she can practice more."
+            him surprised "More pee? Is that really what we want?"
+            her annoyed "Well, you do that at a time when you can pay attention to her and help her recognize the feeling of having to use the bathroom."
+            him determined "Okay, that might help."
+            her concerned "Another method recommended having the kid just be outside with no diaper so that if they made a mess it wasn't a big deal."
+            him normal "Hmmm, any other methods?"
+            her annoyed "Well, another one just said you should wait and let the kid decide when she's ready."
+            him concerned "I am so ready to be done with diapers."
+            her normal "I know; think how much less laundry we'd have!"
+            him surprised "But which ideas should we use?"
+            $ family5_research = True                        
             jump family5_strategy
             
-        "We should remind her more often.":
-            him concerned "Maybe we just need to remind her more often?"
-            her concerned "I don't know; today I reminded her, but she didn't go, and five minutes later she had an accident."
-        "I think that's a good plan."
-        
-        
-        "Have [kid_name] help clean up her messes."
-        "We can give her a big reward if she stays dry all day."
-        "We should punish her for accidents."
-        "We should reward her every time she tries to use the bathroom."
-        
+        "We should be prepared for messes." if (not family5_prepared):
+            him concerned "Maybe part of the problem is our attitude. This is a big step for her; we can't expect her to be perfect at it right away."
+            her concerned "Maybe you're right..."
+            him normal "I mean, think about how long it took her to learn to walk, and how many times she had to fall down."
+            her normal "I guess using the toilet seems so easy to us because we don't remember learning it and we do it every day."
+            him happy "Exactly! Let's make sure we have a positive attitude and don't get mad at her for making mistakes while she's learning."
+            her concerned "Though that's hard to do when it seems like she's making mistakes on purpose..."
+            him concerned "Yeah, she's been kind of ornery lately. Asserting her independence, I think they call it."
+            her flirting "She's getting more like us every day."
+            him surprised "Speak for yourself! I, personally, am the picture of humble cooperation!"
+            her surprised "Really? So you'll scrub that mud off the floor like I asked you do to last week?"
+            him flirting "Of course! I may be cooperative, but I never claimed to have a great memory."
+            her flirting "Oh, I see."
+            $ family5_prepared = True
+            jump family5_strategy            
+        "We should train her differently." if ((family5_research) and (family5_method == "")):
+            him concerned "I think we should train her differently."
+            her surprised "Which method did you have in mind?"
+            menu:
+                "What should I say?"
+                "We should remind her more often.":
+                    him concerned "Maybe we just need to remind her more often?"
+                    her concerned "I don't know; today I reminded her, but she didn't go, and five minutes later she had an accident."
+                    $ family5_method = "remind her"
+                "We should be outside as much as possible.":
+                    him normal "I think we should be outside and with as few clothes on as possible so that there's less to cleanup. Maybe we can put a pot out there that she can use as a potty?"
+                    her concerned "Anything that cuts down on dirty laundry sounds good to me!"
+                    $ family5_method = "keep her outside"
+                "We should have her drink lots of liquids.":
+                    him determined "We should have her drink lots of liquids."
+                    her surprised "Maybe we could do that on Saturday, when we're both home?"
+                    him normal "Sure, we could take turns being her personal trainer."
+                    her concerned "It sounds like a lot of work, but if it pays off it'll be worth it."
+                    $ family5_method = "give her lots to drink" 
+            jump family5_strategy
+        "I think that's a good plan.":
+            him normal "Okay, sounds like we have a plan."
+            scene black with fade
+            "And the next day we began our plan."
+            if (family5_method == "keep her outside"):
+                scene farm_exterior with fade
+            else:
+                scene farm_interior with fade
+            show her normal at midright
+            show him normal at midleft
+            show kid normal at center
+            with dissolve
+            if (family5_prepared):
+                "We were prepared for her to have lots of messes, and we weren't going to let that bother us."
+            if (family5_method == "remind her"):
+                "I setup a program on my computer pad to beep every 40 minutes to remind me to remind her to try using the toilet."
+            if (family5_method == "keep her outside"):
+                "We got ready to spend the day outside. The weather was warm enough that we put [kid_name] in just some underwear, and we brought chairs outside to try to enjoy ourselves."
+                "We brought a small bucket for her to use as a potty."
+                kid normal "I putting dirt in potty."
+                her concerned "Dirt doesn't go in the potty, [kid_name]. Poop and pee go in the potty."
+                him surprised "Here's another bucket. You can put dirt in here."
+            if (family5_method == "give her lots to drink"):
+                "I made up some fresh tomato juice; one of [kid_name]'s favorites. I gave her several cupfuls."
+                him surprised "You sure you don't want anymore?"
+                kid normal "No. I full now."
+                her concerned "Okay, do you remember what happens when you drink a lot?"
+                kid "I not thirsty."
+                him happy "That's right, but what else happens? What does your body make?"
+                "She thought about this for a minute."
+                kid "If I not thirsty, I run like this!"
+                "She ran as fast as she could out the door and around the yard, pumping her little arms like a marathon runner."
+                her happy "Good running, [kid_name]!"
+                kid "I run so fast!"
+                him happy "Yes, you did. And drinking does give your body energy. But it also makes your body have to pee."
+                kid "..."
+                her surprised "And where does pee go?"
+                "She looked down at her underwear with a familiar look of concentration."
+                him surprised "Not here! In the potty, in the potty!"
+                "She stopped and we led her to the potty. She had already peed a little in her underwear, but the rest went in the potty, so I decided to count it as a success despite the additional laundry."
+                her concerned "I'll go get another pair from the clothesline."
+                hide her with moveoutleft
+                show her with moveinleft             
+                "I gave her more juice. She had to pee several times that morning, and it seemed to me that she improved at recognizing her body's signals."
+            if (family5_reward == "big"):
+                him surprised "If you keep your underwear dry all day, Mommy will get you some new underwear that you can decorate!"
+                her flirting "And you can go riding with Daddy on the horse."
+                kid happy "I want go ride on horsie!"
+                him normal "Okay, what will you need to do?"
+                kid normal "Have dry underwear."
+                her surprised "And how will you do that?"
+                "She was quiet for a minute. I realized that this concept, while so simple for us, was still fairly new to her."
+                him surprised "Where does your pee go?"
+                kid normal "In the potty."
+                her normal "Right. So you pee in the potty, and your underwear stays dry. Got it?"
+                kid "Okay."
+            if (family5_reward == "small"):
+                him surprised "Every time you sit on the potty, you can have a spoonful of applesauce!"
+                kid happy "I go sit on potty now!"
+                "She sat on the potty for a minute, but nothing happened."
+                kid happy "I go eat applesauce!"
+                her annoyed "Did she actually even try to use it?"
+                him determined "I don't know, but we promised she could have some..."
+                kid normal "Applesauce!"
+                him normal "Alright, here you go."
+                kid normal "More applesauce!"
+                him determined "You have to sit on the potty first."
+                "She went back and forth between the potty and the applesauce a few times before she got tired of it. One of the times she even used it."
+                "I realized it worked better if I reminded her about the applesauce when I thought she might actually have to use the bathroom."
+                show black with fade             
+                hide black with fade
+                him surprised "[kid_name], time to use the potty. Then you can have applesauce."
+                kid "I go sit on potty!"
+                "I figured that once she got used to sitting on the potty, we could cut down the reward to every time she actually used it."
+            scene black with fade
+            "I don't know if it was our new methods, or our heightened attention, or what, but she didn't have any other problems that day."            
+            "The next day, though, she had an accident."
+            scene farm_interior with fade
+            show him normal at midleft
+            show kid normal at midright
+            with dissolve
+            if (family5_prepared or family5_research):
+                him concerned "Uh-oh, you made a mess."
+                kid sad "Uh-oh."
+                him determined "Remember, pee goes in the potty. Go sit on the potty."
+            else:
+                him angry "[kid_name]! You peed on the floor!"
+                kid sad "Uh-oh"
+                him annoyed "Pee goes in the potty. Go sit on the potty."
+            "While she sat on the potty, I got her some clean clothes and helped her wash off."
+            kid normal "I not have any pee."
+            if (family5_punishment == "clean up her mess"):
+                him determined "Okay, next let's clean it up. First we get a bucket of water."
+                kid happy "I get bucket!"
+                him normal "Good! I'll get a rag."
+                "Water from her small bucket sloshed all over the floor, so we had to wipe that up along with the floor."
+                "I showed her how to put her dirty clothes in the washtub."
+                "[her_name] was right; it was more work than just cleaning it up myself. But [kid_name] was willing to help, and it actually felt less annoying than doing it all by myself and feeling resentful." 
+                "Hopefully it helped her, too."
+                him surprised "Next time you have a pee feeling, where do you need to go?"
+                kid normal "I go potty."
+                him determined "Right."
+            if (family5_punishment == "go to timeout"):
+                him determined "Okay, now you have to go to timeout while I clean it up."
+                kid angry "No!!!"
+                "We spent thirty minutes of her popping out of timeout and me putting her back in while also trying to clean up the mess."
+                "I felt so frustrated at the end, I was ready to call the whole thing off."
+                "Good thing it was the weekend, and I could take turns with [her_name]."
+            if (family5_punishment == "not use the computer pad"):
+                him determined "Now you can't use the computer pad until you pee in the potty."
+                kid angry "No!"
+                him annoyed "Pee goes in the potty, [kid_name]. Use the potty, and you can use the computer pad again."
+                "She threw a huge tantrum, screaming and crying to use the computer pad. It took all my patience to remain calm, but somehow I did it until she calmed down thirty minutes later."
+                "Good thing it was the weekend, and I could take turns with [her_name]."                
+            if (family5_method == "keep her outside"):
+                "We decided to spend the day outside again, so that made subsequent messes easier to cleanup."
+                
+    scene black with fade
+    "Toilet training was definitely not my favorite part of parenting so far, but I couldn't see any way around it. It was just something everyone had to learn to do." 
+    if (family5_prepared):
+        "It helped that [her_name] and I decided to expect messes. They were still annoying, but they didn't make me quite so mad."
+    "There were plenty more accidents, but eventually, [kid_name] caught on."
+    call bedroom_scene(False, False)
+    her concerned "I think I can finally say [kid_name] is potty trained."
+    him flirting "Don't say it out loud! You might jinx it!"
+    her sad "In some ways, that was the hardest part of parenting yet."
+    him surprised "Harder than all those sleepless nights when she was a baby?"
+    her concerned "I don't know. Maybe it's just whatever thing you're doing at the moment that seems the hardest."
+    him normal "Well, it was hard, but we did it! All three of us. And now we don't have to worry about our little [kid_name] heading off to college without being potty trained."
+    her surprised "College?! I was just thinking about kindergarten!"
+    him surprised "That's not that far off, is it?"
+    her concerned "No..."
+    him concerned "..."
+    her normal "Hey, thanks for doing this parenting thing with me."
+    him flirting "There's no one else I'd rather potty-train a two-year-old with!"
+    her flirting "There better not be!"
+    him normal "Just you. Always you."
+    her sleeping "Mmmm...I love you, [his_name]."
+    him sleeping "I love you..."
     
-    "Toilet training! She's learning it, but she has an accident. Every day."
-    menu:
-        "Just clean it up. She'll learn eventually.":
-            $ responsive += 1
-            $ neglectful += 1
-        "Have her help you clean it up, then reward her later for just trying to go to the bathroom.":
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Punish her every time she has an accident":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Promise her a big reward if she can stay dry all day":
-            $ responsive += 1
-            $ permissive += 1            
-            
-        # perhaps also a discussion about is she too young, should they give up, everyone's tired of washing diapers.  Maybe she should just LIVE OUTSIDE?!
+    if ((family5_punishment == "not use the computer pad") or (family5_punishment == "go to timeout") or (family5_punishment == "be spanked")):
+        $ authoritarian += 1
+    elif ((family5_method != "") and (family5_punishment == "clean up her mess")):
+        $ authoritative += 1
+    elif ((family5_punishment == "") or (family5_reward != "")):
+        $ permissive += 1
+    else:
+        $ neglectful += 1                
+        
     return
 
 # 3.5 Earth years old
@@ -1967,8 +2140,8 @@ label baby_delivery:
     "It took half an hour just to feed him one bottle, and I had to help squeeze the bottle for him. His cleft lip made it harder for him to get the suction he needed to get the milk out of the bottle."
     "And he couldn't really breastfeed well at all."
     "[kid_name] kind of understood that [bro_name] needed a lot of attention, and we tried to include her in taking care of him and everything else we did."
-    "Still, she probably ended up resenting him a little. And I could understand why."
-    "Hopefully they'd learn to love each other."
+    "Still, she probably ended up resenting him a little. And I could understand why. Sometimes I felt frustrated that he needed so much from us."
+    "But, when I forgot myself and just loved him, all that time spent together strengthened our whole family."
     
     return
     
@@ -3207,38 +3380,47 @@ label family17:
     "I turned my attention to [bro_name], who was working his way through handkerchief number three."
     
     $ cry_duration = 0
+    $ family17_think = False
+    $ family17_ask = False
+    $ family17_yell = False
+    $ family17_sit = False
     menu family17_cry_loop:
         "What should I do?"
-        "Think about it from [bro_name]'s point of view.":
+        "Think about it from [bro_name]'s point of view." if (not family17_think):
             $ responsive += 1
             "It wasn't that unusual for us to be out of bread; we didn't have it all the time. But [bro_name] did really like it."
             "I had eaten the last two pieces with my lunch. Maybe he had been looking forward to eating them?"
             "That didn't seem worth throwing a fit about, though... maybe something happened at school?"
-            $ cry_duration += 1
+            $ family17_think = True
+            $ cry_duration += 1            
             if (cry_duration >= 2):
                 jump family17_after_cry
             else:
                 jump family17_cry_loop
-        "Ask him what happened at school.":
+        "Ask him what happened at school." if (not family17_ask):
             him surprised "Did something happen at school?"
             "It was like he didn't even hear me. He just kept crying."
+            $ family17_ask = True
             $ cry_duration += 1
             if (cry_duration >= 2):
                 jump family17_after_cry
             else:
                 jump family17_cry_loop
-        "Yell at him.":
+        "Yell at him." if (not family17_yell):
+            $ responsive -= 1
             $ demanding += 1
             him angry "Quit crying and tell me what's wrong! I can't help you if you won't talk about it!"
             "He just cried even louder."
+            $ family17_yell = True
             $ cry_duration += 1
             jump family17_angry
-        "Just sit quietly with him.":
+        "Just sit quietly with him." if (not family17_sit):
             $ responsive += 1
             "I didn't know what to do, so I just sat down next to him."
             "I patted his back. That's supposed to be reassuring, right?"
             "..."
             "After a few minutes, he was still crying."
+            $ family17_sit = True
             $ cry_duration += 1
             if (cry_duration >= 2):
                 jump family17_after_cry
@@ -3251,37 +3433,45 @@ label family17:
         "At least he was talking now. Maybe we were making some progress?"
         him surprised "Bread? Really? This whole thing is just about bread?"
         bro "I really like it! I wanted to have it when I got home! But it was all gone.  Wahhhhhhhh!"
+        $ family17_apologize = False
+        $ family17_acknowledge = False
+        $ family17_tell = False
+        $ family17_ask = False
         $ sniffle_duration = 0
         menu family17_sniffle_loop:
             "What should I do?"
-            "Apologize for eating it.":
+            "Apologize for eating it." if (not family17_apologize):
                 $ responsive += 1
                 him sad "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
                 bro "I want bread!"
+                $ family17_apologize = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
                 jump family17_sniffle_loop
-            "Acknowledge his feelings.":
+            "Acknowledge his feelings." if (not family17_acknowledge):
                 $ responsive += 1
                 him sad "You were pretty disappointed when you came home and the bread was gone, huh?"
                 "He nodded."
+                $ family17_acknowledge = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
                 jump family17_sniffle_loop
-            "Tell him to accept facts.":
+            "Tell him to accept facts."  if (not family17_tell):
                 $ demanding += 1
                 him determined "Well, the bread's gone, and that's all there is to it. Crying won't bring it back."
                 bro "But I want bread!"
+                $ family17_tell = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
                 jump family17_sniffle_loop
-            "Ask what this is really about.":
+            "Ask what this is really about."  if (not family17_ask):
                 $ demanding += 1
                 him annoyed "[bro_name], you can't be this upset about bread. That's just not that important. What's really going on here?"
                 bro "It's important to me!"
+                $ family17_ask = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle

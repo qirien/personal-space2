@@ -163,3 +163,20 @@ init python:
                 return random_event
             else:
                 return "default_crop_event"
+                
+##
+#
+##
+label bedroom_scene(show_baby=False, sleeping=True):
+    scene bedroom with fade
+    if (sleeping):
+        show him sleeping at midleft, squatting
+        show her sleeping at midright, squatting
+    else:
+        show him normal at midleft, squatting
+        show her normal at midright, squatting
+    if (show_baby):
+        show baby girl at centerbaby, squatting
+    show bedroom_overlay
+    show night_overlay
+    with dissolve
