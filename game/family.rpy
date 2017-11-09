@@ -563,7 +563,8 @@ label family3:
     show him at midright
     show her at midleft
     show kid at center
-    him concerned "Whew, I thought I'd never finish harvesting all those potatoes!" # TODO: Change to some crop he's actually growing this year.
+    $ random_crop = crops.get_random_crop(include_animals = False)
+    him concerned "Whew, I thought I'd never finish harvesting all those [random_crop]!" 
     her surprised "You're all done?"
     kid "All done!"
     him happy "Yeah!"
@@ -1983,6 +1984,7 @@ label family7_angry_ending:
 # 5 Earth years old
 # First Day of School
 label family8:
+    # TODO: Start with last day of play group?
     "First day of school! She's a little nervous, but not screaming and crying."
     # TODO: how would the first day be different in a 1 room schoolhouse? Maybe she'll see a familiar face in a babysitter there?
     menu:
@@ -2146,32 +2148,121 @@ label baby_delivery:
     return
     
 # 5.5 Earth years old
-# Holiday Traditions (or maybe honesty?)
+# Getting along with friends, being bossy
 label family9:
-    "It's some holiday that we can decide on later! Terra doesn't want to do some tradition."
+    "Now that [kid_name] was in school, our family dynamics had changed."
+    "Instead of yearning for a few minutes of uninterrupted time and slogging through our weekly turn in the kids' coop, I found myself looking forward to her coming home from school."
+    "She seemed to appreciate me more, too."
+    scene fields with fade
+    show him at midright
+    if (year6_have_baby):
+        show baby boy at midrightbaby
+    with dissolve
+    show kid at midleft
+    show oleg at quarterleft
+    with moveinleft
+    kid happy "Daddy!"
+    show kid at midright with move
+    if (year6_have_baby):
+        "I set [bro_name] down so I could give [kid_name] my full attention for a minute."
+        show baby at quarterrightbaby with move
+    "She tackled me with a big hug and I swung her around in a circle."
+    him happy "Welcome home! Oh, I see you brought Oleg with you. Hi, there!"
+    show oleg at center with move
+    oleg "Hello, Mr. [his_name]."
+    kid normal "Is it okay if Oleg comes over to play?"
+    him normal "Of course!"
+    "Oleg was so polite and obedient; he hardly ever got into trouble. [kid_name] actually behaved better when he was around."
+    $ random_crop = crops.random_crop()
+    "The two of them ran off to play and I continued working with the [random_crop]."
+    hide kid
+    hide oleg
+    with moveoutleft
+    
+    "After a while, I figured I should check on them."
+    scene barn with fade
+    show kid at midright
+    show oleg at center
+    with dissolve
+    "I found them in the barn, where [kid_name] had put one of Lettie's saddle blankets on Oleg and a rope loosely around his neck."
+    kid happy "Giddyup, horsie!"
+    show him at midleft
+    if (year6_have_baby):
+        show baby boy at midleftbaby
+    with moveinleft    
+    oleg "[kid_name]..."
+    kid normal "Now go around in a circle. We have to patrol the whole farm for crabirds."
+    oleg "{b}Then{/b} can we play something else?"
+    kid "Maybe."
+    "Poor Oleg. He was perhaps a little too nice..."
+    him "[kid_name], you can't have a rope around someone's neck. That's too dangerous."
+    kid "Awww, dad!"
+    "She took the rope off, and Oleg looked a little relieved."        
     menu:
-        "Traditions are pointless. Why celebrate at all?":
-            $ neglectful += 1
-        "Keep the tradition.":
-            $ demanding += 1
-            $ authoritarian += 1            
-        "Make a new tradition":
+        "What else should I say?"
+        "Maybe you should play something else.":
             $ responsive += 1
+            him happy "[kid_name], I think you should play something else."
+            kid sad "But daaad!"
+            him surprised "Oleg, what do you want to play?"
             $ permissive += 1
-        "Keep the tradition and make a new tradition":
+        "Stop bossing Oleg around.":
+            $ demanding += 1
+            him annoyed "Quit bossing Oleg around. He's not going to want to play with you anymore."
+            kid angry "Oleg likes playing with me! Don't you, Oleg?"
+            oleg "I do... but {size=-10}I want to play something else{/size}."
+            him surprised "What do you want to play, Oleg?"
+            $ authoritarian += 1
+        "Come here so I can talk to you privately.":
             $ demanding += 1
             $ responsive += 1
-            $ authoritative += 1            
-        
+            him determined "Come here, [kid_name]. I have something to tell you."
+            show kid at midleft with move
+            kid "What?"
+            "I leaned down a whispered into her ear."
+            him concerned "Oleg's been trying to tell you that he wants to play something else. He's our guest, so can you make sure he's having fun, too?"
+            kid "He is having fun!"
+            him determined "I don't think so. Ask him what he would like to do, and then do that."
+            kid "Fine."
+            show kid at midright with move
+            kid "What do you want to play, Oleg?"
+            $ authoritative += 1                        
+        "Never mind.":
+            "They didn't need me to tell them what to do. If Oleg didn't like playing horsie, he could just say so."
+            $ neglectful += 1
+            jump family9_sara
+    oleg "Umm, I don't know..."
+    kid "See? If we don't do what I want to do, then we just end up doing nothing!"
+    him normal "Figure out something to do together. Maybe that game where you pretend to be on a spaceship visiting different planets?"
+    oleg happy "Yeah! We can go to pillow planet that's full of pillows!"
+    kid happy "And applesauce planet!"
+    label family9_sara:
+        "I was about to leave when Sara walked in."
+        show sara at left with moveinleft
+        sara "Oleg! Where have you been?!"
+        oleg "Just playing."
+        sara "When you didn't come home from school I was so worried!"
+        "Our eyes met, and I knew were were both thinking of Josephina, the Peron's little girl who had gone missing seven years ago."
+        "Anytime a kid was missing, we all remembered searching for her all night long, her dead body washing ashore, her funeral..."
+        him concerned "I'm sorry; I thought you knew he was here."
+        oleg "[kid_name] wanted me to come play..."
+        sara "Well, you can't just do whatever [kid_name] says. You have to do what your momma says."
+        show oleg at quarterleft with move
+        oleg "I'm sorry, momma."
+        "The poor kid looked about to cry."
+        sara "It's okay, baby. It's okay."
+        "We setup a schedule where Oleg could come play on certain days, and [kid_name] would play at his house on other days."
+        "I hoped they would continue to be good friends."
+        return
     return
 
 # 6.2 Earth years old
-# Damages Tablet
+# Fighting with brother OR playing games when she's not supposed to
 label family10:
     "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
     "[kid_name] came home from school and I gave her a snack."
     if (year6_have_baby):
-        "[bro_name] wanted a snack, too, so I sliced up some tomatoes." # TODO: or whatever crop we planted?
+        "[bro_name] wanted a snack, too, so I sliced up some tomatoes." 
     menu:
         "What should I say?"
         "How was school today?":
@@ -4197,7 +4288,7 @@ label family23:
         "Why don't you meet in person?"
         "When do you think you'll be done?"
         "I need to use the computer pad; hand it over."
-    
+    # TODO: Finish this event
     
     
     "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."

@@ -114,6 +114,22 @@ init python:
         # TODO: Update this to randomly select from current crops? 
         def setDefault(self):
             self.items = list(test_crops)
+            
+        # Return a random crop from our field
+        # If weighted, then you will be more likely to get a crop the more times it is planted.
+        def random_crop(self, weighted = True, include_animals = True):
+            chosen_crop = ""
+            while (chosen_crop == ""):
+                if weighted:
+                    chosen_crop = renpy.random.choice(self.items)
+                else:
+                    chosen_crop = renpy.random.choice(list(set(self.items)))
+                if (not include_animals):
+                    # TODO: include other animals, or base this on a flag or something
+                    if (chosen_crop == "goats"):
+                        chosen_crop = ""
+                
+            return chosen_crop
         
     
     # Return the index of a crop in crop_info given its name
@@ -141,8 +157,9 @@ init python:
             event_name = "work" + str(event_number)
             return event_name
         else:
-            # Find a good crop event
-            possible_events = []
+            # Find a good crop event.
+            # Make a set (no duplicates) of the next crop event for each crop in our field. Then, randomly pick one.
+            possible_events = set()
             for crop_name in crops:
                 if (crop_name != ""):
                     #get the number of the next event for this crop
@@ -152,17 +169,17 @@ init python:
                     print "Event: " + event_label
                     if renpy.has_label(event_label):
                         print "Event found!"
-                        possible_events.append(event_label) 
+                        possible_events.add(event_label) 
                     
             num_possible_events = len(possible_events)
-            if (num_possible_events > 0):
-                random_event = renpy.random.choice(possible_events)
+            if (num_possible_events > 0):                
+                random_event = renpy.random.choice(list(possible_events))
                 crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
                 number_events_seen[crop_name] += 1
                 print "Picked event: " + random_event
                 return random_event
             else:
-                return "default_crop_event"
+                return "default_crop_event"                                
                 
 ##
 #
