@@ -224,6 +224,7 @@ label community5:
     $ talked_canning_dairy = False
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
+    # context/scene for this decision? is it a town meeting? you, Ilian, sara, Pavel?
     if is_liason:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
@@ -1098,6 +1099,8 @@ label community11:
 label community12:
     $ sara_investigates = False
     $ know_BBQ = False
+    $ community12_RET_bankrupt = False
+    $ talked_bankrupt = False
     if require_whole_harvest or rationing:
         label beef_shortage:
             him "Oh, and I need a pound of ground beef."
@@ -1309,23 +1312,142 @@ label community12:
                 "That was the end of the message."
                 "I told Pete what I found out. He was happy about the credits, but still unhappy that his cow was gone."
                 "I don't think he ever found her."
+                return
             
             label tell_Pete:
                 pavel "I'll explain the situation to Pete. He'd want to know what we found out."
                 "Later I heard that Pete went looking for the cow but never found her."
+                return
     else:
-        brennan "I keep asking about our food rations and Ilian keeps evading my answers. Um... you do have food for us, don't you?"
-        him "Nope, we don't have any food!"
-        him "Guess your miners have to hunt and forage now!"
-        him "Don't worry, Pete can teach you."
-        brennan "We're completely behind schedule now! RET might go bankrupt! You suck!"
+        #rationing is the default for the non-liason option, so non-liasons should not see this event.
+        #should there be an option to switch to rationing again before this?
+        #in your fields
+        "I'm working out in the fields when I see a redheaded figure approaching."
+        brennan "You have got some explaining to do."
+        him "What do you mean?"
+        brennan "I can't get food for my miners from Ilian. He says there isn't enough extra food for everyone."
+        brennan "What an idiotic decision. Ilian just said it was someone on the colony planning committee."
+        brennan "I looked at the minutes. I know exactly who was behind this. You decided not to save food for us? You think we can hunt and forage?"
+        him "There's plenty of food if you know where to look."
+        brennan "We don't have time to look for food. We need to spend all our time mining to stay on schedule."
+        him "Feeding miners wasn't in our contract."
+        brennan "Well, employees are supposed to do what their employers ask them to!"
+        brennan "The whole reason you guys are farming is to support the miners, so we can send precious metals back and fund this whole thing."
+        brennan "I thought you and the other colonists were pretty happy to be away from Earth."
+        him "Why don't you try learning how to hunt and then get angry at me?"
+        him "There is so much wildlife here and a lot of it is edible. You already have a few people who work in support capacities, like cooking and cleaning, right?"
+        brennan "That's just four people."
+        him "Maybe they can do some of the foraging too."
+        brennan "Okay. Who's going to teach them what they can eat?"
+        him "Dr. Lily can. It's half the reason she's here."
+        him "As for hunting, I think that your workers will enjoy a change of pace. It might even make them more productive."
+        brennan "I've tasted crabbird though. It's not as good as chicken."
+        him "We have some really good recipes. Put enough spices on it and you can hardly tell the difference."
+        him "You can start growing some spices and potatoes. We'll start you off and then soon you'll be enjoying the joys of farming!"
+        him "Pete can teach you how to hunt."
+        brennan "I feel like if you guys have enough time to teach us how to hunt and forage and farm, you had enough time to plant a few more crops for us to eat."
+        him "We probably could have done that. But I think it's more important that you take care of your own food."
+        him "I don't want to be feeding miners in twenty years. I want to be enjoying my own family and community."
+        brennan "Over half of us are here for life. So we're part of your little community now."
+        him "Here for life? You make it sound like a prison sentence."
+        brennan "For some of us, it is."
+        brennan "There's a very real chance that RET could go bankrupt because of this."
+        menu community12_RET_bankrupt:
+            "How would they go bankrupt?" if not talked_bankrupt:
+                him "What do you mean?"
+                brennan "I can't believe you don't understand this."
+                brennan "RET makes money from supplying electronics manufacturers with rare metals."
+                brennan "They're scraping by right now doing things like buying and scavenging scrap electronics."
+                brennan "They've gone ridiculously into debt to try getting metal off this planet. It's already been almost a decade since they started."
+                him "I thought they had some government funding and grants and stuff."
+                brennan "They did. They still do. But that doesn't cover most of the expenses."
+                brennan "My job is to get that shuttle full of metal and send it back ASAP."
+                brennan "That way RET can continue supporting our survival."
+                $ talked_bankrupt = True
+                jump community12_RET_bankrupt
+            "Why is RET going bankrupt so bad?":
+                him "So RET goes bankrupt. We can survive without them!"
+                brennan "You can be blase about it now. But you guys depend on them for all kinds of stuff."
+                brennan "Your tablets, all your medicine and medical equipment, your solar panels, your batteries."
+                brennan "And most crucially, the equipment to detect and broadcast solar flares."
+                brennan "Could you really live without all that?"
+                menu:
+                    "It would be difficult, but we could.":
+                        him "More people would die of preventable causes. But I think that overall we could survive."
+                        brennan "Why would you want more people to die instead of fewer?"
+                        him "Because then we wouldn't be dependent on some possibly-unethical company for our survival."
+                        brennan "Yeah, and you're so ethical, you're willing to die to be independent."
+                        brennan "You shouldn't be making that decision for everyone else, too."
+                        menu:
+                            "True enough.":
+                                him "I hadn't thought of it that way. You have a good point."
+                                jump community12_choose_farming
+                            "I can and will make that decision.":
+                                him "I'm not making these decisions on some whim. The colonists elected me to be the liason to RET."
+                                him "That means they trust my judgement."
+                                him "And I think we should stick to what I decided, which was to have the miners hunt and forage for most of their food."
+                                jump community12_choose_foraging
+                    "No, we couldn't.":
+                        him "We couldn't live without all that technology."
+                        him "This isn't like Earth where we've evolved to survive in our environment and have centuries of knowledge to lean on."
+                        him "Without our solar flare detection technology, we'd probably all die within a few years or be stuck living in caves."
+                        brennan "I'm glad you understand the situation then."
+                        him "Yes, I understand."
+                        jump community12_choose_farming
+            "You're right, RET could go bankrupt.":
+                him "I know what I'm doing. I know that RET could go bankrupt and then we'd stop getting supplies from them."
+                him "We have enough to survive. By the time our solar panels and radios give out, we'll probably have figured out how to fix them."
+                him "Especially with all your mining equipment, it won't be long before we can produce our own crude electronics."
+                him "We won't have all of the great medicines and medical equipment like they have on Earth."
+                him "More of us would die without RET, but I'm prepared to accept that."
+                him "There's also a chance that they won't go bankrupt, or that some other company would take over from them if they did."
+                him "I know you don't like it, but I'm sticking to my decision."
+                jump community12_choose_foraging
+                    
+                label community12_choose_farming:
+                    brennan "I'm glad you agree. I know that a lot of families have their own food storage."
+                    brennan "This is a dire situation, so I'll loan you 500 credits of my landing fee."
+                    brennan "Gather up what you can find from the other colonists and hopefully it will be enough to last until the next harvest."
+                    brennan "Also, start planting some extra crops for us, otherwise we'll all starve or radiate to death in this forsaken place."
+                    him "Okay, I'll do it right away."
+                    "I messaged all the farmers, telling them of our dire situation. Some of them volunteered to sell extra food, and two or three farmers said they'd plant more crops." #actual e-mail and some replies?
+                    "After two weeks, we had lots of salad greens and radishes."
+                    "But the lettuce and radishes weren't enough to feed the miners."
+                    "Chaco even asked me for food in return for quite a bit of money." #this could be a choice that affects food/money variables
+                    "I think he asked Pete too, because Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
+                    "After another six weeks, we had zucchini, squash, and turnips, with some small potatoes and bigger ones on the way."
+                    return
+#                    "One morning our milk delivery was missing."
+#                    "Natalia started finding eggs missing, and one day, one of her chickens disappeared."
+#                    "We decided to form a colony patrol."
+#                    "We put cameras in a few key places and programmed them to alert whoever was on duty that night when they sensed movement."
+#                    "The miners were stealing our food, and other crops were still at least three weeks away from harvesting."
+                    
+                    
+                label community12_choose_foraging:
+                    brennan "Fine. I'll go door-to-door tonight to see if I can buy off some food until you can send over your teachers."
+                    him "They'll be there tomorrow morning."
+                    "I messaged Lily and Pete and asked them to be ready to teach hunting and gathering tomorrow morning." #actual message for this too?
+                    "I went along so I could see how it went."
+                    "The miners had a good attitude about hunting, since on Earth it's a luxury sport."
+                    "Pete helped them set up snares and do some target practice."
+                    "He brought a gun along too, and used it to get a few quick kills so the miners could have food that week."
+                    "Dr. Lily showed the caretakers and some of the other miners how to identify edible foods."
+                    "She explained the maps and identification keys for the best foraging spots and encouraged them to write down their discoveries."
+                    "While they hiked around that afternoon, I tilled up some ground near the miners's quarters."
+                    "We planted some crops that could be harvested quickly, like green lettuce and radishes."
+                    "The next day, I helped set up a rudimentary irrigation system and we planted more long-term crops."
+                    "Hunting and foraging took time away from mining, and Brennan told me several times that they were behind schedule and we were all doomed."
+                    "I thought he might stop talking to me, but he was more of the bitter-lover kind of angry, who brings up all your flaws at every opportunity."
+                    "People started asking me if we were in danger."
+                    "I reassured them that we were focusing on survival."
+                    # "What did I tell them?"
+                    return 
+                    
         #TODO: finish this
-        return
         
     #Do the miners resort to stealing? Elect a sherriff?
     #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
-    return
-
 
 label community13:
     "I awoke one morning to knocking on my door, and Terra asking me to answer the door."
@@ -1351,120 +1473,150 @@ label community13:
         him "Oh, they already replied. They said to go with whatever Brennan says."
         lily "I can't believe this. Tell them I said to stop the mining!"
         him "I can't send another message for twenty-four more hours."
-        lily "Fine. Let's go find Brennan then."
-        him "You talk to Brennan. I need to make breakfast."
-        lily "I'm afraid that my concerns may be dismissed due to my age and stature."
-        lily "Your company would lend my petition credibility."
-        him "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
-        "Not to mention a nap to take this afternoon, if I can manage it."
-        "It's still dark outside. As we walk to the mines, Dr. Lily tells me about her latest research."
-        "When we arrive, the control station is empty."
-        him "Well, we tried, but he's not here. Let's just send him a message."
-        lily "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
-        him "I have no idea."
-        "Dr. Lily knocks on the door of a nearby hut. She knocks for several minutes until she gets an answer."
-        lily "He said Brennan lives over here."
-        "She knocks on his door. A voice comes from behind the door."
-        brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
-        lily "We're not here to ask for a personal day."
-        "He opens the door."
-        brennan "Oh, sorry. I thought you were someone else."
-        brennan "Who do I owe for the pleasure of your visit?"
-        lily "Zaina. She told me that you are about to mine through an underground cave today or tomorrow."
-        lily "I would like to explore the cave. Once you reach the cave, I urge you to delay mining activity in order to allow for data collection."
-        brennan "Oh dear. The one in little Durban? We did run into the cave last night just before quitting for the day."
-        lily "Is there any way you can delay mining on that branch?"
-        brennan "I don't know. What will RET think?"
-        him "We asked them, and they said to defer to your judgement."
-        lily "I've never had the opportunity to study a cave here before. I believe it would be beneficial for our entire community."
-        brennan "The thing is, it's off of the descent tunnel. If it were just a branch it would be fine to leave for a few days or months."
-        brennan "But the most promising deposits are still deeper down! Even if I have all of our miners work on branches, their mining won't be as effective as digging deeper and then branching."
-        brennan "Zaina made a bunch of frequency tables if you're curious."
-        lily "But an opportunity like this is unprecedented. And what we study may impact those frequency tables."
-        brennan "More data is good for mining, definitely. How long do you need to explore the caves?"
-        lily "How long can you give me?"
-        brennan "I can definitely give you 8 hours."
-        lily "I need at least two days. Depending on how extensive the cave is, I might need months."
-        brennan "I'm willing to give you and Zaina two days. And I want updated frequency tables from Zaina."
-        lily "I will inform Zaina. Can you supply us with headlamps and radios?"
-        brennan "Yes. You'll need your own rope system and support personelle though."
-        lily "I'll go get Zaina now. [his_name], can you be our support person?"
-        him "I really need to get back to the farm."
-        lily "You can work on your farm. We just need someone to listen to the radio so that we can call for help if something happens."
-        him "I can do that."
-        "Dr. Lily told me her radio frequency, and I went home to work."
-        "I listened to Dr. Lily and Zaina chatting with each other while they explored the cave. Miranda Peron, Dr. Lily's research assistant, came too."
-        "She and Zaina took lots of photos, and Zaina took some rock samples." #put in actual conversations? or just summarize it all?
-        "They were still exploring when [her_name] came back from work and we listened to it in the background."
-        "As I was going to bed, they reported that they were done for the day and made it out safely."
-        "The next day, I turned the radio on to find that Lily and Zaina were already exploring the cave again."
-        "They breathlessly related how they found a pool of water with eyeless snail-like fish."
-        "Dr. Lily reported finding a vertebrate without a shell or exoskeleton, which she said was the first she'd ever seen."
-        "She got some video footage, but wasn't able to capture it. She said it looks kind of like a newt."
-        lily "[his_name], we need more time to explore this cave. If they mine through this, they might destroy animals that don't exist anywhere else."
-        lily "A vertabrate like this without a shell could be invaluable to our research."
-        lily "Tell Brennan we can't mine this cave until we explore it further."
-        him "Hey, I'm the liason between RET and the colonists, not between the colonists and the miners. Tell him yourself."
-        lily "I'm not proficient in presuasive rhetoric. And I don't have strong ties to other colonists through friendships or family."
-        lily "Would you please talk to Brennan as a personal favor?"
-        menu:
-            "Yes.":
-                him "Okay. We've come this far."
-                him "How would Brennan benefit from stopping the mining? Zaina, do you need more data?"
-                zaina "I have about as much as I can use, but I fully support Lily's research."
-                lily "Knowing more about our planet benefits everyone."
-                him "I'm on my way. Let's talk to Brennan together."
-                "I walked over to the camp. We found Brennan reading a book near his hut."
-                brennan "How the expedition?"
-                zaina "It was fantastic. The cave's beauty is beyond the capacity of verbal description."
-                lily "We found a very unusual species that could help us understand life on this planet."
-                brennan "Great. I'm glad that no one was hurt and that you could collect some data."
-                zaina "I have updated frequency tables for you--small tweaks, mostly."
-                brennan "Thank you!" #winning smile
-                him "Oh, can I see some of the pictures of the cave? Brennan, do you want to see too?"
-                brennan "Sure."
-                "Zaina showed us the photos of the cave on her tablet."
-                zaina "Unfortunately the newt-thing's habitat and the cave pond are in the mining trajectory."
-                zaina "Normally I would have been able to see the water with my imaging tools, but some layers were very resistant to radiation."
-                brennan "I see. We'll have to watch out for the water and drain it when we get to that point."
-                "Lily looks like she's about to cry."
-                him "Maybe you could go around it? Then you wouldn't have to worry about all that water."
-                brennan "We're bound to hit the water sooner or later. Might as well get it over with."
-                him "Lily really, really wants a few more days to study the cave. Is there any kind of side tunnel you could work on?"
-                brennan "That's what we've been doing the last two days. We really need to get back to the main descent tunnel so we can get to the right level for the metals we need."
-                him "What would it take to halt the mining for two days?"
-                brennan "If you compensated the miners with credits for the days they couldn't work, they would probably be happy. But I would still be two days behind schedule."
-                zaina "But if you go ahead with the mining, it might damage your relations with the other colonists, who are very much in favor of research."
-                brennan "Look, if you can get the credits together by midnight, I'll tell the miners that they can have paid vacation for the next two days."
-                "We hurriedly messaged everyone, and started going door-to-door to explain the situation."
-                if (colonists >= 10):
-                    #if we implement currency, ask how much to donate
-                    "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
-                    "We reached the goal by 11:30pm."
-                    "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
-                    "They even managed to capture a few of the newt-like creatures."
-                    jump cave_explored
+        lily "Then we must inquire with the next person who can give us permission to explore the cave."
+        him "Ugh, Are you talking about Brennan?"
+        jump community13_talk_to_brennan
+    else: 
+        jump community13_nonliason_talk_to_brennan
+        
+        label community13_nonliason_talk_to_brennan:
+            lily "No, this is urgent and important business. Depending on their schedule, they may already be setting up the explosives!"
+            lily "I need you to ask Brennan if he can delay mining the cave until we can explore it."
+            jump community13_talk_to_brennan
+        
+        label community13_talk_to_brennan:
+            him "You talk to Brennan. I need to make breakfast."
+            lily "I'm afraid that my concerns may be dismissed due to my age and stature."
+            lily "Your company would lend my petition credibility."
+            him "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
+            him "Not to mention a nap to take this afternoon, if I can manage it."
+            "It's still dark outside. As we walk to the mines, Dr. Lily tells me about her latest research."
+            "When we arrive, the control station is empty."
+            him "Well, we tried, but he's not here. Let's just send him a message."
+            lily "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
+            him "I have no idea."
+            "Dr. Lily knocks on the door of a nearby hut. She knocks for several minutes until she gets an answer."
+            lily "He said Brennan lives over here."
+            "She knocks on his door. A voice comes from behind the door."
+            brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
+            lily "We're not here to ask for a personal day."
+            "He opens the door."
+            brennan "Oh, sorry. I thought you were someone else."
+            brennan "Who do I owe for the pleasure of your visit?"
+            lily "Zaina. She told me that you are about to mine through an underground cave today or tomorrow."
+            lily "I would like to explore the cave. Once you reach the cave, I urge you to delay mining activity in order to allow for data collection."
+            brennan "The one in little Durban? We did run into the cave last night just before quitting for the day."
+            lily "Is there any way you can delay mining on that branch?"
+            if require_whole_harvest or rationing:
+                brennan "I don't know. What will RET think?"
+                him "We asked them, and they said to defer to your judgement."
+                lily "I've never had the opportunity to study a cave here before. I believe it would be beneficial for our entire community."
+                brennan "The thing is, it's off of the descent tunnel. If it were just a branch it would be fine to leave for a few days or months."
+                brennan "But the most promising deposits are still deeper down! Even if I have all of our miners work on branches, their mining won't be as effective as digging deeper and then branching."
+                brennan "Zaina made a bunch of frequency tables if you're curious."
+                lily "But an opportunity like this is unprecedented. And what we study may impact those frequency tables."
+                brennan "More data is good for mining, definitely. How long do you need to explore the caves?"
+                lily "How long can you give me?"
+                brennan "I can definitely give you 8 hours."
+                lily "I need at least two days. Depending on how extensive the cave is, I might need months."
+                brennan "I'm willing to give you and Zaina two days. And I want updated frequency tables from Zaina."
+                lily "I will inform Zaina. Can you supply us with headlamps and radios?"
+                brennan "Yes. You'll need your own rope system and support personelle though."
+                lily "I'll go get Zaina now. [his_name], can you be our support person?"
+                him "I really need to get back to the farm."
+                lily "You can work on your farm. We just need someone to listen to the radio so that we can call for help if something happens."
+                him "I can do that."
+                "Dr. Lily told me her radio frequency, and I went home to work."
+                "I listened to Dr. Lily and Zaina chatting with each other while they explored the cave. Miranda Peron, Dr. Lily's research assistant, came too."
+                "She and Zaina took lots of photos, and Zaina took some rock samples." #put in actual conversations? or just summarize it all?
+                "They were still exploring when [her_name] came back from work and we listened to it in the background."
+                "As I was going to bed, they reported that they were done for the day and made it out safely."
+                "The next day, I turned the radio on to find that Lily and Zaina were already exploring the cave again."
+                "They breathlessly related how they found a pool of water with eyeless snail-like fish."
+                "Dr. Lily reported finding a vertebrate without a shell or exoskeleton, which she said was the first of its kind she'd ever seen."
+                "She got some video footage, but wasn't able to capture it. She said it looks kind of like a newt."
+                lily "[his_name], we need more time to explore this cave. If they mine through this, they might destroy animals that don't exist anywhere else."
+                lily "A vertabrate like this without a shell could be invaluable to our research."
+                lily "Tell Brennan we can't mine this cave until we explore it further."
+                if is_liason:
+                    him "Hey, I'm the liason between RET and the colonists, not between the colonists and the miners. Tell him yourself."
                 else:
-                    "A lot of people donated a few credits here and there, but it wasn't enough to pay the miners for one day, let alone two."
-                    "We gave up around midnight, returning the credits to those who donated."
-                    #sit-in protest from Lily and Miranda? Would that make sense?
-                
-            "No.":
-                him "Sorry, I've already talked to Brennan more than I normally would for you."
-                him "I'm happy that you were able to explore the cave, but I don't think we can justify asking Brennan for more time when he's already doing you a favor."
-                lily "I understand."
-
-    else:
-        "Sara asked Rare Earth Tech to halt the mining on Dr. Lily's behalf, but they didn't stop."
-        jump cave_unexplored
+                    him "I'm no research lobbyiest. Tell him yourself."
+                lily "I'm not proficient in presuasive rhetoric. And I don't have strong ties to other colonists through friendships or family."
+                lily "Brennan worked with your wife. He would be more likely to listen to you since he knows you."
+                lily "Would you please talk to Brennan as a personal favor?"
+                menu:
+                    "Yes.":
+                        him "Okay. We've come this far."
+                        him "How would Brennan benefit from stopping the mining? Zaina, do you need more data?"
+                        zaina "I have about as much as I can use, but I fully support Lily's research."
+                        lily "Knowing more about our planet benefits everyone."
+                        him "I'm on my way. Let's talk to Brennan together."
+                        "I walked over to the camp. We found Brennan reading a book near his hut."
+                        brennan "How the expedition?"
+                        zaina "It was fantastic. The cave's beauty is beyond the capacity of verbal description."
+                        lily "We found a very unusual species that could help us understand life on this planet."
+                        brennan "Great. I'm glad that no one was hurt and that you could collect some data."
+                        zaina "I have updated frequency tables for you--small tweaks, mostly."
+                        brennan "Thank you!" #winning smile
+                        him "Oh, can I see some of the pictures of the cave? Brennan, do you want to see too?"
+                        brennan "Sure."
+                        "Zaina showed us the photos of the cave on her tablet."
+                        zaina "Unfortunately the newt-thing's habitat and the cave pond are in the mining trajectory."
+                        zaina "Normally I would have been able to see the water with my imaging tools, but some layers were very resistant to radiation."
+                        brennan "I see. We'll have to watch out for the water and drain it when we get to that point."
+                        # Lily looks really upset
+                        him "Maybe you could go around it? Then you wouldn't have to worry about all that water."
+                        brennan "We're bound to hit the water sooner or later. Might as well get it over with."
+                        him "Lily really, really wants a few more days to study the cave. Is there any kind of side tunnel you could work on?"
+                        brennan "That's what we've been doing the last two days. We really need to get back to the main descent tunnel so we can get to the right level for the metals we need."
+                        him "What would it take to halt the mining for two days?"
+                        brennan "If you compensated the miners with credits for the days they couldn't work, they would probably be happy. But I would still be two days behind schedule."
+                        zaina "But if you go ahead with the mining, it might damage your relations with the other colonists, who are very much in favor of research."
+                        brennan "Look, if you can get the credits together by midnight, I'll tell the miners that they can have paid vacation for the next two days."
+                        "We hurriedly messaged everyone, and started going door-to-door to explain the situation."
+                        if (colonists >= 10):
+                            #if we implement currency, ask how much to donate
+                            "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
+                            "We reached the goal by 11:30pm."
+                            "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
+                            "They even managed to capture a few of the newt-like creatures."
+                            jump cave_explored
+                        else:
+                            "A lot of people donated a few credits here and there, but it wasn't enough to pay the miners for one day, let alone two."
+                            "We gave up around midnight, returning the credits to those who donated."
+                            jump cave_partially_explored
+                            #sit-in protest from Lily and Miranda? Would that make sense?
+                        
+                    "No.":
+                        him "Sorry, I've already talked to Brennan more than I normally would for you."
+                        him "I'm happy that you were able to explore the cave, but I don't think we can justify asking Brennan for more time when he's already doing you a favor."
+                        lily "I understand."
+                        jump cave_partially_explroed
+            else:
+                brennan "ABSOLUTELY not."
+                brennan "We're far enough behind as it is."
+                lily "But demolishing this cave is irreversible."
+                lily "There may be flora and fauna unique to the cave that we may never document if you destroy it unexplored."
+                brennan "RET going out of business would also be irreversible, which might happen if I don't continue mining right away, thanks to this guy."
+                him "At least you have enough to eat, and it's food you grew or found yourself."
+                brennan "You imposed your values on how we get our food. I'm imposing my values on when we can spare time to scientific research."
+                lily "You are making a mistake."
+                him "We're already behind schedule. What difference would a few days make?"
+                brennan "I said no. Please leave before I start singing ."
+                jump cave_unexplored
             
     label cave_unexplored: 
         "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
     return
     
+    label cave_partially_explored:
+        "Dr. Lily was disappointed that she didn't have more time to explore the cave, but she thanked me for my help."
+    return
+    
     label cave_explored:
-        "The miners explode the cave to access more minerals deeper down. At least Dr. Lily got to document the life forms there."
-        "Next weekend, some miners are gambling away their new fortunes."
+        "The miners explode the cave to access more minerals deeper down. At least Dr. Lily got to document and collect the life forms there."
+        "Next weekend, some miners are selling pieces of the cave salvaged from the explosion."
     #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
     #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
     #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
@@ -1474,6 +1626,7 @@ label community13:
 
 
 label community14:
+    #do they send the shuttle back with the metal at this point?
     "Pete and Helen, and their child, leave their home on the colony because they feel Rare Earth Tech is immoral and they don't like being controlled and pushed around."
     "They plan to leave almost everything provided by Rare Earth Tech, with the exception of some metal foam sheeting to protect from radiation. They're also taking about a third of their cattle."
     "They announce it on the community message board."
