@@ -2069,7 +2069,7 @@ label family8:
                 "Let it go.":
                     "That was good enough, I guess."                                
         "Comfort Oleg.":
-            responsive += 1
+            $ responsive += 1
             him concerned "Sorry about that, Oleg. Here, you can wipe the mud off with this."
             oleg "Okay. I hate being dirty."
             "Once Oleg got cleaned up, he didn't seem too upset, but went back to his drawing. I was a little jealous of Ilian and Sara sometimes -- how come they got such an easygoing kid?"
