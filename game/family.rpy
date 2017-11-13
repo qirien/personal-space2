@@ -1983,24 +1983,154 @@ label family7_angry_ending:
 
 # 5 Earth years old
 # First Day of School
+# Disobedience 
 label family8:
     # TODO: Start with last day of play group?
-    "First day of school! She's a little nervous, but not screaming and crying."
-    # TODO: how would the first day be different in a 1 room schoolhouse? Maybe she'll see a familiar face in a babysitter there?
+    "It was my turn to host playgroup. It always felt a little frustrating not to be able to go out in the fields and get my work done, but I could also see that it was good for [kid_name]."
+    "I'll admit I looked forward to school starting next week. We had just had a preview day where these kids got to see the school and meet the teacher."
+    "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
+    "But I wondered how the other kids in her playgroup would handle the transition to school..."
+    scene fields with fade
+    show him at quarterright
+    show kid at center
+    show trevor at midleft
+    show oleg at quarterleft
+    trevor "Mud fight!"
+    him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
+    kid "I do!"
+    show kid at squatting with move
+    "Trevor threw his mudball at her and she dodged it, giggling."
+    show kid at center with move
+    "She scooped up some mud of her own and flung it his way, but it hit Oleg instead, who was busy drawing in the dirt with a stick."
+    show trevor at squatting with move
+    show oleg sad with dissolve
+    show trevor at midleft with move
+    "He started crying."
+    "[kid_name] didn't seem to notice; she was still chasing down Trevor."
     menu:
-        "Leave when she's not looking.":
+        "What should I do?"
+        "Run after [kid_name].":
+            $ demanding += 1
+            him angry "[kid_name]!"
+            kid "What?"
+            "She yelled back without stopping her chase."
+            him annoyed "Come here. I need to talk to you."
+            kid "Why?"
+            him angry "Come here now!"
+            "She finally stopped chasing Trevor and came over to me."
+            kid "What?"
+            him concerned "You just hit Oleg in the face with your mudball."
+            kid "Oh. Whoops."
+            him annoyed "You need to go apologize to him."
+            "She yelled over at Oleg, who was still wiping his face off onto his shirt."
+            kid "Sorry, Oleg!"
+            oleg "..."
+            menu:
+                "What should I do?"
+                "Insist on a better apology.":
+                    $ demanding += 1
+                    him determined "What kind of apology was that? You need to walk over to him and tell him sincerely to his face."
+                    kid "I already said sorry!"
+                    him annoyed "You need to say it for real."
+                    kid "Fine."
+                    "She ran over to Oleg."
+                    kid "I'm sorry."
+                    oleg "It's okay."
+                    kid "There; are you happy now?!"
+                    "I sighed. It was so much work to keep up with that child..."                    
+                "Teach her about apologies later.":
+                    $ demanding += 1
+                    $ responsive += 1
+                    "I decided we needed to have a talk about the right way to apologize later."
+                    scene farm_interior with fade
+                    show him at midleft
+                    show kid at midright
+                    him concerned "[kid_name], why do you think we say sorry when we hurt someone?"
+                    kid "I don't know."
+                    him surprised "How do you feel when someone hurts you?"
+                    kid angry "Mad. And sad."
+                    him determined "What about when they say they're sorry?"
+                    kid normal "I feel a bit better."
+                    him normal "Exactly. Saying sorry helps us both feel better. So when you say sorry, make sure you say it in a way that communicates that."
+                    kid angry "I do!"
+                    him "Let's practice. Pretend I took your toy tractor."
+                    kid angry "Hey, give me back my tractor!"
+                    him "Oh, I'm sorry. Here, you can have it back."
+                    "I exaggerated the emotion to show her how to apologize." 
+                    kid normal "Okay..."
+                    him "Now you pretend you've taken my tractor."
+                    kid happy "Ha ha, it's mine, now!"
+                    him sad "Hey, give me back my tractor!"
+                    kid sad "I'm sorry. Here, you can have it back."
+                    him happy "Good job! Apologize just like that next time, okay?"
+                    kid normal "Okay..."
+                    "She wasn't perfect at it, but I think I taught her pretty well."
+                    "At any rate, I knew we'd have plenty of opportunities to practice apologies in the future."                                    
+                "Let it go.":
+                    "That was good enough, I guess."                                
+        "Comfort Oleg.":
+            responsive += 1
+            him concerned "Sorry about that, Oleg. Here, you can wipe the mud off with this."
+            oleg "Okay. I hate being dirty."
+            "Once Oleg got cleaned up, he didn't seem too upset, but went back to his drawing. I was a little jealous of Ilian and Sara sometimes -- how come they got such an easygoing kid?"
+            "[kid_name] ran back toward us, racing Trevor, and I had to smile."
+            "She wasn't an easy kid -- but I loved her vibrant energy and insatiable curiosity...even when it sometimes exhausted me."
+            menu:
+                "Have her apologize to Oleg.":
+                    $ demanding += 1
+                    him concerned "[kid_name], you hit Oleg in the face with a mudball and then ran away."
+                    kid "Oh. Sorry, Oleg!"
+                    oleg "It's okay."
+                "Let it go.":
+                    "Oleg was fine; no need to bring that up again."
+        
+    scene black with fade
+    "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
+    scene path with fade
+    show him at midleft
+    show her at midright
+    show kid at center
+    with dissolve
+    
+    kid "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors and the letters of the alphabet and my numbers up to fifty except I always mess up around forty-seven and skip right to forty-nine but that's still pretty good, right, daddy?"
+    him surprised "Um, what was the quetsion?"
+    kid "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Trevor and he'll think it's so cool how we made it together, daddy."
+    her concerned "[her_name]."
+    kid "What?"
+    her normal "We're almost there. Come get a goodbye hug."
+    kid "Bye, mommy!"
+    "She turned to me, and I felt like I should say something, but I wasn't sure what."
+    menu:
+        "What should I do?"
+        "Say nothing.":
+            "I didn't need to say anything. I just gave her a little wave and turned to walk away."
             $ neglectful += 1
         "Cheerfully give her a goodbye hug.":
+            him happy "Goodbye, sweetie! Do your best!"
+            kid happy "I always do my best!"
+            "I hugged her tight and she ran off to the schoolhouse."
             $ demanding += 1
             $ responsive += 1
             $ authoritative += 1
         "Admonish her to behave.":
+            him determined "You make sure you behave yourself in there, [kid_name]. Do everything your teacher says."
+            kid "Uh-huh."
             $ demanding += 1
             $ authoritarian += 1            
-        "Talk about how nervous she is.":
+        "Tell her it's okay to be nervous":
+            him concerned "It's okay to be nervous, [kid_name]; this is a big step! You've never been to school; it's going to be very different for you."
+            kid "Uh-huh."
+            "I hugged her tight and didn't want to let go. I couldn't believe my little baby was going off to school..."
             $ responsive += 1
             $ permissive += 1
             
+    "[her_name] moved to follow her, but I held her hand."
+    him normal "Didn't her teacher ask us not to come in with her for the first week, so she could get used to coming in on her own?"
+    her concerned "I guess so... Is she really going to be okay?"
+    "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
+            
+    # TODO: finish this.
+    
     if (year6_have_baby):
         "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
         "A few weeks after school started, [her_name] went into labor in the middle of the night."
@@ -2009,7 +2139,7 @@ label family8:
         
     else:
         $ year8_have_baby = True
-        scene farm_interior with fade
+        scene path with fade
         show her normal at midleft
         show him normal at midright
         with dissolve        
