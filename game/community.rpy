@@ -1223,7 +1223,7 @@ label community12:
                     brennan "So there's a missing cow, is there?"
                     sara "Yes. Have you seen any cows around here? The cow's tracks came this way."
                     brennan "Sorry, but I haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
-                    if know_BQQ:
+                    if know_BBQ:
                         sara "I heard that your team likes to have a barbeque when they make it past their mining quota. It seems like you might help supply the beef for that?"
                         brennan "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
                         sara "Okay, who is their supervisor then?"
@@ -1243,7 +1243,7 @@ label community12:
                     pavel "For what?"
                     pavel "They wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
                     sara "Aww, they have community events too!"
-                    if know_BQQ:
+                    if know_BBQ:
                         sara "Brennan said that the miners's supervisor, Bandile, is in charge of the celebrations."
                         sara "He recommended messaging him. Can you do that [his_name]?"
                         him "Yes. I want to get to the bottom of this."
@@ -1348,8 +1348,9 @@ label community12:
         him "We have some really good recipes. Put enough spices on it and you can hardly tell the difference."
         him "You can start growing some spices and potatoes. We'll start you off and then soon you'll be enjoying the joys of farming!"
         him "Pete can teach you how to hunt."
-        brennan "I feel like if you guys have enough time to teach us how to hunt and forage and farm, you had enough time to plant a few more crops for us to eat."
+        brennan "If you have enough time to teach us how to hunt and forage and farm, you would have had enough time to plant a few more crops for us to eat."
         him "We probably could have done that. But I think it's more important that you take care of your own food."
+        brennan "Every man a farmer, eh? What a primitive philosophy in our modern age of efficient specialization."
         him "I don't want to be feeding miners in twenty years. I want to be enjoying my own family and community."
         brennan "Over half of us are here for life. So we're part of your little community now."
         him "Here for life? You make it sound like a prison sentence."
@@ -1370,12 +1371,13 @@ label community12:
                 jump community12_RET_bankrupt
             "Why is RET going bankrupt so bad?":
                 him "So RET goes bankrupt. We can survive without them!"
-                brennan "You can be blase about it now. But you guys depend on them for all kinds of stuff."
+                brennan "You can be blasé about it now. But you guys depend on them for all kinds of stuff."
                 brennan "Your tablets, all your medicine and medical equipment, your solar panels, your batteries."
                 brennan "And most crucially, the equipment to detect and broadcast solar flares."
                 brennan "Could you really live without all that?"
                 menu:
                     "It would be difficult, but we could.":
+                        # increase luddite relationship?
                         him "More people would die of preventable causes. But I think that overall we could survive."
                         brennan "Why would you want more people to die instead of fewer?"
                         him "Because then we wouldn't be dependent on some possibly-unethical company for our survival."
@@ -1501,9 +1503,8 @@ label community12:
                     "They miners seemed pretty happy to eat their carrots and potatoes, and soon the prices of crops started to stabilize."
                     return 
 
-
 label community13:
-    "I awoke one morning to knocking on my door, and Terra asking me to answer the door."
+    "I awoke one morning to knocking on my door, and [kid_name] asking me to answer the door."
     lily "[his_name], we must act at once. Zaina told me about an enormous natural cave that the miners are set to run into tomorrow."
     lily "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
     lily "Not to mention that a natural cave could be an exciting destination for family day trips!"
@@ -1517,8 +1518,8 @@ label community13:
         lily "Have you told them about it? Then no."
         him "Do you know what specific branch it is?"
         lily "Yes, Zaina mentioned it, let me look it up."
-        lily "She says it's the third branch off the descent shaft. The one they call little Durban." #Durban is a South African town
-        him "Alright. I wrote: 'Please halt mining on little Durban. Natural cave found.'"
+        lily "She says it's the third branch off the descent shaft. The one they call Little Durban." #Durban is a South African town
+        him "Alright. I wrote: 'Please halt mining on Little Durban. Natural cave found.'"
         lily "I hope that I can still endure a cave exploration. It has been a long time since I've done any climbing."
         him "I've seen you walking around town. I bet you can handle it."
         lily "I can walk, but crawling around is a completely different thing."
