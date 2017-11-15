@@ -1070,6 +1070,7 @@ label community11:
                 pass
         if asked_only_medicine:
             "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
+            "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
             "They promised to help with the corn and turkeys."
             $ miners += 1
@@ -1091,6 +1092,7 @@ label community11:
         
         label Martin_dead_sooner:
             "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
+            "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna Nguyen decide to help out, but they aren't prepared to take full responsibility for the farm."
             "Hopefully they can learn what they need to know from Natalia and their neighbors."
             #TODO: should community 10's decision affect this?
@@ -1478,28 +1480,27 @@ label community12:
                     chaco "The meat isn't bad."
                     chaco "I miss bread."
                     him "Do you like hunting?"
-                    chaco "It's exciting! Especially when you get something."
-                    him "How is the mining going?"
-                    chaco "Brennan is pushing us to work as much as we can."
-                    chaco "He said it's your fault that we have to grow and hunt for our food."
+                    chaco "We buy our meat from Pete."
+                    him "You're not going hunting?"
+                    #chaco looks uncomfortable
+                    chaco "No. Brennan said we don't have time."
+                    him "Okay, so Pete is selling meat on the side."
+                    him "What about your farm?"
+                    chaco "We paid some other farmers to come take care of it."
+                    chaco "Brennan said it would be easier and quicker for us to focus on mining."
                     chaco "He said that we're probably going to be stuck here unless we work hard."
                     him "Yes, he does say that."
                     chaco "Is it true?"
                     him "It's true that I decided to let you be in charge of your own food."
-                    him "I might not have realized how strict the timeline was in Brennan's mind..."
-                    him "I hope that being connected to your food helps you feel alive."
+                    him "I was hoping that being connected to your food would help you feel alive."
                     chaco "Eating food definitely helps."
-                    "Chaco wasn't the only person concerned. Other colonists started asking about it too." 
-                    "I reassured everyone that I was focusing on our survival."
-                    "I visited the miner's farm frequently to teach the miners how to care for their plants."
-                    "After eight more weeks, the miners harvested the more substantial crops."
-                    "They passionately ate the food they worked so hard to grow."
+                    "Other colonists told me how they were helping the miners by doing extra work on the side." 
+                    "Some of the teenagers from the colony had a great time foraging on the weekends, selling their finds to the miners, and spending their money on the weird crafts they made for each other."
+                    "The prices of food from the storehouse started to rise, but we sold crops at a higher price too."
+                    "After eight more weeks, the new farm in the miner's camp had some more substantial crops."
+                    "They miners seemed pretty happy to eat their carrots and potatoes, and soon the prices of crops started to stabilize."
                     return 
-                    
-        #TODO: finish this
-        
-    #Do the miners resort to stealing? Elect a sherriff?
-    #Is there a skewed male:female ratio now that the miners have arrived?  That could cause people to be more suspicious of them.
+
 
 label community13:
     "I awoke one morning to knocking on my door, and Terra asking me to answer the door."
@@ -1715,10 +1716,168 @@ label community14:
 
 
 label community15:
-    "Losing members of the community is difficult. Some of the younger memebers of the community step up." 
-    # Sister Naomi dies.  Who steps up as spiritual leader?  Perhaps there is no longer a central spiritual leader, but each faith community simply has their own leaders, leading to increased fragmentation.
+    "In the early morning, [her_name]'s radio went off." #should we make a special kind of "radio" textbox like with e-mails?
+    pavel "[her_name], I think you should come over here."
+    pavel "Naomi is really sick."
+    her "What are her symptoms?"
+    "[her_name] continued talking on the radio as she put on her boots and coat and took my tractor down the road."
+    "I fell back asleep and woke up an hour later and started making breakfast"
+    her "Hi, I'm back."
+    him "Is she...?"
+    her "It's... pretty bad."
+    him "Oh. What's wrong with her?"
+    her "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
+    "I checked my tablet."
+    him "He said that she has severe radiation sickness and that she is going to die in the next week or two."
+    her "We'll be doing pallative care." 
+    him "Just trying to make her suffer less?"
+    her "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning."
+    him "I'll bring the kids over this afternoon."
+    her "Just... check that she's in a condition to see them."
+    "After I picked the kids up from school, we walked to Naomi and Pavel's house."
+    "Pavel was outside."
+    pavel "Are you here to see Naomi?"
+    him "Yes. Is that alright? I don't want to add to her suffering..."
+    pavel "It's fine. Now is a good time. Sara is in there right now, so you can go in when she comes out."
+    him "Okay. This feels so sudden. Is everything going to be okay?"
+    pavel "I am very sad that Naomi is not going to live longer."
+    pavel "We all have to die at some point though. Naomi has been ministering to her neighbors and their children, which was what she was passionate about."
+    pavel "She likes to say that even though we don't have modern plumbing, we can be civilized by loving each other."
+    "Sara stepped out. Tears were streaming down her face."
+    "Should I do or say something?"
+    menu:
+        #this menu might give players a false sense that you have a relationship meter with Sara
+        "Pur your arm around her shoulder.":
+            "I put my arm around her shoulder."
+            sara "It's hard to see her like this. But I'm glad I said goodbye."
+            $ colonists += 2
+        "Say you're sorry.":
+            him "I'm sorry for your loss."
+            sara "It's our loss, not just mine."
+            $ colonists += 1
+        "Say nothing.":
+            "Sara walked away quietly sniffing."
+            pass
+    "I entered the room with the kids."
+    kid "It stinks in here."
+    him "Sometimes that happens when you're sick."
+    naomi "[his_name], did you come to say goodbye too?"
+    him "Yeah. Thanks for everything you've done for us." #more detail
+    kid "Are you dying?"
+    naomi "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other, okay?"
+    naomi "[his_name], I've been watching how you parent your children."
+    $ style = get_parenting_style()
+    if (style== "authoritative"):
+        naomi "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
+        naomi "Keep up the good work."
+    elif(style == "authoritarian"):
+        naomi "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
+        naomi "If you consider Terra's opinion sometimes, I think she will be happier."
+    elif(style == "permissive"):
+        naomi "You let Terra do her own thing a lot."
+        naomi "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
+    else:
+        naomi "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
+        naomi "If you don't like being with your children, what was the point of having them?"
+        naomi "You might as well make a lifelong friend who might take care of you when you're old like me."
+    #would love some input/edits on this part
+    him "Oh, uh, thanks for the advice."
+    kid "What happens after you die?"
+    naomi "Some people believe that we go to a different world. Some people believe that we come back in another life."
+    naomi "Some people believe that our existence ends with death."
+    naomi "No matter what happens, I'll be alive in your memories of me."
+    kid "I'll forget."
+    naomi "Dying is a natural part of life. Your crops don't stay alive forever, do they?"
+    kid "We have a tree that's been growing since I was a baby!"
+    naomi "Can you plant a tree for me when I die?"
+    kid "Yes."
+    naomi "You can plant it on my grave, and then you can think about how my body is becoming a tree."
+    kid "Gross."
+    naomi "And let [bro_name] help." 
+    naomi "Come give me a hug."
+    "[kid_name] and [bro_name] gave her a hug."
+    him "We'll be sure to plant that tree, Naomi. Thank you for letting us visit even though you're sick."
+    naomi "It's my pleasure. On your way out, tell Pavel that I'm going to take a break."
+    him "I'll tell him."
+    "We left, and I told Pavel that Naomi wanted a break."
+    pavel "Seriously, thank you for coming by."
+    him "Let us know if you need anything."
+    pavel "I will."
+    "About a week later, Pavel called [her_name] to tell her that Naomi was dead."
+    her "I'll take her body today and do a few tests, and we can hold the funeral tonight."
+    "She turned the radio off."
+    "[her_name] started crying."
+    her "It won't be the same without her."
+    her "Who will reassure us when we're feeling hopeless?"
+    her "Who will give me hope that there's something bigger out there?"
+    menu:
+        "It'll be okay.":
+            him "I'm sure someone will fill the gap."
+            her "It's not like you ever liked going to church."
+            #another menu choice here
+            him "Yeah, but I know she cared about us."
+            him "Sometimes she'd stop by our house just to see how we were doing."
+            her "I guess that was part of her ministry."
+            him "She understood that some of us don't care for organized religion."
+            him "She knew that it was about caring for other people."
+        "No one can replace her.":
+            him "She's irreplaceable. We all are, since we're unique human beings."
+            him "But I think other people can inspire us, even if they can't do it the way Naomi did."
+            her "I know. But she's just so good at it."
+            him "That's true. She didn't have a specific job, but she filled in the gaps."
+            him "She watched our children and took care of sick people."
+            her "Hey, I make house calls too!"
+            her "But I know what you mean. She took care of their spirits, not their bodies."
+            #this decision only affects dialogue right now.
+    her "Oh, darn. Who's going to talk at her funeral?"
+    him "Sarah's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
+    her "Sounds good. Can you ask her for me?"
+    him "Has Naomi's death been announced?"
+    her "Pavel just posted about it."
+    him "I'll ask Sara if she can speak at the funeral then."
+    "The kids had been playing, but were listening to our conversation." #actual conversation w/kid?
+    "Almost everyone came to the funeral that evening."
+    #background - multipurpose room or chapel
+    her "I hope Naomi felt at peace when she died."
+    her "Even though she was miserable, she stayed cheerful and optimistic until the very end."
+    pavel "Naomi died of severe radiation sickness. I don't know if it was preventable or not."
+    pavel "There were many times where she felt it was more important to attend to the needs of people in our community rather than take shelter from solar radiation."
+    pavel "She constantly sacrificed her own needs to fulfill those of others, perhaps to an unreasonable degree. May her work live on in the way we treat each other." #you could have him say different things based on the community variable
+    sara "Sister Naomi was my mentor and friend. After I had Oleg, I had pretty bad depression for the first year after he was born."
+    sara "Sister Naomi visited me every day until I felt normal again. When I felt like it would have been better for me to die and have someone else watch Oleg, she helped me get out of the house to seek treatment." #depression meds available?
+    sara "I know I'm not the only one she's helped this way. I'm sure each of you have a story about how Sister Naomi helped you feel like you were a necessary part of our community."
+    sara "Now that she's gone, I admit that I feel a little helpless."
+    sara "But I decided to learn from Sister Naomi."
+    sara "She had a story she used to tell about how she was scared of spiders for a long time."
+    sara "You kids might not understand, but spiders are an Earth bug that many people find revolting and terrifying."
+    sara "One time she was alone in her house and there was a giant spider in her shower."
+    sara "She knew that she could kill it with her shampoo bottle. But instead of killing the spider, she decided to touch it."
+    sara "She held it in her hands and looked into its eyes. She said that she could feel that the spider was terrified and curious."
+    sara "I'm not sure if I believe this part, but she said they held eye contact for five minutes."
+    sara "Then she put it outside. And she wasn't afraid of spiders anymore."
+    sara "So instead of hoping that my hopelessness will go away, I am staring it in the face."
+    sara "Which is why I will be continuing her tradition of having weekly interfaith discussion groups."
+    sara "I may not be as wise or inspiring as Sister Naomi. But I am organized and consistent. So please come and share your life wisdom and experience."
+    "Some of the children sang one of the songs Naomi taught them when they were young." #does Brennan do anything? What about the miners? Kevin or Zaina?
+    "We all helped to bury her body. Ilian provided a laser-engraved headstone, and the Nguyen children put wildflowers on her grave."
+    "[kid_name] and [bro_name] planted the saplings we brought."
+    
+    #back home
+    him "So... How often was Naomi out in the radiation to get severe radiation sickness?"
+    her "She was outside during an entire solar flare multiple times."
+    her "She didn't say why, but I think she was checking up on Pete and Helen."
+    him "So she probably knew there was a flare, but couldn't find shelter in time?" 
+    her "That seems likely."
+    him "Too bad she wasn't inspired to take a tent with her."
+    her "She probably felt that she didn't have time, or maybe someone else had checked them out."
+    her "I wish we had something more practical like a radiation umbrella."
+    
     # Dr. Lily has a stroke and worries about her progress being lost if she should die.
-    "Miranda Peron (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
+    # should this go in the next event? what happens if she left with the luddites?
+#    "About a month later, Dr. Lily had a stroke."
+#    "She announced that Miranda would be the new head scientist."
+#    "Miranda had been working with Dr. Lily for the last ten years or so."
+    # Miranda Peron (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
     return
 
 
@@ -1726,7 +1885,6 @@ label community16:
     "Trade with luddites: is it permitted in the contract?"
     "Luddites want to trade a few calves for medical supplies." # [her_name] is not supposed to treat them at the clinic, but she does anyway?
     "Also, I chat about the hardships of living without tech."
-    #if the mode of currency stays a choice, how does it play in here?
     "Do I trade with the luddites?"
     menu:
         "yes.":
