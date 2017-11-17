@@ -2050,7 +2050,7 @@ label family8:
                     him surprised "How do you feel when someone hurts you?"
                     kid angry "Mad. And sad."
                     him determined "What about when they say they're sorry?"
-                    kid normal "I feel a bit better."
+                    kid normal "Not so mad."
                     him normal "Exactly. Saying sorry helps us both feel better. So when you say sorry, make sure you say it in a way that communicates that."
                     kid angry "I do!"
                     him "Let's practice. Pretend I took your toy tractor."
@@ -4378,47 +4378,77 @@ label family23:
     "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other."
     him annoyed "Does texting help you concentrate, too?"
     kid "Yes!"
-    menu:
-        "No texting during homework.":
-            him angry "No texting during homework! It's distracting!"
-            kid "What?!"
-            him annoyed "You heard what I said."
-            $ parenting_style = get_parenting_style()
-            if (parenting_style == "authoritarian"):
-                kid "Whatever."
-                him angry "Don't talk back to me!"
-                kid "Okay, dad."
-                $ authoritarian += 1
-                
-            elif (parenting_style == "authoritative"):
-                kid "That's really unfair, dad. Can you please just trust me to get my homework done in my own way?"
-                him surprised "What are you suggesting?"
-                kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
-                him determined "You think you can be done in thirty minutes."
-                kid "I know I can!"
-                menu:
-                    "What should I say?"
-                    "No. No texting during homework.":
-                        him "No. You may not text during homework!"
-                    "Yes, that sounds reasonable.":
-                        him "Yes... that sounds pretty reasonable."
-                    # TODO: finish this
-            elif (parenting_style == "permissive"):
-                kid "Daaaad, that's just not fair! You've always let me do that before!"
-                him angry "I didn't know you were doing it!"
-                kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"
-                
-                
-            else:
-                kid "Oh, now suddenly you care about my homework?!"
-                him surprised "Of course I care about your homework!"
-                
-        "What are you guys talking about?"
-        "Do you do this all the time?"
-        "Why don't you meet in person?"
+    him angry "You shouldn't text during homework! It's distracting!"
+    kid "What?!"
+    him annoyed "You heard what I said."
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
+        kid "Whatever."
+        him angry "Don't talk back to me!"
+        kid "Okay, dad."
+        $ authoritarian += 1
+        
+    elif (parenting_style == "authoritative"):
+        kid "That's really unfair, dad. Can you please just trust me to get my homework done in my own way?"
+        him surprised "What are you suggesting?"
+        kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
+        him determined "You think you can be done in thirty minutes."
+        kid "I know I can!"
+        menu:
+            "What should I say?"
+            "No. No texting during homework.":
+                him "No. You may not text during homework!"
+            "Yes, that sounds reasonable.":
+                him "Yes... that sounds pretty reasonable."
+            # TODO: finish this
+    elif (parenting_style == "permissive"):
+        kid "Daaaad, that's just not fair! You've always let me do that before!"
+        him angry "I didn't know you were doing it!"
+        kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"
+        
+        
+    else:
+        kid "Oh, now suddenly you care about my homework?!"
+        him surprised "Of course I care about your homework!"
+
+    menu:            
+        "What should I say?"
+        "What were you guys talking about?":
+            him surprised "What were you guys talking about?"
+            kid angry "Just... stuff! It's personal."
+            
+        "Do you do this all the time?":
+            him annoyed "Do you text while you do homework all the time?"
+            kid annoyed "...usually."
+            him surprised "Wow, no wonder your homework takes so long."
+            
+        "Why don't you meet in person?":
+            him surprised "You guys should meet in person instead of just messaging each other!"
+            kid sad "I don't know; he lives so far away."
+            him determined "He just lives in town. That's like a twenty minute walk!"
+            kid annoyed "I know, but I have so much homework! I don't have time to walk twenty minutes there and back!"
+
         "When do you think you'll be done?"
         "I need to use the computer pad; hand it over."
+                
     # TODO: Finish this event
+    "Finally, [kid_name] was done with the computer pad. She handed it to me."
+    menu:
+        "What should I say?"
+        "You can take Lettie to meet with friends."
+        "You can invite your friends over here."
+        "You need to concentrate more on your schoolwork.":
+            him concerned "You need to concentrate more on your schoolwork, and less on music and talking with friends."
+            kid "I thought we went over this!"
+            him determined "Your schoolwork is more important. Now, don't you have a test you need to study for?"
+            kid "No."
+            him normal "Then study anyway, because I know you will have a test, and I expect you to get 100%."
+            kid "I'll never be perfect!"
+            him determined "But if you don't try, you'll never know how good you could get. This guy on Earth named Peale said, 'Shoot for the moon. Even if you miss, you'll land among the stars.'"
+            kid annoyed "We're already among the stars."
+            him normal "Then maybe you need an even higher goal."
+            $ authoritarian += 1
+        "Thanks."
     
     
     "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
