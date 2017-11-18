@@ -218,8 +218,6 @@ label community4:
 label community5:
     $ talked_cans = False
     $ talked_credits = False
-    $ require_whole_harvest = False
-    $ rationing = False
     $ talked_something = False
     $ talked_canning_dairy = False
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
@@ -1504,6 +1502,8 @@ label community12:
                     return 
 
 label community13:
+    $ cave_partially_explored = False
+    $ Lily_mad_at_RET = False
     "I awoke one morning to knocking on my door, and [kid_name] asking me to answer the door."
     lily "[his_name], we must act at once. Zaina told me about an enormous natural cave that the miners are set to run into tomorrow."
     lily "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
@@ -1522,7 +1522,7 @@ label community13:
         him "Alright. I wrote: 'Please halt mining on Little Durban. Natural cave found.'"
         lily "I hope that I can still endure a cave exploration. It has been a long time since I've done any climbing."
         him "I've seen you walking around town. I bet you can handle it."
-        lily "I can walk, but crawling around is a completely different thing."
+        lily "I can walk, but I'm unsure of my crawling competence."
         lily "Aged bodies do not heal as quickly as young ones like yours."
         him "Oh, they already replied. They said to go with whatever Brennan says."
         lily "I can't believe this. Tell them I said to stop the mining!"
@@ -1607,7 +1607,7 @@ label community13:
                         lily "Knowing more about our planet benefits everyone."
                         him "I'm on my way. Let's talk to Brennan together."
                         "I walked over to the camp. We found Brennan reading a book near his hut."
-                        brennan "How the expedition?"
+                        brennan "How's the expedition?"
                         zaina "It was fantastic. The cave's beauty is beyond the capacity of verbal description."
                         lily "We found a very unusual species that could help us understand life on this planet."
                         brennan "Great. I'm glad that no one was hurt and that you could collect some data."
@@ -1632,21 +1632,25 @@ label community13:
                         if (colonists >= 10):
                             #if we implement currency, ask how much to donate
                             "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
+                            "Pete was especially supportive."
                             "We reached the goal by 11:30pm."
-                            "Lily and her research assistant, Miranda Peron, gather more samples and photographs of the cave before it is destroyed."
+                            "Lily and her research assistant, Miranda Peron, gathered more samples and photographs of the cave before it was destroyed."
                             "They even managed to capture a few of the newt-like creatures."
                             jump cave_explored
                         else:
-                            "A lot of people donated a few credits here and there, but it wasn't enough to pay the miners for one day, let alone two."
+                            "Pete donated a lot of credits, and there were a few small donations, but it wasn't enough to pay the miners for one day, let alone two."
                             "We gave up around midnight, returning the credits to those who donated."
-                            jump cave_partially_explored
+                            $ cave_partially_explored = True
+                            jump cave_unexplored
                             #sit-in protest from Lily and Miranda? Would that make sense?
                         
                     "No.":
                         him "Sorry, I've already talked to Brennan more than I normally would for you."
                         him "I'm happy that you were able to explore the cave, but I don't think we can justify asking Brennan for more time when he's already doing you a favor."
-                        lily "I understand."
-                        jump cave_partially_explroed
+                        lily "I understand. Perhaps Pete will be able to assist me in your stead."
+                        "She was not successful."
+                        $ cave_partially_explored = True
+                        jump cave_unexplored
             else:
                 brennan "ABSOLUTELY not."
                 brennan "We're far enough behind as it is."
@@ -1657,23 +1661,71 @@ label community13:
                 brennan "You imposed your values on how we get our food. I'm imposing my values on when we can spare time to scientific research."
                 lily "You are making a mistake."
                 him "We're already behind schedule. What difference would a few days make?"
-                brennan "I said no. Please leave before I start singing ."
+                brennan "I said no. Please leave."
+                "Dr. Lily looked furious, but she left."
                 jump cave_unexplored
             
-    label cave_unexplored: 
-        "The miners end up exploding the cave to access more minerals deeper down. Dr. Lily is furious."
-    return
-    
-    label cave_partially_explored:
-        "Dr. Lily was disappointed that she didn't have more time to explore the cave, but she thanked me for my help."
+    label cave_unexplored:
+        "That night, she sent a message to the other colonists about how Brennan refused to let her explore the cave."
+        "She invited everyone to join her in a protest the next morning."
+        "The next day, Pete, Helen, Natalia, and Joanna joined her."
+        "I went too."
+        menu:
+            "I protested with them.":
+                "I marched around yelling."
+                him "RET just wants moNEY!"
+                him "Save our cave!"
+                him "Conserve Talaam! Don't end up wrong!"
+                "It felt cathartic to express my outrage."
+                $ colonists += 1
+            "I just wanted to see what would happen.":
+                "I watched as the protestors matched in a circle, chanting and yelling."
+                "It seemed pretty silly to me. Didn't we have better things to be doing?"
+                $ miners += 1
+        brennan "Hey, I get that you're upset. you guys should move away from this area. There could be particles in the air that aren't good to breathe." #tried to google this but I'm still not sure if this would happen
+        lily "We're not budging an inch!" 
+        if cave_partially_explored:
+            lily "The cave newts cannot leave! We will endure this pollution in their honor."
+        brennan "It's your funeral."
+        "A few minutes later, we heard and felt the blasts."
+        "Dr. Lily left without saying anything."
+        "The next day I saw Dr. Lily to get some test results for my soil."
+        him "How's my soil doing?"
+        her "Phosphorus levels are low. I recommend that you increase manure levels."
+        him "I'll see if I can work some more in."
+        menu:
+            "Say something about the cave":
+                menu:
+                    "Too bad they had to demolish that cave.":
+                        him "I wish there had been some other way for the mining to continue."
+                        if cave_partially_explored:
+                            lily "It was indeed disappointing to simply catch a glimpse of what we could have observed."
+                        else:
+                            lily "I feel incredulous that Brennan decided to throw away this research opportunity."
+                        lily "I cannot affect circumstances further, however."
+                    "At least you got to see some of the cave." if cave_partially_explored:
+                        him "At least you were able to partially explore the cave."
+                        lily "I know that I could have gathered more data. I am unable to forget that."
+                        lily "What if those cave newts contain the secret to unshelled vertebrate survival?"
+                        lily "We may never know."
+                    "Brennan is just worried." if (not cave_partially_explored):
+                        him "I know it seems like Brennan was being a jerk, but he's just worried about RET's survival."
+                        lily "I understand his arguments. I think research is more important to our survival than having a shuttle shipment leave on time."
+            "Don't say anything.":
+                "I didn't say anything about the cave."
+        $ Lily_mad_at_RET = True
     return
     
     label cave_explored:
-        "The miners explode the cave to access more minerals deeper down. At least Dr. Lily got to document and collect the life forms there."
-        "Next weekend, some miners are selling pieces of the cave salvaged from the explosion."
-    #I'm not sure what the choice on this one should be. I want to build up some tensions between the colonists and the miners to give people a plausible reason to leave."
-    #I also want some things to happen that the player can't affect to give them a sense of helplessness? Or is there enough of that? Should there be a way to stop the miners from excavating the cave, maybe if your relationship with them is high enough?
-    #Perhaps you could get everyone on the colony to pitch in some currency to pay the miners NOT to mine temporarily while Lily takes lots of data.  So at least she gets to study the fossils and take lots of scans.  But perhaps the miners are rowdy and spend their currency on stuff other people wanted or cause trouble when not working, and you are also now low on money.
+        "I saw Dr. Lily the day after the miners demolished the cave to get the tests back from my soil samples."
+        him "So this soil is fine?"
+        lily "Nothing unusual. Phosphorus levels are low, so add more manure next time."
+        him "Okay, I'll work in some extra."
+        him "Are these the little cave newts you rescued?"
+        lily "Yes! They seem to be thriving in captivity."
+        lily "They have an interesting secretion that I think helps insulate them against cold temperatures in the cave."
+        him "Cool. It's a shame they had to excavate right where the cave was."
+        lily "Yes, it was. We did everything we could."
     # Pete should be a vocal opponent of the mining to foreshadow next month.
     # Perhaps something tragic, like someone decides to do a sit-in to protest the mining, but the miners don't know about it, and they get blown up as the excavation continues?
     return
