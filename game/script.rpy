@@ -77,7 +77,9 @@ label start:
         colonists = 0
         miners = 0
         luddites = 0
-        jellies = 0    
+        jellies = 0  
+        require_whole_harvest = False
+        rationing = False
         
     # FARM
     python:
