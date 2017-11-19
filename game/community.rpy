@@ -14,6 +14,16 @@ label community_intro:
     
 
 label community1:
+    $ asked_kids = False
+    $ asked_family = False
+    $ asked_grow = False
+    $ asked_shuttle = False
+    $ tell_Kelly = False
+    $ tell_Graysons = False
+    $ tell_Pete = False
+    $ tell_Lily = False
+    $ tell_Ngyuens = False
+    $ tell_Perons = False
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, you get in line with your friend Thuc to have some soup."
     scene community_center with fade
@@ -38,14 +48,161 @@ label community1:
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
     him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
     kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
-    "What do I think the colony's purpose is?"
+    him "I understand that from RET's point of view... but we farmers aren't really getting rich out here!"
+    him "I hope you weren't planning on a life of luxury."
+    kevin "No, I was not. I was planning on a life of adventure and discovery."
+    "What kind of life was I planning on?"
     menu:
-        "Yep, making money is our goal.":
+        "I'm going to focus on fulfilling my job to RET.":
             $ miners += 1
-        "I came to this colony for the excitement of exploration and to live a simpler life, not to worry about profit margins.":
+            him "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
+            him "Plus, growing food is essential for our survival!"
+            kevin "That sounds like a good plan."
+        "I came out here for adventure and discovery too.":
+            him "I love the feeling I get when I look up at the sky and I can see thousands of stars."
+            him "When I see plants and animals I've never seen before, I feel the thrill of discovery."
+            him "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
+            him "Nothing on Earth compares."
+            kevin "I agree. There's so much to document and try, it's overwhelming."
             $ luddites += 1
-        "Profits are important to RET, but at the end of the day, working together to do things we couldn't do alone is what keeps me going.":
+        "At the end of the day, working together is what keeps me going.":
+            him "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
+            him "At the same time, it's my relationship with my neighbors that I really cherish."
+            him "If we were working together on Earth, I'd be lucky to count one or two of my coworkers among my close friends."
+            him "Here, there's no choice. We have to be close to one another to survive."
+            him "True, we're always in each other's business. But we're always helping one another too."
+            kevin "It's kind of like you're a big family then?"
+            him "No, it's different. Families don't always get to choose to be together."
+            him "It's more like we're all united by a common goal."
+            kevin "So it's like you're always at work."
+            him "Kind of, yeah."
             $ colonists += 1
+    him "You guys are staying here for the rest of your lives, right?"
+    zaina "That's right!"
+    label ask_zaina_and_kevin:
+    menu: 
+        "What should I ask them about?"
+        "Are you planning to have children?" if not asked_kids:
+            him "So... I know RET is trying to grow the colony..."
+            him "Are you planning on having kids?"
+            zaina "We'll try. I'm not the most fertile of women though."
+            kevin "There aren't that many geologist-engineer couples to choose from."
+            $ asked_kids = True
+            jump ask_zaina_and_kevin
+        "Do you have family still on Earth?" if not asked_family:
+            zaina "I was an only child, and my parents recently died, so I don't have any family on Earth. I do have some friends still there though."
+            kevin "My father and brother are still on Earth, but I do not regret leaving them."
+            menu:
+                "So you weren't close?":
+                    him "Huh. Don't get along with them?"
+                    kevin "They are not men of science. They did not understand my passion for engineering, despite its obvious usefulness."
+                    him "My parents are still on Earth. We have some extremely delayed correspondence."
+                "You don't like them?":
+                    him "I take it you didn't like them very much."
+                    kevin "They did not value me or my work. They ignored my accomplishments."
+                    him "How would you expect them to? They're probably not experts like you are."
+                    kevin "If they had simply not understood my work, that would have been forgiveable."
+                    kevin "They are not men of science."
+                    him "My parents are still on Earth. We have some extremely delayed correspondence."
+            $ asked_family = True
+            jump ask_zaina_and_kevin
+        "What kind of food will you grow?" if not asked_grow:
+            him "You have quite a bit of land out there by the radio tower."
+            him "Any idea what you'll grow on it?"
+            zaina "We brought some fruit trees, which I hope will make a nice orchard."
+            zaina "Grapes are fairly hardy, and I would love to start a winery sometime!"
+            kevin "I am planning to try my hand at a basic vegetable garden."
+            him "Have you ever farmed before?"
+            zaina "I practiced caring for fruit trees in the simulations on the shuttle."
+            kevin "I also raised a magnificent patch of vegetables in the simulations."
+            him "So the answer is no."
+            kevin "The simulations have been updated since you flew over."
+            kevin "They're quite lifelike!"
+            him "Tell me how you feel about them after you harvest your first crops."
+            $ asked_grow = True
+            jump ask_zaina_and_kevin
+        "How was the shuttle ride?" if not asked_shuttle:
+            him "Did you start to hate each other a little on the shuttle ride over?"
+            kevin "No, I do not believe it is possible for us to hate each other."
+            zaina "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
+            him "I got married right before coming to Talaam too."
+            him "Did people give you all kinds of weird survival gear at your wedding?"
+            kevin "No, they did not. My friends from work are also engineers and understood the limitations of space travel."
+            zaina "His college roommates gave him a custom mix of media! It had everything from the latest datasets to formulae to try."
+            him "That sounds interesting. You should show Pete, our librarian. He gets excited about research and data."
+            zaina "Some of my cousins gave me some hunting goggles. The battery on them wasn't compatible with RET solar technology though."
+            $ asked_shuttle = True
+            jump ask_zaina_and_kevin
+        "I'm done asking them questions.":
+            zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
+            label colony_gossip:
+            menu:
+                "Who should I tell them about?"
+                "[her_name]" if not tell_Kelly:
+                    him "[her_name] is my wife and she's also the doctor in our clinic."
+                    him "She tries to be objective, but she also feels passionate about her job."
+                    zaina "I think that describes most of us."
+                    him "Some people have complained that her bedside manner is a little callous."
+                    him "So her objectivity is more relevant to customer satisfaction than, say, mine."
+                    kevin "Are you implying that your carrots cannot feel your love?"
+                    him "Correct. Unless that love manifests itself in better care."
+                    $ tell_Kelly = True
+                    jump colony_gossip
+                "Naomi and Pavel" if not tell_Graysons:
+                    him "Naomi Grayson is the one to go to with mental problems."
+                    him "She can't prescribe medicine for you, but she's very reassuring and can encourage you to get more help."
+                    zaina "Reassuring? So she basically tells you to hang in there."
+                    him "Somehow when she says it, it feels like she understands what you're going through."
+                    him "If you want to talk to her, she holds religious services every Sunday."
+                    zaina "Do you go to those?"
+                    him "No, but [her_name] does."
+                    him "Naomi's husband, Pavel, is the mayor. I think you know him already."
+                    $ tell_Graysons = True
+                    jump colony_gossip
+                "Dr. Lily" if not tell_Lily:
+                    him "Dr. Lily is our resident scientist. She was here before most of the other colonists."
+                    him "She tests plants to see if they're edible, and helps think of solutions to problems."
+                    zaina "You said scientist, but what kind of scientist is she?"
+                    him "Hmm. I guess she's a xenonaturalist. She looks at plants and animals, and does some chemistry on the side."
+                    kevin "RET does prefer people who have multiple talents."
+                    kevin "I'm also a shuttle pilot, for example."
+                    him "Oh, really? When did you have time to learn that?"
+                    kevin "Well, my father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
+                    kevin "After I obtained my pilot's license, I worked as a pilot for several years."
+                    him "But at some point you decided to study engineering."
+                    kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
+                    him "Flying is pretty incredible."
+                    $ tell_Lily = True
+                    jump colony_gossip
+                "Martin and Natalia" if not tell_Perons:
+                    him "Martin and Natalia Peron have four kids. Or, well, they used to have five."
+                    zaina "Used to?"
+                    him "There was an accident... and their daughter died when she was four years old."
+                    zaina "What a shame."
+                    him "Their kids are getting older and should be able to help around the colony more."
+                    $ tell_Perons = True
+                    jump colony_gossip
+                "Pete and Helen." if not tell_Pete:
+                    him "If you ever need to look something up or make something, our library is the place to go."
+                    him "Pete is our librarian and also our cattle rancher."
+                    him "He has a wife, Helen, but I don't see much of her since their ranch is pretty far out."
+                    $ tell_Pete = True
+                    jump colony_gossip
+                "Thuc and Julia." if not tell_Ngyuens:
+                    him "Thuc and Julia are my neighbors and some of our best friends."
+                    him "We don't talk about it much, but every now and then he collects everything from the latrines, treats it, and turns it into fertilizer."
+                    him "Also they have ten kids and Julia is a midwife."
+                    zaina "Ten kids? That is a lot."
+                    him "They fill our schoolroom nicely. It must have been a real pain on the shuttle though!"
+                    zaina "Yeah, there's not exactly a playground on the shuttle."
+                    $ tell_Ngyuens = True
+                    jump colony_gossip
+                "I'm done talking about other people.":
+                    him "Well, it was nice to meet you both."
+                    kevin "Undoubtedly we shall meet again."
+                    zaina "We'll have to have you over for dinner sometime."
+            
+            
     "You continue talking and then head home."
     #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
     # Maybe something about building a park/playground for everyone? 
@@ -1108,7 +1265,7 @@ label community12:
             him "What?"
             ilian "We're completely out of beef."
             him "I heard you, but I didn't believe you. I thought we had plenty of beef."
-            ilian "Well, first the miners maxxed out their alottment. So we're completely out of canned beef. Then one of Pete's cows went missing."
+            ilian "Well, first the miners maxxed out their allotment. So we're completely out of canned beef. Then one of Pete's cows went missing."
             ilian "It was also a dairy cow, so we're low on milk."
             him "Well, did it just wander off?"
             ilian "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
@@ -1248,7 +1405,7 @@ label community12:
                         jump message_Bandile
                     else:
                         him "Where do we go from here?"
-                        pavel "I'll tell Pete what I found out. Circumstantial evidence."
+                        pavel "Can you tell Pete what we found out?"
                         jump tell_Pete
                     
                 else:
@@ -1293,7 +1450,6 @@ label community12:
                     him "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
                     pavel "No, just that they wished they had some beef."
                     him "Where do we go from here?"
-                    pavel "I'll tell Pete what I found out. Circumstantial evidence."  
                     jump tell_Pete
                     
             label message_Bandile:
@@ -1310,13 +1466,28 @@ label community12:
                 "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
                 "I talked to the men who took the cow and they agreed to give Pete 100 credits each as an apology."
                 "That was the end of the message."
-                "I told Pete what I found out. He was happy about the credits, but still unhappy that his cow was gone."
+                "I told Pete that one of the miners stole his cow, and that Bandile sent him 100 credits in apology."
+                #pete angry
+                pete "They think 100 credits is going to replace her?"
+                pete "She could have had about three more calves."
+                pete "Least I can do is try to find her."
                 "I don't think he ever found her."
                 return
             
             label tell_Pete:
-                pavel "I'll explain the situation to Pete. He'd want to know what we found out."
-                "Later I heard that Pete went looking for the cow but never found her."
+                him "Okay, I'll tell him what we know."
+                #scene change
+                him "Pete, we don't know for sure, but it seems pretty likely that some miners took your cow, but she escaped."
+                pete "Yeah, that's about what I thought too."
+                pete "Are they going to find her for me?"
+                him "No. I don't think they even know which direction she went."
+                #pete angry
+                pete "I don't believe this. They steal my cow and then expect me to find her?"
+                pete "She could have had three more calves. That's a pretty valuable cow to my herd."
+                pete "Who do they think they are anyway?"
+                him "Sorry, I tried, but I couldn't find anything definitive."
+                pete "Least I can do is try to find her."
+                "Later I heard he never found her."
                 return
     else:
         #rationing is the default for the non-liason option, so non-liasons should not see this event.
@@ -1648,7 +1819,7 @@ label community13:
                         him "Sorry, I've already talked to Brennan more than I normally would for you."
                         him "I'm happy that you were able to explore the cave, but I don't think we can justify asking Brennan for more time when he's already doing you a favor."
                         lily "I understand. Perhaps Pete will be able to assist me in your stead."
-                        "She was not successful."
+                        "She and Pete made an impassioned plea, but they were not successful."
                         $ cave_partially_explored = True
                         jump cave_unexplored
             else:
@@ -1674,8 +1845,8 @@ label community13:
             "I protested with them.":
                 "I marched around yelling."
                 him "RET just wants moNEY!"
-                him "Save our cave!"
-                him "Conserve Talaam! Don't end up wrong!"
+                pete "Save our cave! Save our cave!"
+                lily "Conserve Talaam! Don't end up wrong!"
                 "It felt cathartic to express my outrage."
                 $ colonists += 1
             "I just wanted to see what would happen.":
@@ -1732,23 +1903,75 @@ label community13:
 
 
 label community14:
-    #do they send the shuttle back with the metal at this point?
-    "Pete and Helen, and their child, leave their home on the colony because they feel Rare Earth Tech is immoral and they don't like being controlled and pushed around."
-    "They plan to leave almost everything provided by Rare Earth Tech, with the exception of some metal foam sheeting to protect from radiation. They're also taking about a third of their cattle."
-    "They announce it on the community message board."
-    "Dr. Lily joins them."
-    if asked_only_medicine: 
-        "No one else joined them."
+    "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
+    "Today they're sending it back to Earth so RET can sell it."
+    "Everyone gathered to watch the shuttle go off."
+    thuc "So one of your pilots here can control it remotely?"
+    brennan "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, the pilot will make adjustments for it to leave orbit."
+    thuc "When you flew back, the pilot was in the shuttle though."
+    brennan "Yes, he was. The main advantage to piloting from inside the shuttle is that you can change things based on how it feels."
+    brennan "Since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
+    brennan "Their acceleration should be a good metric for that anyway."
+    "The pilot was broadcasting the launch on the radio." # maybe this could be Kevin? man of many talents
+    "We listened as he counted down, and watched the shuttle as it started consuming fuel to power its flight."
+    "Soon the shuttle was just a twinkle in the sky, and it disappeared."
+    "The pilot continued his narration. About seven minutes later he said that we'd reached orbit."
+    pete "Before y'all go, I have an announcement to make."
+    pete "Helen and Travis and me are moving."
+    pavel "Is there something wrong with your house?"
+    pete "Nothing wrong with the ranch."
+    pete "We're tired of working for RET. We want to try to make it on our own."
+    pete "Part of the reason I came here was to live off the land."
+    pete "'Cept now RET is making all sorts of demands of us. Wants us to sell our food for money so we can buy other people's food, or things we don't really need." #not sure if this makes sense
+    pete "They haven't treated us fairly."
+    if require_whole_harvest or rationing:
+        pete "The miners don't respect my property. They stole one of my cows and never returned her."
     else:
-        "Tomás Peron and Joanna Nguyen leave with them as well."
-    $ luddites += 1
+        pete "They expect us to feed the miners, but we can barely feed ourselves."
+    pete "They don't respect the natural beauty of Talaam, and they destroyed a cave in the course of their mining."
+    if Lily_mad_at_RET:
+        lily "They don't respect the needs of researchers either."
+        lily "I came here to study this planet, not destroy it."
+        lily "I'm going with Pete and his family."
+        $ luddites += 1
+    else:
+        pass
+    if not (asked_only_medicine): 
+        pete "They don't even care about us enough to send the right medicines."
+        "Tomás Peron and Joanna Nguyen tell us their plans to go with Pete and his family."
+        $ luddites += 1
+    else:
+        pass #not sure if I need these else pass things
+    pete "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
+    pete "But that was before we had credits."
+    pete "We're leaving our house and everything in it. Maybe some newlywed couple will want to live there."
+    pete "I will be taking my radio and some metal foam sheeting, which I paid for with some of the credits I own."
+    #how does pete plan to deal with credits? he probably has a good amount
+    pete "I'll leave the same amount of cattle the ranch started with, plus some, and take a herd with me."
+    "Everyone starts talking when Pete sits down."
+    "Some families are telling Pete and his family goodbye, while others leave awkwardly."
+    "I push through the crowd to tell Pete some parting words."
     "What do I say?"
     menu:
         "Warn them that they are doomed.":
+            him "Don't leave! You'll die out there!"
+            pete "I've camped out for days on hunting trips. It's not that much more dangerous than living here."
+            him "But what if you get hurt or develop skin cancer?"
+            pete "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
+            him "This is your family you're experimenting with."
+            pete "I know. I don't like our present condition, so I'm changing it."
             $ pass
-        "Tell them that I  understand their decision but that am sad to see them go.":
+        "Tell them that I understand their decision.":
+            him "I'm sad to see you go, Pete."
+            him "I understand why you're leaving, but I'll miss you guys."
+            pete "I'm sure we'll see each other every now and then."
+            him "I'd tell you to take pictures, but I guess you won't have your tablet with you."
+            pete "I'll see if I can train crabirds to send messages."
             $ colonists += 1
         "Joke that I wish I could join them.":
+            him "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
+            him "Seriously though, take care of yourselves."
+            $ luddites += 1
             $ pass
     if is_liason:
         "What do I do with Pete and Helen's remaining cattle?"
