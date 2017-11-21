@@ -1,4 +1,4 @@
-= Media used in "Our Personal Space 2"
+﻿= Media used in "Our Personal Space 2"
 
 == GRAPHICS
 
@@ -25,6 +25,10 @@ Path <path.jpg> by Andrea Landaker
 Pond <pond.jpg> by Andrea Landaker
 
 Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://openclipart.org/detail/171268/boxing-glove> by netalloy
+
+==== CC-BY-2.0
+storehouse1 <storehouse1.jpg>, "Mr. Vernon Kitchen and Storeroom" by Mr. Gray <https://www.flickr.com/photos/socsci/18933614460/in/photostream/>
+community_center <community_center.jpg>, "South Broadway Cultural Center's Multi-Purpose Room" by Albuquerque South Broadway Cultural Center <https://www.flickr.com/photos/south-broadway-cultural-center/5555481119/> 
 
 === GUI
 

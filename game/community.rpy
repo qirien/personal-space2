@@ -33,7 +33,9 @@ label community1:
     thuc "It's pretty exciting to have some new faces around!"
     him "How's it going? Julia couldn't make it?"
     thuc "No, she was too worn out."
-    ilian "I wish I could have stayed home. After talking to people all day the last thing I want to see is more people."
+    thuc "Is [her_name] still at work?"
+    him "Yeah, she wants to give the new colonists their first physical as soon as possible."
+    ilian "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
     him "At least there's free soup."
     ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "You get your soup and sit with some of the new colonists."
@@ -48,17 +50,21 @@ label community1:
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
     him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
     kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
+    show him concerned
     him "I understand that from RET's point of view... but we farmers aren't really getting rich out here!"
     him "I hope you weren't planning on a life of luxury."
     kevin "No, I was not. I was planning on a life of adventure and discovery."
+    show him normal
     "What kind of life was I planning on?"
     menu:
         "I'm going to focus on fulfilling my job to RET.":
             $ miners += 1
+            show him determined
             him "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
             him "Plus, growing food is essential for our survival!"
             kevin "That sounds like a good plan."
         "I came out here for adventure and discovery too.":
+            show him determined
             him "I love the feeling I get when I look up at the sky and I can see thousands of stars."
             him "When I see plants and animals I've never seen before, I feel the thrill of discovery."
             him "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
@@ -66,6 +72,7 @@ label community1:
             kevin "I agree. There's so much to document and try, it's overwhelming."
             $ luddites += 1
         "At the end of the day, working together is what keeps me going.":
+            show him determined
             him "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
             him "At the same time, it's my relationship with my neighbors that I really cherish."
             him "If we were working together on Earth, I'd be lucky to count one or two of my coworkers among my close friends."
@@ -77,12 +84,14 @@ label community1:
             kevin "So it's like you're always at work."
             him "Kind of, yeah."
             $ colonists += 1
+    show him smile
     him "You guys are staying here for the rest of your lives, right?"
     zaina "That's right!"
     label ask_zaina_and_kevin:
     menu: 
         "What should I ask them about?"
         "Are you planning to have children?" if not asked_kids:
+            show him normal
             him "So... I know RET is trying to grow the colony..."
             him "Are you planning on having kids?"
             zaina "We'll try. I'm not the most fertile of women though."
@@ -90,6 +99,7 @@ label community1:
             $ asked_kids = True
             jump ask_zaina_and_kevin
         "Do you have family still on Earth?" if not asked_family:
+            show him normal
             zaina "I was an only child, and my parents recently died, so I don't have any family on Earth. I do have some friends still there though."
             kevin "My father and brother are still on Earth, but I do not regret leaving them."
             menu:
@@ -107,7 +117,9 @@ label community1:
             $ asked_family = True
             jump ask_zaina_and_kevin
         "What kind of food will you grow?" if not asked_grow:
+            show him normal
             him "You have quite a bit of land out there by the radio tower."
+            show him smile
             him "Any idea what you'll grow on it?"
             zaina "We brought some fruit trees, which I hope will make a nice orchard."
             zaina "Grapes are fairly hardy, and I would love to start a winery sometime!"
@@ -115,6 +127,7 @@ label community1:
             him "Have you ever farmed before?"
             zaina "I practiced caring for fruit trees in the simulations on the shuttle."
             kevin "I also raised a magnificent patch of vegetables in the simulations."
+            show him normal
             him "So the answer is no."
             kevin "The simulations have been updated since you flew over."
             kevin "They're quite lifelike!"
@@ -122,26 +135,34 @@ label community1:
             $ asked_grow = True
             jump ask_zaina_and_kevin
         "How was the shuttle ride?" if not asked_shuttle:
+            show him flirt
             him "Did you start to hate each other a little on the shuttle ride over?"
             kevin "No, I do not believe it is possible for us to hate each other."
             zaina "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
+            show him smile
             him "I got married right before coming to Talaam too."
             him "Did people give you all kinds of weird survival gear at your wedding?"
             kevin "No, they did not. My friends from work are also engineers and understood the limitations of space travel."
             zaina "His college roommates gave him a custom mix of media! It had everything from the latest datasets to formulae to try."
+            show him normal
             him "That sounds interesting. You should show Pete, our librarian. He gets excited about research and data."
             zaina "Some of my cousins gave me some hunting goggles. The battery on them wasn't compatible with RET solar technology though."
             $ asked_shuttle = True
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
             zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
+            show him surprised
+            him "I guess I can."
             label colony_gossip:
+            show him normal
             menu:
                 "Who should I tell them about?"
                 "[her_name]" if not tell_Kelly:
+                    show him normal
                     him "[her_name] is my wife and she's also the doctor in our clinic."
                     him "She tries to be objective, but she also feels passionate about her job."
                     zaina "I think that describes most of us."
+                    show him smile
                     him "Some people have complained that her bedside manner is a little callous."
                     him "So her objectivity is more relevant to customer satisfaction than, say, mine."
                     kevin "Are you implying that your carrots cannot feel your love?"
@@ -149,10 +170,12 @@ label community1:
                     $ tell_Kelly = True
                     jump colony_gossip
                 "Naomi and Pavel" if not tell_Graysons:
-                    him "Naomi Grayson is the one to go to with mental problems."
+                    show him normal
+                    him "If over the course of your lifetime you ever feel hopless or depressed, go talk to Naomi Grayson."
                     him "She can't prescribe medicine for you, but she's very reassuring and can encourage you to get more help."
                     zaina "Reassuring? So she basically tells you to hang in there."
                     him "Somehow when she says it, it feels like she understands what you're going through."
+                    show him determined
                     him "If you want to talk to her, she holds religious services every Sunday."
                     zaina "Do you go to those?"
                     him "No, but [her_name] does."
@@ -160,44 +183,73 @@ label community1:
                     $ tell_Graysons = True
                     jump colony_gossip
                 "Dr. Lily" if not tell_Lily:
+                    show him normal
                     him "Dr. Lily is our resident scientist. She was here before most of the other colonists."
                     him "She tests plants to see if they're edible, and helps think of solutions to problems."
                     zaina "You said scientist, but what kind of scientist is she?"
+                    show him determined
                     him "Hmm. I guess she's a xenonaturalist. She looks at plants and animals, and does some chemistry on the side."
                     kevin "RET does prefer people who have multiple talents."
                     kevin "I'm also a shuttle pilot, for example."
+                    show him surprised
                     him "Oh, really? When did you have time to learn that?"
                     kevin "Well, my father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
                     kevin "After I obtained my pilot's license, I worked as a pilot for several years."
+                    show him normal
                     him "But at some point you decided to study engineering."
                     kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
+                    show him smile
                     him "Flying is pretty incredible."
                     $ tell_Lily = True
                     jump colony_gossip
                 "Martin and Natalia" if not tell_Perons:
+                    show him normal
                     him "Martin and Natalia Peron have four kids. Or, well, they used to have five."
                     zaina "Used to?"
+                    show him concerned
                     him "There was an accident... and their daughter died when she was four years old."
-                    zaina "What a shame."
+                    zaina "What a shame. What happened?"
+                    menu:
+                        "Pete ran over her with his tractor.":
+                            him "Pete was driving his tractor and didn't see her in time..."
+                            zaina "How awful. I bet he still feels bad about it."
+                            him "The Perons have a vigil every year to remember her."
+                            zaina "Are accidents like that common?"
+                            show him determined
+                            him "No, I mean, usually accidents aren't so bad that someone dies."
+                            him "I'm not sure if Natalia will ever forgive Pete."
+                        "She got run over by a tractor.":
+                            him "She wasn't looking where she was going, and a tractor ran over her."
+                            zaina "Was it a self-driving tractor or something?"
+                            show him determined
+                            him "No, one of my friends was driving it."
+                            zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
+                            him "Yeah. The Perons are still pretty sad about it and hold a vigil every year where it happened."
                     him "Their kids are getting older and should be able to help around the colony more."
                     $ tell_Perons = True
                     jump colony_gossip
                 "Pete and Helen." if not tell_Pete:
+                    show him smile
                     him "If you ever need to look something up or make something, our library is the place to go."
                     him "Pete is our librarian and also our cattle rancher."
+                    show him normal
                     him "He has a wife, Helen, but I don't see much of her since their ranch is pretty far out."
                     $ tell_Pete = True
                     jump colony_gossip
                 "Thuc and Julia." if not tell_Ngyuens:
+                    show him smile
                     him "Thuc and Julia are my neighbors and some of our best friends."
                     him "We don't talk about it much, but every now and then he collects everything from the latrines, treats it, and turns it into fertilizer."
+                    show him normal
                     him "Also they have ten kids and Julia is a midwife."
                     zaina "Ten kids? That is a lot."
+                    show him flirt
                     him "They fill our schoolroom nicely. It must have been a real pain on the shuttle though!"
                     zaina "Yeah, there's not exactly a playground on the shuttle."
                     $ tell_Ngyuens = True
                     jump colony_gossip
                 "I'm done talking about other people.":
+                    show him normal
                     him "Well, it was nice to meet you both."
                     kevin "Undoubtedly we shall meet again."
                     zaina "We'll have to have you over for dinner sometime."
@@ -280,63 +332,105 @@ label community2:
 
 
 label community3:
+    scene farm_interior with fade
+    show thuc sad at midleft
+    show him smile at center
+    show pete at midright
     thuc "No. No way! Did you just do that?"
     him "Yes, I did. With the bonuses from my cavalry, my legendary general, and my superior navy from starting on an island, I can conquer Russia in one turn!"
     pete "That's the last time I let you start as Tonga!"
+    show thuc normal
     thuc "I think you just won the game."
     him "I don't know, there might be a way for you to make a religious conquest!"
+    show thuc sad
     thuc "Nope. I resign."
     pete "Well, that was a good game. I should have situated myself better from the beginning. I got caught up in collecting gold instead of buildin' an army."
+    show him normal
     him "Same time next month?"
+    show pete happy
     pete "Yes, I reckon so. I'll remind you on the community bulletin."
+    show him concerned
     him "Can we call it something other than game night? All the new colonists will think we're a bunch of nerds."
+    show pete
     pete "Well, we are a bunch of nerds."
+    show him determined
     him "Fine, then they'll believe me when I tell everyone I'm going to an intensive research session with you!"
+    show pete happy
     pete "Ha! Fine by me. As long as everyone else calls it that they'll be none the wiser."
-    "A few months later, Kevin asks about it." #why are you talking to Kevin
+    scene fields with fade
+    show him normal at midright
+    show kevin at midleft
+    "A few months later, Kevin asks me about it after I assessed his first batch of crops." #why are you talking to Kevin--expand?
     kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
+    show him concerned
     him "Oh, those. It's just people talking to Pete about stuff."
     kevin "How does he assist in research? Pete isn't equipped to help with fieldwork."
+    show him normal
     him "I happen to have some research interests outside of fieldwork."
     kevin "He's a librarian, right? Is your hobby art history or something similar?"
+    show him smile
     him "No, it's far more mundane. That's just what we call our monthly game night."
     kevin "I would love to play games with others. Why was this information hidden?"
+    show him concerned
     him "I didn't want the new colonists to think I was being frivolous with my time."
     kevin "Face-to-face socialization is highly recommended by RET's psychologists."
     kevin "It may feel frivolous, but it can actually increase your productivity."
+    show him normal
     him "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
     kevin "That's simply what they told their grandchildren. Let me come to your game night!"
+    show him smile
     him "Okay, come then! We need someone to shake things up."
     kevin "Shall I invite the other new colonists as well?"
     menu:
-        "Sure, invite them all! We can reserve the town hall.":
+        "Sure, invite them all!":
+            show him normal
+            him "Yes, let's invite them. I can reserve the community center."
             $ colonists += 1
             $ town_hall_games = True
             jump invite_all
-        "They can make their own game night if they want.":
+        "Don't invite them.":
+            show him normal
+            him "They can make their own game night if they want."
+            him "I want to enjoy myself, not be teaching other people how to play games the whole time."
             $ luddites += 1 #rationale: the luddites are a product of the colonists becoming more fractured
             jump no_invite
-        "I'll ask Pavel, the mayor, to remind them to make socialization a priority.":
+        "Ask Pavel to encourage meetups":
+            show him normal
+            him "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
             $ pass
             jump ask_pavel
         
     label invite_all:
+        scene community_center with fade
+        show kevin at left
+        show thuc at midleft
+        show him at center
+        show sara at midright
+
         "Next month, we invited everyone to town hall to game night."
         "Only three or four people showed up, including Kevin, but they were happy to play games with us."
         return
         
     label no_invite:
+        scene farm_interior with fade
+        show kevin at left
+        show thuc at midleft
+        show him at center
+        show pete at midright
         "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
         "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
         return
          
     label ask_pavel:
+        scene stars with fade #not sure what scene to show for this ending.
         "I asked Pavel to remind everyone to remember to get to know the new colonists."
         "He sent an annoucement to the community bulletin."
         "I don't know if anyone actually did anything about it, but the thought was there."
         return
 
 label community4:
+    scene community_center with fade
+    show pavel at center
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
     pavel "This is what it said:"
@@ -350,13 +444,14 @@ label community4:
         "U shld choose some1 2 represent the colony 2 us."
     else:
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
-        
     pavel "It's my job to encourage whatever is best for the colony."
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
     pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
+    show pavel sad
     pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
     pavel "I doubt anyone will volunteer for extra work, so we'd like everyone to nominate someone tonight."
+    show pavel
     pavel "Then we'll vote on the nominations."
     #TODO: chatter between colonists would make this scene more lively and/or amusing
     menu:
@@ -393,6 +488,7 @@ label community5:
     $ talked_credits = False
     $ talked_something = False
     $ talked_canning_dairy = False
+    show farm_exterior with fade
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     # context/scene for this decision? is it a town meeting? you, Ilian, sara, Pavel?
