@@ -211,21 +211,36 @@ label community1:
 
 label community2:
     "You've run out of storage space in your cellar, so you take the extras over to the storehouse."
+    scene storeroom1
+    with dissolve
+    show kevin at midleft
+    show ilian at midright
     kevin "It is part of our contract that I bring you my whole harvest, even if I will consume all of it."
     ilian "I do appreciate your thoroughness. I hope it wasn't too much trouble to show me your buckets of tomatoes and squash."
     ilian "For things that keep a long time, you don't have to bring them right away."
+    show him normal at left
+    with moveinright
+    show ilian happy at midright
     ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and he can have more variety in his diet."
+    show him happy at left
     him "Sure, do you like spinach?" #to do:is there a way to call a vegetable that has been planted?
     kevin "A variety of foodstuffs is beneficial to anyone's diet."
     ilian "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we've supposed to have been doing it all along."
+    show him surprised at left
     him "Huh, really? How in the world do you have time to farm?"
     kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
+    show him annoyed at left
     him "It might be an amusing pastime for you, but it's our survival you're talking about here."
     kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
     ilian "That's what I'm here for."
-    #kevin leaves
+    hide kevin
+    with moveoutleft
+    show ilian normal midright
+    show him normal at left
     ilian "We probably should start doing things the way it is in the contract."
     ilian "I know it seems less efficient, but it gives us more control in the case of a famine."
+    show him concerned midleft
+    with moveinleft
     him "What if the storehouse burns down? Then we'll all have nothing."
     ilian "Or some alien varmint could eat it all no matter where it is."
     ilian "Look, I'm just telling you what our contract says. Do you want to read the fine print? I have it here on my tablet."
@@ -236,6 +251,7 @@ label community2:
              $ pass
     label after_contract:
     ilian "Will you start bringing your whole harvest in or not?"
+    show him annoyed midleft
     him "How about I can write down the amount I harvest and I'll bring in the surplus? Or I could take a picture."
     ilian "I'm pretty sure I could trust you, but it's better if I can measure it all so we can be consistent."
     him "Okay, I see your point."
