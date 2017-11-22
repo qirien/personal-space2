@@ -445,15 +445,67 @@ label community4:
     else:
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
     pavel "It's my job to encourage whatever is best for the colony."
+    show pavel sad #this transition is weird... but is it weirder to keep him in the same pose for so long?
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
     pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
-    show pavel sad
     pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
-    pavel "I doubt anyone will volunteer for extra work, so we'd like everyone to nominate someone tonight."
     show pavel
+    pavel "I doubt anyone will volunteer for extra work, so we'd like everyone to nominate someone tonight."
     pavel "Then we'll vote on the nominations."
-    #TODO: chatter between colonists would make this scene more lively and/or amusing
+    hide pavel with moveoutright
+    show thuc at midright
+    show him normal at center
+    show lily at midleft
+    thuc "Wow, who has time for that extra work?"
+    thuc "It's hard enough just raising five goats and ten kids."
+    lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liason work."
+    show him smile
+    him "At least you know your own personality well, although I think that you don't give yourself enough credit."
+    show lily angry
+    lily "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
+    show him normal
+    show lily
+    lily "Who do you think would be a good candidate for liasonship?"
+    show him determined
+    him "Hmm... Naomi seems like someone who could de-escalate conflict well."
+    show thuc sad
+    thuc "But she's married to Pavel, so she might have a conflict of interest..."
+    show him surprised
+    him "How so?"
+    show thuc
+    thuc "Like if she had to choose between the best choice for RET or something Pavel would be happy with, she might choose what Pavel would want for the sake of their marriage."
+    show him normal
+    him "I don't think she would do that. She can make tough decisions."
+    show lily happy
+    lily "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
+    hide thuc with moveoutright
+    show naomi sad at midright
+    naomi "Hello everyone, have you thought of someone to nominate?"
+    him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liason separate from Pavel."
+    show naomi
+    naomi "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
+    show him smile
+    him "Isn't that what we want from a liason?"
+    show lily
+    lily "What does putting the colonists's needs first mean in this context? Our survival has been RET's main goal with establishing this colony."
+    show him normal
+    him "RET didn't really explain why we need a liason."
+    lily "Regardless, I must choose someone. What do you think of Sara?"
+    him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the small beaurocratic work we have."
+    show naomi happy
+    naomi "Now that Oleg is a little older, she might be up to something like this."
+    him "Maybe. Oleg is about the same age as Terra, and she's still quite the handful."
+    naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
+    show lily happy
+    lily "And based on your relationships with other colonists, your socialization skills are at least average."
+    show him surprised
+    him "Hang on. I already feel pretty busy just with farming committee meetings, raising Terra, and the farming stuff."
+    naomi "We're all busy. Someone has to do this."
+    show lily
+    lily "This discussion has helped me decide who to nominate. Thank you."
+    hide lily with moveoutleft
+    hide naomi with moveoutright
     menu:
         "Who should I nominate? I can't nominate myself."
         
