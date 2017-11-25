@@ -12,7 +12,7 @@ label community_intro:
     "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but we learned to get along."
     return
     
-
+# New colonists arrive
 label community1:
     $ asked_kids = False
     $ asked_family = False
@@ -260,7 +260,7 @@ label community1:
     # Maybe something about building a park/playground for everyone? 
     return
 
-
+# 2 - bring whole harvest in to storehouse?
 label community2:
     "You've run out of storage space in your cellar, so you take the extras over to the storehouse."
     scene storeroom1
@@ -330,7 +330,7 @@ label community2:
         computer "RET reserves the right to amend this document as it sees fit."
     jump after_contract
 
-
+# 3 - Game Night!
 label community3:
     scene farm_interior with fade
     show thuc sad at midleft
@@ -428,6 +428,7 @@ label community3:
         "I don't know if anyone actually did anything about it, but the thought was there."
         return
 
+# 4 - Community Liaison        
 label community4:
     scene community_center with fade
     show pavel at center
@@ -534,7 +535,7 @@ label community4:
         #should a leader of the militia be elected here as well?
     return
 
-
+# 5 - Set aside food for miners?
 label community5:
     $ talked_cans = False
     $ talked_credits = False
@@ -718,7 +719,7 @@ label community5:
     return
     
 
-
+# 6 - discussion of choice from 5 at game night
 label community6:
     #if town_hall_games = True, make the background the town hall. else it's at Pete's house.
     show pete at midright
@@ -781,6 +782,7 @@ label community6:
         pass
     return
 
+# 7 - Comparing compensation
 label community7:
     zaina "The fossil record near here contains many animals that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
@@ -866,7 +868,7 @@ label community7:
                 thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     return
 
-
+# 8 - What luxuries should RET send?
 label community8:
     $ talked_to_Natalia = False
     $ talked_to_Thuc = False
@@ -1000,7 +1002,7 @@ label community8:
     
     return
 
-
+# 9 - camping with Pete
 label community9:
     #where is this? Maybe the river?
     pete "Hey, [his_name]!"
@@ -1123,7 +1125,7 @@ label community9:
             pete "Hell yes! Herding cattle is fine for everyday, but every once in a while I need some excitement in my life."
     return
 
-
+# 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
     her "I'm leaving for work now. Goodbye honey!"
     him "Bye [her_name}. Oh, and don't forget that we're having dinner with the Perons tonight."
@@ -1169,7 +1171,7 @@ label community10:
         #right now this choice doesn't affect who gets the farm.
     return
 
-
+# 11 - shuttle arrives with miners & Brennan
 label community11:
     $ chaco_questions = 0
     #The shuttle should return to Earth with the mined material as soon as it is full.
@@ -1417,6 +1419,7 @@ label community11:
             #TODO: should community 10's decision affect this?
         return
 
+# 12 - missing cow
 label community12:
     $ sara_investigates = False
     $ know_BBQ = False
@@ -1910,7 +1913,7 @@ label community13:
                 lily "I need at least two days. Depending on how extensive the cave is, I might need months."
                 brennan "I'm willing to give you and Zaina two days. And I want updated frequency tables from Zaina."
                 lily "I will inform Zaina. Can you supply us with headlamps and radios?"
-                brennan "Yes. You'll need your own rope system and support personelle though."
+                brennan "Yes. You'll need your own rope system and support personnel though."
                 lily "I'll go get Zaina now. [his_name], can you be our support person?"
                 him "I really need to get back to the farm."
                 lily "You can work on your farm. We just need someone to listen to the radio so that we can call for help if something happens."
@@ -1918,6 +1921,7 @@ label community13:
                 "Dr. Lily told me her radio frequency, and I went home to work."
                 "I listened to Dr. Lily and Zaina chatting with each other while they explored the cave. Miranda Peron, Dr. Lily's research assistant, came too."
                 "She and Zaina took lots of photos, and Zaina took some rock samples." #put in actual conversations? or just summarize it all?
+                # TODO: actual conversations are more interesting
                 "They were still exploring when [her_name] came back from work and we listened to it in the background."
                 "As I was going to bed, they reported that they were done for the day and made it out safely."
                 "The next day, I turned the radio on to find that Lily and Zaina were already exploring the cave again."
@@ -2018,6 +2022,7 @@ label community13:
                 "It seemed pretty silly to me. Didn't we have better things to be doing?"
                 $ miners += 1
         brennan "Hey, I get that you're upset. you guys should move away from this area. There could be particles in the air that aren't good to breathe." #tried to google this but I'm still not sure if this would happen
+        # That's OK, BSing is in-character for him.
         lily "We're not budging an inch!" 
         if cave_partially_explored:
             lily "The cave newts cannot leave! We will endure this pollution in their honor."
@@ -2065,7 +2070,7 @@ label community13:
     # Perhaps something tragic, like someone decides to do a sit-in to protest the mining, but the miners don't know about it, and they get blown up as the excavation continues?
     return
 
-
+# 14 - Pete leaves
 label community14:
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
     "Today they're sending it back to Earth so RET can sell it."
@@ -2156,7 +2161,8 @@ label community14:
 
 
 label community15:
-    "In the early morning, [her_name]'s radio went off." #should we make a special kind of "radio" textbox like with e-mails?
+    "In the early morning, [her_name]'s radio went off." #TODO: should we make a special kind of "radio" textbox like with e-mails?
+    # in OPS 1 I just had the characters name be "X on the radio", but perhaps italics or something would make the difference more obvious, too?
     pavel "[her_name], I think you should come over here."
     pavel "Naomi is really sick."
     her "What are her symptoms?"
@@ -2264,7 +2270,7 @@ label community15:
             him "She's irreplaceable. We all are, since we're unique human beings."
             him "But I think other people can inspire us, even if they can't do it the way Naomi did."
             her "I know. But she's just so good at it."
-            him "That's true. She didn't have a specific job, but she filled in the gaps."
+            him "That's true. She could have been just a preacher, but she filled in the gaps."
             him "She watched our children and took care of sick people."
             her "Hey, I make house calls too!"
             her "But I know what you mean. She took care of their spirits, not their bodies."
