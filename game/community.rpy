@@ -24,18 +24,23 @@ label community1:
     $ tell_Lily = False
     $ tell_Ngyuens = False
     $ tell_Perons = False
-    "Some new colonists arrived from Earth, sent by Rare Earth Tech."
-    "After the introductions, you get in line with your friend Thuc to have some soup."
     scene community_center with fade
     show thuc at midright
     show him normal at center
-    show ilian at midleft
+    show ilian happy at midleft
+    "Some new colonists arrived from Earth, sent by Rare Earth Tech."
+    "After the introductions, I got in line with my friend Thuc to have some soup."
     thuc "It's pretty exciting to have some new faces around!"
     him "How's it going? Julia couldn't make it?"
+    show thuc sad
     thuc "No, she was too worn out."
+    show thuc normal
     thuc "Is [her_name] still at work?"
+    show him concerned
     him "Yeah, she wants to give the new colonists their first physical as soon as possible."
+    show ilian
     ilian "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
+    show him smile
     him "At least there's free soup."
     ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "You get your soup and sit with some of the new colonists."
@@ -45,9 +50,11 @@ label community1:
     show kevin at midright
     him "Hi, I'm [his_name]."
     zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
+    show him determined
     him "Nice to meet you, Zaina and Kevin. Where will you be living?"
     zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working."
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
+    show him surprised
     him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
     kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
     show him concerned
@@ -61,12 +68,14 @@ label community1:
             $ miners += 1
             show him determined
             him "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
+            show him smile
             him "Plus, growing food is essential for our survival!"
             kevin "That sounds like a good plan."
         "I came out here for adventure and discovery too.":
             show him determined
             him "I love the feeling I get when I look up at the sky and I can see thousands of stars."
             him "When I see plants and animals I've never seen before, I feel the thrill of discovery."
+            show him normal
             him "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
             him "Nothing on Earth compares."
             kevin "I agree. There's so much to document and try, it's overwhelming."
@@ -76,12 +85,15 @@ label community1:
             him "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
             him "At the same time, it's my relationship with my neighbors that I really cherish."
             him "If we were working together on Earth, I'd be lucky to count one or two of my coworkers among my close friends."
+            show him normal
             him "Here, there's no choice. We have to be close to one another to survive."
             him "True, we're always in each other's business. But we're always helping one another too."
             kevin "It's kind of like you're a big family then?"
+            show him determined
             him "No, it's different. Families don't always get to choose to be together."
             him "It's more like we're all united by a common goal."
             kevin "So it's like you're always at work."
+            show him normal
             him "Kind of, yeah."
             $ colonists += 1
     show him smile
@@ -93,6 +105,7 @@ label community1:
         "Are you planning to have children?" if not asked_kids:
             show him normal
             him "So... I know RET is trying to grow the colony..."
+            show him surprised
             him "Are you planning on having kids?"
             zaina "We'll try. I'm not the most fertile of women though."
             kevin "There aren't that many geologist-engineer couples to choose from."
@@ -113,6 +126,7 @@ label community1:
                     him "How would you expect them to? They're probably not experts like you are."
                     kevin "If they had simply not understood my work, that would have been forgiveable."
                     kevin "They are not men of science."
+                    show him determined
                     him "My parents are still on Earth. We have some extremely delayed correspondence."
             $ asked_family = True
             jump ask_zaina_and_kevin
@@ -124,13 +138,15 @@ label community1:
             zaina "We brought some fruit trees, which I hope will make a nice orchard."
             zaina "Grapes are fairly hardy, and I would love to start a winery sometime!"
             kevin "I am planning to try my hand at a basic vegetable garden."
+            show him normal
             him "Have you ever farmed before?"
             zaina "I practiced caring for fruit trees in the simulations on the shuttle."
             kevin "I also raised a magnificent patch of vegetables in the simulations."
-            show him normal
+            show him determined
             him "So the answer is no."
             kevin "The simulations have been updated since you flew over."
             kevin "They're quite lifelike!"
+            show him normal
             him "Tell me how you feel about them after you harvest your first crops."
             $ asked_grow = True
             jump ask_zaina_and_kevin
@@ -2075,23 +2091,34 @@ label community14:
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
     "Today they're sending it back to Earth so RET can sell it."
     "Everyone gathered to watch the shuttle go off."
-    thuc "So one of your pilots here can control it remotely?"
-    brennan "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, the pilot will make adjustments for it to leave orbit."
-    thuc "When you flew back, the pilot was in the shuttle though."
-    brennan "Yes, he was. The main advantage to piloting from inside the shuttle is that you can change things based on how it feels."
+    thuc "So Kevin here can control the shuttle remotely?"
+    brennan "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, Kevin will make adjustments for it to leave orbit."
+    thuc "When you flew back, your pilot was in the shuttle. Doesn't it make a difference?"
+    brennan "Yes, it does. The main advantage to piloting from inside the shuttle is that you can change things based on how it feels."
     brennan "Since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
     brennan "Their acceleration should be a good metric for that anyway."
-    "The pilot was broadcasting the launch on the radio." # maybe this could be Kevin? man of many talents
-    "We listened as he counted down, and watched the shuttle as it started consuming fuel to power its flight."
+    "Kevin was broadcasting the launch on the radio."
+    kevin "{i} Lift-off in 10{/i}"
+    kevin "{i}9{/i}"
+    kevin "{i}8{/i}"
+    kevin "{i}7{/i}"
+    kevin "{i}6{/i}"
+    kevin "{i}5{/i}"
+    kevin "{i}4{/i}"
+    kevin "{i}3{/i}"
+    kevin "{i}2{/i}"
+    kevin "{i}1{/i}"
+    "We watched the shuttle as it started consuming fuel to power its flight."
+    kevin "{i}Lift-off, we have lift-off{/i}"
     "Soon the shuttle was just a twinkle in the sky, and it disappeared."
-    "The pilot continued his narration. About seven minutes later he said that we'd reached orbit."
+    "Kevin continued his narration. About seven minutes later he said that we'd reached orbit."
     pete "Before y'all go, I have an announcement to make."
     pete "Helen and Travis and me are moving."
     pavel "Is there something wrong with your house?"
     pete "Nothing wrong with the ranch."
     pete "We're tired of working for RET. We want to try to make it on our own."
     pete "Part of the reason I came here was to live off the land."
-    pete "'Cept now RET is making all sorts of demands of us. Wants us to sell our food for money so we can buy other people's food, or things we don't really need." #not sure if this makes sense
+    pete "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people."
     pete "They haven't treated us fairly."
     if require_whole_harvest or rationing:
         pete "The miners don't respect my property. They stole one of my cows and never returned her."
@@ -2103,14 +2130,10 @@ label community14:
         lily "I came here to study this planet, not destroy it."
         lily "I'm going with Pete and his family."
         $ luddites += 1
-    else:
-        pass
     if not (asked_only_medicine): 
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Peron and Joanna Nguyen tell us their plans to go with Pete and his family."
         $ luddites += 1
-    else:
-        pass #not sure if I need these else pass things
     pete "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
     pete "But that was before we had credits."
     pete "We're leaving our house and everything in it. Maybe some newlywed couple will want to live there."
@@ -2129,8 +2152,7 @@ label community14:
             pete "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
             him "This is your family you're experimenting with."
             pete "I know. I don't like our present condition, so I'm changing it."
-            $ pass
-        "Tell them that I understand their decision.":
+        "Tell them that I understand.":
             him "I'm sad to see you go, Pete."
             him "I understand why you're leaving, but I'll miss you guys."
             pete "I'm sure we'll see each other every now and then."
