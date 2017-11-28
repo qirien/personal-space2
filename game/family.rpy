@@ -2824,10 +2824,143 @@ label family11:
 # 7.4 Earth years old
 # TODO: Growing Independence, miner friend, lice
 label family12:
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft with moveinleft
+    him happy "Welcome home, [kid_name]! How was school?"
+    kid "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
+    him "Today? Who's Anya?"
+    kid "One of my friends from school."
+    him "Really? I don't know of any farmer's who have a kid named Anya..."
+    kid "Her parents are miners."
+    him "Oh."
+    "I wasn't sure what to think about that. On the one hand, I was glad she had a new friend; she'd never had a girl her own age to be friends with before."
+    "On the other hand, I didn't know much about the miners. Should I really let her go to someone's house I didn't know?"
+    "I couldn't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+    kid "Please, dad? We're like best friends."
+    him surprised "Who are her parents?"
+    kid "I don't know; just...parents, I guess."
+    menu:
+        "What should I say?"
+        "Sure, you can go.":
+            $ responsive += 1
+            him normal "Sure, you can go."
+            kid "Yay! I'm going to message her right now, she'll be so happy!"
+            $ permissive += 1                        
+        "Are her parents going to be home?":
+            $ demanding += 1
+            him concerned "Are her parents going to be home?"
+            kid "Um, yeah, I guess, probably?"
+            him determined "You don't know."
+            kid "We don't talk about our parents!"
+            him surprised "Why don't I message her parents and get some more information?"
+            kid "Okay. Her last name's Lewis."
+            call family12_contact_parents            
+        "I don't want you going over to some random miner's house.":
+            $ demanding += 1
+            him annoyed "I don't want you going over to some random miner's house. I don't know anything about them!"
+            kid "They're not random! Anya's my best friend!"
+            menu:
+                "What should I say?"
+                "Sorry, I don't have time.":
+                    him determined "I don't know them, and I don't have time to get to know them. Sorry, [kid_name]."
+                    kid "You're so mean!"
+                    $ neglectful += 1
+                "You can't go over to someone's house unless I know them.":
+                    $ demanding += 1
+                    him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
+                    kid "Well, then you need to get to know Anya's parents!"
+                    him "Picking my friends is not your job."
+                    kid "But your job is to pick my friends?!"
+                    him "Yes, it is."
+                    $ authoritarian += 1
+                "Maybe I could send them a message.":
+                    him concerned "I guess I could send a message or something..."
+                    call family12_contact_parents
+             
+        "Why don't you invite her to come over here?":
+            $ demanding += 1
+            him concerned "Why don't you invite her to come over here? That'd be easier."
+            kid "I do want to to that, but tomorrow she's going to show me some cool stuff she brought from Earth!"
+            menu:
+                "What should I say?"
+                "You can't go.":
+                    him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
+                    kid "What?! Dad, that's so mean."
+                    $ authoritarian += 1
+                "Let me talk to her parents first.":
+                    him concerned "I guess I could send her parents a message..."
+                    call family12_contact_parents
+          
+    
+                    
+    scene black with fade
+    "I decided it was probably best if Anya came over here to hang out."
+    "She was a good enough kid; they certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
+    "Several days later, though, I noticed something."
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft
+    kid "I'm just so itchy! All the time!"
+    him surprised "Did you touch a weird plant or something? Where do you itch?"
+    kid "On my head!"
+    "I was ready for some bizarre alien tick or something (though since most of the animals here were cold blooded, it seemed unlikely), but I wasn't ready for what I found."
+    him concerned "You have something in your hair... is this dandruff?"
+    kid "What's dandruff?"
+    him surprised "There's these tiny white things sticking to your hair. Man, they're really stuck on there good."
+    kid "What? What are they?!"
+    him "I don't know; here, go wash your hair in the sink and we'll see if that helps it go away."
+    "She washed her hair, but the little white things were still there."
+    him concerned "They look like little seeds, or..."
+    kid "Or what?!"
+    him surprised "Eggs?"
+    kid "Eggs?! From what?!"
+    show her at quarterleft with moveinleft
+    her concerned "Lice. We are currently experiencing an outbreak of lice."
+    him annoyed "I thought we left all those horrible parasites back on Earth!"
+    her annoyed "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
+    him angry "How could that even happen?!"
+    her concerned "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
+    kid "I have lice?!"
+    her determined "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
+    menu:
+        "What should I say?"
+        "I'm not doing that.":
+            $ marriage_strength -= 1
+            him annoyed "No way. I'm not doing that."
+            her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
+            him "..."
+            her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
+            him surprised "That's low."
+            her determined "That's life."          
+            
+        "Sure, I'll get started.":
+            $ marriage_strength += 1
+            him concerned "Okay, I'll get started."
+    
+    "I had never got rid of lice before. I got them once in school, but all I remember is my mom combing my hair a lot. I'd better read up on it." 
+    "But [her_name]'s instructions were pretty thorough."
+    # TODO: include these? 
+    
+    "First we had to go to the library and have them 3D print a lice comb for us."
+    scene library with fade
+    show pete at midright with dissolve
+    show him at center
+    show kid at midleft
+    with moveinleft
+    
+    pete "Here you go. And, y'know, if you can't get rid of the little varmints, you could always shave your head. That's what we did with Trevor."
+    kid "No way!"
+    him "I think we'll try the comb. Thanks for printing it for us."
+    pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
+            
+    "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."
+    
+    
     "[kid_name] has a new friend - a miner's kid. She wants to hang out but they live far away. Will you facilitate this friendship?"
     "How much independence should she have?"
     "[kid_name] wants to walk to a friends' house after school and walk home. It's pretty far, but she's been there before."
-    "Still, you can't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+
     menu:
         "No way. You'll go with her.":
             $ demanding += 1
@@ -2845,6 +2978,22 @@ label family12:
             
     # She comes back with lice; what do you do? Do you blame the miners?
     return
+    
+label family12_contact_parents:
+    scene computer with fade
+    # TODO: Do this with a computer message interface
+    him "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
+    "Several hours later, I got a response."
+    "Mr. Lewis" "Yeah, that's okay."
+    menu:
+        "What should I write?"
+        "Is an adult going to be there?":
+            him "Is an adult going to be there?"
+        "Can Anya come over here instead?":
+            him "Can Anya come over here instead?"
+        "When should I pick her up?":
+            him "When should I pick her up?"
+    
     
 #####################################################
 #

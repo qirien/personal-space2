@@ -1227,7 +1227,7 @@ label community11:
     brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
     brennan "I sent out the assignments already, so try to find each other!"
     "After asking around, I found our miner."
-    him "Nice to meet you Chaco."
+    him "Nice to meet you, Chaco."
     menu chaco_coversation_loop:
         "What should I ask him?"
         "How was the shuttle ride?":
