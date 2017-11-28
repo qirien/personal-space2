@@ -2907,11 +2907,11 @@ label family12:
     "I was ready for some bizarre alien tick or something (though since most of the animals here were cold blooded, it seemed unlikely), but I wasn't ready for what I found."
     him concerned "You have something in your hair... is this dandruff?"
     kid "What's dandruff?"
-    him surprised "There's these tiny white things sticking to your hair. Man, they're really stuck on there good."
+    him surprised "There's these tiny white things on your hair. Man, they're really stuck on there good."
     kid "What? What are they?!"
     him "I don't know; here, go wash your hair in the sink and we'll see if that helps it go away."
     "She washed her hair, but the little white things were still there."
-    him concerned "They look like little seeds, or..."
+    him concerned "They look like little sesame seeds, or..."
     kid "Or what?!"
     him surprised "Eggs?"
     kid "Eggs?! From what?!"
@@ -2942,7 +2942,7 @@ label family12:
     "But [her_name]'s instructions were pretty thorough."
     # TODO: include these? 
     
-    "First we had to go to the library and have them 3D print a lice comb for us."
+    "First we queued up a lice comb to be 3D printed at the library."
     scene library with fade
     show pete at midright with dissolve
     show him at center
@@ -2954,29 +2954,46 @@ label family12:
     him "I think we'll try the comb. Thanks for printing it for us."
     pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
             
-    "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."
-    
-    
-    "[kid_name] has a new friend - a miner's kid. She wants to hang out but they live far away. Will you facilitate this friendship?"
-    "How much independence should she have?"
-    "[kid_name] wants to walk to a friends' house after school and walk home. It's pretty far, but she's been there before."
-
+    "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."    
+    "Then I started to comb."
+    "And comb."
+    "And comb."
+    kid "How much longer is this going to take?!"
+    him "We have to be thorough! Otherwise we won't be able to get rid of them."
+    kid "Can I play on the computer pad?"    
     menu:
-        "No way. You'll go with her.":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Talk to the friends' parents.":
-            # It turns out an older sibling will accompany them.
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Sure, she's a big girl now.":
-            $ responsive += 1
-            $ permissive += 1
-        "Sounds like a pain. Just say she can't go.":
-            $ neglectful += 1
+        "What should I say"
+        "No, you'll move around too much.":
+            him "No, you'll move around too much."
+            kid "I won't!"
+            him "Yes, you will. Now hold still!"
+        "No, but why don't we put on a movie?"
+        "I guess.":
+            him "I guess..."
+            kid "Yay!"
+            "It was hard to comb her hair properly when she was playing her game. I did my best, though."
             
-    # She comes back with lice; what do you do? Do you blame the miners?
+    him "I think that's it."
+    her "You got them all?"
+    him "I went through her whole head... that's all I can do for today."
+    her "Good, now I'll go through your hair."
+    him concerned "What about you?"
+    her determined "Yup, you have them, too. Where's that comb? Anyway, I'm just going to shave my head."
+    him surprised "What?!"
+    her happy "Ha ha ha! You should see the look on your face!"
+    him concerned "You're not going to shave your head?"
+    her determined "I don't think it'll come to that. You'll have to help me comb my hair, though. I can do some of it myself but I need your help to be thorough."
+    him flirting "I can be thorough."
+    her determined "Good, because all of us will need to be 100\% thorough if we want to rid our planet of these lice."
+    # TODO: You can see/respond to her message board posts and blame the miners (or not)?
+    
+    
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft
+    with dissolve
+    kid "So, can I invite Anya over to play?"
+    "I was pretty sure the lice originally came from Anya. I wondered if they had brought any other parasites with them -- bed bugs, for instance."
     return
     
 label family12_contact_parents:
@@ -2993,6 +3010,8 @@ label family12_contact_parents:
             him "Can Anya come over here instead?"
         "When should I pick her up?":
             him "When should I pick her up?"
+            
+    return
     
     
 #####################################################
