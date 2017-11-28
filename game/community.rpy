@@ -31,6 +31,7 @@ label community1:
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, I got in line with my friend Thuc to have some soup."
     thuc "It's pretty exciting to have some new faces around!"
+    show him surprised
     him "How's it going? Julia couldn't make it?"
     show thuc sad
     thuc "No, she was too worn out."
