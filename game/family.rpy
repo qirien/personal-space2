@@ -2086,7 +2086,7 @@ label family8:
         
     scene black with fade
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
-    scene path with fade
+    scene path with fade #TODO: school house background?
     show him at midleft
     show her at midright
     show kid at center
@@ -2128,16 +2128,70 @@ label family8:
     him normal "Didn't her teacher ask us not to come in with her for the first week, so she could get used to coming in on her own?"
     her concerned "I guess so... Is she really going to be okay?"
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
+    "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face. Their baby sensed the mood and started fussing also."
+    him surprised "I guess we have it pretty easy, huh?"
+    her normal "For once. I'm going to help them out; want to come?"
+    menu:
+        "What should I do?"
+        "Go to work":
+            him concerned "Sorry, I have too much work to do."
+            her concerned "Okay, don't forget to pick up [kid_name] today. Eventually she can walk home on her own, but I told her you'd walk with her today."
+            him determined "Okay."
+            "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg. I turned away and jogged back to the farm. I had a lot of work to do."
+        "Go with [her_name]":
+            $ marriage_strength += 1
+            # TODO: crop consequences?
+            him normal "Sure, I have a few minutes."
+            "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg."
+            "[her_name] cuddled the baby and I distracted her with peek-a-boo until Ilian and Sara finally got Oleg to go inside the school."
+            sara sad "Thanks, guys. I really hope Oleg will be okay..."
+            ilian "Now that he's away from us, he'll be fine. He was the same way when we first started playgroup, remember?"
+            him normal "He'd cry and cry until you left, and then he'd be completely happy the whole time."
+            her normal "Except as soon as you came to pick him up, he'd cry again."
+            sara normal "You're probably right."
+            sara sad "But maybe we should peek in him, just in case."
+            her surprised "I'll admit, I'm a little curious about what they're doing..."
+            "The four of us crept over to the schoolhouse."
+            ilian "Sara, if he sees you or me, he'll start crying. Someone else had better look."
+            her normal "I'm holding the baby; [his_name] should do it."
+            him happy "Okay! I got this!"
+            "I sidled up to the side of the window and slowly peered inside."
+            scene classroom with fade
+            show kid at midright
+            show oleg at midleft
+            with dissolve
+            # TODO: frame it in a window or a VFX?
+            kid "Here's your cornmeal mush, Oleg. Isn't it delicious?"
+            "She handed him a small empty bowl with a little spoon. He pretended to take a bite."
+            oleg "That's delicious! I like the raisins."
+            kid "Trevor grew them for me. He's the dad, and I'm the mom, and you can be the baby."
+            oleg "Wahhh, wahhhh!"
+            kid "There, there, baby, have some more cornmeal mush."
+            oleg "Ptooey!"
+            "He pretended to spit it out. He did a pretty good impression of his baby sister."
+            show trevor at center with moveinright
+            trevor "Dinosaurs with bazookas are coming! Fight them off!"
+            "[kid_name] swatted the air with her frying pan while Trevor used a rolling pin as a gun and Oleg made some swatting motions in the air."
+            "Teacher" "Come over here, it's circle time!"
+            hide trevor
+            hide kid
+            hide oleg
+            with moveoutleft
+            scene schoolhouse with fade
+            sara "Well?"
+            him "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
+            ilian "Good. Now I've got to run; I've had three people message me wondering why the storehouse isn't open yet."
             
-    # TODO: finish this.
-    
     if (year6_have_baby):
+        scene black with fade
         "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
         "A few weeks after school started, [her_name] went into labor in the middle of the night."
         # TODO: Depending on faction, contact someone different to watch Terra?
         call baby_delivery
         
     else:
+        scene black with fade
+        "The next day, we walked [kid_name] to school again. After we dropped her off, [her_name] wanted to talk to me about something."
         $ year8_have_baby = True
         scene path with fade
         show her normal at midleft
@@ -2177,6 +2231,7 @@ label family8:
                     her serious "Yes. But it'll be okay."
                     him serious "We'll figure it out."
             "We can do this!":
+                $ marriage_strength += 1
                 him determined "This is...this is..."
                 her surprised "What?"
                 him happy "This is awesome!"
@@ -2200,6 +2255,7 @@ label family8:
                 him happy "Here, you can wipe your tears on my shirt."
                 her flirt "Now that's true love."                
             "How do you feel about it?":
+                $ marriage_strength += 1
                 him surprised "How do you feel about it?"
                 her concerned "I don't know. Worried, I guess."
                 him concerned "Yeah, how will this even work?"
@@ -3312,11 +3368,12 @@ label allowance_how:
         "Make a proposal.":
             $ demanding += 1
             him "You'll need to write up a budget proposal."
-            kid "A budget proposal? Seriously?"
+            kid "A budget proposal? I don't know how to do that!"
             him "Yup. List your expenses, why you think you should have them, and then list possible sources of income."
             kid "That'll be a lot of work!"
             him "Getting money always takes work."
-            kid "I guess I could do that."
+            kid "Can't you just give me some money?!"
+            him "Nope. If you really think you should have an allowance, convince me with a written proposal."
             $ authoritative += 1
         "You can have a small amount.":
             $ responsive += 1
@@ -3344,7 +3401,7 @@ label allowance_how:
             him "You can have five dollars a week if you do all your chores and are good." # TODO: currency check?
             kid "Oh. So basically I'll never get an allowance?"
             him "That's up to you."
-            kid "But you never think I'm 'good'! Even when I try really hard and do nice things for everyone and don't hit [baby_name] and do extra chores you never even notice!"
+            kid "But you never think I'm 'good'! Even when I try really hard and do nice things for everyone and don't hit [bro_name] and do extra chores you never even notice!"
             menu:
                 "What should I say?"
                 "You'll just have to try harder.":
@@ -4366,7 +4423,8 @@ return
 label family23:
     "It hadn't really been a big deal to share our computer pad with the kids when they were small."
     "On Earth we had been used to everyone having their own, but lots of things were different here on Talaam."
-    "But lately, [kid_name] was on there all the time..."
+    "We didn't have an electronics store where you could just go pick up another computer pad whenever you wanted."
+    "Lately, [kid_name] was on there all the time..."
     scene farm_interior with fade
     show kid at midright with dissolve
     show him at midleft with moveinleft
@@ -4387,11 +4445,12 @@ label family23:
             if (parenting_style == "authoritarian"):
                 kid "Whatever."
                 him angry "Don't talk back to me!"
-                kid "Okay, dad."
+                "She just sighed and rolled her eyes."
+                "I checked on her a few times while she was doing homework, to make sure she was actually doing homework, and it seemed like she was."
                 $ authoritarian += 1
                 
             elif (parenting_style == "authoritative"):
-                kid "That's really unfair, dad. Can you please just trust me to get my homework done in my own way?"
+                kid "That's really unfair, dad. Can't we compromise or something?"
                 him surprised "What are you suggesting?"
                 kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
                 him determined "You think you can be done in thirty minutes."
@@ -4400,18 +4459,51 @@ label family23:
                     "What should I say?"
                     "No. No texting during homework.":
                         him "No. You may not text during homework!"
+                        $ authoritarian += 1
                     "Yes, that sounds reasonable.":
-                        him "Yes... that sounds pretty reasonable."
-                    # TODO: finish this
+                        him "Yes... that sounds pretty reasonable."                       
+                        "Thirty minutes later, she handed me the computer pad."
+                        him surprised "You finished all your homework?"
+                        kid "Almost. I have some reading I need to do on there when you're finished."
+                        him normal "Okay."
+                        "She seemed to really appreciate the chance to do things her way, and I got my work done, so everything worked out."
+                        $ authoritative += 1
             elif (parenting_style == "permissive"):
                 kid "Daaaad, that's just not fair! You've always let me do that before!"
                 him angry "I didn't know you were doing it!"
-                kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"
-                
-                
+                kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"             
+                menu:
+                    "What should I say?"
+                    "Do your homework, then you can hang out in person.":
+                        him annoyed "If you don't text while you're doing your homework, you'll get it done faster and then you can hang out in person."
+                        kid "No, we can't, because you won't let me walk around after dark!"
+                        him angry "Too bad. That's your problem."
+                        kid angry "Sometimes you make me so mad!"
+                        him determined "I'm just trying to help you learn and not die. That's my job as your dad."
+                        "She just sighed and rolled her eyes and turned back to her homework."
+                        $ authoritarian += 1
+                    "Why don't you just do your homework together?":
+                        him surprised "Why don't you just do your homework together?"
+                        kid "I don't know; I guess it might be too distracting."
+                        him annoyed "But it's not distracting to be together on the computer pad?"
+                        kid "It's not!"
+                        him normal "How about you hang out for an hour after school, talk about whatever you need to, and then come home and concentrate on your homework?"
+                        kid "We can't do that. Oleg's parents want him to help out in the storehouse after school." 
+                        extend "And sometimes you need my help on the farm, too."# TODO: and maybe she helps out on the farm?
+                        him concerned "And you can't hang out after dinner because you can't go to town in the dark..." # TODO: is this really the issue?
+                        kid "Yeah. This is literally the only time we can talk to each other."
+                        jump family23_solution
+                    "I understand what you mean. I guess it's okay.":
+                        $ responsive += 1
+                        him concerned "I guess that's okay."
+                        kid "Thanks, dad."
+                        $ permissive += 1
             else:
-                kid "Oh, now suddenly you care about my homework?!"
+                kid annoyed "Oh, now suddenly you care about my homework?!"
                 him surprised "Of course I care about your homework!"
+                kid angry "Just let me do it my way!"
+                jump family23_solution
+
                 
         "What are you guys talking about?"
         "Do you do this all the time?"
@@ -4419,7 +4511,15 @@ label family23:
         "When do you think you'll be done?"
         "I need to use the computer pad; hand it over."
     # TODO: Finish this event
-    
+    label family23_solution:
+        menu:
+            "What should I say?"
+            "You should setup a night to hang out.":
+                him surprised "Maybe you should set up a night to hang out together."
+                kid "We could do that?"
+                him normal "Yeah."
+            "You should setup a study group."
+            "Maybe you and Oleg could work together."
     
     "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
     menu:
@@ -4517,6 +4617,7 @@ label family26:
 
 # 16.7 Earth years old
 # Fire grass
+# TODO: Or something else more related to her choices? Bad grades?
 label family27:
     "[kid_name] comes home smelling like fire grass."
     "You knew that the miners smoked it, but it hasn't been popular among the colonists... until now."
@@ -4549,6 +4650,7 @@ label family27:
 label family28:
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
     "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
+    # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?
     menu:
         "Listen, then make suggestions":
             $ demanding += 1

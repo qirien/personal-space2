@@ -5,7 +5,7 @@
 #
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Warn halfway for bad/inconsistent parenting?
-# TODO: Make inter-scene screens overlays coming in the upper left corner to make the interface take less time and be less annoying?
+# TODO: Use scene stars instead of scene black most of the time?
 
 label start:
     
