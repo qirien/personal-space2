@@ -2902,7 +2902,8 @@ label family12:
             $ responsive += 1
             him normal "Sure, you can go."
             kid "Yay! I'm going to message her right now, she'll be so happy!"
-            $ permissive += 1                        
+            $ permissive += 1
+            call family12_anyas_house
         "Are her parents going to be home?":
             $ demanding += 1
             him concerned "Are her parents going to be home?"
@@ -2922,6 +2923,7 @@ label family12:
                     him determined "I don't know them, and I don't have time to get to know them. Sorry, [kid_name]."
                     kid "You're so mean!"
                     $ neglectful += 1
+                    call family12_disobey
                 "You can't go over to someone's house unless I know them.":
                     $ demanding += 1
                     him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
@@ -2930,6 +2932,7 @@ label family12:
                     kid "But your job is to pick my friends?!"
                     him "Yes, it is."
                     $ authoritarian += 1
+                    call family12_disobey
                 "Maybe I could send them a message.":
                     him concerned "I guess I could send a message or something..."
                     call family12_contact_parents
@@ -2944,6 +2947,7 @@ label family12:
                     him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
                     kid "What?! Dad, that's so mean."
                     $ authoritarian += 1
+                    call family12_disobey
                 "Let me talk to her parents first.":
                     him concerned "I guess I could send her parents a message..."
                     call family12_contact_parents
@@ -2951,7 +2955,6 @@ label family12:
     
                     
     scene black with fade
-    "I decided it was probably best if Anya came over here to hang out."
     "She was a good enough kid; they certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
     "Several days later, though, I noticed something."
     scene farm_interior with fade
@@ -3023,26 +3026,47 @@ label family12:
             him "No, you'll move around too much."
             kid "I won't!"
             him "Yes, you will. Now hold still!"
-        "No, but why don't we put on a movie?"
+        "No, but why don't we put on a movie?":
+            him happy "No, but why don't we put on a movie? I'm getting kind of bored, too."
+            kid "Okay. Can I pick?"
+            him determined "Just as long as it's not Buppo."
+            kid "Aw, man."
         "I guess.":
             him "I guess..."
             kid "Yay!"
             "It was hard to comb her hair properly when she was playing her game. I did my best, though."
             
-    him "I think that's it."
-    her "You got them all?"
-    him "I went through her whole head... that's all I can do for today."
-    her "Good, now I'll go through your hair."
+    "Now that I knew about lice, my head kept itching. I wasn't sure if it was real or if I was just creeped out."
+    him determined "I think that's it."
+    her surprised "You got them all?"
+    him concerned "I went through her whole head... that's all I can do for today."
+    her determined "Good, now I'll take a look at your hair."
+    "I sat on the stool and waited for the verdict. My scalp itched like crazy."
+    her determined "Yup, you have them, too. Where's that comb?"
+    "I sat down and she started combing my hair efficiently, dipping the comb in water to rinse off eggs and lice. It was pretty creepy seeing what had been living on my head."    
     him concerned "What about you?"
-    her determined "Yup, you have them, too. Where's that comb? Anyway, I'm just going to shave my head."
+    her surprised "Me? Oh, I'm just going to shave my head."
     him surprised "What?!"
     her happy "Ha ha ha! You should see the look on your face!"
-    him concerned "You're not going to shave your head?"
-    her determined "I don't think it'll come to that. You'll have to help me comb my hair, though. I can do some of it myself but I need your help to be thorough."
+    him concerned "You're not going to shave your head, right?!"
+    her determined "I don't think it'll come to that. You'll have to help me comb my hair, though. I can do some of it myself but I need your help to be thorough."    
     him flirting "I can be thorough."
     her determined "Good, because all of us will need to be 100\% thorough if we want to rid our planet of these lice."
-    # TODO: You can see/respond to her message board posts and blame the miners (or not)?
+    him concerned "Maybe I should just shave my hair. I don't want to make more work for you."
+    her surprised "Well, it's up to you. At least your hair would grow back pretty fast."
+    menu:
+        "What should I do?"
+        "Shave your head.":
+            him happy "You know what, I need a change anyway!  Let's shave it all off!"
+        "Don't shave it.":
+            him concerned "I just don't want to shave it. Sorry, [her_name]."
+            her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
     
+    scene black with fade
+    "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
+    "[her_name] said we needed to keep looking out for them for a few months."
+    "It was amazing how these tiny insects took over our lives for a while. The whole community was pretty upset about it."
+    # TODO: You can see/respond to her message board posts and blame the miners (or not)?
     
     scene farm_interior with fade
     show him at midright
@@ -3050,6 +3074,8 @@ label family12:
     with dissolve
     kid "So, can I invite Anya over to play?"
     "I was pretty sure the lice originally came from Anya. I wondered if they had brought any other parasites with them -- bed bugs, for instance."
+    "But it wasn't the kid's fault. Probably."
+    
     return
     
 label family12_contact_parents:
@@ -3062,12 +3088,60 @@ label family12_contact_parents:
         "What should I write?"
         "Is an adult going to be there?":
             him "Is an adult going to be there?"
+            "Mr. Lewis" "Yeah."
         "Can Anya come over here instead?":
             him "Can Anya come over here instead?"
+            "Mr. Lewis" "Sure."
+            call family12_anya_come_over
+            return
         "When should I pick her up?":
             him "When should I pick her up?"
+            "Mr. Lewis" "Before dinner."
             
+    "I didn't have as many details as I wanted, but I told [kid_name] that she could go." 
+    call family12_anyas_house            
     return
+
+label family12_anyas_house:
+    "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
+    "But when I got there and knocked on the door, a teenager answered the door."
+    "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."
+    "Besides, maybe [kid_name] was getting old enough that she didn't need adult supervision all the time?"
+    menu:
+        "What do I think?"
+        "She still needs adult supervision.":
+            $ demanding += 1
+            "I decided she still needed adult supervision, especially when playing with friends. On her own, she'd probably be fine, but you get more than one kid together and they tended to get in trouble."
+            "Maybe Anya could come play at our house in the future."
+        "She'll be fine on her own.":
+            $ responsive += 1
+            "I couldn't be there for [kid_name] forever. She needed to be ready to be without me or another adult, and she couldn't learn those skills without practicising them." 
+        
+    "The whole walk home [kid_name] talked and talked about everything she and Anya did. It was pretty cute, actually."
+    return
+    
+label family12_disobey:
+    "The next day, [kid_name] was late coming home from school."
+    him surprised "Where is that girl?"
+    "After an hour, I started to get worried. I called up Mr. Lewis on the radio."
+    # TODO: message interface
+    him "Mr. Lewis? Is [kid_name] there?"
+    "Mr. Lewis" "No, no one by that name."
+    return
+    
+label family12_anya_come_over:
+    scene farm_interior with fade
+    show him at center
+    show kid at midleft with moveinleft
+    "[kid_name] was so excited to show Anya around our little house."
+    kid "Here's the kitchen, and this is [bro_name]'s room, and the outhouse is out there and here's my room! Want to come in!"
+    hide kid with moveoutright
+    "[kid_name] didn't wait for a response, pulling Anya into her room where they sat down to make something out of yarn."
+    him annoyed "Welcome home."
+    "I guess they didn't need me, which was probably for the best."
+    return
+    
+    
     
     
 #####################################################
