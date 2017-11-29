@@ -2050,7 +2050,7 @@ label family8:
                     him surprised "How do you feel when someone hurts you?"
                     kid angry "Mad. And sad."
                     him determined "What about when they say they're sorry?"
-                    kid normal "I feel a bit better."
+                    kid normal "Not so mad."
                     him normal "Exactly. Saying sorry helps us both feel better. So when you say sorry, make sure you say it in a way that communicates that."
                     kid angry "I do!"
                     him "Let's practice. Pretend I took your toy tractor."
@@ -2878,26 +2878,197 @@ label family11:
     
 
 # 7.4 Earth years old
-# Growing Independence
+# TODO: Growing Independence, miner friend, lice
 label family12:
-    "[kid_name] wants to walk to a friends' house after school and walk home. It's pretty far, but she's been there before."
-    "Still, you can't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft with moveinleft
+    him happy "Welcome home, [kid_name]! How was school?"
+    kid "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
+    him "Today? Who's Anya?"
+    kid "One of my friends from school."
+    him "Really? I don't know of any farmer's who have a kid named Anya..."
+    kid "Her parents are miners."
+    him "Oh."
+    "I wasn't sure what to think about that. On the one hand, I was glad she had a new friend; she'd never had a girl her own age to be friends with before."
+    "On the other hand, I didn't know much about the miners. Should I really let her go to someone's house I didn't know?"
+    "I couldn't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+    kid "Please, dad? We're like best friends."
+    him surprised "Who are her parents?"
+    kid "I don't know; just...parents, I guess."
     menu:
-        "No way. You'll go with her.":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Talk to the friends' parents.":
-            # It turns out an older sibling will accompany them.
-            $ demanding += 1
+        "What should I say?"
+        "Sure, you can go.":
             $ responsive += 1
-            $ authoritative += 1
-        "Sure, she's a big girl now.":
-            $ responsive += 1
-            $ permissive += 1
-        "Sounds like a pain. Just say she can't go.":
-            $ neglectful += 1
+            him normal "Sure, you can go."
+            kid "Yay! I'm going to message her right now, she'll be so happy!"
+            $ permissive += 1                        
+        "Are her parents going to be home?":
+            $ demanding += 1
+            him concerned "Are her parents going to be home?"
+            kid "Um, yeah, I guess, probably?"
+            him determined "You don't know."
+            kid "We don't talk about our parents!"
+            him surprised "Why don't I message her parents and get some more information?"
+            kid "Okay. Her last name's Lewis."
+            call family12_contact_parents            
+        "I don't want you going over to some random miner's house.":
+            $ demanding += 1
+            him annoyed "I don't want you going over to some random miner's house. I don't know anything about them!"
+            kid "They're not random! Anya's my best friend!"
+            menu:
+                "What should I say?"
+                "Sorry, I don't have time.":
+                    him determined "I don't know them, and I don't have time to get to know them. Sorry, [kid_name]."
+                    kid "You're so mean!"
+                    $ neglectful += 1
+                "You can't go over to someone's house unless I know them.":
+                    $ demanding += 1
+                    him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
+                    kid "Well, then you need to get to know Anya's parents!"
+                    him "Picking my friends is not your job."
+                    kid "But your job is to pick my friends?!"
+                    him "Yes, it is."
+                    $ authoritarian += 1
+                "Maybe I could send them a message.":
+                    him concerned "I guess I could send a message or something..."
+                    call family12_contact_parents
+             
+        "Why don't you invite her to come over here?":
+            $ demanding += 1
+            him concerned "Why don't you invite her to come over here? That'd be easier."
+            kid "I do want to to that, but tomorrow she's going to show me some cool stuff she brought from Earth!"
+            menu:
+                "What should I say?"
+                "You can't go.":
+                    him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
+                    kid "What?! Dad, that's so mean."
+                    $ authoritarian += 1
+                "Let me talk to her parents first.":
+                    him concerned "I guess I could send her parents a message..."
+                    call family12_contact_parents
+          
+    
+                    
+    scene black with fade
+    "I decided it was probably best if Anya came over here to hang out."
+    "She was a good enough kid; they certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
+    "Several days later, though, I noticed something."
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft
+    kid "I'm just so itchy! All the time!"
+    him surprised "Did you touch a weird plant or something? Where do you itch?"
+    kid "On my head!"
+    "I was ready for some bizarre alien tick or something (though since most of the animals here were cold blooded, it seemed unlikely), but I wasn't ready for what I found."
+    him concerned "You have something in your hair... is this dandruff?"
+    kid "What's dandruff?"
+    him surprised "There's these tiny white things on your hair. Man, they're really stuck on there good."
+    kid "What? What are they?!"
+    him "I don't know; here, go wash your hair in the sink and we'll see if that helps it go away."
+    "She washed her hair, but the little white things were still there."
+    him concerned "They look like little sesame seeds, or..."
+    kid "Or what?!"
+    him surprised "Eggs?"
+    kid "Eggs?! From what?!"
+    show her at quarterleft with moveinleft
+    her concerned "Lice. We are currently experiencing an outbreak of lice."
+    him annoyed "I thought we left all those horrible parasites back on Earth!"
+    her annoyed "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
+    him angry "How could that even happen?!"
+    her concerned "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
+    kid "I have lice?!"
+    her determined "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
+    menu:
+        "What should I say?"
+        "I'm not doing that.":
+            $ marriage_strength -= 1
+            him annoyed "No way. I'm not doing that."
+            her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
+            him "..."
+            her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
+            him surprised "That's low."
+            her determined "That's life."          
+            
+        "Sure, I'll get started.":
+            $ marriage_strength += 1
+            him concerned "Okay, I'll get started."
+    
+    "I had never got rid of lice before. I got them once in school, but all I remember is my mom combing my hair a lot. I'd better read up on it." 
+    "But [her_name]'s instructions were pretty thorough."
+    # TODO: include these? 
+    
+    "First we queued up a lice comb to be 3D printed at the library."
+    scene library with fade
+    show pete at midright with dissolve
+    show him at center
+    show kid at midleft
+    with moveinleft
+    
+    pete "Here you go. And, y'know, if you can't get rid of the little varmints, you could always shave your head. That's what we did with Trevor."
+    kid "No way!"
+    him "I think we'll try the comb. Thanks for printing it for us."
+    pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
+            
+    "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."    
+    "Then I started to comb."
+    "And comb."
+    "And comb."
+    kid "How much longer is this going to take?!"
+    him "We have to be thorough! Otherwise we won't be able to get rid of them."
+    kid "Can I play on the computer pad?"    
+    menu:
+        "What should I say"
+        "No, you'll move around too much.":
+            him "No, you'll move around too much."
+            kid "I won't!"
+            him "Yes, you will. Now hold still!"
+        "No, but why don't we put on a movie?"
+        "I guess.":
+            him "I guess..."
+            kid "Yay!"
+            "It was hard to comb her hair properly when she was playing her game. I did my best, though."
+            
+    him "I think that's it."
+    her "You got them all?"
+    him "I went through her whole head... that's all I can do for today."
+    her "Good, now I'll go through your hair."
+    him concerned "What about you?"
+    her determined "Yup, you have them, too. Where's that comb? Anyway, I'm just going to shave my head."
+    him surprised "What?!"
+    her happy "Ha ha ha! You should see the look on your face!"
+    him concerned "You're not going to shave your head?"
+    her determined "I don't think it'll come to that. You'll have to help me comb my hair, though. I can do some of it myself but I need your help to be thorough."
+    him flirting "I can be thorough."
+    her determined "Good, because all of us will need to be 100\% thorough if we want to rid our planet of these lice."
+    # TODO: You can see/respond to her message board posts and blame the miners (or not)?
+    
+    
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft
+    with dissolve
+    kid "So, can I invite Anya over to play?"
+    "I was pretty sure the lice originally came from Anya. I wondered if they had brought any other parasites with them -- bed bugs, for instance."
+    return
+    
+label family12_contact_parents:
+    scene computer with fade
+    # TODO: Do this with a computer message interface
+    him "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
+    "Several hours later, I got a response."
+    "Mr. Lewis" "Yeah, that's okay."
+    menu:
+        "What should I write?"
+        "Is an adult going to be there?":
+            him "Is an adult going to be there?"
+        "Can Anya come over here instead?":
+            him "Can Anya come over here instead?"
+        "When should I pick her up?":
+            him "When should I pick her up?"
             
     return
+    
     
 #####################################################
 #
@@ -4436,108 +4607,196 @@ label family23:
     "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other."
     him annoyed "Does texting help you concentrate, too?"
     kid "Yes!"
-    menu:
-        "No texting during homework.":
-            him angry "No texting during homework! It's distracting!"
-            kid "What?!"
-            him annoyed "You heard what I said."
-            $ parenting_style = get_parenting_style()
-            if (parenting_style == "authoritarian"):
-                kid "Whatever."
-                him angry "Don't talk back to me!"
-                "She just sighed and rolled her eyes."
-                "I checked on her a few times while she was doing homework, to make sure she was actually doing homework, and it seemed like she was."
-                $ authoritarian += 1
-                
-            elif (parenting_style == "authoritative"):
-                kid "That's really unfair, dad. Can't we compromise or something?"
-                him surprised "What are you suggesting?"
-                kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
-                him determined "You think you can be done in thirty minutes."
-                kid "I know I can!"
-                menu:
-                    "What should I say?"
-                    "No. No texting during homework.":
-                        him "No. You may not text during homework!"
-                        $ authoritarian += 1
-                    "Yes, that sounds reasonable.":
-                        him "Yes... that sounds pretty reasonable."                       
-                        "Thirty minutes later, she handed me the computer pad."
-                        him surprised "You finished all your homework?"
-                        kid "Almost. I have some reading I need to do on there when you're finished."
-                        him normal "Okay."
-                        "She seemed to really appreciate the chance to do things her way, and I got my work done, so everything worked out."
-                        $ authoritative += 1
-            elif (parenting_style == "permissive"):
-                kid "Daaaad, that's just not fair! You've always let me do that before!"
-                him angry "I didn't know you were doing it!"
-                kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"             
-                menu:
-                    "What should I say?"
-                    "Do your homework, then you can hang out in person.":
-                        him annoyed "If you don't text while you're doing your homework, you'll get it done faster and then you can hang out in person."
-                        kid "No, we can't, because you won't let me walk around after dark!"
-                        him angry "Too bad. That's your problem."
-                        kid angry "Sometimes you make me so mad!"
-                        him determined "I'm just trying to help you learn and not die. That's my job as your dad."
-                        "She just sighed and rolled her eyes and turned back to her homework."
-                        $ authoritarian += 1
-                    "Why don't you just do your homework together?":
-                        him surprised "Why don't you just do your homework together?"
-                        kid "I don't know; I guess it might be too distracting."
-                        him annoyed "But it's not distracting to be together on the computer pad?"
-                        kid "It's not!"
-                        him normal "How about you hang out for an hour after school, talk about whatever you need to, and then come home and concentrate on your homework?"
-                        kid "We can't do that. Oleg's parents want him to help out in the storehouse after school." 
-                        extend "And sometimes you need my help on the farm, too."# TODO: and maybe she helps out on the farm?
-                        him concerned "And you can't hang out after dinner because you can't go to town in the dark..." # TODO: is this really the issue?
-                        kid "Yeah. This is literally the only time we can talk to each other."
-                        jump family23_solution
-                    "I understand what you mean. I guess it's okay.":
-                        $ responsive += 1
-                        him concerned "I guess that's okay."
-                        kid "Thanks, dad."
-                        $ permissive += 1
-            else:
-                kid annoyed "Oh, now suddenly you care about my homework?!"
-                him surprised "Of course I care about your homework!"
-                kid angry "Just let me do it my way!"
-                jump family23_solution
-
-                
-        "What are you guys talking about?"
-        "Do you do this all the time?"
-        "Why don't you meet in person?"
-        "When do you think you'll be done?"
-        "I need to use the computer pad; hand it over."
-    # TODO: Finish this event
-    label family23_solution:
+    him angry "You shouldn't text during homework! It's distracting!"
+    kid "What?!"
+    him annoyed "You heard what I said."
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
+        $ demanding += 1
+        kid "Whatever."
+        him angry "Don't take that attitude with me!"
+        kid "Sorry! Fine!"
+        $ authoritarian += 1
+        
+    elif (parenting_style == "authoritative"):
+        kid "That's really unfair, dad. Can you please just trust me to get my homework done in my own way?"
+        him surprised "What are you suggesting?"
+        kid "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
+        him determined "You think you can be done in thirty minutes."
+        kid "I know I can!"
         menu:
             "What should I say?"
-            "You should setup a night to hang out.":
-                him surprised "Maybe you should set up a night to hang out together."
-                kid "We could do that?"
-                him normal "Yeah."
-            "You should setup a study group."
-            "Maybe you and Oleg could work together."
-    
-    "You're waiting for Terra to finish with the family tablet.  She was doing her homework on it while listening to music through headphones, but after a while you check and see she is chatting with her friend."
+            "No. No texting during homework.":
+                $ demanding += 1
+                him angry "No. You may not text during homework!"
+                kid "Ugh! Dad, there's this thing called 'friends'. Maybe you've heard of it."
+                him annoyed "You can have friends."
+                kid "But if I can't be there for them when they need me, am I really being a good friend?"
+                him normal "I think they can last for an hour or two without you while you finish your homework."
+                kid "No, dad, sometimes they really need me. We're not just gossiping or fooling around; we're helping each other deal with life!"
+                him surprised "Are your lives that difficult?"
+                kid "Sometimes! We help each other through stuff."
+                him determined "Like what?"
+                kid "Like... I'm telling Oleg some ways he can help his mom, who's feeling stressed out about their new baby."
+                him surprised "Really?"
+                kid "Yeah, see?"
+                "She showed me her text conversation. She was telling the truth."
+                menu:
+                    "What should I say?"
+                    "Those conversations can wait.":
+                        $ demanding += 1
+                        him determined "Those conversations, as important as they are, don't have to happen during homework. You can chat when you're done."
+                        kid "Dad, you're making me choose between being a good student and being a good friend! I can do both, if you'll let me!"
+                        him annoyed "Don't try to make me the bad guy. You'll be better at both if you just do one at a time."
+                        kid "Fine."                        
+                    "You can ask for a special exception.":
+                        $ responsive += 1
+                        him determined "If there's a social emergency, you can ask for an exception to the rule. But otherwise I expect you to finish your homework before chatting with friends."
+                        kid "Okay, fine."                        
+                    "I trust you to use your own judgment.":
+                        $ responsive += 1
+                        him normal "I'm glad you're being a good friend. And so far you've been a good student, too. As long as you are completing your schoolwork with high quality, I'll let you decide when you need to text and when you need to concentrate."
+                        kid "Thanks, dad. I can do this."
+            "Yes, that sounds reasonable.":
+                $ responsive += 1
+                him "Yes... that sounds pretty reasonable."
+                kid "Thanks, dad. I know what I'm doing."
+    elif (parenting_style == "permissive"):
+        kid "Daaaad, that's just not fair! You've always let me do that before!"
+        him angry "I didn't know you were doing it!"
+        kid "Everyone texts each other while they do homework. It's the only time we have to hang out!"
+        him annoyed "Okay, okay, I get it. But I really need to use the computer pad. So you have thirty minutes, okay?"
+        kid "Fine."                
+    else:
+        kid "Oh, now suddenly you care about my homework?!"
+        him surprised "Of course I care about your homework!"
+        kid "You don't know anything about me!"
+        him annoyed "I'm your dad. I think I know a thing or two about you."
+        kid "Oh yeah? Like what?"
+        menu:
+            "What should I say?"
+            "I know that you'll finish your homework faster without texting!":
+                $ demanding += 1
+                him angry "I don't know everything, but I know that you'll finish your homework faster if you're not wasting time texting!"
+                kid "Because homework is the most important thing in the universe."
+                him determined "It's in the top ten."
+                kid "No, it's not! Helping friends is more important."
+                him annoyed "And that's what you're doing. Helping friends."
+                kid "Yes! Not that I expect you to understand."
+                him concerned "..."
+            "I know you're talking with Oleg.":
+                him determined "I know you're talking with Oleg."
+                kid "Yeah? About what?"
+                him "Probably stupid stuff!"
+                kid "No! We're talking about how he can help his mom with the new baby!"
+                him surprised "Really?"
+                kid "Yeah, look for yourself."
+                "She showed me the computer pad. It looked like Oleg was pretty upset that his mom was feeling overwhelmed, and [kid_name] was giving him some ideas of ways to help."
+                # TODO: show her actual screen of messages?
+                him concerned "..."
+                kid "You think I'm just another stupid teenager, but that's just because you don't know me."
+            "You're right; tell me what I should know.":
+                $ responsive += 1
+                him concerned "You're right. I don't know much about what's going on in your life. What should I know about?"
+                kid "There's- it's- you can't just ask that now!"
+                him "So you won't tell me anything."
+                kid "No! It would take too long and you don't really care anyway."
+                him "..."
+                "She turned back to her homework."
+                
+            "Just finish up and let me use the computer pad.":
+                him annoyed "Just finish up and let me use the computer pad."
+
+    "Finally, [kid_name] was done with the computer pad. She handed it to me."
     menu:
-        "Ask her to set herself a deadline to finish her homework":
-            $ demanding += 1
+        "What should I say?"
+        "You should hang out with friends in person.":
             $ responsive += 1
-            $ authoritative += 1
-        "Tell her if she's not done in ten minutes then she'll lose all tablet time this week.":
-            # And no listening to music while doing homework!  How can you concentrate like that?!
+            him determined "You should hang out with your friends in person. It'll mean more that way."
+            kid "We don't have time! We have so much homework, and Oleg has to work in the storehouse, and I help you on the farm..." # TODO: change based on how much she is helping you on the farm?
+            him normal "If you have time to chat on the tablet, then I think you have time to hang out!"
+            kid "Well, he chats with me when there's no one at the storehouse and he's just sitting around."
+            him happy "He could come over here after work!"
+            kid "Yeah? That might be fun..."
+            him normal "You can invite some other friends, too. You guys need to talk more in person. Talking online just isn't the same."
+            kid "Really? Then how come you and Mom are always sending each other messages?"
+            him happy "That's in addition to good, quality meatspace time."
+            kid "Meatspace! Ugh, dad, that's such a gross expression. It makes me think of Trevor's dad butchering cows."
+            him normal "That's just one of the many exciting things happening in the real world."
+            kid "That's exactly why I worry about inviting my friends over."
+            him surprised "You're worried they'll find out you got your sense of humor from me?"
+            kid "No! I'm worried they'll think I'm crazy like you!"
+            him normal "Okay, I'll try not say anything embarassing like 'meatspace' while your friends are here."
+            kid "Maybe that would be okay, then."
+            menu:
+                "What should I say?"
+                "Make sure homework and chores are done first.":
+                    $ demanding += 1
+                    him determined "Just make sure your homework and chores are done first."
+                    kid "I know, dad, I know!"
+                    $ authoritative += 1
+                "It'll be cool to get to know your friends.":
+                    him happy "It'll be cool to get to know your friends more!"
+                    kid "Dad, no, just, can you just like disappear or something while they're here?"
+                    him normal "I'll try not to bug you guys too much."
+                    $ permissive += 1
+        "You need to concentrate more on your schoolwork.":
             $ demanding += 1
+            him concerned "You need to concentrate more on your schoolwork, and less on music and talking with friends."
+            kid "I thought we went over this!"
+            him determined "Your schoolwork is more important. Now, don't you have a test you need to study for?"
+            kid "No."
+            him normal "Then study anyway, because I know you will have a test, and I expect you to get 100\%."
+            kid "I'll never be perfect!"
+            him determined "But if you don't try, you'll never know how good you could get. This guy on Earth named Peale said, 'Shoot for the moon. Even if you miss, you'll land among the stars.'"
+            kid annoyed "We're already among the stars."
+            him normal "Then maybe you need an even higher goal."
             $ authoritarian += 1
-        "Let her talk. It's good for her.":
-            $ permissive += 1
-        "Take the tablet. You should have priority.":
+        "Thanks.":
+            him determined "Thanks, [kid_name]."
             $ neglectful += 1
-            
+      
     # Afterwards, depending on your attitude, she may come and ask 
     # your opinion of some new music she found.
+    if (responsive >= 1):
+        scene black with fade
+        scene farm_interior with fade
+        show him at midright
+        show kid at center with moveinleft
+        kid "Hey dad, check out this music video I found."
+        # TODO: play weird music?
+        "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a sculpture of a metal flower together."
+        "The music was kind of grating on my ears, and the video was pretty cheesy, but [kid_name] obviously liked it."
+        menu:
+            "What should I say?"
+            "What do you like about this video?":
+                $ responsive += 1
+                him surprised "What do you like about this video?"
+                kid "It's a beautiful story. They're so different, but they learn from each other and work together."
+                him determined "Hmmm, that's a good message."
+                kid "It's not a 'message', dad, it's a story!"
+                him normal "Oh yes, of course."
+            "That was weird.":                
+                him surprised "That was weird. Do you actually like that music?"
+                kid "Ugh, just never mind. I should have known you wouldn't get it."
+            "Do you feel like the girl in the video?":
+                $ responsive += 1
+                him surprised "Do you feel like the girl in the video?"
+                kid "No, I feel more like...both of them. Like they're two sides of me."
+                him normal "Oh, I see. So the boy's not Oleg?"
+                kid "No! Dad, we're just friends!"
+                him determined "Okay, good."
+
+        him normal "That reminds me of this other video your mom sent me when we were dating! I wonder if we brought it from Earth?"
+        kid "Oh no, not one your weird old videos!"
+        him surprised "It's not weird! It's romantic!"
+        kid "Okay, I'll watch it, but just one!"
+        # TODO: play OPS1 music?
+        show her at midleft with moveinleft
+        her surprised "Is that the video I think it is?"
+        him happy "Yeah! I wanted to show [kid_name]."
+        her happy "Ohh, I remember when it first came out, it was like it was made for us."
+        him flirting "Like you were made for me."
     return
 
 # 14.8 Earth years old
