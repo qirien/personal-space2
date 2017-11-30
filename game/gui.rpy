@@ -18,7 +18,7 @@ init python:
 ################################################################################
 
 # COLOR PALETTE
-# Thanks to Google's Material Desing Color Tool,
+# Thanks to this Material Design Color Tool,
 # https://material.io/color/#!/?view.left=0&view.right=1&primary.color=558B2F&secondary.color=ccbb99
 
 # Mossy green

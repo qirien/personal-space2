@@ -168,6 +168,7 @@ label community1:
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
             zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
+            # TODO: Show sprites for people as we talk about them.
             show him surprised
             him "I guess I can."
             label colony_gossip:
@@ -188,10 +189,10 @@ label community1:
                     jump colony_gossip
                 "Naomi and Pavel" if not tell_Graysons:
                     show him normal
-                    him "If over the course of your lifetime you ever feel hopless or depressed, go talk to Naomi Grayson."
+                    him "If over the course of your lifetime you ever feel hopeless or depressed, go talk to Naomi Grayson."
                     him "She can't prescribe medicine for you, but she's very reassuring and can encourage you to get more help."
                     zaina "Reassuring? So she basically tells you to hang in there."
-                    him "Somehow when she says it, it feels like she understands what you're going through."
+                    him "Somehow when she says it, it feels like she understands what you're going through. She has some training in cognitive behavioral techniques, too."
                     show him determined
                     him "If you want to talk to her, she holds religious services every Sunday."
                     zaina "Do you go to those?"
@@ -242,6 +243,7 @@ label community1:
                             him "No, one of my friends was driving it."
                             zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
                             him "Yeah. The Perons are still pretty sad about it and hold a vigil every year where it happened."
+                            # TODO: give bonus to luddites here?
                     him "Their kids are getting older and should be able to help around the colony more."
                     $ tell_Perons = True
                     jump colony_gossip
@@ -292,8 +294,12 @@ label community2:
     show ilian happy at midright
     ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and he can have more variety in his diet."
     show him happy at left
-    him "Sure, do you like spinach?" #to do:is there a way to call a vegetable that has been planted?
-    kevin "A variety of foodstuffs is beneficial to anyone's diet."
+    $ random_crop = crops.get_random_crop(include_animals = False)
+    him "Sure, do you like [random_crop]?"
+    if ((random_crop == "tomatoes") or (random_crop == "squash")):
+        kevin "Yes, that is why I planted some myself. A popular choice, it seems."
+    else:
+        kevin "A variety of foodstuffs is beneficial to anyone's diet."
     ilian "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we've supposed to have been doing it all along."
     show him surprised at left
     him "Huh, really? How in the world do you have time to farm?"

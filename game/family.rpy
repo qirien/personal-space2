@@ -2881,15 +2881,15 @@ label family11:
 # TODO: Growing Independence, miner friend, lice
 label family12:
     scene farm_interior with fade
-    show him at midright
+    show him normal at midright
     show kid at midleft with moveinleft
     him happy "Welcome home, [kid_name]! How was school?"
     kid "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
-    him "Today? Who's Anya?"
+    him surprised "Today? Who's Anya?"
     kid "One of my friends from school."
-    him "Really? I don't know of any farmer's who have a kid named Anya..."
+    him concerned "Really? I don't know of any farmer's who have a kid named Anya..."
     kid "Her parents are miners."
-    him "Oh."
+    him determined "Oh."
     "I wasn't sure what to think about that. On the one hand, I was glad she had a new friend; she'd never had a girl her own age to be friends with before."
     "On the other hand, I didn't know much about the miners. Should I really let her go to someone's house I didn't know?"
     "I couldn't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
@@ -2955,7 +2955,7 @@ label family12:
     
                     
     scene black with fade
-    "She was a good enough kid; they certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
+    "Anya was a good enough kid; she and [kid_name] certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
     "Several days later, though, I noticed something."
     scene farm_interior with fade
     show him at midright
@@ -3008,9 +3008,12 @@ label family12:
     show kid at midleft
     with moveinleft
     
-    pete "Here you go. And, y'know, if you can't get rid of the little varmints, you could always shave your head. That's what we did with Trevor."
-    kid "No way!"
-    him "I think we'll try the comb. Thanks for printing it for us."
+    pete "Hey there, [his_name]. Hey, Trevor, wanna say hi? [kid_name]'s here."
+    trevor "No!"
+    pete "Think he's embarrassed about his new haircut."
+    trevor "Dad!"
+    pete "Anyway, here's your comb."
+    him "Thanks for printing it for us."
     pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
             
     "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."    
@@ -3029,7 +3032,7 @@ label family12:
         "No, but why don't we put on a movie?":
             him happy "No, but why don't we put on a movie? I'm getting kind of bored, too."
             kid "Okay. Can I pick?"
-            him determined "Just as long as it's not Buppo."
+            him determined "Just as long as it's not Zuppo."
             kid "Aw, man."
         "I guess.":
             him "I guess..."
@@ -3058,6 +3061,7 @@ label family12:
         "What should I do?"
         "Shave your head.":
             him happy "You know what, I need a change anyway!  Let's shave it all off!"
+            "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
@@ -3067,6 +3071,28 @@ label family12:
     "[her_name] said we needed to keep looking out for them for a few months."
     "It was amazing how these tiny insects took over our lives for a while. The whole community was pretty upset about it."
     # TODO: You can see/respond to her message board posts and blame the miners (or not)?
+    julia_c "I can't believe someone was so incompetent as to allow lice from Earth to contaminate our entire colony!"
+    brennan_c "RET has discovered a mistake was made in the decontamination of children's toys. Our procedures have been modified and we regret any inconvenience this mistake may have caused you."
+    julia_c "{b}May{/b} have caused?!"
+    martin_c "This isn't just an inconvenience; we lost a lot of valuable time during planting to these bugs. I had to plant tomatoes later than I wanted to; hopefully it won't get too cold before they're ripe."
+    menu:
+        "What should I say?"
+        "I lost time, too. The miners should be held responsible for these damages!":
+            him_c "I lost time, too. The miners should be held responsible for these damages!"
+            julia_c "Exactly! They expect us to feed them, and then make us waste our precious time with these vermin! I have ten children to decontaminate!"
+            $ miners -= 1
+            
+        "I know the lice are really annoying, but it's no one's fault.":
+            him_c "I know the lice are really annoying, but we can't blame the miners. It was an accident."
+            julia_c "A preventable accident! They expect us to feed them, and then make us waste our precious time with these vermin! I have ten children to decontaminate!"
+            $ miners += 1
+        
+    brennan_c "That's just RET's official statement. I'm with you; I've got a lot of hair to comb through, here."
+    pete_c "I'll come over and take care of it."
+    sara_c "You're offering to comb through Brennan's hair?! O_o"
+    pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
+    brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
+    pete_c "If you've got the credits, I've got the brew."
     
     scene farm_interior with fade
     show him at midright
@@ -3075,13 +3101,15 @@ label family12:
     kid "So, can I invite Anya over to play?"
     "I was pretty sure the lice originally came from Anya. I wondered if they had brought any other parasites with them -- bed bugs, for instance."
     "But it wasn't the kid's fault. Probably."
+    "And they would play together at school no matter what."
+    him concerned "I suppose so."
     
     return
     
 label family12_contact_parents:
     scene computer with fade
     # TODO: Do this with a computer message interface
-    him "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
+    him_c "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
     "Several hours later, I got a response."
     "Mr. Lewis" "Yeah, that's okay."
     menu:
