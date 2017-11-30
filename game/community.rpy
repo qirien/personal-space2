@@ -575,21 +575,29 @@ label community5:
         else:
             "50 new miner neighbors are coming in 4 Earth years. Feed them."
             
+        "I decided to meet with Ilian to see what he thought."
+        scene storeroom1 with fade
+        show ilian at center
+        show him normal at midleft
         if (whole_harvest_to_storehouse == True):
             ilian "Well, a few farmers are already bringing their whole harvest to the storehouse."
+            show ilian happy
             ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
+            show ilian
             ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
         else: 
             ilian "I don't know how much food you guys are storing, so I have no idea if we'll have enough food for them or not."
             ilian "If worst comes to worst, they could farm instead of mining, which I'm sure RET would be THRILLED with."
             
+        ilian "What do you want to do?"    
         "How should we prepare?"
         menu:
-            "Have all the farmers bring their whole harvest to Ilian instead of storing it individually, and encourage them to grow extra grain and beans.":
+            "Have the farmers bring their whole harvest instead of storing it individually, and encourage them to grow extra food.":
                 $ miners += 2
                 $ require_whole_harvest = True
                 jump whole_harvest_required
             "Have farmers bring in a certain amount of surplus each harvest, and encourage them to grow more food.":
+                him "Let's have the farmers bring their surplus to the storehouse, and I'll ask them to grow extra beans and wheat."
                 $ miners += 1
                 $ rationing = True
                 jump ration_harvest
@@ -597,21 +605,30 @@ label community5:
                 $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
                 jump no_formal_rationing
     else:
+        scene community_center with fade
         show sara at midright
+        show him normal at midleft
         "Sara called you in to discuss the latest news from RET."
         sara "RET is sending miners to start mining the Indium that Zaina and Kevin found."
         sara "The miners won't arrive for another four Earth years."
         if (whole_harvest_to_storehouse == True):
+            show sara sad
             sara "Ilian tells me that we'll have enough food for them if we start storing a little now."
         else:
+            show sara sad
             sara "We're not sure if we'll have enough food for them or not."
         sara "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
         sara "Next harvest we'll start accepting canned goods as well. You can can large amounts in the storehouse, or bring in what you can at home."
+        show sara
         sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         sara "I'll be grading your crops against the RET standards."
+        show sara sad
         sara "There's something I need your help with though. Some of the other farmers aren't excited about storing their surplus in the storehouse."
+        show him surprised
         him "Really? Like who?"
+        show sara
         sara "Pete and Martin are the ones you know the best."
+        show him determined
         him "I'll talk to them." #this could also be a choice... how neglectful do you want to be
         $ rationing = True
         jump talk_about_food_storage
@@ -619,39 +636,57 @@ label community5:
     return
     
     label whole_harvest_required:
+    show him determined
+    him "Let's have the farmers bring their whole harvest to the storehouse, so you can measure it."
+    him "I'll ask them to start farming more beans and wheat too, since those store well."
+    show ilian happy
     ilian "I'll need some help to build silos for the wheat."
-    him "Wait, you mean it's not going into vacuum-sealed cans?"
-    ilian "Well, yes it is. It's just a few giant cans instead of lots of little ones."
+    show him surprised
     him "This way we'll definitely have enough for the miners, right?"
+    show ilian
     ilian "Yes. They won't even need to forage, unless they want some extra meat."
     jump ration_harvest
     
     label ration_harvest:
     ilian "I support your plan, but I'm worried about how we'll enforce it."
     ilian "Some of the other farmers are reluctant to centrally locate food."
+    show him surprised
     him "Oh? Like who?"
     ilian "Like Pete and Martin."
+    show ilian happy
     ilian "I think they'd listen to you if you tried to persuade them though."
+    show ilian
     ilian "We'll pay credits for their surplus, which they can use to buy other crops."
+    show him determined
     him "I'll talk to them."
     jump talk_about_food_storage
     
     label talk_about_food_storage:
+    scene farm_exterior with fade
+    show him normal at midright
+    show pete at midleft
     him "Hey Pete. How are your cattle doing?"
+    show pete happy
     pete "Surprisingly hale for living on an alien planet."
+    show him determined
     him "Great. There's something I want to ask you about."
     him "I heard that you're not storing much surplus in the storehouse."
     jump pete_no_storehouse
             
     label no_formal_rationing:
+    show him annoyed
     him "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
     him "Worst-case scenario, they have to farm for a bit instead of mining all the time."
+    show ilian smile
     ilian "Are you sure? I don't really want to be eaten if we run out of food."
+    show him determined
     him "I think people could survive on the wild resources available, as long as they know what they are."
+    show ilian
     ilian "Okay, whatever you say."
     return
             
     label pete_no_storehouse:
+    show pete
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
     pete "I can't make cheese that doesn't mold right away."
     pete "The best way to store my surplus is to keep growing this herd."
@@ -659,6 +694,7 @@ label community5:
     menu:
         "Is that really the best way?"
         "We could can some of the meat." if not talked_cans:
+            show him normal
             him "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
             him "How about it?"
             pete "I don't think anyone should have to eat canned meat, not when they live next to me!"
@@ -666,72 +702,112 @@ label community5:
             $ talked_cans = True
             jump convince_Pete
         "You'll need credits to get other food." if not talked_credits:
+            show him normal
             him "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
             him "How will you afford vegetables and grain?"
+            show pete happy
             pete "Plenty of people are willing to trade for or buy milk and beef."
+            show pete
             pete "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either."
             pete "I prefer to deal directly with my customers."
             $ talked_credits = True
             jump convince_Pete
         "If we canned some beef, then we'd have meat even if your herd died suddenly." if not talked_something:
+            show him surprised
             him "What if one day you wake up and your whole herd of cattle is gone?"
+            show him determined
             him "If you canned some meat, then we would at least have something."
+            show pete happy
             pete "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
+            show pete
             pete "Plus I think canned meat is revolting. I would rather just eat vegetables."
             $ talked_something = True
             jump convince_Pete
         "We could can some of the dairy products." if not talked_canning_dairy:
+            show him smile
             him "We could try making dried milk powder or clarified butter, which would last a long time."
             pete "Why would we do that when we have plenty of fresh stuff?"
+            show him determined
             him "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
             him "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
+            show pete happy
             pete "Hmm. That is a good point."
+            show pete
             $ talked_canning_dairy = True
             jump convince_Pete
         "I guess that's what Pete is going to do.":
+            show him concerned
             him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
             pete "Glad you understand."
             jump canning_dairy
             
     label canning_dairy:
     if talked_canning_dairy:
+        show pete happy
         pete "I'll look into canning some milk and butter though."
+        show him smile
         him "Great!"
         $ colonists += 1
     else:
         pass
-    #change scene
+    scene fields with fade
+    show martin at midleft
+    show him normal at midright
     him "So Martin, how's your farm doing?"
+    show martin angry
     martin "Recently some of our turkeys got sick and we couldn't even eat their meat after they died."
+    show him concerned
     him "How about your beans, are they doing well?"
+    show martin happy
     martin "Yes! We eat them about as fast as we can grow them."
+    show him normal
     him "I was thinking if you had some extras, you could can them and store them in the storehouse."
+    show martin
     martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
     if require_whole_harvest:
+        show him determined
         him "Starting from now on, you'll need to bring in your harvest to Ilian if you want other crops."
         him "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
+        show martin angry
         martin "What if I don't want to do that?"
+        show him annoyed
         him "It's in your contract."
+        show martin
         martin "Well the way we've been doing it has been working just fine."
+        show him concerned
         him "We didn't have fifty extra mouths to feed then."
+        show martin angry
         martin "And we don't now! I think you're overreacting. We have plenty of food."
+        show him determined
         him "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
+        show martin
         martin "We eat most of our crops the same day we harvest them. But we do try to store a little extra."
+        show him normal
         him "I get what you're saying. Just write down how much you eat and tell Ilian."
         him "Then if you have extra, bring that in once a week and he can calculate how your crops are doing."
+        show martin angry
         martin "Okay, I think I can do that. But I still think this is excessive."
     elif rationing:
+        show him determined
         him "Starting from now on, I need you to bring in twenty percent of your harvest."
         him "That number may change, but this is the easiest way to start storing a little food for the miners."
+        show martin angry
         martin "What if I don't have enough food to bring in twenty percent?"
+        show him concerned
         him "Then bring in ten percent. Just try to keep track so we have an idea of how much food we have collectively."
+        show martin
         martin "Alright. I'll do it."
+        show him normal
         him "Thank you."
     else:
+        show him determined
         him "It works well now, but soon we'll be trading credits instead of food."
+        show martin happy
         martin "I'm happy to take your credits then."
+        show him normal
         him "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
+        show martin
         martin "Good to know."
     return
     
