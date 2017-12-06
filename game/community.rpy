@@ -820,62 +820,102 @@ label community5:
 
 # 6 - discussion of choice from 5 at game night
 label community6:
-    #if town_hall_games = True, make the background the town hall. else it's at Pete's house.
+    if town_hall_games:
+        show community_center with fade
+    else:
+        show farm_exterior with fade
     show pete at midright
+    show him normal at left #BUG: his sprite isn't showing up. I'm not sure why not. I tried having him at center as well and had the same problem.
+    show thuc at midleft
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
+    show him determined
     him "Yes, and I promise to start in the Northern Hemisphere this time."
+    show pete happy
     pete "Your Antarctica strategy had no sense whatsoever."
+    show him angry
     him "Trying the same losing strategy every time and hoping it will win has no sense."
+    show pete
     pete "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
+    show him surprised
     him "What do you mean? Don't you both have one?"
-    show helen at midleft
+    show helen at right
     helen "No, because SOMEONE left it out during a solar flare."
+    show pete happy
     pete "And SOMEONE left their tablet in spittin' distance of a cow."
+    show him normal
     him "That must be rough."
+    show pete
     pete "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
     pete "I can concentrate on what I'm doing."
     pete "I don't even mind doing my feed calculations for the cattle by hand."
+    show helen happy
     helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    show pete
     pete "I don't know about me. I kind of like feeling like I'm completely on my own."
+    show thuc sad
     thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
     menu:
         "What do you think?"
         "We need each other to survive.":
             $ colonists += 1
+            show him determined
             him "We need each other to survive. There's no way one person could survive on their own out here."
+            show pete hapy
             pete "Is that really true? I've been out there on my own before--there's good foraging and hunting."
+            show him surprised
             him "Maybe you could survive on your own, but what about your family?"
+            show pete
             pete "They can help forage too!"
             pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
+            show pete happy
             pete "It's definitely more reliable to live in a community where we can help each other."
         "I understand wanting to be away from it all.":
             $ luddites += 1
+            show him determined
             him "I understand wanting to be away from it all. It's part of the reason I came here."
+            show pete happy
             pete "We don't have to deal with inane government interference or rules made for the sake of havin' 'em."
+            show him concerned
             him "Although some of RETs demands have felt that way..."
+            show pete
             pete "True. But you can see where they're coming from for the most part."
+            show pete happy
             pete "And they're not in our face about it. I could go camping tonight and they'd be none the wiser."
+            show him flirt
             him "Yeah, as long as your cows were okay with it."
         "We have an obligation to help RET feed their miners now.": 
             $ miners += 1
+            show him determined
             him "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
             him "If we all went rogue, those miners would starve to death."
+            show him concerned
             him "And we wouldn't be holding up our end of the bargain. It's expensive to send us out here."
+            show pete happy
             pete "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I wouldn't feel badly about changing my side of things."
+            show him surprised
             him "What do you mean?"
+            show pete
             pete "What if we don't have enough food for all these miners?"
             pete "If that happens, you bet I'm going to look after me and my own first."
             pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
+            show pete happy
             pete "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
+            show him concerned
             him "Good point. I hope we can mange."
     if require_whole_harvest:
+        show thuc
         thuc "Speaking of food, Ilian just sent out a message that we don't have to bring in our whole harvest anymore."
         thuc "He has enough data, and he sent out a table of who should bring in how much."
         thuc "It ended up being about twenty percent for most farmers." #TODO: is this a reasonable amount?
+        show pete 
         pete "I deliver directly to my customers, so I've just been sending Ilian my stats."
+        show thuc sad
         thuc "I guess it doesn't really make sense to bring in a calf either."
+        show pete happy
         pete "Nope."
+        show him smile
         him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
+        show thuc
         thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
     else:
         pass
