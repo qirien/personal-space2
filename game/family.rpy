@@ -2885,9 +2885,9 @@ label family12:
     show kid at midleft with moveinleft
     him happy "Welcome home, [kid_name]! How was school?"
     kid "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
-    him surprised "Today? Who's Anya?"
+    him surprised "Tomorrow? Who's Anya?"
     kid "One of my friends from school."
-    him concerned "Really? I don't know of any farmer's who have a kid named Anya..."
+    him concerned "Really? I don't know of any farmers who have a kid named Anya..."
     kid "Her parents are miners."
     him determined "Oh."
     "I wasn't sure what to think about that. On the one hand, I was glad she had a new friend; she'd never had a girl her own age to be friends with before."
@@ -2901,7 +2901,7 @@ label family12:
         "Sure, you can go.":
             $ responsive += 1
             him normal "Sure, you can go."
-            kid "Yay! I'm going to message her right now, she'll be so happy!"
+            kid "Yay! I'm going to message her right now, she'll be so excited!"
             $ permissive += 1
             call family12_anyas_house
         "Are her parents going to be home?":
@@ -3013,9 +3013,13 @@ label family12:
     pete "Think he's embarrassed about his new haircut."
     trevor "Dad!"
     pete "Anyway, here's your comb."
-    him "Thanks for printing it for us."
+    him concerned "Thanks for printing it for us."
     pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
             
+    scene farm_interior with fade
+    show him determined at midright
+    show kid at center
+    with dissolve
     "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."    
     "Then I started to comb."
     "And comb."
@@ -3041,6 +3045,7 @@ label family12:
             
     "Now that I knew about lice, my head kept itching. I wasn't sure if it was real or if I was just creeped out."
     him determined "I think that's it."
+    show her normal at midleft with moveinleft
     her surprised "You got them all?"
     him concerned "I went through her whole head... that's all I can do for today."
     her determined "Good, now I'll take a look at your hair."
@@ -3072,14 +3077,14 @@ label family12:
     "It was amazing how these tiny insects took over our lives for a while. The whole community was pretty upset about it."
     # TODO: You can see/respond to her message board posts and blame the miners (or not)?
     julia_c "I can't believe someone was so incompetent as to allow lice from Earth to contaminate our entire colony!"
-    brennan_c "RET has discovered a mistake was made in the decontamination of children's toys. Our procedures have been modified and we regret any inconvenience this mistake may have caused you."
+    brennan_c "RET has discovered a mistake was made in the decontamination of personal items. Our procedures have been modified and we regret any inconvenience this mistake may have caused you."
     julia_c "{b}May{/b} have caused?!"
     martin_c "This isn't just an inconvenience; we lost a lot of valuable time during planting to these bugs. I had to plant tomatoes later than I wanted to; hopefully it won't get too cold before they're ripe."
     menu:
         "What should I say?"
         "I lost time, too. The miners should be held responsible for these damages!":
             him_c "I lost time, too. The miners should be held responsible for these damages!"
-            julia_c "Exactly! They expect us to feed them, and then make us waste our precious time with these vermin! I have ten children to decontaminate!"
+            julia_c "Exactly! They expect us to feed them, and then make us waste our precious time with these vermin! I have ten children to decontaminate!"                        
             $ miners -= 1
             
         "I know the lice are really annoying, but it's no one's fault.":
@@ -3087,22 +3092,33 @@ label family12:
             julia_c "A preventable accident! They expect us to feed them, and then make us waste our precious time with these vermin! I have ten children to decontaminate!"
             $ miners += 1
         
-    brennan_c "That's just RET's official statement. I'm with you; I've got a lot of hair to comb through, here."
+    miranda_c "Most of us aren't children anymore, Mom."
+    julia_c "Do you have someone else who's willing to check your hair for lice?"
+    miranda_c "..."
+    julia_c "There's plenty of reasons to find a husband, and this is just one of them!"
+    lily_c "Miranda and I can assist each other with this task so as not to overburden you."
+    julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
+    brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad, too. I've got a lot of hair to comb through, here."
     pete_c "I'll come over and take care of it."
     sara_c "You're offering to comb through Brennan's hair?! O_o"
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
+    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through."
+    brennan_c "Sorry, I just can't part with my hair."
+    
     
     scene farm_interior with fade
     show him at midright
     show kid at midleft
     with dissolve
-    kid "So, can I invite Anya over to play?"
+    kid "Can I invite Anya over to play next week?"
     "I was pretty sure the lice originally came from Anya. I wondered if they had brought any other parasites with them -- bed bugs, for instance."
     "But it wasn't the kid's fault. Probably."
     "And they would play together at school no matter what."
     him concerned "I suppose so."
+    kid "Yay!"
+    him annoyed "Now let me check your hair again."
     
     return
     
@@ -3131,6 +3147,7 @@ label family12_contact_parents:
     return
 
 label family12_anyas_house:
+    scene farm_exterior flip with fade
     "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
     "But when I got there and knocked on the door, a teenager answered the door."
     "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."
@@ -3151,10 +3168,94 @@ label family12_anyas_house:
 label family12_disobey:
     "The next day, [kid_name] was late coming home from school."
     him surprised "Where is that girl?"
-    "After an hour, I started to get worried. I called up Mr. Lewis on the radio."
-    # TODO: message interface
+    "After an hour, I started to get worried. Then I remembered what she had asked yesterday, and I started to get mad."
+    "I called up Mr. Lewis on the radio."
+    # TODO: radio interface
     him "Mr. Lewis? Is [kid_name] there?"
-    "Mr. Lewis" "No, no one by that name."
+    "Mr. Lewis" "I just got home, but no, she's not here."
+    him "Are you sure? She hasn't come home yet..."
+    "Anya" "She just left to go home, dad!"
+    "Mr. Lewis" "Oh. Apparently she just left."
+    him "Thank you; that's good to know."
+    "The sun was starting to go down, but by my calculations, [kid_name] still had at about an hour's walk ahead of her."
+    "As long as she could find her way from the miner's camp to the town, she'd be able to find her way home pretty easily. It's not like there were a ton of other places to go or confusing roads."
+    "But it was getting dark, and I kept picturing young Josephina's corpse from her funeral eight years ago..." 
+    menu:
+        "What should I do?"
+        "Go and meet [kid_name].":
+            $ responsive += 1
+            "I couldn't let her walk all that way alone in the dusk. She was only 7 years old."
+            "I saddled Lettie and set out towards town."
+            "I found her sitting on the community center steps, looking exhausted, and like maybe she had been crying."
+            # TODO: setup this scene and blocking
+            naomi "There he his now. See? Look how much he missed you."
+            "[kid_name] looked up at me with worry in her eyes. Seeing that face, my anger ebbed away like a sand castle before the tide."
+            him "Thanks for looking out for her."
+            naomi "Oh, I think she's looking out for me. She stopped by just in time to help me carry a few things from the storehouse."
+            kid "Sorry, dad."
+            "She looked so sad, and a little afraid. Naomi leaned on my arm to whisper into my ear."
+            naomi "Have a nice ride home and then decide what to do about her disobedience, won't you?"
+            hide naomi with moveoutright
+            him "Come on, [kid_name]. Let's go home."
+            "[kid_name] sat behind me on Lettie, on a special pad we attached there for double riding. Her little arms wrapped around my waist and her face was pressed against my back."
+            him "I guess you went to Anya's house?"
+            kid "Yes."
+            him "How was it?"
+            kid "It was fun. But it was taking forever to walk home. My feet were hurting."
+            him "Hmmm."
+            "The rest of the ride home was quiet, as I thought about what I should do about [kid_name]."
+            "Sister Naomi was right; when I took time to think about it, I had a lot more options than just yelling at her, which is what I had originally planned to do."
+            "So, when we got home, I had decided what to say."
+            
+        "Wait here.":
+            $ demanding += 1
+            "She'd be fine. And the long walk might teach her a better lesson than my scolding ever could."
+            "Though maybe I should scold her, too."
+            "I got a message on my computer pad."
+            naomi_c "I just sent [kid_name] on home; she stopped at my house to help me carry some things. Please don't be too mad at her."
+            him_c "Thanks, Sister Naomi."
+            "I tried to get some things done, but I kept checking down the road, looking for [kid_name]. Finally I saw her, walking wearily down the dirt path as the sun's last rays faded into night."
+            "She trudged into the house and flopped down on the floor. I could tell she had been crying from the dusty tear tracks running down her face."
+            kid "Sorry, dad."
+            "I remembered what Sister Naomi said and bit back the angry rant I had started planning."
+            him "Welcome home, [kid_name]."
+            "I pulled her into a hug and just held her for a few minutes. She wasn't normally the snuggly type, but she stayed in my arms for several minutes."
+            "Finally, I figured I'd better tell her what was going to happen."
+        
+    him "You disobeyed me and went to Anya's house anyway. Here's the consequences."
+    menu:
+        "What should I say?"
+        "No playing with friends.":
+            $ demanding += 1            
+            him annoyed "You can't play with friends until you've proven that you can be obedient. I expect you to come straight home from school and not have any friends over."
+            kid "For how long?!"
+            him determined "Until you've proven that you can be obedient, and I can trust you."
+            kid "Hmph."
+            "She wasn't happy about it, but she didn't argue, either."
+        "You'll help me with my chores.":
+            $ demanding += 1            
+            him annoyed "You'll need to do extra work with me on the farm until you've proven that you can be obedient. I expect you to do everything exactly as I've asked you. And if something's not clear, you need to ask"
+            kid "For how long?!"
+            him determined "Until you've proven that you can be obedient, and I can trust you."
+            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], why don't you weed this whole field.'"
+            him normal "I won't ask you to do anything you can't do. But I do expect you to work hard."
+            "She wasn't happy about it, but she didn't argue, either."
+        "You need to apologize.":
+            him annoyed "You need to apologize for what you did."
+            kid "I did apologize!"
+            "I just looked at her. She sighed."
+            kid "Fine. Dad, I'm sorry I disobeyed and went to Anya's house when you said not to."
+            him normal "Thank you. I forgive you. Please don't do that ever again."
+        "All of the above.":
+            $ demanding += 2
+            him "You need to apologize, and instead of playing with friends you'll need to help out extra on the farm and do everything I ask."
+            kid "For how long?!"
+            him determined "Until you've proven that you can be obedient and that I can trust you."
+            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], why don't you weed this whole field.'"
+            him normal "I won't ask you to do anything you can't do. But I do expect you to work hard."
+            "She wasn't happy about it, but she didn't argue, either."
+    "After a week, she had worked pretty hard to obey everything I asked, so I started restoring priveleges."
+    "I let her have Anya over after school one time."
     return
     
 label family12_anya_come_over:

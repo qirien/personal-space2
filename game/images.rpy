@@ -4,10 +4,10 @@
 
 init -10:
     # BACKGROUNDS
-    image farm_exterior flip = im.Flip("bg/farm-exterior.jpg", horizontal = True)
-    image farm_interior flip = im.Flip("bg/farm-interior.jpg", horizontal = True)    
+    image farm_exterior flip = im.Flip("images/bg/farm_exterior.jpg", horizontal = True)
+    image farm_interior flip = im.Flip("images/bg/farm_interior.jpg", horizontal = True)    
     image stars_animated:
-        "bg/stars.jpg"
+        "images/bg/stars.jpg"
         linear 10.0 zoom 0.5
 
 

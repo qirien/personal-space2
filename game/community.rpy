@@ -2320,7 +2320,7 @@ label community15:
     her "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
     "I checked my tablet."
     him "He said that she has severe radiation sickness and that she is going to die in the next week or two."
-    her "We'll be doing pallative care." 
+    her "We'll be doing palliative care." 
     him "Just trying to make her suffer less?"
     her "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning."
     him "I'll bring the kids over this afternoon."
