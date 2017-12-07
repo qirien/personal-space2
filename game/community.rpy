@@ -923,86 +923,146 @@ label community6:
 
 # 7 - Comparing compensation
 label community7:
+    show community_center with fade
+    show zaina at midright 
     zaina "The fossil record near here contains many animals that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
     zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
     zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
+    show pavel center with move
     pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
+    hide zaina with moveoutright
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
+    show pavel
     pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
-    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam."
-    him "At least I know that my parents are taken care of."
+    hide pavel with moveoutright
+    show kevin at midright with move
+    show him normal at midleft
+    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam and socialize."
+    show him surprised
+    him "RET didn't give you any money? At least I know that my parents are taken care of."
     kevin "What do you mean?"
+    show him happy
     him "RET gave me a bunch of money that I used for their retirement fund."
     kevin "They made me no such offer."
+    show thuc at center with move
     thuc "I practically had to pay RET to let me come. What gives?"
+    show him annoyed
     him "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
+    show ilian happy at left with move 
     ilian "Maybe some of us were happy to leave our Earth lives behind."
+    show helen happy at right with move #too many people!?
     helen "This is a new one for me. Ilian has a secret past?"
+    show ilian 
     ilian "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
     ilian "RET said they would take care of it."
+    show helen
     helen "Do you know if they did?"
+    show ilian happy
     ilian "I haven't heard from any debt collectors since."
     kevin "You may have noticed but it's very difficult for people on Earth to contact you here."
+    show ilian
     ilian "It was win-win for me."
     kevin "I was so intent on coming to Talaam that I didn't think to negotiate compensation."
+    hide ilian with moveoutleft
+    show thuc sad
     thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
+    show him flirt
     him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
+    show thuc
     thuc "Or 8! Fewer pieces to ship."
     kevin "Did your children suffer developmental delays because of the journey?"
+    show thuc sad
     thuc "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
     thuc "They're not necessarily reading sooner, but we genuinely need their help on the farm."
+    show thuc
     thuc "They have more responsibilities than I did at their age, so they have to grow up fast."
+    show thuc sad
     thuc "And none of my family are getting paid for completely transplanting our lives here."
     if is_liason:
+        show thuc
         thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
             "What will you do for Thuc?"
-            "I'll ask them in my next e-mail.":
+            "Ask RET in my next e-mail.":
                 $ miners += 1 
+                show him normal
+                him "I can ask them in my next e-mail."
+                show thuc sad
                 thuc "E-mail? Not an insta-com?"
+                show him smile
                 him "I only get so many instant communication slots."
+                show thuc
                 thuc "But by the time they get your e-mail no one will remember me."
+                show him determined
                 him "I think RET has bigger things to worry about."
+                show thuc sad
                 thuc "Fine, an e-mail is fine."
-            "From a business standpoint, you're stuck here. You don't have any leverage anymore.":
+            "From a business standpoint, you're stuck here.":
                 $ luddites += 1
+                show him annoyed
+                him "You don't have any leverage over them. It's not like you can quit now."
+                show thuc sad
                 thuc "I sure do have leverage!"
                 thuc "I could decide to leave the colony!"
+                show him concerned
                 him "You wouldn't seriously consider that."
+                show helen happy
                 helen "I don't know, he looks pretty serious."
+                show thuc 
                 thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people." 
+                show thuc sad
                 thuc "I just don't like the idea that I have no power over my life."
             "I hear you, but let's focus on the here and now.":
                 $ colonists += 1
+                show him determined
                 him "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
                 him "Let's leave the past in the past."
+                show him smile
                 him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
                 thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     else:
+        hide kevin with moveoutright
+        show sara at midright
+        show thuc
         thuc "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
+        show sara sad
         sara "I heard that RET is economizing, but I can ask."
         thuc "Thanks. Do you think RET will do anything, [his_name]?"
         menu:
             "What do you think RET should do for Thuc?"
-            "They should make a big donation for you.":
+            "Make a big donation.":
                 $ miners += 1 
+                show him determined
+                him "They should make a big donation in your name."
                 thuc "Right?"
+                show him surprised
                 him "What charity would you choose?"
+                show thuc sad
                 thuc "Something to promote sustainable agriculture in developing nations like this one."
+                show him flirt
                 him "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
+                show thuc
                 thuc "Burn!"
-            "They won't do anything. RET has you right where they want you.":
+            "They won't do anything.":
                 $ luddites += 1
+                show him concerned
                 him "You're stuck here. You have no choice but to be an employee of RET."
+                show thuc sad
                 thuc "I could decide to leave the colony!"
+                show him surprised
                 him "You wouldn't seriously consider that."
+                show helen sad
                 helen "I don't know, he looks pretty serious."
+                show thuc
                 thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people." 
+                show thuc sad
                 thuc "I just don't like the idea that I have no power over my life."
             "They probably won't do anything, but we have more important things to worry about.":
                 $ colonists += 1
+                show him determined
                 him "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
+                show him smile
                 him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
                 thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     return
