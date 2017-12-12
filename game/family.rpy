@@ -938,11 +938,11 @@ label family5:
     show her at midleft
     with dissolve
     her annoyed "That is the third mess of pee I've cleaned up today!"
-    him flirting "Ahh, you're ahead of me, I've only cleaned up two."
+    him flirt "Ahh, you're ahead of me, I've only cleaned up two."
     her concerned "At least now she's finally asleep...I thought she was getting this!"
     him concerned "I thought so too..."
     her sad "I can't keep doing this much laundry. Something has to change."
-    him flirting "We could keep her in the barn with Lettie!"
+    him flirt "We could keep her in the barn with Lettie!"
     her sad "I'm seriously considering it..."
     
     menu:
@@ -1065,11 +1065,11 @@ label family5:
             him happy "Exactly! Let's make sure we have a positive attitude and don't get mad at her for making mistakes while she's learning."
             her concerned "Though that's hard to do when it seems like she's making mistakes on purpose..."
             him concerned "Yeah, she's been kind of ornery lately. Asserting her independence, I think they call it."
-            her flirting "She's getting more like us every day."
+            her flirt "She's getting more like us every day."
             him surprised "Speak for yourself! I, personally, am the picture of humble cooperation!"
             her surprised "Really? So you'll scrub that mud off the floor like I asked you do to last week?"
-            him flirting "Of course! I may be cooperative, but I never claimed to have a great memory."
-            her flirting "Oh, I see."
+            him flirt "Of course! I may be cooperative, but I never claimed to have a great memory."
+            her flirt "Oh, I see."
             $ family5_prepared = True
             jump family5_strategy            
         "We should train her differently." if ((family5_research) and (family5_method == "")):
@@ -1138,7 +1138,7 @@ label family5:
                 "I gave her more juice. She had to pee several times that morning, and it seemed to me that she improved at recognizing her body's signals."
             if (family5_reward == "big"):
                 him surprised "If you keep your underwear dry all day, Mommy will get you some new underwear that you can decorate!"
-                her flirting "And you can go riding with Daddy on the horse."
+                her flirt "And you can go riding with Daddy on the horse."
                 kid happy "I want go ride on horsie!"
                 him normal "Okay, what will you need to do?"
                 kid normal "Have dry underwear."
@@ -1216,7 +1216,7 @@ label family5:
     "There were plenty more accidents, but eventually, [kid_name] caught on."
     call bedroom_scene(False, False)
     her concerned "I think I can finally say [kid_name] is potty trained."
-    him flirting "Don't say it out loud! You might jinx it!"
+    him flirt "Don't say it out loud! You might jinx it!"
     her sad "In some ways, that was the hardest part of parenting yet."
     him surprised "Harder than all those sleepless nights when she was a baby?"
     her concerned "I don't know. Maybe it's just whatever thing you're doing at the moment that seems the hardest."
@@ -1226,8 +1226,8 @@ label family5:
     her concerned "No..."
     him concerned "..."
     her normal "Hey, thanks for doing this parenting thing with me."
-    him flirting "There's no one else I'd rather potty-train a two-year-old with!"
-    her flirting "There better not be!"
+    him flirt "There's no one else I'd rather potty-train a two-year-old with!"
+    her flirt "There better not be!"
     him normal "Just you. Always you."
     her sleeping "Mmmm...I love you, [his_name]."
     him sleeping "I love you..."
@@ -1982,10 +1982,8 @@ label family7_angry_ending:
     return
 
 # 5 Earth years old
-# First Day of School
-# Disobedience 
+# Play group, First Day of School
 label family8:
-    # TODO: Start with last day of play group?
     "It was my turn to host playgroup. It always felt a little frustrating not to be able to go out in the fields and get my work done, but I could also see that it was good for [kid_name]."
     "I'll admit I looked forward to school starting next week. We had just had a preview day where these kids got to see the school and meet the teacher."
     "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
@@ -2989,7 +2987,7 @@ label family12:
             him annoyed "No way. I'm not doing that."
             her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
             him "..."
-            her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
+            her flirt "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
             him surprised "That's low."
             her determined "That's life."          
             
@@ -3018,12 +3016,17 @@ label family12:
             
     scene farm_interior with fade
     show him determined at midright
-    show kid at center
+    show kid sad at center
     with dissolve
     "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."    
     "Then I started to comb."
     "And comb."
     "And comb."
+    scene black with fade
+    scene farm_interior with fade
+    show him determined at midright
+    show kid at center
+    with dissolve
     kid "How much longer is this going to take?!"
     him "We have to be thorough! Otherwise we won't be able to get rid of them."
     kid "Can I play on the computer pad?"    
@@ -3055,10 +3058,10 @@ label family12:
     him concerned "What about you?"
     her surprised "Me? Oh, I'm just going to shave my head."
     him surprised "What?!"
-    her happy "Ha ha ha! You should see the look on your face!"
+    her laughing "Ha ha ha! You should see the look on your face!"
     him concerned "You're not going to shave your head, right?!"
     her determined "I don't think it'll come to that. You'll have to help me comb my hair, though. I can do some of it myself but I need your help to be thorough."    
-    him flirting "I can be thorough."
+    him flirt "I can be thorough."
     her determined "Good, because all of us will need to be 100\% thorough if we want to rid our planet of these lice."
     him concerned "Maybe I should just shave my hair. I don't want to make more work for you."
     her surprised "Well, it's up to you. At least your hair would grow back pretty fast."
@@ -3075,7 +3078,7 @@ label family12:
     "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
     "[her_name] said we needed to keep looking out for them for a few months."
     "It was amazing how these tiny insects took over our lives for a while. The whole community was pretty upset about it."
-    # TODO: You can see/respond to her message board posts and blame the miners (or not)?
+    nvl clear
     julia_c "I can't believe someone was so incompetent as to allow lice from Earth to contaminate our entire colony!"
     brennan_c "RET has discovered a mistake was made in the decontamination of personal items. Our procedures have been modified and we regret any inconvenience this mistake may have caused you."
     julia_c "{b}May{/b} have caused?!"
@@ -3105,7 +3108,7 @@ label family12:
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
     sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through."
-    brennan_c "Sorry, I just can't part with my hair."
+    brennan_c "Sorry, I'm afraid I can't part with these luscious locks."
     
     
     scene farm_interior with fade
@@ -3124,23 +3127,23 @@ label family12:
     
 label family12_contact_parents:
     scene computer with fade
-    # TODO: Do this with a computer message interface
+    nvl clear
     him_c "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
     "Several hours later, I got a response."
-    "Mr. Lewis" "Yeah, that's okay."
+    lewis_c "Yeah, that's okay."
     menu:
         "What should I write?"
         "Is an adult going to be there?":
-            him "Is an adult going to be there?"
-            "Mr. Lewis" "Yeah."
+            him_c "Is an adult going to be there?"
+            lewis_c "Yeah."
         "Can Anya come over here instead?":
-            him "Can Anya come over here instead?"
-            "Mr. Lewis" "Sure."
+            him_c "Can Anya come over here instead?"
+            lewis_c "Sure."
             call family12_anya_come_over
             return
         "When should I pick her up?":
-            him "When should I pick her up?"
-            "Mr. Lewis" "Before dinner."
+            him_c "When should I pick her up?"
+            lewis_c "Before dinner."
             
     "I didn't have as many details as I wanted, but I told [kid_name] that she could go." 
     call family12_anyas_house            
@@ -3303,7 +3306,7 @@ label family13:
     kid "Is that a hand?"
     her happy "Yes! There's the baby - you can see the little mouth, and the hand."
     him "Wow, that really makes it seem real."
-    her flirting "That's because it is real."
+    her flirt "That's because it is real."
     bro "That's in your tummy?"    
     kid "It's not her tummy, it's her uterus. Only girls have them."
     "[bro_name] looked disappointed."
@@ -3348,7 +3351,8 @@ label family13:
             kid "I don't get it."
             him "Ah, yeah, well . . . hey, look, that crabird landed on top of one of the goats!"
             kid "What does that have to do with it?"
-            him "Nothing. Time to collect fertilizer! Here's your shovel."
+            him "Nothing. Ah, um, I'll race you home!"
+            kid "Okay!"
             "Whew, that was a close one!  I'd better figure out what to say next time. Or maybe [her_name] could talk to her about it."
             $ neglectful += 1
         "Keep it simple":
@@ -3369,11 +3373,10 @@ label family13:
                         him "I wish you could meet your real grandparents."
                         kid "Your parents? What would we do?"
                         him "Maybe you'd ride horses together, or bake cookies, or play with the dogs."
-                        kid "Grandma Grayson said that if we get some more sugar on the next shuttle we can make cookies." # TODO: Make sure she's not dead
+                        kid "Grandma Grayson said that if we get some more sugar on the next shuttle we can make cookies." 
                         him "You'll let me have one, right?"
                         kid "Sure, dad."
                         $ authoritative += 1                                                                                
-                        return #done with event
             menu:
                 "What should I tell her about sex?"
                 "Tell her the biology facts." if not sex_ed_biology:
@@ -3455,7 +3458,55 @@ label family13:
             $ permissive += 1
     
     
-    # TODO: miscarriage?
+    scene black with fade
+    "...but [her_name] lost the baby."
+    "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
+    "It wasn't anything she did; sometimes these things just happen."
+    kid "So mommy's not pregnant anymore?"
+    
+    menu:
+        "What should I say?"
+        "No.":
+            him "No."
+            kid "Oh."
+            "She didn't ask me anything else, which was fine with me because I didn't want to talk about it, either."
+        "No, the baby died.":
+            him "No, the baby died for some reason while it was inside Mom."
+            kid "You don't know why?"
+            him "No. Sometimes these things just happen."
+            "[kid_name] started crying."
+            kid "I wanted a baby sister!"
+            him "I know, sweetie. We all did."
+            "She climbed up onto my lap. It was a tight fit now that she was getting bigger, but I held her close and we cried together."
+            bro "I'm sad, too."
+            him "Come here. It's okay to cry."
+            "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't at least a little sad about it."
+        "No. It's hard for mom.":
+            $ marriage_strength += 1
+            him "No, she's not. And Mom is pretty sad and hurting a lot right now so let's do what we can to help her, okay?"
+            kid "Okay..."
+            him "What can we do right now to help mom?"
+            "She looked around. [her_name] was taking a nap right now."
+            kid "I can be quiet while she takes a nap."
+            him "That's good. Do you think we can make dinner so quietly that we can surprise her when she wakes up?"
+            kid "Yeah! Let's make something she likes!"
+            bro "I can help!"
+            him "Okay, but we gotta be real quiet, okay? Like ninja chefs!"
+            "I cringed every time [kid_name] banged a pot or when [bro_name] dropped the silverware while trying to set the table."
+            "[her_name] probably didn't have the best nap, but when she woke up..."
+            her "What's all this?"
+            kid "We made you dinner!"
+            bro "We're ninja chefs!"
+            him "We wanted to try to cheer you up."
+            her sad "Oh, you guys..."
+            "She burst into tears, but they weren't all sad tears."
+            him "Hey, hey."
+            her "I don't deserve you guys."
+            him "It's not about deserving. We're a team, right? So we help each other!"
+            bro "Team Ninja Chefs!"
+            kid "No, that's dumb. We should be team Foodalicious!"
+            him "How about Team Let's Eat This Food Before It Gets Cold?"
+            kid "Da-ad."
     return    
 
 # 8.7 Earth years old
@@ -4999,7 +5050,7 @@ label family23:
         her surprised "Is that the video I think it is?"
         him happy "Yeah! I wanted to show [kid_name]."
         her happy "Ohh, I remember when it first came out, it was like it was made for us."
-        him flirting "Like you were made for me."
+        him flirt "Like you were made for me."
     return
 
 # 14.8 Earth years old

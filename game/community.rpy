@@ -2038,6 +2038,7 @@ label community12:
                     "They miners seemed pretty happy to eat their carrots and potatoes, and soon the prices of crops started to stabilize."
                     return 
 
+# 13 - Save the cave!
 label community13:
     $ cave_partially_explored = False
     $ Lily_mad_at_RET = False
@@ -2365,6 +2366,7 @@ label community14:
     return
 
 
+# 15 - Naomi dies
 label community15:
     "In the early morning, [her_name]'s radio went off." #TODO: should we make a special kind of "radio" textbox like with e-mails?
     # in OPS 1 I just had the characters name be "X on the radio", but perhaps italics or something would make the difference more obvious, too?

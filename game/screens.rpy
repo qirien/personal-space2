@@ -1308,13 +1308,13 @@ style notify_text:
 
 
 screen nvl(dialogue, items=None):
-
     window:
         style "nvl_window"
 
         has vbox:
             spacing gui.nvl_spacing
 
+        label "Messages"
         ## Displays dialogue in either a vpgrid or the vbox.
         if gui.nvl_height:
 
@@ -1354,8 +1354,10 @@ screen nvl_dialogue(dialogue):
                     text d.who:
                         id d.who_id
 
-                text d.what:
-                    id d.what_id
+                frame:
+                    style "nvl_dialogue_frame"
+                    text d.what:
+                        id d.what_id
 
 
 ## This controls the maximum number of NVL-mode entries that can be displayed at
@@ -1375,13 +1377,13 @@ style nvl_window:
     xfill True
     yfill True
 
-    background "gui/nvl.png"
+    background "gui/computer pad.png"
     padding gui.nvl_borders.padding
 
 style nvl_entry:
-    xfill True
+    #xfill True
     ysize gui.nvl_height
-
+    
 style nvl_label:
     xpos gui.nvl_name_xpos
     xanchor gui.nvl_name_xalign
@@ -1391,8 +1393,14 @@ style nvl_label:
     min_width gui.nvl_name_width
     text_align gui.nvl_name_xalign
 
-style nvl_dialogue:
+style nvl_dialogue_frame:
+    background gray_dark # TODO: make these rounded rectangles to fit the theme better
     xpos gui.nvl_text_xpos
+    xpadding 10
+    bottom_padding 20
+    
+style nvl_dialogue:
+    xpos 0
     xanchor gui.nvl_text_xalign
     ypos gui.nvl_text_ypos
     xsize gui.nvl_text_width
