@@ -2535,16 +2535,153 @@ label community15:
 
 
 label community16:
-    "Trade with luddites: is it permitted in the contract?"
-    "Luddites want to trade a few calves for medical supplies." # [her_name] is not supposed to treat them at the clinic, but she does anyway?
-    "Also, I chat about the hardships of living without tech."
-    "Do I trade with the luddites?"
+    $ talked_paid_c16 = False
+    $ talked_discoveries_c16 = False
+    $ talked_family_c16 = False
+    $ talked_TJ_c16 = False
+    $ talked_Lily_c16 = False
+    scene farm_interior with fade
+    show him normal at midright
+    "It's a beautiful day out. [her_name] is on her way home for a quick lunch."
+    show her at midleft
+    her "Thanks for making lunch for us."
+    him "No problem. I was outside weeding anyway; it wasn't much trouble to pick some vegetables."
+    her "I just got a call from Helen... Pete is really sick."
+    show him surprised
+    him "Are they going to bring him in?"
+    her "Yes. I told them that I would treat him like any other colonist."
+    her "But I asked them to pay with some food, and they want to donate a calf."
+    show him concerned
+    him "But after they left us... is it really okay to act like nothing happened?"
+    her "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
+    "How did I feel?"
     menu:
-        "yes.":
+        "Do everything you can for Pete.":
+            him "Do everything you can for Pete. He's an important part of our community."
+            him "We'll lose a lot of hands-on knowledge about cattle if he dies."
+            her "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
             $ luddites += 1
-            $ trade_with_luddites = True
-        "no.":
-            $ pass
+        "Don't use important resources on him.":
+            him "Try to see if you can treat him without using up our medical supplies."
+            her "Um, they already tried that. He needs medicine."
+            him "I just don't want to use up medicine on someone who left the colony."
+            her "He could still be a great resource even though he doesn't live nearby."
+            $ miners += 1
+    her "I'm sure Pete has learned a lot about survival on Talaam since he left."
+    her "You should talk to him while he's in for treatment."
+    him "Okay, I can at least do that."
+    "That evening I visited the hospital after [her_name] came home."
+    scene hospital with fade
+    show pete at midright
+    show him normal at midleft
+    him "So how's it going?"
+    pete "Things are both harder and easier away from the colony."
+    pete "I feel better about how I'm living though, so it's worth it to me."
+    him "Does it look like you'll recover?"
+    pete "Yeah, [her_name] just said it was probably an infection that will go away with some antibiotics."
+    label c16_convo:
+    "What else should we talk about?"
+    menu:
+        "How will you be paying for your treatment?" if not talked_paid_c16:
+            him "I hope you're giving us something in return for that medicine."
+            pete "Don't worry! I brought a calf with me. We dropped her off with the herd on our way in."
+            $ talked_paid_c16 = True
+            jump c16_convo
+        "Have you made any discoveries?" if not talked_discoveries_c16:
+            him "Did you find any more weird plants and animals out there?"
+            pete "Mostly the same ones. There are some bugs I hadn't seen before that look kind of like pill bugs."
+            pete "I've been working on some other ways to deflect radiation though!"
+            him "Really? It seems like you wouldn't have the technology..."
+            pete "Well, I had been working on it before I left. I found out that the shells of all these animals are resistent to radiation."
+            him "Huh. Makes sense."
+            pete "The main problem is that the shells are brittle, so I can't bend them into other shapes, but I've been experimenting with different treatments for them."
+            him "That's really interesting."
+            #offer to help prototype
+            $ talked_discoveries_c16 = True
+            jump c16_convo
+        "How is your family?" if not talked_family_c16:
+            him "How do Helen and Travis like living in the wild?"
+            pete "Helen misses her TV shows sometimes, but we've been singing and dancing a lot more."
+            pete "I think Travis gets lonely, but he has plenty of work to help with."
+            pete "He's been getting really into wood carving though. He made a really good crabird the other day."
+            pete "We really miss some of the tools like shovels and hammers."
+            pete "We've tried to make our own, but it's not the same."
+            $ talked_family_c16 = True
+            jump c16_convo
+#        "How are Thomas and Joanna?" if not asked_only_medicine and not talked_TJ_c16: #this or the next menu option is the problem
+#            him "Are Thomas and Joanna enjoying it out there?"
+#            pete "They're not as into camping as I am. Honestly they seem pretty miserable sometimes."
+#            pete "I know they come back to visit family just about every week though."
+#            pete "I wonder how much longer they'll last."
+#            $ talked_TJ_c16 = True
+#            jump c16_convo
+#        "How is Lily?" if Lily_mad_at_RET and not talked_Lily_c16:
+#            him "Does Lily help out?"
+#            pete "Oh, she's great. She knows all the best foraging spots."
+#            pete "She's very concerned about radiation though, and never goes out of earshot of a radio for fear of a solar flare."
+#            $ talked_Lily_c16 = True
+#            jump c16_convo
+        "Nothing else.":
+            jump after_c16_convo
+        
+    label after_c16_convo:
+        pete "I heard that Naomi passed on."
+        pete "Things won't be the same without her."
+        him "No, they won't."
+        menu:
+            "Had she been visiting you often?":
+                him "Was she stopping by your place frequently?"
+                pete "Yes, she was pretty worried about us. She stopped by at least once a week and sometimes twice."
+                pete "It was really important to her that we knew that she still cared about us after we left."
+                pete "She helped Travis practice foraging, and she showed me how to knit."
+                pete "She'd bring little things for us to feel more at home."
+                menu:
+                    "So it's kind of your fault that she died.":
+                        him "If she was visiting you that much, that explains why she died of radiation poisoning."
+                        pete "We warned her to be cautious. It's not like we wanted her to die."
+                        him "But if you hadn't left she wouldn't have gone to see you."
+                        pete "If ya'll had been a little friendlier she wouldn't have felt so bad for us."
+                        him "It's just hard to talk to you since you don't have a tablet."
+                        pete "Our doors are always open."
+                        him "..."
+                        jump pete_neutral_c16
+                        
+                    "She was good at that.":
+                        him "She was always making something for someone's birthday or just celebrating some made-up holiday."
+                        pete "That's true. When Travis found a grove of Ringlets, she made him a crown of leaves and called him the explorer prince."
+                        him "She did something similar when Terra went a whole day without poking Oleg."
+                        pete "What was her title?"
+                        him "Overseer of Restraint."
+                        pete "Ha. I doubt I would have even noticed something like that."
+                        $ style = get_parenting_style()
+                        if (style== "authoritative"):
+                            him "I think I would notice!"
+                        elif(style == "authoritarian"):
+                            him "I might notice, but I doubt I would do anything."
+                        elif(style == "permissive"):
+                            him "I don't think not poking Oleg would ever happen under my watch."
+                        else:
+                            him "Yeah, I wouldn't notice either"
+                        pete "It's been real good talking to you."
+                        pete "Come see us sometime after I get healthy!"
+                        pete "Bring some vegetables and we can slow-roast some beef."
+                        menu:
+                             "Sure.":
+                                 him "That sounds amazing. I'll be over right away."
+                                 pete "See you soon."
+                                 $ luddites += 1
+                             "I'm busy.":
+                                 him "As tempting as that is, I can't spare any time away from the farm."
+                                 pete "Come on."
+                                 him "I've got more crops to raise with the miners and all. Sorry."
+                                 pete "Guess I'll see you next time I have a life-threatening illness."
+            "(Say nothing)":
+                him "..."
+                jump pete_neutral_c16
+    label pete_neutral_c16:
+        pete "Can't wait to get back to my cattle."
+        pete "Thanks for stopping by, I guess."
+
     return
 
 
