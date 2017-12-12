@@ -1340,9 +1340,9 @@ screen nvl(dialogue, items=None):
 
 
 screen nvl_dialogue(dialogue):
-
+    $ index = 0
     for d in dialogue:
-
+        $ index += 1
         window:
             id d.window_id
 
@@ -1353,16 +1353,18 @@ screen nvl_dialogue(dialogue):
 
                     text d.who:
                         id d.who_id
-
+                        
                 frame:
                     style "nvl_dialogue_frame"
+                    if ((index % 2) == 0):
+                        background green_dark
                     text d.what:
                         id d.what_id
 
 
 ## This controls the maximum number of NVL-mode entries that can be displayed at
 ## once.
-define config.nvl_list_length = 6
+define config.nvl_list_length = 5
 
 style nvl_window is default
 style nvl_entry is default
@@ -1377,7 +1379,7 @@ style nvl_window:
     xfill True
     yfill True
 
-    background "gui/computer pad.png"
+    background "computer_pad_with_screen"
     padding gui.nvl_borders.padding
 
 style nvl_entry:

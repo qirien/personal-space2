@@ -16,8 +16,12 @@ init -10:
     image computer_pad = "gui/computer pad.png"
     image computer_pad_with_screen = LiveComposite( 
         (1280, 720),
-        (0,0), "gui/computer pad.png",
-        (0,0), "gui/computer pad screen.png")
+        (0,0), "images/bg/stars.jpg",
+        (0,0), "gui/computer pad.png"
+        #(0,0), "gui/computer pad screen.png"
+        )
+
+    # TODO: add different background? custom bg?
     
     image ctc_blink:
            "gui/ctc.png"

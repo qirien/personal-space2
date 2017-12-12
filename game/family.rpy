@@ -3074,7 +3074,7 @@ label family12:
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
     
-    scene black with fade
+    scene stars with fade
     "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
     "[her_name] said we needed to keep looking out for them for a few months."
     "It was amazing how these tiny insects took over our lives for a while. The whole community was pretty upset about it."
@@ -3102,14 +3102,14 @@ label family12:
     lily_c "Miranda and I can assist each other with this task so as not to overburden you."
     julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
     brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad, too. I've got a lot of hair to comb through, here."
-    pete_c "I'll come over and take care of it."
+    pete_c "I'll take care of it."
     sara_c "You're offering to comb through Brennan's hair?! O_o"
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
     sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through."
     brennan_c "Sorry, I'm afraid I can't part with these luscious locks."
-    
+    nvl hide
     
     scene farm_interior with fade
     show him at midright
@@ -3126,7 +3126,6 @@ label family12:
     return
     
 label family12_contact_parents:
-    scene computer with fade
     nvl clear
     him_c "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
     "Several hours later, I got a response."
@@ -3145,6 +3144,7 @@ label family12_contact_parents:
             him_c "When should I pick her up?"
             lewis_c "Before dinner."
             
+    nvl hide
     "I didn't have as many details as I wanted, but I told [kid_name] that she could go." 
     call family12_anyas_house            
     return
