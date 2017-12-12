@@ -2608,19 +2608,19 @@ label community16:
             pete "We've tried to make our own, but it's not the same."
             $ talked_family_c16 = True
             jump c16_convo
-#        "How are Thomas and Joanna?" if not asked_only_medicine and not talked_TJ_c16: #this or the next menu option is the problem
-#            him "Are Thomas and Joanna enjoying it out there?"
-#            pete "They're not as into camping as I am. Honestly they seem pretty miserable sometimes."
-#            pete "I know they come back to visit family just about every week though."
-#            pete "I wonder how much longer they'll last."
-#            $ talked_TJ_c16 = True
-#            jump c16_convo
-#        "How is Lily?" if Lily_mad_at_RET and not talked_Lily_c16:
-#            him "Does Lily help out?"
-#            pete "Oh, she's great. She knows all the best foraging spots."
-#            pete "She's very concerned about radiation though, and never goes out of earshot of a radio for fear of a solar flare."
-#            $ talked_Lily_c16 = True
-#            jump c16_convo
+        "How are Thomas and Joanna?" if ((not asked_only_medicine) and (not talked_TJ_c16)): #this or the next menu option is the problem
+            him "Are Thomas and Joanna enjoying it out there?"
+            pete "They're not as into camping as I am. Honestly they seem pretty miserable sometimes."
+            pete "I know they come back to visit family just about every week though."
+            pete "I wonder how much longer they'll last."
+            $ talked_TJ_c16 = True
+            jump c16_convo
+        "How is Lily?" if ((Lily_mad_at_RET) and (not talked_Lily_c16)):
+            him "Does Lily help out?"
+            pete "Oh, she's great. She knows all the best foraging spots."
+            pete "She's very concerned about radiation though, and never goes out of earshot of a radio for fear of a solar flare."
+            $ talked_Lily_c16 = True
+            jump c16_convo
         "Nothing else.":
             jump after_c16_convo
         
