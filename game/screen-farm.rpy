@@ -87,7 +87,7 @@ screen crop_details_screen():
             text "Nutrition:    " + str(crop_info[crop_info_index][NUTRITION_INDEX])
             text "Fun:          " + str(crop_info[crop_info_index][FUN_INDEX])
             text "Work:         " + str(crop_info[crop_info_index][WORK_INDEX])
-            #text "Income: " + str(crop_info[crop_info_index][5])
+            #text "Income: " + str(crop_info[crop_info_index][5]) # TODO: based on fun, calories, and nutrition?
           
         # Crop layout area
         vbox:
@@ -95,10 +95,12 @@ screen crop_details_screen():
             xsize 400
             label "Layout"
             vpgrid:
-                if (farm_size <= 16):
+                if (farm_size <= 9):
+                    cols 3
+                elif (farm_size <= 16):
                     cols 4
                 else:
-                    cols 8
+                    cols 5
                 spacing 5
                 draggable True
                 mousewheel True

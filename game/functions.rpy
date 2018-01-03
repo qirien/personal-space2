@@ -110,10 +110,26 @@ init python:
         def len(self):
             return len(self.items)
             
-        # Just use the default crops.
-        # TODO: Update this to randomly select from current crops? 
+        # Randomly select from currently available crops, respecting maximums 
         def setDefault(self):
-            self.items = list(test_crops)
+            available_crop_names = []
+            for i in range(0, len(crop_info)):
+                if (crop_info[i][ENABLED_INDEX]):
+                    available_crop_names.append(crop_info[i][NAME_INDEX])
+                
+            for i in range(0, farm_size):
+                crop_name = renpy.random.choice(available_crop_names)
+                self[i] = crop_name
+                
+                # If we've reached the max, remove this crop from the ones that can be chosen
+                if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
+                    available_crop_names.remove(crop_name)
+            return
+            
+        def update_history(self, crop_history):
+            for i in range(0, len(self.items)):
+                crop_history[i] = [self[i]] + crop_history[i][0:-1]
+            return
             
         # Return a random crop from our field
         # If weighted, then you will be more likely to get a crop the more times it is planted.

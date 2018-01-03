@@ -7,13 +7,16 @@ init -100:
     define LEFT_COLUMN_WIDTH = 300
     
     # Static indices that will never change
+    define MAX_FARM_SIZE = 25
+    
     define NAME_INDEX = 0
     define CALORIES_INDEX = 1
     define NUTRITION_INDEX = 2
     define FUN_INDEX = 3
     define WORK_INDEX = 4
     define ENABLED_INDEX = 5
-    define MAXIMUM_INDEX = 6
+    define PERENNIAL_INDEX = 6
+    define MAXIMUM_INDEX = 7
     
     # Static variables used for endings
     define ATTACHMENT_GOOD = 20

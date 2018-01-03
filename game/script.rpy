@@ -87,43 +87,41 @@ label start:
         earth_year = 1
         
         # Work/crops
-        farm_size = 16
-        crops = Crops(farm_size)
-        test_crops = [    "potatoes", "potatoes", "beans", "beans", 
-                            "carrots", "carrots", "spinach", "spinach", 
-                            "goats", "squash", "squash", "squash", 
-                            "potatoes", "potatoes", "", ""]
+        farm_size = 9       
+        crops = Crops(MAX_FARM_SIZE)
+        crop_history = [["","",""]] * MAX_FARM_SIZE
+        test_crops = ["potatoes", "beans", "carrots", "spinach", "goats", "squash"]
 
         # Dictionary containing the number of events seen for each crop 
         number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
         # TODO: add income
         # TODO: make it so you can't move perennials once placed
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
-        # Tuple containing the crop name, calories, nutrition, fun, work, currently enabled, and maximum allowed.        
-        crop_info =     (["corn",         8, 4, 8, 7, False, 100],    # Grains
-                        ["potatoes",     8, 5, 7, 6, True,  100],
-                        ["wheat",        8, 6, 8, 10,False, 100],
-                        ["peppers",      2, 6, 5, 5, False, 100],    # "Fruits"
-                        ["tomatoes",     3, 5, 6, 6, True,  100],
-                        ["plums",        3, 3, 8, 7, False, 1],
-                        ["plums+",       3, 3, 8, 2, False, 1],    # Perennials are easier after year 1
-                        ["squash",       4, 5, 5, 4, True,  100],
-                        ["strawberries", 1, 3, 7, 6, False, 2],
-                        ["strawberries+",1, 3, 7, 5, False, 2],
-                        ["blueberries",  3, 3, 9, 9, False, 2],
-                        ["blueberries+", 3, 3, 9, 4, False, 2],
-                        ["beans",        6, 7, 2, 7, True,  100],   # Legumes
-                        ["snow peas",    3, 5, 2, 4, False, 100],
-                        ["peanuts",      7, 6, 5, 8, False, 100],
-                        ["carrots",      3, 5, 4, 4, True,  100],   # Root Vegetables
-                        ["beets",        3, 4, 4, 4, False, 100],
-                        ["turnips",      3, 5, 3, 4, False, 100],
-                        ["onions",       4, 3, 7, 4, False, 100],
-                        ["garlic",       3, 4, 7, 4, False, 100],
-                        ["cabbage",      2, 4, 4, 3, False, 100],   # Leafy greens
-                        ["spinach",      2, 6, 4, 4, True,  100],
-                        ["broccoli",     3, 5, 3, 3, False, 100],
-                        ["goats",       10, 7, 7, 5, True,  1])   # Miscellaneous        
+        # Tuple containing the crop name, calories, nutrition, fun, work, currently enabled, persistent/perennial, and maximum allowed.        
+        crop_info =     (["corn",         8, 4, 8, 7, False, False, 100],    # Grains
+                        ["potatoes",     8, 5, 7, 6, True, False, 100],
+                        ["wheat",        8, 6, 8, 10,False, False, 100],
+                        ["peppers",      2, 6, 5, 5, False, False, 100],    # "Fruits"
+                        ["tomatoes",     3, 5, 6, 6, True, False,  100],
+                        ["plums",        3, 3, 8, 7, False, True, 1],
+                        ["plums+",       3, 3, 8, 2, False, True, 1],    # Perennials are easier after year 1, but can't be moved
+                        ["squash",       4, 5, 5, 4, True, False, 100],
+                        ["strawberries", 1, 3, 7, 6, False, True, 2],
+                        ["strawberries+",1, 3, 7, 5, False, True, 2],
+                        ["blueberries",  3, 3, 9, 9, False, True, 2],
+                        ["blueberries+", 3, 3, 9, 4, False, True, 2],
+                        ["beans",        6, 7, 2, 7, True, False, 100],   # Legumes
+                        ["snow peas",    3, 5, 2, 4, False, False, 100],
+                        ["peanuts",      7, 6, 5, 8, False, False, 100],
+                        ["carrots",      3, 5, 4, 4, True, False,  100],   # Root Vegetables
+                        ["beets",        3, 4, 4, 4, False, False, 100],
+                        ["turnips",      3, 5, 3, 4, False, False, 100],
+                        ["onions",       4, 3, 7, 4, False, False, 100],
+                        ["garlic",       3, 4, 7, 4, False, False, 100],
+                        ["cabbage",      2, 4, 4, 3, False, False, 100],   # Leafy greens
+                        ["spinach",      2, 6, 4, 4, True, False,  100],
+                        ["broccoli",     3, 5, 3, 3, False, False, 100],
+                        ["goats",       10, 7, 7, 5, True,  False, 1])   # Miscellaneous        
         
         total_calories = 0
         total_nutrition = 0
@@ -225,11 +223,12 @@ label start:
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
-        # CHOOSE FOR NEXT YEAR
 
+        # CHOOSE FOR NEXT YEAR
         hide screen say        
         scene gray_dark with fade
-        $ crops = Crops(farm_size)
+        $ crops.update_history(crop_history)
+        $ crops = Crops(MAX_FARM_SIZE)
         call screen plan_farm
         $ year += 1        
    

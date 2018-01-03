@@ -4672,12 +4672,12 @@ label family23:
     "Lately, [kid_name] was on there all the time..."
     scene farm_interior with fade
     show kid at midright with dissolve
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
     him surprised "Hey, [kid_name], I need to use the computer pad. Can you finish up, please?"
     kid "Dad, I'm doing my homework!"
-    him normal "With headphones on?"
+    him annoyed "With headphones on?"
     kid "Listening to music helps me concentrate!"
-    show him at center with move
+    show him surprised at center with move
     "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other."
     him annoyed "Does texting help you concentrate, too?"
     kid "Yes!"
