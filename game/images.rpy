@@ -4,10 +4,10 @@
 
 init -10:
     # BACKGROUNDS
-    image farm_exterior flip = im.Flip("bg/farm-exterior.jpg", horizontal = True)
-    image farm_interior flip = im.Flip("bg/farm-interior.jpg", horizontal = True)    
+    image farm_exterior flip = im.Flip("images/bg/farm_exterior.jpg", horizontal = True)
+    image farm_interior flip = im.Flip("images/bg/farm_interior.jpg", horizontal = True)    
     image stars_animated:
-        "bg/stars.jpg"
+        "images/bg/stars.jpg"
         linear 10.0 zoom 0.5
 
 
@@ -16,8 +16,12 @@ init -10:
     image computer_pad = "gui/computer pad.png"
     image computer_pad_with_screen = LiveComposite( 
         (1280, 720),
-        (0,0), "gui/computer pad.png",
-        (0,0), "gui/computer pad screen.png")
+        (0,0), "images/bg/stars.jpg",
+        (0,0), "gui/computer pad.png"
+        #(0,0), "gui/computer pad screen.png"
+        )
+
+    # TODO: add different background? custom bg?
     
     image ctc_blink:
            "gui/ctc.png"
