@@ -1076,6 +1076,7 @@ label community8:
     $ talked_to_Pavel = False
     
     if is_liason:
+        show farm_exterior with fade
         "Urgent insta-com from RET!"
         $ style = get_parenting_style()
         if (style== "authoritative"):
@@ -1100,14 +1101,17 @@ label community8:
                 else:
                     "I told Sara what everyone wanted, and she wrote the report."
                     return
+        show farm_exterior with fade
+        "Who will I talk to about what Earth luxuries they want?"
         menu:
-            "Who will I talk to about what Earth luxuries they want?"
             "Natalia" if not talked_to_Natalia:
                 show natalia at left
                 with dissolve
                 natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be." 
+                show him concerned
                 him "What medication does he need?"
                 natalia "[her_name] said he needed Vemurafecholoronib. Let's see... 500 mg for six months and 1000 mg for another 6 months." 
+                show him surprised
                 him "Won't RET be sending this anyway?"
                 natalia "They told [her_name] that it wasn't possible, but maybe you can do something."
                 $ talked_about_luxuries_counter += 1
@@ -1116,7 +1120,9 @@ label community8:
             "Thuc Nguyen" if not talked_to_Thuc:
                 show thuc at left
                 with dissolve
+                show thuc sad
                 thuc "I'd like to grow peanuts. Regular, unroasted peanuts will work fine for cultivation purposes."
+                show thuc
                 thuc "Then I can make peanut stew and peanut butter!"
                 # TODO: if you do this, then allow the user to plant peanuts also
                 $ talked_about_luxuries_counter += 1
@@ -1125,7 +1131,9 @@ label community8:
             "Sara" if not talked_to_Sara:
                 show sara at right with dissolve
                 sara "Oh, I don't know if this is possible, but I would really, really love a bicycle."
+                show sara sad
                 sara "I'm terrible with horses and I hate how they just eat more of our food."
+                show sara
                 sara "A bicycle wouldn't get hurt by radiation and can go faster in some situations."
                 # Would she also want one so that her son could use it?
                 $ talked_about_luxuries_counter += 1
@@ -1134,39 +1142,52 @@ label community8:
             "Kevin" if not talked_to_Kevin:
                 show kevin at left with dissolve
                 kevin "This is an extremely inefficient way to gather information. Could you not have contacted me electronically?"
+                show him determined
                 him "Yes, but you might not have responded in time. I need to tell them by the end of the day!"
                 kevin "Very well. Are they sending new tablet batteries like I requested?"
+                show him flirt
                 him "Yes, yes, don't worry about that. Ask for something that will boost your morale."
                 kevin "Wouldn't being reminded of the Earth I'll never return to lower my morale?"
+                show him happy
                 him "It sounds like you don't want anything."
                 kevin "I would like the remaining episodes of the show Tulip House."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Kevin = True
                 jump talk_about_luxuries
             "Pavel" if not talked_to_Pavel:
-                show pavel at left with dissolve
+                show pavel sad at left with dissolve
                 pavel "Oh, there are so many things I miss."
                 pavel "Sushi, wine, tempura, Krem de la Krem donuts, French fries, falafal, fried chicken,"
                 pavel "those really cheap frozen pizzas from Glosemitto's, slow-roasted coffee, Fabrielle brand pelmeni,"
                 pavel "sourdough bread, calamari, egg rolls but especially the sweet-and-sour sauce with lots of high fructose corn syrup,"
                 pavel "Goods Inside cereal, homogenized milk, cotton candy, cheesecake, tuna salad, Michele's meat-alike paste,"
                 pavel "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cheese really."
+                show pavel
                 pavel "And that's just the food I miss!"
+                show him surprised
                 him "Wow. Well, it needs to be non-perishable or at least have a long shelf life, so I think that eliminates most of the things on your list."
+                show him smile
                 him "I could put you down for curry powder though."
+                show pavel sad
                 pavel "Oh, well make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
+                show him determined
                 him "I'll see what I--"
+                show pavel 
                 pavel "Wait, wouldn't it make more sense to grow the spices so I can make my own curry powder?"
+                show him normal
                 him "Sure."
                 pavel "Okay, so just ask them to send me seeds for all the spices in PatiPal's Extra Hot Curry Powder along with a recipe."
+                show him concerned
                 him "Hmm. I need to put this in an insta-com."
+                show pavel sad
                 pavel "Oh dear. How did they not tell you about this sooner?"
+                show him sad
                 him "I think they only knew about the extra space on the shuttle this morning."
+                show pavel
                 pavel "You are going to have to cram a lot into that message!"
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Pavel = True
                 jump talk_about_luxuries
-            #TODO: Add more people?
         label write_report:
             "What should I write?"
             if talked_to_Natalia:
@@ -1180,95 +1201,158 @@ label community8:
                 "I sent the message."
                 return
     else:
+        show fields with fade
+        show sara
         sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
+        show sara sad
         sara "What would you like?"
+        show him determined
         him "Let me think about that."
+        show sara
         sara "I need to know right now."
+        show him smile
         him "Hmm. How about some good old Earth toilet paper?"
+        show sara sad
         sara "Great. I can shorten that to TP in the insta-comm."
+        show him flirt
         him "Hopefully they won't send me a textbook on Topological Planning."
+        show sara
         sara "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
         sara "Can you help me ask everyone else what they want? I have a list here of people you know and could ask pretty easily."
+        show him normal
         him "Okay, yeah, I can do that."
         jump talk_about_luxuries
         
     label luxuries_absent:
-        show him at left with dissolve
+        show bedroom with fade
+        show him determined at left with dissolve
         show her at right with dissolve
         him "Man, I really miss Earth toilet paper."
         her "Wouldn't it be great if RET sent some on the next shuttle?"
+        show him concerned
         him "Yeah, that's never going to happen."
     
     return
 
 # 9 - camping with Pete
 label community9:
-    #where is this? Maybe the river?
+    show pond with fade
+    show pete at midright
+    show him normal at midleft #he isn't appearing in my testing... not sure why not.
     pete "Hey, [his_name]!"
+    show him smile
     him "Hi Pete."
+    show pete happy
+    pete "Out to catch some fish?"
+    show him normal
+    him "No, just taking a walk."
+    show pete
     pete "How's the farm?"
+    show him happy
     him "Doing okay I guess."
+    show pete happy
     pete "I miss having guy's night!"
+    show him concerned
     him "Yeah. Things got really busy with our last harvest and we never really picked it up again."
+    show pete
     pete "What do you say to accompanying me on a hunting expedition?"
+    show him surprised
     him "Now?"
+    show pete happy
     pete "No, this weekend. We can camp overnight so we can get further from the colony."
+    show him concerned
     him "Is that really necessary?"
+    show pete
     pete "Yes, the hunting is no good around the colony. I think all the strange animal sounds scares off the smaller creatures."
     pete "We'll only go a few miles out. Until we find a herd of those grass crabs."
     "What do I tell Pete?"
     menu:
-        "Sounds fun! Go with him and invite Thuc": #you learn the particulars of how to camp safe from radiation.
+        "Sounds fun! Go with him and invite Thuc.": #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
             $ colonists += 1
+            show pete
             pete "We have two radiation-proof tents that RET sent with us."
             pete "I don't like relying on them for so many things though, so I'm going to try out my own radiation-proof tent."
+            show him surprised
             him "And you're testing it on us?"
+            show pete happy
             pete "No, we'll use the RET tents. I will test my homemade tent though."
+            show pete
             pete "Bring something to sleep on and some food. And get a bow and arrow from the community center." 
+            show him determined
             him "Not the rifles?"
+            show pete happy
             pete "With the guns, they all run away when they hear the shot. I want to see if the bow and arrow does any better."
             pete "Plus it seems funner to use a bow."
+            show him concerned
             him "I haven't praticed shooting a bow and arrow before."
+            show pete
             pete "Not even in the simulations on the shuttle ride out here? We had so much time for that!"
+            show him angry
             him "I was more concerned about reading the latest research on alien plants and running farm simulations."
             pete "You can set up traps then. I want to fell one of these creatures by my own power!"
+            show him concerned
             him "I'll bring some wire for snares I guess."
-            "You tell Thuc about the campout and he joins you, bringing a bow from the community center."
-            "You find a group of grass crabs and observe them for a while."
+            scene path with fade
+            show thuc at center
+            show pete at midright
+            show him normal at midleft
+            "I tell Thuc about the campout and he joins us that weekend, bringing a bow from the community center."
+            "We find a group of grass crabs and observe them for a while."
             "The grass crabs are about the size of a capybara, but have less meat because of their large shells."
             "While they eat grass, they also eat the woody parts of plants. Their large beak-like claw cuts through the woody part, which allows them to suck on it while on the move."
             #makes sense?
+            show thuc sad
             thuc "It seems like in the morning, they like to be in the sun, but then in the evening, they like to be in the shade."
+            show pete 
             pete "They're like insects. The can't make their own body heat so they have to position themselves well."
+            show thuc
             him "This herd is a pretty good size. There are some juveniles and also some older animals."
+            show pete happy at midleft
             pete "You can see some of the trails they've been on. Wait for them to settle for the night and then put the traps on the trail."
+            show thuc sad
             thuc "Here [his_name], let me help set up the snares."
-            "After a quick dinner of dried fruit and mashed beans, you set the snares."
+            "After a quick dinner of dried fruit and mashed beans, I set the snares."
+            show night_overlay with dissolve
+            show pete
             pete "Before we turn in, let's make some camouflage for ourselves."
+            show thuc sad
             thuc "I was thinking about that too. We can tie some leaves to our bodies, but it will be noisy."
+            show pete happy
             pete "We can at least make our clothing more inconspicuous by making the coloring irregular."
+            show pete
             pete "Let's use some of the ashes from the fire to help us blend in with the shadows."
+            scene path with fade
             "After sleeping in tents, you wake up early to catch the grass crabs while they're still drowsy."
             "They gather in the sunlight, warming themselves and chewing on sticks"
             "You're about 20 feet away when you stop trying to get closer."
+            show pete at midright
             pete "Those two big ones look like good targets."
+            show him determined at left
             him "Try not to lose any arrows."
+            show thuc sad at midleft
             thuc "I won't lose them but I will definitely loose them."
+            show him annoyed
             him "..."
+            show thuc
+            thuc "   "
             "One of the grass crabs looks in your direction and everyone gets silent."
             "The group starts slowly moving away."
             "Pete points to himself and makes a circular motion."
             "He points to a different grass crab that is a bit further off."
             "You all creep around quietly, giving the grass crabs a wide berth. It's slow and laborious."
+            #creative blocking ideas?
             "You wish that you had just scared the herd into your snares, since that would have taken less time."
             "It seems like you're maneuvering all morning. Finally, Pete gives you a thumbs-up and draws his bow."
             "He hits one of the animals, but it simply walks off with an arrow sticking out of it."
+            show thuc sad
             thuc "It's still alive!"
             "Together you stalk the animal to see if it will fall over."
+            show pete happy
             pete "I think I hit it right where its heart should be. Of course, with those shells, it's hard to tell how deep the arrow went."
             "It's lying down and not moving. Pete approaches, knife in hand."
             "Suddenly, the animal pinches Pete's leg with its front claw!"
+            show pete
             pete "Yeeeowch!"
             # TODO: Should this be a timed menu?
             menu:
@@ -1278,48 +1362,77 @@ label community9:
                     "You tackle grass crab from behind, easily outweighing it."
                     "The crab releases Pete and tries wildly to pinch you, but the claw isn't flexible enough to reach you while you're on its back."
                     "Pete stabs the crab, but cuts your arm in the process."
+                    show pete happy
                     pete "We got 'em!"
+                    show him surprised
                     him "Your leg!"
+                    show pete
                     pete "I think it looks worse than it is."
+                    show him concerned
                     him "Let's get back to camp."
                 "Uhhh.":
                     $ pass
                     "You freeze, not knowing what to do. Thuc steps on the crab's claw, and it releases its grip on Pete's leg, but the grass crab scratches Thuc with its smaller, comb-like arm."
                     "Pete thrusts his dagger into the crevice where the crab's shells meet."
+                    show pete happy
                     pete "Got 'em!"
+                    show him concerned
                     him "Are you guys okay?"
+                    show pete
                     pete "It doesn't feel too bad. Let's get back to camp and see how things are." 
             "You help Thuc to haul the grass crab back to the camp."
+            show fields with fade
+            show him determined at midleft
+            show pete at midright
             him "Here, sit down, let's clean these wounds."
+            show pete happy at midright
             pete "Nothing a bandage can't fix."
             "After everyone is patched up, you find that you've captured a grass crab in one of your snares."
             "Pete gives the grass crab a decoy stick to hold so Thuc can attack it from behind."
+            show him smile
             him "This is going to be delicious."
+            show pete
             pete "Let's eat some and then head back."
             "After making a fire, a solar flare warning comes up on the radio."
+            show pete happy
             pete "Fantastic. I can test my homemade tent."
+            show him surprised
             him "What did you make your homemade tent out of?"
+            show pete
             pete "The fabric is leather. That doesn't do anything for radiation."
             pete "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
             "Pete pours the water in, and it gradually fills the tent's lining."
             "After about twenty minutes, the radio comes on again to say that the flare has abated."
+            show pete happy
             pete "And it appears to reduce solar radiation! Too bad it's completely dark in there."
             "Some water leaked from the tent during the time you were waiting."
+            show pete
             pete "It looks like it has a few leaks too."
+            show him surprised
             him "Hmm. Aren't these shells radiation-proof? Maybe you could build a house out of them."
+            show pete happy
             pete "Good idea. I'll save them so I can experiment."
             "After eating some of the meat, you and Pete and Thuc bring the rest back to the colony."
+            show pete
             pete "We process cattle all the time, so we can finish butchering the grass crab. I'll make sure you get some."
             pete "Come by in a few hours if you want something fresh, otherwise it's all going to be jerky."
+            show him smile
             him "Thanks Pete."
         "Sounds dangerous. I have to focus on farming right now anyway.":
             $ miners += 1 #not sure which side colonists +1 should go on for this one.
+            show him concerned
             him "What happens if you get pinched by one of those things? It doesn't sound safe."
+            show pete
             pete "That's the whole point! Gets your blood moving."
+            show him determined
             him "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
             "Pete went hunting on his own. He brought you back some jerky from the grass crab he killed."
+            #scene change
+            show him happy
             him "This is delicious."
+            show pete happy
             pete "It took me nearly all day to finally hit one. Then I had to chase it down!"
+            show him surprised
             him "Was it worth it?"
             pete "Hell yes! Herding cattle is fine for everyday, but every once in a while I need some excitement in my life."
     return
@@ -2271,6 +2384,8 @@ label community13:
     return
 
 # 14 - Pete leaves
+$ thuc_has_cattle = False
+$ ilian_has_cattle = False
 label community14:
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
     "Today they're sending it back to Earth so RET can sell it."
@@ -2352,17 +2467,26 @@ label community14:
         "What do I do with Pete and Helen's remaining cattle?"
         menu:
             "Ask Thuc if any of his kids can look after them.":
+                him "Hey, Thuc, can someone in your family look after the rest of the cattle?"
+                thuc "It's not our specialty but I'm sure we can learn."
+                thuc "Some of the older kids would probably like living on the ranch."
                 $ colonists += 1
+                $ thuc_has_cattle = True
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
-            "Take them for my own farm!":
+            # "Take them for my own farm!":
             #not sure if I want this as a real option.
             # Maybe offer them to the miners?
-                $ pass
-            "Wait for a volunteer. Ilian volunteers.":
+            #   $ pass
+            "Wait for a volunteer.":
+                him "Does anyone want to take the rest of the cattle?"
+                ilian "I'll take them. I know how to butcher them at least."
+                thuc "They'll be a fair bit of work. Want some of my kids to help you out?"
+                ilian "Sure."
                 $ miners += 1
+                $ ilian_has_cattle = True
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
     else:
-        "Pete and Helen's cattle went to Ilian, who wanted to keep track of them."
+        "Pete and Helen's cattle went to Ilian, who wanted to take care of them."
     return
 
 
@@ -2690,14 +2814,14 @@ label community17:
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
     "This year I'm in charge of inviting guests. Who will I invite?"
     menu:
-        "The miners and the luddites." if ((luddites >= 10) and (miners >=10)):
+        "The miners and the luddites." if ((luddites >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
             $ invited_luddites = True
             $ invited_miners = True
             jump ludditesandminers
-        "The luddites." if (luddites >= 10): 
+        "The luddites." if (luddites >= 7): 
             $ invited_luddites = True
             jump justluddites
-        "The miners." if (miners >= 10): 
+        "The miners." if (miners >= 7): 
             $ invited_miners = True
             jump justminers
         "The usual--all the other colonists.":
@@ -2835,19 +2959,117 @@ label community17:
 
 
 label community18:
-    "The miners complain that a herd of cattle ran through their camp, making a huge mess and eating their scant herb gardens."
-    "Then a farmer complains that a similar thing happened, only the cows ate some young crops."
-    "How should I approach the problem? I know it was probably the luddites."
+    $ c18_waited = False
+    $ c18_cows_in_ranch = False
+    $ c18_cows_in_street = False
+    $ c18_no_help_pete = False 
+    nvl clear
+    natalia_c "there are three stray cattle in my yard eating my crops... I've been trying to scare them away but it's not working."
+    if thuc_has_cattle:
+        natalia_c "Thuc, did your cattle get out?"
+        thuc_c "No, it must be some other cattle!"
+    else:
+        natalia_c "Ilian, did the cattle get out or something?"
+        ilian_c "No, those must be Pete's."
+    natalia_c "Any advice on how to scare them away?"
+    ilian_c "Yell at them and wave your arms."
+    natalia_c "Tried that."
+    thuc_c "I didn't hear you so I don't think you're yelling loudly enough!"
+    natalia_c "Come over and do it yourself if you like."
+    natalia_c "Nevermind, they're coming to you!"
+    thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
+    "My fence isn't robust enough to protect against cattle. I run out to the front yard."
+    him "GO HOME COWS! KEEP MOVING!"
+    him "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
+    "They look a little scared, but they start creeping back as soon as a turn my back."
+    label cow_options:
+        "How will I handle the cows?"
+        menu:
+            "Herd them to our ranch.":
+                "I hop on Lettie and herd the cows over to the ranch."
+                "The cows are nervous, but I calmly block their way if they try to escape."
+                "It took a few tries to get them to go the direction of the ranch, so I bribed them with a little of Lettie's hay. They seem skittish."
+                "A few of them seem to recognize the ranch when we get there and it's easy to let them into the herd."
+                if thuc_has_cattle:
+                    nvl clear
+                    thuc_c "What are Pete's cattle doing out here? I thought he and the others were camped by the sea."
+                    him_c "That's where they stay in the rainy and cold months. It's warming up again so they're headed inland."
+                    natalia_c "Those cows ate a whole row of crops before I noticed them. He should compensate me for my losses."
+                    him_c "Thuc, I herded the escaped cattle into the ranch with yours."
+                    thuc_c "Oh, um... that was a good idea, but how are we going to tell them apart when we find Pete?"
+                    him_c "Pete's cows are wearing bright blue blankets, probably to protect them from sunburns."
+                else:
+                    nvl clear
+                    thuc_c "What are Pete's cattle doing out here? I thought he and the others were camped by the sea."
+                    him_c "That's where they stay in the rainy and cold months. It's warming up again so they're headed inland."
+                    natalia_c "Those cows ate a whole row of crops before I noticed them. He should compensate me for my losses."
+                    him_c "Ilian, I herded the escaped cattle into the ranch with yours."
+                    ilian_c "NOOOOOOOOOOOOOOOOOOO"
+                    ilian_c "Quick, see if you can separate them while you still can!"
+                    him_c "They're pretty easy to spot. They're wearing bright blue blankets, probably to protect them from sunburns."
+                    ilian_c "But they might have parasites or bad habits!"
+                    ilian_c "Please separate them somehow. Put them into the barn or something."
+                    him_c "Sorry, I don't think I can do that. Hopefully Pete can sort it all out soon."
+                    $ c18_cows_in_ranch = True
+            "Feed them something so they won't eat my plants.":
+                "I take out some of Lettie's hay and feed it to the cows, who happily dig into it."
+                "Hopefully that will last long enough for me to find Pete."
+                $ c18_cows_in_street = True
+            "Wait to see if someone comes for them." if not (c18_waited):
+                "I stand guard in front of my house and wait for something to happen."
+                "I yell at them whenever they come near, and they start going the other direction."
+                "Hmm. This isn't working."
+                $ c18_waited = True
+                jump cow_options
+            
+    "I go out to the miner's camp on Lettie with my binoculars to look for Pete."
+    brennan "Hey, we had a few cows come through our settlement about twenty minutes ago."
+    brennan "They ate up half of our herb garden."
+    brennan "Whose cows are these?"
+    him "Well, we think they must be Pete's, because all of ours are accounted for."
+    him "I was actually trying to find Pete to ask him about this."
+    # Pete comes running in, breathless and sweaty
+    pete "Yep, these're my cows. We ran into a swarm of land lobsters while trying to get back to the summer pasture and the herd split."
+    pete "The larger part of the herd is happily grazing about a half mile down the river."
+    pete "[his_name], you and your horse are just what we need. Can you help me herd the stragglers?"
+    brennan "Yes, please, get these cows out of here."
+    "Should I help herd the cows?"
     menu:
-        "Track down Pete and ask him what happened.":
-        #if you talk to Pete, he explains that they were herding the cattle from their winter caves to summer camps and they couldn't keep up with them, because a large animal scared them into stampeding, basically.
-        #THEN, if your relationship with the miners and colonists is good enough, they accept your explanation and
+        "I can help.":
             $ luddites += 1
-        #but if your relationship isn't good enough, they demand compensation.
-        "Compensate the offended parties with currency.":
             $ miners += 1
-        "Apologize, but don't compensate them. The luddites are a force of nature now.":
-            $ pass
+            him "Sure thing." #make this a choice as well?
+            "We work together to herd the cattle into a group."
+            if c18_cows_in_ranch:
+                him  "I found three of your cows and herded them into the old ranch."
+            else:
+                him "Three of your cows are eating hay in front of my house."
+            pete "Let's pick them up on the way out."
+            "Some of the cows were lying down, and we had to wait for them to get up and stretch out."
+            pete "Don't push them too hard. They'll get stressed out and are more likely to bolt when they get the opportunity."
+            pete "I'm pretty slow, but I know where we're going, so I'll take the front."
+            "Eventually, the stragglers joined the rest of the herd."
+            pete "Thanks [his_name]."
+            pete "I have a cow that is on her last legs. I'll bring her to the butchery and give out some meat as an apology for the trouble."
+            him "That would be a good idea."
+            "We spent the next month enjoying steak, beef stew, and beef jerky."
+        "No, I don't want to.":
+            $ c18_no_help_pete = True #TODO: this variable is not yet used again
+            him "Sorry, I can't help you right now. I need to get back to the farm."
+            if c18_cows_in_ranch:
+                him  "I found three of your cows and herded them into the old ranch."
+            else:
+                him "Three of your cows are eating hay in front of my house."
+            him "Keep better track of your cows, Pete."
+            pete "Can I use Lettie to herd them?"
+            him "No, I don't let just anyone ride her."
+            pete "You're not gonna help one bit?"
+            him "No, I'm not."
+            pete "I won't forget this."
+            if (luddites <= 5):
+                him "You need to compensate the miners and colonists for the losses they incurred."
+                pete "You need to stop being a jerk."
+            "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
     return
 
 
