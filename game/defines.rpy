@@ -14,9 +14,19 @@ init -100:
     define NUTRITION_INDEX = 2
     define FUN_INDEX = 3
     define WORK_INDEX = 4
-    define ENABLED_INDEX = 5
-    define PERENNIAL_INDEX = 6
-    define MAXIMUM_INDEX = 7
+    define NITROGEN_INDEX = 5
+    define ENABLED_INDEX = 6
+    define PERENNIAL_INDEX = 7
+    define MAXIMUM_INDEX = 8
+    
+    define PEST_LOSS = 5
+    define NITROGEN_FULL = 100
+    define NITROGEN_FALLOW = 50
+    define NITROGEN_GOATS = 95
+    define PEST_NONE = 5
+    
+    define NITROGEN_LEVEL_INDEX = 0
+    define PEST_LEVEL_INDEX = 1
     
     # Static variables used for endings
     define ATTACHMENT_GOOD = 20

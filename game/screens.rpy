@@ -1357,7 +1357,9 @@ screen nvl_dialogue(dialogue):
                 frame:
                     style "nvl_dialogue_frame"
                     if ((index % 2) == 0):
-                        background green_dark
+                        background "roundrect_darkgray"
+                    else:
+                        background "roundrect_lightgray"
                     text d.what:
                         id d.what_id
 
@@ -1396,7 +1398,6 @@ style nvl_label:
     text_align gui.nvl_name_xalign
 
 style nvl_dialogue_frame:
-    background gray_dark # TODO: make these rounded rectangles to fit the theme better
     xpos gui.nvl_text_xpos
     xpadding 10
     bottom_padding 20

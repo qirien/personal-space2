@@ -563,7 +563,7 @@ label family3:
     show him at midright
     show her at midleft
     show kid at center
-    $ random_crop = crops.get_random_crop(include_animals = False)
+    $ random_crop = crops.random_crop(include_animals = False)
     him concerned "Whew, I thought I'd never finish harvesting all those [random_crop]!" 
     her surprised "You're all done?"
     kid "All done!"
@@ -4419,7 +4419,7 @@ label family17_angry:
 
 # 11.1 Earth years old
 # Wants a bike!
-label family18:
+label family18:    
     "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
     menu:
         "Find a way to get her a bike":
@@ -4820,11 +4820,40 @@ label family21:
 # 13.6 Earth years old
 # Bathing is still a necessity
 label family22:
-    "Terra refuses to bathe, even though she's getting stinky."
+    "I still couldn't get used to how tall [kid_name] was all of a sudden. It was like my little girl had spent a few years in a portal world and come back to us completely different."
+    "Well, not completely different."
+    "Sometimes she still acted like a little kid."
+    him annoyed "Yes, I'm serious. You need to take a bath!"
+    kid "Can't I just wash off here at the sink?"
+    him determined "No. You need a real bath, with real soap, and you need to wash your hair!"
+    kid "Ugh, why?! I just had a bath two days ago!"
     menu:
-        "Just avoid her. She'll get the message eventually.":
+        "What should I say?"
+        "Because I said so.":
+            him annoyed "Because I said so. I'm the dad; you're the kid. When I say 'Take a bath', you take a bath!"
+            $ demanding += 1
+        "Because you stink.":
+            him surprised "Want me to tell you the truth?"
+            kid "Yeah, I guess?"
+            him determined "You're getting kind of stinky."            
+        "Because it's healthy.":
+            him normal "I want you to be healthy. Right now there is a seriously out of control bacteria party going on in your armpits and who knows where else, and party time is over."
+    kid "Dad!"
+    him normal "Don't you want the truth?"
+    kid sad "You don't have to say it like that."
+    him "Well, you need to take a bath."
+    kid "I really hate taking baths!"
+        
+    menu:
+        "What should I say?"
+        "(Say nothing)":
+            $ responsive += 1
+            "I just walked away. It wasn't worth fighting over. If she really wanted to walk around stinky and dirty, I guess that was her problem."
             $ neglectful += 1
-        "You'll take a bath, or I'll throw you in the river!":
+        "You'll take a bath, or else!":            
+            him angry "You'll take a bath, or else!"
+            kid annoyed "Or else what?!"
+            "I'll throw you in the river!"
             $ demanding += 1
             $ authoritarian += 1
         "If you decide not to take a bath, you'll need to sleep in the barn with the other stinky things.":

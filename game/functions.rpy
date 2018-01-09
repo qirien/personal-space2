@@ -196,7 +196,53 @@ init python:
                 return random_event
             else:
                 return "default_crop_event"                                
+        
+    # Calculate how many crops we harvested in each square and update the field_health
+    # TODO: we can't modify field_health; changes won't stick because it's passed by reference. Getting weird behavior.
+    def process_crops(crops, field_health, field_history):
+        final_yield = [100] * MAX_FARM_SIZE
+        current_nitrogen = 0
+        current_pests = 0
+        for i in range(0, farm_size):
+            pest_factor = 0
+            nitrogen_factor = 0            
+            crop_name = crops[i]
+            current_nitrogen = field_health[i][NITROGEN_LEVEL_INDEX]
+            current_pests = field_health[i][PEST_LEVEL_INDEX]
+            print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
+
+            if (crop_name == ""):
+                # Reset health of fallow field
+                print "RESETTING!"
+                if (current_nitrogen < NITROGEN_FALLOW):
+                    field_health[i][NITROGEN_LEVEL_INDEX] = NITROGEN_FALLOW
+                if (current_pests > PEST_NONE):
+                    field_health[i][PEST_LEVEL_INDEX] = PEST_NONE                                
                 
+            else:
+                # Decrease yield based on randomness and number of times crop has been in that spot lately.
+                # Set pest level of field after crops.
+                pest_factor = current_pests + current_pests * renpy.random.random() * field_history[i].count(crop_name)
+                field_health[i][PEST_LEVEL_INDEX] += pest_factor
+                if (pest_factor > 100):
+                    pest_factor = 100
+                print "Pest Factor[" + str(i) + "] is " + str(pest_factor)            
+                
+                # Decrease yield if there's not enough nitrogen
+                # Set nitrogen level of the field after crops
+                new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
+                print "New Nitrogen: " + str(new_nitrogen)
+                if (new_nitrogen < 0):
+                    nitrogen_factor = new_nitrogen / NITROGEN_FALLOW * -100
+                    field_health[i][NITROGEN_LEVEL_INDEX] = 0
+                else:
+                    field_health[i][NITROGEN_LEVEL_INDEX] = new_nitrogen
+                
+                print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor)
+                final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
+            
+        return final_yield
+        
 ##
 #
 ##

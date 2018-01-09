@@ -20,6 +20,7 @@ init python:
 # COLOR PALETTE
 # Thanks to this Material Design Color Tool,
 # https://material.io/color/#!/?view.left=0&view.right=1&primary.color=558B2F&secondary.color=ccbb99
+#https://material.io/color/#!/?view.left=0&view.right=1&primary.color=757575&secondary.color=ccbb99
 
 # Mossy green
 define green_med   = "#558b2f"
@@ -33,6 +34,7 @@ define tan_dark  = "#9b8b6b"
 
 # Shades of Gray
 define white = "#ffffff"
+define white_gray = "#e0e0e0"
 define gray_light = "#aaaaaa"
 define gray_dark  = "#5a5a5a"
 define black = "#000000"

@@ -294,7 +294,7 @@ label community2:
     show ilian happy at midright
     ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and he can have more variety in his diet."
     show him happy at left
-    $ random_crop = crops.get_random_crop(include_animals = False)
+    $ random_crop = crops.random_crop(include_animals = False)
     him "Sure, do you like [random_crop]?"
     if ((random_crop == "tomatoes") or (random_crop == "squash")):
         kevin "Yes, that is why I planted some myself. A popular choice, it seems."
