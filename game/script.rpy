@@ -6,6 +6,7 @@
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Use scene stars instead of scene black most of the time?
+##
 
 label start:
     
