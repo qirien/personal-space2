@@ -2384,8 +2384,6 @@ label community13:
     return
 
 # 14 - Pete leaves
-$ thuc_has_cattle = False
-$ ilian_has_cattle = False
 label community14:
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
     "Today they're sending it back to Earth so RET can sell it."
@@ -2962,7 +2960,6 @@ label community18:
     $ c18_waited = False
     $ c18_cows_in_ranch = False
     $ c18_cows_in_street = False
-    $ c18_no_help_pete = False 
     nvl clear
     natalia_c "there are three stray cattle in my yard eating my crops... I've been trying to scare them away but it's not working."
     if thuc_has_cattle:
@@ -3054,7 +3051,7 @@ label community18:
             him "That would be a good idea."
             "We spent the next month enjoying steak, beef stew, and beef jerky."
         "No, I don't want to.":
-            $ c18_no_help_pete = True #TODO: this variable is not yet used again
+            $ c18_no_help_pete = True
             him "Sorry, I can't help you right now. I need to get back to the farm."
             if c18_cows_in_ranch:
                 him  "I found three of your cows and herded them into the old ranch."
@@ -3074,20 +3071,146 @@ label community18:
 
 
 label community19:
-    "The luddites have been eating a lot of the crabbirds' natural predators, the wolf slugs." 
-    "As a result, crabirds devestate this season's harvest."
-    "There is enough stored food for everyone to live off of for the winter, but not for all the livestock."
-    "How do I deal with this problem?"
-    menu:
-        "Give extra cattle to the luddites, where some might survive by grazing.":
-            #The miners are desperate for beef later and might even trade guns with the luddites??
-            $ luddites += 1
-        "Make a lot of preserved meat jerky.":
-            $ colonists += 1
-        "Invite the miners for an epic barbeque.":
-            $ miners += 1
-    #one of the newer farming families wants to join the luddites?
-    #TODO: finish this
+    #you could substitute Pete for Helen in this scene; I just wanted to give Helen some more screen time.
+    her "Hey, I told Sara that we could bring something to dinner this weekend."
+    her "I know that the fall harvest isn't quite ready yet... can you get some of that wolf slug meat from Pete?"
+    him "Sure. Helen usually comes through town on Tuesday selling it."
+    her "Oh, so Helen can sully herself with credits instead of Pete trading this and that."
+    him "I don't mind. Credits are so much more convenient."
+    her "But they're also completely abstract. A credit only represents something because we decide it's valuable."
+    him "The same could be said of any object that we sell."
+    her "Tell me that when you're hungry! I budgeted up to 20 credits for meat or protein, so see what you can get."
+    "That Tuesday I saw Helen coming through town with a large backpack of wares to sell."
+    "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
+    "Scarfs and gloves with jellyfish patterns on them hang from the top."
+    him "Hey Helen! Got any wolf slug meat?"
+    helen "Yes, I've got some. It'll cost you though--we only found one this week and it was pretty young."
+    him "How much?"
+    if c18_no_help_pete:
+        helen "80 credits."
+        him "Hmm. That's outside my price range. Got any beef bones or beans?"
+        helen "Nothing like that."
+        if ate_jellyfish:
+            him "How much for this jellyfish scarf?"
+            helen "40 credits."
+            him "Augh, it's so cute. Guess I have something to save up for."
+        else:
+            him "Okay then. See you later."
+        "Helen continued her circuit through the colony, stopping to chat to a few people and sell them food."
+    else:
+        helen "40 credits."
+        him "Hmm. That's a lot more expensive than it was before."
+        helen "Wolf slugs are getting harder to find."
+        him "That's so frustrating. I finally figured out how to prepare them so they kind of tasted like clams."
+        helen "That's why we were hunting them so much. They're really good."
+        helen "I think the population is dwindling though, so we should probably stop killing them for now."
+        him "Got any other meat?"
+        helen "Just a few bits of jerky."
+        him "That's fine. We can rehydrate it make soup with it."
+        helen "15 credits."
+        him "Okay, I made the transaction. Here, you can see it on my tablet."
+        helen "Looks good. Enjoy!"
+        if ate_jellyfish:
+            him "Also, how much is the jellyfish scarf?"
+            helen "It's 30 credits, but for you I could go as low as 25."
+            him "Hmm. I'll take it."
+            helen "Here you go. See you next time."
+            him "Next time."
+        else:
+            him "Have a good one!"
+    
+    "A few weeks later, we were all gearing up for the fall harvest."
+    her "I love this time of year. Harvesting food together makes me feel like we'll live another year."
+    her "It does seem more efficient to stagger the crops though."
+    him "Yeah, Tomas Peron likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest." 
+    him "He said that the corn should be ready in five days. Can you get work off?"
+    her "Yeah, I don't have any appointments since everyone else is helping with the harvest!"
+    her "And if someone gets injured I'll be right there!"
+    "The next day I was checking my messages at breakfast when I saw Natalia posting on the community chat."
+    nvl clear
+    natalia_c "Thank you everyone for your willingness to help with the harvest, but we won't be needing any extra hands on Wednesday."
+    natalia_c "Last night a giant flock of crabbirds came and ate almost all of the corn."
+    natalia_c "I know that many of you were depending on our corn to feed your livestock over the rainy season. I'm sorry this happened."
+    thuc_c "Wow, that is devastating news."
+    nvl clear
+    thuc_c "Ilian, do you know if we have enough food stored to make up for this?"
+    ilian_c "I'm doing the calculations right now."
+    him_c "We could try using native plants as hay..." #I haven't figured out why they can't do this. 
+    thuc_c "It's too late in the year, I think. Most native grasses have gone to seed already."
+    her "What's going on? Some exciting gossip?"
+    him "Crabbirds ate all the Peron's corn, so we won't be harvesting it together."
+    her "Whaaaaat? What will the cows eat all winter?"
+    him "That's what everyone's wondering. Maybe they can increase the amount of alfalfa in the feed?"
+    her "I wonder why there were so many crabbirds. We've never seen this many before, have we?"
+    him "Who knows. Maybe since they've been eating our crops, they've been able to reproduce faster."
+    her "But wouldn't that mean that their natural predators could eat more of them?"
+    him "Huh. I wonder what the natural predators of the crabbirds are."
+    her "Well, it's not the land lobsters, because they eat smaller things, right?"
+    him "Yeah. I think they are mostly herbivorous."
+    her "Maybe... some kind of larger bird that we haven't seen before?"
+    him "I think we would have noticed a larger bird by now."
+    her "oh..."
+    him "Oh?"
+    her "I bet it's the wolf slugs."
+    him "That makes a lot of sense."
+    nvl clear
+    ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
+    if thuc_has_cattle:
+        thuc_c "Ouch. That's going to impact our herd next year. Maybe I'll make a bunch of jerky."
+        if is_liason:
+            "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
+            menu:
+                "Let's give them to Pete.":
+                    $ luddites += 1
+                    him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
+                    thuc_c "Are you sure? Cows are worth a lot of money. I'd rather sell them."
+                    him_c "You could try that. If you have a bunch of meat all at once, we're not all going to be able to buy it, so keep that in mind."
+                    thuc_c "Good point."
+                "Let's butcher them, but give a lot of the meat to the miners.":
+                    $ miners += 1
+                    him_c "We don't need to make it all into jerky. Let's give a bunch of it to the miners."
+                    thuc_c "These are my cows you're giving away! And the miners are rich!"
+                    thuc_c "I'll offer them a special deal though."
+                "Let's keep the meat.":
+                    $ colonists += 1
+                    him_c "Jerky sounds good. But give me some of the fresh meat before you make it!"
+                    thuc_c "Will do."
+        else:
+            him_c "Jerky sounds good. But give me some of the fresh meat before you make it!"
+            thuc_c "Will do."
+    else:
+        ilian_c "What should we do with those four cows?"
+        if is_liason:
+            "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
+            menu:
+                "Let's give them to Pete.":
+                    $ luddites += 1
+                    him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
+                    ilian_c "I've been investing quite a bit of credits into these cows. I'll see if Pete wants to buy them though."
+                    him_c "Okay. I know that you think you could make jerky out of all of them, but we only want to consume a certain amount of jerky..."
+                    ilian_c "Right. I know the basic principles of supply and demand. I'll offer them at a steep discount."
+                "Let's butcher them, but give a lot of the meat to the miners.":
+                    $ miners += 1
+                    him_c "We don't need to make it all into jerky. Let's give a bunch of it to the miners."
+                    ilian_c "From the miners' standpoint, we're the ones who are the poor credit-grubbers."
+                    ilian_c "I'll offer them a one-time special discount on bulk purchases."
+                "Let's keep the meat.":
+                    $ colonists += 1
+                    him_c "Let's butcher the cows. But give me some of the fresh meat before you make it all into jerky!"
+                    ilian_c "Don't worry, I will!"
+                    
+        else:
+            him_c "Let's butcher the cows. But give me some of the fresh meat before you make it all into jerky!"
+            ilian_c "Don't worry, I will!"
+    nvl clear
+    natalia_c "The crabbirds are still around... what are we going to do about them?"
+    julia_c "Maybe we could make nets or traps for them."
+    sara_c "Oooh, I love crabbird chowder!"
+    ilian_c "I do have a yearly stipulation of credits from RET for helping with emergencies..."
+    ilian_c "If you process your crabbirds in the cannery, I promise we'll pay a good price for them."
+    natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
+    "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomas was able to trap a lot of them that week."
+    #no follow-up on wolf slug hunting? maybe in a later event?
     return
 
 
