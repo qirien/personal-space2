@@ -92,17 +92,11 @@ label start:
         earth_year = 1
         
         # Work/crops
-        farm_size = 9       
-        crops = Crops(MAX_FARM_SIZE)
-        
-        # History of the last three crops planted in each space
-        field_history = [["", "", ""]] * MAX_FARM_SIZE
-        
-        # Current health of the field, with Nitrogen levels and Pest levels
-        field_health = [[NITROGEN_FULL, PEST_NONE]] * MAX_FARM_SIZE 
-        
+        farm_size = 9
+        farm = Field(farm_size, MAX_FARM_SIZE);        
+
         # Yield of most recent set of crops, in percentages 
-        years_yield = [100] * MAX_FARM_SIZE
+        years_yield = [100] * farm_size
 
         # Dictionary containing the number of events seen for each crop 
         number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
@@ -190,7 +184,7 @@ label start:
     
     # Initial farm setup
     scene gray_dark with fade    
-    $ crops = Crops(farm_size)
+    $ farm.reset_crops(farm_size)
     call screen plan_farm
     
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
@@ -239,9 +233,8 @@ label start:
         # CHOOSE FOR NEXT YEAR
         hide screen say        
         scene gray_dark with fade
-        $ years_yield = process_crops(crops, field_health, field_history)
-        $ crops.update_history(field_history)
-        $ crops = Crops(MAX_FARM_SIZE)
+        $ years_yield = farm.process_crops()
+        $ farm.reset_crops(farm_size)
         call screen plan_farm
         $ year += 1        
    

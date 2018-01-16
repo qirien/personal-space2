@@ -71,7 +71,7 @@ screen plan_farm:
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
 ##
-screen crop_details_screen():
+screen crop_details_screen:
     hbox:
         xalign 0.5
         xfill True
@@ -108,8 +108,8 @@ screen crop_details_screen():
                 #scrollbars "vertical"
                 side_xalign 0.5
                 for i in range(0, farm_size):
-                    $ max_crops_reached = (crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])          
-                    if (crops[i] == ""):
+                    $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])          
+                    if (farm.crops[i] == ""):
                         $ imagefile = "gui/crop icons/blank.png" 
                         textbutton "(_)":
                             xysize (50,50)
@@ -119,7 +119,7 @@ screen crop_details_screen():
                                 ]
                             sensitive (not max_crops_reached)
                     else:
-                        $ imagefile = "gui/crop icons/" + crops[i] + ".png"
+                        $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
                         imagebutton:
                             idle imagefile 
                             xysize (50,50)
@@ -139,7 +139,7 @@ screen crop_details_screen():
                 
                 for j in range(0, len(crop_info)):
                     if (crop_info[j][ENABLED_INDEX]):
-                        $ max_crops_reached = (crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
+                        $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
                         $ imagefile = "gui/crop icons/" + crop_info[j][NAME_INDEX] + ".png"
                         imagebutton:
                             idle imagefile 
@@ -164,10 +164,10 @@ screen crop_details_screen():
             $ total_fun = 0
             $ total_work = 0
             # Totaling crops attributes        
-            for i in range(0, crops.len()):
-                if (crops[i] != ""):
+            for i in range(0, farm.crops.len()):
+                if (farm.crops[i] != ""):
                     $ crop_names = [row[NAME_INDEX] for row in crop_info]
-                    $ index = crop_names.index(crops[i]) # find the crop's index in crop_info                
+                    $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
                     $ total_calories += crop_info[index][CALORIES_INDEX]
                     $ total_nutrition += crop_info[index][NUTRITION_INDEX]
                     $ total_fun += crop_info[index][FUN_INDEX]
@@ -185,14 +185,15 @@ init python:
     
     # Set the crop in our farm array and update the total stats for the farm
     def set_crop(index, crop_name):
-        crops[index] = crop_name
+        global farm
+        farm.crops[index] = crop_name
         
     SetCrop = renpy.curry(set_crop)
     
     # Use our default test crops
     def set_default_crops():
-        global crops
-        crops.setDefault()
+        global farm
+        farm.crops.setDefault()
         
 # Custom styles for the farm planning screen
 style plan_farm_label is label:

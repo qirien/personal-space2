@@ -563,7 +563,7 @@ label family3:
     show him at midright
     show her at midleft
     show kid at center
-    $ random_crop = crops.random_crop(include_animals = False)
+    $ random_crop = farm.crops.random_crop(include_animals = False)
     him concerned "Whew, I thought I'd never finish harvesting all those [random_crop]!" 
     her surprised "You're all done?"
     kid "All done!"
@@ -2357,7 +2357,7 @@ label family9:
     kid normal "Is it okay if Oleg comes over to play?"
     him normal "Of course!"
     "Oleg was so polite and obedient; he hardly ever got into trouble. [kid_name] actually behaved better when he was around."
-    $ random_crop = crops.random_crop()
+    $ random_crop = farm.crops.random_crop()
     "The two of them ran off to play and I continued working with the [random_crop]."
     hide kid
     hide oleg
