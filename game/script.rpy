@@ -92,7 +92,7 @@ label start:
         earth_year = 1
         
         # Work/crops
-        farm_size = 9
+        farm_size = 16
         farm = Field(farm_size, MAX_FARM_SIZE);        
 
         # Yield of most recent set of crops, in percentages 
@@ -165,8 +165,9 @@ label start:
             $her_name = renpy.input("Wife's Name", default=her_name)
             $kid_name = renpy.input("Baby girl's Name", default=kid_name)
             jump name_change_loop
-        "Test Menu":
-            jump tests
+        "Jump to Farming Screen":
+            $ farm.reset_crops(farm_size)
+            call screen plan_farm
         
     scene stars_animated with fade                
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
