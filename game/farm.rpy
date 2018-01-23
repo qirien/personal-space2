@@ -13,6 +13,7 @@ init python:
         NITROGEN_GOATS = 95
         PEST_NONE = 2
         PEST_GOAT_REDUCTION = -2
+        HISTORY_SIZE = 3
         
         NITROGEN_LEVEL_INDEX = 0
         PEST_LEVEL_INDEX = 1

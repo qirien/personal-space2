@@ -170,12 +170,14 @@ screen crop_details_screen:
                     $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])
                     $ is_selected = (selected_crop_index == i)
                     if (farm.crops[i] == ""):
-                        $ imagefile = "gui/crop icons/blank.png" 
+                        $ imagefile = "gui/crop icons/fallow.png" 
 
                     else:
                         $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
                     imagebutton:
                         idle imagefile 
+                        selected_idle LiveComposite((50,50), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                        hover LiveComposite((50,50), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                         xysize (50,50)
                         anchor (0.5, 0.5)
                         align  (0.5, 0.5)
@@ -211,6 +213,22 @@ screen crop_details_screen:
     
         vbox:
             label "Field Info"
+            vbox:
+                label "Health"
+                # TODO: add bars
+                text "Nitrogen: " + str(farm.health[selected_crop_index][Field.NITROGEN_LEVEL_INDEX])
+                text "Pests: " + str(farm.health[selected_crop_index][Field.PEST_LEVEL_INDEX])
+                label "History"
+                hbox:
+                    for past_crop in range(0, Field.HISTORY_SIZE):
+                        $ crop_name = farm.history[selected_crop_index][past_crop]
+                        if (crop_name == ""):
+                            $ crop_name = "fallow"
+                        $ imagefile = "gui/crop icons/" + crop_name + ".png"
+                        add imagefile
+                        
+                # TODO: add projected yield of square
+                
     
 init python:
     
