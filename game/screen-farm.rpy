@@ -122,10 +122,9 @@ screen crop_details_screen:
                             $ imagefile = "gui/crop icons/" + crop_name + ".png"
                             
                             textbutton crop_name.capitalize():                                
-                                sensitive (not max_crops_reached)
-                                selected ((crop_info_index == j) and (not max_crops_reached))
-                                action [ SetVariable("crop_info_index", j), renpy.restart_interaction ]
-                                    
+                                sensitive (not max_crops_reached)                                
+                                action [ SetCrop(selected_crop_index, crop_name), renpy.restart_interaction ]
+            
                             hbox:
                                 imagebutton:
                                     idle imagefile 
@@ -133,8 +132,7 @@ screen crop_details_screen:
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
                                     sensitive (not max_crops_reached)
-                                    selected ((crop_info_index == j) and (not max_crops_reached))
-                                    action [ SetVariable("crop_info_index", j), renpy.restart_interaction ] 
+                                    action [ SetCrop(selected_crop_index, crop_name), renpy.restart_interaction ]
                                     at highlight_imagebutton
         
                                 # TODO: Take out style tag and see if autodetecting of this has been fixed later.
@@ -169,29 +167,21 @@ screen crop_details_screen:
                 #scrollbars "vertical"
                 side_xalign 0.5
                 for i in range(0, farm_size):
-                    $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])          
+                    $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])
+                    $ is_selected = (selected_crop_index == i)
                     if (farm.crops[i] == ""):
                         $ imagefile = "gui/crop icons/blank.png" 
-                        textbutton "(_)":
-                            xysize (50,50)
-                            action [
-                                SetCrop(i, crop_name),
-                                renpy.restart_interaction # This makes the screen refresh
-                                ]
-                            sensitive (not max_crops_reached)
+
                     else:
                         $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
-                        imagebutton:
-                            idle imagefile 
-                            xysize (50,50)
-                            anchor (0.5, 0.5)
-                            align  (0.5, 0.5)
-                            action [ SetCrop(i, ""), renpy.restart_interaction ] 
-                            at highlight_imagebutton
-                             
-           
-                        
-    
+                    imagebutton:
+                        idle imagefile 
+                        xysize (50,50)
+                        anchor (0.5, 0.5)
+                        align  (0.5, 0.5)
+                        selected (is_selected)
+                        action [ SetVariable("selected_crop_index", i), renpy.restart_interaction ] 
+
         
             # Totals so far                                                    
             vbox:
@@ -219,7 +209,8 @@ screen crop_details_screen:
                 text "Fun:          " + str(total_fun)
                 text "Work:         " + str(total_work)                 
     
-    
+        vbox:
+            label "Field Info"
     
 init python:
     

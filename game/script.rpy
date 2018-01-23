@@ -93,7 +93,8 @@ label start:
         
         # Work/crops
         farm_size = 16
-        farm = Field(farm_size, MAX_FARM_SIZE);        
+        farm = Field(farm_size, MAX_FARM_SIZE);
+        selected_crop_index = 0        
 
         # Yield of most recent set of crops, in percentages 
         years_yield = [100] * farm_size
