@@ -39,7 +39,7 @@ screen plan_farm:
                                 xalign 0.5
                                 action [
                                             set_default_crops,
-                                            Return()
+                                            renpy.restart_interaction
                                         ]
                             textbutton "Accept Plan":
                                 xalign 1.0
@@ -120,23 +120,28 @@ screen crop_details_screen:
                             $ crop_name = crop_info[j][NAME_INDEX]                            
                             $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
                             $ imagefile = "gui/crop icons/" + crop_name + ".png"
+                            $ is_selected = (selected_crop_index == j)
                             
                             textbutton crop_name.capitalize():                                
-                                sensitive (not max_crops_reached)                                
-                                action [ SetCrop(selected_crop_index, crop_name), renpy.restart_interaction ]
+                                sensitive (not max_crops_reached)
+                                selected is_selected                                
+                                action [ SetVariable("selected_crop_index", j), renpy.restart_interaction ]
             
                             hbox:
                                 imagebutton:
                                     idle imagefile 
-                                    xysize (50,50)
+                                    xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
+                                    selected is_selected
                                     sensitive (not max_crops_reached)
-                                    action [ SetCrop(selected_crop_index, crop_name), renpy.restart_interaction ]
+                                    action [ SetVariable("selected_crop_index", j), renpy.restart_interaction ]
                                     at highlight_imagebutton
         
                                 # TODO: Take out style tag and see if autodetecting of this has been fixed later.
                                 grid 2 4:
+                                    # TODO: Make each of these a different color and have a key so they take up less room.
+                                    # TODO: Add Nitrogen usage (pest effect?)
                                     text "Calories: "
                                     bar value crop_info[j][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                                     text "Nutrition: "
@@ -150,77 +155,64 @@ screen crop_details_screen:
           
         # Crop layout area
         vbox:
-            xalign 0.5
-            xsize MIDDLE_COLUMN_WIDTH
             label "Layout"
+            xsize MIDDLE_COLUMN_WIDTH
             vpgrid:
-                if (farm_size <= 9):
-                    cols 3
-                elif (farm_size <= 16):
-                    cols 4
-                else:
-                    cols 5
-                spacing 5
-                draggable True
-                mousewheel True
+                style_prefix "crop_layout"
                 
-                #scrollbars "vertical"
+                # number of columns is the square root of farm_size
+                cols int(farm_size**0.5)                
                 side_xalign 0.5
                 for i in range(0, farm_size):
-                    $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])
-                    $ is_selected = (selected_crop_index == i) 
-                    $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
-                    imagebutton:
-                        idle imagefile 
-                        selected_idle LiveComposite((50,50), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                        hover LiveComposite((50,50), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                        xysize (50,50)
-                        anchor (0.5, 0.5)
-                        align  (0.5, 0.5)
-                        selected (is_selected)
-                        action [ SetVariable("selected_crop_index", i), renpy.restart_interaction ] 
-
-        
-            # Totals so far                                                    
-            vbox:
-                xalign 0.5
-                xsize 200
+                    vbox:
+                        hbox:
+                            $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX]) 
+                            $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
+                            imagebutton:
+                                idle imagefile 
+                                hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
+                                anchor (0.5, 0.5)
+                                align  (0.5, 0.5)
+                                action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
+                                
+                            bar value farm.health[i][Field.NITROGEN_LEVEL_INDEX] range Field.NITROGEN_FULL style "crop_layout_bar"
+                            bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
+                            
+                        # history
+                        hbox:
+                            $ history_icon_size = CROP_ICON_SIZE // 2.5
+                            for past_crop in range(0, Field.HISTORY_SIZE):
+                                $ crop_name = farm.history[i][past_crop]
+                                $ imagefile = "gui/crop icons/" + crop_name + ".png"
+                                add imagefile size (history_icon_size, history_icon_size)
                 
-                $ total_calories = 0
-                $ total_nutrition = 0
-                $ total_fun = 0
-                $ total_work = 0
-                # Totaling crops attributes        
-                for i in range(0, farm.crops.len()):
-                    $ crop_names = [row[NAME_INDEX] for row in crop_info]
-                    $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
-                    $ total_calories += crop_info[index][CALORIES_INDEX]
-                    $ total_nutrition += crop_info[index][NUTRITION_INDEX]
-                    $ total_fun += crop_info[index][FUN_INDEX]
-                    $ total_work += crop_info[index][WORK_INDEX]
-                        
-                label "Total"
-                #grid 2 4
-                text "Calories:     " + str(total_calories)
-                text "Nutrition:    " + str(total_nutrition)
-                text "Fun:          " + str(total_fun)
-                text "Work:         " + str(total_work)                 
-    
+        # Totals so far                                                    
         vbox:
-            label "Field Info"
-            vbox:
-                label "Health"
-                # TODO: add bars
-                text "Nitrogen: " + str(farm.health[selected_crop_index][Field.NITROGEN_LEVEL_INDEX])
-                text "Pests: " + str(farm.health[selected_crop_index][Field.PEST_LEVEL_INDEX])
-                label "History"
-                hbox:
-                    for past_crop in range(0, Field.HISTORY_SIZE):
-                        $ crop_name = farm.history[selected_crop_index][past_crop]
-                        $ imagefile = "gui/crop icons/" + crop_name + ".png"
-                        add imagefile
-                        
-                # TODO: add projected yield of square
+            xalign 0.5
+            xsize 200
+            
+            $ total_calories = 0
+            $ total_nutrition = 0
+            $ total_fun = 0
+            $ total_work = 0
+            # Totaling crops attributes        
+            for i in range(0, farm.crops.len()):
+                $ crop_names = [row[NAME_INDEX] for row in crop_info]
+                $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
+                $ total_calories += crop_info[index][CALORIES_INDEX]
+                $ total_nutrition += crop_info[index][NUTRITION_INDEX]
+                $ total_fun += crop_info[index][FUN_INDEX]
+                $ total_work += crop_info[index][WORK_INDEX]
+                    
+            label "Total"
+            #grid 2 4
+            text "Calories:     " + str(total_calories)
+            text "Nutrition:    " + str(total_nutrition)
+            text "Fun:          " + str(total_fun)
+            text "Work:         " + str(total_work)                 
+
+            # TODO: add projected yield, highlight squares with bad projected yields?
                 
     
 init python:
@@ -273,7 +265,8 @@ style crop_details_selected_label_text is crop_details_label_text:
     
 style crop_details_button_text is plan_farm_button_text:
     idle_color green_med
-    hover_color green_light   
+    hover_color green_light
+    selected_color white
     
 style crop_details_text is plan_farm_text:
     size 14
@@ -296,3 +289,14 @@ style crop_details_hbox is hbox:
 style crop_details_grid is grid:
     xsize LEFT_COLUMN_WIDTH
     spacing 0
+    
+style crop_layout_vpgrid is vpgrid:
+    spacing 20  
+    xalign 0.5
+    xsize MIDDLE_COLUMN_WIDTH
+    
+style crop_layout_bar is bar:
+    bar_vertical True
+    xsize 3
+    ysize CROP_ICON_SIZE
+

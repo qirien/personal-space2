@@ -23,6 +23,7 @@ init -10:
         #(0,0), "gui/computer pad screen.png"
         )
 
+    define CROP_ICON_SIZE = 65
     # TODO: add different background? custom bg?
     
     image ctc_blink:
