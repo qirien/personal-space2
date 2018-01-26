@@ -168,12 +168,8 @@ screen crop_details_screen:
                 side_xalign 0.5
                 for i in range(0, farm_size):
                     $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX])
-                    $ is_selected = (selected_crop_index == i)
-                    if (farm.crops[i] == ""):
-                        $ imagefile = "gui/crop icons/fallow.png" 
-
-                    else:
-                        $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
+                    $ is_selected = (selected_crop_index == i) 
+                    $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
                     imagebutton:
                         idle imagefile 
                         selected_idle LiveComposite((50,50), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
@@ -196,13 +192,12 @@ screen crop_details_screen:
                 $ total_work = 0
                 # Totaling crops attributes        
                 for i in range(0, farm.crops.len()):
-                    if (farm.crops[i] != ""):
-                        $ crop_names = [row[NAME_INDEX] for row in crop_info]
-                        $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
-                        $ total_calories += crop_info[index][CALORIES_INDEX]
-                        $ total_nutrition += crop_info[index][NUTRITION_INDEX]
-                        $ total_fun += crop_info[index][FUN_INDEX]
-                        $ total_work += crop_info[index][WORK_INDEX]
+                    $ crop_names = [row[NAME_INDEX] for row in crop_info]
+                    $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
+                    $ total_calories += crop_info[index][CALORIES_INDEX]
+                    $ total_nutrition += crop_info[index][NUTRITION_INDEX]
+                    $ total_fun += crop_info[index][FUN_INDEX]
+                    $ total_work += crop_info[index][WORK_INDEX]
                         
                 label "Total"
                 #grid 2 4
@@ -222,8 +217,6 @@ screen crop_details_screen:
                 hbox:
                     for past_crop in range(0, Field.HISTORY_SIZE):
                         $ crop_name = farm.history[selected_crop_index][past_crop]
-                        if (crop_name == ""):
-                            $ crop_name = "fallow"
                         $ imagefile = "gui/crop icons/" + crop_name + ".png"
                         add imagefile
                         

@@ -100,12 +100,14 @@ label start:
         years_yield = [100] * farm_size
 
         # Dictionary containing the number of events seen for each crop 
-        number_events_seen = {"corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
+        number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
         # TODO: add income
         # TODO: make it so you can't move perennials once placed
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         # Tuple containing the crop name, calories, nutrition, fun/value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.        
-        crop_info =     (["corn",         8, 4, 8, 7, 50, False, False, 100],    # Grains
+        crop_info =     (
+                        ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, 100],
+                        ["corn",         8, 4, 8, 7, 50, False, False, 100],    # Grains
                         ["potatoes",     8, 5, 7, 6, 25, True, False, 100],
                         ["wheat",        8, 6, 8, 10, 15, False, False, 100],
                         ["peppers",      2, 6, 5, 5, 25, False, False, 100],    # "Fruits"
@@ -128,7 +130,7 @@ label start:
                         ["cabbage",      2, 4, 4, 3, 15, False, False, 100],   # Leafy greens
                         ["spinach",      2, 6, 4, 4, 10, True, False,  100],
                         ["broccoli",     3, 5, 3, 3, 15, False, False, 100],
-                        ["goats",       10, 7, 7, 5, -90, True,  False, 1])   # Miscellaneous        
+                        ["goats",       10, 7, 7, 5, Field.NITROGEN_GOATS, True,  False, 1])   # Miscellaneous        
         
         total_calories = 0
         total_nutrition = 0

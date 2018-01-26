@@ -9,10 +9,12 @@ init python:
     
     class Field(renpy.store.object):
         NITROGEN_FULL = 100
-        NITROGEN_FALLOW = 50
-        NITROGEN_GOATS = 95
+        NITROGEN_FALLOW = -50
+        NITROGEN_GOATS = -95
         PEST_NONE = 2
         PEST_GOAT_REDUCTION = -2
+        PEST_FALLOW_REDUCTION = -75
+        PEST_MAX = 100
         HISTORY_SIZE = 3
         
         NITROGEN_LEVEL_INDEX = 0
@@ -26,7 +28,7 @@ init python:
             self.health = [[Field.NITROGEN_FULL, Field.PEST_NONE] for i in range(max_size)]
             [[Field.NITROGEN_FULL, Field.PEST_NONE]] * max_size
             # History of the last three crops planted in each space
-            self.history = [["", "", ""]] * max_size
+            self.history = [["fallow", "fallow", "fallow"]] * max_size
             # Current crops planted in each space
             self.crops = Crops(current_size)
         
@@ -43,41 +45,33 @@ init python:
                 current_nitrogen = self.health[i][Field.NITROGEN_LEVEL_INDEX]
                 current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
                 #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
-    
-                if (crop_name == ""):
-                    # Reset health of fallow field
-                    if (current_nitrogen < Field.NITROGEN_FALLOW):
-                        self.health[i][Field.NITROGEN_LEVEL_INDEX] = Field.NITROGEN_FALLOW
-                    if (current_pests > Field.PEST_NONE):
-                        self.health[i][Field.PEST_LEVEL_INDEX] = Field.PEST_NONE                                
-                    
+                # Decrease yield based on randomness and number of times crop has been in that spot lately.
+                # Set pest level of field after crops.
+                if (crop_name == "fallow"):
+                    pest_factor = current_pests // Field.PEST_FALLOW_REDUCTION
+                elif (crop_name == "goats"):
+                    pest_factor = current_pests // Field.PEST_GOAT_REDUCTION
                 else:
-                    # Decrease yield based on randomness and number of times crop has been in that spot lately.
-                    # Set pest level of field after crops.
-                    if (crop_name == "goats"):
-                        pest_factor = current_pests // Field.PEST_GOAT_REDUCTION
-                    else:
-                        pest_factor = int(current_pests + current_pests * renpy.random.random() * self.history[i].count(crop_name))                   
-                    self.health[i][Field.PEST_LEVEL_INDEX] += pest_factor
-                    if (pest_factor > 100):
-                        pest_factor = 100
-                    #print "Pest Factor[" + str(i) + "] is " + str(pest_factor)            
-                    
-                    # Decrease yield if there's not enough nitrogen
-                    # Set nitrogen level of the field after crops
-                    new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
-                    #print "New Nitrogen: " + str(new_nitrogen)
-                    if (new_nitrogen < 0):
-                        nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100
-                        self.health[i][Field.NITROGEN_LEVEL_INDEX] = 0
-                    elif (new_nitrogen > Field.NITROGEN_FULL):
-                        self.health[i][Field.NITROGEN_LEVEL_INDEX] = Field.NITROGEN_FULL
-                    else:
-                        self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
-                    
-                    #print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor)
-                    final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
+                    pest_factor = int(current_pests + current_pests * renpy.random.random() * self.history[i].count(crop_name))                    
+                new_pests = self.health[i][Field.PEST_LEVEL_INDEX] + pest_factor
+                new_pests = bounded_value(new_pests, Field.PEST_NONE, Field.PEST_MAX)                 
+                self.health[i][Field.PEST_LEVEL_INDEX] = new_pests
                 
+                #print "Pest Factor[" + str(i) + "] is " + str(pest_factor)            
+                
+                # Decrease yield if there's not enough nitrogen
+                # Set nitrogen level of the field after crops
+                new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
+                #print "New Nitrogen: " + str(new_nitrogen)
+                if (new_nitrogen < 0):                    
+                    nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100                
+                
+                new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
+                self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
+                    
+                #print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor)
+                final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
+            
             self.update_history()
             return final_yield
 
@@ -97,7 +91,7 @@ init python:
     class Crops(renpy.store.object):
         # Initialize as an empty field of a certain size
         def __init__(self, size=MAX_FARM_SIZE):
-            self.items = [""] * size
+            self.items = ["fallow"] * size
             
         # Set the crop at [index] to [crop_name]
         def __setitem__(self, key, value):

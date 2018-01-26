@@ -34,7 +34,18 @@ init python:
         if (shuffle_menu):
             renpy.random.shuffle(items)
         return renpy_menu(items)
-        
+   
+##
+#
+##
+init python:
+    def bounded_value(val, min=0, max=100):
+        if (val > max):
+            return max
+        elif (val < min):
+            return min
+        else:
+            return val
 ##
 # PARENTING FUNCTIONS
 ##
