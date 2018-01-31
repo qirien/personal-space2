@@ -118,6 +118,7 @@ init python:
                 self[i] = crop_name
                 
                 # If we've reached the max, remove this crop from the ones that can be chosen
+                # TODO: This is no longer working.
                 if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
                     available_crop_names.remove(crop_name)
             return            
@@ -132,7 +133,6 @@ init python:
                 else:
                     chosen_crop = renpy.random.choice(list(set(self.items)))
                 if (not include_animals):
-                    # TODO: include other animals, or base this on a flag or something
                     if (chosen_crop == "goats"):
                         chosen_crop = ""
                 

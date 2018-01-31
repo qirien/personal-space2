@@ -166,25 +166,52 @@ screen crop_details_screen:
                 for i in range(0, farm_size):
                     vbox:
                         hbox:
-                            $ max_crops_reached = (farm.crops.count(crop_info[crop_info_index][NAME_INDEX]) >= crop_info[crop_info_index][MAXIMUM_INDEX]) 
-                            $ imagefile = "gui/crop icons/" + farm.crops[i] + ".png"
-                            imagebutton:
-                                idle imagefile 
-                                hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                                xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
-                                anchor (0.5, 0.5)
-                                align  (0.5, 0.5)
-                                action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
-                                
-                            bar value farm.health[i][Field.NITROGEN_LEVEL_INDEX] range Field.NITROGEN_FULL style "crop_layout_bar"
+                            $ current_crop_name = farm.crops[i]
+                            frame:
+                                if (crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX] > farm.health[i][Field.NITROGEN_LEVEL_INDEX]):
+                                    background red_dark
+                                else:
+                                    background tan_dark                                 
+                                $ imagefile = "gui/crop icons/" + current_crop_name + ".png"
+                                imagebutton:
+                                    idle imagefile 
+                                    hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                    xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
+                                    anchor (0.5, 0.5)
+                                    align  (0.5, 0.5)
+                                    action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
+                                    
+                            $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
+                            $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX] 
+                            $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
+                            
+                            # This crop adds nitrogen; show it in a positive color
+                            if (new_nitrogen_level >= current_nitrogen_level):                                    
+                                $ display_value = new_nitrogen_level - current_nitrogen_level
+                                $ display_range = Field.NITROGEN_FULL - current_nitrogen_level                                     
+                                $ display_size = int((CROP_LAYOUT_BAR_SIZE/100.0) * (Field.NITROGEN_FULL - current_nitrogen_level))
+                                $ display_style = "crop_layout_nitrogen_increased_bar"
+                                                                    
+                            # This crop subtracts nitrogen; show it in a negative color
+                            else:
+                                $ display_value = current_nitrogen_level - new_nitrogen_level
+                                $ display_range = Field.NITROGEN_FULL - new_nitrogen_level 
+                                $ display_size = int((CROP_LAYOUT_BAR_SIZE/100.0) *  (Field.NITROGEN_FULL - new_nitrogen_level))
+                                $ display_style = "crop_layout_nitrogen_decreased_bar"
+                                    
+                            vbox:
+                                bar value display_value range display_range style display_style ysize display_size 
+                                bar value Field.NITROGEN_FULL range Field.NITROGEN_FULL style "crop_layout_bar" ysize (CROP_LAYOUT_BAR_SIZE - display_size)                                
+
+                            #bar value farm.health[i][Field.NITROGEN_LEVEL_INDEX] range Field.NITROGEN_FULL style "crop_layout_bar"
                             bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
                             
                         # history
                         hbox:
-                            $ history_icon_size = CROP_ICON_SIZE // 2.5
+                            $ history_icon_size = CROP_ICON_SIZE // 2
                             for past_crop in range(0, Field.HISTORY_SIZE):
-                                $ crop_name = farm.history[i][past_crop]
-                                $ imagefile = "gui/crop icons/" + crop_name + ".png"
+                                $ past_crop_name = farm.history[i][past_crop]
+                                $ imagefile = "gui/crop icons/" + past_crop_name + ".png"
                                 add imagefile size (history_icon_size, history_icon_size)
                 
         # Totals so far                                                    
@@ -246,6 +273,9 @@ style plan_farm_button_text is button_text:
 style plan_farm_text is text:
     color black
     
+style plan_farm_vbox is vbox:
+    spacing 5    
+    
 # Custom styles for the crop details part of the screen
 style crop_details_vpgrid is vpgrid:
     xalign 0.5
@@ -291,12 +321,24 @@ style crop_details_grid is grid:
     spacing 0
     
 style crop_layout_vpgrid is vpgrid:
-    spacing 20  
+    spacing 16  
     xalign 0.5
-    xsize MIDDLE_COLUMN_WIDTH
+    xsize MIDDLE_COLUMN_WIDTH   
+    
+style crop_layout_hbox is hbox:
+    spacing 5
     
 style crop_layout_bar is bar:
     bar_vertical True
-    xsize 3
-    ysize CROP_ICON_SIZE
+    xsize 5
+    ysize CROP_LAYOUT_BAR_SIZE
+    yalign 1.0
+    spacing 1
 
+style crop_layout_nitrogen_increased_bar is crop_layout_bar:
+    top_bar Frame(Solid(gray_light))
+    bottom_bar Frame(Solid(green_dark))
+    
+style crop_layout_nitrogen_decreased_bar is crop_layout_bar:
+    top_bar Frame(Solid(gray_light))
+    bottom_bar Frame(Solid(red_med))

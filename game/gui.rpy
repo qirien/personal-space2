@@ -32,6 +32,11 @@ define tan_med   = "#ccbb99"
 define tan_light = "#ffedca"
 define tan_dark  = "#9b8b6b"
 
+# Red
+define red_med   = "#d1282d"
+define red_light = "#ff6157"
+define red_dark  = "#980005"
+
 # Shades of Gray
 define white = "#ffffff"
 define white_gray = "#e0e0e0"
