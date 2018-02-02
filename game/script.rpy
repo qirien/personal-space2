@@ -107,9 +107,9 @@ label start:
         # Tuple containing the crop name, calories, nutrition, fun/value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.        
         crop_info =     (
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, 100],
-                        ["corn",         8, 4, 8, 7, 50, False, False, 100],    # Grains
-                        ["potatoes",     8, 5, 7, 6, 25, True, False, 100],
-                        ["wheat",        8, 6, 8, 10, 15, False, False, 100],
+                        ["corn",         9, 4, 8, 7, 50, False, False, 100],    # Grains
+                        ["potatoes",     10, 5, 7, 6, 40, True, False, 100],
+                        ["wheat",        9, 6, 8, 10, 20, False, False, 100],
                         ["peppers",      2, 6, 5, 5, 25, False, False, 100],    # "Fruits"
                         ["tomatoes",     3, 5, 6, 6, 15, True, False,  100],
                         ["plums",        3, 3, 8, 7, 5, False, True, 1],
@@ -128,9 +128,33 @@ label start:
                         ["onions",       4, 3, 7, 4, 5, False, False, 100],
                         ["garlic",       3, 4, 7, 4, 5, False, False, 100],
                         ["cabbage",      2, 4, 4, 3, 15, False, False, 100],   # Leafy greens
-                        ["spinach",      2, 6, 4, 4, 10, True, False,  100],
+                        ["spinach",      1, 6, 4, 4, 10, True, False,  100],
                         ["broccoli",     3, 5, 3, 3, 15, False, False, 100],
-                        ["goats",       10, 7, 7, 5, Field.NITROGEN_GOATS, True,  False, 1])   # Miscellaneous        
+                        ["goats",        8, 7, 7, 5, Field.NITROGEN_GOATS, True,  False, 1])   # Miscellaneous  
+        crop_descriptions = {
+            "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
+            "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
+            "potatoes" : "A starchy root vegetable with a lot of calories that doesn't take too much work.",
+            "wheat" : "A nutritious grain, usually made into bread.",
+            "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
+            "tomatoes" : "A juicy, acidic fruit useful raw, in sauces, or salsas.",
+            "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
+            "squash" : "This vegetable keeps well and is easy to grow.",
+            "strawberries" : "Small, sweet, and delicious! They come back every year.",
+            "blueberries" : "Tiny and delicious; useful for jam or eating raw. These will come back every year.",
+            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious.",
+            "snow peas" : "These crunchy legumes are good raw or lightly cooked.",
+            "peanuts" : "This legume takes hard work to harvest, shell, and boil, but keeps well and makes peanut butter.",
+            "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
+            "beets" : "These purple root vegetables will grow almost anywhere.",
+            "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
+            "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
+            "garlic" : "This bulb makes everything taste better.",
+            "cabbage" : "Eat it raw, cooked, or fermented. Easy to grow.",
+            "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
+            "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
+            "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat)."                        
+            }
         
         total_calories = 0
         total_nutrition = 0

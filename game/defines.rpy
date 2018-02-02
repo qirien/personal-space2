@@ -4,8 +4,9 @@
 init -100:
 
     # Static layout variables
-    define LEFT_COLUMN_WIDTH = 300
-    define MIDDLE_COLUMN_WIDTH = 400
+    define LEFT_COLUMN_WIDTH = 320
+    define MIDDLE_COLUMN_WIDTH = 480
+    define RIGHT_COLUMN_WIDTH = 182
     
     # Static indices that will never change
     define MAX_FARM_SIZE = 25
@@ -19,6 +20,7 @@ init -100:
     define ENABLED_INDEX = 6
     define PERENNIAL_INDEX = 7
     define MAXIMUM_INDEX = 8
+    define DESCRIPTION_INDEX = 9
     
     define CROP_STATS_MAX = 10    
     

@@ -42,6 +42,7 @@ define white = "#ffffff"
 define white_gray = "#e0e0e0"
 define gray_light = "#aaaaaa"
 define gray_dark  = "#5a5a5a"
+define gray_transparent = "#555a"
 define black = "#000000"
 
 
