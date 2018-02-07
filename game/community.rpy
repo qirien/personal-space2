@@ -2154,7 +2154,7 @@ label community12:
 # 13 - Save the cave!
 label community13:
     $ cave_partially_explored = False
-    $ Lily_mad_at_RET = False
+    
     "I awoke one morning to knocking on my door, and [kid_name] asking me to answer the door."
     lily "[his_name], we must act at once. Zaina told me about an enormous natural cave that the miners are set to run into tomorrow."
     lily "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
@@ -2370,6 +2370,7 @@ label community13:
     return
     
     label cave_explored:
+        $ cave_explored = True
         "I saw Dr. Lily the day after the miners demolished the cave to get the tests back from my soil samples."
         him "So this soil is fine?"
         lily "Nothing unusual. Phosphorus levels are low, so add more manure next time."
@@ -2427,6 +2428,9 @@ label community14:
         lily "I came here to study this planet, not destroy it."
         lily "I'm going with Pete and his family."
         $ luddites += 1
+    else:
+        lily "I plan to visit you often."
+        lily "There is so much more to learn about this planet."
     if not (asked_only_medicine): 
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Peron and Joanna Nguyen tell us their plans to go with Pete and his family."
@@ -2808,7 +2812,6 @@ label community16:
 
 
 label community17:
-    $ ate_jellyfish = False
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
     "This year I'm in charge of inviting guests. Who will I invite?"
     menu:
@@ -2930,8 +2933,11 @@ label community17:
         #move to a later, more sparse event?
         "After the dinner, you can't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
-        "I write an e-mail to Dr. Lily asking if she has any pictures."
-        "She responds via the instant messaging software. Guess she hasn't given up all technology."
+        "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
+        if Lily_mad_at RET:
+            "She responds via the instant messaging software. Guess she hasn't given up all technology."
+        else:
+            "She still lives in the colony, but she's been hanging out a lot with Pete to study local flora and fauna."
         lily "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
         lily "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish."
         lily "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
@@ -2941,12 +2947,7 @@ label community17:
         him "Yes, I did. Are they in season?"
         lily "I find your interest in them highly unusual."
         him "Why? Aren't they beautiful creatures?"
-        lily "Yes. But when was the last time you took the time to draw an animal?"
-        him "..."
-        lily "I suspect that the creature contains a parasite that affects human brains."
-        him "And you just let Pete serve it to everyone?"
-        lily "I have a suspicion, but no proof. Their fondness for the jellyfish seems harmless."
-        him "Huh. Well let me know if you guys start selling jellyfish sweaters."
+        lily "Yes. They are."
         return
     else:
         return
@@ -3113,9 +3114,9 @@ label community19:
         if ate_jellyfish:
             him "Also, how much is the jellyfish scarf?"
             helen "It's 30 credits, but for you I could go as low as 25."
-            him "Hmm. I'll take it."
-            helen "Here you go. See you next time."
-            him "Next time."
+            him "Hmm. I'll take it. And do you have any of that jellyfish food?"
+            helen "Here you go. We stopped eating the jellyfish. They're too cute to eat!"
+            him "Yeah. See you next time."
         else:
             him "Have a good one!"
     
@@ -3153,7 +3154,6 @@ label community19:
     him "Oh?"
     her "I bet it's the wolf slugs."
     him "That makes a lot of sense."
-    nvl clear
     ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
     if thuc_has_cattle:
         thuc_c "Ouch. That's going to impact our herd next year. Maybe I'll make a bunch of jerky."
@@ -3215,17 +3215,155 @@ label community19:
 
 
 label community20:
-    "Dr. Lily tells me her findings living with the luddites."
-    "She tells me more about the vertebrates living in the caves, and the parasite in the thready jellyfish."
-    "She feels like she's going to die soon, so she has moved in with Miranda Peron." #is Miranda married to a miner by now? might make a good event for a bit earlier.
-    "Should she be allowed to move back to the colony?"
-    menu:
-        "No.":
-            $ pass
-        "Yes.":
-            $ luddites += 1
-    "Dr. Lily dies in a few months." #TODO: her burial spot depends on your decision earlier.
-    # Or perhaps she simply walks into the ocean one day and never returns #oOooooOoo
+    
+    if Lily_mad_at_RET:
+        "Pavel called me in to meet with him."
+        him "Hi Pavel. How can I help you?"
+        pavel "Dr. Lily's health has been declining and she doesn't think she'll last much longer."
+        pavel "She wants to move back to the colony."
+        pavel "We don't have a precedent for this situation. What do you think RET would want?"
+        him "Hmm. I haven't heard much from them so I assume they're happy."
+        if luddites > 10:
+            him "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
+            pavel "That's true, but we're setting a precedent here. What if in 80 years, the luddites are 15-20 people and suddenly want to join back with us?"
+            him "That doesn't sound like a problem."
+            pavel "Well, it's like RET is rehiring them, since we grow food for the miners and for ourselves."
+            him "They could live near us and not work for RET."
+            pavel "But what about treating their illnesses and letting their kids in our school?"
+            pavel "RET isn't sending enough materials to support additional people."
+            him "I think we should let Dr. Lily move back. That way she'll share more information with us."
+            him "We have everything to lose and nothing to gain by denying her return."
+            pavel "Very well. I'll tell Dr. Lily that she can return."
+            jump lily_return
+        else:
+            him "I'm a strong believer in communication, so I'll ask."
+            him "I'll message you when I hear from them."
+            pavel "The sooner I know, the better."
+            "I write a quick insta-comm from my tablet and head over to the transmitter to send it."
+            # "Dr. Lily wants to return to colony. OK?"
+            "Later that day I check to see if they responded."
+            #TODO: letter style for their reply
+            $ style = get_parenting_style()
+            if (style== "authoritative"):
+                "She may stay as a guest but not as a resident, and she must share her findings from her research."
+                him "Sounds fair to me."
+                "I sent Pavel a message with RET's requests."
+                pavel "I'll pass this on. It sounds like calling her a guest is their way of acknowledging that she left."
+                jump lily_return
+            elif(style == "authoritarian"):
+                "Don't allow her to return."
+                "I told Pavel that RET didn't want to let her to come back."
+                pavel "I was afraid of that. Well, do you want to let her back or not?"
+                menu:
+                    "Let her come back":
+                        him "I think RET is being unreasonable. We should let her back anyway."
+                        him "She's already sacrificed so much for the colony."
+                        pavel "I agree. But I don't know if RET will be happy if they find out."
+                        him "Right. If."
+                        jump lily_return
+                    "Don't let her come back.":
+                        him "I think RET made it pretty clear that we shouldn't let her back to the colony."
+                        pavel "Okay. I'll send her a message telling her as much."
+                        jump lily_not_return
+            elif(style == "permissive"):
+                "Yes, of course let her back!"
+                "I told Pavel that RET wanted her back."
+                pavel "I'll tell her what you've decided."
+                jump lily_return
+            else:
+                "They never responded."
+                "What should I decide on?"
+                menu:
+                    "Let her come back":
+                        him "RET never got back to me, but I think we should let her come back to the colony."
+                        him "She's already sacrificed so much for us."
+                        pavel "I agree."
+                        jump lily_return
+                    "Don't let her come back.":
+                        him "I never heard back from RET, so I don't think we should let Lily back."
+                        pavel "Really? Why not?"
+                        him "It just seems safer not to let her back. You know, uphold the status quo until you hear otherwise."
+                        pavel "Okay, if that's what you think is best."
+                        jump lily_not_return
+                             
+        label lily_return:
+            "Lily moved in with her former lab assistant, Miranda Peron."
+            "One day she called me in to the lab."
+            him "Hello Dr. Lily. Welcome back!"
+            lily "Thank you. I still do not approve of RET's practices, but I do not believe they felt the gravity of my protest."
+            lily "However, thanks to spending more time in the field, I have made many more observations about the flora and fauna of this planet."
+            him "Are you going to publish them?"
+            lily "Some of my observations have led to theories, but I have not yet tested them."
+            lily "I would like to tell you some of my theories."
+            jump research_briefing
+            
+        label lily_not_return:
+            "A few months later I heard from Pete that Dr. Lily had disappeared."
+            "They found her clothes on the seashore."
+            
+            return
+            
+    else:
+        "Dr. Lily called me in to meet with her."
+        him "Hello Dr. Lily. How can I help you?"
+        lily "As you might know, I've had some health problems in the past ten years."
+        him "Actually I didn't know that. I'm sorry to hear it."
+        lily "Oh. Well, several years ago, I had a heart attack, but I was able to recover fairly quickly, thanks to the many people who came to my aid."
+        lily "I had to relearn how to speak. And I've had a droopy eyelid on my right side ever since."
+        him "Yeah, I guess it just didn't come up! There were times where [her_name] was really busy and I was really busy and I didn't even check the message board."
+        lily "In any case, I feel that I am not going to be around much longer."
+        him "Okay..."
+        lily "Miranda knows about our research, but there are a few things we're working on that I wanted to tell you personally."
+        jump research_briefing
+        
+    label research_briefing:
+        lily "I've found that a certain flower turns purple several minutes before a solar flare."
+        lily "I've tried to isolate the color-changing compound, but have had little success."
+        lily "For now, the easiest way to enjoy this technology is to simply plant this flower in areas where people may need another method of detecting solar flares."
+        lily "Pete plants them in all his fields, and I think they would be useful in every farm and in recreation areas."
+        him "That does sound like a useful plant."
+        lily "Here are some seeds. It's fairly common in higher elevations."
+        #TODO: make this a variable that affects a future event
+        
+        if ate_jellyfish:
+            lily "I suspect that the jellyfish creature you ate contains a parasite that affects human brains."
+            him "And you just let Pete serve it to everyone?"
+            lily "I have a suspicion, but no proof. Your fondness for the jellyfish seems harmless."
+            him "Huh. I just assumed everyone liked them. Come on, they're like the mascot of this planet!"
+            lily "They are indeed beautiful. The way they can aggregate and form larger creatures is remarkable."
+            him "They... combine to form a bigger animal?"
+            lily "Yes, Earth has a few examples. The Portugese Man-of-War is technically an aggregate of many smaller animals."
+            him "Huh."
+            lily "But unlike the Portugese Man-of-War, these jellyfish have a nervous system in aggregate."
+            lily "They are constantly sending out synaptic impulses into the ocean to find each other."
+            him "That sounds really inefficient."
+            lily "It is, but somehow it works. The aggregate is intelligent, but I haven't been able to test how intelligent."
+            lily "The open ocean on Talaam is essentially unexplored."
+            lily "You should know one more thing about that parasite. It may affect reaction speed."
+            him "Is that what you were testing when you went around throwing things at everyone?"
+            lily "Yes, I did that to see if it was worth investigating. I asked [her_name] to disclose anonymous results of the yearly physical, and each year after the harvest festival, several people had a sharp dip in reaction times."
+            him "I think we should stop eating it."
+            lily "Wait until I finish the paper. It's only a few milliseconds of difference."
+            
+        else:
+            pass
+        
+        if cave_explored:
+            lily "We have been able to breed the cave newts in captivity."
+            lily "We did tests on their skin secretions, and they are remarkably resistent to radiation."
+            lily "We have been able to isolate the radiation-resistant compounds. For now, we are unable to duplicate them."
+            lily "However, if we continue breeding the newts, we can harvest enough of their skin secretions to make a salve that will protect the wearer from radiation for 12 hours."
+            him "Wow. That's fantastic."
+            lily "We're also looking into applications to fabrics, but unfortunately they all wash out."
+            lily "It's definitely research worth funding."
+            him "Oh, undoubtedly. I think we all agree on that."
+            lily "I'm glad you feel that way."
+        else:
+            pass
+        
+        "A few months later, Dr. Lily disappeared on a visit to the ocean."
+        "Miranda said that she wanted to see the ocean one last time before she died."
+         
     return
 
 
