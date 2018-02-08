@@ -24,6 +24,8 @@ label start:
         responsive = 0
         total_responsive = 0
         
+        # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
+        
         # The Four Parenting Styles
         # Only one of these should be increased each year (each type of event?)
         authoritarian = 0

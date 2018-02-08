@@ -3332,7 +3332,7 @@ label family13:
     # TODO: Is this different based on earlier decisions?
     kid "So, you need a man and a woman to make a baby, right?"
     him "Right..."
-    kid "Well, how, exactly, does that work? I mean, I know they come together, but... how?"
+    kid "Well, how, exactly, does that work? I mean, they come together, but... how?"
     him "Let me think about the best way to explain that to you..."
     menu:
         "She's not ready for this":
@@ -3380,7 +3380,7 @@ label family13:
             menu:
                 "What should I tell her about sex?"
                 "Tell her the biology facts." if not sex_ed_biology:
-                    him "A man's penis can go inside the woman's vagina and put the sperm there when they have sex."
+                    him "A man's penis can go inside the woman's vagina and the sperm comes out of it when they have sex."
                     kid "Oh."
                     "She thought about it for a minute."
                     kid "And that's how you and Mom made me?"
@@ -3419,9 +3419,10 @@ label family13:
                     if (not sex_ed_biology):
                         kid "Okay, but what is it?!"
                     else:
-                        kid "Okay, can I try it?"
-                        him "No! I mean, not yet. Someday. When you're much older."
-                        kid "Why not?"
+                        kid "Like... a hug?"
+                        him "Kind of. But special. It makes you feel closer to the person you're with, so you want to make sure it's someone you love enough to be with forever."
+                        kid "Forever?"
+                        him "Well, that's how I feel. Some people don't look at it as that special, I guess. But your mom and I only share it with each other, so it helps us feel closer together."
                     $ sex_ed_counter += 1                        
                     $ sex_ed_goodfeeling
                     jump sex_ed                    
@@ -3432,9 +3433,8 @@ label family13:
                     else:
                         kid "Oh. How do you know if you're ready for a baby?"
                         him "Well, both people need to be ready to take care of it, and to know that they're going to stay together and give the baby good parents."
-                        kid "Are you going to have another baby?"
-                        # TODO: change this based on number of kids, etc?
-                        him "Maybe. That's up to me and your mom."
+                        kid "Like you and mom?"
+                        him "Yeah! Like me and mom."
                     $ sex_ed_counter += 1
                     $ sex_ed_birthcontrol
                     jump sex_ed
@@ -4418,33 +4418,227 @@ label family17_angry:
             
 
 # 11.1 Earth years old
-# Wants a bike!
+# Bathing is still a necessity
 label family18:    
-    "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
+    "I still couldn't get used to how tall [kid_name] was all of a sudden. It was like my little girl had spent a few years in a portal world and come back to us completely different."
+    "Well, not completely different."
+    "Sometimes she still acted like a little kid."
+    him annoyed "Yes, I'm serious. You need to take a bath!"
+    kid "Can't I just wash off here at the sink?"
+    him determined "No. You need a real bath, all over."
+    kid "Ugh, why?! I just had a bath two days ago!"
     menu:
-        "Find a way to get her a bike":
-            "A bike is an essential part of childhood!  How will you do it?"
-            menu:
-                    "Ask if she can help out someone who has a bike and then get to use it.":
-                            $ responsive += 1
-                            $ demanding += 1
-                            $ authoritative += 1
-                    "Make a bike out of spare parts.":
-                            $ responsive += 1
-                            $ permissive += 1
-                    "Ask [her_name] to help you make a bike out of spare parts.":
-                            $ responsive += 1
-                            $ permissive += 1
-                            #maybe also relationship with wife improves?
-        "There's just no bikes. Deal with it.":
-            $ neglectful += 1
-        "If she wants a bike, she'll have to be old enough to do the bike job.":
+        "What should I say?"
+        "Because I said so.":
+            him annoyed "Because I said so. I'm the dad; you're the kid. When I say 'Take a bath', you take a bath!"
             $ demanding += 1
-            $ authoritarian += 1
-        "Sympathize, and suggest some alternatives.":
-            "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
+        "Because you stink.":
+            him surprised "Want me to tell you the truth?"
+            kid "Yeah, I guess?"
+            him determined "You're getting kind of stinky."            
+        "Because it's healthy.":
+            him normal "I want you to be healthy. Right now there is a seriously out of control bacteria party going on in your armpits and who knows where else, and party time is over."
+    kid "Dad!"
+    him normal "Don't you want the truth?"
+    kid sad "You don't have to say it like that."
+    him "Well, you need to take a bath."
+    kid "I really hate taking baths!"
+        
+    menu:
+        "What should I say?"
+        "(Say nothing)":
             $ responsive += 1
-            $ authoritative += 1                
+            "I just walked away. It wasn't worth fighting over. If she really wanted to walk around stinky and dirty, I guess that was her problem."
+            # TODO: [her_name] notices and says something?
+            $ neglectful += 1
+            return
+        "You'll take a bath, or else!": 
+            $ demanding += 1
+            him angry "You'll take a bath, or else!"
+            kid annoyed "Or else what?!"
+            menu:
+                "What should I say?"
+                "I'll throw you in the river!":
+                    him annoyed "I'll throw you in the river."
+                    kid "I'm eleven years old. You can't just carry me around like a baby."
+                    him angry "You don't think I could?!"
+                    "I lifted her up. It had been a long time since I carried her anywhere. Her arms and legs were so long, now. And she was much heavier."
+                    kid "Stop it! Dad, put me down! I'll take a bath, I will, just put me down!"
+                    "I could probably make it all the way to the river. But maybe I shouldn't. I felt suddenly guilty. How would I like it if someone threw me in the river? Then again, I didn't want to let her think she could get away with this kind of disobedience."
+                    menu:
+                        "What should I do?"
+                        "Set her down.":
+                            him "Fine."
+                            kid "Wow. I can't believe you were seriously going to throw me in the river."
+                            him "I can't believe you were seriously going to make me throw you in the river instead of just taking a bath."
+                            kid "I didn't make you do anything. You always tell me that [bro_name] doesn't make me do stuff, that I have a choice when he makes me mad. Well, so do you."
+                            him "..."
+                            "Maybe she was right..."
+                        "Keep going.":
+                            him "You had your chance."
+                            kid "Dad, seriously, let go, now!"
+                            "She started prying at my hands, but I kept holding on to her the entire walk to the river. It took about twenty minutes, her protesting and crying the whole way."
+                            # TODO: scene change
+                            "The air was cool, but not cold. It would be an uncomfortable bath for her, but she wasn't in any danger. The leeches all lived in the warm ponds, not the cold river, so she couldn't even complain about those."
+                            "When we arrived, I didn't pause at all. I walked right into the water, boots and all, and dropped her in the middle of it with her clothes still on."
+                            "Then I turned around to start walking back home."
+                            "A huge wave of water splashed my back. [kid_name], drenched and furious as a cat, was using all her might to send water my direction."
+                            "I felt kind of mad, but I couldn't blame her. I had humiliated her and made her feel like a little kid again. I thought that was what she needed. But what did she need now?"
+                            menu:
+                                "What should I do?"
+                                "Try to cheer her up with a water fight.":
+                                    $ responsive += 1
+                                    "I send a wave of water back, and soon we were splashing and yelling and hollering."
+                                    "Our anger turned into laughter as we aimed water splashes at each other."
+                                    him happy "Dodge this!"
+                                    kid "Ha ha, you missed! Besides, I'm already soaked so I don't even notice any more water!"
+                                    him normal "You couldn't hit me if I was the-- blruggleegrlgle."
+                                    kid "What's that? I couldn't hear you; seems like your mouth's full of water!"
+                                    him "Here, come closer so you can hear better."
+                                    # TODO: animate this
+                                    kid "What? What were you going to say?"
+                                    him "I don't know WATER you going to say?!"
+                                    kid "No fair! You tricked me!"
+                                    "Finally, both of us sopping wet and shivering, we headed for home."
+                                    scene farm_interior with fade
+                                    show her at midright with dissolve
+                                    show kid at center
+                                    show him at midleft
+                                    with moveinleft
+                                    her surprised "There you are! Where have you-- um, why are you soaking wet?"
+                                    "[kid_name] and I looked at each other, then burst out laughing."
+                                    him happy "[kid_name] took a bath."
+                                    kid happy "Dad needed one, too."
+                                    her normal "Hmmm. Looks like... fun?"
+                                    kid normal "Yeah, it was pretty fun. Too bad you missed it."
+                                    her happy "Too bad."
+                                    $ authoritarian += 1
+                                    return
+                                "Just walk home.":
+                                    $ demanding += 1
+                                    "What she needed was a serious dad who would make sure she did what she needed to do, and never backed down."
+                                    "I would be that dad, even if she hated me for it."                                    
+                                    $ authoritarian += 1
+                                    return
+                                                        
+                "No food until you take a bath.":
+                    him annoyed "No food until you take a bath."
+                    kid "What?? You'd starve your own kid? Over a bath?!"
+                    him determined "It'd be you starving yourself because you're too lazy to take a bath!"
+                    kid "Ugh! You treat me like such a baby sometimes!"
+                    him angry "You're acting like a baby! Adults don't walk around assaulting each other's nostrils with their stench! When they're dirty, they just go take a bath!"
+                    $ authoritative += 1
+                    
+                "No computer pad until you take a bath.":
+                    him annoyed "No computer pad until you take a bath."
+                    kid "Fine. I don't have time for that today, anyway; I have too much homework."
+                    "Uh-oh. I really wanted her to take a bath today; I was hoping that my threat would do the trick."
+                    menu:
+                        "What should I say?"
+                        "Fine; go do your homework.":
+                            him determined "Fine. Go do your homework."
+                            kid "I'm already doing it! You don't have to tell me!"
+                            "She really didn't like me telling her what to do."
+                            "Too bad; I was her dad. It was my job to tell her what to do."
+                            "She finished her homework right after dinner, and reached for the computer pad."
+                            him "Take your bath first."
+                            kid "Daaad! I've been working hard on homework this whole time and now I just want to take a break!"
+                            him "As soon as you've finished your bath, you may use the computer pad."
+                            $ authoritative += 1
+                        "I changed my mind.":
+                            $ demanding += 1
+                            him annoyed "I changed my mind. You have to take a bath right now."
+                            kid "What?! I'm trying to do my homework!"
+                            him angry "Right. NOW!"
+                            $ authoritarian += 1
+                        "(Say nothing.)":
+                            "I didn't say anything. Sooner or later she'd want to use the computer pad, and then she'd have to take a bath."
+                            "Sure enough, right after dinner, she finished her homework and reached for the computer pad."
+                            him "Take your bath first."
+                            kid "Daaad! I've been working hard on homework this whole time and now I just want to take a break!"
+                            him "As soon as you've finished your bath, you may use the computer pad."
+                            $ authoritative += 1                                       
+        "If you decide not to take a bath, you'll need to stay outside with the other stinky things.":            
+            $ demanding += 1
+            $ responsive += 1
+            him surprised "If you decide not to take a bath, you'll need to stay outside with the other stinky things. I don't allow Lettie or the goats in the house, so if you're stinky like them, you'll need to stay outside, too."
+            kid "But... I have to do my homework!"
+            him normal "I guess you can decide if you want to do your homework outside or take a bath first."
+            kid "It's cold outside!"
+            "It wasn't that cold. But I wasn't going to be sidetracked into an argument about that."
+            him normal "You can wear a jacket if you want. Or go in the barn."
+            kid "But, but..."
+            him happy "It's up to you."
+            "I felt so free. It wasn't up to me to figure out how to make her take a bath; I just needed to set some reasonable conditions and let her decide."
+            kid "Ugh, fine, I'll take a bath!"
+            $ authoritative += 1
+        "I hate bathing, too. Maybe if we all stink we won't notice it so much?":
+            $ responsive += 1
+            him happy "I hate bathing, too. Maybe if we all stink we won't notice it so much?"
+            kid "You stink. You should take a bath."
+            him "Nope. [kid_name] hates baths, so none of us are going to take a bath ever again."
+            kid "How about you take a bath, and then I'll take one?"
+            him "I thought we weren't doing the bath thing anymore?"
+            kid "You first."
+            him "Okay. I love baths."
+            hide him with moveoutleft
+            scene black with fade
+            "I went off to the bath. I was going to have the best bath ever."
+            him happy "Wow, this warm water feels so good!"
+            him surprised "Why didn't I do this earlier?! This is so fun!"
+            him normal "Mmmm, this soap smells nice!"
+            him surprised "I feel good, na-na na-na na-na na." # TODO: Singing notes in here?
+            scene farm_interior with fade
+            show kid at midright with dissolve
+            show him at midleft with moveinleft
+            him happy "Wow, that was great! That was so fun; I might have to go take another bath in a few hours!"
+            "[kid_name] just rolled her eyes and sighed."
+            $ permissive += 1
+        "Why don't you want to take a bath?":
+            $ responsive += 1
+            him surprised "Why don't you want to take a bath?"
+            kid "I just took one! Besides, I don't stink."
+            him surprised "Did you know that after prolonged exposure to your own smell, your nose's smell receptors stop responding to it?"
+            kid "What do you mean?"
+            him normal "Your nose gets used to your own smell, and you can't smell yourself."
+            kid "You just made that up."
+            him "No, it's called olfactory fatigue. Here, let's look it up."
+            "I showed her an article on the subject."
+            kid "Hmmm."
+            him "In fact, people didn't used to take so many baths, and they probably didn't really notice the unwashed body scent so much. But in our culture, we really notice it."
+            kid "Did people on Earth take baths more than we do here on Talaam?"
+            him "Yeah, I used to take a shower every day."
+            kid "Every day?!"
+            him "Yup. I'd come in from the farm and first thing I'd do was take a shower. If I didn't, my mom wouldn't feed me anything."
+            kid "Well, a shower sounds better than a bath."
+            him "Yeah, I kind of miss showers. Maybe we can figure out how to put one in sometime."
+            him "But for now, we have the washtub."
+            kid "Do I really have to take a bath?"
+            him "I'm not going to make you do it. But when I say 'You stink,' know that I'm saying that as someone who genuinely loves you and doesn't want other people to judge you by your scent."
+            kid "I still don't think I stink."
+            him "You do. But it's okay; I love you anyway."            
+            kid "Fine. I'll take a bath."
+            $ authoritative += 1
+ 
+    "She stomped off. A few minutes later, I heard the pipes running. Hopefully that meant she was filling up the washtub."
+    "She came out a while later, dressed in clean clothes, her skin damp, but she still smelled bad. If anything, now it was worse, like a wet dog had been shut up in a locker room."
+    him surprised "Did you use soap?"
+    kid angry "You didn't say anything about soap!"
+    him determined "I thought it was obvious."
+    kid "No!"
+    menu:
+        "What should I say?"
+        "Go back and wash with soap.":
+            him determined "It's not a bath unless you use soap. Go try again."
+            kid "Daaad! You're wasting my whole afternoon!"
+            "She tried to get away without using soap a few more times, but each time I sent her back to the tub."
+            "Soon she didn't forget, but she still didn't like baths."
+        "Use soap next time.":
+            him concerned "You know what... just, use soap next time."
+            kid happy "Okay."
+            "She forgot to use soap about half the time, but I just couldn't muster up the energy to make her go back and do it all again."
+            "Hopefully eventually she would learn how to clean herself properly..."
+            
     return
 
 # 11.8 Earth years old
@@ -4818,56 +5012,35 @@ label family21:
     return
 
 # 13.6 Earth years old
-# Bathing is still a necessity
+# Wants a bike!
 label family22:
-    "I still couldn't get used to how tall [kid_name] was all of a sudden. It was like my little girl had spent a few years in a portal world and come back to us completely different."
-    "Well, not completely different."
-    "Sometimes she still acted like a little kid."
-    him annoyed "Yes, I'm serious. You need to take a bath!"
-    kid "Can't I just wash off here at the sink?"
-    him determined "No. You need a real bath, with real soap, and you need to wash your hair!"
-    kid "Ugh, why?! I just had a bath two days ago!"
+    "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
     menu:
-        "What should I say?"
-        "Because I said so.":
-            him annoyed "Because I said so. I'm the dad; you're the kid. When I say 'Take a bath', you take a bath!"
-            $ demanding += 1
-        "Because you stink.":
-            him surprised "Want me to tell you the truth?"
-            kid "Yeah, I guess?"
-            him determined "You're getting kind of stinky."            
-        "Because it's healthy.":
-            him normal "I want you to be healthy. Right now there is a seriously out of control bacteria party going on in your armpits and who knows where else, and party time is over."
-    kid "Dad!"
-    him normal "Don't you want the truth?"
-    kid sad "You don't have to say it like that."
-    him "Well, you need to take a bath."
-    kid "I really hate taking baths!"
-        
-    menu:
-        "What should I say?"
-        "(Say nothing)":
-            $ responsive += 1
-            "I just walked away. It wasn't worth fighting over. If she really wanted to walk around stinky and dirty, I guess that was her problem."
+        "Find a way to get her a bike":
+            "A bike is an essential part of childhood!  How will you do it?"
+            menu:
+                    "Ask if she can help out someone who has a bike and then get to use it.":
+                            $ responsive += 1
+                            $ demanding += 1
+                            $ authoritative += 1
+                    "Make a bike out of spare parts.":
+                            $ responsive += 1
+                            $ permissive += 1
+                    "Ask [her_name] to help you make a bike out of spare parts.":
+                            $ responsive += 1
+                            $ permissive += 1
+                            #maybe also relationship with wife improves?
+        "There's just no bikes. Deal with it.":
             $ neglectful += 1
-        "You'll take a bath, or else!":            
-            him angry "You'll take a bath, or else!"
-            kid annoyed "Or else what?!"
-            "I'll throw you in the river!"
+        "If she wants a bike, she'll have to be old enough to do the bike job.":
             $ demanding += 1
             $ authoritarian += 1
-        "If you decide not to take a bath, you'll need to sleep in the barn with the other stinky things.":
-            $ demanding += 1
+        "Sympathize, and suggest some alternatives.":
+            "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
             $ responsive += 1
-            $ authoritative += 1
-        "I hate bathing, too. Maybe if we all stink we won't notice it so much?":
-            $ responsive += 1
-            $ permissive += 1
-        "Why don't you want to take a bath?":
-            $ responsive += 1
-            # TODO: work something out
-        
-return
+            $ authoritative += 1                
+    return
+
 # 14.2 Earth years old
 # Chatting with friends on family tablet
 # Address several statistics: teens that spend more time on screens and less doing actual stuff
