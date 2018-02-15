@@ -577,7 +577,7 @@ label community5:
         elif(style == "authoritarian"):
             "50 miners are arriving in 4 Earth years. Prepare 2 feed them, and create $ so that they can pay u 4 what they eat."
         elif(style == "permissive"):
-            "We're sending fifty miners ur way, so if u could feed them, that would be g8. They'll have $."
+            "We're sending fifty miners ur way, so if u could feed them, that would be gr8. They'll have $."
         else:
             "50 new miner neighbors are coming in 4 Earth years. Feed them."
             
@@ -3370,7 +3370,7 @@ label community20:
 label community21:
     "It's predictably overcast this time of year. Lots of people go camping now since there isn't as much danger from solar flare radiation."
     thuc "A big group is headed to the seashore this weekend. Want to come with your family?"
-    him "Yes, I'd love a change of pace. Are any of your kids staying behind? I just need someone to take care of a few things while we're gone."
+    him "Yeah, I need a change of pace. Are any of your kids staying behind? I just need someone to take care of a few things while we're gone."
     thuc "Sure, send Gardenia a message. She's staying with Miranda while the rest of us explore."
     him "Who else is going to be there?"
     thuc "I think Kevin and Zaina are going too."
@@ -3415,7 +3415,11 @@ label community21:
     kid "Oh yeah, I've heard of you. It's your fault my friend's parents are always stressed out."
     brennan "That's one way of looking at it."
     kid "Dad says that you might talk pretty but that underneath you're like a snake."
-    brennan "Well, at least I'm pretty." #is this too weird
+    brennan "Really? I wonder what that makes you, then..." #is this too weird
+    him "A mongoose."
+    kid "What's a mongoose?"
+    him "A cute, furry mammal that eats snakes."
+    brennan "Interesting..."
     "We kept walking the rest of the day, chatting with each other while we walked."
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     #line about what their kids are doing
@@ -3429,7 +3433,7 @@ label community21:
     "Some people caught fish or jellyfish and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     "That evening, Pete and his family stopped by."
-    if luddites > 10: #TODO: calibrate this number. don't make this event too easy to trigger.
+    if (luddites > 10): #TODO: calibrate this number. don't make this event too easy to trigger.
         pete "It's hunting season for the jellyfish."
         him "I noticed the lights last night. It's beautiful."
         pete "It's even better up close. Would you and [kid_name] like to come out on the boat with me?"
@@ -3464,7 +3468,7 @@ label community21:
         "After everyone had seen it, we let it go back into the ocean."
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
-    if miners > 10:
+    if (miners > 10):
         brennan "Zaina and some of the miners caught a bunch of fish. Want to join us for a little roasting party?"
         her "I saw that earlier. They caught the edible ones? I'm surprised the jellyfish couldn't get them all."
         brennan "I think she found a little enclave where it was difficult for the jellies to reach them."

@@ -76,6 +76,7 @@ init python:
             return final_yield
 
         # Reset the crops for a new year.
+        # TODO: keep perennials
         def reset_crops(self, size=MAX_FARM_SIZE):
             self.crops = Crops(size)
         

@@ -14,7 +14,7 @@ init -100:
     define NAME_INDEX = 0
     define CALORIES_INDEX = 1
     define NUTRITION_INDEX = 2
-    define FUN_INDEX = 3
+    define VALUE_INDEX = 3
     define WORK_INDEX = 4
     define NITROGEN_INDEX = 5
     define ENABLED_INDEX = 6
@@ -22,7 +22,10 @@ init -100:
     define MAXIMUM_INDEX = 8
     define DESCRIPTION_INDEX = 9
     
-    define CROP_STATS_MAX = 10    
+    define CROP_STATS_MAX = 10
+
+    # Calorie data
+    define CALORIES_BASE = 50   
     
     # Static variables used for endings
     define ATTACHMENT_GOOD = 20

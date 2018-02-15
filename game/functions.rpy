@@ -139,6 +139,30 @@ init -100 python:
                 return "default_crop_event"                                
             
         
+    # Calculate the calories required for the family for this year.
+    # TODO: Kids use more calories if you make them do farm work?
+    def get_calories_required():
+        calories_kid = get_calories_kid(earth_year)
+        calories_bro = 0
+        if (bro_birth_year != 0):
+            calories_bro = get_calories_kid(bro_age)
+        return (CALORIES_BASE + calories_kid + calories_bro)
+        
+    def get_calories_kid(age = 0):
+        if (0 <= age <= 1):
+            return 5
+        if (2 <= age <= 4):
+            return 10
+        if (5 <= age <= 10):
+            return 15
+        if (11 <= age <= 13):
+            return 20
+        if (14 <= age):
+            return 25
+            
+    def get_work_available():
+        return 60
+            
 ##
 # Set things up for a scene in the bedroom
 ##

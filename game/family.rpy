@@ -4669,7 +4669,7 @@ label family19:
            "There's nothing romantic or loving about it -- it's designed solely to ramp up hormones and get to a climax as fast as possible."
            "And the rough foreplay seems uncomfortably like rape -- not something you'd want [kid_name] to think was normal."           
            kid surprised "Dad, what are you watching?"
-           him "I found this video on here. Looks like something you found?"
+           him "I found this video on here when I was looking at your history."
            kid blushing "Oh. That."
            jump family19_porn_chat                   
         "It's not a big deal. Do nothing.":
@@ -4684,15 +4684,15 @@ label family19:
             kid "I don't know."
             him surprised "I know that it's from when you were using it."
             kid "Yeah..."
-            "She falls silent. You sense that she wants to leave, but she also has questions that she doesn't know how to ask."
+            "She falls silent. You sense that she wants to leave, but she might also have questions that she doesn't know how to ask."
            
             menu family19_porn_chat:
                "What should I say?"
-               "That was probably an accident, right?" if (sex_ed_biology):
+               "Tell me about what happened." if (sex_ed_biology):
                    $ demanding += 1
                    $ responsive += 1
-                   him "That was probably an accident, right?"
-                   kid "...yeah."
+                   him "Tell me about what happened."
+                   kid "It was an accident."
                    him "I know sometimes pornography can come up when you're not even looking for it."
                    kid "Yeah, I wasn't! I was just looking up something about a book I was reading."
                    him "I know. I probably should have talked to you about it before. But it's kind of hard for me to talk about sometimes, since sex is such a private thing."
@@ -4793,6 +4793,7 @@ label family19:
 # 12.4 Earth years old
 # Musical Instrument
 label family20:
+    # TODO: You have made a mistake. Do you admit and apologize?  Reward her for your mistake?
     "Terra wants to learn a musical instrument.  The colony doesn't have any or anyone who plays that instrument."
     menu:
         "FInd a way to make one and find a teacher who at least knows something about music.":
