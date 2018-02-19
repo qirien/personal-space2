@@ -925,7 +925,7 @@ label community6:
 label community7:
     show community_center with fade
     show zaina at midright 
-    zaina "The fossil record near here contains many animals that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
+    zaina "The fossil record near here contains many vertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
     zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
     zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
@@ -3389,9 +3389,11 @@ label community21:
     brennan "Don't eat anything unless you are certain it's edible."
     brennan "When you pee, make sure you're far from the river or food. And no smoking in tents!"
     "We started walking along."
-    her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before Terra was born."
+    her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [her_name] was born."
     her "There's a path here and everything."
     kevin "Yes, I like to visit the ocean at least once a month. And Pete and his cattle are excellent at making a pathway."
+    him "Pete comes through here?"
+    kevin "Yeah, his family winters near the beach." #TODO: does the player know this some other way? can't remember
     "We had to climb through some rocky areas, but our progress was good."
     him "What's with the no smoking rule? I didn't know we had anything to smoke around here."
     kevin "Fire weed. It's a mild stimulant that the miners use to stay awake so they can work and extended period of time"
@@ -3429,9 +3431,14 @@ label community21:
     "Some people caught fish or jellyfish and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     "That evening, Pete and his family stopped by."
-    if luddites > 10: #TODO: calibrate this number. don't make this event too easy to trigger.
-        pete "It's hunting season for the jellyfish."
-        him "I noticed the lights last night. It's beautiful."
+    if luddites > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
+        pete "Guess what! I have a two-way radio now. It turns out communication is good for business."
+        him "Really? I thought you were all into a technology-free lifestyle."
+        pete "I do want to limit my dependence on technology. But I can't ignore the fact that I also live in a community where other people want to help me sometimes."
+        him "That will be so much more convenient than trying to hunt you down."
+        pete "It's going to stay in our home base area, so it probably won't be me answering it, but we're going to see how it goes."
+        pete "I bet you noticed that it's hunting season for the jellyfish."
+        him "Yes, it's beautiful."
         pete "It's even better up close. Would you and [kid_name] like to come out on the boat with me?"
         if ate_jellyfish:
             him "Yes, I would love to see them up close!"
@@ -3442,8 +3449,9 @@ label community21:
         "[her_name] was a bit concerned but also excited when I told her about it."
         her "Have him take me out next if it's really cool."
         "We went out on Pete's little fishing boat, past the place where the waves started crashing."
+        pete "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows?
         "The lights grew bigger, and when we looked closely, we saw that the animals had a different shape."
-        "They were about the size of a toaster. They had eyespots on the sides and tentacles at the opposite end, almost like a squid."
+        "They were about the size of a toaster. They had eyespots on the sides and tentacles at the opposite end, almost like a squid, only with a see-through shell."
         pete "Now for the fun part!"
         "Pete picked up one of the jellyfish and put it in a bucket in the bottom of the boat."
         "It kept glowing, and changed colors with Pete's touch."
@@ -3461,10 +3469,13 @@ label community21:
         kid "That sounds fun. Can I play with it some more?"
         pete "Sure, I bet your mom would love to see it too."
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
+        "I was worried about the animal's skin, but it had a shell made of glass, which was very resilient."
+        "Brennan took a few photos. He seemed pretty interested in their shells."
         "After everyone had seen it, we let it go back into the ocean."
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
     if miners > 10:
+        #put Chaco in here somewhere? we haven't seen him in a while
         brennan "Zaina and some of the miners caught a bunch of fish. Want to join us for a little roasting party?"
         her "I saw that earlier. They caught the edible ones? I'm surprised the jellyfish couldn't get them all."
         brennan "I think she found a little enclave where it was difficult for the jellies to reach them."
@@ -3493,6 +3504,45 @@ label community21:
         her "Too true. A few of the miners have mentioned it to me. I can give out recommended doses and warn about side effects, but we don't really know what the long-term side effects are right now."
         brennan "Ultimately it's their responsibility."
         her "But we need to make sure they have enough information to make good decisions."
+        if luddites > 8:
+            pete "What's this I hear about regulating fireweed? Are you trying to reduce my income or something?"
+            brennan "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
+            brennan "If I knew how much to take for a little pick-me-up that would still let me sleep at night I use it occasionaly."
+            pete "Fair enough."
+            pete "I have some yogurt here that would go really well on these fish."
+            brennan "Yes, please share some! And take a fish in return. You seem to be familiar with them."
+            pete "We usually spend part of the winter near the ocean. The mountain provides some shelter from storms and shade when it's sunny."
+            pete "There's a big cave where we usually camp that is a wonderful shelter. There are holes in the top so we can have a fire, but it's enclosed enough that we don't need to worry about radiation."
+            pete "The fish are easy to hunt here too, and their bones are good fertilizer"
+            pete "The fish you found are actually part of one of my farming experiments... and it looks like it's working."
+            pete "Please leave a few to keep reproducing."
+            zaina "Oh, you're cultivating them. That explains why there were so many!"
+            brennan "A few fish? Like, a male and a female?"
+            pete "Actually these fish change sexes based on conditions. But if you leave 5-6 per pool that should be sufficient."
+            him "That makes sense. Let's save the bones."
+        else:
+            "Pete came and asked to talk to Zaina. I couldn't hear exactly what they were talking about, but Pete looked mad and Zaina looked defensive."
+            # zaina comes back
+            him "What was that about?"
+            zaina "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish."
+            zaina "He said it was obvious they were being cultivated because there were so many in the pool."
+            zaina "But seriously, how was I supposed to know? He wanted us to compensate him for the damages to his stock."
+            "That sounds..."
+            menu:
+                "fair.":
+                    $ luddites += 1
+                    him "If you came to my farm and picked my tomatoes I would say the same thing."
+                    him "It's only fair for us to compensate him for his work."
+                    zaina "Okay, how much do you want to pay for the fish your family ate?"
+                    him "I don't know, 10 credits? We'll think of something."
+                    zaina "I'll pitch in 10 credits then."
+                "absurd.":
+                    him "There weren't any fences or signs posted."
+                    him "How could he expect us to know about his fish farm?"
+                    zaina "I know. He needs to realize that he doesn't own everything outside the colony."
+                    brennan "He knows he doesn't own everything. But these fish were surprisingly easy to catch, right?"
+                    brennan "Let's give him a few fossils or something when we get back. I'll talk to him."
+            
     else:
         "[kid_name] caught a fish with Zaina, and we cooked it over an open fire."
         "It looks like the miners had the same idea. They got a huge bonfire going."
@@ -3507,26 +3557,311 @@ label community21:
 
 
 label community22:
-    "Miners moving on to start mining the next mountain, which is near the luddites's winter quarters by the sea."
-    "The luddites refuse to move, even though they know that their caves are in danger of collapsing with the mining."
-    "What do I do?"
-    menu:
-        #this feels like it escalated really quickly. Talk with both parties before the menu? depending on your relationship.
-        "Form a militia with the miners to force the luddites out of the cave.":
-            $ miners += 1
-        "Not my problem. Do nothing.":
-            $ luddites -= 2 #TODO: minuses a problem? this seems like kind of a boring option?
-        "Petition RET and the miners to choose a different location for now.":
-            $ luddites += 1
-        "Form a militia with the luddites to force the miners to a different site.":
-            # Organize a passive resistance, strike, etc.  A petition from lots of farmers saying they will leave the colony if the luddites are not protected?  Only works if you have really high scores with everyone.
-            # if you form a militia, someone gets injured or maimed
-            $ pass
-    return
+    if (miners > 10) and (luddites > 9) and (is_liason):
+        nvl clear
+        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing the luddites' home."
+        brennan_c "Except I don't know how to get ahold of Pete."
+        him_c "Oh, he has a radio now. I can sort of text him with it."
+        brennan_c "How 21st-century. Ask him if he can meet tomorrow evening at the canteen in the miner camp. Around 5pm, if he has a watch."
+        him_c "Okay, I sent him the message."
+        kevin_c "Zaina will be in attendance, and I convey my regrets."
+        "That evening, Pete replied to say he could make it."
+        him_c "Pete can come. See you all there."
+        
+        "The next evening..."
+        brennan "We've almost completely mined the rare metals from the first mountain."
+        pete "It's not much of a mountain anymore."
+        brennan "That is an unfortunate side effect of mining. A side effect which concerns you, because the next logical place for us to mine is a mountain near your wintering area."
+        pete "This planet is so enormous. There must be some other mountain you can dig into."
+        zaina "I've gone on several trips over the last few years to look for better prospects. The mountain near the ocean is our best prospect in a 50-mile radius." #I think the mountain should have a name.
+        pete "You say that, but I can't help but feel that you're persecuting me and my family. I guess you're going to tell us we have to move now."
+        pete "And you're in on this too, [his_name]? It figures."
+        him "That's not why we're meeting you. We want you to show Zaina and Kevin exactly where you live so that they can avoid disturbing you."
+        pete "Is that... right?"
+        brennan "The mountain is enormous. Part of what makes it efficient is that our mining equipment is already close to it. But we don't need to mine the whole thing."
+        pete "You say that, but you don't know how much of the mountain we live in."
+        zaina "I thought you said it was one cave."
+        pete "One main cave. I think you should see it before making any decisions."
+        zaina "I'm always up for making informed decisions."
+        him "I can't leave my farm right now, but I'm sure Zaina is up for the job."
+        zaina "It shouldn't take more than a few days."
+        brennan "While you're there, see if you can collect any shells from those tablet-like squids."
+        zaina "Oh, the glass ones? Are you thinking they could have high mineral content?"
+        pete "There are places where they're common. I can show you."
+        
+        "A week later..."
+        nvl clear
+        zaina_c "So, Pete wasn't kidding when he said that the caves are extensive."
+        zaina_c "I think some kind of animal probably made them, because they are much bigger than most Earth caves."
+        zaina_c "Maybe when this part of the planet was underwater? There were a lot of vertical tunnels that Pete has put ladders in."
+        zaina_c "The caves penetrate about three-quarters of the mountain, but they are only using about half of the caves."
+        zaina_c "Pete seemed to expect that we would make them move. But maybe we can work out a compromise."
+        zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
+        brennan_c "It's tempting to ask him to leave. But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
+        him_c "I agree. If it's possible, let's only  mine a portion of the mountain."
+        kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
+        brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore, but start taking samples to get a better plan."
+        "The mining continues without incident."
+        # does this need a stat +=?
+        return
+        
+    elif (miners > 10) and (luddites > 9) and not (is_liason):
+        nvl clear
+        sara_c  "Hi [his_name]. We need to talk to Pete about mining in his winter area. Do you know where he is right now?"
+        him_c "Actually, he has a two-way radio now! I can sort of text him."
+        sara_c "Great. Can you give me his channel?" #can radios work this way?
+        him_c "He might be more willing to answer if I ask him."
+        sara_c "Tell him to meet us at the canteen in Brennan's mining camp tonight at 5pm."
+        him_c "Done."
+        "That afternoon, Pete responded that he'd go, and I conveyed his message to Sara."
+        him_c "Are you going to be mining in the ocean?"
+        sara_c "No, still the mountains. But Brennan said that he knows Pete has a cave over there, so he wanted to make sure not to collapse his cave during the mining."
+        him_c "That was considerate of him."
+        "The mining continued without incident."
+        
+        #stat +=?
+        return
+        
+    elif (miners > 10):
+        nvl clear
+        if is_liason:
+            brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you about our future mining prospects."
+            kevin_c "Zaina will be in attendance, and I convey my regrets."
+            him_c "See you there."
+            
+            "The next evening..."
+            brennan "We've almost completely mined the rare metals from the first mountain."
+            brennan "The next logical place for us to mine is a mountain near the sea."
+            zaina "I've gone on several trips over the last few years to look for better prospects. The mountain near the ocean is our best prospect in a 50-mile radius."
+            brennan "That seems pretty straightforward. Do you have any concerns, [his_name]?"
+            him "So far we haven't experienced any contamination from your ore-refining process."
+            zaina "I'll go on an exploratory expedition then. It shouldn't take more than a few days."
+            brennan "While you're there, see if you can collect any shells from those tablet-like squids."
+            zaina "Oh, the glass ones? Are you thinking they could have high mineral content?"
+            brennan "You never know. Could be worth investigating."
+            "A week later..."
+            jump Pete_stay_or_go
+            
+        else:
+            nvl clear
+            sara_c "Hey [his_name]. You knew Pete pretty well, right?" 
+            sara_c "Brennan is going to start mining in the mountain where Pete and the other luddites are living. Could you give us some advice on how to proceed?"
+            sara_c "We're trying to decide if we could get him to leave or if we should cut our losses now."
+            sara_c "I just added you to the chat."
+            jump Pete_stay_or_go
 
+        label Pete_stay_or_go:
+            nvl clear
+            zaina_c "The luddites are currently living in caves in that mountain."
+            zaina_c "Pete wouldn't let me inside to explore them. He said that they weren't moving under any circumstance and that we should mine somewhere else."
+            zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
+            brennan_c "There he goes, acting like he owns the place. Sheesh. I don't really want to force him out, but that mountain is the best place to mine."
+            brennan_c "You know Pete, right? What approach should we take?"
+        menu: 
+            "What should I recommend?"
+            "Get him to leave.":
+                him_c "If we try to negotiate, he'll just think we're weak."
+                him_c "We're trying to run a business, not a housing project."
+                him_c "If he needs somewhere to live there are plenty of other suitable places."
+                brennan_c "It still seems kind of harsh. Zaina?"
+                zaina_c "I agree with [his_name]. There are plenty of other places to live on this planet. He doesn't need to stay in the one place he's obstructing our mining expedition."
+                brennan_c "Okay, but how do we force him out?"
+                him_c "Natural consequences?"
+                brennan_c "It is not going to look good if they all die in a cave-in."
+                him_c "Well, they don't spend all of their time in the cave. You can just mine that part of the mountain when he's summering inland."
+                brennan_c "The passive-aggressive approach. Works for me."
+                zaina_c "We should at least warn him, so he can decide to leave and move his posessions."
+                brennan_c "Can you do that, [his_name]?"
+                him_c "I don't have time to go personally. But I could write a letter."
+                brennan_c "Good enough. We won't actually start mining for a few more month, since we are still processing all the ore we've dug up."
+                "I wrote a letter to Pete, warning him that Brennan was going to mine the mountain and that he should leave."
+                "A few months later, I saw Pete's herd of cattle off on the hills in his summer area."
+                "He came through the village, selling various things, and spoke to me."
+                him "Hello Pete."
+                pete "Hello. I've been meaning to talk to you."
+                pete "You are truly a traitor."
+                him "What do you mean?"
+                pete "Writing that letter to get me to leave my cave. There's no way I'm leaving."
+                him "You're not there now..."
+                pete "I'm not, but my family is!"
+                pete "I'm telling you, there's no better place for us to live. The cave protects us from solar flares, but lets in enough light to see by."
+                pete "There are so many other places to mine."
+                him "But that mountain has the highest probability of having a lot of ore."
+                pete "I don't care. We're not leaving."
+                him "Then you'll die in a cave collapse."
+                pete "Better than killing my friendships to serve some company."
+                pete "What do you care if RET is slightly less efficient? It's not like money gets you much around here."
+                him "Easy for you to say, when you have plenty of it!"
+                pete "I'm not hoarding it. Anyone can grow fireweed."
+                him "Yeah, but if we all start growing fireweed, we won't have vegetables to eat."
+                pete "Fair point. But anyway, I think you guys are bluffing and I am not going to leave my home for RET."
+                
+                "A few weeks later..." #can I convey the passage of time some other way?
+                nvl clear
+                brennan_c "Is Pete still in the cave? We started mining on the opposite side of the mountain but we'll be getting close to him soon."
+                him_c "Yeah, he's still there. He thinks you're bluffing."
+                brennan_c "Maybe I am. I don't actually want to murder him."
+                kevin_c "Perhaps he needs encouragement through physical threats."
+                menu: 
+                    "Is that what I want?" #should this be a choice?
+                    "Yes, we need to be more forceful.":
+                        him_c "I can get some guns from Ilian. Brennan, do you have some intimidating miners who could hold them?"
+                        brennan_c "Intimidating, yes. But I don't know if I could trust them not to fire them."
+                        him_c "I'll go with them then."
+                        "I made arrangements for my farm for the next two days and picked up the guns. Then I met Brennan at his new camp about four miles away from us."
+                        him "Okay Brennan, who's coming with me?"
+                        brennan "Bandile and Chaco have agreed to come with you."
+                        "On the way there, I told them our plan was to intimidate, not kill. I gave them both guns."
+                        "After we got there, we couldn't find the cave entrance. We saw Helen though."
+                        him "Hello Helen. We're looking for Pete."
+                        helen "What do you want with him? And why are you carrying those guns?"
+                        him "Look, we're not here to shoot anyone."
+                        "Before I could finish explaining, Helen kicked Chaco in the crotch and took his gun." #not sure how this should play out.
+                        helen "We. Are. Not. Moving."
+                        "She pulled the trigger while pointing the gun at Bandile's foot."
+                        helen "This isn't even loaded."
+                        "Bandile grabbed her arms while she was distracted by the lack of ammo."
+                        "Helen started screaming, and Pete appeared from behind some rocks."
+                        pete "What is going on here?"
+                        pete "Let her go!"
+                        him "Not until you promise to leave the caves!"
+                        pete "Wow. Three against one. Is that how this works?"
+                        pete "Fine. We'll leave the caves. Just give us five days."
+                        him "Okay. Let her go."
+                        "Bandile let go of Helen. She looked at me like I was vomit."
+                        "The luddites left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
+                        $ pass
+                        
+                        return
+                    
+                    "No, let's back off.":
+                        him_c "This is getting too intense. I don't think it's worth fighting over."
+                        brennan_c "We've already starting mining the mountain though."
+                        him_c "Well Pete isn't living in the whole thing. Can you just mine around him or something?"
+                        zaina_c "If Pete would let me into the tunnels, we could be sure to avoid him. I just don't know how deep they go..."
+                        brennan_c "We're making good progress right now. I'll have Zaina make some educated guesses, and we'll try not to kill anyone."
+                        "A few of the deeper tunnels collapsed, but no one was hurt, and mining was otherwise unobstructed."
+                        
+                        $ miners += 1
+                        
+                        return
+                
+            "Let's mine somewhere else":
+                him_c "He's too stubborn to leave if we push him out."
+                him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
+                zaina_c "But that mountain is the best place for mining right now."
+                brennan_c "I don't want to create an army of potential sabeteurs by displacing the luddites."
+                brennan_c "Let's find the next-best place and mine there."
+                zaina_c "Alright. I'll send you the details."
+                $ luddites += 1
+                
+                return
+                
+            "Don't make a recommendation.":
+                him_c "You guys are on your own."
+                him_c "I don't want any part of this."
+                "I left the conversation."
+                "They mined through about half of the mountain before moving to a different one."
+                
+                return
+                
+    elif (luddites > 8):
+        "Pete called me on the radio one evening."
+        pete "We've been hearing and feeling explosions in the mountain a lot lately."
+        pete "Are the miners going to come to our side of the mountain? We like where we live and don't want to move." #or would his tone be more indignant?
+        him "Huh. Would it be difficult to move?"
+        pete "We could move, but it would be difficult to find a spot so ideal for our purposes."
+        pete "The cave we have now protects us from radiation but lets in light in places."
+        pete "The tunnels are large enough to move around in, and we store food and supplies here."
+        pete "Everyone would be upset if we had to move."
+        him "Let me see what I can find out."
+        nvl clear
+        him_c "Hey Brennan. Are you guys mining in the mountain near the ocean?"
+        brennan_c "Yeah, we started a few weeks ago. Why?"
+        him_c "Pete lives in a cave in that mountain. He told me they've been feeling the blasts lately."
+        brennan_c "Well, he should probably live somewhere else while we do the mining for safety reasons."
+        brennan_c "They're kind of nomadic anyway, right? It seems like it would be pretty easy for them to move."
+        him_c "I think they live in two main places, but Pete goes out camping with the cattle to graze them."
+        brennan_c "Oh, I thought they all moved together with the cows. They do need to move though, because we are mining the entire mountain."
+        him_c "But Pete was there first."
+        brennan_c "Can he show me the deed to the land?"
+        him_c "You know we don't have deeds for anything here."
+        brennan_c "I think we've talked about this before. If we don't mine effectively, we'll lose RET's support. We need the medical supplies and materials they send us periodically."
+        him_c "The luddites don't see it that way."
+        brennan_c "I don't have much else in my persuasive arsenal. It's dangerous for them to stay, and leaving would help our entire community."
+        him_c "Surely there are other mountains you could mine?"
+        brennan_c "There are, but Zaina has been exploring and taking samples over the last few years. That mountain has the best chance of having the most rare metals for a 50-mile radius."
+        him_c "Okay, okay. I'll talk to Pete, but no promises."
+        "I tried paging Pete on the radio, but there was no answer."
+        "I left him a sort of text message telling him to call me later."
+        pete "So, what's going on?"
+        him "You were right. The miners are digging in your mountain."
+        pete "I knew it."
+        him "I chatted with Brennan, and he said it's the most mineral-rich mountain in a 50-mile radius."
+        pete "Really? So that's why I haven't found anything similar in all my travels..."
+        pete "We still don't want to move."
+        menu: #should this be a choice? or based on a lower level of relationship w/ miners?
+            "What should I recommend?"
+            "You should resist.":
+                him "I don't think you should have to move."
+                him "I think that if you refuse to move that they will have to work around you."
+                pete "Hmm. So I should call their bluff?"
+                him "Yeah. Plus I know you could do a lot of damage just by loosening a few bolts on their mining equipment."
+                pete "So I'd be threatening them back, basically."
+                him "You're the one who doesn't want to move. I'm just telling you one way I think you could stay."
+                pete "I like the way you think."
+                nvl clear
+                him_c "Pete says he's not going to move."
+                brennan_c "Well, he knows what's coming. This is on his head now."
+                "A few weeks later, Brennan messaged me again."
+                nvl clear
+                brennan_c "Our mining equipment keeps breaking down and we suspect someone is sabotaging it."
+                brennan_c "Some of the repairs have been seriously difficult to repair."
+                brennan_c "Do you know anything about this?"
+                him_c "I bet if you starting mining somewhere else it would stop."
+                brennan_c "This is ridiculous. You're a traitor to our cause."
+                him_c "I didn't have anything to do with it. [her_name] can tell you that I've been home every night for the past few months."
+                brennan_c "It isn't worth it to keep mining over there if it jepordizes our chances for future mining."
+                brennan_c "Hope you're happy!"
+                
+                $ luddites += 1
+                
+                return
+                
+            "I don't think it's worth fighting over.":
+                him "I know you don't want to move. But Brennan has made some good points."
+                him "The better mining goes, the longer RET will support our colony by sending us medical supplies and other things we can't make here."
+                pete "That's something I've been wondering about. Why can't we make those things here?"
+                him "We don't have the infrastructure for it."
+                pete "We would if RET would send it to us. They don't want us to be completely independent."
+                if is_liason:
+                    him "I'll ask RET about it and get back to you."
+                    pete "I'd appreciate that."
+                him "Maybe there's a different reason. But whatever it is, we can't change RET's mind right away."
+                pete "Can they just avoid mining around our cave?"
+                him "You know how the miners feel about going around caves..."
+                pete "Okay, how about this. Can they dig a different cave out for us on the mountain to the west?"
+                him "That might work. Let me ask Brennan."
+                "I presented Brennan with my compromise. He was interested. Pete told them what kind of a cave he wanted."
+                "The miners dug a new cave for them, and they moved in before the miners endangered their original home."
+                
+                $ miners += 1
+                
+                return
+            
+    else:
+        #try to calibrate to make this end pretty rare. maybe just compare mining value to luddites in elif?
+        "The miners started working in a different mountain this year."
+        "I heard there was some conflict with the luddites over who could use the mountain."
+        "Otherwise things were pretty normal."
+        
+        return
 
 label community23:
+    "Brennan wants to collect jellysquid shells for minerals" #only if he saw them in the luddite event?
     "RET wants to switch to artificial meat."  #I like the idea of doing something with artificial meat, but let's keep thinking about this.  Maybe RET announces they will not send anymore live animals, but instead an artificial meat lab, and you can decide to phase out your animals or breed them more? 
+    # what if the miners have some kind of artificial meat factory and start selling it so cheaply that no one wants to buy Pete's real meat anymore? Would this be a an interesting problem?
+    #I was also thinking that maybe the cows don't like their anti-radiation blankets and there is concerns that their meat contains radiation
     #this even doesn't have to be about meat either.
     "I hate how it tastes."
     "Make the switch?"
@@ -3666,6 +4001,7 @@ label community28:
 
 
 label community29:
+    #not sure if I want to end with a battle. It seems cliche. Maybe explore the jellypeople option more?
     "RET reports that they've heard from a miner that the luddites are hurting RET business interests." 
     #it's an account from about 7 years ago? about the cattle thing, but indignently whiney and kind of overblown.
     "They give permission to use force against the luddites if they are hindering mining operations."
