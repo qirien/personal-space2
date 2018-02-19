@@ -130,8 +130,12 @@ screen crops_available:
                 bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                 text "Nutrition: "
                 bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                text "Fun: "
-                bar value crop_info[selected_crop_index][FUN_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                if (year >= 5):
+                    text "Value: "
+                    bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                else:
+                    null
+                    null
                 text "Work: "
                 bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                 text "Nitrogen: "
@@ -140,7 +144,7 @@ screen crops_available:
                     bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar" 
                 else:
                     bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
-                #text "Income: " + str(crop_info[crop_info_index][5]) # TODO: based on fun, calories, and nutrition?
+                #text "Income: " + str(crop_info[crop_info_index][5]) # TODO: based on value, calories, and nutrition?
             text crop_descriptions[crop_name]
         null height 30
         vpgrid:                
@@ -232,24 +236,30 @@ screen crops_layout:
     
 screen crops_totals:
     vbox:
+        $ calories_max = get_calories_required()
         $ total_calories = 0
         $ total_nutrition = 0
-        $ total_fun = 0
-        $ total_work = 0
+        $ total_value = 0
+        $ total_work = 0        
         # Totaling crops attributes        
         for i in range(0, farm.crops.len()):
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
             $ total_calories += crop_info[index][CALORIES_INDEX]
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
-            $ total_fun += crop_info[index][FUN_INDEX]
+            if (year >= 5):
+                $ total_value += crop_info[index][VALUE_INDEX]
             $ total_work += crop_info[index][WORK_INDEX]
                 
         #grid 2 4
         text "Calories:     " + str(total_calories)
+        bar value total_calories range calories_max style "crop_totals_bar"
         text "Nutrition:    " + str(total_nutrition)
-        text "Fun:          " + str(total_fun)
+        bar value total_nutrition range calories_max style "crop_totals_bar"
+        if (year >= 5):
+            text "Value:          ¤" + str(total_value)
         text "Work:         " + str(total_work)                 
+        bar value total_work range get_work_available() style "crop_totals_bar"
 
     # TODO: add projected yield
                         
@@ -371,3 +381,5 @@ style crop_layout_nitrogen_increased_bar is crop_layout_bar:
 style crop_layout_nitrogen_decreased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
     bottom_bar Frame(Solid(red_med))
+    
+style crop_totals_bar is crop_layout_bar

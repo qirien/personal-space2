@@ -94,7 +94,7 @@ label start:
         earth_year = 1
         
         # Work/crops
-        farm_size = 16
+        farm_size = 12
         farm = Field(farm_size, MAX_FARM_SIZE);
         selected_crop_index = 0        
 
@@ -106,33 +106,33 @@ label start:
         # TODO: add income
         # TODO: make it so you can't move perennials once placed
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
-        # Tuple containing the crop name, calories, nutrition, fun/value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.        
+        # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.        
         crop_info =     (
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, 100],
-                        ["corn",         9, 4, 8, 7, 50, False, False, 100],    # Grains
+                        ["corn",         9, 5, 8, 7, 50, False, False, 100],    # Grains
                         ["potatoes",     10, 5, 7, 6, 40, True, False, 100],
-                        ["wheat",        9, 6, 8, 10, 20, False, False, 100],
-                        ["peppers",      2, 6, 5, 5, 25, False, False, 100],    # "Fruits"
-                        ["tomatoes",     3, 5, 6, 6, 15, True, False,  100],
+                        ["wheat",        9, 5, 9, 10, 20, False, False, 100],
+                        ["peppers",      2, 7, 5, 5, 25, False, False, 100],    # "Fruits"
+                        ["tomatoes",     3, 6, 6, 6, 15, True, False,  100],
                         ["plums",        3, 3, 8, 7, 5, False, True, 1],
                         ["plums+",       3, 3, 8, 2, 5, False, True, 1],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 5, 5, 4, 15, True, False, 100],
-                        ["strawberries", 1, 3, 7, 6, 5, False, True, 2],
-                        ["strawberries+",1, 3, 7, 5, 5, False, True, 2],
-                        ["blueberries",  3, 3, 9, 9, 5, False, True, 2],
-                        ["blueberries+", 3, 3, 9, 4, 5, False, True, 2],
-                        ["beans",        6, 7, 2, 7, -20, True, False, 100],   # Legumes
-                        ["snow peas",    3, 5, 2, 4, -35, False, False, 100],
-                        ["peanuts",      7, 6, 5, 8, -50, False, False, 100],
-                        ["carrots",      3, 5, 4, 4, 10, True, False,  100],   # Root Vegetables
-                        ["beets",        3, 4, 4, 4, 5, False, False, 100],
-                        ["turnips",      3, 5, 3, 4, 10, False, False, 100],
-                        ["onions",       4, 3, 7, 4, 5, False, False, 100],
-                        ["garlic",       3, 4, 7, 4, 5, False, False, 100],
-                        ["cabbage",      2, 4, 4, 3, 15, False, False, 100],   # Leafy greens
+                        ["squash",       4, 5, 3, 4, 15, True, False, 100],
+                        ["strawberries", 1, 2, 8, 6, 5, False, True, 2],
+                        ["strawberries+",1, 2, 8, 5, 5, False, True, 2],
+                        ["blueberries",  2, 3, 9, 9, 5, False, True, 2],
+                        ["blueberries+", 2, 3, 9, 4, 5, False, True, 2],
+                        ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
+                        ["snow peas",    3, 6, 3, 4, -35, False, False, 100],
+                        ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
+                        ["carrots",      3, 6, 4, 4, 10, True, False,  100],   # Root Vegetables
+                        ["beets",        3, 4, 2, 3, 5, False, False, 100],
+                        ["turnips",      3, 5, 1, 4, 10, False, False, 100],
+                        ["onions",       4, 2, 7, 4, 5, False, False, 100],
+                        ["garlic",       3, 3, 7, 4, 5, False, False, 100],
+                        ["cabbage",      2, 4, 3, 3, 15, False, False, 100],   # Leafy greens
                         ["spinach",      1, 6, 4, 4, 10, True, False,  100],
-                        ["broccoli",     3, 5, 3, 3, 15, False, False, 100],
-                        ["goats",        8, 7, 7, 5, Field.NITROGEN_GOATS, True,  False, 1])   # Miscellaneous  
+                        ["broccoli",     3, 5, 4, 3, 15, False, False, 100],
+                        ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1])   # Miscellaneous  
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
@@ -160,7 +160,7 @@ label start:
         
         total_calories = 0
         total_nutrition = 0
-        total_fun = 0
+        total_value = 0
         total_work = 0
         
         # Crop event variables
