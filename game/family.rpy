@@ -474,7 +474,7 @@ label family2:
     "From the way she devoured them, I guess she hadn't eaten all day."    
     him concerned "How'd Pete take it?"
     her flirt "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
-    him surprised "What about Trevor? That kid is the cutest hurricane of destruction I've ever seen."
+    him surprised "What about Travis? That kid is the cutest hurricane of destruction I've ever seen."
     her normal "I know. It's hard to believe he's just a year older than [kid_name]..."    
 
     her concerned "How was [kid_name]? I guess she's asleep now?"
@@ -491,7 +491,7 @@ label family2:
     
     her determined "[his_name], we need help."
     him annoyed "With what?"
-    her annoyed "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Trevor was?"
+    her annoyed "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Travis was?"
     him surprised "Terrorizing the clinic's cotton ball supplies?"
     her determined "No! He was at Sister Naomi's."
     him normal "Oh, well, that was nice of her."
@@ -527,7 +527,7 @@ label family2:
         "This'll be great!":
             $ marriage_strength += 1
             him happy "This will be great! I can concentrate on work during most of the week, and concentrate on [kid_name] on Fridays."
-            her normal "[kid_name] and three other toddlers. Including Trevor."
+            her normal "[kid_name] and three other toddlers. Including Travis."
             him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
             her happy "I'm glad you agree."
             him flirt "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
@@ -536,7 +536,7 @@ label family2:
             $ marriage_strength += 1
             him surprised "Four toddlers at once?! I can barely handle one!"
             her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
-            him determined "I guess we'll find out. Hopefully they're not all like Trevor."
+            him determined "I guess we'll find out. Hopefully they're not all like Travis."
             her flirt "Well, I'm sure you'll do just fine, Mr. Superdad."
             him happy "Superdad? Have I earned that title?"
             her happy "I'm pretty sure you have."
@@ -764,7 +764,7 @@ label family4:
             her surprised "What's going on out here?!"
             him angry "She's a disobedient, ungrateful brat!"
             kid "Wahhhhhhh!"
-            her annoyed "[his_name], go outside and calm down."
+            her annoyed "[his_name], go outside and calm down. Let me deal with her."
             menu:
                 "What should I do?"
                 "Leave":
@@ -786,7 +786,7 @@ label family4:
                         "Give them a hug":
                             $ responsive += 1
                             $ marriage_strength += 1
-                            "I bent over and hugged them both."
+                            "I pushed away my negative feelings, bent over and hugged them both."
                             "I just wanted to show them that I loved them. That was more important than anything else."
                             "I sat down next to [her_name] and she laid her head on my shoulder. [kid_name] slid off her lap, and I closed my eyes to rest for a moment."
                             "When I opened them, [kid_name] was sitting at the table, eating her food."
@@ -803,7 +803,7 @@ label family4:
                             him sad "I... I'm sorry. I was out of control."
                             "[her_name] squeezed my hand and gave me a little smile."
                             her normal "It's okay."
-                            "[kid_name] gave [his_name] the stinkeye."
+                            "[kid_name] gave me the stinkeye."
                             him determined "I'm sorry, [kid_name]. I was not trying to hurt you. I'm trying to help you eat healthy foods to grow big and strong."
                             "[kid_name] seemed to think about this for a moment, then went to the table and carefully spooned up a bit of beans."
                             "She brought it over near my mouth."
@@ -838,7 +838,7 @@ label family4:
                     "But I know when I was a kid, I hated being spanked."
                     "Maybe it changed my behavior for a short time, but mostly I just felt mad at my dad for being out of control."
                     "I have a lot more sympathy for him now."
-                    "I realized, though, that I can't earn [kid_name]'s respect or teach her not to hurt people by spanking her."
+                    "It was only later that I realized the irony of me demanding respect and nonviolence from [kid_name] while spanking her."                     
                     
             $ authoritarian += 1
                         
@@ -887,7 +887,7 @@ label family4:
             "[kid_name] looked at me skeptically."
             him normal "Well, I guess if you're hungry then eventually you'll eat."
             "She slid down off her chair and toddled over to the pantry. She stood on her tiptoes to grab a jar of pickles and brought it to the table."
-            kid "I want pickles."
+            kid "Want 'ickles."
             menu:
                 "What should I say?"
                 "No pickles.":
@@ -1107,7 +1107,7 @@ label family5:
             if (family5_prepared):
                 "We were prepared for her to have lots of messes, and we weren't going to let that bother us."
             if (family5_method == "remind her"):
-                "I setup a program on my computer pad to beep every 40 minutes to remind me to remind her to try using the toilet."
+                "I setup a program on my computer pad to beep every 30 minutes to remind me to remind her to try using the toilet."
             if (family5_method == "keep her outside"):
                 "We got ready to spend the day outside. The weather was warm enough that we put [kid_name] in just some underwear, and we brought chairs outside to try to enjoy ourselves."
                 "We brought a small bucket for her to use as a potty."
@@ -1861,7 +1861,7 @@ label family7:
         "Do some reading":
             "I tried to read some parenting books, but they all seemed to conflict with each other."
             "One book said to love your kids no matter what; another said to make sure not to spoilt your child by doing whatever they said. One said to never let a baby cry; another said that it's okay for babies to cry sometimes." 
-            "The few things they agreed on were things I already knew; being a parent is hard, and kids need parents."
+            "The few things they agreed on were things I already knew: being a parent is hard, and kids need parents."
         "Do nothing":
             "I didn't have time for this. And, really, our ancestors didn't have time to read parenting books and humans turned out okay, so why should I have to turn it into some huge complicated thing?"
         "Discuss it with [her_name]":
@@ -1991,20 +1991,20 @@ label family8:
     scene fields with fade
     show him at quarterright
     show kid at center
-    show trevor at midleft
+    show Travis at midleft
     show oleg at quarterleft
-    trevor "Mud fight!"
+    Travis "Mud fight!"
     him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
     kid "I do!"
     show kid at squatting with move
-    "Trevor threw his mudball at her and she dodged it, giggling."
+    "Travis threw his mudball at her and she dodged it, giggling."
     show kid at center with move
     "She scooped up some mud of her own and flung it his way, but it hit Oleg instead, who was busy drawing in the dirt with a stick."
-    show trevor at squatting with move
+    show Travis at squatting with move
     show oleg sad with dissolve
-    show trevor at midleft with move
+    show Travis at midleft with move
     "He started crying."
-    "[kid_name] didn't seem to notice; she was still chasing down Trevor."
+    "[kid_name] didn't seem to notice; she was still chasing down Travis."
     menu:
         "What should I do?"
         "Run after [kid_name].":
@@ -2015,7 +2015,7 @@ label family8:
             him annoyed "Come here. I need to talk to you."
             kid "Why?"
             him angry "Come here now!"
-            "She finally stopped chasing Trevor and came over to me."
+            "She finally stopped chasing Travis and came over to me."
             kid "What?"
             him concerned "You just hit Oleg in the face with your mudball."
             kid "Oh. Whoops."
@@ -2071,7 +2071,7 @@ label family8:
             him concerned "Sorry about that, Oleg. Here, you can wipe the mud off with this."
             oleg "Okay. I hate being dirty."
             "Once Oleg got cleaned up, he didn't seem too upset, but went back to his drawing. I was a little jealous of Ilian and Sara sometimes -- how come they got such an easygoing kid?"
-            "[kid_name] ran back toward us, racing Trevor, and I had to smile."
+            "[kid_name] ran back toward us, racing Travis, and I had to smile."
             "She wasn't an easy kid -- but I loved her vibrant energy and insatiable curiosity...even when it sometimes exhausted me."
             menu:
                 "Have her apologize to Oleg.":
@@ -2092,7 +2092,7 @@ label family8:
     
     kid "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors and the letters of the alphabet and my numbers up to fifty except I always mess up around forty-seven and skip right to forty-nine but that's still pretty good, right, daddy?"
     him surprised "Um, what was the quetsion?"
-    kid "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Trevor and he'll think it's so cool how we made it together, daddy."
+    kid "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
     her concerned "[her_name]."
     kid "What?"
     her normal "We're almost there. Come get a goodbye hug."
@@ -2162,16 +2162,16 @@ label family8:
             kid "Here's your cornmeal mush, Oleg. Isn't it delicious?"
             "She handed him a small empty bowl with a little spoon. He pretended to take a bite."
             oleg "That's delicious! I like the raisins."
-            kid "Trevor grew them for me. He's the dad, and I'm the mom, and you can be the baby."
+            kid "Travis grew them for me. He's the dad, and I'm the mom, and you can be the baby."
             oleg "Wahhh, wahhhh!"
             kid "There, there, baby, have some more cornmeal mush."
             oleg "Ptooey!"
             "He pretended to spit it out. He did a pretty good impression of his baby sister."
-            show trevor at center with moveinright
-            trevor "Dinosaurs with bazookas are coming! Fight them off!"
-            "[kid_name] swatted the air with her frying pan while Trevor used a rolling pin as a gun and Oleg made some swatting motions in the air."
+            show Travis at center with moveinright
+            Travis "Dinosaurs with bazookas are coming! Fight them off!"
+            "[kid_name] swatted the air with her frying pan while Travis used a rolling pin as a gun and Oleg made some swatting motions in the air."
             "Teacher" "Come over here, it's circle time!"
-            hide trevor
+            hide Travis
             hide kid
             hide oleg
             with moveoutleft
@@ -2876,7 +2876,7 @@ label family11:
     
 
 # 7.4 Earth years old
-# TODO: Growing Independence, miner friend, lice
+# Growing Independence, miner friend, lice
 label family12:
     scene farm_interior with fade
     show him normal at midright
@@ -3006,10 +3006,10 @@ label family12:
     show kid at midleft
     with moveinleft
     
-    pete "Hey there, [his_name]. Hey, Trevor, wanna say hi? [kid_name]'s here."
-    trevor "No!"
+    pete "Hey there, [his_name]. Hey, Travis, wanna say hi? [kid_name]'s here."
+    Travis "No!"
     pete "Think he's embarrassed about his new haircut."
-    trevor "Dad!"
+    Travis "Dad!"
     pete "Anyway, here's your comb."
     him concerned "Thanks for printing it for us."
     pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
@@ -3961,8 +3961,8 @@ label family16:
             him surprised "Maybe you could give some of it away?"
             kid "Give away my precious things?!"
             # TODO: change depending on favorite faction?
-            him determined "Not all of them, but I know Trevor and his family don't have access to all the stuff at the storehouse or the printers anymore."
-            kid "Give away my precious things to {b}Trevor{/b}?!"
+            him determined "Not all of them, but I know Travis and his family don't have access to all the stuff at the storehouse or the printers anymore."
+            kid "Give away my precious things to {b}Travis{/b}?!"
             him normal "Maybe his little sister."
             kid "She does like animals..."
             him concerned "She would probably play with it more than you do..."
@@ -4631,7 +4631,7 @@ label family18:
         "Go back and wash with soap.":
             him determined "It's not a bath unless you use soap. Go try again."
             kid "Daaad! You're wasting my whole afternoon!"
-            "She tried to get away without using soap a few more times, but each time I sent her back to the tub."
+            "She tried to get away without using soap the next few times, also, but each time I sent her back to the tub."
             "Soon she didn't forget, but she still didn't like baths."
         "Use soap next time.":
             him concerned "You know what... just, use soap next time."
@@ -4793,7 +4793,7 @@ label family19:
 # 12.4 Earth years old
 # Musical Instrument
 label family20:
-    # TODO: You have made a mistake. Do you admit and apologize?  Reward her for your mistake?
+    # TODO: You have made a mistake. Do you admit and apologize?  Reward her for your mistake?    
     "Terra wants to learn a musical instrument.  The colony doesn't have any or anyone who plays that instrument."
     menu:
         "FInd a way to make one and find a teacher who at least knows something about music.":
@@ -4810,6 +4810,61 @@ label family20:
         "Too bad.":
             $ responsive -= 1
             $ neglectful += 1
+            
+            
+    kid "Dad, listen to this song."
+    him "Okay..."
+    "She played me a song where a girl about her age was playing a soulful song on the saxophone."
+    kid "I wish I could do that."
+    menu:
+        "What should I say?"
+        "You can do anything.":
+            him "You can do anything if you put your mind to it!"
+            kid "Yeah? Where am I going to get a saxophone?"            
+        "You can sing, can't you?":
+            him "You can sing, right? Maybe you could sing kind of like that?"
+            kid "It's not the same. And I'm not that good at singing, either."
+        "Yeah, that's too bad.":
+            him "Yeah, that's too bad."
+        "What exactly are you talking about?":
+            him "What exactly are you talking about?"
+            kid "I want to play the saxophone!"
+
+    "I hadn't seen a real saxophone in years."
+    him "We don't have any saxophones here, do we? Guess it wasn't considered important for a beginning colony."
+    kid "I {b}really{/b} want to play one!"
+    "I wanted to support her desires... but I also wasn't sure how serious she was about this. It would take a lot of work to figure out some way to get a saxophone, and then what if she changed her mind later?"
+    "And would she really be able to learn how to play on her own?"
+    
+    him "Let me think about it."
+    kid "You mean it might be possible?! That would be so cool!"
+    him "I don't know if it's possible! I'm going to find out, though."
+    
+    scene black with fade
+    
+    him_c "Anyone have a saxophone? [kid_name] wants to play..."
+    ilian_c "Saxophone! Oh man, I haven't played in so long... wish I'd brought mine with me."
+    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit!"
+    pete_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
+    ilian_c "You'd need to make pads out of fabric, and reeds out of wood."
+    ilian_c "Honestly, almost any other instrument would be easier to make."
+    him_c "Okay, thanks everyone."    
+    
+    scene farm_interior with fade
+    kid "So? What did you find?"
+    him "Well..."
+    # TODO: Finish This
+    menu:
+        "What should I say?"
+        "If you really want one, here's where to start.":
+            him "If you really want one, here's where to start."
+        "One way or another, I will find you a saxophone!":
+            him "One way or another, I will find you a saxophone!"
+        "That's not something you can do right now.":
+            him "That's not something you can do right now."
+        "Focus on what you can do.":
+            him "Focus on what you can do."
+
     return
     
 #####################################################
@@ -4849,7 +4904,7 @@ label family21:
             kid "Really? You didn't see that guy whose been slobbering over your shoulder for the last ten minutes?"
             bro "I did, but I couldn't move in time!"
             him annoyed "Pause your game and listen to me!"
-            kid "I can't pause it; it's online. We still have a chance to beat Trevor if [bro_name] would stop rolling on the ground like a baby."
+            kid "I can't pause it; it's online. We still have a chance to beat Travis if [bro_name] would stop rolling on the ground like a baby."
             bro "I'm hiding!"
             menu:
                 "What should I say?"
@@ -4863,7 +4918,7 @@ label family21:
                     $ responsive += 1
                     him determined "Turn it off as soon as the round is over."
                     kid "Okay, fine."
-                    "They finished the round, and lost. Trevor's avatar did a triple backflip over their motionless avatars and grinned mockingly. I could see why [kid_name] wanted to beat him."
+                    "They finished the round, and lost. Travis's avatar did a triple backflip over their motionless avatars and grinned mockingly. I could see why [kid_name] wanted to beat him."
                     "She quit the game and turned to me."
                     kid "What is it?"
                     
@@ -5000,7 +5055,7 @@ label family21:
             kid "Where is their flag?"
             bro "I can climb the tower and find it!"
             kid "Try it."
-            bro "Ohhh! Trevor got me! But I saw the flag; it's right behind you, under that bench!"
+            bro "Ohhh! Travis got me! But I saw the flag; it's right behind you, under that bench!"
             kid "Yeah! Got it!"
             bro "Now get back! Stay away from the tower!"
             kid "Almost there..."
@@ -5178,7 +5233,7 @@ label family23:
             him normal "You can invite some other friends, too. You guys need to talk more in person. Talking online just isn't the same."
             kid "Really? Then how come you and Mom are always sending each other messages?"
             him happy "That's in addition to good, quality meatspace time."
-            kid "Meatspace! Ugh, dad, that's such a gross expression. It makes me think of Trevor's dad butchering cows."
+            kid "Meatspace! Ugh, dad, that's such a gross expression. It makes me think of Travis's dad butchering cows."
             him normal "That's just one of the many exciting things happening in the real world."
             kid "That's exactly why I worry about inviting my friends over."
             him surprised "You're worried they'll find out you got your sense of humor from me?"

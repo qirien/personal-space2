@@ -3613,7 +3613,7 @@ label community22:
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in his winter area. Do you know where he is right now?"
         him_c "Actually, he has a two-way radio now! I can sort of text him."
-        sara_c "Great. Can you give me his channel?" #can radios work this way?
+        sara_c "Great. Can you give me his frequency?"
         him_c "He might be more willing to answer if I ask him."
         sara_c "Tell him to meet us at the canteen in Brennan's mining camp tonight at 5pm."
         him_c "Done."
@@ -3700,6 +3700,7 @@ label community22:
                 him "Yeah, but if we all start growing fireweed, we won't have vegetables to eat."
                 pete "Fair point. But anyway, I think you guys are bluffing and I am not going to leave my home for RET."
                 
+                scene black with fade # convey passage of time with this?
                 "A few weeks later..." #can I convey the passage of time some other way?
                 nvl clear
                 brennan_c "Is Pete still in the cave? We started mining on the opposite side of the mountain but we'll be getting close to him soon."
@@ -3716,15 +3717,19 @@ label community22:
                         him "Okay Brennan, who's coming with me?"
                         brennan "Bandile and Chaco have agreed to come with you."
                         "On the way there, I told them our plan was to intimidate, not kill. I gave them both guns."
-                        "After we got there, we couldn't find the cave entrance. We saw Helen though."
+                        "After we got there, we couldn't find the cave entrance. We saw Helen, though."
+                        helen "Travis, go find the little ones and stay inside."
                         him "Hello Helen. We're looking for Pete."
-                        helen "What do you want with him? And why are you carrying those guns?"
+                        helen "What do you want with him? And why are you carrying those guns?"                        
                         him "Look, we're not here to shoot anyone."
                         "Before I could finish explaining, Helen kicked Chaco in the crotch and took his gun." #not sure how this should play out.
                         helen "We. Are. Not. Moving."
-                        "She pulled the trigger while pointing the gun at Bandile's foot."
-                        helen "This isn't even loaded."
-                        "Bandile grabbed her arms while she was distracted by the lack of ammo."
+                        "She flicked off the safety and aimed the gun right at us. There was a righteous fire in her eyes as she prepared to defend her home and kids."
+                        "Chaco must have sensed my apprehension, because he whispered."
+                        chaco "Don't worry; it's not loaded."
+                        "Chaco's whisper must have echoed across the cave chamber, because Helen heard him."
+                        helen "What?!"
+                        "She opened the chamber to check for a round, and Bandile grabbed her arms while she was distracted."
                         "Helen started screaming, and Pete appeared from behind some rocks."
                         pete "What is going on here?"
                         pete "Let her go!"
@@ -3734,7 +3739,6 @@ label community22:
                         him "Okay. Let her go."
                         "Bandile let go of Helen. She looked at me like I was vomit."
                         "The luddites left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
-                        $ pass
                         
                         return
                     
@@ -3754,7 +3758,7 @@ label community22:
                 him_c "He's too stubborn to leave if we push him out."
                 him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
                 zaina_c "But that mountain is the best place for mining right now."
-                brennan_c "I don't want to create an army of potential sabeteurs by displacing the luddites."
+                brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
                 brennan_c "Let's find the next-best place and mine there."
                 zaina_c "Alright. I'll send you the details."
                 $ luddites += 1
@@ -3771,8 +3775,8 @@ label community22:
                 
     elif (luddites > 8):
         "Pete called me on the radio one evening."
-        pete "We've been hearing and feeling explosions in the mountain a lot lately."
-        pete "Are the miners going to come to our side of the mountain? We like where we live and don't want to move." #or would his tone be more indignant?
+        pete "We've been hearing and feeling explosions in the mountain a lot lately."        
+        pete "Are the miners going to come to our side of the mountain? We like where we live and don't want to move." #or would his tone be more indignant?  YES
         him "Huh. Would it be difficult to move?"
         pete "We could move, but it would be difficult to find a spot so ideal for our purposes."
         pete "The cave we have now protects us from radiation but lets in light in places."
@@ -3914,7 +3918,7 @@ label community24:
     #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
     #consequences if you said not to trade for it in community 21
     # Maybe Kelly offers to perform sterilizations, though she's not an expert. "I'd rather perform sterilizations than abortions".
-    # Using sheep intestines as condoms?  TMI?
+    # Using sheep/goat intestines as condoms?  TMI?
     
     return
 

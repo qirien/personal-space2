@@ -13,7 +13,7 @@ label parenting_class_questions:
                 him annoyed "Yeah, every day!"
                 naomi "[kid_name] is an independent, spirited child who likes to make her own choices."
                 him concerned "You got that right..."
-                naomi "So, I recommend two things. First, whenever possible, give her choices. If framed properly, they will help her feel autonomous but make sure both choices are acceptable to you."
+                naomi "So, I recommend two things. First, whenever possible, give her choices. If framed properly, they will help her feel autonomous, but make sure both choices are acceptable to you."
                 naomi "Second, set specific, related consequences that will occur if she does not do what you ask. Make sure she clearly understands the actions you expect her to take, and what she can expect from you if she does not comply."
                 him surprised "And that will make her do what I want?"
                 naomi "Not at first. But here is the key: you have to be willing to follow through with the consequences you set without getting angry."
@@ -51,7 +51,7 @@ label parenting_class_questions:
                 him concerned "Yeah, and then when they don't clean their room you have to decide if you're really going to ground them for that long."
                 naomi "You also need to make sure that she knows exactly what you want her to do, and has the necessary skills to accomplish it."
                 him surprised "What do you mean?"
-                naomi "Well, you wouln't ask her to plow the fields without teaching her how, right?"
+                naomi "Well, you wouldn't ask her to plow the fields without teaching her how, right?"
                 him determined "Right..."
                 naomi "Sometimes we forget that children also need to learn how to do simple things, like cleaning their room, or washing dishes, or putting away their laundry."
                 him concerned "I guess no one's born knowing how to do those things..."
@@ -68,7 +68,7 @@ label parenting_class_questions:
                 him concerned "My parents didn't talk to me much about those things."
                 naomi "Then you may need some practice. If you seem embarrassed or upset that she is asking about sex, then she will not want to ask you in the future. You could start by talking to [her_name]."
                 him surprised "Can't they just talk to [her_name] about it?"
-                naomi "She may want to know what you have to say."
+                naomi "[kid_name] may want to know what you have to say."
                 "That thought had never occurred to me before -- that when [kid_name] asked me a question, she didn't just want an answer, she wanted {b}my{/b} answer."
             
         return
@@ -108,7 +108,7 @@ label parenting_class1:
     naomi "And if you try to teach these things without love, a child will not want to learn and will not feel safe making the mistakes he needs to make to learn."
     her surprised "Do we really want our kids to feel safe making mistakes? That sounds dangerous."
     naomi "As parents, part of your job is protect kids from making terrible, life-altering mistakes. But without making small mistakes, they will not learn for themselves."
-    helen "I guess Trevor could have never learned to walk without falling so many times."
+    helen "I guess Travis could have never learned to walk without falling so many times."
     natalia "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings." 
     naomi "Yes, exactly."
     
