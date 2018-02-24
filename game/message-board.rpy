@@ -36,5 +36,11 @@ define miranda_c = Character("Miranda",
     color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
 define lewis_c = Character("Mr. Lewis", 
     color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+define zaina_c = Character ("Zaina",
+    #who_suffix = "  {image=images/icons/miranda-icon.png} ", 
+    color="f3ca14", image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Mirando for now
+define kevin_c = Character ("Kevin",
+    #who_suffix = "  {image=images/icons/miranda-icon.png} ", 
+    color="f3ca14", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Mirando for now
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
