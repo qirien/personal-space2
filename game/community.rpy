@@ -3568,7 +3568,7 @@ label community22:
         him_c "Oh, he has a radio now. I can sort of text him with it."
         brennan_c "How 21st-century. Ask him if he can meet tomorrow evening at the canteen in the miner camp. Around 5pm, if he has a watch."
         him_c "Okay, I sent him the message."
-        kevin_c "Zaina will be in attendance, and I convey my regrets."
+        kevin_c "I am unable to attend, but Zaina will be there."
         "That evening, Pete replied to say he could make it."
         him_c "Pete can come. See you all there."
 
@@ -3601,10 +3601,13 @@ label community22:
         zaina_c "The caves penetrate about three-quarters of the mountain, but they are only using about half of the caves."
         zaina_c "Pete seemed to expect that we would make them move. But maybe we can work out a compromise."
         zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
-        brennan_c "It's tempting to ask him to leave. But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
-        him_c "I agree. If it's possible, let's only  mine a portion of the mountain."
+        brennan_c "It's tempting to ask him to leave. Let's see what RET thinks. [his_name}, can you ask them if it's okay to only mine part of the mountain?"
+        him_c "Yes, I can. I'll send the message at lunch."
+        "That evening RET replied that our solution was fine and reminded us not to kill anyone." #could have parenting style affect this outcome, like with Dr. Lily's death
+                   #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
+        him_c "RET says it's okay to only  mine a portion of the mountain as long as we make sure it's safe for everyone."
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
-        brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore, but start taking samples to get a better plan."
+        brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
         "The mining continues without incident."
         # does this need a stat +=?
         return
@@ -3622,15 +3625,15 @@ label community22:
         sara_c "No, still the mountains. But Brennan said that he knows Pete has a cave over there, so he wanted to make sure not to collapse his cave during the mining."
         him_c "That was considerate of him."
         "The mining continued without incident."
-
+        #too facile?
         #stat +=?
         return
 
-    elif (miners > 10):
+    elif (miners > 5):
         nvl clear
         if is_liason:
             brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you about our future mining prospects."
-            kevin_c "Zaina will be in attendance, and I convey my regrets."
+            kevin_c "I am unable to attend, but Zaina will be there."
             him_c "See you there."
 
             "The next evening..."
@@ -3642,7 +3645,7 @@ label community22:
             zaina "I'll go on an exploratory expedition then. It shouldn't take more than a few days."
             brennan "While you're there, see if you can collect any shells from those tablet-like squids."
             zaina "Oh, the glass ones? Are you thinking they could have high mineral content?"
-            brennan "You never know. Could be worth investigating."
+            brennan "Could be worth investigating."
             "A week later..."
             jump Pete_stay_or_go
 
@@ -3664,11 +3667,12 @@ label community22:
         menu:
             "What should I recommend?"
             "Get him to leave.":
-                him_c "If we try to negotiate, he'll just think we're weak."
-                him_c "We're trying to run a business, not a housing project."
+                him_c "I know Pete. He's stubborn. I don't think negotiation will get us anywhere."
+                him_c "We're trying to run a business here."
                 him_c "If he needs somewhere to live there are plenty of other suitable places."
                 brennan_c "It still seems kind of harsh. Zaina?"
-                zaina_c "I agree with [his_name]. There are plenty of other places to live on this planet. He doesn't need to stay in the one place he's obstructing our mining expedition."
+                zaina_c "I agree with [his_name]. There are plenty of other places to live on this planet."
+                zaina_c "He doesn't need to stay in the one place he's obstructing our mining expedition."
                 brennan_c "Okay, but how do we force him out?"
                 him_c "Natural consequences?"
                 brennan_c "It is not going to look good if they all die in a cave-in."
@@ -3677,7 +3681,7 @@ label community22:
                 zaina_c "We should at least warn him, so he can decide to leave and move his posessions."
                 brennan_c "Can you do that, [his_name]?"
                 him_c "I don't have time to go personally. But I could write a letter."
-                brennan_c "Good enough. We won't actually start mining for a few more month, since we are still processing all the ore we've dug up."
+                brennan_c "Good enough. We won't actually start mining for a few more months, since we are still processing all the ore we've dug up."
                 "I wrote a letter to Pete, warning him that Brennan was going to mine the mountain and that he should leave."
                 "A few months later, I saw Pete's herd of cattle off on the hills in his summer area."
                 "He came through the village, selling various things, and spoke to me."
@@ -3701,7 +3705,6 @@ label community22:
                 pete "Fair point. But anyway, I think you guys are bluffing and I am not going to leave my home for RET."
 
                 scene black with fade # convey passage of time with this?
-                "A few weeks later..." #can I convey the passage of time some other way?
                 nvl clear
                 brennan_c "Is Pete still in the cave? We started mining on the opposite side of the mountain but we'll be getting close to him soon."
                 him_c "Yeah, he's still there. He thinks you're bluffing."
@@ -3727,7 +3730,6 @@ label community22:
                         "She flicked off the safety and aimed the gun right at us. There was a righteous fire in her eyes as she prepared to defend her home and kids."
                         "Chaco must have sensed my apprehension, because he whispered."
                         chaco "Don't worry; it's not loaded."
-                        "Chaco's whisper must have echoed across the cave chamber, because Helen heard him."
                         helen "What?!"
                         "She opened the chamber to check for a round, and Bandile grabbed her arms while she was distracted."
                         "Helen started screaming, and Pete appeared from behind some rocks."
@@ -3739,10 +3741,8 @@ label community22:
                         him "Okay. Let her go."
                         "Bandile let go of Helen. She looked at me like I was vomit."
                         "The luddites left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
-
-                        return
-
-                    "No, let's back off.":
+                        #TODO: expand?
+                        $ luddites = 0 #or a large minus to the relationship
                         him_c "This is getting too intense. I don't think it's worth fighting over."
                         brennan_c "We've already starting mining the mountain though."
                         him_c "Well Pete isn't living in the whole thing. Can you just mine around him or something?"
@@ -3765,15 +3765,64 @@ label community22:
 
                 return
 
+=======
+#                        if luddites > 5:
+#                            him_c "This is getting too intense. I don't think it's worth fighting over."
+#                            brennan_c "We've already starting mining the mountain..."
+#                            him_c "Well Pete isn't living in the whole thing. Can you just mine around him or something?"
+#                            zaina_c "If Pete would let me into the tunnels, we could be sure to avoid him. I just don't know how deep they go..."
+#                            him_c "Let me talk to him again. Maybe I can convince him to let someone in to document them."
+#                            brennan_c "Go ahead. It would definitely set my mind at ease."
+#                            "I convinced Pete to let Zaina image the caves, and they were able to mine around it without disturbing it."
+
+#                            return
+                            # should we allow the compromise ending here, or only in the "best stats" ending above?
+                            # the other alternative is jump stop_mining, or not have this alternate to the choice
+
+                        him_c "It's not worth fighting over."
+                        brennan_c "It's not worth it to you, but it's worth it to me."
+                        him_c "What have you got against Pete?"
+                        brennan_c "It's nothing personal. We've already established that it's the most efficient place to mine for rare metals."
+                        brennan_c "The more efficient we are at mining, the better chance RET has to support us for a longer period of time."
+                        him_c "But we'll have to sacrifice our relationship to the luddites to do so."
+                        zaina_c "It was their decision to leave the colony, and it's our decision to keep mining the mountain."
+                        jump mining_anyway
+
+
+            "Let's mine somewhere else":
+                him_c "He's too stubborn to leave if we push him out."
+                him_c "Why don't you mine somewhere else for now?"
+                zaina_c "Other mountains aren't as dense with the rare metals we seek."
+
+#                if luddites > 5:
+#                    label stop_mining:
+#                        brennan_c "I'm worried about what RET will say when I tell them we're changing mining locations..."
+#                        brennan_c "But I also don't want to create an army of potential saboteurs by displacing the luddites."
+#                        him_c "If RET gives you grief you can blame me."
+#                        brennan_c "Will do. Let's find the next-best place and mine there."
+#                        zaina_c "Alright. I'll send you the details."
+#                        $ luddites += 1
+#                        jump stopped_mining
+#                        #does this seem too easy? maybe each stopped mining branch should also have the luddites vandalizing the equipment?
+
+#                else:
+
+                brennan_c "It's too risky not to mine it. We're going to continue whether they're there or not."
+                brennan_c "It's not like the luddites have ever stuck it out for us."
+                him_c "Not sure why you asked my advice if you're just going to do what you planned anyway."
+                brennan_c "I thought you might have an idea of how to convince him to leave. He obviously doesn't need more money."
+                him_c "I don't think anything you do would convince him to leave."
+                brennan_c "Which gives me the information I need to carry on without wasting time on negotiation."
+
+                jump mining_anyway
+
             "Don't make a recommendation.":
                 him_c "You guys are on your own."
                 him_c "I don't want any part of this."
                 "I left the conversation."
-                "They mined through about half of the mountain before moving to a different one."
+                jump mining_anyway
 
-                return
-
-    elif (luddites > 8):
+    elif (luddites > 5):
         "Pete called me on the radio one evening."
         pete "We've been hearing and feeling explosions in the mountain a lot lately."
         pete "Are the miners going to come to our side of the mountain? We like where we live and don't want to move." #or would his tone be more indignant?  YES
@@ -3781,6 +3830,7 @@ label community22:
         pete "We could move, but it would be difficult to find a spot so ideal for our purposes."
         pete "The cave we have now protects us from radiation but lets in light in places."
         pete "The tunnels are large enough to move around in, and we store food and supplies here."
+        pete "If we were back on earth, these caves would be a national monument."
         pete "Everyone would be upset if we had to move."
         him "Let me see what I can find out."
         nvl clear
@@ -3799,6 +3849,7 @@ label community22:
         brennan_c "I don't have much else in my persuasive arsenal. It's dangerous for them to stay, and leaving would help our entire community."
         him_c "Surely there are other mountains you could mine?"
         brennan_c "There are, but Zaina has been exploring and taking samples over the last few years. That mountain has the best chance of having the most rare metals for a 50-mile radius."
+        brennan_c "I suppose if Pete let Zaina in the cave, we could see if the mining will actually endanger them or not... but I doubt he'd let her."
         him_c "Okay, okay. I'll talk to Pete, but no promises."
         "I tried paging Pete on the radio, but there was no answer."
         "I left him a sort of text message telling him to call me later."
@@ -3831,10 +3882,7 @@ label community22:
                 him_c "I didn't have anything to do with it. [her_name] can tell you that I've been home every night for the past few months."
                 brennan_c "It isn't worth it to keep mining over there if it jepordizes our chances for future mining."
                 brennan_c "Hope you're happy!"
-
-                $ luddites += 1
-
-                return
+                jump stopped_mining
 
             "I don't think it's worth fighting over.":
                 him "I know you don't want to move. But Brennan has made some good points."
@@ -3847,30 +3895,111 @@ label community22:
                     pete "I'd appreciate that."
                 him "Maybe there's a different reason. But whatever it is, we can't change RET's mind right away."
                 pete "Can they just avoid mining around our cave?"
-                him "You know how the miners feel about going around caves..."
-                pete "Okay, how about this. Can they dig a different cave out for us on the mountain to the west?"
-                him "That might work. Let me ask Brennan."
-                "I presented Brennan with my compromise. He was interested. Pete told them what kind of a cave he wanted."
-                "The miners dug a new cave for them, and they moved in before the miners endangered their original home."
-
-                $ miners += 1
+#                if miners > 5:
+#                    him "I think they'd need you to let them in your cave so they could know how deep it goes."
+#                    pete "If that's what it comes down to, I think I can let someone in."
+#                    "Pete let Zaina map his cave, and the miners were able to dig around it."
+#                else:
+                him "I don't know. Maybe if they were willing to go in and measure your caves, they would know enough to avoid them."
+                pete "I don't think they care enough to make that kind of effort."
+                pete "I could just stay here and hope it doesn't hurt us."
+                him "That sounds risky."
+                jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
                 return
+
+        label stopped_mining:
+            "The mining stopped." #this can happen if you're not the liason, after the luddites vandalize mining equipment
+            if is_liason:
+                "I didn't mention anything to RET, but Brennan must have, because Mayor Grayson sent me an urgent message the next day."
+                pavel_c "Please come meet me in my office today."
+                him_c "Okay, what's is about?"
+                pavel_c "I think you know..."
+                "I guess RET probably wasn't happy that the mining had stopped."
+                pavel "RET has asked me to designate a new liason."
+                him "Okay. Fine."
+                pavel "What did you think would happen? You didn't even consult them."
+                him "I know what they would have said."
+                pavel "But you have to let them say it. You're not the only one in contact with them."
+                pavel "RET asked me to make the nominations for two candidates. I'm sending out a poll tonight to vote for the new liason."
+                him "This will just help me focus on farming--the important work."
+                "Sara won the most votes and became the new liason."
+
+                $ is_liason = False
+
+                jump sara_RET_22
+                return
+
+            else:
+                label sara_RET_22:
+                sara_c "Hey, RET is giving me grief because the mining stopped."
+                sara_c "What's the big idea? Can we really not do anything?"
+                him_c "Well, Pete doesn't want to move, so yes, we really can't do anything to get him to leave."
+                sara_c "They're insisting that we resume mining."
+                him_c "Tell them we can't because don't want to accidentally hurt the luddites."
+                sara_c "And the equipment is getting mysteriously vandalized..."
+                him_c "Right? It just isn't worth it."
+                sara_c "RET wants to authorize use of force against anyone caught making unauthorized modifications to mining equipment."
+                sara_c "There aren't any current plans do that."
+                sara_c "Brennan doesn't want to do that and they're getting ready to mine in a different location."
+                sara_c "RET isn't happy with us right now though."
+
+                return
+
+
+            #$ style = get_parenting_style()
+           # if (style== "authoritative"):
+           #     "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
+            #elif(style == "authoritarian"):
+            #    "We need a designated contact with the colony that u trust. Send ur decision."
+            #elif(style == "permissive"):
+            #    "U shld choose some1 2 represent the colony 2 us."
+            #else:
 
     else:
         #try to calibrate to make this end pretty rare. maybe just compare mining value to luddites in elif?
         "The miners started working in a different mountain this year."
-        "I heard there was some conflict with the luddites over who could use the mountain."
-        "Otherwise things were pretty normal."
-
+        "It happened to be the same mountain that the luddites wintered in by the ocean."
+        jump mining_anyway
         return
+
+label mining_anyway:
+    "Brennan continued with the mining even though the luddites were still living in the caves."
+    "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
+    pete "[her_name], do you copy? Please, are you there? We have a medical emergency."
+    her "I'm here. What's wrong?"
+    "Pete sounds distraught."
+    pete "Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking."
+    her "Is he breathing? Does he have a heartbeat?"
+    pete "He's alive and he called us for help. But he's completely stuck underneath a rock right now."
+    her "See if you can keep him warm. Maybe a small warm-blooded animal could sneak back there?"
+    her "The cave is probably unstable. If you try to get him out, you could make it worse or get stuck yourself."
+    pete "There must be something we can do. I can't sit and watch him die."
+    her "Don't try to move him until I have more information. I'll radio back to you in five minutes."
+    "She turned the radio off."
+    him "That did not sound good." #would Terra say something here too?
+    her "No, it didn't."
+    her "I need an expert opinion..."
+    "[her_name] radioed Kevin and explained the situation. He was sympathetic and offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
+    "She told Pete about their plan and he agreed to let them come help Travis."
+    her "I'll take the necessary medical supplies with me. It looks like I'll be gone the next two days, but we'll stay in contact over the radio."
+    him "Good luck."
+    "That night, she told me that Travis was still alive but his leg was probably broken. Kevin was taking measurements and gave some orders for miners on the other side to suspend operations while he worked."
+    "The next morning, [her_name] said that they were able to extract Travis."
+    "The damage to Travis's leg was bad enough that [her_name] wanted to do surgery."
+    "After a day of recovery, [her_name] returned to the colony with Helen and Travis, who rode a cow since he couldn't walk."
+    her "His tibia is completely shattered. After looking at the x-ray, I don't know if I can save it." #I tried looking up some information on this
+    "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
+    return
 
 label community23:
     "Brennan wants to collect jellysquid shells for minerals" #only if he saw them in the luddite event?
-    "RET wants to switch to artificial meat."  #I like the idea of doing something with artificial meat, but let's keep thinking about this.  Maybe RET announces they will not send anymore live animals, but instead an artificial meat lab, and you can decide to phase out your animals or breed them more?
+    her "Pete's meat is a lot higher in radiation than meat from our colony." #relistic? UV radiation inhibits bacterial growth.
+    her "If people keep eating it, it might shorten their lifespan."
+
+    "RET wants to switch to artificial meat."
     # what if the miners have some kind of artificial meat factory and start selling it so cheaply that no one wants to buy Pete's real meat anymore? Would this be a an interesting problem?
     #I was also thinking that maybe the cows don't like their anti-radiation blankets and there is concerns that their meat contains radiation
-    #this even doesn't have to be about meat either.
     "I hate how it tastes."
     "Make the switch?"
     menu:
@@ -3878,7 +4007,7 @@ label community23:
             $ miners += 1 #miners equal the interests of RET here
         "No.":
             $ luddites += 1
-        "Make a convincing case for meat.": #provides fertilizer, hair for wool, milk, leather
+        "Stop eating cow meat, but still use milk and leather?.": #provides fertilizer, hair for wool, milk, leather
             $ colonists += 1
     return
 
