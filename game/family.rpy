@@ -4797,6 +4797,7 @@ label family20:
     kid "Dad, listen to this song."
     him "Okay..."
     "She played me a song where a girl about her age was playing a soulful song on the saxophone."
+    him "That's a good song."
     kid "I wish I could do that."
     menu:
         "What should I say?"
@@ -4810,6 +4811,7 @@ label family20:
             kid "It's not the same. And I'm not that good at singing, either."
         "Yeah, that's too bad.":
             him "Yeah, that's too bad."
+            kid "Saxophones are just so cool."
         "What exactly are you talking about?":
             him "What exactly are you talking about?"
             kid "I want to play the saxophone!"
@@ -4928,7 +4930,7 @@ label family20:
         "Focus on what you can do.":
             $ demanding += 1
             him "We're not going to be able to get a saxophone. Focus on what you can do."
-            kid "Guess I can just watch videos and dream in my heart."
+            kid "I can watch videos and dream in my heart. Not helping, dad!!"
             him "That's not all; you can focus on your singing. I've scheduled individual voice lessons for you with Julia."
             kid "Julia?! Aw man, not her! She's so mean!"
             him "She just expects a lot from people. As long as you work hard and don't give her a reason to be disappointed you'll be fine."
@@ -4977,7 +4979,7 @@ label family20:
             ilian "15 credits? That's not even minimum wage."
             him "There's no such thing as minimum wage."
             ilian "20 credits for a half hour lesson combined with Oleg."
-            him "What happened to a person instructor?"
+            him "What happened to a 'personal instructor'?"
             ilian "If you're paying less, you get less. That's how the world works."
             him "All right, fine."
         "You have a deal.":
@@ -4991,6 +4993,9 @@ label family20:
             him "I could come help you process food while she's in her lesson. Canning, dehydrating, whatever."
             ilian "That could work. Fine; you have a deal."
         # TODO: make you now have less work available. Also subtract the money.
+    "I was worried that the saxophone would just be a fad [kid_name] went through, but she really got into it."
+    "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
+    "But when she played, I could hear her expressing emotions even she didn't know she had."
     return
 
 #####################################################
@@ -5441,6 +5446,12 @@ label family23:
 # Death, alcohol, drugs, fashion
 # Lettie dies.
 label family24:
+    "My horse, Lettie, was almost a member of the family. But she was over twenty-five years old, now, and it was starting to show."
+    "She still liked to get out and ride around, but she didn't feel like running as much, especially when it was hot outside."
+    "She was the only horse on the colony; at one point there were plans for horse breeding, but when RET found precious ores they sent mining equipment instead."
+    # TODO: Finish this. Dies of yew poisoning planted by miners?
+
+
     "[her_name] asks you about fire grass. Seems like a lot of people have been talking about it lately."
     menu:
         "You're never to go near it, do you hear me?":

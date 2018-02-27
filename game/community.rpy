@@ -3727,7 +3727,7 @@ label community22:
                         him "Look, we're not here to shoot anyone."
                         "Before I could finish explaining, Helen kicked Chaco in the crotch and took his gun." #not sure how this should play out.
                         helen "We. Are. Not. Moving."
-                        "She flicked off the safety and aimed the gun right at us. There was a righteous fire in her eyes as she prepared to defend her home and kids."
+                        "She flicked off the safety and aimed the gun right at us. The small, usually timid woman had a righteous fire in her eyes as she prepared to defend her home and kids."
                         "Chaco must have sensed my apprehension, because he whispered."
                         chaco "Don't worry; it's not loaded."
                         helen "What?!"
@@ -3754,18 +3754,17 @@ label community22:
 
                         return
 
-            "Let's mine somewhere else":
-                him_c "He's too stubborn to leave if we push him out."
-                him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
-                zaina_c "But that mountain is the best place for mining right now."
-                brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
-                brennan_c "Let's find the next-best place and mine there."
-                zaina_c "Alright. I'll send you the details."
-                $ luddites += 1
+                    "Let's mine somewhere else":
+                        him_c "He's too stubborn to leave if we push him out."
+                        him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
+                        zaina_c "But that mountain is the best place for mining right now."
+                        brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
+                        brennan_c "Let's find the next-best place and mine there."
+                        zaina_c "Alright. I'll send you the details."
+                        $ luddites += 1
 
-                return
+                        return
 
-=======
 #                        if luddites > 5:
 #                            him_c "This is getting too intense. I don't think it's worth fighting over."
 #                            brennan_c "We've already starting mining the mountain..."
@@ -3778,7 +3777,7 @@ label community22:
 #                            return
                             # should we allow the compromise ending here, or only in the "best stats" ending above?
                             # the other alternative is jump stop_mining, or not have this alternate to the choice
-
+                        # TODO: you will never reach this because of the return above?
                         him_c "It's not worth fighting over."
                         brennan_c "It's not worth it to you, but it's worth it to me."
                         him_c "What have you got against Pete?"

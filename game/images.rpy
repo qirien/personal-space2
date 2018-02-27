@@ -5,7 +5,7 @@
 init -10:
     # BACKGROUNDS
     image farm_exterior flip = im.Flip("images/bg/farm_exterior.jpg", horizontal = True)
-    image farm_interior flip = im.Flip("images/bg/farm_interior.jpg", horizontal = True)    
+    image farm_interior flip = im.Flip("images/bg/farm_interior.jpg", horizontal = True)
     image stars_animated:
         "images/bg/stars.jpg"
         linear 10.0 zoom 0.5
@@ -14,9 +14,9 @@ init -10:
     # GUI
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 10, 10)
     image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 10, 10)
-    
+
     image computer_pad = "gui/computer pad.png"
-    image computer_pad_with_screen = LiveComposite( 
+    image computer_pad_with_screen = LiveComposite(
         (1280, 720),
         (0,0), "images/bg/stars.jpg",
         (0,0), "gui/computer pad.png"
@@ -25,11 +25,11 @@ init -10:
 
     define CROP_ICON_SIZE = 50
     define CROP_LAYOUT_BAR_SIZE = CROP_ICON_SIZE + 8
+    define CROP_LAYOUT_BAR_WIDTH = CROP_ICON_SIZE / 10
     # TODO: add different background? custom bg?
-    
+
     image ctc_blink:
            "gui/ctc.png"
            linear 0.75 alpha 1.0
            linear 0.75 alpha 0.0
-           repeat 
-           
+           repeat

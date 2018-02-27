@@ -14,27 +14,33 @@ screen plan_farm:
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
         text "User [his_name] has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
         textbutton "Family" xpos 800 ypos 22 action Show("monthly_screen")
-        textbutton "?" xpos 1077 ypos 22 action Jump("tutorial_ask")        
+        textbutton "?" xpos 1077 ypos 22 action Jump("tutorial_ask")
         textbutton "             " xpos 1085 ypos 22 action ShowMenu("preferences")
-        vbox:            
-            area (60, 50, 1150, 620)           
+        vbox:
+            area (60, 50, 1150, 620)
             yfill True
-            hbox:                
+            hbox:
                 xfill True
-                yfill True                                
-                # crop details here          
+                yfill True
+                # crop details here
                 frame:
                     yfill True
-                    background gray_dark                    
-                    vbox:                    
+                    background gray_dark
+                    vbox:
                         label "Farm Plan for Year " + str(year):
                             xalign 0.5
-                        
-                        use crop_details_screen                         
-                        
+
+                        use crop_details_screen
+
                         hbox:
                             xfill True
                             null width LEFT_COLUMN_WIDTH
+                            textbutton "Clear":
+                                xalign 0.5
+                                action [
+                                        clear_crops,
+                                        renpy.restart_interaction
+                                        ]
                             textbutton "Auto":
                                 xalign 0.5
                                 action [
@@ -46,8 +52,8 @@ screen plan_farm:
                                 action Return()
 
 label monthly_computer:
-    call screen monthly_screen    
-                                
+    call screen monthly_screen
+
 screen monthly_screen:
     frame:
         background  "computer_pad_with_screen"
@@ -55,16 +61,16 @@ screen monthly_screen:
         text "User {a=call:monthly_computer}[his_name]{/a} has logged on." size 12 xalign 0.1 ypos 15 color "#fff"
         textbutton "?" xpos 1077 ypos 15 action Jump("tutorial_ask")
         textbutton "             " xpos 1085 ypos 15 action ShowMenu("preferences")
-        vbox:            
-            area (60, 50, 1150, 620)           
+        vbox:
+            area (60, 50, 1150, 620)
             yfill True
-            hbox:                
+            hbox:
                 xfill True
                 yfill True
-                vbox:                    
+                vbox:
                     # family details here
                     frame:
-                        yfill True                        
+                        yfill True
                         background gray_light
                         has vbox
                         vbox:
@@ -72,23 +78,23 @@ screen monthly_screen:
                             # TODO: Add a small family photo
                             label "Family"
                             text "[his_name]"
-                            text "[her_name]"                    
+                            text "[her_name]"
                             text "[kid_name], [earth_year] earth years"
                             if (bro_birth_year != 0):
                                 text "[bro_name], [bro_age] earth years"
                             # Community info
-                
+
                         # community/reference details
-                        vbox: 
+                        vbox:
                             xsize LEFT_COLUMN_WIDTH
                             label "Community" # TODO: have cute icons for these, like on a phone?
                             textbutton "Message Board" action Show("messages")
                             textbutton "Parenting Handbook" action Show("parenting_handbook")
-                            
+
                         vbox:
                             textbutton "Return to Farm" action Hide("monthly_screen")
-                    
-                                
+
+
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
 ##
@@ -102,27 +108,27 @@ screen crop_details_screen:
             xsize LEFT_COLUMN_WIDTH
             label "Crops"
             use crops_available
-          
+
         # Crop layout area
         vbox:
             xsize MIDDLE_COLUMN_WIDTH
             label "Layout"
             use crops_layout
-                
-        # Totals so far                                                    
-        vbox:            
+
+        # Totals so far
+        vbox:
             xalign 0.5
             xsize RIGHT_COLUMN_WIDTH
             label "Total"
             use crops_totals
-                
+
 screen crops_available:
     vbox:
         style_prefix "crop_details"
-        $ crop_name = crop_info[selected_crop_index][NAME_INDEX] 
-        label crop_name.capitalize()                
+        $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
+        label crop_name.capitalize()
         # TODO: Take out style tag and see if autodetecting of this has been fixed later.
-        hbox:        
+        hbox:
             grid 2 5:
                 # TODO: Make each of these a different color and have a key so they take up less room.
                 # TODO: Add Nitrogen usage (pest effect?)
@@ -130,42 +136,42 @@ screen crops_available:
                 bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                 text "Nutrition: "
                 bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                text "Work: "
+                bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                text "Nitrogen: "
+                $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
+                if (crop_nitrogen <= 0):
+                    bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar"
+                else:
+                    bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
+
                 if (year >= 5):
                     text "Value: "
                     bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                 else:
                     null
                     null
-                text "Work: "
-                bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                text "Nitrogen: "
-                $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
-                if (crop_nitrogen <= 0):
-                    bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar" 
-                else:
-                    bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
-                #text "Income: " + str(crop_info[crop_info_index][5]) # TODO: based on value, calories, and nutrition?
             text crop_descriptions[crop_name]
         null height 30
-        vpgrid:                
+        vpgrid:
             # TODO: change this based on number of enabled crops?
             cols 4
             spacing 10
             draggable True
-            mousewheel True        
+            mousewheel True
             #scrollbars "vertical"
             side_xalign 0.5
-                    
+
             for j in range(0, len(crop_info)):
                 # only show currently enabled crops
                 if (crop_info[j][ENABLED_INDEX]):
-                    $ crop_name = crop_info[j][NAME_INDEX]                            
-                    $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])                        
+                    $ crop_name = crop_info[j][NAME_INDEX]
+                    $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
                     $ imagefile = "gui/crop icons/" + crop_name + ".png"
-                    $ is_selected = (selected_crop_index == j)                    
-    
+                    $ is_selected = (selected_crop_index == j)
+
                     imagebutton:
-                        idle imagefile 
+                        idle imagefile
                         hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                         selected_idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                         insensitive LiveComposite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (0,0), Solid(gray_transparent))
@@ -175,13 +181,13 @@ screen crops_available:
                         selected is_selected
                         sensitive (not max_crops_reached)
                         action [ SetVariable("selected_crop_index", j), renpy.restart_interaction ]
-        
+
 screen crops_layout:
     vpgrid:
         style_prefix "crop_layout"
-        
+
         # number of columns is the square root of farm_size
-        cols int(farm_size**0.5)                
+        cols int(farm_size**0.5)
         side_xalign 0.5
         for i in range(0, farm_size):
             vbox:
@@ -191,41 +197,24 @@ screen crops_layout:
                         if (crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX] > farm.health[i][Field.NITROGEN_LEVEL_INDEX]):
                             background red_dark
                         else:
-                            background tan_dark                                 
+                            background tan_dark
                         $ imagefile = "gui/crop icons/" + current_crop_name + ".png"
                         imagebutton:
-                            idle imagefile 
+                            idle imagefile
                             hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                             xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                             anchor (0.5, 0.5)
                             align  (0.5, 0.5)
                             action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
-                            
-                    $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
-                    $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX] 
-                    $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
-                    
-                    # This crop adds nitrogen; show it in a positive color
-                    if (new_nitrogen_level >= current_nitrogen_level):                                    
-                        $ display_value = new_nitrogen_level - current_nitrogen_level
-                        $ display_range = Field.NITROGEN_FULL - current_nitrogen_level                                     
-                        $ display_size = int((CROP_LAYOUT_BAR_SIZE/100.0) * (Field.NITROGEN_FULL - current_nitrogen_level))
-                        $ display_style = "crop_layout_nitrogen_increased_bar"
-                                                            
-                    # This crop subtracts nitrogen; show it in a negative color
-                    else:
-                        $ display_value = current_nitrogen_level - new_nitrogen_level
-                        $ display_range = Field.NITROGEN_FULL - new_nitrogen_level 
-                        $ display_size = int((CROP_LAYOUT_BAR_SIZE/100.0) *  (Field.NITROGEN_FULL - new_nitrogen_level))
-                        $ display_style = "crop_layout_nitrogen_decreased_bar"
-                            
-                    vbox:
-                        bar value display_value range display_range style display_style ysize display_size 
-                        bar value Field.NITROGEN_FULL range Field.NITROGEN_FULL style "crop_layout_bar" ysize (CROP_LAYOUT_BAR_SIZE - display_size)                                
 
-                    #bar value farm.health[i][Field.NITROGEN_LEVEL_INDEX] range Field.NITROGEN_FULL style "crop_layout_bar"
+                    $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
+                    $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX]
+                    $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
+
+                    use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
                     bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
-                    
+                    # TODO: use a tricolor bar here, too? Or show as bugs in background of field?
+
                 # history
                 hbox:
                     $ history_icon_size = CROP_ICON_SIZE // 2
@@ -233,55 +222,90 @@ screen crops_layout:
                         $ past_crop_name = farm.history[i][past_crop]
                         $ imagefile = "gui/crop icons/" + past_crop_name + ".png"
                         add imagefile size (history_icon_size, history_icon_size)
-    
+
 screen crops_totals:
     vbox:
-        $ calories_max = get_calories_required()
+        $ calories_needed = get_calories_required()
+        $ calories_max = farm_size * CROP_STATS_MAX
         $ total_calories = 0
         $ total_nutrition = 0
         $ total_value = 0
-        $ total_work = 0        
-        # Totaling crops attributes        
+        $ total_work = 0
+        # Totaling crops attributes
         for i in range(0, farm.crops.len()):
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
-            $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info                
+            $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ total_calories += crop_info[index][CALORIES_INDEX]
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
             if (year >= 5):
                 $ total_value += crop_info[index][VALUE_INDEX]
             $ total_work += crop_info[index][WORK_INDEX]
-                
+
         #grid 2 4
         text "Calories:     " + str(total_calories)
-        bar value total_calories range calories_max style "crop_totals_bar"
+        use tricolor_bar(calories_needed, total_calories, calories_max, CROP_LAYOUT_BAR_SIZE, CROP_LAYOUT_BAR_WIDTH, True)
+        use tricolor_bar(calories_needed, total_calories, calories_max, CROP_LAYOUT_BAR_SIZE, CROP_LAYOUT_BAR_WIDTH, False)
         text "Nutrition:    " + str(total_nutrition)
         bar value total_nutrition range calories_max style "crop_totals_bar"
+        text "Work:         " + str(total_work)
+        bar value total_work range get_work_available() style "crop_totals_bar"
         if (year >= 5):
             text "Value:          ¤" + str(total_value)
-        text "Work:         " + str(total_work)                 
-        bar value total_work range get_work_available() style "crop_totals_bar"
 
     # TODO: add projected yield
-                        
+
+# Screen to show a bar with three values. Show the values in a different color
+# depending on whether the new value is greater than or less than the current
+# value.
+screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
+    # we have an increase; show it in a positive color
+    if (new_value >= current_value):
+        $ display_value = new_value - current_value
+        $ display_range = max_value - current_value
+        $ display_size = int((display_max_size/float(max_value)) * (max_value - current_value))
+        $ display_style = "increased_bar"
+
+    # we have a decrease; show it in a negative color
+    else:
+        $ display_value = current_value - new_value
+        $ display_range = max_value - new_value
+        $ display_size = int((display_max_size/float(max_value)) *  (max_value - new_value))
+        $ display_style = "decreased_bar"
+
+    if (display_vertical):
+        vbox:
+            spacing 0
+            bar value display_value range display_range style display_style xsize display_min_size ysize display_size bar_vertical display_vertical
+            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size) bar_vertical display_vertical
+    else:
+        hbox:
+            spacing 0
+            bar value max_value range max_value style "normal_bar" xsize (display_max_size - display_size) ysize display_min_size bar_vertical display_vertical bar_invert True
+            bar value display_value range display_range style display_style xsize display_size ysize display_min_size bar_vertical display_vertical
+
 init python:
-    
+
     # Set the crop in our farm array and update the total stats for the farm
     def set_crop(index, crop_name):
         global farm
         global selected_crop_index
         farm.crops[index] = crop_name
-        max_crops_reached = (farm.crops.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX])    
+        max_crops_reached = (farm.crops.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX])
         # if we have put in the max of this crop, select something else.
         if (max_crops_reached):
-            selected_crop_index = 0            
-        
+            selected_crop_index = 0
+
     SetCrop = renpy.curry(set_crop)
-    
+
     # Use our default test crops
     def set_default_crops():
         global farm
         farm.crops.setDefault()
-        
+
+    def clear_crops():
+        global farm
+        farm.reset_crops()
+
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
     background tan_dark
@@ -290,96 +314,100 @@ style plan_farm_label is label:
 style plan_farm_label_text is label_text:
     color black
     font "fonts/Questrial-Regular.otf"
-    
+
 style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
     idle_color tan_dark
     hover_color tan_med
-    
+
 style plan_farm_text is text:
     color black
-    
+
 style plan_farm_vbox is vbox:
-    spacing 5    
-    
+    spacing 5
+
 # Custom styles for the crop details part of the screen
 style crop_details_vpgrid is vpgrid:
     xalign 0.5
     xfill True
     yalign 1.0
-    
+
 style crop_details_label is plan_farm_label:
-    background green_dark    
-    
+    background green_dark
+
 style crop_details_label_text is plan_farm_label_text:
-    color black    
+    color black
     size 20
-    
+
 style crop_details_selected_label is crop_details_label:
     background tan_dark
-    
+
 style crop_details_selected_label_text is crop_details_label_text:
     color white
-    
+
 style crop_details_button_text is plan_farm_button_text:
     idle_color green_med
     hover_color green_light
     selected_color white
-    
+
 style crop_details_text is plan_farm_text:
     size 16
     yalign 0.5
     xalign 1.0
-    
+
 style crop_details_bar is bar:
     left_bar Frame(Solid(green_med))
     right_bar Frame(Solid(tan_light))
     xsize 50
-    ysize 5    
+    ysize 5
     yalign 0.5
 
 style crop_details_positive_bar is bar:
     left_bar Frame(Solid(green_dark))
     right_bar Frame(Solid(tan_light))
     xsize 50
-    ysize 5    
-    yalign 0.5    
-    
+    ysize 5
+    yalign 0.5
+
 style crop_details_vbox is vbox:
     xsize LEFT_COLUMN_WIDTH
     spacing 10
-    
+
 style crop_details_hbox is hbox:
     xsize LEFT_COLUMN_WIDTH
     xalign 0.0
     xfill True
-    
+
 style crop_details_grid is grid:
     xsize LEFT_COLUMN_WIDTH
     spacing 0
-    
+
 style crop_layout_vpgrid is vpgrid:
-    spacing 16  
+    spacing 16
     xalign 0.5
     xsize MIDDLE_COLUMN_WIDTH
     xfill True
-    
+
 style crop_layout_hbox is hbox:
     spacing 5
-    
+
 style crop_layout_bar is bar:
     bar_vertical True
-    xsize 5
+    xsize CROP_LAYOUT_BAR_WIDTH
     ysize CROP_LAYOUT_BAR_SIZE
     yalign 1.0
     spacing 1
 
-style crop_layout_nitrogen_increased_bar is crop_layout_bar:
+style increased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
     bottom_bar Frame(Solid(green_dark))
-    
-style crop_layout_nitrogen_decreased_bar is crop_layout_bar:
+
+style decreased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
     bottom_bar Frame(Solid(red_med))
-    
+    left_bar Frame(Solid(red_med))
+    right_bar Frame(Solid(gray_light))
+
+style normal_bar is crop_layout_bar
+
 style crop_totals_bar is crop_layout_bar
