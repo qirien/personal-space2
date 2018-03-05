@@ -1991,9 +1991,9 @@ label family8:
     scene fields with fade
     show him at quarterright
     show kid at center
-    show Travis at midleft
+    show travis at midleft
     show oleg at quarterleft
-    Travis "Mud fight!"
+    travis "Mud fight!"
     him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
     kid "I do!"
     show kid at squatting with move
@@ -2090,7 +2090,8 @@ label family8:
     show kid at center
     with dissolve
 
-    kid "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors and the letters of the alphabet and my numbers up to fifty except I always mess up around forty-seven and skip right to forty-nine but that's still pretty good, right, daddy?"
+    kid "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors..."
+    kid "...and the letters of the alphabet and my numbers up to fifty except I always mess up around forty-seven and skip right to forty-nine but that's still pretty good, right, daddy?"
     him surprised "Um, what was the quetsion?"
     kid "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
     her concerned "[her_name]."
@@ -2168,7 +2169,7 @@ label family8:
             oleg "Ptooey!"
             "He pretended to spit it out. He did a pretty good impression of his baby sister."
             show Travis at center with moveinright
-            Travis "Dinosaurs with bazookas are coming! Fight them off!"
+            travis "Dinosaurs with bazookas are coming! Fight them off!"
             "[kid_name] swatted the air with her frying pan while Travis used a rolling pin as a gun and Oleg made some swatting motions in the air."
             "Teacher" "Come over here, it's circle time!"
             hide Travis
@@ -2631,7 +2632,7 @@ label family10:
                         "I made a building out of blocks."
                         him "Here's the school."
                         "[kid_name] made a path going off a different way."
-                        kid "And here's the storehouse. I'm going to get all the chocolate."
+                        kid "And here's the storehouse. I'm going to get all the applesauce."
                         him "Here, [bro_name], why don't you use these blocks here?"
                         "I cleared out a little space for him and stacked some blocks up in a way that would be hard to knock down."
                         "He knocked it down anyway, banging his figurine on the blocks as if it was jumping."
@@ -2694,39 +2695,57 @@ label family10:
                 him determined "Tell me the truth."
                 kid angry "I did!"
                 him angry "I know you're lying!"
+                kid "I'm not!"
             "Go back to work.":
                 "She might have been lying, but I didn't have time to figure it out. I had to get back to work."
                 $ neglectful += 1
                 jump family10_ending
 
-    menu:
-        "What should I do?"
-        "Talk about why lying is bad.":
-            $ responsive += 1
-            him concerned "When you lie, I can't trust what you say. I want to be able to trust you."
-            kid "I know."
-            him "I don't want you to ever lie to me, okay?"
-            kid "Okay."
-            $ permissive += 1
-        "Punish her.":
-            $ demanding += 1
-            him angry "I can't believe you lied to me! You're grounded for a month!"
-            kid angry "You're so mean!"
-            him annoyed "I wouldn't have to get mean if you would just do what you're told."
-            $ authoritarian += 1
-        "Take away the computer pad.":
-            $ responsive += 1
-            $ demanding += 1
-            "I took the computer pad and put it up high."
-            him annoyed "I'm disappointed you disobeyed, and I'm also disappointed that you lied to me about it. You may not use the computer pad for a week."
-            kid sad "I just really wanted to play it!"
-            him concerned "I know. But if I can't trust you with the computer pad and to tell the truth about it, then you cannot use it."
-            kid angry "That's not fair!"
-            him determined "I'm not going to negotiate about this. You'll have to find something else to do."
-            kid "...you're mean."
-            him normal "Sometimes."
-            $ authoritative += 1
-
+        menu:
+            "What should I do?"
+            "Talk about why lying is bad.":
+                $ responsive += 1
+                him concerned "When you lie, I can't trust what you say. I want to be able to trust you."
+                kid "I know."
+                him "I don't want you to ever lie to me, okay?"
+                kid "Okay."
+                $ permissive += 1
+            "Punish her.":
+                $ demanding += 1
+                him angry "I can't believe you lied to me! You're grounded for a month!"
+                kid angry "You're so mean!"
+                him annoyed "I wouldn't have to get mean if you would just do what you're told."
+                $ authoritarian += 1
+            "Take away the computer pad.":
+                $ demanding += 1
+                $ responsive += 1
+                "I took the computer pad and put it up high."
+                him "You weren't following our rules, so now you cannot play with the computer pad."
+                kid "What! But I didn't do anything!"
+                him "I'm disappointed that I can't trust you to follow our rules or tell the truth. You will not be able to use the computer pad for two weeks."
+                kid "Two weeks?!"
+                him "One for disobeying the rules, and one for lying about it."
+                kid angry "That's not fair!"
+                him "That's the consequence for breaking that rule."
+                kid "I'm sorry! I did play Goose Life. But I just really want to see the ending!"
+                him "I understand. But you still broke the rules."
+                kid "So... since I told the truth, can you reduce the time to just one week?"
+                menu:
+                    "What should I say?"
+                    "No, it's too late for that.":
+                        him "Sorry, it's too late for that. You needed to tell the truth in the first place."
+                        $ demanding += 1                  
+                    "Yeah, I guess.":
+                        him "Yeah, I guess."
+                        $ responsive += 1
+                    "I'll reduce it by two days.":
+                        him "I appreciate that you finally told the truth, so I will reduce the time by two days. Next time I hope you'll tell me the truth right away."
+                        $ demanding += 1
+                        $ responsive += 1
+                kid "...you're mean."
+                him normal "Sometimes."
+                $ authoritative += 1                
+                
     label family10_ending:
         if (year8_have_baby):
             "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
@@ -3007,9 +3026,9 @@ label family12:
     with moveinleft
 
     pete "Hey there, [his_name]. Hey, Travis, wanna say hi? [kid_name]'s here."
-    Travis "No!"
+    travis "No!"
     pete "Think he's embarrassed about his new haircut."
-    Travis "Dad!"
+    travis "Dad!"
     pete "Anyway, here's your comb."
     him concerned "Thanks for printing it for us."
     pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
@@ -3021,7 +3040,7 @@ label family12:
     "We didn't have anti-lice shampoo or anything, so we just used some vinegar to help the eggs detach from the hair better."
     "Then I started to comb."
     "And comb."
-    "And comb."
+    "...and comb."
     scene black with fade
     scene farm_interior with fade
     show him determined at midright
@@ -5202,6 +5221,7 @@ label family21:
 # Wants a bike!
 label family22:
     "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
+    "OR she questions why you have certain rules and you decide what to tell her. or both?"
     menu:
         "Find a way to get her a bike":
             "A bike is an essential part of childhood!  How will you do it?"

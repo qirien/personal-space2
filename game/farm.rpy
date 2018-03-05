@@ -84,7 +84,15 @@ init python:
         def update_history(self):
             for i in range(0, len(self.crops.items)):
                 self.history[i] = [self.crops.items[i]] + self.history[i][0:-1]
-            return            
+            return
+
+        def get_total_work(self):
+            total_work = 0
+            for i in range(0, self.crops.len()):
+                crop_names = [row[NAME_INDEX] for row in crop_info]
+                index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
+                total_work += crop_info[index][WORK_INDEX]
+            return total_work
             
     ##
     # CROPS OBJECT

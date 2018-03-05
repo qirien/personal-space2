@@ -23,23 +23,34 @@ label work_intro:
             $ pass
     return                  
 
-# Year 3, 18 mo. old
-label work1:
+# Year 2, 9 months old    
+label work2:
+    "You offer to help Kevin and Zaina with their vegetable garden, and in return they give you some seeds they brought."
+    return
+
+    
+# Year 4, 2 years old
+label work4:
     "Want some bees? They'll permanently use one square but will yield honey with a moderate amount of work and may increase yield of some other squares."
     return
 
 # Year 6, 3.5 years old
-label work2:
-    "Your family reacts to crops you've been planting."
+label work6:
+    "You can now have [kid_name] help on the farm. Her effectiveness depends on her competence."
     return
 
-# Year 9, 5.5 years old
-label work3:
-    "Making sausage out of goat/crabird meat. Charcuterie!"
+# Year 8, 4.8 years old
+label work8:
+    "Your family reacts to crops you've been planting."    
+    return
+    
+# Year 10, 6.2 years old
+label work10:
+    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
     return
 
 # Year 12, 7.4 years old
-label work4:
+label work12:
     "You had a decent harvest, but a salesman from RET offers some hybrid wheat seeds that he claims will be the most productive crop you've ever seen."
     "The only problem is, the seeds are infertile, so you'd have to buy them every year."
     "In fact, he'll only sell them to you if you sign a contract to buy some from him every year for the next ten Talaam years."
@@ -50,12 +61,12 @@ label work4:
             # you sold your soul but can now grow wheat.
         "No":
             $ luddites += 1
-            # the luddites approve and offer to get you started with some of their heirloom wheat instead
+            # the luddites approve and offer to get you started with some of their heirloom wheat instead. It's not as good - more work, less yield
     
     return
 
-# Year 15, 9.4 years old
-label work5:
+# Year 14, 8.7 years old
+label work14:
     "Take your daughter to work day... is every day."
     $ style = get_parenting_style()
     if (style== "authoritative"):
@@ -66,20 +77,30 @@ label work5:
         "She sulks and you have to threaten and cajole her to do anything.  It would have been faster to do it yourself!"
     "Terra helps out with some simple things, but she isn't very good at it. Do you redo it, make her redo it, or spend some time teaching her better? Do you have her help in the future?"        
     return
+    
+# Year 16, 10 years old
+label work16:
+    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
+    return
 
 # Year 18, 11.1 years old
-label work6:
+label work18:
     "Add on addition to the house as family grows and Terra needs her own space?"
     return
 
-# Year 21, 13 years old
-label work7:
+# Year 20, 12 years old
+label work20:
     "Miners want cheap/fast/calorie-dense food. Will you cater to their needs?"
     "Also, Terra likes it as she is eating more and growing taller than ever."
     return
 
+# Year 22, 13.6 years old
+label work22:
+    "Someone from your favorite faction gives you cool seeds!"
+    return
+    
 # Year 24, 14.8 years old
-label work8:
+label work24:
    "Terra accidentally flips the tractor over while doing her chores, and gets hurt."
    "[her_name] argues that you shouldn't have her do such dangerous chores."
    menu:
@@ -93,14 +114,19 @@ label work8:
    "The truth is [her_name] still misses Earth and wants Terra to be able to experience it.  Discussion about college/training/future."
    return
 
-# Year 27, 16.7 years old
-label work9:
+# Year 26, 16.1 years old
+label work26:
     "You throw out your back."
     "People from your favorite faction and your family help you, or not."
     return
+    
+# Year 28, 17.3 years old
+label work28:
+    "Terra either wants her own farm, or wants to quit working for you! Do you hire someone else or try and get her to stay?"
+    return
 
 # Year 30, 18 years old
-label work10:
+label work30:
     "Summary of how awesome your farm is (or not)"
     return
 

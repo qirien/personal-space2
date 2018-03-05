@@ -1195,8 +1195,9 @@ label community8:
                 menu:
                     "Specify the medication and dosage. Do your best with the other stuff.":
                         $ asked_only_medicine = True
+                        return
                     "Maximize happiness and ask for everyone else's stuff specifically.":
-                        $ pass
+                        return
             else:
                 "I sent the message."
                 return
@@ -1440,7 +1441,7 @@ label community9:
 # 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
     her "I'm leaving for work now. Goodbye honey!"
-    him "Bye [her_name}. Oh, and don't forget that we're having dinner with the Perons tonight."
+    him "Bye [her_name]. Oh, and don't forget that we're having dinner with the Perons tonight."
     her "I wonder what they wanted to talk about..."
     him "Maybe they're just being friendly?"
     "After weeding and clearing out old growth, Terra comes home from school."
@@ -1453,7 +1454,10 @@ label community10:
     her "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     martin "I know! You are not the only one who knows, however."
     natalia "The more people who know about your disease, the more people who can help us!"
-    martin "I have a few more months to live, but already I'm experiencing fatigue and pain that hamper my work."
+    if (asked_only_medicine):
+        martin "If I can hang on until the medicine arrives, that should help, but we're still thinking ahead."
+    else:
+        martin "I have a few more months to live, but already I'm experiencing fatigue and pain that hamper my work."
     martin "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
     natalia "The don't seem as passionate about the farm as you are."
     him "But now that they're older, don't you have more time to work on the farm?"
@@ -1507,7 +1511,7 @@ label community11:
     # Is Kelly here, too? Could be interesting...
     him "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him "No, no one mentioned it. Are you here to help [her_name] with her job again?"
+    him "No, no one mentioned it. I hope you're here to help [her_name]; she has a real nurse assisting her now."
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
     her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
@@ -1524,6 +1528,7 @@ label community11:
     brennan "I sent out the assignments already, so try to find each other!"
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
+    # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
     menu chaco_coversation_loop:
         "What should I ask him?"
         "How was the shuttle ride?":

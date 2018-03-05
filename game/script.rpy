@@ -57,6 +57,8 @@ label start:
         # Confidence, autonomy
         independence = 0
         
+        kid_work_slider = 0 
+        
         sex_ed_biology = False
         sex_ed_commitment = False
         sex_ed_babycreation = False
@@ -130,7 +132,7 @@ label start:
                         ["onions",       4, 2, 7, 4, 5, False, False, 100],
                         ["garlic",       3, 3, 7, 4, 5, False, False, 100],
                         ["cabbage",      2, 4, 3, 3, 15, False, False, 100],   # Leafy greens
-                        ["spinach",      1, 6, 4, 4, 10, True, False,  100],
+                        ["spinach",      1, 6, 4, 3, 10, True, False,  100],
                         ["broccoli",     3, 5, 4, 3, 15, False, False, 100],
                         ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1])   # Miscellaneous  
         crop_descriptions = {
@@ -162,6 +164,8 @@ label start:
         total_nutrition = 0
         total_value = 0
         total_work = 0
+        
+        current_work = 0
         
         # Crop event variables
         carrots_fallow = False        
@@ -216,6 +220,8 @@ label start:
     scene gray_dark with fade    
     $ farm.reset_crops(farm_size)
     call screen plan_farm
+    $ current_work = get_work_available()
+    $ total_work = farm.get_total_work()    
     
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
     "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
@@ -266,6 +272,8 @@ label start:
         $ years_yield = farm.process_crops()
         $ farm.reset_crops(farm_size)
         call screen plan_farm
+        $ current_work = get_work_available()
+        $ total_work = farm.get_total_work()
         $ year += 1        
    
     return

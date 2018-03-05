@@ -2,7 +2,6 @@
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 #
 # TODO: Support permanent plants, such as plums, goats?
-# TODO: Use bars for displaying crop stats?
 # TODO: Get some graphics and pretty this up
 # TODO: show kids' ages and farm/community info
 
@@ -47,7 +46,7 @@ screen plan_farm:
                                             set_default_crops,
                                             renpy.restart_interaction
                                         ]
-                            textbutton "Accept Plan":
+                            textbutton "Accept Plan": # TODO: Can't continue if not enough nutrition/etc?  At least give warning? Must allocate land for all goats?
                                 xalign 1.0
                                 action Return()
 
@@ -225,8 +224,9 @@ screen crops_layout:
 
 screen crops_totals:
     vbox:
-        $ calories_needed = get_calories_required()
-        $ calories_max = farm_size * CROP_STATS_MAX
+        $ calories_needed = get_calories_required()      
+        $ nutrition_needed = get_nutrition_required()
+        $ total_max = farm_size * CROP_STATS_MAX
         $ total_calories = 0
         $ total_nutrition = 0
         $ total_value = 0
@@ -243,16 +243,26 @@ screen crops_totals:
 
         #grid 2 4
         text "Calories:     " + str(total_calories)
-        use tricolor_bar(calories_needed, total_calories, calories_max, CROP_LAYOUT_BAR_SIZE, CROP_LAYOUT_BAR_WIDTH, True)
-        use tricolor_bar(calories_needed, total_calories, calories_max, CROP_LAYOUT_BAR_SIZE, CROP_LAYOUT_BAR_WIDTH, False)
+        use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
         text "Nutrition:    " + str(total_nutrition)
-        bar value total_nutrition range calories_max style "crop_totals_bar"
-        text "Work:         " + str(total_work)
-        bar value total_work range get_work_available() style "crop_totals_bar"
+        use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Work:         " + str(total_work) + " / " + str(get_work_available())
+        use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
+        
         if (year >= 5):
-            text "Value:          ¤" + str(total_value)
+            text "Value:          ¤ " + str(total_value)
+            # TODO: show this better, show savings, etc.
 
-    # TODO: add projected yield
+        text " "
+        if (year > 6):
+            label "[kid_name]'s Time"
+            bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
+            hbox:
+                xfill True
+                text "Free Time"
+                text "Work" xalign 1.0
+        # TODO: add one for bro also?
+
 
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current
@@ -275,13 +285,14 @@ screen tricolor_bar(current_value, new_value, max_value, display_max_size, displ
     if (display_vertical):
         vbox:
             spacing 0
-            bar value display_value range display_range style display_style xsize display_min_size ysize display_size bar_vertical display_vertical
-            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size) bar_vertical display_vertical
+            bar value display_value range display_range style display_style xsize display_min_size ysize display_size
+            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size) 
     else:
         hbox:
             spacing 0
-            bar value max_value range max_value style "normal_bar" xsize (display_max_size - display_size) ysize display_min_size bar_vertical display_vertical bar_invert True
-            bar value display_value range display_range style display_style xsize display_size ysize display_min_size bar_vertical display_vertical
+            bar value max_value range max_value style "normal_bar_horizontal" xsize (display_max_size - display_size) ysize display_min_size bar_invert True
+            $ display_style += "_horizontal"
+            bar value display_value range display_range style display_style xsize display_size ysize display_min_size
 
 init python:
 
@@ -294,6 +305,7 @@ init python:
         # if we have put in the max of this crop, select something else.
         if (max_crops_reached):
             selected_crop_index = 0
+        return
 
     SetCrop = renpy.curry(set_crop)
 
@@ -301,10 +313,19 @@ init python:
     def set_default_crops():
         global farm
         farm.crops.setDefault()
+        return
 
     def clear_crops():
         global farm
         farm.reset_crops()
+        return
+        
+    def set_kid_work(new_value):
+        global kid_work_slider
+        kid_work_slider = new_value
+        renpy.restart_interaction()
+        return
+        
 
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
@@ -405,9 +426,22 @@ style increased_bar is crop_layout_bar:
 style decreased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
     bottom_bar Frame(Solid(red_med))
+    
+style increased_bar_horizontal is crop_layout_bar:
+    right_bar Frame(Solid(gray_light))
+    left_bar Frame(Solid(green_dark))
+    bar_vertical False
+
+style decreased_bar_horizontal is crop_layout_bar:
     left_bar Frame(Solid(red_med))
     right_bar Frame(Solid(gray_light))
+    bar_vertical False
 
 style normal_bar is crop_layout_bar
 
+style normal_bar_horizontal is crop_layout_bar:
+    bar_vertical False
+
 style crop_totals_bar is crop_layout_bar
+
+style work_slider is slider

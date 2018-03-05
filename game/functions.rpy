@@ -51,10 +51,17 @@ init python:
 ##
 
 label increase_attachment:
+    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment
+    if (total_work < current_work):
+        $ attachment += 1
     $ attachment += responsive
     return
     
-label increase_competence:  
+label increase_competence:
+    # If your kid spends more than half their time working, increase competence
+    # TODO: Should we take out the int casting and allow more nuance?
+    # Or have their work_slider affect how much demanding gets added?
+    $ competence += int(kid_work_slider/50.0)
     $ competence += demanding
     return
     
@@ -66,7 +73,7 @@ label increase_independence:
 init -100 python:
 
     # Returns the players current parenting style.
-    # Should be one of authoritative, authoritarian, permissive, or passive
+    # Should be one of authoritative, authoritarian, permissive, neglectful
     # or inconsistent if none are very high.        
     # Return the highest.  If two are equal, return the better one.
     def get_parenting_style():
@@ -108,12 +115,11 @@ init -100 python:
         
     # Find the right work event for this year
     def get_next_work_event():
-        #Every 3 years there is a set event; other years are crop events.
-        # This means we need 10 set events and at least 20 crop events.
-        if ((year % 3) == 0): 
+        #Every even year there is a set event; other years are crop events.
+        # This means we need 15 set events and at least 15 crop events.
+        if ((year % 2) == 0): 
             # Call the next set event
-            event_number = year // 3
-            event_name = "work" + str(event_number)
+            event_name = "work" + str(year)
             return event_name
         else:
             # Find a good crop event.
@@ -138,17 +144,21 @@ init -100 python:
             else:
                 return "default_crop_event"                                
             
-        
+    # Calculate nutrition required for the family for this year.
+    # TODO: right now this is the same as calories? Is that true?
+    def get_nutrition_required():
+        return get_calories_required()                
+                
     # Calculate the calories required for the family for this year.
     # TODO: Kids use more calories if you make them do farm work?
     def get_calories_required():
-        calories_kid = get_calories_kid(earth_year)
+        calories_kid = get_calories_kid(int(earth_year))
         calories_bro = 0
         if (bro_birth_year != 0):
             calories_bro = get_calories_kid(bro_age)
         return (CALORIES_BASE + calories_kid + calories_bro)
         
-    def get_calories_kid(age = 0):
+    def get_calories_kid(age = 0):        
         if (0 <= age <= 1):
             return 5
         if (2 <= age <= 4):
@@ -160,8 +170,13 @@ init -100 python:
         if (14 <= age):
             return 25
             
+    # Calculate the amount of work available.
     def get_work_available():
-        return 60
+        return WORK_BASE + get_work_kid(earth_year)
+        
+    def get_work_kid(age = 0):
+        return int(competence * (kid_work_slider / 100.0))         
+        
             
 ##
 # Set things up for a scene in the bedroom
