@@ -40,7 +40,7 @@ screen plan_farm:
                                         clear_crops,
                                         renpy.restart_interaction
                                         ]
-                            textbutton "Auto":
+                            textbutton "Random":
                                 xalign 0.5
                                 action [
                                             set_default_crops,

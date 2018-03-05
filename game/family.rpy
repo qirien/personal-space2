@@ -3703,7 +3703,7 @@ label family14:
                     him normal "I'll ask you later tonight and you can tell me what you chose."
                     kid "Ugh. Fine. But you should also ask {b}him{/b} to stop annoying {b}me{/b}!"
                     "That's what she said, but at dinner she set the table for [bro_name], and I heard her mutter 'sorry' to him, too."
-                    "It's not shiny happy ending I wanted, but maybe she learned something?"
+                    "It's not the shiny happy ending  I wanted, but maybe she learned something?"
                     "At least we worked things out with her teacher."
                     $ authoritative += 1
                     return
@@ -3995,14 +3995,60 @@ label family16:
             kid "Yeah, exactly."
             $ neglectful += 1
 
-    "That night at dinner, [bro_name] was quiet."
+    "That night after dinner, [bro_name] was quiet."
     him surprised "What are you thinking about, [bro_name]?"
     bro "I miss Sister Naomi."
     him surprised "You do?"
     "The whole community was saddened by her death, though none of us were really surprised."
     bro "Yeah...We used to always stop by her house after school and she'd have an apple or piece of bread for us. Sometimes she even had candy."
     kid "I miss her, too."
-    # TODO: Add something more; pondering death in general
+    bro "Where'd she go?"
+    menu:
+        "What should I say?"
+        "She's in heaven.":
+            him "She's in heaven."
+            kid "Where's that?"
+            him "I don't know. But it's where you go when you die, if you lived a good life."
+            bro "What if you didn't live a good life?"
+            menu:
+                "What should I say?"
+                "Then you go to hell.":
+                    him "I guess then you go to hell."
+                "I don't know.":
+                    him "I don't know; don't worry about all that stuff."
+                "Then you keep learning until you can go to heaven.":
+                    him "I don't know how it all works, but what I'd do is make it so people could keep trying, learning all they needed to, until they were good enough to go to heaven."
+                    her "If you were God?"
+                    him "Well, God's at least as smart as me, so I'm sure He's come up with something good."                    
+                
+        "She's in our hearts.":
+            him "She's in our hearts."
+            kid "Her body's turning into the tree we planted, and trees give off oxygen. So when we breathe in the oxygen, our lungs take it to the heart and it goes in our blood."
+            bro "Wow, she really is in our hearts!"
+            menu:
+                "What should I say?"
+                "I didn't mean it like that.":
+                    him "I meant that our memories of her and the things she taught us live on."
+                    her "Oh. Well that's boring."
+                "True enough.":
+                    him "I guess that's true, too."
+                "Good metaphor.":
+                    him "That's a good metaphor, [kid_name]. Even though she's gone, her influence lives on."
+                    kid "In our blood!"
+                
+        "She's gone.":
+            him "She's gone. Every part of her is in the ground under that tree."
+            "[her_name], who had been pretty quiet, spoke up."
+            her "I don't know about that. It's possible her consciousness is separate from her body and still lives on."
+            him "I doubt it."            
+        "I don't know.":
+            him "I don't know."
+            her "I believe some part of her, the part of her that thinks and feels and loves, lives on separate from her body."
+            kid "But we can't see it?"
+            her "Right. Just like love, or hope, or even radiation, we can't see it but that doesn't mean it's not there."
+            bro "Do you think she's watching us now?"
+            her "Maybe. But knowing her, she's probably busy helping someone and doesn't have time to spy on us all day."
+            kid "Ha ha, that'd be funny if she was spying on us."
     return
 
 
@@ -4847,10 +4893,11 @@ label family20:
 
     scene black with fade
 
+    nvl clear
     him_c "Anyone have a saxophone? [kid_name] wants to play..."
     ilian_c "Saxophone! Oh man, I haven't played in so long... wish I'd brought mine with me."
     sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit!"
-    pete_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
+    kevin_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
     ilian_c "You'd need to make pads out of fabric, and reeds out of wood. They'd have to be really precise."
     ilian_c "Honestly, almost any other instrument would be easier to make."
     him_c "Okay, thanks. Do you think RET would send one from Earth?"
@@ -4865,7 +4912,7 @@ label family20:
             $ responsive += 1
             $ demanding += 1
             him "If you really want one, here's where to start."
-            "I showed her what Pete and Ilian had said."
+            "I showed her what Kevin and Ilian had said."
             kid "I can make one! I'm going to see if we can print one right now!"
             him determined "Hold on a minute. Before you print anything, you need a detailed plan. We only want to print it if you're actually going to make it."
             kid "Of course I'm going to make it."

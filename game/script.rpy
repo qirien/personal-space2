@@ -85,6 +85,7 @@ label start:
         jellies = 0  
         require_whole_harvest = False
         rationing = False
+        lily_mad_at_RET = False
         c18_no_help_pete = False
         ate_jellyfish = False
         thuc_has_cattle = False

@@ -2371,7 +2371,7 @@ label community13:
                         lily "I understand his arguments. I think research is more important to our survival than having a shuttle shipment leave on time."
             "Don't say anything.":
                 "I didn't say anything about the cave."
-        $ Lily_mad_at_RET = True
+        $ lily_mad_at_RET = True
     return
 
     label cave_explored:
@@ -2428,7 +2428,7 @@ label community14:
     else:
         pete "They expect us to feed the miners, but we can barely feed ourselves."
     pete "They don't respect the natural beauty of Talaam, and they destroyed a cave in the course of their mining."
-    if Lily_mad_at_RET:
+    if lily_mad_at_RET:
         lily "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
         lily "I'm going with Pete and his family."
@@ -2654,7 +2654,32 @@ label community15:
     her "That seems likely."
     him "Too bad she wasn't inspired to take a tent with her."
     her "She probably felt that she didn't have time, or maybe someone else had checked them out."
-    her "I wish we had something more practical like a radiation umbrella."
+    him "Someone ought to invent a radiation umbrella or something."
+    her "It's not that simple..."
+    him "Nothing is."
+    menu:
+        "What should I say?"
+        "I'll miss her.":
+            him "I'll miss her."
+            her "Me, too."
+        "Farewell to a great leader.":
+            him "Farewell to a great leader. She loved and worked hard, even for people who didn't agree with her."
+            her "Yes . . . I want to be more like that."
+        "I'm not going to die like that.":
+            him "I'm not going to die like that. And you better not, either."
+            her "We all have to die sometime . . . I'd never thought about you dying before."
+            him "What would you do if I died? Go back to Earth? Would you get married again?"
+            her "I don't know... I'm tied to this planet, now -- too many people need me."
+            him "We both have a lot of people depending on us, don't we?"
+            her "Yeah, so you better stay healthy! No dying!"
+            him "You're not allowed to die yet, either."
+            "We joked about it, but inside I was terrified that [her_name] would die and leave me a single dad of two kids. There was no way I could be everything for them on my own."
+            him "I love you, [her_name]."
+            her "I never get tired of hearing you say that."
+            him "Don't you mean, 'I love you, too'?"
+            her "I love you, too, [his_name]."
+        "(Don't say anything)":
+            "I didn't say anything, just sat and held [her_name], both of us lost in our own thoughts."
 
     # Dr. Lily has a stroke and worries about her progress being lost if she should die.
     # should this go in the next event? what happens if she left with the luddites?
@@ -2746,7 +2771,7 @@ label community16:
             pete "I wonder how much longer they'll last."
             $ talked_TJ_c16 = True
             jump c16_convo
-        "How is Lily?" if ((Lily_mad_at_RET) and (not talked_Lily_c16)):
+        "How is Lily?" if ((lily_mad_at_RET) and (not talked_Lily_c16)):
             him "Does Lily help out?"
             pete "Oh, she's great. She knows all the best foraging spots."
             pete "She's very concerned about radiation though, and never goes out of earshot of a radio for fear of a solar flare."
@@ -2939,7 +2964,7 @@ label community17:
         "After the dinner, you can't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
         "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
-        if Lily_mad_at RET:
+        if lily_mad_at RET:
             "She responds via the instant messaging software. Guess she hasn't given up all technology."
         else:
             "She still lives in the colony, but she's been hanging out a lot with Pete to study local flora and fauna."
@@ -3221,7 +3246,7 @@ label community19:
 
 label community20:
 
-    if Lily_mad_at_RET:
+    if lily_mad_at_RET:
         "Pavel called me in to meet with him."
         him "Hi Pavel. How can I help you?"
         pavel "Dr. Lily's health has been declining and she doesn't think she'll last much longer."
@@ -3368,6 +3393,7 @@ label community20:
 
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "Miranda said that she wanted to see the ocean one last time before she died."
+        "We never saw her again."
 
     return
 
