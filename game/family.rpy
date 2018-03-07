@@ -4858,7 +4858,7 @@ label family19:
 # 12.4 Earth years old
 # Musical Instrument
 label family20:
-    # TODO: You have made a mistake. Do you admit and apologize?  Reward her for your mistake?
+
     kid "Dad, listen to this song."
     him "Okay..."
     "She played me a song where a girl about her age was playing a soulful song on the saxophone."
@@ -5267,29 +5267,210 @@ label family21:
 # 13.6 Earth years old
 # Wants a bike!
 label family22:
-    "Terra wants a bike!  There are no bikes.  Or maybe there are, but only for people whose jobs require them?"
-    "OR she questions why you have certain rules and you decide what to tell her. or both?"
+    
+    scene farm_interior with fade
+    show him determined at midright
+    show kid at center
+    with dissolve
+    "After a boring dinner, I was still hungry.  I went to the pantry to get out a jar of applesauce to share with everyone, but then I noticed a jar was missing."
+    "[kid_name] loved applesauce. She was always begging me for more, but she knew she was only allowed to have some when [her_name] or I dished it out."
+    him angry "[kid_name]!"
+    kid "What?"
+    him annoyed "Did you steal the applesauce?"
+    kid "No! Is it gone?"
+    him determined "One of them is missing, and I'm pretty sure it was you!"
+    kid "It wasn't! I didn't do it, I swear!"
+    "Her mouth twitched as she said it, and I had a feeling she was lying."
+    him annoyed "And now you're lying about it?!"
+    kid angry "I'm not lying!!"
+    him angry "Go to your room! You can come out when you're ready to tell the truth!"
+    kid "I am telling the truth! Why won't you believe me?!"
+    "She stomped off to her room."
+    "I was furious. It was bad enough to break a rule, but then to lie about it?"
+    show her surprised at midleft with moveinleft
+    her "What's going on?"
+    him annoyed "[kid_name] stole the applesauce and won't admit it."
+    her concerned "Are you sure it was [kid_name]?"
+    him concerned "She acted really guilty."
+    her determined "I found an empty jar in [bro_name]'s room, behind his clothes."
+    show him surprised with dissolve
+    "I was shocked. It had never occured to me that obedient, quiet [bro_name] had stolen the applesauce."
+    her serious "[bro_name], please come here."
+    show bro at left with moveinleft
+    bro "Yeah?"
+    her concerned "Come closer; I need you to tell me about something."
+    show bro at center with move
+    bro "What is it?"
+    her serious "I found this applesauce jar in your room."
+    bro "..."
+    her determined "You know that you're not allowed to take applesauce from the pantry."
+    bro "..."
+    "I started to say something, but [her_name] but a hand on my arm. It was hard for me to be patient with [bro_name] sometimes, but he liked to do things at his own pace."
+    her concerned "Tell me about what happened."
+    bro "I...was hungry."
+    her surprised "And so you took the applesauce?"
+    bro "...Yes."
+    her "I see. Thank you for telling the truth, [bro_name]. I'm disappointed you broke our rule and took something that wasn't yours. How are you going to fix this?"
+    bro "...I don't know."
+    her "I'll let you think about it for a while. I'll ask you again at bedtime, okay?"
+    bro "Okay."
+    him annoyed "..."
+    bro "...can I go now?"
+    her "Yes. I love you, [bro_name]."
+    bro "I love you too, mommy."
+    hide bro with moveoutleft
     menu:
-        "Find a way to get her a bike":
-            "A bike is an essential part of childhood!  How will you do it?"
+        "What should I do?"
+        "Apologize to [kid_name]":
+            $ responsive += 1
+            "I owed [kid_name] an apology. I had accused her of stealing and lying, when she was innocent."
+            # TODO: have a Terra's room bg?
+            "I knocked on her door."
+            kid "What?"
+            show kid at midleft
+            show him at midright
+            with dissolve
+            him "I'm sorry, [kid_name]. I got mad at you and thought you were lying but I was wrong."
+            kid "See?! You never trust me!"
+            him determined "You have lied to me in the past, which makes it hard for me to know when you're telling the truth."
+            kid "Well I was telling the truth!"
+            him angry "I know that now!"
+            kid "You should just always believe me."
+            him annoyed "Maybe I will once you always tell the truth."
+            "I had come in here to apologize; how had this turned sour so quickly?"
+            him concerned "Anyway, I didn't come in here to argue with you; I just wanted to apologize."
+            kid "Okay."
+            "I gave her a quick hug. She didn't quite push me away, but she didn't hug me back, either."                     
+            
+        "Talk with [her_name]":
+            "I wanted to talk about this with [her_name]."
             menu:
-                    "Ask if she can help out someone who has a bike and then get to use it.":
-                            $ responsive += 1
-                            $ demanding += 1
-                            $ authoritative += 1
-                    "Make a bike out of spare parts.":
-                            $ responsive += 1
-                            $ permissive += 1
-                    "Ask [her_name] to help you make a bike out of spare parts.":
-                            $ responsive += 1
-                            $ permissive += 1
-                            #maybe also relationship with wife improves?
-        "There's just no bikes. Deal with it.":
+                "What should I say?"
+                "You let [bro_name] off too easy.":
+                    him annoyed "You sure let [bro_name] off easy."
+                    her surprised "What do you think I should have done?"
+                    him concerned "I don't know; I was going to yell at him so he'd know this kind of thing was unacceptable."
+                    her concerned "He's a sensitive kid. He already knows what he did was wrong."
+                    him determined "Still, shouldn't we punish him or something?"
+                    her determined "He will choose an appropriate consequence for himself. If he tries to get away with something easy, then I'll pick the consequences for him."
+                    him surprised "Like earning money for some more applesauce?"
+                    her normal "Yeah, something like that. He won't always have us around to help him fix his mistakes; he needs to learn to do it on his own."
+                    him concerned "I guess that's true..."
+                "How do you stay so calm?":
+                    him concerned "How do you stay so calm?"
+                    her flirting "I've had lots of practice dealing with troublesome rascals."
+                    him annoyed "I hope you're not talking about Brennan."
+                    her annoyed "No, silly! I'm talking about you... and a lot of my patients, to be honest."
+                    him happy "Ooh, sounds like a good story!"
+                    her normal "Nope, you know I don't talk about my patients."
+                    him flirting "What about your patience?"
+                    her flirting "I think we've talked about that enough."
+                    $ marriage_strength += 1
+                "I love you.":
+                    him determined "I love you, [her_name]."
+                    her surprised "I love you too, but what made you say that now?"
+                    him normal "I'm just so glad we're parents together. Our kids are lucky to have a mom like you."
+                    her normal "And a dad like you."
+                    $ marriage_strength += 1
+                
+        "Talk to [bro_name]":
+            "That wasn't enough. [bro_name] needed a serious talking-to! I followed him back to his room."
+            # TODO: room bg here?
+            hide her with dissolve
+            show bro at midleft with dissolve
+            show him at midright with move
+            him determined "[bro_name], I can't believe you stole the applesauce! Don't you know how hard we work to have treats like that?"
+            bro "I was just hungry."
+            him angry "Yeah, but you can't just eat whatever you want! We have carrots you can eat anytime for snacks if you're hungry."
+            bro "I don't like carrots. I like applesauce."
+            him annoyed "It doesn't matter; the appleasauce is not yours."
+            bro "I know."
+            him determined "Okay, well, you just remember that!"
+            "He wouldn't meet my eyes, instead watching as he fingered the ties of his quilt."
+            bro "Yes."
+            menu:
+                "What should I do?"
+                "Leave him alone":
+                    "I left the room. Sometimes I felt so disconnected from [bro_name]; his thoughts were a mystery to me. But I think he understood what I said."
+                "Give him a hug":
+                    $ responsive += 1
+                    "I hugged him. He hugged me back, tight. I was surprised at the strength of his little kid hands."
+                    him normal "I'll always love you, [bro_name], even if you make mistakes."
+                    "He didn't say anything, but we hugged for a long time."
+                "Demand that he look at you.":
+                    him angry "Look at me when I'm talking to you!"
+                    "He turned his head slowly, focusing on my lips."
+                    him determined "I don't want you stealing ever again. Do you understand."
+                    "He nodded."
+                    him concerned "Good."
+                          
+    scene farm_interior with fade
+    show him at midright with dissolve
+    show kid at midleft with moveinleft
+    "I was about to go to bed when [kid_name] came into the room."
+    kid "Dad, I need a bike."
+    him surprised "A bike?"
+    kid "Yes! I'm so sick of walking to school and back every day!"
+    him "It's not that far."
+    kid "And, not just school, but going to town, too. Every time I want to go to Anya's house it takes me an hour just to walk there."
+    him "You guys could hang out at the community center instead."
+    kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times she wants to show me stuff."
+    him surprised "Why a bike?"
+    kid "I've read about bikes in so many books - they're like a totally normal kid thing, and I've never even ridden on one! Oleg's mom has one I've seen her riding around, so I know it's possible!"
+
+    # TODO: is this too similar to the saxophone? How could it be different?
+    ##############
+    menu:
+        "What should I do?"
+        "Find a way to get her a bike":
+            $ responsive += 1
+            him surprised "I remember when I first got a bike with gears... it was red, and I attached a playing card to the spokes so it would sound like a motorcycle."
+            kid "A motorcycle is like a motorbike, right?"
+            him normal "Kind of... Anyway, it would be awesome if we could get you a bike!  I'll see what I can do!"
+            kid "Okay, good."
+
+            "I decided to talk to Sara the next time I was in town."
+            scene bg storehouse with fade
+            sara "Need anything else?"
+            him normal "Actually, yeah. [kid_name] was admiring your bike. Where'd you get it?"
+            sara "I made it! The mechanical parts are 3D printed, and for the frame I found a local plant with light, sturdy timber -- kind of like bamboo."
+            him surprised "Oh yeah, I know what plant you're talking about. I use it for fences all the time."
+            sara "I like my bike, but... pieces break all the time. The 3D printed pieces just don't have the same weight-bearing strength. So I'm always fixing it."                      
+            
+            menu:
+                "What should I say?"
+                "Could [kid_name] borrow your bike sometimes?":
+                    sara "My bike? I don't know... I don't even let Ilian ride it...It's kind of finicky."
+                    sara "Plus, it's not really adjustable for size, since I made everything specifically to fit me."
+                    
+                    $ demanding += 1
+                    $ authoritative += 1
+                "Make a bike out of spare parts.":
+                    $ permissive += 1
+                
+                "Ask [her_name] to help you make a bike out of spare parts.":
+                    $ permissive += 1
+                    $ marriage_strength += 1
+                    #maybe also relationship with wife improves?
+        "Tell her to deal with it.":
+            him annoyed "Sorry, there's not any extra bikes lying around. Your feet will work just fine."
+            kid surprised "That's it? You're not even going to check or ask around or anything?"
+            him angry "I don't have time for all that! Go do that yourself if you want a bike so bad!"
+            kid angry "Maybe I will!"
             $ neglectful += 1
-        "If she wants a bike, she'll have to be old enough to do the bike job.":
+        "Sympathize, but have her find one for herself.":
+            him "I can understand why you'd want a bike. If I didn't have Lettie, I'd probably want one, too."
+            kid "Yeah! So you'll get me one?"
+            him "I didn't say that. I'll help, but you need to do the research and work yourself."
+            kid "I don't know how to make a bike!"
+            him "But you know Sara got one. You could try asking her."
+            kid "Can't you do it?"
+            him "I'm not the one who wants a bike."
+            kid "I guess I could talk to her."
+            him "If there's something you need my help with, let me know. But I bet between you and Sara you can figure something out."
             $ demanding += 1
             $ authoritarian += 1
-        "Sympathize, and suggest some alternatives.":
+        "Suggest some alternatives.":
             "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
             $ responsive += 1
             $ authoritative += 1
@@ -5538,6 +5719,7 @@ label family24:
 
 # 15.5 Earth years old
 # A boy...friend?
+# she questions why you have certain rules and you decide what to tell her.
 label family25:
     "Terra sure has been spending a lot of time with some boy. They were holding hands... does she have a boyfriend?"
     menu:
@@ -5570,6 +5752,7 @@ label family25:
     return
 
 # 16.1 Earth years old
+# Do you invite her to join you for chores so she can learn, or let her have time with friends?
 # Talking Politics
 label family26:
     "She disagrees with your recent community decision! She calls you a fascist/spineless worm/panderer."
