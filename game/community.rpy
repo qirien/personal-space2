@@ -3467,6 +3467,7 @@ label community21:
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     "That evening, Pete and his family stopped by."
     if luddites > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
+        #maybe Travis should be in this event too?
         pete "Guess what! I have a two-way radio now. It turns out communication is good for business."
         him "Really? I thought you were all into a technology-free lifestyle."
         pete "I do want to limit my dependence on technology. But I can't ignore the fact that I also live in a community where other people want to help me sometimes."
@@ -3509,6 +3510,7 @@ label community21:
         "After everyone had seen it, we let it go back into the ocean."
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
+        "The kids played with these weird transparent shells."
     if miners > 10:
         #put Chaco in here somewhere? we haven't seen him in a while
         brennan "Zaina and some of the miners caught a bunch of fish. Want to join us for a little roasting party?"
@@ -3640,6 +3642,7 @@ label community22:
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
         brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
         "The mining continues without incident."
+        $ community_22_compromise = True
         # does this need a stat +=?
         return
 
@@ -3656,6 +3659,7 @@ label community22:
         sara_c "No, still the mountains. But Brennan said that he knows Pete has a cave over there, so he wanted to make sure not to collapse his cave during the mining."
         him_c "That was considerate of him."
         "The mining continued without incident."
+        $ community_22_compromise = True
         #too facile?
         #stat +=?
         return
@@ -3782,19 +3786,19 @@ label community22:
                         "A few of the deeper tunnels collapsed, but no one was hurt, and mining was otherwise unobstructed."
 
                         $ miners += 1
+                        $ community_22_forced_luddites_leave = True
 
-                        return
+#                        return
 
                     "Let's mine somewhere else":
-                        him_c "He's too stubborn to leave if we push him out."
-                        him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
-                        zaina_c "But that mountain is the best place for mining right now."
-                        brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
-                        brennan_c "Let's find the next-best place and mine there."
-                        zaina_c "Alright. I'll send you the details."
-                        $ luddites += 1
-
-                        return
+#                        him_c "He's too stubborn to leave if we push him out."
+#                        him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
+#                        zaina_c "But that mountain is the best place for mining right now."
+#                        brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
+#                        brennan_c "Let's find the next-best place and mine there."
+#                        zaina_c "Alright. I'll send you the details."
+#                        $ luddites += 1
+#                        jump stopped_mining
 
 #                        if luddites > 5:
 #                            him_c "This is getting too intense. I don't think it's worth fighting over."
@@ -3936,8 +3940,6 @@ label community22:
                 him "That sounds risky."
                 jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
-                return
-
         label stopped_mining:
             "The mining stopped." #this can happen if you're not the liason, after the luddites vandalize mining equipment
             if is_liason:
@@ -3973,6 +3975,10 @@ label community22:
                 sara_c "There aren't any current plans do that."
                 sara_c "Brennan doesn't want to do that and they're getting ready to mine in a different location."
                 sara_c "RET isn't happy with us right now though."
+                sara_c "They want the miners to make up for the delay and aren't changing their quota."
+                him_c "I don't think we can do anything about that."
+                sara_c "We can keep giving them food to eat, I guess."
+                $ community_22_mining_stopped = True
 
                 return
 
@@ -4020,26 +4026,128 @@ label mining_anyway:
     "After a day of recovery, [her_name] returned to the colony with Helen and Travis, who rode a cow since he couldn't walk."
     her "His tibia is completely shattered. After looking at the x-ray, I don't know if I can save it." #I tried looking up some information on this
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
+    "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
+    
+    $ community_22_mined_anyway = True
     return
 
 label community23:
-    "Brennan wants to collect jellysquid shells for minerals" #only if he saw them in the luddite event?
-    her "Pete's meat is a lot higher in radiation than meat from our colony." #relistic? UV radiation inhibits bacterial growth.
-    her "If people keep eating it, it might shorten their lifespan."
+    # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
+    # Tera is 14 here
+    kid "Can Anya and I go to the beach this weekend?"
+    him "By yourselves?"
+    kid "No, Anya's parents are going."
+    him "What's the occasion?"
+    kid "Brennan is paying lots of money for glass shells."
+    kid "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
+    him "How much money are we talking about here?"
+    if community_22_mining_stopped:
+        # you are never the liason in this option, since you lose liasonship in community 22 if you choose to stop mining
+        kid "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
+        him "Really? That seems strange."
+        kid "That's what Anya told me."
+        him "Let me ask Brennan if that's right."
+        nvl clear
+        him_c "I heard that you're paying 50 credits for glass shells. Is that right?"
+        brennan_c "Yes, you heard correctly."
+        him_c "Why are they suddenly so valuable?"
+        brennan_c "I had Zaina do an analysis of their mineral composition."
+        brennan_c "All the minerals we need are concentrated in them."
+        brennan_c "We're really behind quota because of suddenly stopping mining for two months, but with enough of these, we should be able to meet the latest deadline."
+        him_c "Interesting."
+        him "Anya's absolutely right. Brennan's giving 50 credits each for those shells."
+    else:
+        kid "I don't know, like 5 credits a shell or something."
+    
+    kid "So can I go?"
+    him "Let's discuss it when [her_name] gets home."
+    "Over dinner, I told [her_name] about Brennan giving out credits for shells, and [kid_name] told her how she wanted to go to the beach with Anya's family."
+    her "I think it's good that you're trying to earn money on your own, [kid_name]. But I don't really want you to go without one of us."
+    her "[his_name], can you go with her?"
+    him "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
+    her "I think I could go. Someone will probably get hurt out there anyway."
+    him "I can get some quality time with [bro_name]."
+    bro "I wanna go to the beach too!"
+    her "I need you to stay here and make sure [his_name] takes good care of the farm!"
+    her "And we'll bring you some fish."
+    bro "okay..."
+    "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
+    "When they got back, they looked tired."
+    him "How was it?"
+    her "Well, the beach was totally picked over where we normally go, so we did a little exploring."
+    if ate_jellyfish:
+        him "Did you see any jellyfish while you were there?"
+        her "No, I didn't. Maybe they move with the currents?"
+    if community_22_mining_stopped:
+        kid "We only found five shells. Anya's parents didn't find that many either."
+        him "Huh. Were there lots of people there?"
+        kid "Yeah, tons! We were all looking for shells."
+        her "We turned them in on the way home. So we're 250 credits richer!"
+        kid "Hey, that's my money you're talking about."
+        her "I helped. Some of that money is rightfully mine."
+        kid "You can have 100 credits of it. But the rest is mine."
+        him "Oh yeah, we need to get some rice to go with dinner tonight."
+        her "I know. We stopped by the storehouse on the way home."
+        "She handed me a cup of rice."
+        him "Why didn't you just buy a whole bag?"
+        her "Ilian is keeping the prices for food the same, but it means he has to ration it."
+        her "I think he's currently going overboard! Hopefully he'll relax a little next week."
+        him "If he's fixing prices, then what's the point of all that money you just made?"
+        her "Buying things from Pete?"
+        scene black with fade
+        "Next week, I was about to do a little buying and selling when I saw Thuc manning a vegetable stand outside the storehouse."
+        thuc "Hey, want some extra-creamy goat milk?"
+        him "Yeah, are you selling it?"
+        thuc "Just 100 credits for a pint."
+        menu:
+            "No way.":
+                him "You're nuts."
+                thuc "You'll be back."
+                him "Yeah, when you have your goat cheese reduced price for quick sale."
+                thuc "You should save some of your best crops and sell them on your own."
+                him "So I can buy your premium goat milk? I've got enough to worry about."
+                thuc "Suit yourself."
+                $ colonists += 1 #arguable
+                return
+            "Tempting...":
+                him "I know how good the extra creamy stuff is..."
+                him "But I don't earn that kind of money selling my crops to Ilian."
+                thuc "Give me some of your best crop to sell. I bet I can make you enough money to buy some goat milk."
+                him "Yeah, and how much of the profit are you going to pocket?"
+                thuc "I promise I'll only keep ten percent of the sale!"
+                him "Okay, I'll let you try selling these. Message me when they sell!"
+                thuc "Oh, I know someone will want them."
+                $ luddites += 1
+                return
+        
+    else:
+        #(community_22_forced_luddites_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
+        kid "We found ten shells!"
+        her "That's fifty credits for you!"
+        kid "I can finally buy my own fossil!" #something hipper?
+        her "If that's what you want to spend your money on..." #could make this a choice if you want to do a parenting crossover
+        her "We went pretty far out, and I found a lot of shellfish."
+        him "Oh, are they safe to eat?"
+        her "They should be... I didn't do a toxicity panel but we've eaten them before."
+        her "What should we do with them?"
+        menu:
+            "Preserve them and keep them.":
+                him "Let's keep them! I think we could dry them out in the oven overnight."
+                her "Okay, can you and [bro_name] take care of it? I'm super tired."
+                "[bro_name] and I spent the next hour shelling and cleaning the shellfish."
+                "Well, [bro_name] mostly watched and played with the shells."
+                him "Now we'll be able to have clam chowder whenever we want!"
+                $ luddites += 1 #also debateable
+            "Eat some now and sell the rest.":
+                him "Let's have some with dinner and sell the rest tomorrow."
+                her "Okay, can you take care of it?"
+                him "Sure."
+                "[bro_name] and I made a seafood-vegetable soup."
+                her "This really hits the spot. Thanks."
+                $ colonists += 1
 
-    "RET wants to switch to artificial meat."
-    # what if the miners have some kind of artificial meat factory and start selling it so cheaply that no one wants to buy Pete's real meat anymore? Would this be a an interesting problem?
-    #I was also thinking that maybe the cows don't like their anti-radiation blankets and there is concerns that their meat contains radiation
-    "I hate how it tastes."
-    "Make the switch?"
-    menu:
-        "Yes.":
-            $ miners += 1 #miners equal the interests of RET here
-        "No.":
-            $ luddites += 1
-        "Stop eating cow meat, but still use milk and leather?.": #provides fertilizer, hair for wool, milk, leather
-            $ colonists += 1
-    return
+
+
 
 
 label community24:
@@ -4082,8 +4190,77 @@ label community24:
     return
 
 label community25:
-    "Miners have a lot more money than farmers. They start employing young people as servants to do their household chores and look after their children."
+        #I'm thinking of moving this whole event to later
+    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
+    if luddites > 5:
+        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating foreign plants all day."
+    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her "However, the cells in Pete's meat are often irregular and probably cancerous."
+    him "Okay... but eating cancer doesn't give you cancer, right?"
+    her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
+    him "But the cells are dead in meat, so why would it matter?"
+    her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
+    him "What about the cows from the colony?"
+    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
+    him "Yeah, but Pete's cows have those UV blankets, don't they?"
+    her "They do, but I think they don't work very well."
+    her "I've seen the cows take them off. I don't think they're working very well."
+    her "My question for you is if you think I should publish the results of my study."
+    her "If people keep eating this meat, it might shorten their lifespan."
+    menu:
+        "Yes, definitely.":
+            him "People should know the risks of what they're eating. You should definitely tell everyone."
+            him "Just be honest about how much we don't know."
+            her "Okay."
+            "[her_name] wrote up a brief paper summarizing her findings."
+            "A few people read it and stopped buying meat from Pete."
+            $ colonists += 1
+            
+        "No, don't publish the study.":
+            him "How many samples have you studied? I think it's too early to draw conclusions."
+            her "True, my sample size is pretty small. I'll keep studying it."
+            
+        "You should at least tell Pete." if luddites >5:
+            him "Pete should know that his cows are developing cancer."
+            him "Maybe he can adjust his radiation-shielding measures."
+            her "That's a good idea. I'll make that suggestion."
+            "Pete started experimenting with different ways to shield his cows from radiation."
+            $ luddites += 1
+
+    #better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
+    "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
+    "This year it seemed like they anticipated [her_name]'s research, even though the shuttle had been sent years beforehand."
+    "We received equipment and recipes for making synthetic meat."
+    "They said that based on new research, our cows likely had cancer, and that we should switch to eating synthetic meat to avoid the risks associated with eating cancerous meat."
+    "It also mentioned that their decision to send cows to Talaam was a frequent point of contention between them an environmental agencies, and that they had promised to reduce the amount of cattle on Talaam."
+    "They asked us to halve the size of our herd in two years."
+    if is_liason:
+        "RET included instructions asking me and Brennan to oversee the meat's production and to encourage others to eat it."
+    else:
+        "Sara asked me to help try out the synthetic meat and encourage others to eat it."
+    "The synthetic meat required that we build a lab to house the meat while it grew in petri dishes, which we were supposed to call 'meat pockets.'"
+    "We would mix up a nutrient-rich slurry to be the growth culture, which we would paint onto the meat pockets."
+    "A scientist would put stem cells on the meat pockets, and then sprinkle xantham gum over the top to protect it from fungal growth."
+    "Over the course of a few weeks, workers would feed the cells, check to make sure the cells were growing, and stretch the meat to give it a better texture."
+    #convey this through conversation
+    #realistic? High cosmic radiation has a dose-equivalency which could add up over time, making radiation cataracts common.
+
+    # what if the miners have some kind of artificial meat factory and start selling it so cheaply that no one wants to buy Pete's real meat anymore? Would this be a an interesting problem?
+#    #I was also thinking that maybe the cows don't like their anti-radiation blankets and there is concerns that their meat contains radiation
+#    "I hate how it tastes."
+#    "Make the switch?"
+#    menu:
+#        "Yes.":
+#            $ miners += 1 #miners equal the interests of RET here
+#        "No.":
+#            $ luddites += 1
+#        "Stop eating cow meat, but still use milk and leather?.": #provides fertilizer, hair for wool, milk, leather
+#            $ colonists += 1
     return
+ #previously: "Miners have a lot more money than farmers. They start employing young people as servants to do their household chores and look after their children."
 
 
 # Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
