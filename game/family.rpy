@@ -5731,7 +5731,7 @@ label family26:
     return
 
 # 16.7 Earth years old
-# Financial Responsibility
+# Financial Responsibility & Bikes
 label family27:      
     
     scene farm_interior with fade
@@ -5768,9 +5768,7 @@ label family27:
     kid "Yeah, all I need are the [bike_cost] credits! I can find the plants myself!"
     him concerned "[bike_cost] credits is a lot!"
     kid "Please, dad?"
-    
-    # TODO: rewrite to fit in with some other events better.
-    ##############
+   
     menu:
         "What should I do?"
         "Buy her a bike":
@@ -5779,6 +5777,7 @@ label family27:
             kid "A motorcycle is like a motorbike, right?"
             him normal "Kind of... Anyway, I agree that you should have a bike. I'll transfer you the credits."
             kid "Okay, good."
+            $ permissive += 1
 
         "Have her use her own money.":
             if (allowance_amount > 0):
@@ -5796,35 +5795,32 @@ label family27:
                 kid "I'm not going to do whatever people want!"
             else:
                 kid "That's not very helpful."
-            # TODO: insert something about selling jellyfish shells?
-            him "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money."
             
-            
-            
-        "Suggest she borrow Sara's.":
-            "I decided to talk to Sara the next time I was in town."
-            scene bg storehouse with fade
-            sara "Need anything else?"
-            him normal "Actually, yeah. [kid_name] was admiring your bike. Where'd you get it?"
-            sara "I made it! The mechanical parts are 3D printed, and for the frame I found a local plant with light, sturdy timber -- kind of like bamboo."
-            him surprised "Oh yeah, I know what plant you're talking about. I use it for fences all the time."
-            sara "I like my bike, but... pieces break all the time. The 3D printed pieces just don't have the same weight-bearing strength. So I'm always fixing it."                      
-            
+            him "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
+            kid "Who should I ask?"
+            # TODO: have these based on stats? or increase stats?
             menu:
                 "What should I say?"
-                "Could [kid_name] borrow your bike sometimes?":
-                    sara "My bike? I don't know... I don't even let Ilian ride it...It's kind of finicky."
-                    sara "Plus, it's not really adjustable for size, since I made everything specifically to fit me."
+                "Ask in town.":
+                    him "You could ask around in town, see what people need."
+                    kid "Okay..."
+                "Find a need and offer to help.":
+                    him "Look around and see what people need help with. Then find a way to help them and offer to help for a fair price."
+                    kid "How do I know what people need?"
+                    him "Look on the message board, or ask someone who's connected to the community."
+                    kid "Too bad Sister Naomi's not here anymore..."
+                    him "Yeah, she'd probably have some great ideas. But Pavel or Ilian might know something, too. Or you could ask mom."
+                    kid "Okay."
+                "Ask the miners.":
+                    him "Ask the miners. They work pretty hard all day, and they usually have a lot of credits, so maybe there's things you could do that they would pay for."
+                    kid "Okay, I'll ask next time I go see Anya."
+                "Ask Pete.":
+                    him "Ask Pete. He might not be able to pay in credits, but he has stuff you can't get anywhere else that other people might pay well for."
+                    kid "He lives so far away. If I had a bike, maybe that would work. I'm going to ask the miners."
                     
-                    $ demanding += 1
-                    $ authoritative += 1
-                "Make a bike out of spare parts.":
-                    $ permissive += 1
-                
-                "Ask [her_name] to help you make a bike out of spare parts.":
-                    $ permissive += 1
-                    $ marriage_strength += 1
-                    #maybe also relationship with wife improves?
+            "[kid_name found a job tutoring some kids in one of the miner families."
+            "It paid pretty well, but she often didn't get home until after dark."
+            # TODO: decrease her amount of available work?            
         "Don't buy her a bike.":
             him annoyed "Sorry, I don't have 300 credits lying around. Your feet will work just fine."
             kid surprised "That's it? Just 'No'?!"
@@ -5832,6 +5828,7 @@ label family27:
             kid angry "Maybe I will!"
             $ neglectful += 1
         "Offer to buy her one in exchange for more work.":
+            $ demanding += 1
             him "I can understand why you'd want a bike. If I didn't have Lettie, I'd probably want one, too."
             kid "Yeah! So you'll get me one?"
             him "Well, not for free."
@@ -5843,22 +5840,43 @@ label family27:
             him "Those are my terms. If I buy the bike, then I get a say in how the bike is used."
             kid "That's not fair! You're going to make me waste all my time doing your work!"
             him "C'mon, I'm not that mean. It'll probably just be a trip to the storehouse once in a while or something."
-            kid "Then I want that in writing. I don't want to be your bike slave."
-            him "Oh no. I'm the parent. I set the terms."
-            kid "I don't think I want your help with this."
-            
-            $ demanding += 1
-            $ authoritarian += 1
+            if (is_competent() and is_independent()):
+                kid "Then I want that in writing. I don't want to be your bike slave."
+                him "I'm not sure whether to be impressed or exasperated."
+                kid "Both?"
+                "We laughed together, and drew up a short contract specifying what exactly I expected from her in return for buying her the bike."
+                $ demanding += 1
+                $ authoritative += 1
+            elif (is_attached()):
+                kid "C'mon, dad. Please just let me have a bike? I promise I'll help out sometimes."
+                him "I'll hold you to that."
+                $ authoritarian += 1                
+            else:
+                kid "That's not fair!"
+                him "I'm the parent; those are the rules."
+                $ authoritarian += 1                
         "Suggest some alternatives.":
             "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
             $ responsive += 1
             $ authoritative += 1        
 
+            
+    # TODO: fit this in somehow?
+    # TODO: different job depending on personality/ending?
+    "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
+    "She attached a little cart to the back and started delivering things for people all over the colony."
+    "She'd deliver fresh groceries to the miners, supplies to Pete, and even started taking some little kids home from school."
+    her concerned "I'm worried about [kid_name]'s job..."
+    him surprised "What? Why?"
+    her determined "It takes up a lot of time; she's exhausted by the time she gets home but she still has to do homework."
+    him concerned "Yeah, she hasn't had much time to help on the farm lately, either."
+    # TODO: event about this? Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan? Doesn't have time for farming? Should this depend on which ending you're heading towards?
     return
 
 # 17.3 Earth years old
 # Terra's plans for future
 label family28:
+    
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
     "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
     # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?

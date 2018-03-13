@@ -104,6 +104,19 @@ init -100 python:
         
         return "inconsistent"
         
+        
+    # Returns whether kid is attached, competent, or indepedent for her age,
+    # based on whether she is on track to reach the _HIGH value for
+    # that stat.
+    def is_attached():
+        return (attachment >= (year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
+        
+    def is_competent():
+        return (competence >= (year * (COMPETENCE_HIGH/float(MAX_YEARS))))
+        
+    def is_independent():
+        return (independence >= (year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
+        
     # Return the number of Earth years, given Talaam years.
     # There are 196 27-hour days per year on Talaam,
     #       (7 months in a year, 7 days in a week, 4 weeks in a month)

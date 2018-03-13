@@ -3167,7 +3167,6 @@ label community19:
     thuc_c "Ilian, do you know if we have enough food stored to make up for this?"
     ilian_c "I'm doing the calculations right now."
     him_c "We could try using native plants as hay..." #I haven't figured out why they can't do this.
-    # TODO: write something about winter cover crops, as most native plants are inedible (grass hasn't evolved on this planet)
     thuc_c "It's too late in the year, I think. Most native grasses have gone to seed already."
     her "What's going on? Some exciting gossip?"
     him "Crabbirds ate all the Peron's corn, so we won't be harvesting it together."
@@ -4064,6 +4063,7 @@ label community23:
     him "Let's discuss it when [her_name] gets home."
     "Over dinner, I told [her_name] about Brennan giving out credits for shells, and [kid_name] told her how she wanted to go to the beach with Anya's family."
     her "I think it's good that you're trying to earn money on your own, [kid_name]. But I don't really want you to go without one of us."
+    "I knew we were both thinking the same thing -- Anya's parents were... uninvolved with their kids. [kid_name] going with Anya's parents was about the same as going with no adults."
     her "[his_name], can you go with her?"
     him "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
     her "I think I could go. Someone will probably get hurt out there anyway."
