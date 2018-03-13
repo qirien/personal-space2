@@ -59,7 +59,18 @@ label ending_aCI:
     
 #5 Aci - stays on your farm helping you, though she doesn't work hard enough to be of much help.
 label ending_Aci:
-    "Ending Aci."
+    "I kept expecting [kid_name] to get married and leave us, or go off to pursue her own dreams, but so far she seems content to keep things as they are."
+    "She helps around the farm sometimes, but I still feel like I have to tell her how to do things and keep a close eye on her."
+    "I remember when she was little, she wasn't afraid of anything, and she couldn't wait to do new things like go to school or go to the beach."
+    "Now, when I ask her what she sees in her future, she just shrugs."
+    "She's changed a lot...but in some ways, she's still a kid."
+    "That's fine for now, but part of me wants more for her."
+    "Should she want to leave home? Is it my fault that she doesn't? Should I have taught her more, somehow?"
+    "I can't stop thinking these kinds of things."
+    "I guess that's part of what it means to be a parent."
+    
+    "Ending 5/8, Forever My Little Girl"
+    
     return
     
 #6 AcI - like #8, sets out on her own, but you worry she will not know enough or be able to work hard enough

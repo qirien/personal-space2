@@ -3167,6 +3167,7 @@ label community19:
     thuc_c "Ilian, do you know if we have enough food stored to make up for this?"
     ilian_c "I'm doing the calculations right now."
     him_c "We could try using native plants as hay..." #I haven't figured out why they can't do this.
+    # TODO: write something about winter cover crops, as most native plants are inedible (grass hasn't evolved on this planet)
     thuc_c "It's too late in the year, I think. Most native grasses have gone to seed already."
     her "What's going on? Some exciting gossip?"
     him "Crabbirds ate all the Peron's corn, so we won't be harvesting it together."
@@ -3632,7 +3633,7 @@ label community22:
         zaina_c "The caves penetrate about three-quarters of the mountain, but they are only using about half of the caves."
         zaina_c "Pete seemed to expect that we would make them move. But maybe we can work out a compromise."
         zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
-        brennan_c "It's tempting to ask him to leave. Let's see what RET thinks. [his_name}, can you ask them if it's okay to only mine part of the mountain?"
+        brennan_c "It's tempting to ask him to leave. Let's see what RET thinks. [his_name], can you ask them if it's okay to only mine part of the mountain?"
         him_c "Yes, I can. I'll send the message at lunch."
         "That evening RET replied that our solution was fine and reminded us not to kill anyone." #could have parenting style affect this outcome, like with Dr. Lily's death
                    #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?

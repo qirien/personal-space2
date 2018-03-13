@@ -105,8 +105,9 @@ init -100 python:
         return "inconsistent"
         
     # Return the number of Earth years, given Talaam years.
-    # There are 196 27-hour days per year on Talaam, 
-    # and 365 24-hour days on Earth        
+    # There are 196 27-hour days per year on Talaam,
+    #       (7 months in a year, 7 days in a week, 4 weeks in a month)
+    # and 365 24-hour days on Earth    
     def get_earth_years(years):
         hours = years * 196.0 * 27.0
         earth_years = hours / 24.0 / 365.25

@@ -5404,76 +5404,7 @@ label family22:
                     "He nodded."
                     him concerned "Good."
                           
-    scene farm_interior with fade
-    show him at midright with dissolve
-    show kid at midleft with moveinleft
-    "I was about to go to bed when [kid_name] came into the room."
-    kid "Dad, I need a bike."
-    him surprised "A bike?"
-    kid "Yes! I'm so sick of walking to school and back every day!"
-    him "It's not that far."
-    kid "And, not just school, but going to town, too. Every time I want to go to Anya's house it takes me an hour just to walk there."
-    him "You guys could hang out at the community center instead."
-    kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times she wants to show me stuff."
-    him surprised "Why a bike?"
-    kid "I've read about bikes in so many books - they're like a totally normal kid thing, and I've never even ridden on one! Oleg's mom has one I've seen her riding around, so I know it's possible!"
-
-    # TODO: is this too similar to the saxophone? How could it be different?
-    ##############
-    menu:
-        "What should I do?"
-        "Find a way to get her a bike":
-            $ responsive += 1
-            him surprised "I remember when I first got a bike with gears... it was red, and I attached a playing card to the spokes so it would sound like a motorcycle."
-            kid "A motorcycle is like a motorbike, right?"
-            him normal "Kind of... Anyway, it would be awesome if we could get you a bike!  I'll see what I can do!"
-            kid "Okay, good."
-
-            "I decided to talk to Sara the next time I was in town."
-            scene bg storehouse with fade
-            sara "Need anything else?"
-            him normal "Actually, yeah. [kid_name] was admiring your bike. Where'd you get it?"
-            sara "I made it! The mechanical parts are 3D printed, and for the frame I found a local plant with light, sturdy timber -- kind of like bamboo."
-            him surprised "Oh yeah, I know what plant you're talking about. I use it for fences all the time."
-            sara "I like my bike, but... pieces break all the time. The 3D printed pieces just don't have the same weight-bearing strength. So I'm always fixing it."                      
-            
-            menu:
-                "What should I say?"
-                "Could [kid_name] borrow your bike sometimes?":
-                    sara "My bike? I don't know... I don't even let Ilian ride it...It's kind of finicky."
-                    sara "Plus, it's not really adjustable for size, since I made everything specifically to fit me."
-                    
-                    $ demanding += 1
-                    $ authoritative += 1
-                "Make a bike out of spare parts.":
-                    $ permissive += 1
-                
-                "Ask [her_name] to help you make a bike out of spare parts.":
-                    $ permissive += 1
-                    $ marriage_strength += 1
-                    #maybe also relationship with wife improves?
-        "Tell her to deal with it.":
-            him annoyed "Sorry, there's not any extra bikes lying around. Your feet will work just fine."
-            kid surprised "That's it? You're not even going to check or ask around or anything?"
-            him angry "I don't have time for all that! Go do that yourself if you want a bike so bad!"
-            kid angry "Maybe I will!"
-            $ neglectful += 1
-        "Sympathize, but have her find one for herself.":
-            him "I can understand why you'd want a bike. If I didn't have Lettie, I'd probably want one, too."
-            kid "Yeah! So you'll get me one?"
-            him "I didn't say that. I'll help, but you need to do the research and work yourself."
-            kid "I don't know how to make a bike!"
-            him "But you know Sara got one. You could try asking her."
-            kid "Can't you do it?"
-            him "I'm not the one who wants a bike."
-            kid "I guess I could talk to her."
-            him "If there's something you need my help with, let me know. But I bet between you and Sara you can figure something out."
-            $ demanding += 1
-            $ authoritarian += 1
-        "Suggest some alternatives.":
-            "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
-            $ responsive += 1
-            $ authoritative += 1
+    # TODO: SOme other event.
     return
 
 # 14.2 Earth years old
@@ -5753,8 +5684,9 @@ label family25:
 
 # 16.1 Earth years old
 # Do you invite her to join you for chores so she can learn, or let her have time with friends?
-# Talking Politics
+# Talking Politics and Fire Grass
 label family26:
+    # TODO: join these two things together somehow
     "She disagrees with your recent community decision! She calls you a fascist/spineless worm/panderer."
     menu:
         "Listen to her.":
@@ -5771,12 +5703,7 @@ label family26:
             $ permissive += 1
         "Laugh it off.":
             $ neglectful += 1
-    return
-
-# 16.7 Earth years old
-# Fire grass
-# TODO: Or something else more related to her choices? Bad grades?
-label family27:
+    
     "[kid_name] comes home smelling like fire grass."
     "You knew that the miners smoked it, but it hasn't been popular among the colonists... until now."
     # TODO: change this based on choices in community events.
@@ -5799,7 +5726,133 @@ label family27:
                     $ demanding += 1
                     $ authoritarian += 1
         "Say nothing. It's just a plant, right?":
+            $ neglectful += 1            
+            
+    return
+
+# 16.7 Earth years old
+# Financial Responsibility
+label family27:      
+    
+    scene farm_interior with fade
+    show him at midright with dissolve
+    show kid at midleft with moveinleft
+    "I was about to go to bed when [kid_name] came into the room."
+    kid "Dad, I need a bike."
+    him surprised "A bike?"
+    kid "Yes! I'm so sick of walking to school and back every day!"
+    him "It's not that far."
+    kid "And, not just school, but going to town, too. Every time I want to go to Anya's house it takes me an hour just to walk there."
+    him "You guys could hang out at the community center instead."
+    kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times she wants to show me stuff."
+    him surprised "Why a bike?"
+    
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritative"):
+        kid "I would be a lot more useful to this family with a bike. I could go shopping for you and even ride it around the farm when we work together."
+    elif (parenting_style == "authoritarian"):
+        kid "It would let me be more independent. Like, if I wanted to get a job somewhere, I would have a way to get there quickly on my own."
+    elif (parenting_style == "permissive"):
+        kid "I've read about bikes in so many books - they're like a totally normal kid thing, and I've never even ridden on one! Oleg's mom has one I've seen her riding around, so I know it's possible!"
+    else:
+        kid "I just really want one."
+
+        
+    him "Do we even have any bikes?"
+    # TODO: currency check
+    $ bike_cost = 300
+    kid "I asked Oleg's mom, and she said she made it. It cost her about [bike_cost] credits worth of materials, plus finding the right kind of plant for the frame."
+    him surprised "She uses a plant for the frame?"
+    kid "It's a sturdy, hollow plant with lightweight wood."
+    him determined "Huh. Seems like you've looked into this a bit."
+    kid "Yeah, all I need are the [bike_cost] credits! I can find the plants myself!"
+    him concerned "[bike_cost] credits is a lot!"
+    kid "Please, dad?"
+    
+    # TODO: rewrite to fit in with some other events better.
+    ##############
+    menu:
+        "What should I do?"
+        "Buy her a bike":
+            $ responsive += 1
+            him surprised "I remember when I first got a bike with gears... it was red, and I attached a playing card to the spokes so it would sound like a motorcycle."
+            kid "A motorcycle is like a motorbike, right?"
+            him normal "Kind of... Anyway, I agree that you should have a bike. I'll transfer you the credits."
+            kid "Okay, good."
+
+        "Have her use her own money.":
+            if (allowance_amount > 0):
+                # TODO: make sure this makes sense with the numbers
+                him "You have an allowance, you know. You could save up for it yourself."
+                $ saving_weeks = int(round(float(bike_cost) / float(allowance_amount)))
+                kid "What?! That would take me like..."
+                "She did some calculations in her head."
+                $ saving_months = saving_weeks / 4.0
+                kid "...[saving_weeks] weeks! That's [saving_months] months, which is way too long for me to wait."
+            him "You could earn your own money."
+            kid "Doing what?"
+            him "Whatever people need."
+            if (parenting_style == "permissive"):
+                kid "I'm not going to do whatever people want!"
+            else:
+                kid "That's not very helpful."
+            # TODO: insert something about selling jellyfish shells?
+            him "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money."
+            
+            
+            
+        "Suggest she borrow Sara's.":
+            "I decided to talk to Sara the next time I was in town."
+            scene bg storehouse with fade
+            sara "Need anything else?"
+            him normal "Actually, yeah. [kid_name] was admiring your bike. Where'd you get it?"
+            sara "I made it! The mechanical parts are 3D printed, and for the frame I found a local plant with light, sturdy timber -- kind of like bamboo."
+            him surprised "Oh yeah, I know what plant you're talking about. I use it for fences all the time."
+            sara "I like my bike, but... pieces break all the time. The 3D printed pieces just don't have the same weight-bearing strength. So I'm always fixing it."                      
+            
+            menu:
+                "What should I say?"
+                "Could [kid_name] borrow your bike sometimes?":
+                    sara "My bike? I don't know... I don't even let Ilian ride it...It's kind of finicky."
+                    sara "Plus, it's not really adjustable for size, since I made everything specifically to fit me."
+                    
+                    $ demanding += 1
+                    $ authoritative += 1
+                "Make a bike out of spare parts.":
+                    $ permissive += 1
+                
+                "Ask [her_name] to help you make a bike out of spare parts.":
+                    $ permissive += 1
+                    $ marriage_strength += 1
+                    #maybe also relationship with wife improves?
+        "Don't buy her a bike.":
+            him annoyed "Sorry, I don't have 300 credits lying around. Your feet will work just fine."
+            kid surprised "That's it? Just 'No'?!"
+            him angry "I don't have time to discuss it! Go figure it out yourself if you want a bike so bad!"
+            kid angry "Maybe I will!"
             $ neglectful += 1
+        "Offer to buy her one in exchange for more work.":
+            him "I can understand why you'd want a bike. If I didn't have Lettie, I'd probably want one, too."
+            kid "Yeah! So you'll get me one?"
+            him "Well, not for free."
+            kid "Oh no. What do I have to do?"
+            him "If I'm going to be paying for your bike, then you'll need to do work for me on the bike."
+            kid "Okay, like what?"
+            him "Anything I ask."
+            kid "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
+            him "Those are my terms. If I buy the bike, then I get a say in how the bike is used."
+            kid "That's not fair! You're going to make me waste all my time doing your work!"
+            him "C'mon, I'm not that mean. It'll probably just be a trip to the storehouse once in a while or something."
+            kid "Then I want that in writing. I don't want to be your bike slave."
+            him "Oh no. I'm the parent. I set the terms."
+            kid "I don't think I want your help with this."
+            
+            $ demanding += 1
+            $ authoritarian += 1
+        "Suggest some alternatives.":
+            "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
+            $ responsive += 1
+            $ authoritative += 1        
 
     return
 

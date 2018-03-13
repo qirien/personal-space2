@@ -27,7 +27,7 @@ label start:
         # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
         
         # The Four Parenting Styles
-        # Only one of these should be increased each year (each type of event?)
+        # Only one of these should be increased each year (each type of event?), maximum value at the end of the game is 30
         authoritarian = 0
         authoritative = 0
         permissive = 0
@@ -49,13 +49,13 @@ label start:
         
     # CHILD    
     python:
-        # CHILD STATS. Maximum at end-game is 30.
+        # CHILD STATS. 
         # Amount of emotional intelligence, how loved and secure child feels
         attachment = 0
         # Reponsibility and ability to work hard, practical knowledge
         competence = 0
         # Confidence, autonomy
-        independence = 0
+        independence = 0        
         
         kid_work_slider = 0 
         

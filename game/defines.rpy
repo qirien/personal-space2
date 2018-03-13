@@ -35,9 +35,10 @@ init -100:
     define CROP_LAYOUT_BAR_WIDTH = CROP_ICON_SIZE / 10
     
     # Static variables used for endings
-    define ATTACHMENT_GOOD = 20
-    define COMPETENCE_GOOD = 20
-    define INDEPENDENCE_GOOD = 20
+    # TODO: Tweak these so all endings are possible.
+    define ATTACHMENT_HIGH = 45
+    define COMPETENCE_HIGH = 45
+    define INDEPENDENCE_HIGH = 30
     
     define MAX_YEARS = 30
     
