@@ -4119,6 +4119,7 @@ label community23:
                 him "Okay, I'll let you try selling these. Message me when they sell!"
                 thuc "Oh, I know someone will want them."
                 $ luddites += 1
+                $ thuc_sells_food = True
                 return
         
     else:
@@ -4148,45 +4149,128 @@ label community23:
                 $ colonists += 1
 
 
-
-
-
 label community24:
-    #Terra comments on how having kids is dangerous and thinks about her own future.
+    #luxury goods
+    "I was walking into town to have lunch with [her_name] when I saw Thuc working in his yard."
+    if community_22_mining_stopped: #this means there was inflation from community23 and Brennan paying a lot for shells
+        if thuc_sells_food:
+            him "Hi Thuc, thanks for selling those premium crops for me."
+            thuc "It was no trouble. Miners have tons of credits right now and they're happy to pay more for better goods and services."
+        else:
+            thuc "Hey, I've been worried about you since you've only been selling your crops to Ilian."
+            him "What do you mean?"
+            thuc "Everyone else is selling their premium crops to the miners directly."
+        thuc "They've been paying so much that Miranda stopped working in the research lab and has been cooking and cleaning for miners instead."
+        him "Really? Wow."
+        thuc "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
+        him "Do people really drink that stuff?"
+        thuc "No, usually people make it into yogurt or lotion or something."
+        thuc "Nice lotion sells for even more than goat milk."
+        him "I'm surprised Miranda hasn't tried that."
+        thuc "She still does some lab work, but she's gotten really into making soap and stuff."
+        thuc "That's actually how she markets her cleaning business: 'Scientifically proven to work against Talaam microflora!'"
+        thuc "The price of Pete's fireweed has gone waaaay up, so I think some teenagers are trying to grow some on their own."
+        thuc "I think some kids made a videogame that they are selling for a ridiculous amount too."
+        thuc "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
+        him "Ugh, is that still a thing?"
+        thuc "Yes, it is."
+        thuc "Didn't you read Julia's latest 'Talaam Times' that did an economic analysis of our luxury goods and reviewed select products?"
+        him "I didn't want to pay 20 credits for it! That's like the price of beans for a week."
+        if not thuc_sells_food:
+            him "Hmm. Maybe I could make a little money on the side."
+            him "My family might enjoy having some nicer things."
+            thuc "I'll take the best you have and sell it in my premium marketplace."
+            thuc "I'll message you as soon as these sell."
+            him "Thanks."
+        else:
+            pass
+        thuc "For the miners though, 20 credits out of thousands is almost nothing."
+        thuc "If you can make something that's popular with them, you could stand to make a lot of money!"
+        jump luxury_good
+        
 
-    #at a town meeting
-    show him at midright
-    show her concerned at midleft
+    else:
+        thuc "Hey [his_name], how's business?"
+        him "Same as ever. You?"
+        thuc "I'm glad you asked. Miranda decided that she wasn't making enough money from researching plants and she developed a special soap."
+        him "Is it that much different from Natalia's soap?"
+        thuc "Yes, she says it's formulated to kill Talaam microflora."
+        him "This sounds like something I don't actually need."
+        thuc "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
+        thuc "Julia gave it a flourescent review in 'Talaam Times'. The miners love that kind of stuff."
+        thuc "The price of fireweed has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
+        thuc "You should consider producing some kind of luxury good or service to make some extra money."
+        jump luxury_good
 
-    her "One of the mining women almost died having a stillborn baby."
-    her "She had been mining right until the day before she went into labor. Overwork was definitely a factor."
-    her "Will RET compensate her for her loss? She's still working even though she ought to rest."
-    him "Good question. I'll ask them."
-    "How will I word the query?"
+label luxury_good:
+    him "Hmm. I'll think about it."
+    "I want to try selling something new."
     menu:
-        "A miner overworked while pregnant and the fetus died before birth; will she receive compensation?":
-            $ miners += 1
-        "Please compensate the miner who lost her baby due to overwork.":
-            $ miners += 2
-        "We're experiencing health setbacks due to overwork. May colonists and miners take paid vacation days?":
-            $ colonists += 1
+        "Write a guide for beginning farmers on Talaam.":
+            "I spent a few months writing a comprehensive guide to beginning farming on Talaam."
+            "I had [her_name] edit it, and I had Thuc guest write a chapter."
+            "I had Julia write a review of it in 'Talaam Times'."
+            "Finally I was ready to sell it for 100 credits!"
+            "After a month it had sold just four copies." #+400/40 credits
+            kid "Hey dad, that farming guide you wrote is really popular."
+            him "Really?"
+            kid "Yeah, Oleg bought it and made copies for anyone who wanted it!"
+            him "Ugh."
+        "Babysit small children and teach them farming.":
+            "I offered to babysit a few small children and give them lots of individual attention for a few hours every morning over the summer."
+            "I promised to show them the beauties of Talaam and teach them the joy of farming."
+            "A few people were interested, and I chose two families with kids to help."
+            "I'd go pick up the kids in the morning, and then I'd drop them off at the co-op daycare after lunch."
+            "At first it was really difficult. The kids had a hard time changing their routines."
+            "I had forgotten how hard it is to do anything with kids in the house, so often I'd still be working on my farm after dinner."
+            "I did make a lot of money though!" #+2000/200 credits but more stress?
+        "Consult on small farming projects.":
+            "I advertised my professional farm consulting in the 'Talaam Times.'"
+            "I was surprised when Oleg was my first customer."
+            "He had a lot of questions about a hypothetical plant that was a lot like fireweed."
+            "I told him that I couldn't give him advice on how to grow imaginary crops and taught him some general farming principles."
+            kid "Oleg is telling everyone that you really know your farming stuff."
+            him "Sometimes I wasn't even sure he was listening..."
+            kid "He's been doing phosphorus measurements and everything."
+            "A few other people took me up on it, but I didn't make a lot of money off of it."
+            "There were plenty of books and other farmers people could consult for free." #+400/40 credits
+    return
 
-    him "That reminds me, RET told me that due to the cost of shipping, they will no longer provide temporary birth control."  # in month 14 of OPS1, Kelly says that there's only enough birth control for 6 more months. I guess we are assuming that more arrived with the shuttle that arrived, but none will be coming on future shuttles?
-    him "RET recommends using the rhythm method."
-    her "Are they serious? Does that include the miner's families?"
-    him "Yes, although children born on Talaam must stay here."
-    julia "Luckily my time of fertility is ending, but for some of you this will be most inconvenient."
-    ilian "No kidding. I've got enough mouths to feed at the moment."
-    sara "Dr. [her_name], do you have any advice for us?"
-    her "For women with regular cycles, tracking the time of ovulation works fairly well."
-    her "Couples may wish to exercise their creativity if they wish to avoid conception yet remain intimate during the woman's fertile time."
-    her "So, [his_name], is RET trying to grow the colony?"
-    him "I honestly think it's just economic. Miranda, do you know if any of the local plants could be used as birth control?"
-    #todo: set up Miranda as a character
-    #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
-    #consequences if you said not to trade for it in community 21
-    # Maybe Kelly offers to perform sterilizations, though she's not an expert. "I'd rather perform sterilizations than abortions".
-    # Using sheep/goat intestines as condoms?  TMI?
+#    #Terra comments on how having kids is dangerous and thinks about her own future.
+
+#    #at a town meeting
+#    show him at midright
+#    show her concerned at midleft
+
+#    her "One of the mining women almost died having a stillborn baby."
+#    her "She had been mining right until the day before she went into labor. Overwork was definitely a factor."
+#    her "Will RET compensate her for her loss? She's still working even though she ought to rest."
+#    him "Good question. I'll ask them."
+#    "How will I word the query?"
+#    menu:
+#        "A miner overworked while pregnant and the fetus died before birth; will she receive compensation?":
+#            $ miners += 1
+#        "Please compensate the miner who lost her baby due to overwork.":
+#            $ miners += 2
+#        "We're experiencing health setbacks due to overwork. May colonists and miners take paid vacation days?":
+#            $ colonists += 1
+
+#    him "That reminds me, RET told me that due to the cost of shipping, they will no longer provide temporary birth control."  # in month 14 of OPS1, Kelly says that there's only enough birth control for 6 more months. I guess we are assuming that more arrived with the shuttle that arrived, but none will be coming on future shuttles?
+#    him "RET recommends using the rhythm method."
+#    her "Are they serious? Does that include the miner's families?"
+#    him "Yes, although children born on Talaam must stay here."
+#    julia "Luckily my time of fertility is ending, but for some of you this will be most inconvenient."
+#    ilian "No kidding. I've got enough mouths to feed at the moment."
+#    sara "Dr. [her_name], do you have any advice for us?"
+#    her "For women with regular cycles, tracking the time of ovulation works fairly well."
+#    her "Couples may wish to exercise their creativity if they wish to avoid conception yet remain intimate during the woman's fertile time."
+#    her "So, [his_name], is RET trying to grow the colony?"
+#    him "I honestly think it's just economic. Miranda, do you know if any of the local plants could be used as birth control?"
+#    #todo: set up Miranda as a character
+#    #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
+#    #consequences if you said not to trade for it in community 21
+#    # Maybe Kelly offers to perform sterilizations, though she's not an expert. "I'd rather perform sterilizations than abortions".
+#    # Using sheep/goat intestines as condoms?  TMI?
 
     return
 
@@ -4369,3 +4453,4 @@ label community30:
         "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return
+    

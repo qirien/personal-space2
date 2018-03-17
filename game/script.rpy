@@ -90,6 +90,11 @@ label start:
         ate_jellyfish = False
         thuc_has_cattle = False
         ilian_has_cattle = False
+        thuc_sells_food = False
+        community_22_mining_stopped = False
+        community_22_forced_luddites_leave = False
+        community_22_compromise = False
+        community_22_mined_anyway = False
         
     # FARM
     python:
