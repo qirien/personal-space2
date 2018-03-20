@@ -5744,8 +5744,8 @@ label family27:
     him "It's not that far."
     kid "And, not just school, but going to town, too. Every time I want to go to Anya's house it takes me an hour just to walk there."
     him "You guys could hang out at the community center instead."
-    kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times she wants to show me stuff."
-    him surprised "Why a bike?"
+    kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times we want to go to her house."
+    him surprised "Is that really why you want a bike?"
     
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritative"):
@@ -5780,6 +5780,7 @@ label family27:
             $ permissive += 1
 
         "Have her use her own money.":
+            $ demanding += 1
             if (allowance_amount > 0):
                 # TODO: make sure this makes sense with the numbers
                 him "You have an allowance, you know. You could save up for it yourself."
@@ -5797,14 +5798,16 @@ label family27:
                 kid "That's not very helpful."
             
             him "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
-            kid "Who should I ask?"
+            kid "Maybe... But who would I even ask?"
             # TODO: have these based on stats? or increase stats?
             menu:
                 "What should I say?"
                 "Ask in town.":
+                    $ responsive += 1
                     him "You could ask around in town, see what people need."
                     kid "Okay..."
                 "Find a need and offer to help.":
+                    $ responsive += 1
                     him "Look around and see what people need help with. Then find a way to help them and offer to help for a fair price."
                     kid "How do I know what people need?"
                     him "Look on the message board, or ask someone who's connected to the community."
@@ -5812,14 +5815,21 @@ label family27:
                     him "Yeah, she'd probably have some great ideas. But Pavel or Ilian might know something, too. Or you could ask mom."
                     kid "Okay."
                 "Ask the miners.":
+                    $ responsive += 1
                     him "Ask the miners. They work pretty hard all day, and they usually have a lot of credits, so maybe there's things you could do that they would pay for."
                     kid "Okay, I'll ask next time I go see Anya."
                 "Ask Pete.":
+                    $ responsive += 1
                     him "Ask Pete. He might not be able to pay in credits, but he has stuff you can't get anywhere else that other people might pay well for."
                     kid "He lives so far away. If I had a bike, maybe that would work. I'm going to ask the miners."
+                "Figure it out yourself.":
+                    $ demanding += 1
+                    him "I'm sure you'll figure something out."
+                    kid "Thanks for nothing."
                     
             "[kid_name found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
+            $ authoritative += 1
             # TODO: decrease her amount of available work?            
         "Don't buy her a bike.":
             him annoyed "Sorry, I don't have 300 credits lying around. Your feet will work just fine."
@@ -5854,11 +5864,7 @@ label family27:
             else:
                 kid "That's not fair!"
                 him "I'm the parent; those are the rules."
-                $ authoritarian += 1                
-        "Suggest some alternatives.":
-            "Maybe you can teach her to drive a tractor (but not on her own), or to ride a horse (if Lettie's still alive), or make a go cart or something?"
-            $ responsive += 1
-            $ authoritative += 1        
+                $ authoritarian += 1                                
 
             
     # TODO: fit this in somehow?
@@ -5870,7 +5876,99 @@ label family27:
     him surprised "What? Why?"
     her determined "It takes up a lot of time; she's exhausted by the time she gets home but she still has to do homework."
     him concerned "Yeah, she hasn't had much time to help on the farm lately, either."
-    # TODO: event about this? Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan? Doesn't have time for farming? Should this depend on which ending you're heading towards?
+    her surprised "Maybe she should quit and concentrate on her schooling..."
+    him determined "No way. It's good for her to do something real and useful. She'll use that way more in life than whatever random stuff they're teaching her in school."
+    her annoyed "It's not 'random stuff', it's math, literature, science, social studies -- you know, the stuff that makes us human."
+    him annoyed "Yeah, but she's almost 18. She needs to start exploring what she's going to be doing here as a contributing adult."
+    her angry "What about college?"
+    him normal "All they have here is independent study. I think she'd be better off starting to work and then studying more what she actually needs."
+    her annoyed "A college education is important."
+    him annoyed "When was the last time you used calculus? History? And you don't need a class to enjoy a good book or think about philosophy or whatever."
+    her determined "I use math all the time at work."
+    him determined "But not calculus."
+    her concerned "...No, but I use the same kind of thinking and complex problem-solving and abstraction that calculus trains you to do."
+    him determined "Okay, what about history?"
+    her determined "History is all about finding the common threads among humanity. Since we moved here, it's become even more important to me."
+    him surprised "How?"
+    her concerned "The parallels help me understand our situation better."
+    him "What parallels?"
+    her determined "In some ways we like the settlers on the Oregon Trail -- forging a new path, exploring, and trying to make a wild, lonely place a home."
+    her concerned "Understanding the grievances of populists and revolutionaries throughout history helps me undestand why Pete left -- and to be wary of what RET could become."
+    him determined "Okay, but [kid_name] could still work and study at the same time."
+    her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
+    $ parenting_style = get_parenting_style()
+    
+    # TODO: Make this affect available work or something.
+    menu:
+        "What should I say?"
+        "We should encourage her work.":
+            him concerned "The reality is, everyone needs a job here. She might not do this job forever, but I think this type of practical education is just as important as more abstract studies."
+            her concerned "It is good to see her excited about doing real work."
+            him determined "It might be a good opportunity for [bro_name] to step up and do more on the farm, too."
+            
+        "We should make her quit.":
+            him concerned "Maybe you're right..."
+            her concerned "We should let her be a kid as long as possible, and get as much schooling as she can."
+            him determined "And I still need her help on the farm. Even with her and [bro_name] both helping me, it's tough to keep up with the demand for crops."
+            
+            scene black with fade
+            "But [kid_name] did not take the news well."
+            kid "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
+            her concerned "There's still a lot you need to learn. Right now your schooling is more important."
+            if (parenting_style == "authoritative"):
+                kid "Maybe you're right..."                
+            elif (parenting_style == "authoritarian"):
+                kid "You want me to be a productive and useful adult, right?"
+                him determined "Yes, but we also want to you to get a good education and help out at home."
+                kid "How about if I can keep my job as long as I also do my chores and do my schoolwork?"
+                "She had a point. But we were the parents, and it was our job to do what was best for her. Hopefully we knew what that was."
+                "I looked at [her_name]. She shrugged. I guess this decision was up to me."
+                menu:
+                    "What should I say?"
+                    "You have a deal.":
+                        him normal "We can try it. But I expect you to get good grades and do your chores. Whatever work you can fit in around that is fine."
+                        kid "Thank you, dad! I'm glad you listened to me."
+                        "Hopefully I wouldn't regret this..."
+                    "No deal. You may not work.":
+                        him annoyed "[kid_name], I said no. Stop arguing!"
+                        kid "You never listen to me! Whose life is this anyway?!"
+                        her concerned "Sweetie..."
+                        kid "Sorry, mom, I don't have time. I have to go cram my head full of useless facts instead of doing real work."
+                        "She left to her room."
+                        "Hopefully we were doing the right thing..."
+                        
+            elif (parenting_style == "permissive"):
+                kid "No! You guys can't be serious?! I always get good grades and do everything you ask, why can't you just let me do what I want?!"
+                him "Sorry, [kid_name]. We just want what's best for you."
+                kid "Well maybe next time you could bother to figure that out! Hint: it's not quitting my job!"
+                her "[kid_name]..."
+                "She left to her room."
+                "Hopefully we were doing the right thing..."
+            else:
+                kid "I'm sick of working on this farm! Why can't you let me choose my own life?!"
+                him "Sorry, [kid_name]. We just want what's best for you."
+                kid "No, you just want what's best for {b}you{/b}."
+                "She left to her room."
+                "Hopefully we were doing the right thing..."            
+            
+        "We should let her decide.":
+            him determined "This should be her decision. We should make sure she knows what she's choosing between, and encourage her education, but it's her life."
+            her concerned "She's still a kid, though..."
+            him annoyed "Not for long. If she doesn't make big decisions now, how is she going to learn how to make them when she's not a kid?"
+            her flirting "Our little baby is growing up..."
+            
+        "We should only let her work if she keeps her grades up.":
+            him concerned "Her studies are important, but so is her work. So I think she should only be able to keep working if she can also make sure to do all her schoolwork."
+            her concerned "That sounds like a lot of stress."
+            him determined "If she's busy, she's not getting in trouble, right?"
+            her normal "Let's hope so."
+            
+    scene black with fade
+    "A few days later, Brennan asked to talk with me."
+    # TODO: where is this?
+     
+    
+    # TODO: event about this? Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
     return
 
 # 17.3 Earth years old
