@@ -4275,77 +4275,276 @@ label luxury_good:
     return
 
 label community25:
-        #I'm thinking of moving this whole event to later
-    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
-    if luddites > 5:
-        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
-        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating foreign plants all day."
-    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
-    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
-    her "However, the cells in Pete's meat are often irregular and probably cancerous."
-    him "Okay... but eating cancer doesn't give you cancer, right?"
-    her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
-    him "But the cells are dead in meat, so why would it matter?"
-    her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
-    him "What about the cows from the colony?"
-    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
-    her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
-    him "Yeah, but Pete's cows have those UV blankets, don't they?"
-    her "They do, but I think they don't work very well."
-    her "I've seen the cows take them off. I don't think they're working very well."
-    her "My question for you is if you think I should publish the results of my study."
-    her "If people keep eating this meat, it might shorten their lifespan."
-    menu:
-        "Yes, definitely.":
-            him "People should know the risks of what they're eating. You should definitely tell everyone."
-            him "Just be honest about how much we don't know."
-            her "Okay."
-            "[her_name] wrote up a brief paper summarizing her findings."
-            "A few people read it and stopped buying meat from Pete."
-            $ colonists += 1
-            
-        "No, don't publish the study.":
-            him "How many samples have you studied? I think it's too early to draw conclusions."
-            her "True, my sample size is pretty small. I'll keep studying it."
-            
-        "You should at least tell Pete." if luddites >5:
-            him "Pete should know that his cows are developing cancer."
-            him "Maybe he can adjust his radiation-shielding measures."
-            her "That's a good idea. I'll make that suggestion."
-            "Pete started experimenting with different ways to shield his cows from radiation."
-            $ luddites += 1
+    #Brennan's Jellysquid farm
+    $ new_25 = False
+    $ new2_25 = False
+    $ eat_25 = False
+    $ eat2_25 = False
+    $ jellysquid_25 = False
+    $ meat_25 = False
+    $ effective_25 = False
+    $ touch_25 = False
+    $ touch2_25 = False
 
-    #better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
-    "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
-    "This year it seemed like they anticipated [her_name]'s research, even though the shuttle had been sent years beforehand."
-    "We received equipment and recipes for making synthetic meat."
-    "They said that based on new research, our cows likely had cancer, and that we should switch to eating synthetic meat to avoid the risks associated with eating cancerous meat."
-    "It also mentioned that their decision to send cows to Talaam was a frequent point of contention between them an environmental agencies, and that they had promised to reduce the amount of cattle on Talaam."
-    "They asked us to halve the size of our herd in two years."
-    if is_liason:
-        "RET included instructions asking me and Brennan to oversee the meat's production and to encourage others to eat it."
-    else:
-        "Sara asked me to help try out the synthetic meat and encourage others to eat it."
-    "The synthetic meat required that we build a lab to house the meat while it grew in petri dishes, which we were supposed to call 'meat pockets.'"
-    "We would mix up a nutrient-rich slurry to be the growth culture, which we would paint onto the meat pockets."
-    "A scientist would put stem cells on the meat pockets, and then sprinkle xantham gum over the top to protect it from fungal growth."
-    "Over the course of a few weeks, workers would feed the cells, check to make sure the cells were growing, and stretch the meat to give it a better texture."
-    #convey this through conversation
-    #realistic? High cosmic radiation has a dose-equivalency which could add up over time, making radiation cataracts common.
+    "Every night after dinner I liked to catch up on the news around town."
+    "This week Sara was asking about recipes for the jellyfish-like creature from the ocean."
+    nvl clear
+    sara_c "After you chop it up, do you just sautee it?"
+    thuc_c "I like it in a little beef grease with beans and garlic."
+    natalia_c "I think Ilian is selling it dried now. Dried jellyfish is really good in soup"
+    sara_c "This stuff has pretty high water content... is there anything left after it's dried out?"
+    him_c "Why do we suddenly have so much jellyfish? I wasn't sure if it was approved for human consumption."
+    if ate_jellyfish:
+        him_c "Dr. Lily told me that they contain a parasite which could decrease reaction speed."
+        sara_c "Really? I haven't noticed anything like that."
+        him_c "Well, she did say it was only a difference of a few milliseconds."
+    ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse."
+    ilian_c "It's really cheap right now, and we're still drying more."
+    ilian_c "You can use it for bait when fishing, too."
+    him_c "He's farming the form with the shell?"
+    ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellyfish to offload."
+    him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
+    brennan_c "I have been trying to farm jellysquid, which resulted in surplus jellyfish."
+    sara_c "Are the jellysquid even the same species?"
+    julia_c "Dr. Lily reported that the jellysquid form is an aggregate of the jellyfish one, but she never personally witnessed how it happens."
+    julia_c "She wrote about it in a paper on them. You should probably read it if you're trying to raise them."
+    brennan_c "Thanks, I'll look it up. I've made a few observations of my own."
+    julia_c "You should publish them!"
+    brennan_c "My information is proprietary."
+    julia_c "You could sell it for money then!"
+    brennan_c "Maybe when I have some information worth selling, I'll publish it."
+    
+    "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
+    if (miners > 12):
+        "I looked around the coast for a bit and found Chaco tending his jellyfish farm."
+        "Nets with a close weave enclosed a small area off a pier."
+        him "Is this the famous jellyfish farm?"
+        chaco "Yep."
+        him "Are you in charge of it?"
+        chaco "I'm the one who checks on it every day and takes notes."
+        label jelly_convo:
+            menu:
+                "What's new?" if not new_25:
+                    him "Any new developments?"
+                    chaco "During the double full moon, if there's a solar flare, it makes the jellyfish glow."
+                    chaco "Their pigments probably glow in UV light."
+                    him "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans?"
+                    chaco "Probably not."
+                    him "How do they glow when it's cloudy then?"
+                    chaco "Luminescence."
+                    $ new_25 = True
+                    jump jelly_convo
+                "What do they eat?" if not eat_25:
+                    him "What do you feed them?"
+                    chaco "Nothing. They probably eat plankton."
+                    chaco "I've seen them eat tiny fish too."
+                    $ eat_25 = True
+                    jump jelly_convo
+                "Have you made any jellysquid?" if not jellysquid_25:
+                    him "Any luck getting them to aggregate into a jellysquid?"
+                    chaco "No. But we have a clue."
+                    chaco "We found a baby jellysquid."
+                    chaco "We put it in the farm. It died, and the jellyfish ate its tiny shell."
+                    him "Weird."
+                    $ jellysquid_25 = True
+                    jump jelly_convo
+                "Can I touch one?" if not touch_25:
+                    "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                    him "Can I touch one?"
+                    chaco "You can... sometimes it agitates them."
+                    menu:
+                        "Touch one.":
+                            "I crouched down on the pier and reached out to touch one."
+                            "I felt a little spark like static and feel one of the spines poking me."
+                            "The jellyfish grasped each other and made a long chain to the edge of the net."
+                            "I could see and think but it felt like I was in a trance."
+                            "Chaco took my hand out of the water."
+                            chaco "Weird, huh."
+                        "Don't touch one.":
+                            "I decided to just look at the jellyfish."
+                    $ touch_25 = True
+                    jump jelly_convo
+                "Why is there so much extra jellyfish meat?" if not meat_25:
+                    him "It doesn't look like there are that many jellyfish right now."
+                    him "Where did all the extra meat come from?"
+                    chaco "They reproduce on their own and crowd each other."
+                    chaco "Brennan thinks that they can't combine if there are too many of them."
+                    him "What do you think?"
+                    chaco "I'm not sure."
+                    $ meat_25 = True
+                    jump jelly_convo
+                "I'm done talking.":
+                    him "Good seeing you."
+                    chaco "You too."
+                    return
+    elif (luddites > 10):
+        "I looked around the coast for the jellyfish farm."
+        "I saw Pete standing on a pier and walked down to say hi."
+        "Out on the pier, I could see that the jellyfish were enclosed by large net walls."
+        him "How's it going?"
+        pete "Not bad. Just checking out the jellyfish farm."
+        label jelly2_convo:
+            menu:
+                "Is the farm effective?" if not effective_25:
+                    him "Is it working?"
+                    pete "It's making lots of jellyfish, but no jellysquid that I've seen."
+                    him "Colonists have been eating lots of jellyfish soup thanks to that."
+                    $ effective_25 = True
+                    jump jelly2_convo
+                "What do they eat?" if not eat2_25:
+                    him "Do they feed them fish or something?"
+                    pete "They're like the goats of the ocean."
+                    pete "They can live off of just about anything, including whatever plankton are floating around."
+                    $ eat2_25 = True
+                    jump jelly2_convo
+                "Can I touch one?" if not touch2_25:
+                    "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                    him "Is it safe to touch them?"
+                    pete "It won't kill you. Go ahead and try it."
+                    menu:
+                        "Touch one.":
+                            "I crouched down on the pier and reached out to touch one."
+                            "I felt a little spark like static and feel one of the spines poking me."
+                            "The jellyfish grasped each other and made a long chain to the edge of the net."
+                            "I could see and think but it felt like I was in a trance."
+                            "Pete took my hand out of the water."
+                            pete "Sometimes they do that."
+                            $ touch2_25 = True
+                            jump jelly2_convo
+                        "Don't touch one.":
+                            "I decided to just look at the jellyfish."
+                            $ touch2_25 = True
+                            jump jelly2_convo
+                "What's new with you?" if not new2_25:
+                    him "How are you doing? Still selling fireweed?"
+                    if (community_22_mining_stopped):
+                        pete "Yes, but the sudden inflation almost gave me a heart attack."
+                        pete "My stock was completely wiped out for a few months, because people were stocking up before I figured out what happened."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                    elif (community_22_compromise):
+                        pete "Yep. In my secret fireweed fields."
+                        pete "Travis and Helen made an interesting game together that they call Talaam chess."
+                        pete "You should try it out sometime!"
+                        him "That brings back memories. I thought you guys were too busy to play games."
+                        pete "Nope. I think I actually have more free time now than when I was the colony's librarian."
+                        pete "I was always trying to read everything so I could know how to help everyone."
+                        pete "I do miss reading sometimes."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                    elif (community_22_mined_anyway):
+                        pete "Well it's been hard for Travis to adjust to not having feet."
+                        pete "I shouldn't have been so stubborn and stayed in the caves."
+                        pete "I'm just glad Travis didn't die in there."
+                        pete "He has mixed feelings about the prosthetics. He feels like he should be able to live without them but he depends on them for certain things."
+                        pete "I can't depend on him to do much cattle herding. He keeps busy with wood carving."
+                        him "Yeah, I saw he carved some kind of chess set?"
+                        pete "He and Helen collaborated on that. She knits little hats for the pyramid-shaped pieces so you can change them around."
+                        him "So you still get around to playing board games now and then?"
+                        pete "Sure do! You should come by sometime and play Talaamian chess with me."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                    else: #this should be impossible to get, since the other ending resets luddite relationship to 0. it's here as a safety net in case something goes horribly wrong.
+                        pete "It's been hard finding a new place to live."
+                        pete "We've found a place that I think will be safe from radiation."
+                        pete "I don't really want anyone to know where it is though."
+                        him "That's understandable."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                "That's all I want to say.":
+                    him "It was good seeing you."
+                    pete "There's something I'm worried about..."
+                    pete "Is it ethical to farm the jellyfish like this?"
+                    him "What do you mean? They're not that different from cattle, are they?"
+                    pete "I've dissected a dead jellyfish before. Each arm has its own nerve bundle, like an Earth octopus."
+                    him "But can they sense the world around them? Do they even have a brain?"
+                    pete "They don't have eyes, or much of a brain. But they can definitely feel things with their tentacles."
+                    pete "I wouldn't be surprised if they can sense UV radiation."
+                    him "But they're not even as intelligent as a cow!"
+                    pete "No, not in the jellyfish form. But the jellysquids are definitely intelligent."
+                    pete "And the jellysquids are made up of jellyfish! They're like baby jellysquids."
+                    him "That reminds me--I haven't seen any jellysquid up here."
+                    pete "They've all been caught for their shells."
+                    him "And there aren't any jellysquids in this farm?"
+                    pete "I've been checking it every week or so and there haven't been any jellysquids at all."
+                    pete "They must need something else to change."
+                    return
+            
+    else: #if neither miners or luddites is high 
+        "I looked around the coast for the jellyfish farm."
+        "I found a pier surrounded by nets that enclosed bunches of jellyfish."
+        "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+        menu:
+            "Touch one.":
+                "I crouched down on the pier and reached out to touch one."
+                "I felt a little spark like static and feel one of the spines poking me."
+                "The jellyfish grasped each other and made a long chain to the edge of the net."
+                "I could see and think but it felt like I was in a trance."
+                "After a few minutes or an hour, it let me go."
+                return
+            "Don't touch one.":
+                "I decided to just look at the jellyfish."
+                return
+                    #what if the secret to making a jellysquid is that after it makes a shell, you have to hold one in each hand and it makes a complete circuit?
+                    #have another scene, probably here, where they discover how to make jellysquid.
 
-    # what if the miners have some kind of artificial meat factory and start selling it so cheaply that no one wants to buy Pete's real meat anymore? Would this be a an interesting problem?
-#    #I was also thinking that maybe the cows don't like their anti-radiation blankets and there is concerns that their meat contains radiation
-#    "I hate how it tastes."
-#    "Make the switch?"
+#    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
+#    if luddites > 5:
+#        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+#        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating foreign plants all day."
+#    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+#    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
+#    her "However, the cells in Pete's meat are often irregular and probably cancerous."
+#    him "Okay... but eating cancer doesn't give you cancer, right?"
+#    her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
+#    him "But the cells are dead in meat, so why would it matter?"
+#    her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
+#    him "What about the cows from the colony?"
+#    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+#    her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
+#    him "Yeah, but Pete's cows have those UV blankets, don't they?"
+#    her "They do, but I think they don't work very well."
+#    her "I've seen the cows take them off. I don't think they're working very well."
+#    her "My question for you is if you think I should publish the results of my study."
+#    her "If people keep eating this meat, it might shorten their lifespan."
 #    menu:
-#        "Yes.":
-#            $ miners += 1 #miners equal the interests of RET here
-#        "No.":
-#            $ luddites += 1
-#        "Stop eating cow meat, but still use milk and leather?.": #provides fertilizer, hair for wool, milk, leather
+#        "Yes, definitely.":
+#            him "People should know the risks of what they're eating. You should definitely tell everyone."
+#            him "Just be honest about how much we don't know."
+#            her "Okay."
+#            "[her_name] wrote up a brief paper summarizing her findings."
+#            "A few people read it and stopped buying meat from Pete."
 #            $ colonists += 1
-    return
- #previously: "Miners have a lot more money than farmers. They start employing young people as servants to do their household chores and look after their children."
+            
+#        "No, don't publish the study.":
+#            him "How many samples have you studied? I think it's too early to draw conclusions."
+#            her "True, my sample size is pretty small. I'll keep studying it."
+            
+#        "You should at least tell Pete." if luddites >5:
+#            him "Pete should know that his cows are developing cancer."
+#            him "Maybe he can adjust his radiation-shielding measures."
+#            her "That's a good idea. I'll make that suggestion."
+#            "Pete started experimenting with different ways to shield his cows from radiation."
+#            $ luddites += 1
+
+#    #better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
+#    "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
+#    "This year it seemed like they anticipated [her_name]'s research, even though the shuttle had been sent years beforehand."
+#    "We received equipment and recipes for making synthetic meat."
+#    "They said that based on new research, our cows likely had cancer, and that we should switch to eating synthetic meat to avoid the risks associated with eating cancerous meat."
+#    "It also mentioned that their decision to send cows to Talaam was a frequent point of contention between them an environmental agencies, and that they had promised to reduce the amount of cattle on Talaam."
+#    "They asked us to halve the size of our herd in two years."
+#    if is_liason:
+#        "RET included instructions asking me and Brennan to oversee the meat's production and to encourage others to eat it."
+#    else:
+#        "Sara asked me to help try out the synthetic meat and encourage others to eat it."
+#    "The synthetic meat required that we build a lab to house the meat while it grew in petri dishes, which we were supposed to call 'meat pockets.'"
+#    "We would mix up a nutrient-rich slurry to be the growth culture, which we would paint onto the meat pockets."
+#    "A scientist would put stem cells on the meat pockets, and then sprinkle xantham gum over the top to protect it from fungal growth."
+#    "Over the course of a few weeks, workers would feed the cells, check to make sure the cells were growing, and stretch the meat to give it a better texture."
+#    #convey this through conversation
+#    #realistic? High cosmic radiation has a dose-equivalency which could add up over time, making radiation cataracts common.
+
 
 
 # Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
