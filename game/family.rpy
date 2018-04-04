@@ -2734,7 +2734,7 @@ label family10:
                     "What should I say?"
                     "No, it's too late for that.":
                         him "Sorry, it's too late for that. You needed to tell the truth in the first place."
-                        $ demanding += 1                  
+                        $ demanding += 1
                     "Yeah, I guess.":
                         him "Yeah, I guess."
                         $ responsive += 1
@@ -2744,8 +2744,8 @@ label family10:
                         $ responsive += 1
                 kid "...you're mean."
                 him normal "Sometimes."
-                $ authoritative += 1                
-                
+                $ authoritative += 1
+
     label family10_ending:
         if (year8_have_baby):
             "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
@@ -4019,8 +4019,8 @@ label family16:
                 "Then you keep learning until you can go to heaven.":
                     him "I don't know how it all works, but what I'd do is make it so people could keep trying, learning all they needed to, until they were good enough to go to heaven."
                     her "If you were God?"
-                    him "Well, God's at least as smart as me, so I'm sure He's come up with something good."                    
-                
+                    him "Well, God's at least as smart as me, so I'm sure He's come up with something good."
+
         "She's in our hearts.":
             him "She's in our hearts."
             kid "Her body's turning into the tree we planted, and trees give off oxygen. So when we breathe in the oxygen, our lungs take it to the heart and it goes in our blood."
@@ -4035,12 +4035,12 @@ label family16:
                 "Good metaphor.":
                     him "That's a good metaphor, [kid_name]. Even though she's gone, her influence lives on."
                     kid "In our blood!"
-                
+
         "She's gone.":
             him "She's gone. Every part of her is in the ground under that tree."
             "[her_name], who had been pretty quiet, spoke up."
             her "I don't know about that. It's possible her consciousness is separate from her body and still lives on."
-            him "I doubt it."            
+            him "I doubt it."
         "I don't know.":
             him "I don't know."
             her "I believe some part of her, the part of her that thinks and feels and loves, lives on separate from her body."
@@ -5265,9 +5265,9 @@ label family21:
     return
 
 # 13.6 Earth years old
-# Wants a bike!
+# You falsely accused Terra! Apologize?
 label family22:
-    
+
     scene farm_interior with fade
     show him determined at midright
     show kid at center
@@ -5340,8 +5340,8 @@ label family22:
             "I had come in here to apologize; how had this turned sour so quickly?"
             him concerned "Anyway, I didn't come in here to argue with you; I just wanted to apologize."
             kid "Okay."
-            "I gave her a quick hug. She didn't quite push me away, but she didn't hug me back, either."                     
-            
+            "I gave her a quick hug. She didn't quite push me away, but she didn't hug me back, either."
+
         "Talk with [her_name]":
             "I wanted to talk about this with [her_name]."
             menu:
@@ -5372,7 +5372,7 @@ label family22:
                     him normal "I'm just so glad we're parents together. Our kids are lucky to have a mom like you."
                     her normal "And a dad like you."
                     $ marriage_strength += 1
-                
+
         "Talk to [bro_name]":
             "That wasn't enough. [bro_name] needed a serious talking-to! I followed him back to his room."
             # TODO: room bg here?
@@ -5403,7 +5403,7 @@ label family22:
                     him determined "I don't want you stealing ever again. Do you understand."
                     "He nodded."
                     him concerned "Good."
-                          
+
     # TODO: SOme other event.
     return
 
@@ -5626,9 +5626,100 @@ label family23:
 # Lettie dies.
 label family24:
     "My horse, Lettie, was almost a member of the family. But she was over twenty-five years old, now, and it was starting to show."
-    "She still liked to get out and ride around, but she didn't feel like running as much, especially when it was hot outside."
     "She was the only horse on the colony; at one point there were plans for horse breeding, but when RET found precious ores they sent mining equipment instead."
-    # TODO: Finish this. Dies of yew poisoning planted by miners?
+    "I know [her_name] didn't really get it, but Lettie's been one of my best friends. No matter what's going on, I can always depend on her to be there when I need her."
+    "And she always accepts me just the way I am."
+    scene barn with fade
+    show lettie at midright
+    show him at midleft with moveinleft
+    him "Hello, old girl."
+    "She nickered softly in return and stepped up to me. I patted her neck and talked to her as I got her ready to ride."
+    him "We're going to go pickup [kid_name] from Anya's house."
+    "Lettie shook her head."
+    him "I know, she's old enough to come home on her own, but it'll be dark, and sometimes it's the only chance I get to talk to her."
+    him "Besides, you want a walk, right?"
+    scene path with fade
+    show lettie at center
+    show him at center
+    with dissolve
+    "Lettie seemed to enjoy the walk. Even though she was getting older, it was good for her get out and exercise often."
+    menu:
+        "On the ride up to the miner's house, I told Lettie all about..."
+        "[her_name].":
+            him "[her_name]'s been really busy lately... there's a lot more people to take care of, and she has a hard time telling people to wait, even if their needs aren't really that urgent."
+            him "I love how dedicated she is, even if it frustrates me sometimes."
+            him "I guess all I can do is support her and try and make things relaxing for her at home."
+        "[kid_name].":
+            him "[kid_name]'s not a kid anymore . . . I wonder what she'll end up doing? Raising a bunch of kids, or researching crazy alien creatures, or farming like me?"
+            him "I'm sure not ready to be a grandpa. Let's hope that doesn't happen for a long time yet."
+            him "It would serve her right to have kids as stubborn as she is someday."
+        "[bro_name].":
+            him "I still don't get [bro_name]. He doesn't talk much, and when he does it's about things I don't get, like factories or far-off galaxies or jellysquids."
+            him "But I love him all the same."
+            him "Do you have to understand someone to love them? Or if I don't understand him, does it mean I don't love him enough?"
+            "Lettie snorted."
+            him "Sorry; I wasn't talking about you. Good point, though."
+        "myself.":
+            him "I remember when I used to be able to haul and lift and weed and plow all day long and not hurt at all. Sure, I'd be tired, but the next day I felt as good as new."
+            him "Nowadays, after a hard day in the fields, I feel it in my back, my knees, my neck -- everywhere."
+            "Lettie tossed her head."
+            him "I guess you probably know what I mean, since you're getting a bit older, too."
+
+    #scene bg miners
+    "After we arrived at Anya's house, I secured Lettie's tether to the gate."
+    "Lettie was breathing a little harder than usual, so I thought I'd let her take a break while I looked for [kid_name]."
+    "Anya's father told me they had gone for a walk by the canyon."
+    scene bg canyon
+    show him at midleft with moveinleft
+    "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
+    "...Maybe especially because she was almost 15."
+    him surprised "[her_name]!"
+    "My call echoed up and down the canyon. I listened carefully, but there was no response, so I walked further along."
+    hide him with moveoutright
+    scene bg sunset
+    show him at midleft with moveinleft
+    him concerned "[her_name]!"
+    show her at midright with moveinright
+    kid "Dad! I'm right here; no need to yell. What are you doing here, anyways? I was just about to start walking home."
+    him "I wanted to walk home with you. Where's Anya?"
+    kid "Oh... yeah, I should tell her bye. Bye, Anya!"
+    "Anya yelled back through the trees."
+    "Anya" "Bye!"
+    "???" "Bye, [kid_name]!"
+    "I heard giggling and several voices, some of which were fairly deep. [kid_name] and I started walking back together."
+    him surprised "Who were you with?"
+    kid "Just Anya and a few other friends."
+    menu:
+        "What should I say?"
+        # TODO: should her response depend on your parenting style?
+        "Which friends?":
+            him "Other friends? Which other friends?"
+            kid "No one you know! Just some people we hang out with."
+            him "I know almost everyone."
+            kid "Just Anya's brother and his friend. I don't even know his last name." # TODO: Make a name for this friend if we see him again later.
+            "Anya's brother was almost twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
+            "I felt wary. Why would two twenty-something boys want to hang out with young teenage girls?"
+            "Then again, the dating pool was a lot smaller here. I had to remember that this wasn't Earth."
+            "Still, I got a bad vibe about it."
+        "What were you doing?":
+            him "What were you doing?"
+            kid "Just hanging out."
+        "I never said you could do this!":
+            him "I said you could hang out with Anya; I didn't say you could go off in the canyon with boys."
+            kid "We didn't plan it like that! Anya's brother and his friend just kind of showed up and so we hiked around together."
+        "How'd it go?":
+            him "How'd it go?"
+            kid "Fine. Anya's brother is pretty funny. He had some great snacks, too. We hiked around, took some funny pictures. You know, just stupid teenager stuff."
+        "Dont' say anything.":
+            "I didn't say anything. She was allowed to hang out with friends without getting grilled by her dad, right?"
+            "Besides, I didn't know what to say."
+
+    # TODO: Finish conversation about older teenage friends.
+
+
+
+
+    # TODO: Finish Lettie's death. Dies of yew poisoning planted by miners
 
 
     "[her_name] asks you about fire grass. Seems like a lot of people have been talking about it lately."
@@ -5703,7 +5794,7 @@ label family26:
             $ permissive += 1
         "Laugh it off.":
             $ neglectful += 1
-    
+
     "[kid_name] comes home smelling like fire grass."
     "You knew that the miners smoked it, but it hasn't been popular among the colonists... until now."
     # TODO: change this based on choices in community events.
@@ -5726,14 +5817,14 @@ label family26:
                     $ demanding += 1
                     $ authoritarian += 1
         "Say nothing. It's just a plant, right?":
-            $ neglectful += 1            
-            
+            $ neglectful += 1
+
     return
 
 # 16.7 Earth years old
 # Financial Responsibility & Bikes
-label family27:      
-    
+label family27:
+
     scene farm_interior with fade
     show him at midright with dissolve
     show kid at midleft with moveinleft
@@ -5746,7 +5837,7 @@ label family27:
     him "You guys could hang out at the community center instead."
     kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times we want to go to her house."
     him surprised "Is that really why you want a bike?"
-    
+
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritative"):
         kid "I would be a lot more useful to this family with a bike. I could go shopping for you and even ride it around the farm when we work together."
@@ -5757,7 +5848,7 @@ label family27:
     else:
         kid "I just really want one."
 
-        
+
     him "Do we even have any bikes?"
     # TODO: currency check
     $ bike_cost = 300
@@ -5768,7 +5859,7 @@ label family27:
     kid "Yeah, all I need are the [bike_cost] credits! I can find the plants myself!"
     him concerned "[bike_cost] credits is a lot!"
     kid "Please, dad?"
-   
+
     menu:
         "What should I do?"
         "Buy her a bike":
@@ -5796,7 +5887,7 @@ label family27:
                 kid "I'm not going to do whatever people want!"
             else:
                 kid "That's not very helpful."
-            
+
             him "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
             kid "Maybe... But who would I even ask?"
             # TODO: have these based on stats? or increase stats?
@@ -5826,11 +5917,11 @@ label family27:
                     $ demanding += 1
                     him "I'm sure you'll figure something out."
                     kid "Thanks for nothing."
-                    
+
             "[kid_name found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
             $ authoritative += 1
-            # TODO: decrease her amount of available work?            
+            # TODO: decrease her amount of available work?
         "Don't buy her a bike.":
             him annoyed "Sorry, I don't have 300 credits lying around. Your feet will work just fine."
             kid surprised "That's it? Just 'No'?!"
@@ -5860,13 +5951,13 @@ label family27:
             elif (is_attached()):
                 kid "C'mon, dad. Please just let me have a bike? I promise I'll help out sometimes."
                 him "I'll hold you to that."
-                $ authoritarian += 1                
+                $ authoritarian += 1
             else:
                 kid "That's not fair!"
                 him "I'm the parent; those are the rules."
-                $ authoritarian += 1                                
+                $ authoritarian += 1
 
-            
+
     # TODO: fit this in somehow?
     # TODO: different job depending on personality/ending?
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
@@ -5891,13 +5982,13 @@ label family27:
     her determined "History is all about finding the common threads among humanity. Since we moved here, it's become even more important to me."
     him surprised "How?"
     her concerned "The parallels help me understand our situation better."
-    him "What parallels?"
+    him annoyed "Like what?"
     her determined "In some ways we like the settlers on the Oregon Trail -- forging a new path, exploring, and trying to make a wild, lonely place a home."
     her concerned "Understanding the grievances of populists and revolutionaries throughout history helps me undestand why Pete left -- and to be wary of what RET could become."
     him determined "Okay, but [kid_name] could still work and study at the same time."
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
     $ parenting_style = get_parenting_style()
-    
+
     # TODO: Make this affect available work or something.
     menu:
         "What should I say?"
@@ -5905,18 +5996,18 @@ label family27:
             him concerned "The reality is, everyone needs a job here. She might not do this job forever, but I think this type of practical education is just as important as more abstract studies."
             her concerned "It is good to see her excited about doing real work."
             him determined "It might be a good opportunity for [bro_name] to step up and do more on the farm, too."
-            
+
         "We should make her quit.":
             him concerned "Maybe you're right..."
             her concerned "We should let her be a kid as long as possible, and get as much schooling as she can."
             him determined "And I still need her help on the farm. Even with her and [bro_name] both helping me, it's tough to keep up with the demand for crops."
-            
+
             scene black with fade
             "But [kid_name] did not take the news well."
             kid "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
             her concerned "There's still a lot you need to learn. Right now your schooling is more important."
             if (parenting_style == "authoritative"):
-                kid "Maybe you're right..."                
+                kid "Maybe you're right..."
             elif (parenting_style == "authoritarian"):
                 kid "You want me to be a productive and useful adult, right?"
                 him determined "Yes, but we also want to you to get a good education and help out at home."
@@ -5936,7 +6027,7 @@ label family27:
                         kid "Sorry, mom, I don't have time. I have to go cram my head full of useless facts instead of doing real work."
                         "She left to her room."
                         "Hopefully we were doing the right thing..."
-                        
+
             elif (parenting_style == "permissive"):
                 kid "No! You guys can't be serious?! I always get good grades and do everything you ask, why can't you just let me do what I want?!"
                 him "Sorry, [kid_name]. We just want what's best for you."
@@ -5949,32 +6040,32 @@ label family27:
                 him "Sorry, [kid_name]. We just want what's best for you."
                 kid "No, you just want what's best for {b}you{/b}."
                 "She left to her room."
-                "Hopefully we were doing the right thing..."            
-            
+                "Hopefully we were doing the right thing..."
+
         "We should let her decide.":
             him determined "This should be her decision. We should make sure she knows what she's choosing between, and encourage her education, but it's her life."
             her concerned "She's still a kid, though..."
             him annoyed "Not for long. If she doesn't make big decisions now, how is she going to learn how to make them when she's not a kid?"
             her flirting "Our little baby is growing up..."
-            
+
         "We should only let her work if she keeps her grades up.":
             him concerned "Her studies are important, but so is her work. So I think she should only be able to keep working if she can also make sure to do all her schoolwork."
             her concerned "That sounds like a lot of stress."
             him determined "If she's busy, she's not getting in trouble, right?"
             her normal "Let's hope so."
-            
+
     scene black with fade
     "A few days later, Brennan asked to talk with me."
     # TODO: where is this?
-     
-    
+
+
     # TODO: event about this? Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
     return
 
 # 17.3 Earth years old
 # Terra's plans for future
 label family28:
-    
+
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
     "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
     # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?

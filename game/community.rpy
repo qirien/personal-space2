@@ -2721,7 +2721,7 @@ label community16:
             him "Try to see if you can treat him without using up our medical supplies."
             her "Um, they already tried that. He needs medicine."
             him "I just don't want to use up medicine on someone who left the colony."
-            her "He could still be a great resource even though he doesn't live nearby."
+            her annoyed "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
             $ miners += 1
     her "I'm sure Pete has learned a lot about survival on Talaam since he left."
     her "You should talk to him while he's in for treatment."
@@ -4027,13 +4027,13 @@ label mining_anyway:
     her "His tibia is completely shattered. After looking at the x-ray, I don't know if I can save it." #I tried looking up some information on this
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
-    
+
     $ community_22_mined_anyway = True
     return
 
 label community23:
     # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
-    # Tera is 14 here
+    # Terra is 14 here
     kid "Can Anya and I go to the beach this weekend?"
     him "By yourselves?"
     kid "No, Anya's parents are going."
@@ -4058,7 +4058,7 @@ label community23:
         him "Anya's absolutely right. Brennan's giving 50 credits each for those shells."
     else:
         kid "I don't know, like 5 credits a shell or something."
-    
+
     kid "So can I go?"
     him "Let's discuss it when [her_name] gets home."
     "Over dinner, I told [her_name] about Brennan giving out credits for shells, and [kid_name] told her how she wanted to go to the beach with Anya's family."
@@ -4121,13 +4121,14 @@ label community23:
                 $ luddites += 1
                 $ thuc_sells_food = True
                 return
-        
+
     else:
         #(community_22_forced_luddites_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
         kid "We found ten shells!"
         her "That's fifty credits for you!"
-        kid "I can finally buy my own fossil!" #something hipper?
-        her "If that's what you want to spend your money on..." #could make this a choice if you want to do a parenting crossover
+        kid "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
+        her "Or you could save it for something you actually need." #could make this a choice if you want to do a parenting crossover
+        kid "Bo---ring."
         her "We went pretty far out, and I found a lot of shellfish."
         him "Oh, are they safe to eat?"
         her "They should be... I didn't do a toxicity panel but we've eaten them before."
@@ -4187,7 +4188,7 @@ label community24:
         thuc "For the miners though, 20 credits out of thousands is almost nothing."
         thuc "If you can make something that's popular with them, you could stand to make a lot of money!"
         jump luxury_good
-        
+
 
     else:
         thuc "Hey [his_name], how's business?"
@@ -4313,7 +4314,7 @@ label community25:
     brennan_c "My information is proprietary."
     julia_c "You could sell it for money then!"
     brennan_c "Maybe when I have some information worth selling, I'll publish it."
-    
+
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
     if (miners > 12):
         "I looked around the coast for a bit and found Chaco tending his jellyfish farm."
@@ -4469,8 +4470,8 @@ label community25:
                     pete "I've been checking it every week or so and there haven't been any jellysquids at all."
                     pete "They must need something else to change."
                     return
-            
-    else: #if neither miners or luddites is high 
+
+    else: #if neither miners or luddites is high
         "I looked around the coast for the jellyfish farm."
         "I found a pier surrounded by nets that enclosed bunches of jellyfish."
         "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
@@ -4515,11 +4516,11 @@ label community25:
 #            "[her_name] wrote up a brief paper summarizing her findings."
 #            "A few people read it and stopped buying meat from Pete."
 #            $ colonists += 1
-            
+
 #        "No, don't publish the study.":
 #            him "How many samples have you studied? I think it's too early to draw conclusions."
 #            her "True, my sample size is pretty small. I'll keep studying it."
-            
+
 #        "You should at least tell Pete." if luddites >5:
 #            him "Pete should know that his cows are developing cancer."
 #            him "Maybe he can adjust his radiation-shielding measures."
@@ -4652,4 +4653,3 @@ label community30:
         "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return
-    
