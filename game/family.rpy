@@ -5668,6 +5668,7 @@ label family24:
     #scene bg miners
     "After we arrived at Anya's house, I secured Lettie's tether to the gate."
     "Lettie was breathing a little harder than usual, so I thought I'd let her take a break while I looked for [kid_name]."
+    "She seemed happy to be resting, and started grazing on some small nearby shrubs."
     "Anya's father told me they had gone for a walk by the canyon."
     scene bg canyon
     show him at midleft with moveinleft
@@ -5696,14 +5697,12 @@ label family24:
             him "Other friends? Which other friends?"
             kid "No one you know! Just some people we hang out with."
             him "I know almost everyone."
-            kid "Just Anya's brother and his friend. I don't even know his last name." # TODO: Make a name for this friend if we see him again later.
-            "Anya's brother was almost twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
-            "I felt wary. Why would two twenty-something boys want to hang out with young teenage girls?"
-            "Then again, the dating pool was a lot smaller here. I had to remember that this wasn't Earth."
-            "Still, I got a bad vibe about it."
+            kid "Just Anya's brother and his friend. They're miners; you probably don't know them." # TODO: Make a name for this friend if we see him again later.
         "What were you doing?":
             him "What were you doing?"
             kid "Just hanging out."
+            him "With boys."
+            kid "It's just Anya's brother and his friend! What's the big deal?"
         "I never said you could do this!":
             him "I said you could hang out with Anya; I didn't say you could go off in the canyon with boys."
             kid "We didn't plan it like that! Anya's brother and his friend just kind of showed up and so we hiked around together."
@@ -5713,30 +5712,148 @@ label family24:
         "Dont' say anything.":
             "I didn't say anything. She was allowed to hang out with friends without getting grilled by her dad, right?"
             "Besides, I didn't know what to say."
-
-    # TODO: Finish conversation about older teenage friends.
-
-
-
-
-    # TODO: Finish Lettie's death. Dies of yew poisoning planted by miners
-
-
-    "[her_name] asks you about fire grass. Seems like a lot of people have been talking about it lately."
-    menu:
-        "You're never to go near it, do you hear me?":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Explain what it is and why people are concerned.":
-            # Conversation also turns to Pete's distillery and alcohol
-            $ demanding += 1
-            $ responsive += 1
-            $ authoritative += 1
-        "Give her some of your stash.":
-            $ responsive += 1
-            $ permissive += 1
-        "Give her a vague answer and get back to work.":
             $ neglectful += 1
+            jump lettie_dies
+
+    "Anya's brother was almost twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
+    "I felt wary. I could think of only one reason two twenty-something boys would hang out with young teenage girls."
+    "There was a big difference between fourteen - okay, almost fifteen - and twenty."
+    "I'm not sure why it was a much creepier age difference than, say, a 20-year-old and a 25-year-old. But I was definitely creeped out."
+    "Then again, the dating pool was a lot smaller here. I had to remember that this wasn't Earth."
+    "But it wasn't the middle ages, either."
+    menu:
+        "What should I say?"
+        "I'm worried you don't have any adult supervision.":
+            $ demanding += 1
+            him concerned "I'm worried that there's no adult supervision when you're at Anya's."
+            kid "What are you talking about? Her brother's old enough to work in the mines, so how is he not an adult?"
+            him annoyed "I meant {b}responsible{/b} adult."
+            kid "Dad! You don't even know him!"
+            him angry "I don't have to know him!"
+            kid "What are you so worried about?"
+        "Sometimes older teenagers get younger teenagers into trouble.":
+            $ responsive += 1
+            him concerned "[kid_name], I don't know if it's the case here, but sometimes older teenagers or young adults can get younger teenagers into trouble."
+            kid "What are you talking about? We were just hiking around."
+            him "I'm not worried about what happened today; I'm worried about what might happen next time."
+            kid "We're just hanging out."
+            him "It's natural to think that older kids are cool, and to be flattered if they like you or pay attention to you. But don't let them pressure you into doing something you don't want to do."
+            kid "He's not pressuring me into doing anything!"
+            him "I'm not saying he is. But it's something I want you to be aware of for the future."
+            kid "You're not making any sense."
+        "I don't want you hanging out with Anya's brother.":
+            $ demanding += 1
+            him annoyed "I don't want you hanging around with Anya's brother."
+            kid "What?! Why not?"
+            him determined "He's bad news. I can feel it."
+            kid "Bad news? You can 'feel' it? What are you, a fortune teller?"
+            him annoyed "Look, I know this isn't obvious to you because you're young. That's not your fault, but as your dad it's my duty to protect you."
+            kid "Protect me from what? My friends?"
+            him determined "This scenario has happened thousands of times. Older boy meets girl. Boy flatters girl. Girl thinks boy loves her. Boy pressures girl to do stupid things. Girl does stupid things so boy will like her. Boy leaves. Girl cries."
+            kid "This is nothing like that! What are you even talking about?"
+        "Just be careful.":
+            him concerned "Just... be careful, [kid_name]."
+            kid "Careful of what? What does that even mean?"
+
+    him angry "I'm worried that he's going to influence you to do stupid things! Stupid things that could ruin the rest of your life."
+    kid "Like what?!"
+    him annoyed "A hundred things! Smoking too much fireweed, or having sex and getting pregnant or heartbroken or both, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
+    kid "We were JUST. HIKING."
+    him angry "Yes, this time! What about next time?"
+    kid "He doesn't do any of that stuff! You don't even know him!"
+    him "I know what guys that age are like."
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
+        kid "You don't know what you're talking about."
+    elif (parenting_style == "authoritative"):
+        kid "I get what you're saying, but that's just not what's going on here."
+    elif (parenting_style == "permissive"):
+        kid "Not all guys that age. C'mon, dad, you're just being overprotective."
+    elif (parenting_style == "neglectful"):
+        kid "Now you suddenly care about what I do?"
+
+    menu:
+        "What should I say?"
+        "Why don't you guys hang out at our house next time?":
+            him surprised "Why don't you invite Anya to come to our house next time?"
+            kid "Could her brother come to? And his friend?"
+            him determined "Sure, I want to meet them."
+            kid "I don't know; one of the reasons we like going to her house is because we have space to breathe and be ourselves."
+            him "(More like space to be unsupervised...)"
+            him "Let me meet them, [kid_name]. Then I'll know for myself that there's nothing to worry about."
+            kid "Okay..."
+            $ authoritative += 1
+        "You may not go to Anya's house anymore.":
+            him determined "You're not to go to Anya's house anymore. That's a bad situation."
+            kid "What?! But she's my best friend!"
+            him annoyed "You guys can hang out somewhere else! Away from those boys."
+            $ authoritarian += 1
+        "Please be careful.":
+            him concerned "Please be careful, and remember what I've said. I don't want you to get hurt."
+            kid "We're not even doing anything dangerous, so don't worry about it."
+            him sad "Okay..."
+            $ permissive += 1
+        "It's your life.":
+            him annoyed "It's your life; I guess you can ruin it if you want to."
+            kid "You are so clueless that it'd be funny if it weren't so sad."
+            $ neglectful += 1
+
+    "We walked together in silence. Hopefully she was thinking about what I'd said."
+label lettie_dies:
+    "After a few minutes, we arrived at Anya's house."
+    "I could see where I had tied up Lettie; we were almost there."
+    "But something was wrong. The foul smell of horse diarrhea reached my knows, and Lettie was trembling and shaking."
+    him surprised "Lettie!"
+    "I ran ahead and knelt next to her. She was barely breathing."
+    kid "Is she okay?"
+    him "I don't think so. Her heartbeat's irregular and weak."
+    "She had been fine on the ride up! What could have happened to make her so ill so quickly?"
+    "I looked around. In Lettie's mouth I found some short, flat needles from an evergreen bush nearby."
+    "The bush was not a plant native to Talaam. In fact, it looked like."
+    him determined "Yew."
+    kid "Me? I didn't do anything!"
+    him concerned "No, a yew tree. Or bush, looks like. Who plants yew where there's horses around?!"
+    "My mind raced. Yew poisoning was well-known, but there was no antidote. There were some treatments we could try...if we could get them in time."
+    "I pulled out my radio."
+    him angry "[her_name]! Get some atropine up to the miner's village, now! Enough for a 500 kilogram horse!"
+    her "Is it Lettie?"
+    him concerned "Yes. Yew poisoning. If you can bring activated charcoal or a stomach pump that could help, too."
+    her "I'll be right there!"
+    "Lettie convulsed, and I patted her on the side of her neck."
+    him "Okay, okay old girl. [her_name]'s coming."
+    "But by the time [her_name] arrived, it was too late."
+    "Lettie's heart had stopped."
+    her sad "I'm so sorry, [his_name]."
+    "I sensed sort of distantly that [her_name] and [kid_name] were saying comforting things and had their arms around me."
+    "Lettie had been with me even longer than [her_name]. We'd grown up together."
+    "And now she was gone."
+    scene black with fade
+
+    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya's brother showed up and together we all managed to get Lettie's body into the back of the tractor."
+    "[her_name] must have called them. She probably knew we'd end up having to move Lettie, one way or another."
+    "I didn't cry, but I didn't say much, either. I just concentrated on the next thing to do."
+    # TODO: change who helps based on community scores?
+
+    "We buried her near the garden. I planted a tree on top of her grave -- an apple tree. She sure loved apples. It doesn't get cold enough here to set fruit, but that didn't matter."
+
+    "I missed her. But more than that, I felt like she shouldn't have died -- her death never would have happened if Anya's family hadn't put that yew bush right by their front gate."
+    "Or if I had noticed it when I tethered her to it."
+
+    "I couldn't stop thinking about it when [her_name] invited Anya and her brother over to hang out."
+    "I didn't say anything when they were here, but afterwards I felt like I had to say something."
+
+    him_c "You probably heard Lettie died. She died of yew poisoning from a bush planted by some miners."
+    him_c "I hope everyone knows this plant is poisonous to livestock and humans."
+    him_c "I don't know why anyone would even bring it to Talaam; it's deadly and doesn't provide food. I think I'm even allergic to it!"
+    him_c "I hope the owners will rip that plant out and destroy it so no one else gets hurt."
+    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking it would be eaten."
+    julia_c "Lettie was a good horse."
+    brennan_c "Yew's a tough plant that can grow almost anywhere and is symbolic of death and rebirth. I hear it's used for cancer treatments as well."
+    brennan_c "The Lewis' were thinking of these qualities and not its horse-murdering tendencies."
+    him_c "But why do we need it here, on Talaam?! We have a chance to start from scratch, to only bring the best things from Earth!"
+    him_c "Instead we contaminate our planet with deadly weeds!"
+    # TODO: tie this back to Terra, make it symbolic
+
     return
 
 # 15.5 Earth years old
