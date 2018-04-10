@@ -4319,7 +4319,15 @@ label community25:
     brennan_c "My information is proprietary."
     julia_c "You could sell it for money then!"
     brennan_c "Maybe when I have some information worth selling, I'll publish it."
-
+    if not ate_jellyfish:
+        him "Hmm. These jellystar recipes look kind of good."
+        him "Maybe I should try them."
+        menu:
+            "Buy and eat them.":
+                "I bought some dried jellystars and we had them in soup."
+                $ ate_jellyfish = True
+            "Don't eat them.":
+                "I decided not to eat them."
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
     if (miners > 12):
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."
@@ -4366,6 +4374,7 @@ label community25:
                             "I could see and think but it felt like I was in a trance."
                             "Chaco took my hand out of the water."
                             chaco "Weird, huh."
+                            $ touched_jellystar_25 = True
                         "Don't touch one.":
                             "I decided to just look at the jellystars."
                     $ touch_25 = True
@@ -4416,6 +4425,7 @@ label community25:
                             "I could see and think but it felt like I was in a trance."
                             "Pete took my hand out of the water."
                             pete "Sometimes they do that."
+                            $ touched_jellystar_25 = True
                             $ touch2_25 = True
                             jump jelly2_convo
                         "Don't touch one.":
@@ -4462,14 +4472,22 @@ label community25:
                     him "It was good seeing you."
                     pete "There's something I'm worried about..."
                     pete "Is it ethical to farm the jellystars like this?"
-                    him "What do you mean? They're not that different from cattle, are they?"
-                    pete "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
-                    him "But can they sense the world around them? Do they even have a brain?"
-                    pete "They don't have eyes, or much of a brain. But they can definitely feel things with their tentacles."
-                    pete "I wouldn't be surprised if they can sense UV radiation."
-                    him "But they're not even as intelligent as a cow!"
-                    pete "No, not in the jellystar form. But the jellysquids are definitely intelligent."
-                    pete "And the jellysquids are made up of jellystars! They're like baby jellysquids."
+                    if ate_jellyfish:
+                        him "I'm worried about that too."
+                        pete "Each arm in a jellystar has its own nerve bundle. Their nerve network is a lot like an octopus's."
+                        him "They can probably feel when they're touching something other than themselves... but they don't even have eyes."
+                        pete "I wonder if they can sense UV radiation."
+                        him "Wow, senses I haven't even thought about."
+                        pete "And in jellysquid form, they are definitely intelligent."
+                    else:
+                        him "What do you mean? They're not that different from cattle, are they?"
+                        pete "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
+                        him "But can they sense the world around them? Do they even have a brain?"
+                        pete "They don't have eyes, or much of a brain. But they can definitely feel things with their tentacles."
+                        pete "I wouldn't be surprised if they can sense UV radiation."
+                        him "But they're not even as intelligent as a cow!"
+                        pete "No, not in the jellystar form. But the jellysquids are definitely intelligent."
+                        pete "And the jellysquids are made up of jellystars! They're like baby jellysquids."
                     him "That reminds me--I haven't seen any jellysquid up here."
                     pete "They've all been caught for their shells."
                     him "And there aren't any jellysquids in this farm?"
@@ -4477,24 +4495,24 @@ label community25:
                     pete "They must need something else to change."
                     jump after_convo_25
 
-    label after_convo_25:
-        clear nvl
-        him_c "I haven't seen fresh jellystar for a few weeks. Brennan, does that mean you've figured out how to breed jellysquids?"
-        brennan_c "Yes, I have."
-        julia_c "The jellysquids couldn't make their shells in the presence of so many other jellystars."
-        him_c "How do they even know when other jellystars are nearby?"
-        julia_c "When they touch each other, they form a rudimentary network if there are at least two other jellystars in arm's reach."
-        julia_c "They basically form into a net, which can catch even more food than if they transform into jellysquids."
-        him_c "Huh, that's really interesting."
-        brennan_c "That information is supposed to be confidential."
-        julia_c "I guess you should have had Miranda sign a non-disclosure agreement."
-        julia_c "It's not like any of us want to breed them."
-        brennan_c "You may not have an interest in that, but the miners would much prefer to farm jellysquids."
-        brennan_c "Most of them don't read colonists' chat though."
-        julia_c "Well if it's more efficient maybe they should be farming jellysquid."
-        brennan_c "I'm still doing research to see if that's the case."
-        brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
-        return
+        label after_convo_25:
+            nvl clear
+            him_c "I haven't seen fresh jellystar for a few weeks. Brennan, does that mean you've figured out how to breed jellysquids?"
+            brennan_c "Yes, I have."
+            julia_c "The jellysquids couldn't make their shells in the presence of so many other jellystars."
+            him_c "How do they even know when other jellystars are nearby?"
+            julia_c "When they touch each other, they form a rudimentary network if there are at least two other jellystars in arm's reach."
+            julia_c "They basically form into a net, which can catch even more food than if they transform into jellysquids."
+            him_c "Huh, that's really interesting."
+            brennan_c "That information is supposed to be confidential."
+            julia_c "I guess you should have had Miranda sign a non-disclosure agreement."
+            julia_c "It's not like any of us want to breed them."
+            brennan_c "You may not have an interest in that, but the miners would much prefer to farm jellysquids."
+            brennan_c "Most of them don't read colonists' chat though."
+            julia_c "Well if it's more efficient maybe they should be farming jellysquid."
+            brennan_c "I'm still doing research to see if that's the case."
+            brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
+            return
 
 
     else: #if neither miners or luddites is high enough
@@ -4508,6 +4526,7 @@ label community25:
                 "The jellystars grasped each other and made a long chain to the edge of the net."
                 "I could see and think but it felt like I was in a trance."
                 "After a few minutes or an hour, it let me go."
+                $ touched_jellystar_25 = True
                 return
             "Don't touch one.":
                 "I decided to just look at the jellystar."
@@ -4723,25 +4742,24 @@ label community26:
                 her "I'd much prefer to prevent people from using too much fireweed to begin with."
                 $ luddites += 1
                 jump educational_app
-      label educational_app:
-                her "I'd like to work with Oleg on making that app. Pavel, can you provide us some credits so I can pay him?"
-                pavel "I can provide you with some, but I think that some of this should come from Brennan's budget, since miners are the biggest users of fireweed."
-                brennan "I think you vastly underestimate the amount of colonists who use it. But this is important and I want to show my support."
-                brennan "[her_name], how much do you think it will cost?"
-                her "I need to talk to Oleg about that, so I'll message you both a budget estimate next week."
-                "She ended the meeting with a summary of what we'd talked about."
-
-                if work_fewer_hours:
-                    "Brennan changed the shift schedule from 12 to 8 hours, and set a maximum of sixty hours of working per week."
-                    "Some of the miners made a soccer team, and a few took on jobs outside of mining."
-                    return
-                elif grow_more_tea:
-                    "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
-                    "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
-                    "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
-                    return
-                else:
-                    return
+        label educational_app:
+            her "I'd like to work with Oleg on making that app. Pavel, can you provide us some credits so I can pay him?"
+            pavel "I can provide you with some, but I think that some of this should come from Brennan's budget, since miners are the biggest users of fireweed."
+            brennan "I think you vastly underestimate the amount of colonists who use it. But this is important and I want to show my support."
+            brennan "[her_name], how much do you think it will cost?"
+            her "I need to talk to Oleg about that, so I'll message you both a budget estimate next week."
+            "She ended the meeting with a summary of what we'd talked about."
+            if work_fewer_hours:
+                "Brennan changed the shift schedule from 12 to 8 hours, and set a maximum of sixty hours of working per week."
+                "Some of the miners made a soccer team, and a few took on jobs outside of mining."
+                return
+            elif grow_more_tea:
+                "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
+                "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
+                "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
+                return
+            else:
+                return
 
     else:
         "After she presented to the town council, she worked with Oleg to make an informational app about fireweed use."
@@ -4773,6 +4791,14 @@ label community26:
 
 label community27:
     #JELLYPEOPLE RECKONING
+    nvl clear
+    if ate_jellyfish AND touched_jellystar_25:
+        brennan_c "Hey parents, ask your kids if they have been vandalizing my jellysquid farm."
+        thuc_c "Our kids have better things to do than vandalizing food sources."
+        brennan_c "There's one jellysquid left and it has 'Bring to us' with a photo of [his_name]'s face on it."
+        brennan_c "Maybe it's Pete's idea of a joke?"
+        him_c "I don't think you can program jellysquids."
+        brennan_c "I guess this jellysquid just really misses you then?"
 
     return
 
