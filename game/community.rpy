@@ -2721,7 +2721,7 @@ label community16:
             him "Try to see if you can treat him without using up our medical supplies."
             her "Um, they already tried that. He needs medicine."
             him "I just don't want to use up medicine on someone who left the colony."
-            her "He could still be a great resource even though he doesn't live nearby."
+            her annoyed "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
             $ miners += 1
     her "I'm sure Pete has learned a lot about survival on Talaam since he left."
     her "You should talk to him while he's in for treatment."
@@ -4033,7 +4033,7 @@ label mining_anyway:
 
 label community23:
     # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
-    # Tera is 14 here
+    # Terra is 14 here
     kid "Can Anya and I go to the beach this weekend?"
     him "By yourselves?"
     kid "No, Anya's parents are going."
@@ -4126,8 +4126,9 @@ label community23:
         #(community_22_forced_luddites_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
         kid "We found ten shells!"
         her "That's fifty credits for you!"
-        kid "I can finally buy my own fossil!" #something hipper?
-        her "If that's what you want to spend your money on..." #could make this a choice if you want to do a parenting crossover
+        kid "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
+        her "Or you could save it for something you actually need." #could make this a choice if you want to do a parenting crossover
+        kid "Bo---ring."
         her "We went pretty far out, and I found a lot of shellfish."
         him "Oh, are they safe to eat?"
         her "They should be... I didn't do a toxicity panel but we've eaten them before."
@@ -4513,8 +4514,6 @@ label community25:
                 jump after_convo_25
                     #what if the secret to making a jellysquid is that after it makes a shell, you have to hold one in each hand and it makes a complete circuit?
                     #have another scene, probably here, where they discover how to make jellysquid.
-
-
 
 label community26:
     $ work_fewer_hours = False

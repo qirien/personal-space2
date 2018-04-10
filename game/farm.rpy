@@ -2,11 +2,11 @@
 # relating to the farm.
 
 init python:
-    
+
     ##
     # FIELD OBJECT
     ##
-    
+
     class Field(renpy.store.object):
         NITROGEN_FULL = 100
         NITROGEN_FALLOW = -50
@@ -16,13 +16,13 @@ init python:
         PEST_FALLOW_REDUCTION = -75
         PEST_MAX = 100
         HISTORY_SIZE = 3
-        
+
         NITROGEN_LEVEL_INDEX = 0
         PEST_LEVEL_INDEX = 1
         def __init__(self, current_size, max_size=MAX_FARM_SIZE):
             self.current_size = current_size
             self.max_size = max_size
-            
+
             # Current health of the field, with Nitrogen levels and Pest levels
             # We *cannot* do health = [[100, 5] * max_size] because then all elements of the array point to the same memory location.
             self.health = [[Field.NITROGEN_FULL, Field.PEST_NONE] for i in range(max_size)]
@@ -31,8 +31,8 @@ init python:
             self.history = [["fallow", "fallow", "fallow"]] * max_size
             # Current crops planted in each space
             self.crops = Crops(current_size)
-        
-            
+
+
         # Calculate how many crops we harvested in each square and update the field_health
         def process_crops(self):
             final_yield = [100] * self.current_size
@@ -40,7 +40,7 @@ init python:
             current_pests = 0
             for i in range(0, self.current_size):
                 pest_factor = 0
-                nitrogen_factor = 0            
+                nitrogen_factor = 0
                 crop_name = self.crops[i]
                 current_nitrogen = self.health[i][Field.NITROGEN_LEVEL_INDEX]
                 current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
@@ -52,26 +52,28 @@ init python:
                 elif (crop_name == "goats"):
                     pest_factor = current_pests // Field.PEST_GOAT_REDUCTION
                 else:
-                    pest_factor = int(current_pests + current_pests * renpy.random.random() * self.history[i].count(crop_name))                    
+                    pest_factor = int(current_pests + current_pests * renpy.random.random() * self.history[i].count(crop_name))
                 new_pests = self.health[i][Field.PEST_LEVEL_INDEX] + pest_factor
-                new_pests = bounded_value(new_pests, Field.PEST_NONE, Field.PEST_MAX)                 
+                new_pests = bounded_value(new_pests, Field.PEST_NONE, Field.PEST_MAX)
                 self.health[i][Field.PEST_LEVEL_INDEX] = new_pests
-                
-                #print "Pest Factor[" + str(i) + "] is " + str(pest_factor)            
-                
+
+                #print "Pest Factor[" + str(i) + "] is " + str(pest_factor)
+
                 # Decrease yield if there's not enough nitrogen
                 # Set nitrogen level of the field after crops
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
                 #print "New Nitrogen: " + str(new_nitrogen)
-                if (new_nitrogen < 0):                    
-                    nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100                
-                
+                if (new_nitrogen < 0):
+                    nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100
+
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
-                    
+
                 #print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor)
+
+                # TODO: Use bees in calculations.
                 final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
-            
+
             self.update_history()
             return final_yield
 
@@ -79,7 +81,7 @@ init python:
         # TODO: keep perennials
         def reset_crops(self, size=MAX_FARM_SIZE):
             self.crops = Crops(size)
-        
+
         # Update the crop history in preparation for a new year.
         def update_history(self):
             for i in range(0, len(self.crops.items)):
@@ -93,7 +95,7 @@ init python:
                 index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
                 total_work += crop_info[index][WORK_INDEX]
             return total_work
-            
+
     ##
     # CROPS OBJECT
     ##
@@ -101,37 +103,37 @@ init python:
         # Initialize as an empty field of a certain size
         def __init__(self, size=MAX_FARM_SIZE):
             self.items = ["fallow"] * size
-            
+
         # Set the crop at [index] to [crop_name]
         def __setitem__(self, key, value):
             self.items[key] = value
-            
-        def __getitem__(self, key): 
+
+        def __getitem__(self, key):
             return self.items[key]
-            
+
         def count(self, value):
             return self.items.count(value)
-            
+
         def len(self):
             return len(self.items)
-            
-        # Randomly select from currently available crops, respecting maximums 
+
+        # Randomly select from currently available crops, respecting maximums
         def setDefault(self):
             available_crop_names = []
             for i in range(0, len(crop_info)):
                 if (crop_info[i][ENABLED_INDEX]):
                     available_crop_names.append(crop_info[i][NAME_INDEX])
-                
+
             for i in range(0, farm_size):
                 crop_name = renpy.random.choice(available_crop_names)
                 self[i] = crop_name
-                
+
                 # If we've reached the max, remove this crop from the ones that can be chosen
                 # TODO: This is no longer working.
                 if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
                     available_crop_names.remove(crop_name)
-            return            
-            
+            return
+
         # Return a random crop from our field
         # If weighted, then you will be more likely to get a crop the more times it is planted.
         def random_crop(self, weighted = True, include_animals = True):
@@ -144,13 +146,12 @@ init python:
                 if (not include_animals):
                     if (chosen_crop == "goats"):
                         chosen_crop = ""
-                
+
             return chosen_crop
-        
-    
+
+
     # Return the index of a crop in crop_info given its name
     def get_crop_index(crop_name):
         crop_names = [row[0] for row in crop_info]
         index = crop_names.index(crop_name) # find the crop's index in crop_info
         return index
-    
