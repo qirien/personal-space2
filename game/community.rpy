@@ -4535,51 +4535,49 @@ label community25:
                     #have another scene, probably here, where they discover how to make jellysquid.
 
 label community26:
+    $ study_published_26 = False
     $ work_fewer_hours = False
     $ grow_more_tea = False
     #artifical meat and firegrass--too much for one event?
-    # $ against_euthanasia = False
-    # $ no_euthanasia_26 = False
-    # her "So, I was having a slow day and I decided to do some research in the lab on our diet."
-    # if luddites > 5:
-    #     her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
-    #     her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
-    # her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
-    # her "He dries it in the sun, usually under a solar flare, so that's no surprise."
-    # her "However, the cells in Pete's meat are often irregular and probably cancerous."
-    # him "Okay... but eating cancer doesn't give you cancer, right?"
-    # her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
-    # him "But the cells are dead in meat, so why would it matter?"
-    # her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
-    # him "What about the cows from the colony?"
-    # her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
-    # her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
-    # him "Yeah, but Pete's cows have those UV blankets, don't they?"
-    # her "They do, but I think they don't work very well."
-    # her "I've seen the cows take them off. I don't think they're working very well."
-    # her "My question for you is if you think I should publish the results of my study."
-    # her "If people keep eating this meat, it might shorten their lifespan."
-    # menu:
-    #     "Yes, definitely.":
-    #         him "People should know the risks of what they're eating. You should definitely tell everyone."
-    #         him "Just be honest about how much we don't know."
-    #         her "Okay."
-    #         "[her_name] wrote up a brief paper summarizing her findings."
-    #         "A few people read it and stopped buying meat from Pete."
-    #         $ colonists += 1
-    #
-    #     "No, don't publish the study.":
-    #         him "How many samples have you studied? I think it's too early to draw conclusions."
-    #         her "True, my sample size is pretty small. I'll keep studying it."
-    #
-    #     "You should at least tell Pete." if luddites >5:
-    #         him "Pete should know that his cows are developing cancer."
-    #         him "Maybe he can adjust his radiation-shielding measures."
-    #         her "That's a good idea. I'll make that suggestion."
-    #         "Pete started experimenting with different ways to shield his cows from radiation."
-    #         $ luddites += 1
-    #
-    her "I met with a miner this week who was a heavy user of firegrass."
+
+    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
+    if luddites > 5:
+        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
+    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her "However, the cells in Pete's meat are often irregular and probably cancerous."
+    him "Okay... but eating cancer doesn't give you cancer, right?"
+    her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
+    him "But the cells are dead in meat, so why would it matter?"
+    her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
+    him "What about the cows from the colony?"
+    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
+    him "Yeah, but Pete's cows have those UV blankets, don't they?"
+    her "They do, but I think they don't work very well. I've seen the cows take them off."
+    her "My question for you is if you think I should publish the results of my study."
+    her "If people keep eating this meat, it might shorten their lifespan."
+    menu:
+        "Yes, definitely.":
+            him "People should know the risks of what they're eating. You should definitely tell everyone."
+            him "Just be honest about how much we don't know."
+            her "Okay."
+            "[her_name] wrote up a brief paper summarizing her findings."
+            "A few people read it and stopped buying meat from Pete."
+            $ study_published_26 = True
+            $ colonists += 1
+        "No, don't publish the study.":
+            him "How many samples have you studied? I think it's too early to draw conclusions."
+            her "True, my sample size is pretty small. I'll keep studying it."
+        "You should at least tell Pete." if luddites >5:
+            him "Pete should know that his cows are developing cancer."
+            him "Maybe he can adjust his radiation-shielding measures."
+            her "That's a good idea. I'll make that suggestion."
+            "Pete started experimenting with different ways to shield his cows from radiation."
+            $ luddites += 1
+
+    her "Also, I met with a miner this week who was a heavy user of firegrass."
     her "She has severe insomnia and depression."
     him "And sleeping pills don't help?"
     her "Well, they do help her sleep, but then she feels sleepy and usually uses firegrass to help her feel more awake."
@@ -4590,72 +4588,12 @@ label community26:
     him "We should help her change something in her life to break this cycle."
     her "I feel like I've done everything I can. I'm going to present her case to the town council to see if they have other ideas."
 
-    # her "There isn't a guideline about euthenasia in RET's health manual."
-    # menu:
-    #     "See if there's a way to approve euthenasia.":
-    #         him "Wow. It sounds like you should make a case for doctor-assisted suicide to the town council."
-    #         her "That's what I plan on doing."
-    #     "Give her hope.":
-    #         him "Maybe it won't progress in the same way as the genetic incomnia disorder."
-    #         him "You should encourage her to endure it a little longer."
-    #         her "For what? For science? I've tried everything I possibly could to relieve her suffering."
-    #         her "I'm going to present my case to the town council."
-    #         $ against_euthanasia = True
 
     if is_liason:
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
         her "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol although that is not her real name."
         her "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
         her "At night, she used firegrass to stay alert for her mining shift. During this time of heavy usage, she got 2-4 hours of sleep every two days or so."
-#        her "She completely stopped using firegrass last year when she found that she could no longer sleep deeply."
-#        her "She has been experiencing hallucinations, panic attacks, and weight loss."
-#        her "So far, her symptoms have been the same as fatal familial insomnia. If she continues in this patter, she will be completely unresponsive in a month and die in seven months."
-#        her "She has requested that I help her end her life before that stage."
-#        her "In order for us to keep her alive during her last six months, she will need supervision around-the-clock. I could not supervise her during my regular hospital hours. My assistant could watch her half of her normal hours, but it would decrease the amount of preventative care visits she makes."
-#        her "Do you have any questions before we put this to a vote?"
-#        pavel "Has she made the request for euthanasia in writing?"
-#        her "No, but I have a recording of her request and a test result that shows she is oriented to time, place, and circumstance."
-#        if against_euthanasia:
-#            him "We don't know for sure if she will die. I don't think she should give up so quickly."
-#            her "She has been suffering intensely for a year. How long would be long enough?"
-#            him "At least another six months so we can see if the disease progresses the same way as the familial insomnia."
-#            her "And who will supervise her during those six months? She could easily kill herself by wandering away or eating something inedible."
-#            menu:
-#                "I could help":
-#                    him "I could supervise her eight hours a day."
-#                    her "I don't think that's a good idea. And who would take the other sixteen hours in a day?"
-#                    $ marriage_strength -= 1 #not sure if you want this variable to have minuses?
-#                    sara "She could stay with us from dinner until 1am. We usually stay up that late anyway."
-#                    pavel "I'm usually awake in the early morning after 4am. I could wake up earlier."
-#                    her "This isn't necessary. She doesn't want to be dependent on others for the last six months of her life."
-#                    him "I don't want to live in the kind of place where people have to die just because they aren't useful anymore."
-#                    her "It's completely voluntary. I didn't even suggest it before she brought it up."
-#                    pavel "I agree with [his_name]. I want to take care of our sick and elderly."
-#                    her "Sara?"
-#                    sara "I do think her desire is important, but it could bring everyone together if we work together to essentially give her hospice care."
-#                    her "Brennan?"
-#                    brennan "I don't see any reason to keep her alive against her wishes, but it appears we are in the minority."
-#                    her "Sara, what is your final vote?"
-#                    sara "Let's take care of her."
-#                    $ no_euthanasia_26 = True
-
-#                 "I'm sure someone could help.":
-#                     him "I don't know, but we haven't even asked yet."
-#                     her "It's completely unneccessary."
-#                     her "Most people already feel overworked. It's not fair to ask them to do more for someone who doesn't even want people taking care of her."
-#                     pavel "I agree with [her_name]. It's not fair to assume that other people will volunteer their time when you're not willing to yourself."
-#                     pavel "How about you have this miner give her consent for euthanasia again next week to make sure her desire wasn't a fleeting one."
-#                     brennan "I agree with Pavel."
-#                     her "Sara?"
-#                     sara "I think Pavel's compromise is a good one. In the meantime I would like to visit with her during her next visit."
-#                     her "I'll ask if she'd like to meet with you."
-#         else:
-#             him "I'd say have her consent one more time a month later, just to make sure it wasn't a passing suicidal urge."
-#             pavel "Yes, that sounds like a reasonable plan."
-#             her "Okay, I'll see if I can get another consent next week. Sara and Brennan, how do you feel about it?"
-#             brennan "Fine with me."
-#             sara "I'd like to meet with her myself sometime, but overall, I agree with the consensus we have here."
-#             her "Okay. I'll ask her if she'd like to meet with you."
         her "I'd like to discuss how we can help her family and also how we can discourage heavy usage of firegrass."
         brennan "Right now, Carol is probably lying in bed trying to avoid talking to anyone."
         her "Her biggest accomplishment this week was washing her hair and getting her rations delivered."
@@ -4752,58 +4690,134 @@ label community26:
             if work_fewer_hours:
                 "Brennan changed the shift schedule from 12 to 8 hours, and set a maximum of sixty hours of working per week."
                 "Some of the miners made a soccer team, and a few took on jobs outside of mining."
-                return
+                jump after_firegrass_26
             elif grow_more_tea:
                 "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
                 "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
                 "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
-                return
+                jump after_firegrass_26
             else:
-                return
+                jump after_firegrass_26
 
     else:
         "After she presented to the town council, she worked with Oleg to make an informational app about fireweed use."
-        #better alt
-        return
+        #better alt?
+        jump after_firegrass_26
 
-
-
-    #better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
-    # "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
-    # "This year it seemed like they anticipated [her_name]'s research on meat, even though the shuttle had been sent years beforehand."
-    # "We received equipment and recipes for making synthetic meat."
-    # "They said that based on new research, our cows likely had cancer, and that we should switch to eating synthetic meat to avoid the risks associated with eating cancerous meat."
-    # "It also mentioned that their decision to send cows to Talaam was a frequent point of contention between them an environmental agencies, and that they had promised to reduce the amount of cattle on Talaam."
-    # "They asked us to halve the size of our herd in two years."
-    # if is_liason:
-    #     "RET included instructions asking me and Brennan to oversee the meat's production and to encourage others to eat it."
-    # else:
-    #     "Sara asked me to help try out the synthetic meat and encourage others to eat it."
-    # "The synthetic meat required that we build a lab to house the meat while it grew in petri dishes, which we were supposed to call 'meat pockets.'"
-    # "We would mix up a nutrient-rich slurry to be the growth culture, which we would paint onto the meat pockets."
-    # "A scientist would put stem cells on the meat pockets, and then sprinkle xantham gum over the top to protect it from fungal growth."
-    # "Over the course of a few weeks, workers would feed the cells, check to make sure the cells were growing, and stretch the meat to give it a better texture."
-    #convey this through conversation
-    #realistic? High cosmic radiation has a dose-equivalency which could add up over time, making radiation cataracts common.
-
+    # better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
+label after_firegrass_26:
+    "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
+    "This year it seemed like they anticipated [her_name]'s research on meat, even though the shuttle had been sent years beforehand."
+    "Ilian called a meeting to discuss the changes that came with the shuttle."
+    ilian "The shuttle this year came with equipment and recipes for growing synthetic meat."
+    ilian "Some of you may have tried some in the shuttle on the way over but the instructions say that the flavor has improved considerably."
+    thuc "Well, that wouldn't take much."
+    ilian "We're also to stop eating chicken, turkey, and cow meat and to use the synthetic meat as a replacement."
+    him "Can we still eat native meats?"
+    ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
+    if study_published_26:
+        ilian "You may have read [her_name]'s study about Pete's cattle having cancer and their meat possibly being carcinogenic."
+        ilian "RET had come to similar conclusions seven years ago, not just about Pete's cattle, but any animals that are exposed to high UV radiation regularly."
+    else:
+        ilian "Seven years ago RET completed several research studies that led them to believe that the meat of any animal exposed to high UV radiation is carcinogenic."
+    if thuc_has_cattle:
+        thuc "Well, there goes two-thirds of my income."
+    else:
+        ilian "After I go to all the trouble to learn how to breed these things..."
+    ilian "Also, sending cows to Talaam was a very unpopular decision with environmenal agencies, and RET has made agreements to reduce our cattle herds to zero."
+    thuc "Zero? That seems a little extreme."
+    ilian "Well, that's the final goal. They expect us to halve our herd in two years."
+    if thuc_has_cattle:
+        thuc "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
+        ilian "You can start by building the laboratory to grow the meat in."
+    else:
+        ilian "I'll be heading up the synthetic meat production, which will be in a laboratory building we'll build near the storehouse."
+    ilian "I sent out a link to an instructional video about how the meat will be grown."
+    "The meat grew in petri dishes, which we were supposed to call 'meat pockets.'"
+    "Lab workers would mix up a nutrient-rich slurry to be the growth culture, which we would paint onto the meat pockets."
+    "A scientist would put stem cells on the meat pockets, and then sprinkle xantham gum over the top to protect it from fungal growth."
+    "Over the course of a few weeks, workers would feed the cells, check to make sure the cells were growing, and stretch the meat to give it a better texture."
+    "It tasted fairly good. It was a lot more work to 'feed' the dishes individually, but there was less cleanup involved."
+    "People still ate beef and chicken and turkey now and then, but we tried our best to use the synthetic meat as much as possible."
     return
 
 
 label community27:
     #JELLYPEOPLE RECKONING
     nvl clear
-    if ate_jellyfish AND touched_jellystar_25:
-        brennan_c "Hey parents, ask your kids if they have been vandalizing my jellysquid farm."
-        thuc_c "Our kids have better things to do than vandalizing food sources."
-        brennan_c "There's one jellysquid left and it has 'Bring to us' with a photo of [his_name]'s face on it."
-        brennan_c "Maybe it's Pete's idea of a joke?"
-        him_c "I don't think you can program jellysquids."
-        brennan_c "I guess this jellysquid just really misses you then?"
+    # if ate_jellyfish AND touched_jellystar_25:
+    brennan_c "Hey parents, ask your kids if they have been vandalizing my jellysquid farm."
+    thuc_c "Our kids have better things to do than vandalizing food sources."
+    brennan_c "There's one jellysquid left and it has 'Give us' with a photo of [his_name]'s face on it." #the idea is that if they learned about the colonists from Dr. Lily, she would think of him as a go-between
+    brennan_c "Maybe it's Pete's idea of a joke?"
+    him_c "I don't think you can program jellysquids."
+    brennan_c "I guess this jellysquid just really misses you then?"
+    him_c "I'm really curious if the jellysquid can recognize me now."
 
     return
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.
 label community28:
+    # $ against_euthanasia = False
+    # $ no_euthanasia_26 = False
+    # her "There isn't a guideline about euthenasia in RET's health manual."
+    # menu:
+    #     "See if there's a way to approve euthenasia.":
+    #         him "Wow. It sounds like you should make a case for doctor-assisted suicide to the town council."
+    #         her "That's what I plan on doing."
+    #     "Give her hope.":
+    #         him "Maybe it won't progress in the same way as the genetic incomnia disorder."
+    #         him "You should encourage her to endure it a little longer."
+    #         her "For what? For science? I've tried everything I possibly could to relieve her suffering."
+    #         her "I'm going to present my case to the town council."
+    #         $ against_euthanasia = True
+#        her "So far, her symptoms have been the same as fatal familial insomnia. If she continues in this patter, she will be completely unresponsive in a month and die in seven months."
+#        her "She has requested that I help her end her life before that stage."
+#        her "In order for us to keep her alive during her last six months, she will need supervision around-the-clock. I could not supervise her during my regular hospital hours. My assistant could watch her half of her normal hours, but it would decrease the amount of preventative care visits she makes."
+#        her "Do you have any questions before we put this to a vote?"
+#        pavel "Has she made the request for euthanasia in writing?"
+#        her "No, but I have a recording of her request and a test result that shows she is oriented to time, place, and circumstance."
+#        if against_euthanasia:
+#            him "We don't know for sure if she will die. I don't think she should give up so quickly."
+#            her "She has been suffering intensely for a year. How long would be long enough?"
+#            him "At least another six months so we can see if the disease progresses the same way as the familial insomnia."
+#            her "And who will supervise her during those six months? She could easily kill herself by wandering away or eating something inedible."
+#            menu:
+#                "I could help":
+#                    him "I could supervise her eight hours a day."
+#                    her "I don't think that's a good idea. And who would take the other sixteen hours in a day?"
+#                    $ marriage_strength -= 1 #not sure if you want this variable to have minuses?
+#                    sara "She could stay with us from dinner until 1am. We usually stay up that late anyway."
+#                    pavel "I'm usually awake in the early morning after 4am. I could wake up earlier."
+#                    her "This isn't necessary. She doesn't want to be dependent on others for the last six months of her life."
+#                    him "I don't want to live in the kind of place where people have to die just because they aren't useful anymore."
+#                    her "It's completely voluntary. I didn't even suggest it before she brought it up."
+#                    pavel "I agree with [his_name]. I want to take care of our sick and elderly."
+#                    her "Sara?"
+#                    sara "I do think her desire is important, but it could bring everyone together if we work together to essentially give her hospice care."
+#                    her "Brennan?"
+#                    brennan "I don't see any reason to keep her alive against her wishes, but it appears we are in the minority."
+#                    her "Sara, what is your final vote?"
+#                    sara "Let's take care of her."
+#                    $ no_euthanasia_26 = True
+
+#                 "I'm sure someone could help.":
+#                     him "I don't know, but we haven't even asked yet."
+#                     her "It's completely unneccessary."
+#                     her "Most people already feel overworked. It's not fair to ask them to do more for someone who doesn't even want people taking care of her."
+#                     pavel "I agree with [her_name]. It's not fair to assume that other people will volunteer their time when you're not willing to yourself."
+#                     pavel "How about you have this miner give her consent for euthanasia again next week to make sure her desire wasn't a fleeting one."
+#                     brennan "I agree with Pavel."
+#                     her "Sara?"
+#                     sara "I think Pavel's compromise is a good one. In the meantime I would like to visit with her during her next visit."
+#                     her "I'll ask if she'd like to meet with you."
+#         else:
+#             him "I'd say have her consent one more time a month later, just to make sure it wasn't a passing suicidal urge."
+#             pavel "Yes, that sounds like a reasonable plan."
+#             her "Okay, I'll see if I can get another consent next week. Sara and Brennan, how do you feel about it?"
+#             brennan "Fine with me."
+#             sara "I'd like to meet with her myself sometime, but overall, I agree with the consensus we have here."
+#             her "Okay. I'll ask her if she'd like to meet with you."
     "Everyone around Mayor Grayson has noticed that his mental state has been declining."
     "When he is in one of his lucid moments, he decides to step down from his position as mayor."
     "He asked me to not let him be a burden on the colony."
