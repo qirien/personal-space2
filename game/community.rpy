@@ -1195,8 +1195,9 @@ label community8:
                 menu:
                     "Specify the medication and dosage. Do your best with the other stuff.":
                         $ asked_only_medicine = True
+                        return
                     "Maximize happiness and ask for everyone else's stuff specifically.":
-                        $ pass
+                        return
             else:
                 "I sent the message."
                 return
@@ -1440,7 +1441,7 @@ label community9:
 # 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
     her "I'm leaving for work now. Goodbye honey!"
-    him "Bye [her_name}. Oh, and don't forget that we're having dinner with the Perons tonight."
+    him "Bye [her_name]. Oh, and don't forget that we're having dinner with the Perons tonight."
     her "I wonder what they wanted to talk about..."
     him "Maybe they're just being friendly?"
     "After weeding and clearing out old growth, Terra comes home from school."
@@ -1453,7 +1454,10 @@ label community10:
     her "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     martin "I know! You are not the only one who knows, however."
     natalia "The more people who know about your disease, the more people who can help us!"
-    martin "I have a few more months to live, but already I'm experiencing fatigue and pain that hamper my work."
+    if (asked_only_medicine):
+        martin "If I can hang on until the medicine arrives, that should help, but we're still thinking ahead."
+    else:
+        martin "I have a few more months to live, but already I'm experiencing fatigue and pain that hamper my work."
     martin "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
     natalia "The don't seem as passionate about the farm as you are."
     him "But now that they're older, don't you have more time to work on the farm?"
@@ -1507,7 +1511,7 @@ label community11:
     # Is Kelly here, too? Could be interesting...
     him "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him "No, no one mentioned it. Are you here to help [her_name] with her job again?"
+    him "No, no one mentioned it. I hope you're here to help [her_name]; she has a real nurse assisting her now."
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
     her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
@@ -1524,6 +1528,7 @@ label community11:
     brennan "I sent out the assignments already, so try to find each other!"
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
+    # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
     menu chaco_coversation_loop:
         "What should I ask him?"
         "How was the shuttle ride?":
@@ -2366,7 +2371,7 @@ label community13:
                         lily "I understand his arguments. I think research is more important to our survival than having a shuttle shipment leave on time."
             "Don't say anything.":
                 "I didn't say anything about the cave."
-        $ Lily_mad_at_RET = True
+        $ lily_mad_at_RET = True
     return
 
     label cave_explored:
@@ -2423,7 +2428,7 @@ label community14:
     else:
         pete "They expect us to feed the miners, but we can barely feed ourselves."
     pete "They don't respect the natural beauty of Talaam, and they destroyed a cave in the course of their mining."
-    if Lily_mad_at_RET:
+    if lily_mad_at_RET:
         lily "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
         lily "I'm going with Pete and his family."
@@ -2449,7 +2454,7 @@ label community14:
         "Warn them that they are doomed.":
             him "Don't leave! You'll die out there!"
             pete "I've camped out for days on hunting trips. It's not that much more dangerous than living here."
-            him "But what if you get hurt or develop skin cancer?"
+            him "But what if you get hurt or develop skin cancer? What are your cows going to eat?"
             pete "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
             him "This is your family you're experimenting with."
             pete "I know. I don't like our present condition, so I'm changing it."
@@ -2649,7 +2654,32 @@ label community15:
     her "That seems likely."
     him "Too bad she wasn't inspired to take a tent with her."
     her "She probably felt that she didn't have time, or maybe someone else had checked them out."
-    her "I wish we had something more practical like a radiation umbrella."
+    him "Someone ought to invent a radiation umbrella or something."
+    her "It's not that simple..."
+    him "Nothing is."
+    menu:
+        "What should I say?"
+        "I'll miss her.":
+            him "I'll miss her."
+            her "Me, too."
+        "Farewell to a great leader.":
+            him "Farewell to a great leader. She loved and worked hard, even for people who didn't agree with her."
+            her "Yes . . . I want to be more like that."
+        "I'm not going to die like that.":
+            him "I'm not going to die like that. And you better not, either."
+            her "We all have to die sometime . . . I'd never thought about you dying before."
+            him "What would you do if I died? Go back to Earth? Would you get married again?"
+            her "I don't know... I'm tied to this planet, now -- too many people need me."
+            him "We both have a lot of people depending on us, don't we?"
+            her "Yeah, so you better stay healthy! No dying!"
+            him "You're not allowed to die yet, either."
+            "We joked about it, but inside I was terrified that [her_name] would die and leave me a single dad of two kids. There was no way I could be everything for them on my own."
+            him "I love you, [her_name]."
+            her "I never get tired of hearing you say that."
+            him "Don't you mean, 'I love you, too'?"
+            her "I love you, too, [his_name]."
+        "(Don't say anything)":
+            "I didn't say anything, just sat and held [her_name], both of us lost in our own thoughts."
 
     # Dr. Lily has a stroke and worries about her progress being lost if she should die.
     # should this go in the next event? what happens if she left with the luddites?
@@ -2691,7 +2721,7 @@ label community16:
             him "Try to see if you can treat him without using up our medical supplies."
             her "Um, they already tried that. He needs medicine."
             him "I just don't want to use up medicine on someone who left the colony."
-            her "He could still be a great resource even though he doesn't live nearby."
+            her annoyed "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
             $ miners += 1
     her "I'm sure Pete has learned a lot about survival on Talaam since he left."
     her "You should talk to him while he's in for treatment."
@@ -2741,7 +2771,7 @@ label community16:
             pete "I wonder how much longer they'll last."
             $ talked_TJ_c16 = True
             jump c16_convo
-        "How is Lily?" if ((Lily_mad_at_RET) and (not talked_Lily_c16)):
+        "How is Lily?" if ((lily_mad_at_RET) and (not talked_Lily_c16)):
             him "Does Lily help out?"
             pete "Oh, she's great. She knows all the best foraging spots."
             pete "She's very concerned about radiation though, and never goes out of earshot of a radio for fear of a solar flare."
@@ -2934,16 +2964,16 @@ label community17:
         "After the dinner, you can't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
         "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
-        if Lily_mad_at RET:
+        if lily_mad_at RET:
             "She responds via the instant messaging software. Guess she hasn't given up all technology."
         else:
             "She still lives in the colony, but she's been hanging out a lot with Pete to study local flora and fauna."
         lily "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
-        lily "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish."
+        lily "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish. But they have five tentacles, so I've been calling them jellystars."
         lily "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
         "I feel relief just looking at the photos of the creature out of water and the drawings."
         "I start making my own drawings, and send a few back to Lily."
-        lily "Did you eat some of this jellyfish at the feast?"
+        lily "Did you eat some of this jellystar at the feast?"
         him "Yes, I did. Are they in season?"
         lily "I find your interest in them highly unusual."
         him "Why? Aren't they beautiful creatures?"
@@ -3083,7 +3113,7 @@ label community19:
     her "Tell me that when you're hungry! I budgeted up to 20 credits for meat or protein, so see what you can get."
     "That Tuesday I saw Helen coming through town with a large backpack of wares to sell."
     "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
-    "Scarfs and gloves with jellyfish patterns on them hang from the top."
+    "Scarfs and gloves with jellystar patterns on them hang from the top."
     him "Hey Helen! Got any wolf slug meat?"
     helen "Yes, I've got some. It'll cost you though--we only found one this week and it was pretty young."
     him "How much?"
@@ -3092,7 +3122,7 @@ label community19:
         him "Hmm. That's outside my price range. Got any beef bones or beans?"
         helen "Nothing like that."
         if ate_jellyfish:
-            him "How much for this jellyfish scarf?"
+            him "How much for this jellystar scarf?"
             helen "40 credits."
             him "Augh, it's so cute. Guess I have something to save up for."
         else:
@@ -3112,10 +3142,10 @@ label community19:
         him "Okay, I made the transaction. Here, you can see it on my tablet."
         helen "Looks good. Enjoy!"
         if ate_jellyfish:
-            him "Also, how much is the jellyfish scarf?"
+            him "Also, how much is the jellystar scarf?"
             helen "It's 30 credits, but for you I could go as low as 25."
-            him "Hmm. I'll take it. And do you have any of that jellyfish food?"
-            helen "Here you go. We stopped eating the jellyfish. They're too cute to eat!"
+            him "Hmm. I'll take it. And do you have any of that jellystar food?"
+            helen "Here you go. We stopped eating the jellystar. They're too cute to eat!"
             him "Yeah. See you next time."
         else:
             him "Have a good one!"
@@ -3136,8 +3166,8 @@ label community19:
     nvl clear
     thuc_c "Ilian, do you know if we have enough food stored to make up for this?"
     ilian_c "I'm doing the calculations right now."
-    him_c "We could try using native plants as hay..." #I haven't figured out why they can't do this.
-    thuc_c "It's too late in the year, I think. Most native grasses have gone to seed already."
+    him_c "Aren't there patches of wild alfalfa we could feed them?" #I haven't figured out why they can't do this.
+    thuc_c "The wild alfalfa is too far away, and it starts dying as soon as the rainy season starts. Plus it's mixed in with native weeds."
     her "What's going on? Some exciting gossip?"
     him "Crabbirds ate all the Peron's corn, so we won't be harvesting it together."
     her "Whaaaaat? What will the cows eat all winter?"
@@ -3216,7 +3246,7 @@ label community19:
 
 label community20:
 
-    if Lily_mad_at_RET:
+    if lily_mad_at_RET:
         "Pavel called me in to meet with him."
         him "Hi Pavel. How can I help you?"
         pavel "Dr. Lily's health has been declining and she doesn't think she'll last much longer."
@@ -3326,15 +3356,15 @@ label community20:
         #TODO: make this a variable that affects a future event
 
         if ate_jellyfish:
-            lily "I suspect that the jellyfish creature you ate contains a parasite that affects human brains."
+            lily "I suspect that the jellystar creature you ate contains a parasite that affects human brains."
             him "And you just let Pete serve it to everyone?"
-            lily "I have a suspicion, but no proof. Your fondness for the jellyfish seems harmless."
+            lily "I have a suspicion, but no proof. Your fondness for the jellystar seems harmless."
             him "Huh. I just assumed everyone liked them. Come on, they're like the mascot of this planet!"
             lily "They are indeed beautiful. The way they can aggregate and form larger creatures is remarkable."
             him "They... combine to form a bigger animal?"
             lily "Yes, Earth has a few examples. The Portugese Man-of-War is technically an aggregate of many smaller animals."
             him "Huh."
-            lily "But unlike the Portugese Man-of-War, these jellyfish have a nervous system in aggregate."
+            lily "But unlike the Portugese Man-of-War, these jellystars have a nervous system in aggregate."
             lily "They are constantly sending out synaptic impulses into the ocean to find each other."
             him "That sounds really inefficient."
             lily "It is, but somehow it works. The aggregate is intelligent, but I haven't been able to test how intelligent."
@@ -3363,6 +3393,7 @@ label community20:
 
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "Miranda said that she wanted to see the ocean one last time before she died."
+        "We never saw her again."
 
     return
 
@@ -3400,7 +3431,7 @@ label community21:
     kevin "It's stronger than caffeine and more habit-forming."
     kevin "Most miners only use it when they really have to stay up longer, but some smoke every day."
     him "And RET allows that?"
-    kevin "To the miners, we are RET. And we don't have an office for the regulation of fireweed."
+    kevin "To the miners, we are RET. And we don't have an office for the regulation of firegrass."
     her "Sometimes I wish we did... I've seen some of the effects of overdose and depedency."
     him "Huh. What are they?"
     her "Insomnia. Weight loss. That kind of thing."
@@ -3425,23 +3456,24 @@ label community21:
     "We kept walking the rest of the day, chatting with each other while we walked."
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     #line about what their kids are doing
-    "The moon rose, and we saw glowing lights in the ocean from the jellyfish just below the surface."
+    "The moon rose, and we saw glowing lights in the ocean from the jellystars just below the surface."
     if ate_jellyfish:
         "I felt a strange attraction to the lights, and watched them until I fell asleep on the beach."
     else:
         "They were beautiful to watch for a few hours while we set up a fire and warmed up food for dinner."
     "After a breakfast of soaked grain the next morning, I smelled a smoke that reminded me of curry. It was just some of the miners smoking firegrass in pipes though."
     "We spent time playing on the beach, even though it wasn't especially warm."
-    "Some people caught fish or jellyfish and tried cooking them."
+    "Some people caught fish or jellystars and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     "That evening, Pete and his family stopped by."
     if luddites > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
+        #maybe Travis should be in this event too?
         pete "Guess what! I have a two-way radio now. It turns out communication is good for business."
         him "Really? I thought you were all into a technology-free lifestyle."
         pete "I do want to limit my dependence on technology. But I can't ignore the fact that I also live in a community where other people want to help me sometimes."
         him "That will be so much more convenient than trying to hunt you down."
         pete "It's going to stay in our home base area, so it probably won't be me answering it, but we're going to see how it goes."
-        pete "I bet you noticed that it's hunting season for the jellyfish."
+        pete "I bet you noticed that it's hunting season for the jellystars."
         him "Yes, it's beautiful."
         pete "It's even better up close. Would you and [kid_name] like to come out on the boat with me?"
         if ate_jellyfish:
@@ -3457,7 +3489,7 @@ label community21:
         "The lights grew bigger, and when we looked closely, we saw that the animals had a different shape."
         "They were about the size of a toaster. They had eyespots on the sides and tentacles at the opposite end, almost like a squid, only with a see-through shell."
         pete "Now for the fun part!"
-        "Pete picked up one of the jellyfish and put it in a bucket in the bottom of the boat."
+        "Pete picked up one of the jellysquids and put it in a bucket in the bottom of the boat."
         "It kept glowing, and changed colors with Pete's touch."
         "At first, the colors changed rapidly."
         "Then words started to appear on its back."
@@ -3478,10 +3510,11 @@ label community21:
         "After everyone had seen it, we let it go back into the ocean."
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
+        "The kids played with these weird transparent shells."
     if miners > 10:
         #put Chaco in here somewhere? we haven't seen him in a while
         brennan "Zaina and some of the miners caught a bunch of fish. Want to join us for a little roasting party?"
-        her "I saw that earlier. They caught the edible ones? I'm surprised the jellyfish couldn't get them all."
+        her "I saw that earlier. They caught the edible ones? I'm surprised the jellystars couldn't get them all."
         brennan "I think she found a little enclave where it was difficult for the jellies to reach them."
         him "Hmm. As long as fish are the only ones getting roasted."
         brennan "That's up to you!"
@@ -3499,9 +3532,9 @@ label community21:
         brennan "I don't know what Pete is doing with all the credits he's amassing from selling it."
         him "He buys some expensive things, like medicine. But part of me thinks that he's just going to delete it all like some kind of anarchist."
         brennan "I don't care what he does with the money. I do wish that he'd have a dosage guide or something though."
-        her "Hmm. I could make up something like that. We have a training program to help adolescents with alcohol use that I might be able to adapt to fireweed."
+        her "Hmm. I could make up something like that. We have a training program to help adolescents with alcohol use that I might be able to adapt to firegrass."
         her "And if it works, it will mean less work for me in the long run."
-        her "But I need more information first. Do you have any idea how prevalent fireweed is?"
+        her "But I need more information first. Do you have any idea how prevalent firegrass is?"
         brennan "Most of the miners have tried it at one point or another. I think five or six of them use it daily now."
         brennan "I can usually tell because they're extra grumpy the day after."
         brennan "Some of the teenagers who just started working are curious about it too, but I can't tell if they're just normally grumpy."
@@ -3509,7 +3542,7 @@ label community21:
         brennan "Ultimately it's their responsibility."
         her "But we need to make sure they have enough information to make good decisions."
         if luddites > 8:
-            pete "What's this I hear about regulating fireweed? Are you trying to reduce my income or something?"
+            pete "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
             brennan "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
             brennan "If I knew how much to take for a little pick-me-up that would still let me sleep at night I use it occasionaly."
             pete "Fair enough."
@@ -3555,6 +3588,7 @@ label community21:
         her "I'll be right back."
         "[her_name] came back after a few hours. She smelled even more like smoke than I did."
     "The next day was more relaxing in the shade, playing with jellysquids, and catching fish."
+    "I even taught [kid_name] how to swim."
     "We travelled back to the colony without incident."
     #TODO: Does this event need a choice?
     return
@@ -3601,7 +3635,7 @@ label community22:
         zaina_c "The caves penetrate about three-quarters of the mountain, but they are only using about half of the caves."
         zaina_c "Pete seemed to expect that we would make them move. But maybe we can work out a compromise."
         zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
-        brennan_c "It's tempting to ask him to leave. Let's see what RET thinks. [his_name}, can you ask them if it's okay to only mine part of the mountain?"
+        brennan_c "It's tempting to ask him to leave. Let's see what RET thinks. [his_name], can you ask them if it's okay to only mine part of the mountain?"
         him_c "Yes, I can. I'll send the message at lunch."
         "That evening RET replied that our solution was fine and reminded us not to kill anyone." #could have parenting style affect this outcome, like with Dr. Lily's death
                    #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
@@ -3609,6 +3643,7 @@ label community22:
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
         brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
         "The mining continues without incident."
+        $ community_22_compromise = True
         # does this need a stat +=?
         return
 
@@ -3625,6 +3660,7 @@ label community22:
         sara_c "No, still the mountains. But Brennan said that he knows Pete has a cave over there, so he wanted to make sure not to collapse his cave during the mining."
         him_c "That was considerate of him."
         "The mining continued without incident."
+        $ community_22_compromise = True
         #too facile?
         #stat +=?
         return
@@ -3700,8 +3736,8 @@ label community22:
                 pete "Better than killing my friendships to serve some company."
                 pete "What do you care if RET is slightly less efficient? It's not like money gets you much around here."
                 him "Easy for you to say, when you have plenty of it!"
-                pete "I'm not hoarding it. Anyone can grow fireweed."
-                him "Yeah, but if we all start growing fireweed, we won't have vegetables to eat."
+                pete "I'm not hoarding it. Anyone can grow firegrass."
+                him "Yeah, but if we all start growing firegrass, we won't have vegetables to eat."
                 pete "Fair point. But anyway, I think you guys are bluffing and I am not going to leave my home for RET."
 
                 scene black with fade # convey passage of time with this?
@@ -3743,27 +3779,25 @@ label community22:
                         "The luddites left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
                         $ luddites = 0 #or a large minus to the relationship
-                        him_c "This is getting too intense. I don't think it's worth fighting over."
-                        brennan_c "We've already starting mining the mountain though."
-                        him_c "Well Pete isn't living in the whole thing. Can you just mine around him or something?"
-                        zaina_c "If Pete would let me into the tunnels, we could be sure to avoid him. I just don't know how deep they go..."
-                        brennan_c "We're making good progress right now. I'll have Zaina make some educated guesses, and we'll try not to kill anyone."
-                        "A few of the deeper tunnels collapsed, but no one was hurt, and mining was otherwise unobstructed."
-
                         $ miners += 1
-
+                        $ community_22_forced_luddites_leave = True
                         return
-
+                    # "No, this isn't right. "
+                    #     him_c "This is getting too intense. I don't think it's worth fighting over."
+                    #     brennan_c "We've already starting mining the mountain though."
+                    #     him_c "Well Pete isn't living in the whole thing. Can you just mine around him or something?"
+                    #     zaina_c "If Pete would let me into the tunnels, we could be sure to avoid him. I just don't know how deep they go..."
+                    #     brennan_c "We're making good progress right now. I'll have Zaina make some educated guesses, and we'll try not to kill anyone."
+                    #     "A few of the deeper tunnels collapsed, but no one was hurt, and mining was otherwise unobstructed."
                     "Let's mine somewhere else":
-                        him_c "He's too stubborn to leave if we push him out."
-                        him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
-                        zaina_c "But that mountain is the best place for mining right now."
-                        brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
-                        brennan_c "Let's find the next-best place and mine there."
-                        zaina_c "Alright. I'll send you the details."
-                        $ luddites += 1
-
-                        return
+#                        him_c "He's too stubborn to leave if we push him out."
+#                        him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
+#                        zaina_c "But that mountain is the best place for mining right now."
+#                        brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
+#                        brennan_c "Let's find the next-best place and mine there."
+#                        zaina_c "Alright. I'll send you the details."
+#                        $ luddites += 1
+#                        jump stopped_mining
 
 #                        if luddites > 5:
 #                            him_c "This is getting too intense. I don't think it's worth fighting over."
@@ -3787,7 +3821,6 @@ label community22:
                         zaina_c "It was their decision to leave the colony, and it's our decision to keep mining the mountain."
                         jump mining_anyway
 
-
             "Let's mine somewhere else":
                 him_c "He's too stubborn to leave if we push him out."
                 him_c "Why don't you mine somewhere else for now?"
@@ -3805,7 +3838,6 @@ label community22:
 #                        #does this seem too easy? maybe each stopped mining branch should also have the luddites vandalizing the equipment?
 
 #                else:
-
                 brennan_c "It's too risky not to mine it. We're going to continue whether they're there or not."
                 brennan_c "It's not like the luddites have ever stuck it out for us."
                 him_c "Not sure why you asked my advice if you're just going to do what you planned anyway."
@@ -3824,13 +3856,13 @@ label community22:
     elif (luddites > 5):
         "Pete called me on the radio one evening."
         pete "We've been hearing and feeling explosions in the mountain a lot lately."
-        pete "Are the miners going to come to our side of the mountain? We like where we live and don't want to move." #or would his tone be more indignant?  YES
-        him "Huh. Would it be difficult to move?"
-        pete "We could move, but it would be difficult to find a spot so ideal for our purposes."
-        pete "The cave we have now protects us from radiation but lets in light in places."
+        pete "Are the miners working on our side of the mountain? Seriously, what's going on?" #or would his tone be more indignant?  YES
+        him "That's possible. I know they finished mining in the mountain closest to us."
+        pete "I am not moving. They can mine somewhere else."
+        pete "The cave we have now protects us from radiation but lets in light through cracks in the sides."
         pete "The tunnels are large enough to move around in, and we store food and supplies here."
-        pete "If we were back on earth, these caves would be a national monument."
-        pete "Everyone would be upset if we had to move."
+        pete "There's even a semi-covered area for the cows."
+        pete "If they keep mining, someone's going to get hurt."
         him "Let me see what I can find out."
         nvl clear
         him_c "Hey Brennan. Are you guys mining in the mountain near the ocean?"
@@ -3905,8 +3937,6 @@ label community22:
                 him "That sounds risky."
                 jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
-                return
-
         label stopped_mining:
             "The mining stopped." #this can happen if you're not the liason, after the luddites vandalize mining equipment
             if is_liason:
@@ -3942,6 +3972,10 @@ label community22:
                 sara_c "There aren't any current plans do that."
                 sara_c "Brennan doesn't want to do that and they're getting ready to mine in a different location."
                 sara_c "RET isn't happy with us right now though."
+                sara_c "They want the miners to make up for the delay and aren't changing their quota."
+                him_c "I don't think we can do anything about that."
+                sara_c "We can keep giving them food to eat, I guess."
+                $ community_22_mining_stopped = True
 
                 return
 
@@ -3989,125 +4023,889 @@ label mining_anyway:
     "After a day of recovery, [her_name] returned to the colony with Helen and Travis, who rode a cow since he couldn't walk."
     her "His tibia is completely shattered. After looking at the x-ray, I don't know if I can save it." #I tried looking up some information on this
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
+    "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
+
+    $ community_22_mined_anyway = True
     return
 
 label community23:
-    "Brennan wants to collect jellysquid shells for minerals" #only if he saw them in the luddite event?
-    her "Pete's meat is a lot higher in radiation than meat from our colony." #relistic? UV radiation inhibits bacterial growth.
-    her "If people keep eating it, it might shorten their lifespan."
+    # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
+    # Terra is 14 here
+    kid "Can Anya and I go to the beach this weekend?"
+    him "By yourselves?"
+    kid "No, Anya's parents are going."
+    him "What's the occasion?"
+    kid "Brennan is paying lots of money for glass shells."
+    kid "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
+    him "How much money are we talking about here?"
+    if community_22_mining_stopped:
+        # you are never the liason in this option, since you lose liasonship in community 22 if you choose to stop mining
+        kid "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
+        him "Really? That seems strange."
+        kid "That's what Anya told me."
+        him "Let me ask Brennan if that's right."
+        nvl clear
+        him_c "I heard that you're paying 50 credits for glass shells. Is that right?"
+        brennan_c "Yes, you heard correctly."
+        him_c "Why are they suddenly so valuable?"
+        brennan_c "I had Zaina do an analysis of their mineral composition."
+        brennan_c "All the minerals we need are concentrated in them."
+        brennan_c "We're really behind quota because of suddenly stopping mining for two months, but with enough of these, we should be able to meet the latest deadline."
+        him_c "Interesting."
+        him "Anya's absolutely right. Brennan's giving 50 credits each for those shells."
+    else:
+        kid "I don't know, like 5 credits a shell or something."
 
-    "RET wants to switch to artificial meat."
-    # what if the miners have some kind of artificial meat factory and start selling it so cheaply that no one wants to buy Pete's real meat anymore? Would this be a an interesting problem?
-    #I was also thinking that maybe the cows don't like their anti-radiation blankets and there is concerns that their meat contains radiation
-    "I hate how it tastes."
-    "Make the switch?"
-    menu:
-        "Yes.":
-            $ miners += 1 #miners equal the interests of RET here
-        "No.":
-            $ luddites += 1
-        "Stop eating cow meat, but still use milk and leather?.": #provides fertilizer, hair for wool, milk, leather
-            $ colonists += 1
-    return
+    kid "So can I go?"
+    him "Let's discuss it when [her_name] gets home."
+    "Over dinner, I told [her_name] about Brennan giving out credits for shells, and [kid_name] told her how she wanted to go to the beach with Anya's family."
+    her "I think it's good that you're trying to earn money on your own, [kid_name]. But I don't really want you to go without one of us."
+    "I knew we were both thinking the same thing -- Anya's parents were... uninvolved with their kids. [kid_name] going with Anya's parents was about the same as going with no adults."
+    her "[his_name], can you go with her?"
+    him "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
+    her "I think I could go. Someone will probably get hurt out there anyway."
+    him "I can get some quality time with [bro_name]."
+    bro "I wanna go to the beach too!"
+    her "I need you to stay here and make sure [his_name] takes good care of the farm!"
+    her "And we'll bring you some fish."
+    bro "okay..."
+    "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
+    "When they got back, they looked tired."
+    him "How was it?"
+    her "Well, the beach was totally picked over where we normally go, so we did a little exploring."
+    if ate_jellyfish:
+        him "Did you see any jellystars while you were there?"
+        her "No, I didn't. Maybe they move with the currents?"
+    if community_22_mining_stopped:
+        kid "We only found five shells. Anya's parents didn't find that many either."
+        him "Huh. Were there lots of people there?"
+        kid "Yeah, tons! We were all looking for shells."
+        kid "People were even going out on boats to catch jellysquids just so we could get their shells."
+        her "We turned them in on the way home. So we're 250 credits richer!"
+        kid "Hey, that's my money you're talking about."
+        her "I helped. Some of that money is rightfully mine."
+        kid "You can have 100 credits of it. But the rest is mine."
+        him "Oh yeah, we need to get some rice to go with dinner tonight."
+        her "I know. We stopped by the storehouse on the way home."
+        "She handed me a cup of rice."
+        him "Why didn't you just buy a whole bag?"
+        her "Ilian is keeping the prices for food the same, but it means he has to ration it."
+        her "I think he's currently going overboard! Hopefully he'll relax a little next week."
+        him "If he's fixing prices, then what's the point of all that money you just made?"
+        her "Buying things from Pete?"
+        scene black with fade
+        "Next week, I was about to do a little buying and selling when I saw Thuc manning a vegetable stand outside the storehouse."
+        thuc "Hey, want some extra-creamy goat milk?"
+        him "Yeah, are you selling it?"
+        thuc "Just 100 credits for a pint."
+        menu:
+            "No way.":
+                him "You're nuts."
+                thuc "You'll be back."
+                him "Yeah, when you have your goat cheese reduced price for quick sale."
+                thuc "You should save some of your best crops and sell them on your own."
+                him "So I can buy your premium goat milk? I've got enough to worry about."
+                thuc "Suit yourself."
+                $ colonists += 1 #arguable
+                return
+            "Tempting...":
+                him "I know how good the extra creamy stuff is..."
+                him "But I don't earn that kind of money selling my crops to Ilian."
+                thuc "Give me some of your best crop to sell. I bet I can make you enough money to buy some goat milk."
+                him "Yeah, and how much of the profit are you going to pocket?"
+                thuc "I promise I'll only keep ten percent of the sale!"
+                him "Okay, I'll let you try selling these. Message me when they sell!"
+                thuc "Oh, I know someone will want them."
+                $ luddites += 1
+                $ thuc_sells_food = True
+                return
+
+    else:
+        #(community_22_forced_luddites_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
+        kid "We found ten shells!"
+        her "That's fifty credits for you!"
+        kid "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
+        her "Or you could save it for something you actually need." #could make this a choice if you want to do a parenting crossover
+        kid "Bo---ring."
+        her "We went pretty far out, and I found a lot of shellfish."
+        him "Oh, are they safe to eat?"
+        her "They should be... I didn't do a toxicity panel but we've eaten them before."
+        her "What should we do with them?"
+        menu:
+            "Preserve them and keep them.":
+                him "Let's keep them! I think we could dry them out in the oven overnight."
+                her "Okay, can you and [bro_name] take care of it? I'm super tired."
+                "[bro_name] and I spent the next hour shelling and cleaning the shellfish."
+                "Well, [bro_name] mostly watched and played with the shells."
+                him "Now we'll be able to have clam chowder whenever we want!"
+                $ luddites += 1 #also debateable
+            "Eat some now and sell the rest.":
+                him "Let's have some with dinner and sell the rest tomorrow."
+                her "Okay, can you take care of it?"
+                him "Sure."
+                "[bro_name] and I made a seafood-vegetable soup."
+                her "This really hits the spot. Thanks."
+                $ colonists += 1
 
 
 label community24:
-    #Terra comments on how having kids is dangerous and thinks about her own future.
+    #luxury goods
+    "I was walking into town to have lunch with [her_name] when I saw Thuc working in his yard."
+    if community_22_mining_stopped: #this means there was inflation from community23 and Brennan paying a lot for shells
+        if thuc_sells_food:
+            him "Hi Thuc, thanks for selling those premium crops for me."
+            thuc "It was no trouble. Miners have tons of credits right now and they're happy to pay more for better goods and services."
+        else:
+            thuc "Hey, I've been worried about you since you've only been selling your crops to Ilian."
+            him "What do you mean?"
+            thuc "Everyone else is selling their premium crops to the miners directly."
+        thuc "They've been paying so much that Miranda stopped working in the research lab and has been cooking and cleaning for miners instead."
+        him "Really? Wow."
+        thuc "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
+        him "Do people really drink that stuff?"
+        thuc "No, usually people make it into yogurt or lotion or something."
+        thuc "Nice lotion sells for even more than goat milk."
+        him "I'm surprised Miranda hasn't tried that."
+        thuc "She still does some lab work, but she's gotten really into making soap and stuff."
+        thuc "That's actually how she markets her cleaning business: 'Scientifically proven to work against Talaam microflora!'"
+        thuc "The price of Pete's firegrass has gone waaaay up, so I think some teenagers are trying to grow some on their own."
+        thuc "I think some kids made a videogame that they are selling for a ridiculous amount too."
+        thuc "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
+        him "Ugh, is that still a thing?"
+        thuc "Yes, it is."
+        thuc "Didn't you read Julia's latest 'Talaam Times' that did an economic analysis of our luxury goods and reviewed select products?"
+        him "I didn't want to pay 20 credits for it! That's like the price of beans for a week."
+        if not thuc_sells_food:
+            him "Hmm. Maybe I could make a little money on the side."
+            him "My family might enjoy having some nicer things."
+            thuc "I'll take the best you have and sell it in my premium marketplace."
+            thuc "I'll message you as soon as these sell."
+            him "Thanks."
+        else:
+            pass
+        thuc "For the miners though, 20 credits out of thousands is almost nothing."
+        thuc "If you can make something that's popular with them, you could stand to make a lot of money!"
+        jump luxury_good
 
-    #at a town meeting
-    show him at midright
-    show her concerned at midleft
 
-    her "One of the mining women almost died having a stillborn baby."
-    her "She had been mining right until the day before she went into labor. Overwork was definitely a factor."
-    her "Will RET compensate her for her loss? She's still working even though she ought to rest."
-    him "Good question. I'll ask them."
-    "How will I word the query?"
+    else:
+        thuc "Hey [his_name], how's business?"
+        him "Same as ever. You?"
+        thuc "I'm glad you asked. Miranda decided that she wasn't making enough money from researching plants and she developed a special soap."
+        him "Is it that much different from Natalia's soap?"
+        thuc "Yes, she says it's formulated to kill Talaam microflora."
+        him "This sounds like something I don't actually need."
+        thuc "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
+        thuc "Julia gave it a flourescent review in 'Talaam Times'. The miners love that kind of stuff."
+        thuc "The price of firegrass has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
+        thuc "You should consider producing some kind of luxury good or service to make some extra money."
+        jump luxury_good
+
+label luxury_good:
+    him "Hmm. I'll think about it."
+    "I want to try selling something new."
     menu:
-        "A miner overworked while pregnant and the fetus died before birth; will she receive compensation?":
-            $ miners += 1
-        "Please compensate the miner who lost her baby due to overwork.":
-            $ miners += 2
-        "We're experiencing health setbacks due to overwork. May colonists and miners take paid vacation days?":
-            $ colonists += 1
-
-    him "That reminds me, RET told me that due to the cost of shipping, they will no longer provide temporary birth control."  # in month 14 of OPS1, Kelly says that there's only enough birth control for 6 more months. I guess we are assuming that more arrived with the shuttle that arrived, but none will be coming on future shuttles?
-    him "RET recommends using the rhythm method."
-    her "Are they serious? Does that include the miner's families?"
-    him "Yes, although children born on Talaam must stay here."
-    julia "Luckily my time of fertility is ending, but for some of you this will be most inconvenient."
-    ilian "No kidding. I've got enough mouths to feed at the moment."
-    sara "Dr. [her_name], do you have any advice for us?"
-    her "For women with regular cycles, tracking the time of ovulation works fairly well."
-    her "Couples may wish to exercise their creativity if they wish to avoid conception yet remain intimate during the woman's fertile time."
-    her "So, [his_name], is RET trying to grow the colony?"
-    him "I honestly think it's just economic. Miranda, do you know if any of the local plants could be used as birth control?"
-    #todo: set up Miranda as a character
-    #miranda I'm not sure about preventing birth, but I know that fire grass can abort pregnancies in the early stages.
-    #consequences if you said not to trade for it in community 21
-    # Maybe Kelly offers to perform sterilizations, though she's not an expert. "I'd rather perform sterilizations than abortions".
-    # Using sheep/goat intestines as condoms?  TMI?
-
+        "Write a guide for beginning farmers on Talaam.":
+            "I spent a few months writing a comprehensive guide to beginning farming on Talaam."
+            "I had [her_name] edit it, and I had Thuc guest write a chapter."
+            "I had Julia write a review of it in 'Talaam Times'."
+            "Finally I was ready to sell it for 100 credits!"
+            "After a month it had sold just four copies." #+400/40 credits
+            kid "Hey dad, that farming guide you wrote is really popular."
+            him "Really?"
+            kid "Yeah, Oleg bought it and made an app version!"
+            him "Hey, he didn't have my permission to do that."
+            kid "He's not making that much money off of it."
+            him "Ugh."
+        "Babysit small children and teach them farming.":
+            "I offered to babysit a few small children and give them lots of individual attention for a few hours every morning over the summer."
+            "I promised to show them the beauties of Talaam and teach them the joy of farming."
+            "A few people were interested, and I chose two families with kids to help."
+            "I'd go pick up the kids in the morning, and then I'd drop them off at the co-op daycare after lunch."
+            "At first it was really difficult. The kids had a hard time changing their routines."
+            "I had forgotten how hard it is to do anything with kids in the house, so often I'd still be working on my farm after dinner."
+            "I did make a lot of money though!" #+2000/200 credits but more stress?
+        "Consult on small farming projects.":
+            "I advertised my professional farm consulting in the 'Talaam Times.'"
+            "I was surprised when Oleg was my first customer."
+            "He had a lot of questions about a hypothetical plant that was a lot like firegrass."
+            "I told him that I couldn't give him advice on how to grow imaginary crops and taught him some general farming principles."
+            kid "Oleg is telling everyone that you really know your farming stuff."
+            him "Sometimes I wasn't even sure he was listening..."
+            kid "He's been doing phosphorus measurements and everything."
+            "A few other people took me up on it, but I didn't make a lot of money off of it."
+            "There were plenty of books and other farmers people could consult for free." #+400/40 credits
     return
 
 label community25:
-    "Miners have a lot more money than farmers. They start employing young people as servants to do their household chores and look after their children."
-    return
+    #Brennan's Jellysquid farm
+    $ new_25 = False
+    $ new2_25 = False
+    $ eat_25 = False
+    $ eat2_25 = False
+    $ jellysquid_25 = False
+    $ meat_25 = False
+    $ effective_25 = False
+    $ touch_25 = False
+    $ touch2_25 = False
+
+    "Every night after dinner I liked to catch up on the news around town."
+    "This week Sara was asking about recipes for the jellystars."
+    nvl clear
+    sara_c "After you chop it up, do you just sautee it?"
+    thuc_c "I like it in a little beef grease with beans and garlic."
+    natalia_c "I think Ilian is selling it dried now. Dried jellystar is really good in soup"
+    sara_c "This stuff has pretty high water content... is there anything left after it's dried out?"
+    him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
+    if ate_jellyfish:
+        him_c "Dr. Lily told me that they contain a parasite which could decrease reaction speed."
+        sara_c "Really? I haven't noticed anything like that."
+        him_c "Well, she did say it was only a difference of a few milliseconds."
+        him_c "Also, I think they're too cute to eat."
+        thuc_c "I do feel a twinge of guilt when I eat them. But if they're already processed I don't think about it as much."
+        natalia_c "Yeah, I don't like cutting up the carcasses. It just makes me sad."
+    ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse."
+    ilian_c "It's really cheap right now, and we're still drying more."
+    ilian_c "You can use it for bait when fishing, too."
+    him_c "He's farming the form with the shell?"
+    ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellystar to offload."
+    him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
+    brennan_c "I have been trying to farm jellysquid, which resulted in surplus jellystars."
+    sara_c "Are the jellysquid even the same species?"
+    julia_c "Dr. Lily reported that the jellysquid form is an aggregate of the jellystar one, but she never personally witnessed how it happens."
+    julia_c "She wrote about it in a paper on them. You should probably read it if you're trying to raise them."
+    brennan_c "Thanks, I'll look it up. I've made a few observations of my own."
+    julia_c "You should publish them!"
+    brennan_c "My information is proprietary."
+    julia_c "You could sell it for money then!"
+    brennan_c "Maybe when I have some information worth selling, I'll publish it."
+    if not ate_jellyfish:
+        him "Hmm. These jellystar recipes look kind of good."
+        him "Maybe I should try them."
+        menu:
+            "Buy and eat them.":
+                "I bought some dried jellystars and we had them in soup."
+                $ ate_jellyfish = True
+            "Don't eat them.":
+                "I decided not to eat them."
+    "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
+    if (miners > 12):
+        "I looked around the coast for a bit and found Chaco tending his jellystar farm."
+        "Nets with a close weave enclosed a small area off a pier."
+        him "Is this the famous jellystar farm?"
+        chaco "Yep."
+        him "Are you in charge of it?"
+        chaco "I'm the one who checks on it every day and takes notes."
+        label jelly_convo:
+            menu:
+                "What's new?" if not new_25:
+                    him "Any new developments?"
+                    chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
+                    chaco "Their pigments probably glow in UV light."
+                    him "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans?"
+                    chaco "Probably not."
+                    him "How do they glow when it's cloudy then?"
+                    chaco "Luminescence."
+                    $ new_25 = True
+                    jump jelly_convo
+                "What do they eat?" if not eat_25:
+                    him "What do you feed them?"
+                    chaco "Nothing. They probably eat plankton."
+                    chaco "I've seen them eat tiny fish too."
+                    $ eat_25 = True
+                    jump jelly_convo
+                "Have you made any jellysquid?" if not jellysquid_25:
+                    him "Any luck getting them to aggregate into a jellysquid?"
+                    chaco "No. But we have a clue."
+                    chaco "We found a baby jellysquid."
+                    chaco "We put it in the farm. It died, and the jellystars ate its tiny shell."
+                    him "Weird."
+                    $ jellysquid_25 = True
+                    jump jelly_convo
+                "Can I touch one?" if not touch_25:
+                    "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                    him "Can I touch one?"
+                    chaco "You can... sometimes it agitates them."
+                    menu:
+                        "Touch one.":
+                            "I crouched down on the pier and reached out to touch one."
+                            "I felt a little spark like static and feel one of the spines poking me."
+                            "The jellystars grasped each other and made a long chain to the edge of the net."
+                            "I could see and think but it felt like I was in a trance."
+                            "Chaco took my hand out of the water."
+                            chaco "Weird, huh."
+                            $ touched_jellystar_25 = True
+                        "Don't touch one.":
+                            "I decided to just look at the jellystars."
+                    $ touch_25 = True
+                    jump jelly_convo
+                "Why is there so much extra jellystar meat?" if not meat_25:
+                    him "It doesn't look like there are that many jellystars right now."
+                    him "Where did all the extra meat come from?"
+                    chaco "They reproduce on their own and crowd each other."
+                    chaco "Brennan thinks that they can't combine if there are too many of them."
+                    him "What do you think?"
+                    chaco "I'm not sure."
+                    $ meat_25 = True
+                    jump jelly_convo
+                "I'm done talking.":
+                    him "Good seeing you."
+                    chaco "You too."
+                    jump after_convo_25
+
+    elif (luddites > 10):
+        "I looked around the coast for the jellystar farm."
+        "I saw Pete standing on a pier and walked down to say hi."
+        "Out on the pier, I could see that the jellystars were enclosed by large net walls."
+        him "How's it going?"
+        pete "Not bad. Just checking out Brennan's jellystar farm."
+        label jelly2_convo:
+            menu:
+                "Is the farm effective?" if not effective_25:
+                    him "Is it working?"
+                    pete "It's making lots of jellystars, but no jellysquid that I've seen."
+                    him "Colonists have been eating lots of jellystar soup thanks to that."
+                    $ effective_25 = True
+                    jump jelly2_convo
+                "What do they eat?" if not eat2_25:
+                    him "Do they feed them fish or something?"
+                    pete "They're like the goats of the ocean."
+                    pete "They can live off of just about anything, including whatever plankton are floating around."
+                    $ eat2_25 = True
+                    jump jelly2_convo
+                "Can I touch one?" if not touch2_25:
+                    "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                    him "Is it safe to touch them?"
+                    pete "It won't kill you. Go ahead and try it."
+                    menu:
+                        "Touch one.":
+                            "I crouched down on the pier and reached out to touch one."
+                            "I felt a little spark like static and feel one of the spines poking me."
+                            "The jellystars grasped each other and made a long chain to the edge of the net."
+                            "I could see and think but it felt like I was in a trance."
+                            "Pete took my hand out of the water."
+                            pete "Sometimes they do that."
+                            $ touched_jellystar_25 = True
+                            $ touch2_25 = True
+                            jump jelly2_convo
+                        "Don't touch one.":
+                            "I decided to just look at the jellystars."
+                            $ touch2_25 = True
+                            jump jelly2_convo
+                "What's new with you?" if not new2_25:
+                    him "How are you doing? Still selling firegrass?"
+                    if (community_22_mining_stopped):
+                        pete "Yes, but the sudden inflation almost gave me a heart attack."
+                        pete "My stock was completely wiped out for a few months, because people were stocking up before I figured out what happened."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                    elif (community_22_compromise):
+                        pete "Yep. From my secret firegrass fields."
+                        pete "Travis and Helen made an interesting game together that they call Talaam chess."
+                        pete "You should try it out sometime!"
+                        him "That brings back memories. I thought you guys were too busy to play games."
+                        pete "Nope. I think I actually have more free time now than when I was the colony's librarian."
+                        pete "I was always trying to read everything so I could know how to help everyone."
+                        pete "I do miss reading sometimes."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                    elif (community_22_mined_anyway):
+                        pete "Well it's been hard for Travis to adjust to not having feet."
+                        pete "I shouldn't have been so stubborn and stayed in the caves."
+                        pete "I'm just glad Travis didn't die in there."
+                        pete "He has mixed feelings about the prosthetics. He feels like he should be able to live without them but he depends on them for certain things."
+                        pete "I can't depend on him to do much cattle herding. He keeps busy with wood carving."
+                        him "Yeah, I saw he carved some kind of chess set?"
+                        pete "He and Helen collaborated on that. She knits little hats for the pyramid-shaped pieces so you can change them around."
+                        him "So you still get around to playing board games now and then?"
+                        pete "Sure do! You should come by sometime and play Talaamian chess with me."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                    else: #this should be impossible to get, since the other ending resets luddite relationship to 0. it's here as a safety net in case something goes horribly wrong.
+                        pete "It's been hard finding a new place to live."
+                        pete "We've found a place that I think will be safe from radiation."
+                        pete "I don't really want anyone to know where it is though."
+                        him "That's understandable."
+                        $ new2_25 = True
+                        jump jelly2_convo
+                "That's all I want to say.":
+                    him "It was good seeing you."
+                    pete "There's something I'm worried about..."
+                    pete "Is it ethical to farm the jellystars like this?"
+                    if ate_jellyfish:
+                        him "I'm worried about that too."
+                        pete "Each arm in a jellystar has its own nerve bundle. Their nerve network is a lot like an octopus's."
+                        him "They can probably feel when they're touching something other than themselves... but they don't even have eyes."
+                        pete "I wonder if they can sense UV radiation."
+                        him "Wow, senses I haven't even thought about."
+                        pete "And in jellysquid form, they are definitely intelligent."
+                    else:
+                        him "What do you mean? They're not that different from cattle, are they?"
+                        pete "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
+                        him "But can they sense the world around them? Do they even have a brain?"
+                        pete "They don't have eyes, or much of a brain. But they can definitely feel things with their tentacles."
+                        pete "I wouldn't be surprised if they can sense UV radiation."
+                        him "But they're not even as intelligent as a cow!"
+                        pete "No, not in the jellystar form. But the jellysquids are definitely intelligent."
+                        pete "And the jellysquids are made up of jellystars! They're like baby jellysquids."
+                    him "That reminds me--I haven't seen any jellysquid up here."
+                    pete "They've all been caught for their shells."
+                    him "And there aren't any jellysquids in this farm?"
+                    pete "I've been checking it every week or so and there haven't been any jellysquids at all."
+                    pete "They must need something else to change."
+                    jump after_convo_25
+
+        label after_convo_25: #only if you your relationship with the miners is high enough?
+            nvl clear
+            him_c "I haven't seen fresh jellystar for a few weeks. Brennan, does that mean you've figured out how to breed jellysquids?"
+            brennan_c "Yes, I have."
+            julia_c "The jellysquids couldn't make their shells in the presence of so many other jellystars."
+            him_c "How do they even know when other jellystars are nearby?"
+            julia_c "When they touch each other, they form a rudimentary network if there are at least two other jellystars in arm's reach."
+            julia_c "They basically form into a net, which can catch even more food than if they transform into jellysquids."
+            him_c "Huh, that's really interesting."
+            brennan_c "That information is supposed to be confidential."
+            julia_c "I guess you should have had Miranda sign a non-disclosure agreement."
+            julia_c "It's not like any of us want to breed them."
+            brennan_c "You may not have an interest in that, but the miners would much prefer to farm jellysquids."
+            brennan_c "Most of them don't read colonists' chat though."
+            julia_c "Well if it's more efficient maybe they should be farming jellysquid."
+            brennan_c "I'm still doing research to see if that's the case."
+            brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
+            brennan_c "I do have some jellysquid meat, but since it isn't in high demand I was planning to sell it to Pete for fertilizer or fish food."
+            return
 
 
-# Miranda predicts increased solar flare activity this year; how do you prepare?  Do you believe her?  Do you warn miners/luddites/everyone?
+    else: #if neither miners or luddites is high enough
+        "I looked around the coast for the jellystar farm."
+        "I found a pier surrounded by nets that enclosed bunches of jellystar."
+        "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+        menu:
+            "Touch one.":
+                "I crouched down on the pier and reached out to touch one."
+                "I felt a little spark like static and feel one of the spines poking me."
+                "The jellystars grasped each other and made a long chain to the edge of the net."
+                "I could see and think but it felt like I was in a trance."
+                "After a few minutes or an hour, it let me go."
+                $ touched_jellystar_25 = True
+                return
+            "Don't touch one.":
+                "I decided to just look at the jellystar."
+                jump after_convo_25
+                    #what if the secret to making a jellysquid is that after it makes a shell, you have to hold one in each hand and it makes a complete circuit?
+                    #have another scene, probably here, where they discover how to make jellysquid.
+                    #the jellysquid farms are somewhat successful, but often the jellysquid will die before completely forming a shell, for unknown reasons.
+
 label community26:
-    "Miranda predicts increased solar flare activity this year."
-    "How do we prepare?"
+    $ study_published_26 = False
+    $ work_fewer_hours = False
+    $ grow_more_tea = False
+    $ pete_knows_his_cows_have_cancer = False
+    $ keep_buying_pete_beef = False
+    $ stop_buying_beef = False
+    #artifical meat and firegrass--too much for one event?
+
+    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
+    if luddites > 5:
+        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
+    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her "However, the cells in Pete's meat are often irregular and probably cancerous."
+    him "Okay... but eating cancer doesn't give you cancer, right?"
+    her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
+    him "But the cells are dead in meat, so why would it matter?"
+    her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
+    him "What about the cows from the colony?"
+    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
+    him "Yeah, but Pete's cows have those UV blankets, don't they?"
+    her "They do, but I think they don't work very well. I've seen the cows take them off."
+    her "My question for you is if you think I should publish the results of my study."
+    her "If people keep eating this meat, it might shorten their lifespan."
     menu:
-        "Plant more beets.":
+        "Yes, definitely.":
+            him "People should know the risks of what they're eating. You should definitely tell everyone."
+            him "Just be honest about how much we don't know."
+            her "Okay."
+            "[her_name] wrote up a brief paper summarizing her findings."
+            "A few people read it and stopped buying meat from Pete."
+            $ study_published_26 = True
             $ colonists += 1
-        "Ask Pete for some brewer's yeast" if (luddites >= 10):
-            $ colonists += 2
-        "Ask Zaina if the miners have found any calcium or magnesium" if (miners >= 10):
-            $ colonists += 2
-        #these are all "natural" ways to help the body get rid of toxins
-    "Will I warn people outside the colony about the solar flares?"
+        "No, don't publish the study.":
+            him "How many samples have you studied? I think it's too early to draw conclusions."
+            her "True, my sample size is pretty small. I'll keep studying it."
+        "You should at least tell Pete." if luddites >5:
+            him "Pete should know that his cows are developing cancer."
+            him "Maybe he can adjust his radiation-shielding measures."
+            her "That's a good idea. I'll make that suggestion."
+            "Pete started experimenting with different ways to shield his cows from radiation."
+            $ pete_knows_his_cows_have_cancer = True
+            $ luddites += 1
+
+    her "Also, I met with a miner this week who was a heavy user of firegrass."
+    her "She has severe insomnia and depression."
+    him "And sleeping pills don't help?"
+    her "Well, they do help her sleep, but then she feels sleepy and usually uses firegrass to help her feel more awake."
+    her "She has frequent panic attacks and has lost an unhealthy amount of weight."
+    her "Mayor Grayson agrees that we don't have the resources for a mental hospital."
+    her "Sara completed training to do some mental health counseling and has started sessions with her, but she needs more than just therapy."
+    her "She doesn't seem to be getting better anytime soon. She has suicidal tendencies."
+    him "We should help her change something in her life to break this cycle."
+    her "I feel like I've done everything I can. I'm going to present her case to the town council to see if they have other ideas."
+
+
+    if is_liason:
+        "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
+        her "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol although that is not her real name."
+        her "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
+        her "At night, she used firegrass to stay alert for her mining shift. During this time of heavy usage, she got 2-4 hours of sleep every two days or so."
+        her "I'd like to discuss how we can help her family and also how we can discourage heavy usage of firegrass."
+        her "Right now, Carol is probably lying in bed trying to avoid talking to anyone."
+        her "Her biggest accomplishment this week was washing her hair and getting her rations delivered."
+        sara "I've been visiting her at home to start her therapy. I think her husband feels like it's his fault that she's depressed."
+        brennan "I remember his accident. The perfect storm of several miscommunications." #tie it to an earlier event?
+        brennan "He can't walk anymore, but he can still talk and do things with his hands."
+        brennan "He did have some brain damage though, so he sometimes makes unpredictable mistakes."
+        her "Their family needs intensive care right now. I don't think Van Nguyen is too busy right now, and he did an apprenticeship with me a few years ago."
+        brennan "I assume he's one of Thuc and Julia's kids?"
+        her "Yes. He's their youngest and has a great sense of humor. He should be able to babysit the kids for a few hours a day."
+        brennan "So, they'll have a babysitter/nurse and a psychotherapist visiting them..."
+        her "I would like you to keep paying Carol enough to live off of while she recovers."
+        brennan "Her husband is already on disability... and what if she never recovers?"
+        her "Then we still want to take care of them!"
+        brennan "I'm willing to give her a month of paid disability."
+        her "Well, that's a start anyway. Let's discuss firegrass and how we can manage it."
+        her "It appears that the active compound from firegrass stays in the blood for about as long as caffeine."
+        her "However, the long-term side effects are more severe."
+        if miners > 10: #from community21, if you talked about it with Brennan
+            her "A few years ago, I gave miners recommended doses, but even with those doses, miners have experienced insomnia and reduced appetite."
+        else:
+            her "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
+        her "I think we should discourage the use firegrass somehow. I don't want to see any more cases of insomnia and depression."
+        brennan "I also don't want to see that. I don't think outlawing firegrass will stop people from using it."
+        brennan "Pete is going to sell firegrass no matter what we decide."
+        her "So how would you cut down on firegrass use?"
+        brennan "We could educate users about its side effects. Make posters and engaging, informational narratives that show the effects of its use."
+        brennan "Maybe Carol could help educate users when she's feeling better."
+        sara "I know an enterprising young person who could make an app about how to use firegrass."
+        him "Is it Oleg?"
+        sara "Yes! He is really interested in educational technology."
+        if miners > 10:
+            sara "You could have them access their own health stats from the database and it could tell them their recommended dosage."
+            her "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
+            her "Also there is no way I'm giving Oleg access to the health database."
+        else:
+            sara "You could make some recommendations for it."
+            her "I think my recommendations wouldn't give users the level of alertness they're accustomed to."
+        sara "Well, we want to at least try, right? Isn't the placebo effect still real with a low dose?"
+        her "How about I just start selling placebo pills then?"
+        sara "Better than doing nothing."
+        pavel "I think we need to understand what motivates people to use firegrass and address that concern."
+        pavel "Brennan, are you still running up against tight deadlines?"
+        brennan "Sometimes we're lucky and fill our quota quickly, and sometimes we're working major overtime to just get close."
+        brennan "I've asked RET to change their system, but I don't think that will happen anytime soon."
+        pavel "They have almost no contact with RET... what if you told them that RET did away with the quota system so that they could work more consistent hours?"
+        pavel "It might help prevent accidents and actually increase productivity."
+        brennan "I don't want to lie to anyone, but I do want to change the amount of hours they can work." #it might be more interesting if he does want to lie?
+        brennan "I am a little worried about what the miners would do if they had more leisure time though."
+        sara "Why can't they just drink green tea to help them stay awake?"
+        brennan "They do drink tea, and you've probably noticed that it's also in high demand."
+        brennan "I can usually get enough for three cups in a week."
+        her "Certainly drinking tea would be a safer alternative than smoking firegrass."
+        pavel "I don't like to drink tea. I miss coffee."
+        him "Well, if we're treating it as a drug, it shouldn't matter what it tastes like."
+        pavel "Of course it matters! Do you eat fruits and vegetables because they have the chemicals necessary for you to survive?"
+        pavel "Or do you just have no sense of taste?"
+        him "Maybe if you weren't such a food snob you would enjoy your life more."
+        pavel "Having a discerning palate makes me appreciate good things even more. But we're getting distracted."
+        pavel "Certainly growing more tea could help with the alertness issues people usually turn to firegrass for."
+        her "But I don't think tea can easily replace firegrass for people who are already using it."
+        "What do I recommend?"
+        menu:
+            "Push for Brennan to change the amount of hours miners can work.":
+                him "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
+                her "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
+                him "Reducing their work hours should discourage them from using it more."
+                brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
+                $ miners += 1
+                $ work_fewer_hours = True
+                jump educational_app
+            "Grow more tea plants.": #change to green tea
+                him "Let's make tea plants a priority this growing season."
+                him "If we plant them around the same time, we can process them together too."
+                pavel "I'm interested in making black tea with the leaves."
+                him "Sounds good. Maybe some people will like black tea more than green tea."
+                $ colonists += 1
+                $ grow_more_tea = True
+                jump educational_app
+            "Don't do anything.":
+                him "I don't think it's our job to tell people how to live."
+                him "Let them use firegrass if they want to."
+                her "Part of my job is telling people the correct dosage for drugs to take and taking care of people who use too much."
+                her "I'd much prefer to prevent people from using too much firegrass to begin with."
+                $ luddites += 1
+                jump educational_app
+        label educational_app:
+            her "I'd like to work with Oleg on making that app. Pavel, can you provide us some credits so I can pay him?"
+            pavel "I can provide you with some, but I think that some of this should come from Brennan's budget, since miners are the biggest users of firegrass."
+            brennan "I think you vastly underestimate the amount of colonists who use it. But this is important and I want to show my support."
+            brennan "[her_name], how much do you think it will cost?"
+            her "I need to talk to Oleg about that, so I'll message you both a budget estimate next week."
+            "She ended the meeting with a summary of what we'd talked about."
+            "Many people pitched in to help Carol and her family."
+            "Natalia watched Carol's children in the day while Sara took Carol on a tour of the different jobs in the colony."
+            "For a while it seemed like even our best efforts weren't helping, and Carol blamed herself for not being appreciative enough."
+            "[her_name] gave Carol medicine to help with her depression, and Sara taught her coping techniques."
+            "Carol's insomnia and depression were never completely cured, but we helped her endure through this episode of it."
+            if work_fewer_hours:
+                "Brennan changed the shift schedule from 12 to 8 hours, and set a maximum of sixty hours of working per week."
+                "Some of the miners made a soccer team, and a few took on jobs outside of mining."
+                jump after_firegrass_26
+            elif grow_more_tea:
+                "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
+                "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
+                "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
+                jump after_firegrass_26
+            else:
+                jump after_firegrass_26
+
+    else:
+        "After she presented to the town council, she worked with Oleg to make an informational app about firegrass use."
+        #better alt?
+        jump after_firegrass_26
+
+    # better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
+label after_firegrass_26:
+    "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
+    "This year it seemed like they anticipated [her_name]'s research on meat, even though the shuttle had been sent years beforehand."
+    "Ilian called a meeting to discuss the changes that came with the shuttle."
+    ilian "The shuttle this year came with equipment and recipes for growing synthetic meat."
+    ilian "Some of you may have tried some in the shuttle on the way over but the instructions say that the flavor has improved considerably."
+    thuc "Well, that wouldn't take much."
+    ilian "We're also to stop eating chicken, turkey, and cow meat and to use the synthetic meat as a replacement."
+    him "Can we still eat native meats?"
+    ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
+    if study_published_26:
+        ilian "You may have read [her_name]'s study about Pete's cattle having cancer and their meat possibly being carcinogenic."
+        ilian "RET had come to similar conclusions seven years ago, not just about Pete's cattle, but any animals that are exposed to high UV radiation regularly."
+    else:
+        ilian "Seven years ago RET completed several research studies that led them to believe that the meat of any animal exposed to high UV radiation is carcinogenic."
+    if thuc_has_cattle:
+        thuc "Well, there goes two-thirds of my income."
+    else:
+        ilian "After I go to all the trouble to learn how to breed these things..."
+    ilian "Also, sending cows to Talaam was a very unpopular decision with environmenal agencies, and RET has made agreements to reduce our cattle herds to zero."
+    thuc "Zero? That seems a little extreme."
+    ilian "Well, that's the final goal. They expect us to halve our herd in two years."
+    if thuc_has_cattle:
+        thuc "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
+        ilian "You can start by building the laboratory to grow the meat in."
+    else:
+        ilian "I'll be heading up the synthetic meat production, which will be in a laboratory building we'll build near the storehouse."
+    ilian "I'm going to to a demonstration for you here which shows you how the meat is grown."
+    "Ilian showed us a petri dish.'" #find a picture of a petri dish
+    ilian "This is where we grow the meat from bovine stem cells. Every day I feed it a little food, or growth culture."
+    ilian "We sprinkle a little xantham gum on top to prevent fungal growth."
+    ilian "Workers in the lab will feed the cells and eventually start stretching them out to make the texture more appealing."
+    ilian "You can all try a sample here so you know what to expect."
+    sara "Hmm, the texture is good. It doesn't have a strong taste."
+    ilian "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
+    "Hmm. I could live with this. Do I want to?"
     menu:
-        "Warn the luddites and the miners" if ((luddites >= 12) and (miners >=12)):
-            #TODO: test these numbers
-            $ miners += 1
+        "Keep buying beef from Pete.":
+            "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
+            "[her_name] didn't eat it."
+            $ keep_buying_pete_beef = True
             $ luddites += 1
-            "You warn both the luddites and the miners."
-        "Warn the luddites." if (luddites >= 12):
-            $ luddites += 1
-            "You warn the luddites."
-            "The luddites are starting work on building water barriers around their winter homes. They've planted lots of guords so they can fill them with water when they're dry."
-        "Warn the miners." if (miners >= 12):
-            $ miners += 1
-            "You warn the miners."
-        "I won't warn anyone.":
-            $ pass
-    return
+            return
+        "Eat as much synthetic meat as possible.":
+            "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
+            $ stop_buying_beef = True
+            $ colonists += 1
+    if (luddites > 8):
+        "Pete stopped by to chat one sunny day while I was sowing some new seeds."
+        pete "How's it going?"
+        him "Not bad. I'm optimistic about this new crop."
+        him "How are you?"
+        pete "The clouds still drop rain and wolfslugs still fear me."
+        pete "But I haven't been selling as much firegrass or beef lately. Did some people make an 'avoid-Pete' club?"
+        him "No, nothing so extreme."
+        him "One of the miners was a heavy user of firegrass for a few years, and it started to really impact her sleep and mental health."
+        him "A bunch of us tried to educate people about its dangers and discourage them from abusing it."
+        pete "Hmm. That's not what I heard."
+        pete "I heard that someone is selling firegrass for cheaper than I am. So now everyone gets it from him instead of me."
+        if stop_buying_beef:
+            pete "And I heard that you're growing your own meat now."
+            if pete_knows_his_cows_have_cancer:
+                pete "I guess it was only a matter of time, seein' how my cows are sick and all."
+                pete "I still don't understand why them having cancer makes them bad to eat. That's not how cancer works."
+            else:
+                pete "What gives?"
+                him "Your cows and all our Earth creatures we eat for meat have cancer and eating them can give cancer to humans."
+                pete "That's not how cancer works. Eating a cancerous cell doesn't give you cancer."
+            him "How do you know?"
+            pete "Simple biology! Dead cells don't affect living ones."
+            him "They do if you eat those dead cells!"
+            pete "I can tell I'm not persuading you. I might just have to invest more in my fish farms. Those are okay to eat still, right?"
+            him "Yeah, the water diffuses the radiation."
+            pete "Let me know if you want some next time I come 'round"
+        else:
+            pete "I heard that you're growing meat in a lab now."
+            pete "Except you apparently prefer my beef."
+            him "Even if it is carcinogenic, it adds so much to my life satisfaction that I don't mind dying a little earlier."
+            pete "I doubt it's true. You don't get cancer from eating cancerous cells."
+            pete "If that were true I would have arthritis and bloating and all the other things my cattle suffered from before I ate them."
+            pete "Instead I just have high blood pressure."
+            him "Really? You seem so healthy."
+            pete "I know you guys think I'm sitting on a bundle of credits but they all go to medicine these days."
+            him "Well, I hope your fish are lucrative."
+        return
 
 
 label community27:
-    "Fire grass has some long-term side effects. Insomnia is a big problem."
-    #depending on your relationship levels, different people ask you for help.
-    "What do I advise? They aren't even using it anymore."
+    #JELLYPEOPLE RECKONING
+    #if community_22_mining_stopped, the gathering of shells was more intense
+    "It was time for our now-annual trip to the ocean."
+    "When we got there, we were surprised to see more fish than usual."
+    "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
+    "I looked at one of the farms, and the nets had been cut."
+    him "I wonder if this is Pete's work?"
+    "We took a boat out to go fishing past the pier."
+    "[kid_name] wanted to play with a jellysquid. We spent a long time searching."
+    "I thought I saw one and got out of the boat. The ocean was more shallow than I thought and I was able to stand up."
+    "We got a jellysquid in a bucket."
+    "The jellysquid wasn't displaying the reading game on its tablet-like shell like it had years before. Instead it said 'Grown-ups only! Needs permission to access more content.'"
+    "'2+3 = ?'"
+    "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking a GPS, but it didn't adjust to my exact location."
+    "I was pretty curious, so I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
+    "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
+    "Something under the surface was emitting a light. Jellystars joined in a chain and touched the jellysquid in my bucket."
+    "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
+    "Then the surface changed to the words 'hold me to neck to reply.' "
     menu:
-        "Read a book.":
-            $ pass
-        "Work through it.":
-            $ pass
-        "Ask a doctor.":
-            $ miners += 1
-            #the doctor might suggest biofeedback exercises
-    return
+        "Run away.":
+            him "That doesn't sound very safe."
+            him "Let's go home"
+            "I tried to leave, but the jellystars kept my boat from moving."
+            "They capsized my boat, and I fell into the water."
+            "We grabbed onto the boat and tried to turn it over."
+            if ate_jellyfish AND touched_jellystar_25:
+                "A jellysquid slapped my neck, and I felt the rage and saddness of a bereaved mother."
+                "And now I was leaving her without any sort of explanation."
+            "[kid_name] slapped the jellysquid off with an oar."
+            kid "Come on Dad! Flip the boat with me!"
+            "After flinging away a few jellystars, we flipped the boat."
+            "I helped [kid_name] in"
+            kid "Just hang on the side while I try to get us away!"
+            him "Okay go for it!"
+            "Her oars set some of the jellystars flying, and eventually we were close enough to shore for me to stand up."
+            kid "That was unreal."
+            return
+             #more detail for more excitement
+        "Comply":
+            "I put the jellysquid up to my neck and it encircled me in a squid half-hug."
+            if ate_jellyfish AND touched_jellystar_25:
+                "At first I didn't feel a change, but then I noticed that it felt like a part of my brain was really concerned about jellysquid and the shells."
+                "It was like I was remembering something I had learned about jellysquid, but I must have been learning it from the creature below the surface."
+                "Jellysquid were playful, intelligent life forms, but only a stepping stone to reach yet another form."
+                if community_22_mining stopped: #inflation and jellysquid hunting for their shells
+                    "I saw jellysquid meat floating in a mass after their shells were harvested, and a heart-gripping emotional pain."
+                "The inquiry about the jellysquid shells was constant, with the imagery of floating, dead jellysquid and their net enclosures coming up again and again like an obsessive thought over a gorey cut or an oozing rash."
+                "I saw baby jellysquids eating sand, but growing opaque shells that they couldn't communicate through."
+                "They couldn't join together to reproduce without this communication."
+                "I didn't know how to think in imagery very well. How would I explain that rare metals from the shells were necessary for creating expensive electronics on Earth? Electronics that gave us ways of improving healthcare, manufacturing, and communication?"
+                "How could I explain that these things helped my species survive, so we valued it more than their quality of life?"
+                "I spent some time in ethical reflection, and then I had a vision of my boat being shattered by the jellystars and my body being dragged underwater."
+                "The jellystars would eat my bones as revenge for what happened."
+                "No! My will to live was strong, as was my sympathy for the jellysquids."
+                "I pictured a coast with vanishing jellysquid farms, and humans in playful cooperation with jellysquid."
+                "How did they learn English anyway?"
+                "Dr. Lily came to mind, and I saw an image of her showing her tablet to the jellysquid underwater."
+                "The jellysquids played with the tablet, learning to replicate letters on their back, through her guidance..."
+                "...which continued after she... became a jellysquid person?"
+                "I was having trouble making sense of the imagery. I saw Dr. Lily in a boat, taken to a nexus of jellystars, like I had been."
+                "She joined with the jellysquid and never left, her boat and body eventually sinking."
+                "I thought of my family and friends, and the community I'd worked so hard to keep together." #could make this based off highest relationship values
+                "I had to go back and tell everyone what I'd learned."
+                "The jellysquid released me and I put it back into the ocean."
+                "The jellystars pushed us back towards the shore, which we reached after a bit of rowing." #chat with Terra here
+                return
+            else:
+                "I didn't feel anything change."
+                "I looked down at the jellysquid and saw 'ERROR' flashing."
+                "I tried to manipulate the words on the shell, but it was unresponsive."
+                #or, the same as above, but his sympathy for the jellysquid isn't high enough to convince them that he'll protect them. Terra saves you by removing the jellysquid.
+                return
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.
+# Pete has fewer credits to buy medicines with, including birth control. Helen is now pregnant and in her 40s?
 label community28:
+    # $ against_euthanasia = False
+    # $ no_euthanasia_26 = False
+    # her "There isn't a guideline about euthenasia in RET's health manual."
+    # menu:
+    #     "See if there's a way to approve euthenasia.":
+    #         him "Wow. It sounds like you should make a case for doctor-assisted suicide to the town council."
+    #         her "That's what I plan on doing."
+    #     "Give her hope.":
+    #         him "Maybe it won't progress in the same way as the genetic incomnia disorder."
+    #         him "You should encourage her to endure it a little longer."
+    #         her "For what? For science? I've tried everything I possibly could to relieve her suffering."
+    #         her "I'm going to present my case to the town council."
+    #         $ against_euthanasia = True
+#        her "So far, her symptoms have been the same as fatal familial insomnia. If she continues in this patter, she will be completely unresponsive in a month and die in seven months."
+#        her "She has requested that I help her end her life before that stage."
+#        her "In order for us to keep her alive during her last six months, she will need supervision around-the-clock. I could not supervise her during my regular hospital hours. My assistant could watch her half of her normal hours, but it would decrease the amount of preventative care visits she makes."
+#        her "Do you have any questions before we put this to a vote?"
+#        pavel "Has she made the request for euthanasia in writing?"
+#        her "No, but I have a recording of her request and a test result that shows she is oriented to time, place, and circumstance."
+#        if against_euthanasia:
+#            him "We don't know for sure if she will die. I don't think she should give up so quickly."
+#            her "She has been suffering intensely for a year. How long would be long enough?"
+#            him "At least another six months so we can see if the disease progresses the same way as the familial insomnia."
+#            her "And who will supervise her during those six months? She could easily kill herself by wandering away or eating something inedible."
+#            menu:
+#                "I could help":
+#                    him "I could supervise her eight hours a day."
+#                    her "I don't think that's a good idea. And who would take the other sixteen hours in a day?"
+#                    $ marriage_strength -= 1 #not sure if you want this variable to have minuses?
+#                    sara "She could stay with us from dinner until 1am. We usually stay up that late anyway."
+#                    pavel "I'm usually awake in the early morning after 4am. I could wake up earlier."
+#                    her "This isn't necessary. She doesn't want to be dependent on others for the last six months of her life."
+#                    him "I don't want to live in the kind of place where people have to die just because they aren't useful anymore."
+#                    her "It's completely voluntary. I didn't even suggest it before she brought it up."
+#                    pavel "I agree with [his_name]. I want to take care of our sick and elderly."
+#                    her "Sara?"
+#                    sara "I do think her desire is important, but it could bring everyone together if we work together to essentially give her hospice care."
+#                    her "Brennan?"
+#                    brennan "I don't see any reason to keep her alive against her wishes, but it appears we are in the minority."
+#                    her "Sara, what is your final vote?"
+#                    sara "Let's take care of her."
+#                    $ no_euthanasia_26 = True
+
+#                 "I'm sure someone could help.":
+#                     him "I don't know, but we haven't even asked yet."
+#                     her "It's completely unneccessary."
+#                     her "Most people already feel overworked. It's not fair to ask them to do more for someone who doesn't even want people taking care of her."
+#                     pavel "I agree with [her_name]. It's not fair to assume that other people will volunteer their time when you're not willing to yourself."
+#                     pavel "How about you have this miner give her consent for euthanasia again next week to make sure her desire wasn't a fleeting one."
+#                     brennan "I agree with Pavel."
+#                     her "Sara?"
+#                     sara "I think Pavel's compromise is a good one. In the meantime I would like to visit with her during her next visit."
+#                     her "I'll ask if she'd like to meet with you."
+#         else:
+#             him "I'd say have her consent one more time a month later, just to make sure it wasn't a passing suicidal urge."
+#             pavel "Yes, that sounds like a reasonable plan."
+#             her "Okay, I'll see if I can get another consent next week. Sara and Brennan, how do you feel about it?"
+#             brennan "Fine with me."
+#             sara "I'd like to meet with her myself sometime, but overall, I agree with the consensus we have here."
+#             her "Okay. I'll ask her if she'd like to meet with you."
     "Everyone around Mayor Grayson has noticed that his mental state has been declining."
     "When he is in one of his lucid moments, he decides to step down from his position as mayor."
     "He asked me to not let him be a burden on the colony."
     "I schedule a town meeting with the other colonists to decide who the new mayor should be."
     "Also... who is going to take care of Mayor Grayson?"
-    #TODO:Go to past if_liason events and have some consultation with the mayor so that it's more clear what the mayor actually does. He makes decisions that will help the colonists the most in the long run.
     "Colonists are divided about if the new mayor should be a farmer with firsthand experience of growing food, or someone more detached from farming."
     "They decide on some basic qualifications and reconvene the next night to decide."
     "The next evening, some miners arrive and ask why they weren't invited?"
@@ -4129,7 +4927,7 @@ label community28:
         "Assign him to a family and let him 'help' with the community daycare.":
              $ pass
              #is there a family that wants to take him in?
-        "The colony doesn't have the resources to look after him. Give him a humane death." if (colonists <= 8):
+        "The colony doesn't have the resources to look after him. Give him a humane death." if (colonists <= 8): #only available if you did euthanasia above
              $ colonists -= 1
         "Ask Mayor Graysen what he wants.":
              $ pass
@@ -4143,7 +4941,7 @@ label community29:
     "They give permission to use force against the luddites if they are hindering mining operations."
     #it goes to both the liason and the head miner. If you're not the liason, Sara calls a town meeting to discuss it.
     if ((luddites >= 12) and (miners >=12)):
-        "Are the luddites getting out of hand?" #this is wrong, but I don't know what is right! do I use a jump command? I think there is a way to display text based on stats, but I can't remember.
+        "Are the luddites getting out of hand?"
     "I explain to RET that force isn't necessary"
     if ((luddites <= 5) and (miners <=5)):
         "I hear gunshots. The miners are attacking the luddites!?"

@@ -6,7 +6,7 @@ init -100:
     # Static layout variables
     define LEFT_COLUMN_WIDTH = 320
     define MIDDLE_COLUMN_WIDTH = 480
-    define RIGHT_COLUMN_WIDTH = 182
+    define RIGHT_COLUMN_WIDTH = 320
     
     # Static indices that will never change
     define MAX_FARM_SIZE = 25
@@ -25,12 +25,20 @@ init -100:
     define CROP_STATS_MAX = 10
 
     # Calorie data
-    define CALORIES_BASE = 50   
+    define CALORIES_BASE = 50
+    define NUTRITION_BASE = 50
+    define WORK_BASE = 60
+    
+    # GUI display sizes
+    define CROP_ICON_SIZE = 50
+    define CROP_LAYOUT_BAR_SIZE = CROP_ICON_SIZE + 8
+    define CROP_LAYOUT_BAR_WIDTH = CROP_ICON_SIZE / 10
     
     # Static variables used for endings
-    define ATTACHMENT_GOOD = 20
-    define COMPETENCE_GOOD = 20
-    define INDEPENDENCE_GOOD = 20
+    # TODO: Tweak these so all endings are possible.
+    define ATTACHMENT_HIGH = 45
+    define COMPETENCE_HIGH = 45
+    define INDEPENDENCE_HIGH = 30
     
     define MAX_YEARS = 30
     

@@ -76,6 +76,7 @@ label squash1:
                 $ pass # takes a lot of work
         "Ask to borrow some bees":
                 $ pass # only successful if community level high enough?
+                # Only allow if you got bees in work3?
         "Forget the squash for this season":
                 $ pass # less food to eat
     return
@@ -115,10 +116,13 @@ label goats1:
     return
                 
 label goats2:
-    "Make goat cheese or something."
+    "Making sausage out of goat/crabird meat. Charcuterie!"
     return
         
 label goats3:
+    "Making goat cheese?"
+    
+label goats4:
     "Your goats get out and destroy some neighboring farm land of someone else. What do you do?"
     return
     
