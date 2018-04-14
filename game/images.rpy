@@ -30,6 +30,8 @@ init -10:
 
     image ctc_blink:
            "gui/ctc.png"
-           linear 0.75 alpha 1.0
-           linear 0.75 alpha 0.0
+           linear 0.5 alpha 1.0
+           pause 0.25
+           linear 0.5 alpha 0.0
+           pause 0.25
            repeat
