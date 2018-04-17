@@ -4582,7 +4582,7 @@ label community26:
             her "A few years ago, I gave miners recommended doses, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
             her "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
-        her "I think we should discourage the use firegrass somehow. I don't want to see any more cases of insomnia and depression."
+        her "I think we should discourage the use of firegrass. I don't want to see any more cases of insomnia and depression."
         brennan "I also don't want to see that. I don't think outlawing firegrass will stop people from using it."
         brennan "Pete is going to sell firegrass no matter what we decide."
         her "So how would you cut down on firegrass use?"
@@ -4686,6 +4686,7 @@ label after_firegrass_26:
     ilian "We're also to stop eating chicken, turkey, and cow meat and to use the synthetic meat as a replacement."
     him "Can we still eat native meats?"
     ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
+    # TODO: what about milk/eggs?
     if study_published_26:
         ilian "You may have read [her_name]'s study about Pete's cattle having cancer and their meat possibly being carcinogenic."
         ilian "RET had come to similar conclusions seven years ago, not just about Pete's cattle, but any animals that are exposed to high UV radiation regularly."
@@ -4712,6 +4713,7 @@ label after_firegrass_26:
     sara "Hmm, the texture is good. It doesn't have a strong taste."
     ilian "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
     "Hmm. I could live with this. Do I want to?"
+    # TODO: have a choice where this affects your goat herds somehow (less nutrition?)
     menu:
         "Keep buying beef from Pete.":
             "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
