@@ -192,11 +192,15 @@ screen crops_layout:
             vbox:
                 hbox:
                     $ current_crop_name = farm.crops[i]
+                    $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
+                    $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX]
+                    $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
+                    $ tint_factor = (current_nitrogen_level / float(Field.NITROGEN_FULL))
                     frame:
-                        if (crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX] > farm.health[i][Field.NITROGEN_LEVEL_INDEX]):
+                        if (nitrogen_usage > current_nitrogen_level):
                             background red_dark
                         else:
-                            background tan_dark
+                            background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor)))
                         $ imagefile = "gui/crop icons/" + current_crop_name + ".png"
                         imagebutton:
                             idle imagefile
@@ -206,25 +210,24 @@ screen crops_layout:
                             align  (0.5, 0.5)
                             action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
 
-                    $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
-                    $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX]
-                    $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
-
-                    use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
+                    # use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
                     bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
                     # TODO: use a tricolor bar here, too? Or show as bugs in background of field?
 
                 # history
-                hbox:
-                    $ history_icon_size = CROP_ICON_SIZE // 2
-                    for past_crop in range(0, Field.HISTORY_SIZE):
-                        $ past_crop_name = farm.history[i][past_crop]
-                        $ imagefile = "gui/crop icons/" + past_crop_name + ".png"
-                        add imagefile size (history_icon_size, history_icon_size)
+                use history_box(i)
+
+screen history_box(index):
+    hbox:
+        $ history_icon_size = CROP_ICON_SIZE // 2
+        for past_crop in range(0, Field.HISTORY_SIZE):
+            $ past_crop_name = farm.history[index][past_crop]
+            $ imagefile = "gui/crop icons/" + past_crop_name + ".png"
+            add imagefile size (history_icon_size, history_icon_size)
 
 screen crops_totals:
     vbox:
-        $ calories_needed = get_calories_required()      
+        $ calories_needed = get_calories_required()
         $ nutrition_needed = get_nutrition_required()
         $ total_max = farm_size * CROP_STATS_MAX
         $ total_calories = 0
@@ -248,7 +251,7 @@ screen crops_totals:
         use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
         text "Work:         " + str(total_work) + " / " + str(get_work_available())
         use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        
+
         if (year >= 5):
             text "Value:          ¤ " + str(total_value)
             # TODO: show this better, show savings, etc.
@@ -286,7 +289,7 @@ screen tricolor_bar(current_value, new_value, max_value, display_max_size, displ
         vbox:
             spacing 0
             bar value display_value range display_range style display_style xsize display_min_size ysize display_size
-            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size) 
+            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size)
     else:
         hbox:
             spacing 0
@@ -319,13 +322,13 @@ init python:
         global farm
         farm.reset_crops()
         return
-        
+
     def set_kid_work(new_value):
         global kid_work_slider
         kid_work_slider = new_value
         renpy.restart_interaction()
         return
-        
+
 
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
@@ -426,7 +429,7 @@ style increased_bar is crop_layout_bar:
 style decreased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
     bottom_bar Frame(Solid(red_med))
-    
+
 style increased_bar_horizontal is crop_layout_bar:
     right_bar Frame(Solid(gray_light))
     left_bar Frame(Solid(green_dark))
