@@ -8,6 +8,7 @@
 screen plan_farm:
     tag plan_farm
     style_prefix "plan_farm"
+    $ valid_layout = farm.is_valid_layout()
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
@@ -46,8 +47,10 @@ screen plan_farm:
                                             set_default_crops,
                                             renpy.restart_interaction
                                         ]
-                            textbutton "Accept Plan": # TODO: Can't continue if not enough nutrition/etc?  At least give warning? Must allocate land for all goats?
+                            textbutton "Accept Plan": # TODO: Can't continue Must allocate land for all goats?
+                            # TODO: What if no valid layout is possible? Have emergency help button?
                                 xalign 1.0
+                                sensitive valid_layout
                                 action Return()
 
 label monthly_computer:
@@ -258,7 +261,7 @@ screen crops_totals:
 
         text " "
         if (year > 6):
-            label "[kid_name]'s Time"
+            label "Kids' Assignment"
             bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
             hbox:
                 xfill True

@@ -88,6 +88,7 @@ init python:
                 self.history[i] = [self.crops.items[i]] + self.history[i][0:-1]
             return
 
+        # Return how much work the current field takes
         def get_total_work(self):
             total_work = 0
             for i in range(0, self.crops.len()):
@@ -95,6 +96,40 @@ init python:
                 index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
                 total_work += crop_info[index][WORK_INDEX]
             return total_work
+
+        # Return how many calories the current field gives
+        def get_total_calories(self):
+            total_cals = 0
+            for i in range(0, self.crops.len()):
+                crop_names = [row[NAME_INDEX] for row in crop_info]
+                index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
+                total_cals += crop_info[index][CALORIES_INDEX]
+            return total_cals
+
+        # Check if the current farm layout is valid.
+        # To be valid, we need no crops that would use more nitrogen than is available
+        # and we need enough calories.
+        # We also need all goats allocated.
+        def is_valid_layout(self):
+            valid_layout = True
+            # Check if this nitrogen is valid
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i]
+                nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
+                current_nitrogen_level = self.health[i][Field.NITROGEN_LEVEL_INDEX]
+                if (nitrogen_usage > current_nitrogen_level):
+                    valid_layout = False
+
+            # Check goats
+            if (self.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
+                valid_layout = False
+
+            # Check calories
+            total_cals = self.get_total_calories()
+            if (total_cals < get_calories_required()):
+                valid_layout = False
+
+            return valid_layout
 
     ##
     # CROPS OBJECT
