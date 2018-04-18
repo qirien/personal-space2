@@ -78,9 +78,19 @@ init python:
             return final_yield
 
         # Reset the crops for a new year.
-        # TODO: keep perennials
         def reset_crops(self, size=MAX_FARM_SIZE):
-            self.crops = Crops(size)
+            new_crops = Crops(size)
+            for i in range(0, self.crops.len()):
+                crop_index = get_crop_index(self.crops[i])
+                crop_name = self.crops[i]
+                print str("resetting crop: " + crop_name)
+                if (crop_info[crop_index][PERENNIAL_INDEX]):
+                    if (crop_name[-1] != "+"):
+                        new_crops[i] = crop_name + "+"
+                        crop_info[crop_index][MAXIMUM_INDEX] -= 1
+                    else:
+                        new_crops[i] = crop_name
+            self.crops = new_crops
 
         # Update the crop history in preparation for a new year.
         def update_history(self):
@@ -156,17 +166,19 @@ init python:
         def setDefault(self):
             available_crop_names = []
             for i in range(0, len(crop_info)):
-                if (crop_info[i][ENABLED_INDEX]):
+                if (crop_info[i][ENABLED_INDEX] and (crop_info[i][MAXIMUM_INDEX] > 0)):
                     available_crop_names.append(crop_info[i][NAME_INDEX])
 
             for i in range(0, farm_size):
-                crop_name = renpy.random.choice(available_crop_names)
-                self[i] = crop_name
+                # If it's a perennial, keep it.
+                # Otherwise, fill it randomly
+                if (self[i][-1] != "+"):
+                    crop_name = renpy.random.choice(available_crop_names)
+                    self[i] = crop_name
 
-                # If we've reached the max, remove this crop from the ones that can be chosen
-                # TODO: This is no longer working.
-                if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
-                    available_crop_names.remove(crop_name)
+                    # If we've reached the max, remove this crop from the ones that can be chosen
+                    if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
+                        available_crop_names.remove(crop_name)
             return
 
         # Return a random crop from our field

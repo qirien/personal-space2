@@ -1,7 +1,6 @@
 # Farm Planning Screen
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 #
-# TODO: Support permanent plants, such as plums, goats?
 # TODO: Get some graphics and pretty this up
 # TODO: show kids' ages and farm/community info
 
@@ -47,7 +46,7 @@ screen plan_farm:
                                             set_default_crops,
                                             renpy.restart_interaction
                                         ]
-                            textbutton "Accept Plan": # TODO: Can't continue Must allocate land for all goats?
+                            textbutton "Accept Plan":
                             # TODO: What if no valid layout is possible? Have emergency help button?
                                 xalign 1.0
                                 sensitive valid_layout
@@ -133,7 +132,6 @@ screen crops_available:
         hbox:
             grid 2 5:
                 # TODO: Make each of these a different color and have a key so they take up less room.
-                # TODO: Add Nitrogen usage (pest effect?)
                 text "Calories: "
                 bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                 text "Nutrition: "
@@ -165,8 +163,8 @@ screen crops_available:
             side_xalign 0.5
 
             for j in range(0, len(crop_info)):
-                # only show currently enabled crops
-                if (crop_info[j][ENABLED_INDEX]):
+                # only show currently enabled crops where we haven't planted the maximum yet
+                if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0)):
                     $ crop_name = crop_info[j][NAME_INDEX]
                     $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
                     $ imagefile = "gui/crop icons/" + crop_name + ".png"
@@ -204,9 +202,10 @@ screen crops_layout:
                             background red_dark
                         else:
                             background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor)))
-                        $ imagefile = "gui/crop icons/" + current_crop_name + ".png"
+                        $ imagefile = "gui/crop icons/" + current_crop_name.rstrip("+") + ".png"
                         imagebutton:
                             idle imagefile
+                            sensitive (current_crop_name[-1] != "+")
                             hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                             xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                             anchor (0.5, 0.5)
@@ -267,7 +266,6 @@ screen crops_totals:
                 xfill True
                 text "Free Time"
                 text "Work" xalign 1.0
-        # TODO: add one for bro also?
 
 
 # Screen to show a bar with three values. Show the values in a different color
