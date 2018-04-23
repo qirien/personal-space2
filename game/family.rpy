@@ -584,7 +584,7 @@ label family3:
     him happy "That sounds great! I love camping!"
     "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug." # TODO: animate this?
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
-    kid "Outside!"
+    kid "Ow sai!"
     "She squirmed to get down, then toddled over the door and banged on it with her hands."
     her concerned "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
     him normal "I know the perfect spot! Let's go tonight!"
@@ -673,7 +673,7 @@ label family3:
             $ responsive += 1
             $ demanding += 1
             $ authoritative += 1
-        "Don't let her put them in her mouth.":
+        "Don't let her put the sticks in her mouth.":
             him determined "No no, [her_name]. Not in your mouth."
             "She went for them again, but I held her back."
             him determined "You can't just put everything your mouth. No."
@@ -692,7 +692,7 @@ label family3:
             "[kid_name] gnawed on it a little more. She could make better progress now that there were some uneven surfaces to work with, but eventually she threw it in the dirt again."
             $ demanding += 1
             $ authoritarian += 1
-        "Let her mouth them. It's good for her immune system, right?":
+        "Let her chew on the sticks. It's good for her immune system, right?":
             him normal "Those sticks are fine. They're not poisonous."
             her concerned "But, they're really dirty! She's going to get sick. Animals have probably peed all over them."
             him annoyed "We're outside. That's a totally normal thing."
@@ -5398,13 +5398,124 @@ label family22:
                     him normal "I'll always love you, [bro_name], even if you make mistakes."
                     "He didn't say anything, but we hugged for a long time."
                 "Demand that he look at you.":
+                    $ demanding += 1
                     him angry "Look at me when I'm talking to you!"
                     "He turned his head slowly, focusing on my lips."
                     him determined "I don't want you stealing ever again. Do you understand."
                     "He nodded."
                     him concerned "Good."
 
-    # TODO: SOme other event.
+    "The next day we had a quiet and uneventful dinner. I tried to start a conversation."
+    him "How was school?"
+    "[bro_name] shrugged."
+    kid "Fine."
+    "After an awkward silence, [her_name] tried again."
+    her "How's Anya doing?"
+    kid "Okay. She bombed our last math test but she doesn't really care."
+    her surprised "Really?"
+    kid "Math's not her thing. She's working on some really cool art, though."
+    him surprised "What does she draw?"
+    kid "Animals, mostly. She's got this beautiful jellysquid one that she's going to color, and maybe even print out if she can get the money."
+
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
+        him "How come you never draw anymore?"
+        kid "Because I suck at it."
+        him "You just need more practice. If you work hard, you can get good at anything."
+        "[kid_name] didn't say anything but I could tell from her face that she didn't believe that."
+        her "Anyway, I've got some charts I really should look through this evening."
+        "[bro_name] and [kid_name] did the dishes while [her_name] and I worked side by side on our different jobs."
+        "I remembered the days when [her_name] and I used to come home and play video games together; now it seemed like there was always too much work to do."
+        "We were so busy, we didn't have much time to just hang out."
+        "But at least we were together."
+    elif (parenting_style == "authoritative"):
+        him determined "I thought the miners had plenty of money."
+        kid "Her parents do. Anya doesn't."
+        him surprised "Not even enough to print out art?"
+        kid "No. They don't buy her anything. I don't think they buy much for themselves, either, except firegrass."
+        her concerned "Maybe they're saving up for something for when they go back to Earth."
+        him determined "I still think it's weird that some people don't want to stay here."
+        her flirting "Not everyone is in love with alien farms like you."
+        him flirting "I don't know what you're talking about! I'm only in love with you."
+        kid "Anyway, I'm done with my homework. It was pretty easy."
+        bro "I'm done, too."
+        him happy "We should do something together!"
+        her concerned "I was going to go over some patients' charts..."
+        extend "but that can wait. What should we do?"
+        menu:
+            "We should play a game together.":
+                him "We should play a game together!"
+                kid "As long as it's not something stupid."
+                bro "Chess!"
+                kid "Not chess!"
+                her "Chess is fun, but it's a two player game."
+                bro "We can play four player!"
+                him "We only have one chess set..."
+                kid "I hate chess!"
+                her "Pictionary?"
+                him "You always win!"
+                her "Then let's do kids against adults."
+                kid "Oh yeah!"
+                bro "I'm not that good at drawing..."
+                kid "You don't have to be good, just fast! C'mon, [bro_name], we can totally beat them!"
+                bro "Okay..."
+                "We played a few rounds of pictionary. The kids did surprisingly well, and I liked the game a lot better when [her_name] was on my team."
+            "We should go for a walk.":
+                him "The weather's nice; let's go for a walk."
+                kid "But I'm tired!"
+                bro "I'm not swimming!"
+                her "The river's not that far. And you don't have to swim. Bring a book if you're worried you'll get bored, [her_name]."
+                him "I'll bring my net; maybe I can catch something!"
+                her "We just had dinner..."
+                him "Then this'll be dessert!"
+                "We walked down to the river. I caught a tiny lobster-looking creature, but it was so small, I just threw it back."
+                bro "Stop splashing me!"
+                kid "Ha ha ha, it looks like you peed your pants."
+                bro "Moooom!"
+                her "[kid_name], trade pants with [bro_name]. You know he doesn't like to be splashed."
+                kid "What? No way! His pants won't fit me! I'm not walking back to the house naked!"
+                her "We'll untie the waistband and you can wear them."
+                bro "Ha ha, that looks really funny."
+                kid "Stop making fun of me!"
+                him "It does look pretty funny. But you'll be okay; we'll be home soon."
+                her "Here, you can wrap my jacket around your waist if you want."
+                kid "Fine. Ugh, nobody here can take a joke!"
+                him "Next time you should splash me instead."
+                kid "You'd probably throw me in the river."
+                him "Yeah... doesn't that sound fun?"
+                kid "No!"
+            "We should watch a movie.":
+                him "We should watch a movie."
+                kid "Can we please watch 'Catacombs'? I love that show!"
+                "[bro_name] shook his head. I remember last time we watched it, he woke up in the middle of the night screaming from a bad dream."
+                her "I'll pick something everyone will like."
+                him "Good luck!"
+                her "With our huge database I'm sure I can find something!"
+                "She somehow managed to find a movie that had teen protagonists for [kid_name], wasn't too scary for [bro_name], and had deep ideas for [her_name] and I."
+                "I popped some popcorn I had been saving and we snuggled up to watch the movie together."
+    elif (parenting_style == "permissive"):
+        him "Oh, that's cool."
+        "We finished eating, and [her_name] and I did the dishes while the kids played on their computer pads."
+        bro "This level is too hard!"
+        him "Too hard?"
+        bro "I've tried it like fifty times!"
+        him "Let me see if I can help you."
+        "It was a hard level, especially for Talaam kids who weren't used to hard video games. But I beat it for him after a few tries."
+        him "Here you go."
+        bro "Thanks, dad."
+        kid "Can you help me with my math?"
+        him surprised "You're not done with your homework yet?"
+        kid "No, I was waiting for you to be able to help me with it."
+        him "Oh, well, okay."
+        "Somehow helping [kid_name] with her math homework was even more exhausting than farming. When I started falling asleep at the desk, [her_name] took over for me."
+        her "Go on to bed; I'll help her finish her homework."
+        "She didn't have to tell me twice."
+    else: # neglectful or inconsistent
+        him "Oh, okay."
+        "I left right after I finished eating."
+        "Sometimes I liked to go for a walk in the evening, just by myself. Or sometimes I'd see if Thuc or Pete wanted to hang out."
+        "Today, though, I just admired the sunset."
+
     return
 
 # 14.2 Earth years old

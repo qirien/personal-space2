@@ -142,6 +142,7 @@ label start:
                         ["broccoli",     3, 5, 4, 3, 15, False, False, 100],
                         ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
                         ["bees",         2,  2,  8, 3, 0, False, True, 1])
+                        #TODO: have an axe crop that can only be placed on perennials to chop them down?
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
@@ -225,12 +226,14 @@ label start:
     call community_intro
 
     # Initial farm setup
+    play music computer
     scene gray_dark with fade
     $ farm.reset_crops(farm_size)
     call screen plan_farm
     $ current_work = get_work_available()
     $ total_work = farm.get_total_work()
 
+    stop music
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
     "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
@@ -245,6 +248,7 @@ label start:
             $ bro_age = year - bro_birth_year
 
         # WORK EVENTS (farming)
+        play music farming
         call interscene_text(year, "Work")
         #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
         # hide screen interscene #with dissolve
@@ -252,10 +256,12 @@ label start:
         call expression work_event
 
         # FAMILY EVENTS (parenting/home life)
+        play music parenting
         call interscene_text(year, "Family")
         call expression "family" + str(year)
 
         # COMMUNITY EVENTS (building community, helping factions)
+        play music community
         call interscene_text(year, "Community")
         call expression "community" + str(year)
 
@@ -275,6 +281,7 @@ label start:
         $ renpy.notify("Autosaving...")
 
         # CHOOSE FOR NEXT YEAR
+        play music computer
         hide screen say
         scene gray_dark with fade
         $ years_yield = farm.process_crops()
