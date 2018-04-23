@@ -167,7 +167,7 @@ screen crops_available:
                 if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0)):
                     $ crop_name = crop_info[j][NAME_INDEX]
                     $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
-                    $ imagefile = "gui/crop icons/" + crop_name + ".png"
+                    $ imagefile = get_crop_filename(crop_name)
                     $ is_selected = (selected_crop_index == j)
 
                     imagebutton:
@@ -202,7 +202,7 @@ screen crops_layout:
                             background red_dark
                         else:
                             background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor)))
-                        $ imagefile = "gui/crop icons/" + current_crop_name.rstrip("+") + ".png"
+                        $ imagefile = get_crop_filename(current_crop_name)
                         imagebutton:
                             idle imagefile
                             sensitive (current_crop_name[-1] != "+")
@@ -224,7 +224,7 @@ screen history_box(index):
         $ history_icon_size = CROP_ICON_SIZE // 2
         for past_crop in range(0, Field.HISTORY_SIZE):
             $ past_crop_name = farm.history[index][past_crop]
-            $ imagefile = "gui/crop icons/" + past_crop_name + ".png"
+            $ imagefile = get_crop_filename(past_crop_name)
             add imagefile size (history_icon_size, history_icon_size)
 
 screen crops_totals:

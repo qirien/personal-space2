@@ -13,6 +13,10 @@ label start:
     # Initialize dynamic variables that need to be saved with saved game state.
     # These have to be here instead of in an init block to tell Ren'Py that they will change and should be saved with the game state.
 
+    # GAME ENGINE
+    python:
+        save_name = "Intro"
+
     # PARENTS
     python:
         # Demanding and Reponsive may change by more or less than 1 each year
@@ -123,12 +127,12 @@ label start:
                         ["peppers",      2, 7, 5, 5, 25, False, False, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False,  100],
                         ["plums",        3, 3, 8, 7, 5, False, True, 1],
-                        ["plums+",       3, 3, 8, 2, 5, False, True, 1],    # Perennials are easier after year 1, but can't be moved
+                        ["plums+",       3, 3, 8, 2, 0, False, True, 1],    # Perennials are easier after year 1, but can't be moved
                         ["squash",       4, 5, 3, 4, 15, True, False, 100],
                         ["strawberries", 1, 2, 8, 6, 5, False, True, 2],
-                        ["strawberries+",1, 2, 8, 5, 5, False, True, 2],
+                        ["strawberries+",1, 2, 8, 5, 0, False, True, 2],
                         ["blueberries",  2, 3, 9, 9, 5, False, True, 2],
-                        ["blueberries+", 2, 3, 9, 4, 5, False, True, 2],
+                        ["blueberries+", 2, 3, 9, 4, 0, False, True, 2],
                         ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
                         ["snow peas",    3, 6, 3, 4, -35, False, False, 100],
                         ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
@@ -266,9 +270,13 @@ label start:
         call expression "community" + str(year)
 
         # Increase child stats based on this year's parenting decisions
+        scene stars with fade
+        $ notifications = ""
         call increase_attachment
         call increase_competence
         call increase_independence
+        $ renpy.notify(notifications)
+        "The year passed by like a dream..."
 
         # Reset our variables while keeping a running total
         $ total_demanding += demanding
@@ -290,5 +298,6 @@ label start:
         $ current_work = get_work_available()
         $ total_work = farm.get_total_work()
         $ year += 1
+        $ save_name = "Year %d" % year
 
     return

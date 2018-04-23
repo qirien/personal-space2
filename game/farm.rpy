@@ -202,3 +202,6 @@ init python:
         crop_names = [row[0] for row in crop_info]
         index = crop_names.index(crop_name) # find the crop's index in crop_info
         return index
+
+    def get_crop_filename(crop_name):
+        return "gui/crop icons/" + crop_name.rstrip("+") + ".png"

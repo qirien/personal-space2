@@ -40,6 +40,7 @@ style button_text is gui_text:
 style label_text is gui_text:
     color gui.accent_color
     size gui.label_text_size
+    font gui.accent_font
 
 style prompt_text is gui_text:
     color gui.text_color
@@ -114,17 +115,17 @@ screen say(who, what):
             window:
                 style "namebox"
                 text who id "who"
-        
+
     # here's our watering can MENU button
     # TODO: This doesn't hide with 'window' because it is not inside of 'window'...
-    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"                     
-           
+    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
+
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
-        
-    
+
+
 
 
 style window is default
@@ -234,7 +235,7 @@ style choice_button is button
 style choice_button_text is button_text
 style choice_chosen is choice_button:
     background "#333a"
-    
+
 style choice_chosen_text is choice_button_text:
     italic True
 
@@ -258,9 +259,9 @@ style choice_button_text is default:
 ## menus.
 
 screen quick_menu():
-    ## Setup our custom hotkeys    
-    key "q" action QuickSave() 
-    key "l"  action QuickLoad() 
+    ## Setup our custom hotkeys
+    key "q" action QuickSave()
+    key "l"  action QuickLoad()
 
     # Ensure this appears on top of other screens.
     zorder 100
@@ -659,7 +660,7 @@ screen file_slots(title):
 
                         add FileScreenshot(slot) xalign 0.5
 
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
+                        text FileTime(slot, format=_("{#file_time}%b %d %Y, %H:%M"), empty=_("empty slot")):
                             style "slot_time_text"
 
                         text FileSaveName(slot):
@@ -680,10 +681,10 @@ screen file_slots(title):
 
                 textbutton _("{#auto_page}A") action FilePage("auto") # TODO: Disable saving of Autosaves, and if loaded, make a different page the default
 
-                textbutton _("{#quick_page}Q") action FilePage("quick")
+                #textbutton _("{#quick_page}Q") action FilePage("quick")
 
                 # range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 10):
+                for page in range(1, 5):
                     textbutton "[page]" action FilePage(page)
 
                 textbutton _(">") action FilePageNext()
@@ -1047,7 +1048,7 @@ screen keyboard_help():
     hbox:
         label "L"
         text _("Load Quicksave.")
-        
+
     hbox:
         label "H"
         text _("Hides the user interface.")
@@ -1276,7 +1277,7 @@ screen notify(message):
     frame at notify_appear:
         text message
 
-    timer 3.25 action Hide('notify')
+    timer 5.25 action Hide('notify')
 
 
 transform notify_appear:
@@ -1353,7 +1354,7 @@ screen nvl_dialogue(dialogue):
 
                     text d.who:
                         id d.who_id
-                        
+
                 frame:
                     style "nvl_dialogue_frame"
                     if ((index % 2) == 0):
@@ -1387,7 +1388,7 @@ style nvl_window:
 style nvl_entry:
     #xfill True
     ysize gui.nvl_height
-    
+
 style nvl_label:
     xpos gui.nvl_name_xpos
     xanchor gui.nvl_name_xalign
@@ -1401,7 +1402,7 @@ style nvl_dialogue_frame:
     xpos gui.nvl_text_xpos
     xpadding 10
     bottom_padding 20
-    
+
 style nvl_dialogue:
     xpos 0
     xanchor gui.nvl_text_xalign
@@ -1491,7 +1492,3 @@ style slider_pref_vbox:
 style slider_pref_slider:
     variant "small"
     xsize 600
-
-
-
-
