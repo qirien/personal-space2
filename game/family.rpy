@@ -6379,17 +6379,12 @@ label family27:
             her concerned "That sounds like a lot of stress."
             him determined "If she's busy, she's not getting in trouble, right?"
             her normal "Let's hope so."
-
-    scene black with fade
-    "A few days later, Brennan asked to talk with me."
-    # TODO: where is this?
-
-
-    # TODO: event about this? Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
     return
 
 # 17.3 Earth years old
 # Terra's plans for future
+
+    # TODO: event about how Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
 label family28:
 
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices

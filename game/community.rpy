@@ -4879,6 +4879,8 @@ label community27:
 
     "'Grown-ups only! Needs permission to access more content.'"
     "'2+3 = ?'"
+    "Terra snorted."
+    kid "I guess I'm a grown-up now since I could answer that question."
     "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking a GPS, but it didn't adjust to my exact location."
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
@@ -4897,11 +4899,11 @@ label community27:
 
         "Comply.":
             "I put the jellysquid up to my neck and it encircled me in a squid half-hug."
-            if ate_jellyfish AND touched_jellystar_25:
+            if (ate_jellyfish and touched_jellystar_25):
                 "At first I didn't feel a change, but then I noticed that it felt like a part of my brain was really concerned about jellysquid and the shells."
                 "It was like I was remembering something I had learned about jellysquid, but I must have been learning it from the creature below the surface."
                 "Jellysquid were playful, intelligent life forms, but only a stepping stone to reach yet another form."
-                if community_22_mining stopped: #inflation and jellysquid hunting for their shells
+                if community_22_mining_stopped: #inflation and jellysquid hunting for their shells
                     "I saw jellysquid meat floating in a mass after their shells were harvested, and a heart-gripping emotional pain."
                 "The inquiry about the jellysquid shells was constant, with the imagery of floating, dead jellysquid and their net enclosures coming up again and again like an obsessive thought over a gorey cut or an oozing rash."
                 "I saw baby jellysquids eating sand, but growing opaque shells that they couldn't communicate through."
@@ -4935,7 +4937,7 @@ label community27:
             him "Okay, I'll trace an 'x' on the jellysquid."
             jump text_conversation
 
-label text_coversation:
+label text_conversation:
     "It started displaying text."
     "Jellysquid" "Where are the baby's clothes?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
@@ -5000,7 +5002,7 @@ label call_to_squid:
             "The net of jellystars pushed us back towards shore."
             her "What on Earth happened to you?"
             kid "I think you mean 'What on Talaam' happened to us."
-            if ($ luddites > 10):
+            if (luddites > 10):
                 him "Any idea what happened to the nets?"
                 pete "Nope. I figured it was some angry miner or colonist."
                 pete "Or maybe Travis on a bad day."
@@ -5042,7 +5044,7 @@ label call_to_squid:
             "They communicated to me through a jellysquid, which I put in a bucket on my boat."
             "Jellysquid" "Did you bring shells?"
             "I held up the bucket that had the shells in it, and a tentacle whipped up from the surface and grabbed it from me."
-            if $ shell_count > 2:
+            if (shell_count > 2):
                 "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
                 "More. Hundreds."
