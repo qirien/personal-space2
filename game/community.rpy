@@ -1440,14 +1440,17 @@ label community9:
 
 # 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
+    show farm_interior with fade
     her "I'm leaving for work now. Goodbye honey!"
     him "Bye [her_name]. Oh, and don't forget that we're having dinner with the Perons tonight."
     her "I wonder what they wanted to talk about..."
     him "Maybe they're just being friendly?"
     "After weeding and clearing out old growth, Terra comes home from school."
     "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
+    show farm exterior
     natalia "Thanks for coming over. We're just finishing up the rice."
     martin "We made a turkey bean soup. It should go well with your salad."
+    "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
     "After the meal, Terra runs off to play with the kids."
     martin "As you may have heard, I have skin cancer."
@@ -1491,10 +1494,12 @@ label community10:
 label community11:
     $ chaco_questions = 0
     #The shuttle should return to Earth with the mined material as soon as it is full.
+    show farm_interior with fade
     "The shuttle is set to arrive today!" #make this a family conversation?
     kid "I wonder what the new people will look like."
     him "Well, they'll look like we do. We're all humans."
     her "Unless aliens have secretly taken over Earth!"
+    show sage_and_scrub_brush with fade
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
@@ -4499,6 +4504,7 @@ label community25:
 label community26:
     $ study_published_26 = False
     $ work_fewer_hours = False
+    $ brennan_refuses_fewer_hours = False
     $ grow_more_tea = False
     $ pete_knows_his_cows_have_cancer = False
     $ keep_buying_pete_beef = False
@@ -4582,7 +4588,7 @@ label community26:
             her "A few years ago, I gave miners recommended doses, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
             her "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
-        her "I think we should discourage the use of firegrass. I don't want to see any more cases of insomnia and depression."
+        her "I think we should discourage the use firegrass somehow. I don't want to see any more cases of insomnia and depression."
         brennan "I also don't want to see that. I don't think outlawing firegrass will stop people from using it."
         brennan "Pete is going to sell firegrass no matter what we decide."
         her "So how would you cut down on firegrass use?"
@@ -4607,7 +4613,7 @@ label community26:
         brennan "I've asked RET to change their system, but I don't think that will happen anytime soon."
         pavel "They have almost no contact with RET... what if you told them that RET did away with the quota system so that they could work more consistent hours?"
         pavel "It might help prevent accidents and actually increase productivity."
-        brennan "I don't want to lie to anyone, but I do want to change the amount of hours they can work." #it might be more interesting if he does want to lie?
+        brennan "I could change the amount of hours they can work." #it might be more interesting if he does want to lie?
         brennan "I am a little worried about what the miners would do if they had more leisure time though."
         sara "Why can't they just drink green tea to help them stay awake?"
         brennan "They do drink tea, and you've probably noticed that it's also in high demand."
@@ -4627,16 +4633,20 @@ label community26:
                 him "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
                 her "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
                 him "Reducing their work hours should discourage them from using it more."
-                brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
-                $ miners += 1
-                $ work_fewer_hours = True
-                jump educational_app
+                if $ miners > 10: #is it mean to make this an option where it won't work?
+                    brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
+                    $ miners += 1
+                    $ work_fewer_hours = True
+                    jump educational_app
+                else:
+                    brennan "Send me an e-mail after the meeting and we can talk about it."
+                    $ brennan_refuses_fewer_hours = True
+                    jump educational_app
             "Grow more tea plants.": #change to green tea
                 him "Let's make tea plants a priority this growing season."
                 him "If we plant them around the same time, we can process them together too."
                 pavel "I'm interested in making black tea with the leaves."
                 him "Sounds good. Maybe some people will like black tea more than green tea."
-                $ colonists += 1
                 $ grow_more_tea = True
                 jump educational_app
             "Don't do anything.":
@@ -4662,10 +4672,19 @@ label community26:
                 "Brennan changed the shift schedule from 12 to 8 hours, and set a maximum of sixty hours of working per week."
                 "Some of the miners made a soccer team, and a few took on jobs outside of mining."
                 jump after_firegrass_26
-            elif grow_more_tea:
+            elif brennan_refuses_fewer_hours:
+                "I e-mailed Brennan about changing the shift schedule but he never replied."
+                "When I brought it up with him in-person, he said something about not wanting to upset the miners by changing how much money they could earn."
+                jump after_firegrass_26
+            elif grow_more_tea and (colonists > 7):
                 "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
                 "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
                 "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
+                $ colonists += 1
+                jump after_firegrass_26
+            elif grow_more_tea:
+                "I wanted to plant a new field of tea plants, but I couldn't get anyone to help me."
+                "Thuc said that he was too stressed out with his own famr, and Zaina said that the site I picked for the plants was too far away from her house."
                 jump after_firegrass_26
             else:
                 jump after_firegrass_26
@@ -4686,7 +4705,6 @@ label after_firegrass_26:
     ilian "We're also to stop eating chicken, turkey, and cow meat and to use the synthetic meat as a replacement."
     him "Can we still eat native meats?"
     ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
-    # TODO: what about milk/eggs?
     if study_published_26:
         ilian "You may have read [her_name]'s study about Pete's cattle having cancer and their meat possibly being carcinogenic."
         ilian "RET had come to similar conclusions seven years ago, not just about Pete's cattle, but any animals that are exposed to high UV radiation regularly."
@@ -4713,7 +4731,6 @@ label after_firegrass_26:
     sara "Hmm, the texture is good. It doesn't have a strong taste."
     ilian "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
     "Hmm. I could live with this. Do I want to?"
-    # TODO: have a choice where this affects your goat herds somehow (less nutrition?)
     menu:
         "Keep buying beef from Pete.":
             "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
@@ -4768,44 +4785,117 @@ label after_firegrass_26:
 label community27:
     #JELLYPEOPLE RECKONING
     #if community_22_mining_stopped, the gathering of shells was more intense
+    $ shell_count = 0
     "It was time for our now-annual trip to the ocean."
     "When we got there, we were surprised to see more fish than usual."
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
     "I looked at one of the farms, and the nets had been cut."
     him "I wonder if this is Pete's work?"
-    "We took a boat out to go fishing past the pier."
-    "[kid_name] wanted to play with a jellysquid. We spent a long time searching."
-    "I thought I saw one and got out of the boat. The ocean was more shallow than I thought and I was able to stand up."
-    "We got a jellysquid in a bucket."
-    "The jellysquid wasn't displaying the reading game on its tablet-like shell like it had years before. Instead it said 'Grown-ups only! Needs permission to access more content.'"
+    "We took a boat out to go fishing past the pier, especially since [kid_name] wanted to play with a jellysquid.."
+    "We spent a long time searching. There were a lot of fish in the water eating bits of dead animals... was it dead jellysquid?"
+    "I thought I saw a live jellysquid and got out of the boat. The ocean was shallower than it looked and I was able to stand up."
+    "I caught the jellysquid in a bucket after some chasing."
+    "It wasn't displaying the reading game on its tablet-like shell like it had years before. Instead it said:"
+    "Jellysquid" "Sad Sad Sad Sad Sad Sad"
+    "[kid_name] touched the jellysquid's shell."
+    "Jellysquid" "We children are dying."
+    "Jellysquid" "We can't find shells."
+    him "What is it trying to say? I thought they made their own shells."
+    kid "Maybe they need to see another shell to know how to make it?"
+    him "Hmm. They do seem to be intelligent animals, but usually growing a body part isn't a conscious process."
+    "Jellysquid" "Help me?"
+    "Then the back of the jellysquid looked like the literacy game again."
+    # "It had part of a sentence fixed, with word options to complete the sentence."
+    # "Find"
+    # menu:
+    #     "Mom":
+    #         kid "Is it asking us to find its mom?"
+    #     "Clothes":
+    #         kid "We have clothes right here!"
+    #         him "Maybe it's using clothes as a word for something else."
+    #
+    #
+    #
+    # "Help"
+    # label help_menu:
+    #     menu:
+    #         "me":
+    #             him "I don't understand. Are we just confirming that it's using a grammatically correct sentence?"
+    #             kid "I think it's asking if we want to help it or just help ourselves."
+    #             him "So this option is just saying, 'I don't want to help you, I just want to help myself'."
+    #             kid "I don't know, it's never done this before!"
+    #             jump help_menu
+    #         "you":
+    #             him "Okay, so we're telling it that we'll help it? Or are we asking for its help?"
+    #             kid "I'm saying 'I want to help you and not just me.'"
+    #             kid "I'm trying to speak to it, not just confirm its sentence structure."
+    #             him "But 'you' is a really complicated concept. Does it even understand what its saying?"
+    #             him "'Help you' and 'you help' are two completely different ideas."
+    #             kid "Maybe we can teach it what it means. Or maybe it knows the difference"
+    #             "Jellysquid" "You is"
+    #             him "So is it asking what we are or what it is?"
+    #             him "What if it doesn't recognize that 'you' changes with the speaker, and it's using that as a name for itself?"
+    #             kid "But it used 'me' before, so I think it's talking about us."
+    #             him "But that's not consistent. Before we used 'you' to mean the jellysquid and now we're using it to mean us?"
+    #             kid "Let's look at our options and see if it we can figure it out from there."
+    #             menu:
+    #                 "Jellysquid" "You is"
+    #                 "friend":
+    #                     him "Yeah, I'd say we're a friend. We want to help it."
+    #                     jump help_find_mom
+    #                 "hungry":
+    #                     him "I just want to see what happens."
+    #                     "Jellysquid" "Eat baby. Baby delicious."
+    #                     "Then it made a tiny jellystar right before our eyes."
+    #                     "It brought five of its tentacles together, and the tips fell off to form a jellystar"
+    #                     kid "It wants us to eat this jellystar?"
+    #                     him "Maybe it thinks that if we eat the jellystar, we won't eat it."
+    #                     kid "That is... weird."
+    #                     him "It makes me wonder just how often Travis talked to these things."
+    #                     if not ate_jellyfish:
+    #                         kid "Well, are you going to eat it?"
+    #                         menu:
+    #                             "Might as well":
+    #                                 him "We might as well now. But it's all spiny"
+    #                                 kid "Here, I'll take the spines off."
+    #                                 "[kid_name] took the spines off and I ate the jellystar."
+    #                                 $ ate_jellyfish = True
+    #                             "No, gross":
+    #                                 him "No, I think that's gross."
+    #                                 him "I especially don't want to eat one that's still alive. That just seems cruel."
+    #
+    #                         "Jellysquid" "Where is Mom? Help find mom."
+    #             "Jellysquid" "Help find"
+    #             menu:
+    #                 "Other children":
+    #                     him "Maybe we can find some other jellysquids around."
+    #                     "We looked and looked with the jellysquid in a bucket in our boat."
+    #                     "We couldn't find any other jellysquids."
+    #                     kid "Can I go back and try something else?"
+    #                     him "Well, if it's mimiking a tablet, does it have a retry button or something?"
+    #                     kid "Yeah, I think it does."
+    #                 "Mother" # start with this?
+    #                 "Friend"
+
+    "'Grown-ups only! Needs permission to access more content.'"
     "'2+3 = ?'"
     "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking a GPS, but it didn't adjust to my exact location."
-    "I was pretty curious, so I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
+    "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
-    "Something under the surface was emitting a light. Jellystars joined in a chain and touched the jellysquid in my bucket."
+    "Something under the surface was emitting a light."
+    "It came closer to the surface, and I could see part of it."
+    "It had way more than eight tentacles and was a little smaller than our rowboat." #this line is optional--if Clarissa wants to draw it. They are not humanoid. DO THEY HAVE SHELLS is the important question
+    "Jellystars joined in a chain from it to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
-    "Then the surface changed to the words 'hold me to neck to reply.' "
+    "Then the surface changed to the words 'hug me to reply.' "
     menu:
         "Run away.":
             him "That doesn't sound very safe."
             him "Let's go home"
             "I tried to leave, but the jellystars kept my boat from moving."
-            "They capsized my boat, and I fell into the water."
-            "We grabbed onto the boat and tried to turn it over."
-            if ate_jellyfish AND touched_jellystar_25:
-                "A jellysquid slapped my neck, and I felt the rage and saddness of a bereaved mother."
-                "And now I was leaving her without any sort of explanation."
-            "[kid_name] slapped the jellysquid off with an oar."
-            kid "Come on Dad! Flip the boat with me!"
-            "After flinging away a few jellystars, we flipped the boat."
-            "I helped [kid_name] in"
-            kid "Just hang on the side while I try to get us away!"
-            him "Okay go for it!"
-            "Her oars set some of the jellystars flying, and eventually we were close enough to shore for me to stand up."
-            kid "That was unreal."
-            return
-             #more detail for more excitement
-        "Comply":
+            jump boat_capsized
+
+        "Comply.":
             "I put the jellysquid up to my neck and it encircled me in a squid half-hug."
             if ate_jellyfish AND touched_jellystar_25:
                 "At first I didn't feel a change, but then I noticed that it felt like a part of my brain was really concerned about jellysquid and the shells."
@@ -4836,9 +4926,171 @@ label community27:
             else:
                 "I didn't feel anything change."
                 "I looked down at the jellysquid and saw 'ERROR' flashing."
-                "I tried to manipulate the words on the shell, but it was unresponsive."
-                #or, the same as above, but his sympathy for the jellysquid isn't high enough to convince them that he'll protect them. Terra saves you by removing the jellysquid.
+                "I tried to manipulate the words on the shell. The jellysquid stopped hugging me and displayed 'water,' so I put it back in the bucket."
+                jump text_conversation
+
+        "Refuse.":
+            him "I'm not giving this jellysquid a hug. But I am still interested in communicating."
+            kid "Tell it! It can't hear you."
+            him "Okay, I'll trace an 'x' on the jellysquid."
+            jump text_conversation
+
+label text_coversation:
+    "It started displaying text."
+    "Jellysquid" "Where are the baby's clothes?" #this should come after asking about the babies
+    "It displayed several words that I could drag to the answer area."
+    "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
+    menu:
+        "I":
+            him "Brennan is basically a part of my group. I'm partially responsible for his actions."
+            menu:
+                "stole them":
+                    him "We took the shells without proper research or community consensus."
+                    kid "Well, Brennan did."
+                    him "Didn't you help him?"
+                    kid "Yeah. But I needed the money."
+                    "Jellysquid"  "Give them back to my children."
+                    jump call_to_squid
+                "ate them":
+                    him "I ate them. Using the minerals inside for technology is like eating to an animal."
+                    him "I am part of the animal that consumes technology."
+                    kid "I guess I am too."
+                    "After I put in this answer, the jellysquid grabbed my shirt and tried to eat it."
+                    "Jellysquid" "You say you ate the clothes but it is not in your clothes."
+                    "Jellysquid" "Are the clothes inside you?"
+                    menu:
+                        "Yes.":
+                            him "The clothes of my consumerism are in my bones!"
+                            kid "I don't think it's talking about consumerism."
+                            jump boat_capsized
+                        "No.":
+                            him "I think it wants to know where the shells are physically."
+                            "Jellysquid" "Bring them for my babies to eat"
+                            jump call_to_squid
+                "lost them":
+                    him "We sent them in a shuttle to another planet. They're basically lost, but on purpose?"
+                    "Jellysquid" "Find them for my babies to eat."
+                    jump call_to_squid
+
+        "He":
+            menu:
+                "stole them":
+                    him "Brennan took the shells without researching the ecosystem thoroughly or gaining a community consensus."
+                    him "He basically stole them."
+                    kid "We're the same way though. We've been using this planet without knowing how we would change things."
+                    "Jellysquid" "Take them from him. Give back to my children."
+                    jump call_to_squid
+                "ate them":
+                    him "Brennan ate them, sort of. Using the minerals inside for technology is like eating to an animal."
+                    "Jellysquid" "Bring his clothes here so we can eat them after he's done."
+                    kid "Is it talking about the shells?"
+                    jump call_to_squid
+                "lost them":
+                    him "Brennan sent them in a shuttle to another planet. They're basically lost, but on purpose?"
+                    "Jellysquid" "Find them for my babies to eat."
+                    jump call_to_squid
+
+label call_to_squid:
+    menu:
+        "Yes, I will bring them.":
+            him "I have no idea what we're going to do but we're going to figure something out."
+            kid "Maybe Brennan has some shells we could give back."
+            "Jellysquid" "Bring them tomorrow."
+            "The jellysquid jumped out of the bucket and into the water."
+            "The net of jellystars pushed us back towards shore."
+            her "What on Earth happened to you?"
+            kid "I think you mean 'What on Talaam' happened to us."
+            if ($ luddites > 10):
+                him "Any idea what happened to the nets?"
+                pete "Nope. I figured it was some angry miner or colonist."
+                pete "Or maybe Travis on a bad day."
+                "I talked to Pete about my meeting with the jellysquid mother."
+                pete "Whoa, that sounds completely out there."
+                pete "I have a few shells that I collected before it got popular."
+                pete "Take these three and see what you can find out."
+                $ shell_count += 3
+            "I tracked down Brennan and told him my findings."
+            him "I noticed that all your nets had been slashed."
+            brennan "Yeah, I bet it was Pete. He's such a bleeding heart when it comes to animals."
+            him "He's a farmer himself. Would he really sabatoge your efforts?"
+            brennan "Do you have a better explanation? The miners prefer working on the jellysquid farms."
+            brennan "There were clean cuts. It wasn't done by an animal."
+            him "Well... recently I met with a squid... mother? intelligent entity? They seemed really upset about the shells being gone."
+            brennan "Really? Did you get a picture? What did it look like and how did it communicate with you?"
+            "I told him about what had happened."
+            if ($ miners > 10):
+                brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
+                him "I have my own farm to run!"
+                brennan "I can give you some credits for someone else to take care of your farm."
+                brennan "I need you to be our new alien liason!"
+                $ shell_count += 2
+            else:
+                brennan "All my jellysquid farms were destroyed anyway. I can't farm them anymore."
+                brennan "And I already made promises to the miners based on the shells I have now."
+                brennan "Sorry, my hands are tied."
+            "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
+            "I had Julia print it in that week's Talaam Times" #italics
+            if ($ colonists > 10):
+                "Four families gave me one shell each."
+                $ shell_count += 4
+            else:
+                "Julia gave me a shell her family had been using for decoration."
+                $ shell_count += 1
+            "I felt like I had done everything I could. I made arrangements for my farm for the weekend and headed back to the ocean."
+            # kid can come or not based on parenting style?
+            "The jellystars seemed to sense my presence quickly in the boat, and took me to a different place, where I met with the jellysquid parent."
+            "They communicated to me through a jellysquid, which I put in a bucket on my boat."
+            "Jellysquid" "Did you bring shells?"
+            "I held up the bucket that had the shells in it, and a tentacle whipped up from the surface and grabbed it from me."
+            if $ shell_count > 2:
+                "Good shells. Need more."
+                "I traced a question mark on the jellysquid's shell."
+                "More. Hundreds."
+                "I kept tracing a question mark."
+                "It displayed the words 'Why, What, Where, you, we, live, shell, food, is, are, not.'"
+                him "That's not a lot to work with. Hmmm."
+                #could be a menu here later.
+                him "Why you live shell?"
+                "Jellysquid" "Shell save us from enemy."
+                him "What are you?"
+                "Jellysquid" "I am an animal in the water."
+                "Jellysquid" "What are you?"
+                him "Hmm. My options are kind of limited."
+                him "We are not food."
+                "Jellysquid" "All animals are food."
+                him "What is shell food?"
+                "Jellysquid" "Other shells make shells."
+                "Jellysquid" "Some rocks make shells."
+                "Jellysquid" "Maybe mud? Mud tastes bad."
+                him "Hmmm. Good to know."
+                him "Why shell food is not?"
+                "Jellysquid" "You took food."
+                "The display changed and asked me to bring more shells back."
+                "I said yes, but I had no idea what I was going to do."
                 return
+
+        "No, I will not bring them.":
+            jump boat_capsized
+
+label boat_capsized:
+    "They capsized my boat, and I fell into the water."
+    "We grabbed onto the boat and tried to turn it over."
+    if (ate_jellyfish) and (touched_jellystar_25):
+        "A jellysquid slapped my neck, and I felt the rage and saddness of a bereaved mother."
+        "And now I was leaving her without any sort of explanation."
+    "[kid_name] slapped the jellysquid off with an oar."
+    kid "Come on Dad! Flip the boat with me!"
+    "After flinging away a few jellystars, we flipped the boat."
+    "I helped [kid_name] in"
+    kid "Just hang on the side while I try to get us away!"
+    him "Okay, go for it!"
+    "Her oars set some of the jellystars flying, and eventually we were close enough to shore for me to stand up."
+    kid "That was unreal."
+    her "Are you guys okay? What on Earth happened?"
+    kid "Moooom, we're not on Earth, we're on Talaam."
+    #do they tell anyone? what happens later?
+    return
+
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.
 # Pete has fewer credits to buy medicines with, including birth control. Helen is now pregnant and in her 40s?
