@@ -2969,7 +2969,7 @@ label community17:
         "After the dinner, you can't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
         "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
-        if lily_mad_at RET:
+        if lily_mad_at_RET:
             "She responds via the instant messaging software. Guess she hasn't given up all technology."
         else:
             "She still lives in the colony, but she's been hanging out a lot with Pete to study local flora and fauna."
@@ -4633,7 +4633,7 @@ label community26:
                 him "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
                 her "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
                 him "Reducing their work hours should discourage them from using it more."
-                if $ miners > 10: #is it mean to make this an option where it won't work?
+                if (miners > 10): #is it mean to make this an option where it won't work?
                     brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
                     $ miners += 1
                     $ work_fewer_hours = True
@@ -5020,7 +5020,7 @@ label call_to_squid:
             him "Well... recently I met with a squid... mother? intelligent entity? They seemed really upset about the shells being gone."
             brennan "Really? Did you get a picture? What did it look like and how did it communicate with you?"
             "I told him about what had happened."
-            if ($ miners > 10):
+            if (miners > 10):
                 brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him "I have my own farm to run!"
                 brennan "I can give you some credits for someone else to take care of your farm."
@@ -5032,7 +5032,7 @@ label call_to_squid:
                 brennan "Sorry, my hands are tied."
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
             "I had Julia print it in that week's Talaam Times" #italics
-            if ($ colonists > 10):
+            if (colonists > 10):
                 "Four families gave me one shell each."
                 $ shell_count += 4
             else:
