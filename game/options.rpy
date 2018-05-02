@@ -46,6 +46,7 @@ define build.name = "OPS2_SpaceToGrow"
 define config.has_sound = True
 define config.has_music = True
 define config.has_voice = False
+define config.fade_music = 2.0
 
 
 ## To allow the user to play a test sound on the sound or voice channel,
@@ -59,7 +60,7 @@ define config.has_voice = False
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-# define config.main_menu_music = "main-menu-theme.ogg"
+define config.main_menu_music = audio.maintheme
 
 ## Images
 

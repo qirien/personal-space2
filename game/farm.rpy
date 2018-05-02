@@ -78,9 +78,19 @@ init python:
             return final_yield
 
         # Reset the crops for a new year.
-        # TODO: keep perennials
         def reset_crops(self, size=MAX_FARM_SIZE):
-            self.crops = Crops(size)
+            new_crops = Crops(size)
+            for i in range(0, self.crops.len()):
+                crop_index = get_crop_index(self.crops[i])
+                crop_name = self.crops[i]
+                print str("resetting crop: " + crop_name)
+                if (crop_info[crop_index][PERENNIAL_INDEX]):
+                    if (crop_name[-1] != "+"):
+                        new_crops[i] = crop_name + "+"
+                        crop_info[crop_index][MAXIMUM_INDEX] -= 1
+                    else:
+                        new_crops[i] = crop_name
+            self.crops = new_crops
 
         # Update the crop history in preparation for a new year.
         def update_history(self):
@@ -88,6 +98,7 @@ init python:
                 self.history[i] = [self.crops.items[i]] + self.history[i][0:-1]
             return
 
+        # Return how much work the current field takes
         def get_total_work(self):
             total_work = 0
             for i in range(0, self.crops.len()):
@@ -95,6 +106,40 @@ init python:
                 index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
                 total_work += crop_info[index][WORK_INDEX]
             return total_work
+
+        # Return how many calories the current field gives
+        def get_total_calories(self):
+            total_cals = 0
+            for i in range(0, self.crops.len()):
+                crop_names = [row[NAME_INDEX] for row in crop_info]
+                index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
+                total_cals += crop_info[index][CALORIES_INDEX]
+            return total_cals
+
+        # Check if the current farm layout is valid.
+        # To be valid, we need no crops that would use more nitrogen than is available
+        # and we need enough calories.
+        # We also need all goats allocated.
+        def is_valid_layout(self):
+            valid_layout = True
+            # Check if this nitrogen is valid
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i]
+                nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
+                current_nitrogen_level = self.health[i][Field.NITROGEN_LEVEL_INDEX]
+                if (nitrogen_usage > current_nitrogen_level):
+                    valid_layout = False
+
+            # Check goats
+            if (self.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
+                valid_layout = False
+
+            # Check calories
+            total_cals = self.get_total_calories()
+            if (total_cals < get_calories_required()):
+                valid_layout = False
+
+            return valid_layout
 
     ##
     # CROPS OBJECT
@@ -121,17 +166,19 @@ init python:
         def setDefault(self):
             available_crop_names = []
             for i in range(0, len(crop_info)):
-                if (crop_info[i][ENABLED_INDEX]):
+                if (crop_info[i][ENABLED_INDEX] and (crop_info[i][MAXIMUM_INDEX] > 0)):
                     available_crop_names.append(crop_info[i][NAME_INDEX])
 
             for i in range(0, farm_size):
-                crop_name = renpy.random.choice(available_crop_names)
-                self[i] = crop_name
+                # If it's a perennial, keep it.
+                # Otherwise, fill it randomly
+                if (self[i][-1] != "+"):
+                    crop_name = renpy.random.choice(available_crop_names)
+                    self[i] = crop_name
 
-                # If we've reached the max, remove this crop from the ones that can be chosen
-                # TODO: This is no longer working.
-                if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
-                    available_crop_names.remove(crop_name)
+                    # If we've reached the max, remove this crop from the ones that can be chosen
+                    if (self.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
+                        available_crop_names.remove(crop_name)
             return
 
         # Return a random crop from our field
@@ -155,3 +202,6 @@ init python:
         crop_names = [row[0] for row in crop_info]
         index = crop_names.index(crop_name) # find the crop's index in crop_info
         return index
+
+    def get_crop_filename(crop_name):
+        return "gui/crop icons/" + crop_name.rstrip("+") + ".png"

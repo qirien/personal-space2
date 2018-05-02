@@ -89,7 +89,10 @@ define gui.default_font = "fonts/RobotoSlab-Regular.ttf"
 define gui.name_font = "fonts/RobotoSlab-Regular.ttf"
 
 ## The font used for out-of-game text.
-define gui.interface_font = "fonts/SP-Marker Font.otf"
+define gui.interface_font = "fonts/RobotoSlab-Regular.ttf"
+
+## The font used for GUI label text
+define gui.accent_font = "fonts/SP-Marker Font.otf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 20
@@ -104,7 +107,7 @@ define gui.interface_text_size = 24
 define gui.label_text_size = 28
 
 ## The size of text on the notify screen.
-define gui.notify_text_size = 16
+define gui.notify_text_size = 20
 
 ## The size of the game's title.
 define gui.title_text_size = 60
@@ -187,7 +190,7 @@ define gui.button_borders = Borders(4, 4, 4, 4)
 define gui.button_tile = False
 
 ## The font used by the button.
-define gui.button_text_font = gui.interface_font
+define gui.button_text_font = gui.accent_font
 
 ## The size of the text used by the button.
 define gui.button_text_size = gui.interface_text_size
@@ -481,6 +484,3 @@ init python:
 
         ## Quick buttons.
         gui.quick_button_text_size = 20
-
-
-

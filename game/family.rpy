@@ -584,7 +584,7 @@ label family3:
     him happy "That sounds great! I love camping!"
     "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug." # TODO: animate this?
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
-    kid "Outside!"
+    kid "Ow sai!"
     "She squirmed to get down, then toddled over the door and banged on it with her hands."
     her concerned "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
     him normal "I know the perfect spot! Let's go tonight!"
@@ -673,7 +673,7 @@ label family3:
             $ responsive += 1
             $ demanding += 1
             $ authoritative += 1
-        "Don't let her put them in her mouth.":
+        "Don't let her put the sticks in her mouth.":
             him determined "No no, [her_name]. Not in your mouth."
             "She went for them again, but I held her back."
             him determined "You can't just put everything your mouth. No."
@@ -692,7 +692,7 @@ label family3:
             "[kid_name] gnawed on it a little more. She could make better progress now that there were some uneven surfaces to work with, but eventually she threw it in the dirt again."
             $ demanding += 1
             $ authoritarian += 1
-        "Let her mouth them. It's good for her immune system, right?":
+        "Let her chew on the sticks. It's good for her immune system, right?":
             him normal "Those sticks are fine. They're not poisonous."
             her concerned "But, they're really dirty! She's going to get sick. Animals have probably peed all over them."
             him annoyed "We're outside. That's a totally normal thing."
@@ -5398,13 +5398,124 @@ label family22:
                     him normal "I'll always love you, [bro_name], even if you make mistakes."
                     "He didn't say anything, but we hugged for a long time."
                 "Demand that he look at you.":
+                    $ demanding += 1
                     him angry "Look at me when I'm talking to you!"
                     "He turned his head slowly, focusing on my lips."
                     him determined "I don't want you stealing ever again. Do you understand."
                     "He nodded."
                     him concerned "Good."
 
-    # TODO: SOme other event.
+    "The next day we had a quiet and uneventful dinner. I tried to start a conversation."
+    him "How was school?"
+    "[bro_name] shrugged."
+    kid "Fine."
+    "After an awkward silence, [her_name] tried again."
+    her "How's Anya doing?"
+    kid "Okay. She bombed our last math test but she doesn't really care."
+    her surprised "Really?"
+    kid "Math's not her thing. She's working on some really cool art, though."
+    him surprised "What does she draw?"
+    kid "Animals, mostly. She's got this beautiful jellysquid one that she's going to color, and maybe even print out if she can get the money."
+
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
+        him "How come you never draw anymore?"
+        kid "Because I suck at it."
+        him "You just need more practice. If you work hard, you can get good at anything."
+        "[kid_name] didn't say anything but I could tell from her face that she didn't believe that."
+        her "Anyway, I've got some charts I really should look through this evening."
+        "[bro_name] and [kid_name] did the dishes while [her_name] and I worked side by side on our different jobs."
+        "I remembered the days when [her_name] and I used to come home and play video games together; now it seemed like there was always too much work to do."
+        "We were so busy, we didn't have much time to just hang out."
+        "But at least we were together."
+    elif (parenting_style == "authoritative"):
+        him determined "I thought the miners had plenty of money."
+        kid "Her parents do. Anya doesn't."
+        him surprised "Not even enough to print out art?"
+        kid "No. They don't buy her anything. I don't think they buy much for themselves, either, except firegrass."
+        her concerned "Maybe they're saving up for something for when they go back to Earth."
+        him determined "I still think it's weird that some people don't want to stay here."
+        her flirting "Not everyone is in love with alien farms like you."
+        him flirting "I don't know what you're talking about! I'm only in love with you."
+        kid "Anyway, I'm done with my homework. It was pretty easy."
+        bro "I'm done, too."
+        him happy "We should do something together!"
+        her concerned "I was going to go over some patients' charts..."
+        extend "but that can wait. What should we do?"
+        menu:
+            "We should play a game together.":
+                him "We should play a game together!"
+                kid "As long as it's not something stupid."
+                bro "Chess!"
+                kid "Not chess!"
+                her "Chess is fun, but it's a two player game."
+                bro "We can play four player!"
+                him "We only have one chess set..."
+                kid "I hate chess!"
+                her "Pictionary?"
+                him "You always win!"
+                her "Then let's do kids against adults."
+                kid "Oh yeah!"
+                bro "I'm not that good at drawing..."
+                kid "You don't have to be good, just fast! C'mon, [bro_name], we can totally beat them!"
+                bro "Okay..."
+                "We played a few rounds of pictionary. The kids did surprisingly well, and I liked the game a lot better when [her_name] was on my team."
+            "We should go for a walk.":
+                him "The weather's nice; let's go for a walk."
+                kid "But I'm tired!"
+                bro "I'm not swimming!"
+                her "The river's not that far. And you don't have to swim. Bring a book if you're worried you'll get bored, [her_name]."
+                him "I'll bring my net; maybe I can catch something!"
+                her "We just had dinner..."
+                him "Then this'll be dessert!"
+                "We walked down to the river. I caught a tiny lobster-looking creature, but it was so small, I just threw it back."
+                bro "Stop splashing me!"
+                kid "Ha ha ha, it looks like you peed your pants."
+                bro "Moooom!"
+                her "[kid_name], trade pants with [bro_name]. You know he doesn't like to be splashed."
+                kid "What? No way! His pants won't fit me! I'm not walking back to the house naked!"
+                her "We'll untie the waistband and you can wear them."
+                bro "Ha ha, that looks really funny."
+                kid "Stop making fun of me!"
+                him "It does look pretty funny. But you'll be okay; we'll be home soon."
+                her "Here, you can wrap my jacket around your waist if you want."
+                kid "Fine. Ugh, nobody here can take a joke!"
+                him "Next time you should splash me instead."
+                kid "You'd probably throw me in the river."
+                him "Yeah... doesn't that sound fun?"
+                kid "No!"
+            "We should watch a movie.":
+                him "We should watch a movie."
+                kid "Can we please watch 'Catacombs'? I love that show!"
+                "[bro_name] shook his head. I remember last time we watched it, he woke up in the middle of the night screaming from a bad dream."
+                her "I'll pick something everyone will like."
+                him "Good luck!"
+                her "With our huge database I'm sure I can find something!"
+                "She somehow managed to find a movie that had teen protagonists for [kid_name], wasn't too scary for [bro_name], and had deep ideas for [her_name] and I."
+                "I popped some popcorn I had been saving and we snuggled up to watch the movie together."
+    elif (parenting_style == "permissive"):
+        him "Oh, that's cool."
+        "We finished eating, and [her_name] and I did the dishes while the kids played on their computer pads."
+        bro "This level is too hard!"
+        him "Too hard?"
+        bro "I've tried it like fifty times!"
+        him "Let me see if I can help you."
+        "It was a hard level, especially for Talaam kids who weren't used to hard video games. But I beat it for him after a few tries."
+        him "Here you go."
+        bro "Thanks, dad."
+        kid "Can you help me with my math?"
+        him surprised "You're not done with your homework yet?"
+        kid "No, I was waiting for you to be able to help me with it."
+        him "Oh, well, okay."
+        "Somehow helping [kid_name] with her math homework was even more exhausting than farming. When I started falling asleep at the desk, [her_name] took over for me."
+        her "Go on to bed; I'll help her finish her homework."
+        "She didn't have to tell me twice."
+    else: # neglectful or inconsistent
+        him "Oh, okay."
+        "I left right after I finished eating."
+        "Sometimes I liked to go for a walk in the evening, just by myself. Or sometimes I'd see if Thuc or Pete wanted to hang out."
+        "Today, though, I just admired the sunset."
+
     return
 
 # 14.2 Earth years old
@@ -5674,13 +5785,13 @@ label family24:
     show him at midleft with moveinleft
     "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
     "...Maybe especially because she was almost 15."
-    him surprised "[her_name]!"
+    him surprised "[kid_name]!"
     "My call echoed up and down the canyon. I listened carefully, but there was no response, so I walked further along."
     hide him with moveoutright
     scene bg sunset
     show him at midleft with moveinleft
-    him concerned "[her_name]!"
-    show her at midright with moveinright
+    him concerned "[kid_name]!"
+    show kid at midright with moveinright
     kid "Dad! I'm right here; no need to yell. What are you doing here, anyways? I was just about to start walking home."
     him "I wanted to walk home with you. Where's Anya?"
     kid "Oh... yeah, I should tell her bye. Bye, Anya!"
@@ -5709,9 +5820,10 @@ label family24:
         "How'd it go?":
             him "How'd it go?"
             kid "Fine. Anya's brother is pretty funny. He had some great snacks, too. We hiked around, took some funny pictures. You know, just stupid teenager stuff."
-        "Dont' say anything.":
+        "(Don't say anything.)":
             "I didn't say anything. She was allowed to hang out with friends without getting grilled by her dad, right?"
             "Besides, I didn't know what to say."
+            "We walked in silence for several minutes."
             $ neglectful += 1
             jump lettie_dies
 
@@ -5769,42 +5881,20 @@ label family24:
         kid "I get what you're saying, but that's just not what's going on here."
     elif (parenting_style == "permissive"):
         kid "Not all guys that age. C'mon, dad, you're just being overprotective."
-    elif (parenting_style == "neglectful"):
+    else:
         kid "Now you suddenly care about what I do?"
 
-    menu:
-        "What should I say?"
-        "Why don't you guys hang out at our house next time?":
-            him surprised "Why don't you invite Anya to come to our house next time?"
-            kid "Could her brother come to? And his friend?"
-            him determined "Sure, I want to meet them."
-            kid "I don't know; one of the reasons we like going to her house is because we have space to breathe and be ourselves."
-            him "(More like space to be unsupervised...)"
-            him "Let me meet them, [kid_name]. Then I'll know for myself that there's nothing to worry about."
-            kid "Okay..."
-            $ authoritative += 1
-        "You may not go to Anya's house anymore.":
-            him determined "You're not to go to Anya's house anymore. That's a bad situation."
-            kid "What?! But she's my best friend!"
-            him annoyed "You guys can hang out somewhere else! Away from those boys."
-            $ authoritarian += 1
-        "Please be careful.":
-            him concerned "Please be careful, and remember what I've said. I don't want you to get hurt."
-            kid "We're not even doing anything dangerous, so don't worry about it."
-            him sad "Okay..."
-            $ permissive += 1
-        "It's your life.":
-            him annoyed "It's your life; I guess you can ruin it if you want to."
-            kid "You are so clueless that it'd be funny if it weren't so sad."
-            $ neglectful += 1
-
-    "We walked together in silence. Hopefully she was thinking about what I'd said."
 label lettie_dies:
-    "After a few minutes, we arrived at Anya's house."
-    "I could see where I had tied up Lettie; we were almost there."
-    "But something was wrong. The foul smell of horse diarrhea reached my knows, and Lettie was trembling and shaking."
+    scene miner_camp with fade
+    show him at left
+    show kid at midleft
+    show lettie at right
+    with dissolve
+    "I was about to say something when I noticed a strange smell. We were almost to where I had tied up Lettie, but something was wrong."
+    "The smell was horse diarrhea, and when I ran up Lettie was trembling and shaking."
+    show him at midright with move
     him surprised "Lettie!"
-    "I ran ahead and knelt next to her. She was barely breathing."
+    "I knelt next to her. She was barely breathing."
     kid "Is she okay?"
     him "I don't think so. Her heartbeat's irregular and weak."
     "She had been fine on the ride up! What could have happened to make her so ill so quickly?"
@@ -5814,15 +5904,17 @@ label lettie_dies:
     kid "Me? I didn't do anything!"
     him concerned "No, a yew tree. Or bush, looks like. Who plants yew where there's horses around?!"
     "My mind raced. Yew poisoning was well-known, but there was no antidote. There were some treatments we could try...if we could get them in time."
-    "I pulled out my radio."
-    him angry "[her_name]! Get some atropine up to the miner's village, now! Enough for a 500 kilogram horse!"
-    her "Is it Lettie?"
-    him concerned "Yes. Yew poisoning. If you can bring activated charcoal or a stomach pump that could help, too."
-    her "I'll be right there!"
+    "I pulled out my radio. My hand was trembling and I was a lot less coherent than I wanted to be."
+    him angry "[her_name]! At the miner's village... Lettie's sick. I need your help!"
+    her "What's wrong with her?"
+    him concerned "Yew. There was a yew bush, and she ate it... maybe a lot of it."
+    "I knew I should give her more information, but my brain felt stuck, as if mired in glue."
+    her "I'll bring activated charcoal and the stomach pump right away."
     "Lettie convulsed, and I patted her on the side of her neck."
     him "Okay, okay old girl. [her_name]'s coming."
     "But by the time [her_name] arrived, it was too late."
     "Lettie's heart had stopped."
+    show her at center with moveinright
     her sad "I'm so sorry, [his_name]."
     "I sensed sort of distantly that [her_name] and [kid_name] were saying comforting things and had their arms around me."
     "Lettie had been with me even longer than [her_name]. We'd grown up together."
@@ -5834,25 +5926,142 @@ label lettie_dies:
     "I didn't cry, but I didn't say much, either. I just concentrated on the next thing to do."
     # TODO: change who helps based on community scores?
 
-    "We buried her near the garden. I planted a tree on top of her grave -- an apple tree. She sure loved apples. It doesn't get cold enough here to set fruit, but that didn't matter."
+    "We buried her near the garden. I planted a tree on top of her grave -- an apple tree. She sure loved apples. It doesn't get cold enough here to set fruit most years, but that didn't matter."
 
     "I missed her. But more than that, I felt like she shouldn't have died -- her death never would have happened if Anya's family hadn't put that yew bush right by their front gate."
     "Or if I had noticed it when I tethered her to it."
 
     "I couldn't stop thinking about it when [her_name] invited Anya and her brother over to hang out."
-    "I didn't say anything when they were here, but afterwards I felt like I had to say something."
+    "Their family never even apologized to me for Lettie's death from their yew bush."
+    "I didn't say anything when they were here, but afterwards I felt like I would explode if I didn't talk about it."
+    "So I posted on the farmer's community board."
 
     him_c "You probably heard Lettie died. She died of yew poisoning from a bush planted by some miners."
     him_c "I hope everyone knows this plant is poisonous to livestock and humans."
-    him_c "I don't know why anyone would even bring it to Talaam; it's deadly and doesn't provide food. I think I'm even allergic to it!"
+    him_c "I don't know why anyone would even bring it to Talaam; it's deadly and doesn't provide food. I think I'm even allergic to it."
     him_c "I hope the owners will rip that plant out and destroy it so no one else gets hurt."
-    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking it would be eaten."
+    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it."
     julia_c "Lettie was a good horse."
-    brennan_c "Yew's a tough plant that can grow almost anywhere and is symbolic of death and rebirth. I hear it's used for cancer treatments as well."
+    brennan_c "Yew's a tough plant that can grow almost anywhere and is symbolic of death and rebirth."
     brennan_c "The Lewis' were thinking of these qualities and not its horse-murdering tendencies."
+    her_c "I'm sorry about Lettie, too, but yew is also useful for treating some types of cancer. We shouldn't just destroy it."
     him_c "But why do we need it here, on Talaam?! We have a chance to start from scratch, to only bring the best things from Earth!"
-    him_c "Instead we contaminate our planet with deadly weeds!"
-    # TODO: tie this back to Terra, make it symbolic
+    him_c "Instead we contaminate our planet with poisonous weeds and people that don't even give a damn."
+    her_c "[his_name]!"
+    sara_c ":-("
+    him_c "If you don't pull out weeds, they'll suck the life out of all the good plants you're trying to grow."
+    if (is_liason):
+        brennan_c "I'm going to pretend I didn't hear the RET liason comparing our entire mining operation to poisonous weeds."
+        brennan_c "If anything, you guys are the parasites. Where do you think all your technology and supplies come from?"
+    else:
+        brennan_c "I'm sure you'd be ecstatic if RET's entire operation just keeled over tomorrow."
+        brennan_c "Maybe you'll be joining Pete next, living on your own far away from all us poisonous weeds."
+
+    "Ugh. I hated hearing that from Brennan."
+    "But the yew tree was just a symptom of a much larger problem."
+    # TODO: make sure it's OK to change these community variables here.
+    menu:
+        "That problem was..."
+        "The miners and RET were ruining our planet.":
+            $ luddites += 1
+            "The miners and RET were ruining our planet."
+            "I mean, I guess it was only because of RET that we had the funding to come here in the first place."
+            "But I wished they'd just leave us alone. I wished they would leave [kid_name] alone."
+            "It was a futile wish, though, and one I couldn't afford to indulge."
+        "Strife and division threatened to destroy our community.":
+            "We were always fighting. I thought that away from Earth's politics and territorial squabbles, we'd be able to find true peace."
+            "Away from Earth's materialism and fads, I thought my kids and farm would be safe."
+            "But we were still human. And apparently 'human' means 'conflict'."
+        "All these problems were distracting me from my farming.":
+            $ colonists += 1
+            "I didn't have time for all this crap. All I wanted to do was grow my crops and herds and raise my family in peace."
+            "But even when I was light years from home, there were still other people to deal with."
+            "People harming me, my horse, [kid_name]."
+            "And I had to deal with that."
+        "I was a jerk.":
+            $ miners += 1
+            "I was the problem."
+            "I was a selfish, whiny jerk who just wanted someone to blame."
+            "I knew I needed to forgive, but I couldn't just yet."
+            "And even if I forgave them, I'm not sure I could ever trust that family."
+
+    "[her_name] interrupted my musings."
+    her "Hey, sweetie."
+    him "Hey."
+    "She sat next to me and held my hand."
+    her "You weren't just talking about yew plants."
+    "I shook my head."
+    her "You think Anya's brother is a bad friend for [kid_name]?"
+    "I shrugged. I felt like a fool. I shouldn't have posted about Lettie's death online, and I didn't know what to do about the creeping weeds of my life."
+    her "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
+    him "You don't think I'm just crazy with grief?"
+    her "I think posting on the message board like that was a stupid and tactless thing to do, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
+    him "She's not going to like it."
+    her "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV or whatever. But, like at the clinic, perhaps if we approach this the right way we can minimize her discomfort."
+    menu:
+        "What should we do?"
+        "Forbid her from hanging out at Anya's house.":
+            him "She just can't hang out at their house!"
+            her "I agree. They're unsupervised, far from any public areas, and there's too many creeps in that area."
+            him "There's more than one?"
+            her "I'll just say that my supply of morning-after pills is starting to run a little low."
+            him "...wow."
+            him "Shouldn't people know about stuff like this?"
+            her "You know I don't reveal things about my patients. And there's no laws being broken. Everything was consensual, or so they tell me, but there's a big difference between 'consensual' and 'a well-thought out plan'."
+            him "So I'm probably not the only one that feels this way."
+            her "Definitely not."
+            him "Okay, good. [kid_name]'s not going to like it, though."
+            her "Too bad. It's what she needs."
+            $ authoritarian += 1
+        "Encourage her to have her friends over to our house more.":
+            him "Maybe we could just encourage her to have friends over to our house more often?"
+            her "That's a start..."
+            him "I mean, nothing's serious yet... right?"
+            her "She claims he's just a friend."
+            him "Then there's no need to get all dystopian on her. We'll just make our house a fun hangout place."
+            her "Okay, I hope that works."
+            $ permissive += 1
+        "Get [kid_name] to help solve the problem.":
+            him "Why don't we ask [kid_name] to help us with this problem?"
+            her "Won't she be a bit biased?"
+            him "We don't have to do what she says, but if she's invested in the solution she'll be more likely to follow it without complaining."
+            her "We could try..."
+            "We went to [kid_name]'s room."
+            him "[kid_name], we would like your help with a problem."
+            kid "What's that?"
+            him "We are a bit worried about you hanging out at Anya's house where it's so far and there's not a lot of adults around. We want you and Anya to still be able to hang out, though."
+            kid "You could just get over it."
+            her "Look, we didn't have to ask your opinion--!"
+            him "Hey, calm down. [kid_name], we thought you might have an idea about where you and Anya could hang out that is in a safer place with more people around."
+            kid "There's nothing wrong with her house."
+            him "As your parents, we're not comfortable with that. What other options are there?"
+            kid "You want something with more people around? No one wants to do that."
+            him "How about something a bit more centralized; closer to town. So if there's an emergency you'd have plenty of people close by."
+            "[kid_name] thought about it for a minute. That was progress; she finally wasn't just trying to shut me down."
+            kid "Actually, it'd be cool if we had our own hangout place. Like, in books I always read about teenagers hanging out at malls or cafes or parks or places like that. We don't really have that here."
+            her "We haven't had that many teenagers before."
+            him "That's a great idea, [kid_name]!"
+            kid "But you guys can't come there! That would defeat the whole purpose."
+            him "Let's see what we can work out."
+            "We worked with the community, and some groups agreed to meet in the school instead of the community center so that the teenagers could have the community center to themselves several evenings a week."
+            "[kid_name] worked with Anya and some other friends to make a ping pong table and some soft rugs. They talked about future plans, too, like a mini-kitchen and some big speakers for music."
+            her "This is a great project for [kid_name] and her friends. And people are around the community center all the time, so it'll be easy for us all to keep an eye on them without being too intrusive."
+            him "Like with the surveillance cameras you installed?"
+            her "You noticed that, huh? Well, they don't need to know about those."
+            $ authoritative += 1
+
+        "Let [kid_name] make her own decisions.":
+            him "It's her life; if she wants to ruin it why should we get in her way?"
+            her angry "Because she's our daughter! Because she doesn't even know what she's doing!"
+            him "Are you sure about that? Maybe she does know what she's doing!"
+            her "Are you serious? How much of life did you understand at fourteen years old?!"
+            him "Enough to know that I wanted to make my own mistakes and for my parents to leave me alone!"
+            her "That's what you wanted then, but looking back, aren't you glad they didn't?"
+            him "..."
+            her "Fine. I guess this is something I'll handle on my own."
+            him "Good."
+            $ neglectful += 1
+            $ marriage_strength -= 1
 
     return
 
@@ -6170,17 +6379,12 @@ label family27:
             her concerned "That sounds like a lot of stress."
             him determined "If she's busy, she's not getting in trouble, right?"
             her normal "Let's hope so."
-
-    scene black with fade
-    "A few days later, Brennan asked to talk with me."
-    # TODO: where is this?
-
-
-    # TODO: event about this? Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
     return
 
 # 17.3 Earth years old
 # Terra's plans for future
+
+    # TODO: event about how Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
 label family28:
 
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices

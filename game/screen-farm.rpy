@@ -1,13 +1,13 @@
 # Farm Planning Screen
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 #
-# TODO: Support permanent plants, such as plums, goats?
 # TODO: Get some graphics and pretty this up
 # TODO: show kids' ages and farm/community info
 
 screen plan_farm:
     tag plan_farm
     style_prefix "plan_farm"
+    $ valid_layout = farm.is_valid_layout()
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
@@ -46,8 +46,10 @@ screen plan_farm:
                                             set_default_crops,
                                             renpy.restart_interaction
                                         ]
-                            textbutton "Accept Plan": # TODO: Can't continue if not enough nutrition/etc?  At least give warning? Must allocate land for all goats?
+                            textbutton "Accept Plan":
+                            # TODO: What if no valid layout is possible? Have emergency help button?
                                 xalign 1.0
+                                sensitive valid_layout
                                 action Return()
 
 label monthly_computer:
@@ -130,7 +132,6 @@ screen crops_available:
         hbox:
             grid 2 5:
                 # TODO: Make each of these a different color and have a key so they take up less room.
-                # TODO: Add Nitrogen usage (pest effect?)
                 text "Calories: "
                 bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                 text "Nutrition: "
@@ -162,11 +163,11 @@ screen crops_available:
             side_xalign 0.5
 
             for j in range(0, len(crop_info)):
-                # only show currently enabled crops
-                if (crop_info[j][ENABLED_INDEX]):
+                # only show currently enabled crops where we haven't planted the maximum yet
+                if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0)):
                     $ crop_name = crop_info[j][NAME_INDEX]
                     $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
-                    $ imagefile = "gui/crop icons/" + crop_name + ".png"
+                    $ imagefile = get_crop_filename(crop_name)
                     $ is_selected = (selected_crop_index == j)
 
                     imagebutton:
@@ -192,39 +193,43 @@ screen crops_layout:
             vbox:
                 hbox:
                     $ current_crop_name = farm.crops[i]
+                    $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
+                    $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX]
+                    $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
+                    $ tint_factor = (current_nitrogen_level / float(Field.NITROGEN_FULL))
                     frame:
-                        if (crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX] > farm.health[i][Field.NITROGEN_LEVEL_INDEX]):
+                        if (nitrogen_usage > current_nitrogen_level):
                             background red_dark
                         else:
-                            background tan_dark
-                        $ imagefile = "gui/crop icons/" + current_crop_name + ".png"
+                            background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor)))
+                        $ imagefile = get_crop_filename(current_crop_name)
                         imagebutton:
                             idle imagefile
+                            sensitive (current_crop_name[-1] != "+")
                             hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                             xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                             anchor (0.5, 0.5)
                             align  (0.5, 0.5)
                             action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
 
-                    $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
-                    $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX]
-                    $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
-
-                    use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
+                    # use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
                     bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
                     # TODO: use a tricolor bar here, too? Or show as bugs in background of field?
 
                 # history
-                hbox:
-                    $ history_icon_size = CROP_ICON_SIZE // 2
-                    for past_crop in range(0, Field.HISTORY_SIZE):
-                        $ past_crop_name = farm.history[i][past_crop]
-                        $ imagefile = "gui/crop icons/" + past_crop_name + ".png"
-                        add imagefile size (history_icon_size, history_icon_size)
+                use history_box(i)
+
+screen history_box(index):
+    hbox:
+        $ history_icon_size = CROP_ICON_SIZE // 2
+        for past_crop in range(0, Field.HISTORY_SIZE):
+            $ past_crop_name = farm.history[index][past_crop]
+            $ imagefile = get_crop_filename(past_crop_name)
+            add imagefile size (history_icon_size, history_icon_size)
 
 screen crops_totals:
     vbox:
-        $ calories_needed = get_calories_required()      
+        $ calories_needed = get_calories_required()
         $ nutrition_needed = get_nutrition_required()
         $ total_max = farm_size * CROP_STATS_MAX
         $ total_calories = 0
@@ -248,20 +253,19 @@ screen crops_totals:
         use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
         text "Work:         " + str(total_work) + " / " + str(get_work_available())
         use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        
+
         if (year >= 5):
             text "Value:          ¤ " + str(total_value)
             # TODO: show this better, show savings, etc.
 
         text " "
         if (year > 6):
-            label "[kid_name]'s Time"
+            label "Kids' Assignment"
             bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
             hbox:
                 xfill True
                 text "Free Time"
                 text "Work" xalign 1.0
-        # TODO: add one for bro also?
 
 
 # Screen to show a bar with three values. Show the values in a different color
@@ -286,7 +290,7 @@ screen tricolor_bar(current_value, new_value, max_value, display_max_size, displ
         vbox:
             spacing 0
             bar value display_value range display_range style display_style xsize display_min_size ysize display_size
-            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size) 
+            bar value max_value range max_value style "normal_bar" xsize display_min_size ysize (display_max_size - display_size)
     else:
         hbox:
             spacing 0
@@ -319,13 +323,13 @@ init python:
         global farm
         farm.reset_crops()
         return
-        
+
     def set_kid_work(new_value):
         global kid_work_slider
         kid_work_slider = new_value
         renpy.restart_interaction()
         return
-        
+
 
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
@@ -426,7 +430,7 @@ style increased_bar is crop_layout_bar:
 style decreased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
     bottom_bar Frame(Solid(red_med))
-    
+
 style increased_bar_horizontal is crop_layout_bar:
     right_bar Frame(Solid(gray_light))
     left_bar Frame(Solid(green_dark))
