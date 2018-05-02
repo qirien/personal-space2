@@ -2091,8 +2091,8 @@ label family8:
     with dissolve
 
     kid "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors..."
-    kid "...and the letters of the alphabet and my numbers up to fifty except I always mess up around forty-seven and skip right to forty-nine but that's still pretty good, right, daddy?"
-    him surprised "Um, what was the quetsion?"
+    kid "...and the letters of the alphabet and my numbers up to fifty except Travis says I always mess up around forty-seven and skip right to forty-nine but I don't, right, daddy?"
+    him surprised "Um, what was the question?"
     kid "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
     her concerned "[her_name]."
     kid "What?"
@@ -2124,7 +2124,7 @@ label family8:
             $ permissive += 1
 
     "[her_name] moved to follow her, but I held her hand."
-    him normal "Didn't her teacher ask us not to come in with her for the first week, so she could get used to coming in on her own?"
+    him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
     her concerned "I guess so... Is she really going to be okay?"
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
     "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face. Their baby sensed the mood and started fussing also."
@@ -3127,7 +3127,7 @@ label family12:
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
     sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through."
-    brennan_c "Sorry, I'm afraid I can't part with these luscious locks."
+    brennan_c "I'm not cutting my hair; I just can't part with these luscious locks."
     nvl hide
 
     scene farm_interior with fade
@@ -5808,7 +5808,7 @@ label family24:
             him "Other friends? Which other friends?"
             kid "No one you know! Just some people we hang out with."
             him "I know almost everyone."
-            kid "Just Anya's brother and his friend. They're miners; you probably don't know them." # TODO: Make a name for this friend if we see him again later.
+            kid "Just Anya's brother and his friend. They're miners; you probably don't know them."
         "What were you doing?":
             him "What were you doing?"
             kid "Just hanging out."
@@ -5827,7 +5827,7 @@ label family24:
             $ neglectful += 1
             jump lettie_dies
 
-    "Anya's brother was almost twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
+    "Anya's brother Lorant was about twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
     "I felt wary. I could think of only one reason two twenty-something boys would hang out with young teenage girls."
     "There was a big difference between fourteen - okay, almost fifteen - and twenty."
     "I'm not sure why it was a much creepier age difference than, say, a 20-year-old and a 25-year-old. But I was definitely creeped out."
@@ -5921,7 +5921,7 @@ label lettie_dies:
     "And now she was gone."
     scene black with fade
 
-    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya's brother showed up and together we all managed to get Lettie's body into the back of the tractor."
+    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya and Lorant showed up and together we all managed to get Lettie's body into the back of the tractor."
     "[her_name] must have called them. She probably knew we'd end up having to move Lettie, one way or another."
     "I didn't cry, but I didn't say much, either. I just concentrated on the next thing to do."
     # TODO: change who helps based on community scores?
@@ -5991,7 +5991,7 @@ label lettie_dies:
     "She sat next to me and held my hand."
     her "You weren't just talking about yew plants."
     "I shook my head."
-    her "You think Anya's brother is a bad friend for [kid_name]?"
+    her "You think Lorant is a bad friend for [kid_name]?"
     "I shrugged. I felt like a fool. I shouldn't have posted about Lettie's death online, and I didn't know what to do about the creeping weeds of my life."
     her "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
     him "You don't think I'm just crazy with grief?"
@@ -6334,6 +6334,7 @@ label family27:
             her concerned "There's still a lot you need to learn. Right now your schooling is more important."
             if (parenting_style == "authoritative"):
                 kid "Maybe you're right..."
+                $ family27_no_work = True
             elif (parenting_style == "authoritarian"):
                 kid "You want me to be a productive and useful adult, right?"
                 him determined "Yes, but we also want to you to get a good education and help out at home."
@@ -6343,6 +6344,7 @@ label family27:
                 menu:
                     "What should I say?"
                     "You have a deal.":
+                        $ responsive += 1
                         him normal "We can try it. But I expect you to get good grades and do your chores. Whatever work you can fit in around that is fine."
                         kid "Thank you, dad! I'm glad you listened to me."
                         "Hopefully I wouldn't regret this..."
@@ -6353,6 +6355,7 @@ label family27:
                         kid "Sorry, mom, I don't have time. I have to go cram my head full of useless facts instead of doing real work."
                         "She left to her room."
                         "Hopefully we were doing the right thing..."
+                        $ family27_no_work = True
 
             elif (parenting_style == "permissive"):
                 kid "No! You guys can't be serious?! I always get good grades and do everything you ask, why can't you just let me do what I want?!"
@@ -6361,12 +6364,14 @@ label family27:
                 her "[kid_name]..."
                 "She left to her room."
                 "Hopefully we were doing the right thing..."
+                $ family27_no_work = True
             else:
                 kid "I'm sick of working on this farm! Why can't you let me choose my own life?!"
                 him "Sorry, [kid_name]. We just want what's best for you."
                 kid "No, you just want what's best for {b}you{/b}."
                 "She left to her room."
                 "Hopefully we were doing the right thing..."
+                $ family27_no_work = True
 
         "We should let her decide.":
             him determined "This should be her decision. We should make sure she knows what she's choosing between, and encourage her education, but it's her life."
@@ -6386,28 +6391,250 @@ label family27:
 
     # TODO: event about how Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
 label family28:
+    scene farm_interior with fade
+    show him at midleft
+    show her at midright
+    show kid at center
+    with dissolve
 
-    "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
-    "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
-    # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?
+    kid "I'm heading out. Bye."
+    her concerned "Okay, be home for dinner."
+    him "She sure has been gone a lot lately."
+    her "Do you think she's okay?"
+    him "I don't know..."
+    if (family27_no_work):
+        "We had told [kid_name] she couldn't work, but she still left on her bike a lot."
+        "She said she was hanging out with friends, but I was a little suspicious."
+    else:
+        her "Her job sure keeps her busy."
+        him "If that's really what she's doing."
+
     menu:
-        "Listen, then make suggestions":
-            $ demanding += 1
+        "What should I do?"
+        "Investigate.":
+            him "I'm going to investigate."
+            her "I'll help."
+            him "You follow her; I'll ask around."
+            her "You want me to follow her? How, fly?"
+            him "You're still a decent runner, aren't you?"
+            her "You just want to see me get hot and sweaty."
+            him "Wish I could!"
+            "She left, and I turned to my computer pad. There were several ways I could go about this..."
+            menu:
+                "Ask around.":
+                    "I decided to ask around. Maybe someone else had seen her."
+                    if (luddites > 10):
+                        him_c "Hey, Pete, I'm looking for [kid_name]. Any idea where she's at?"
+                        pete_c "She usually comes over here around this time. Want me to tell her something?"
+                        him_c "Oh, is she hanging out with Travis?"
+                        pete_c "No, making deliveries. I thought you knew that."
+                        if (family27_no_work):
+                            him_c "Yeah, well, she said she wasn't doing that anymore."
+                            pete_c "Huh. Well, she is."
+                            him_c "Thanks, Pete."
+                            "So she usually rode all the way to Pete's house, but not to hang out with Travis..."
+                        else:
+                            him_c "Yeah, I do. Just checking up on her."
+                            pete_c "Ha! You're about as sly as a hippo, you know that?"
+                            him_c "Yeah, yeah."
+
+                    if (miners > 10):
+                        him_c "Brennan, have you seen [kid_name]?"
+                        brenann_c "Not today."
+                        him_c "You don't happen to know where she's at?"
+                        brennan_c "No. Sorry."
+                        "It was hard to tell online, but it seemed like he was hiding something."
+
+                    if (colonists > 10):
+                        him_c "Hey, Sara, any idea where [her_name] is? I'm looking for her..."
+                        sara_c "Oh, she was just here, buying some stuff from Ilian. :-)"
+                        him_c "What kind of stuff?"
+                        sara_c "Ilian says... oil and salt? Like, a lot of it."
+                        him_c "Really..."
+                        sara_c "I think she's running errands for Pete or something because she rode off in that direction."
+                        if (family27_no_work):
+                            "Sounds like she was still doing her delivery job."
+                        else:
+                            "It sounded like just a delivery business..."
+                "Check the security cameras.":
+                    "I still had access to the community center surveillance cameras."
+                    "She wasn't in the teen hangout area, but when I checked the external camera, I saw her exit the storehouse and load up her bike with supplies."
+                    "Looks like she was still doing her delivery job..."
+
+                "Send her a message.":
+                    him_c "Hey, where are you?"
+                    kid_c "I'm just out, biking around. Why? I already finished my homework!"
+                    him_c "Are you near the storehouse? I could use some more rice."
+                    if (family27_no_work):
+                        kid_c "Okay, dad."
+                    else:
+                        kid_c "That's too heavy, dad! I'm already taking a bunch of oil and salt to Pete."
+                "Ask her friends.":
+                    "I sent a message to all her friends, asking if they knew where she was."
+                    oleg_c "She was just here, but she left with a bunch of oil and salt."
+                    travis_c "Why are you looking for her?"
+                    him_c "I'm her dad. It's my job to know where she is."
+                    travis_c "She's fine. Don't worry about her."
+                    him_c "...so where is she?"
+                    "I didn't get any further response."
+            if (family27_no_work):
+                "So. She was delivering goods, even after we had told her not to."
+                "That's what she was hiding."
+            else:
+                "She didn't seem to be hiding anything, but I still felt uneasy."
+            "I told [her_name] what I found out."
+            her_c "Okay, I don't think I can make it to Pete's before she leaves. I'll head over to the miner's camp and see if she comes there."
+            "I waited. I didn't hear anything from [her_name] for a long time, until..."
+            her_c "Found her. Coming home. Talk more when we get there."
+
+        "Leave her alone.":
+            him "She's probably fine."
+            her "I'm not so sure. I'm going to investigate."
+            him "Really?"
+            her "Yes. I just have a feeling that something's off here."
+            him "Well, let me know what you find out."
+            scene black with fade
+
+    scene farm_interior with fade
+    show him at midright with dissolve
+    show her at center
+    show kid at midleft
+    with move
+
+    her concerned "She was delivering firegrass and alcohol to Brennan, for the miners."
+    kid "I wasn't using any of it! I just deliver it!"
+    her determined "Pete sells the stuff to her and she sells it to the miners for a profit."
+    menu:
+        "What should I say?"
+        "Good job!" if (not family27_no_work):
             $ responsive += 1
-            $ authoritative += 1
-        "You don't know what you're talking about!":
+            him happy "Wow, that's great! I bet you're earning a ton!"
+            her "[his_name]!"
+            kid "Not too much. I just deliver it."
+            him "How much do you make?"
+            kid "About 10 an hour." # TODO: currency check
+            him "Not bad, but you could probably charge a bit more. It's not like you have competition."
+            kid "If I charge too much, Pete will just deliver it himself."
+            him "True, true."
+            her "You're really okay with your daughter making money off these dangerous substances?"
+            him "People are going to use them whether she brings them or not. She's just delivering whatever people need."
+
+        "What are you, a drug dealer?":
             $ demanding += 1
-            $ authoritarian += 1
-        "Support her somewhat-crazy idea.":
+            him angry "What are you, a drug dealer?!"
+            kid "Dad, it's just some cider and some fire grass. Fire grass is not that different from the coffee you're always wishing you had."
+            him "You're enabling people to keep using the stuff!"
+            kid "People are going to use it whether I deliver it or not! I'm making good money with this."
+            him "Money's not the only issue!"
+
+        "Tell me more, [kid_name].":
             $ responsive += 1
-            $ permissive += 1
-        "She'll do what she wants. No point in talking to her about it.":
+            him surprised "Tell me more about this."
+            kid "It's not a big deal. I just take some supplies to Pete and the miners and they pay me. It's not like I'm getting drunk or stoned or anything."
+            her annoyed "Not yet."
+
+        "You were supposed to stop this job!" if family27_no_work:
+            him angry "You were supposed to stop this job! You need to concentrate on your studies, not be running around the colony delivering drugs!"
+            kid "I'm almost an adult now! I'm not going to be living on your farm and going to school forever!"
+            her "That is true, but while you live at our house, we expect you to follow our rules."
+            kid "Even if they're stupid."
+            her "Even if they're stupid."
+            kid "Then maybe I shouldn't live at this house."
+            menu:
+                "What should I say?"
+                "Fine! Leave!":
+                    him angry "Fine! Leave, then! Try living on your own and see how you like it!"
+                    kid "I will. I'm sick of your arbitrary rules and you making decisions for me."
+                    her "[kid_name]..."
+                    kid "No, I should have done this months ago. I'm done with this house, with your stupid rules, with... you!"
+                    $ neglectful += 1
+                "Think about it and decide for yourself.":
+                    him determined "If you think that's best. But before you decide, will you think about it and make a plan?"
+                    kid "A plan?"
+                    him "Yeah. You know, where you're going to stay, how you'll earn money, what you'll eat. Stuff like that."
+                    her "Don't leave just because you're angry. Leave because you're really ready to live on your own."
+                    $ authoritative += 1
+                "I bet we can work something out.":
+                    him concerned "[kid_name], that day is coming, but for now, why don't we talk about this and see what we can work out?"
+                    kid "I already tried that. Unless you're willing to let me work at the job I already have and am already making money at, I won't live here."
+                    him normal "I can see that this job is very important to you."
+                    her "But it's probably not what you want to do for the rest of your life."
+                    kid "I love it, mom! People need me, I'm useful, and I get paid."
+                    her "I know. I'm willing to let you work at this job if you will also start making some long-term plans."
+                    kid "Like what?"
+                    her "Like studying or apprenticing. A delivery service is a great job for you now, but does it pay enough for you to live on your own? To support a family?"
+                    kid "Probably not. But I don't have a family right now!"
+                    her "I know. But someday you might want one. So how about if you keep working at your job, but you also make some goals for what you want to do in the future."
+                    him "If you will do that, I'm willing to let you keep your job."
+                    kid "You'll {b}let{/b} me?! Ugh!"
+                    "[her_name] shot me a glare. I was just trying to help, but maybe I'd let her handle this one."
+                    her "Is that acceptable to you?"
+                    kid "Fine."
+                    $ permissive += 1
+                "You wouldn't survive without us!":
+                    him angry "You wouldn't last a week without us!"
+                    kid "Oh yeah? Watch me!"
+                    her annoyed "[his_name]..."
+                    him annoyed "Just you wait, she'll come crawling back here in a day or two begging our forgiveness."
+                    her concerned "I hope you're right..."
+                    $ authoritarian += 1
+            return
+
+
+    kid "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
+    her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."
+
+    her annoyed "And as your mom, I'd tell you that you're smarter than that."
+    menu:
+        "What should I say?"
+        "Life's too short not to enjoy everything!":
+            him happy "Life's too short to worry so much about stuff like that! If you get the chance, enjoy yourself!"
+            kid "That's what Brennan said..."
+            her "Wait, Brennan offered you alcohol?!"
             $ neglectful += 1
+        "A little bit's fine now and then.":
+            him normal "Oh, a little bit now and then won't hurt you. But you don't want it to become something that runs your life."
+            kid "Yeah yeah, I know all about alcoholism."
+            her "No, you really don't. I know we talked about it in health class, but if you haven't seen it for yourself..."
+            kid "Look, I'll be careful, okay! I only had one sip!"
+            her "Wait, Brennan offered you alcohol?!"
+            $ permissive += 1
+        "Listen to your mom.":
+            him "Your mom's right. Stay away from that stuff!"
+            her "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
+            kid "Well it was just the one time, so it's not a big deal."
+            her "Just the one time...?  Wait, did Brennan give you alcohol?"
+            $ authoritarian += 1
+        "You need to decide for yourself. But decide now.":
+            him "This is something you have to decide for yourself. So do some objective research, get some opinions, and then figure out what you want to do."
+            her "But don't wait until you're in that situation to decide, because then you may not make a good decision."
+            kid "Yeah, maybe I wouldn't have tried it if I had thought about it beforehand..."
+            her "Tried it? Wait, did Brennan give you alcohol?"
+            $ authoritative += 1
+
+    kid "Well, yeah. Just a taste of the cider I delivered. I said it tasted weird, but he said it was an adult thing and maybe that meant I was still a kid."
+    her determined "I'm going to have to talk to him about that."
+    him determined "Or maybe I should."
+    kid "What? What's the big deal?"
+    her concerned "Some people think it's fun to get other people drunk."
+    him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
+    kid "You mean like... Brennan wouldn't do that!"
+    her sad "..."
+    him sad "..."
+    kid "...would he?"
+    her concerned "Not on purpose, but..."
+    him annoyed "But he doesn't always think about the consequences of his actions. Especially where women are concerned."
+    her normal "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
+    him determined "And you can't trust Brennan."
     return
 
 # 18 Earth years old
 # Terra blames you for some big crisis!
 label family29:
+
+    "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
+    "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
+    # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?
     "Big crisis! Foreshadows ending! She says she hates you for some reason and never wants to see you again!"
     menu:
         "Threaten to disown her":

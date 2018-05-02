@@ -1074,6 +1074,7 @@ label community8:
     $ talked_to_Sara = False
     $ talked_to_Kevin = False
     $ talked_to_Pavel = False
+    $ talked_about_luxuries_counter = 0
 
     if is_liason:
         show farm_exterior with fade
@@ -1092,7 +1093,6 @@ label community8:
         "I'm not sure why they couldn't have asked about our preferences sooner."
         "I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
         "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
-        $ talked_about_luxuries_counter = 0
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
                 if is_liason:
@@ -1427,7 +1427,7 @@ label community9:
             pete "That's the whole point! Gets your blood moving."
             show him determined
             him "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
-            "Pete went hunting on his own. He brought you back some jerky from the grass crab he killed."
+            "Pete went hunting on his own. But he brought back some jerky from the grass crab he killed."
             #scene change
             show him happy
             him "This is delicious."
@@ -1516,7 +1516,7 @@ label community11:
     # Is Kelly here, too? Could be interesting...
     him "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him "No, no one mentioned it. I hope you're here to help [her_name]; she has a real nurse assisting her now."
+    him "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
     her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
@@ -1664,11 +1664,9 @@ label community11:
             him "Oh, I hope so!"
             pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
 
-            if talked_to_Pavel:
+            if (talked_to_Pavel and is_liason):
                 him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
                 pavel "I'm so happy right now!"
-            else:
-                pass
 
         else:
             "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
@@ -1685,6 +1683,8 @@ label community11:
 
             if talked_to_Thuc:
                 thuc "I can start growing these peanuts right away!"
+                # uncomment this when peanut icon available
+                # $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
@@ -1705,12 +1705,13 @@ label community11:
             pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
             him "Oh, I hope so!"
             pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            # TODO: allow planting spices? garlic at least?
+            # enable_crop("garlic")
 
-            if talked_to_Pavel:
+            if (talked_to_Pavel and is_liason):
                 him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
                 pavel "I'm so happy right now!"
-            else:
-                pass
+
         if asked_only_medicine:
             "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
             "The family had a small funeral and buried him in the colony graveyard."
@@ -1766,30 +1767,33 @@ label community12:
             "Since Pete lives far away, I e-mailed him to get the details."
             "In Pete's reply, he e-mailed me, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
 
-            pete "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
+            nvl clear
+            pete_c "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
             "I rolled my eyes. Like that would fool anyone."
-            pete "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
-            pete "They had to wake up the cow and push her; I can tell they had a hard time but I bet they had some treat to get her to move."
-            pete "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
-            pete "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
-            pete "We'll have to live without beef for a while so that we can give everyone some next season."
+            pete_c "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
+            pete_c "They had to wake up the cow and push her; I can tell they had a hard time but I bet they had some treat to get her to move."
+            pete_c "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
+            pete_c "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
+            pete_c "We'll have to live without beef for a while so that we can give everyone some next season."
+            nvl hide
 
             "That night we had Chaco over for dinner again as part of our welcome miner program."
             "It was a habit now, and after a few weeks, Chaco got more comfortable with us and talked more."
             him "Thanks for helping with the dishes, Chaco."
             chaco "You're welcome. Thanks for the food."
             chaco "I brought my telescope like you asked. I can show you some stars."
-            chaco "We might be able to see Earth if it's clear."
+            chaco "We might be able to see Earth's sun if it's clear."
             him "Great. I think Terra will love that."
-            "Seeing Earth, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silouetted in the sunset."
-            "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and freeways and the bustle of cities." #believable?
+            "Seeing our old sun, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silhouetted in the sunset."
+            "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and trains and restaurants." #believable?
             him "It shows how far away we really are."
             kid "How far away are we?"
             chaco "About four light years." #more precise answer?
             "We looked at the sky."
             him "Oh, a shooting star!"
             kid "I saw it! I saw it!"
-            "I want to see if he knows anything about the missing cow. What should I ask?"
+            "I pulled myself out of my nostalgia. No point in moping about Earth."
+            "Especially when we had problems here... Chaco might know something about the missing cow. What should I ask?"
             menu:
                 "Do you eat beef often?":
                     him "Do you eat beef often?"
@@ -1872,12 +1876,10 @@ label community12:
                         brennan "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
                         sara "Okay, who is their supervisor then?"
                         brennan "His name is Bandile. He's down in the mines all day though. You could try messaging him."
-                    else:
-                        pass
                     brennan "I hope you find the missing cow."
                     brennan "Now if you don't mind, I need to get back to work."
 
-                    "We exit and head down the mountain. Pavel waves and joins us."
+                    "We left and headed down the mountain. Pavel waved and joined us."
                     pavel "How was your conversation with Brennan?"
                     him "Not great. I can't tell if he's hiding something or just defensive."
                     sara "Brennan acts like it doesn't matter what they eat, as long as they're alive."
@@ -1927,7 +1929,7 @@ label community12:
                         pass
                     brennan "I need to get back to work. I hope you can find the missing cow."
                     him "I hope so too."
-                    "I exit and head down the mountain. Pavel waves and joins me."
+                    "I left and headed down the mountain. Pavel waved and joined me."
                     pavel "How was your conversation with Brennan?"
                     him "Not great. I can't tell if he's hiding something or not."
                     pavel "Understandable."
@@ -1939,6 +1941,7 @@ label community12:
                     him "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
                     pavel "No, just that they wished they had some beef."
                     him "Where do we go from here?"
+                    pavel "Can you tell Pete what we found out?"
                     jump tell_Pete
 
             label message_Bandile:

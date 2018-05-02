@@ -48,6 +48,7 @@ label start:
         bro_age = 0
         year6_have_baby = False
         year8_have_baby = False
+        family27_no_work = False
 
         marriage_strength = 0
 

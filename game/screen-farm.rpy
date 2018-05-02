@@ -259,7 +259,7 @@ screen crops_totals:
             # TODO: show this better, show savings, etc.
 
         text " "
-        if (year > 6):
+        if (year >= 6):
             label "Kids' Assignment"
             bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
             hbox:

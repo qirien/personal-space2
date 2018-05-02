@@ -58,9 +58,7 @@ label work2:
 
     # TODO: Finis this, make plums permanent, use plums+ in future years.
     # Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.
-    $ crop_index = get_crop_index("plums")
-    $ crop_info[crop_index][ENABLED_INDEX] = True
-
+    $ enable_crop("plums")
     return
 
 
