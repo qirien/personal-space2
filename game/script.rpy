@@ -16,6 +16,7 @@ label start:
     # GAME ENGINE
     python:
         save_name = "Intro"
+        notifications = ""
 
     # PARENTS
     python:
@@ -212,9 +213,13 @@ label start:
             $her_name = renpy.input("Wife's Name", default=her_name)
             $kid_name = renpy.input("Baby girl's Name", default=kid_name)
             jump name_change_loop
-        "Jump to Farming Screen":
+        "Test Farming Screen":
             $ farm.reset_crops(farm_size)
             call screen plan_farm
+        "Test Family Events":
+            jump test_family
+        "Test Community Events":
+            jump test_community
 
     scene stars_animated with fade
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
@@ -271,8 +276,8 @@ label start:
         call expression "community" + str(year)
 
         # Increase child stats based on this year's parenting decisions
-        scene stars with fade
         $ notifications = ""
+        scene stars with fade
         call increase_attachment
         call increase_competence
         call increase_independence

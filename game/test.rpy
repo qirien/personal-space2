@@ -11,11 +11,11 @@ label tests:
             call baby_positions
         "Omake":
             call omake
-        
+
     return
 
 label test_family:
-    
+
     $ year = 1
     $ attachment = 0
     $ competence = 0
@@ -26,14 +26,16 @@ label test_family:
     $ authoritarian = 0
     $ permissive = 0
     $ neglectful = 0
-    
+
     while (year <= 30):
+        $ farm.reset_crops(farm_size)
+        $ farm.crops.setDefault()
         $ renpy.notify("Year [year]")
         call expression "family" + str(year)
         # Increase child stats based on this year's parenting decisions
         call increase_attachment
         call increase_competence
-        call increase_independence     
+        call increase_independence
 
         # Reset our variables while keeping a running total
         $ total_demanding += demanding
@@ -41,33 +43,21 @@ label test_family:
         $ total_responsive += responsive
         $ responsive = 0
 
-        $ year += 1        
-        
+        $ year += 1
+
     "The end"
-    $ par_style = get_parenting_style()
-    "Your parenting style was: [par_style]"
-    "Authoritative: [authoritative], Authoritarian: [authoritarian], Permissive: [permissive], Neglectful: [neglectful]"
-    "Total demanding: [total_demanding], Total responsive: [total_responsive]"
-    "Attachment: [attachment], Competence: [competence], Independence: [independence]"
-    
-    $ ending_name = ""
-    if (attachment >= 20):
-        $ ending_name += "A"
-    else:
-        $ ending_name += "a"
-        
-    if (competence >= 20):
-        $ ending_name += "C"
-    else:
-        $ ending_name += "c"
-        
-    if (independence >= 20):
-        $ ending_name += "I"
-    else:
-        $ ending_name += "i"
-        
-        
-    "You would probably get ending: [ending_name]"
+    jump ending
+    return
+
+label test_community:
+    $ year = 1
+    while (year <= 30):
+        $ renpy.notify("Year [year]")
+        call expression "community" + str(year)
+        $ year += 1
+
+    "Game complete."
+    "Luddites: [luddites]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
     return
 
 image toddler = "sprites/toddler.png"
@@ -75,7 +65,7 @@ image toddler = "sprites/toddler.png"
 label baby_positions:
     scene farm_interior with fade
     show him normal at midleft
-    show toddler at midright 
+    show toddler at midright
     with dissolve
     "Here is the baby at midright"
     him annoyed  "I can't even see the baby on the floor"
@@ -85,14 +75,14 @@ label baby_positions:
     her flirting "It looks better if I'm holding her."
     show toddler at rightbaby with move
     kid "But I could also sit on the bed!"
-    
+
     show kid normal at midright with dissolve
-    
+
     kid "I'm kinda short, but I have feet unlike everyone else, so it's OK!"
     show kid normal at centerkid with move
     kid "But I could stand farther up as long as I have feet!"
-    
-    
+
+
 label test_positions:
     "left"
     show her normal at left

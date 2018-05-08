@@ -3396,6 +3396,7 @@ label family13:
                         him "You'll let me have one, right?"
                         kid "Sure, dad."
                         $ authoritative += 1
+                        jump family13_end
             menu:
                 "What should I tell her about sex?"
                 "Tell her the biology facts." if not sex_ed_biology:
@@ -3476,7 +3477,7 @@ label family13:
             him "Yeah, let's go tomorrow morning before school. We'll get up early and catch them before they get warmed up."
             $ permissive += 1
 
-
+label family13_end:
     scene black with fade
     "...but [her_name] lost the baby."
     "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
@@ -6218,7 +6219,7 @@ label family27:
             kid "Maybe... But who would I even ask?"
             # TODO: have these based on stats? or increase stats?
             menu:
-                "What should I say?"
+                "What should I tell her?"
                 "Ask in town.":
                     $ responsive += 1
                     him "You could ask around in town, see what people need."
@@ -6244,7 +6245,7 @@ label family27:
                     him "I'm sure you'll figure something out."
                     kid "Thanks for nothing."
 
-            "[kid_name found a job tutoring some kids in one of the miner families."
+            "[kid_name] found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
             $ authoritative += 1
             # TODO: decrease her amount of available work?

@@ -7,6 +7,8 @@
 label ending:
     # TODO: remove debug code
     "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
+    $ parenting_style = get_parenting_style()
+    "Parenting style: [parenting_style]"
     if (attachment < ATTACHMENT_GOOD):
         if (competence < COMPETENCE_GOOD):
             # aci and acI
@@ -63,7 +65,7 @@ label ending_aci:
     kid "You hardly ever saw me when I lived with you, so I don't see what the big difference will be."
     her sad "Isn't there some way I can change your mind?"
     brennan "It's too late for that. The contract is signed."
-    kid "Mom, I... I'm sorry. I love you, but Lorant needs me more and I want to go."
+    kid "Mom, I... I'm sorry. I love you, but I want to go."
     "[her_name] embraced her tightly for several minutes, as if stamping in her mind every detail about our daughter."
     menu:
         "What should I say?"
@@ -72,7 +74,8 @@ label ending_aci:
         "You're making a mistake.":
             him annoyed "You're making a mistake! When things go wrong and you realize how horribly you've screwed up, remember that I told you so!"
             kid "Wow, I really am going to miss you."
-        "We'll miss you."
+        "We'll miss you.":
+            him concerned "We'll miss you..."
 
     kid "Goodbye, dad."
     "She hugged me briefly, and then walked away."
@@ -89,8 +92,8 @@ label ending_aci:
     him "I'd be happy if he never thought of me again."
     brennan "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
     her "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
-    brennan "But I'm now her manager, which is similar in some ways. Yes, I'll watch out for her."
-    "[her_name] glared at me. I wanted to get in one last barb, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
+    brennan "I'm now her manager. Yes, I'll watch out for her."
+    "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
     him "I... I'd appreciate that."
     "He nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."

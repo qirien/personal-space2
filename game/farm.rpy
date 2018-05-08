@@ -194,6 +194,10 @@ init python:
                     if (chosen_crop == "goats"):
                         chosen_crop = ""
 
+                # an empty field is not a valid choice
+                if (chosen_crop == "fallow"):
+                    chosen_crop = ""
+
             return chosen_crop
 
 
