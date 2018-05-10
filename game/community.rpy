@@ -3288,7 +3288,7 @@ label community20:
                 "I sent Pavel a message with RET's requests."
                 pavel "I'll pass this on. It sounds like calling her a guest is their way of acknowledging that she left."
                 jump lily_return
-            elif(style == "authoritarian"):
+            elif (style == "authoritarian"):
                 "Don't allow her to return."
                 "I told Pavel that RET didn't want to let her to come back."
                 pavel "I was afraid of that. Well, do you want to let her back or not?"

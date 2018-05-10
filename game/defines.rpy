@@ -36,9 +36,9 @@ init -100:
 
     # Static variables used for endings
     # TODO: Tweak these so all endings are possible.
-    define ATTACHMENT_GOOD = 45
-    define COMPETENCE_GOOD = 45
-    define INDEPENDENCE_GOOD = 30
+    define ATTACHMENT_HIGH = 45
+    define COMPETENCE_HIGH = 45
+    define INDEPENDENCE_HIGH = 30
 
     define MAX_YEARS = 30
 

@@ -50,6 +50,7 @@ label start:
         year6_have_baby = False
         year8_have_baby = False
         family27_no_work = False
+        plays_saxophone = False
 
         marriage_strength = 0
 

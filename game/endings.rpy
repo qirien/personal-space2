@@ -9,29 +9,29 @@ label ending:
     "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
-    if (attachment < ATTACHMENT_GOOD):
-        if (competence < COMPETENCE_GOOD):
+    if (attachment < ATTACHMENT_HIGH):
+        if (competence < COMPETENCE_HIGH):
             # aci and acI
-            if (independence < INDEPENDENCE_GOOD):
+            if (independence < INDEPENDENCE_HIGH):
                 jump ending_aci
             else:
                 jump ending_acI
         else:
             # aCi and aCI
-            if (independence < INDEPENDENCE_GOOD):
+            if (independence < INDEPENDENCE_HIGH):
                 jump ending_aCi
             else:
                 jump ending_aCI
     else:
-        if (competence < COMPETENCE_GOOD):
+        if (competence < COMPETENCE_HIGH):
             # Aci and AcI
-            if (independence < INDEPENDENCE_GOOD):
+            if (independence < INDEPENDENCE_HIGH):
                 jump ending_Aci
             else:
                 jump ending_AcI
         else:
             # ACi and ACI
-            if (independence < INDEPENDENCE_GOOD):
+            if (independence < INDEPENDENCE_HIGH):
                 jump ending_ACi
             else:
                 jump ending_ACI
@@ -41,6 +41,7 @@ label ending:
 
 #1 aci - Blames you for everything. Clingy. Follows (miner?) boyfriend back to Earth but you know the relationship won't last.
 label ending_aci:
+    "Ending aci"
     her surprised "Where's [kid_name]? I thought she'd want to say goodbye to Anya."
     him surprised "I thought Anya was staying here, with Travis."
     her concerned "I thought they broke up..."
@@ -123,9 +124,72 @@ label ending_aci:
 
     return
 
-#2 acI - Rejects your life and joins luddites/returns to Earth to fulfill her dream of becoming a ________, but fails. Moves from one job to the next, but drives away people around her and isn't good at anything.
+#2 acI - Rejects your life and joins luddites, but fails. Moves from one job to the next, but drives away people around her and isn't good at anything.
 label ending_acI:
     "Ending acI."
+    "Even though [kid_name] still lives on Talaam, I worry a lot about her."
+    "She's trying to support herself with her delivery business, but with the miners gone, I can't imagine she's very successful."
+    "I worry that she moved in with Travis because she needed a place to stay, not because she loves him."
+    "I worry that she'll be too prideful to ask for help when she needs it."
+    "And I worry that I didn't teach her enough for her to be out on her own already."
+    "And the worst part about these worries is that, for the most part, I can't do anything about them."
+    "I try to talk to her, to be there for her..."
+    "...but she doesn't want anything to do with me."
+
+    scene farm_exterior with fade
+    show travis at midright
+    show kid at center
+    with dissolve
+    show him at midleft
+    with moveinleft
+    him concerned "Hey, [kid_name]."
+    kid "Dad. What are you doing here?"
+    him "I just had some extra pickles and thought you might like some."
+    "I held them out like I used to hold carrots out for Lettie when I was training her."
+    "She looked at Travis, who shrugged and walked off."
+    hide travis with moveoutright
+    "She took the pickles but didn't get too close."
+    kid "Thanks."
+    him "If there's anything you need help with--"
+    kid "Dad, I'm fine."
+    him "How's Travis?"
+    kid "Good."
+    him "You still have lots of deliveries to make?"
+    kid "Not anymore. The miners were my best customers, but they're gone now."
+    menu:
+        "What should I say?"
+        "What are you going to do?":
+            him "So...what are you going to do?"
+            kid "Something else, I guess. Don't worry about it, dad -- it's my life."
+            him "I'm your dad; I can't not worry about you."
+        "Come home.":
+            him "Come home, [kid_name]. Your room is still there, waiting for you--"
+            kid "So you can boss me around? No thanks, dad."
+            him "I wouldn't--"
+            kid "Yeah, you would. You don't know any other way to be."
+            "That was unfair. But I couldn't think of a good retort."
+            kid "And that's fine, but I can't live there anymore."
+            him "You could."
+        "Travis doesn't deserve you.":
+            him "Travis doesn't deserve you. Why are you still hanging around him?"
+            kid "You don't even know him! He works hard!"
+            him "Doing what?"
+            kid "It's none of your business. You had your chance to be my dad when I was little and didn't have a choice. It's too late to start caring now."
+            him "I've cared for you your whole life!"
+    kid "Ugh, Dad, can we not?"
+    him sad "..."
+    kid "Just... just let me live my life, okay? I'm going to make mistakes."
+    kid "Maybe I'll be unemployed, maybe I'll trust the wrong person and have my heart broken, maybe I'll go hungry and eat nothing but potatoes for a month, or maybe I'll hunt crabirds and die alone in the wilderness!"
+    kid "But if I don't try, if I don't get a chance to make those mistakes for myself...what's the point of being alive?"
+    "I wanted to embrace her, to give her a father's comfort. But I didn't think I could take it if she pushed me away."
+    him concerned "I understand."
+    "I turned to leave."
+    kid "Dad?"
+    him surprised "Yes?"
+    kid "Thanks for the pickles."
+    him normal "Anytime."
+
+    "Ending 2/8 My Very Own Mistakes."
     return
 
 #3 aCi - Gets sucked into a crappy marriage on Talaam with the first person who shows affection, but at least she won't die of starvation.
@@ -140,6 +204,7 @@ label ending_aCI:
 
 #5 Aci - stays on your farm helping you, though she doesn't work hard enough to be of much help.
 label ending_Aci:
+    "Ending Aci"
     "I kept expecting [kid_name] to get married and leave us, or go off to pursue her own dreams, but so far she seems content to keep things as they are."
     "She helps around the farm sometimes, but I still feel like I have to tell her how to do things and keep a close eye on her."
     "I remember when she was little, she wasn't afraid of anything, and she couldn't wait to do new things like go to school or go to the beach."
@@ -167,4 +232,16 @@ label ending_ACi:
 #8 ACI - becomes an expert in her field, starts to form her own happy family on Talaam
 label ending_ACI:
     "Ending ACI."
+    "I want a lot of things for [kid_name], but most of all I want her to find some of the same happiness I've found.  Happiness in love, in family, in community."
+    "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
+
+    "So I'm not just happy that she's getting married to the nicest young man on the entire planet."
+    "I'm not just happy that she's staying here, on Talaam."
+    "I'm also happy she found a way to do something she loves that helps people."
+    "She worked hard to earn a dual degree in sociology and biology, and she has learned to understand the jellies in a way that no one else can."
+    "With her mediating between the colony and the jellies, I see a beautiful future of peace ahead."
+    "And I'll get to see it all happen."
+
+    "Ending 8/8, Happily Ever After Starts Here"
+
     return

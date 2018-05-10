@@ -5063,6 +5063,7 @@ label family20:
     "I was worried that the saxophone would just be a fad [kid_name] went through, but she really got into it."
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played, I could hear her expressing emotions even she didn't know she had."
+    $ plays_saxophone = True
     return
 
 #####################################################
@@ -5734,7 +5735,7 @@ label family23:
     return
 
 # 14.8 Earth years old
-# Death, alcohol, drugs, fashion
+# Hanging out with Anya and her older brother
 # Lettie dies.
 label family24:
     "My horse, Lettie, was almost a member of the family. But she was over twenty-five years old, now, and it was starting to show."
@@ -5922,7 +5923,7 @@ label lettie_dies:
     "And now she was gone."
     scene black with fade
 
-    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya and Lorant showed up and together we all managed to get Lettie's body into the back of the tractor."
+    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya and Lorant and Oleg showed up and together we all managed to get Lettie's body into the back of the tractor."
     "[her_name] must have called them. She probably knew we'd end up having to move Lettie, one way or another."
     "I didn't cry, but I didn't say much, either. I just concentrated on the next thing to do."
     # TODO: change who helps based on community scores?
@@ -6067,37 +6068,178 @@ label lettie_dies:
     return
 
 # 15.5 Earth years old
-# A boy...friend?
-# she questions why you have certain rules and you decide what to tell her.
+# Thinking about the future
+# foreshadowing ending
 label family25:
-    "Terra sure has been spending a lot of time with some boy. They were holding hands... does she have a boyfriend?"
+    scene black with fade
+    "[her_name] was busier than ever. Not only did she have to treat the miners from RET and deal with all their extra paperwork, but she also did routine checkups for the colony."
+    "Her duties only increased as the number of babies increased and as people got older."
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft
+    with dissolve
+
+    him concerned "Mom won't be home until later, and [bro_name]'s helping her out, so it's just you and me again."
+    if (is_attached()):
+        kid "Okay. Want me to fix something?"
+        him "Sure, I started these potatoes earlier but let's make some squash to go with them."
+    else: # not attached
+        kid "Okay."
+        him "Let's make some dinner. I already have potatoes; we just need some squash."
+        "She rolled her eyes and sighed, but washed her hands and got ready to help."
+
+    if (is_independent()):
+        kid "I can handle it by myself dad."
+        him "Are you sure?"
+        kid "Yes! I know you're trying to finish harvesting, so come back in an hour and I'll have it all ready for you."
+        him "Thanks, [kid_name], that'd be great."
+        scene black with fade
+
+        if (is_competent()):
+            "When I came back an hour later, she had the table set, the potatoes were smothered in a creamy goat cheese sauce, and the squash was roasted with a bit of a caramel edge to it."
+            him "Wow, this is delicious!"
+            kid "It's just dinner..."
+            him "You're a great cook. I'm glad I don't have to worry about you starving to death when you're living on your own someday."
+        else: # independent but not competent
+            "When I came back an hour later, there was some weird kind of creamy potato squash soup thing on the table."
+            "There was a faint bitterness in the air, like something had been burning recently."
+            kid "...Dinner's ready."
+            "The gloppy soup had bits of squash that were somehow both burned and undercooked at the same time."
+            "I ate it, though, and so did she."
+            him "Thanks for, ah, making dinner."
+            kid "It's kind of gross."
+            him "...yeah."
+            kid "You're not supposed to say 'yeah'!"
+            him surprised "What am I supposed to say?"
+            kid "You're supposed to lie and tell me it's good!"
+            him "Sorry, [kid_name]. I wasn't going to complain, but you brought it up."
+            kid "I'm just a terrible cook."
+            him "You just need more practice. It's okay, though, you still have some time before you'll be living on your own."
+    else: # is attached but not independent
+        "I peeled and chopped the squash, and she got some goat cheese to make a creamy sauce for the potatoes."
+        him "Use low heat for the cream sauce."
+        kid "I know! Dad, I'm not a little kid, I can cook."
+        "I kept my mouth shut but kept an eye on her as we prepared the food together."
+        if (is_competent()):
+            "And you know what? She was right. She did know what she was doing."
+            "She skimmed a little cream from the top of the goat's milk and mixed it with potato starch to make a roux."
+            "She added some more milk and goat cheese, and a delicate sprinkling of spices that smelled heavenly."
+            "The cream sauce melded with the soft potatoes to make the perfect comfort food."
+            him happy "You're a great cook. I'm glad I don't have to worry about you starving to death when you're living on your own someday."
+        else:
+            "She dumped the cheese in the pan and heated it up. Maybe I had never taught her how to make a cream sauce..."
+            "Then she added a bunch of salt."
+            "The result was really salty goat cheese potatoes."
+            him "Thanks for cooking with me. Hard to believe you might be cooking for yourself in just a few years, huh?"
+
+    kid "Yeah... you and mom went to college after high school, right?"
+    him "Your mom did -- for a long time. I went part-time for a while, but I had to quit to help my parents on the farm."
+    kid "Can I go to college?"
+    "That was a good question. Teenagers on the colony usually ended up mostly being farmers, though some like Miranda also earned degrees via independent study."
+    him "Miranda earned a biology degree studying with Dr. Lily. I think anyone who wants to could do that, too."
+    kid "But you don't need a college degree to do most stuff here."
+    him "No, that's true. What do you want to study?"
+    kid "I don't know! I like a lot of things. Music, jellies, fossils, reading, the stars..."
+    him "And farming?"
+    kid "Maybe. I like to eat, anyway!"
+    him "Hunger is a powerful motivator."
+    kid "Anya says she's going to be a miner. Her brother just started and he already earns a lot of money."
+    him "But aren't they leaving in a few years?"
+    kid "Yeah...It just seems like there's not many choices here on Talaam. If you're not a farmer or a miner, why are you even here?"
     menu:
-        "Talk to her about it":
-            him "Are you guys pretty serious?"
-            kid "Yeah, for like the past month!"
+        "What should I say?"
+        "We need other people, too.":
+            $ responsive += 1
+            him "We need people to do other things, too. Sara, and Ilian aren't farmers, but imagine how disorganized we'd be without them!"
+            him "Or how much less we'd know without Miranda's studies, or how many people would have died without your mom there to fix them up."
+            him "I love farming, but if you don't want to do that, there's plenty of other great things you can do to help the colony."
+            kid "Thanks for the speech, dad."
+        "Miners and farmers can do other things, too.":
+            $ responsive += 1
+            $ demanding += 1
+            him "Just because you're a miner or farmer doesn't mean that's your whole life. Pete still reads lots of books, and Joanna paints, and Thuc juggles..."
+            kid "What about you?"
+            him "Well... when I have free time, I want to spend it with my wife and kids. And, well, uh..."
+            kid "What?"
+            him "And sometimes I write bad poetry."
+            kid "Ha ha, that's true. So you're saying I could be a farmer and still be into music?"
+            him "Yeah, you don't need a college degree for that. And you don't need a college degree to read books and learn stuff, either."
+        "Earth has a lot more opportunities.":
+            $ demanding += 1
+            him "Honestly, Earth has way more opportunities for things to study."
+            kid "Yeah! I'd love to see it someday."
+            him "I'd like you to see it, except... I don't know if you could come back."
+            kid "Yeah..."
+        "Good question.":
+            him "Good question. I wonder the same thing sometimes."
+            kid "So... if I don't want to be a farmer or a miner, why would I stay?"
+            him "Maybe you don't want to leave your family?"
+            if (is_independent()):
+                "She looked at me like I was crazy. If she left, she probably wouldn't miss us at all."
+            else:
+                "She looked at me appraisingly, like she was trying to decide how much my friendship was worth. It made me want to impress her, to show her how awesome our family was so she would stay."
+                "But that was silly. I was her dad."
 
-            # TODO: Make this a loop where you choose lots of things to say
-            # but only increase one parenting variable somehow
-            menu:
-                "You're too young for a boyfriend!":
-                    $ demanding += 1
-                    $ authoritarian += 1
-                "Are you thinking about marriage?":
-                    $ demanding += 1
-                    $ authoritative += 1
-                "What are your plans?":
-                    $ responsive += 1
-                    $ authoritative += 1
-                "Tell me about him":
-                    $ responsive += 1
-                    $ permissive += 1
-                "Have you thought about birth control?":
-                    $ demanding += 1
-                    $ permissive += 1
-        "It's none of your business.":
-            $ responsive -= 1
+    #TODO: foreshadow ending here
+    if (is_attached()):
+        if (is_competent()):
+            if (is_independent()):
+                "ACI"
+            else:
+                "ACi"
+        else:
+            if (is_independent()):
+                "AcI"
+            else:
+                "Aci"
+    else:
+        if (is_competent()):
+            if (is_independent()):
+                "aCI"
+            else:
+                "aCi"
+        else:
+            if (is_independent()):
+                "acI"
+            else:
+                "aci"
+
+    kid "What do you think I should do?"
+    menu:
+        "What should I say?"
+        "Follow your heart!":
+            him "You should follow your heart. If you can't do what you love, there's no point in being alive."
+            kid "But what if following my heart doesn't make any money? I'm going to need to eat."
+            him "Yeah, you might need to work at a job you don't like very much to support your passion. Or find someone else who will support your passion."
+            kid "Like marry a rich guy?"
+            him "Uh, that's one way, I guess..."
+            kid "Ha ha, I'm just kidding, dad!"
+            $ permissive += 1
+        "You need to be able to support your family and community.":
+            him "You have a duty to help support your family and community. That needs to come before your personal desires."
+            kid "So you think I should be a farmer."
+            him "I think that instead of asking 'What do I want to do?' you should ask 'What does the colony need me to do?'."
+            kid "Which is farming."
+            him "Maybe! There's other important things, too. It's like John F. Kennedy said -- 'Ask not what your country can do for you – ask what you can do for your country.'"
+            kid "Even if I don't want to?"
+            him "It's not a matter of wanting; it's a matter of duty. Your family and community has supported you and raised you. It's your duty to support them."
+            $ authoritarian += 1
+        "Be the best at whatever you choose.":
+            him "You have a lot of choices here, but whatever you choose, do your best in a way that helps people."
+            if (plays_saxophone):
+                kid "But some things don't really help people all that much. Like, how does it help the community if I practice my saxophone or play with jellies?"
+            else:
+                kid "But some things don't really help people all that much. Like, how does it help the community if I play with jellies?"
+            him "I bet you can find a way to share your passion with the community."
+            kid "Huh, maybe. I never really thought about it before..."
+            $ authoritative += 1
+        "I don't care.":
+            him "I don't really care what you choose. That's totally up to you."
+            kid "You don't care at all?"
+            him "Nope."
+            "I was her dad, not her career counselor. It was none of my business and she probably wouldn't listen to me anyway."
+            "Though she did look a little disappointed."
             $ neglectful += 1
-
     return
 
 # 16.1 Earth years old
@@ -6388,9 +6530,8 @@ label family27:
     return
 
 # 17.3 Earth years old
-# Terra's plans for future
-
-    # TODO: event about how Terra uses her bike to deliver things between Pete, miners, and village, including alcohol, firegrass, etc?  Works with Brennan?  Going against the RET embargo? Should this depend on which ending you're heading towards?
+# Terra's job, plans for future
+# TODO: make sure this is consistent with community events
 label family28:
     scene farm_interior with fade
     show him at midleft
@@ -6630,7 +6771,7 @@ label family28:
     return
 
 # 18 Earth years old
-# Terra blames you for some big crisis!
+# Graduation! Terra blames you for some big crisis!
 label family29:
 
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
