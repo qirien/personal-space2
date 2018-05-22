@@ -1,4 +1,4 @@
-## Community Events
+﻿## Community Events
 
 # A short event that plays to introduce the community
 # Feel free to change this if you want. It should be fairly short and remind
@@ -4808,82 +4808,8 @@ label community27:
     him "Hmm. They do seem to be intelligent animals, but usually growing a body part isn't a conscious process."
     "Jellysquid" "Help me?"
     "Then the back of the jellysquid looked like the literacy game again."
-    # "It had part of a sentence fixed, with word options to complete the sentence."
-    # "Find"
-    # menu:
-    #     "Mom":
-    #         kid "Is it asking us to find its mom?"
-    #     "Clothes":
-    #         kid "We have clothes right here!"
-    #         him "Maybe it's using clothes as a word for something else."
-    #
-    #
-    #
-    # "Help"
-    # label help_menu:
-    #     menu:
-    #         "me":
-    #             him "I don't understand. Are we just confirming that it's using a grammatically correct sentence?"
-    #             kid "I think it's asking if we want to help it or just help ourselves."
-    #             him "So this option is just saying, 'I don't want to help you, I just want to help myself'."
-    #             kid "I don't know, it's never done this before!"
-    #             jump help_menu
-    #         "you":
-    #             him "Okay, so we're telling it that we'll help it? Or are we asking for its help?"
-    #             kid "I'm saying 'I want to help you and not just me.'"
-    #             kid "I'm trying to speak to it, not just confirm its sentence structure."
-    #             him "But 'you' is a really complicated concept. Does it even understand what its saying?"
-    #             him "'Help you' and 'you help' are two completely different ideas."
-    #             kid "Maybe we can teach it what it means. Or maybe it knows the difference"
-    #             "Jellysquid" "You is"
-    #             him "So is it asking what we are or what it is?"
-    #             him "What if it doesn't recognize that 'you' changes with the speaker, and it's using that as a name for itself?"
-    #             kid "But it used 'me' before, so I think it's talking about us."
-    #             him "But that's not consistent. Before we used 'you' to mean the jellysquid and now we're using it to mean us?"
-    #             kid "Let's look at our options and see if it we can figure it out from there."
-    #             menu:
-    #                 "Jellysquid" "You is"
-    #                 "friend":
-    #                     him "Yeah, I'd say we're a friend. We want to help it."
-    #                     jump help_find_mom
-    #                 "hungry":
-    #                     him "I just want to see what happens."
-    #                     "Jellysquid" "Eat baby. Baby delicious."
-    #                     "Then it made a tiny jellystar right before our eyes."
-    #                     "It brought five of its tentacles together, and the tips fell off to form a jellystar"
-    #                     kid "It wants us to eat this jellystar?"
-    #                     him "Maybe it thinks that if we eat the jellystar, we won't eat it."
-    #                     kid "That is... weird."
-    #                     him "It makes me wonder just how often Travis talked to these things."
-    #                     if not ate_jellyfish:
-    #                         kid "Well, are you going to eat it?"
-    #                         menu:
-    #                             "Might as well":
-    #                                 him "We might as well now. But it's all spiny"
-    #                                 kid "Here, I'll take the spines off."
-    #                                 "[kid_name] took the spines off and I ate the jellystar."
-    #                                 $ ate_jellyfish = True
-    #                             "No, gross":
-    #                                 him "No, I think that's gross."
-    #                                 him "I especially don't want to eat one that's still alive. That just seems cruel."
-    #
-    #                         "Jellysquid" "Where is Mom? Help find mom."
-    #             "Jellysquid" "Help find"
-    #             menu:
-    #                 "Other children":
-    #                     him "Maybe we can find some other jellysquids around."
-    #                     "We looked and looked with the jellysquid in a bucket in our boat."
-    #                     "We couldn't find any other jellysquids."
-    #                     kid "Can I go back and try something else?"
-    #                     him "Well, if it's mimiking a tablet, does it have a retry button or something?"
-    #                     kid "Yeah, I think it does."
-    #                 "Mother" # start with this?
-    #                 "Friend"
-
     "'Grown-ups only! Needs permission to access more content.'"
     "'2+3 = ?'"
-    "Terra snorted."
-    kid "I guess I'm a grown-up now since I could answer that question."
     "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking a GPS, but it didn't adjust to my exact location."
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
@@ -4892,55 +4818,20 @@ label community27:
     "It had way more than eight tentacles and was a little smaller than our rowboat." #this line is optional--if Clarissa wants to draw it. They are not humanoid. DO THEY HAVE SHELLS is the important question
     "Jellystars joined in a chain from it to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
-    "Then the surface changed to the words 'hug me to reply.' "
     menu:
         "Run away.":
-            him "That doesn't sound very safe."
+            him "I don't want to explain this when I don't really understand it myself."
             him "Let's go home"
             "I tried to leave, but the jellystars kept my boat from moving."
             jump boat_capsized
-
-        "Comply.":
-            "I put the jellysquid up to my neck and it encircled me in a squid half-hug."
-            if (ate_jellyfish and touched_jellystar_25):
-                "At first I didn't feel a change, but then I noticed that it felt like a part of my brain was really concerned about jellysquid and the shells."
-                "It was like I was remembering something I had learned about jellysquid, but I must have been learning it from the creature below the surface."
-                "Jellysquid were playful, intelligent life forms, but only a stepping stone to reach yet another form."
-                if community_22_mining_stopped: #inflation and jellysquid hunting for their shells
-                    "I saw jellysquid meat floating in a mass after their shells were harvested, and a heart-gripping emotional pain."
-                "The inquiry about the jellysquid shells was constant, with the imagery of floating, dead jellysquid and their net enclosures coming up again and again like an obsessive thought over a gorey cut or an oozing rash."
-                "I saw baby jellysquids eating sand, but growing opaque shells that they couldn't communicate through."
-                "They couldn't join together to reproduce without this communication."
-                "I didn't know how to think in imagery very well. How would I explain that rare metals from the shells were necessary for creating expensive electronics on Earth? Electronics that gave us ways of improving healthcare, manufacturing, and communication?"
-                "How could I explain that these things helped my species survive, so we valued it more than their quality of life?"
-                "I spent some time in ethical reflection, and then I had a vision of my boat being shattered by the jellystars and my body being dragged underwater."
-                "The jellystars would eat my bones as revenge for what happened."
-                "No! My will to live was strong, as was my sympathy for the jellysquids."
-                "I pictured a coast with vanishing jellysquid farms, and humans in playful cooperation with jellysquid."
-                "How did they learn English anyway?"
-                "Dr. Lily came to mind, and I saw an image of her showing her tablet to the jellysquid underwater."
-                "The jellysquids played with the tablet, learning to replicate letters on their back, through her guidance..."
-                "...which continued after she... became a jellysquid person?"
-                "I was having trouble making sense of the imagery. I saw Dr. Lily in a boat, taken to a nexus of jellystars, like I had been."
-                "She joined with the jellysquid and never left, her boat and body eventually sinking."
-                "I thought of my family and friends, and the community I'd worked so hard to keep together." #could make this based off highest relationship values
-                "I had to go back and tell everyone what I'd learned."
-                "The jellysquid released me and I put it back into the ocean."
-                "The jellystars pushed us back towards the shore, which we reached after a bit of rowing." #chat with Terra here
-                return
-            else:
-                "I didn't feel anything change."
-                "I looked down at the jellysquid and saw 'ERROR' flashing."
-                "I tried to manipulate the words on the shell. The jellysquid stopped hugging me and displayed 'water,' so I put it back in the bucket."
-                jump text_conversation
-
-        "Refuse.":
-            him "I'm not giving this jellysquid a hug. But I am still interested in communicating."
+        # if ate_jellyfish AND touched_jellystar_25: I still want to do something with this variable cluster
+        "Engage.":
+            him "I am interested in communicating with these aliens."
             kid "Tell it! It can't hear you."
-            him "Okay, I'll trace an 'x' on the jellysquid."
+            him "Okay, I'll touch the jellysquid's back."
             jump text_conversation
 
-label text_conversation:
+label text_coversation:
     "It started displaying text."
     "Jellysquid" "Where are the baby's clothes?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
@@ -5005,7 +4896,7 @@ label call_to_squid:
             "The net of jellystars pushed us back towards shore."
             her "What on Earth happened to you?"
             kid "I think you mean 'What on Talaam' happened to us."
-            if (luddites > 10):
+            if ($ luddites > 10):
                 him "Any idea what happened to the nets?"
                 pete "Nope. I figured it was some angry miner or colonist."
                 pete "Or maybe Travis on a bad day."
@@ -5047,32 +4938,118 @@ label call_to_squid:
             "They communicated to me through a jellysquid, which I put in a bucket on my boat."
             "Jellysquid" "Did you bring shells?"
             "I held up the bucket that had the shells in it, and a tentacle whipped up from the surface and grabbed it from me."
-            if (shell_count > 2):
-                "Good shells. Need more."
+            if $ shell_count > 2:
+                "Jellysquid" "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
-                "More. Hundreds."
-                "I kept tracing a question mark."
-                "It displayed the words 'Why, What, Where, you, we, live, shell, food, is, are, not.'"
-                him "That's not a lot to work with. Hmmm."
-                #could be a menu here later.
-                him "Why you live shell?"
-                "Jellysquid" "Shell save us from enemy."
-                him "What are you?"
-                "Jellysquid" "I am an animal in the water."
-                "Jellysquid" "What are you?"
-                him "Hmm. My options are kind of limited."
-                him "We are not food."
-                "Jellysquid" "All animals are food."
-                him "What is shell food?"
-                "Jellysquid" "Other shells make shells."
-                "Jellysquid" "Some rocks make shells."
-                "Jellysquid" "Maybe mud? Mud tastes bad."
-                him "Hmmm. Good to know."
-                him "Why shell food is not?"
-                "Jellysquid" "You took food."
+                "Jellysquid" "More. Hundreds."
+                #change this to integrate with the magnetic poetry app
+#                "I kept tracing a question mark."
+#                "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
+#                him "That's not a lot to work with. Hmmm."
+#                #could be a menu here later.
+#                menu:
+#                    "Why":
+#                        menu:
+#                            "you":
+#                                menu:
+#                                    "live shell?":
+#                                        "Jellysquid" "Shell save us from enemy."
+#                                    "live not?":
+#                                        "Jellysquid" "You kill my children and keep their shells."
+#                                        "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
+#                            "we":
+#                                menu:
+#                                    "live shell?":
+#                                        "Jellysquid" "You don't live in a shell. Your shell is inside you."
+#                                    "live not?":
+#                                        "Jellysquid" "Do you eat? You need to eat to live."
+#                    "What":
+#                        menu:
+#                            "you?":
+#                                "Jellysquid" "I am an animal in the water."
+#                                "Jellysquid" "What are you?"
+#                                him "Hmm. My options are kind of limited."
+#                                menu:
+#                                    "We not food.":
+#                                        "Jellysquid" "All animals are food."
+#                                    "We not shell.":
+#                                        "Jellysquid" "Then why do you need shell?"
+#                                    "We live not.":
+#                                        "That is not possible. Dead things don't move."
+#                            "we?":
+#                                "Jellysquid" "You are new animals. We do not know what you are."
+#                            "shell":
+#                                "Jellysquid." "Shell protects children."
+#                            "shell food"
+#                    "Where":
+#                        menu:
+#                            "you":
+#                                menu:
+#                                    "live?":
+#                                        "Jellysquid" "We live here, in the ocean."
+#                                    "food?":
+#                                        "Jellysquid" "Our food is fish, light, and plants."
+#                                    "not live?":
+#                                        "Jellysquid" "We do not live on land."
+#                            "we":
+#                                menu:
+#                                    "live?":
+#                                        "Jellysquid" "You live on land. You know it. Why do you ask?"
+#                                    "food?":
+#                                        "Jellysquid." "Your food is on land. And water."
+#                                    "not live?":
+#                                        "Jellysquid." "You do not live in the ocean."
+
+#                him "What are you?"
+
+
+#                him "What is shell food?"
+#                "Jellysquid" "Other shells make shells."
+#                "Jellysquid" "Some rocks make shells."
+#                "Jellysquid" "Maybe mud fish? Mud fish tastes bad."
+#                him "Hmmm. Good to know."
+#                him "Why shell food is not?"
+#                "Jellysquid" "You took food."
                 "The display changed and asked me to bring more shells back."
-                "I said yes, but I had no idea what I was going to do."
+                "I knew that I probably couldn't find more shells, so instead I promised to look for shell food."
+                "I went back to the colony and my farm."
+                "I had a long talk with Miranda about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
+                "When I mentioned the mud fish, she looked excited."
+                "Miranda" "A few years ago I studied that fish."
+                him "What eats it?"
+                "Miranda" "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
+                him "How does it compare to jellysquid shells for metal content?"
+                "Miranda" "Well, it's not edible for humans. Let me bring up the report."
+                "Miranda" "Some species had a high level of heavy metals. I don't know what kind though."
+                him "Wow, this could be big! Instead of taking the shells, maybe Brennan could just mine the mud."
+                "Miranda" "Or they could just keep doing what's working, which is digging in the mountains."
+                "Miranda" "I think the jellysquids would be better off if we just left them alone."
+                "Miranda" "Brennan gave up on the jellysquid farms, right? Just leave well enough alone."
+                him "I told the jellymother I would try to help her!"
+                "Miranda" "Sometimes the most helpful thing you can do is to go away."
+                him "They can sort of write to us Julia! How are you not curious about that?"
+                "Miranda" "Actually, I've talked to them before. A lot."
+                "Miranda" "I helped Dr. Lily teach them how to 'write'. And now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
+                "Miranda" "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
+                him "Well, they asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
+                "Miranda" "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
+                him "Or maybe eating dead meat would gross them out. They mentioned that they eat rocks too. That sounds a little easier to serve."
+                "Miranda" "I can get some rocks from the miners and test it out. Can you introduce me to the jellymother?"
+                #this is getting long. put into next event?
                 return
+
+            else:
+                "Jellysquid" "Did you bring more?"
+                him "Uhhh"
+                "I traced 'no' on the jellysquid's back."
+                "Tentacles grasped my boat from below."
+                "I heard a sound like a water pump and then I was skidding across the surface toward the shore like a skipping rock."
+                "The jellysquid was still in the boat with me."
+                "Jellysquid" "Mom sad."
+                him "Well, that was a diplomatic failure."
+                "I put the jellysquid back in the ocean and went home."
+                #Similar resistence to the boat_capsized ending next month
+
 
         "No, I will not bring them.":
             jump boat_capsized
@@ -5093,6 +5070,8 @@ label boat_capsized:
     kid "That was unreal."
     her "Are you guys okay? What on Earth happened?"
     kid "Moooom, we're not on Earth, we're on Talaam."
+    "We told our friends about our alien encounter, but I'm not sure if they believed us."
+    #follow-up next month--they can't go into the ocean without resistence from jellystars
     #do they tell anyone? what happens later?
     return
 
