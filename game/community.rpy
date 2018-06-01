@@ -4789,6 +4789,8 @@ label community27:
     #JELLYPEOPLE RECKONING
     #if community_22_mining_stopped, the gathering of shells was more intense
     $ shell_count = 0
+    $ serve_mudfish = False
+    $ serve_Shills = False
     "It was time for our now-annual trip to the ocean."
     "When we got there, we were surprised to see more fish than usual."
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
@@ -4796,7 +4798,7 @@ label community27:
     him "I wonder if this is Pete's work?"
     "We took a boat out to go fishing past the pier, especially since [kid_name] wanted to play with a jellysquid.."
     "We spent a long time searching. There were a lot of fish in the water eating bits of dead animals... was it dead jellysquid?"
-    "I thought I saw a live jellysquid and got out of the boat. The ocean was shallower than it looked and I was able to stand up."
+    "I thought I saw a live jellysquid and got out of the boat. The ocean was shallow here and I was able to stand up."
     "I caught the jellysquid in a bucket after some chasing."
     "It wasn't displaying the reading game on its tablet-like shell like it had years before. Instead it said:"
     "Jellysquid" "Sad Sad Sad Sad Sad Sad"
@@ -4815,13 +4817,13 @@ label community27:
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
     "Something under the surface was emitting a light."
     "It came closer to the surface, and I could see part of it."
-    "It had way more than eight tentacles and was a little smaller than our rowboat." #this line is optional--if Clarissa wants to draw it. They are not humanoid. DO THEY HAVE SHELLS is the important question
+    "It had way more than ten tentacles and was a little smaller than our rowboat." #this line is optional--if Clarissa wants to draw it. They are not humanoid. DO THEY HAVE SHELLS is the important question
     "Jellystars joined in a chain from it to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
         "Run away.":
             him "I don't want to explain this when I don't really understand it myself."
-            him "Let's go home"
+            him "Let's go home."
             "I tried to leave, but the jellystars kept my boat from moving."
             jump boat_capsized
         # if ate_jellyfish AND touched_jellystar_25: I still want to do something with this variable cluster
@@ -4831,7 +4833,7 @@ label community27:
             him "Okay, I'll touch the jellysquid's back."
             jump text_conversation
 
-label text_coversation:
+label text_conversation:
     "It started displaying text."
     "Jellysquid" "Where are the baby's clothes?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
@@ -4896,7 +4898,7 @@ label call_to_squid:
             "The net of jellystars pushed us back towards shore."
             her "What on Earth happened to you?"
             kid "I think you mean 'What on Talaam' happened to us."
-            if ($ luddites > 10):
+            if luddites > 10:
                 him "Any idea what happened to the nets?"
                 pete "Nope. I figured it was some angry miner or colonist."
                 pete "Or maybe Travis on a bad day."
@@ -4938,7 +4940,7 @@ label call_to_squid:
             "They communicated to me through a jellysquid, which I put in a bucket on my boat."
             "Jellysquid" "Did you bring shells?"
             "I held up the bucket that had the shells in it, and a tentacle whipped up from the surface and grabbed it from me."
-            if $ shell_count > 2:
+            if shell_count > 2:
                 "Jellysquid" "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
                 "Jellysquid" "More. Hundreds."
@@ -5014,42 +5016,108 @@ label call_to_squid:
                 "I knew that I probably couldn't find more shells, so instead I promised to look for shell food."
                 "I went back to the colony and my farm."
                 "I had a long talk with Miranda about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
-                "When I mentioned the mud fish, she looked excited."
+                "When I mentioned the mudfish, she looked excited."
                 "Miranda" "A few years ago I studied that fish."
                 him "What eats it?"
                 "Miranda" "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
-                him "How does it compare to jellysquid shells for metal content?"
+                him "The ones called Shills? Because they make a really cool noise but disappear if you approach them?"
+                him "How do they compare to jellysquid shells for metal content?"
                 "Miranda" "Well, it's not edible for humans. Let me bring up the report."
                 "Miranda" "Some species had a high level of heavy metals. I don't know what kind though."
-                him "Wow, this could be big! Instead of taking the shells, maybe Brennan could just mine the mud."
+                him "Wow, this could be big! The same kind of metals that RET wants?" 
+                him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud, right?"
                 "Miranda" "Or they could just keep doing what's working, which is digging in the mountains."
-                "Miranda" "I think the jellysquids would be better off if we just left them alone."
                 "Miranda" "Brennan gave up on the jellysquid farms, right? Just leave well enough alone."
-                him "I told the jellymother I would try to help her!"
+                him "I told the jellymother I would try to help her!" # TODO: decide if jellymother is her or them. make capitalization consistent.
                 "Miranda" "Sometimes the most helpful thing you can do is to go away."
-                him "They can sort of write to us Julia! How are you not curious about that?"
+                him "They can sort of write to us Miranda! How are you not curious about that?"
                 "Miranda" "Actually, I've talked to them before. A lot."
                 "Miranda" "I helped Dr. Lily teach them how to 'write'. And now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
                 "Miranda" "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
                 him "Well, they asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
                 "Miranda" "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
-                him "Or maybe eating dead meat would gross them out. They mentioned that they eat rocks too. That sounds a little easier to serve."
-                "Miranda" "I can get some rocks from the miners and test it out. Can you introduce me to the jellymother?"
-                #this is getting long. put into next event?
-                return
-
-            else:
+                him "Or maybe the Shills that eat the mud fish would have the right minerals in their meat?"
+                "Miranda" "I can do some field research this weekend."
+                him "Great. Maybe the jellymother will talk to you too."
+                "Miranda" "You're not coming with me?"
+                him "I've been out there twice already. Message me if there's an emergency."
+                "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
+                "I could tell Breannan and Zaina about possibly mining in the mud instead of in the mountains."
+                menu:
+                    "Tell them.":
+                        "I told Brennan and Zaina about the heavy metals in the mud. They sounded exicted to try mining it."
+                    "Don't tell them.":
+                        "I decided not to tell Brennan and Zaina about the heavy metals in the mud."
+                "Next week, Miranda returned and asked me to meet with her."
+                "Miranda" "The jellysquid seemed to remember me, so I didn't have trouble getting them to try a few different foods."
+                "Miranda" "I was able to catch a few mudfish and feed their filets to a jellysquid."
+                "Miranda" "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
+                "Miranda" "I had a hard time catching the Shill, despite using mudfish as bait. Eventually the Jellymother found me and I told her what I was trying to do."
+                "Miranda" "She seemed surprised. The Shill is difficult capture, so they rarely eat it."
+                "Miranda" "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
+                "Miranda" "She killed a Shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
+                "Miranda" "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
+                him "So what do you think would be best for the jellysquids?"
+                "Miranda" "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
+                "Miranda" "The jellysquid can easily eat the Shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
+                him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
+                "Miranda" "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
+                "What do I think is better?"
+                menu: #should this be a decision? remove it?
+                    "Serve mudfish to the jellysquids.":
+                        him "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
+                        him "Also, we won't have to worry about shell overgrowth."
+                        "Miranda" "I just hope the colony is strong enough to help with this."
+                        $ serve_mudfish = True
+                        jump aquaculture
+                    "Have them eat Shills.":
+                        him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
+                        him "If they keep eating Shills, they won't have to rely on us to create new shells."
+                        "Miranda" "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
+                        him "Right."
+                        "Miranda" "I just hope the colony is strong enough to help with this"
+                        $ serve_Shills = True
+                        jump aquaculture
+                        
+                        label aquaculture:
+                            "I started making plans for a fish farm off the coast."
+                            "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
+                            "After I explained my plans to the Jellymother, she said that she could help trap a few of the first fish to start the farm."
+                            if colonists > 10:
+                                "The other colonists helped me dig the farm-pond and line it with rocks."
+                                if serve_mudfish:
+                                    "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
+                                    "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
+                                    "After about six months, the Jellymother told us that our efforts at reparation were sufficient."
+                                    "She presented us with some of the fish we could eat as a token of good will."
+                                    return
+                                else:
+                                    "Shills had a longer incubation period than I anticipated. The jellymother started feeding Shills to emerging jellysquids."
+                                    "Farming the Shills took weekly maintence, which we shared. After the Shills were big enough to fend for themselves, we released them into the wild."
+                                    "A few of the jellysquid ate too much Shill and ended up with large shells, but they seemed to adapt to it fairly well."
+                                    "The Jellymother seemed impressed that we followed up on our promise."
+                                    "She presented us with some of the fish we could eat as a token of good will."
+                                    return
+                            else:
+                                "I didn't have enough help from the other colonists to finish digging the farm-pond."
+                                "The Jellymother disappeared and we rarely saw any of the jelly creatures again."
+                                return
+               #this is getting long. put into next event?
+            else: #if shell count is less than 2
                 "Jellysquid" "Did you bring more?"
                 him "Uhhh"
                 "I traced 'no' on the jellysquid's back."
                 "Tentacles grasped my boat from below."
-                "I heard a sound like a water pump and then I was skidding across the surface toward the shore like a skipping rock."
+                "I heard a sound like a water pump and then my boat was jettisoned toward the shore. My boat skid across the surface like a skipping rock."
                 "The jellysquid was still in the boat with me."
                 "Jellysquid" "Mom sad."
                 him "Well, that was a diplomatic failure."
                 "I put the jellysquid back in the ocean and went home."
-                #Similar resistence to the boat_capsized ending next month
-
+                "Over the next few months, there were fewer reports of jellysquid sightings."
+                "We rarely saw any of them after that year."
+                return
+                #Similar resistence to the boat_capsized ending next month 
+                #I don't remember what the above note means
 
         "No, I will not bring them.":
             jump boat_capsized
@@ -5058,12 +5126,12 @@ label boat_capsized:
     "They capsized my boat, and I fell into the water."
     "We grabbed onto the boat and tried to turn it over."
     if (ate_jellyfish) and (touched_jellystar_25):
-        "A jellysquid slapped my neck, and I felt the rage and saddness of a bereaved mother."
+        "A jellysquid slapped my neck, and I felt sorry for this bereaved mother."
         "And now I was leaving her without any sort of explanation."
     "[kid_name] slapped the jellysquid off with an oar."
     kid "Come on Dad! Flip the boat with me!"
     "After flinging away a few jellystars, we flipped the boat."
-    "I helped [kid_name] in"
+    "I helped [kid_name] in."
     kid "Just hang on the side while I try to get us away!"
     him "Okay, go for it!"
     "Her oars set some of the jellystars flying, and eventually we were close enough to shore for me to stand up."
@@ -5071,8 +5139,9 @@ label boat_capsized:
     her "Are you guys okay? What on Earth happened?"
     kid "Moooom, we're not on Earth, we're on Talaam."
     "We told our friends about our alien encounter, but I'm not sure if they believed us."
-    #follow-up next month--they can't go into the ocean without resistence from jellystars
-    #do they tell anyone? what happens later?
+    "Over the next few months, there were fewer reports of jellysquid sightings."
+    "We rarely saw any of them after that year."
+    
     return
 
 
