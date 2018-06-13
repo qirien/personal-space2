@@ -5203,7 +5203,7 @@ label community28:
         sara "[her_name] has agreed to do weekly assessments and determine Pavel's cognitive abilities."
         sara "I've called you here because you have leadership positions in our community. Julia, I figured that it would be easier for you to attend this meeting than to get a report secondhand for your newspaper."
         sara "[her_name], can you take it from here?"
-        her "There isn't a guideline about euthenasia in RET's health manual."
+        her "There isn't a guideline about euthanasia in RET's health manual."
         her "I compared a recent assessment to his scores in previous years, and Mayor Grayson's, I mean, Pavel Grayson's dementia appears to be declining."
         her "At this rate, he may need constant supervision in six months to a year."
         her "I wouldn't be able to supervise him and perform my duties as a doctor at the same time."
@@ -5290,7 +5290,7 @@ label fill_gap:
     kevin "We're not going to start eating seeds instead of planting them. They want basically the same things."
     ilian "There are twice as many miners as colonists. They could easily outvote the colonists on anything."
     kevin "We don't really vote on policies, just who should be in charge of making policy decisions, which probably won't be a miner anyway, because their contracts don't let them have another job."
-    sara "Well, I think that covers the main arguments for an against. Please get out your tablets and we'll take a vote on whether the miners should be allowed to vote or not."
+    sara "Well, I think that covers the main arguments for and against. Please get out your tablets and we'll take a vote on whether the miners should be allowed to vote or not."
     "Which way will I vote?"
     menu:
         "Allow miners to vote for the mayor now and in future elections.":
@@ -5306,7 +5306,7 @@ label fill_gap:
             sara "I'll be coordinating with Brennan to set up the voting program with the miners. We should be able to vote next week though."
             ilian "You guys are going to regret this. Hope you like Kevin as your mayor."
             kevin "I hope that we can work together harmoniously if I am elected mayor."
-            "Next week we all voted, and Kevin was elected mayor."
+            "Next week we all voted on who should be the next mayor, and Kevin was elected mayor."
             if no_euthanasia_26:
                 jump no_euthanasia
             else:
@@ -5315,7 +5315,7 @@ label fill_gap:
             sara "The votes are in, and the majority voted not to allow miners to vote."
             kevin "I hope we can vote again on this topic sometime in the future."
             ilian "You're going to keep bringing it up until we capitulate, huh?"
-            "The next week we colonists voted, and Julia was elected mayor."
+            "The next week we colonists voted on who should be the next mayor, and Julia was elected mayor."
             if no_euthanasia_26:
                 jump no_euthanasia
             else:
