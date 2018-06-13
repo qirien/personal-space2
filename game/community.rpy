@@ -5148,96 +5148,227 @@ label boat_capsized:
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.
 # Pete has fewer credits to buy medicines with, including birth control. Helen is now pregnant and in her 40s?
 label community28:
-    # $ against_euthanasia = False
-    # $ no_euthanasia_26 = False
-    # her "There isn't a guideline about euthenasia in RET's health manual."
-    # menu:
-    #     "See if there's a way to approve euthenasia.":
-    #         him "Wow. It sounds like you should make a case for doctor-assisted suicide to the town council."
-    #         her "That's what I plan on doing."
-    #     "Give her hope.":
-    #         him "Maybe it won't progress in the same way as the genetic incomnia disorder."
-    #         him "You should encourage her to endure it a little longer."
-    #         her "For what? For science? I've tried everything I possibly could to relieve her suffering."
-    #         her "I'm going to present my case to the town council."
-    #         $ against_euthanasia = True
-#        her "So far, her symptoms have been the same as fatal familial insomnia. If she continues in this patter, she will be completely unresponsive in a month and die in seven months."
-#        her "She has requested that I help her end her life before that stage."
-#        her "In order for us to keep her alive during her last six months, she will need supervision around-the-clock. I could not supervise her during my regular hospital hours. My assistant could watch her half of her normal hours, but it would decrease the amount of preventative care visits she makes."
-#        her "Do you have any questions before we put this to a vote?"
-#        pavel "Has she made the request for euthanasia in writing?"
-#        her "No, but I have a recording of her request and a test result that shows she is oriented to time, place, and circumstance."
-#        if against_euthanasia:
-#            him "We don't know for sure if she will die. I don't think she should give up so quickly."
-#            her "She has been suffering intensely for a year. How long would be long enough?"
-#            him "At least another six months so we can see if the disease progresses the same way as the familial insomnia."
-#            her "And who will supervise her during those six months? She could easily kill herself by wandering away or eating something inedible."
-#            menu:
-#                "I could help":
-#                    him "I could supervise her eight hours a day."
-#                    her "I don't think that's a good idea. And who would take the other sixteen hours in a day?"
-#                    $ marriage_strength -= 1 #not sure if you want this variable to have minuses?
-#                    sara "She could stay with us from dinner until 1am. We usually stay up that late anyway."
-#                    pavel "I'm usually awake in the early morning after 4am. I could wake up earlier."
-#                    her "This isn't necessary. She doesn't want to be dependent on others for the last six months of her life."
-#                    him "I don't want to live in the kind of place where people have to die just because they aren't useful anymore."
-#                    her "It's completely voluntary. I didn't even suggest it before she brought it up."
-#                    pavel "I agree with [his_name]. I want to take care of our sick and elderly."
-#                    her "Sara?"
-#                    sara "I do think her desire is important, but it could bring everyone together if we work together to essentially give her hospice care."
-#                    her "Brennan?"
-#                    brennan "I don't see any reason to keep her alive against her wishes, but it appears we are in the minority."
-#                    her "Sara, what is your final vote?"
-#                    sara "Let's take care of her."
-#                    $ no_euthanasia_26 = True
+    $ against_euthanasia = False
+    $ no_euthanasia_26 = False
+    "One cloudy day we were eating outside. We noticed Mayor Grayson walking down the road."
+    him "Hi Mayor Grayson, what brings you out here?"
+    pavel "Hello, er, I was just out for a walk but I think I'd like to head back now. Would you like to come with me?"
+    him "We're in the middle of eating, but maybe in a few minutes?"
+    her "I'm done. I'll walk with you, Mayor Grayson."
+    pavel "Thank you. I appreciate it."
+    "[her_name] returned after about half an hour."
+    him "Did you have something you wanted to discuss with the mayor?"
+    her "No... isn't it obvious?"
+    him "The mayor really wants some of our vegetables?"
+    her "He's experiencing the early stages of dementia. He didn't know which way was home, but he didn't want to confess to being lost."
+    him "He was lost? We've lived here for over 15 years!"
+    her "It happens to a lot of people. I was trying to assess him as I talked to him on the way to his house..."
+    him "And you found something out and now you won't discuss it because of patient-doctor confidentiality. Okay, okay."
+    her "If you were in Mayor Grayson's situation... would you want to live as long as possible, or would you want someone to help you die when you could no longer remember who you were most of the time?"
+    menu:
+        "I'd want to die before being a burden on others.":
+            him "I think I'd rather die prematurely than live without remembering who I was or what I was doing that day."
+            her "I think I would too."
+            her "But what about people who live like that normally? Are you saying their lives aren't worth living?"
+            him "Uhh... I guess that's up to their caretakers. But since I know what my life is like now and what it would be like then, I can make that decision for myself."
+            her "I think I agree with you."
+        "I'd want to live as long as possible":
+            him "I think I'd want to live as long as possible and die a natural death."
+            her "Even if it meant you needed other people to watch you all day, bath you and help you go to the bathroom?"
+            her "Even if it meant that you wouldn't know who you were or what you were doing?"
+            him "You're basically describing the cognitive state and care needs of small babies, and we highly value their lives."
+            him "Is there something wrong with being cared for when you're old?"
+            her "Babies are easier to take care of because they are small and can't walk anywhere. Plus, their incompetence has a regular timeline."
+            her "I've seen cases where a person can suffer from dementia for decades."
+            him "I've seen cases where a person takes care of other people for decades."
+            her "I guess it depends on what the person wants and if their society has the resources to take care of them."
+            him "I think a society that kills its old people if they have dementia is diseased."
+            him "What about children born with disabilities? Are you going to kill them too?"
+            her "It's different when it's an old person, because they can consent to euthanasia before it gets bad."
+            him "That's just giving up."
+            her "There's no known cure."
+            him "What about all those sweet moments people have with dementia patients? Like when they suddenly remember who you are and it makes you want to cry, you're so happy?"
+            her "Those moments are great for caretakers. How often have you heard a patient with dementia mention those moments?"
+            him "It's still meaningful, even if you can't remember it."
+            her "This isn't about what I want. It's about what Mayor Grayson might want."
+            him "Okay, okay."
+            $ against_euthanasia = True
+    "The next day, Sara sent out a message saying that Mayor Grayson was ready to retire and that we would be electing a new mayor at a meeting next week."
+    if is_liason:
+        "She also invited me and [her_name] to a meeting that night to discuss Mayor Pavel Grayson's future."
+        # Julia is here too. Brennan is here if your mining relationship is high enough. explain why Julia is there?
+        sara "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #check last three events to see if Pavel is in them
+        sara "Pavel has requested that he be allowed to end his own life before his cognitive abilities decline too much more. He agreed on a threshold with [her_name]."
+        sara "He wrote down his wishes and signed it, and I witnessed this. He was oriented to time, place, and circumstance at the time." 
+        sara "[her_name] has agreed to do weekly assessments and determine Pavel's cognitive abilities."
+        sara "I've called you here because you have leadership positions in our community. Julia, I figured that it would be easier for you to attend this meeting than to get a report secondhand for your newspaper."
+        sara "[her_name], can you take it from here?"
+        her "There isn't a guideline about euthenasia in RET's health manual."
+        her "I compared a recent assessment to his scores in previous years, and Mayor Grayson's, I mean, Pavel Grayson's dementia appears to be declining."
+        her "At this rate, he may need constant supervision in six months to a year."
+        her "I wouldn't be able to supervise him and perform my duties as a doctor at the same time."
+        her "My assistant could watch her half of her normal hours, but it would decrease the amount of preventative care visits she makes." #gender check assistant
+        her "We're putting the question of whether or not to euthanize Pavel Grayson up for discussion."
+        if against_euthanasia:
+            him "I don't think Pavel should give up so quickly. Maybe his cognitive decline won't be as quick as we think it will be."
+            her "That's why I plan to assess his state so frequently."
+            him "I feel like helping him commit suicide is criminal."
+            her "But who will take care of him if we don't euthanize him? He could easily kill himself by wandering away or eating something inedible."
+            menu:
+                "I could help":
+                    him "I could supervise him eight hours a day."
+                    her "I don't think that's a good idea. And who would take the other sixteen hours in a day?"
+                    $ marriage_strength -= 1 #not sure if you want this variable to have minuses?
+                    sara "He could stay with us from dinner until after midnight. We usually stay up that late anyway."
+                    julia "I'm always waking up that early anyway with my chronic pain. I could take the early morning shift, if he's awake then."
+                    sara "Oh, or maybe we can set up his tablet to alert you if he wakes up."
+                    her "This isn't necessary. He doesn't want to be dependent on others for the last years of his life."
+                    him "I don't want to live in the kind of place where people have to die just because they aren't useful anymore."
+                    her "It's what Pavel wants."
+                    julia "I agree with [his_name]. I want to take care of our sick and elderly."
+                    her "Sara?"
+                    sara "I do think Pavel's desire is important, but it could bring everyone together if we work together to essentially give him hospice care."
+                    her "Brennan?"
+                    brennan "I don't see any reason to keep him alive against his wishes, but it appears we are in the minority."
+                    her "Sara, what is your final vote?"
+                    sara "Let's take care of him."
+                    $ no_euthanasia_26 = True
+                    jump fill_gap
 
-#                 "I'm sure someone could help.":
-#                     him "I don't know, but we haven't even asked yet."
-#                     her "It's completely unneccessary."
-#                     her "Most people already feel overworked. It's not fair to ask them to do more for someone who doesn't even want people taking care of her."
-#                     pavel "I agree with [her_name]. It's not fair to assume that other people will volunteer their time when you're not willing to yourself."
-#                     pavel "How about you have this miner give her consent for euthanasia again next week to make sure her desire wasn't a fleeting one."
-#                     brennan "I agree with Pavel."
-#                     her "Sara?"
-#                     sara "I think Pavel's compromise is a good one. In the meantime I would like to visit with her during her next visit."
-#                     her "I'll ask if she'd like to meet with you."
-#         else:
-#             him "I'd say have her consent one more time a month later, just to make sure it wasn't a passing suicidal urge."
-#             pavel "Yes, that sounds like a reasonable plan."
-#             her "Okay, I'll see if I can get another consent next week. Sara and Brennan, how do you feel about it?"
-#             brennan "Fine with me."
-#             sara "I'd like to meet with her myself sometime, but overall, I agree with the consensus we have here."
-#             her "Okay. I'll ask her if she'd like to meet with you."
-    "Everyone around Mayor Grayson has noticed that his mental state has been declining."
-    "When he is in one of his lucid moments, he decides to step down from his position as mayor."
-    "He asked me to not let him be a burden on the colony."
-    "I schedule a town meeting with the other colonists to decide who the new mayor should be."
-    "Also... who is going to take care of Mayor Grayson?"
-    "Colonists are divided about if the new mayor should be a farmer with firsthand experience of growing food, or someone more detached from farming."
-    "They decide on some basic qualifications and reconvene the next night to decide."
-    "The next evening, some miners arrive and ask why they weren't invited?"
-    "Their logic is that since they're also RET employees, they should be allowed to nominate a candidate for mayor."
-    "There are more miners than colonists; if the miners act together they could control who becomes the mayor."
-    "Should I let them join the election?"
+                "I'm sure someone could help.":
+                     him "I don't know, but we haven't even asked yet."
+                     her "It's completely unneccessary."
+                     her "Most people already feel overworked. It's not fair to ask them to do more for someone who doesn't even want people taking care of him."
+                     julia "I agree with [her_name]. It's not fair to assume that other people will volunteer their time when you're not willing to do it yourself."
+                     julia "Why don't we have Pavel consent to euthanasia again in a week."
+                     brennan "I agree with Julia."
+                     her "Sara?"
+                     sara "I like Julia's compromise. I'd like to talk to Pavel more about it, but if it really is what he wants..."
+                     her "I understand."
+                     jump fill_gap
+        else:
+            him "I'd say have him consent a second time, just to make sure it wasn't a passing suicidal urge."
+            julia "Yes, that sounds like a reasonable plan."
+            her "Okay, I'll see if I can get another consent next week. Sara and Brennan, how do you feel about it?"
+            brennan "Fine with me."
+            sara "I'd like to meet with her myself sometime, but overall, I agree with the consensus we have here."
+            her "Okay."
+            jump fill_gap 
+            
+    else:
+        "[her_name] told me a few days later that she and a few other colony leaders had agreed to allow Pavel Grayson to be euthanized according to his wishes when he reached a certain state of mental decay."
+        if against_euthanasia:
+            him "Wow, [her_name], you're okay with this?"
+            her "It's what Pavel Grayson wanted."
+            him "Okay."
+            jump fill_gap
+        else:
+            him "[her_name], are you ready for this?"
+            her "Yes. I'll be helping Pavel avoid an irreversable, extended state of confusion and disability."
+            him "I know, but you still have to give him a fatal injection right? Technically you'll be the one killing him."
+            her "In a procedure he requested."
+            jump fill_gap
+    # if is not liason
+        
+        
+label fill_gap:
+    "In the meantime, we held a meeting to decide who would be the new mayor."
+    sara "I received your nominations."
+    sara "The top nominations for mayor are Julia, Kevin, and myself."
+    ilian "Kevin isn't eligible. He's not a colonist."
+    sara "I would like to discuss that right now. While it's true that Kevin isn't a farmer, he isn't really a miner either."
+    sara "He and Zaina are going to stay here after most of the miners return to Earth, so they have our same long-term goals."
+    sara "If you don't want him to be mayor, go ahead and vote for me or Julia."
+    sara "Other questions about the candidates?"
+    thuc "Don't vote for Julia! I need her to oversee my water treatment plant."
+    julia "Please vote for me! I don't want to oversee Thuc's pee factory."
+    kevin "Are miners going to be allowed to vote?"
+    sara "Good question. Since the mayor is responsible for the well-being of the colonists, he is elected by colonists."
+    sara "Are miners interested in voting? What would it mean for miners to be able to vote?"
+    kevin "Yes, some of the miners are interested in voting. I think they should be able to vote, since the well-being of the colony directly impacts them."
+    ilian "I don't think the miners should be able to vote. A lot of them are leaving in a few years, and they could push for potentially destructive plans."
+    kevin "We're not going to start eating seeds instead of planting them. They want basically the same things."
+    ilian "There are twice as many miners as colonists. They could easily outvote the colonists on anything."
+    kevin "We don't really vote on policies, just who should be in charge of making policy decisions, which probably won't be a miner anyway, because their contracts don't let them have another job."
+    sara "Well, I think that covers the main arguments for an against. Please get out your tablets and we'll take a vote on whether the miners should be allowed to vote or not."
+    "Which way will I vote?"
     menu:
-        "Let them vote, but not nominate.":
-            $ pass
-        "Let them nominate a candidate for mayor.":
-            $ miners += 3
-        "Don't let them vote or nominate a candidate for mayor.":
+        "Allow miners to vote for the mayor now and in future elections.":
+            $ miners += 1
+            jump after_vote
+        "Don't allow miners to vote for the mayor now and in future elections.":
             $ colonists += 1
-            $ miners -= 1
-            #resulting unrest? would the luddites get involved too?
-    "Mayor Grayson doesn't have any family to take care of him. How should the colony help him?"
-    #I'm not sure if this is really the player's decision; it might play out more like a community discussion.
-    menu:
-        "Assign him to a family and let him 'help' with the community daycare.":
-             $ pass
-             #is there a family that wants to take him in?
-        "The colony doesn't have the resources to look after him. Give him a humane death." if (colonists <= 8): #only available if you did euthanasia above
-             $ colonists -= 1
-        "Ask Mayor Graysen what he wants.":
-             $ pass
+            jump after_vote
+            
+    label after_vote:
+        if miners > 10:
+            sara "The votes are in, and the majority voted to allow miners to vote."
+            sara "I'll be coordinating with Brennan to set up the voting program with the miners. We should be able to vote next week though."
+            ilian "You guys are going to regret this. Hope you like Kevin as your mayor."
+            kevin "I hope that we can work together harmoniously if I am elected mayor."
+            "Next week we all voted, and Kevin was elected mayor."
+            if no_euthanasia_26:
+                jump no_euthanasia
+            else:
+                jump euthanasia
+        else:
+            sara "The votes are in, and the majority voted not to allow miners to vote."
+            kevin "I hope we can vote again on this topic sometime in the future."
+            ilian "You're going to keep bringing it up until we capitulate, huh?"
+            "The next week we colonists voted, and Julia was elected mayor."
+            if no_euthanasia_26:
+                jump no_euthanasia
+            else:
+                jump euthanasia
+                
+label no_euthanasia:
+    nvl clear
+    sara_c "So, I told Pavel Grayson that we would all look after him."
+    sara_c "He was deeply moved and expressed his gratitude."
+    sara_c "I told him we could start next week."
+    "The next day, I stopped by his house to check on him. Just in case."
+    "He seemed to be deeply asleep..."
+    "No, he was out cold. Dead?"
+    "He left a note."
+    "We didn't have a lot of paper, so it was written on a chalkboard."
+    #TODO: note thing
+    "I'm so grateful that you were willing to look after me. When I think of all the care I will likely need, I find it unbearable to think of the burden I would place on you."
+    "Do try to survive, but if you can't survive, please keep your spirit of self-sacrifice and compassion."
+    "Don't think of my suicide as a failure on your part. This was my own rational decision in the face of a known future I preferred not to live."
+    #end note
+    "I quickly messaged [her_name], and she rushed over from across the street."
+    "I felt a few tears fall from my eyes. This was how he thanked us?"
+    her "He's still alive! It looks like he injected himself with opiates last night, but he's still conscious."
+    "I hurridly wiped my face."
+    him "Are you going to save him?"
+    her "I'm going to try."
+    "[her_name] quickly injected him with adrenaline."
+    "She treated him the rest of the day."
+    "We pitched in to help watch him around the clock."
+    pavel "I'm so sorry... I really didn't want to make life harder, and here I am, just making things worse."
+    him "I'm just glad you're okay now."
+    "Gradually, he got better. He became familiar in our houses and we got to know a different side of him."
+    "At first, it was helpful to have another adult around, and I learned some great recipes from Pavel."
+    "He had a hard time finding words, and it was kind of frustrating to talk to him about anything abstract."
+    "As his disease progressed, it was harder to for him to understand simple commands."
+    him "Now wash your hands."
+    pavel "I did."
+    him "No, you didn't. Put your hands in the water."
+    "He would wander through the house fiddling with anything that he happened upon."
+    her "Soon you guys are going to need to watch him at the hospital."
+    him "Why?"
+    her "He'll stop using the bathroom. He'll need to be spoon-fed food."
+    him "We can do it."
+    "One day Julia was late coming to watch him, and Sarah left him alone."
+    "Julia couldn't find him that night and we all started searching for him."
+    "In the morning, we found his body drowned in the river."
+    "His funeral was well-attended, and we reminisced about his optimistic spirit."
+    return
+        
+label euthanasia:
+    "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
+    "Pavel said goodbye to most of us. He wasn't completely present."
+    "After [her_name] performed the euthanasia, we held a simple funeral where we celebrated Pavel's lifetime of good-natured optimism."
     return
 
 
@@ -5259,6 +5390,7 @@ label community29:
 # Rebuilding, aftermath of big fight.
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
+
 label community30:
     "The latest shuttles from RET have arrived."
     if ((luddites >= 12) and (miners >=12)):
