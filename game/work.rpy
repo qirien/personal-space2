@@ -56,8 +56,7 @@ label work2:
     him surprised "Plums? That'll be delicious; thank you!"
     zaina "Thank you, [his_name]!"
 
-    # TODO: Finis this, make plums permanent, use plums+ in future years.
-    # Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.
+    # TODO: Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.
     $ enable_crop("plums")
     return
 

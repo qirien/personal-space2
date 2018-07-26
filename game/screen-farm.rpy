@@ -83,6 +83,10 @@ screen monthly_screen:
                             text "[kid_name], [earth_year] earth years"
                             if (bro_birth_year != 0):
                                 text "[bro_name], [bro_age] earth years"
+
+                            # Display poetry written
+                            # TODO: how do I get the word_board variable here?
+                            textbutton "Poetry" action Show("poetry_display", args=word_board)
                             # Community info
 
                         # community/reference details

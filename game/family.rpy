@@ -43,9 +43,9 @@ label family1:
     show her concerned at midleft
     show baby girl at midleftbaby
 
-    her "I just wish I knew why she was still crying! Even if I couldn't help her, at least I'd know I wasn't overlooking something."
+    her "I just wish I knew why she was still crying! We've tried everything -- food, diaper, snuggles, a warm bath, lying on her back, lying on her tummy...I don't know what else we can do."
     him sad "I know. It's been hours..."
-    "I knew she was exhausted. She had been carrying [kid_name] around all day and feeding her every few hours."
+    "I knew [her_name] was exhausted. She had been carrying [kid_name] around all day and feeding her every few hours."
     "I wanted to help, but I had spent the whole day cleaning out the barn and was spent.  All I could think about was sleeping."
     "Sleeping..."
     window hide
@@ -164,6 +164,7 @@ label family1:
 
         "Let [kid_name] cry.":
             $ demanding += 1
+            $ confident += 1
             him normal "Sometimes babies cry. Since nothing we're doing is helping, let's just set her down and take a break."
             her concerned "We can't take a break. We're her parents!"
             him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
@@ -321,6 +322,7 @@ label family2:
                             $ authoritarian += 1
 
         "Put her in the backpack and go back to work.":
+            $ confident += 1
             him happy "Alright, [kid_name], want to go ride the tractor? Huh? Do you?"
             "I don't know how much of my words she understood, but she sensed my excitement and smiled up at me."
             him normal "Yeah! Let me just put you in the backpack..."
@@ -439,6 +441,7 @@ label family2:
 
                 "Finish up and go home." if (family2_activity_count >= 4):
                     $ demanding += 1
+                    $ confident += 1
                     him happy "Guess what, [kid_name]?? We're all done!"
                     kid angry "Aaa!"
                     him normal "Yeah! We did it!"
@@ -672,6 +675,7 @@ label family3:
             her concerned "Probably?"
             $ responsive += 1
             $ demanding += 1
+            $ confident += 1
             $ authoritative += 1
         "Don't let her put the sticks in her mouth.":
             him determined "No no, [her_name]. Not in your mouth."
@@ -700,6 +704,7 @@ label family3:
             him determined "She's not a baby anymore. She's a nature explorer! Right, [kid_name]?"
             "[kid_name] sensed my enthusiasm and smiled widely, waving her sticks at us."
             $ responsive += 1
+            $ confident += 1
             $ neglectful += 1
     "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
     "When it started to get dark, we were both exhausted."
@@ -880,6 +885,7 @@ label family4:
         "You can eat it or not, but there won't be more dinner.":
             $ demanding += 1
             $ responsive += 1
+            $ confident += 1
             him determined "This is what's for dinner. You can eat it or not."
             kid "Yucky."
             him normal "You don't have to like it. But I think it's pretty good."
@@ -1213,7 +1219,7 @@ label family5:
     "Toilet training was definitely not my favorite part of parenting so far, but I couldn't see any way around it. It was just something everyone had to learn to do."
     if (family5_prepared):
         "It helped that [her_name] and I decided to expect messes. They were still annoying, but they didn't make me quite so mad."
-    "There were plenty more accidents, but eventually, [kid_name] caught on."
+    "There were plenty more accidents, but over the next few months, [kid_name] slowly caught on."
     call bedroom_scene(False, False)
     her concerned "I think I can finally say [kid_name] is potty trained."
     him flirt "Don't say it out loud! You might jinx it!"
@@ -1236,6 +1242,7 @@ label family5:
         $ authoritarian += 1
     elif ((family5_method != "") and (family5_punishment == "clean up her mess")):
         $ authoritative += 1
+        $ confident += 1
     elif ((family5_punishment == "") or (family5_reward != "")):
         $ permissive += 1
     else:
@@ -1315,6 +1322,7 @@ label family6:
 
         "[kid_name] can play on the computer pad so we can relax.":
             $ responsive += 1
+            $ confident += 1
             him surprised "Here, [kid_name], why don't you play Bubble Bee while mom and dad chill out?"
             her annoyed "Really? We're going to spend our relaxing morning listening to that stupid game?"
             him annoyed "You wanted me to decide, so I decided."
@@ -1368,6 +1376,9 @@ label family6:
             her concerned "We only have a few hours... what did you have in mind?"
             menu:
                 "Let's relax for an hour and then go swimming.":
+                    $ responsive += 1
+                    $ demanding += 1
+                    $ confident += 1
                     him normal "[kid_name], we're going to relax here for one hour. Here, I'll set a timer so you can see."
                     kid "One hour?!"
                     him determined "Yes, you need to find something to do for one hour while mom and dad take a break. Then we'll all go swimming!"
@@ -1932,6 +1943,7 @@ label family7_bedtime:
     return
 
 label family7_she_cleaned_up:
+    $ confident += 1
     menu:
         "What should I say?"
         "I'm glad you decided to clean up.":
@@ -1978,6 +1990,11 @@ label family7_angry_ending:
     "[her_name] shot me a glare, as if [kid_name]'s bladder problems were my fault. She was probably peeing in the bed on purpose to try to get even with us!"
     "I started to stand up, but [her_name] beat me to it."
     her determined "I'll handle this. I don't trust you right now."
+    "A sour mix of resentment and anger bubbled through my thoughts. I wanted to lash out, get even, show everyone that I was in charge..."
+    "But I didn't want to be that kind of dad."
+    "The kind of dad whose own kids were afraid of him."
+    "I remember being afraid of my dad, sometimes. That's why whenever I had problems, I always went to my mom."
+    "I didn't want [kid_name] to feel like that."
     $ marriage_strength -= 1
     return
 
@@ -2110,6 +2127,7 @@ label family8:
             "I hugged her tight and she ran off to the schoolhouse."
             $ demanding += 1
             $ responsive += 1
+            $ confident += 1
             $ authoritative += 1
         "Admonish her to behave.":
             him determined "You make sure you behave yourself in there, [kid_name]. Do everything your teacher says."
@@ -2401,6 +2419,7 @@ label family9:
         "Come here so I can talk to you privately.":
             $ demanding += 1
             $ responsive += 1
+            $ confident += 1
             him determined "Come here, [kid_name]. I have something to tell you."
             show kid at midleft with move
             kid "What?"
@@ -2571,6 +2590,7 @@ label family10:
                                 $ permissive += 1
                             "Compliment them on getting along.":
                                 $ demanding += 1
+                                $ confident += 1
                                 him "Good job getting along."
                                 "I'm pretty sure [kid_name] heard me, but she was already on to the next thing and didn't respond."
                                 "I left them to it while I went to change the oil in my tractor. Hopefully they'd get along for awhile."
@@ -2578,6 +2598,7 @@ label family10:
             "Leave them alone.":
                 "Nobody was sad; they didn't need me to interfere."
                 "Besides, the tractor needed an oil change."
+                $ confident += 1
                 $ neglectful += 1
             "Scold [kid_name].":
                 $ demanding += 1
@@ -2651,7 +2672,8 @@ label family10:
         menu:
             "What should I say?"
             "Fine, whatever.":
-                $ reponsive += 1
+                $ responsive += 1
+                $ confident += 1
                 him annoyed "Fine, whatever."
                 kid "Yay!"
                 $ neglectful += 1
@@ -2664,6 +2686,7 @@ label family10:
             "You can play it for fifteen minutes and then you need to choose something else.":
                 $ responsive += 1
                 $ demanding += 1
+                $ confident += 1
                 him "You can play it for fifteen minutes and then you need to do something else. Here, I'll set a timer."
                 kid happy "Okay."
 
@@ -2798,12 +2821,14 @@ label family11:
             him "We say \"please\" when we ask for something, and \"thank you\" when someone does something for us."
             kid "C'mon, pass me the sauce!"
         "Where are your manners?!":
+            $ demanding += 1
             him "Where are your manners? I raised you to speak better than that!"
             kid "C'mon, pass me the sauce!"
         "I'm eating outside.":
             him "I'm eating outside."
             "Maybe that would get the message across. I just couldn't deal with that kind of garbage right now."
             "I took the special sauce with me."
+            $ confident += 1
             $ neglectful += 1
             return
 
@@ -2827,6 +2852,7 @@ label family11:
             $ authoritarian += 1
 
         "(Ignore her until she asks politely)" if (manners_patience_count >= 4):
+            $ confident += 1
             him happy "So, [her_name], what did you work on today?"
             her concerned "I've been researching--"
             kid "Pass the sauce!"
@@ -2917,12 +2943,14 @@ label family12:
         "What should I say?"
         "Sure, you can go.":
             $ responsive += 1
+            $ confident += 1
             him normal "Sure, you can go."
             kid "Yay! I'm going to message her right now, she'll be so excited!"
             $ permissive += 1
             call family12_anyas_house
         "Are her parents going to be home?":
             $ demanding += 1
+            $ confident += 1
             him concerned "Are her parents going to be home?"
             kid "Um, yeah, I guess, probably?"
             him determined "You don't know."
@@ -3182,6 +3210,7 @@ label family12_anyas_house:
             "Maybe Anya could come play at our house in the future."
         "She'll be fine on her own.":
             $ responsive += 1
+            $ confident += 1
             "I couldn't be there for [kid_name] forever. She needed to be ready to be without me or another adult, and she couldn't learn those skills without practicising them."
 
     "The whole walk home [kid_name] talked and talked about everything she and Anya did. It was pretty cute, actually."
@@ -3259,7 +3288,7 @@ label family12_disobey:
             him annoyed "You'll need to do extra work with me on the farm until you've proven that you can be obedient. I expect you to do everything exactly as I've asked you. And if something's not clear, you need to ask"
             kid "For how long?!"
             him determined "Until you've proven that you can be obedient, and I can trust you."
-            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], why don't you weed this whole field.'"
+            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], weed this whole field.'"
             him normal "I won't ask you to do anything you can't do. But I do expect you to work hard."
             "She wasn't happy about it, but she didn't argue, either."
         "You need to apologize.":
@@ -3273,7 +3302,7 @@ label family12_disobey:
             him "You need to apologize, and instead of playing with friends you'll need to help out extra on the farm and do everything I ask."
             kid "For how long?!"
             him determined "Until you've proven that you can be obedient and that I can trust you."
-            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], why don't you weed this whole field.'"
+            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], go weed this whole field.'"
             him normal "I won't ask you to do anything you can't do. But I do expect you to work hard."
             "She wasn't happy about it, but she didn't argue, either."
     "After a week, she had worked pretty hard to obey everything I asked, so I started restoring priveleges."
@@ -3399,14 +3428,15 @@ label family13:
                         jump family13_end
             menu:
                 "What should I tell her about sex?"
-                "Tell her the biology facts." if not sex_ed_biology:
+                "Tell her the physical mechanics." if not sex_ed_biology:
+                    $ confident += 1
                     him "A man's penis can go inside the woman's vagina and the sperm comes out of it when they have sex."
                     kid "Oh."
                     "She thought about it for a minute."
                     kid "And that's how you and Mom made me?"
                     him "That's how."
-                    "She looked away for a minute, and I could almost see her processing this new information."
-                    kid "Huh. Are you sure?"
+                    "She looked away for a minute, and I could almost see her brain processing this new information."
+                    kid "Are you sure?"
                     him "Sure as you're sitting here asking me if I'm sure."
                     $ sex_ed_biology = True
                     $ sex_ed_counter += 1
@@ -3423,13 +3453,13 @@ label family13:
                     $ sex_ed_counter += 1
                     jump sex_ed
                 "Tell her the baby-creation part." if not sex_ed_babycreation:
-                    him "Sex is how babies are made, so it's kind of a big deal. You  need a mom and a dad who are going to stay together and be good parents for the baby."
+                    him "Sex is how babies are made, so it's kind of a big deal. You need parents who are going to stay together and work together to take care of the baby."
                     if (not sex_ed_biology):
                         kid "Okay, but what is it?!"
                     else:
                         kid "So it always makes a baby?"
                         him "No, not always. But that's how babies start. Not just humans, but animals, too."
-                        kid "Like our baby goat? His parents had sex?"
+                        kid "Like our baby goat? His parents had sex?!"
                         him "Well, with animals we usually call it 'mating', but, yeah."
                     $ sex_ed_babycreation = True
                     $ sex_ed_counter += 1
@@ -3479,17 +3509,19 @@ label family13:
 
 label family13_end:
     scene black with fade
+    "We were all excited for a new brother or sister in the family..."
     "...but [her_name] lost the baby."
     "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
     "It wasn't anything she did; sometimes these things just happen."
     kid "So mommy's not pregnant anymore?"
-
     menu:
         "What should I say?"
         "No.":
             him "No."
             kid "Oh."
             "She didn't ask me anything else, which was fine with me because I didn't want to talk about it, either."
+            "I felt like maybe it was partly my fault; I should have let [her_name] rest more, or grown better food, or... something."
+            "And if I felt that way, how did [her_name] feel?"
         "No, the baby died.":
             him "No, the baby died for some reason while it was inside Mom."
             kid "You don't know why?"
@@ -3500,20 +3532,23 @@ label family13_end:
             "She climbed up onto my lap. It was a tight fit now that she was getting bigger, but I held her close and we cried together."
             bro "I'm sad, too."
             him "Come here. It's okay to cry."
-            "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't at least a little sad about it."
+            "I tried to be strong for them, but I ended up sniffling too. [her_name] came out of the bedroom and sat next to us."
+            "I put my arm around her and we all cried together."
+            "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't sad about losing a baby."
+            "Maybe the best thing to do was just mourn together."
         "No. It's hard for mom.":
             $ marriage_strength += 1
             him "No, she's not. And Mom is pretty sad and hurting a lot right now so let's do what we can to help her, okay?"
             kid "Okay..."
             him "What can we do right now to help mom?"
-            "She looked around. [her_name] was taking a nap right now."
+            "She looked around. [her_name] was in our bedroom with the door closed. Hopefully she was taking a nap."
             kid "I can be quiet while she takes a nap."
             him "That's good. Do you think we can make dinner so quietly that we can surprise her when she wakes up?"
             kid "Yeah! Let's make something she likes!"
             bro "I can help!"
             him "Okay, but we gotta be real quiet, okay? Like ninja chefs!"
             "I cringed every time [kid_name] banged a pot or when [bro_name] dropped the silverware while trying to set the table."
-            "[her_name] probably didn't have the best nap, but when she woke up..."
+            "[her_name] probably didn't have the best nap, but when she got up..."
             her "What's all this?"
             kid "We made you dinner!"
             bro "We're ninja chefs!"
@@ -3522,11 +3557,49 @@ label family13_end:
             "She burst into tears, but they weren't all sad tears."
             him "Hey, hey."
             her "I don't deserve you guys."
-            him "It's not about deserving. We're a team, right? So we help each other!"
+            him "I know; you deserve way better! But it's not about deserving. We're a team, right? So we help each other!"
             bro "Team Ninja Chefs!"
             kid "No, that's dumb. We should be team Foodalicious!"
             him "How about Team Let's Eat This Food Before It Gets Cold?"
             kid "Da-ad."
+
+    call bedroom_scene
+    her "I'm sorry..."
+    him "Hey, hey, it's not your fault."
+    her "Maybe if I hadn't worked so hard, or eaten better food, or..."
+    him "You're a doctor; you know sometimes these things just happen."
+    her "Just because we don't know the cause doesn't mean there isn't one!"
+    menu:
+        "What should I say?"
+        "You did your best.":
+            $ marriage_strength += 1
+            him "You did your best -- that's what matters."
+            her "But what if 'my best' just isn't good enough?"
+            him "It's good enough for me."
+        "You can't think that way.":
+            $ marriage_strength += 1
+            him "You can't think that way! You'd have to be a god to know enough to be able to prevent everything bad from happening."
+            her "But I should at least be able to keep my kids alive."
+            him "Not everything is under your control. Or mine, either."
+            her "I know. But sometimes I feel like it should be."
+        "I love you.":
+            $ marriage_strength += 1
+            him "I love you. I've seen you working hard for everyone, seen the love you pour into our family, and I'm amazed. You give so much."
+            her "But it's not enough!"
+            him "It's enough. You did all you could."
+        "It's my fault, too!":
+            him "Then maybe it's my fault! I should have let you rest more, taken care of the kids more, and then you wouldn't have had to!"
+            her "No, of course not!"
+            him "Then it's not your fault, either."
+            her "..."
+            him "..."
+        "(Don't say anything)":
+            "I didn't know how to respond. I worried that anything I would say would just make things worse."
+            "I listened to her sob quietly into her pillow. I reached over to give her a hug, but she got out of bed and went outside."
+            "Maybe she just needed to grieve by herself."
+            return
+    "I gave her a tissue for her nose, and then held her close. We both grieved, but at least we could share our grief with each other."
+
     return
 
 # 8.7 Earth years old
@@ -3706,6 +3779,7 @@ label family14:
                     "That's what she said, but at dinner she set the table for [bro_name], and I heard her mutter 'sorry' to him, too."
                     "It's not the shiny happy ending  I wanted, but maybe she learned something?"
                     "At least we worked things out with her teacher."
+                    $ confident += 1
                     $ authoritative += 1
                     return
         "You're just whining.":
@@ -3713,6 +3787,7 @@ label family14:
             kid "But...!"
             "I left before she could complain more. What more needed to be said?"
             $ neglectful += 1
+            $ confident += 1
             return
 
     return
@@ -3794,7 +3869,6 @@ label family15:
             return
         "No.":
             $ responsive -= 1
-            $ demanding -= 1
             him "No."
             kid "Why not?"
             him "You don't need one."
@@ -3807,6 +3881,7 @@ label family15:
     return
 
 label allowance_how:
+    $ confident += 1
     "(This is tricky... what kind of allowance should I give her?)"
     menu:
         "What should I say?"
@@ -3885,6 +3960,7 @@ label family16:
         "What should I say?"
         "Clean it up or be grounded.":
             $ demanding += 1
+            $ confident += 1
             him determined "You need to clean it up right now or you'll be grounded."
             kid "Right now?!"
             him annoyed "Yes, right now."
@@ -3964,6 +4040,7 @@ label family16:
                 "What should I do?"
                 "Hold her accountable.":
                     $ demanding += 1
+                    $ confident += 1
                     him determined "Well, every week we'll check on your room. If you've kept it organized, you won't have any work to do. If it's gotten messy, you'll need to clean it by yourself."
                     kid "All by myself!"
                     him normal "If you're going to keep all these things, then you're responsible for keeping them organized. I'll help you by checking on it each week."
@@ -3992,6 +4069,7 @@ label family16:
             "I ignored her and just got started."
             $ authoritative += 1
         "I don't care.":
+            $ confident += 1
             him annoyed "I don't actually care. It's your room, whatever."
             kid "Yeah, exactly."
             $ neglectful += 1
@@ -4049,7 +4127,10 @@ label family16:
             her "Right. Just like love, or hope, or even radiation, we can't see it but that doesn't mean it's not there."
             bro "Do you think she's watching us now?"
             her "Maybe. But knowing her, she's probably busy helping someone and doesn't have time to spy on us all day."
-            kid "Ha ha, that'd be funny if she was spying on us."
+            kid "Ha ha, that'd be funny if she was spying on us. Hi, Sister Naomi, I'm being good, you can stop spying on me now!"
+            bro "Maybe she's helping our baby that died."
+            her normal "What a nice thought. Maybe she is."
+
     return
 
 
@@ -4091,6 +4172,7 @@ label family17:
         "Leave them alone.":
             $ responsive -= 1
             $ demanding -= 1
+            $ confident += 1
             "I didn't want to get in the middle of that mess. I decided I had some more work I really should get done before I went home."
             kid angry "Get- Off- My- BED!"
             "There was a loud THUMP - probably the sound of [kid_name] pushing [bro_name] off her bed and onto the floor."
@@ -4287,6 +4369,7 @@ label family17:
                         him concerned "I guess if it's that important to you, we can try and find some."
                         bro "Really?"
                         jump family17_quest
+                $ confident += 1
                 "I left him alone and went back to work. His wails followed me to the fields. Even when I was out of hearing range, they pounded in my head like a hammer of guilt."
                 "When I checked on him an hour later, he was asleep."
                 him surprised "What was that all about?"
@@ -4296,6 +4379,7 @@ label family17:
             "I'll help you get some.":
                 $ responsive += 1
                 $ demanding += 1
+                $ confident += 1
                 him determined "I'm not going to do it for you. But if you really want bread, I can help you figure out a way to get some."
                 bro "How?"
                 him "An adventure!"
@@ -4425,7 +4509,7 @@ label family17:
                         him surprised "Really? He says you yelled at him the other day."
                         pete "Did I? Maybe I thought he was one of the other kids. Getting to be a lot of them, I can't keep them all straight."
                         him normal "Yeah, me neither! They should all wear nametags or something."
-                        pete "Heh. We could brand 'em."
+                        pete "Heh. We could brand 'em. Right on the forehead."
                         him happy "Ha ha, yeah, really."
                         "I laughed, but then looked down at [bro_name], who was clutching my hand even harder and had his face pressed against my leg."
                         pete "Kid, I'm joking! Man, where'd you get such a serious kid?"
@@ -4514,6 +4598,7 @@ label family18:
         "What should I say?"
         "(Say nothing)":
             $ responsive += 1
+            $ confident += 1
             "I just walked away. It wasn't worth fighting over. If she really wanted to walk around stinky and dirty, I guess that was her problem."
             # TODO: [her_name] notices and says something?
             $ neglectful += 1
@@ -4627,6 +4712,7 @@ label family18:
         "If you decide not to take a bath, you'll need to stay outside with the other stinky things.":
             $ demanding += 1
             $ responsive += 1
+            $ confident += 1
             him surprised "If you decide not to take a bath, you'll need to stay outside with the other stinky things. I don't allow Lettie or the goats in the house, so if you're stinky like them, you'll need to stay outside, too."
             kid "But... I have to do my homework!"
             him normal "I guess you can decide if you want to do your homework outside or take a bath first."
@@ -4687,7 +4773,7 @@ label family18:
             $ authoritative += 1
 
     "She stomped off. A few minutes later, I heard the pipes running. Hopefully that meant she was filling up the washtub."
-    "She came out a while later, dressed in clean clothes, her skin damp, but she still smelled bad. If anything, now it was worse, like a wet dog had been shut up in a locker room."
+    "She came out a while later, dressed in clean clothes, her skin damp, but she still smelled bad. If anything, now it was worse, like a locker room for pit bulls."
     him surprised "Did you use soap?"
     kid angry "You didn't say anything about soap!"
     him determined "I thought it was obvious."
@@ -4740,6 +4826,7 @@ label family19:
            jump family19_porn_chat
         "It's not a big deal. Do nothing.":
             "Teenagers are going to watch porn. That's just a fact of life."
+            $ confident += 1
             $ demanding -= 1
             $ neglectful += 1
         "Ask her about it.":
@@ -4769,7 +4856,7 @@ label family19:
                    kid "..."
                    him "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
                    kid "A plan?"
-                   him "Yeah. If you see pornography, bring the computer pad to me. I won't be mad; I'll just help you decide what to do."
+                   him "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you decide what to do."
                    kid "..."
                    him "Will you do that?"
                    kid "..."
@@ -4783,13 +4870,14 @@ label family19:
                    if ((parenting_style == "permissive") or
                        (parenting_style == "authoritative")):
                        kid "Does it hurt?"
-                       him "Not usually, if you're doing it right. Good sex is when you're both trying to help the other person feel good and show your love for them."
+                       him "Not if you're doing it right. Good sex is when both people are trying to help the other person feel good and show their love for each other."
                    "She didn't look at me, and I could tell she had a lot on her mind. But it was hard for her to say what she was thinking."
                    "I reached over and hugged her."
                    him "I hope you know that I love you."
                    kid "Yeah."
                    "She hugged me back, only briefly, but it reminded me that she was in some ways still a kid, and she still depended on me for love and truth and guidance."
                    "Hopefully I was doing okay."
+                   $ confident += 1
                    $ authoritative += 1
                "This is not acceptable computer use.":
                    $ demanding += 1
@@ -4798,10 +4886,9 @@ label family19:
                    "I was kind of surprised she didn't argue with me. She probably just didn't want to talk about it."
                    him surprised "..."
                    kid "...Can I go now?"
-                   him demanding "Uh, yeah."
+                   him concerned "Uh, yeah."
                    $ authoritarian += 1
                "Never look at this kind of garbage again!":
-                   $ demanding += 1
                    him annoyed "You must never look at this kind of thing again."
                    kid "..."
                    him angry "Did you hear me?!"
@@ -4835,7 +4922,7 @@ label family19:
                    kid "..."
                    "I let her think about that for a minute."
                    him "Well?"
-                   kid "Yucky. But I couldn't stop watching it..."
+                   kid "Tickly and kind of yucky. But I couldn't stop watching it..."
                    him "Sounds like you understand the addictiveness I'm talking about."
                    kid "..."
                    him "That's why you need to decide with your brain ahead of time what to do if you see something that's not good for you."
@@ -4912,6 +4999,7 @@ label family20:
         "If you really want one, here's where to start.":
             $ responsive += 1
             $ demanding += 1
+            $ confident += 1
             him "If you really want one, here's where to start."
             "I showed her what Kevin and Ilian had said."
             kid "I can make one! I'm going to see if we can print one right now!"
@@ -4987,6 +5075,7 @@ label family20:
                     $ responsive -= 1
                     return
                 "It might be possible.":
+                    $ confident += 1
                     him "It might be possible, but so difficult as to be practically impossible."
                     kid "You're not making any sense."
                     him "Look, I've done what I can do, okay? You want to look into it more, you can ask Ilian about it; he used to play saxophone."
@@ -5186,6 +5275,7 @@ label family21:
                             him determined "Then act like it."
                             $ permissive += 1
                         "You can play together if you are polite.":
+                            $ confident += 1
                             $ demanding += 1
                             him determined "You can play together as long as you are being polite. You're on the same team, remember?"
                             kid "Okay, but, [bro_name] can you pick a different weapon next time?"
@@ -5196,6 +5286,7 @@ label family21:
                             him annoyed "Just do better next time."
                             $ permissive += 1
                 "I expect kind language.":
+                    $ confident += 1
                     $ responsive += 1
                     him concerned "I expect kind language from everyone in our house."
                     kid "I'm just trying to help him!"
@@ -5226,7 +5317,7 @@ label family21:
                             him "..."
                             bro "Can we play now?"
                             him "Yes."
-                            $ authoritative += 1
+                            $ authoritarian += 1
                         "I don't know; just be polite!":
                             him angry "I don't know! Why don't you just be polite; then you won't have to find out!"
                             bro "Can we play now?"
@@ -5239,6 +5330,9 @@ label family21:
         "Say nothing.":
             $ demanding -= 1
             $ neglectful += 1
+            $ confident += 1
+            "I didn't say anything; just kept on walking. They could learn how to get along on their own."
+            return
 
     "They went back to playing. Hopefully they'd get along better now."
     menu:
@@ -5325,6 +5419,7 @@ label family22:
         "What should I do?"
         "Apologize to [kid_name]":
             $ responsive += 1
+            $ confident += 1
             "I owed [kid_name] an apology. I had accused her of stealing and lying, when she was innocent."
             # TODO: have a Terra's room bg?
             "I knocked on her door."
@@ -5403,7 +5498,7 @@ label family22:
                     $ demanding += 1
                     him angry "Look at me when I'm talking to you!"
                     "He turned his head slowly, focusing on my lips."
-                    him determined "I don't want you stealing ever again. Do you understand."
+                    him determined "I don't want you stealing ever again. Do you understand?"
                     "He nodded."
                     him concerned "Good."
 
@@ -5667,6 +5762,7 @@ label family23:
                 "What should I say?"
                 "Make sure homework and chores are done first.":
                     $ demanding += 1
+                    $ confident += 1
                     him determined "Just make sure your homework and chores are done first."
                     kid "I know, dad, I know!"
                     $ authoritative += 1
@@ -5688,6 +5784,7 @@ label family23:
             him normal "Then maybe you need an even higher goal."
             $ authoritarian += 1
         "Thanks.":
+            $ confident += 1
             him determined "Thanks, [kid_name]."
             $ neglectful += 1
 
@@ -5700,8 +5797,8 @@ label family23:
         show kid at center with moveinleft
         kid "Hey dad, check out this music video I found."
         # TODO: play weird music?
-        "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a sculpture of a metal flower together."
-        "The music was kind of grating on my ears, and the video was pretty cheesy, but [kid_name] obviously liked it."
+        "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a sculpture of a metal flowers together."
+        "The music was repetitive and kind of grated on my ears, and the video was pretty cheesy, but [kid_name] obviously liked it."
         menu:
             "What should I say?"
             "What do you like about this video?":
@@ -5833,7 +5930,7 @@ label family24:
     "I felt wary. I could think of only one reason two twenty-something boys would hang out with young teenage girls."
     "There was a big difference between fourteen - okay, almost fifteen - and twenty."
     "I'm not sure why it was a much creepier age difference than, say, a 20-year-old and a 25-year-old. But I was definitely creeped out."
-    "Then again, the dating pool was a lot smaller here. I had to remember that this wasn't Earth."
+    "Then again, the dating pool was a lot smaller here. I had to remember that this wasn't Earth. There weren't a lot of teenagers or young adults to choose from."
     "But it wasn't the middle ages, either."
     menu:
         "What should I say?"
@@ -6024,6 +6121,7 @@ label lettie_dies:
             her "Okay, I hope that works."
             $ permissive += 1
         "Get [kid_name] to help solve the problem.":
+            $ confident += 1
             him "Why don't we ask [kid_name] to help us with this problem?"
             her "Won't she be a bit biased?"
             him "We don't have to do what she says, but if she's invested in the solution she'll be more likely to follow it without complaining."
@@ -6053,6 +6151,7 @@ label lettie_dies:
             $ authoritative += 1
 
         "Let [kid_name] make her own decisions.":
+            $ confident += 1
             him "It's her life; if she wants to ruin it why should we get in her way?"
             her angry "Because she's our daughter! Because she doesn't even know what she's doing!"
             him "Are you sure about that? Maybe she does know what she's doing!"
@@ -6135,7 +6234,7 @@ label family25:
     kid "Yeah... you and mom went to college after high school, right?"
     him "Your mom did -- for a long time. I went part-time for a while, but I had to quit to help my parents on the farm."
     kid "Can I go to college?"
-    "That was a good question. Teenagers on the colony usually ended up mostly being farmers, though some like Miranda also earned degrees via independent study."
+    "That was a good question. Teenagers on the colony usually ended up mostly doing what their parents did, though some like Miranda also earned degrees via independent study."
     him "Miranda earned a biology degree studying with Dr. Lily. I think anyone who wants to could do that, too."
     kid "But you don't need a college degree to do most stuff here."
     him "No, that's true. What do you want to study?"
@@ -6145,7 +6244,7 @@ label family25:
     him "Hunger is a powerful motivator."
     kid "Anya says she's going to be a miner. Her brother just started and he already earns a lot of money."
     him "But aren't they leaving in a few years?"
-    kid "Yeah...It just seems like there's not many choices here on Talaam. If you're not a farmer or a miner, why are you even here?"
+    kid "Yeah, but she can at least work until then...It just seems like there's not many choices here on Talaam. If you're not a farmer or a miner, why are you even here?"
     menu:
         "What should I say?"
         "We need other people, too.":
@@ -6216,15 +6315,17 @@ label family25:
             kid "Ha ha, I'm just kidding, dad!"
             $ permissive += 1
         "You need to be able to support your family and community.":
+            $ confident += 1
             him "You have a duty to help support your family and community. That needs to come before your personal desires."
             kid "So you think I should be a farmer."
             him "I think that instead of asking 'What do I want to do?' you should ask 'What does the colony need me to do?'."
             kid "Which is farming."
             him "Maybe! There's other important things, too. It's like John F. Kennedy said -- 'Ask not what your country can do for you – ask what you can do for your country.'"
             kid "Even if I don't want to?"
-            him "It's not a matter of wanting; it's a matter of duty. Your family and community has supported you and raised you. It's your duty to support them."
+            him "It's not a matter of wanting; it's a matter of duty. Your family and community have supported you and raised you. It's your duty to support them."
             $ authoritarian += 1
         "Be the best at whatever you choose.":
+            $ confident += 1
             him "You have a lot of choices here, but whatever you choose, do your best in a way that helps people."
             if (plays_saxophone):
                 kid "But some things don't really help people all that much. Like, how does it help the community if I practice my saxophone or play with jellies?"
@@ -6302,9 +6403,7 @@ label family27:
     him surprised "A bike?"
     kid "Yes! I'm so sick of walking to school and back every day!"
     him "It's not that far."
-    kid "And, not just school, but going to town, too. Every time I want to go to Anya's house it takes me an hour just to walk there."
-    him "You guys could hang out at the community center instead."
-    kid "No, we can't. Somebody's always in there having a meeting or something! Anyway, a lot of times we want to go to her house."
+    kid "And, not just school, but going to town, too. Every time I want to go it takes me half an hour just to walk there."
     him surprised "Is that really why you want a bike?"
 
     $ parenting_style = get_parenting_style()
@@ -6341,6 +6440,7 @@ label family27:
 
         "Have her use her own money.":
             $ demanding += 1
+            $ confident += 1
             if (allowance_amount > 0):
                 # TODO: make sure this makes sense with the numbers
                 him "You have an allowance, you know. You could save up for it yourself."
@@ -6399,6 +6499,7 @@ label family27:
             $ neglectful += 1
         "Offer to buy her one in exchange for more work.":
             $ demanding += 1
+            $ confident += 1
             him "I can understand why you'd want a bike. If I didn't have Lettie, I'd probably want one, too."
             kid "Yeah! So you'll get me one?"
             him "Well, not for free."
@@ -6527,6 +6628,9 @@ label family27:
             her concerned "That sounds like a lot of stress."
             him determined "If she's busy, she's not getting in trouble, right?"
             her normal "Let's hope so."
+
+    if (not family27_no_work):
+        $ confident += 1
     return
 
 # 17.3 Earth years old
@@ -6554,6 +6658,7 @@ label family28:
     menu:
         "What should I do?"
         "Investigate.":
+            $ demanding += 1
             him "I'm going to investigate."
             her "I'll help."
             him "You follow her; I'll ask around."
@@ -6650,6 +6755,7 @@ label family28:
         "What should I say?"
         "Good job!" if (not family27_no_work):
             $ responsive += 1
+            $ confident += 1
             him happy "Wow, that's great! I bet you're earning a ton!"
             her "[his_name]!"
             kid "Not too much. I just deliver it."
@@ -6671,16 +6777,18 @@ label family28:
 
         "Tell me more, [kid_name].":
             $ responsive += 1
+            $ confident += 1
             him surprised "Tell me more about this."
             kid "It's not a big deal. I just take some supplies to Pete and the miners and they pay me. It's not like I'm getting drunk or stoned or anything."
             her annoyed "Not yet."
 
         "You were supposed to stop this job!" if family27_no_work:
+            $ demanding += 1
             him angry "You were supposed to stop this job! You need to concentrate on your studies, not be running around the colony delivering drugs!"
             kid "I'm almost an adult now! I'm not going to be living on your farm and going to school forever!"
             her "That is true, but while you live at our house, we expect you to follow our rules."
             kid "Even if they're stupid."
-            her "Even if they're stupid."
+            her "Yes, even if they're stupid."
             kid "Then maybe I shouldn't live at this house."
             menu:
                 "What should I say?"
@@ -6689,6 +6797,7 @@ label family28:
                     kid "I will. I'm sick of your arbitrary rules and you making decisions for me."
                     her "[kid_name]..."
                     kid "No, I should have done this months ago. I'm done with this house, with your stupid rules, with... you!"
+                    # TODO: does she actually leave?
                     $ neglectful += 1
                 "Think about it and decide for yourself.":
                     him determined "If you think that's best. But before you decide, will you think about it and make a plan?"
@@ -6697,6 +6806,7 @@ label family28:
                     her "Don't leave just because you're angry. Leave because you're really ready to live on your own."
                     $ authoritative += 1
                 "I bet we can work something out.":
+                    $ responsive += 1
                     him concerned "[kid_name], that day is coming, but for now, why don't we talk about this and see what we can work out?"
                     kid "I already tried that. Unless you're willing to let me work at the job I already have and am already making money at, I won't live here."
                     him normal "I can see that this job is very important to you."
@@ -6707,7 +6817,7 @@ label family28:
                     her "Like studying or apprenticing. A delivery service is a great job for you now, but does it pay enough for you to live on your own? To support a family?"
                     kid "Probably not. But I don't have a family right now!"
                     her "I know. But someday you might want one. So how about if you keep working at your job, but you also make some goals for what you want to do in the future."
-                    him "If you will do that, I'm willing to let you keep your job."
+                    him "If you will do that, we'll let you keep your job."
                     kid "You'll {b}let{/b} me?! Ugh!"
                     "[her_name] shot me a glare. I was just trying to help, but maybe I'd let her handle this one."
                     her "Is that acceptable to you?"
@@ -6748,16 +6858,21 @@ label family28:
             her "Just the one time...?  Wait, did Brennan give you alcohol?"
             $ authoritarian += 1
         "You need to decide for yourself. But decide now.":
+            $ confident += 1
             him "This is something you have to decide for yourself. So do some objective research, get some opinions, and then figure out what you want to do."
             her "But don't wait until you're in that situation to decide, because then you may not make a good decision."
             kid "Yeah, maybe I wouldn't have tried it if I had thought about it beforehand..."
             her "Tried it? Wait, did Brennan give you alcohol?"
             $ authoritative += 1
 
-    kid "Well, yeah. Just a taste of the cider I delivered. I said it tasted weird, but he said it was an adult thing and maybe that meant I was still a kid."
+    kid "Well, yeah. Just a bit of the cider I delivered. I said it tasted weird, but he said it was an adult thing and maybe that meant I was still a kid. Do I look like a kid to you?!"
     her determined "I'm going to have to talk to him about that."
     him determined "Or maybe I should."
     kid "What? What's the big deal?"
+    him "In our culture, a guy like Brennan giving alcohol to a teenage girl is like..."
+    her "It's like..."
+    kid "What? What is it like?"
+    him "Like giving fire grass to a two year old."
     her concerned "Some people think it's fun to get other people drunk."
     him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
     kid "You mean like... Brennan wouldn't do that!"
@@ -6776,7 +6891,7 @@ label family29:
 
     "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
     "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
-    # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?
+    # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?  Or they have some reason why they wouldn't get married...
     "Big crisis! Foreshadows ending! She says she hates you for some reason and never wants to see you again!"
     menu:
         "Threaten to disown her":

@@ -53,6 +53,7 @@ init python:
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
     # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment
+    # TODO: is this balanced?
     $ inc_amount = 0
     if (total_work < current_work):
         $ inc_amount += 1
@@ -75,10 +76,11 @@ label increase_competence:
     $ competence += inc_amount
     return
 
-# Increase independence based on how demanding and responsive you were last year.
+# Increase independence based on how much confidence you showed in her last year
 label increase_independence:
     $ inc_amount = 0
-    $ inc_amount += (demanding + responsive) / 2.0
+    $ inc_amount += confidence
+    #$ inc_amount += (demanding + responsive) / 2.0
     if (inc_amount > 0):
         $  notifications += "Independence +" + str(inc_amount) + "\n"
     $ independence += inc_amount

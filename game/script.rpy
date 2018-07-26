@@ -29,10 +29,14 @@ label start:
         responsive = 0
         total_responsive = 0
 
+        # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
+        confidence = 0
+        total_confidence = 0
+
         # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
 
         # The Four Parenting Styles
-        # Only one of these should be increased each year (each type of event?), maximum value at the end of the game is 30
+        # Only one of these should be increased each year, maximum value at the end of the game is 30
         authoritarian = 0
         authoritative = 0
         permissive = 0
@@ -290,10 +294,20 @@ label start:
         $ demanding = 0
         $ total_responsive += responsive
         $ responsive = 0
+        $ total_confident += confident
+        $ confident = 0
 
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
+
+        # Poetry time!
+        #if (year % 3):
+        "So much happened this year... I decided to write a poem about it."
+        # Make the word board with appropriate words
+        # TODO: Store poems better for later access.
+        $ word_board = Board(basic_words, family_words, farm_words)
+        call make_poem
 
         # CHOOSE FOR NEXT YEAR
         play music computer
