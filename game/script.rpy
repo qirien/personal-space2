@@ -30,8 +30,8 @@ label start:
         total_responsive = 0
 
         # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
-        confidence = 0
-        total_confidence = 0
+        confident = 0
+        total_confident = 0
 
         # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
 

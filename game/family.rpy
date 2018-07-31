@@ -209,7 +209,7 @@ label family1:
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
     him determined "She really needs us, doesn't she?"
-    her sleeping "Zzzzzz..."
+    her concerned "We both need you."
 
     return
 
