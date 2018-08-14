@@ -11,7 +11,7 @@ label default_crop_event:
     return
 
 label carrots1:
-    "You harvest carrots, but many are bent and twisted."
+    "I harvested carrots, but many are bent and twisted."
     menu:
         "Till the soil better. Must be rocks.":
                 "Lots of work, next year better carrots."
@@ -24,20 +24,51 @@ label carrots1:
 
 label carrots2:
         if (carrots_fallow):
-                "Your carrots are growing bigger than last time! Seems like you got rid of the pests that were deforming them."
+                "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
         else:
-                "Your carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
-                # take care of pests somehow
+                "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
+                "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
+                menu:
+                    "What should I do next year?"
+                    "Treat the carrots with pesticide":
+                        "I decided to treat next year's carrots with pesticide. It'd be more work, but I didn't want to give up carrots."
+                        # TODO: Make next year's carrots take more work?
+                    "Don't plant carrots next year and let the pests die off.":
+                        "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
+                        # TODO: Make carrots unavailable next year, and then come back??
         return
 
 label carrots3:
-        "You have tons of carrots!  [kid_name] eats them all the time, which is good, but her hands are turning yellow..."
-        menu:
-                "No more carrots!":
-                        "Dad, you're so mean!"
-                "It's harmless, she'll be fine.":
-                        "You get some dirty looks from other parents, but you're pretty sure they're just jealous that they don't have as many carrots."
-        return
+    "I was glad I had managed to get rid of the pests on the carrots."
+    "But this year, we had a ton. [kid_name] was eating them all the time, which is good, but her hands are starting to turn yellow... Is it healthy to eat that many carrots?!"
+    menu:
+        "What should I do?"
+        "Ask [her_name].":
+            him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
+            her "Are you talking about [kid_name]'s orange hands?"
+            him "Yeah... is that bad?"
+            her "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's most just eating carrots."
+            him "Okay, good to know."
+            her "Don't you think I would have said something if there was something wrong?!"
+            him "Well, I wasn't sure you noticed."
+            her "Of course I noticed. And if you're not careful, the same thing will happen to you."
+            menu:
+                "What should I do?"
+                "Keep eating carrots":
+                    "I didn't care if my skin turned orange. These were good carrots!"
+                "Try to eat other things.":
+                    "I didn't want to look weird, so I took more carrots to the storehouse and tried to eat other things."
+                    return
+        "Don't let [kid_name] eat so many carrots.":
+            kid "Dad, you're so mean!"
+            return
+        "Don't worry about it.":
+            "There was probably nothing to worry about. In fact, my hands were looking a little orange, too..."
+    # TODO: color them orange
+    him "Best carrots ever."
+    kid "Yum!"
+
+    return
 
 label potatoes1:
     "Solanine in a batch of forgotten potatoes; how bad can they get before you toss them?"
