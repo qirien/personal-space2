@@ -25,6 +25,41 @@ label carrots1:
 label carrots2:
         if (carrots_fallow):
                 "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
+                scene farm_interior with fade
+                show her normal at midright with dissolve
+                show him normal at midleft with moveinleft
+                him surprised "Aren't these carrots beautiful?"
+                her surprised "Um... I guess so?"
+                him happy "Look how straight and strong they are!"
+                her concerned "Do they taste different."
+                him concerned "Not really. But somehow beautiful straight carrots are more satisfying than gnarled twisted ones."
+                her surprised "I suppose they might also be easier to work with."
+                him happy "Exactly! I wonder if I can make sushi..."
+                her normal "We have some smoked crabird meat... and you could get some rice and vinegar from the storehouse."
+                him determined "Now all I need is some seaweed."
+                her surprised "You're going to make nori?"
+                him concerned "...maybe not this time. It'll be something kind of like sushi, anyway."
+                her happy "Sounds delicious!"
+                if (year >= 7):
+                    scene black with fade
+                    scene farm_interior with fade
+                    show her normal at midright
+                    show kid tween normal at center
+                    show him normal at midleft
+                    with dissolve
+                    kid surprised "What are those?"
+                    him happy "It's sushi! Well, it's kind of like sushi."
+                    kid pout "It looks like eyeballs."
+                    her normal "It's just rice wrapped around some meat and vegetables. Try it; it's good!"
+                    kid shifty "Okay..."
+                    him concerned "..."
+                    her concerned "..."
+                    kid nervous "It's kind of plain..."
+                    him surprised "Yeah, I didn't get around to making spicy mayonaisse or soy sauce or anything. But... we have salt and pepper?"
+                    her concerned "That's totally not authentic."
+                    him determined "We're already making it with alien crustaceans and no seaweed... I think we can season it however we like."
+                    kid happy "At least it doesn't taste like eyeballs!"
+
         else:
                 "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
                 "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."

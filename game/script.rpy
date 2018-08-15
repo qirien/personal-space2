@@ -203,7 +203,7 @@ label start:
 
     show path
     show her normal at midleft
-    show kid at center
+    show kid tween happy at center
     show him normal at midright
     show computer_pad
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
