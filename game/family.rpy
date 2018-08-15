@@ -3575,33 +3575,33 @@ label family13_end:
             kid normal "Da-ad."
 
     call bedroom_scene
-    her "I'm sorry..."
-    him "Hey, hey, it's not your fault."
-    her "Maybe if I hadn't worked so hard, or eaten better food, or..."
-    him "You're a doctor; you know sometimes these things just happen."
-    her "Just because we don't know the cause doesn't mean there isn't one!"
+    her concerned "I'm sorry..."
+    him concerned "Hey, hey, it's not your fault."
+    her sad "Maybe if I hadn't worked so hard, or eaten better food, or..."
+    him determined "You're a doctor; you know sometimes these things just happen."
+    her serious "Just because we don't know the cause doesn't mean there isn't one!"
     menu:
         "What should I say?"
         "You did your best.":
             $ marriage_strength += 1
-            him "You did your best -- that's what matters."
-            her "But what if 'my best' just isn't good enough?"
-            him "It's good enough for me."
+            him sad "You did your best -- that's what matters."
+            her surprised "But what if 'my best' just isn't good enough?"
+            him normal "It's good enough for me."
         "You can't think that way.":
             $ marriage_strength += 1
-            him "You can't think that way! You'd have to be a god to know enough to be able to prevent everything bad from happening."
-            her "But I should at least be able to keep my kids alive."
-            him "Not everything is under your control. Or mine, either."
-            her "I know. But sometimes I feel like it should be."
+            him angry "You can't think that way! You'd have to be a god to know enough to be able to prevent everything bad from happening."
+            her sad "But I should at least be able to keep my kids alive."
+            him determined "Not everything is under your control. Or mine, either."
+            her concerned "I know. But sometimes I feel like it should be."
         "I love you.":
             $ marriage_strength += 1
-            him "I love you. I've seen you working hard for everyone, seen the love you pour into our family, and I'm amazed. You give so much."
-            her "But it's not enough!"
-            him "It's enough. You did all you could."
+            him determined "I love you. I've seen you working hard for everyone, seen the love you pour into our family, and I'm amazed. You give so much."
+            her sad "But it's not enough!"
+            him normal "It's enough. You did all you could."
         "It's my fault, too!":
-            him "Then maybe it's my fault! I should have let you rest more, taken care of the kids more, and then you wouldn't have had to!"
-            her "No, of course not!"
-            him "Then it's not your fault, either."
+            him annoyed "Then maybe it's my fault! I should have let you rest more, taken care of the kids more, and then you wouldn't have had to!"
+            her sad "No, of course not!"
+            him concerned "Then it's not your fault, either."
             her "..."
             him "..."
         "(Don't say anything)":

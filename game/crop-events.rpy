@@ -11,74 +11,95 @@ label default_crop_event:
     return
 
 label carrots1:
-    "I harvested carrots, but many are bent and twisted."
+    scene farm_interior with fade
+    show her normal at midright
+    show him normal at midleft
+    with dissolve
+    "I harvested carrots, but many were bent and twisted."
+    him happy "Want a carrot, [her_name]?"
+    her annoyed "No, thanks."
+    him surprised "They still taste good!"
+    her surprised "Are they supposed to look like that?"
+    him normal "Sometimes it's normal for a few of them to grow weird, but not this many..."
+
     menu:
+        "What should I do?":
         "Till the soil better. Must be rocks.":
-                "Lots of work, next year better carrots."
+            "I thought maybe I needed to till the soil better. Sometimes carrots would grow funny to try to get around rocks or hard soil in their way."
         "Must be something in the soil. Avoid planting carrots for a year.":
-                "No carrots allowed next year."
-                $ carrots_fallow = True
+            "I could understand a few creepy carrots, but not so many. It must be something widespread."
+            "I looked it up and found that some pests could cause carrots to grow like that."
+            "I had no idea if it was an Earth pest or a Talaam creature causing it, though."
+            "The simplest way to get rid of the pests would be to not plant carrots for a year. With nothing to eat, the pests would die."
+            "It would take a while to see if it worked, though."
+            # TODO: Don't allow carrots in farm screen.
+            $ carrots_fallow = True
         "Who cares, they taste the same.":
-                "I didn't do anything about it.."
+            "I didn't have time to worry about oddly-shaped carrots."
     return
 
 label carrots2:
         if (carrots_fallow):
-                "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
+            "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
+            scene farm_interior with fade
+            show her normal at midright with dissolve
+            show him normal at midleft with moveinleft
+            him surprised "Aren't these carrots beautiful?"
+            her surprised "Um... I guess so?"
+            him happy "Look how straight and strong they are!"
+            her concerned "Do they taste different."
+            him concerned "Not really. But somehow beautiful straight carrots are more satisfying than gnarled twisted ones."
+            her surprised "I suppose they might also be easier to work with."
+            him happy "Exactly! I wonder if I can make sushi..."
+            her normal "We have some smoked crabird meat... and you could get some rice and vinegar from the storehouse."
+            him determined "Now all I need is some seaweed."
+            her surprised "You're going to make nori?"
+            him concerned "...maybe not this time. It'll be something kind of like sushi, anyway."
+            her happy "Sounds delicious!"
+            if (year >= 7):
+                scene black with fade
                 scene farm_interior with fade
-                show her normal at midright with dissolve
-                show him normal at midleft with moveinleft
-                him surprised "Aren't these carrots beautiful?"
-                her surprised "Um... I guess so?"
-                him happy "Look how straight and strong they are!"
-                her concerned "Do they taste different."
-                him concerned "Not really. But somehow beautiful straight carrots are more satisfying than gnarled twisted ones."
-                her surprised "I suppose they might also be easier to work with."
-                him happy "Exactly! I wonder if I can make sushi..."
-                her normal "We have some smoked crabird meat... and you could get some rice and vinegar from the storehouse."
-                him determined "Now all I need is some seaweed."
-                her surprised "You're going to make nori?"
-                him concerned "...maybe not this time. It'll be something kind of like sushi, anyway."
-                her happy "Sounds delicious!"
-                if (year >= 7):
-                    scene black with fade
-                    scene farm_interior with fade
-                    show her normal at midright
-                    show kid tween normal at center
-                    show him normal at midleft
-                    with dissolve
-                    kid surprised "What are those?"
-                    him happy "It's sushi! Well, it's kind of like sushi."
-                    kid pout "It looks like eyeballs."
-                    her normal "It's just rice wrapped around some meat and vegetables. Try it; it's good!"
-                    kid shifty "Okay..."
-                    him concerned "..."
-                    her concerned "..."
-                    kid nervous "It's kind of plain..."
-                    him surprised "Yeah, I didn't get around to making spicy mayonaisse or soy sauce or anything. But... we have salt and pepper?"
-                    her concerned "That's totally not authentic."
-                    him determined "We're already making it with alien crustaceans and no seaweed... I think we can season it however we like."
-                    kid happy "At least it doesn't taste like eyeballs!"
+                show her normal at midright
+                show kid tween normal at center
+                show him normal at midleft
+                with dissolve
+                kid surprised "What are those?"
+                him happy "It's sushi! Well, it's kind of like sushi."
+                kid pout "It looks like eyeballs."
+                her normal "It's just rice wrapped around some meat and vegetables. Try it; it's good!"
+                kid shifty "Okay..."
+                him concerned "..."
+                her concerned "..."
+                kid nervous "It's kind of plain..."
+                him surprised "Yeah, I didn't get around to making spicy mayonaisse or soy sauce or anything. But... we have salt and pepper?"
+                her concerned "That's totally not authentic."
+                him determined "We're already making it with alien crustaceans and no seaweed... I think we can season it however we like."
+                kid happy "At least it doesn't taste like eyeballs!"
 
         else:
-                "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
-                "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
-                menu:
-                    "What should I do next year?"
-                    "Treat the carrots with pesticide":
-                        "I decided to treat next year's carrots with pesticide. It'd be more work, but I didn't want to give up carrots."
-                        # TODO: Make next year's carrots take more work?
-                    "Don't plant carrots next year and let the pests die off.":
-                        "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
-                        # TODO: Make carrots unavailable next year, and then come back??
+            "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
+            "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
+            menu:
+                "What should I do next year?"
+                "Treat the carrots with pesticide":
+                    "I decided to treat next year's carrots with pesticide. It'd be more work, but I didn't want to give up carrots."
+                    # TODO: Make next year's carrots take more work?
+                "Don't plant carrots next year and let the pests die off.":
+                    "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
+                    # TODO: Make carrots unavailable next year, and then come back??
         return
 
 label carrots3:
+    scene fields with fade
+
     "I was glad I had managed to get rid of the pests on the carrots."
     "But this year, we had a ton. [kid_name] was eating them all the time, which is good, but her hands are starting to turn yellow... Is it healthy to eat that many carrots?!"
     menu:
         "What should I do?"
         "Ask [her_name].":
+            scene clinic with fade
+            show her normal at midright with dissolve
+            show him normal at midleft with moveinleft
             him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
             her "Are you talking about [kid_name]'s orange hands?"
             him "Yeah... is that bad?"
@@ -95,13 +116,31 @@ label carrots3:
                     "I didn't want to look weird, so I took more carrots to the storehouse and tried to eat other things."
                     return
         "Don't let [kid_name] eat so many carrots.":
-            kid "Dad, you're so mean!"
+            "I probably shouldn't let [kid_name] eat so many of them..."
+            scene farm_interior with fade
+            show kid normal at midright with dissolve
+            show him normal at midleft with moveinleft
+            him surprised "Hey, [kid_name], it's not healthy to eat so many carrots. Try something else."
+            kid annoyed "I like carrots!"
+            $ parenting_style = get_parenting_style()
+            if (parenting_style == "permissive"):
+                him "Just don't eat too many."
+            elif (parenting_style == "authoritative"):
+                him "How about a limit of three per day?"
+            elif (parenting_style == "authoritarian"):
+                him "No more carrots."
+            else:
+                him "Too bad."
             return
         "Don't worry about it.":
             "There was probably nothing to worry about. In fact, my hands were looking a little orange, too..."
     # TODO: color them orange
-    him "Best carrots ever."
-    kid "Yum!"
+    scene farm_interior with fade
+    show him normal at midleft
+    show kid normal at midright
+    with dissolve
+    him happy "Best carrots ever."
+    kid happy "Yum!"
 
     return
 
