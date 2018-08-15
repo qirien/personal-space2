@@ -10,7 +10,6 @@ init -10:
         "images/bg/stars.jpg"
         linear 10.0 zoom 0.5
 
-
     # GUI
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 10, 10)
     image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 10, 10)
@@ -22,8 +21,19 @@ init -10:
         (0,0), "gui/computer pad.png"
         #(0,0), "gui/computer pad screen.png"
         )
-    
-    # TODO: add different background? custom bg?
+
+    # DYNAMIC SPRITES
+    # Define images for kid (baby, toddler, young, tween, teen)
+    init python:
+        kid_expressions = ["angry", "annoyed", "cry", "happy-cry", "happy", "nervous", "normal", "pout", "sad", "shifty", "surprised"]
+        # For each expression, add a baby, toddler, young, tween, teen depending on current year
+        for expression_name in kid_expressions:
+            renpy.image(("kid", expression_name), ConditionSwitch(
+                "year <= 2", "kid-sprites/baby %s.png" % expression_name,
+                "year <= 6", "kid-sprites/toddler %s.png" % expression_name,
+                "year <= 12", "kid-sprites/young %s.png" % expression_name,
+                "year <= 20", "kid-sprites/tween %s.png" % expression_name,
+                "True", "kid-sprites/teen %s.png" % expression_name))
 
     image ctc_blink:
            "gui/ctc.png"

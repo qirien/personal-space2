@@ -41,7 +41,7 @@ label family1:
     scene farm_interior with fade
     show him concerned at midright
     show her concerned at midleft
-    show baby girl at midleftbaby
+    show kid cry at midleftbaby
 
     her "I just wish I knew why she was still crying! We've tried everything -- food, diaper, snuggles, a warm bath, lying on her back, lying on her tummy...I don't know what else we can do."
     him sad "I know. It's been hours..."
@@ -58,8 +58,8 @@ label family1:
             $ responsive += 1
             $ marriage_strength += 1
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
-            show him at center with move
-            show baby girl at centerbaby with move
+            show him determined at center with move
+            show kid cry at centerbaby with move
             her concerned "It's not too cold out, is it?"
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
             her sad "Are you sure? I know you're tired, too..."
@@ -72,7 +72,7 @@ label family1:
             scene farm_exterior with fade
             show night_overlay with dissolve
             show him concerned at center behind night_overlay
-            show baby girl at centerbaby behind night_overlay
+            show kid cry at centerbaby behind night_overlay
             with moveinright
             him normal "There now, little [kid_name], how's that?"
             "..."
@@ -83,7 +83,7 @@ label family1:
             scene fields with fade
             show night_overlay with dissolve
             show him determined at center behind night_overlay
-            show baby girl at centerbaby behind night_overlay
+            show kid cry at centerbaby behind night_overlay
             with moveinright
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
             "I reminded myself that she wouldn't cry forever, that this was just one night, even as I felt like sobbing alongside her with exhaustion."
@@ -138,7 +138,7 @@ label family1:
                     "I ran back to the house. I could still hear [kid_name]'s crying even from outside."
                     scene bedroom with fade
                     show her sad at midright, squatting
-                    show baby girl at centerbaby, squatting
+                    show kid sad at centerbaby, squatting
                     show bedroom_overlay
                     show night_overlay
                     with dissolve
@@ -147,8 +147,8 @@ label family1:
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
                     "She didn't say anything, just lay her head back down and stared at [kid_name] blankly."
                     him sad "[her_name]... I'm sorry. I shouldn't have left. I'm here, now."
-                    show him at center with move
-                    show him at quarterleft
+                    show him normal at center with move
+                    show him normal at quarterleft
                     show baby at quarterleftbaby
                     with move
                     "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
@@ -168,24 +168,24 @@ label family1:
             him normal "Sometimes babies cry. Since nothing we're doing is helping, let's just set her down and take a break."
             her concerned "We can't take a break. We're her parents!"
             him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
-            show him at center with move
+            show him normal at center with move
             show baby at centerbaby with move
-            show him at quarterright
+            show him normal at quarterright
             show baby at quarterrightbaby
             with move
-            show him at squatting
+            show him normal at squatting
             show baby at sitting
             with move
-            show him at standing with move
+            show him normal at standing with move
             "We set [kid_name] down and I set a timer for ten minutes."
-            show him at midright with move
+            show him normal at midright with move
             "We listened to her scream while we did the dishes together silently."
             "[her_name] started crying, too."
             her sad "Why am I so bad at this?"
             him determined "You've been doing a perfect job all day! It's not your fault."
             her sad "Maybe if she had a different mom she wouldn't cry so much."
             him angry "No way!"
-            show him at center with move
+            show him normal at center with move
             him concerned "I've seen you with her; you give her everything she needs. You're patient, loving, and hard-working. She's our daughter, and we're the parents she needs!"
             him sad "We're the parents she's got, and we'll raise her, no matter what!"
             "I held [her_name] for a while and she seemed to calm down a little. When the timer went off, I dashed for the cradle before [her_name] could respond."
@@ -203,7 +203,7 @@ label family1:
     scene bedroom with fade
     show him sleeping at midleft, squatting
     show her sleeping at midright, squatting
-    show baby girl at centerbaby, squatting
+    show kid happy at centerbaby, squatting
     show bedroom_overlay
     with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
@@ -459,8 +459,8 @@ label family2:
             $ neglectful += 1
 
     scene farm_interior with fade
-    show him at midright with dissolve
-    show her at midleft with moveinleft
+    show him normal at midright with dissolve
+    show her normal at midleft with moveinleft
     "Late that night, after I fed [kid_name] dinner and she had fallen asleep, [her_name] finally came home."
     "She trudged into the house, looking at least as tired as I felt."
     "I caught her up in a big hug and kissed her twice."
@@ -563,9 +563,9 @@ label family2:
 # Camping trip, putting everything in her mouth
 label family3:
     scene farm_interior with fade
-    show him at midright
-    show her at midleft
-    show kid at center
+    show him normal at midright
+    show her normal at midleft
+    show kid happy at center
     $ random_crop = farm.crops.random_crop(include_animals = False)
     him concerned "Whew, I thought I'd never finish harvesting all those [random_crop]!"
     her surprised "You're all done?"
@@ -597,9 +597,9 @@ label family3:
     her determined "Everything will be fine. I'll take a radio so they can contact me if there's an emergency."
 
     scene path with fade
-    show him at midright
-    show her at midleft
-    show kid at center
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
     with moveinleft
     "The next day, we packed up some food and makeshift bedrolls and some equipment for starting fires."
     "[her_name] and I took turns carrying the equipment and carrying [kid_name]. She liked to walk, but she walked so slowly because she wanted to stop and look at every rock, bug, and bush."
@@ -611,9 +611,9 @@ label family3:
 
     # TODO: get background.
     # scene sunset with fade
-    show him at midright
-    show her at midleft
-    show kid at center
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
     with moveinleft
 
     "Finally, we arrived."
@@ -940,8 +940,8 @@ label family5:
     "She understood what it was for, and did pretty well for the first few days."
     "Then we had several days where she hardly ever made it to the toilet on time."
     scene farm_interior with fade
-    show him at midright
-    show her at midleft
+    show him normal at midright
+    show her normal at midleft
     with dissolve
     her annoyed "That is the third mess of pee I've cleaned up today!"
     him flirt "Ahh, you're ahead of me, I've only cleaned up two."
@@ -1257,9 +1257,9 @@ label family6:
     "Now she was like a perpetual motion machine of questions and opinions."
 
     scene farm_interior with fade
-    show him at midleft
-    show her at center
-    show kid at right
+    show him normal at midleft
+    show her normal at center
+    show kid normal at right
     with dissolve
     him determined "I sure hope you have nothing planned for today."
     her surprised "Why, did you want to do something?"
@@ -1275,17 +1275,17 @@ label family6:
     show him sleeping
     show her sleeping
     with dissolve
-    show kid at midright with move
+    show kid normal at midright with move
     kid normal "Dad."
     him "..."
-    show kid at quarterleft with move
+    show kid normal at quarterleft with move
     kid annoyed "Dad!"
     him "...Yeah?"
     kid angry "Listen to me!"
     him "I'm listening."
     kid annoyed "You can't be listening. You're sleeping. Wake up, daddy, wake up!"
     him "I'm awake, I'm just closing my eyes."
-    show kid at midright with move
+    show kid normal at midright with move
     kid angry "Wake up and listen!"
     him determined "All right, I'm listening. What?!"
     kid normal "What are we doing today? I want to go see grandma."
@@ -1453,8 +1453,8 @@ label family6:
     scene black with fade
     "Later that night, after [kid_name] went to bed, [her_name] and I took a walk together."
     scene fields with fade
-    show him at midright
-    show her at center
+    show him normal at midright
+    show her normal at center
     with moveinright
     #show overlay night
     him surprised "That's something I can't figure out -- how can I tell when doing things with [kid_name] is being a loving parent, and when I'm just spoiling her?"
@@ -1515,8 +1515,8 @@ label family6_swimming:
     scene pond with fade
     # TODO: CG or interesting movement/sprites here?
     scene stream with fade
-    show him at midleft
-    show kid at midright
+    show him normal at midleft
+    show kid normal at midright
     with dissolve
     "It was pretty fun to swim with [kid_name]; she tried to hard to swim but she kept doggy paddling instead."
     him "Big arms! Big arms!"
@@ -1542,7 +1542,7 @@ label family7:
     scene farm_interior with fade
     show him normal at midright
     show her normal at midleft
-    show kid at center
+    show kid normal at center
     with dissolve
     "[his_name] and [her_name]" "♫ ~ Happy Birthday to you! ~ ♫" # TODO: Use a different, unicode font for the musical notes so that they will show up.
     him happy "Make a wish!"
@@ -2006,16 +2006,16 @@ label family8:
     "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
     "But I wondered how the other kids in her playgroup would handle the transition to school..."
     scene fields with fade
-    show him at quarterright
-    show kid at center
+    show him normal at quarterright
+    show kid normal at center
     show travis at midleft
     show oleg at quarterleft
     travis "Mud fight!"
     him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
     kid "I do!"
-    show kid at squatting with move
+    show kid normal at squatting with move
     "Travis threw his mudball at her and she dodged it, giggling."
-    show kid at center with move
+    show kid normal at center with move
     "She scooped up some mud of her own and flung it his way, but it hit Oleg instead, who was busy drawing in the dirt with a stick."
     show Travis at squatting with move
     show oleg sad with dissolve
@@ -2058,8 +2058,8 @@ label family8:
                     $ responsive += 1
                     "I decided we needed to have a talk about the right way to apologize later."
                     scene farm_interior with fade
-                    show him at midleft
-                    show kid at midright
+                    show him normal at midleft
+                    show kid normal at midright
                     him concerned "[kid_name], why do you think we say sorry when we hurt someone?"
                     kid "I don't know."
                     him surprised "How do you feel when someone hurts you?"
@@ -2102,9 +2102,9 @@ label family8:
     scene black with fade
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
     scene path with fade #TODO: school house background?
-    show him at midleft
-    show her at midright
-    show kid at center
+    show him normal at midleft
+    show her normal at midright
+    show kid normal at center
     with dissolve
 
     kid "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors..."
@@ -2174,7 +2174,7 @@ label family8:
             him happy "Okay! I got this!"
             "I sidled up to the side of the window and slowly peered inside."
             scene classroom with fade
-            show kid at midright
+            show kid normal at midright
             show oleg at midleft
             with dissolve
             # TODO: frame it in a window or a VFX?
@@ -2284,8 +2284,8 @@ label family8:
 
 label baby_delivery:
     #scene clinic with fade
-    show him at midleft
-    show her at center
+    show him normal at midleft
+    show her normal at center
     with dissolve
     her pregnant concerned "Oh no, I remember this part. This is awful!"
     him determined "You did it once, you can do it again! Just a little bit more and then you'll be done!"
@@ -2302,8 +2302,8 @@ label baby_delivery:
     show julia at midright with moveinright
     scene black with fade
     scene clinic with fade
-    show him at midleft
-    show her at center
+    show him normal at midleft
+    show her normal at center
     show julia at midright
     with dissolve
     "Finally, the baby was born. A boy!"
@@ -2357,15 +2357,15 @@ label family9:
     "Instead of yearning for a few minutes of uninterrupted time and slogging through our weekly turn in the kids' coop, I found myself looking forward to her coming home from school."
     "She seemed to appreciate me more, too."
     scene fields with fade
-    show him at midright
+    show him normal at midright
     if (year6_have_baby):
         show baby boy at midrightbaby
     with dissolve
-    show kid at midleft
+    show kid normal at midleft
     show oleg at quarterleft
     with moveinleft
     kid happy "Daddy!"
-    show kid at midright with move
+    show kid normal at midright with move
     if (year6_have_baby):
         "I set [bro_name] down so I could give [kid_name] my full attention for a minute."
         show baby at quarterrightbaby with move
@@ -2384,12 +2384,12 @@ label family9:
 
     "After a while, I figured I should check on them."
     scene barn with fade
-    show kid at midright
+    show kid normal at midright
     show oleg at center
     with dissolve
     "I found them in the barn, where [kid_name] had put one of Lettie's saddle blankets on Oleg and a rope loosely around his neck."
     kid happy "Giddyup, horsie!"
-    show him at midleft
+    show him normal at midleft
     if (year6_have_baby):
         show baby boy at midleftbaby
     with moveinleft
@@ -2421,14 +2421,14 @@ label family9:
             $ responsive += 1
             $ confident += 1
             him determined "Come here, [kid_name]. I have something to tell you."
-            show kid at midleft with move
+            show kid normal at midleft with move
             kid "What?"
             "I leaned down a whispered into her ear."
             him concerned "Oleg's been trying to tell you that he wants to play something else. He's our guest, so can you make sure he's having fun, too?"
             kid "He is having fun!"
             him determined "I don't think so. Ask him what he would like to do, and then do that."
             kid "Fine."
-            show kid at midright with move
+            show kid normal at midright with move
             kid "What do you want to play, Oleg?"
             $ authoritative += 1
         "Never mind.":
@@ -2925,7 +2925,7 @@ label family11:
 label family12:
     scene farm_interior with fade
     show him normal at midright
-    show kid at midleft with moveinleft
+    show kid normal at midleft with moveinleft
     him happy "Welcome home, [kid_name]! How was school?"
     kid "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
     him surprised "Tomorrow? Who's Anya?"
@@ -3003,8 +3003,8 @@ label family12:
     "Anya was a good enough kid; she and [kid_name] certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
     "Several days later, though, I noticed something."
     scene farm_interior with fade
-    show him at midright
-    show kid at midleft
+    show him normal at midright
+    show kid normal at midleft
     kid "I'm just so itchy! All the time!"
     him surprised "Did you touch a weird plant or something? Where do you itch?"
     kid "On my head!"
@@ -3019,7 +3019,7 @@ label family12:
     kid "Or what?!"
     him surprised "Eggs?"
     kid "Eggs?! From what?!"
-    show her at quarterleft with moveinleft
+    show her normal at quarterleft with moveinleft
     her concerned "Lice. We are currently experiencing an outbreak of lice."
     him annoyed "I thought we left all those horrible parasites back on Earth!"
     her annoyed "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
@@ -3049,8 +3049,8 @@ label family12:
     "First we queued up a lice comb to be 3D printed at the library."
     scene library with fade
     show pete at midright with dissolve
-    show him at center
-    show kid at midleft
+    show him normal at center
+    show kid normal at midleft
     with moveinleft
 
     pete "Hey there, [his_name]. Hey, Travis, wanna say hi? [kid_name]'s here."
@@ -3072,7 +3072,7 @@ label family12:
     scene black with fade
     scene farm_interior with fade
     show him determined at midright
-    show kid at center
+    show kid normal at center
     with dissolve
     kid "How much longer is this going to take?!"
     him "We have to be thorough! Otherwise we won't be able to get rid of them."
@@ -3159,8 +3159,8 @@ label family12:
     nvl hide
 
     scene farm_interior with fade
-    show him at midright
-    show kid at midleft
+    show him normal at midright
+    show kid normal at midleft
     with dissolve
     kid "Can I invite Anya over to play next week?"
     "I was pretty sure the lice originally came from Anya. I wondered if they had brought any other parasites with them -- bed bugs, for instance."
@@ -3311,8 +3311,8 @@ label family12_disobey:
 
 label family12_anya_come_over:
     scene farm_interior with fade
-    show him at center
-    show kid at midleft with moveinleft
+    show him normal at center
+    show kid normal at midleft with moveinleft
     "[kid_name] was so excited to show Anya around our little house."
     kid "Here's the kitchen, and this is [bro_name]'s room, and the outhouse is out there and here's my room! Want to come in!"
     hide kid with moveoutright
@@ -3339,9 +3339,9 @@ label family13:
     "It was hard to even remember when it was just [her_name] and me..."
     "We brought the kids to the clinic so that they could see their new sibling via ultrasound."
     scene clinic with fade
-    show him at midright
-    show her at center
-    show kid at midleft
+    show him normal at midright
+    show her normal at center
+    show kid normal at midleft
     show bro at quarterleft
     with dissolve
 
@@ -3371,8 +3371,8 @@ label family13:
     "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and I on ahead."
 
     scene fields with fade
-    show him at midright
-    show kid at midleft
+    show him normal at midright
+    show kid normal at midleft
     with dissolve
     kid "Dad, I have a question."
     him "What is it?"
@@ -3606,9 +3606,9 @@ label family13_end:
 # Teacher Troubles
 label family14:
     scene farm_interior with fade
-    #show kid at midleft
-    #show brother crying at quarterleft with dissolve
-    show him at midright with moveinright
+    show kid angry at midleft
+    #show bro crying at quarterleft with dissolve
+    show him normal at midright with moveinright
 
     him surprised "Whoa, what's going on?"
     kid "He's annoying me!"
@@ -4152,7 +4152,7 @@ label family17:
 
     "But even he had problems sometimes."
     scene farm_exterior with fade
-    show him at center with moveinright
+    show him normal at center with moveinright
 
     "I came back from working one day to hear loud wails emanating from the house."
     him surprised "Is that... [bro_name]?"
@@ -4190,7 +4190,7 @@ label family17:
     show bro sad at midright, squatting
     show kid angry at center
     with dissolve
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
 
     him surprised "What's going on here?"
     kid sad "[bro_name] keeps crying and he won't stop or even tell me what's going on and he's making a huge mess!"
@@ -4204,27 +4204,27 @@ label family17:
             kid "What's wrong with him?! We just came home from school and when he saw the bread was gone he freaked out!"
         "Ask [kid_name] for more details":
             him concerned "How did this start?"
-            kid "I don't know! We just came home from school and we were going to have a snack but there wasn't any bread and he started freaking out."
+            kid cry "I don't know! We just came home from school and we were going to have a snack but there wasn't any bread and he started freaking out."
         "Tell [bro_name] to be quiet.":
             $ demanding += 1
             him determined "[bro_name], you need to stop crying."
             "He just wailed even louder."
-            kid "What's wrong with him?! We just came home from school and when he saw the bread was gone he freaked out!"
+            kid annoyed "What's wrong with him?! We just came home from school and when he saw the bread was gone he freaked out!"
         "Ask [bro_name] what's wrong.":
             $ responsive += 1
             him concerned "What's wrong, [bro_name]?"
             bro "There's (sniff) no (sniff) bread!"
-            kid "He's been like that since we got home from school."
+            kid annoyed "He's been like that since we got home from school."
         "Chastise [kid_name] for pushing [bro_name].":
             $ demanding += 1
             him determined "[kid_name], you shouldn't have pushed [bro_name] off your bed."
-            kid "I already asked politely like a hundred times! He shouldn't be on my bed, anyway!"
+            kid angry "I already asked politely like a hundred times! He shouldn't be on my bed, anyway!"
             "It was true -- her pillow was all wet."
             him annoyed "What started all of this?"
-            kid "We just came home from school and he saw the bread was all gone and he completely freaked out."
+            kid annoyed "We just came home from school and he saw the bread was all gone and he completely freaked out."
 
     him determined "[her_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
-    kid "I don't know how I'm supposed to get any homework done with that racket."
+    kid annoyed "I don't know how I'm supposed to get any homework done with that racket."
     him annoyed "Then go to the library, or the clinic, or wherever you need to, okay?"
     "She sighed. I wasn't sure if she was just annoyed at the inconvenience, or if she was really worried about [bro_name], but she took the computer pad and left."
     hide kid with moveoutleft
@@ -4396,7 +4396,7 @@ label family17:
         "I threw a water bottle and some crabird jerky in my pack and we set off."
         scene barn with fade
         show lettie at midright with dissolve
-        show him at midleft
+        show him normal at midleft
         show bro at quarterleft
         with moveinleft
         him determined "Come, noble steed! We embark on a quest to satiate the hunger of this innocent boy!"
@@ -4410,7 +4410,7 @@ label family17:
                 "I cringed, but I thought grumpy old Ilian would probably be the most likely to have bread."
                 scene storehouse with fade
                 show ilian at midright with dissolve
-                show him at midleft
+                show him normal at midleft
                 show bro at quarterleft
                 with moveinleft
                 him normal "Ilian! How are you?"
@@ -4652,9 +4652,9 @@ label family18:
                                     kid "No fair! You tricked me!"
                                     "Finally, both of us sopping wet and shivering, we headed for home."
                                     scene farm_interior with fade
-                                    show her at midright with dissolve
-                                    show kid at center
-                                    show him at midleft
+                                    show her normal at midright with dissolve
+                                    show kid normal at center
+                                    show him normal at midleft
                                     with moveinleft
                                     her surprised "There you are! Where have you-- um, why are you soaking wet?"
                                     "[kid_name] and I looked at each other, then burst out laughing."
@@ -4741,8 +4741,8 @@ label family18:
             him normal "Mmmm, this soap smells nice!"
             him surprised "I feel good, na-na na-na na-na na." # TODO: Singing notes in here?
             scene farm_interior with fade
-            show kid at midright with dissolve
-            show him at midleft with moveinleft
+            show kid normal at midright with dissolve
+            show him normal at midleft with moveinleft
             him happy "Wow, that was great! That was so fun; I might have to go take another bath in a few hours!"
             "[kid_name] just rolled her eyes and sighed."
             $ permissive += 1
@@ -5165,8 +5165,8 @@ label family20:
 # Sarcastic Humor
 label family21:
     scene farm_interior with fade
-    show him at midleft
-    show kid at center
+    show him normal at midleft
+    show kid normal at center
     show bro at midright
     with dissolve
 
@@ -5366,7 +5366,7 @@ label family22:
 
     scene farm_interior with fade
     show him determined at midright
-    show kid at center
+    show kid normal at center
     with dissolve
     "After a boring dinner, I was still hungry.  I went to the pantry to get out a jar of applesauce to share with everyone, but then I noticed a jar was missing."
     "[kid_name] loved applesauce. She was always begging me for more, but she knew she was only allowed to have some when [her_name] or I dished it out."
@@ -5424,8 +5424,8 @@ label family22:
             # TODO: have a Terra's room bg?
             "I knocked on her door."
             kid "What?"
-            show kid at midleft
-            show him at midright
+            show kid normal at midleft
+            show him normal at midright
             with dissolve
             him "I'm sorry, [kid_name]. I got mad at you and thought you were lying but I was wrong."
             kid "See?! You never trust me!"
@@ -5475,7 +5475,7 @@ label family22:
             # TODO: room bg here?
             hide her with dissolve
             show bro at midleft with dissolve
-            show him at midright with move
+            show him normal at midright with move
             him determined "[bro_name], I can't believe you stole the applesauce! Don't you know how hard we work to have treats like that?"
             bro "I was just hungry."
             him angry "Yeah, but you can't just eat whatever you want! We have carrots you can eat anytime for snacks if you're hungry."
@@ -5627,7 +5627,7 @@ label family23:
     "We didn't have an electronics store where you could just go pick up another computer pad whenever you wanted."
     "Lately, [kid_name] was on there all the time..."
     scene farm_interior with fade
-    show kid at midright with dissolve
+    show kid normal at midright with dissolve
     show him normal at midleft with moveinleft
     him surprised "Hey, [kid_name], I need to use the computer pad. Can you finish up, please?"
     kid "Dad, I'm doing my homework!"
@@ -5793,8 +5793,8 @@ label family23:
     if (responsive >= 1):
         scene black with fade
         scene farm_interior with fade
-        show him at midright
-        show kid at center with moveinleft
+        show him normal at midright
+        show kid normal at center with moveinleft
         kid "Hey dad, check out this music video I found."
         # TODO: play weird music?
         "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a sculpture of a metal flowers together."
@@ -5824,7 +5824,7 @@ label family23:
         him surprised "It's not weird! It's romantic!"
         kid "Okay, I'll watch it, but just one!"
         # TODO: play OPS1 music?
-        show her at midleft with moveinleft
+        show her normal at midleft with moveinleft
         her surprised "Is that the video I think it is?"
         him happy "Yeah! I wanted to show [kid_name]."
         her happy "Ohh, I remember when it first came out, it was like it was made for us."
@@ -5841,7 +5841,7 @@ label family24:
     "And she always accepts me just the way I am."
     scene barn with fade
     show lettie at midright
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
     him "Hello, old girl."
     "She nickered softly in return and stepped up to me. I patted her neck and talked to her as I got her ready to ride."
     him "We're going to go pickup [kid_name] from Anya's house."
@@ -5850,7 +5850,7 @@ label family24:
     him "Besides, you want a walk, right?"
     scene path with fade
     show lettie at center
-    show him at center
+    show him normal at center
     with dissolve
     "Lettie seemed to enjoy the walk. Even though she was getting older, it was good for her get out and exercise often."
     menu:
@@ -5881,16 +5881,16 @@ label family24:
     "She seemed happy to be resting, and started grazing on some small nearby shrubs."
     "Anya's father told me they had gone for a walk by the canyon."
     scene bg canyon
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
     "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
     "...Maybe especially because she was almost 15."
     him surprised "[kid_name]!"
     "My call echoed up and down the canyon. I listened carefully, but there was no response, so I walked further along."
     hide him with moveoutright
     scene bg sunset
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
     him concerned "[kid_name]!"
-    show kid at midright with moveinright
+    show kid normal at midright with moveinright
     kid "Dad! I'm right here; no need to yell. What are you doing here, anyways? I was just about to start walking home."
     him "I wanted to walk home with you. Where's Anya?"
     kid "Oh... yeah, I should tell her bye. Bye, Anya!"
@@ -5985,13 +5985,13 @@ label family24:
 
 label lettie_dies:
     scene miner_camp with fade
-    show him at left
-    show kid at midleft
+    show him normal at left
+    show kid normal at midleft
     show lettie at right
     with dissolve
     "I was about to say something when I noticed a strange smell. We were almost to where I had tied up Lettie, but something was wrong."
     "The smell was horse diarrhea, and when I ran up Lettie was trembling and shaking."
-    show him at midright with move
+    show him normal at midright with move
     him surprised "Lettie!"
     "I knelt next to her. She was barely breathing."
     kid "Is she okay?"
@@ -6013,7 +6013,7 @@ label lettie_dies:
     him "Okay, okay old girl. [her_name]'s coming."
     "But by the time [her_name] arrived, it was too late."
     "Lettie's heart had stopped."
-    show her at center with moveinright
+    show her normal at center with moveinright
     her sad "I'm so sorry, [his_name]."
     "I sensed sort of distantly that [her_name] and [kid_name] were saying comforting things and had their arms around me."
     "Lettie had been with me even longer than [her_name]. We'd grown up together."
@@ -6174,8 +6174,8 @@ label family25:
     "[her_name] was busier than ever. Not only did she have to treat the miners from RET and deal with all their extra paperwork, but she also did routine checkups for the colony."
     "Her duties only increased as the number of babies increased and as people got older."
     scene farm_interior with fade
-    show him at midright
-    show kid at midleft
+    show him normal at midright
+    show kid normal at midleft
     with dissolve
 
     him concerned "Mom won't be home until later, and [bro_name]'s helping her out, so it's just you and me again."
@@ -6396,8 +6396,8 @@ label family26:
 label family27:
 
     scene farm_interior with fade
-    show him at midright with dissolve
-    show kid at midleft with moveinleft
+    show him normal at midright with dissolve
+    show kid normal at midleft with moveinleft
     "I was about to go to bed when [kid_name] came into the room."
     kid "Dad, I need a bike."
     him surprised "A bike?"
@@ -6638,9 +6638,9 @@ label family27:
 # TODO: make sure this is consistent with community events
 label family28:
     scene farm_interior with fade
-    show him at midleft
-    show her at midright
-    show kid at center
+    show him normal at midleft
+    show her normal at midright
+    show kid normal at center
     with dissolve
 
     kid "I'm heading out. Bye."
@@ -6743,9 +6743,9 @@ label family28:
             scene black with fade
 
     scene farm_interior with fade
-    show him at midright with dissolve
-    show her at center
-    show kid at midleft
+    show him normal at midright with dissolve
+    show her normal at center
+    show kid normal at midleft
     with move
 
     her concerned "She was delivering firegrass and alcohol to Brennan, for the miners."
