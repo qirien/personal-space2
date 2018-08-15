@@ -217,6 +217,7 @@ label family1:
 # Get work done or play with kid?
 label family2:
     $ family2_work_done = 0
+    scene fields with fade
     "Farming's hard work, no doubt about it. No sick days or vacations, either."
     "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil"
     "Even knowing the seeds are hiding there, it still feels like a miracle whenever they pop out of the ground into young seedlings."
@@ -3513,55 +3514,65 @@ label family13_end:
     "...but [her_name] lost the baby."
     "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
     "It wasn't anything she did; sometimes these things just happen."
-    kid "So mommy's not pregnant anymore?"
+    scene farm_interior with fade
+    show him concerned at midright
+    show kid surprised at midleft
+    with dissolve
+    kid surprised "So mommy's not pregnant anymore?"
     menu:
         "What should I say?"
         "No.":
-            him "No."
-            kid "Oh."
+            him sad "No."
+            kid sad "Oh."
             "She didn't ask me anything else, which was fine with me because I didn't want to talk about it, either."
             "I felt like maybe it was partly my fault; I should have let [her_name] rest more, or grown better food, or... something."
             "And if I felt that way, how did [her_name] feel?"
         "No, the baby died.":
-            him "No, the baby died for some reason while it was inside Mom."
+            him sad "No, the baby died for some reason while it was inside Mom."
             kid "You don't know why?"
-            him "No. Sometimes these things just happen."
+            him concerned "No. Sometimes these things just happen."
             "[kid_name] started crying."
-            kid "I wanted a baby sister!"
-            him "I know, sweetie. We all did."
+            kid cry "I wanted a baby sister!"
+            him sad "I know, sweetie. We all did."
+            show kid at midright with move
             "She climbed up onto my lap. It was a tight fit now that she was getting bigger, but I held her close and we cried together."
-            bro "I'm sad, too."
-            him "Come here. It's okay to cry."
+            show bro at midleft with moveinleft
+            bro sad "I'm sad, too."
+            him determined "Come here. It's okay to cry."
+            show bro sad at center with move
             "I tried to be strong for them, but I ended up sniffling too. [her_name] came out of the bedroom and sat next to us."
+            show her sad at center behind bro,him with moveinleft
             "I put my arm around her and we all cried together."
             "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't sad about losing a baby."
             "Maybe the best thing to do was just mourn together."
         "No. It's hard for mom.":
             $ marriage_strength += 1
-            him "No, she's not. And Mom is pretty sad and hurting a lot right now so let's do what we can to help her, okay?"
+            him determined "No, she's not. And Mom is pretty sad and hurting a lot right now so let's do what we can to help her, okay?"
             kid "Okay..."
-            him "What can we do right now to help mom?"
+            him surprised "What can we do right now to help mom?"
             "She looked around. [her_name] was in our bedroom with the door closed. Hopefully she was taking a nap."
-            kid "I can be quiet while she takes a nap."
-            him "That's good. Do you think we can make dinner so quietly that we can surprise her when she wakes up?"
-            kid "Yeah! Let's make something she likes!"
-            bro "I can help!"
-            him "Okay, but we gotta be real quiet, okay? Like ninja chefs!"
+            kid sad "I can be quiet while she takes a nap."
+            him normal "That's good. Do you think we can make dinner so quietly that we can surprise her when she wakes up?"
+            show bro normal at midleft with moveinleft
+            show kid normal at center with move
+            kid normal "Yeah! Let's make something she likes!"
+            bro normal "I can help!"
+            him happy "Okay, but we gotta be real quiet, okay? Like ninja chefs!"
             "I cringed every time [kid_name] banged a pot or when [bro_name] dropped the silverware while trying to set the table."
             "[her_name] probably didn't have the best nap, but when she got up..."
-            her "What's all this?"
-            kid "We made you dinner!"
-            bro "We're ninja chefs!"
-            him "We wanted to try to cheer you up."
+            her surprised "What's all this?"
+            kid happy "We made you dinner!"
+            bro normal "We're ninja chefs!"
+            him sad "We wanted to try to cheer you up."
             her sad "Oh, you guys..."
             "She burst into tears, but they weren't all sad tears."
-            him "Hey, hey."
-            her "I don't deserve you guys."
-            him "I know; you deserve way better! But it's not about deserving. We're a team, right? So we help each other!"
-            bro "Team Ninja Chefs!"
-            kid "No, that's dumb. We should be team Foodalicious!"
-            him "How about Team Let's Eat This Food Before It Gets Cold?"
-            kid "Da-ad."
+            him concerned "Hey, hey."
+            her concerned "I don't deserve you guys."
+            him normal "I know; you deserve way better! But it's not about deserving. We're a team, right? So we help each other!"
+            bro happy "Team Ninja Chefs!"
+            kid annoyed "No, that's dumb. We should be team Foodalicious!"
+            him happy "How about Team Let's Eat This Food Before It Gets Cold?"
+            kid normal "Da-ad."
 
     call bedroom_scene
     her "I'm sorry..."
