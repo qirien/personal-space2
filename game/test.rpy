@@ -4,8 +4,12 @@
 label tests:
     menu:
         "Which test would you like to run?"
+        "Crop Events.":
+            call test_crops
         "Family Events.":
             call test_family
+        "Community Events":
+            call test_community
         "Positions":
             call test_positions
             call baby_positions
@@ -13,7 +17,10 @@ label tests:
             call omake
         "Sprites":
             call test_sprites
+        "Quit":
+            return
 
+    jump tests
     return
 
 label test_sprites:
@@ -51,6 +58,24 @@ label test_sprite(sprite_name="kid"):
             renpy.show(sprite_name + " " + attribute_name)
             renpy.say(None, attribute_name)
     return
+
+label test_crops:
+
+    $ year = 1
+
+    while (year <= 30):
+        $ farm.reset_crops(farm_size)
+        $ farm.crops.setDefault()
+        $ renpy.notify("Year [year]")
+
+        $ work_event = get_next_work_event()
+        call expression work_event
+        $ year += 1
+
+    "The end"
+    jump ending
+    return
+
 
 
 label test_family:

@@ -5466,13 +5466,13 @@ label family22:
                     him concerned "I guess that's true..."
                 "How do you stay so calm?":
                     him concerned "How do you stay so calm?"
-                    her flirting "I've had lots of practice dealing with troublesome rascals."
+                    her flirt "I've had lots of practice dealing with troublesome rascals."
                     him annoyed "I hope you're not talking about Brennan."
                     her annoyed "No, silly! I'm talking about you... and a lot of my patients, to be honest."
                     him happy "Ooh, sounds like a good story!"
                     her normal "Nope, you know I don't talk about my patients."
-                    him flirting "What about your patience?"
-                    her flirting "I think we've talked about that enough."
+                    him flirt "What about your patience?"
+                    her flirt "I think we've talked about that enough."
                     $ marriage_strength += 1
                 "I love you.":
                     him determined "I love you, [her_name]."
@@ -5543,8 +5543,8 @@ label family22:
         kid "No. They don't buy her anything. I don't think they buy much for themselves, either, except firegrass."
         her concerned "Maybe they're saving up for something for when they go back to Earth."
         him determined "I still think it's weird that some people don't want to stay here."
-        her flirting "Not everyone is in love with alien farms like you."
-        him flirting "I don't know what you're talking about! I'm only in love with you."
+        her flirt "Not everyone is in love with alien farms like you."
+        him flirt "I don't know what you're talking about! I'm only in love with you."
         kid "Anyway, I'm done with my homework. It was pretty easy."
         bro "I'm done, too."
         him happy "We should do something together!"
@@ -6632,7 +6632,7 @@ label family27:
             him determined "This should be her decision. We should make sure she knows what she's choosing between, and encourage her education, but it's her life."
             her concerned "She's still a kid, though..."
             him annoyed "Not for long. If she doesn't make big decisions now, how is she going to learn how to make them when she's not a kid?"
-            her flirting "Our little baby is growing up..."
+            her flirt "Our little baby is growing up..."
 
         "We should only let her work if she keeps her grades up.":
             him concerned "Her studies are important, but so is her work. So I think she should only be able to keep working if she can also make sure to do all her schoolwork."

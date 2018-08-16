@@ -23,7 +23,7 @@ label carrots1:
     him normal "Sometimes it's normal for a few of them to grow weird, but not this many..."
 
     menu:
-        "What should I do?":
+        "What should I do?"
         "Till the soil better. Must be rocks.":
             "I thought maybe I needed to till the soil better. Sometimes carrots would grow funny to try to get around rocks or hard soil in their way."
         "Must be something in the soil. Avoid planting carrots for a year.":
@@ -60,7 +60,7 @@ label carrots2:
                 scene black with fade
                 scene farm_interior with fade
                 show her normal at midright
-                show kid tween normal at center
+                show kid normal at center
                 show him normal at midleft
                 with dissolve
                 kid surprised "What are those?"
@@ -97,7 +97,7 @@ label carrots3:
     menu:
         "What should I do?"
         "Ask [her_name].":
-            scene clinic with fade
+            scene hospital with fade
             show her normal at midright with dissolve
             show him normal at midleft with moveinleft
             him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
@@ -145,32 +145,160 @@ label carrots3:
     return
 
 label potatoes1:
-    "Solanine in a batch of forgotten potatoes; how bad can they get before you toss them?"
+    "I dug up a whole row of potatoes, but got interrupted before I could put them away. When I finally got back to them, they had a greenish tinge to them."
+    "The green color is just chlorophyll, but sometimes it indicates increased solanine."
+    "Solanine is poisonous; deadly so in large amounts. Usually if they're poisonous, the potatoes will also taste bad so it's easy to not eat them."
+    "It wouldn't be a big deal, except I was going to give most of these to the storehouse, and I'm not sure everyone knows how to make sure potatoes are safe to eat."
     menu:
-        "Taste one and see if it's bitter":
-            "It tastes OK, so maybe it's safe to eat?"
-            "You didn't get sick from it, so it's probably safe."
-        "Throw out any that have any green":
-            "No sense in risking solanine poisoning!  You throw out any that have any green on them, which ends up being the entire batch."
+        "What should I do?"
+        "Taste one and see if it's bitter.":
+            "I figured I could test them on myself."
+            "I cooked some up and they tasted fine, and I didn't get sick, so I figured there wasn't any problem."
+            nvl clear
+            sara_c "Hey, is it OK to eat green potatoes? Or is it just the sprouts you're not supposed to eat?"
+            natalia_c "As long as they taste good they're OK."
+            him_c "You can cut off the green parts if you're worried about it."
+            sara_c "Okay, they just looked a little weird."
+            nvl clear
+        "Don't use any that have any green.":
+            "I decided not to risk poisoning myself or others."
+            "But even though they weren't good to eat, they would be fine for planting."
             # some kind of variable?  community_level?  farm_level? sustence?
-        "Warn people to peel them first":
-            "They're probably fine, but if people peel them they should get rid of the worst of it."
+            $ colonists += 1
+            # TODO: no money from them.
+        "Warn people about the risks of solanine.":
+            nvl clear
+            him_c "Just wanted to give everyone a heads up on potatoes."
+            him_c "If they're green, you should peel them and get rid of any green parts."
+            him_c "And don't eat them if they taste bad."
+            him_c "Look up solanine poisoning if you want more information."
+            sara_c "Why would we risk any sort of poisoning?!"
+            him_c "They're probably fine!"
+            natalia_c "Even supermarket potatoes sometimes had some green on them. It's not a big deal."
+            julia_c "Unless you're wrong and our insides twist in knots and we start hallucinating."
+            natalia_c "Well, I'll eat them if you won't."
+            ilian_c "I'll discount them, but anyone taking them from the storehouse does so at their own risk."
+            nvl clear
+            "Wow, I didn't think that would be such a big deal."
+
+            # TODO: less money gained for them.
+            $ colonists -= 1
     return
 
 label potatoes2:
-    "Cooking potatoes that the family will like."
+    "I grew a lot of potatoes. In some ways, they were the perfect crop. They were protected from a lot of pests and weather since they were undeground."
+    "They gave a high yield, and were a calorie- and nutrient-dense food."
+    "But that also meant we ate them a lot."
+    scene farm_interior with fade
+    show him normal at center with dissolve
+    "I wanted to do something different with them for dinner tonight..."
+
     menu:
-        "Make mashed potatoes":
-            $pass
-        "Make fries":
-            $pass
-        "Make baked potatoes with goat cheese and onions":
-            $pass
+        "Put them in a chowder":
+            "There's nothing like a nice, hearty chowder. Goat's milk, onions, some grass crab meat, herbs, and of couse, lots of potatoes."
+            show her at midleft with moveinleft
+            her surprised "Mmmm, that smells so good! Like clam chowder!"
+            him concerned "If only I had some bacon..."
+            her flirt "How about some smoked crabird?"
+            him normal "That's a start!"
+
+        "Make potato chips":
+            "I missed the satisfying crunch of potato chips. I really wanted to fry some up."
+            "But first I'd need a lot of oil..."
+            "More than the goat butter we had or the amount I pressed from squash seeds with our small oil press."
+            scene storeroom with fade
+            show ilian at midright with dissolve
+            show him normal at midleft with moveinleft
+            him "How much for some oil?"
+            ilian "How much do you need?"
+            him "About a liter."
+            "He told me and I cringed, but I felt I had to have potato chips!"
+            "Then an idea struck me."
+            him "How much would you pay me for potato chips?"
+            ilian "The storehouse doesn't take luxury goods like that. You'll have to ask around."
+            him "Oh."
+            ilian happy "But I, personally, would pay very well for such chips."
+            "With the amounts he told me, I did some quick calculations in my head."
+            him "Give me 10 liters of oil."
+            ilian "Very well. Just make sure you bring some of those chips by here first, all right?"
+            # TODO: money check: exact amounts?
+            scene farm_interior with fade
+            show him normal at midleft with moveinleft
+            if (year >= 7):
+                show kid normal at midright with moveinright
+                kid "Is dinner ready yet?"
+                him "No, but I'm making a special treat. You make us a salad, and I'm going to make a wonderful thing called potato chips."
+                kid "That sounds gross. What, like wood chips?"
+                him "Oh no, much, much better."
+                kid "Okay..."
+                hide kid with moveoutright
+            "I sliced potatoes while I waited for the huge pot of oil to heat up."
+            "It took longer than I thought because I tried to slice them very thinly."
+            "Finally, they were ready to fry."
+            "The first couple burned; the oil was too hot!"
+            "The next batch was still a little too brown."
+            "But the third time... they were perfect."
+            him sleeping "Fresh, small batch, kettle cooked potato chips..."
+            "That {i}crunch{/i} was the most beautiful symphony I'd ever heard."
+            show her normal at midright with moveinright
+            her surprised "Potato chips?! Mmmm, they're so good. But weren't they expensive?"
+            him normal "We can't eat all of these; I need to bag and sell some to make back the money I spent on oil."
+            "She looked at the huge vat of oil, and then at my pile of potatoes."
+            her flirt "You're going to be in the kitchen for a long time."
+            him "I could use some help..."
+            her "I'll take care of everything else around the house; you just keep cooking potato chips!"
+            "In the end we managed to make a little extra with the chips, though it was so much work I wasn't sure I'd do it all the time."
+            # TODO add some money.
+
+        "Make potato salad":
+            "Potato salad was one of my favorite summer dishes back on Earth. I'd made it before and it wasn't too hard."
+            "But there were a lot of things the storehouse didn't have here."
+            scene farm_interior with fade
+            show him annoyed at center with dissolve
+            him "Mayonnaise, mustard, pickles, celery -- if I leave all those things out is it even still potato salad?!"
+            "I'd have to make my own recipe."
+            him concerned "I could use goat milk for creaminess, a little vinegar for a nice tang, and I do have some other herbs and spices..."
+            him surprised "I have some homemade pickles I could chop up and put in there, and I have one egg I could boil..."
+            "The end result was a potato salad, though it tasted nothing like the comfort food I remembered. I'd have to call it something else."
+            show her normal at midleft with moveinleft
+            show him normal at midright with move
+            her surprised "Is that... dinner?"
+            him normal "Yes, it's potato... uh, Cold Potato Mixup!"
+            her flirt "You just made that up, didn't you?"
+            him happy "Yeah! Want to try it with me?"
+            her concerned "I am hungry..."
+            him concerned "..."
+            her surprised "..."
+            him surprised "What do you think?"
+            her concerned "It's... a different way to eat potatoes."
+            him determined "It's not bad."
+            her normal "No, it's kind of good... I think it needs some more salt, though."
+            him flirt "More salt, coming right up!"
+            her happy "It looks like a lot of work..."
+            him concerned "Yeah, I kind of spent all afternoon on it."
+            her concerned "It kind of reminds me of potato salad..."
+            him surprised "Really?"
+            her normal "Yeah... just a little."
+            "That was good enough for me."
 
     return
 
 label potatoes3:
-    "A lot of rain leads to rotten potatoes.  :-("
+    "I'll never forget the time it rained..."
+    "And rained."
+    "And rained."
+    "It rained nonstop for two whole weeks."
+    "Some rain is good from crops. It meant I didn't have to manually irrigate them."
+    "But this much was terrible for my potatoes."
+    scene fields with fade
+    show him concerned at center with dissolve
+    him "They've all rotted."
+    "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
+    "I had to dig them out anyway so they wouldn't contiminate the field."
+    "But every hour spent on them felt oppresive and pointless."
+    "I spent all day on them, and what did I have to show for it?"
+    "Just empty fields."
+    # TODO: lose money based on number of potato fields?
     return
 
 # only happens if no bees

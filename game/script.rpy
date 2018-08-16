@@ -203,7 +203,7 @@ label start:
 
     show path
     show her normal at midleft
-    show kid happy at babycenter
+    show kid happy at centerbaby
     show him normal at midright
     show computer_pad
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
@@ -221,10 +221,8 @@ label start:
         "Test Farming Screen":
             $ farm.reset_crops(farm_size)
             call screen plan_farm
-        "Test Family Events":
-            jump test_family
-        "Test Community Events":
-            jump test_community
+        "Other Tests":
+            jump tests
 
     scene stars_animated with fade
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."

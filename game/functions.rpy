@@ -222,7 +222,7 @@ label bedroom_scene(show_baby=False, sleeping=True):
         show him normal at midleft, squatting
         show her normal at midright, squatting
     if (show_baby):
-        show baby girl at centerbaby, squatting
+        show kid cry at centerbaby, squatting
     show bedroom_overlay
     show night_overlay
     with dissolve
