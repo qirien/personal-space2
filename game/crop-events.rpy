@@ -139,6 +139,7 @@ label carrots3:
     show him normal at midleft
     show kid normal at midright
     with dissolve
+
     him happy "Best carrots ever."
     kid happy "Yum!"
 
@@ -295,18 +296,73 @@ label potatoes3:
     him "They've all rotted."
     "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
     "I had to dig them out anyway so they wouldn't contiminate the field."
-    "But every hour spent on them felt oppresive and pointless."
-    "I spent all day on them, and what did I have to show for it?"
-    "Just empty fields."
+    "They would make good compost for other plants."
+    "But every hour spent in the mud fishing them out felt oppresive and pointless."
+    "I spent all season on them, and what did I have to show for it?"
+    "Just foul-smelling mush."
+    # TODO: Can he be covered in mud?
+    show him determined at midright with move
+    "I worked and worked all day, all afternoon, and into the evening."
+    show overlay night
+    show him at midleft with move
+    "I was so frustrated and mad that I just wanted to get it all done and forget about it."
+    show him at midright with move
+    "I couldn't see very well in the moonlight but I kept ripping up the plants and loading the rotten potatoes onto the trailer."
+    "I slipped and fell in the mud right as [her_name] came walking up."
+    show her concerned at midleft
+    show kid normal at center
+    if (bro_age > 0):
+        show bro normal at midleft
+    with moveinleft
+    her "Hey, we missed you at dinner. Everything okay?"
+    menu:
+        "What should I say?"
+        "Fine.":
+            him annoyed "Fine."
+            if (year >= 7):
+                kid sad "What's that smell?"
+            else:
+                her surprised "What's that smell?"
+            him determined "Rotten potatoes."
+            her concerned "Oh, all that rain... Are they okay?"
+            him annoyed "Nope. Gotta clean them out of here."
+            her sad "You've been out here working on them all day?"
+            him determined "Pretty much."
+
+        "We lost all the potatoes.":
+            him normal "No, all the potatoes are rotten, but I still have to clean them out, so it's been a pretty terrible day."
+
+        "I'll finish up and then come home.":
+            him normal "Yeah, I'm just finishing up. I'll meet you at home in a few minutes, okay?"
+            her concerned "Okay..."
+
+    her concerned "Oh, honey, I'm sorry..."
+    if (marriage_strength >= 2):
+        her surprised "Want some help?"
+        him concerned "No, no, you've been working all day, too, I can't ask you to do that."
+        her sad "Are you sure?"
+    him normal "Yeah, I should probably quit for today anyway."
+    her normal "We saved you some dinner..."
+    him determined "As long as it's not potatoes."
     # TODO: lose money based on number of potato fields?
     return
 
 # only happens if no bees
 label squash1:
-    "Squash plants flower, but most don't bear fruit - need more pollination!"
+    scene fields with fade
+    show him normal at center with dissolve
+    "Most of my crops were self-pollinating or didn't need pollination."
+    "But squash can't pollinate itself. Somehow, the pollen from the male flowers has to get over to the female flowers to fertilize them, otherwise you don't get any squash."
+    "And Talaam didn't have the same insects we did on Earth to help pollinate plants."
+    "I planted a variety that was supposed to not need as much pollination, but not many of the fruits were setting."
+    "So if I wanted to get a decent squash harvest this year, I'd need to help them out."
     menu:
         "Pollinate by hand":
-                $ pass # takes a lot of work
+            him determined "I guess I'm Cupid's little helper today..."
+            "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
+            "Since there were several flowers on each plant, and a whole field full of plants, it took quite a while."
+            "But it wasn't difficult, and it did increase our squash yield dramatically."
+            # TODO: increase yield/work?
         "Ask to borrow some bees":
                 $ pass # only successful if community level high enough?
                 # Only allow if you got bees in work3?

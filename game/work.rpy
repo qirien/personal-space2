@@ -63,7 +63,7 @@ label work2:
 
 # Year 4, 2 years old
 label work4:
-    "Want some bees? They'll permanently use one square but will yield honey with a moderate amount of work and may increase yield of some other squares."
+    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
     return
 
 # Year 6, 3.5 years old
@@ -78,8 +78,95 @@ label work8:
     return
 
 # Year 10, 6.2 years old
+# Onions or garlic in exchange for plums
 label work10:
-    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
+    scene fields with fade
+    show him at center with dissolve
+    if "plums+" in farm.crops:
+        "The plum tree was growing larger every year. There were two different kinds of plum trees that I planted so that they could pollinate each other effectively."
+        if ("bees" in farm.crops):
+            "The bees helped the pollination a lot."
+        else:
+            "I had to pollinate them by hand, but my hard work paid off."
+
+        "Now that we were using currency, I had other considerations in how to process my harvest. Plums were worth a lot more if I made them into prunes or jam first."
+        "It was more work, but maybe it was worth it?"
+        $ make_item = "plums"
+        menu:
+            "What should I do?"
+            "Make prunes":
+                $ make_item = "prunes"
+                "I pitted them and put them on a rack to dry."
+                "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
+                show her normal at midleft with moveinleft
+                show him at midright with move
+                her surprised "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
+                him annoyed "You don't have to be constpiated to enjoy some good prunes."
+                her normal "They'll be good for [kid_name], too. Thanks, [his_name]."
+                "I dropped most of them off at the storehouse and didn't think much about it for several days, until I got a visitor."
+                scene farm_exterior with fade
+                show him normal at midright with dissolve
+                show thuc normal at midleft with moveinleft
+                thuc "Man, I'm so glad you made prunes. Can I just say, everything around here is going a lot more smoothly?"
+                him surprised "You like prunes?"
+                thuc "Well, one of my kids really needed them. I don't want to embarrass them, so that's all I'm going to say. But thank you!"
+                him normal "You're welcome, I guess."
+                thuc "In fact, I brought you a little something."
+                "He handed me several heads of garlic."
+                him surprised "Oh, thanks!"
+                thuc "This is nice and fresh, so you can plant it or eat it."
+                him "Mmmm, this'll be good! Thank you!"
+                "I couldn't wait to eat some, but even better, now I could grow my own."
+                $ enable_crop("garlic")
+                return
+
+            "Make jam":
+                $ make_item = "jam"
+                "I decided to make jam."
+                "My mother always made jam with sugar and pectin."
+                "It would kind of defeat the purpose of making jam if I had to buy expensive sugar and pectin to make it work."
+                "After some research, I found plums already have a fair amount of sugar and pectin in them. So I decided to slow cook them until they made a thick jam."
+                "It was a bit sour, but very flavorful. And the jars should last at least a year."
+
+                scene storehouse with fade
+                show ilian at midright with dissolve
+                show him normal at midleft with moveinleft
+                him "Hey there, Ilian."
+                ilian "Oh. Hello."
+                him happy "How much can you give me for this plum jam?"
+                ilian "I can only give you amount." # TODO: currency check.
+                him surprised "What? Why is that?"
+                ilian "I'm out of money. But if you'd like to exchange, I can give you onions or garlic."
+                menu:
+                    "Which should I choose?"
+                    "Onions":
+                        him "Give me the onions."
+                        $ enable_crop("onions")
+                    "Garlic":
+                        him "How about the garlic?"
+                        $ enable_crop("garlic")
+                ilian "Fine. Here you go."
+                "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
+                return
+
+            "Just bring the plums to the storehouse.":
+                "I decided to just bring the plums to the storehouse. I wanted to use my time for other things."
+
+    if not (renpy.showing("storehouse")):
+        scene storehouse with fade
+        show ilian at midright
+        show him normal at midleft with dissolve
+
+    "While I was at the storehouse, I saw that they had a ton of onions for a good price."
+    "If I bought some, I could plant some and grow my own..."
+    menu:
+        "What should I do?"
+        "Buy onions.":
+            # TODO: currency check, subtract amount for onions.
+            "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
+            $ enable_crop("onions")
+        "Don't buy onions":
+            "I decided not to buy them. I had enough crops to deal with."
     return
 
 # Year 12, 7.4 years old

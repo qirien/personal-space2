@@ -169,3 +169,13 @@ init -100:
             linear random_float() xalign random_float()
             pause 0.1
         repeat
+
+# TODO: remove this if we decide not to make people orange with Displayable Prefixes
+#     image him happy orange = "orange:him happy"
+#    image kid happy orange = "orange:kid happy"
+
+# init -10 python:
+#     def orangify(img):
+#         return im.MatrixColor(img, im.matrix.desaturate() * im.matrix.tint(1.0, 1.0, 0.7))
+#
+#     config.displayable_prefix["orange"] = orangify
