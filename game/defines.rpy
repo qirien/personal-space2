@@ -76,7 +76,7 @@ init -100:
     define her = DynamicCharacter("her_name", color="#84b766", image="her", ctc="ctc_blink", ctc_position="nestled") #light mint green
     define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
     define kid = DynamicCharacter("kid_name", color="#e361ef", image="kid", ctc="ctc_blink", ctc_position="nestled") #pinkish purple
-    define bro = DynamicCharacter("bro_name", color="#4a9be0", image="kid", ctc="ctc_blink", ctc_position="nestled") #baby blue
+    define bro = DynamicCharacter("bro_name", color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
 
     define naomi = Character("Sister Naomi Grayson", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define pavel = Character("Mayor Pavel Grayson", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #dark gray
@@ -118,8 +118,10 @@ init -100:
     define farleft = Position(xpos=-0.30, xanchor=0)
     define farright = Position(xpos=1.0, xanchor=0)
     define sitting = Position(ypos=0.45, yanchor=0)
-    define squatting = Position(ypos=0.25, yanchor=0)
+    define squatting = Position(ypos=0.27, yanchor=0)
     define standing = Position(ypos= 1.0, yanchor = 1.0)
+    define jumping = Position(yoffset=-50)
+    define jumpinghigh = Position(yoffset=-150)
 
     # Baby positions for being held
     define baby_ypos = 540
@@ -130,6 +132,7 @@ init -100:
     define midleftbaby = Position(xpos=0.35, xanchor=0.5, ypos=baby_ypos)
     define quarterleftbaby = Position(xpos=0.22, xanchor=0.5, ypos=baby_ypos)
     define leftbaby = Position(xpos=0, xanchor=0.0, ypos=baby_ypos)
+    define standingbaby = Position(ypos=baby_ypos)
 
     # Kid positions for really short people
     define centerkid = Position(xpos = 0.5, xanchor = 0.5, ypos = 0.75)
@@ -170,6 +173,13 @@ init -100:
             linear random_float() xalign random_float()
             pause 0.1
         repeat
+
+    transform upside_down:
+        linear 0.5 rotate 180
+
+    transform up_and_down:
+        linear 0.7 yoffset 100
+        linear 0.7 yoffset -100
 
 # TODO: remove this if we decide not to make people orange with Displayable Prefixes
 #     image him happy orange = "orange:him happy"

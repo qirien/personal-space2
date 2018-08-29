@@ -25,15 +25,21 @@ init -10:
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)
     init python:
-        kid_expressions = ["angry", "annoyed", "cry", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
+        kid_expressions = ["angry", "annoyed", "cry", "concerned", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
-                "year <= 2", "kid-sprites/baby %s.png" % expression_name,
-                "year <= 6", "kid-sprites/toddler %s.png" % expression_name,
-                "year <= 12", "kid-sprites/young %s.png" % expression_name,
-                "year <= 20", "kid-sprites/tween %s.png" % expression_name,
+                "year <= 4", "kid-sprites/baby %s.png" % expression_name,
+                "year <= 12", "kid-sprites/toddler %s.png" % expression_name,
+                "year <= 21", "kid-sprites/tween %s.png" % expression_name,
                 "True", "kid-sprites/teen %s.png" % expression_name))
+            # finer grained images
+            # renpy.image(("kid", expression_name), ConditionSwitch(
+            #     "year <= 2", "kid-sprites/baby %s.png" % expression_name,
+            #     "year <= 6", "kid-sprites/toddler %s.png" % expression_name,
+            #     "year <= 12", "kid-sprites/young %s.png" % expression_name,
+            #     "year <= 20", "kid-sprites/tween %s.png" % expression_name,
+            #     "True", "kid-sprites/teen %s.png" % expression_name))
 
     image ctc_blink:
            "gui/ctc.png"
