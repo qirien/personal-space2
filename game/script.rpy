@@ -239,7 +239,7 @@ label start:
     call community_intro
 
     # Initial farm setup
-    play music computer
+    #play music computer
     scene gray_dark with fade
     $ farm.reset_crops(farm_size)
     call screen plan_farm
@@ -261,7 +261,7 @@ label start:
             $ bro_age = year - bro_birth_year
 
         # WORK EVENTS (farming)
-        play music farming
+        #play music farming
         call interscene_text(year, "Work")
         #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
         # hide screen interscene #with dissolve
@@ -269,12 +269,12 @@ label start:
         call expression work_event
 
         # FAMILY EVENTS (parenting/home life)
-        play music parenting
+        #play music parenting
         call interscene_text(year, "Family")
         call expression "family" + str(year)
 
         # COMMUNITY EVENTS (building community, helping factions)
-        play music community
+        #play music community
         call interscene_text(year, "Community")
         call expression "community" + str(year)
 
@@ -308,7 +308,7 @@ label start:
         call make_poem
 
         # CHOOSE FOR NEXT YEAR
-        play music computer
+        #play music computer
         hide screen say
         scene gray_dark with fade
         $ years_yield = farm.process_crops()

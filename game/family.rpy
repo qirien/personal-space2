@@ -149,7 +149,7 @@ label family1:
                     him sad "[her_name]... I'm sorry. I shouldn't have left. I'm here, now."
                     show him normal at center with move
                     show him normal at quarterleft
-                    show baby at quarterleftbaby
+                    show kid at quarterleftbaby
                     with move
                     "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
                     "As I left the room, [her_name] said something I've never forgotten."
@@ -169,22 +169,25 @@ label family1:
             her concerned "We can't take a break. We're her parents!"
             him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
             show him normal at center with move
-            show baby at centerbaby with move
+            show kid cry at centerbaby with move
+            him determined "Come here, little siren."
             show him normal at quarterright
-            show baby at quarterrightbaby
+            show kid angry at quarterrightbaby
             with move
             show him normal at squatting
-            show baby at sitting
+            show kid angry at sitting
             with move
             show him normal at standing with move
             "We set [kid_name] down and I set a timer for ten minutes."
-            show him normal at midright with move
+            show him determined at midright with move
             "We listened to her scream while we did the dishes together silently."
             "[her_name] started crying, too."
             her sad "Why am I so bad at this?"
+            show kid cry with dissolve
             him determined "You've been doing a perfect job all day! It's not your fault."
             her sad "Maybe if she had a different mom she wouldn't cry so much."
             him angry "No way!"
+            show kid sad with dissolve
             show him normal at center with move
             him concerned "I've seen you with her; you give her everything she needs. You're patient, loving, and hard-working. She's our daughter, and we're the parents she needs!"
             him sad "We're the parents she's got, and we'll raise her, no matter what!"
@@ -203,7 +206,7 @@ label family1:
     scene bedroom with fade
     show him sleeping at midleft, squatting
     show her sleeping at midright, squatting
-    show kid happy at centerbaby, squatting
+    show kid normal at centerbaby, squatting
     show bedroom_overlay
     with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
@@ -2360,7 +2363,7 @@ label family9:
     scene fields with fade
     show him normal at midright
     if (year6_have_baby):
-        show baby boy at midrightbaby
+        show kid boy at midrightbaby
     with dissolve
     show kid normal at midleft
     show oleg at quarterleft
@@ -2369,7 +2372,7 @@ label family9:
     show kid normal at midright with move
     if (year6_have_baby):
         "I set [bro_name] down so I could give [kid_name] my full attention for a minute."
-        show baby at quarterrightbaby with move
+        show kid at quarterrightbaby with move
     "She tackled me with a big hug and I swung her around in a circle."
     him happy "Welcome home! Oh, I see you brought Oleg with you. Hi, there!"
     show oleg at center with move
@@ -2392,7 +2395,7 @@ label family9:
     kid happy "Giddyup, horsie!"
     show him normal at midleft
     if (year6_have_baby):
-        show baby boy at midleftbaby
+        show kid boy at midleftbaby
     with moveinleft
     oleg "[kid_name]..."
     kid normal "Now go around in a circle. We have to patrol the whole farm for crabirds."

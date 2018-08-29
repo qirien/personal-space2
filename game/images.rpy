@@ -25,7 +25,7 @@ init -10:
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)
     init python:
-        kid_expressions = ["angry", "annoyed", "cry", "happy-cry", "happy", "nervous", "normal", "pout", "sad", "shifty", "surprised"]
+        kid_expressions = ["angry", "annoyed", "cry", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
