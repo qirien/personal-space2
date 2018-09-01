@@ -17,16 +17,22 @@ label family_intro:
     her sleeping "[his_name]."
     him sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
+    show kid cry with dissolve
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
     him concerned "Okay..."
-    show her sleeping with dissolve
+    show her sleeping
+    show kid concerned
+    with dissolve
     "I changed her diaper as quietly as I could. I tried not to disturb [her_name], but I could tell she was still awake."
     "I got out the bottle to feed [kid_name]. I was so tired, but I laid her down next to me and watched her in the shadowy moonlight, her tiny cheeks working to eat."
+    show kid laugh with dissolve
     "She was too little to hold the bottle herself, but she lifted her hands in jerky movements that brushed against me."
+    show kid concerned with dissolve
     "I dozed off and dropped the bottle."
     "Maybe I could prop it up somehow and sleep while she ate? I had a vague feeling that might not be a good idea."
     "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."
+    show kid normal with dissolve
     "She finally finished the bottle, dozing off right away for once."
     "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
     "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
@@ -66,7 +72,7 @@ label family1:
             her happy "Okay, good idea."
             "I snuggled her into her baby carrier and closed the door behind me."
             hide him
-            hide baby
+            hide kid
             with moveoutleft
             scene farm_exterior with fade
             show night_overlay with dissolve
@@ -77,7 +83,7 @@ label family1:
             "..."
             "She's still crying. I better get further from the house so I don't keep up [her_name]."
             hide him
-            hide baby
+            hide kid
             with moveoutleft
             scene fields with fade
             show night_overlay with dissolve
@@ -200,10 +206,20 @@ label family1:
             him concerned "I've seen you with her; you give her everything she needs. You're patient, loving, and hard-working. She's our daughter, and we're the parents she needs!"
             him sad "We're the parents she's got, and we'll raise her, no matter what!"
             "I held [her_name] for a while and she seemed to calm down a little. When the timer went off, I dashed for the cradle before [her_name] could respond."
+            show him normal at quarterright with move
             him happy "Now I'm going to try to be as awesome a parent as you've been all day. You just get some sleep or read a book or whatever you want to do! I got this!"
             # TODO: add dancing with baby animation here?
+            show him happy at center, squatting
+            show kid concerned at center, squatting
+            with move
             "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
+            show him happy at right, standing
+            show kid concerned at right, standingbaby
+            with move
             her normal "[his_name]... You don't have to try to impress me."
+            show him happy at midright, squatting
+            show kid cry at midright, squatting
+            with move
             him happy "What's that? [kid_name] and I can't hear you; we're having too much fun."
             "[her_name] laughed, just for a second, and it was the most beautiful sound I'd heard all day. She put on some music with a good beat, and then came over and joined our dancing."
             "[kid_name] didn't know what to make of it, but we certainly felt better after our crazy midnight dancing."

@@ -118,7 +118,7 @@ init -100:
     define farleft = Position(xpos=-0.30, xanchor=0)
     define farright = Position(xpos=1.0, xanchor=0)
     define sitting = Position(ypos=0.45, yanchor=0)
-    define squatting = Position(ypos=0.27, yanchor=0)
+    define squatting = Position(yoffset=150, yanchor=1.0)
     define standing = Position(ypos= 1.0, yanchor = 1.0)
     define jumping = Position(yoffset=-50)
     define jumpinghigh = Position(yoffset=-150)
@@ -129,6 +129,7 @@ init -100:
     define quarterrightbaby = Position(xpos=0.78, xanchor=0.5, ypos=baby_ypos)
     define midrightbaby = Position(xpos=0.65, xanchor=0.5, ypos=baby_ypos)
     define centerbaby = Position(xpos=0.5, xanchor=0.5, ypos=baby_ypos)
+    define centerbabybed = Position(xpos=0.5, xanchor=0.5, ypos=baby_ypos, yanchor=1.0)
     define midleftbaby = Position(xpos=0.35, xanchor=0.5, ypos=baby_ypos)
     define quarterleftbaby = Position(xpos=0.22, xanchor=0.5, ypos=baby_ypos)
     define leftbaby = Position(xpos=0, xanchor=0.0, ypos=baby_ypos)
@@ -158,7 +159,7 @@ init -100:
             zoom 0.8
             alpha 0.8
 
-    # Transform to randomly pace quickly back and forth
+    # A Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:
         choice:
             linear random_float() xalign 0.5
