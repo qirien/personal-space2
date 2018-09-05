@@ -1086,6 +1086,8 @@ label family4:
 # Toilet Training
 label family5:
     scene black with fade
+    show baby with fade
+    hide baby with fade
     show kid normal at center with moveinright
     "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, run, and jump. She learned several new words every day."
     hide kid with moveoutleft
@@ -6576,7 +6578,8 @@ label family25:
 
 # 16.1 Earth years old
 # Do you invite her to join you for chores so she can learn, or let her have time with friends?
-# Talking Politics and Fire Grass
+# She thinks eating jellies is wrong! Maybe eating all animals is wrong?
+# She calls you names. Do you argue, or discuss what makes something sentient?
 label family26:
     # TODO: join these two things together somehow
     "She disagrees with your recent community decision! She calls you a fascist/spineless worm/panderer."

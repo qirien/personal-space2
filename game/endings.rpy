@@ -193,7 +193,9 @@ label ending_acI:
     "Ending 2/8 Mistakes to Call My Own."
     return
 
-#3 aCi - She stays on the farm, trying to please you, but even though she's pretty good at it she has no confidence or self-direction.
+#3 aCi - She stays on Talaam, doing something she's not passionate about
+# because she's trying to please you, but even though she's pretty good at it
+# she has no confidence or self-direction.
 # always worried, aims to please people, scared of making mistakes
 label ending_aCi:
     "Ending aCi."
@@ -202,11 +204,11 @@ label ending_aCi:
     "She did a decent job, but I knew she could do better."
     him determined "I still see a few weeds in there."
     kid concerned "Okay, I'll go fix it."
-    
+
 
     "I'm never going to be good enough!"
 
-    "Ending 3/8, ."
+    "Ending 3/8, Never Good Enough."
     return
 
 #4 aCI - Rejects your life and returns to Earth to fulfill her dreams and she succeeds, becoming an awesome __________ (or studies jellypeople?), though you worry about her lack of friends/family

@@ -554,7 +554,6 @@ label community4:
         return
     else:
         "Sara is elected as the new representative."
-        #TODO: does the order of these options matter for variable settings?
         #should a leader of the militia be elected here as well?
     return
 

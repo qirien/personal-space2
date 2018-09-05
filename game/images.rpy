@@ -13,6 +13,7 @@ init -10:
     # GUI
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 10, 10)
     image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 10, 10)
+    image soil = Frame("gui/soil.jpg")
 
     image computer_pad = "gui/computer pad.png"
     image computer_pad_with_screen = LiveComposite(
@@ -21,6 +22,13 @@ init -10:
         (0,0), "gui/computer pad.png"
         #(0,0), "gui/computer pad screen.png"
         )
+
+    # Special Sprites
+    image baby = "kid-sprites/baby normal.png"
+    image toddler = "kid-sprites/toddler normal.png"
+    image child = "kid-sprites/young normal.png"
+    image tween = "kid-sprites/tween normal.png"
+    image teen = "kid-sprites/teen normal.png"
 
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)

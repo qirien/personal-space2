@@ -301,11 +301,11 @@ label start:
 
         # Poetry time!
         #if (year % 3):
-        "So much happened this year... I decided to write a poem about it."
+        #"So much happened this year... I decided to write a poem about it."
         # Make the word board with appropriate words
         # TODO: Store poems better for later access.
-        $ word_board = Board(basic_words, family_words, farm_words)
-        call make_poem
+        #$ word_board = Board(basic_words, family_words, farm_words)
+        #call make_poem
 
         # CHOOSE FOR NEXT YEAR
         #play music computer
@@ -319,4 +319,5 @@ label start:
         $ year += 1
         $ save_name = "Year %d" % year
 
+    jump ending
     return
