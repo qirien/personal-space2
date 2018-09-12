@@ -102,6 +102,7 @@ label start:
         community_22_forced_luddites_leave = False
         community_22_compromise = False
         community_22_mined_anyway = False
+        jellypeople_happy = False
 
     # FARM
     python:
