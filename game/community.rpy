@@ -41,7 +41,7 @@ label community1:
     him "Yeah, she wants to give the new colonists their first physical as soon as possible."
     show ilian
     ilian "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
-    show him smile
+    show him happy
     him "At least there's free soup."
     ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "You get your soup and sit with some of the new colonists."
@@ -69,7 +69,7 @@ label community1:
             $ miners += 1
             show him determined
             him "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
-            show him smile
+            show him happy
             him "Plus, growing food is essential for our survival!"
             kevin "That sounds like a good plan."
         "I came out here for adventure and discovery too.":
@@ -97,7 +97,7 @@ label community1:
             show him normal
             him "Kind of, yeah."
             $ colonists += 1
-    show him smile
+    show him happy
     him "You guys are staying here for the rest of your lives, right?"
     zaina "That's right!"
     label ask_zaina_and_kevin:
@@ -134,7 +134,7 @@ label community1:
         "What kind of food will you grow?" if not asked_grow:
             show him normal
             him "You have quite a bit of land out there by the radio tower."
-            show him smile
+            show him happy
             him "Any idea what you'll grow on it?"
             zaina "We brought some fruit trees, which I hope will make a nice orchard."
             zaina "Grapes are fairly hardy, and I would love to start a winery sometime!"
@@ -156,7 +156,7 @@ label community1:
             him "Did you start to hate each other a little on the shuttle ride over?"
             kevin "No, I do not believe it is possible for us to hate each other."
             zaina "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
-            show him smile
+            show him happy
             him "I got married right before coming to Talaam too."
             him "Did people give you all kinds of weird survival gear at your wedding?"
             kevin "No, they did not. My friends from work are also engineers and understood the limitations of space travel."
@@ -180,7 +180,7 @@ label community1:
                     him "[her_name] is my wife and she's also the doctor in our clinic."
                     him "She tries to be objective, but she also feels passionate about her job."
                     zaina "I think that describes most of us."
-                    show him smile
+                    show him happy
                     him "Some people have complained that her bedside manner is a little callous."
                     him "So her objectivity is more relevant to customer satisfaction than, say, mine."
                     kevin "Are you implying that your carrots cannot feel your love?"
@@ -216,7 +216,7 @@ label community1:
                     show him normal
                     him "But at some point you decided to study engineering."
                     kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
-                    show him smile
+                    show him happy
                     him "Flying is pretty incredible."
                     $ tell_Lily = True
                     jump colony_gossip
@@ -248,7 +248,7 @@ label community1:
                     $ tell_Perons = True
                     jump colony_gossip
                 "Pete and Helen." if not tell_Pete:
-                    show him smile
+                    show him happy
                     him "If you ever need to look something up or make something, our library is the place to go."
                     him "Pete is our librarian and also our cattle rancher."
                     show him normal
@@ -256,7 +256,7 @@ label community1:
                     $ tell_Pete = True
                     jump colony_gossip
                 "Thuc and Julia." if not tell_Ngyuens:
-                    show him smile
+                    show him happy
                     him "Thuc and Julia are my neighbors and some of our best friends."
                     him "We don't talk about it much, but every now and then he collects everything from the latrines, treats it, and turns it into fertilizer."
                     show him normal
@@ -357,7 +357,7 @@ label community2:
 label community3:
     scene farm_interior with fade
     show thuc sad at midleft
-    show him smile at center
+    show him happy at center
     show pete at midright
     thuc "No. No way! Did you just do that?"
     him "Yes, I did. With the bonuses from my cavalry, my legendary general, and my superior navy from starting on an island, I can conquer Russia in one turn!"
@@ -391,7 +391,7 @@ label community3:
     show him normal
     him "I happen to have some research interests outside of fieldwork."
     kevin "He's a librarian, right? Is your hobby art history or something similar?"
-    show him smile
+    show him happy
     him "No, it's far more mundane. That's just what we call our monthly game night."
     kevin "I would love to play games with others. Why was this information hidden?"
     show him concerned
@@ -401,7 +401,7 @@ label community3:
     show him normal
     him "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
     kevin "That's simply what they told their grandchildren. Let me come to your game night!"
-    show him smile
+    show him happy
     him "Okay, come then! We need someone to shake things up."
     kevin "Shall I invite the other new colonists as well?"
     menu:
@@ -484,7 +484,7 @@ label community4:
     thuc "Wow, who has time for that extra work?"
     thuc "It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liason work."
-    show him smile
+    show him happy
     him "At least you know your own personality well, although I think that you don't give yourself enough credit."
     show lily angry
     lily "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
@@ -509,7 +509,7 @@ label community4:
     him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liason separate from Pavel."
     show naomi
     naomi "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
-    show him smile
+    show him happy
     him "Isn't that what we want from a liason?"
     show lily
     lily "What does putting the colonists's needs first mean in this context? Our survival has been RET's main goal with establishing this colony."
@@ -554,7 +554,6 @@ label community4:
         return
     else:
         "Sara is elected as the new representative."
-        #TODO: does the order of these options matter for variable settings?
         #should a leader of the militia be elected here as well?
     return
 
@@ -730,7 +729,7 @@ label community5:
             $ talked_something = True
             jump convince_Pete
         "We could can some of the dairy products." if not talked_canning_dairy:
-            show him smile
+            show him happy
             him "We could try making dried milk powder or clarified butter, which would last a long time."
             pete "Why would we do that when we have plenty of fresh stuff?"
             show him determined
@@ -751,7 +750,7 @@ label community5:
     if talked_canning_dairy:
         show pete happy
         pete "I'll look into canning some milk and butter though."
-        show him smile
+        show him happy
         him "Great!"
         $ colonists += 1
     else:
@@ -913,7 +912,7 @@ label community6:
         thuc "I guess it doesn't really make sense to bring in a calf either."
         show pete happy
         pete "Nope."
-        show him smile
+        show him happy
         him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
         show thuc
         thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
@@ -990,7 +989,7 @@ label community7:
                 him "I can ask them in my next e-mail."
                 show thuc sad
                 thuc "E-mail? Not an insta-com?"
-                show him smile
+                show him happy
                 him "I only get so many instant communication slots."
                 show thuc
                 thuc "But by the time they get your e-mail no one will remember me."
@@ -1018,7 +1017,7 @@ label community7:
                 show him determined
                 him "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
                 him "Let's leave the past in the past."
-                show him smile
+                show him happy
                 him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
                 thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     else:
@@ -1062,7 +1061,7 @@ label community7:
                 $ colonists += 1
                 show him determined
                 him "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
-                show him smile
+                show him happy
                 him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
                 thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     return
@@ -1166,7 +1165,7 @@ label community8:
                 pavel "And that's just the food I miss!"
                 show him surprised
                 him "Wow. Well, it needs to be non-perishable or at least have a long shelf life, so I think that eliminates most of the things on your list."
-                show him smile
+                show him happy
                 him "I could put you down for curry powder though."
                 show pavel sad
                 pavel "Oh, well make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
@@ -1211,7 +1210,7 @@ label community8:
         him "Let me think about that."
         show sara
         sara "I need to know right now."
-        show him smile
+        show him happy
         him "Hmm. How about some good old Earth toilet paper?"
         show sara sad
         sara "Great. I can shorten that to TP in the insta-comm."
@@ -1241,7 +1240,7 @@ label community9:
     show pete at midright
     show him normal at midleft #he isn't appearing in my testing... not sure why not.
     pete "Hey, [his_name]!"
-    show him smile
+    show him happy
     him "Hi Pete."
     show pete happy
     pete "Out to catch some fish?"
@@ -1390,7 +1389,7 @@ label community9:
             pete "Nothing a bandage can't fix."
             "After everyone is patched up, you find that you've captured a grass crab in one of your snares."
             "Pete gives the grass crab a decoy stick to hold so Thuc can attack it from behind."
-            show him smile
+            show him happy
             him "This is going to be delicious."
             show pete
             pete "Let's eat some and then head back."
@@ -1417,7 +1416,7 @@ label community9:
             show pete
             pete "We process cattle all the time, so we can finish butchering the grass crab. I'll make sure you get some."
             pete "Come by in a few hours if you want something fresh, otherwise it's all going to be jerky."
-            show him smile
+            show him happy
             him "Thanks Pete."
         "Sounds dangerous. I have to focus on farming right now anyway.":
             $ miners += 1 #not sure which side colonists +1 should go on for this one.
@@ -5031,7 +5030,7 @@ label call_to_squid:
                 him "How do they compare to jellysquid shells for metal content?"
                 "Miranda" "Well, it's not edible for humans. Let me bring up the report."
                 "Miranda" "Some species had a high level of heavy metals. I don't know what kind though."
-                him "Wow, this could be big! The same kind of metals that RET wants?" 
+                him "Wow, this could be big! The same kind of metals that RET wants?"
                 him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud, right?"
                 "Miranda" "Or they could just keep doing what's working, which is digging in the mountains."
                 "Miranda" "Brennan gave up on the jellysquid farms, right? Just leave well enough alone."
@@ -5085,7 +5084,7 @@ label call_to_squid:
                         "Miranda" "I just hope the colony is strong enough to help with this"
                         $ serve_Shills = True
                         jump aquaculture
-                        
+
                         label aquaculture:
                             "I started making plans for a fish farm off the coast."
                             "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
@@ -5125,7 +5124,12 @@ label call_to_squid:
                 "Over the next few months, there were fewer reports of jellysquid sightings."
                 "We rarely saw any of them after that year."
                 return
+<<<<<<< HEAD
                 #Similar resistence to the boat_capsized ending next month 
+=======
+                #Similar resistence to the boat_capsized ending next month
+                #I don't remember what the above note means
+>>>>>>> 170a30165535bf3fa219af92b46d8d42c6d2d73b
 
         "No, I will not bring them.":
             jump boat_capsized
@@ -5149,7 +5153,7 @@ label boat_capsized:
     "We told our friends about our alien encounter, but I'm not sure if they believed us."
     "Over the next few months, there were fewer reports of jellysquid sightings."
     "We rarely saw any of them after that year."
-    
+
     return
 
 
@@ -5207,7 +5211,7 @@ label community28:
         # Julia is here too. Brennan is here if your mining relationship is high enough. explain why Julia is there?
         sara "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #check last three events to see if Pavel is in them
         sara "Pavel has requested that he be allowed to end his own life before his cognitive abilities decline too much more. He agreed on a threshold with [her_name]."
-        sara "He wrote down his wishes and signed it, and I witnessed this. He was oriented to time, place, and circumstance at the time." 
+        sara "He wrote down his wishes and signed it, and I witnessed this. He was oriented to time, place, and circumstance at the time."
         sara "[her_name] has agreed to do weekly assessments and determine Pavel's cognitive abilities."
         sara "I've called you here because you have leadership positions in our community. Julia, I figured that it would be easier for you to attend this meeting than to get a report secondhand for your newspaper."
         sara "[her_name], can you take it from here?"
@@ -5261,8 +5265,8 @@ label community28:
             brennan "Fine with me."
             sara "I'd like to meet with her myself sometime, but overall, I agree with the consensus we have here."
             her "Okay."
-            jump fill_gap 
-            
+            jump fill_gap
+
     else:
         "[her_name] told me a few days later that she and a few other colony leaders had agreed to allow Pavel Grayson to be euthanized according to his wishes when he reached a certain state of mental decay."
         if against_euthanasia:
@@ -5277,8 +5281,8 @@ label community28:
             her "In a procedure he requested."
             jump fill_gap
     # if is not liason
-        
-        
+
+
 label fill_gap:
     "In the meantime, we held a meeting to decide who would be the new mayor."
     sara "I received your nominations."
@@ -5307,7 +5311,7 @@ label fill_gap:
         "Don't allow miners to vote for the mayor now and in future elections.":
             $ colonists += 1
             jump after_vote
-            
+
     label after_vote:
         if miners > 10:
             sara "The votes are in, and the majority voted to allow miners to vote."
@@ -5328,7 +5332,7 @@ label fill_gap:
                 jump no_euthanasia
             else:
                 jump euthanasia
-                
+
 label no_euthanasia:
     nvl clear
     sara_c "So, I told Pavel Grayson that we would all look after him."
@@ -5372,7 +5376,7 @@ label no_euthanasia:
     "In the morning, we found his body drowned in the river."
     "His funeral was well-attended, and we reminisced about his optimistic spirit."
     return
-        
+
 label euthanasia:
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present."

@@ -1,5 +1,12 @@
-# These are messages that appear on the colony message board each month
+# These are messages that appear on the colony message board each year
 
+label message1:
+    nvl clear
+    naomi_c "Congratulations to Sara and Ilian on the birth of their son Oleg!"
+    him_c "I don't know whether to congratulate you or commiserate with you..."
+    sara_c "Maybe both? :-D"
+    nvl clear
+    return
 
 # TODO: redo these with new colors, make icons, etc.
 # NVL mode characters for chat rooms, etc

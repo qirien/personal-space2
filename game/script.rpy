@@ -29,10 +29,14 @@ label start:
         responsive = 0
         total_responsive = 0
 
+        # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
+        confident = 0
+        total_confident = 0
+
         # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
 
         # The Four Parenting Styles
-        # Only one of these should be increased each year (each type of event?), maximum value at the end of the game is 30
+        # Only one of these should be increased each year, maximum value at the end of the game is 30
         authoritarian = 0
         authoritative = 0
         permissive = 0
@@ -200,7 +204,7 @@ label start:
 
     show path
     show her normal at midleft
-    show kid at center
+    show kid happy at centerbaby
     show him normal at midright
     show computer_pad
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
@@ -218,10 +222,8 @@ label start:
         "Test Farming Screen":
             $ farm.reset_crops(farm_size)
             call screen plan_farm
-        "Test Family Events":
-            jump test_family
-        "Test Community Events":
-            jump test_community
+        "Other Tests":
+            jump tests
 
     scene stars_animated with fade
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
@@ -238,7 +240,7 @@ label start:
     call community_intro
 
     # Initial farm setup
-    play music computer
+    #play music computer
     scene gray_dark with fade
     $ farm.reset_crops(farm_size)
     call screen plan_farm
@@ -260,7 +262,7 @@ label start:
             $ bro_age = year - bro_birth_year
 
         # WORK EVENTS (farming)
-        play music farming
+        #play music farming
         call interscene_text(year, "Work")
         #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
         # hide screen interscene #with dissolve
@@ -268,12 +270,12 @@ label start:
         call expression work_event
 
         # FAMILY EVENTS (parenting/home life)
-        play music parenting
+        #play music parenting
         call interscene_text(year, "Family")
         call expression "family" + str(year)
 
         # COMMUNITY EVENTS (building community, helping factions)
-        play music community
+        #play music community
         call interscene_text(year, "Community")
         call expression "community" + str(year)
 
@@ -291,13 +293,23 @@ label start:
         $ demanding = 0
         $ total_responsive += responsive
         $ responsive = 0
+        $ total_confident += confident
+        $ confident = 0
 
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
 
+        # Poetry time!
+        #if (year % 3):
+        #"So much happened this year... I decided to write a poem about it."
+        # Make the word board with appropriate words
+        # TODO: Store poems better for later access.
+        #$ word_board = Board(basic_words, family_words, farm_words)
+        #call make_poem
+
         # CHOOSE FOR NEXT YEAR
-        play music computer
+        #play music computer
         hide screen say
         scene gray_dark with fade
         $ years_yield = farm.process_crops()
@@ -308,4 +320,5 @@ label start:
         $ year += 1
         $ save_name = "Year %d" % year
 
+    jump ending
     return

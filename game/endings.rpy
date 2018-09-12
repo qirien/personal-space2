@@ -79,13 +79,14 @@ label ending_aci:
             him concerned "We'll miss you..."
 
     kid "Goodbye, dad."
-    "She hugged me briefly, and then walked away."
+    "She hugged me briefly, and then turned around. She ran to catch up to Lorant, clinging to his arm as they boarded the shuttle."
     hide kid with moveoutright
     "Just like that, she was gone from my life."
     "I never saw her again."
     him angry "How could you let her sign a contract like that without even mentioning it to us?!"
     brennan "It's not my fault if you don't know what's going on in your own kid's life."
     her "Brenann!"
+    # TODO: adjust based on whether you are a good farmer/liason or not
     brennan "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liason, but you're a terrible father."
     him "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
     brennan "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
@@ -93,7 +94,7 @@ label ending_aci:
     him "I'd be happy if he never thought of me again."
     brennan "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
     her "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
-    brennan "I'm now her manager. Yes, I'll watch out for her."
+    brennan "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
     him "I... I'd appreciate that."
     "He nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
@@ -189,17 +190,55 @@ label ending_acI:
     kid "Thanks for the pickles."
     him normal "Anytime."
 
-    "Ending 2/8 My Very Own Mistakes."
+    "Ending 2/8 Mistakes to Call My Own."
     return
 
-#3 aCi - Gets sucked into a crappy marriage on Talaam with the first person who shows affection, but at least she won't die of starvation.
+#3 aCi - She stays on Talaam, doing something she's not passionate about
+# because she's trying to please you, but even though she's pretty good at it
+# she has no confidence or self-direction.
+# always worried, aims to please people, scared of making mistakes
 label ending_aCi:
     "Ending aCi."
+    scene fields with fade
+    "[kid_name] has just finished weeding the field."
+    "She did a decent job, but I knew she could do better."
+    him determined "I still see a few weeds in there."
+    kid concerned "Okay, I'll go fix it."
+
+
+    "I'm never going to be good enough!"
+
+    "Ending 3/8, Never Good Enough."
     return
 
 #4 aCI - Rejects your life and returns to Earth to fulfill her dreams and she succeeds, becoming an awesome __________ (or studies jellypeople?), though you worry about her lack of friends/family
 label ending_aCI:
     "Ending aCI."
+    her "It's not too late to change your mind. You could complete your studies here..."
+    kid "I know, mom, but all the good astronomers and equipment are on Earth. I want to become the best, so that's where I need to go."
+    him "Study hard, [kid_name]. Make us proud."
+    kid sad "I'm trying, dad."
+    her "We are proud. And you'll always have a home here, no matter what happens."
+    her "If you want to. But, oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
+    kid "I'm excited to see a rain forest. Or any forest at all, actually."
+    bro "Send us pictures!"
+    kid nervous "Oh! What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school?!"
+
+    kid "Maybe I could just convince someone to setup some real telescopes here. We could study the solar flares, the local solar system..."
+    him "Don't forget us."
+    kid "I'll send you messages when I can."
+    brennan "Careful, or you'll end up stuck here for another 12 years. The shuttle's leaving!"
+
+    kid "Okay! Bye mom! Bye dad!"
+    her "Goodbye, [kid_name]! We love you!"
+    "She hoisted her duffle bag onto her shoulder and boarded the shuttle. I couldn't believe it was really happening. Our baby was leaving."
+    bro "Goodbye!"
+    "I didn't know what to say. All I could think about were the things I didn't have a chance to teach her, to tell her."
+    "What if she started failing her classes? What if she didn't cook herself good enough food? What if she made huge mistakes and didn't apologize? What if her heart was broken?"
+    "It was too late, now. She'd have to learn from her own mistakes, now."
+    him "Goodbye!"
+
+    "Ending 4/8, Down to Earth."
     return
 
 #5 Aci - stays on your farm helping you, though she doesn't work hard enough to be of much help.
@@ -235,7 +274,7 @@ label ending_ACI:
     "I want a lot of things for [kid_name], but most of all I want her to find some of the same happiness I've found.  Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
-    "So I'm not just happy that she's getting married to the nicest young man on the entire planet."
+    "So I'm not just happy that she's dating the nicest young man on the entire planet."
     "I'm not just happy that she's staying here, on Talaam."
     "I'm also happy she found a way to do something she loves that helps people."
     "She worked hard to earn a dual degree in sociology and biology, and she has learned to understand the jellies in a way that no one else can."

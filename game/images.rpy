@@ -10,10 +10,10 @@ init -10:
         "images/bg/stars.jpg"
         linear 10.0 zoom 0.5
 
-
     # GUI
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 10, 10)
     image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 10, 10)
+    image soil = Frame("gui/soil.jpg")
 
     image computer_pad = "gui/computer pad.png"
     image computer_pad_with_screen = LiveComposite(
@@ -22,8 +22,32 @@ init -10:
         (0,0), "gui/computer pad.png"
         #(0,0), "gui/computer pad screen.png"
         )
-    
-    # TODO: add different background? custom bg?
+
+    # Special Sprites
+    image baby = "kid-sprites/baby normal.png"
+    image toddler = "kid-sprites/toddler normal.png"
+    image child = "kid-sprites/young normal.png"
+    image tween = "kid-sprites/tween normal.png"
+    image teen = "kid-sprites/teen normal.png"
+
+    # DYNAMIC SPRITES
+    # Define images for kid (baby, toddler, young, tween, teen)
+    init python:
+        kid_expressions = ["angry", "annoyed", "cry", "concerned", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
+        # For each expression, add a baby, toddler, young, tween, teen depending on current year
+        for expression_name in kid_expressions:
+            renpy.image(("kid", expression_name), ConditionSwitch(
+                "year <= 4", "kid-sprites/baby %s.png" % expression_name,
+                "year <= 12", "kid-sprites/toddler %s.png" % expression_name,
+                "year <= 21", "kid-sprites/tween %s.png" % expression_name,
+                "True", "kid-sprites/teen %s.png" % expression_name))
+            # finer grained images
+            # renpy.image(("kid", expression_name), ConditionSwitch(
+            #     "year <= 2", "kid-sprites/baby %s.png" % expression_name,
+            #     "year <= 6", "kid-sprites/toddler %s.png" % expression_name,
+            #     "year <= 12", "kid-sprites/young %s.png" % expression_name,
+            #     "year <= 20", "kid-sprites/tween %s.png" % expression_name,
+            #     "True", "kid-sprites/teen %s.png" % expression_name))
 
     image ctc_blink:
            "gui/ctc.png"

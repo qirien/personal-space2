@@ -4,15 +4,79 @@
 label tests:
     menu:
         "Which test would you like to run?"
+        "Crop Events.":
+            call test_crops
         "Family Events.":
             call test_family
+        "Community Events":
+            call test_community
         "Positions":
             call test_positions
             call baby_positions
         "Omake":
             call omake
+        "Sprites":
+            call test_sprites
+        "Quit":
+            return
+
+    jump tests
+    return
+
+label test_sprites:
+    scene farm_interior with fade
+
+    # Test Kid sprites
+    $ year = 1
+    "Baby"
+    call test_sprite("kid")
+    $ year = 3
+    "Toddler"
+    call test_sprite("kid")
+    $ year = 7
+    "Young Kid"
+    call test_sprite("kid")
+    $ year = 13
+    "Older Kid"
+    call test_sprite("kid")
+    $ year = 23
+    "Teen"
+    call test_sprite("kid")
+
+    # Test Adult Sprites
+    call test_sprite("him")
+    call test_sprite("her")
 
     return
+
+label test_sprite(sprite_name="kid"):
+    scene farm_exterior with fade
+    python:
+        renpy.say(None, sprite_name)
+        sprite_attributes = renpy.get_ordered_image_attributes(sprite_name)
+        for attribute_name in sprite_attributes:
+            renpy.show(sprite_name + " " + attribute_name)
+            renpy.say(None, attribute_name)
+    return
+
+label test_crops:
+
+    $ year = 1
+
+    while (year <= 30):
+        $ farm.reset_crops(farm_size)
+        $ farm.crops.setDefault()
+        $ renpy.notify("Year [year]")
+
+        $ work_event = get_next_work_event()
+        call expression work_event
+        $ year += 1
+
+    "The end"
+    jump ending
+    return
+
+
 
 label test_family:
 
