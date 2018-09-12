@@ -63,13 +63,105 @@ label work2:
 
 # Year 4, 2 years old
 label work4:
-    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
+    nvl clear
+    pavel_c "The Fall Festival will be next weekend! Show off your best crops and animals. There will be games and music, too!"
+    sara_c "I hope everyone can come!"
+    nvl clear
+    him "Hmmm... I was going to get a new field ready to expand the size of my farm, but I always like to go to the Fall Festival..."
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    $ work4_showoff = False
+    menu:
+        "What should I do?"
+        "Show off my [random_crop] at the festival.":
+            $ work4_showoff = True
+            "It was fun to show off my hard work. And it was a good chance to hang out with the other farmers and see what they were doing."
+
+        "Go, but don't bring anything.":
+            "I didn't want to miss the Fall Festival. I worked hard to prepare and plow one new field, and then I headed over."
+            $ farm_size += 1
+            tutorial "Your farm is now size [farm_size]!"
+
+        "Don't go. Expand fields instead.":
+            $ farm_size += 4
+            "The festival was fun, but my farm was more important. Maybe I'd go next year..."
+            "I worked hard to rip out the native vegetation and plow the new fields."
+            tutorial "Your farm is now size [farm_size]!"
+            return
+
+    scene bg community_center with fade
+    show natalia at quarterleft
+    show pete at center
+    show thuc at quarterright
+    show goat at right
+    with dissolve
+    show him normal at left with moveinleft
+    "Everyone brought their best crops to display."
+    "Natalia had beautiful ears of corn, and free samples of corn on the cob."
+    show him surprised at midleft with move
+    "Pete brought several kinds of cheeses and cider."
+    show him normal at midright with move
+    "Thuc brought the cutest baby goat I've ever seen. His daughter had taught it to stand on its hind legs, bleat, and jump through a hoop."
+    thuc "This goat is almost as smart as [kid_name]!"
+    him happy "And probably more obedient!"
+
+    if (work4_showoff):
+        thuc "Hey, is that your [random_crop] on display over there?"
+        him normal "Yes it is!"
+        thuc "They turned out really well. How often do you fertilize them?"
+        "We talked about [random_crop] for a while, and then I had an idea."
+        him surprised "Hey, do you want some seeds for [random_crop]?"
+        thuc "They grow pretty well?"
+        him normal "Yeah!"
+        thuc "Sure, that would be great. Do you want a strawberry plant?"
+        him surprised "Strawberries?"
+        thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
+        him happy "Sure, thanks!"
+        tutorial "You can now grow strawberries!"
+        #$ enable_crop("strawberries")
     return
 
 # Year 6, 3.5 years old
 label work6:
-    "You can now have [kid_name] help on the farm. Her effectiveness depends on her competence."
-    "And, her competence increases as she helps."
+    scene farm_interior with fade
+    show her normal at midright
+    show kid normal at center
+    show him normal at midleft
+    with dissolve
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    him normal "Well, I'm off to plant [random_crop] today."
+    kid surprised "Is it fun?"
+    him concerned "Kind of? Not as fun as harvesting, but you do get to dig in the dirt and drop in seeds..."
+    kid nervous "Can I help?"
+    him surprised "Sure, if you want to."
+    "I'd had [kid_name] help me out on the farm before -- mostly harvesting, or just digging in the dirt 'helping' me while I got the real work done."
+    "But she was getting old enough to be slightly more of a help than a hindrance, for some things."
+    scene farm_exterior with fade
+    show him normal at midright
+    show kid normal at midleft
+    with moveinleft
+    him normal "First we have to give the goats water."
+    kid laugh "I'll help!"
+    him determined "Here, you can fill it up with the pump."
+    "It took all her strength to lift the pump handle, and she had to hang on it with her whole weight to get it to come down, but she did it."
+    show kid concerned with dissolve
+    "She tried to carry the bucket, but it was too heavy."
+    him "Here, I'll carry the bucket. You carry the seeds."
+    kid happy "Okay, daddy!"
+    hide him
+    hide kid
+    with moveoutright
+
+    scene fields with fade
+    show him normal at midright
+    show kid normal at midleft
+    with moveinleft
+    him normal "I'll poke a hole in the dirt, and you put three seeds in, okay?"
+    kid surprised "Okay...One, two, free!"
+    him happy "Good!"
+    "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
+
+    tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
+    tutorial "And, her competence increases as she helps." # TODO: does it?
     return
 
 # Year 8, 4.8 years old
@@ -152,35 +244,83 @@ label work10:
             "Just bring the plums to the storehouse.":
                 "I decided to just bring the plums to the storehouse. I wanted to use my time for other things."
 
-    if not (renpy.showing("storehouse")):
-        scene storehouse with fade
-        show ilian at midright
-        show him normal at midleft with dissolve
+        if not (renpy.showing("storehouse")):
+            scene storehouse with fade
+            show ilian at midright
+            show him normal at midleft with dissolve
 
-    "While I was at the storehouse, I saw that they had a ton of onions for a good price."
-    "If I bought some, I could plant some and grow my own..."
-    menu:
-        "What should I do?"
-        "Buy onions.":
-            # TODO: currency check, subtract amount for onions.
-            "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-            $ enable_crop("onions")
-        "Don't buy onions":
-            "I decided not to buy them. I had enough crops to deal with."
+        "While I was at the storehouse, I saw that they had a ton of onions for a good price."
+        "If I bought some, I could plant some and grow my own..."
+        menu:
+            "What should I do?"
+            "Buy onions.":
+                # TODO: currency check, subtract amount for onions.
+                "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
+                $ enable_crop("onions")
+            "Don't buy onions":
+                "I decided not to buy them. I had enough crops to deal with."
+
+    else: # we have no plums. Now we can never plant them.
+        if "plums" in farm.crops: # we just barely planted plums, but it didn't work.
+            "I tried to plant the plum pits I got from Kevin and Zaina, but they didn't germinate. It had probably been too long."
+        else:
+            "I realized I never planted the plums Kevin and Zaina gave me. The seeds were probably not good anymore, so I threw them out."
+        $ disable_crop("plums")
+        $ disable_crop("plums+")
     return
 
 # Year 12, 7.4 years old
 label work12:
-    "You had a decent harvest, but a salesman from RET offers some hybrid wheat seeds that he claims will be the most productive crop you've ever seen."
-    "The only problem is, the seeds are infertile, so you'd have to buy them every year."
-    "In fact, he'll only sell them to you if you sign a contract to buy some from him every year for the next ten Talaam years."
+    nvl clear
+    brennan_c "I have a special offer for all you farmers out there."
+    julia_c "Oh, this'll be good."
+    sara_c ":-O"
+    pete_c "Let the man talk."
+    brennan_c "I have the newest pest-resistant, high-yield, nutirent-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
+    thuc_c "That sounds good, but..."
+    julia_c "What's the catch?"
+    brennan_c "Well, because they're a patented seed design, the wheat berries they produce are sterile."
+    julia_c "Meaning we couldn't save some seeds to plant next year."
+    brennan_c "Right. You'd need to buy them from me. Well, from RET, really."
+    if (community11_kidsonfarm):
+        natalia_c "Hmm, I might get some for Joanna to try. If they're as good as you say..."
+    else:
+        natalia_c "Hmm, I might have to try those, if they're really as easy to grow as you say..."
+    brennan_c "Well, that's the thing. If you're going to grow them, you need to sign a 20 year contract. We have a set amount and we need reliable buyers."
+    natalia_c "Twenty years? Some of us might not even be alive then."
+    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us a certain amount every year and we'll provide you with seeds." # TODO: currency check, how much?
+    julia_c "That's ridiculous. Who would want to rely on you for their seeds?"
+    brennan_c "You're a tough customer, Julia, but let's let everyone decide for themselves. Come see me if you want in on this great deal."
+    nvl clear
     menu:
-        "Sign a wheat contract?"
-        "Yes":
-            $ colonists += 1
+        "What should I do?"
+        "Sign a wheat contract."
+            $ miners += 1
+            scene miners_camp
+            show brennan at midright with dissolve
+            show him at midleft with moveinleft
+            him normal "I'm interested in the wheat."
+            brennan "Good, good. Seems like you're smarter than you look."
+            him annoyed "Don't make me change my mind."
+            brennan "Ah, can't you take a joke?"
+            him determined "..."
+            brennan "...Right. Here's your wheat."
+            $ enable_crop("wheat")
+            # TODO: implement annual fee
             # you sold your soul but can now grow wheat.
-        "No":
+        "Don't sign a wheat contract":
             $ luddites += 1
+            him_c "No thanks, Brennan."
+            "Later, Natalia came over for a visit."
+            natalia "I need something for my farm that's easier to grow. Do you have any suggestions?"
+            him "You've been growing corn, right?"
+            natalia "Yes, and it's quite time-intensive."
+            him "Have you tried potatoes?"
+            natalia "No, do they do well here?"
+            him "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
+            natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
+            him "That would be great!"
+            $ enable_crop("corn")
             # the luddites approve and offer to get you started with some of their heirloom wheat instead. It's not as good - more work, less yield
 
     return

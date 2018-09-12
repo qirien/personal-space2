@@ -118,7 +118,7 @@ init -100:
     define farleft = Position(xpos=-0.30, xanchor=0)
     define farright = Position(xpos=1.0, xanchor=0)
     define sitting = Position(ypos=0.45, yanchor=0)
-    define squatting = Position(yoffset=150, yanchor=1.0)
+    define squatting = Position(ypos=0.25, yanchor=0)
     define standing = Position(ypos= 1.0, yanchor = 1.0)
     define jumping = Position(yoffset=-50)
     define jumpinghigh = Position(yoffset=-150)

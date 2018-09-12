@@ -1475,13 +1475,16 @@ label community10:
     natalia "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
     martin "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin "What would you do in my position? Who do you think should take care of the farm?"
+    $ community11_kidsonfarm = False
     menu:
         "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
+            $ community11_kidsonfarm = True
             $ colonists += 1
             $ miners += 1
             #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
             #another possible way to improve the iteractivity here would be to help martin compose an argument about why Tomas and Joanna should care about the farm.
         "Let Natalia scale back the farm. Let their children pursue their dreams.":
+            $ community11_kidsonfarm = False
             $ luddites += 1
             #then what happens to the corn everyone needs? they need to decide on how to take care of that. Maybe when Pete leaves it's not as much of an issue, since there is less cattle to feed over the winter.
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
@@ -5038,7 +5041,7 @@ label call_to_squid:
                 zaina "Sometimes the most helpful thing you can do is to go away."
                 him "They can sort of write to us Zaina! How are you not curious about that?"
                 zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
-                zaina "I helped Dr. Lily teach them how to 'write'." 
+                zaina "I helped Dr. Lily teach them how to 'write'."
                 zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
                 zaina "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
                 him "They asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
@@ -5126,8 +5129,8 @@ label call_to_squid:
                 "Over the next few months, there were fewer reports of jellysquid sightings."
                 "We rarely saw any of them after that year."
                 return
-                #Similar resistence to the boat_capsized ending next month 
-                
+                #Similar resistence to the boat_capsized ending next month
+
         "No, I will not bring them.":
             jump boat_capsized
 
@@ -5387,14 +5390,14 @@ label community29:
         "He worked with them and talked with them more than he did to us, so it wasn't surprising."
         "He worked with Brennan to have a work rotation with some of the farmers. Farmers would work in the mines for a day each week while the miners worked in the fields."
         "At first there were a lot of mistakes on both sides, but eventually we farmers learned the basics of mining and got to know the other miners better."
-            
+
     else:
         "Julia was a behind-the-scenes kind of mayor. Things went smoothly because she talked to everyone privately, and she was able to distribute important information through her newspaper."
         "Eventually interviews with each resident of Talaam were featured in the Talaam Times, including the luddites and the miners."
-        
+
     if jellypeople_happy:
         "I kept communicating with the jellypeople through the jellysquids. We traded land meat for seafood."
-        
+
     "I was working in the canning factory after a harvest when [her_name] messaged me."
     nvl clear
     her_c "Helen is pregnant!!!!"
@@ -5412,7 +5415,7 @@ label community29:
         "Helen came to stay with us. She gave us a big wheel of cheese and a string of dried fish the day she arrived."
         jump helen_convo_29
     else:
-        her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby." 
+        her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
         her_c "That way I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
         "I saw Pete dragging her to the hospital on a stretcher. He refused my help."
@@ -5471,7 +5474,7 @@ label community29:
         him "Yeah, it's not like you can actually buy more hospital supplies with the credits."
         her "Exactly."
         return
-        
+
     label helen_convo_29:
         him "How are you liking life back in the colony?"
         helen "Well, there are so many people to talk to. It's kind of overwhelming."
@@ -5564,7 +5567,7 @@ label community29:
 #Oleg's app is there! It has been modified and her dosage is pretty high.
 #JULIA DEALING FIREWEED (transported by your daughter in some branches?) bum bum bum
 # WHO STOLE PETE'S CREDITS
-        
+
 label community30:
     "The latest shuttles from RET have arrived."
     if ((luddites >= 12) and (miners >=12)):

@@ -213,3 +213,7 @@ init python:
     def enable_crop(crop_name):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
+
+    def disable_crop(crop_name):
+        crop_index = get_crop_index(crop_name)
+        crop_info[crop_index][ENABLED_INDEX] = False

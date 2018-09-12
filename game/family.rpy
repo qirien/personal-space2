@@ -1086,14 +1086,13 @@ label family4:
 # Toilet Training
 label family5:
     scene black with fade
-    show baby with fade
-    hide baby with fade
-    show kid normal at center with moveinright
     "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, run, and jump. She learned several new words every day."
-    hide kid with moveoutleft
+    show baby with fade
     "When I thought back to the tiny helpless creature she was just two years ago, it was hard to even believe this was the same person."
-
+    hide baby with fade
+    show kid normal at center with fade
     "Learning some things was harder than others, though."
+    hide kid with fade
     "Once she could pull her pants up and down by herself, we taught her how to use the toilet."
     "She understood what it was for, and did pretty well for the first few days."
     "Then we had several days where she hardly ever made it to the toilet on time."
