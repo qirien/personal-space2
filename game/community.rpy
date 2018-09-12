@@ -2298,7 +2298,7 @@ label community13:
                             "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
                             "Pete was especially supportive."
                             "We reached the goal by 11:30pm."
-                            "Lily and her research assistant, Miranda Peron, gathered more samples and photographs of the cave before it was destroyed."
+                            "Lily and Zaina gathered more samples and photographs of the cave before it was destroyed."
                             "They even managed to capture a few of the newt-like creatures."
                             jump cave_explored
                         else:
@@ -3350,7 +3350,7 @@ label community20:
         him "Yeah, I guess it just didn't come up! There were times where [her_name] was really busy and I was really busy and I didn't even check the message board."
         lily "In any case, I feel that I am not going to be around much longer."
         him "Okay..."
-        lily "Miranda knows about our research, but there are a few things we're working on that I wanted to tell you personally."
+        lily "Zaina and Miranda know about our research, but there are a few things we're working on that I wanted to tell you personally."
         jump research_briefing
 
     label research_briefing:
@@ -3399,7 +3399,7 @@ label community20:
             pass
 
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
-        "Miranda said that she wanted to see the ocean one last time before she died."
+        "Zaina said that she wanted to see the ocean one last time before she died."
         "We never saw her again."
 
     return
@@ -5021,67 +5021,69 @@ label call_to_squid:
                 "The display changed and asked me to bring more shells back."
                 "I knew that I probably couldn't find more shells, so instead I promised to look for shell food."
                 "I went back to the colony and my farm."
-                "I had a long talk with Miranda about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
+                "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
                 "When I mentioned the mudfish, she looked excited."
-                "Miranda" "A few years ago I studied that fish."
+                zaina "A few years ago I studied that fish."
                 him "What eats it?"
-                "Miranda" "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
+                zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
                 him "The ones called Shills? Because they make a really cool noise but disappear if you approach them?"
                 him "How do they compare to jellysquid shells for metal content?"
-                "Miranda" "Well, it's not edible for humans. Let me bring up the report."
-                "Miranda" "Some species had a high level of heavy metals. I don't know what kind though."
+                zaina "Well, it's not edible for humans. Let me bring up the report."
+                zaina "Some species had a high level of heavy metals. I don't know what kind though."
                 him "Wow, this could be big! The same kind of metals that RET wants?"
-                him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud, right?"
-                "Miranda" "Or they could just keep doing what's working, which is digging in the mountains."
-                "Miranda" "Brennan gave up on the jellysquid farms, right? Just leave well enough alone."
+                him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud."
+                zaina "Or they could just keep doing what's working, which is digging in the mountains."
+                zaina "Brennan gave up on the jellysquid farms. Just leave well enough alone."
                 him "I told the jellymother I would try to help her!" # TODO: decide if jellymother is her or them. make capitalization consistent.
-                "Miranda" "Sometimes the most helpful thing you can do is to go away."
-                him "They can sort of write to us Miranda! How are you not curious about that?"
-                "Miranda" "Actually, I've talked to them before. A lot."
-                "Miranda" "I helped Dr. Lily teach them how to 'write'. And now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
-                "Miranda" "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
-                him "Well, they asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
-                "Miranda" "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
+                zaina "Sometimes the most helpful thing you can do is to go away."
+                him "They can sort of write to us Zaina! How are you not curious about that?"
+                zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
+                zaina "I helped Dr. Lily teach them how to 'write'." 
+                zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
+                zaina "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
+                him "They asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
+                zaina "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
                 him "Or maybe the Shills that eat the mud fish would have the right minerals in their meat?"
-                "Miranda" "I can do some field research this weekend."
+                zaina "I can do some field research this weekend."
                 him "Great. Maybe the jellymother will talk to you too."
-                "Miranda" "You're not coming with me?"
+                zaina "You're not coming with me?"
                 him "I've been out there twice already. Message me if there's an emergency."
                 "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
                 "I could tell Breannan and Zaina about possibly mining in the mud instead of in the mountains."
                 menu:
                     "Tell them.":
                         "I told Brennan and Zaina about the heavy metals in the mud. They sounded exicted to try mining it."
+                        #currently there's no follow-up for this decision... remove it?
                     "Don't tell them.":
                         "I decided not to tell Brennan and Zaina about the heavy metals in the mud."
-                "Next week, Miranda returned and asked me to meet with her."
-                "Miranda" "The jellysquid seemed to remember me, so I didn't have trouble getting them to try a few different foods."
-                "Miranda" "I was able to catch a few mudfish and feed their filets to a jellysquid."
-                "Miranda" "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
-                "Miranda" "I had a hard time catching the Shill, despite using mudfish as bait. Eventually the Jellymother found me and I told her what I was trying to do."
-                "Miranda" "She seemed surprised. The Shill is difficult capture, so they rarely eat it."
-                "Miranda" "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
-                "Miranda" "She killed a Shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
-                "Miranda" "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
+                "Next week, Zaina returned and asked me to meet with her."
+                zaina "The jellysquid seemed to remember me, so I didn't have trouble getting them to try a few different foods."
+                zaina "I was able to catch a few mudfish and feed their filets to a jellysquid."
+                zaina "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
+                zaina "I had a hard time catching the Shill, despite using mudfish as bait. Eventually the Jellymother found me and I told her what I was trying to do."
+                zaina "She seemed surprised. The Shill is difficult capture, so they rarely eat it."
+                zaina "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
+                zaina "She killed a Shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
+                zaina "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
                 him "So what do you think would be best for the jellysquids?"
-                "Miranda" "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
-                "Miranda" "The jellysquid can easily eat the Shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
+                zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
+                zaina "The jellysquid can easily eat the Shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
                 him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
-                "Miranda" "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
+                zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
                 "What do I think is better?"
                 menu: #should this be a decision? remove it?
                     "Serve mudfish to the jellysquids.":
                         him "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
                         him "Also, we won't have to worry about shell overgrowth."
-                        "Miranda" "I just hope the colony is strong enough to help with this."
+                        zaina "I just hope the colony is strong enough to help with this."
                         $ serve_mudfish = True
                         jump aquaculture
                     "Have them eat Shills.":
                         him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
                         him "If they keep eating Shills, they won't have to rely on us to create new shells."
-                        "Miranda" "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
+                        zaina "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
                         him "Right."
-                        "Miranda" "I just hope the colony is strong enough to help with this"
+                        zaina "I just hope the colony is strong enough to help with this"
                         $ serve_Shills = True
                         jump aquaculture
 
@@ -5125,8 +5127,7 @@ label call_to_squid:
                 "We rarely saw any of them after that year."
                 return
                 #Similar resistence to the boat_capsized ending next month 
-
-
+                
         "No, I will not bring them.":
             jump boat_capsized
 
