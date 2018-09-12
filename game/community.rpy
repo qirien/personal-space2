@@ -5124,12 +5124,8 @@ label call_to_squid:
                 "Over the next few months, there were fewer reports of jellysquid sightings."
                 "We rarely saw any of them after that year."
                 return
-<<<<<<< HEAD
                 #Similar resistence to the boat_capsized ending next month 
-=======
-                #Similar resistence to the boat_capsized ending next month
-                #I don't remember what the above note means
->>>>>>> 170a30165535bf3fa219af92b46d8d42c6d2d73b
+
 
         "No, I will not bring them.":
             jump boat_capsized
