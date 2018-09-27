@@ -198,6 +198,7 @@ init python:
                 if (chosen_crop == "fallow"):
                     chosen_crop = ""
 
+            chosen_crop.strip("+")
             return chosen_crop
 
 

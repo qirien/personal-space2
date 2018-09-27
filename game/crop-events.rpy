@@ -24,7 +24,7 @@ label carrots1:
 
     menu:
         "What should I do?"
-        "Till the soil better. Must be rocks.":
+        "Till the soil better. Must be rocks." if (get_extra_work() >= 0):
             "I thought maybe I needed to till the soil better. Sometimes carrots would grow funny to try to get around rocks or hard soil in their way."
         "Must be something in the soil. Avoid planting carrots for a year.":
             "I could understand a few creepy carrots, but not so many. It must be something widespread."
@@ -297,22 +297,24 @@ label potatoes3:
     "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
     "I had to dig them out anyway so they wouldn't contiminate the field."
     "They would make good compost for other plants."
+    show him concerned at quarterleft with move
     "But every hour spent in the mud fishing them out felt oppresive and pointless."
+    show him sad at center with move
     "I spent all season on them, and what did I have to show for it?"
     "Just foul-smelling mush."
     # TODO: Can he be covered in mud?
-    show him determined at midright with move
+    show him determined at quarterright with move
     "I worked and worked all day, all afternoon, and into the evening."
-    show overlay night
+    show night_overlay
     show him at midleft with move
     "I was so frustrated and mad that I just wanted to get it all done and forget about it."
     show him at midright with move
     "I couldn't see very well in the moonlight but I kept ripping up the plants and loading the rotten potatoes onto the trailer."
     "I slipped and fell in the mud right as [her_name] came walking up."
-    show her concerned at midleft
-    show kid normal at center
+    show her concerned at midleft behind night_overlay
+    show kid normal at center behind night_overlay
     if (bro_age > 0):
-        show bro normal at midleft
+        show bro normal at midleft behind night_overlay
     with moveinleft
     her "Hey, we missed you at dinner. Everything okay?"
     menu:
@@ -330,11 +332,14 @@ label potatoes3:
             him determined "Pretty much."
 
         "We lost all the potatoes.":
-            him normal "No, all the potatoes are rotten, but I still have to clean them out, so it's been a pretty terrible day."
+            him concerned "No, all the potatoes are rotten, but I still have to clean them out, so it's been a pretty terrible day."
 
         "I'll finish up and then come home.":
-            him normal "Yeah, I'm just finishing up. I'll meet you at home in a few minutes, okay?"
-            her concerned "Okay..."
+            him determined "Yeah, I'm just finishing up. I'll meet you at home in a few minutes, okay?"
+            her concerned "Okay...Wait, are these the potatoes?!"
+            kid sad "I'm not eating those!"
+            him concerned "I'm tossing them; they're all bad."
+
 
     her concerned "Oh, honey, I'm sorry..."
     if (marriage_strength >= 2):
@@ -357,7 +362,7 @@ label squash1:
     "I planted a variety that was supposed to not need as much pollination, but not many of the fruits were setting."
     "So if I wanted to get a decent squash harvest this year, I'd need to help them out."
     menu:
-        "Pollinate by hand":
+        "Pollinate by hand" if (get_extra_work() >= 0):
             him determined "I guess I'm Cupid's little helper today..."
             "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
             "Since there were several flowers on each plant, and a whole field full of plants, it took quite a while."
@@ -374,7 +379,7 @@ label squash1:
 label squash2:
     "Some squash plants are looking sickly... you recognize the pesky squash bugs from Earth!  They must have come in on a shuttle somehow!"
     menu:
-            "Exterminate them all by hand!":
+            "Exterminate them all by hand!" if (get_extra_work() >= 0):
                 $ pass #takes a lot of work
             "Apply pesticide":
                 $ pass #does this really work? have side effects?
@@ -397,7 +402,7 @@ label goats1:
                 $ luddites += 1
             "Send to the storehouse":
                 $ colonists += 1
-            "Slaughter for meat":
+            "Slaughter for meat" if (get_extra_work() >= 0):
                 $ pass #family happiness/food increase?
             "Allocate more land for goats":
                 $ goats_index = get_crop_index("goats")

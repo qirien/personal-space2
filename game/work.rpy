@@ -24,15 +24,16 @@ label work_intro:
     return
 
 # Year 2, 9 months old
+# Help Kevin and Zaina and get a plum tree
 label work2:
     scene farm_interior with fade
-    show him at midleft
-    show her at midright
-    show kid at center
+    show him normal at midleft
+    show her normal at midright
+    show kid normal at midright, baby_pos
     with dissolve
     her surprised "Are you going somewhere?"
     him determined "Yeah, I said I'd help Kevin and Zaina with their garden."
-    her flirting "It wasn't as easy as the video games made it seem, huh?"
+    her flirt "It wasn't as easy as the video games made it seem, huh?"
     him happy "Yeah, turns out there's actually a lot of things that you can't learn just from simulations!"
     her normal "All right, good luck."
     show path with fade
@@ -41,7 +42,7 @@ label work2:
     show kevin at midright
     show zaina at center
     with dissolve
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
 
     zaina "Thanks for coming, [his_name]. I can't believe I ever thought growing my own food would be easy!"
     him "Well, some parts aren't too hard. But it helps if you know what you're doing."
@@ -62,6 +63,7 @@ label work2:
 
 
 # Year 4, 2 years old
+# Show off at the Fall Festival or increase the size of your farm?
 label work4:
     nvl clear
     pavel_c "The Fall Festival will be next weekend! Show off your best crops and animals. There will be games and music, too!"
@@ -121,6 +123,7 @@ label work4:
     return
 
 # Year 6, 3.5 years old
+# Terra begins to help!
 label work6:
     scene farm_interior with fade
     show her normal at midright
@@ -165,8 +168,81 @@ label work6:
     return
 
 # Year 8, 4.8 years old
+# The outhouse is full...
 label work8:
-    "Your family reacts to crops you've been planting."
+    scene farm_exterior with fade
+    "Here's one thing not everyone gets about being a farmer."
+    "I'm not just a farmer; I take care of {b}everything{/b}."
+    "So I'm also a carpenter, vet, trucker, landscaper, and handyman, as needed."
+    "But today I'm a plumber."
+    "The outhouse was one of the first things we built when we moved here. Most of the time I didn't even think about it."
+    "But lately..."
+    him annoyed "Ugh, that smell!"
+    "I had an exhaust pipe that was supposed to pipe the noxious fumes outside, but for some reason it wasn't working."
+    him determined "Time to figure out the problem."
+    "I checked the top of the pipe. It didn't seem to be clogged at all."
+    "I didn't want to, but I had to check the other side of the pipe. The one inside the pit."
+    "I lifted off the seat and the top panel, and it was immediately obvious what had happened."
+    him surprised "Our outhouse is full!"
+    "It was so full that it had started blocking the exhaust pipe."
+    "I sat down and thought for a few minutes. I had a few choices..."
+    $ work8_choice = ""
+    menu:
+        "What should I do?"
+        "Clean out the pit.":
+            $ work8_choice = "clean"
+            "It was a gross job, but the best thing to do was just clean out the pit. Then I could keep using this same outhouse."
+            "Since we had been adding some ashes to the pit after using it, the sewage had started decomposing, but it was still sewage. I tied a handkerchief over my nose and mouth to cut the smell down."
+            "I borrowed an auger from the community tool library and used it to transport everything up and into my wheelbarrow."
+            "When the wheelbarrow was full, I dumped the waste in a far corner away from fields and water sources. Eventually it would be good fertilizer, but it hadn't decomposed enough yet."
+            "Then I went back for another load."
+            "It took all day..."
+        "Relocate the outhouse.":
+            $ work8_choice = "relocate"
+            "There was no way I was going to clean out the pit of the outhouse."
+            "We had plenty of land; I'd just build a new pit somewhere else and move the outhouse structure on top of it. Then I could bury the waste in the old pit and let Mother Nature take care of it for me."
+            "First, I dug a new pit."
+            "Then I took apart the outhouse so it I could carry it over piece by piece and put it back together again."
+            "I covered the old pit with the dirt from the new one."
+            "It took all day..."
+        "Build a better outhouse that provides fertilizer." if (get_extra_work() >= 0):
+            $ work8_choice = "improve"
+            "I remembered Thuc telling me about how they had a special treatment regimen that allowed them to treat sewage from their pit and use it as fertilizer."
+            "I could always use more fertilizer, and this would also make it so I wouldn't have to clean out the outhouse in the future, either."
+            "He sent me some plans and a short book on the subject. I didn't even notice it was written by his wife, Julia, until I finished reading it."
+            "I ended up building a new outhouse on top of a small hill, with a container for the waste that could be rotated."
+            "I built a couple of containers so that two could be decomposing into compost while the other was being actively used."
+            "It took several days, and the new outhouse would be a bit more work to maintain, but I felt like it was worth it to solve the problem the right way."
+
+    scene farm_interior with fade
+    show her normal at midright
+    show kid normal at center
+    with dissolve
+    show him concerned at midleft with moveinleft
+    her concerned "You look beat. And you smell like..."
+    kid surprised "Like poop!"
+    him determined "Yeah... the outhouse was full."
+    her surprised "Oh! I guess that would happen eventually..."
+    if (work8_choice == "clean"):
+        him concerned "I mucked the whole thing out."
+        kid angry "Gross!"
+        her concerned "Wow... that sounds awful."
+    else:
+        him concerned "I had to build a new one."
+        her normal "Okay, wow, that sounds like a lot of hard work."
+
+        him normal "It's done now, anyway."
+        if has_strong_marriage():
+            her normal "Why don't you go take a bath and I'll make dinner tonight?"
+            kid shifty "{b}I{/b} don't need a bath."
+            him happy "Then you can help Mom with dinner. I'll be back soon!"
+        else:
+            her concerned "Well...thanks."
+            kid shifty "You need a bath!"
+            him surprised "I do need a bath! And then I'll come home and make dinner. Unless Mom wants to do it...?"
+            her annoyed "Yeah, I'll make dinner. I don't want to wait that long."
+            him happy "Thanks, sweetie!"
+
     return
 
 # Year 10, 6.2 years old
@@ -186,7 +262,7 @@ label work10:
         $ make_item = "plums"
         menu:
             "What should I do?"
-            "Make prunes":
+            "Make prunes" if (get_extra_work() >= 0):
                 $ make_item = "prunes"
                 "I pitted them and put them on a rack to dry."
                 "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
@@ -212,7 +288,7 @@ label work10:
                 $ enable_crop("garlic")
                 return
 
-            "Make jam":
+            "Make jam" if (get_extra_work() >= 0):
                 $ make_item = "jam"
                 "I decided to make jam."
                 "My mother always made jam with sugar and pectin."
@@ -242,7 +318,7 @@ label work10:
                 return
 
             "Just bring the plums to the storehouse.":
-                "I decided to just bring the plums to the storehouse. I wanted to use my time for other things."
+                "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
 
         if not (renpy.showing("storehouse")):
             scene storehouse with fade
@@ -294,7 +370,7 @@ label work12:
     nvl clear
     menu:
         "What should I do?"
-        "Sign a wheat contract."
+        "Sign a wheat contract.":
             $ miners += 1
             scene miners_camp
             show brennan at midright with dissolve
@@ -321,8 +397,8 @@ label work12:
             natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
             him "That would be great!"
             $ enable_crop("corn")
-            # the luddites approve and offer to get you started with some of their heirloom wheat instead. It's not as good - more work, less yield
 
+    "I was looking forward to growing something new."
     return
 
 # Year 14, 8.7 years old

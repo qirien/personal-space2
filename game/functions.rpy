@@ -204,10 +204,25 @@ init -100 python:
 
     # Calculate the amount of work available.
     def get_work_available():
-        return WORK_BASE + get_work_kid(earth_year)
+        return WORK_BASE + get_work_kid()
 
-    def get_work_kid(age = 0):
+    def get_work_kid():
         return int(competence * (kid_work_slider / 100.0))
+
+    def get_extra_work():
+        total_work = 0
+        for i in range(0, farm.crops.len()):
+            crop_names = [row[NAME_INDEX] for row in crop_info]
+            index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
+            total_work += crop_info[index][WORK_INDEX]
+
+        work_available = get_work_available()
+        return (work_available - total_work)
+
+    # Return True if marriage is strong for the current year
+    # A rate of 1 per 4 years is considered high given a current max of 10
+    def has_strong_marriage():
+        return (marriage_strength >= (year / 4))
 
 
 ##
@@ -222,7 +237,7 @@ label bedroom_scene(show_baby=False, sleeping=True):
         show him normal at midleft, squatting
         show her normal at midright, squatting
     if (show_baby):
-        show kid sad at centerbabybed
+        show kid normal at centerbabybed
     show bedroom_overlay
     show night_overlay
     with dissolve

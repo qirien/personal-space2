@@ -5293,7 +5293,7 @@ label fill_gap:
     sara "If you don't want him to be mayor, go ahead and vote for me or Julia."
     sara "Other questions about the candidates?"
     thuc "Don't vote for Julia! I need her to oversee my water treatment plant."
-    julia "Please vote for me! I don't want to oversee Thuc's pee factory."
+    julia "Please vote for me! I don't want to oversee Thuc's sewage factory."
     kevin "Are miners going to be allowed to vote?"
     sara "Good question. Since the mayor is responsible for the well-being of the colonists, he is elected by colonists."
     sara "Are miners interested in voting? What would it mean for miners to be able to vote?"
