@@ -485,62 +485,195 @@ label beans2:
 
 label spinach1:
     "Your spinach is looking good!"
+    # how many seeds to save?
     menu:
         "Pick it early":
             "Yum, smaller, more tender greens, but less food."
         "Wait until it's fully grown":
-            "Larger harvest. more bitter taste.  more food/less happiness"
+            "Larger harvest. more bitter taste.  more food/less happiness, seeds?"
     return
 
 label spinach2:
-    "You had a heat wave and your spinach failed to germinate.  It doesn't usually get that hot, so maybe you could try again? But you only have enough seeds to plant one more batch."
+    "Even with all our technology -- our hybrid tractors, our careful genetic modifications, our surveillance cameras and timed sprinkler systems -- we were still at Mother Nature's mercy."
+    "It usually didn't get very warm on Talaam. Most of the time our proximity to the ocean kept the temperatures moderate."
+    "But one year we had a terrible heat wave..."
+    "...and the spinach seeds never came up."
+    "They needed cool temperatures to germinate. The weather was cool again -- for now."
+    "I had enough seeds to plant one more batch of spinach. But if those also failed, then next year I wouldn't have any spinach seeds at all."
+    $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 1
     menu:
-        "Plant them again and pray it doesn't get too hot.":
-            "It was hot enough that the spinach started to flower before you could harvest it.  Once spinach flowers, it tastes really bitter.  But at least you can harvest the seeds for next year."
-            "The goats enjoy your bitter spinach plants."
+        "Plant them again now.":
+            "I carefully looked at the weather, and when it looked like it would be nice and cool I planted them again."
+            "And they did germinate -- little spinach sproutlings emerged from the soil."
+            "But it got hot again."
+            "The spinach didn't die, but it began to flower. I harvested the tiny, bitter leaves and got enough seeds to plant next year."
+            scene farm_interior with fade
+            show her annoyed at midright
+            show kid annoyed at center
+            show him annoyed at midleft
+            her concerned "[his_name]...I can't eat this spinach."
+            him concerned "..."
+            her sad "Sorry..."
+            him determined "I can't, either. But I know someone who will."
+            show her surprised
+            hide him with moveoutleft
+            scene fields with fade
+            show him determined at midright
+            show goat at midleft
+            with dissolve
+            him annoyed "Enjoy your spinach, goats."
         "Save the seeds.":
-            "It's not worth the effort.  You save the seeds for next year."
+            "If we had one heat wave, we could have another. The safest bet was to just save the seeds for next year."
+            scene farm_interior with fade
+            show her normal at midright
+            show kid normal at center
+            show him normal at midleft
+            her surprised "Is the spinach ready yet? I wanted to make a salad to go with dinner."
+            him concerned "Sorry, no spinach this year. It got too hot."
+            her concerned "Oh...that's too bad."
     return
 
 label spinach3:
-    "You planted your spinach earlier and it's almost to full size."
-    "But something has been eating the plants. You haven't seen anything, but when you check on the spinach, there's definitely bites taken out."
-    $ spinach_cameras = False
+    $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] += 1
+    scene fields with fade
+    "This year, I planted my spinach a little earlier to avoid any heat problems."
+    "Now it's almost to full size."
+    "But something has been eating the plants. I haven't seen anything, but when I checked the leaves, I could see bites taken out."
+    $ spinach3_cameras = False
     menu spinach_3_menu:
-        "Check the surveillance cameras" if (not spinach_cameras):
-            "You train the farm's cameras on the spinach plot, but the next day when you look at the video, none of the motion sensors were triggered.  You scan through the video but can't find anything that's eating them."
-            "Looks like you'll have to find out the old-fashioned way."
-            $ spinach_cameras = True
+        "Check the surveillance cameras" if (not spinach3_cameras):
+            "I trained the farm's cameras on the spinach plot, but the next morning when I looked at the video, none of the motion sensors were triggered.  I scanned through the video but couldn't find anything out of the ordinary."
+            $ spinach3_cameras = True
             jump spinach_3_menu
         "Check on your spinach at night":
-            "After [kid_name] and [her_name] went to bed, you snuck out of the house to examine your spinach plants.  Your flashlight catches something small and slimy -- it looks like a slug!" #maybe these should be snails, since they might be able to deal with the radiation better? or am I overthinking it?
+            show night_overlay with dissolve
+            show him annoyed at center with moveinleft
+            "After [kid_name] and [her_name] went to bed, I snuck out of the house to examine the spinach plants.  My flashlight caught something small and slimy -- it looked like a snail!"
+            "It's not exactly like an Earth snail -- its shell is hard, but instead of a spiral it's more of a dome, like a turtle. Its body is soft and squishy, but it has little feet protuberances like a caterpillar."
             menu:
+                "What should I do?"
                 "Hand pick them off":
-                    "You spend the night plucking off slugs and putting them in a bucket. And the next night.  And the next night.  There's fewer each night, but it's tedious work."
-                    # TODO: Depending on Terra's age, maybe you enlist her help?
-                    "Your reward is lots of great spinach."
-                "Make slug traps":
-                    "You put some tasty smelling bait in the middle of a hole covered with boards."
-                    "In the morning, the hole was full of slugs, just waiting for you to murder them."
-                    "You make some more traps and check them every morning."
-                    "The slugs will regret their incursion into your domain."
-                "Just pick the spinach early":
-                    jump spinach_pick_early
-        "Just pick the spinach early":
-            jump spinach_pick_early
+                    "I spend several hours that night plucking off snails and putting them in a bucket. And the next night.  And the next night.  There's fewer each night, but it's tedious work."
+                    if (get_work_kid() > 0):
+                        show him determined at midright with move
+                        show kid annoyed at midleft behind night_overlay with moveinleft
+                        "I enlisted [kid_name]'s help. At first she was a little grossed out..."
+                        show kid normal with dissolve
+                        "...but eventually she got really good at it. With her shorter height, she was able to see the turtle-snails hiding under the leaves better than I could."
+                    "At first the turtle-snails seemed endless, but after a few nights there were less and less of them."
+                    "And we harvested a lot of wonderful spinach."
+                "Make snail traps":
+                    "I put some tasty smelling bait in the middle of a hole covered with boards."
+                    scene field with fade
+                    show him normal at midright with dissolve
+                    "In the morning, the hole was full of turtle-snails, just waiting for me."
+                    if (get_work_kid() > 0):
+                        show kid surprised at midleft with dissolve
+                        kid "What are you doing out here?"
+                        him angry "I am about to dispense justice onto these vicious turtle-snails that have been murdering our spinach."
+                        "She peered inside the trap."
+                        kid annoyed "Yuck. How are you going to do that?"
+                        him concerned "I haven't decided yet..."
+                        kid nervous "They're kind of cute."
+                        him annoyed "Cute as cockroaches."
+                        kid concerned "You're not going to kill them, are you?!"
+                        menu:
+                            "What should I do?"
+                            "Have [kid_name] help you move them.":
+                                $ confident += 1
+                                him determined "Not if you'll help me move them."
+                                kid surprised "Okay, where?"
+                                him normal "The other side of the river should be far enough."
+                                "We got a bucket, filled it with snails, and she escorted them across the river."
+                                hide kid with moveoutright
+                                kid normal "There you go little buddies!"
+                            "Have [kid_name] help you kill them.":
+                                $ confident += 1
+                                him determined "I'm not going to kill them. You are."
+                                kid angry "What?! No. No way!"
+                                him annoyed "If we don't, they'll destroy our crops. Not just this year, but next year, too."
+                                kid sad "They just want to eat a little spinach."
+                                him concerned "They will eat all our spinach, and they won't stop there."
+                                if (is_independent()):
+                                    call spinach3_eat_snails
+                                elif (is_attached() and is_competent()):
+                                    kid concerned "What do you want me to do?"
+                                    him determined "Just drop them in this bucket of water and they'll probably drown."
+                                    kid surprised "What if they don't?"
+                                    him concerned "Then I'll take care of it."
+                                    kid concerned "Okay. I'll do it."
+                                else:
+                                    kid cry "No, I won't do it!"
+                                    hide kid with moveoutleft
+                                    "She ran back to the house crying. Maybe this was one job I shouldn't delegate."
+                                    "I dropped them in a bucket of water and that seemed to kill them."
+                            "Send her away and kill them yourself.":
+                                him determined "I'll take care of it. You just run along, now."
+                                if (is_independent()):
+                                    call spinach3_eat_snails
+                                else:
+                                    hide kid with moveouleft
+                                    "She left, and I carried out the death sentence on the turtle-snails."
 
+                    "I made some more traps and repeated the process until no more turtle-snails appeared."
+                    "And we harvested a lot of wonderful spinach."
+                "Just pick the spinach early":
+                    call spinach3_pick_early
+        "Just pick the spinach early":
+            call spinach3_pick_early
     return
 
-label spinach_pick_early:
-    "It'd be too much work to kill all the slugs. You might as well just harvest the spinach early and then there won't be anything for them to eat."
-    "But spinach isn't the only thing slugs like..."
-    # TODO: Change this to get a currently-planted crop that slugs would eat, like cabbage, tomatoes, beans,
-    $ slug_crop = "cabbage"
-    "After you picked the spinach, they moved on to your [slug_crop]."
+label spinach3_eat_snails:
+    kid concerned "If we have to kill them, we should eat them."
+    him surprised "Eat them?"
+    kid surprised "Yeah, can we eat them?"
+    him normal "Probably..."
+    kid normal "Well, I'll just keep them until we figure it out. I'll make sure they don't get into the garden."
+    "[kid_name] ran and got a shallow pan to keep them in."
+    "We had the scientists run some tests and they said they were edible."
+    "[her_name] did some research on escargot farming and we decided to try it."
+    scene farm_interior with fade
+    show him surprised at midright
+    show kid surprised at center
+    if (bro_age > 0):
+        show bro surprised at quarterright
+    show her surprised at midleft
+    with dissolve
+    her concerned "It's...interesting."
+    kid nervous "It's...not bad."
+    him concerned "I suppose... I could eat this."
+    if (bro_age > 4):
+        bro "I'm not eating it."
+    "It was an interesting experiment, but ultimately we did not want to eat that many turtle-snails."
+    return
+
+label spinach3_pick_early:
+    "It'd be too much work to kill all the snails. If I just harvested the spinach early then there wouldn't be anything for them to eat."
+    "But spinach isn't the only thing turtle-snails like..."
+    if ("beans" in farm.crops):
+        $ snail_crop = "beans"
+    elif ("peppers" in farm.crops):
+        $ snail_crop = "peppers"
+    elif ("squash" in farm.crops):
+        $ snail_crop = "squash"
+    elif ("broccoli" in farm.crops):
+        $ snail_crop = "broccoli"
+    elif ("cabbage" in farm.crops):
+        $ snail_crop = "cabbage"
+    elif ("strawberries" in farm.crops):
+        $ snail_crop = "strawberries"
+    elif ("carrots" in farm.crops):
+        $ snail_crop = "carrots"
+    elif ("snow peas" in farm.crops):
+        $ snail_crop = "snow peas"
+    else:
+        $ snail_crop = "other crops"
+    "After you picked the spinach, they moved on to your [snail_crop]."
     "This is something that you cannot forgive."
     "This means war."
-    "Your nights are filled with killing slugs."
-    "They appear in your dreams, giant slugs with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam is just an empty spot in the vast blackness of space."
+    "Your nights are filled with killing turtle-snails."
+    "They appear in your dreams, giant, house-sized turtle-snails with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam is just an empty spot in the vast blackness of space."
+    "You think you see them everywhere you look -- in the fields, in the barn, in the outhouse."
     "Finally, their numbers are greatly reduced, and you can rest.  Until the next invasion..."
     return
 
@@ -548,3 +681,4 @@ label strawberries1:
     "Your strawberry plants did really well this year! Not only did you get extra strawberries, but you have enough runners that you could plant more next year if you wanted."
     $ strawberries_index = get_crop_index("strawberries")
     $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
+    return

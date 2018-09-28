@@ -18,7 +18,7 @@ label start:
         save_name = "Intro"
         notifications = ""
 
-    # PARENTS
+    # PARENTSde
     python:
         # Demanding and Reponsive may change by more or less than 1 each year
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
