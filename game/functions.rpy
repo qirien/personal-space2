@@ -148,6 +148,13 @@ init -100 python:
     def get_next_work_event():
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events.
+
+        # HOWEVER, if nutrition is low, you don't get to do any of that. Instead
+        # you have to take care of the nutrition problem.
+        malnutrition_threshold = renpy.random.randint(-10, 0)
+        if (get_extra_nutrition <= malnutrition_threshold):
+            return "bad_nutrition"
+
         if ((year % 2) == 0):
             # Call the next set event
             event_name = "work" + str(year)
@@ -218,6 +225,15 @@ init -100 python:
 
         work_available = get_work_available()
         return (work_available - total_work)
+
+    def get_extra_nutrition():
+        total_nutrition = 0
+        for i in range(0, farm.crops.len()):
+            crop_names = [row[NAME_INDEX] for row in crop_info]
+            index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
+            total_nutrition += crop_info[index][NUTRITION_INDEX]
+        nutrition_required = get_nutrition_required()
+        return (nutrition_required - total_nutrition)
 
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10

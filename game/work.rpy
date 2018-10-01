@@ -4,6 +4,13 @@ label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
     return
 
+label bad_nutrition:
+    $ bad_nutrition_count += 1
+    "The crops I planted didn't provide the vitamins and minerals we needed."
+    "I had to spend money at the storehouse to buy better food."
+    # TODO: finish this
+    return
+
 # Year 1, 3 mo. old
 label work_intro:
     scene fields with fade
@@ -246,103 +253,45 @@ label work8:
     return
 
 # Year 10, 6.2 years old
-# Onions or garlic in exchange for plums
+# Bees?!
 label work10:
-    scene fields with fade
-    show him at center with dissolve
-    if "plums+" in farm.crops:
-        "The plum tree was growing larger every year. There were two different kinds of plum trees that I planted so that they could pollinate each other effectively."
-        if ("bees" in farm.crops):
-            "The bees helped the pollination a lot."
-        else:
-            "I had to pollinate them by hand, but my hard work paid off."
-
-        "Now that we were using currency, I had other considerations in how to process my harvest. Plums were worth a lot more if I made them into prunes or jam first."
-        "It was more work, but maybe it was worth it?"
-        $ make_item = "plums"
-        menu:
-            "What should I do?"
-            "Make prunes" if (get_extra_work() >= 0):
-                $ make_item = "prunes"
-                "I pitted them and put them on a rack to dry."
-                "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
-                show her normal at midleft with moveinleft
-                show him at midright with move
-                her surprised "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
-                him annoyed "You don't have to be constpiated to enjoy some good prunes."
-                her normal "They'll be good for [kid_name], too. Thanks, [his_name]."
-                "I dropped most of them off at the storehouse and didn't think much about it for several days, until I got a visitor."
-                scene farm_exterior with fade
-                show him normal at midright with dissolve
-                show thuc normal at midleft with moveinleft
-                thuc "Man, I'm so glad you made prunes. Can I just say, everything around here is going a lot more smoothly?"
-                him surprised "You like prunes?"
-                thuc "Well, one of my kids really needed them. I don't want to embarrass them, so that's all I'm going to say. But thank you!"
-                him normal "You're welcome, I guess."
-                thuc "In fact, I brought you a little something."
-                "He handed me several heads of garlic."
-                him surprised "Oh, thanks!"
-                thuc "This is nice and fresh, so you can plant it or eat it."
-                him "Mmmm, this'll be good! Thank you!"
-                "I couldn't wait to eat some, but even better, now I could grow my own."
-                $ enable_crop("garlic")
-                return
-
-            "Make jam" if (get_extra_work() >= 0):
-                $ make_item = "jam"
-                "I decided to make jam."
-                "My mother always made jam with sugar and pectin."
-                "It would kind of defeat the purpose of making jam if I had to buy expensive sugar and pectin to make it work."
-                "After some research, I found plums already have a fair amount of sugar and pectin in them. So I decided to slow cook them until they made a thick jam."
-                "It was a bit sour, but very flavorful. And the jars should last at least a year."
-
-                scene storehouse with fade
-                show ilian at midright with dissolve
-                show him normal at midleft with moveinleft
-                him "Hey there, Ilian."
-                ilian "Oh. Hello."
-                him happy "How much can you give me for this plum jam?"
-                ilian "I can only give you amount." # TODO: currency check.
-                him surprised "What? Why is that?"
-                ilian "I'm out of money. But if you'd like to exchange, I can give you onions or garlic."
-                menu:
-                    "Which should I choose?"
-                    "Onions":
-                        him "Give me the onions."
-                        $ enable_crop("onions")
-                    "Garlic":
-                        him "How about the garlic?"
-                        $ enable_crop("garlic")
-                ilian "Fine. Here you go."
-                "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
-                return
-
-            "Just bring the plums to the storehouse.":
-                "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
-
-        if not (renpy.showing("storehouse")):
-            scene storehouse with fade
-            show ilian at midright
-            show him normal at midleft with dissolve
-
-        "While I was at the storehouse, I saw that they had a ton of onions for a good price."
-        "If I bought some, I could plant some and grow my own..."
-        menu:
-            "What should I do?"
-            "Buy onions.":
-                # TODO: currency check, subtract amount for onions.
-                "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-                $ enable_crop("onions")
-            "Don't buy onions":
-                "I decided not to buy them. I had enough crops to deal with."
-
-    else: # we have no plums. Now we can never plant them.
-        if "plums" in farm.crops: # we just barely planted plums, but it didn't work.
-            "I tried to plant the plum pits I got from Kevin and Zaina, but they didn't germinate. It had probably been too long."
-        else:
-            "I realized I never planted the plums Kevin and Zaina gave me. The seeds were probably not good anymore, so I threw them out."
+    scene community_center with fade
+    show kevin at midright
+    show him normal at midleft
+    with dissolve
+    if (farm.crop_enabled("plums") or farm.crop_enabled("plums+")):
+        kevin "[his_name]. How are your plum trees?"
+        if "plums+" not in farm.crops:
+            if "plums" in farm.crops: # we just barely planted plums, but it didn't work.
+                him concerned "I tried to plant them a couple weeks ago, but they didn't germinate. It had probably been too long."
+                kevin "Yes, that is possible."
+            else:
+                him concerned "I, uh, I'm afraid I never planted them."
+                kevin "I see. They are most likely no longer viable."
         $ disable_crop("plums")
         $ disable_crop("plums+")
+
+    him "How's your garden coming, Kevin?"
+    kevin "It does provide some food, but I have noticed that plants here have an average of a 25% smaller yield than plants on Earth."
+    him concerned "There could be several reasons for that..."
+    kevin "After factoring out other issues such as soil quality, solar flares, and unreported crops, I have come to a conclusion."
+    him surprised "What's that?"
+    kevin "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
+    him normal "Like bees?"
+    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm?"
+
+    menu:
+        "What should I say?"
+        "Sure, I'd love bees!":
+            him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
+            kevin "Very well. I shall mark you down for bees."
+            $ enable_crop("bees")
+            tutorial "You can now assign bees to one of your plots of land."
+            tutorial "They will boost production of neighboring squares and require just a little work."
+            tutorial "However, once placed, they cannot be moved."
+        "No thanks.":
+            him concerned "No thanks; I already have enough to worry about."
+            kevin "Very well. I shall ask someone else."
     return
 
 # Year 12, 7.4 years old

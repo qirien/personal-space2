@@ -211,6 +211,10 @@ init python:
     def get_crop_filename(crop_name):
         return "gui/crop icons/" + crop_name.rstrip("+") + ".png"
 
+    def crop_enabled(crop_name):
+        crop_index = get_crop_index(crop_name)
+        return crop_info[crop_index][ENABLED_INDEX]
+
     def enable_crop(crop_name):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True

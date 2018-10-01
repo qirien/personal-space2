@@ -1447,7 +1447,7 @@ label community10:
     "After weeding and clearing out old growth, Terra comes home from school."
     "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
     show farm exterior
-    natalia "Thanks for coming over. We're just finishing up the rice."
+    natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
@@ -1516,9 +1516,9 @@ label community11:
     #BRENNAN ON SCREEN. he looks the same
     # Jack definitely doesn't like him, but doesn't have a great reason.
     # Is Kelly here, too? Could be interesting...
-    him "Brennan!"
+    him surprised "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
+    him determined "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
     her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"

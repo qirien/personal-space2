@@ -466,13 +466,111 @@ label tomatoes3:
     return
 
 label plums1:
-    "You don't get any harvest this year, but you tend your plums carefully."
+    "I was happy to see the plum trees getting larger and larger."
+    "I fertilized them carefully each year hoped eventually they would bear fruit."
     return
 
 # Several years later
+# Prunes or jam?
 label plums2:
-    "Finally, your spring is punctuated by beautiful pink blossoms on your plum trees."
-    # Depending on pollination, you get a few or a lot of plums
+    scene fields with fade
+    show him at center with dissolve
+    "I'll never forget the first time the plum trees really bloomed..."
+    "Thousands of pink blossoms covered the trees this spring, and when they fell, their petals covered the ground in a soft pink carpet."
+    # TODO: plum blossom CG? bg?
+    if ("bees" in farm.crops):
+        "The bees helped the pollination a lot."
+    else:
+        "I had to pollinate them by hand, but my hard work paid off."
+    "The ephemeral beauty of the plum blossoms was rivalled only by their later, more practical beauty."
+    "Plums!"
+    "There were so many plums growing, I had to thin out some of the fruit so the branches wouldn't break under their load."
+    "The only fresh fruit we had was what we grew ourselves, so I was really looking forward to eating the plums."
+    "I watched them every week until the fruits had grown large and purple."
+    "And, of course, I had to try one every few days to see if they were ripe."
+    "The first few times the fruits were still sour."
+    "But finally they started to soften and ripen, and when I ate one, the juice dribbled down my chin and my taste buds exploded with the tangy sweet, rich flavor."
+    "No matter how tasty they were, though, there were still limits to the amount of plums a small family could eat at a time."
+    "I'd need to do something with all these plums..."
+    "I could just bring them to the storehouse, but they'd be worth more if I made them into prunes or jam first."
+
+    $ make_item = "plums"
+    menu:
+        "What should I do?"
+        "Make prunes" if (get_extra_work() >= 0):
+            $ make_item = "prunes"
+            "I pitted them and put them on a rack to dry."
+            "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
+            show her normal at midleft with moveinleft
+            show him at midright with move
+            her surprised "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
+            him annoyed "You don't have to be constipated to enjoy some good prunes."
+            her normal "They'll be good for [kid_name], too. Thanks, [his_name]."
+            "I dropped most of them off at the storehouse and didn't think much about it for several days, until I got a visitor."
+            scene farm_exterior with fade
+            show him normal at midright with dissolve
+            show thuc normal at midleft with moveinleft
+            thuc "Man, I'm so glad you made prunes. Can I just say, everything around here is going a lot more smoothly?"
+            him surprised "You like prunes?"
+            thuc "Well, one of my kids really needed them. I don't want to embarrass them, so that's all I'm going to say. But thank you!"
+            him normal "You're welcome, I guess."
+            thuc "In fact, I brought you a little something."
+            "He handed me a basket full of heads of garlic."
+            him surprised "Oh, thanks!"
+            thuc "This is nice and fresh, so you can plant it or eat it."
+            him "Mmmm, this'll be good! Thank you!"
+            "I couldn't wait to eat some, but even better, now I could grow my own."
+            $ enable_crop("garlic")
+            return
+
+        "Make jam" if (get_extra_work() >= 0):
+            $ make_item = "jam"
+            "I decided to make jam."
+            "My mother always made jam with sugar and pectin."
+            "It would kind of defeat the purpose of making jam if I had to buy expensive sugar and pectin to make it work."
+            "After some research, I found plums already have a fair amount of sugar and pectin in them. So I decided to slow cook them until they made a thick jam."
+            "It was a bit sour, but very flavorful. And the jars should last at least a year."
+
+            scene storehouse with fade
+            show ilian at midright with dissolve
+            show him normal at midleft with moveinleft
+            him "Hey there, Ilian."
+            ilian "Oh. Hello."
+            him happy "How much can you give me for this plum jam?"
+            ilian "I can only give you amount." # TODO: currency check.
+            him surprised "What? Why is that?"
+            ilian "I'm out of money. But if you'd like to exchange, I can give you onions or garlic."
+            menu:
+                "Which should I choose?"
+                "Onions":
+                    him "Give me the onions."
+                    $ enable_crop("onions")
+                "Garlic":
+                    him "How about the garlic?"
+                    $ enable_crop("garlic")
+            ilian "Fine. Here you go."
+            "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
+            return
+
+        "Just bring the plums to the storehouse.":
+            "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
+
+    if not (renpy.showing("storehouse")):
+        scene storehouse with fade
+        show ilian at midright
+        show him normal at midleft with dissolve
+
+    "While I was at the storehouse, I saw that they had a ton of onions for a good price."
+    "If I bought them, I could plant some and grow my own..."
+    menu:
+        "What should I do?"
+        "Buy onions.":
+            # TODO: currency check, subtract amount for onions.
+            "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
+            $ enable_crop("onions")
+        "Don't buy onions":
+            "I decided not to buy them. I had enough crops to deal with."
+
     return
 
 label beans1:

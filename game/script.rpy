@@ -6,6 +6,12 @@
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Use scene stars instead of scene black most of the time?
+# TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
+#       the first time through, and second time through show what you'd need
+#       to get that choice.
+#       To do this, put the "if" inside the menu choice and parse it out in the
+#       screen choice of screens.rpy.
+#       OR, write two menu options for every menu, one for if it's locked and one for if it's unlocked
 ##
 
 label start:
@@ -187,6 +193,8 @@ label start:
         total_work = 0
 
         current_work = 0
+
+        bad_nutrition_count = 0
 
         # Crop event variables
         carrots_fallow = False
