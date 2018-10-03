@@ -6,9 +6,118 @@ label work_default:
 
 label bad_nutrition:
     $ bad_nutrition_count += 1
+    if (bad_nutrition_count == 1):
+        scene farm_interior with fade
+        show her concerned at midright
+        show him determined at midleft
+        if (has_strong_marriage()):
+            her normal "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
+            him surprised "Oh. I'm glad you appreciate it."
+            her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients."
+        else:
+            her concerned "[his_name], I don't want to tell you how to do your job..."
+            him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
+            her annoyed "We can't live on just one or two foods! The human body needs more than 30 different vitamins, minerals, and nutrients."
+        him angry "There's a lot of factors here! Sometimes crops fail, I have a limited amount of seeds, and I have to balance everything right or crops won't grow at all!"
+        her concerned "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
+        him annoyed "They're not starving, right?"
+        her annoyed "No. But I've made a list of deficiencies of our current diet and foods that could help meet them."
+        him surprised "Don't we have vitamin supplements we could take?"
+        her concerned "Right now they're by prescription only, for serious nutrition problems. I don't want us to get to that point."
+        him determined "I guess I could buy some of these foods at the storehouse..."
+
+        # are we using currency yet?
+        if (year > 5):
+            her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to spend our money on that."
+            # TODO: subtract some money
+        else:
+            her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to trade as much."
+        return
+
+    if (bad_nutrition_count >= 3):
+        # someone else has iodine deficiency. You trade them goat products for something with vitamin A/C
+        # test for vitamin C
+        if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium()):
+            "I felt like I was sick all the time. I had no energy, my gums were always bleeding, and I felt weak and cranky."
+        elif (farm.low_vitamin_c()):
+            "I felt weak and sore, like I was coming down with the flu."
+            "It got bad enough that I decided to ask [her_name] about it."
+            scene hospital with fade
+            show her concerned at midright with dissolve
+            show him concerned at midleft with moveinleft
+            her concerned "You feel tired and sore, and have a low grade fever. On Earth I'd call this the flu, but..."
+            him annoyed "The flu is not supposed to exist here."
+            her surprised "Do you have any other symptoms? Sore throat, runny nose, cough, indigestion?"
+            him normal "No, none of those. Well, maybe a little stomachache, but I ache all over."
+            her determined "Here, let me check your gums..."
+            him annoyed "Ow!"
+            her concerned "Gums bleed easily... let me look at your skin..."
+            him surprised "Oh, where did that bruise come from? I don't remember getting hurt..."
+            her determined "You have scurvy."
+            him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
+            her annoyed "Like, someone didn't plant enough fruits and vegetables scurvy."
+            him surprised "How come you and [kid_name] don't have it?"
+            her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
+            him annoyed "And you don't share it with me?!"
+            her annoyed "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
+            him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
+            her flirting "Don't go bragging about it or everybody will want to get scurvy."
+            him flirting "I don't think that's something we need to worry about."
+
+        elif (farm.low_vitamin_a()):
+            scene farm_interior with fade
+            show him determined at midright with dissolve
+            "My skin was always dry and for some reason I couldn't see well at night."
+            "I didn't think to ask [her_name] about it, though, until she came to me."
+            show her concerned at midleft with moveinleft
+            her concerned "[his_name]... have you been having trouble seeing at night?"
+            him surprised "Yeah, how did you know??"
+            her determined "I have the same problem, and I think [kid_name] does, too."
+            him concerned "Do you know why? Is it a disease? Some kind of alien parasite?"
+            her annoyed "No. I'm pretty sure we haven't been getting enough vitamin A."
+            him surprised "Vitamin A?"
+            her determined "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables, like carrots, squash, and spinach."
+            him concerned "Aw man, I hate pills."
+            her annoyed "Which do you hate more: pills, or being able to see?"
+            him surprised "It's that bad?"
+            her angry "Yes! Prolonged vitamin A deficiency can lead to blindness in kids!"
+            him angry "Okay, okay! I'll try and plant better crops next time."
+            her sad "Sorry, [his_name]. I know you're doing the best you can..."
+            him determined "If it's not good enough, I'll do better."
+
+        elif (farm.low_magnesium()):
+            scene farm_interior with fade
+            show her concerned at midright
+            show kid concerned at center
+            if (bro_age > 0):
+                show bro at quarterleft
+            show him concerned at midleft with dissolve
+            her annoyed "I just can't take it anymore!!"
+            him surprised "Whoa, whoa, calm down."
+            her angry "I'm supposed to be calm?! This is insane! How did we ever think living here was going to work?!"
+            him concerned "I thought it was working pretty well..."
+            kid surprised "Mom, are you okay?"
+            her sad "I don't know what's wrong with me... I just feel so crazy lately."
+            him determined "You have been a bit more... volatile."
+            her concerned "I can't stop worrying and I just feel so stressed out all the time but I don't even have that much to be stressed out about!"
+            kid concerned "Are you sick?"
+            her surprised "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
+            him surprised "Are there some tests you can run?"
+            her concerned "Yeah... will you come with me?"
+            # TODO: finish this
+
+        else:
+            "I couldn't pinpoint exactly what was wrong with my crops, but I felt sluggish and had low energy."
+
+
+    # fall through for times without a special event.
     "The crops I planted didn't provide the vitamins and minerals we needed."
-    "I had to spend money at the storehouse to buy better food."
-    # TODO: finish this
+
+    if (year > 5):
+        "I had to spend money at the storehouse to buy better food."
+        # TODO: currency check, subtract some money
+    else:
+        "I had to trade with other farmers to get better food."
     return
 
 # Year 1, 3 mo. old

@@ -141,6 +141,28 @@ init python:
 
             return valid_layout
 
+        def low_vitamin_a(self):
+            vitA = 0
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i].rstrip("+")
+                vitA += VITAMIN_A_CROPS[current_crop_name]
+            return (vitA <= VITAMIN_A_LOW)
+
+        def low_vitamin_c(self):
+            vitC = 0
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i].rstrip("+")
+                vitC += VITAMIN_C_CROPS[current_crop_name]
+            return (vitC <= VITAMIN_C_LOW)
+
+        def low_magnesium(self):
+            magn = 0
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i].rstrip("+")
+                magn += MAGNESIUM_CROPS[current_crop_name]
+            return (magn <= MAGNESIUM_LOW)
+
+
     ##
     # CROPS OBJECT
     ##
