@@ -587,7 +587,7 @@ label community5:
         if (whole_harvest_to_storehouse == True):
             ilian "Well, a few farmers are already bringing their whole harvest to the storehouse."
             show ilian happy
-            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
+            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of potatoes and beans."
             show ilian
             ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
         else:
@@ -787,7 +787,7 @@ label community5:
         show him determined
         him "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
         show martin
-        martin "We eat most of our crops the same day we harvest them. But we do try to store a little extra."
+        martin "We eat most of our crops soon after harvesting them. But we do try to store a little extra."
         show him normal
         him "I get what you're saying. Just write down how much you eat and tell Ilian."
         him "Then if you have extra, bring that in once a week and he can calculate how your crops are doing."
@@ -820,11 +820,12 @@ label community5:
 # 6 - discussion of choice from 5 at game night
 label community6:
     if town_hall_games:
-        show community_center with fade
+        scene community_center with fade
     else:
-        show farm_exterior with fade
+        scene farm_exterior with fade
     show pete at midright
     show him normal at left #BUG: his sprite isn't showing up. I'm not sure why not. I tried having him at center as well and had the same problem.
+    # I think I fixed it. You were using 'show' instead of 'scene' for the background so it was putting the background as a sprite and covering up everything else.
     show thuc at midleft
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
     show him determined
@@ -902,6 +903,8 @@ label community6:
             show him concerned
             him "Good point. I hope we can mange."
     if require_whole_harvest:
+        $ rationing = True
+        $ require_whole_harvest = False
         show thuc
         thuc "Speaking of food, Ilian just sent out a message that we don't have to bring in our whole harvest anymore."
         thuc "He has enough data, and he sent out a table of who should bring in how much."

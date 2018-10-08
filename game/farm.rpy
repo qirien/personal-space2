@@ -162,6 +162,8 @@ init python:
                 magn += MAGNESIUM_CROPS[current_crop_name]
             return (magn <= MAGNESIUM_LOW)
 
+        def most_frequent_crop(self):
+            return self.crops.most_frequent_crop()
 
     ##
     # CROPS OBJECT
@@ -213,7 +215,7 @@ init python:
                 else:
                     chosen_crop = renpy.random.choice(list(set(self.items)))
                 if (not include_animals):
-                    if (chosen_crop == "goats"):
+                    if ((chosen_crop == "goats") or (chosen_crop == "honey")):
                         chosen_crop = ""
 
                 # an empty field is not a valid choice
@@ -222,6 +224,17 @@ init python:
 
             chosen_crop.strip("+")
             return chosen_crop
+
+        def most_frequent_crop(self):
+            most_frequent_crop = ""
+            most_frequent_count = 0
+            for i in range(0, farm_size):
+                current_crop_name = self.items[i]
+                current_crop_count = self.count(current_crop_name)
+                if (current_crop_count >=  most_frequent_count):
+                    most_frequent_crop = current_crop_name
+                    most_frequent_count = current_crop_count
+            return most_frequent_crop
 
 
     # Return the index of a crop in crop_info given its name
@@ -240,6 +253,7 @@ init python:
     def enable_crop(crop_name):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
+        renpy.say(tutorial,"You can now grow corn on your farm.")
 
     def disable_crop(crop_name):
         crop_index = get_crop_index(crop_name)

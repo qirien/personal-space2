@@ -47,7 +47,7 @@ label family1:
     scene farm_interior with fade
     show him concerned at midright
     show her concerned at midleft
-    show kid cry at midleftbaby
+    show kid cry at midleft, baby_pos
 
     her "I just wish I knew why she was still crying! We've tried everything -- food, diaper, snuggles, a warm bath, lying on her back, lying on her tummy...I don't know what else we can do."
     him sad "I know. It's been hours..."
@@ -157,15 +157,16 @@ label family1:
                     show bedroom_overlay
                     show night_overlay
                     with dissolve
-                    show him concerned at midleft with moveinleft
+                    show him concerned at quarterleft with moveinleft
                     "[her_name] was lying on the bed with her arm around [kid_name], her face streaked with red from crying."
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
                     "She didn't say anything, just lay her head back down and stared at [kid_name] blankly."
                     him sad "[her_name]... I'm sorry. I shouldn't have left. I'm here, now."
-                    show him normal at center with move
-                    show him normal at quarterleft
-                    show kid at quarterleftbaby
-                    with move
+                    #show him normal at center behind kid with move
+                    #show him normal at quarterleft behind kid
+                    hide kid with dissolve
+                    show kid sad at quarterleft, baby_pos, jumpinghigh
+                    with dissolve
                     "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
                     "As I left the room, [her_name] said something I've never forgotten."
                     her annoyed "Don't ever leave us again."
@@ -331,7 +332,7 @@ label family2:
             $ responsive += 1
             "There were a few things I could do at home -- researching, planning, checking the surveillance cameras..."
             show him determined with dissolve
-            show kid normal at midleftbaby with move
+            show kid normal at midleft, baby_pos with move
             "So I worked on those while [kid_name] crawled around, took all the pots and pans out of the cupboards, and banged on them."
             show kid shifty at right, baby_pos with move
             "She pulled the blankets and sheets off all the beds trying to climb up and bounce on them."
@@ -643,7 +644,7 @@ label family3:
     him normal "I think I'm going to take it easy for a few days..."
     her concerned "Yeah..."
     show her happy with dissolve
-    show kid shifty at leftbaby with move
+    show kid shifty at left, baby_pos with move
     extend " Hey, you know what we've never done?"
     him flirt "I can think of a lot of things."
     her annoyed "As a family?"
@@ -731,7 +732,7 @@ label family3:
     show kid happy with dissolve
     "[her_name] got the sticks out of [kid_name]'s mouth while I checked Dr. Lily's  plants guide on my computer pad. [kid_name] just smiled and showed us her tiny teeth."
     show her concerned at midleft
-    show kid normal at midleftbaby
+    show kid normal at midleft, baby_pos
     with move
     him normal "Looks like that plant's harmless."
     show him concerned at center with move
@@ -741,7 +742,7 @@ label family3:
     show kid annoyed with dissolve
     "[kid_name] strained against [her_name]'s arms and twisted and writhed, trying to get down."
     her sad "Oof! This girl is getting heavy!"
-    show kid shifty at midleftbaby with move
+    show kid shifty at midleft, baby_pos with move
     "[her_name] set her down, but she went right back over to her sticks and began chewing on them again."
     show kid normal at quarterright with move
     "We gave each other exasperated looks and then laughed."
@@ -889,7 +890,7 @@ label family4:
             "She picked up a grain of rice, looked me right in the eyes, and threw it on the floor."
             "I put it right back on her plate."
             him annoyed "You still have to eat it."
-            show kid at midleftbaby with move
+            show kid at midleft, baby_pos with move
             "She slid off her chair and made to run away, but I put her right back in it."
             show him at center with move
             show kid at center, baby_pos with move
@@ -909,7 +910,7 @@ label family4:
                 "Leave":
                     $ marriage_strength -= 1
                     him determined "..."
-                    show kid at midleftbaby with move
+                    show kid at midleft, baby_pos with move
                     hide him with moveoutleft
                     "I handed [kid_name] to [her_name] and tried not to slam the door on my way out."
                     scene farm_exterior with fade
@@ -963,7 +964,7 @@ label family4:
                             him determined "I'm sorry, [kid_name]. I was not trying to hurt you. I'm trying to help you eat healthy foods to grow big and strong."
                             show kid shifty at center, baby_pos with move
                             "[kid_name] seemed to think about this for a moment, then went to the table and carefully spooned up a bit of beans."
-                            show kid laugh at midleftbaby with move
+                            show kid laugh at midleft, baby_pos with move
                             "She brought it over near my mouth."
                             kid normal "Daddy eat."
                             "I opened my mouth and allowed her to feed me."
@@ -2605,7 +2606,7 @@ label family9:
     kid happy "Giddyup, horsie!"
     show him normal at midleft
     if (year6_have_baby):
-        show bro at midleftbaby
+        show bro at midleft, baby_pos
     with moveinleft
     oleg "[kid_name]..."
     kid normal "Now go around in a circle. We have to patrol the whole farm for crabirds."
@@ -2737,7 +2738,7 @@ label family10:
 
     if (year6_have_baby):
         "She finished her snack and got out the blocks. I cleaned up the kitchen a bit and [bro_name] wandered over to play with her."
-        show bro at quarterleftbaby with move
+        show bro at quarterleft, baby_pos with move
         show him normal with dissolve
         "It still amazed me to see the two of them playing together. Two tiny people, that hadn't even existed several years ago..."
         "They were quite different, though. When [kid_name] was his age, she was climbing on everything and pulling down everything she could reach."

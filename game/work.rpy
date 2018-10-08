@@ -4,6 +4,7 @@ label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
     return
 
+# Malnutrition Event for if you don't have enough nutrition
 label bad_nutrition:
     $ bad_nutrition_count += 1
     if (bad_nutrition_count == 1):
@@ -12,8 +13,9 @@ label bad_nutrition:
         show him determined at midleft
         if (has_strong_marriage()):
             her normal "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
-            him surprised "Oh. I'm glad you appreciate it."
-            her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients."
+            him surprised "Oh. I'm, uh, glad you appreciate it."
+            $ common_food = farm.most_frequent_crop()
+            her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
         else:
             her concerned "[his_name], I don't want to tell you how to do your job..."
             him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
@@ -24,7 +26,7 @@ label bad_nutrition:
         her annoyed "No. But I've made a list of deficiencies of our current diet and foods that could help meet them."
         him surprised "Don't we have vitamin supplements we could take?"
         her concerned "Right now they're by prescription only, for serious nutrition problems. I don't want us to get to that point."
-        him determined "I guess I could buy some of these foods at the storehouse..."
+        him determined "I guess I could get some of these foods at the storehouse..."
 
         # are we using currency yet?
         if (year > 5):
@@ -35,11 +37,89 @@ label bad_nutrition:
         return
 
     if (bad_nutrition_count >= 3):
-        # someone else has iodine deficiency. You trade them goat products for something with vitamin A/C
-        # test for vitamin C
-        if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium()):
+        # All nutrients low
+        if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium() and (not seen_low_cam)):
+            $ seen_low_cam = True
             "I felt like I was sick all the time. I had no energy, my gums were always bleeding, and I felt weak and cranky."
-        elif (farm.low_vitamin_c()):
+            "Finally, I went to see [her_name]."
+            him determined "Help me, doc."
+            her concerned "What's wrong?"
+            him concerned "I don't know; maybe it's nothing. I just feel like I'm a little bit sick all the time."
+            her determined "Oh, really?"
+            him sad "Yeah. So if I'm just making it up, tell me and I'll get back to work. But if there is something wrong, maybe you can help me."
+            $ common_food = farm.most_frequent_crop()
+            her angry "I know exactly what's wrong with you!  You've been eating nothing but [common_food] and your body's sick!"
+            him surprised "This is all from my diet?"
+            her annoyed "Yes, I warned you about this!"
+            him sad "Oh."
+            her concerned "..."
+            him concerned "Are the kids okay?"
+            her annoyed "Yes, I've been supplementing their diet."
+            him annoyed "But not mine."
+            her angry "No! I wanted you to understand how serious this is!"
+            him surprised "Can't we just buy what we need from the storehouse?"
+            her annoyed "Yes, but it gets expensive. Here's a list."
+            "She had made a list of foods we needed to buy."
+            # TODO: currency check
+            him concerned "Sorry, [her_name]. I feel like I failed you."
+            her determined "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
+
+        # Low Vitamin A & C
+        elif (farm.low_vitamin_c() and farm.low_vitamin_a() and (not seen_low_ca)):
+            $ seen_low_ca = True
+            # someone else has iodine deficiency. You trade them goat products for something with vitamin A and C
+            "I hadn't been feeling well lately. I had no energy and it was harder to see at night."
+            "I wondered if I should ask [her_name] about it, but I figured she'd probably just tell me to eat better."
+
+            nvl clear
+            her_c "I've seen several people lately with nutrient deficiencies. If you don't have much dairy, eggs, or seafood in your diet, you may be at risk for iodine deficiency."
+            "Hmmm, we eat plenty of goat's milk so that's probably not what's bothering me."
+            her_c "Here's a list of other deficiencies and foods you can eat to remedy them."
+            pete_c "I've got cow's milk, if anyone would like to trade."
+            him surprised "Trading would be more efficient than buying from Ilian..."
+            "Looking at the crops I was growing and my symptoms, I figured I was probably low on vitamins A and C."
+            "If I could trade with someone that needed iodine, it would be great."
+            him_c "Looking to trade goat's milk for vitamin A and C foods."
+            natalia_c "I'll trade you bell peppers and squash for those."
+            pete_c "I thought you grew squash and peppers, [his_name]?"
+            if ("squash" in farm.crops):
+                him_c "Not enough, apparently."
+            else:
+                him_c "Not this year. Maybe next year, though."
+            pete_c "Natalia, I'd like the same trade for cow's milk if you have enough."
+            natalia_c "Sure; I'll bring tomatoes, too."
+            if (whole_harvest_required):
+                ilian_c "Shouldn't you be bringing all that to the storehouse?"
+                if is_liason:
+                    "He caught me there. I was being pretty hypocritical, going around the system I was telling everyone else to follow."
+                    menu:
+                        "What should I say?"
+                        "You're right.":
+                            him_c "You're right, Ilian. Sorry, guys, I'm going to have to back out. I'm taking the goat's milk to the storehouse where you can buy it from Ilian."
+                            # TODO: currency check?
+                            "I ended up paying a premium for peppers and squash for the family diet."
+                            return
+                        "We should only bring extra.":
+                            him_c "You know; I've changed my mind. We shouldn't have to do that. Everyone should just bring their extra to the storehouse."
+                            $ rationing = True
+                            $ require_whole_harvest = False
+                            ilian_c "Really? You're changing it, just like that?"
+                            him_c "Being the liason has to be good for something."
+                            natalia_c "I'm not complaining."
+                        "(Don't say anything)":
+                            "I didn't say anything. Everyone knew that requirement was mostly for show, right?"
+                            $ luddites += 1
+                            $ colonists -= 1
+                            $ miners -= 1
+                else:
+                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly."
+                    pete_c "And at a high price."
+            nvl clear
+            "I was glad I was able to work out a trade this time. Next time, though, I might not be so lucky."
+
+            # test for vitamin C
+        elif (farm.low_vitamin_c() and (not seen_low_c)):
+            $ seen_low_c = True
             "I felt weak and sore, like I was coming down with the flu."
             "It got bad enough that I decided to ask [her_name] about it."
             scene hospital with fade
@@ -64,7 +144,8 @@ label bad_nutrition:
             her flirting "Don't go bragging about it or everybody will want to get scurvy."
             him flirting "I don't think that's something we need to worry about."
 
-        elif (farm.low_vitamin_a()):
+        elif (farm.low_vitamin_a() and (not seen_low_a)):
+            $ seen_low_a = True
             scene farm_interior with fade
             show him determined at midright with dissolve
             "My skin was always dry and for some reason I couldn't see well at night."
@@ -85,7 +166,8 @@ label bad_nutrition:
             her sad "Sorry, [his_name]. I know you're doing the best you can..."
             him determined "If it's not good enough, I'll do better."
 
-        elif (farm.low_magnesium()):
+        elif (farm.low_magnesium() and (not seen_low_m)):
+            $ seen_low_m = True
             scene farm_interior with fade
             show her concerned at midright
             show kid concerned at center
@@ -104,20 +186,53 @@ label bad_nutrition:
             her surprised "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
             him surprised "Are there some tests you can run?"
             her concerned "Yeah... will you come with me?"
-            # TODO: finish this
-
-        else:
-            "I couldn't pinpoint exactly what was wrong with my crops, but I felt sluggish and had low energy."
-
+            if (has_strong_marriage()):
+                him concerned "Of course."
+                scene hospital with fade
+                show her concerned at midright
+                show him concerned at center
+                show kid concerned at quarterleft
+                if (bro_age > 0):
+                    show bro at midleft
+                with moveinleft
+                her determined "I just need to swab under my tongue..."
+                kid surprised "Does it hurt?"
+                her annoyed "No, it's just...awkward... here, [his_name], you do it."
+                him surprised "Oh! Uh, okay..."
+                her determined "Just scrape it a little. Right here."
+                "She opened her mouth and held still. [kid_name] watched, fascinated."
+                him determined "Okay, done. Hopefully I did that right."
+                her annoyed "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
+                him surprised "Hopefully you don't need me to help with those."
+                her "It'll take a few minutes for me analyze the spectrometer's results."
+                "I talked with kid_name while we waited for [her_name] to finish."
+            else:
+                him concerned "I'll stay here with the kids while you do it."
+                her sad "Okay..."
+                hide her with moveoutleft
+                "She was gone for about an hour."
+                show her at midright with moveinleft
+            her concerned "This confirms it. I have a magnesium deficiency."
+            him surprised "Magnesium??"
+            her determined "Yes. Normally we get plenty from nuts, beans, and eggs. But we haven't been eating many of those lately."
+            him sad "Probably because I didn't plant enough..."
+            her concerned "Yes, well... you probably all have it, too, so you'll need to take this supplement."
+            him surprised "Why didn't we notice this earlier?"
+            her determined "The symptoms are so subtle that it's usually hard to detect until it starts to cause more severe problems, like diabetes or heart failure."
+            him normal "Well then, I'm glad you caught it."
+            her normal "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
+            him determined "Okay."
+            # TODO: currency check
+        return
 
     # fall through for times without a special event.
     "The crops I planted didn't provide the vitamins and minerals we needed."
 
     if (year > 5):
-        "I had to spend money at the storehouse to buy better food."
+        "I had to spend money at the storehouse to buy some different foods."
         # TODO: currency check, subtract some money
     else:
-        "I had to trade with other farmers to get better food."
+        "I had to trade with other farmers to get a better variety of food."
     return
 
 # Year 1, 3 mo. old
@@ -223,18 +338,17 @@ label work4:
     him happy "And probably more obedient!"
 
     if (work4_showoff):
-        thuc "Hey, is that your [random_crop] on display over there?"
+        thuc "Hey, are those your [random_crop] on display over there?"
         him normal "Yes it is!"
         thuc "They turned out really well. How often do you fertilize them?"
         "We talked about [random_crop] for a while, and then I had an idea."
-        him surprised "Hey, do you want some seeds for [random_crop]?"
-        thuc "They grow pretty well?"
+        him surprised "Hey, do you want to grow your own [random_crop]?"
+        thuc "You'd help me get started?"
         him normal "Yeah!"
         thuc "Sure, that would be great. Do you want a strawberry plant?"
         him surprised "Strawberries?"
         thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
-        tutorial "You can now grow strawberries!"
         #$ enable_crop("strawberries")
     return
 
@@ -368,7 +482,7 @@ label work10:
     show kevin at midright
     show him normal at midleft
     with dissolve
-    if (farm.crop_enabled("plums") or farm.crop_enabled("plums+")):
+    if (crop_enabled("plums") or crop_enabled("plums+")):
         kevin "[his_name]. How are your plum trees?"
         if "plums+" not in farm.crops:
             if "plums" in farm.crops: # we just barely planted plums, but it didn't work.
@@ -379,9 +493,12 @@ label work10:
                 kevin "I see. They are most likely no longer viable."
         $ disable_crop("plums")
         $ disable_crop("plums+")
+    else:
+        him "Pretty good! We're even starting to get a few plums on them."
+        kevin "That is good."
 
     him "How's your garden coming, Kevin?"
-    kevin "It does provide some food, but I have noticed that plants here have an average of a 25% smaller yield than plants on Earth."
+    kevin "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."
     him concerned "There could be several reasons for that..."
     kevin "After factoring out other issues such as soil quality, solar flares, and unreported crops, I have come to a conclusion."
     him surprised "What's that?"
@@ -394,9 +511,8 @@ label work10:
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin "Very well. I shall mark you down for bees."
-            $ enable_crop("bees")
-            tutorial "You can now assign bees to one of your plots of land."
-            tutorial "They will boost production of neighboring squares and require just a little work."
+            $ enable_crop("honey")
+            tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, once placed, they cannot be moved."
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
@@ -405,12 +521,14 @@ label work10:
 
 # Year 12, 7.4 years old
 label work12:
+    scene farm interior with fade
+    show him determined at center with dissolve
     nvl clear
     brennan_c "I have a special offer for all you farmers out there."
     julia_c "Oh, this'll be good."
     sara_c ":-O"
     pete_c "Let the man talk."
-    brennan_c "I have the newest pest-resistant, high-yield, nutirent-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
+    brennan_c "I have the newest pest-resistant, high-yield, nutrient-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
     thuc_c "That sounds good, but..."
     julia_c "What's the catch?"
     brennan_c "Well, because they're a patented seed design, the wheat berries they produce are sterile."

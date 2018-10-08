@@ -478,7 +478,7 @@ label plums2:
     "I'll never forget the first time the plum trees really bloomed..."
     "Thousands of pink blossoms covered the trees this spring, and when they fell, their petals covered the ground in a soft pink carpet."
     # TODO: plum blossom CG? bg?
-    if ("bees" in farm.crops):
+    if ("honey" in farm.crops):
         "The bees helped the pollination a lot."
     else:
         "I had to pollinate them by hand, but my hard work paid off."

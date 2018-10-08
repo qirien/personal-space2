@@ -151,8 +151,8 @@ init -100 python:
 
         # HOWEVER, if nutrition is low, you don't get to do any of that. Instead
         # you have to take care of the nutrition problem.
-        malnutrition_threshold = renpy.random.randint(-10, 0)
-        if (get_extra_nutrition <= malnutrition_threshold):
+        malnutrition_threshold = renpy.random.randint(-5, 0)
+        if (get_extra_nutrition() <= malnutrition_threshold):
             return "bad_nutrition"
 
         if ((year % 2) == 0):
@@ -233,7 +233,7 @@ init -100 python:
             index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             total_nutrition += crop_info[index][NUTRITION_INDEX]
         nutrition_required = get_nutrition_required()
-        return (nutrition_required - total_nutrition)
+        return -(nutrition_required - total_nutrition)
 
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10

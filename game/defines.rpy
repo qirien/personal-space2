@@ -25,14 +25,14 @@ init -100:
     define CROP_STATS_MAX = 10
 
     # Nutritional data
-    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "blueberries":0, "beans":0, "snow peas":1, "peanuts":0, "carrots":9, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":7, "broccoli":2, "goats":1, "bees":0}
-    define VITAMIN_A_LOW = 20
+    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "blueberries":0, "beans":0, "snow peas":1, "peanuts":0, "carrots":9, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
+    define VITAMIN_A_LOW = 15
 
-    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "blueberries":2, "beans":0, "snow peas":3, "peanuts":0, "carrots":1, "beets":1, "turnips":4, "onions":1, "garlic":1, "cabbage":1, "spinach":3, "broccoli":9, "goats":0, "bees":0}
+    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "blueberries":2, "beans":0, "snow peas":3, "peanuts":0, "carrots":1, "beets":1, "turnips":4, "onions":1, "garlic":1, "cabbage":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20
 
-    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "blueberries":1, "beans":6, "snow peas":1, "peanuts":5, "carrots":0, "beets":1, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":4, "broccoli":1, "goats":1, "bees":0}
-    define MAGNESIUM_LOw = 10
+    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "blueberries":1, "beans":6, "snow peas":1, "peanuts":5, "carrots":0, "beets":1, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":4, "broccoli":1, "goats":1, "honey":0}
+    define MAGNESIUM_LOW = 10
 
     # Calorie data
     define CALORIES_BASE = 50

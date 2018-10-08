@@ -108,6 +108,7 @@ label start:
         thuc_has_cattle = False
         ilian_has_cattle = False
         thuc_sells_food = False
+        community_11_kidsonfarm = False
         community_22_mining_stopped = False
         community_22_forced_luddites_leave = False
         community_22_compromise = False
@@ -158,7 +159,7 @@ label start:
                         ["spinach",      1, 6, 4, 3, 10, True, False,  100],
                         ["broccoli",     3, 7, 4, 3, 15, False, False, 100],
                         ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
-                        ["bees",         2,  2,  8, 2, 0, False, True, 1])
+                        ["honey",         2,  2,  8, 2, 0, False, True, 1])
                         #TODO: have an axe crop that can only be placed on perennials to chop them down?
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
@@ -183,7 +184,7 @@ label start:
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
             "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
             "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",
-            "bees" : "Bees help pollinate crops and provide honey, which sells for a high price."
+            "honey" : "Bees help pollinate crops and provide honey, which sells for a high price."
             }
 
         total_calories = 0
@@ -194,6 +195,11 @@ label start:
         current_work = 0
 
         bad_nutrition_count = 0
+        seen_low_cam = False
+        seen_low_ac = False
+        seen_low_c = False
+        seen_low_a = False
+        seen_low_m = False
 
         # Crop event variables
         carrots_fallow = False
