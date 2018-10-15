@@ -24,7 +24,7 @@ label start:
         save_name = "Intro"
         notifications = ""
 
-    # PARENTSde
+    # PARENTS
     python:
         # Demanding and Reponsive may change by more or less than 1 each year
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
@@ -203,6 +203,7 @@ label start:
 
         # Crop event variables
         carrots_fallow = False
+        squash2_method = ""
 
     #######################################################################
     # Prologue

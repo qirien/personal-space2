@@ -149,6 +149,7 @@ init -100 python:
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events.
 
+        enable_crop("squash") # Enable squash in case of squash bugs.
         # HOWEVER, if nutrition is low, you don't get to do any of that. Instead
         # you have to take care of the nutrition problem.
         malnutrition_threshold = renpy.random.randint(-5, 0)

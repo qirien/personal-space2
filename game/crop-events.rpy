@@ -7,7 +7,7 @@
 
 # Default crop event, if no other crop event can be found
 label default_crop_event:
-    "The year passed by in a blur: tilling, planting, weeding, harvesting.  The endless cycle of life on the farm."
+    "The year passed by in a blur: tilling, planting, weeding, harvesting; the endless cycle of life on the farm."
     return
 
 label carrots1:
@@ -360,37 +360,166 @@ label squash1:
     "But squash can't pollinate itself. Somehow, the pollen from the male flowers has to get over to the female flowers to fertilize them, otherwise you don't get any squash."
     "And Talaam didn't have the same insects we did on Earth to help pollinate plants."
     "I planted a variety that was supposed to not need as much pollination, but not many of the fruits were setting."
-    "So if I wanted to get a decent squash harvest this year, I'd need to help them out."
-    menu:
-        "Pollinate by hand" if (get_extra_work() >= 0):
-            him determined "I guess I'm Cupid's little helper today..."
-            "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
-            "Since there were several flowers on each plant, and a whole field full of plants, it took quite a while."
-            "But it wasn't difficult, and it did increase our squash yield dramatically."
-            # TODO: increase yield/work?
-        "Ask to borrow some bees":
-                $ pass # only successful if community level high enough?
-                # Only allow if you got bees in work3?
-                # TODO: something different happens if you do have bees? Someone else wants to borrow them?
-        "Forget the squash for this season":
-                $ pass # less food to eat
+    if ("honey" in farm.crops):
+        "Luckily, I had bees to help out with pollination."
+        "So we had an abundant squash harvest."
+        "It felt like we were drowning in squash. We made roasted squash, sauteed squash, squash soup, squash with honey, and squash pie."
+        "And when we got tired of squash, it was okay, because it would keep for months."
+    else:
+        "So if I wanted to get a decent squash harvest this year, I'd need to help them out."
+        menu:
+            "Pollinate by hand" if (get_extra_work() >= 0):
+                him determined "I guess I'm Cupid's little helper today..."
+                "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
+                "Since there were several flowers on each plant, and a whole field full of plants, it took quite a while."
+                "But it wasn't difficult, and it did increase our squash yield dramatically."
+                # TODO: increase yield/work?
+            "Ask to borrow some bees" if (year > 10):
+                "I thought I remembered someone saying something about bees, but I couldn't remember who."
+                nvl clear
+                him_c "Hey, anyone have extra bees? My squash needs pollination!"
+                natalia_c "We got some from Kevin."
+                julia_c "Send your kids to pollinate the plants by hand. The work will be good for them."
+                kevin_c "I do have bees, but not extra."
+                nvl clear
+                "Maybe if I talked to Kevin in person we could work something out."
+                scene farm_exterior_flip with fade
+                show kevin at midright with dissolve
+                show him normal at midleft with moveinleft
+                him happy "Hey, Kevin! How's it going?"
+                kevin "Satisfactorily."
+                him normal "Good, good...hey, about those bees..."
+                kevin "I apologize, but I do not have extra bees at this time."
+                him concerned "Could I maybe, like, borrow them for a few weeks?"
+                kevin "I could rent them to you."
+                # TODO: currency check.
+                menu:
+                    "What should I say?"
+                    "Could we trade?":
+                        him surprised "Could we trade? Maybe for squash?"
+                        kevin "Squash and goat's milk, in these quantities."
+                        him normal "Looks reasonable. It's a deal."
+                    "Okay, how about for 10?":
+                        him normal "Okay, how about 10?"
+                        kevin "That is insufficient. I propose 20."
+                        him surprised "Maybe 15?"
+                        kevin "18 is the lowest I will consider."
+                        him normal "All right, 18 it is."
+                    "I'll pay you 20.":
+                        him normal "I'll pay you 20 for them."
+                        kevin "That is acceptable."
+                        him "It's a deal."
+                kevin "Good. I will write up a contract."
+                him annoyed "A contract, huh?"
+                kevin "Yes. That way the terms are clear and unarguable by both sides."
+                "I couldn't really argue with that."
+                "I skimmed his legalese and it looked reasonable. For the consideration of the use of his bees, blah blah blah, the undersigned hereby agree to blah blah blah."
+                "I transported his hive of bees at night, when most of them were sleeping, and in the morning they woke up to a new home."
+                "They seemed to adjust pretty well, and went right for the squash blossoms."
+                "We harvested a lot of squash that season!"
+
+            "Forget the squash for this season":
+                "I didn't have time to baby the plants. They'd have to survive on their own."
+                "Some of them produced fruit, but most didn't. What a waste..."
+                # TODO: decrease food/income
     return
 
 label squash2:
-    "Some squash plants are looking sickly... you recognize the pesky squash bugs from Earth!  They must have come in on a shuttle somehow!"
+    scene fields with fade
+    show him normal at center with dissolve
+    "I went to weed the squash plants, but as I was weeding, I noticed something."
+    him surprised "These plants are a bit smaller than they should be...and some of the leaves have yellow spots on them."
+    him angry "What the- squash bugs! I thought we left all those behind on Earth!"
+    "Squash bugs were probably my least favorite insect of all time. They reproduced like crazy and devoured entire squash plants, leaves, flowers, fruits, and all."
+    "They must have been transported on one of the shuttles -- maybe in some wood or fruit."
+    "But I didn't have time to waste on being furious. I had to get rid of them!"
     menu:
-            "Exterminate them all by hand!" if (get_extra_work() >= 0):
-                $ pass #takes a lot of work
-            "Apply pesticide":
-                $ pass #does this really work? have side effects?
-            "Ignore them":
-                $ pass #they cause trouble later
-            "Try and get the new folks to fix the problem. They started it, after all!":
+        "Exterminate them all by hand!" if (get_extra_work() >= 0):
+            $ squash2_method = "exterminate"
+            if (year >= 10):
+                "[kid_name] and I tried every way we could think of to get bugs off the plant -- we used duct tape to pick up eggs and tiny bugs, tweezers to squish them, and our hands to drop them into soapy water."
+                "At first the vinegary smell of the squished bugs grossed [kid_name] out, but eventually she got over it."
+            else:
+                "I tried every way I could think of to get bugs off the plant -- I used duct tape to pick up eggs and tiny bugs, tweezers to squish them, and my hands to drop them into soapy water."
+
+            "Up and down the rows of squash I stalked every day for a week."
+            "The population had decreased, but there were still stragglers out there; I knew it."
+            "And all it would take would be one batch of eggs I missed and the bugs would start up again."
+            "I continued my diligence until the squash was harvested."
+            "Then I burned the squash plants instead of composting them.  I didn't want to have this problem next year."
+        "Apply pesticide":
+            $ squash2_method = "exterminate"
+            if ("bees" in farm.crops):
+                "I didn't want to hurt my plants or bees, so I decided to spray the bugs with soapy water."
+            "I didn't want to hurt my plants, so I decided to spray the bugs with soapy water."
+            if (year >= 10):
+                "[kid_name] and I got spray bottles and sprayed every bug we saw, from the tiny eggs and nymphs to the larger adults."
+            else:
+                "I got a spray bottle and sprayed every bug I saw, from the tiny eggs and nymphs to the larger adults."
+            "The spray seemed to work pretty well, though there were so many bugs I knew some of them were hiding."
+            "We sprayed every day for a week."
+            "It seemed to be working; we saw less bugs each time."
+            "But we continued our daily squash bug patrol until we harvested the squash."
+            "Then I burned the squash plants instead of composting them.  I didn't want to have this problem next year."
+        "Ignore them":
+            $ squash2_method = "ignore"
+            "Ugh, I didn't want to deal with squash bugs. It was impossible to completely eradicate them, anyway."
+            "Why start a battle I knew I couldn't win?"
+            # TODO: currency check: lose money
+        "Try and get the new folks to fix the problem. They started it, after all!":
+            $ squash2_method = "passthebuck"
+            nvl clear
+            him_c "Alright, who brought squash bugs to Talaam?!"
+            if (year < 11):
+                martin_c "Not squash bugs!"
+            else:
+                natalia_c "Oh no, not squash bugs!"
+            sara_c "What are squash bugs????? :-O"
+            natalia_c "A squash farmer's worst nightmare. I haven't seen any here yet, but if they're anywhere on the planet I'm sure they'll find all the squash plants."
+            him_c "They found all of mine. But whoever brought them should be responsible for getting rid of them!"
+            if (year < 15):
+                naomi_c "Do you think someone brought them here on purpose?"
+            else:
+                sara_c "You're not saying someone brought them here on purpose?!"
+            him_c "Purpose or accident; it doesn't matter!"
+            sara_c "But... how would you even figure out where they came from?"
+            him_c "We know where they came from -- the shuttle!"
+            if (year <= 11):
+                kevin_c "And which of the hundred and six new colonists do you propose take care of your problem?"
+                him_c "I don't know; all of them! Any of them!"
+                kevin_c "I sympathize with your plight, but we cannot aid you."
+                him_c "But...!"
+            else:
+                brennan_c "Are you implying some of my crew is sabotaging your crops?"
+                him_c "I don't know exactly how it happened, but you've got to do something!"
+                brennan_c "What do you want me to do? Send my miners over with some dynamite or jack hammers? These aren't farmers, [his_name]."
+                him_c "They don't have to be farmers to help me kill these bugs."
+                brennan_c "Your proposal is ridiculous. We've got our own schedule to keep. We don't have time to stop and help every snivelling farmer with a pest problem."
+                him_c "But...!"
                 $ miners -= 1
+            nvl clear
+            sara_c "Oleg and I can come help you on Monday morning. We don't know anything about squash but we can kill bugs!"
+            natalia_c "I'll help you Tuesday. If we can get rid of them on your farm, maybe they won't spread to mine."
+            julia_c "Two of my children will assist you on Wednesday. Don't go easy on them."
+            him_c "You guys... you don't have to do this. I know you have your own farms to work on..."
+            kevin_c "I can spare a few hours on Thursday."
+            pavel_c "I will stop by on Friday, though I don't know how long I can stay."
+            him_c "You're too generous...I can't..."
+            her_c "Just say thank you, [his_name]."
+            him_c "...Thank you, everyone."
+            nvl clear
+            $ colonists += 1
 
     return
 
 label squash3:
+    "I was curious to see how this next batch of squash would fare; given the trouble I had with squash bugs last time."
+    if (squash2_method == "ignore"):
+        "I didn't think it was possible, but there were even more squash bugs this year. The plants didn't even have a chance to set any fruit at all before they were completely devoured."
+        "I couldn't plant squash again until at least a year had passed. Maybe if they didn't have any squash to eat, they'd all die out."
+        $ disable_crop("squash")
+        # TODO: currency check, reduce income by squash amount
+
     "If you didn't get rid of the squash bugs, they come back stronger than ever!  You can't grow squash for several years."
     "If you did get rid of them, congratulations!  You have lots of squash."
     return
@@ -482,7 +611,7 @@ label plums2:
         "The bees helped the pollination a lot."
     else:
         "I had to pollinate them by hand, but my hard work paid off."
-    "The ephemeral beauty of the plum blossoms was rivalled only by their later, more practical beauty."
+    "The ephemeral beauty of the plum blossoms was rivalled only by their later, more practical beauty..."
     "Plums!"
     "There were so many plums growing, I had to thin out some of the fruit so the branches wouldn't break under their load."
     "The only fresh fruit we had was what we grew ourselves, so I was really looking forward to eating the plums."
@@ -573,12 +702,64 @@ label plums2:
 
     return
 
+# How to harvest beans
 label beans1:
-    "You had a good bean harvest this year.  Now that you've dried them, they will last a long time."
+    scene fields with fade
+    show him normal at center with dissolve
+    him happy "Look at all these beans!"
+    him normal "And they're finally dry enough to harvest."
+    "I drove the tractor down the rows so the puller attachment could pluck up the plants from the ground."
+    "Then I fed them into the sheller to separate the pods from the beans."
+    if (year >= 7):
+        show kid normal at midleft with moveinleft
+        kid "Can I turn the crank?"
+        him happy "Of course!"
+        "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
+        "When we got tired of turning the crank by hand I attached my drill to turn it for us. That went even faster."
+        "We filled up barrels and barrels of dried beans."
+    else:
+        "When I got tired of turning the crank by hand I attached my drill to turn it for us. That went even faster."
+        "I filled up barrels and barrels of dried beans."
     return
 
 label beans2:
-    "It's been a cold spring. The bean plants haven't even germinated yet."
+    scene fields with fade
+    show him concerned at center with dissolve
+    him concerned "The beans are supposed to be drying so I can harvest them..."
+    him annoyed "But it keeps raining."
+    "I was worried that if the rain kept up, they might start to grow fungus or bacteria before they'd be dry enough to store."
+    "But how could I get them dry when it was so wet outside?"
+    $ harvest_factor = 1.0
+    menu:
+        "What should I do?"
+        "Wait for the rain to stop.":
+            "It couldn't rain forever...I decided just to wait."
+            "But it rained for over a week."
+            "When it was finally dry, I checked on the beans..."
+            "...and most of them were moldy."
+            him annoyed "That was a lot of work for nothing."
+            $ harvest_factor = 0.25
+        "Hang them up somewhere dry.":
+            "I needed them to dry, so I decided to hang them up."
+            "I strung clothesline zig-zagging around the house and in the barn."
+            "I hung them upside down in bunches everywhere."
+            show her at midleft with moveinleft
+            her flirting "Trying your hand at interior design?"
+            him annoyed "I'm trying my hand at saving our beans."
+            her surprised "Saving them?"
+            him normal "Yeah, if I leave them out in this rain they'll get moldy before we can harvest them."
+            her concerned "I guess this planet has plenty of fungus, huh?"
+            him determined "I don't know if we brought spores from Earth or if it's native, but there's definitely some types of fungus here that will grow on beans."
+            her normal "Okay, I guess we can live with a bean canopy over our heads for a while."
+            "I was able to hang up most of the bean plants, and after two weeks the beans were dry enough to harvest."
+            $ harvest_factor = 1.0
+        "Cover them with a tarp.":
+            "I decided to just throw some tarps over them. That should keep them dry enough."
+            "But it rained for over a week, and the rain seeped in under the tarp. The whole bottom layer was moldy."
+            "At least the top layers dried out okay."
+            $ harvest_factor = 0.65
+
+    # TODO: currency check; subtract harvest_factor of the bean profit
     return
 
 label spinach1:
@@ -776,7 +957,36 @@ label spinach3_pick_early:
     return
 
 label strawberries1:
-    "Your strawberry plants did really well this year! Not only did you get extra strawberries, but you have enough runners that you could plant more next year if you wanted."
-    $ strawberries_index = get_crop_index("strawberries")
-    $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
+    scene fields with fade
+    show him normal at midright
+    show kid at midleft with dissolve
+    him normal "These strawberries are the best!"
+    kid "Mmmm!"
+    "We didn't have a lot of extra strawberries for jam or anything, but they tasted so sweet and delicious."
+    "There's nothing like a fresh, warmed-in-the-sun, juicy, sweet, home-grown strawberry."
+    "The other nice thing about strawberry plants is that they made lots of runners. If I wanted to, I could pull them up and start another strawberry field."
+    menu:
+        "What should I do?"
+        "Expand your strawberry empire." if (get_extra_work() >= 0):
+            him happy "What could be better than more strawberries?!  Let's plant some more, [kid_name]!"
+            kid "Yeah!"
+            $ strawberries_index = get_crop_index("strawberries")
+            $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
+        "Sell the extra plants.":
+            "I didn't really need more strawberry plants.  But maybe someone else did."
+            nvl clear
+            him_c "I've got some extra strawberry plants I'm willing to sell. They grow fast and easy and taste delicious!"
+            sara_c ":-O I want some!!!"
+            ilian_c "We don't even have a farm."
+            sara_c "We have some dirt! I need strawberries!!!"
+            natalia_c "Oh, my grandkids would love those. I'll take a few."
+            kevin_c "I would like to plant some for additional vitamin C."
+            him_c "Okay, I should have enough to everyone to have a few."
+            thuc_c "I have strawberry plants, too. I'll sell them for the same price as [his_name]."
+            nvl clear
+            # TODO: currency check, add some income.
+            "I was able to make a little extra money selling strawberry plants."
+        "Leave them alone.":
+            "But I was too busy this year. Maybe another time."
+
     return

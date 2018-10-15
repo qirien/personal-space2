@@ -2,6 +2,7 @@
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
+    $ enable_crop("squash")
     return
 
 # Malnutrition Event for if you don't have enough nutrition

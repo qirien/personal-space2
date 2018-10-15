@@ -253,8 +253,9 @@ init python:
     def enable_crop(crop_name):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
-        renpy.say(tutorial,"You can now grow corn on your farm.")
+        renpy.say(tutorial,"You can now grow [crop_name] on your farm.")
 
     def disable_crop(crop_name):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = False
+        renpy.say(tutorial,"You can no longer grow [crop_name] on your farm.")
