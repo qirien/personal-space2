@@ -511,42 +511,198 @@ label squash2:
             $ colonists += 1
 
     return
-
+# SQUASH 3 - consequences of squash bug method.
 label squash3:
     "I was curious to see how this next batch of squash would fare; given the trouble I had with squash bugs last time."
     if (squash2_method == "ignore"):
         "I didn't think it was possible, but there were even more squash bugs this year. The plants didn't even have a chance to set any fruit at all before they were completely devoured."
         "I couldn't plant squash again until at least a year had passed. Maybe if they didn't have any squash to eat, they'd all die out."
-        $ disable_crop("squash")
+        $ disable_crop("squash") # will get reenabled at the beginning of the next year in functions.rpy
         # TODO: currency check, reduce income by squash amount
-
-    "If you didn't get rid of the squash bugs, they come back stronger than ever!  You can't grow squash for several years."
-    "If you did get rid of them, congratulations!  You have lots of squash."
+    else:
+        "I checked the seedlings every day for signs of squash bugs. Nothing."
+        "Was it possible I had exterminated all the squash bugs on the planet??"
+        "No, I needed to stay vigilant!"
+        "Sure enough, as the flowers bloomed and squash started to grow, I noticed one plant looking a little less healthy than the rest."
+        "There were squash bugs on it!"
+        "It was much easier to kill them all when they were all one plant. I scrutinized that section every day and got rid of all the bugs and eggs I saw."
+        "The result was a bountiful squash harvest, even more than I had projected."
+        # TODO: currency check, add bonus
+        "Would it ever be possible to get rid of every single squash bug? I don't know. But the harvest made all the hard work worth it."
     return
 
+# GOATS1 - GOAT CHEESE
 label goats1:
-    "Your goats reproduced and now you have a lot of them!  Once all these kids grow up they will need more space."
-    menu:
-            "Smuggle some to the Luddites": #only if you're past community_14
-                $ luddites += 1
-            "Send to the storehouse":
-                $ colonists += 1
-            "Slaughter for meat" if (get_extra_work() >= 0):
-                $ pass #family happiness/food increase?
-            "Allocate more land for goats":
-                $ goats_index = get_crop_index("goats")
-                $ crop_info[goats_index][MAXIMUM_INDEX] += 1
-                # goats take up another square now.
+    scene fields with fade
+    show him normal at center with dissolve
+    "When Thuc first brought over a few young goats, I used them mostly as lawnmowers and fertilizer producers."
+    "But after a year or two, they were old enough to start breeding. And baby goats means milk!"
+    "I milked our two mama goats every day, and they still had enough milk for their babies."
+    "We didn't always drink a lot of milk, so sometimes I had a lot of extra..."
+    nvl clear
+    him_c "Hey, Thuc, what do you do with extra milk from your goats?"
+    thuc_c "Cheese, mostly. It goes with everything and the kids like it."
+    him_c "Your kids?"
+    thuc_c "Ha ha, I don't feed it to baby goats. I meant, my children like it."
+    him_c "Heh, yeah. Do you have some starter culture I could borrow? Do I need rennet?"
+    thuc_c "We actually weren't allowed to bring starter cultures -- they were worried we'd contaminate Talaam with too much Earth bacteria."
+    him_c "Oh, I see. No yogurt then, huh?"
+    thuc_c "Not yet. I've tried several ways of getting yogurt going with local bacteria but none of them have worked yet."
+    him_c "How do you make the cheese, then?"
+    thuc_c "You just need an acid, like vinegar. No rennet either. I'll send you the recipe."
+    nvl clear
+
+    "It was so simple I was suspicious. Just heat the milk, add some acid, and then pour it through a cheesecloth??"
+    "But... it worked. I added salt and a few herbs and let it sit, and then we had delicious fresh chèvre."
+
+    scene farm_interior with fade
+    show him happy at midright
+    show her normal at midleft
+    with dissolve
+    him happy "So... what do you think?!"
+    her concerned "It tastes a little...goaty."
+    him flirting "But also cheesy, right?"
+    her normal "Yeah... it's pretty good. I think we need to eat it with something, though."
+    him normal "I'm thinking baked potatoes."
+    her happy "Oh yeah, that'll be so good!"
+    "We made goat cheese almost every day after that."
     return
 
+# GOATS 2 - too many goats
 label goats2:
-    "Making sausage out of goat/crabird meat. Charcuterie!"
-    return
+    "Having goats was pretty great. They mostly took care of themselves, and they also took care of my weeds and gave milk."
+    "But lately..."
+    scene farm_interior with fade
+    show her determined at midright
+    show him normal at midleft
+    with dissolve
+    her concerned "This milk... doesn't taste right."
+    him surprised "Really? Let me try..."
+    "She was right. It tasted a bit sour, and more... goaty than usual."
+    "We made it into cheese and the taste was less noticable."
+    scene barn with fade
+    show goat at midleft
+    show him normal at midright
+    with dissolve
+    "The next time I milked the goats, I smelled that same smell, but not from the milk..."
+    show goat_flip at quarterright with moveinright
+    him "Hey!"
+    "One of the male goats was peeing on his face, and a bunch of it got on me."
+    "That was where the bad smell was coming from."
+    "After some research I found out that the male goats got stinkier as they aged, and used that stinkiness to attract a mate."
+    "I wasn't opposed to the goats mating -- that would mean more kids, and the does' milk production was decreasing since it had been a while since they had a kid."
+    "But I didn't want the milk to taste like goat pee."
+    "I decided to ask Thuc."
+    nvl clear
+    him_c "How do you keep the male goats from peeing on everything? It's pretty stinky."
+    thuc_c "You can't. We keep the bucks separated from the rest of the herd, and only let them get together for romantic goat dates."
+    him_c "You have two herds?"
+    thuc_c "Yeah, it works better that way. Plus, then we know when the kids will be born."
+    him_c "I only have one buck right now...He'd probably get lonely."
+    thuc_c "What about all your bucklings? Did you castrate them?"
+    him_c "No, should I have? They're still small..."
+    thuc_c "They can mate after just a few months."
+    him_c "Oh... we may end up with some surprise kids, then!"
+    thuc_c "You, or your goats?"
+    him_c "Ha ha, you know what I mean."
+    nvl clear
 
+    "So it sounded like I needed to separate or neuter the bucks. Or butcher them."
+
+    menu:
+        "Smuggle some to Pete" if (year >14): #only if Pete and his group have left
+            "I felt bad for Pete. Maybe he would like some goats."
+            "I couldn't send him a message; radio communications weren't private."
+            "I'd have to just go over there."
+            # TODO: background for Pete?  Like this? https://pixabay.com/en/barn-field-agriculture-countryside-238512/
+            scene fields with fade
+            show pete at midright with dissolve
+            show him normal at midleft with moveinleft
+            if (luddites_strength() >= 1):
+                pete "Hey there, [his_name]. Good to see ya."
+            else:
+                pete "What do {b}you{/b} want?"
+            him normal "Hey, Pete! I just wondered if you wanted some goats. The bucks are getting ornery and I really don't want to have two herds."
+            pete "I got plenty of cows to take care of."
+            him surprised "Really? Goats aren't much trouble. They just need a fence and a place to sleep. Or you could just eat them."
+            pete "Well... actually, it might be good project for Trevor. But I'd need a doe, too."
+            him "Sure, I can spare one. She's almost full grown."
+            pete "Alrighty then. I'll have some beef to trade you for, alright?"
+            him "Sounds good. Later, Pete."
+            $ luddites += 1
+        "Send the meat to the storehouse":
+            "I didn't want to have two goat herds. That would just be too much work."
+            "So I slaughtered them, cut up the meat, and sent it to the storehouse."
+            "While I was there, I was able to pickup a bunch of foods my family had been craving."
+            scene farm_interior with fade
+            show her normal at midright
+            show kid normal at center
+            with dissolve
+            show him normal at midright with moveinright
+            him flirting "Too bad no one here likes applesauce. I guess I'll have to eat this all by myself."
+            if (year >= 7):
+                kid happy "Applesauce!"
+            her happy "Delicious!"
+            $ colonists += 1
+        "Process the meat" if (get_extra_work() >= 0):
+            "We had several goats to butcher, so I wanted to preserve the meat."
+            "Plus, I had a craving for sausage."
+            "After butchering, I ground up all the meat and separated it into two portions."
+            "The first was for ground sausage. I seasoned it up and it'd be great with breakfast or in sauces."
+            "The second portion was for pepperoni. I'd been craving pepperoni since we moved here -- pepperoni pizza, pepperoni on crackers, huge chunks of savory pepperoni..."
+            "Anyway, I was going to try to make some out of goat meat."
+            "I cleaned the intestines to use as casings, added spices and vinegar to the meat, and stuffed the mixture in."
+            "Then I let the sausages hang from the ceiling for two months."
+            "Every time I saw them my craving for pepperoni grew."
+            "Finally, it was time to taste them."
+            "I cut a thin slice and placed it on my tongue. Meaty? Yes. Salty? Yes. Peppery? Yes. Goaty? ...yes."
+            "It was not quite the same as the pepperoni from Earth, but it was delicious just the same."
+            "I sold two links of it at the storehouse and had enough money to buy wheat so we could make pizza."
+            scene farm_interior with fade
+            show him happy at midright with dissolve
+            show kid normal at center
+            show her normal at midleft
+            with moveinleft
+            him happy "Dinner's ready!"
+            her surprised "Is this a... pepperoni pizza?! Ohhh, [his_name]!"
+            if (year >= 7):
+                kid "What's pepponi pitsa?"
+                him determined "Only the best food ever invented."
+                her concerned "It might taste weird to her, though."
+                him happy "That's fine; I'll eat hers!"
+                kid "I want to try it!"
+            "We each took a slice. The goat cheese didn't really pull into long strings like mozzarella, but it had melted into nice medallions on the top."
+            "The whole wheat crust was denser and less puffy than traditional pizza, too."
+            "But after one bite, I was in heaven. The pizza was just slightly crunchy, with tangy tomato sauce, creamy cheese, and, best of all, big rounds of pepperoni that were just the slightest bit cripsy."
+            kid "Hot!"
+            her sleeping "Mmmm."
+            him sleeping "Mmmmmmm."
+            her happy "Wow. I haven't had pizza in so long! I'm glad your pepperoni turned out."
+            him sleeping "Ummm."
+            "I couldn't even talk. I was too entranced by the flavors, the textures, the memories..."
+            "Pizza after a soccer game, pizza at a video game party with friends, pizza with [her_name] on a rainy night in, feeding each other and laughing and cuddling on the couch..."
+            her surprised "Are... are you crying?"
+            him sad "This... is the best pizza I've ever had. It tastes like... Earth."
+            if (year >= 7):
+                kid "Earth is spicy?"
+                her concerned "Spicy and sweet and creamy and saucy and complicated."
+                him flirting "Sounds like someone else I know."
+                her flirting "Shut up and eat your pizza."
+                if (year >= 20):
+                    kid "Dad, that was so bad."
+                    him surprised "Was it so bad it's... cheesy?"
+                    kid "Ohhh, dad!"
+
+        "Allocate more land for goats":
+            "If we needed two herds, then I'd make two herds. It wasn't too much work to make another goat pen and feeding area."
+            "And it would be better to control the goats' mating, so we didn't have goats getting pregnant too young or buck smell getting on the milk or things like that."
+            "I'm sure we'd eat some of these goats eventually, but for now I just wanted to grow the herd."
+            $ goats_index = get_crop_index("goats")
+            $ crop_info[goats_index][MAXIMUM_INDEX] += 1
+            # goats take up another square now.
+
+# GOATS 3
 label goats3:
-    "Making goat cheese?"
-
-label goats4:
     "Your goats get out and destroy some neighboring farm land of someone else. What do you do?"
     return
 

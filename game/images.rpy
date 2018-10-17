@@ -29,6 +29,7 @@ init -10:
     image child = "kid-sprites/young normal.png"
     image tween = "kid-sprites/tween normal.png"
     image teen = "kid-sprites/teen normal.png"
+    image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)

@@ -241,6 +241,15 @@ init -100 python:
     def has_strong_marriage():
         return (marriage_strength >= (year / 4))
 
+    # Return strength of relationships given current year
+    # 1 or greater means strong, less than 1 means weak
+    def luddites_strength():
+        return (luddites / (year / 3.0))
+    def miners_strength():
+        return (miners / (year / 3.0))
+    def colonists_strength():
+        return (colonists / (year / 3.0))
+
 
 ##
 # Set things up for a scene in the bedroom
