@@ -695,7 +695,7 @@ label goats2:
 
         "Allocate more land for goats":
             "If we needed two herds, then I'd make two herds. It wasn't too much work to make another goat pen and feeding area."
-            "And it would be better to control the goats' mating, so we didn't have goats getting pregnant too young or buck smell getting on the milk or things like that."
+            "And it would be better to control the goats' mating, so we didn't have goats getting pregnant too young or goat pee smell getting on the milk or things like that."
             "I'm sure we'd eat some of these goats eventually, but for now I just wanted to grow the herd."
             $ goats_index = get_crop_index("goats")
             $ crop_info[goats_index][MAXIMUM_INDEX] += 1
@@ -703,7 +703,153 @@ label goats2:
 
 # GOATS 3
 label goats3:
-    "Your goats get out and destroy some neighboring farm land of someone else. What do you do?"
+    "Our little goats were quite the escape artists. One time I left a barrel in their pen too close to the fence, and soon they had all jumped the fence and were terrorizing my garden."
+    "Another time they dug one of my fence posts out and all snuck under the fence."
+    "Luckily, each of these times I caught them pretty quick."
+    "But not one time..."
+    scene fields with fade
+    show him normal at center with dissolve
+    if (year > 7):
+        show kid normal at midleft with dissolve
+    him surprised "Hey, did the goats all go inside...?"
+    "That seemed unlikely, so I went to go check it out."
+    # TODO: some kind of goat pen background?
+    hide him
+    hide kid
+    with moveoutleft
+    scene fields with fade
+    show him normal at center with moveinleft
+    if (year > 7):
+        show kid normal at midleft with moveinleft
+    "The gate was wide open and all the goats were gone. Really gone. Not a goat in sight."
+    if (year > 7):
+        him annoyed "Did you leave this gate open?!"
+        kid nervous "No, I know I closed it all the way!"
+        "I wasn't sure if I believed her, but either way, we needed to find those goats."
+    else:
+        show him surprised
+        "I know I had shut it all the way. Hadn't I?"
+        him concerned "...I've gotta find those goats."
+    "Luckily, they had left some tracks in the moist ground."
+    $ random_crop = farm.crops.random_crop(include_animals=False)
+    "I followed the tracks through a nibbled-on field of [random_crop] and onwards past our property."
+    "My heart sank as I realized we were heading on towards the Nguyen's farm. Hopefully it would be Thuc I met first, and not Julia..."
+    scene fields with fade
+    show julia at quarterright
+    show goat at midright
+    with dissolve
+    show him determined at midleft behind goat with moveinleft
+    if (year > 7):
+        show kid at quarterleft with moveinleft
+    "Sure, enough, Julia was there scowling and flapping a dishtowel, trying to drive the goats away."
+    show julia at midright with move
+    show goat at center with move
+    "They'd skitter a few steps away, then go right back to nibbling on some sweet potato vines."
+    julia "There you are!"
+    him concerned "Sorry about the goats. I just noticed they got out."
+    julia "Well, they've been here all morning. I'm not sure my poor sweet potatoes will recover."
+    him "I-"
+    julia "I tried to reach you on the radio, but you didn't answer."
+    "She looked pointedly at my radio on my belt -- it was turned off. I often 'forgot' to turn on my radio -- the truth is, I liked the peace and quiet."
+    him "Must have forgotten to turn it on. Well, I'll just get these goats out of your way."
+    hide him
+    hide kid
+    hide goat
+    with moveoutleft
+    scene fields with fade
+    show him determined at center
+    show goat at midleft
+    with moveinright
+    if (year > 7):
+        "With me leading the way and [kid_name] chivvying them from behind, we managed to get the goats back in their pen."
+    else:
+        "I got the goats' attention and led them back to their pen. They recognized me as their herd leader and mostly followed, though they kept getting distracted by interesting plants along the way."
+
+    "I examined the pen closely. The gate seemed to shut securely when I fastened it, and the fence was intact. There weren't any large objects the goats could climb on to jump out."
+    "So how had they escaped?"
+    menu:
+        "What should I do?"
+        "Watch the goats for a while.":
+            "I decided to watch and see."
+            "I observed them for fifteen minutes but didn't see anything out of the ordinary. Maybe it was just a fluke?"
+            "I left to weed the [random_crop], but when I came back to check on the goats, they were out again."
+            "These goats weren't stupid. Not only had they figured out how to escape a securely closed pen, but they knew not to do it while I was watching."
+            "But did they know about my surveillance cameras?"
+            "I went back to the house and reviewed the footage on my computer pad."
+            "I couldn't believe it. One of the goats had figured out how to lift and slide the bolt with her horns!"
+            "In fact, she was doing it right now."
+            "I put the goats back {b}again{/b} and rigged the slide shut more securely with some wire."
+            him determined "Now, let's see you open {b}that{/b}."
+        "Recompense Julia.":
+            "I was most worried about our relationship with the Nguyens. There was no way Julia would just forget about it."
+            $ random_crop = farm.crops.random_crop(include_animals=False)
+            "But maybe if I took them some [random_crop] she'd forgive me."
+            scene fields with fade
+            show julia at midright with dissolve
+            show him determined at midleft with moveinleft
+            him determined "I just wanted to apologize for my goats getting into your sweet potatoes. Here's some [random_crop] for you."
+            julia "Hmph. It's a start, anyway."
+            him surprised "A start?!"
+            julia "I'll let you know in a week if the plants recover or not. If not, we'll need twice this amount to make up for it."
+            "Sometimes, I couldn't believe this woman. How Thuc could stand being married to her, I had no idea."
+            him annoyed "I guess we'll see then."
+            julia "Yes, let's wait and see."
+            hide him with moveoutleft
+            scene fields with fade
+            show him determined at center with moveinright
+            "When I got back, the goats had escaped... again."
+            "They hadn't made it to Julia's property yet, though."
+            "This had to stop."
+            "Then suddenly I rememberd the surveillance cameras. They could show me how the goats kept getting out!"
+            "When I checked the footage from my farm surveillance cameras, I saw what had happened."
+            "One of the goats lifted the bolt slide with her horns, slid it to the side, and opened the gate."
+            him surprised "Guess I need to figure out a better gate!"
+            "I added some wire to hold the slide bolt in place, and the goats stayed in their pen after that."
+            him determined "Now, let's see you open {b}that{/b}."
+
+        "Scold [kid_name]." if (year > 7):
+            "It must have been [kid_name]. There's no other possibility."
+            show kid at midright with moveinright
+            him determined "[kid_name], I'm very disappointed that you let the goats escape."
+            kid sad "It wasn't me! I closed it all the way, I know I did!"
+            him concerned "It's the only explanation that makes any sense."
+            kid angry "What if the goats opened it?"
+            him surprised "What if the goats opened what?"
+            kid annoyed "The gate. Maybe they figured out how to open it?"
+            "Was it possible? I thought the bolt was pretty goat-proof."
+            menu:
+                "What should I do?"
+                "Make [kid_name] observe the goats.":
+                    him annoyed "You stay here and watch them. I have work to do."
+                    "I went back to weeding the [random_crop]. After an hour, I went back to check on [kid_name] and the goats."
+                    him surprised "Well?"
+                    kid annoyed "They haven't done anything weird... it's like they know I'm watching them."
+                    him normal "Goats are pretty smart."
+                    kid surprised "Isn't there some way we can watch them without them knowing?"
+                    jump goat3_cameras
+                "Observe the goats together.":
+                    jump goat3_observe
+                "Get back to work.":
+                    him annoyed "That's not possible. One of must have not closed it all the way, and I know it wasn't me, so it had to be you. Time to get back to work."
+                    kid concerned "Okay, but it wasn't me."
+                    "I slid the bolt closed and pushed it down. At least this time the gate was secure."
+                    "We went back to weeding the [random_crop] and after twenty minutes I went to check on the goats."
+                    "They had escaped again."
+                    "[kid_name] and I put them back in the pen again."
+                    kid annoyed "See? They got out even when you closed it."
+                    him concerned "Yeah..."
+                    label goat3_observe:
+                        "We watched them for a few minutes, but they didn't try to escape or anything. Just munched on grasses and walked around."
+                    label goat3_cameras:
+                        him happy "The cameras!"
+                        "When we checked the footage from my farm surveillance cameras, we saw what had happened."
+                        "One of the goats lifted the bolt slide with her horns, slid it to the side, and opened the gate."
+                        him surprised "No way!"
+                        kid happy "I told you!"
+                        him normal "Guess we need to figure out a better gate!"
+                        "We added some wire to hold the slide bolt in place, and the goats stayed in their pen after that."
+                        him determined "Now, let's see you open {b}that{/b}."
+
     return
 
 label tomatoes1:
