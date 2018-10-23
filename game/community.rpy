@@ -1688,7 +1688,7 @@ label community11:
 
             if talked_to_Thuc:
                 thuc "I can start growing these peanuts right away!"
-                # uncomment this when peanut icon available
+                # TODO: uncomment this when peanut icon available
                 # $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
@@ -2103,7 +2103,7 @@ label community12:
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
                     "Dr. Lily took a few people out foraging."
                     "The miners lived off the meat and foraged food for almost a month."
-                    "After eight weeks, we had zucchini, squash, and turnips, with some small potatoes and bigger ones on the way."
+                    "After eight weeks, we had zucchini, squash, and turnips for them, with some small potatoes and bigger ones on the way."
                     return
 
                 label community12_choose_foraging:

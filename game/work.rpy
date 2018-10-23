@@ -518,6 +518,7 @@ label work10:
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."
+            "I didn't have room or time for bees."
     return
 
 # Year 12, 7.4 years old
@@ -533,7 +534,7 @@ label work12:
     thuc_c "That sounds good, but..."
     julia_c "What's the catch?"
     brennan_c "Well, because they're a patented seed design, the wheat berries they produce are sterile."
-    julia_c "Meaning we couldn't save some seeds to plant next year."
+    julia_c "Meaning we couldn't save seeds to plant next year."
     brennan_c "Right. You'd need to buy them from me. Well, from RET, really."
     if (community11_kidsonfarm):
         natalia_c "Hmm, I might get some for Joanna to try. If they're as good as you say..."
@@ -543,7 +544,7 @@ label work12:
     natalia_c "Twenty years? Some of us might not even be alive then."
     brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us a certain amount every year and we'll provide you with seeds." # TODO: currency check, how much?
     julia_c "That's ridiculous. Who would want to rely on you for their seeds?"
-    brennan_c "You're a tough customer, Julia, but let's let everyone decide for themselves. Come see me if you want in on this great deal."
+    brennan_c "You're a tough customer, Julia; I love that about you! But let's let everyone decide for themselves. Come see me if you want in on this great deal."
     nvl clear
     menu:
         "What should I do?"
@@ -594,6 +595,7 @@ label work14:
 # Year 16, 10 years old
 label work16:
     "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
+    # get peppers, onions, or garlic
     return
 
 # Year 18, 11.1 years old
@@ -610,6 +612,7 @@ label work20:
 # Year 22, 13.6 years old
 label work22:
     "Someone from your favorite faction gives you cool seeds!"
+    # turnips or peppers or broccoli
     return
 
 # Year 24, 14.8 years old

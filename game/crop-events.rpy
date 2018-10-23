@@ -10,6 +10,7 @@ label default_crop_event:
     "The year passed by in a blur: tilling, planting, weeding, harvesting; the endless cycle of life on the farm."
     return
 
+# CARROTS1 - bent and twisted
 label carrots1:
     scene farm_interior with fade
     show her normal at midright
@@ -26,18 +27,20 @@ label carrots1:
         "What should I do?"
         "Till the soil better. Must be rocks." if (get_extra_work() >= 0):
             "I thought maybe I needed to till the soil better. Sometimes carrots would grow funny to try to get around rocks or hard soil in their way."
+            "It would be awhile before I could see if it helped, though."
         "Must be something in the soil. Avoid planting carrots for a year.":
             "I could understand a few creepy carrots, but not so many. It must be something widespread."
             "I looked it up and found that some pests could cause carrots to grow like that."
             "I had no idea if it was an Earth pest or a Talaam creature causing it, though."
             "The simplest way to get rid of the pests would be to not plant carrots for a year. With nothing to eat, the pests would die."
             "It would take a while to see if it worked, though."
-            # TODO: Don't allow carrots in farm screen.
-            $ carrots_fallow = True
+            $ crop_temporarily_disabled = "carrots"
         "Who cares, they taste the same.":
             "I didn't have time to worry about oddly-shaped carrots."
+            "I just chopped them up and cooked them and then nobody even noticed."
     return
 
+# CARROTS2 - great carrots if fallow, otherwise find pests.
 label carrots2:
         if (carrots_fallow):
             "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
@@ -79,16 +82,17 @@ label carrots2:
         else:
             "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
             "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
+            # TODO: less money?
             menu:
                 "What should I do next year?"
-                "Treat the carrots with pesticide":
+                "Treat the carrots with pesticide" if (get_extra_work() >= 0):
                     "I decided to treat next year's carrots with pesticide. It'd be more work, but I didn't want to give up carrots."
-                    # TODO: Make next year's carrots take more work?
                 "Don't plant carrots next year and let the pests die off.":
                     "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
-                    # TODO: Make carrots unavailable next year, and then come back??
+                    $ crop_temporarily_disabled = "carrots"
         return
 
+# CARROTS3 - is there such a thing as too many carrots?
 label carrots3:
     scene fields with fade
 
@@ -103,7 +107,7 @@ label carrots3:
             him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
             her "Are you talking about [kid_name]'s orange hands?"
             him "Yeah... is that bad?"
-            her "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's most just eating carrots."
+            her "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
             him "Okay, good to know."
             her "Don't you think I would have said something if there was something wrong?!"
             him "Well, I wasn't sure you noticed."
@@ -145,6 +149,7 @@ label carrots3:
 
     return
 
+# POTATOES 1 - Solanine
 label potatoes1:
     "I dug up a whole row of potatoes, but got interrupted before I could put them away. When I finally got back to them, they had a greenish tinge to them."
     "The green color is just chlorophyll, but sometimes it indicates increased solanine."
@@ -186,6 +191,7 @@ label potatoes1:
             $ colonists -= 1
     return
 
+# POTATOES2 - what to do with them
 label potatoes2:
     "I grew a lot of potatoes. In some ways, they were the perfect crop. They were protected from a lot of pests and weather since they were undeground."
     "They gave a high yield, and were a calorie- and nutrient-dense food."
@@ -196,7 +202,7 @@ label potatoes2:
 
     menu:
         "Put them in a chowder":
-            "There's nothing like a nice, hearty chowder. Goat's milk, onions, some grass crab meat, herbs, and of couse, lots of potatoes."
+            "There's nothing like a nice, hearty chowder. Goat's milk, onions, some grass crab meat, herbs, and, of course, lots of potatoes."
             show her at midleft with moveinleft
             her surprised "Mmmm, that smells so good! Like clam chowder!"
             him concerned "If only I had some bacon..."
@@ -229,7 +235,7 @@ label potatoes2:
                 show kid normal at midright with moveinright
                 kid "Is dinner ready yet?"
                 him "No, but I'm making a special treat. You make us a salad, and I'm going to make a wonderful thing called potato chips."
-                kid "That sounds gross. What, like wood chips?"
+                kid "What, like wood chips? That sounds gross."
                 him "Oh no, much, much better."
                 kid "Okay..."
                 hide kid with moveoutright
@@ -260,7 +266,7 @@ label potatoes2:
             "I'd have to make my own recipe."
             him concerned "I could use goat milk for creaminess, a little vinegar for a nice tang, and I do have some other herbs and spices..."
             him surprised "I have some homemade pickles I could chop up and put in there, and I have one egg I could boil..."
-            "The end result was a potato salad, though it tasted nothing like the comfort food I remembered. I'd have to call it something else."
+            "The end result was sort of a potato salad, though it tasted nothing like the comfort food I remembered. I'd have to call it something else."
             show her normal at midleft with moveinleft
             show him normal at midright with move
             her surprised "Is that... dinner?"
@@ -284,6 +290,7 @@ label potatoes2:
 
     return
 
+# POTATOES3 - Rotten potatoes
 label potatoes3:
     "I'll never forget the time it rained..."
     "And rained."
@@ -352,7 +359,7 @@ label potatoes3:
     # TODO: lose money based on number of potato fields?
     return
 
-# only happens if no bees
+# SQUASH1 - not getting fertilized
 label squash1:
     scene fields with fade
     show him normal at center with dissolve
@@ -390,7 +397,7 @@ label squash1:
                 kevin "Satisfactorily."
                 him normal "Good, good...hey, about those bees..."
                 kevin "I apologize, but I do not have extra bees at this time."
-                him concerned "Could I maybe, like, borrow them for a few weeks?"
+                him concerned "Could I maybe, like, borrow them, just for a few weeks?"
                 kevin "I could rent them to you."
                 # TODO: currency check.
                 menu:
@@ -416,6 +423,7 @@ label squash1:
                 "I skimmed his legalese and it looked reasonable. For the consideration of the use of his bees, blah blah blah, the undersigned hereby agree to blah blah blah."
                 "I transported his hive of bees at night, when most of them were sleeping, and in the morning they woke up to a new home."
                 "They seemed to adjust pretty well, and went right for the squash blossoms."
+                "I was kind of sad to give them back."
                 "We harvested a lot of squash that season!"
 
             "Forget the squash for this season":
@@ -424,6 +432,7 @@ label squash1:
                 # TODO: decrease food/income
     return
 
+# SQUASH2 - squash bugs
 label squash2:
     scene fields with fade
     show him normal at center with dissolve
@@ -447,7 +456,7 @@ label squash2:
             "And all it would take would be one batch of eggs I missed and the bugs would start up again."
             "I continued my diligence until the squash was harvested."
             "Then I burned the squash plants instead of composting them.  I didn't want to have this problem next year."
-        "Apply pesticide":
+        "Apply pesticide.":
             $ squash2_method = "exterminate"
             if ("bees" in farm.crops):
                 "I didn't want to hurt my plants or bees, so I decided to spray the bugs with soapy water."
@@ -465,6 +474,7 @@ label squash2:
             $ squash2_method = "ignore"
             "Ugh, I didn't want to deal with squash bugs. It was impossible to completely eradicate them, anyway."
             "Why start a battle I knew I couldn't win?"
+            "But that meant I only havested one fourth of the squash I had planned on."
             # TODO: currency check: lose money
         "Try and get the new folks to fix the problem. They started it, after all!":
             $ squash2_method = "passthebuck"
@@ -492,7 +502,7 @@ label squash2:
             else:
                 brennan_c "Are you implying some of my crew is sabotaging your crops?"
                 him_c "I don't know exactly how it happened, but you've got to do something!"
-                brennan_c "What do you want me to do? Send my miners over with some dynamite or jack hammers? These aren't farmers, [his_name]."
+                brennan_c "What do you want me to do? Send my miners over with some dynamite or jack hammers? You're the farmer, [his_name]."
                 him_c "They don't have to be farmers to help me kill these bugs."
                 brennan_c "Your proposal is ridiculous. We've got our own schedule to keep. We don't have time to stop and help every snivelling farmer with a pest problem."
                 him_c "But...!"
@@ -511,13 +521,14 @@ label squash2:
             $ colonists += 1
 
     return
+
 # SQUASH 3 - consequences of squash bug method.
 label squash3:
     "I was curious to see how this next batch of squash would fare; given the trouble I had with squash bugs last time."
     if (squash2_method == "ignore"):
         "I didn't think it was possible, but there were even more squash bugs this year. The plants didn't even have a chance to set any fruit at all before they were completely devoured."
         "I couldn't plant squash again until at least a year had passed. Maybe if they didn't have any squash to eat, they'd all die out."
-        $ disable_crop("squash") # will get reenabled at the beginning of the next year in functions.rpy
+        $ crop_temporarily_disabled = "squash"
         # TODO: currency check, reduce income by squash amount
     else:
         "I checked the seedlings every day for signs of squash bugs. Nothing."
@@ -542,7 +553,7 @@ label goats1:
     nvl clear
     him_c "Hey, Thuc, what do you do with extra milk from your goats?"
     thuc_c "Cheese, mostly. It goes with everything and the kids like it."
-    him_c "Your kids?"
+    him_c "Your... kids?"
     thuc_c "Ha ha, I don't feed it to baby goats. I meant, my children like it."
     him_c "Heh, yeah. Do you have some starter culture I could borrow? Do I need rennet?"
     thuc_c "We actually weren't allowed to bring starter cultures -- they were worried we'd contaminate Talaam with too much Earth bacteria."
@@ -568,7 +579,7 @@ label goats1:
     "We made goat cheese almost every day after that."
     return
 
-# GOATS 2 - too many goats
+# GOATS 2 - male goats contaminating milk
 label goats2:
     "Having goats was pretty great. They mostly took care of themselves, and they also took care of my weeds and gave milk."
     "But lately..."
@@ -701,7 +712,7 @@ label goats2:
             $ crop_info[goats_index][MAXIMUM_INDEX] += 1
             # goats take up another square now.
 
-# GOATS 3
+# GOATS 3 - escaping goats
 label goats3:
     "Our little goats were quite the escape artists. One time I left a barrel in their pen too close to the fence, and soon they had all jumped the fence and were terrorizing my garden."
     "Another time they dug one of my fence posts out and all snuck under the fence."
@@ -852,27 +863,35 @@ label goats3:
 
     return
 
+# TOMATOES 1 - blossom end rot
 label tomatoes1:
     $ tomatoes1_action = "none"
-    "The tomatoes were looking so good, but a lot of them have sunken rotten areas on the bottom."
+    "There's nothing like fresh, juicy tomatoes straight from the vine. The sweet juice, the way the seeds squirt all over when you bite into them, their perfect roundness..."
+    "But the best thing about growing tomatoes on Talaam was that there were no hornworms!"
+    "As a kid I spent hours hunting those giant green caterpillars. I earned a bounty for every hornworm I destroyed."
+    "In fact, it was a little bit sad that [kid_name] wouldn't have that opportunity..."
+    "...but not too sad."
+    "This year, my tomatoes were doing pretty well, but a lot of them had a sunken, mushy area on the bottom."
     menu:
-        "Do some research":
-            "Looks like blossom-end rot.  If I add some more calcium to the soil and water more evenly, this shouldn't happen next time."
+        "Do some research." if (get_extra_work() >= 0):
+            "I did a bit of research about tomato problems and found something that described my tomatoes exactly."
+            "Blossom-end rot.  If I added some more calcium to the soil and watered more evenly, this shouldn't happen next time."
             $ tomatoes1_action = "research"
-        "Just cut it off":
-            "Most of the tomato is fine.  I'm canning most of them, anyway, so who cares if I have to throw part away?"
+        "Just cut it off.":
+            "Most of the tomato was fine.  I'd be canning most of them, anyway, so it didn't really matter."
             $ tomatoes1_action = "cut"
-        "Add more fertilizer":
-            "Next time I'll add more fertilizer; that should help."
+        "Add more fertilizer.":
+            "I decided that they probably just needed more fertilizer.  So next time I'd add more."
             $ tomatoes1_action = "fertilize"
     return
 
+# TOMATOES 2 - results of tomatoes 1
 label tomatoes2:
     $ tomatoes2_action = "none"
     if (tomatoes1_action == "research"):
-        "The tomatoes look much better this year!"
+        "The tomatoes looked much better this year!"
         menu:
-            "I can choose which fruits to save seeds from for planting next year."
+            "Now, I needed to choose which fruits to save seeds from for planting next year."
             "First tomatoes":
                 $ tomatoes2_action = "early harvest"
             "Biggest tomatoes":
@@ -881,24 +900,38 @@ label tomatoes2:
                 $ tomatoes2_action = "sweetness"
     else:
         "The tomatoes have the same rotten bottom area as last time, only now it's even worse!"
-        "You do some research and find out that usually that means there's too much nitrogen in the soil and not enough calcium.  Too bad most of the tomatoes for this year are useless."
+        "You do some research and find out that usually that means there's too much nitrogen in the soil and not enough calcium."
+        if (tomatoes1_action == "fertilize"):
+            "So adding more fertilizer just made it worse."
+        "Most of my tomatoes were useless..."
+        # TODO: decreased yield/money
     return
 
+# TOMATOES 3 - results of tomatoes 2
 label tomatoes3:
     if (tomatoes2_action  == "early harvest"):
-        "You have lots of tomatoes quickly!  So quickly, in fact, that you can squeeze in two plantings a year, effectively doubling your tomato harvest. They taste pretty good, too."
+        "Because I made sure to always save seeds from the earliest tomatoes, the genetics of the tomato plants every year tended towards a fast harvest."
+        "In fact, now I can squeeze in two plantings a year, effectively doubling my tomato harvest."
+        # TODO: increase yield/money of tomatoes.
     elif (tomatoes2_action == "size"):
-        "The tomatoes are slightly bigger than last year.  If you keep choosing the biggest tomatoes seeds to save, you are going to have tomatoes as big as melons!"
+        "Since I only used seeds from the biggest tomatoes, the size of the tomatoes kept getting bigger and bigger."
+        "Not only did they look impressive, but they were easier to process because I had less stems to cut off before canning them."
     elif (tomatoes2_action == "sweetness"):
-        "These are so juicy and sweet that [her_name] likes to just go out and eat them for lunch."
+        "As I selected for the sweetest tomatoes, my harvest got slowly sweeter and sweeter."
+        "[her_name] will sometimes pack a lunch of just tomatoes and a little goat cheese."
+        "And [kid_name] likes to eat them, too."
+        "They were so sweet I used them like berries in dessert dishes."
     else:
-        "Finally, you have a good tomato harvest.  Time for salsa, spaghetti sauce, and maybe even some pizza!"
+        "Finally, I had a good tomato harvest. The tomatoes were firm all over and there were plenty of them."
+        "Time for salsa, spaghetti sauce, and maybe even some pizza!"
 
     return
 
+# PLUMS 1 - trees growing
 label plums1:
     "I was happy to see the plum trees getting larger and larger."
-    "I fertilized them carefully each year hoped eventually they would bear fruit."
+    "They didn't have any fruit now, so it felt like a lot of work for nothing."
+    "But I knew if I kept taking care of them and fertilizing them, eventually they would bear fruit."
     return
 
 # Several years later
@@ -1004,7 +1037,7 @@ label plums2:
 
     return
 
-# How to harvest beans
+# BEANS 1 - How to harvest beans
 label beans1:
     scene fields with fade
     show him normal at center with dissolve
@@ -1024,6 +1057,7 @@ label beans1:
         "I filled up barrels and barrels of dried beans."
     return
 
+# BEANS 2 - Wet beans
 label beans2:
     scene fields with fade
     show him concerned at center with dissolve
@@ -1064,17 +1098,8 @@ label beans2:
     # TODO: currency check; subtract harvest_factor of the bean profit
     return
 
+# SPINACH 1 - heat wave kills spinach seeds
 label spinach1:
-    "Your spinach is looking good!"
-    # how many seeds to save?
-    menu:
-        "Pick it early":
-            "Yum, smaller, more tender greens, but less food."
-        "Wait until it's fully grown":
-            "Larger harvest. more bitter taste.  more food/less happiness, seeds?"
-    return
-
-label spinach2:
     "Even with all our technology -- our hybrid tractors, our careful genetic modifications, our surveillance cameras and timed sprinkler systems -- we were still at Mother Nature's mercy."
     "It usually didn't get very warm on Talaam. Most of the time our proximity to the ocean kept the temperatures moderate."
     "But one year we had a terrible heat wave..."
@@ -1114,17 +1139,18 @@ label spinach2:
             her concerned "Oh...that's too bad."
     return
 
-label spinach3:
+# SPINACH2 - turtle slugs
+label spinach2:
     $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] += 1
     scene fields with fade
     "This year, I planted my spinach a little earlier to avoid any heat problems."
     "Now it's almost to full size."
     "But something has been eating the plants. I haven't seen anything, but when I checked the leaves, I could see bites taken out."
-    $ spinach3_cameras = False
+    $ spinach2_cameras = False
     menu spinach_3_menu:
-        "Check the surveillance cameras" if (not spinach3_cameras):
+        "Check the surveillance cameras" if (not spinach2_cameras):
             "I trained the farm's cameras on the spinach plot, but the next morning when I looked at the video, none of the motion sensors were triggered.  I scanned through the video but couldn't find anything out of the ordinary."
-            $ spinach3_cameras = True
+            $ spinach2_cameras = True
             jump spinach_3_menu
         "Check on your spinach at night":
             show night_overlay with dissolve
@@ -1167,7 +1193,8 @@ label spinach3:
                                 him normal "The other side of the river should be far enough."
                                 "We got a bucket, filled it with snails, and she escorted them across the river."
                                 hide kid with moveoutright
-                                kid normal "There you go little buddies!"
+                                kid normal "There you go little buddies."
+                                him happy "Bye bye, vicious spinach eaters!"
                             "Have [kid_name] help you kill them.":
                                 $ confident += 1
                                 him determined "I'm not going to kill them. You are."
@@ -1176,7 +1203,7 @@ label spinach3:
                                 kid sad "They just want to eat a little spinach."
                                 him concerned "They will eat all our spinach, and they won't stop there."
                                 if (is_independent()):
-                                    call spinach3_eat_snails
+                                    call spinach2_eat_snails
                                 elif (is_attached() and is_competent()):
                                     kid concerned "What do you want me to do?"
                                     him determined "Just drop them in this bucket of water and they'll probably drown."
@@ -1187,11 +1214,11 @@ label spinach3:
                                     kid cry "No, I won't do it!"
                                     hide kid with moveoutleft
                                     "She ran back to the house crying. Maybe this was one job I shouldn't delegate."
-                                    "I dropped them in a bucket of water and that seemed to kill them."
+                                    "I dropped them in a bucket of water one by one and that seemed to kill them."
                             "Send her away and kill them yourself.":
                                 him determined "I'll take care of it. You just run along, now."
                                 if (is_independent()):
-                                    call spinach3_eat_snails
+                                    call spinach2_eat_snails
                                 else:
                                     hide kid with moveouleft
                                     "She left, and I carried out the death sentence on the turtle-snails."
@@ -1199,12 +1226,12 @@ label spinach3:
                     "I made some more traps and repeated the process until no more turtle-snails appeared."
                     "And we harvested a lot of wonderful spinach."
                 "Just pick the spinach early":
-                    call spinach3_pick_early
+                    call spinach2_pick_early
         "Just pick the spinach early":
-            call spinach3_pick_early
+            call spinach2_pick_early
     return
 
-label spinach3_eat_snails:
+label spinach2_eat_snails:
     kid concerned "If we have to kill them, we should eat them."
     him surprised "Eat them?"
     kid surprised "Yeah, can we eat them?"
@@ -1226,9 +1253,10 @@ label spinach3_eat_snails:
     if (bro_age > 4):
         bro "I'm not eating it."
     "It was an interesting experiment, but ultimately we did not want to eat that many turtle-snails."
+    "So I disposed of them."
     return
 
-label spinach3_pick_early:
+label spinach2_pick_early:
     "It'd be too much work to kill all the snails. If I just harvested the spinach early then there wouldn't be anything for them to eat."
     "But spinach isn't the only thing turtle-snails like..."
     if ("beans" in farm.crops):
@@ -1249,15 +1277,16 @@ label spinach3_pick_early:
         $ snail_crop = "snow peas"
     else:
         $ snail_crop = "other crops"
-    "After you picked the spinach, they moved on to your [snail_crop]."
-    "This is something that you cannot forgive."
-    "This means war."
-    "Your nights are filled with killing turtle-snails."
-    "They appear in your dreams, giant, house-sized turtle-snails with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam is just an empty spot in the vast blackness of space."
-    "You think you see them everywhere you look -- in the fields, in the barn, in the outhouse."
-    "Finally, their numbers are greatly reduced, and you can rest.  Until the next invasion..."
+    "After we picked the spinach, they moved on to our [snail_crop]."
+    him annoyed "This is something that I cannot forgive."
+    him angry "This means war!"
+    "My nights were filled with killing turtle-snails."
+    "They appeared in my dreams, giant, house-sized turtle-snails with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam was just an empty spot in the vast blackness of space."
+    "I started seeing them everywhere I looked -- in the fields, in the barn, in the outhouse."
+    "Finally, their numbers were greatly reduced, and I could rest.  Until the next invasion..."
     return
 
+# Strawberries 1 - grow more?
 label strawberries1:
     scene fields with fade
     show him normal at midright
@@ -1289,6 +1318,6 @@ label strawberries1:
             # TODO: currency check, add some income.
             "I was able to make a little extra money selling strawberry plants."
         "Leave them alone.":
-            "But I was too busy this year. Maybe another time."
+            "I was too busy this year. I decided to just leave them there and deal with them later."
 
     return

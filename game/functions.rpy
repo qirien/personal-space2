@@ -146,10 +146,13 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
-        #Every even year there is a set event; other years are crop events.
-        # This means we need 15 set events and at least 15 crop events.
+        # Enable any crops that were temporarily disabled
+        if (crop_temporarily_disabled != ""):
+            enable_crop(crop_temporarily_disabled)
+            crop_temporarily_disabled = ""
 
-        enable_crop("squash") # Enable squash in case of squash bugs.
+        #Every even year there is a set event; other years are crop events.
+        # This means we need 15 set events and at least 15 crop events (we have 22)
         # HOWEVER, if nutrition is low, you don't get to do any of that. Instead
         # you have to take care of the nutrition problem.
         malnutrition_threshold = renpy.random.randint(-5, 0)

@@ -186,6 +186,7 @@ label start:
             "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",
             "honey" : "Bees help pollinate crops and provide honey, which sells for a high price."
             }
+        # Get rid of blueberries, snow peas, beets, cabbage
 
         total_calories = 0
         total_nutrition = 0
@@ -202,7 +203,7 @@ label start:
         seen_low_m = False
 
         # Crop event variables
-        carrots_fallow = False
+        crop_temporarily_disabled = ""
         squash2_method = ""
 
     #######################################################################
