@@ -1003,15 +1003,15 @@ label plums2:
             him happy "How much can you give me for this plum jam?"
             ilian "I can only give you amount." # TODO: currency check.
             him surprised "What? Why is that?"
-            ilian "I'm out of money. But if you'd like to exchange, I can give you onions or garlic."
+            ilian "I'm out of money. But if you'd like to exchange, I can give you onions or turnips."
             menu:
                 "Which should I choose?"
                 "Onions":
                     him "Give me the onions."
                     $ enable_crop("onions")
-                "Garlic":
-                    him "How about the garlic?"
-                    $ enable_crop("garlic")
+                "Turnips":
+                    him "How about the turnips?"
+                    $ enable_crop("turnips")
             ilian "Fine. Here you go."
             "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
             return

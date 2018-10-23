@@ -146,6 +146,7 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
+        global crop_temporarily_disabled
         # Enable any crops that were temporarily disabled
         if (crop_temporarily_disabled != ""):
             enable_crop(crop_temporarily_disabled)

@@ -145,18 +145,12 @@ label start:
                         ["squash",       4, 7, 3, 4, 15, True, False, 100],
                         ["strawberries", 1, 2, 8, 6, 5, False, True, 2],
                         ["strawberries+",1, 2, 8, 5, 0, False, True, 2],
-                        ["blueberries",  2, 3, 9, 9, 5, False, True, 2],
-                        ["blueberries+", 2, 3, 9, 4, 0, False, True, 2],
                         ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
-                        ["snow peas",    3, 6, 3, 4, -35, False, False, 100],
                         ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
                         ["carrots",      3, 6, 4, 4, 10, True, False,  100],   # Root Vegetables
-                        ["beets",        3, 4, 2, 3, 5, False, False, 100],
                         ["turnips",      3, 5, 1, 4, 10, False, False, 100],
                         ["onions",       4, 2, 7, 4, 5, False, False, 100],
-                        ["garlic",       3, 3, 7, 4, 5, False, False, 100],
-                        ["cabbage",      2, 4, 3, 3, 15, False, False, 100],   # Leafy greens
-                        ["spinach",      1, 6, 4, 3, 10, True, False,  100],
+                        ["spinach",      1, 6, 5, 3, 10, True, False,  100],   # Leafy greens
                         ["broccoli",     3, 7, 4, 3, 15, False, False, 100],
                         ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
                         ["honey",         2,  2,  8, 2, 0, False, True, 1])
@@ -171,22 +165,17 @@ label start:
             "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
             "squash" : "This vegetable keeps well and is easy to grow.",
             "strawberries" : "Small, sweet, and delicious! They come back every year.",
-            "blueberries" : "Tiny and delicious; useful for jam or eating raw. These will come back every year.",
             "beans" : "These legumes are tough to harvest, but keep well and are very nutritious.",
-            "snow peas" : "These crunchy legumes are good raw or lightly cooked.",
             "peanuts" : "This legume takes hard work to harvest, shell, and boil, but keeps well and makes peanut butter.",
             "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
-            "beets" : "These purple root vegetables will grow almost anywhere.",
             "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
             "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
-            "garlic" : "This bulb makes everything taste better.",
-            "cabbage" : "Eat it raw, cooked, or fermented. Easy to grow.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
             "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
             "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",
             "honey" : "Bees help pollinate crops and provide honey, which sells for a high price."
             }
-        # Get rid of blueberries, snow peas, beets, cabbage
+        # Got rid of blueberries, snow peas, beets, garlic, cabbage
 
         total_calories = 0
         total_nutrition = 0
