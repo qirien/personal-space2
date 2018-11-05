@@ -3377,12 +3377,12 @@ label family12:
     julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
     brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad, too. I've got a lot of hair to comb through, here."
     pete_c "I'll take care of it."
-    sara_c "You're offering to comb through Brennan's hair?! O_o"
+    sara_c "You're offering to comb through Brennan's hair?! 😳"
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
-    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through."
-    brennan_c "I'm not cutting my hair; I just can't part with these luscious locks."
+    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. 🧑"
+    brennan_c "I'm not cutting my hair. I just can't part with these luscious locks."
     nvl hide
 
     scene farm_interior with fade
@@ -5221,7 +5221,7 @@ label family20:
     nvl clear
     him_c "Anyone have a saxophone? [kid_name] wants to play..."
     ilian_c "Saxophone! Oh man, I haven't played in so long... wish I'd brought mine with me."
-    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit!"
+    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit! 😬"
     kevin_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
     ilian_c "You'd need to make pads out of fabric, and reeds out of wood. They'd have to be really precise."
     ilian_c "Honestly, almost any other instrument would be easier to make."
@@ -6276,7 +6276,7 @@ label lettie_dies:
     him_c "I hope everyone knows this plant is poisonous to livestock and humans."
     him_c "I don't know why anyone would even bring it to Talaam; it's deadly and doesn't provide food. I think I'm even allergic to it."
     him_c "I hope the owners will rip that plant out and destroy it so no one else gets hurt."
-    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it."
+    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it. 🙁"
     julia_c "Lettie was a good horse."
     brennan_c "Yew's a tough plant that can grow almost anywhere and is symbolic of death and rebirth."
     brennan_c "The Lewis' were thinking of these qualities and not its horse-murdering tendencies."
@@ -6284,7 +6284,7 @@ label lettie_dies:
     him_c "But why do we need it here, on Talaam?! We have a chance to start from scratch, to only bring the best things from Earth!"
     him_c "Instead we contaminate our planet with poisonous weeds and people that don't even give a damn."
     her_c "[his_name]!"
-    sara_c ":-("
+    sara_c "😢"
     him_c "If you don't pull out weeds, they'll suck the life out of all the good plants you're trying to grow."
     if (is_liason):
         brennan_c "I'm going to pretend I didn't hear the RET liason comparing our entire mining operation to poisonous weeds."
@@ -6905,6 +6905,7 @@ label family28:
             her "You just want to see me get hot and sweaty."
             him "Wish I could!"
             "She left, and I turned to my computer pad. There were several ways I could go about this..."
+            nvl clear
             menu:
                 "Ask around.":
                     "I decided to ask around. Maybe someone else had seen her."
@@ -6932,7 +6933,7 @@ label family28:
 
                     if (colonists > 10):
                         him_c "Hey, Sara, any idea where [her_name] is? I'm looking for her..."
-                        sara_c "Oh, she was just here, buying some stuff from Ilian. :-)"
+                        sara_c "Oh, she was just here, buying some stuff from Ilian. 😃"
                         him_c "What kind of stuff?"
                         sara_c "Ilian says... oil and salt? Like, a lot of it."
                         him_c "Really..."
@@ -6967,6 +6968,7 @@ label family28:
                 "That's what she was hiding."
             else:
                 "She didn't seem to be hiding anything, but I still felt uneasy."
+            nvl clear
             "I told [her_name] what I found out."
             her_c "Okay, I don't think I can make it to Pete's before she leaves. I'll head over to the miner's camp and see if she comes there."
             "I waited. I didn't hear anything from [her_name] for a long time, until..."

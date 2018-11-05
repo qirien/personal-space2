@@ -113,7 +113,7 @@ label bad_nutrition:
                             $ colonists -= 1
                             $ miners -= 1
                 else:
-                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly."
+                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly. 😥"
                     pete_c "And at a high price."
             nvl clear
             "I was glad I was able to work out a trade this time. Next time, though, I might not be so lucky."
@@ -299,7 +299,7 @@ label work2:
 label work4:
     nvl clear
     pavel_c "The Fall Festival will be next weekend! Show off your best crops and animals. There will be games and music, too!"
-    sara_c "I hope everyone can come!"
+    sara_c "I hope everyone can come! 😊"
     nvl clear
     him "Hmmm... I was going to get a new field ready to expand the size of my farm, but I always like to go to the Fall Festival..."
     $ random_crop = farm.crops.random_crop(include_animals = False)
@@ -436,7 +436,7 @@ label work8:
             "Then I took apart the outhouse so it I could carry it over piece by piece and put it back together again."
             "I covered the old pit with the dirt from the new one."
             "It took all day..."
-        "Build a better outhouse that provides fertilizer." if (get_extra_work() >= 0):
+        "Build a better outhouse that provides fertilizer." if (get_extra_work() > 0):
             $ work8_choice = "improve"
             "I remembered Thuc telling me about how they had a special treatment regimen that allowed them to treat sewage from their pit and use it as fertilizer."
             "I could always use more fertilizer, and this would also make it so I wouldn't have to clean out the outhouse in the future, either."
@@ -528,7 +528,7 @@ label work12:
     nvl clear
     brennan_c "I have a special offer for all you farmers out there."
     julia_c "Oh, this'll be good."
-    sara_c ":-O"
+    sara_c "😲"
     pete_c "Let the man talk."
     brennan_c "I have the newest pest-resistant, high-yield, nutrient-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
     thuc_c "That sounds good, but..."
@@ -581,21 +581,194 @@ label work12:
 
 # Year 14, 8.7 years old
 label work14:
-    "Take your daughter to work day... is every day."
+    scene fields with fade
+    show him normal at midright
+    show kid normal at midleft
+    "I never realized how much I knew about farming until I had to teach someone else."
+    "Even though she grew up on our farm, there was still so much [kid_name] didn't know."
     $ style = get_parenting_style()
     if (style== "authoritative"):
-        "She is pretty helpful and gets a lot done!"
+        "...but she's learning fast!"
+        "I love seeing her grow more independent. When she's done feeding the goats, she doesn't sit around waiting for me to tell her what to do."
+        "She looks around and starts doing whatever is needed, whether it's a fence that needs repairing, weeds that need to be pulled, or produce that needs to be harvested."
+        "Sometimes she's a little too independent."
+        kid "I want to milk the goats!"
+        him surprised "You do?"
+        kid "Yeah! I bet I can do it all by myself!"
+        "She'd watched me many times, but the technique is a little tricky."
+
     elif (style == "authoritarian"):
-        "She does every thing you ask, but you have to ask her to do each little thing. She doesn't take any initiative to do things on her own."
+        "...like how to do what needs to be done without me having to tell her every detail."
+        "She's pretty good at feeding the goats every day, but when she's done I'll often find her playing with them instead of moving on to what really needs to be done."
+        "But I really wanted her to learn how to milk the goats."
+
     else:
-        "She sulks and you have to threaten and cajole her to do anything.  It would have been faster to do it yourself!"
-    "Terra helps out with some simple things, but she isn't very good at it. Do you redo it, make her redo it, or spend some time teaching her better? Do you have her help in the future?"
+        "...like how to work hard."
+        "I don't know if she doesn't remember or just doesn't care, but she 'forgets' to feed the goats all the time."
+        "And it seems like whenever there's work to be done, she's nowhere to be found."
+        "I often end up just doing it myself. It's faster and less of a hassle."
+        "But I really wanted her to learn how to milk the goats."
+
+    him normal "You're old enough to learn how to milk goats. Come with me."
+    scene barn with fade
+    show goat at center
+    show him normal at midright
+    show kid normal at midleft
+    with moveinleft
+    "I showed her how to lead the goat to the milking stand, wash off her udder, and set up some food for her."
+    "I helped her practice the finger motions needed to squirt the milk into the bucket."
+    "She was tentative at first, but she seemed to be figuring it out."
+    "I left for a minute to check on something, but I wasn't gone for more than five minutes when I heard a scream."
+    hide him with moveoutright
+    "I dashed back into the barn and saw [kid_name] crying, the bucket tipped over, and the goat lying down, looking quite satisfied."
+    show him at midright with moveinright
+
+    menu:
+        "What should I do?"
+        "Scold [kid_name]":
+            him angry "[kid_name]!"
+            $ demanding += 1
+        "Ask what happened":
+            him surprised "What happened here?"
+        "Help her clean it up":
+            "I righted the bucket and lifted the goat up to standing. We found a towel and mopped up the milk."
+            $ responsive += 1
+
+    kid cry "It's not my fault! It's that stupid goat! I was almost done and then she just lied down and messed it all up!"
+    him annoyed "That's because she ran out of food. You've got to be faster than that."
+    kid annoyed "Well how was I supposed to know that?!"
+
+    menu:
+        "What should I do?"
+        "Show her how to do it right." if (get_extra_work() > 0):
+            him normal "It's okay, it takes some practice. Here, let me show you."
+            "I showed her how to put an upside down bucket under the front of the goat so she couldn't just lie down."
+            "We put a bit more food in the goat's trough, and [kid_name] got ready to try again."
+            him normal "That's it. Yeah, you've got a nice rhythm going now."
+            kid concerned "I'm worried she's going to kick it over again!"
+            him determined "You just watch her back legs, and if she starts getting antsy, you whisk that bucket away. You're almost done now, though."
+            kid surprised "How do you know when you're done?"
+            him normal "Well, less milk is coming out, for one. But you can also see how the udder doesn't look full anymore."
+            kid normal "Yeah, it's kind of floppy and wrinkly."
+            him happy "Okay, I think you're done! Well, done with the goat, anyway. We have a few things to do with the milk, first."
+            kid happy "This wasn't too hard..."
+            him normal "Yeah, you learned a lot! Of course the first few times are kind of rough, so don't worry too much about spilled milk or anything."
+            kid surprised "So am I done?"
+            him determined "Not quite. I'll show you how to filter the milk and wash the bucket."
+
+            $ authoritative += 1
+            $ confident += 1
+        "Finish it for her." if (get_extra_work() > 0):
+            him concerned "Just go home. I'll take care of it."
+            him sad "Oh-okay."
+            "I finished milking, put the goat away, filtered the milk, and washed the equipment."
+            "It would be so nice if [kid_name] could learn to do this, but maybe she just wasn't ready yet."
+            $ permissive += 1
+        "Tell her to try again.":
+            him determined "Try again."
+            kid angry "No way! I've had enough of this crazy goat!"
+            menu:
+                "What should I say?"
+                "You will finish the job!":
+                    him annoyed "You will stay here until the job is done!"
+                    kid sad "Fine, then I guess I'll stay in here all night because this goat is never going to listen to me!"
+                    him determined "It's your job to milk this cow. Now do it."
+                    hide him with moveoutright
+                    "I left to finish up my work. Her sobs followed me around the farm everywhere I went."
+                    "I wanted to teach her to be independent, to do things for herself. I guess I needed to push her a bit to get her to learn that..."
+                    scene barn with fade
+                    show him at center with moveinright
+                    "When I came back after a half hour, the goat was put away and there was about a cup of milk in the pail. The goat looked happy, so she must have been milked enough."
+                    "But [kid_name] was going to need a lot more practice..."
+                    $ authoritarian += 1
+                "Leave if you're not going to help.":
+                    him annoyed "If you're not going to help, then get out of my way."
+                    kid cry "Fine, I will!"
+                    hide kid with moveoutleft
+                    "I ended up just doing myself. It wasn't that hard; maybe she just wasn't old enough..."
+                    $ neglectful += 1
     return
 
 # Year 16, 10 years old
 label work16:
-    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
-    # get peppers, onions, or garlic
+    nvl clear
+    sara_c "There will be a seed exchange this weekend! Bring some seeds to trade! 😋"
+    natalia_c "I'm bringing chile seeds - they're a little bit sweet and a little bit spicy!"
+    kevin_c "I plan on bringing some plum pits."
+    pavel_c "Wonderful! I hope everyone will participate."
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    "A seed exchange could be good; I could share my great [random_crop] and get something new to plant in the future."
+    "But Pete was already planning to come over and fence a new section of land for farming."
+    "Last week I helped him expand his cattle paddock with a bigger fence and he was planning to return the favor."
+    menu:
+        "What should I do?"
+        "Go to the seed exchange.":
+            him_c "I'll be there, too!  I'm bringing [random_crop] seeds!"
+            sara_c "Oooh, great! 😃"
+            nvl clear
+            scene community_center with fade
+            show pavel at quarterleft
+            show sara at midleft
+            show natalia at center
+            show kevin at quarterright
+            show zaina at right
+            with dissolve
+            show him normal at left with moveinleft
+            "There were a lot of people at the seed exchange!"
+            pavel "Welcome, [his_name]! Good to see you!"
+            him normal "Thanks. Where should I put these [random_crop] seeds?"
+            sara "There's an empty spot on the table there. Oh, you brought a sign. Perfect."
+            $ colonists += 1
+            show him at midright with move
+            him surprised "You said your chile peppers are spicy and sweet?"
+            natalia "Oh yes. If you pick them green, they're a little bitter and more savory. If you wait until they turn red, they're sweeter. But the spiciness is the same either way."
+            him normal "Sounds very flavorful!"
+            kevin "[his_name], are those your [random_crop] seeds? Would you recommend that crop?"
+            menu:
+                "What should I say?"
+                "Yeah, you'll like them!":
+                    him happy "Yeah! You'll love them."
+                    kevin "Then perhaps I shall try planting some."
+                "No, you should try something else.":
+                    him concerned "I'm not sure they're the best crop for you..."
+                    kevin "Really? Why do you say that?"
+                    menu:
+                        "What should I say?"
+                        "They're too much work.":
+                            him annoyed "They're too much work, especially for the yield you get."
+                        "They don't really taste good.":
+                            him concerned "Well, they don't really taste very good, so no one wants to eat them."
+                            kevin "I like [random_crop]."
+                            him surprised "Well, maybe they'd be good for you."
+                        "They're not worth very much.":
+                            him concerned "They don't sell for very much, so unless you love eating them yourself it's probably not worth it."
+                            kevin "I like [random_crop]."
+                            him surprised "Well, maybe they'd be good for you."
+                        "They're not very nutritious.":
+                            him annoyed "They just aren't that nutritious. Not many vitamins and minerals."
+                            kevin "Oh. I had not considered that."
+
+            if (not (crop_enabled("plums") or crop_enabled("plums+"))):
+                him surprised "You don't mind if I take a few plum pits, do you?"
+                kevin "Please do. They are hardy and productive plants."
+                $ enable_crop("plums")
+                him happy "Great! I love fruit."
+            else:
+                "Kevin took some of my seeds, and I decided to take some of the chile pepper seeds."
+                natalia "You won't be disappointed!"
+                $ enable_crop("peppers")
+
+        "Expand your farmland.":
+            $ luddites += 1
+            "I had already worked everything out with Pete. I'd have to miss this seed exchange. Hopefully they'd have more in the future."
+            scene fields with fade
+            show him normal at midleft with dissolve
+            show pete at midright with moveinright
+            pete "You ready to make this fence?"
+            him determined "You bet!"
+            "It took us all day, but now I had four more fields for planting!"
+            $ farm_size += 4
     return
 
 # Year 18, 11.1 years old
@@ -612,7 +785,7 @@ label work20:
 # Year 22, 13.6 years old
 label work22:
     "Someone from your favorite faction gives you cool seeds!"
-    # turnips or peppers or broccoli
+    # turnips/onions from Thuc or broccoli from Pete or ? from miners (sunflowers for oil? wheat that only works one time? flowers? herbs?)
     return
 
 # Year 24, 14.8 years old

@@ -161,7 +161,7 @@ label potatoes1:
             "I figured I could test them on myself."
             "I cooked some up and they tasted fine, and I didn't get sick, so I figured there wasn't any problem."
             nvl clear
-            sara_c "Hey, is it OK to eat green potatoes? Or is it just the sprouts you're not supposed to eat?"
+            sara_c "Hey, is it OK to eat green potatoes? Or is it just the sprouts you're not supposed to eat? 😟"
             natalia_c "As long as they taste good they're OK."
             him_c "You can cut off the green parts if you're worried about it."
             sara_c "Okay, they just looked a little weird."
@@ -178,7 +178,7 @@ label potatoes1:
             him_c "If they're green, you should peel them and get rid of any green parts."
             him_c "And don't eat them if they taste bad."
             him_c "Look up solanine poisoning if you want more information."
-            sara_c "Why would we risk any sort of poisoning?!"
+            sara_c "Why would we risk any sort of poisoning?! 😱🤮"
             him_c "They're probably fine!"
             natalia_c "Even supermarket potatoes sometimes had some green on them. It's not a big deal."
             julia_c "Unless you're wrong and our insides twist in knots and we start hallucinating."
@@ -484,13 +484,13 @@ label squash2:
                 martin_c "Not squash bugs!"
             else:
                 natalia_c "Oh no, not squash bugs!"
-            sara_c "What are squash bugs????? :-O"
+            sara_c "What are squash bugs????? 😮"
             natalia_c "A squash farmer's worst nightmare. I haven't seen any here yet, but if they're anywhere on the planet I'm sure they'll find all the squash plants."
             him_c "They found all of mine. But whoever brought them should be responsible for getting rid of them!"
             if (year < 15):
                 naomi_c "Do you think someone brought them here on purpose?"
             else:
-                sara_c "You're not saying someone brought them here on purpose?!"
+                sara_c "You're not saying someone brought them here on purpose?! 😵"
             him_c "Purpose or accident; it doesn't matter!"
             sara_c "But... how would you even figure out where they came from?"
             him_c "We know where they came from -- the shuttle!"
@@ -508,7 +508,7 @@ label squash2:
                 him_c "But...!"
                 $ miners -= 1
             nvl clear
-            sara_c "Oleg and I can come help you on Monday morning. We don't know anything about squash but we can kill bugs!"
+            sara_c "Oleg and I can come help you on Monday morning. We don't know anything about squash but we can kill bugs! 🐞😡💀"
             natalia_c "I'll help you Tuesday. If we can get rid of them on your farm, maybe they won't spread to mine."
             julia_c "Two of my children will assist you on Wednesday. Don't go easy on them."
             him_c "You guys... you don't have to do this. I know you have your own farms to work on..."
@@ -1307,9 +1307,9 @@ label strawberries1:
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear
             him_c "I've got some extra strawberry plants I'm willing to sell. They grow fast and easy and taste delicious!"
-            sara_c ":-O I want some!!!"
+            sara_c "😲 I want some!!!"
             ilian_c "We don't even have a farm."
-            sara_c "We have some dirt! I need strawberries!!!"
+            sara_c "We have some dirt! I need strawberries!!! 😍😋🍓"
             natalia_c "Oh, my grandkids would love those. I'll take a few."
             kevin_c "I would like to plant some for additional vitamin C."
             him_c "Okay, I should have enough to everyone to have a few."

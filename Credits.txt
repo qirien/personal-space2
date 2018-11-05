@@ -31,7 +31,7 @@ Dirt background <soil.jpg> by Andrea Landaker, derived from <https://pixabay.com
 
 ==== CC-BY-2.0
 storehouse1 <storehouse1.jpg>, "Mr. Vernon Kitchen and Storeroom" by Mr. Gray <https://www.flickr.com/photos/socsci/18933614460/in/photostream/>
-community_center <community_center.jpg>, "South Broadway Cultural Center's Multi-Purpose Room" by Albuquerque South Broadway Cultural Center <https://www.flickr.com/photos/south-broadway-cultural-center/5555481119/> 
+community_center <community_center.jpg>, "South Broadway Cultural Center's Multi-Purpose Room" by Albuquerque South Broadway Cultural Center <https://www.flickr.com/photos/south-broadway-cultural-center/5555481119/>
 hospital <hospital.jpg>, "Inauguración del Hospital Municipal de Chiconcuac" by Presidencia de la República Mexicana <https://www.flickr.com/photos/presidenciamx/24152774186/>
 
 === GUI
@@ -52,6 +52,7 @@ Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=
 SP-Marker Font by SizzlePrint, <http://www.sizzleprint.com/fonts/>
 Roboto Slab by Christian Robertson, <https://www.fontsquirrel.com/license/roboto-slab>
 Fotograami Flower Font by Khaled Aldousari, <http://www.dafont.com/fotograami-flower.font>
+OpenSansEmoji by MorbZ, <https://github.com/MorbZ/OpenSansEmoji>
 
 
 === Character Sprites
