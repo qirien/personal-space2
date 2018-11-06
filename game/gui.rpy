@@ -427,7 +427,7 @@ define gui.nvl_button_xpos = 450
 define gui.nvl_button_xalign = 0.0
 
 ## Font to use for NVL text
-define gui.nvl_font = "fonts/OpenSansEmoji.ttf"
+define gui.nvl_font = "fonts/OpenSansEmoji.otf"
 
 
 
