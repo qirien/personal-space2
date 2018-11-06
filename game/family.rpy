@@ -5337,7 +5337,7 @@ label family20:
             scene black with fade
             "Julia expected a lot from [kid_name], but she was quick to praise when [kid_name] improved."
             # TODO: sfx? singing unicode char?
-            kid "You are my sunshine, my only sunshine-"
+            kid "{font=fonts/OpenSansEmoji.otf}🎶{/font}You are my sunshine, my only sunshine-{font=fonts/OpenSansEmoji.otf}🎶{/font}"
             "It amazed me how much her voice improved, and though I soon got tired of her practicing the same songs over and over, it was nice to hear music around the house."
             him "You sound good, [kid_name]. Keep practicing."
             "She didn't say anything, just blushed and kept singing."
@@ -6487,7 +6487,7 @@ label family25:
         "We need other people, too.":
             $ responsive += 1
             him "We need people to do other things, too. Sara, and Ilian aren't farmers, but imagine how disorganized we'd be without them!"
-            him "Or how much less we'd know without Miranda's studies, or how many people would have died without your mom there to fix them up."
+            him "Or how much less we'd know without Zaina's studies, or how many people would have died without your mom there to fix them up."
             him "I love farming, but if you don't want to do that, there's plenty of other great things you can do to help the colony."
             kid "Thanks for the speech, dad."
         "Miners and farmers can do other things, too.":

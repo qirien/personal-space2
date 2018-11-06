@@ -87,7 +87,13 @@ init python:
                 if (crop_info[crop_index][PERENNIAL_INDEX]):
                     if (crop_name[-1] != "+"):
                         new_crops[i] = crop_name + "+"
+
+                        # subtract one from the no +
                         crop_info[crop_index][MAXIMUM_INDEX] -= 1
+
+                        # Add one to +
+                        plus_index = get_crop_index(new_crops[i])
+                        crop_info[plus_index][MAXIMUM_INDEX] += 1
                     else:
                         new_crops[i] = crop_name
             self.crops = new_crops
@@ -259,3 +265,10 @@ init python:
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = False
         renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
+
+    # Delete all instances of crop_name in crops
+    def delete_crop(crop_name):
+        for i in range(0, farm_size):
+            current_crop_name = self.items[i]
+            if (current_crop_name == crop_name):
+                self.items[i] = "fallow"

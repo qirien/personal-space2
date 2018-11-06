@@ -1287,6 +1287,7 @@ label spinach2_pick_early:
     return
 
 # Strawberries 1 - grow more?
+# TODO: Test this to see if it works with strawberries+
 label strawberries1:
     scene fields with fade
     show him normal at midright
@@ -1303,6 +1304,7 @@ label strawberries1:
             kid "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
+            $ enable_crop("strawberries")
         "Sell the extra plants.":
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear
@@ -1319,5 +1321,64 @@ label strawberries1:
             "I was able to make a little extra money selling strawberry plants."
         "Leave them alone.":
             "I was too busy this year. I decided to just leave them there and deal with them later."
+
+    return
+
+# Strawberries 2 - mutant cancerous strawberries from solar flare
+label strawberries2:
+    scene fields with fade
+    show him normal at center with dissolve
+    "There were two things I liked about strawberries."
+    "Obviously, the first was the delicious sweet fruit."
+    "The second was that they were pretty low maintenance. I fertilized them and weeded them a little and that was it."
+    "So it wasn't unusual that I hadn't checked on them for a month or two."
+    "And when I finally did, I couldn't believe what I saw..."
+    him surprised "What the-- where's all my strawberries?!"
+    "The strawberry field was covered with strawberry plants, but where there should have been flowers, instead the strawberry plants had made thousands and thousands of runners."
+    "So they were still strawberry plants, but there were hardly any flowers."
+    "I looked closer to see if something was eating the flowers, but most of the plants had never made flowers at all."
+    him concerned "Did I add too much nitrogen or something?"
+    "I tested the soil. It showed the perfect balance of nutrients for strawberry plants."
+    "I was stumped. Was everyone having this problem with strawberries?"
+    nvl clear
+    him_c "Hey, anyone else's strawberry plants not flowering?"
+    thuc_c "Did you add too much nitrogen?"
+    him_c "No, I already tested that. It's all fine. It's like the plants went crazy producing runners instead of flowers."
+    thuc_c "Weird. Mine are fine."
+    sara_c "Mine, too!"
+    zaina_c "We haven't experienced any problems."
+    him_c "Really? It's just mine?"
+    if (year <= 20):
+        lily_c "It is possible the plants mutated."
+        sara_c "Like, X-Men strawberries?!"
+        lily_c "Our frequent solar flares bombard the plants with more radioactive particles than on Earth. With most plants, a mutation in one plant might just mean its seeds are sterile, or it doesn't grow fruit."
+        him_c "This is almost my whole field!"
+        lily_c "Strawberries reproduce partly by cloning, so if the original plant had a mutation that caused it to not make flowers, it would affect that plant and all of its runners."
+        him_c "Oh... and maybe the mutation also made it produce more runners, so it took over my whole field!"
+        lily_c "Yes. That is my theory."
+    else:
+        zaina_c "Is it possible they mutated?"
+        her_c "The solar flares definitely cause cells to mutate faster than on Earth."
+        zaina_c "You know, we think the solar flares are partly responsible for the reduced productivity of crops on Talaam."
+        him_c "And strawberries reproduce partly by cloning, so if one plant mutated to produce runners instead of flowers, it would reproduce very quickly."
+    sara_c "I can't decide if that's creepy or cool."
+    him_c "Mostly it's annoying, because it means my strawberry plants are messed up."
+
+    nvl clear
+    menu:
+        "What should I do?"
+        "Rip out the mutated strawberries." if (get_extra_work() > 0):
+            "It was a huge pain, but I decided to rip out all the mutated strawberries.  I destroyed every plant that didn't have any flowers on it."
+            "And the few strawberries that I did get, I planted instead of eating."
+            # TODO: currency check, decrease profit
+        "Till over the whole field.":
+            "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
+            "Maybe next year I could plant strawberries from the seeds that I salvaged."
+
+            $ enable_crop("strawberries")
+            $ strawberries_index = get_crop_index("strawberries")
+            $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
+            # TODO: Test this...
+            $ farm.crops.delete_crop("strawberries+")
 
     return

@@ -772,14 +772,106 @@ label work16:
     return
 
 # Year 18, 11.1 years old
+# Roof leak and solar flare
 label work18:
-    "Add on addition to the house as family grows and Terra needs her own space?"
+    scene farm_interior with fade
+    show him normal at midright
+    show her normal at quarterright
+    show kid normal at midleft
+    show bro normal at quarterleft
+    with dissolve
+    "There was one thing I absolutely had to get done today -- fix a small leak in the roof."
+    "Well, it didn't seem so small when it was dripping water on my bed in the middle of the night."
+    "We spent half the night moving things around so we wouldn't be right under the leak."
+    "I wanted it fixed right away."
+    "I don't know how it got a hole in it - the waterproof roof material was really pretty sturdy. Maybe a crabird managed to poke a hole in it with its claws or the wind blew a branch into it."
+    "There was just one problem..."
+    nvl clear
+    if (year <= 20):
+        lily_c "Major solar flare predicted sometime this morning."
+    else:
+        zaina_c "We've got a major solar flare this morning. It'll be short, but strong."
+    pavel_c "Please stay at your homes! School and all other community buildings will be closed until after noon."
+    nvl clear
+    him annoyed "Guess I won't be fixing the roof this morning..."
+    kid happy "Yay, no school!"
+    bro concerned "No school?"
+    kid surprised "You're not sad that school's cancelled, are you?!"
+    bro sad "I like school."
+    him surprised "Do you think I have time to run and get some rope from the barn?"
+    her concerned "I don't know; it sounds like they weren't sure of the exact time."
+    him annoyed "I really wish you could see the solar flares somehow..."
+    kid normal "Yeah, it looks so nice outside. Hey, what if there's not actually any solar flares, but they're actually doing top secret stuff and don't want anyone messing with it?"
+    him surprised "What kind of top secret stuff would that be?"
+    kid happy "I don't know; maybe aliens?? Or maybe they found some super valuable ore right under the school and they're blasting it away with dynamite right now!"
+    her flirting "I don't think that is going to happen."
+    bro concerned "There could be aliens though, right?"
+    him determined "I think if there were aliens on Talaam they would have said hi by now. We've been here for years."
+    kid shifty "Unless they're just watching us. To see if we're worth enslaving. And any day now, they'll come and attack us in our sleep!"
+    "She tickled [bro_name] excitedly. He flinched and tried to push her hands away."
+    bro concerned "Stop!"
+    her annoyed "[kid_name]..."
+    kid annoyed "What?! I'm just trying to play with him! Too bad he hates me."
+    him annoyed "He doesn't hate you, he just hates being tickled. Leave him alone."
+
+    "Okay, I did not want to spend my whole morning playing police officer. I needed something for these kids to do."
+    "I had the perfect chore -- cleaning the kitchen."
+    "It wasn't covered with food or anything, but it'd been awhile since it really got cleaned."
+
+    him determined "Okay, as long as we're stuck inside, we're going to get some work done!"
+    her concerned "I have some analysis to do..."
+    kid surprised "I think maybe I have homework?"
+    bro concerned "I don't want to do anything..."
+
+    menu:
+        "What should I do?"
+        "Make the kids clean the kitchen.":
+            him normal "Kids, your job is to clean the kitchen."
+            kid concerned "It looks pretty clean to me..."
+            him determined "I want the stove and the wall wiped down with soap and water and the floor swept and mopped."
+            bro sad "What?!"
+            kid annoyed "What are you going to do, just sit around?!"
+            him annoyed "Of course not. I've got some other work to do. That's what I need you two to do."
+            $ confident += 1
+            "She tried the whole time to convince me that her only work should be school work and it was unfair of me to make the kids do all the work, so I didn't get to concentrate much on my own work."
+            "But they did finally get the kitchen clean. Well, cleaner than it had been."
+            jump work18_after_clean
+        "Assign a kitchen-cleaning job to everyone.":
+            him determined "[her_name], your job is to wipe the stove. [kid_name], sweep the floor. [bro_name], you've got cleaning the walls, and I'll take mopping."
+            show her annoyed
+            "[her_name] gave me a look. I guess I shouldn't order her around like I do the kids."
+            him concerned "Or, [her_name], I'd be happy to trade if you'd rather do the mopping."
+            her determined "I would."
+            him determined "Fine."
+            $ confident += 1
+        "Write the jobs on pieces of paper and have each person choose randomly.":
+            him happy "Okay, it's time for the kitchen cleaning lottery!"
+            kid annoyed "I already know I don't want to win."
+            him normal "In this box are four chores. Each person will choose one randomly and that will be their chore for the morning!"
+            him flirting "[her_name], would you like to go first?"
+            her annoyed "...Sure."
+            "We each pulled a slip of paper."
+            $ confident += 1
+        "Just clean it yourself.":
+            him determined "Well, I don't know about you guys, but I'm cleaning the kitchen. Anyone want to help?"
+            "I've never seen people disappear so fast. Suddenly everyone really wanted to read a book or do their homework or whatever it was they were doing."
+            "That was fine with me."
+            jump work18_after_clean
+
+    "[her_name] put some peppy music on, and we all got to work."
+    "[kid_name] soon quit pouting when she realized it wasn't going to change anything, though she did try to get away with doing the least amount possible."
+    "[bro_name] didn't want to get wet, so I helped him wring out the cloth as much as possible before wiping down the wall."
+
+label work18_after_clean:
+    "We had a quick lunch together, and then, since the solar flare was over, we each went our separate ways."
+    "And I could finally get to fixing the roof!"
     return
 
 # Year 20, 12 years old
 label work20:
     "Miners want cheap/fast/calorie-dense food. Will you cater to their needs?"
     "Also, Terra likes it as she is eating more and growing taller than ever."
+    "or, solar panels are wearing out due to solar flares."
     return
 
 # Year 22, 13.6 years old
