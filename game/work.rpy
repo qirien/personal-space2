@@ -852,7 +852,7 @@ label work18:
             her annoyed "...Sure."
             "We each pulled a slip of paper."
             $ confident += 1
-        "Just clean it yourself.":
+        "Just clean it yourself." if (get_extra_work() > 0):
             him determined "Well, I don't know about you guys, but I'm cleaning the kitchen. Anyone want to help?"
             "I've never seen people disappear so fast. Suddenly everyone really wanted to read a book or do their homework or whatever it was they were doing."
             "That was fine with me."
@@ -875,7 +875,147 @@ label work20:
     return
 
 # Year 22, 13.6 years old
+# A surprise 40th birthday party
 label work22:
+    scene community_center with fade
+    show night_overlay with dissolve
+    show him determined at left behind night_overlay with moveinleft
+    # TODO: show silhouettes?
+    him determined "Why did [her_name] want to meet me here? It makes no sense..."
+    him annoyed "And the light's are off, which means she's not even here...?"
+    hide night_overlay with dissolve
+    show her laughing at quarterleft
+    show bro happy at quarterleft
+    show kid happy at midleft
+    show thuc happy at center
+    show pete happy at midright
+    show ilian happy at quarterright
+    show sara happy at right
+    show oleg at right
+    with dissolve
+    "Everybody" "Happy Birthday, [his_name]!"
+    him surprised "Whoa! What are you guys all doing here in the dark??"
+    her happy "Waiting for you, silly! You were supposed to be here fifteen minutes ago!"
+    him normal "Sorry, I didn't know this was a time-limited event. Is it really my birthday?"
+    her flirt "It is on Earth. You'd be--"
+    him flirt "--old enough that my age is boring. I can't believe you got all the awesome people in one place at the same time for my birthday."
+    her concerned "Well, Brennan and Julia couldn't make it."
+    him happy "Like I said, all the awesome people are here!"
+    kid normal "You looked so surprised."
+    bro normal "Did you even know we were here?"
+    him normal "Nope! You were like stealthy birthday ninjas!"
+    "The kids ran off to the a table covered with a variety of foods -- looks like [her_name] organized a potluck. I made a mental note to visit it very soon."
+    hide bro, kid with moveoutleft
+    show him at midleft with move
+    him happy "Thanks for coming, Thuc!"
+    thuc normal "I'll come to a party anytime. So is it true? Is this the big Four Oh?"
+    him surprised "Um, maybe? I don't really keep track of my age, plus we spent that year on the shuttle that only felt like several months, so..."
+    sara normal "Well, the colony database says you're 40, so I think it counts!"
+    thuc normal "Don't worry; being 40 isn't so bad."
+    him normal "You would know, huh?"
+    thuc happy "It's 50 you have to worry about!"
+    him happy "Yeah, well, at least I have the satisfaction of knowing I'll never be as old as you."
+    pete normal "If it makes you feel better, you don't look a day over 39."
+    him normal "Uhhh... thanks?"
+    her flirt "I think you look as handsome as ever."
+    ilian normal "Hmmm, I wonder what [his_name]'s midlife crisis will be?"
+    sara sad "That's kind of depressing talk for a birthday, isn't it?"
+    menu:
+        "What should I say?"
+        "A midlife crisis sounds depressing.":
+            him annoyed "Yeah, can we talk about something besides my age?"
+            her surprised "Oleg, I heard you're getting to be quite the programmer! What's your latest project?"
+            oleg "Uh, not much."
+            sara "It's okay; tell everyone about your game."
+            thuc "You made a game?"
+            oleg "Not really. I mean, kind of. It's not very good."
+            sara "It's pretty fun! It's like a farming game, except that everything's underground and you have to protect crops from monsters and craft UV lights and sprinkler systems and stuff."
+            oleg "It's not finished yet..."
+            him happy "That sounds awesome. I'd like to play it when you're done."
+            oleg "O-okay."
+        "A midlife crisis sounds funny.":
+            him happy "No, it's funny! Go ahead, tell me what you think I'll do."
+            pete "You don't strike me as a flashy car kind of guy..."
+            ilian "And they are in dismally short supply here."
+            if (is_liason):
+                sara "You're already the RET liaison, so you don't need to seek a position of power."
+            else:
+                sara "Maybe he'll seek a position of power in the community? Run for mayor?"
+                pete "Pavel'd better watch out."
+            if (get_extra_work() <= 0):
+                thuc "He is kind of a workaholic..."
+            else:
+                thuc "Maybe he'll become a workaholic and we'll never see him around."
+                ilian "We already don't see him around."
+
+            pete "Maybe he'll run off and have a wild fling with a hot alien chick."
+            sara "Uh, wow, where did that come from?"
+            him surprised "Wait, there's hot alien chicks here? Where?"
+            if has_strong_marriage():
+                thuc "No way. Their marriage is rock solid."
+                him flirt "I already have all the hot alien chicks I need."
+                her surprised "You do?"
+                him happy "Oh yeah. You're from a planet that's not Earth, so you're an alien. And all I need is you."
+                "I kissed her, right in front of everybody."
+                sara "Awwwww! Sweet cheese!"
+                her flirt "It's not cheesy if it's true, right?"
+                pete "Nope. It's still cheesy."
+            else:
+                her concerned "I guess I'm lucky we haven't encountered aliens yet."
+            sara "What about music? Maybe he'll start a punk metal band."
+            her normal "He does write some pretty hardcore poetry..."
+            him happy "Nah, I'm a terrible singer."
+            # TODO: add some foreshadowing for the ending here?
+            sara "You might not have a midlife crisis."
+            him normal "I'm not planning on it!"
+
+    "I finally got to make my way over to the snacks. Pete had brought two kinds of cheeses, and Ilian had dug a few tiny pieces of chocolate out of the storehouse."
+    "There were fresh fruits and vegetables and even some soft, homemade, whole wheat bread with jam and butter."
+    "I savored every bite."
+    hide thuc
+    hide sara
+    hide pete
+    hide oleg
+    hide ilian
+    with dissolve
+    show him normal at midleft
+    show her normal at midright
+    with move
+    him surprised "Did you plan all this?"
+    her normal "Well, I had the initial idea, but I had a lot of help from all of your friends."
+    helping_faction = strongest_faction()
+    show her at center with move
+    if (helping_faction == "colonists"):
+        show thuc at midright with moveinleft
+        her happy "Especially Thuc!"
+        if crop_enabled("onions"):
+            enable_crop("turnips")
+        else:
+            enable_crop("onions")
+    elif (helping_faction == "luddites"):
+        show pete at midright with moveinleft
+        her happy "Especially Pete!"
+        pete "I thought you'd get a kick outta a surprise party."
+        him happy "Yeah, it's awesome!!!"
+        pete "I also wanted to give you these."
+        him surprised "What kind of seeds are these?"
+        pete "Broccoli."
+        her surprised "Do you like broccoli a lot?"
+        pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
+        her laughing "So true! And it's really healthy, too."
+        him happy "Great, thank you Pete! It's always good to have some more variety."
+        enable_crop("broccoli")
+    else:
+        show chaco at midright with moveinleft
+        her happy "Especially Chaco!"
+        "He didn't say anything, but a slight smile tugged at the corner of his mouth."
+        "Coming from Chaco, that was like a big bear hug."
+        chaco "Here."
+        "He handed me some credits."
+        him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
+        chaco "Wanted to thank you."
+        # TODO: add money
+
     "Someone from your favorite faction gives you cool seeds!"
     # turnips/onions from Thuc or broccoli from Pete or ? from miners (sunflowers for oil? wheat that only works one time? flowers? herbs?)
     return

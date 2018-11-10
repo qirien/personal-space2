@@ -5332,16 +5332,19 @@ label family20:
             kid "How is that going to help?"
             him "You'll learn music theory and how to read music, which will help with any instrument you play in the future."
             kid "So it would help me learn saxophone?"
+            "Honestly, I didn't know. I'd never learned to play a musical instrument. But Julia said it would, and I believed her."
             him "Yes."
-            kid "Okay."
+            kid "...Okay."
             scene black with fade
             "Julia expected a lot from [kid_name], but she was quick to praise when [kid_name] improved."
-            # TODO: sfx? singing unicode char?
-            kid "{font=fonts/OpenSansEmoji.otf}🎶{/font}You are my sunshine, my only sunshine-{font=fonts/OpenSansEmoji.otf}🎶{/font}"
+            scene farm_interior with fade
+            show him normal at midright
+            show kid normal at midleft with dissolve
+            kid surprised "{font=fonts/OpenSansEmoji.otf}🎶{/font}You are my sunshine, my only sunshine-{font=fonts/OpenSansEmoji.otf}🎶{/font}"
             "It amazed me how much her voice improved, and though I soon got tired of her practicing the same songs over and over, it was nice to hear music around the house."
-            him "You sound good, [kid_name]. Keep practicing."
+            him happy "You sound good, [kid_name]. Keep practicing."
             "She didn't say anything, just blushed and kept singing."
-            kid "Please don't take my sunshine away."
+            kid "{font=fonts/OpenSansEmoji.otf}🎶{/font}Please don't take my sunshine away.{font=fonts/OpenSansEmoji.otf}🎶{/font}"
             $ authoritarian += 1
             return
 

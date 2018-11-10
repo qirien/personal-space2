@@ -254,6 +254,15 @@ init -100 python:
     def colonists_strength():
         return (colonists / (year / 3.0))
 
+    # Returns the strongest faction
+    def strongest_faction():
+        if (colonists >= miners >= luddites):
+            return "colonists"
+        elif (miners >= colonists >= luddites):
+            return "miners"
+        elif (luddites >= colonists >= miners):
+            return "luddites"
+
 
 ##
 # Set things up for a scene in the bedroom

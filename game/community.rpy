@@ -4937,7 +4937,7 @@ label call_to_squid:
                 brennan "And I already made promises to the miners based on the shells I have now."
                 brennan "Sorry, my hands are tied."
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
-            "I had Julia print it in that week's Talaam Times" #italics
+            "I had Julia print it in that week's {i}Talaam Times{/i}" #italics
             if (colonists > 10):
                 "Four families gave me one shell each."
                 $ shell_count += 4
