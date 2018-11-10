@@ -14,6 +14,7 @@ label family_intro:
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
 
     call bedroom_scene(True)
+    show kid sad with dissolve
     her sleeping "[his_name]."
     him sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
@@ -46,7 +47,7 @@ label family1:
     scene farm_interior with fade
     show him concerned at midright
     show her concerned at midleft
-    show kid cry at midleftbaby
+    show kid cry at midleft, baby_pos
 
     her "I just wish I knew why she was still crying! We've tried everything -- food, diaper, snuggles, a warm bath, lying on her back, lying on her tummy...I don't know what else we can do."
     him sad "I know. It's been hours..."
@@ -64,7 +65,7 @@ label family1:
             $ marriage_strength += 1
             him concerned "Here, I'll take her for a walk. I know I could use some fresh air, and we've tried everything else."
             show him determined at center with move
-            show kid cry at centerbaby with move
+            show kid cry at center, baby_pos with move
             her concerned "It's not too cold out, is it?"
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
             her sad "Are you sure? I know you're tired, too..."
@@ -77,7 +78,7 @@ label family1:
             scene farm_exterior with fade
             show night_overlay with dissolve
             show him concerned at center behind night_overlay
-            show kid cry at centerbaby behind night_overlay
+            show kid cry at center, baby_pos behind night_overlay
             with moveinright
             him normal "There now, little [kid_name], how's that?"
             "..."
@@ -88,7 +89,7 @@ label family1:
             scene fields with fade
             show night_overlay with dissolve
             show him determined at center behind night_overlay
-            show kid cry at centerbaby behind night_overlay
+            show kid cry at center, baby_pos behind night_overlay
             with moveinright
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
             "I reminded myself that she wouldn't cry forever, that this was just one night, even as I felt like sobbing alongside her with exhaustion."
@@ -113,13 +114,13 @@ label family1:
             her sad "I'm a doctor; I should be able to figure something out. But I can't even think when [kid_name]'s crying."
             him concerned "Here, I'll hold her, and you go do some research or ask around or whatever."
             show him concerned at center with move
-            show kid angry at centerbaby with move
+            show kid angry at center, baby_pos with move
             him normal "Come on, [kid_name]."
             show him concerned at midright
-            show kid angry at midrightbaby with move
+            show kid angry at midright, baby_pos with move
             "[her_name] went outside to do some reading while I held [kid_name]. I paced restlessly, holding the baby in different positions until [her_name] returned."
             show him at center
-            show kid cry at centerbaby
+            show kid cry at center, baby_pos
             with move
             "She had a big list of things to try, and we tried them all.  I don't know if the white noise and the bath worked, or if she finally just wore herself out, but eventually she stopped crying and fell asleep."
             show kid normal
@@ -152,19 +153,20 @@ label family1:
                     "I ran back to the house. I could still hear [kid_name]'s crying even from outside."
                     scene bedroom with fade
                     show her sad at midright, squatting
-                    show kid sad at centerbaby, squatting
+                    show kid sad at center, baby_pos, squatting
                     show bedroom_overlay
                     show night_overlay
                     with dissolve
-                    show him concerned at midleft with moveinleft
+                    show him concerned at quarterleft with moveinleft
                     "[her_name] was lying on the bed with her arm around [kid_name], her face streaked with red from crying."
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
                     "She didn't say anything, just lay her head back down and stared at [kid_name] blankly."
                     him sad "[her_name]... I'm sorry. I shouldn't have left. I'm here, now."
-                    show him normal at center with move
-                    show him normal at quarterleft
-                    show kid at quarterleftbaby
-                    with move
+                    #show him normal at center behind kid with move
+                    #show him normal at quarterleft behind kid
+                    hide kid with dissolve
+                    show kid sad at quarterleft, baby_pos, jumpinghigh
+                    with dissolve
                     "She still didn't respond, even when I picked up squalling [kid_name] and bounced her gently, trying for the hundredth time to help her calm down."
                     "As I left the room, [her_name] said something I've never forgotten."
                     her annoyed "Don't ever leave us again."
@@ -183,10 +185,10 @@ label family1:
             her concerned "We can't take a break. We're her parents!"
             him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
             show him normal at center with move
-            show kid cry at centerbaby with move
+            show kid cry at center, baby_pos with move
             him determined "Come here, little siren."
             show him normal at quarterright
-            show kid angry at quarterrightbaby
+            show kid angry at quarterright, baby_pos
             with move
             show him normal at squatting
             show kid angry at sitting
@@ -214,7 +216,7 @@ label family1:
             with move
             "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
             show him happy at right, standing
-            show kid concerned at right, standingbaby
+            show kid concerned at right, baby_pos
             with move
             her normal "[his_name]... You don't have to try to impress me."
             show him happy at midright, squatting
@@ -227,12 +229,8 @@ label family1:
             $ authoritative += 1
             $ authoritarian += 1
 
-    scene bedroom with fade
-    show him sleeping at midleft, squatting
-    show her sleeping at midright, squatting
-    show kid laugh at centerbaby, squatting
-    show bedroom_overlay
-    with dissolve
+    call bedroom_scene(show_baby=True)
+    show kid happy with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
     him determined "She really needs us, doesn't she?"
@@ -284,7 +282,7 @@ label family2:
 
     scene farm_interior with fade
     show him normal at center
-    show kid surprised at midrightbaby
+    show kid surprised at midright, baby_pos
     "I managed to calm [kid_name] down with some snuggles and a snack."
     "I built a house out of blocks with her, but then my mind started to wander."
     show kid happy
@@ -323,7 +321,7 @@ label family2:
             show him normal at center
             show kid annoyed at center
             with move
-            show kid sad at centerbaby with move
+            show kid sad at center, baby_pos with move
             "[kid_name] seemed to sense my eagerness to leave, though, or maybe she just missed her routine with her mom, because she didn't want to go to sleep."
             scene black with fade
             "When she finally settled down, I rushed out and was able to at least start on another field before she woke up."
@@ -334,14 +332,14 @@ label family2:
             $ responsive += 1
             "There were a few things I could do at home -- researching, planning, checking the surveillance cameras..."
             show him determined with dissolve
-            show kid normal at midleftbaby with move
+            show kid normal at midleft, baby_pos with move
             "So I worked on those while [kid_name] crawled around, took all the pots and pans out of the cupboards, and banged on them."
-            show kid shifty at rightbaby with move
+            show kid shifty at right, baby_pos with move
             "She pulled the blankets and sheets off all the beds trying to climb up and bounce on them."
             show him annoyed with dissolve
-            show kid annoyed at midrightbaby with move
+            show kid annoyed at midright, baby_pos with move
             "We played peek-a-boo for a bit, but then she kept trying to grab my computer pad."
-            show kid nervous at centerbaby with move
+            show kid nervous at center, baby_pos with move
             "Seems like she wanted a turn, but I couldn't do any of my work without the computer pad."
             menu:
                 "What should I do?"
@@ -353,12 +351,12 @@ label family2:
                     $ family2_work_done += 1
                     scene farm_exterior with fade
                     show him determined at midright
-                    show kid surprised at centerbaby
+                    show kid surprised at center, baby_pos
                     with dissolve
                     "She might have more fun outside. I dragged a chair out there where I could sit and work."
-                    show kid normal at rightbaby with move
+                    show kid normal at right, baby_pos with move
                     "She crawled around for a few minutes, but then she crawled back and pulled herself up to stand using my leg."
-                    show kid annoyed at centerbaby with move
+                    show kid annoyed at center, baby_pos with move
                     "She grabbed at my screen again. This was one stubborn child!"
                     menu:
                         "What should I do?"
@@ -635,7 +633,7 @@ label family3:
     scene farm_interior with fade
     show him normal at midright
     show her normal at midleft
-    show kid normal at centerbaby
+    show kid normal at center, baby_pos
     with dissolve
     $ random_crop = farm.crops.random_crop(include_animals = False)
     him concerned "Whew, I thought I'd never finish harvesting all those [random_crop]!"
@@ -646,32 +644,32 @@ label family3:
     him normal "I think I'm going to take it easy for a few days..."
     her concerned "Yeah..."
     show her happy with dissolve
-    show kid shifty at leftbaby with move
+    show kid shifty at left, baby_pos with move
     extend " Hey, you know what we've never done?"
     him flirt "I can think of a lot of things."
     her annoyed "As a family?"
     him surprised "Oh. No, what?"
     her happy "Gone on vacation!"
-    show kid laugh at centerbaby with move
+    show kid laugh at center, baby_pos with move
     him annoyed "You went to the ocean that one time..."
     her annoyed "Like I said, as a family."
     him surprised "Where do you want to go? There's no hotels or anything..."
-    show kid surprised at centerbaby with dissolve
+    show kid surprised at center, baby_pos with dissolve
     her surprised "I thought maybe we could go camping?"
     him happy "That sounds great! I love camping!"
-    show kid laugh at centerbaby with dissolve
+    show kid laugh at center, baby_pos with dissolve
     "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug." # TODO: animate this?
     show him at center with move
-    show kid normal at centerbaby, jumpinghigh with move
-    show kid normal at centerbaby, standingbaby with move
+    show kid normal at jumpinghigh with move
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
     kid laugh "Ow sai!"
+    show kid normal at midright, baby_pos with move
     "She squirmed to get down, then toddled over the door and banged on it with her hands."
-    show kid shifty at rightbaby with move
+    show kid shifty at right, baby_pos with move
     her concerned "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
     him normal "I know the perfect spot! Let's go tonight!"
     her flirt "I think we'll need a little time to get a few things together. How about tomorrow?"
-    show kid annoyed at midrightbaby with move
+    show kid annoyed at midright, baby_pos with move
     him happy "Okay, tomorrow! Right after you're done at the clinic!"
     him surprised "Oh...can you really leave? What if something happens while you're gone?"
     her determined "Everything will be fine. I'll take a radio so they can contact me if there's an emergency."
@@ -679,7 +677,7 @@ label family3:
     scene path with fade
     show him normal at midright
     show her normal at midleft
-    show kid normal at centerbaby
+    show kid normal at center, baby_pos
     with moveinleft
     "The next day, we packed up some food and makeshift bedrolls and some equipment for starting fires."
     "[her_name] and I took turns carrying the equipment and carrying [kid_name]. She liked to walk, but she walked so slowly because she wanted to stop and look at every rock, bug, and bush."
@@ -693,23 +691,27 @@ label family3:
     # scene sunset with fade
     show him normal at midright
     show her normal at midleft
-    show kid normal at centerbaby
+    show kid normal at center, baby_pos
     with moveinleft
 
     "Finally, we arrived."
     him flirt "Remember this spot?"
     her flirt "It seems kind of familiar... though I mostly remember the food."
-    show kid shifty at quarterrightbaby with move
+    show kid shifty at quarterright, baby_pos with move
     him surprised "The food?"
     her happy "Yeah, you made such a delicious picnic dinner!"
-    show kid annoyed at rightbaby with move
-    show her flirt with dissolve
+    show kid annoyed at right, baby_pos with move
+    show her flirt at center with dissolve
     extend " And then we stayed out here all night long..."
     hide kid with moveoutright
     him happy "Oh, so you do remember!"
     her normal "Of course I do. It's a beautiful place."
+    show him sleeping
+    show her sleeping
+    with dissolve
     "I held [her_name] close for a minute, both of us savoring the memory."
     her surprised "Oh! Where's [kid_name]?!"
+    show him surprised with dissolve
     "We had just set her down, and already she had wandered off. We both scanned the area. I tried not to be too worried... she couldn't have gone far, right?"
     her concerned "I don't see her! Where is she?!"
     him concerned "[kid_name]! [kid_name]!"
@@ -721,7 +723,7 @@ label family3:
     "But then I saw our daughter, sitting on the other side of a large rock."
     # TODO: bg
     #scene canyon with fade
-    show kid surprised at quarterrightbaby with dissolve
+    show kid surprised at quarterright, baby_pos with dissolve
     show him concerned at midright with moveinleft
     him determined "She's over here!"
     show her sad at quarterright behind kid with moveinleft
@@ -730,7 +732,7 @@ label family3:
     show kid happy with dissolve
     "[her_name] got the sticks out of [kid_name]'s mouth while I checked Dr. Lily's  plants guide on my computer pad. [kid_name] just smiled and showed us her tiny teeth."
     show her concerned at midleft
-    show kid normal at midleftbaby
+    show kid normal at midleft, baby_pos
     with move
     him normal "Looks like that plant's harmless."
     show him concerned at center with move
@@ -740,7 +742,7 @@ label family3:
     show kid annoyed with dissolve
     "[kid_name] strained against [her_name]'s arms and twisted and writhed, trying to get down."
     her sad "Oof! This girl is getting heavy!"
-    show kid shifty at midleftbaby with move
+    show kid shifty at midleft, baby_pos with move
     "[her_name] set her down, but she went right back over to her sticks and began chewing on them again."
     show kid normal at quarterright with move
     "We gave each other exasperated looks and then laughed."
@@ -757,11 +759,11 @@ label family3:
             him normal "I'm going to make her a chew toy!"
             her happy "I think she'd like that."
             "I got some of the sticks she loved so much and carved them smooth so they would be nice and clean and without splinters."
-            show kid shifty at midrightbaby with move
+            show kid shifty at midright, baby_pos with move
             "I made sure there were no sharp ends and then gave them to her."
             show kid surprised with dissolve
             "She grabbed them from me, but then frowned and picked up some other sticks off the ground."
-            show kid annoyed at quarterrightbaby with move
+            show kid annoyed at quarterright, baby_pos with move
             her surprised "I guess she likes the bark?"
             "I kept giving her the ones I had made, but she didn't want them at all."
             show kid happy with dissolve
@@ -786,13 +788,13 @@ label family3:
             $ authoritative += 1
         "Don't let her put the sticks in her mouth.":
             show him determined at midright with move
-            show kid annoyed atmidrightbaby with dissolve
+            show kid annoyed at midright, baby_pos with dissolve
             him determined "No no, [kid_name]. Not in your mouth."
-            show kid annoyed at quarterrightbaby with move
-            show kid nervous at midrightbaby with move
+            show kid annoyed at quarterright, baby_pos with move
+            show kid nervous at midright, baby_pos with move
             "She went for them again, but I held her back."
             him determined "You can't just put everything your mouth. No."
-            show kid at centerbaby with move
+            show kid at center, baby_pos with move
             kid angry "No! No no no no no!"
             her annoyed "You can't just tell her 'no' about everything."
             him annoyed "She shouldn't be chewing on those."
@@ -830,7 +832,7 @@ label family3:
     "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
     show him sleeping at midright
     show her sleeping at center
-    show kid normal at centerbaby
+    show kid normal at center, baby_pos
     show night_overlay
     "When it started to get dark, we were both exhausted."
     him flirt "I was going to suggest some romantic star gazing, but..."
@@ -852,7 +854,7 @@ label family4:
     "...and then throwing them on the floor."
     show him determined at midright
     show her determined at midleft
-    show kid nervous at centerbaby
+    show kid nervous at center, baby_pos
     with dissolve
     kid "No!"
     her annoyed "Rice is what's for dinner, sweetie."
@@ -888,10 +890,10 @@ label family4:
             "She picked up a grain of rice, looked me right in the eyes, and threw it on the floor."
             "I put it right back on her plate."
             him annoyed "You still have to eat it."
-            show kid at midleftbaby with move
+            show kid at midleft, baby_pos with move
             "She slid off her chair and made to run away, but I put her right back in it."
             show him at center with move
-            show kid at centerbaby with move
+            show kid at center, baby_pos with move
             him determined "No. Eat your dinner."
             kid nervous "No! Yucky!"
             "She squirmed in my hands and started to slide out so I gripped her arms more tightly and held her in place on my lap."
@@ -908,7 +910,7 @@ label family4:
                 "Leave":
                     $ marriage_strength -= 1
                     him determined "..."
-                    show kid at midleftbaby with move
+                    show kid at midleft, baby_pos with move
                     hide him with moveoutleft
                     "I handed [kid_name] to [her_name] and tried not to slam the door on my way out."
                     scene farm_exterior with fade
@@ -920,7 +922,7 @@ label family4:
                     "I didn't know what to do."
                     scene farm_interior with fade
                     show her normal at midright
-                    show kid normal at midrightbaby
+                    show kid normal at midright, baby_pos
                     with dissolve
                     show him determined behind kid,her at midleft with moveinleft
                     "Finally I came back home. [her_name] and [kid_name] were snuggled up on the bed reading a book together."
@@ -960,9 +962,9 @@ label family4:
                             show kid annoyed with dissolve
                             "[kid_name] gave me the stinkeye."
                             him determined "I'm sorry, [kid_name]. I was not trying to hurt you. I'm trying to help you eat healthy foods to grow big and strong."
-                            show kid shifty at centerbaby with move
+                            show kid shifty at center, baby_pos with move
                             "[kid_name] seemed to think about this for a moment, then went to the table and carefully spooned up a bit of beans."
-                            show kid laugh at midleftbaby with move
+                            show kid laugh at midleft, baby_pos with move
                             "She brought it over near my mouth."
                             kid normal "Daddy eat."
                             "I opened my mouth and allowed her to feed me."
@@ -1086,14 +1088,13 @@ label family4:
 # Toilet Training
 label family5:
     scene black with fade
-    show baby with fade
-    hide baby with fade
-    show kid normal at center with moveinright
     "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, run, and jump. She learned several new words every day."
-    hide kid with moveoutleft
+    show baby with fade
     "When I thought back to the tiny helpless creature she was just two years ago, it was hard to even believe this was the same person."
-
+    hide baby with fade
+    show kid normal at center with fade
     "Learning some things was harder than others, though."
+    hide kid with fade
     "Once she could pull her pants up and down by herself, we taught her how to use the toilet."
     "She understood what it was for, and did pretty well for the first few days."
     "Then we had several days where she hardly ever made it to the toilet on time."
@@ -2053,6 +2054,7 @@ label family7:
                     kid happy "That was fun, daddy! [kid_name] Crane should come every night!"
                     "Uh-oh... what had I started?!"
                     her flirt "And now it's time for bed!"
+                    hide her with moveoutleft
                     $ authoritative += 1
                     call family7_bedtime
 
@@ -2063,6 +2065,8 @@ label family7:
         "Sometimes, I was amazed that humanity had ever managed to survive past childhood."
         "There was no choice but to keep trying. Maybe in nine months I'd be a better dad than I was now?"
         "I had the feeling it would take more than the passage of time to make a better parent out of me."
+    else:
+        scene black with fade
 
     "I wanted to be a better parent."
     "But I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
@@ -2568,7 +2572,7 @@ label family9:
     scene fields with fade
     show him normal at midright
     if (year6_have_baby):
-        show bro at midrightbaby
+        show bro at midright, baby_pos
     with dissolve
     show kid normal at midleft
     show oleg at quarterleft
@@ -2577,8 +2581,8 @@ label family9:
     show kid normal at midright with move
     if (year6_have_baby):
         "I set [bro_name] down so I could give [kid_name] my full attention for a minute."
-        show bro at standingbaby
-        show kid at midrightbaby with move
+        show bro at baby_pos
+        show kid at midright, baby_pos with move
     "She tackled me with a big hug and I swung her around in a circle."
     show kid happy at quarterright, standing with move
     him happy "Welcome home! Oh, I see you brought Oleg with you. Hi, there!"
@@ -2602,7 +2606,7 @@ label family9:
     kid happy "Giddyup, horsie!"
     show him normal at midleft
     if (year6_have_baby):
-        show bro at midleftbaby
+        show bro at midleft, baby_pos
     with moveinleft
     oleg "[kid_name]..."
     kid normal "Now go around in a circle. We have to patrol the whole farm for crabirds."
@@ -2679,7 +2683,7 @@ label family10:
     scene farm_interior with fade
     show him normal at midright
     if (year6_have_baby):
-        show bro at centerbaby
+        show bro at center, baby_pos
         "[bro_name] wanted a snack, too, so I sliced up some tomatoes."
     show kid shifty at midleft with moveinleft
     menu:
@@ -2734,7 +2738,7 @@ label family10:
 
     if (year6_have_baby):
         "She finished her snack and got out the blocks. I cleaned up the kitchen a bit and [bro_name] wandered over to play with her."
-        show bro at quarterleftbaby with move
+        show bro at quarterleft, baby_pos with move
         show him normal with dissolve
         "It still amazed me to see the two of them playing together. Two tiny people, that hadn't even existed several years ago..."
         "They were quite different, though. When [kid_name] was his age, she was climbing on everything and pulling down everything she could reach."
@@ -3373,12 +3377,12 @@ label family12:
     julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
     brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad, too. I've got a lot of hair to comb through, here."
     pete_c "I'll take care of it."
-    sara_c "You're offering to comb through Brennan's hair?! O_o"
+    sara_c "You're offering to comb through Brennan's hair?! 😳"
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
-    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through."
-    brennan_c "I'm not cutting my hair; I just can't part with these luscious locks."
+    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. 🧑"
+    brennan_c "I'm not cutting my hair. I just can't part with these luscious locks."
     nvl hide
 
     scene farm_interior with fade
@@ -5217,7 +5221,7 @@ label family20:
     nvl clear
     him_c "Anyone have a saxophone? [kid_name] wants to play..."
     ilian_c "Saxophone! Oh man, I haven't played in so long... wish I'd brought mine with me."
-    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit!"
+    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit! 😬"
     kevin_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
     ilian_c "You'd need to make pads out of fabric, and reeds out of wood. They'd have to be really precise."
     ilian_c "Honestly, almost any other instrument would be easier to make."
@@ -5333,7 +5337,7 @@ label family20:
             scene black with fade
             "Julia expected a lot from [kid_name], but she was quick to praise when [kid_name] improved."
             # TODO: sfx? singing unicode char?
-            kid "You are my sunshine, my only sunshine-"
+            kid "{font=fonts/OpenSansEmoji.otf}🎶{/font}You are my sunshine, my only sunshine-{font=fonts/OpenSansEmoji.otf}🎶{/font}"
             "It amazed me how much her voice improved, and though I soon got tired of her practicing the same songs over and over, it was nice to hear music around the house."
             him "You sound good, [kid_name]. Keep practicing."
             "She didn't say anything, just blushed and kept singing."
@@ -6272,7 +6276,7 @@ label lettie_dies:
     him_c "I hope everyone knows this plant is poisonous to livestock and humans."
     him_c "I don't know why anyone would even bring it to Talaam; it's deadly and doesn't provide food. I think I'm even allergic to it."
     him_c "I hope the owners will rip that plant out and destroy it so no one else gets hurt."
-    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it."
+    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it. 🙁"
     julia_c "Lettie was a good horse."
     brennan_c "Yew's a tough plant that can grow almost anywhere and is symbolic of death and rebirth."
     brennan_c "The Lewis' were thinking of these qualities and not its horse-murdering tendencies."
@@ -6280,7 +6284,7 @@ label lettie_dies:
     him_c "But why do we need it here, on Talaam?! We have a chance to start from scratch, to only bring the best things from Earth!"
     him_c "Instead we contaminate our planet with poisonous weeds and people that don't even give a damn."
     her_c "[his_name]!"
-    sara_c ":-("
+    sara_c "😢"
     him_c "If you don't pull out weeds, they'll suck the life out of all the good plants you're trying to grow."
     if (is_liason):
         brennan_c "I'm going to pretend I didn't hear the RET liason comparing our entire mining operation to poisonous weeds."
@@ -6483,7 +6487,7 @@ label family25:
         "We need other people, too.":
             $ responsive += 1
             him "We need people to do other things, too. Sara, and Ilian aren't farmers, but imagine how disorganized we'd be without them!"
-            him "Or how much less we'd know without Miranda's studies, or how many people would have died without your mom there to fix them up."
+            him "Or how much less we'd know without Zaina's studies, or how many people would have died without your mom there to fix them up."
             him "I love farming, but if you don't want to do that, there's plenty of other great things you can do to help the colony."
             kid "Thanks for the speech, dad."
         "Miners and farmers can do other things, too.":
@@ -6901,6 +6905,7 @@ label family28:
             her "You just want to see me get hot and sweaty."
             him "Wish I could!"
             "She left, and I turned to my computer pad. There were several ways I could go about this..."
+            nvl clear
             menu:
                 "Ask around.":
                     "I decided to ask around. Maybe someone else had seen her."
@@ -6928,7 +6933,7 @@ label family28:
 
                     if (colonists > 10):
                         him_c "Hey, Sara, any idea where [her_name] is? I'm looking for her..."
-                        sara_c "Oh, she was just here, buying some stuff from Ilian. :-)"
+                        sara_c "Oh, she was just here, buying some stuff from Ilian. 😃"
                         him_c "What kind of stuff?"
                         sara_c "Ilian says... oil and salt? Like, a lot of it."
                         him_c "Really..."
@@ -6963,6 +6968,7 @@ label family28:
                 "That's what she was hiding."
             else:
                 "She didn't seem to be hiding anything, but I still felt uneasy."
+            nvl clear
             "I told [her_name] what I found out."
             her_c "Okay, I don't think I can make it to Pete's before she leaves. I'll head over to the miner's camp and see if she comes there."
             "I waited. I didn't hear anything from [her_name] for a long time, until..."

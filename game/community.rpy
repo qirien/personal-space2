@@ -587,7 +587,7 @@ label community5:
         if (whole_harvest_to_storehouse == True):
             ilian "Well, a few farmers are already bringing their whole harvest to the storehouse."
             show ilian happy
-            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of bread and beans."
+            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of potatoes and beans."
             show ilian
             ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
         else:
@@ -787,7 +787,7 @@ label community5:
         show him determined
         him "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
         show martin
-        martin "We eat most of our crops the same day we harvest them. But we do try to store a little extra."
+        martin "We eat most of our crops soon after harvesting them. But we do try to store a little extra."
         show him normal
         him "I get what you're saying. Just write down how much you eat and tell Ilian."
         him "Then if you have extra, bring that in once a week and he can calculate how your crops are doing."
@@ -820,11 +820,12 @@ label community5:
 # 6 - discussion of choice from 5 at game night
 label community6:
     if town_hall_games:
-        show community_center with fade
+        scene community_center with fade
     else:
-        show farm_exterior with fade
+        scene farm_exterior with fade
     show pete at midright
     show him normal at left #BUG: his sprite isn't showing up. I'm not sure why not. I tried having him at center as well and had the same problem.
+    # I think I fixed it. You were using 'show' instead of 'scene' for the background so it was putting the background as a sprite and covering up everything else.
     show thuc at midleft
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
     show him determined
@@ -902,6 +903,8 @@ label community6:
             show him concerned
             him "Good point. I hope we can mange."
     if require_whole_harvest:
+        $ rationing = True
+        $ require_whole_harvest = False
         show thuc
         thuc "Speaking of food, Ilian just sent out a message that we don't have to bring in our whole harvest anymore."
         thuc "He has enough data, and he sent out a table of who should bring in how much."
@@ -1447,7 +1450,7 @@ label community10:
     "After weeding and clearing out old growth, Terra comes home from school."
     "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
     show farm exterior
-    natalia "Thanks for coming over. We're just finishing up the rice."
+    natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
@@ -1475,13 +1478,16 @@ label community10:
     natalia "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
     martin "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin "What would you do in my position? Who do you think should take care of the farm?"
+    $ community11_kidsonfarm = False
     menu:
         "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
+            $ community11_kidsonfarm = True
             $ colonists += 1
             $ miners += 1
             #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
             #another possible way to improve the iteractivity here would be to help martin compose an argument about why Tomas and Joanna should care about the farm.
         "Let Natalia scale back the farm. Let their children pursue their dreams.":
+            $ community11_kidsonfarm = False
             $ luddites += 1
             #then what happens to the corn everyone needs? they need to decide on how to take care of that. Maybe when Pete leaves it's not as much of an issue, since there is less cattle to feed over the winter.
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
@@ -1513,9 +1519,9 @@ label community11:
     #BRENNAN ON SCREEN. he looks the same
     # Jack definitely doesn't like him, but doesn't have a great reason.
     # Is Kelly here, too? Could be interesting...
-    him "Brennan!"
+    him surprised "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
+    him determined "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
     brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
     her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
@@ -1682,7 +1688,7 @@ label community11:
 
             if talked_to_Thuc:
                 thuc "I can start growing these peanuts right away!"
-                # uncomment this when peanut icon available
+                # TODO: uncomment this when peanut icon available
                 # $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
@@ -2097,7 +2103,7 @@ label community12:
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
                     "Dr. Lily took a few people out foraging."
                     "The miners lived off the meat and foraged food for almost a month."
-                    "After eight weeks, we had zucchini, squash, and turnips, with some small potatoes and bigger ones on the way."
+                    "After eight weeks, we had zucchini, squash, and turnips for them, with some small potatoes and bigger ones on the way."
                     return
 
                 label community12_choose_foraging:
@@ -2464,7 +2470,7 @@ label community14:
             him "But what if you get hurt or develop skin cancer? What are your cows going to eat?"
             pete "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
             him "This is your family you're experimenting with."
-            pete "I know. I don't like our present condition, so I'm changing it."
+            pete "My family's why I'm doing this. I don't like our present condition, so I'm changing it."
         "Tell them that I understand.":
             him "I'm sad to see you go, Pete."
             him "I understand why you're leaving, but I'll miss you guys."
@@ -3554,7 +3560,7 @@ label community21:
             brennan "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
             brennan "If I knew how much to take for a little pick-me-up that would still let me sleep at night I use it occasionaly."
             pete "Fair enough."
-            pete "I have some yogurt here that would go really well on these fish."
+            pete "I have some cream here that would go really well on these fish."
             brennan "Yes, please share some! And take a fish in return. You seem to be familiar with them."
             pete "We usually spend part of the winter near the ocean. The mountain provides some shelter from storms and shade when it's sunny."
             pete "There's a big cave where we usually camp that is a wonderful shelter. There are holes in the top so we can have a fire, but it's enclosed enough that we don't need to worry about radiation."
@@ -4171,7 +4177,7 @@ label community24:
         him "Really? Wow."
         thuc "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
         him "Do people really drink that stuff?"
-        thuc "No, usually people make it into yogurt or lotion or something."
+        thuc "No, usually people make it into cheese or lotion or something."
         thuc "Nice lotion sells for even more than goat milk."
         him "I'm surprised Miranda hasn't tried that."
         thuc "She still does some lab work, but she's gotten really into making soap and stuff. She says it's specially formulated to kill microflora on Talaam."
@@ -4260,7 +4266,7 @@ label community25:
     "This week Sara was asking about recipes for the jellystars."
     nvl clear
     sara_c "After you chop it up, do you just sautee it?"
-    thuc_c "I like it in a little beef grease with beans and garlic."
+    thuc_c "I like it in a little goat cream with beans and garlic."
     natalia_c "I think Ilian is selling it dried now. Dried jellystar is really good in soup"
     julia_c "It's especially good with a little of my plum syrup! Ten percent off this week!"
     natalia_c "I think everyone has tried your plum syrup by now..."
@@ -5102,7 +5108,7 @@ label call_to_squid:
                 zaina "Sometimes the most helpful thing you can do is to go away."
                 him "They can sort of write to us Zaina! How are you not curious about that?"
                 zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
-                zaina "I helped Dr. Lily teach them how to 'write'." 
+                zaina "I helped Dr. Lily teach them how to 'write'."
                 zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
                 zaina "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
                 him "They asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
@@ -5190,8 +5196,8 @@ label call_to_squid:
                 "Over the next few months, there were fewer reports of jellysquid sightings."
                 "We rarely saw any of them after that year."
                 return
-                #Similar resistence to the boat_capsized ending next month 
-                
+                #Similar resistence to the boat_capsized ending next month
+
         "No, I will not bring them.":
             jump boat_capsized
 
@@ -5354,7 +5360,7 @@ label fill_gap:
     sara "If you don't want him to be mayor, go ahead and vote for me or Julia."
     sara "Other questions about the candidates?"
     thuc "Don't vote for Julia! I need her to oversee my water treatment plant."
-    julia "Please vote for me! I don't want to oversee Thuc's pee factory."
+    julia "Please vote for me! I don't want to oversee Thuc's sewage factory."
     kevin "Are miners going to be allowed to vote?"
     sara "Good question. Since the mayor is responsible for the well-being of the colonists, he is elected by colonists."
     sara "Are miners interested in voting? What would it mean for miners to be able to vote?"
@@ -5452,14 +5458,14 @@ label community29:
         "He worked with them and talked with them more than he did to us, so it wasn't surprising."
         "He worked with Brennan to have a work rotation with some of the farmers. Farmers would work in the mines for a day each week while the miners worked in the fields."
         "At first there were a lot of mistakes on both sides, but eventually we farmers learned the basics of mining and got to know the other miners better."
-            
+
     else:
         "Julia was a behind-the-scenes kind of mayor. Things went smoothly because she talked to everyone privately, and she was able to distribute important information through her newspaper."
         "Eventually interviews with each resident of Talaam were featured in the Talaam Times, including the luddites and the miners."
-        
+
     if jellypeople_happy:
         "I kept communicating with the jellypeople through the jellysquids. We traded land meat for seafood."
-        
+
     "I was working in the canning factory after a harvest when [her_name] messaged me."
     nvl clear
     her_c "Helen is pregnant!!!!"
@@ -5479,7 +5485,7 @@ label community29:
         "Helen came to stay with us. She gave us a big wheel of cheese and a string of dried fish the day she arrived."
         jump helen_convo_29
     else:
-        her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby." 
+        her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
         her_c "That way I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
         "I saw Pete dragging her to the hospital on a stretcher. He refused my help."
@@ -5538,7 +5544,7 @@ label community29:
         him "Yeah, it's not like you can actually buy more hospital supplies with the credits."
         her "Exactly."
         return
-        
+
     label helen_convo_29:
         him "How are you liking life back in the colony?"
         helen "Well, there are so many people to talk to. It's kind of overwhelming."
@@ -5555,15 +5561,15 @@ label community29:
         helen "I wonder if that's why I have high blood pressure now..."
         if keep_buying_pete_beef:
             him "How is the herd doing? Pete hasn't come by to butcher or sell meat in a long time."
-            her "The butchery in the colony is actually an artificial meat factory now!"
-            her "We have to do our own butchering, so we only sell raw cuts to people who are willing to come to us to get the food."
-            her "The rest, we dry out or slow-cure."
-            her "Beef definitely isn't as popular now, so our herd is a bit smaller."
-            her "Our cheese and yogurt is pretty profitable, and our dried fish is the most popular."
+            helen "The butchery in the colony is actually an artificial meat factory now!"
+            helen "We have to do our own butchering, so we only sell raw cuts to people who are willing to come to us to get the food."
+            helen "The rest, we dry out or slow-cure."
+            helen "Beef definitely isn't as popular now, so our herd is a bit smaller."
+            helen "Our cheese and cream are pretty profitable, and our dried fish is the most popular."
         else:
             him "Are you still raising cattle?"
             helen "Oh yes. The herd is getting a little smaller, but we can sell it for more now that we're not competing with the colony's beef."
-            helen "Our dried fish is really popular, as is our cheese and yogurt."
+            helen "Our dried fish is really popular, as is our cheese and cream."
         him "So you have high blood pressure. I heard that's really common in late pregnancy."
         helen "I know. I just keep thinking that I should have been more careful about eating animal fats."
         helen "Or maybe I'm just too stressed out and it would be better if I could just calm down."
@@ -5630,7 +5636,7 @@ label community29:
 #Oleg's app is there! It has been modified and her dosage is pretty high.
 #JULIA DEALING FIREWEED (transported by your daughter in some branches?) bum bum bum
 # WHO STOLE PETE'S CREDITS
-        
+
 label community30:
     $ account_checked_counter = 0
     if kevin_elected:

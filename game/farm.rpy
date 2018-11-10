@@ -87,7 +87,13 @@ init python:
                 if (crop_info[crop_index][PERENNIAL_INDEX]):
                     if (crop_name[-1] != "+"):
                         new_crops[i] = crop_name + "+"
+
+                        # subtract one from the no +
                         crop_info[crop_index][MAXIMUM_INDEX] -= 1
+
+                        # Add one to +
+                        plus_index = get_crop_index(new_crops[i])
+                        crop_info[plus_index][MAXIMUM_INDEX] += 1
                     else:
                         new_crops[i] = crop_name
             self.crops = new_crops
@@ -141,6 +147,30 @@ init python:
 
             return valid_layout
 
+        def low_vitamin_a(self):
+            vitA = 0
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i].rstrip("+")
+                vitA += VITAMIN_A_CROPS[current_crop_name]
+            return (vitA <= VITAMIN_A_LOW)
+
+        def low_vitamin_c(self):
+            vitC = 0
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i].rstrip("+")
+                vitC += VITAMIN_C_CROPS[current_crop_name]
+            return (vitC <= VITAMIN_C_LOW)
+
+        def low_magnesium(self):
+            magn = 0
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i].rstrip("+")
+                magn += MAGNESIUM_CROPS[current_crop_name]
+            return (magn <= MAGNESIUM_LOW)
+
+        def most_frequent_crop(self):
+            return self.crops.most_frequent_crop()
+
     ##
     # CROPS OBJECT
     ##
@@ -191,14 +221,26 @@ init python:
                 else:
                     chosen_crop = renpy.random.choice(list(set(self.items)))
                 if (not include_animals):
-                    if (chosen_crop == "goats"):
+                    if ((chosen_crop == "goats") or (chosen_crop == "honey")):
                         chosen_crop = ""
 
                 # an empty field is not a valid choice
                 if (chosen_crop == "fallow"):
                     chosen_crop = ""
 
+            chosen_crop.strip("+")
             return chosen_crop
+
+        def most_frequent_crop(self):
+            most_frequent_crop = ""
+            most_frequent_count = 0
+            for i in range(0, farm_size):
+                current_crop_name = self.items[i]
+                current_crop_count = self.count(current_crop_name)
+                if (current_crop_count >=  most_frequent_count):
+                    most_frequent_crop = current_crop_name
+                    most_frequent_count = current_crop_count
+            return most_frequent_crop
 
 
     # Return the index of a crop in crop_info given its name
@@ -210,6 +252,23 @@ init python:
     def get_crop_filename(crop_name):
         return "gui/crop icons/" + crop_name.rstrip("+") + ".png"
 
+    def crop_enabled(crop_name):
+        crop_index = get_crop_index(crop_name)
+        return crop_info[crop_index][ENABLED_INDEX]
+
     def enable_crop(crop_name):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
+        renpy.say(tutorial,"You can now grow " + crop_name + " on your farm.")
+
+    def disable_crop(crop_name):
+        crop_index = get_crop_index(crop_name)
+        crop_info[crop_index][ENABLED_INDEX] = False
+        renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
+
+    # Delete all instances of crop_name in crops
+    def delete_crop(crop_name):
+        for i in range(0, farm_size):
+            current_crop_name = self.items[i]
+            if (current_crop_name == crop_name):
+                self.items[i] = "fallow"

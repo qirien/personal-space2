@@ -44,14 +44,21 @@ screen plan_farm:
                             textbutton "Random":
                                 xalign 0.5
                                 action [
-                                            set_default_crops,
-                                            renpy.restart_interaction
+                                        set_default_crops,
+                                        renpy.restart_interaction
                                         ]
                             textbutton "Accept Plan":
                             # TODO: What if no valid layout is possible? Have emergency help button?
                                 xalign 1.0
                                 sensitive valid_layout
                                 action Return()
+                        if (not valid_layout):
+                            if (farm.get_total_calories() < get_calories_required()):
+                                text "Need more calories!" xalign 1.0
+                            elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
+                                text "Need to allocate all goats!" xalign 1.0
+                            else:
+                                text "Cannot plant crops where there is insufficient nitrogen!" xalign 1.0
 
 label monthly_computer:
     call screen monthly_screen

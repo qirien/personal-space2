@@ -1373,7 +1373,8 @@ style nvl_window is default
 style nvl_entry is default
 
 style nvl_label is say_label
-style nvl_dialogue is say_dialogue
+style nvl_dialogue is say_dialogue:
+    font gui.nvl_font
 
 style nvl_button is button
 style nvl_button_text is button_text

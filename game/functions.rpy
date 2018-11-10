@@ -146,8 +146,20 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
+        global crop_temporarily_disabled
+        # Enable any crops that were temporarily disabled
+        if (crop_temporarily_disabled != ""):
+            enable_crop(crop_temporarily_disabled)
+            crop_temporarily_disabled = ""
+
         #Every even year there is a set event; other years are crop events.
-        # This means we need 15 set events and at least 15 crop events.
+        # This means we need 15 set events and at least 15 crop events (we have 22)
+        # HOWEVER, if nutrition is low, you don't get to do any of that. Instead
+        # you have to take care of the nutrition problem.
+        malnutrition_threshold = renpy.random.randint(-5, 0)
+        if (get_extra_nutrition() <= malnutrition_threshold):
+            return "bad_nutrition"
+
         if ((year % 2) == 0):
             # Call the next set event
             event_name = "work" + str(year)
@@ -204,10 +216,43 @@ init -100 python:
 
     # Calculate the amount of work available.
     def get_work_available():
-        return WORK_BASE + get_work_kid(earth_year)
+        return WORK_BASE + get_work_kid()
 
-    def get_work_kid(age = 0):
+    def get_work_kid():
         return int(competence * (kid_work_slider / 100.0))
+
+    def get_extra_work():
+        total_work = 0
+        for i in range(0, farm.crops.len()):
+            crop_names = [row[NAME_INDEX] for row in crop_info]
+            index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
+            total_work += crop_info[index][WORK_INDEX]
+
+        work_available = get_work_available()
+        return (work_available - total_work)
+
+    def get_extra_nutrition():
+        total_nutrition = 0
+        for i in range(0, farm.crops.len()):
+            crop_names = [row[NAME_INDEX] for row in crop_info]
+            index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
+            total_nutrition += crop_info[index][NUTRITION_INDEX]
+        nutrition_required = get_nutrition_required()
+        return -(nutrition_required - total_nutrition)
+
+    # Return True if marriage is strong for the current year
+    # A rate of 1 per 4 years is considered high given a current max of 10
+    def has_strong_marriage():
+        return (marriage_strength >= (year / 4))
+
+    # Return strength of relationships given current year
+    # 1 or greater means strong, less than 1 means weak
+    def luddites_strength():
+        return (luddites / (year / 3.0))
+    def miners_strength():
+        return (miners / (year / 3.0))
+    def colonists_strength():
+        return (colonists / (year / 3.0))
 
 
 ##
@@ -222,7 +267,7 @@ label bedroom_scene(show_baby=False, sleeping=True):
         show him normal at midleft, squatting
         show her normal at midright, squatting
     if (show_baby):
-        show kid sad at centerbabybed
+        show kid normal at centerbabybed
     show bedroom_overlay
     show night_overlay
     with dissolve

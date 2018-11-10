@@ -24,6 +24,16 @@ init -100:
 
     define CROP_STATS_MAX = 10
 
+    # Nutritional data
+    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
+    define VITAMIN_A_LOW = 15
+
+    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
+    define VITAMIN_C_LOW = 20
+
+    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "spinach":4, "broccoli":1, "goats":1, "honey":0}
+    define MAGNESIUM_LOW = 10
+
     # Calorie data
     define CALORIES_BASE = 50
     define NUTRITION_BASE = 50
@@ -110,33 +120,40 @@ init -100:
     define fade = Fade(0.2, 0.2, 0.2)
     define irisout = CropMove(0.5, "irisout")
     define irisin = CropMove(0.5, "irisin")
-    define topcenter = Position(xpos=0.5, ypos=0.0, yanchor=0.0)
-    define midleft = Position(xpos=0.35, xanchor=0.5)
-    define midright = Position(xpos=0.65, xanchor=0.5)
-    define quarterleft = Position(xpos=0.22, xanchor=0.5)
-    define quarterright = Position(xpos=0.78, xanchor=0.5)
-    define farleft = Position(xpos=-0.30, xanchor=0)
-    define farright = Position(xpos=1.0, xanchor=0)
-    define sitting = Position(ypos=0.45, yanchor=0)
-    define squatting = Position(yoffset=150, yanchor=1.0)
-    define standing = Position(ypos= 1.0, yanchor = 1.0)
-    define jumping = Position(yoffset=-50)
-    define jumpinghigh = Position(yoffset=-150)
+    transform midleft:
+        xpos 0.35 xanchor 0.5 ypos 1.0 yanchor 1.0
+    transform midright:
+        xpos 0.65 xanchor 0.5 ypos 1.0 yanchor 1.0
+    transform quarterleft:
+        xpos 0.22 xanchor 0.5 ypos 1.0 yanchor 1.0
+    transform quarterright:
+        xpos 0.78 xanchor 0.5 ypos 1.0 yanchor 1.0
+
+    transform sitting:
+        ypos 0.45 yanchor 0.0
+    transform squatting:
+        ypos 0.25 yanchor 0.0
+    transform standing:
+        ypos 1.0 yanchor 1.0
+    transform jumping:
+        yoffset -50
+    transform jumpinghigh:
+        linear 0.7 yoffset -150
+        linear 0.7 yoffset 0
+
 
     # Baby positions for being held
     define baby_ypos = 540
-    define rightbaby = Position(xpos=1.0, xanchor=1.0, ypos=baby_ypos)
-    define quarterrightbaby = Position(xpos=0.78, xanchor=0.5, ypos=baby_ypos)
-    define midrightbaby = Position(xpos=0.65, xanchor=0.5, ypos=baby_ypos)
-    define centerbaby = Position(xpos=0.5, xanchor=0.5, ypos=baby_ypos)
-    define centerbabybed = Position(xpos=0.5, xanchor=0.5, ypos=baby_ypos, yanchor=1.0)
-    define midleftbaby = Position(xpos=0.35, xanchor=0.5, ypos=baby_ypos)
-    define quarterleftbaby = Position(xpos=0.22, xanchor=0.5, ypos=baby_ypos)
-    define leftbaby = Position(xpos=0, xanchor=0.0, ypos=baby_ypos)
-    define standingbaby = Position(ypos=baby_ypos)
+    transform baby_pos:
+        ypos baby_ypos yanchor 1.0
+    transform centerbabybed:
+        xpos 0.5, xanchor 0.5, ypos baby_ypos, yanchor 1.0
+    transform standingbaby:
+        ypos baby_ypos yanchor 1.0
 
     # Kid positions for really short people
-    define centerkid = Position(xpos = 0.5, xanchor = 0.5, ypos = 0.75)
+    transform kid_pos:
+        ypos 0.75 yanchor 1.0
 
     # Slide in from the right to the left, pause, then fade out. Used for monthly interscene screen
     transform slideinpausefade:

@@ -2,6 +2,238 @@
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
+    $ enable_crop("squash")
+    return
+
+# Malnutrition Event for if you don't have enough nutrition
+label bad_nutrition:
+    $ bad_nutrition_count += 1
+    if (bad_nutrition_count == 1):
+        scene farm_interior with fade
+        show her concerned at midright
+        show him determined at midleft
+        if (has_strong_marriage()):
+            her normal "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
+            him surprised "Oh. I'm, uh, glad you appreciate it."
+            $ common_food = farm.most_frequent_crop()
+            her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
+        else:
+            her concerned "[his_name], I don't want to tell you how to do your job..."
+            him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
+            her annoyed "We can't live on just one or two foods! The human body needs more than 30 different vitamins, minerals, and nutrients."
+        him angry "There's a lot of factors here! Sometimes crops fail, I have a limited amount of seeds, and I have to balance everything right or crops won't grow at all!"
+        her concerned "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
+        him annoyed "They're not starving, right?"
+        her annoyed "No. But I've made a list of deficiencies of our current diet and foods that could help meet them."
+        him surprised "Don't we have vitamin supplements we could take?"
+        her concerned "Right now they're by prescription only, for serious nutrition problems. I don't want us to get to that point."
+        him determined "I guess I could get some of these foods at the storehouse..."
+
+        # are we using currency yet?
+        if (year > 5):
+            her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to spend our money on that."
+            # TODO: subtract some money
+        else:
+            her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to trade as much."
+        return
+
+    if (bad_nutrition_count >= 3):
+        # All nutrients low
+        if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium() and (not seen_low_cam)):
+            $ seen_low_cam = True
+            "I felt like I was sick all the time. I had no energy, my gums were always bleeding, and I felt weak and cranky."
+            "Finally, I went to see [her_name]."
+            him determined "Help me, doc."
+            her concerned "What's wrong?"
+            him concerned "I don't know; maybe it's nothing. I just feel like I'm a little bit sick all the time."
+            her determined "Oh, really?"
+            him sad "Yeah. So if I'm just making it up, tell me and I'll get back to work. But if there is something wrong, maybe you can help me."
+            $ common_food = farm.most_frequent_crop()
+            her angry "I know exactly what's wrong with you!  You've been eating nothing but [common_food] and your body's sick!"
+            him surprised "This is all from my diet?"
+            her annoyed "Yes, I warned you about this!"
+            him sad "Oh."
+            her concerned "..."
+            him concerned "Are the kids okay?"
+            her annoyed "Yes, I've been supplementing their diet."
+            him annoyed "But not mine."
+            her angry "No! I wanted you to understand how serious this is!"
+            him surprised "Can't we just buy what we need from the storehouse?"
+            her annoyed "Yes, but it gets expensive. Here's a list."
+            "She had made a list of foods we needed to buy."
+            # TODO: currency check
+            him concerned "Sorry, [her_name]. I feel like I failed you."
+            her determined "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
+
+        # Low Vitamin A & C
+        elif (farm.low_vitamin_c() and farm.low_vitamin_a() and (not seen_low_ca)):
+            $ seen_low_ca = True
+            # someone else has iodine deficiency. You trade them goat products for something with vitamin A and C
+            "I hadn't been feeling well lately. I had no energy and it was harder to see at night."
+            "I wondered if I should ask [her_name] about it, but I figured she'd probably just tell me to eat better."
+
+            nvl clear
+            her_c "I've seen several people lately with nutrient deficiencies. If you don't have much dairy, eggs, or seafood in your diet, you may be at risk for iodine deficiency."
+            "Hmmm, we eat plenty of goat's milk so that's probably not what's bothering me."
+            her_c "Here's a list of other deficiencies and foods you can eat to remedy them."
+            pete_c "I've got cow's milk, if anyone would like to trade."
+            him surprised "Trading would be more efficient than buying from Ilian..."
+            "Looking at the crops I was growing and my symptoms, I figured I was probably low on vitamins A and C."
+            "If I could trade with someone that needed iodine, it would be great."
+            him_c "Looking to trade goat's milk for vitamin A and C foods."
+            natalia_c "I'll trade you bell peppers and squash for those."
+            pete_c "I thought you grew squash and peppers, [his_name]?"
+            if ("squash" in farm.crops):
+                him_c "Not enough, apparently."
+            else:
+                him_c "Not this year. Maybe next year, though."
+            pete_c "Natalia, I'd like the same trade for cow's milk if you have enough."
+            natalia_c "Sure; I'll bring tomatoes, too."
+            if (whole_harvest_required):
+                ilian_c "Shouldn't you be bringing all that to the storehouse?"
+                if is_liason:
+                    "He caught me there. I was being pretty hypocritical, going around the system I was telling everyone else to follow."
+                    menu:
+                        "What should I say?"
+                        "You're right.":
+                            him_c "You're right, Ilian. Sorry, guys, I'm going to have to back out. I'm taking the goat's milk to the storehouse where you can buy it from Ilian."
+                            # TODO: currency check?
+                            "I ended up paying a premium for peppers and squash for the family diet."
+                            return
+                        "We should only bring extra.":
+                            him_c "You know; I've changed my mind. We shouldn't have to do that. Everyone should just bring their extra to the storehouse."
+                            $ rationing = True
+                            $ require_whole_harvest = False
+                            ilian_c "Really? You're changing it, just like that?"
+                            him_c "Being the liason has to be good for something."
+                            natalia_c "I'm not complaining."
+                        "(Don't say anything)":
+                            "I didn't say anything. Everyone knew that requirement was mostly for show, right?"
+                            $ luddites += 1
+                            $ colonists -= 1
+                            $ miners -= 1
+                else:
+                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly. 😥"
+                    pete_c "And at a high price."
+            nvl clear
+            "I was glad I was able to work out a trade this time. Next time, though, I might not be so lucky."
+
+            # test for vitamin C
+        elif (farm.low_vitamin_c() and (not seen_low_c)):
+            $ seen_low_c = True
+            "I felt weak and sore, like I was coming down with the flu."
+            "It got bad enough that I decided to ask [her_name] about it."
+            scene hospital with fade
+            show her concerned at midright with dissolve
+            show him concerned at midleft with moveinleft
+            her concerned "You feel tired and sore, and have a low grade fever. On Earth I'd call this the flu, but..."
+            him annoyed "The flu is not supposed to exist here."
+            her surprised "Do you have any other symptoms? Sore throat, runny nose, cough, indigestion?"
+            him normal "No, none of those. Well, maybe a little stomachache, but I ache all over."
+            her determined "Here, let me check your gums..."
+            him annoyed "Ow!"
+            her concerned "Gums bleed easily... let me look at your skin..."
+            him surprised "Oh, where did that bruise come from? I don't remember getting hurt..."
+            her determined "You have scurvy."
+            him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
+            her annoyed "Like, someone didn't plant enough fruits and vegetables scurvy."
+            him surprised "How come you and [kid_name] don't have it?"
+            her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
+            him annoyed "And you don't share it with me?!"
+            her annoyed "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
+            him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
+            her flirting "Don't go bragging about it or everybody will want to get scurvy."
+            him flirting "I don't think that's something we need to worry about."
+
+        elif (farm.low_vitamin_a() and (not seen_low_a)):
+            $ seen_low_a = True
+            scene farm_interior with fade
+            show him determined at midright with dissolve
+            "My skin was always dry and for some reason I couldn't see well at night."
+            "I didn't think to ask [her_name] about it, though, until she came to me."
+            show her concerned at midleft with moveinleft
+            her concerned "[his_name]... have you been having trouble seeing at night?"
+            him surprised "Yeah, how did you know??"
+            her determined "I have the same problem, and I think [kid_name] does, too."
+            him concerned "Do you know why? Is it a disease? Some kind of alien parasite?"
+            her annoyed "No. I'm pretty sure we haven't been getting enough vitamin A."
+            him surprised "Vitamin A?"
+            her determined "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables, like carrots, squash, and spinach."
+            him concerned "Aw man, I hate pills."
+            her annoyed "Which do you hate more: pills, or being able to see?"
+            him surprised "It's that bad?"
+            her angry "Yes! Prolonged vitamin A deficiency can lead to blindness in kids!"
+            him angry "Okay, okay! I'll try and plant better crops next time."
+            her sad "Sorry, [his_name]. I know you're doing the best you can..."
+            him determined "If it's not good enough, I'll do better."
+
+        elif (farm.low_magnesium() and (not seen_low_m)):
+            $ seen_low_m = True
+            scene farm_interior with fade
+            show her concerned at midright
+            show kid concerned at center
+            if (bro_age > 0):
+                show bro at quarterleft
+            show him concerned at midleft with dissolve
+            her annoyed "I just can't take it anymore!!"
+            him surprised "Whoa, whoa, calm down."
+            her angry "I'm supposed to be calm?! This is insane! How did we ever think living here was going to work?!"
+            him concerned "I thought it was working pretty well..."
+            kid surprised "Mom, are you okay?"
+            her sad "I don't know what's wrong with me... I just feel so crazy lately."
+            him determined "You have been a bit more... volatile."
+            her concerned "I can't stop worrying and I just feel so stressed out all the time but I don't even have that much to be stressed out about!"
+            kid concerned "Are you sick?"
+            her surprised "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
+            him surprised "Are there some tests you can run?"
+            her concerned "Yeah... will you come with me?"
+            if (has_strong_marriage()):
+                him concerned "Of course."
+                scene hospital with fade
+                show her concerned at midright
+                show him concerned at center
+                show kid concerned at quarterleft
+                if (bro_age > 0):
+                    show bro at midleft
+                with moveinleft
+                her determined "I just need to swab under my tongue..."
+                kid surprised "Does it hurt?"
+                her annoyed "No, it's just...awkward... here, [his_name], you do it."
+                him surprised "Oh! Uh, okay..."
+                her determined "Just scrape it a little. Right here."
+                "She opened her mouth and held still. [kid_name] watched, fascinated."
+                him determined "Okay, done. Hopefully I did that right."
+                her annoyed "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
+                him surprised "Hopefully you don't need me to help with those."
+                her "It'll take a few minutes for me analyze the spectrometer's results."
+                "I talked with kid_name while we waited for [her_name] to finish."
+            else:
+                him concerned "I'll stay here with the kids while you do it."
+                her sad "Okay..."
+                hide her with moveoutleft
+                "She was gone for about an hour."
+                show her at midright with moveinleft
+            her concerned "This confirms it. I have a magnesium deficiency."
+            him surprised "Magnesium??"
+            her determined "Yes. Normally we get plenty from nuts, beans, and eggs. But we haven't been eating many of those lately."
+            him sad "Probably because I didn't plant enough..."
+            her concerned "Yes, well... you probably all have it, too, so you'll need to take this supplement."
+            him surprised "Why didn't we notice this earlier?"
+            her determined "The symptoms are so subtle that it's usually hard to detect until it starts to cause more severe problems, like diabetes or heart failure."
+            him normal "Well then, I'm glad you caught it."
+            her normal "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
+            him determined "Okay."
+            # TODO: currency check
+        return
+
+    # fall through for times without a special event.
+    "The crops I planted didn't provide the vitamins and minerals we needed."
+
+    if (year > 5):
+        "I had to spend money at the storehouse to buy some different foods."
+        # TODO: currency check, subtract some money
+    else:
+        "I had to trade with other farmers to get a better variety of food."
     return
 
 # Year 1, 3 mo. old
@@ -24,15 +256,16 @@ label work_intro:
     return
 
 # Year 2, 9 months old
+# Help Kevin and Zaina and get a plum tree
 label work2:
     scene farm_interior with fade
-    show him at midleft
-    show her at midright
-    show kid at center
+    show him normal at midleft
+    show her normal at midright
+    show kid normal at midright, baby_pos
     with dissolve
     her surprised "Are you going somewhere?"
     him determined "Yeah, I said I'd help Kevin and Zaina with their garden."
-    her flirting "It wasn't as easy as the video games made it seem, huh?"
+    her flirt "It wasn't as easy as the video games made it seem, huh?"
     him happy "Yeah, turns out there's actually a lot of things that you can't learn just from simulations!"
     her normal "All right, good luck."
     show path with fade
@@ -41,7 +274,7 @@ label work2:
     show kevin at midright
     show zaina at center
     with dissolve
-    show him at midleft with moveinleft
+    show him normal at midleft with moveinleft
 
     zaina "Thanks for coming, [his_name]. I can't believe I ever thought growing my own food would be easy!"
     him "Well, some parts aren't too hard. But it helps if you know what you're doing."
@@ -62,161 +295,589 @@ label work2:
 
 
 # Year 4, 2 years old
+# Show off at the Fall Festival or increase the size of your farm?
 label work4:
-    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
+    nvl clear
+    pavel_c "The Fall Festival will be next weekend! Show off your best crops and animals. There will be games and music, too!"
+    sara_c "I hope everyone can come! 😊"
+    nvl clear
+    him "Hmmm... I was going to get a new field ready to expand the size of my farm, but I always like to go to the Fall Festival..."
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    $ work4_showoff = False
+    menu:
+        "What should I do?"
+        "Show off my [random_crop] at the festival.":
+            $ work4_showoff = True
+            "It was fun to show off my hard work. And it was a good chance to hang out with the other farmers and see what they were doing."
+
+        "Go, but don't bring anything.":
+            "I didn't want to miss the Fall Festival. I worked hard to prepare and plow one new field, and then I headed over."
+            $ farm_size += 1
+            tutorial "Your farm is now size [farm_size]!"
+
+        "Don't go. Expand fields instead.":
+            $ farm_size += 4
+            "The festival was fun, but my farm was more important. Maybe I'd go next year..."
+            "I worked hard to rip out the native vegetation and plow the new fields."
+            tutorial "Your farm is now size [farm_size]!"
+            return
+
+    scene bg community_center with fade
+    show natalia at quarterleft
+    show pete at center
+    show thuc at quarterright
+    show goat at right
+    with dissolve
+    show him normal at left with moveinleft
+    "Everyone brought their best crops to display."
+    "Natalia had beautiful ears of corn, and free samples of corn on the cob."
+    show him surprised at midleft with move
+    "Pete brought several kinds of cheeses and cider."
+    show him normal at midright with move
+    "Thuc brought the cutest baby goat I've ever seen. His daughter had taught it to stand on its hind legs, bleat, and jump through a hoop."
+    thuc "This goat is almost as smart as [kid_name]!"
+    him happy "And probably more obedient!"
+
+    if (work4_showoff):
+        thuc "Hey, are those your [random_crop] on display over there?"
+        him normal "Yes it is!"
+        thuc "They turned out really well. How often do you fertilize them?"
+        "We talked about [random_crop] for a while, and then I had an idea."
+        him surprised "Hey, do you want to grow your own [random_crop]?"
+        thuc "You'd help me get started?"
+        him normal "Yeah!"
+        thuc "Sure, that would be great. Do you want a strawberry plant?"
+        him surprised "Strawberries?"
+        thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
+        him happy "Sure, thanks!"
+        #$ enable_crop("strawberries")
     return
 
 # Year 6, 3.5 years old
+# Terra begins to help!
 label work6:
-    "You can now have [kid_name] help on the farm. Her effectiveness depends on her competence."
-    "And, her competence increases as she helps."
+    scene farm_interior with fade
+    show her normal at midright
+    show kid normal at center
+    show him normal at midleft
+    with dissolve
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    him normal "Well, I'm off to plant [random_crop] today."
+    kid surprised "Is it fun?"
+    him concerned "Kind of? Not as fun as harvesting, but you do get to dig in the dirt and drop in seeds..."
+    kid nervous "Can I help?"
+    him surprised "Sure, if you want to."
+    "I'd had [kid_name] help me out on the farm before -- mostly harvesting, or just digging in the dirt 'helping' me while I got the real work done."
+    "But she was getting old enough to be slightly more of a help than a hindrance, for some things."
+    scene farm_exterior with fade
+    show him normal at midright
+    show kid normal at midleft
+    with moveinleft
+    him normal "First we have to give the goats water."
+    kid laugh "I'll help!"
+    him determined "Here, you can fill it up with the pump."
+    "It took all her strength to lift the pump handle, and she had to hang on it with her whole weight to get it to come down, but she did it."
+    show kid concerned with dissolve
+    "She tried to carry the bucket, but it was too heavy."
+    him "Here, I'll carry the bucket. You carry the seeds."
+    kid happy "Okay, daddy!"
+    hide him
+    hide kid
+    with moveoutright
+
+    scene fields with fade
+    show him normal at midright
+    show kid normal at midleft
+    with moveinleft
+    him normal "I'll poke a hole in the dirt, and you put three seeds in, okay?"
+    kid surprised "Okay...One, two, free!"
+    him happy "Good!"
+    "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
+
+    tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
+    tutorial "And, her competence increases as she helps." # TODO: does it?
     return
 
 # Year 8, 4.8 years old
+# The outhouse is full...
 label work8:
-    "Your family reacts to crops you've been planting."
+    scene farm_exterior with fade
+    "Here's one thing not everyone gets about being a farmer."
+    "I'm not just a farmer; I take care of {b}everything{/b}."
+    "So I'm also a carpenter, vet, trucker, landscaper, and handyman, as needed."
+    "But today I'm a plumber."
+    "The outhouse was one of the first things we built when we moved here. Most of the time I didn't even think about it."
+    "But lately..."
+    him annoyed "Ugh, that smell!"
+    "I had an exhaust pipe that was supposed to pipe the noxious fumes outside, but for some reason it wasn't working."
+    him determined "Time to figure out the problem."
+    "I checked the top of the pipe. It didn't seem to be clogged at all."
+    "I didn't want to, but I had to check the other side of the pipe. The one inside the pit."
+    "I lifted off the seat and the top panel, and it was immediately obvious what had happened."
+    him surprised "Our outhouse is full!"
+    "It was so full that it had started blocking the exhaust pipe."
+    "I sat down and thought for a few minutes. I had a few choices..."
+    $ work8_choice = ""
+    menu:
+        "What should I do?"
+        "Clean out the pit.":
+            $ work8_choice = "clean"
+            "It was a gross job, but the best thing to do was just clean out the pit. Then I could keep using this same outhouse."
+            "Since we had been adding some ashes to the pit after using it, the sewage had started decomposing, but it was still sewage. I tied a handkerchief over my nose and mouth to cut the smell down."
+            "I borrowed an auger from the community tool library and used it to transport everything up and into my wheelbarrow."
+            "When the wheelbarrow was full, I dumped the waste in a far corner away from fields and water sources. Eventually it would be good fertilizer, but it hadn't decomposed enough yet."
+            "Then I went back for another load."
+            "It took all day..."
+        "Relocate the outhouse.":
+            $ work8_choice = "relocate"
+            "There was no way I was going to clean out the pit of the outhouse."
+            "We had plenty of land; I'd just build a new pit somewhere else and move the outhouse structure on top of it. Then I could bury the waste in the old pit and let Mother Nature take care of it for me."
+            "First, I dug a new pit."
+            "Then I took apart the outhouse so it I could carry it over piece by piece and put it back together again."
+            "I covered the old pit with the dirt from the new one."
+            "It took all day..."
+        "Build a better outhouse that provides fertilizer." if (get_extra_work() > 0):
+            $ work8_choice = "improve"
+            "I remembered Thuc telling me about how they had a special treatment regimen that allowed them to treat sewage from their pit and use it as fertilizer."
+            "I could always use more fertilizer, and this would also make it so I wouldn't have to clean out the outhouse in the future, either."
+            "He sent me some plans and a short book on the subject. I didn't even notice it was written by his wife, Julia, until I finished reading it."
+            "I ended up building a new outhouse on top of a small hill, with a container for the waste that could be rotated."
+            "I built a couple of containers so that two could be decomposing into compost while the other was being actively used."
+            "It took several days, and the new outhouse would be a bit more work to maintain, but I felt like it was worth it to solve the problem the right way."
+
+    scene farm_interior with fade
+    show her normal at midright
+    show kid normal at center
+    with dissolve
+    show him concerned at midleft with moveinleft
+    her concerned "You look beat. And you smell like..."
+    kid surprised "Like poop!"
+    him determined "Yeah... the outhouse was full."
+    her surprised "Oh! I guess that would happen eventually..."
+    if (work8_choice == "clean"):
+        him concerned "I mucked the whole thing out."
+        kid angry "Gross!"
+        her concerned "Wow... that sounds awful."
+    else:
+        him concerned "I had to build a new one."
+        her normal "Okay, wow, that sounds like a lot of hard work."
+
+        him normal "It's done now, anyway."
+        if has_strong_marriage():
+            her normal "Why don't you go take a bath and I'll make dinner tonight?"
+            kid shifty "{b}I{/b} don't need a bath."
+            him happy "Then you can help Mom with dinner. I'll be back soon!"
+        else:
+            her concerned "Well...thanks."
+            kid shifty "You need a bath!"
+            him surprised "I do need a bath! And then I'll come home and make dinner. Unless Mom wants to do it...?"
+            her annoyed "Yeah, I'll make dinner. I don't want to wait that long."
+            him happy "Thanks, sweetie!"
+
     return
 
 # Year 10, 6.2 years old
-# Onions or garlic in exchange for plums
+# Bees?!
 label work10:
-    scene fields with fade
-    show him at center with dissolve
-    if "plums+" in farm.crops:
-        "The plum tree was growing larger every year. There were two different kinds of plum trees that I planted so that they could pollinate each other effectively."
-        if ("bees" in farm.crops):
-            "The bees helped the pollination a lot."
-        else:
-            "I had to pollinate them by hand, but my hard work paid off."
+    scene community_center with fade
+    show kevin at midright
+    show him normal at midleft
+    with dissolve
+    if (crop_enabled("plums") or crop_enabled("plums+")):
+        kevin "[his_name]. How are your plum trees?"
+        if "plums+" not in farm.crops:
+            if "plums" in farm.crops: # we just barely planted plums, but it didn't work.
+                him concerned "I tried to plant them a couple weeks ago, but they didn't germinate. It had probably been too long."
+                kevin "Yes, that is possible."
+            else:
+                him concerned "I, uh, I'm afraid I never planted them."
+                kevin "I see. They are most likely no longer viable."
+        $ disable_crop("plums")
+        $ disable_crop("plums+")
+    else:
+        him "Pretty good! We're even starting to get a few plums on them."
+        kevin "That is good."
 
-        "Now that we were using currency, I had other considerations in how to process my harvest. Plums were worth a lot more if I made them into prunes or jam first."
-        "It was more work, but maybe it was worth it?"
-        $ make_item = "plums"
-        menu:
-            "What should I do?"
-            "Make prunes":
-                $ make_item = "prunes"
-                "I pitted them and put them on a rack to dry."
-                "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
-                show her normal at midleft with moveinleft
-                show him at midright with move
-                her surprised "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
-                him annoyed "You don't have to be constpiated to enjoy some good prunes."
-                her normal "They'll be good for [kid_name], too. Thanks, [his_name]."
-                "I dropped most of them off at the storehouse and didn't think much about it for several days, until I got a visitor."
-                scene farm_exterior with fade
-                show him normal at midright with dissolve
-                show thuc normal at midleft with moveinleft
-                thuc "Man, I'm so glad you made prunes. Can I just say, everything around here is going a lot more smoothly?"
-                him surprised "You like prunes?"
-                thuc "Well, one of my kids really needed them. I don't want to embarrass them, so that's all I'm going to say. But thank you!"
-                him normal "You're welcome, I guess."
-                thuc "In fact, I brought you a little something."
-                "He handed me several heads of garlic."
-                him surprised "Oh, thanks!"
-                thuc "This is nice and fresh, so you can plant it or eat it."
-                him "Mmmm, this'll be good! Thank you!"
-                "I couldn't wait to eat some, but even better, now I could grow my own."
-                $ enable_crop("garlic")
-                return
+    him "How's your garden coming, Kevin?"
+    kevin "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."
+    him concerned "There could be several reasons for that..."
+    kevin "After factoring out other issues such as soil quality, solar flares, and unreported crops, I have come to a conclusion."
+    him surprised "What's that?"
+    kevin "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
+    him normal "Like bees?"
+    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm?"
 
-            "Make jam":
-                $ make_item = "jam"
-                "I decided to make jam."
-                "My mother always made jam with sugar and pectin."
-                "It would kind of defeat the purpose of making jam if I had to buy expensive sugar and pectin to make it work."
-                "After some research, I found plums already have a fair amount of sugar and pectin in them. So I decided to slow cook them until they made a thick jam."
-                "It was a bit sour, but very flavorful. And the jars should last at least a year."
-
-                scene storehouse with fade
-                show ilian at midright with dissolve
-                show him normal at midleft with moveinleft
-                him "Hey there, Ilian."
-                ilian "Oh. Hello."
-                him happy "How much can you give me for this plum jam?"
-                ilian "I can only give you amount." # TODO: currency check.
-                him surprised "What? Why is that?"
-                ilian "I'm out of money. But if you'd like to exchange, I can give you onions or garlic."
-                menu:
-                    "Which should I choose?"
-                    "Onions":
-                        him "Give me the onions."
-                        $ enable_crop("onions")
-                    "Garlic":
-                        him "How about the garlic?"
-                        $ enable_crop("garlic")
-                ilian "Fine. Here you go."
-                "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
-                return
-
-            "Just bring the plums to the storehouse.":
-                "I decided to just bring the plums to the storehouse. I wanted to use my time for other things."
-
-    if not (renpy.showing("storehouse")):
-        scene storehouse with fade
-        show ilian at midright
-        show him normal at midleft with dissolve
-
-    "While I was at the storehouse, I saw that they had a ton of onions for a good price."
-    "If I bought some, I could plant some and grow my own..."
     menu:
-        "What should I do?"
-        "Buy onions.":
-            # TODO: currency check, subtract amount for onions.
-            "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-            $ enable_crop("onions")
-        "Don't buy onions":
-            "I decided not to buy them. I had enough crops to deal with."
+        "What should I say?"
+        "Sure, I'd love bees!":
+            him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
+            kevin "Very well. I shall mark you down for bees."
+            $ enable_crop("honey")
+            tutorial "Bees will boost production of neighboring squares and require just a little work."
+            tutorial "However, once placed, they cannot be moved."
+        "No thanks.":
+            him concerned "No thanks; I already have enough to worry about."
+            kevin "Very well. I shall ask someone else."
+            "I didn't have room or time for bees."
     return
 
 # Year 12, 7.4 years old
 label work12:
-    "You had a decent harvest, but a salesman from RET offers some hybrid wheat seeds that he claims will be the most productive crop you've ever seen."
-    "The only problem is, the seeds are infertile, so you'd have to buy them every year."
-    "In fact, he'll only sell them to you if you sign a contract to buy some from him every year for the next ten Talaam years."
+    scene farm interior with fade
+    show him determined at center with dissolve
+    nvl clear
+    brennan_c "I have a special offer for all you farmers out there."
+    julia_c "Oh, this'll be good."
+    sara_c "😲"
+    pete_c "Let the man talk."
+    brennan_c "I have the newest pest-resistant, high-yield, nutrient-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
+    thuc_c "That sounds good, but..."
+    julia_c "What's the catch?"
+    brennan_c "Well, because they're a patented seed design, the wheat berries they produce are sterile."
+    julia_c "Meaning we couldn't save seeds to plant next year."
+    brennan_c "Right. You'd need to buy them from me. Well, from RET, really."
+    if (community11_kidsonfarm):
+        natalia_c "Hmm, I might get some for Joanna to try. If they're as good as you say..."
+    else:
+        natalia_c "Hmm, I might have to try those, if they're really as easy to grow as you say..."
+    brennan_c "Well, that's the thing. If you're going to grow them, you need to sign a 20 year contract. We have a set amount and we need reliable buyers."
+    natalia_c "Twenty years? Some of us might not even be alive then."
+    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us a certain amount every year and we'll provide you with seeds." # TODO: currency check, how much?
+    julia_c "That's ridiculous. Who would want to rely on you for their seeds?"
+    brennan_c "You're a tough customer, Julia; I love that about you! But let's let everyone decide for themselves. Come see me if you want in on this great deal."
+    nvl clear
     menu:
-        "Sign a wheat contract?"
-        "Yes":
-            $ colonists += 1
+        "What should I do?"
+        "Sign a wheat contract.":
+            $ miners += 1
+            scene miners_camp
+            show brennan at midright with dissolve
+            show him at midleft with moveinleft
+            him normal "I'm interested in the wheat."
+            brennan "Good, good. Seems like you're smarter than you look."
+            him annoyed "Don't make me change my mind."
+            brennan "Ah, can't you take a joke?"
+            him determined "..."
+            brennan "...Right. Here's your wheat."
+            $ enable_crop("wheat")
+            # TODO: implement annual fee
             # you sold your soul but can now grow wheat.
-        "No":
+        "Don't sign a wheat contract":
             $ luddites += 1
-            # the luddites approve and offer to get you started with some of their heirloom wheat instead. It's not as good - more work, less yield
+            him_c "No thanks, Brennan."
+            "Later, Natalia came over for a visit."
+            natalia "I need something for my farm that's easier to grow. Do you have any suggestions?"
+            him "You've been growing corn, right?"
+            natalia "Yes, and it's quite time-intensive."
+            him "Have you tried potatoes?"
+            natalia "No, do they do well here?"
+            him "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
+            natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
+            him "That would be great!"
+            $ enable_crop("corn")
 
+    "I was looking forward to growing something new."
     return
 
 # Year 14, 8.7 years old
 label work14:
-    "Take your daughter to work day... is every day."
+    scene fields with fade
+    show him normal at midright
+    show kid normal at midleft
+    "I never realized how much I knew about farming until I had to teach someone else."
+    "Even though she grew up on our farm, there was still so much [kid_name] didn't know."
     $ style = get_parenting_style()
     if (style== "authoritative"):
-        "She is pretty helpful and gets a lot done!"
+        "...but she's learning fast!"
+        "I love seeing her grow more independent. When she's done feeding the goats, she doesn't sit around waiting for me to tell her what to do."
+        "She looks around and starts doing whatever is needed, whether it's a fence that needs repairing, weeds that need to be pulled, or produce that needs to be harvested."
+        "Sometimes she's a little too independent."
+        kid "I want to milk the goats!"
+        him surprised "You do?"
+        kid "Yeah! I bet I can do it all by myself!"
+        "She'd watched me many times, but the technique is a little tricky."
+
     elif (style == "authoritarian"):
-        "She does every thing you ask, but you have to ask her to do each little thing. She doesn't take any initiative to do things on her own."
+        "...like how to do what needs to be done without me having to tell her every detail."
+        "She's pretty good at feeding the goats every day, but when she's done I'll often find her playing with them instead of moving on to what really needs to be done."
+        "But I really wanted her to learn how to milk the goats."
+
     else:
-        "She sulks and you have to threaten and cajole her to do anything.  It would have been faster to do it yourself!"
-    "Terra helps out with some simple things, but she isn't very good at it. Do you redo it, make her redo it, or spend some time teaching her better? Do you have her help in the future?"
+        "...like how to work hard."
+        "I don't know if she doesn't remember or just doesn't care, but she 'forgets' to feed the goats all the time."
+        "And it seems like whenever there's work to be done, she's nowhere to be found."
+        "I often end up just doing it myself. It's faster and less of a hassle."
+        "But I really wanted her to learn how to milk the goats."
+
+    him normal "You're old enough to learn how to milk goats. Come with me."
+    scene barn with fade
+    show goat at center
+    show him normal at midright
+    show kid normal at midleft
+    with moveinleft
+    "I showed her how to lead the goat to the milking stand, wash off her udder, and set up some food for her."
+    "I helped her practice the finger motions needed to squirt the milk into the bucket."
+    "She was tentative at first, but she seemed to be figuring it out."
+    "I left for a minute to check on something, but I wasn't gone for more than five minutes when I heard a scream."
+    hide him with moveoutright
+    "I dashed back into the barn and saw [kid_name] crying, the bucket tipped over, and the goat lying down, looking quite satisfied."
+    show him at midright with moveinright
+
+    menu:
+        "What should I do?"
+        "Scold [kid_name]":
+            him angry "[kid_name]!"
+            $ demanding += 1
+        "Ask what happened":
+            him surprised "What happened here?"
+        "Help her clean it up":
+            "I righted the bucket and lifted the goat up to standing. We found a towel and mopped up the milk."
+            $ responsive += 1
+
+    kid cry "It's not my fault! It's that stupid goat! I was almost done and then she just lied down and messed it all up!"
+    him annoyed "That's because she ran out of food. You've got to be faster than that."
+    kid annoyed "Well how was I supposed to know that?!"
+
+    menu:
+        "What should I do?"
+        "Show her how to do it right." if (get_extra_work() > 0):
+            him normal "It's okay, it takes some practice. Here, let me show you."
+            "I showed her how to put an upside down bucket under the front of the goat so she couldn't just lie down."
+            "We put a bit more food in the goat's trough, and [kid_name] got ready to try again."
+            him normal "That's it. Yeah, you've got a nice rhythm going now."
+            kid concerned "I'm worried she's going to kick it over again!"
+            him determined "You just watch her back legs, and if she starts getting antsy, you whisk that bucket away. You're almost done now, though."
+            kid surprised "How do you know when you're done?"
+            him normal "Well, less milk is coming out, for one. But you can also see how the udder doesn't look full anymore."
+            kid normal "Yeah, it's kind of floppy and wrinkly."
+            him happy "Okay, I think you're done! Well, done with the goat, anyway. We have a few things to do with the milk, first."
+            kid happy "This wasn't too hard..."
+            him normal "Yeah, you learned a lot! Of course the first few times are kind of rough, so don't worry too much about spilled milk or anything."
+            kid surprised "So am I done?"
+            him determined "Not quite. I'll show you how to filter the milk and wash the bucket."
+
+            $ authoritative += 1
+            $ confident += 1
+        "Finish it for her." if (get_extra_work() > 0):
+            him concerned "Just go home. I'll take care of it."
+            him sad "Oh-okay."
+            "I finished milking, put the goat away, filtered the milk, and washed the equipment."
+            "It would be so nice if [kid_name] could learn to do this, but maybe she just wasn't ready yet."
+            $ permissive += 1
+        "Tell her to try again.":
+            him determined "Try again."
+            kid angry "No way! I've had enough of this crazy goat!"
+            menu:
+                "What should I say?"
+                "You will finish the job!":
+                    him annoyed "You will stay here until the job is done!"
+                    kid sad "Fine, then I guess I'll stay in here all night because this goat is never going to listen to me!"
+                    him determined "It's your job to milk this cow. Now do it."
+                    hide him with moveoutright
+                    "I left to finish up my work. Her sobs followed me around the farm everywhere I went."
+                    "I wanted to teach her to be independent, to do things for herself. I guess I needed to push her a bit to get her to learn that..."
+                    scene barn with fade
+                    show him at center with moveinright
+                    "When I came back after a half hour, the goat was put away and there was about a cup of milk in the pail. The goat looked happy, so she must have been milked enough."
+                    "But [kid_name] was going to need a lot more practice..."
+                    $ authoritarian += 1
+                "Leave if you're not going to help.":
+                    him annoyed "If you're not going to help, then get out of my way."
+                    kid cry "Fine, I will!"
+                    hide kid with moveoutleft
+                    "I ended up just doing myself. It wasn't that hard; maybe she just wasn't old enough..."
+                    $ neglectful += 1
     return
 
 # Year 16, 10 years old
 label work16:
-    "Do you participate in the seed exchange with one faction or expand your farm with a different faction?"
+    nvl clear
+    sara_c "There will be a seed exchange this weekend! Bring some seeds to trade! 😋"
+    natalia_c "I'm bringing chile seeds - they're a little bit sweet and a little bit spicy!"
+    kevin_c "I plan on bringing some plum pits."
+    pavel_c "Wonderful! I hope everyone will participate."
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    "A seed exchange could be good; I could share my great [random_crop] and get something new to plant in the future."
+    "But Pete was already planning to come over and fence a new section of land for farming."
+    "Last week I helped him expand his cattle paddock with a bigger fence and he was planning to return the favor."
+    menu:
+        "What should I do?"
+        "Go to the seed exchange.":
+            him_c "I'll be there, too!  I'm bringing [random_crop] seeds!"
+            sara_c "Oooh, great! 😃"
+            nvl clear
+            scene community_center with fade
+            show pavel at quarterleft
+            show sara at midleft
+            show natalia at center
+            show kevin at quarterright
+            show zaina at right
+            with dissolve
+            show him normal at left with moveinleft
+            "There were a lot of people at the seed exchange!"
+            pavel "Welcome, [his_name]! Good to see you!"
+            him normal "Thanks. Where should I put these [random_crop] seeds?"
+            sara "There's an empty spot on the table there. Oh, you brought a sign. Perfect."
+            $ colonists += 1
+            show him at midright with move
+            him surprised "You said your chile peppers are spicy and sweet?"
+            natalia "Oh yes. If you pick them green, they're a little bitter and more savory. If you wait until they turn red, they're sweeter. But the spiciness is the same either way."
+            him normal "Sounds very flavorful!"
+            kevin "[his_name], are those your [random_crop] seeds? Would you recommend that crop?"
+            menu:
+                "What should I say?"
+                "Yeah, you'll like them!":
+                    him happy "Yeah! You'll love them."
+                    kevin "Then perhaps I shall try planting some."
+                "No, you should try something else.":
+                    him concerned "I'm not sure they're the best crop for you..."
+                    kevin "Really? Why do you say that?"
+                    menu:
+                        "What should I say?"
+                        "They're too much work.":
+                            him annoyed "They're too much work, especially for the yield you get."
+                        "They don't really taste good.":
+                            him concerned "Well, they don't really taste very good, so no one wants to eat them."
+                            kevin "I like [random_crop]."
+                            him surprised "Well, maybe they'd be good for you."
+                        "They're not worth very much.":
+                            him concerned "They don't sell for very much, so unless you love eating them yourself it's probably not worth it."
+                            kevin "I like [random_crop]."
+                            him surprised "Well, maybe they'd be good for you."
+                        "They're not very nutritious.":
+                            him annoyed "They just aren't that nutritious. Not many vitamins and minerals."
+                            kevin "Oh. I had not considered that."
+
+            if (not (crop_enabled("plums") or crop_enabled("plums+"))):
+                him surprised "You don't mind if I take a few plum pits, do you?"
+                kevin "Please do. They are hardy and productive plants."
+                $ enable_crop("plums")
+                him happy "Great! I love fruit."
+            else:
+                "Kevin took some of my seeds, and I decided to take some of the chile pepper seeds."
+                natalia "You won't be disappointed!"
+                $ enable_crop("peppers")
+
+        "Expand your farmland.":
+            $ luddites += 1
+            "I had already worked everything out with Pete. I'd have to miss this seed exchange. Hopefully they'd have more in the future."
+            scene fields with fade
+            show him normal at midleft with dissolve
+            show pete at midright with moveinright
+            pete "You ready to make this fence?"
+            him determined "You bet!"
+            "It took us all day, but now I had four more fields for planting!"
+            $ farm_size += 4
     return
 
 # Year 18, 11.1 years old
+# Roof leak and solar flare
 label work18:
-    "Add on addition to the house as family grows and Terra needs her own space?"
+    scene farm_interior with fade
+    show him normal at midright
+    show her normal at quarterright
+    show kid normal at midleft
+    show bro normal at quarterleft
+    with dissolve
+    "There was one thing I absolutely had to get done today -- fix a small leak in the roof."
+    "Well, it didn't seem so small when it was dripping water on my bed in the middle of the night."
+    "We spent half the night moving things around so we wouldn't be right under the leak."
+    "I wanted it fixed right away."
+    "I don't know how it got a hole in it - the waterproof roof material was really pretty sturdy. Maybe a crabird managed to poke a hole in it with its claws or the wind blew a branch into it."
+    "There was just one problem..."
+    nvl clear
+    if (year <= 20):
+        lily_c "Major solar flare predicted sometime this morning."
+    else:
+        zaina_c "We've got a major solar flare this morning. It'll be short, but strong."
+    pavel_c "Please stay at your homes! School and all other community buildings will be closed until after noon."
+    nvl clear
+    him annoyed "Guess I won't be fixing the roof this morning..."
+    kid happy "Yay, no school!"
+    bro concerned "No school?"
+    kid surprised "You're not sad that school's cancelled, are you?!"
+    bro sad "I like school."
+    him surprised "Do you think I have time to run and get some rope from the barn?"
+    her concerned "I don't know; it sounds like they weren't sure of the exact time."
+    him annoyed "I really wish you could see the solar flares somehow..."
+    kid normal "Yeah, it looks so nice outside. Hey, what if there's not actually any solar flares, but they're actually doing top secret stuff and don't want anyone messing with it?"
+    him surprised "What kind of top secret stuff would that be?"
+    kid happy "I don't know; maybe aliens?? Or maybe they found some super valuable ore right under the school and they're blasting it away with dynamite right now!"
+    her flirting "I don't think that is going to happen."
+    bro concerned "There could be aliens though, right?"
+    him determined "I think if there were aliens on Talaam they would have said hi by now. We've been here for years."
+    kid shifty "Unless they're just watching us. To see if we're worth enslaving. And any day now, they'll come and attack us in our sleep!"
+    "She tickled [bro_name] excitedly. He flinched and tried to push her hands away."
+    bro concerned "Stop!"
+    her annoyed "[kid_name]..."
+    kid annoyed "What?! I'm just trying to play with him! Too bad he hates me."
+    him annoyed "He doesn't hate you, he just hates being tickled. Leave him alone."
+
+    "Okay, I did not want to spend my whole morning playing police officer. I needed something for these kids to do."
+    "I had the perfect chore -- cleaning the kitchen."
+    "It wasn't covered with food or anything, but it'd been awhile since it really got cleaned."
+
+    him determined "Okay, as long as we're stuck inside, we're going to get some work done!"
+    her concerned "I have some analysis to do..."
+    kid surprised "I think maybe I have homework?"
+    bro concerned "I don't want to do anything..."
+
+    menu:
+        "What should I do?"
+        "Make the kids clean the kitchen.":
+            him normal "Kids, your job is to clean the kitchen."
+            kid concerned "It looks pretty clean to me..."
+            him determined "I want the stove and the wall wiped down with soap and water and the floor swept and mopped."
+            bro sad "What?!"
+            kid annoyed "What are you going to do, just sit around?!"
+            him annoyed "Of course not. I've got some other work to do. That's what I need you two to do."
+            $ confident += 1
+            "She tried the whole time to convince me that her only work should be school work and it was unfair of me to make the kids do all the work, so I didn't get to concentrate much on my own work."
+            "But they did finally get the kitchen clean. Well, cleaner than it had been."
+            jump work18_after_clean
+        "Assign a kitchen-cleaning job to everyone.":
+            him determined "[her_name], your job is to wipe the stove. [kid_name], sweep the floor. [bro_name], you've got cleaning the walls, and I'll take mopping."
+            show her annoyed
+            "[her_name] gave me a look. I guess I shouldn't order her around like I do the kids."
+            him concerned "Or, [her_name], I'd be happy to trade if you'd rather do the mopping."
+            her determined "I would."
+            him determined "Fine."
+            $ confident += 1
+        "Write the jobs on pieces of paper and have each person choose randomly.":
+            him happy "Okay, it's time for the kitchen cleaning lottery!"
+            kid annoyed "I already know I don't want to win."
+            him normal "In this box are four chores. Each person will choose one randomly and that will be their chore for the morning!"
+            him flirting "[her_name], would you like to go first?"
+            her annoyed "...Sure."
+            "We each pulled a slip of paper."
+            $ confident += 1
+        "Just clean it yourself.":
+            him determined "Well, I don't know about you guys, but I'm cleaning the kitchen. Anyone want to help?"
+            "I've never seen people disappear so fast. Suddenly everyone really wanted to read a book or do their homework or whatever it was they were doing."
+            "That was fine with me."
+            jump work18_after_clean
+
+    "[her_name] put some peppy music on, and we all got to work."
+    "[kid_name] soon quit pouting when she realized it wasn't going to change anything, though she did try to get away with doing the least amount possible."
+    "[bro_name] didn't want to get wet, so I helped him wring out the cloth as much as possible before wiping down the wall."
+
+label work18_after_clean:
+    "We had a quick lunch together, and then, since the solar flare was over, we each went our separate ways."
+    "And I could finally get to fixing the roof!"
     return
 
 # Year 20, 12 years old
 label work20:
     "Miners want cheap/fast/calorie-dense food. Will you cater to their needs?"
     "Also, Terra likes it as she is eating more and growing taller than ever."
+    "or, solar panels are wearing out due to solar flares."
     return
 
 # Year 22, 13.6 years old
 label work22:
     "Someone from your favorite faction gives you cool seeds!"
+    # turnips/onions from Thuc or broccoli from Pete or ? from miners (sunflowers for oil? wheat that only works one time? flowers? herbs?)
     return
 
 # Year 24, 14.8 years old

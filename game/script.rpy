@@ -6,6 +6,12 @@
 # TODO: Add parenting class tutorial near the beginning
 # TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Use scene stars instead of scene black most of the time?
+# TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
+#       the first time through, and second time through show what you'd need
+#       to get that choice.
+#       To do this, put the "if" inside the menu choice and parse it out in the
+#       screen choice of screens.rpy.
+#       OR, write two menu options for every menu, one for if it's locked and one for if it's unlocked
 ##
 
 label start:
@@ -102,6 +108,7 @@ label start:
         thuc_has_cattle = False
         ilian_has_cattle = False
         thuc_sells_food = False
+        community_11_kidsonfarm = False
         community_22_mining_stopped = False
         community_22_forced_luddites_leave = False
         community_22_compromise = False
@@ -125,7 +132,6 @@ label start:
         # Dictionary containing the number of events seen for each crop
         number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
         # TODO: add income
-        # TODO: make it so you can't move perennials once placed
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.
         crop_info =     (
@@ -136,25 +142,19 @@ label start:
                         ["peppers",      2, 7, 5, 5, 25, False, False, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False,  100],
                         ["plums",        3, 3, 8, 7, 5, False, True, 1],
-                        ["plums+",       3, 3, 8, 2, 0, False, True, 1],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 5, 3, 4, 15, True, False, 100],
-                        ["strawberries", 1, 2, 8, 6, 5, False, True, 2],
-                        ["strawberries+",1, 2, 8, 5, 0, False, True, 2],
-                        ["blueberries",  2, 3, 9, 9, 5, False, True, 2],
-                        ["blueberries+", 2, 3, 9, 4, 0, False, True, 2],
+                        ["plums+",       3, 3, 8, 2, 0, False, True, 0],    # Perennials are easier after year 1, but can't be moved
+                        ["squash",       4, 7, 3, 4, 15, True, False, 100],
+                        ["strawberries", 1, 2, 8, 6, 5, False, True, 1],
+                        ["strawberries+",1, 2, 8, 4, 0, False, True, 0],
                         ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
-                        ["snow peas",    3, 6, 3, 4, -35, False, False, 100],
                         ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
                         ["carrots",      3, 6, 4, 4, 10, True, False,  100],   # Root Vegetables
-                        ["beets",        3, 4, 2, 3, 5, False, False, 100],
                         ["turnips",      3, 5, 1, 4, 10, False, False, 100],
                         ["onions",       4, 2, 7, 4, 5, False, False, 100],
-                        ["garlic",       3, 3, 7, 4, 5, False, False, 100],
-                        ["cabbage",      2, 4, 3, 3, 15, False, False, 100],   # Leafy greens
-                        ["spinach",      1, 6, 4, 3, 10, True, False,  100],
-                        ["broccoli",     3, 5, 4, 3, 15, False, False, 100],
+                        ["spinach",      1, 6, 5, 3, 10, True, False,  100],   # Leafy greens
+                        ["broccoli",     3, 7, 4, 3, 15, False, False, 100],
                         ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
-                        ["bees",         2,  2,  8, 3, 0, False, True, 1])
+                        ["honey",         2,  2,  8, 2, 0, False, True, 1])
                         #TODO: have an axe crop that can only be placed on perennials to chop them down?
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
@@ -166,21 +166,17 @@ label start:
             "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
             "squash" : "This vegetable keeps well and is easy to grow.",
             "strawberries" : "Small, sweet, and delicious! They come back every year.",
-            "blueberries" : "Tiny and delicious; useful for jam or eating raw. These will come back every year.",
             "beans" : "These legumes are tough to harvest, but keep well and are very nutritious.",
-            "snow peas" : "These crunchy legumes are good raw or lightly cooked.",
             "peanuts" : "This legume takes hard work to harvest, shell, and boil, but keeps well and makes peanut butter.",
             "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
-            "beets" : "These purple root vegetables will grow almost anywhere.",
             "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
             "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
-            "garlic" : "This bulb makes everything taste better.",
-            "cabbage" : "Eat it raw, cooked, or fermented. Easy to grow.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
             "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
             "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",
-            "bees" : "Bees help pollinate crops and provide honey, which sells for a high price."
+            "honey" : "Bees help pollinate crops and provide honey, which sells for a high price."
             }
+        # Got rid of blueberries, snow peas, beets, garlic, cabbage
 
         total_calories = 0
         total_nutrition = 0
@@ -189,8 +185,16 @@ label start:
 
         current_work = 0
 
+        bad_nutrition_count = 0
+        seen_low_cam = False
+        seen_low_ac = False
+        seen_low_c = False
+        seen_low_a = False
+        seen_low_m = False
+
         # Crop event variables
-        carrots_fallow = False
+        crop_temporarily_disabled = ""
+        squash2_method = ""
 
     #######################################################################
     # Prologue
@@ -205,7 +209,7 @@ label start:
 
     show path
     show her normal at midleft
-    show kid happy at centerbaby
+    show kid happy at center,baby_pos
     show him normal at midright
     show computer_pad
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
