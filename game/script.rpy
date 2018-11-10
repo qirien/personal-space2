@@ -107,6 +107,7 @@ label start:
         community_22_compromise = False
         community_22_mined_anyway = False
         jellypeople_happy = False
+        kevin_elected = False
 
     # FARM
     python:

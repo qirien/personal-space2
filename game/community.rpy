@@ -2621,7 +2621,7 @@ label community15:
             her "But I know what you mean. She took care of their spirits, not their bodies."
             #this decision only affects dialogue right now.
     her "Oh, darn. Who's going to talk at her funeral?"
-    him "Sarah's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
+    him "Sara's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
     her "Sounds good. Can you ask her for me?"
     him "Has Naomi's death been announced?"
     her "Pavel just posted about it."
@@ -3434,8 +3434,8 @@ label community21:
     kevin "Yeah, his family winters near the beach." #TODO: does the player know this some other way? can't remember
     "We had to climb through some rocky areas, but our progress was good."
     him "What's with the no smoking rule? I didn't know we had anything to smoke around here."
-    kevin "Fire weed. It's a mild stimulant that the miners use to stay awake so they can work and extended period of time"
-    kevin "It's stronger than caffeine and more habit-forming."
+    kevin "Firegrass. It's a mild stimulant that the miners use to stay awake so they can work and extended period of time"
+    kevin "It's stronger than caffeine."
     kevin "Most miners only use it when they really have to stay up longer, but some smoke every day."
     him "And RET allows that?"
     kevin "To the miners, we are RET. And we don't have an office for the regulation of firegrass."
@@ -3475,7 +3475,8 @@ label community21:
     "That evening, Pete and his family stopped by."
     if luddites > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
         #maybe Travis should be in this event too?
-        pete "Guess what! I have a two-way radio now. It turns out communication is good for business."
+        pete "Hey it's good to see you guys!"
+        pete "I have a two-way radio now. It turns out communication is good for business."
         him "Really? I thought you were all into a technology-free lifestyle."
         pete "I do want to limit my dependence on technology. But I can't ignore the fact that I also live in a community where other people want to help me sometimes."
         him "That will be so much more convenient than trying to hunt you down."
@@ -3487,7 +3488,7 @@ label community21:
             him "Yes, I would love to see them up close!"
         else:
             him "Is it safe?"
-            pete "They never hunt during storms. And the sky looks clear."
+            pete "They can't hurt humans. And the sky looks clear."
             him "Okay."
         "[her_name] was a bit concerned but also excited when I told her about it."
         her "Have him take me out next if it's really cool."
@@ -3501,7 +3502,7 @@ label community21:
         "At first, the colors changed rapidly."
         "Then words started to appear on its back."
         him "Are those...?"
-        pete "Yes, they appear to be English words. I think someone must have lost one of the new waterproof tablets in the ocean."
+        pete "Yes, they appear to be English words. Maybe they learned from one of those new waterproof tablets that somehow got lost in the ocean?"
         pete "They appear to have taught themselves word patterns. I don't think they understand what they're for though."
         kid "Oh, it's just like that game I used to play on my tablet. Here, you just have to..."
         "She moved the word around by touching a dragging it, just like you would on a tablet."
@@ -4173,10 +4174,9 @@ label community24:
         thuc "No, usually people make it into yogurt or lotion or something."
         thuc "Nice lotion sells for even more than goat milk."
         him "I'm surprised Miranda hasn't tried that."
-        thuc "She still does some lab work, but she's gotten really into making soap and stuff."
-        thuc "That's actually how she markets her cleaning business: 'Scientifically proven to work against Talaam microflora!'"
+        thuc "She still does some lab work, but she's gotten really into making soap and stuff. She says it's specially formulated to kill microflora on Talaam."
+        thuc "She and Julia are making a plum syrup together too. It tastes amazing."
         thuc "The price of Pete's firegrass has gone waaaay up, so I think some teenagers are trying to grow some on their own."
-        thuc "I think some kids made a videogame that they are selling for a ridiculous amount too."
         thuc "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
         him "Ugh, is that still a thing?"
         thuc "Yes, it is."
@@ -4262,7 +4262,9 @@ label community25:
     sara_c "After you chop it up, do you just sautee it?"
     thuc_c "I like it in a little beef grease with beans and garlic."
     natalia_c "I think Ilian is selling it dried now. Dried jellystar is really good in soup"
-    sara_c "This stuff has pretty high water content... is there anything left after it's dried out?"
+    julia_c "It's especially good with a little of my plum syrup! Ten percent off this week!"
+    natalia_c "I think everyone has tried your plum syrup by now..."
+    sara_c "Jellystar has a pretty high water content... is there anything left after it's dried out?"
     him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
     if ate_jellyfish:
         him_c "Dr. Lily told me that they contain a parasite which could decrease reaction speed."
@@ -4554,14 +4556,13 @@ label community26:
     her "Also, I met with a miner this week who was a heavy user of firegrass."
     her "She has severe insomnia and depression."
     him "And sleeping pills don't help?"
-    her "Well, they do help her sleep, but then she feels sleepy and usually uses firegrass to help her feel more awake."
+    her "Well, they do help her sleep, but then she feels sleepy in the morning and usually uses firegrass to help her feel more awake."
     her "She has frequent panic attacks and has lost an unhealthy amount of weight."
     her "Mayor Grayson agrees that we don't have the resources for a mental hospital."
     her "Sara completed training to do some mental health counseling and has started sessions with her, but she needs more than just therapy."
     her "She doesn't seem to be getting better anytime soon. She has suicidal tendencies."
     him "We should help her change something in her life to break this cycle."
     her "I feel like I've done everything I can. I'm going to present her case to the town council to see if they have other ideas."
-
 
     if is_liason:
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
@@ -4585,79 +4586,139 @@ label community26:
         brennan "I'm willing to give her a month of paid disability."
         her "Well, that's a start anyway. Let's discuss firegrass and how we can manage it."
         her "It appears that the active compound from firegrass stays in the blood for about as long as caffeine."
-        her "However, the long-term side effects are more severe."
+        her "The long-term side effects are similar too."
+        brennan "I've never heard of someone suffering from a caffeine overdose."
+        her "Well, it can happen. Usually with heavy users of energy drinks."
         if miners > 10: #from community21, if you talked about it with Brennan
-            her "A few years ago, I gave miners recommended doses, but even with those doses, miners have experienced insomnia and reduced appetite."
+            her "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
             her "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
         her "I think we should discourage the use firegrass somehow. I don't want to see any more cases of insomnia and depression."
         brennan "I also don't want to see that. I don't think outlawing firegrass will stop people from using it."
         brennan "Pete is going to sell firegrass no matter what we decide."
-        her "So how would you cut down on firegrass use?"
-        brennan "We could educate users about its side effects. Make posters and engaging, informational narratives that show the effects of its use."
-        brennan "Maybe Carol could help educate users when she's feeling better."
-        sara "I know an enterprising young person who could make an app about how to use firegrass."
-        him "Is it Oleg?"
-        sara "Yes! He is really interested in educational technology."
-        if miners > 10:
-            sara "You could have them access their own health stats from the database and it could tell them their recommended dosage."
-            her "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
-            her "Also there is no way I'm giving Oleg access to the health database."
-        else:
-            sara "You could make some recommendations for it."
-            her "I think my recommendations wouldn't give users the level of alertness they're accustomed to."
-        sara "Well, we want to at least try, right? Isn't the placebo effect still real with a low dose?"
-        her "How about I just start selling placebo pills then?"
-        sara "Better than doing nothing."
-        pavel "I think we need to understand what motivates people to use firegrass and address that concern."
-        pavel "Brennan, are you still running up against tight deadlines?"
-        brennan "Sometimes we're lucky and fill our quota quickly, and sometimes we're working major overtime to just get close."
-        brennan "I've asked RET to change their system, but I don't think that will happen anytime soon."
-        pavel "They have almost no contact with RET... what if you told them that RET did away with the quota system so that they could work more consistent hours?"
-        pavel "It might help prevent accidents and actually increase productivity."
-        brennan "I could change the amount of hours they can work." #it might be more interesting if he does want to lie?
-        brennan "I am a little worried about what the miners would do if they had more leisure time though."
-        sara "Why can't they just drink green tea to help them stay awake?"
-        brennan "They do drink tea, and you've probably noticed that it's also in high demand."
-        brennan "I can usually get enough for three cups in a week."
-        her "Certainly drinking tea would be a safer alternative than smoking firegrass."
-        pavel "I don't like to drink tea. I miss coffee."
-        him "Well, if we're treating it as a drug, it shouldn't matter what it tastes like."
-        pavel "Of course it matters! Do you eat fruits and vegetables because they have the chemicals necessary for you to survive?"
-        pavel "Or do you just have no sense of taste?"
-        him "Maybe if you weren't such a food snob you would enjoy your life more."
-        pavel "Having a discerning palate makes me appreciate good things even more. But we're getting distracted."
-        pavel "Certainly growing more tea could help with the alertness issues people usually turn to firegrass for."
-        her "But I don't think tea can easily replace firegrass for people who are already using it."
-        "What do I recommend?"
+        "How do I feel about the issue?"
         menu:
-            "Push for Brennan to change the amount of hours miners can work.":
-                him "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
-                her "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
-                him "Reducing their work hours should discourage them from using it more."
-                if (miners > 10): #is it mean to make this an option where it won't work?
-                    brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
-                    $ miners += 1
-                    $ work_fewer_hours = True
-                    jump educational_app
+            "We should try to ban firegrass use.":
+                $ ban_firegrass = True
+                him "Even if people will still use firegrass, we should do everything we can to stop people from abusing it."
+                him "I think that we should make a law against using firegrass, and punish those found using it."
+                brennan "Punish them? With a fine?"
+                him "Yes. And we should search their property and confiscate any firegrass we find there."
+                brennan "But we know Pete is going to sell it no matter what we do."
+                him "Is he? I think Pete is smart enough to find something else to sell."
+                her "What if I arranged to buy some firegrass from him on behalf of RET, and then prescribed it to people who have difficulties staying awake?"
+                him "And we can make it against the law to use firegrass without a prescription."
+                pavel "But how will we know who is authorized to use it?"
+                her "I could flag their record, but if it's public information, that violates patient confidentiality."
+                pavel "Maybe you could send them a copy of their prescription, and they could choose to show it to someone enforcing the ban."
+                her "That would work."
+                him "And the fines can help pay for [her_name] to hire a part-time assistant to help with the prescriptions."
+                her "Oh, good thinking."
+                him "But who would we choose to enforce the ban?"
+                brennan "It should be someone who's part of their respective community, so they won't be resented as much."
+                him "Does that mean you're volunteering, Brennan?"
+                brennan "No, I do enough hounding. Let someone else experience the social isolation that comes from enforcing rules."
+                brennan "I can find someone to check with the miners. We'll probably use a warnings system."
+                pavel "I can assign a few people in the colony."
+                brennan "What should I recommend to miners who are sleepy on a night shift but can't get a prescription?"
+                brennan "I know we have some green tea around, but there never seems to be enough..."
+                her "Good point. A ban would be more effective if there were some alternative drug to use."
+                "What do I recommend?"
+                    menu:
+                        "Grow more tea plants.": #change to green tea
+                            him "Let's make tea plants a priority this growing season."
+                            him "If we plant them around the same time, we can process them together too."
+                            pavel "I'm interested in making black tea with the leaves."
+                            him "Sounds good. Maybe some people will like black tea more than green tea."
+                            $ grow_more_tea = True
+                            jump wrap_up_council_26
+                        "Don't do anything.":
+                            him "I think it's good enough to be able to get a prescription for firegrass."
+                            him "It works about as well as tea, and it's a lot easier to grow."
+                            brennan "I wonder if firegrass would make a good tea?"
+                            her "That sounds like something Julia would know. She loves tea."
+                            jump wrap_up_council_26
+                        "Ask if the night shift is necessary.":
+                            him "Is it really necessary for the miners to work through the night?"
+                            brennan "We have a quota from RET we're supposed to meet each year. Sometimes it's not necessary and sometimes it is."
+                            pavel "What if you cut down their hours? It could actually increase productivity."
+                            if (miners > 10): #is it mean to make this an option where it won't work?
+                                brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
+                                $ miners += 1
+                                $ work_fewer_hours = True
+                                jump wrap_up_council_26
+                            else:
+                                brennan "Send me an e-mail after the meeting and we can talk about it."
+                                $ brennan_refuses_fewer_hours = True
+                                jump wrap_up_council_26
+                            
+            "We should try to reduce firegrass use without outlawing it.":
+                him "I agree. Let's try to reduce the amount people are using without banning it."
+                her "So how would you cut down on firegrass use?"
+                brennan "We could educate users about its side effects. Make posters and engaging, informational narratives that show the effects of its use."
+                brennan "Maybe Carol could help educate users when she's feeling better."
+                sara "I know an enterprising young person who could make an app about how to use firegrass."
+                him "Is it Oleg?"
+                sara "Yes! He is really interested in educational technology."
+                if miners > 10:
+                    sara "You could have them access their own health stats from the database and it could tell them their recommended dosage."
+                    her "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
+                    her "Also there is no way I'm giving Oleg access to the health database."
                 else:
-                    brennan "Send me an e-mail after the meeting and we can talk about it."
-                    $ brennan_refuses_fewer_hours = True
-                    jump educational_app
-            "Grow more tea plants.": #change to green tea
-                him "Let's make tea plants a priority this growing season."
-                him "If we plant them around the same time, we can process them together too."
-                pavel "I'm interested in making black tea with the leaves."
-                him "Sounds good. Maybe some people will like black tea more than green tea."
-                $ grow_more_tea = True
-                jump educational_app
-            "Don't do anything.":
-                him "I don't think it's our job to tell people how to live."
-                him "Let them use firegrass if they want to."
-                her "Part of my job is telling people the correct dosage for drugs to take and taking care of people who use too much."
-                her "I'd much prefer to prevent people from using too much firegrass to begin with."
-                $ luddites += 1
-                jump educational_app
+                    sara "You could make some recommendations for it."
+                    her "I think my recommendations wouldn't give users the level of alertness they're accustomed to."
+                sara "Well, we want to at least try, right? Isn't the placebo effect still real with a low dose?"
+                her "How about I just start selling placebo pills then?"
+                sara "Better than doing nothing."
+                pavel "I think we need to understand what motivates people to use firegrass and address that concern."
+                pavel "Brennan, are you still running up against tight deadlines?"
+                brennan "Sometimes we're lucky and fill our quota quickly, and sometimes we're working major overtime to just get close."
+                brennan "I've asked RET to change their system, but I don't think that will happen anytime soon."
+                pavel "They have almost no contact with RET... what if you told them that RET did away with the quota system so that they could work more consistent hours?"
+                pavel "It might help prevent accidents and actually increase productivity."
+                brennan "I could change the amount of hours they can work." #it might be more interesting if he does want to lie?
+                brennan "I am a little worried about what the miners would do if they had more leisure time though."
+                sara "Why can't they just drink green tea to help them stay awake?"
+                brennan "They do drink tea, and you've probably noticed that it's also in high demand."
+                brennan "I can usually get enough for three cups in a week."
+                her "Certainly drinking tea would be a safer alternative than smoking firegrass."
+                pavel "I don't like to drink tea. I miss coffee."
+                him "Well, if we're treating it as a drug, it shouldn't matter what it tastes like."
+                pavel "Of course it matters! Do you eat fruits and vegetables because they have the chemicals necessary for you to survive?"
+                pavel "Or do you just have no sense of taste?"
+                him "Maybe if you weren't such a food snob you would enjoy your life more."
+                pavel "Having a discerning palate makes me appreciate good things even more. But we're getting distracted."
+                pavel "Certainly growing more tea could help with the alertness issues people usually turn to firegrass for."
+                her "But I don't think tea can easily replace firegrass for people who are already using it."
+                "What do I recommend?"
+                menu:
+                    "Push for Brennan to change the amount of hours miners can work.":
+                        him "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
+                        her "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
+                        him "Reducing their work hours should discourage them from using it more."
+                        if (miners > 10): #is it mean to make this an option where it won't work?
+                            brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
+                            $ miners += 1
+                            $ work_fewer_hours = True
+                            jump educational_app
+                        else:
+                            brennan "Send me an e-mail after the meeting and we can talk about it."
+                            $ brennan_refuses_fewer_hours = True
+                            jump educational_app
+                    "Grow more tea plants.": #change to green tea
+                        him "Let's make tea plants a priority this growing season."
+                        him "If we plant them around the same time, we can process them together too."
+                        pavel "I'm interested in making black tea with the leaves."
+                        him "Sounds good. Maybe some people will like black tea more than green tea."
+                        $ grow_more_tea = True
+                        jump educational_app
+                    "Don't do anything.":
+                        him "I don't think it's our job to tell people how to live."
+                        him "Let them use firegrass if they want to."
+                        her "Part of my job is telling people the correct dosage for drugs to take and taking care of people who use too much."
+                        her "I'd much prefer to prevent people from using too much firegrass to begin with."
+                        $ luddites += 1
+                        jump educational_app
         label educational_app:
             her "I'd like to work with Oleg on making that app. Pavel, can you provide us some credits so I can pay him?"
             pavel "I can provide you with some, but I think that some of this should come from Brennan's budget, since miners are the biggest users of firegrass."
@@ -4665,6 +4726,9 @@ label community26:
             brennan "[her_name], how much do you think it will cost?"
             her "I need to talk to Oleg about that, so I'll message you both a budget estimate next week."
             "She ended the meeting with a summary of what we'd talked about."
+            jump wrap_up_council_26
+        
+        label wrap_up_council_26:
             "Many people pitched in to help Carol and her family."
             "Natalia watched Carol's children in the day while Sara took Carol on a tour of the different jobs in the colony."
             "For a while it seemed like even our best efforts weren't helping, and Carol blamed herself for not being appreciative enough."
@@ -5316,6 +5380,7 @@ label fill_gap:
             ilian "You guys are going to regret this. Hope you like Kevin as your mayor."
             kevin "I hope that we can work together harmoniously if I am elected mayor."
             "Next week we all voted on who should be the next mayor, and Kevin was elected mayor."
+            $ kevin_elected = True
             if no_euthanasia_26:
                 jump no_euthanasia
             else:
@@ -5368,7 +5433,7 @@ label no_euthanasia:
     him "Why?"
     her "He'll stop using the bathroom. He'll need to be spoon-fed food."
     him "We can do it."
-    "One day Julia was late coming to watch him, and Sarah left him alone."
+    "One day Julia was late coming to watch him, and Sara left him alone."
     "Julia couldn't find him that night and we all started searching for him."
     "In the morning, we found his body drowned in the river."
     "His funeral was well-attended, and we reminisced about his optimistic spirit."
@@ -5382,7 +5447,7 @@ label euthanasia:
 
 
 label community29:
-    if miners > 10: #this means Kevin was elected in the previous event. If other things change this value in between, I should make a separate variable for it.
+    if kevin_elected:
         "Kevin was a logical mayor, as we'd expect from him. Though he assured us of his objectivity, he helped the miners more often than anyone else."
         "He worked with them and talked with them more than he did to us, so it wasn't surprising."
         "He worked with Brennan to have a work rotation with some of the farmers. Farmers would work in the mines for a day each week while the miners worked in the fields."
@@ -5402,7 +5467,9 @@ label community29:
     her_c "She's a little older than I am, and she's already in the second trimester."
     him_c "Is that a bad thing?"
     her_c "She's in her mid-forties in Earth years. Even in regular hospitals, that's considered a high-risk pregnancy."
-    her_c "And since they're not colonists, I have to figure out how to charge them for medical expenses..."
+    him_c "Oh... do you think she'll want an abortion?"
+    her_c "She didn't ask for one, even after I explained the risks of pregnancy to her, so I'm guessing no."
+    her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
     if luddites > 5: #should this number be higher?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
@@ -5554,7 +5621,6 @@ label community29:
         "After Helen was well enough, she and Pete left. They buried Sage's body near the base of the mountain."
         return
 
-# Rebuilding, aftermath of big fight.
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
 #Carol's husband dies in what appears to be an accident. He is in a wheelchair and his chair tips in the rain while Carol is nearby. She reports that she was distracted by one of her children.
@@ -5566,6 +5632,637 @@ label community29:
 # WHO STOLE PETE'S CREDITS
         
 label community30:
+    $ account_checked_counter = 0
+    if kevin_elected:
+        "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
+        kevin "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
+        kevin "I'd like your help with something that happened in the mining camp."
+        him "Okay. Want to tell me about it in the library? I don't really want to stand outside in the rain."
+        kevin "It is a senstive matter, and I would not like to be overheard..."
+        him "No one's in there, it's fine."
+        #change scene to library, if we have that already, otherwise they can talk outside
+        him "What's this all about?"
+        kevin "There has been a death in the mining camp. We are not certain if it was an accident or a murder."
+        kevin "I would like your assistance in the investigation, as a neutral party."
+        him "Sure, yes, I can help. I don't have much experience with investigation, but I'll do what I can. Is there a crime scene? A primary suspect?"
+        kevin "The woman who almost killed herself about two Earth years ago... do you remember her?"
+        menu:
+            "Yes":
+                him "Sure. There was a town council to see how we could help her."
+                kevin "I was reading the documentation from that very town council meeting."
+                kevin "They called her Carol, right?"
+                him "Yes, [her_name] is big on preserving patient confidentiality."
+                kevin "Her real name is Noel."
+                him "I always knew [her_name] was secretly a fan of puns."
+            "No":
+                him "That's not ringing any bells for me."
+                kevin "She was consuming an IMMENSE amount firegrass."
+                kevin "The drug is not especially habit forming--it's comparable to energy drinks back home."
+                kevin "The town council notes referred to her as Carol, but her real name is Noel."
+                him "Is that supposed to be some kind of joke?"
+                kevin "I believe [her_name] was trying to protect her identity, but did not succeed."
+        kevin "Noel's husband, Joel, recently died from blunt head trauma."
+        him "Okay. Was Noel with him at the time?"
+        kevin "Noel says that she and Joel went just outside their house to look for shooting stars."
+        kevin "She said that it started to rain, but Joel wanted to watch a little longer."
+        kevin "She says that he dropped his binoculars but told her to keep looking. He reached down to grab them and his wheelchair tipped over."
+        kevin "He fell face-first onto the concrete-like material just outside their home."
+        kevin "She wasn't able to lift him up, so she rolled him over. She said he was completely unconscious and had stopped breathing."
+        kevin "By the time she received assistance from the nearby nurse, he was already dead."
+        him "I see. Is [her_name] going to do an autopsy?"
+        kevin "Yes, we just delivered the body to the medical wing."
+        him "Do I have your official authorization to question Noel and any witnesses?"
+        kevin "I recommend that you not question Noel as an authority figure, because she stated to me that she would remain silent in such a situation."
+        kevin "Nevertheless, you may officially question any witnesses to Joel's death."
+        him "Can I get that in writing?"
+        kevin "Certainly. I will send you an e-mail stating such, along with photos of the crime scene."
+        kevin "We also have Joel's tablet and a few of his other possessions, which we seized as part of our initial investigation."
+        him "You just took his stuff? Why don't you completely believe Noel's story?"
+        kevin "I do not wish to bias you. Please, start your own investigation and then I will tell you my ideas."
+        him "I'll get started right away."
+        jump investigation_start
+        
+    else:
+        "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
+        nvl clear
+        julia_c "Hi [his_name]. Is there a time we could meet? I have an urgent matter to discuss with you."
+        him_c "If it's so urgent, maybe you could just tell me now? I just have a few more weeds to pull in this sopping rain and I'd like to be done."
+        julia_c "There's been a death in the mining camp."
+        julia_c "The primary suspect is someone who was a frequent client of mine, so the town council suggested that I ask an uninvolved party to assist in the investigation."
+        him_c "k you can come over in 30 minutes."
+        #scene change to house.
+        him "Want some hot tea?"
+        julia "I love tea. What do you have?"
+        him "Mint. And if you're feeling tired I can add a few green tea leaves."
+        julia "Yes please."
+        him "Okay, so tell me more about what happened."
+        julia "Do you remember about two Earth years ago, there was a woman who almost killed herself?"
+        menu:
+            "Yes":
+                him "Sure. There was a town council to see how we could help her."
+                julia "I was reading about that meeting in my special mayor files."
+                julia "[her_name] called her Carol in that meeting. But her real name is Noel."
+                him "Yes, [her_name] is big on preserving patient confidentiality. Well, at least I thought she was."
+                julia "Not a very good pseudoname for her, was it?"
+                him "Nope."
+
+            "No":
+                him "Really? I don't remember that."
+                julia "She was under a lot of pressure at the time." 
+                julia "Her husband was recently disabled, they had two small children, and she became the family's main breadwinner."
+                julia "In my special mayor files, they referred to her as Carol, but her real name is Noel."
+                him "Wow, great pseudoname?"
+                julia "You can see how it was easy for me to make the connection there."
+        julia "Noel's husband, Joel, died from blunt head trauma last night."
+        him "Okay. Was Noel with him at the time?"
+        julia "Noel says that she and Joel were on their front porch searching the night sky for shooting stars."
+        julia "It started raining and they were about to go inside, but Joel wanted to watch a little longer."
+        julia "They saw a really spectacular shooting star."
+        julia "He dropped his binoculars but told her to keep watching. He reached down to grab them and his wheelchair tipped over."
+        julia "He fell face-first onto their porch."
+        julia "She rolled him over and attempted CPR when she noticed that he was unconscious."
+        julia "By the time she received assistance from the nearby nurse, he was already dead."
+        him "I see. Is [her_name] going to do an autopsy?"
+        julia "Yes, the body was just delivered to the medical wing this morning."
+        him "Do I have your official authorization to question Noel and any witnesses?"
+        julia "Yes, of course!."
+        him "Can I get that in writing?"
+        julia "Okay, how's this?"
+        nvl_clear
+        julia_c "I, Julia Nguyen, hereby officially authorize [his_name] to question Noel and any witnesses about the incidents surrounding Joel's death."
+        him "That should suffice."
+        him "Can I collect evidence?"
+        julia "Sure, if you find anymore. We don't have evidence bags or anything."
+        julia "We took photos of the body before we moved it, and we took Joel's belongings for further investigation."
+        julia "I'll share the photos with you."
+        julia "Joel's things are with his body in the hospital."
+        julia "Oh, and Noel has a lot of society anxiety and asked not to be questioned in-person."
+        him "Hmm. Okay."
+        him "What do you think happened?"
+        julia "I'm not sure. That's why I'm asking you to do this."
+        him "I'll get started right away."
+        jump investigation_start
+        
+    label investigation_start:
+        "I put my rain gear back on and prepared to set out."
+        "I opened the image of the crime scene."
+        #a CG here would be great, but not required."
+        "There was a photo of Joel's body, and a photo of the porch area where it took place."
+        "Joel's face in the photo looked super pale. He was on the floor on his back and his mouth and eyes were open."
+        "He had an open gash running horizontally across his forehead, with bruising all around it."
+        "In the photo of Joel's yurt, I could see that it had a wooden wraparound porch. The porch was raised maybe two inches from the ground and didn't have a railing." 
+        "Four rain barrels stood on the side. One was open and catching the rain that poured from the roof of the yurt."
+        "Where should I go first in my investigation?"
+        menu:
+            "Visit where Joel died.":
+                label joel_house
+                $ visted_Joel_house = True
+                "I made the long walk to the miner's camp. It was rainy, and path up the mountain was slick."
+                "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
+                "As I walked I thought about Joel. How long had he been disabled? It would be difficult to live in a wheelchair in the mountains."
+                "Since the camps moved around the mountain when the mine moved, the camp itself didn't always have cement paths."
+                "Even in the drier months, the incline going up the mountain was so steep that I'm not sure Joel could leave the camp on his own."
+                "It might even be too steep for someone to help him down in a wheelchair."
+                "This camp was fairly new, and I had to follow the smoke from the chimneys to find its exact location."
+                "The camp itself was in a flat area of the mountain."
+                "I asked where I could find Noel, and an old woman pointed me in the right direction."
+                #knock sound?
+                him "Hi, Noel? Hello? Are you here?"
+                thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Thuc are watching her kids while she's away."
+                him "I'm here to examine where Joel died."
+                thuc "Okay, it was just back here."
+                him "Was Van here when Joel died?"
+                thuc "No, but the kids were. They didn't see what happened though."
+                thuc "They don't understand where he is. They think he went back to Earth."
+                him "He might as well be there, for all they know."
+                thuc "Well, they're actually going back to Earth on the shuttle, so we're trying to explain that he's dead."
+                him "Oh, right, that's happening next month! Is Brennan going back?"
+                thuc "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
+                him "Except for Joel's..."
+                thuc "Good point!"
+                him "So what were you doing last night? I'm just trying to rule people out right now."
+                thuc "I am a pretty suspicious person." 
+                thuc "I was at home with Julia. She was writing up a 'Where are They Now?' story on the children of the colony while I read through some colony forum posts."
+                him "I haven't checked it in a few days. Is anything going on?"
+                thuc "Not much."
+                him "Do you think you could watch the kids while I ask Van about the family?"
+                thuc "They seem really clingy right now... could you just do that tonight?"
+                him "Okay, okay. Is the wheelchair still here?"
+                thuc "Yeah, it's on the porch."
+                "I went outside to examine the wheelchair."
+                "It was a manually-operated wheelchair and had a well-worn cushion in its seat."
+                "The brakes were engaged, but they weren't preventing the main wheel from spinning."
+                him "Huh."
+                "The brake pad was completely worn out. I took photos of the brake and brake pad with my tablet."
+                "I looked at the rain barrels. I wiggled them to confirm that they were the right weight and sloshiness to contain water."
+                "I didn't have my barrel-opening tools with me, so I didn't open them."
+                "I went back inside and looked around."
+                "The young children were following me and I told them I was just making sure that everything was where it should be."
+                "Van tried to distract them, while I looked under chairs and in the cabinets for anything suspicious."
+                label where_next_30:
+                "Where should I look next?"
+                    menu:
+                        "Around the bed." if not searched_bed:
+                            "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were a bunch of dust bunnies."
+                            $ searched_bed = True
+                            if searched_bed and searched_cupbaord and searched_sofa:
+                                jump say_goodbye_30
+                            else jump where_next
+                        "In the storage cupboard." if not searched_cupboard:
+                            "One shelf had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old pipe."
+                            "The pipe looked like it hadn't been used for years."
+                            $ searched_cupboard = True
+                            if searched_bed and searched_cupbaord and searched_sofa:
+                                jump say_goodbye_30
+                            else jump where_next
+                        "On the kids' sofa bed." if not searched_sofa:
+                            "There were all kinds of things lodged into the crevices of the sofa bed, which looked like it hadn't been packed away for a long time."
+                            "I found a clay ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
+                            "The kids were pretty excited to see what I unearthed."
+                            "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
+                            $ searched_sofa = True
+                            if searched_bed and searched_cupbaord and searched_sofa:
+                                jump say_goodbye_30
+                            else jump where_next
+                "I said goodbye to Thuc and Van and headed back into town."
+                if examined_body:
+                    jump olegs_house
+                else:
+                    "I still wanted to examine the body."
+                    jump examine body
+                    
+            "Examine the body and Joel's belongings.":
+                label examine body
+                $ examined_body = True
+                "I headed over to the medical building."
+                her "Hi [his_name]. I already had lunch, but if you can come in and talk to me for a bit while I clean up."
+                him "Actually, I'm here on an official assignment. I'm investigating Joel's death."
+                her "I was just finishing up the autopsy."
+                him "What did you find?"
+                her "His blood work was mostly normal."
+                her "It looks like he died from bleeding into his brain."
+                him "Is that consistent with an injury sustained from falling from a wheelchair?"
+                her "Yes..."
+                him "But?"
+                her "Most of the time, it takes a while to die from a traumatic brain injury. Usually the person with head trauma goes into a coma for a month or something."
+                her "This seemed really sudden."
+                her "It makes me wonder if he had sustained a brain injury earlier."
+                her "Besides the one that disabled him."
+                him "Huh."
+                her "His things are on the other examination table. We can talk more after I finish cleaning up."
+                "I looked at the other examination table. There was his clothing, his tablet, and a ball made from plant fibers." #there could be a menu of what to look at here
+                "His clothing still felt a little damp. He had an RET-issued shirt, but instead of pants, there was a skirt with buttons all the way down. A kilt? Maybe it was easier to put on than pants?"
+                "The ball made of plant fibers was made from a plant that grew near the river. It was a pretty common plant, so we didn't bother growing it in farms."
+                "The fibers weren't all that soft, but with enough teasing, they could make a matted fiber kind of like wool, but not as insulating."
+                "I opened the tablet and started examining the contents."
+                "There were a lot of music and audiobooks on the tablet, as well as some drawings that looked like they were made by a kid."
+                "There were a few photos too, including a few of his kids and of the night sky from a few days ago."
+                "There weren't any photos from the day of his death though."
+                "He messaged Julia occasionally things like 'be there soon' or 'not tonight'. Interesting."
+                "I opened his personal credit account, but I couldn't access it without a code."
+                her "Find anything that explains his death? Like a threatening video or something?"
+                him "No. It does look like he messaged Julia a fair amount."
+                her "Well, there's no way it was him writing those messages. Since the mining accident, he hasn't been able to read or write."
+                her "Noel felt lucky that he could still talk though."
+                her "It makes me wonder who was using the tablet."
+                him "It could have been Noel."
+                her "Yeah. Or Van, he's always helping out over there."
+                him "Would Van do something like that?"
+                her "Maybe if he forgot his own tablet? I'm not sure."
+                him "Do you know if I can access his credit account? I'm just curious if he had a balance."
+                her "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
+                him "I'll stop by his place before meeting you at home."
+                her "Just let me know if I can help! I love this kind of stuff."
+                if visited_Joel_house:
+                    jump olegs_house
+                else:
+                    "I still wanted to examined the scene of the crime."
+                    jump joel_house
+                    
+        label olegs_house:
+            "I walked to Sara and Ilian's house to see if Oleg was there."
+            "No one answered the door."
+            "I walked over to the storehouse."
+            him "I have a computery question for Oleg--is he around?"
+            ilian "No idea. I'm not responsibile for where he is or isn't."
+            him "Sheesh, did I hit a nerve?"
+            ilian "Yeah, Sara's always asking me where Oleg is like I'm some kind of walking Oleg-GPS."
+            ilian "If she cares so much, why doesn't she follow him around?"
+            ilian "I'm the one stuck here all day."
+            him "If you're feeling burned out, maybe you could get someone to help you so you can have some time off."
+            ilian "No. No, no, no. I've already been over this so many times."
+            ilian "I can't trust anyone else with my job. Without me, the colony would be in utter chaos."
+            him "The colony definitely depends on you doing your job."
+            him "I'll just send Oleg a message with my question."
+            ilian "While you're asking him that, ask him if he's ever coming back, or if he's just going to stay with his mother the whole rainy season."
+            him "Why don't you just ask him yourself?"
+            ilian "He's not talking to me right now."
+            ilian "Don't just stand there staring at me!"
+            ilian "Ask him!"
+            him "Uh, okay."
+            nvl clear
+            him_c "Hey Oleg, do you know if it's possible to open someone's credit program without their passcode?"
+            oleg_c "Nope, not without wiping everything."
+            him_c "Is credit data stored in the library server then? Or would wiping someone's tablet erase all their credits?"
+            oleg_c "dunno never tried ghgh ~~*~~" #this is supposed to simulate not know what acronyms or emoji the teenagers are using right now
+            oleg_c "now i'm curious tho"
+            him_c "It must be stored centerally, because even after Helen lost her tablet, I don't remember her losing her credits."
+            him_c "Ilian is asking me to ask you if you're going to stay with your mom the whole rainy season."
+            oleg_c "it's laik"
+            oleg_c "i'm never comin back ^$^"
+            oleg_c "and mom is goin back to earth --> 0"
+            oleg_c "tttlt" #touch talaam the last time
+            him_c "Are you for real?"
+            oleg_c "just tell him that"
+            oleg_c "and tell me what he says"
+            menu:
+                "Tell Ilian what Oleg said.":
+                    him "Oleg says he's never coming back and that Sara's going on the shuttle back to Earth."
+                "Tell Ilian that Oleg isn't answering your questions.":
+                    him "Oleg isn't telling me anything."
+                    ilian "Oh yeah, what's all that you're typing?"
+                    ilian "Give me that."
+                    "Ilian took my tablet and read what Oleg had written."
+            ilian "WHAT there's no WAY that's possible. Every seat on that shuttle is spoken for."
+            him "Since Joel died I think there is an empty seat..."
+            ilian "There's no way Sara was next in the waiting list."
+            ilian "She'd have had to get on the waitlist like... FIFTEEN YEARS ago."
+            ilian "UGHHHH I HATE HER SO MUCH THAT WITCH"
+            him_c "He's freaking out! What the heck?"
+            oleg_c "ghgh i knew it"
+            "I went home and made cabbage and potato soup for everyone."
+            him "Hey [kid_name], do you know where Oleg is staying right now?"
+            kid "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
+            him "That old cabin where we used to leave deliveries in?"
+            kid "That's the one."
+            him "I need to go talk to Sara and Oleg for my investigation."
+            kid "Are you investigating the murder?"
+            him "No one said it was a murder!"
+            her "So you're saying it wasn't a murder?":
+                menu:
+                    "Do I think Joel died on accident?"
+                    "Yes.":
+                        him "It looks like the brakes on his wheelchair were worn out and so his chair tipped over."
+                        him "Accidents happen."
+                    "It could have been a murder.":
+                        him "It could have been an accident, or it could have been a murder made to look like an accident."
+                        him "I'm still gathering all the information."
+            kid "Okay, but how is Oleg involved? I don't think he even knew Noel."
+            #maybe you can only involve Tera if you have a good relationship
+            him "Right now I'm trying to figue out who is on the waiting list to go back on the shuttle."
+            him "Do you know anything about that?"
+            kid "No, everyone I know who is going back was always planning on it."
+            kid "Wouldn't Brennan have like a list or something?"
+            him "Yes, he would."
+            nvl clear
+            him_c "Hey Brennan, I'm investigating Joel's death for the mayor."
+            him_c "Can you tell me who is on the waiting list to go on the shuttle back to Earth?"
+            brennan_c "Sure. Sara is first. Then it's Pavel, but he's dead. The rest are all miners you probably don't know. I'll message you the contact info for them."
+            him_c "That would be really helpful. Thank you."
+            "I got on my rain gear and went to find Sara."
+            "Before we had a delivery system, we used to leave deliveries in this small cabin for the miners, so they wouldn't have to walk into town but we wouldn't have to hike all the way to their camp."
+            "I'm pretty sure some stuff got misplaced or stolen. When the miners got more credits they started paying for delivery to the camp."
+            "The empty cabin was still used sometimes as a dropoff for equipment or a teen hangout."
+            "It had been a while since I went there, so it was hard to find in the rain, but the smoke coming from the chimney clued me in."
+            "Sara answered the door when I knocked."
+            sara "Yes? Can I help you?"
+            him "Hi Sara. Is it okay if I come in?"
+            him "I brought soup."
+            #sara only lets you in if you have a good relationship w the colony
+            sara "Sure. What's up?"
+            "Sara and Oleg started eating the soup I brought for them."
+            him "I'm just doing a little research on who is on the waitlist for the shuttle going back to Earth."
+            him "You know, since Joel died, there's an empty spot."
+            him "Brennan told me that you're first on the list. Is that right?"
+            #she only opens up if your colony value is high enough
+            sara "Oh, is that what this is about. Ha."
+            sara "Yes, I am first on the list."
+            sara "Back when the miners first arrived, Ilian and I had a big fight over who should get up in the night with Oleg."
+            sara "He said that I should take care of it all, because I could take a nap in the afternoon if I needed to."
+            oleg "Was I a difficult baby?"
+            sara "You were probably normal, but it was still hard for us."
+            sara "I got really mad about it. We kept fighting over everything that month."
+            sara "I asked Brennan to put me on the list to go back on the shuttle if something opened up."
+            sara "Whenever Ilian and I started fighting, I was comforted by the idea going back to Earth."
+            oleg "Are you really going to go back?"
+            sara "No, I wouldn't want to leave you here!" 
+            oleg "I'm grown up now. You can go back if you want to."
+            sara "I don't want to go back to Earth."
+            sara "I don't even know if any of my family back on Earth would be alive by the time I got back."
+            sara "My life is here now. But for a while I just needed to believe I could go back if I wanted to."
+            him "I can understand that. You want to have a backup plan just in case."
+            sara "Thanks for the soup."
+            him "You're welcome."
+            oleg "Yeah, thanks, this isn't half bad."
+            oleg "I thought about what you were saying, about the credit information being stored somewhere."
+            oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
+            him "Hmmm. You might be right."
+            
+        "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
+        "I still wanted to talk to Noel herself, about what happened." 
+        "I also wanted to ask Van about what Noel and Joel's home life was like."
+        "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
+        "I also wanted to go back to the scene of the crime to look in the barrel."
+        "I also wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
+        
+        nvl clear
+        him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
+        him "She's not answering me."
+        him "I'll see if Van will talk to me in the meanwhile."
+        nvl clear
+        him_c "Hi Van, how's it going?"
+        van_c "Not bad, I'm just headed out in a few minutes."
+        van_c "How are you?"
+        him_c "Good. So as you know, I'm investigating Joel's death..."
+        him_c "What can you tell me about Joel's home life?"
+        van_c "So, as you know, I'm pretty well acquainted with Noel and her family."
+        van_c "For a few months while she was trying to quit firegrass I was taking her children to and from the co-op every day and watching them on weekends."
+        van_c "Recently I've only been going over there a few times a week, but I'll probably be there all this week."
+        him_c "Did you check on Joel during these times?"
+        van_c "Oh yeah, sometimes I did food runs for him when Noel was really depressed."
+        van_c "He made amazing pancakes."
+        van_c "He used to tell me that if I ever decided to lose the use of my legs, I should go back to Earth for that."
+        van_c "He was so excited to go back to Earth and buy an exoskeleton."
+        him_c "Did you witness him sustaining any head injuries?"
+        van_c "Oh yeah, I've seen him fall a few times. It seems like he would fall once a week or so."
+        van_c "He was always trying to pick things up off the floor. I even made a grabber thing for him, but the kids were always playing with it and hiding it."
+        van_c "He was pretty frustrated with his disability sometimes and got tired of asking for help all the time."
+        van_c "He could usually tell he was falling and break his fall though."
+        van_c "I think when he died, he got so distracted by the shooting star that he didn't think to break his fall with his arm."
+        him_c "Makes sense."
+        van_c "Is that enough information? I'm actually going over there now, so I should hurry before the kids get into too much trouble."
+        him_c "That's fine. Thank you."
+        him "Now I need to ask Julia about the messages on the tablet..."
+        him "Maybe this is something I should do in person."
+        nvl clear
+        him_c "Julia, can I come over and ask you some things related to my investigation?"
+        julia_c "Of course! Come right over."
+        if not kevin_elected:
+            him "I wanted to give you an update."
+            him "I examined the wheelchair, and it looks like the breaks were worn and not functional."
+            julia "Sounds like an explanation for an accident."
+            him "Possibly. But [her_name] said that it was likely that he had received previous head injuries." #only if your relationship is good enough
+            him "Van also mentioned him falling frequently."
+            julia "This is sounding more like neglect?"
+            him "Yes. There are still a few things I want to investigate."
+        else:
+            julia "So tell me more about this investigation. It's about Joel's death I assume?"
+            him "Yes."
+            julia "What have you found so far?"
+            him "You can read my final report when I finish it."
+            julia "I see."
+        him "On Joel's tablet, there were a few messages to you. Do you know anything about that?"
+        julia "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying
+        him "Okay, that makes sense."
+        julia "Do keep me updated about the status of the case."
+        if not kevin_elected:
+            him "Will do."
+        else:
+            him "I'll update you at the end of the investigation."
+        
+        if luddites > 10: #check values
+            "I went back home and radioed Pete."
+            pete "{i}What can I help you with?{/i}"
+            him "Hey, I'm in kind of a complicated situation."
+            him "One of the miners died in what appears to be an accident."
+            him "I'm investigating if that's the case and it would be helpful to access their financial records."
+            pete "{i}Well normally that kind of information is completely confidential.{/i}"
+            pete "{i}RET keeps records of it because they want to see if people are savin' money and whatnot.{/i}"
+            pete "{i}I'd sure like to see them so I could figure out where all my credits went.{/i}"
+            pete "{i}Normally none of us can access it, but there is a way you can tell how much money is in an account.{/i}"
+            pete "{i}Most vendor accounts require the user's permission to withdraw funds.{/i}"
+            pete "{i}But Brennan can withdraw funds without the user's permission, at least for the miners.{/i}" #if you want to make this into a puzzle later, you can limit the number of withdrawls. Another possible explanation is making a hold on the money but not charging it.
+            pete "{i}Gives him some authority I guess.{/i}"
+            pete "{i}If you were Brennan, you could withdraw credits until you can't withdraw no more.{/i}"
+            pete "{i}That'll tell you how much is in the account.{/i}"
+            pete "{i}Then just pay 'em back the amount you took out and they won't notice unless they dig real deep into the transaction history.{/i}"
+            him "Interesting."
+            "I said goodbye to Pete and pondered what to do with this information."
+            menu:
+                "Ask Brennan to help you.":
+                    if miners > 10:
+                        "Brennan agreed to help me. Whose accounts do I want to check?"
+                        label account_check:
+                            if account_checked_counter > 3:
+                                brennan "Okay, okay, that's enough."
+                                jump back_to_noel
+                                if checked_joel:
+                                    brennan "I bet Noel was hiding her money in Joel's account."
+                                    brennan "She was still collecting disability pay, based on various factors, including her reduced salary."
+                                    him "Huh. So she didn't make this much money working overtime?"
+                                    brennan "No, she has only been working in the mines a few days a week since her suicide attempt."
+                                    jump back_to_noel
+                            menu: #allow players to ask about 3 people
+                                "Noel's" if not checked_noel:
+                                    "Noel has around 100 credits." 
+                                    $ checked_noel = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Joel's" if not checked_joel:
+                                    if ban_firegrass:
+                                        "Joel has over 10,000 credits."
+                                    else:
+                                        "Joel has over 5,000 credits."
+                                    $ checked_joel = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Julia's" if not checked_julia:
+                                    if ban_firegrass:
+                                        "Julia has around 7,000 credits."
+                                    else:
+                                        "Julia has around 4,000 credits."
+                                    $ checked_julia = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Van's" if not checked_van:
+                                    "Van has around 200 credits."
+                                    $ checked_van = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Sara's" if not checked_sara:
+                                    "Sara has around 2,000 credits."
+                                    $ checked_sara = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Oleg's" if not checked_oleg:
+                                    "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                    $checked_oleg = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                    else:
+                        "Brennan refused to help me and now he won't even meet with me."
+                "Try to use Brennan's account without him knowing.":
+                        "I made an excuse to talk to Brennan and I asked him about something that I thought he would look up on his tablet."
+                        "While we were talking, I told him I wanted to use his tablet to send notes on what we were talking about to myself."
+                        if miners > 10:
+                            "I got lucky and he left the tablet with me while he went to a brief meeting."
+                            "I hurriedly opened the payments program. Whose account should I check first?"
+                            menu:
+                                label account_check:
+                            if account_checked_counter > 3:
+                                "I saw Brennan coming back and quickly closed the program."
+                                jump back_to_noel
+                            menu: #allow players to ask about 3 people
+                                "Noel's" if not checked_noel:
+                                    "Noel has around 100 credits." 
+                                    $ checked_noel = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Joel's" if not checked_joel:
+                                    if ban_firegrass:
+                                        "Joel has over 10,000 credits."
+                                    else:
+                                        "Joel has over 5,000 credits."
+                                    $ checked_joel = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Julia's" if not checked_julia:
+                                    if ban_firegrass:
+                                        "Julia has around 7,000 credits."
+                                    else:
+                                        "Julia has around 4,000 credits."
+                                    $ checked_julia = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Van's" if not checked_van:
+                                    "Van has around 200 credits."
+                                    $ checked_van = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Sara's" if not checked_sara:
+                                    "Sara has around 2,000 credits."
+                                    $ checked_sara = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                                "Oleg's" if not checked_oleg:
+                                    "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                    $checked_oleg = True
+                                    $ account_checked_counter + 1
+                                    jump account_check
+                        else:
+                            "Brennan had to leave and took the tablet with him. I wasn't able to look at anyone's account."
+                            jump back_to_noel
+            
+        else:
+            "I couldn't think of a way to access financial information for any of my suspects."
+            jump back_to_noel
+        
+        label back_to_noel:
+            "I wanted to go back to Noel's place."
+            "I brought my barrel-opening tools this time."
+            "When I got there, Noel was there, along with her two young sons." #about ages 4 and 6
+            "I asked her if I could talk to her about Joel's death, but she didn't want to talk about it, especially not with her children needing her."
+            "How should I approach the situation?"
+            menu:
+                "Finish searching the premises.":
+                    "I told her I had been authorized to search her house and that I wanted to look inside her barrels."
+                    "She strongly protested, saying that she would lose water, but I reassured her that the rainy season would last another two weeks."
+                    "She offered to open the plugs on the sides of them, so I could see that it was just water, but that made me all the more suspicious."
+                    "Two of the barrels apeared to be normal, but the third actually had another barrel inside of it."
+                    "The inner barrel was full of firegrass."
+                    "Noel told me that she didn't smoke it anymore but was just holding it for a friend."
+                    "I asked her which friend, but she refused to say."
+                    if ban_firegrass:
+                        "I told her I would have to report her for possessing firegrass."
+                        "She asked me to go away, so I did."
+                    jump noel_no_confession
+                "Offer to help entertain her children.":
+                    "I could tell that she was exhausted. Her kids looked wired."
+                    "I offered to take her kids down to the storehouse to see if I could get them some dried fruit."
+                    "She started crying and nodded. Her sons refused to go with me intially, but relented after I promised to buy them something."
+                    "On the way there, they ran ahead and hid in bushes so they could ambush me as I passed by."
+                    "I pretended to be surprised and chased them there."
+                    "One of the colonists was selling hot cornbread at the storehouse and I bought some for the boys and some to take back to Noel."
+                    "When we got back, Noel was asleep. I read a few stories to her children on my tablet and stayed until they fell asleep."
+                    "The next day, Noel sent me an e-mail." #e-mail display for following?
+                    "Dear [his_name]. Thank you for taking Jam and Neal to get cornbread yesterday."
+                    "Joel's death has been difficult for me to come to terms with."
+                    "I know it's difficult for my kids too."
+                    "I think I'm ready to talk about what happened. Can I meet you in the community center?"
+                    jump noel_confession
+                "Come back later.":
+                    "I told Noel I would come back later."
+                    "She said that there would probably never be a good time to talk."
+                    "I asked if I could come by next time Van was watching her kids."
+                    "She said no."
+                    jump noel_no_confession
+                    
+        if ban_firegrass
+        label noel_confession:
+            "I met Noel in the community center. She thanked me for helping her yesterday."
+            "She explained that she knew that Joel's wheelchair brakes were wearing out, but he wanted to fix them himself."
+            "Tears streamed down her face as she old me that she kept meaning to fix them when he was asleep, but she never had the energy."
+            him "I understand that you felt like you could have prevented his death"
+            "Do I have any more questions?"
+            menu:
+                "Yes":
+                    "Why did Joel have so much money in his account?" if checked_joel:
+                        him "I found out that Joel has quite a bit of money in his account. Why is that?"
+                        "Noel explained that she was simply saving money there in case of an emergency."
+                    "What is this clay ring for?": #for portioning bundles of firegrass?
+                        "Noel stared at it for a few minutes."
+                        "She said it must be a children's toy."
+                    "Van told me that Joel had previous head injuries. Why is that?":
+                        "Noel explained that Joel often vehemently refused help when it was necessary."
+                        "Because of this, he often fell out of his wheelchair and hit his head."
+                        "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
+                "No":
+                
+        label noel_no_confession
+            
+# Noel was buying lots of firegrass from Pete at a low cost and selling it to Julia, with Van transporting it at first unknowingly through informal "deliveries" and then knowingly when he got curious enough. Noel was and is making a good amount of money off of this, buying out Pete the first chance she could. 
+# Oleg started growing firegrass around three years ago (community 24), and his business started booming around two years ago (Community 26). 
+# A year ago some miners discovered his field and basically stole it from him, but they didn't know how to take care of it and everything died.
+# Did Noel start buying out Oleg as well as Pete? She didn't have enough places to store it. But she would play the two off each other.
+# What was Julia doing with all that firegrass? She put it in her secret plum tea syrup, which was very popular!
+
+# If firegrass was banned, then demand for Julia's "secret plum tea" would have increased, making her and Noel richer?
+
+# Why did Noel hide her profits in Joel's account? Out of an anxious desire to store money for their life back on Earth, she wanted to keep collecting disability pay as long as possible after her suicide attempt.
+# How did Joel die? Van and Noel knew that Joel's wheelchair brakes were breaking down. In fact, they had repaired them many times in the past. This time Joel wanted to do it himself but he kept putting it off.
+# Also, Joel wouldn't let Van or Noel repair the wheelchair for him. He had been acting depressed frequently. So maybe he felt like it wasn't worth fixing.
+            
+            
     "The latest shuttles from RET have arrived."
     if ((luddites >= 12) and (miners >=12)):
         "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."
