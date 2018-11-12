@@ -241,18 +241,9 @@ label start:
 
     # Introduction Scenes
     call family_intro
-    call work_intro
     call community_intro
+    call work_intro
 
-    # Initial farm setup
-    #play music computer
-    scene gray_dark with fade
-    $ farm.reset_crops(farm_size)
-    call screen plan_farm
-    $ current_work = get_work_available()
-    $ total_work = farm.get_total_work()
-
-    stop music
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
     "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
@@ -261,10 +252,22 @@ label start:
     # The Loop of Life                                                  #
     #####################################################################
     while (year <= MAX_YEARS):
+        $ save_name = "Year %d" % year
         $ earth_year = get_earth_years(year)
 
         if (bro_birth_year != 0):
             $ bro_age = year - bro_birth_year
+
+        # FARMING CHOICES
+        #play music computer
+        hide screen say
+        scene gray_dark with fade
+        if (year > 1):
+            $ years_yield = farm.process_crops()
+        $ farm.reset_crops(farm_size)
+        call screen plan_farm
+        $ current_work = get_work_available()
+        $ total_work = farm.get_total_work()
 
         # WORK EVENTS (farming)
         #play music farming
@@ -312,18 +315,6 @@ label start:
         # TODO: Store poems better for later access.
         #$ word_board = Board(basic_words, family_words, farm_words)
         #call make_poem
-
-        # CHOOSE FOR NEXT YEAR
-        #play music computer
-        hide screen say
-        scene gray_dark with fade
-        $ years_yield = farm.process_crops()
-        $ farm.reset_crops(farm_size)
-        call screen plan_farm
-        $ current_work = get_work_available()
-        $ total_work = farm.get_total_work()
         $ year += 1
-        $ save_name = "Year %d" % year
-
     jump ending
     return

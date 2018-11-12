@@ -6477,7 +6477,7 @@ label family25:
     "That was a good question. Teenagers on the colony usually ended up mostly doing what their parents did, though some like Miranda also earned degrees via independent study."
     him "Miranda earned a biology degree studying with Dr. Lily. I think anyone who wants to could do that, too."
     kid "But you don't need a college degree to do most stuff here."
-    him "No, that's true. What do you want to study?"
+    him "No, but learning is always good. What do you want to study?"
     kid "I don't know! I like a lot of things. Music, jellies, fossils, reading, the stars..."
     him "And farming?"
     kid "Maybe. I like to eat, anyway!"
@@ -6552,7 +6552,7 @@ label family25:
             him "Yeah, you might need to work at a job you don't like very much to support your passion. Or find someone else who will support your passion."
             kid "Like marry a rich guy?"
             him "Uh, that's one way, I guess..."
-            kid "Ha ha, I'm just kidding, dad!"
+            kid "Ha ha, I'm just kidding, dad!" # is she really?
             $ permissive += 1
         "You need to be able to support your family and community.":
             $ confident += 1
@@ -7042,16 +7042,13 @@ label family28:
                     kid "No, I should have done this months ago. I'm done with this house, with your stupid rules, with... you!"
                     # TODO: does she actually leave?
                     $ neglectful += 1
+                    jump family28_run_away
                 "Think about it and decide for yourself.":
                     him determined "If you think that's best. But before you decide, will you think about it and make a plan?"
                     kid "A plan?"
                     him "Yeah. You know, where you're going to stay, how you'll earn money, what you'll eat. Stuff like that."
                     her "Don't leave just because you're angry. Leave because you're really ready to live on your own."
-                    $ authoritative += 1
-                "I bet we can work something out.":
-                    $ responsive += 1
-                    him concerned "[kid_name], that day is coming, but for now, why don't we talk about this and see what we can work out?"
-                    kid "I already tried that. Unless you're willing to let me work at the job I already have and am already making money at, I won't live here."
+                    kid "I... I'm not ready to leave yet. But I'm not quitting this job, either."
                     him normal "I can see that this job is very important to you."
                     her "But it's probably not what you want to do for the rest of your life."
                     kid "I love it, mom! People need me, I'm useful, and I get paid."
@@ -7065,7 +7062,15 @@ label family28:
                     "[her_name] shot me a glare. I was just trying to help, but maybe I'd let her handle this one."
                     her "Is that acceptable to you?"
                     kid "Fine."
+                    her "Good! I'm glad we could work something out. You can do better than delivering fire grass and alcohol."
+                    $ authoritative += 1
+                "You can keep your job":
+                    $ responsive += 1
+                    him annoyed "I guess you can keep your job. Does it really make you happy?"
+                    kid "Yes! I love it!"
+                    him normal "That's what matters most, I guess..."
                     $ permissive += 1
+                    her "Just... be smart, okay?"
                 "You wouldn't survive without us!":
                     him angry "You wouldn't last a week without us!"
                     kid "Oh yeah? Watch me!"
@@ -7073,8 +7078,7 @@ label family28:
                     him annoyed "Just you wait, she'll come crawling back here in a day or two begging our forgiveness."
                     her concerned "I hope you're right..."
                     $ authoritarian += 1
-            return
-
+                    jump family28_run_away
 
     kid "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
     her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."
@@ -7084,15 +7088,17 @@ label family28:
         "What should I say?"
         "Life's too short not to enjoy everything!":
             him happy "Life's too short to worry so much about stuff like that! If you get the chance, enjoy yourself!"
-            kid "That's what Brennan said..."
-            her "Wait, Brennan offered you alcohol?!"
+            kid "Yeah, that's what Brennan said..."
+            her "Brennan said that, huh?"
+            kid "Yeah, and he handed me a cup to try."
+            him surprised "Brennan offered you alcohol?"
             $ neglectful += 1
         "A little bit's fine now and then.":
             him normal "Oh, a little bit now and then won't hurt you. But you don't want it to become something that runs your life."
             kid "Yeah yeah, I know all about alcoholism."
             her "No, you really don't. I know we talked about it in health class, but if you haven't seen it for yourself..."
             kid "Look, I'll be careful, okay! I only had one sip!"
-            her "Wait, Brennan offered you alcohol?!"
+            her "One sip... Brennan offered you alcohol?"
             $ permissive += 1
         "Listen to your mom.":
             him "Your mom's right. Stay away from that stuff!"
@@ -7115,7 +7121,7 @@ label family28:
     him "In our culture, a guy like Brennan giving alcohol to a teenage girl is like..."
     her "It's like..."
     kid "What? What is it like?"
-    him "Like giving fire grass to a two year old."
+    him "Like giving fire grass to a two year old, just to watch them act all crazy."
     her concerned "Some people think it's fun to get other people drunk."
     him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
     kid "You mean like... Brennan wouldn't do that!"
@@ -7128,28 +7134,156 @@ label family28:
     him determined "And you can't trust Brennan."
     return
 
-# 18 Earth years old
-# Graduation! Terra blames you for some big crisis!
-label family29:
+label family28_runaway:
+    scene black with fade
+    "[kid_name] took a bag with her stuff and rode off on her bike. I did some asking around and it turned out there was a shack halfway to the mining camp that was used as a drop point."
+    "She stayed there for a week, and then came back."
+    scene farm_interior with fade
+    show him determined at midright
+    show her concerned at center
+    show oleg normal at midleft
+    with dissolve
+    show kid annoyed at quarterleft with moveinleft
 
-    "[kid_name] tells you her plans for the future." # TODO: make these based on your parenting style and choices
-    "Some of it seems plausible, but for some of it you can tell she has no idea what she's talking about (expensive colleges, returning to Earth, getting her PhD in astrophysics online, etc)."
-    # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?  Or they have some reason why they wouldn't get married...
-    "Big crisis! Foreshadows ending! She says she hates you for some reason and never wants to see you again!"
-    menu:
-        "Threaten to disown her":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Make sure she knows you love her":
-            $ responsive += 1
-            $ authoritative += 1
-        "Argue with her":
-            $ permissive += 1
-        "Let her go.":
-            $ neglectful += 1
+    kid "I lasted a week without you just fine."
+    him annoyed "Oh yeah? Then why'd you come back?"
+    her annoyed "[his_name]! We're glad you came back, [kid_name]. Obviously you could live on your own, and you will someday, but not yet."
+    oleg "What did you eat?"
+    kid "I ate whatever I wanted from the storehouse. Bread, fruit, cheese-- I'm telling you, I make good money."
+    her happy "I'm glad you're okay. I missed you, though!"
+    "[her_name] gave [kid_name] a big hug. [kid_name] glared at me over [her_name]'s shoulder when I didn't join in."
+    return
+
+# 18 Earth years old
+# Graduation! Terra is stressed out about tests and a big social problem (Oleg? Travis? Anya?)
+# What kind of guy should she look for as a husband?
+label family29:
+# idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?  Or they have some reason why they wouldn't get married...
+    "Graduation!"
     return
 
 # 18.6 Earth years old (ENDING)
 label family30:
-    "Family 30 Event"
+    "[kid_name] has finally graduated from Talaam's little school. And, now that she didn't have school every day, she had moved on to other things."
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):    # aCi or aCI
+        # Medicine, either at home or on Earth, trying to make her parents happy
+        "She had been spending all her time at the clinic with [her_name], learning and assisting."
+        "[her_name] found some online classes for her to take in anatomy and physiology and said [kid_name] was a diligent student."
+    elif (parenting_style == "authoritative"):  # ACi or ACI
+        # Studies jellypeople and sociology-biology, living with you or married
+        "Ever since that trip to the ocean where we communicated with the jelly people, [kid_name] had been obssessed with them."
+        "Miranda had been meeting with them and studying them, and so [kid_name] joined her. She was also taking online classes in biology and sociology."
+
+    elif (parenting_style == "permissive"):     # Aci or AcI
+        # Farming, either living in her parents' basement or on her own
+        "[kid_name] didn't seem to have a specific passion -- she split her time between helping me farm and running her delivery service."
+
+    else: #neglectful or inconsistent,          # aci or acI
+        # She's still running her delivery service and dating Travis/Lorant
+        "I hardly ever saw her -- it seemed like she was always out delivering things."
+        if is_independent():
+            boyfriend_name = "Travis"
+        else:
+            boyfriend_name = "Lorant"
+        "Or with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
+
+    # A spot opens up on the shuttle, and [her_name] is considering taking it.
+    "One night I came home and [kid_name] and [her_name] were talking."
+    scene farm_interior with fade
+    show her concerned at midright
+    show kid nervous at center
+    with dissolve
+    show him normal at midleft with moveinleft
+
+    her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
+    kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
+    him surprised "Wait, you're thinking of going back to Earth?!"
+    kid nervous "Maybe! I never even thought of it as a possibility, but then Anya said she wanted to stay here with Travis and asked if I wanted her spot!"
+    if (boyfriend_name == "Travis"):
+        him concerned "I thought you were dating Travis."
+        kid angry "Ugh! Dad, we broke up so long ago! He's been with Anya for a few months, even though I think they're totally toxic to each other, but that's not what we're talking about right now."
+    him annoyed "You'd have to be an idiot to go back to Earth. Talaam is so much better; that's why we came here."
+    her annoyed "There are some great things about Earth."
+    him determined "Like what? Traffic? Urban sprawl? Corrupt governments? Terrorists?"
+    her angry "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
+    him annoyed "What would you even do on Earth?"
+    if (parenting_style == "authoritarian"):
+        kid "I want to study medicine and become a doctor, like Mom."
+    elif (parenting_style == "authoritative"):
+        kid "The best biologists are on Earth. How can I compare Talaam and Earth biology if I've never even been to Earth?"
+    else:
+        kid "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
+        kid normal "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
+        her concerned "Well, there's definitely more guys there..."
+        him annoyed "...but I don't know about better ones."
+
+    kid annoyed "Anyway, I'm just thinking about it, so don't make it into this big deal, okay?"
+    her concerned "I'm glad you're talking to us about it. There's a lot of things to consider."
+    menu:
+        "What should I say?"
+        "Going to Earth would be good for you." if ((parenting_style == "authoritative") or (parenting_style == "authoritarian")):
+            $ demanding +=1
+            $ confident += 2
+            him determined "There is a lot you can learn on Earth that you can't learn here. I think it would be good for you."
+            kid surprised "You think I should go?!"
+            if (parenting_style == "authoritative"):
+                him normal "This is a rare opportunity. I love Talaam, but if you want to become a doctor you really should study there."
+            else:
+                him normal "This is a rare opportunity. I love Talaam, but you can learn so much more about biology from experts there."
+            her surprised "Wow, I never thought I'd hear you say that."
+            him annoyed "It doesn't mean she has to stay there forever. Hopefully she'll learn everything she can and bring it back here to make Talaam even better."
+            kid concerned "I'll think about it..."
+            $ authoritarian += 1
+        "We need you here.":
+            $ demanding += 1
+            $ confident -= 2
+            him concerned "[kid_name], we still need you here."
+            her annoyed "We can't keep her with us forever."
+            him annoyed "There's few enough people on Talaam as it is. We can't afford to lose a single one, especially not our own daughter!"
+            kid concerned "I'll think about it..."
+            $ authoritarian += 1
+        "Think about it carefully.":
+            $ responsive += 1
+            $ demanding += 1
+            him normal "It's your choice, but please think carefully about the consequences either way."
+            kid surprised "What consequences?"
+            him concerned "For example, if you went to Earth, it might be difficult to come back here. We might never see you again."
+            her concerned "On the other side, if you decide not to go, you might never get that chance again, either."
+            him determined "If you went to Earth, you'd be completely alone. No family, no friends, no community supporting you."
+            her determined "But you'd have a chance to meet so many more new people and friends that you would never meet here."
+            him normal "On Earth, you could get a traditional college degree in anything you wanted."
+            her concerned "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
+            him annoyed "If you go to college on Earth, they'll tell you all the classes you need to take and you'll have to write papers that say what your teachers want and do exactly what they say."
+            her normal "But here, you're in charge of your education, and while that gives you a lot of freedom to study what you want, it might be hard to stay motivated and learn efficiently without as much structure."
+            kid surprised "That's... a lot to think about!"
+            him normal "Good! If you're not thinking about it a lot, you'll probably make the wrong decision."
+            her concerned "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
+            kid concerned "Okay... yeah. I guess I have a lot to think about."
+
+            $ authoritative += 1
+        "You should do what makes you happy.":
+            $ responsive += 1
+            him normal "It's your choice. Just do whatever makes you happy."
+            kid annoyed "I don't know if going to Earth will make me happy! I don't even know what it's like!"
+            her concerned "Going to Earth or not going to Earth is not going to make you happy."
+            kid sad "Then what will?"
+            her normal "Loving people and doing good will make you happy. You can do that anywhere."
+            kid annoyed "So you're saying it doesn't matter where I go?"
+            her concerned "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
+            him concerned "It's your choice, sweetie."
+
+            $ permissive += 1
+        "Don't ask me what to do.":
+            $ responsive -= 1
+            him annoyed "Why did you even bring it up? You're just going to do whatever you want anyway."
+            kid annoyed "Well maybe I wanted some advice before I made up my mind! If I did, though, I definitely wouldn't ask you!"
+            "She stormed away to her room."
+            her annoyed "That was a stupid thing to say."
+            him angry "What? It's not like she listens to us."
+            her angry "You don't know your own daughter at all, do you? She acts like she's not listening and she doesn't care what we think, but later when she's thinking she'll hear our words and they will influence her."
+            him determined "Well I've never seen that."
+            her determined "I have. Now if you'll excuse me, I need to try and undo all the damage you just did."
+            $ neglectful += 1
+
     return

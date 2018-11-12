@@ -4657,7 +4657,7 @@ label community26:
                                 brennan "Send me an e-mail after the meeting and we can talk about it."
                                 $ brennan_refuses_fewer_hours = True
                                 jump wrap_up_council_26
-                            
+
             "We should try to reduce firegrass use without outlawing it.":
                 him "I agree. Let's try to reduce the amount people are using without banning it."
                 her "So how would you cut down on firegrass use?"
@@ -4669,7 +4669,7 @@ label community26:
                 if miners > 10:
                     sara "You could have them access their own health stats from the database and it could tell them their recommended dosage."
                     her "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
-                    her "Also there is no way I'm giving Oleg access to the health database."
+                    her "Also, there is no way I'm giving Oleg access to the health database."
                 else:
                     sara "You could make some recommendations for it."
                     her "I think my recommendations wouldn't give users the level of alertness they're accustomed to."
@@ -4733,7 +4733,7 @@ label community26:
             her "I need to talk to Oleg about that, so I'll message you both a budget estimate next week."
             "She ended the meeting with a summary of what we'd talked about."
             jump wrap_up_council_26
-        
+
         label wrap_up_council_26:
             "Many people pitched in to help Carol and her family."
             "Natalia watched Carol's children in the day while Sara took Carol on a tour of the different jobs in the colony."
@@ -4774,7 +4774,7 @@ label after_firegrass_26:
     ilian "The shuttle this year came with equipment and recipes for growing synthetic meat."
     ilian "Some of you may have tried some in the shuttle on the way over but the instructions say that the flavor has improved considerably."
     thuc "Well, that wouldn't take much."
-    ilian "We're also to stop eating chicken, turkey, and cow meat and to use the synthetic meat as a replacement."
+    ilian "We're also to stop eating chicken, goat, turkey, and cow meat and to use the synthetic meat as a replacement."
     him "Can we still eat native meats?"
     ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
     if study_published_26:
@@ -4793,6 +4793,7 @@ label after_firegrass_26:
     thuc "What about milk, dairy, and egg products? Are they exposed to the radiation as well?"
     ilian "Um, they didn't specifically say anything about that..."
     thuc "We should keep chickens and turkeys for their eggs and feathers at least."
+    # TODO: what about your goats? 
     ilian "I agree."
     if thuc_has_cattle:
         thuc "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
@@ -5644,13 +5645,15 @@ label community30:
         kevin "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
         kevin "I'd like your help with something that happened in the mining camp."
         him "Okay. Want to tell me about it in the library? I don't really want to stand outside in the rain."
-        kevin "It is a senstive matter, and I would not like to be overheard..."
+        kevin "It is a sensitive matter, and I would not like to be overheard..."
         him "No one's in there, it's fine."
         #change scene to library, if we have that already, otherwise they can talk outside
         him "What's this all about?"
         kevin "There has been a death in the mining camp. We are not certain if it was an accident or a murder."
         kevin "I would like your assistance in the investigation, as a neutral party."
-        him "Sure, yes, I can help. I don't have much experience with investigation, but I'll do what I can. Is there a crime scene? A primary suspect?"
+        him "Sure, yeah, I can help. I don't have much experience with investigation, though."
+        kevin "Detectives or police would be best, but as there are none, I am asking you."
+        him "Is there a crime scene? A primary suspect?"
         kevin "The woman who almost killed herself about two Earth years ago... do you remember her?"
         menu:
             "Yes":
@@ -5687,7 +5690,7 @@ label community30:
         kevin "I do not wish to bias you. Please, start your own investigation and then I will tell you my ideas."
         him "I'll get started right away."
         jump investigation_start
-        
+
     else:
         "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
         nvl clear
@@ -5700,7 +5703,7 @@ label community30:
         him "Want some hot tea?"
         julia "I love tea. What do you have?"
         him "Mint. And if you're feeling tired I can add a few green tea leaves."
-        julia "Yes please."
+        julia "Yes, please."
         him "Okay, so tell me more about what happened."
         julia "Do you remember about two Earth years ago, there was a woman who almost killed herself?"
         menu:
@@ -5714,7 +5717,7 @@ label community30:
 
             "No":
                 him "Really? I don't remember that."
-                julia "She was under a lot of pressure at the time." 
+                julia "She was under a lot of pressure at the time."
                 julia "Her husband was recently disabled, they had two small children, and she became the family's main breadwinner."
                 julia "In my special mayor files, they referred to her as Carol, but her real name is Noel."
                 him "Wow, great pseudoname?"
@@ -5731,14 +5734,14 @@ label community30:
         him "I see. Is [her_name] going to do an autopsy?"
         julia "Yes, the body was just delivered to the medical wing this morning."
         him "Do I have your official authorization to question Noel and any witnesses?"
-        julia "Yes, of course!."
+        julia "Yes, of course!"
         him "Can I get that in writing?"
-        julia "Okay, how's this?"
+        julia "I've already sent it to you."
         nvl_clear
         julia_c "I, Julia Nguyen, hereby officially authorize [his_name] to question Noel and any witnesses about the incidents surrounding Joel's death."
-        him "That should suffice."
+        him "Looks good."
         him "Can I collect evidence?"
-        julia "Sure, if you find anymore. We don't have evidence bags or anything."
+        julia "I doubt you'll find any more, but that is permissible."
         julia "We took photos of the body before we moved it, and we took Joel's belongings for further investigation."
         julia "I'll share the photos with you."
         julia "Joel's things are with his body in the hospital."
@@ -5748,22 +5751,22 @@ label community30:
         julia "I'm not sure. That's why I'm asking you to do this."
         him "I'll get started right away."
         jump investigation_start
-        
+
     label investigation_start:
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
-        #a CG here would be great, but not required."
+        #TODO: a CG here would be great, but not required."
         "There was a photo of Joel's body, and a photo of the porch area where it took place."
         "Joel's face in the photo looked super pale. He was on the floor on his back and his mouth and eyes were open."
         "He had an open gash running horizontally across his forehead, with bruising all around it."
-        "In the photo of Joel's yurt, I could see that it had a wooden wraparound porch. The porch was raised maybe two inches from the ground and didn't have a railing." 
+        "In the photo of Joel's yurt, I could see that it had a wooden wraparound porch. The porch was raised maybe two inches from the ground and didn't have a railing."
         "Four rain barrels stood on the side. One was open and catching the rain that poured from the roof of the yurt."
         "Where should I go first in my investigation?"
         menu:
             "Visit where Joel died.":
                 label joel_house
                 $ visted_Joel_house = True
-                "I made the long walk to the miner's camp. It was rainy, and path up the mountain was slick."
+                "I made the long walk to the miner's camp. It was rainy, and the path up the mountain was slick."
                 "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
                 "As I walked I thought about Joel. How long had he been disabled? It would be difficult to live in a wheelchair in the mountains."
                 "Since the camps moved around the mountain when the mine moved, the camp itself didn't always have cement paths."
@@ -5774,7 +5777,7 @@ label community30:
                 "I asked where I could find Noel, and an old woman pointed me in the right direction."
                 #knock sound?
                 him "Hi, Noel? Hello? Are you here?"
-                thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Thuc are watching her kids while she's away."
+                thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
                 him "I'm here to examine where Joel died."
                 thuc "Okay, it was just back here."
                 him "Was Van here when Joel died?"
@@ -5787,7 +5790,7 @@ label community30:
                 him "Except for Joel's..."
                 thuc "Good point!"
                 him "So what were you doing last night? I'm just trying to rule people out right now."
-                thuc "I am a pretty suspicious person." 
+                thuc "I am a pretty suspicious person."
                 thuc "I was at home with Julia. She was writing up a 'Where are They Now?' story on the children of the colony while I read through some colony forum posts."
                 him "I haven't checked it in a few days. Is anything going on?"
                 thuc "Not much."
@@ -5836,14 +5839,14 @@ label community30:
                 else:
                     "I still wanted to examine the body."
                     jump examine body
-                    
+
             "Examine the body and Joel's belongings.":
                 label examine body
                 $ examined_body = True
                 "I headed over to the medical building."
-                her "Hi [his_name]. I already had lunch, but if you can come in and talk to me for a bit while I clean up."
+                her "Hi [his_name]. I already had lunch, but you can come in and talk to me for a bit while I clean up."
                 him "Actually, I'm here on an official assignment. I'm investigating Joel's death."
-                her "I was just finishing up the autopsy."
+                her "I was just writing up the autopsy."
                 him "What did you find?"
                 her "His blood work was mostly normal."
                 her "It looks like he died from bleeding into his brain."
@@ -5884,7 +5887,7 @@ label community30:
                 else:
                     "I still wanted to examined the scene of the crime."
                     jump joel_house
-                    
+
         label olegs_house:
             "I walked to Sara and Ilian's house to see if Oleg was there."
             "No one answered the door."
@@ -5926,14 +5929,14 @@ label community30:
                     him "Oleg says he's never coming back and that Sara's going on the shuttle back to Earth."
                 "Tell Ilian that Oleg isn't answering your questions.":
                     him "Oleg isn't telling me anything."
-                    ilian "Oh yeah, what's all that you're typing?"
+                    ilian "Oh yeah? Then what's all that you're typing?"
                     ilian "Give me that."
                     "Ilian took my tablet and read what Oleg had written."
             ilian "WHAT there's no WAY that's possible. Every seat on that shuttle is spoken for."
             him "Since Joel died I think there is an empty seat..."
             ilian "There's no way Sara was next in the waiting list."
             ilian "She'd have had to get on the waitlist like... FIFTEEN YEARS ago."
-            ilian "UGHHHH I HATE HER SO MUCH THAT WITCH"
+            ilian "UGHHHH I HATE HER SO MUCH THAT WITCH!"
             him_c "He's freaking out! What the heck?"
             oleg_c "ghgh i knew it"
             "I went home and made cabbage and potato soup for everyone."
@@ -5954,7 +5957,7 @@ label community30:
                         him "It could have been an accident, or it could have been a murder made to look like an accident."
                         him "I'm still gathering all the information."
             kid "Okay, but how is Oleg involved? I don't think he even knew Noel."
-            #maybe you can only involve Tera if you have a good relationship
+            #maybe you can only involve Terra if you have a good relationship
             him "Right now I'm trying to figue out who is on the waiting list to go back on the shuttle."
             him "Do you know anything about that?"
             kid "No, everyone I know who is going back was always planning on it."
@@ -5976,6 +5979,8 @@ label community30:
             him "I brought soup."
             #sara only lets you in if you have a good relationship w the colony
             sara "Sure. What's up?"
+            him "It might take a while... why don't you guys eat while I ask a few questions?"
+            sara "Okay..."
             "Sara and Oleg started eating the soup I brought for them."
             him "I'm just doing a little research on who is on the waitlist for the shuttle going back to Earth."
             him "You know, since Joel died, there's an empty spot."
@@ -5991,26 +5996,27 @@ label community30:
             sara "I asked Brennan to put me on the list to go back on the shuttle if something opened up."
             sara "Whenever Ilian and I started fighting, I was comforted by the idea going back to Earth."
             oleg "Are you really going to go back?"
-            sara "No, I wouldn't want to leave you here!" 
+            sara "Of course not! I wouldn't leave you here!"
             oleg "I'm grown up now. You can go back if you want to."
             sara "I don't want to go back to Earth."
             sara "I don't even know if any of my family back on Earth would be alive by the time I got back."
             sara "My life is here now. But for a while I just needed to believe I could go back if I wanted to."
-            him "I can understand that. You want to have a backup plan just in case."
+            him "I can understand that. You wanted to have a backup plan just in case."
+            # TODO: option to say something about how Ilian was freaking out?
             sara "Thanks for the soup."
             him "You're welcome."
             oleg "Yeah, thanks, this isn't half bad."
             oleg "I thought about what you were saying, about the credit information being stored somewhere."
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
-            
+
         "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
-        "I still wanted to talk to Noel herself, about what happened." 
+        "I still wanted to talk to Noel herself, about what happened."
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
         "I also wanted to go back to the scene of the crime to look in the barrel."
         "I also wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
-        
+
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
         him "She's not answering me."
@@ -6065,7 +6071,7 @@ label community30:
             him "Will do."
         else:
             him "I'll update you at the end of the investigation."
-        
+
         if luddites > 10: #check values
             "I went back home and radioed Pete."
             pete "{i}What can I help you with?{/i}"
@@ -6100,7 +6106,7 @@ label community30:
                                     jump back_to_noel
                             menu: #allow players to ask about 3 people
                                 "Noel's" if not checked_noel:
-                                    "Noel has around 100 credits." 
+                                    "Noel has around 100 credits."
                                     $ checked_noel = True
                                     $ account_checked_counter + 1
                                     jump account_check
@@ -6150,7 +6156,7 @@ label community30:
                                 jump back_to_noel
                             menu: #allow players to ask about 3 people
                                 "Noel's" if not checked_noel:
-                                    "Noel has around 100 credits." 
+                                    "Noel has around 100 credits."
                                     $ checked_noel = True
                                     $ account_checked_counter + 1
                                     jump account_check
@@ -6188,11 +6194,11 @@ label community30:
                         else:
                             "Brennan had to leave and took the tablet with him. I wasn't able to look at anyone's account."
                             jump back_to_noel
-            
+
         else:
             "I couldn't think of a way to access financial information for any of my suspects."
             jump back_to_noel
-        
+
         label back_to_noel:
             "I wanted to go back to Noel's place."
             "I brought my barrel-opening tools this time."
@@ -6232,8 +6238,8 @@ label community30:
                     "I asked if I could come by next time Van was watching her kids."
                     "She said no."
                     jump noel_no_confession
-                    
-        if ban_firegrass
+
+        #TODO: if ban_firegrass
         label noel_confession:
             "I met Noel in the community center. She thanked me for helping her yesterday."
             "She explained that she knew that Joel's wheelchair brakes were wearing out, but he wanted to fix them himself."
@@ -6253,11 +6259,11 @@ label community30:
                         "Because of this, he often fell out of his wheelchair and hit his head."
                         "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
                 "No":
-                
+
         label noel_no_confession
-            
-# Noel was buying lots of firegrass from Pete at a low cost and selling it to Julia, with Van transporting it at first unknowingly through informal "deliveries" and then knowingly when he got curious enough. Noel was and is making a good amount of money off of this, buying out Pete the first chance she could. 
-# Oleg started growing firegrass around three years ago (community 24), and his business started booming around two years ago (Community 26). 
+
+# Noel was buying lots of firegrass from Pete at a low cost and selling it to Julia, with Van transporting it at first unknowingly through informal "deliveries" and then knowingly when he got curious enough. Noel was and is making a good amount of money off of this, buying out Pete the first chance she could.
+# Oleg started growing firegrass around three years ago (community 24), and his business started booming around two years ago (Community 26).
 # A year ago some miners discovered his field and basically stole it from him, but they didn't know how to take care of it and everything died.
 # Did Noel start buying out Oleg as well as Pete? She didn't have enough places to store it. But she would play the two off each other.
 # What was Julia doing with all that firegrass? She put it in her secret plum tea syrup, which was very popular!
@@ -6267,8 +6273,8 @@ label community30:
 # Why did Noel hide her profits in Joel's account? Out of an anxious desire to store money for their life back on Earth, she wanted to keep collecting disability pay as long as possible after her suicide attempt.
 # How did Joel die? Van and Noel knew that Joel's wheelchair brakes were breaking down. In fact, they had repaired them many times in the past. This time Joel wanted to do it himself but he kept putting it off.
 # Also, Joel wouldn't let Van or Noel repair the wheelchair for him. He had been acting depressed frequently. So maybe he felt like it wasn't worth fixing.
-            
-            
+
+
     "The latest shuttles from RET have arrived."
     if ((luddites >= 12) and (miners >=12)):
         "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."

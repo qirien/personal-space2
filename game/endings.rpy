@@ -156,7 +156,7 @@ label ending_acI:
     him "How's Travis?"
     kid "Good."
     him "You still have lots of deliveries to make?"
-    kid "Not anymore. The miners were my best customers, but they're gone now."
+    kid "Some. But the miners that left were my best customers."
     menu:
         "What should I say?"
         "What are you going to do?":
@@ -193,7 +193,7 @@ label ending_acI:
     "Ending 2/8 Mistakes to Call My Own."
     return
 
-#3 aCi - She stays on Talaam, doing something she's not passionate about
+#3 aCi - She stays on Talaam, working with Kelly as a nurse
 # because she's trying to please you, but even though she's pretty good at it
 # she has no confidence or self-direction.
 # always worried, aims to please people, scared of making mistakes
@@ -215,21 +215,22 @@ label ending_aCi:
 label ending_aCI:
     "Ending aCI."
     her "It's not too late to change your mind. You could complete your studies here..."
-    kid "I know, mom, but all the good astronomers and equipment are on Earth. I want to become the best, so that's where I need to go."
+    kid "I know, mom, but I want to be a real doctor, not just your apprentice. I want to become the best, so Earth is where I need to go."
     him "Study hard, [kid_name]. Make us proud."
     kid sad "I'm trying, dad."
     her "We are proud. And you'll always have a home here, no matter what happens."
     her "If you want to. But, oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
     kid "I'm excited to see a rain forest. Or any forest at all, actually."
     bro "Send us pictures!"
-    kid nervous "Oh! What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school?!"
-
-    kid "Maybe I could just convince someone to setup some real telescopes here. We could study the solar flares, the local solar system..."
+    him "Wow, my little daughter, on her way to med school..."
+    kid nervous "Oh no...What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school?!"
+    her normal "No backing out now! You'll be fine. I promise."
     him "Don't forget us."
     kid "I'll send you messages when I can."
     brennan "Careful, or you'll end up stuck here for another 12 years. The shuttle's leaving!"
 
-    kid "Okay! Bye mom! Bye dad!"
+    kid "But... I don't know if I can do this!"
+    him "You can and you will! Now, get on that shuttle!"
     her "Goodbye, [kid_name]! We love you!"
     "She hoisted her duffle bag onto her shoulder and boarded the shuttle. I couldn't believe it was really happening. Our baby was leaving."
     bro "Goodbye!"
@@ -258,12 +259,12 @@ label ending_Aci:
 
     return
 
-#6 AcI - like #8, sets out on her own, but you worry she will not know enough or be able to work hard enough
+#6 AcI - like #5, but sets out on her own, but you worry she will not know enough or be able to work hard enough
 label ending_AcI:
     "Ending AcI."
     return
 
-#7 ACi - starts a farm nearby, asks you for help all the time, second-guesses herself
+#7 ACi - studies sociology/biology online but lives with you
 label ending_ACi:
     "Ending ACi."
     return

@@ -988,9 +988,23 @@ label work22:
     if (helping_faction == "colonists"):
         show thuc at midright with moveinleft
         her happy "Especially Thuc!"
+        thuc "If I don't embarrass you for turning 40, who else will?"
+        her flirt "I don't know; he's pretty good at embarrassing himself."
+        him flirt "Hey, shouldn't you be a little nicer to me on my birthday?"
+        thuc "Which reminds me... I brought you a little something."
+        him surprised "You did?"
         if crop_enabled("onions"):
+            thuc "Yeah, I brought you some turnip seeds. They're not worth much because nobody likes them, but maybe you'd have a use for them?"
+            him concerned "Ummm... maybe?"
+            thuc "Sorry; it's the only thing I could think of that you didn't already have."
+            him happy "No, this is great! I love more variety. Thanks, Thuc."
             enable_crop("turnips")
         else:
+            thuc "Try not to tear up... I brought you this bag of onions."
+            him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
+            her annoyed "You guys are awful."
+            thuc "You can plant them if you want."
+            him normal "I will; thank you!"
             enable_crop("onions")
     elif (helping_faction == "luddites"):
         show pete at midright with moveinleft
@@ -1015,9 +1029,6 @@ label work22:
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."
         # TODO: add money
-
-    "Someone from your favorite faction gives you cool seeds!"
-    # turnips/onions from Thuc or broccoli from Pete or ? from miners (sunflowers for oil? wheat that only works one time? flowers? herbs?)
     return
 
 # Year 24, 14.8 years old
