@@ -7183,9 +7183,9 @@ label family30:
         # She's still running her delivery service and dating Travis/Lorant
         "I hardly ever saw her -- it seemed like she was always out delivering things."
         if is_independent():
-            boyfriend_name = "Travis"
+            $ boyfriend_name = "Travis"
         else:
-            boyfriend_name = "Lorant"
+            $ boyfriend_name = "Lorant"
         "Or with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
     # A spot opens up on the shuttle, and [her_name] is considering taking it.

@@ -905,7 +905,9 @@ label work22:
     bro normal "Did you even know we were here?"
     him normal "Nope! You were like stealthy birthday ninjas!"
     "The kids ran off to the a table covered with a variety of foods -- looks like [her_name] organized a potluck. I made a mental note to visit it very soon."
-    hide bro, kid with moveoutleft
+    hide bro
+    hide kid
+    with moveoutleft
     show him at midleft with move
     him happy "Thanks for coming, Thuc!"
     thuc normal "I'll come to a party anytime. So is it true? Is this the big Four Oh?"
@@ -983,7 +985,7 @@ label work22:
     with move
     him surprised "Did you plan all this?"
     her normal "Well, I had the initial idea, but I had a lot of help from all of your friends."
-    helping_faction = strongest_faction()
+    $ helping_faction = strongest_faction()
     show her at center with move
     if (helping_faction == "colonists"):
         show thuc at midright with moveinleft
@@ -998,14 +1000,14 @@ label work22:
             him concerned "Ummm... maybe?"
             thuc "Sorry; it's the only thing I could think of that you didn't already have."
             him happy "No, this is great! I love more variety. Thanks, Thuc."
-            enable_crop("turnips")
+            $ enable_crop("turnips")
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
             her annoyed "You guys are awful."
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
-            enable_crop("onions")
+            $ enable_crop("onions")
     elif (helping_faction == "luddites"):
         show pete at midright with moveinleft
         her happy "Especially Pete!"
@@ -1018,7 +1020,7 @@ label work22:
         pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
         her laughing "So true! And it's really healthy, too."
         him happy "Great, thank you Pete! It's always good to have some more variety."
-        enable_crop("broccoli")
+        $ enable_crop("broccoli")
     else:
         show chaco at midright with moveinleft
         her happy "Especially Chaco!"

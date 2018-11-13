@@ -4629,34 +4629,34 @@ label community26:
                 brennan "What should I recommend to miners who are sleepy on a night shift but can't get a prescription?"
                 brennan "I know we have some green tea around, but there never seems to be enough..."
                 her "Good point. A ban would be more effective if there were some alternative drug to use."
-                "What do I recommend?"
-                    menu:
-                        "Grow more tea plants.": #change to green tea
-                            him "Let's make tea plants a priority this growing season."
-                            him "If we plant them around the same time, we can process them together too."
-                            pavel "I'm interested in making black tea with the leaves."
-                            him "Sounds good. Maybe some people will like black tea more than green tea."
-                            $ grow_more_tea = True
+                menu:
+                    "What do I recommend?"
+                    "Grow more tea plants.": #change to green tea
+                        him "Let's make tea plants a priority this growing season."
+                        him "If we plant them around the same time, we can process them together too."
+                        pavel "I'm interested in making black tea with the leaves."
+                        him "Sounds good. Maybe some people will like black tea more than green tea."
+                        $ grow_more_tea = True
+                        jump wrap_up_council_26
+                    "Don't do anything.":
+                        him "I think it's good enough to be able to get a prescription for firegrass."
+                        him "It works about as well as tea, and it's a lot easier to grow."
+                        brennan "I wonder if firegrass would make a good tea?"
+                        her "That sounds like something Julia would know. She loves tea."
+                        jump wrap_up_council_26
+                    "Ask if the night shift is necessary.":
+                        him "Is it really necessary for the miners to work through the night?"
+                        brennan "We have a quota from RET we're supposed to meet each year. Sometimes it's not necessary and sometimes it is."
+                        pavel "What if you cut down their hours? It could actually increase productivity."
+                        if (miners > 10): #is it mean to make this an option where it won't work?
+                            brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
+                            $ miners += 1
+                            $ work_fewer_hours = True
                             jump wrap_up_council_26
-                        "Don't do anything.":
-                            him "I think it's good enough to be able to get a prescription for firegrass."
-                            him "It works about as well as tea, and it's a lot easier to grow."
-                            brennan "I wonder if firegrass would make a good tea?"
-                            her "That sounds like something Julia would know. She loves tea."
+                        else:
+                            brennan "Send me an e-mail after the meeting and we can talk about it."
+                            $ brennan_refuses_fewer_hours = True
                             jump wrap_up_council_26
-                        "Ask if the night shift is necessary.":
-                            him "Is it really necessary for the miners to work through the night?"
-                            brennan "We have a quota from RET we're supposed to meet each year. Sometimes it's not necessary and sometimes it is."
-                            pavel "What if you cut down their hours? It could actually increase productivity."
-                            if (miners > 10): #is it mean to make this an option where it won't work?
-                                brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
-                                $ miners += 1
-                                $ work_fewer_hours = True
-                                jump wrap_up_council_26
-                            else:
-                                brennan "Send me an e-mail after the meeting and we can talk about it."
-                                $ brennan_refuses_fewer_hours = True
-                                jump wrap_up_council_26
 
             "We should try to reduce firegrass use without outlawing it.":
                 him "I agree. Let's try to reduce the amount people are using without banning it."
@@ -4793,7 +4793,7 @@ label after_firegrass_26:
     thuc "What about milk, dairy, and egg products? Are they exposed to the radiation as well?"
     ilian "Um, they didn't specifically say anything about that..."
     thuc "We should keep chickens and turkeys for their eggs and feathers at least."
-    # TODO: what about your goats? 
+    # TODO: what about your goats?
     ilian "I agree."
     if thuc_has_cattle:
         thuc "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
@@ -5737,7 +5737,7 @@ label community30:
         julia "Yes, of course!"
         him "Can I get that in writing?"
         julia "I've already sent it to you."
-        nvl_clear
+        nvl clear
         julia_c "I, Julia Nguyen, hereby officially authorize [his_name] to question Noel and any witnesses about the incidents surrounding Joel's death."
         him "Looks good."
         him "Can I collect evidence?"
@@ -5764,66 +5764,68 @@ label community30:
         "Where should I go first in my investigation?"
         menu:
             "Visit where Joel died.":
-                label joel_house
-                $ visted_Joel_house = True
-                "I made the long walk to the miner's camp. It was rainy, and the path up the mountain was slick."
-                "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
-                "As I walked I thought about Joel. How long had he been disabled? It would be difficult to live in a wheelchair in the mountains."
-                "Since the camps moved around the mountain when the mine moved, the camp itself didn't always have cement paths."
-                "Even in the drier months, the incline going up the mountain was so steep that I'm not sure Joel could leave the camp on his own."
-                "It might even be too steep for someone to help him down in a wheelchair."
-                "This camp was fairly new, and I had to follow the smoke from the chimneys to find its exact location."
-                "The camp itself was in a flat area of the mountain."
-                "I asked where I could find Noel, and an old woman pointed me in the right direction."
-                #knock sound?
-                him "Hi, Noel? Hello? Are you here?"
-                thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
-                him "I'm here to examine where Joel died."
-                thuc "Okay, it was just back here."
-                him "Was Van here when Joel died?"
-                thuc "No, but the kids were. They didn't see what happened though."
-                thuc "They don't understand where he is. They think he went back to Earth."
-                him "He might as well be there, for all they know."
-                thuc "Well, they're actually going back to Earth on the shuttle, so we're trying to explain that he's dead."
-                him "Oh, right, that's happening next month! Is Brennan going back?"
-                thuc "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
-                him "Except for Joel's..."
-                thuc "Good point!"
-                him "So what were you doing last night? I'm just trying to rule people out right now."
-                thuc "I am a pretty suspicious person."
-                thuc "I was at home with Julia. She was writing up a 'Where are They Now?' story on the children of the colony while I read through some colony forum posts."
-                him "I haven't checked it in a few days. Is anything going on?"
-                thuc "Not much."
-                him "Do you think you could watch the kids while I ask Van about the family?"
-                thuc "They seem really clingy right now... could you just do that tonight?"
-                him "Okay, okay. Is the wheelchair still here?"
-                thuc "Yeah, it's on the porch."
-                "I went outside to examine the wheelchair."
-                "It was a manually-operated wheelchair and had a well-worn cushion in its seat."
-                "The brakes were engaged, but they weren't preventing the main wheel from spinning."
-                him "Huh."
-                "The brake pad was completely worn out. I took photos of the brake and brake pad with my tablet."
-                "I looked at the rain barrels. I wiggled them to confirm that they were the right weight and sloshiness to contain water."
-                "I didn't have my barrel-opening tools with me, so I didn't open them."
-                "I went back inside and looked around."
-                "The young children were following me and I told them I was just making sure that everything was where it should be."
-                "Van tried to distract them, while I looked under chairs and in the cabinets for anything suspicious."
+                label joel_house:
+                    $ visted_Joel_house = True
+                    "I made the long walk to the miner's camp. It was rainy, and the path up the mountain was slick."
+                    "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
+                    "As I walked I thought about Joel. How long had he been disabled? It would be difficult to live in a wheelchair in the mountains."
+                    "Since the camps moved around the mountain when the mine moved, the camp itself didn't always have cement paths."
+                    "Even in the drier months, the incline going up the mountain was so steep that I'm not sure Joel could leave the camp on his own."
+                    "It might even be too steep for someone to help him down in a wheelchair."
+                    "This camp was fairly new, and I had to follow the smoke from the chimneys to find its exact location."
+                    "The camp itself was in a flat area of the mountain."
+                    "I asked where I could find Noel, and an old woman pointed me in the right direction."
+                    #knock sound?
+                    him "Hi, Noel? Hello? Are you here?"
+                    thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
+                    him "I'm here to examine where Joel died."
+                    thuc "Okay, it was just back here."
+                    him "Was Van here when Joel died?"
+                    thuc "No, but the kids were. They didn't see what happened though."
+                    thuc "They don't understand where he is. They think he went back to Earth."
+                    him "He might as well be there, for all they know."
+                    thuc "Well, they're actually going back to Earth on the shuttle, so we're trying to explain that he's dead."
+                    him "Oh, right, that's happening next month! Is Brennan going back?"
+                    thuc "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
+                    him "Except for Joel's..."
+                    thuc "Good point!"
+                    him "So what were you doing last night? I'm just trying to rule people out right now."
+                    thuc "I am a pretty suspicious person."
+                    thuc "I was at home with Julia. She was writing up a 'Where are They Now?' story on the children of the colony while I read through some colony forum posts."
+                    him "I haven't checked it in a few days. Is anything going on?"
+                    thuc "Not much."
+                    him "Do you think you could watch the kids while I ask Van about the family?"
+                    thuc "They seem really clingy right now... could you just do that tonight?"
+                    him "Okay, okay. Is the wheelchair still here?"
+                    thuc "Yeah, it's on the porch."
+                    "I went outside to examine the wheelchair."
+                    "It was a manually-operated wheelchair and had a well-worn cushion in its seat."
+                    "The brakes were engaged, but they weren't preventing the main wheel from spinning."
+                    him "Huh."
+                    "The brake pad was completely worn out. I took photos of the brake and brake pad with my tablet."
+                    "I looked at the rain barrels. I wiggled them to confirm that they were the right weight and sloshiness to contain water."
+                    "I didn't have my barrel-opening tools with me, so I didn't open them."
+                    "I went back inside and looked around."
+                    "The young children were following me and I told them I was just making sure that everything was where it should be."
+                    "Van tried to distract them, while I looked under chairs and in the cabinets for anything suspicious."
                 label where_next_30:
-                "Where should I look next?"
                     menu:
+                        "Where should I look next?"
                         "Around the bed." if not searched_bed:
                             "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were a bunch of dust bunnies."
                             $ searched_bed = True
                             if searched_bed and searched_cupbaord and searched_sofa:
                                 jump say_goodbye_30
-                            else jump where_next
+                            else:
+                                jump where_next
                         "In the storage cupboard." if not searched_cupboard:
                             "One shelf had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old pipe."
                             "The pipe looked like it hadn't been used for years."
                             $ searched_cupboard = True
                             if searched_bed and searched_cupbaord and searched_sofa:
                                 jump say_goodbye_30
-                            else jump where_next
+                            else:
+                                jump where_next
                         "On the kids' sofa bed." if not searched_sofa:
                             "There were all kinds of things lodged into the crevices of the sofa bed, which looked like it hadn't been packed away for a long time."
                             "I found a clay ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
@@ -5832,61 +5834,62 @@ label community30:
                             $ searched_sofa = True
                             if searched_bed and searched_cupbaord and searched_sofa:
                                 jump say_goodbye_30
-                            else jump where_next
+                            else:
+                                jump where_next
                 "I said goodbye to Thuc and Van and headed back into town."
                 if examined_body:
                     jump olegs_house
                 else:
                     "I still wanted to examine the body."
-                    jump examine body
+                    jump examine_body
 
             "Examine the body and Joel's belongings.":
-                label examine body
-                $ examined_body = True
-                "I headed over to the medical building."
-                her "Hi [his_name]. I already had lunch, but you can come in and talk to me for a bit while I clean up."
-                him "Actually, I'm here on an official assignment. I'm investigating Joel's death."
-                her "I was just writing up the autopsy."
-                him "What did you find?"
-                her "His blood work was mostly normal."
-                her "It looks like he died from bleeding into his brain."
-                him "Is that consistent with an injury sustained from falling from a wheelchair?"
-                her "Yes..."
-                him "But?"
-                her "Most of the time, it takes a while to die from a traumatic brain injury. Usually the person with head trauma goes into a coma for a month or something."
-                her "This seemed really sudden."
-                her "It makes me wonder if he had sustained a brain injury earlier."
-                her "Besides the one that disabled him."
-                him "Huh."
-                her "His things are on the other examination table. We can talk more after I finish cleaning up."
-                "I looked at the other examination table. There was his clothing, his tablet, and a ball made from plant fibers." #there could be a menu of what to look at here
-                "His clothing still felt a little damp. He had an RET-issued shirt, but instead of pants, there was a skirt with buttons all the way down. A kilt? Maybe it was easier to put on than pants?"
-                "The ball made of plant fibers was made from a plant that grew near the river. It was a pretty common plant, so we didn't bother growing it in farms."
-                "The fibers weren't all that soft, but with enough teasing, they could make a matted fiber kind of like wool, but not as insulating."
-                "I opened the tablet and started examining the contents."
-                "There were a lot of music and audiobooks on the tablet, as well as some drawings that looked like they were made by a kid."
-                "There were a few photos too, including a few of his kids and of the night sky from a few days ago."
-                "There weren't any photos from the day of his death though."
-                "He messaged Julia occasionally things like 'be there soon' or 'not tonight'. Interesting."
-                "I opened his personal credit account, but I couldn't access it without a code."
-                her "Find anything that explains his death? Like a threatening video or something?"
-                him "No. It does look like he messaged Julia a fair amount."
-                her "Well, there's no way it was him writing those messages. Since the mining accident, he hasn't been able to read or write."
-                her "Noel felt lucky that he could still talk though."
-                her "It makes me wonder who was using the tablet."
-                him "It could have been Noel."
-                her "Yeah. Or Van, he's always helping out over there."
-                him "Would Van do something like that?"
-                her "Maybe if he forgot his own tablet? I'm not sure."
-                him "Do you know if I can access his credit account? I'm just curious if he had a balance."
-                her "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
-                him "I'll stop by his place before meeting you at home."
-                her "Just let me know if I can help! I love this kind of stuff."
-                if visited_Joel_house:
-                    jump olegs_house
-                else:
-                    "I still wanted to examined the scene of the crime."
-                    jump joel_house
+                label examine_body:
+                    $ examined_body = True
+                    "I headed over to the medical building."
+                    her "Hi [his_name]. I already had lunch, but you can come in and talk to me for a bit while I clean up."
+                    him "Actually, I'm here on an official assignment. I'm investigating Joel's death."
+                    her "I was just writing up the autopsy."
+                    him "What did you find?"
+                    her "His blood work was mostly normal."
+                    her "It looks like he died from bleeding into his brain."
+                    him "Is that consistent with an injury sustained from falling from a wheelchair?"
+                    her "Yes..."
+                    him "But?"
+                    her "Most of the time, it takes a while to die from a traumatic brain injury. Usually the person with head trauma goes into a coma for a month or something."
+                    her "This seemed really sudden."
+                    her "It makes me wonder if he had sustained a brain injury earlier."
+                    her "Besides the one that disabled him."
+                    him "Huh."
+                    her "His things are on the other examination table. We can talk more after I finish cleaning up."
+                    "I looked at the other examination table. There was his clothing, his tablet, and a ball made from plant fibers." #there could be a menu of what to look at here
+                    "His clothing still felt a little damp. He had an RET-issued shirt, but instead of pants, there was a skirt with buttons all the way down. A kilt? Maybe it was easier to put on than pants?"
+                    "The ball made of plant fibers was made from a plant that grew near the river. It was a pretty common plant, so we didn't bother growing it in farms."
+                    "The fibers weren't all that soft, but with enough teasing, they could make a matted fiber kind of like wool, but not as insulating."
+                    "I opened the tablet and started examining the contents."
+                    "There were a lot of music and audiobooks on the tablet, as well as some drawings that looked like they were made by a kid."
+                    "There were a few photos too, including a few of his kids and of the night sky from a few days ago."
+                    "There weren't any photos from the day of his death though."
+                    "He messaged Julia occasionally things like 'be there soon' or 'not tonight'. Interesting."
+                    "I opened his personal credit account, but I couldn't access it without a code."
+                    her "Find anything that explains his death? Like a threatening video or something?"
+                    him "No. It does look like he messaged Julia a fair amount."
+                    her "Well, there's no way it was him writing those messages. Since the mining accident, he hasn't been able to read or write."
+                    her "Noel felt lucky that he could still talk though."
+                    her "It makes me wonder who was using the tablet."
+                    him "It could have been Noel."
+                    her "Yeah. Or Van, he's always helping out over there."
+                    him "Would Van do something like that?"
+                    her "Maybe if he forgot his own tablet? I'm not sure."
+                    him "Do you know if I can access his credit account? I'm just curious if he had a balance."
+                    her "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
+                    him "I'll stop by his place before meeting you at home."
+                    her "Just let me know if I can help! I love this kind of stuff."
+                    if visited_Joel_house:
+                        jump olegs_house
+                    else:
+                        "I still wanted to examined the scene of the crime."
+                        jump joel_house
 
         label olegs_house:
             "I walked to Sara and Ilian's house to see if Oleg was there."
@@ -5947,15 +5950,15 @@ label community30:
             him "I need to go talk to Sara and Oleg for my investigation."
             kid "Are you investigating the murder?"
             him "No one said it was a murder!"
-            her "So you're saying it wasn't a murder?":
-                menu:
-                    "Do I think Joel died on accident?"
-                    "Yes.":
-                        him "It looks like the brakes on his wheelchair were worn out and so his chair tipped over."
-                        him "Accidents happen."
-                    "It could have been a murder.":
-                        him "It could have been an accident, or it could have been a murder made to look like an accident."
-                        him "I'm still gathering all the information."
+            her "So you're saying it wasn't a murder?"
+            menu:
+                "Do I think Joel died on accident?"
+                "Yes.":
+                    him "It looks like the brakes on his wheelchair were worn out and so his chair tipped over."
+                    him "Accidents happen."
+                "It could have been a murder.":
+                    him "It could have been an accident, or it could have been a murder made to look like an accident."
+                    him "I'm still gathering all the information."
             kid "Okay, but how is Oleg involved? I don't think he even knew Noel."
             #maybe you can only involve Terra if you have a good relationship
             him "Right now I'm trying to figue out who is on the waiting list to go back on the shuttle."
@@ -6149,48 +6152,47 @@ label community30:
                         if miners > 10:
                             "I got lucky and he left the tablet with me while he went to a brief meeting."
                             "I hurriedly opened the payments program. Whose account should I check first?"
-                            menu:
-                                label account_check:
-                            if account_checked_counter > 3:
-                                "I saw Brennan coming back and quickly closed the program."
-                                jump back_to_noel
-                            menu: #allow players to ask about 3 people
-                                "Noel's" if not checked_noel:
-                                    "Noel has around 100 credits."
-                                    $ checked_noel = True
-                                    $ account_checked_counter + 1
-                                    jump account_check
-                                "Joel's" if not checked_joel:
-                                    if ban_firegrass:
-                                        "Joel has over 10,000 credits."
-                                    else:
-                                        "Joel has over 5,000 credits."
-                                    $ checked_joel = True
-                                    $ account_checked_counter + 1
-                                    jump account_check
-                                "Julia's" if not checked_julia:
-                                    if ban_firegrass:
-                                        "Julia has around 7,000 credits."
-                                    else:
-                                        "Julia has around 4,000 credits."
-                                    $ checked_julia = True
-                                    $ account_checked_counter + 1
-                                    jump account_check
-                                "Van's" if not checked_van:
-                                    "Van has around 200 credits."
-                                    $ checked_van = True
-                                    $ account_checked_counter + 1
-                                    jump account_check
-                                "Sara's" if not checked_sara:
-                                    "Sara has around 2,000 credits."
-                                    $ checked_sara = True
-                                    $ account_checked_counter + 1
-                                    jump account_check
-                                "Oleg's" if not checked_oleg:
-                                    "Oleg has around 1,000 credits." #decide Oleg's level of involvement
-                                    $checked_oleg = True
-                                    $ account_checked_counter + 1
-                                    jump account_check
+                            label account_check_sneak:
+                                if account_checked_counter > 3:
+                                    "I saw Brennan coming back and quickly closed the program."
+                                    jump back_to_noel
+                                menu: #allow players to ask about 3 people
+                                    "Noel's" if not checked_noel:
+                                        "Noel has around 100 credits."
+                                        $ checked_noel = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_sneak
+                                    "Joel's" if not checked_joel:
+                                        if ban_firegrass:
+                                            "Joel has over 10,000 credits."
+                                        else:
+                                            "Joel has over 5,000 credits."
+                                        $ checked_joel = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_sneak
+                                    "Julia's" if not checked_julia:
+                                        if ban_firegrass:
+                                            "Julia has around 7,000 credits."
+                                        else:
+                                            "Julia has around 4,000 credits."
+                                        $ checked_julia = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_sneak
+                                    "Van's" if not checked_van:
+                                        "Van has around 200 credits."
+                                        $ checked_van = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_sneak
+                                    "Sara's" if not checked_sara:
+                                        "Sara has around 2,000 credits."
+                                        $ checked_sara = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_sneak
+                                    "Oleg's" if not checked_oleg:
+                                        "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                        $checked_oleg = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_sneak
                         else:
                             "Brennan had to leave and took the tablet with him. I wasn't able to look at anyone's account."
                             jump back_to_noel
@@ -6248,19 +6250,24 @@ label community30:
             "Do I have any more questions?"
             menu:
                 "Yes":
-                    "Why did Joel have so much money in his account?" if checked_joel:
-                        him "I found out that Joel has quite a bit of money in his account. Why is that?"
-                        "Noel explained that she was simply saving money there in case of an emergency."
-                    "What is this clay ring for?": #for portioning bundles of firegrass?
-                        "Noel stared at it for a few minutes."
-                        "She said it must be a children's toy."
-                    "Van told me that Joel had previous head injuries. Why is that?":
-                        "Noel explained that Joel often vehemently refused help when it was necessary."
-                        "Because of this, he often fell out of his wheelchair and hit his head."
-                        "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
+                    menu:
+                        "Why did Joel have so much money in his account?" if checked_joel:
+                            him "I found out that Joel has quite a bit of money in his account. Why is that?"
+                            "Noel explained that she was simply saving money there in case of an emergency."
+                        "What is this clay ring for?": #for portioning bundles of firegrass?
+                            "Noel stared at it for a few minutes."
+                            "She said it must be a children's toy."
+                        "Van told me that Joel had previous head injuries. Why is that?":
+                            "Noel explained that Joel often vehemently refused help when it was necessary."
+                            "Because of this, he often fell out of his wheelchair and hit his head."
+                            "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
                 "No":
+                    # TODO: finish this?
+                    $pass
 
-        label noel_no_confession
+        label noel_no_confession:
+            # TODO: finish this
+            $pass
 
 # Noel was buying lots of firegrass from Pete at a low cost and selling it to Julia, with Van transporting it at first unknowingly through informal "deliveries" and then knowingly when he got curious enough. Noel was and is making a good amount of money off of this, buying out Pete the first chance she could.
 # Oleg started growing firegrass around three years ago (community 24), and his business started booming around two years ago (Community 26).
