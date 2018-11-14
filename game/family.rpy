@@ -5907,7 +5907,7 @@ label family23:
                 him surprised "Are your lives that difficult?"
                 kid "Sometimes! We help each other through stuff."
                 him determined "Like what?"
-                kid "Like... I'm telling Oleg some ways he can help his mom, who's feeling stressed out about their new baby."
+                kid "Like... I'm telling Oleg some ways he can help his mom, who's not getting along with his dad."
                 him surprised "Really?"
                 kid "Yeah, see?"
                 "She showed me her text conversation. She was telling the truth."
@@ -5958,10 +5958,10 @@ label family23:
                 him determined "I know you're talking with Oleg."
                 kid "Yeah? About what?"
                 him "Probably stupid stuff!"
-                kid "No! We're talking about how he can help his mom with the new baby!"
+                kid "No! We're talking about how he can help his parents save their marriage!"
                 him surprised "Really?"
                 kid "Yeah, look for yourself."
-                "She showed me the computer pad. It looked like Oleg was pretty upset that his mom was feeling overwhelmed, and [kid_name] was giving him some ideas of ways to help."
+                "She showed me the computer pad. It looked like Oleg was pretty upset that his parents were fighting, and [kid_name] was listening and giving him some pretty good advice."
                 # TODO: show her actual screen of messages?
                 him concerned "..."
                 kid "You think I'm just another stupid teenager, but that's just because you don't know me."
@@ -7160,6 +7160,32 @@ label family28_runaway:
 label family29:
 # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?  Or they have some reason why they wouldn't get married...
     "Graduation!"
+
+
+    "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
+    kid determined "I don't want to work on this farm."
+    him surprised "You don't?"
+    her concerned "You don't have to..."
+    kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
+    "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
+    "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
+    "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
+    menu:
+        "What should I say?"
+        "If you don't work, you need to pay rent.":
+            him determined "I'm not going to force you to work on the farm, but if you're not, then you'll need to pay rent."
+            her annoyed "Really? You want to charge our own daughter {b}rent{/b}?"
+            him annoyed "Like it or not, that's how the real world works. Everybody needs to do something useful."
+            her surprised "What if she's taking classes?"
+            him determined "Everybody should work. Even people taking classes."
+            her angry "But--!"
+        "If you want to live here, you'll need to help.":
+
+        "We can cut back gradually.":
+            him determined "I need you until the harvest. After that, we can slowly cut things down."
+        "You don't have to work here.":
+            him concerned "You don't have to work on the farm. But I could definitely use your help."
+
     return
 
 # 18.6 Earth years old (ENDING)
@@ -7189,6 +7215,41 @@ label family30:
         "Or with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
     # A spot opens up on the shuttle, and [her_name] is considering taking it.
+
+    "One night I opened up the computer pad after [kid_name] and [her_name] had gone to bed. There was a message from Anya on it for [kid_name]."
+    "I didn't mean to read it, but once I had, I couldn't un-read it."
+    nvl clear
+    anya_c "Do u want my shuttle spot r not?? Need 2 know by tomorrow nite!"
+    nvl clear
+    "My head started spinning. [kid_name] was thinking of going on the shuttle back to Earth?!"
+    "I didn't think it was even a possibility but apparently her friend Anya was willing to give up her spot for [kid_name]."
+    if (has_strong_marriage()):
+        "I went to talk to [her_name] about it, but she was sound asleep. I remember she'd had to go in early this morning for something urgent, so she was probably really tired."
+    "[kid_name] couldn't leave... we were a family! She was so tightly woven into the fabric of my life; if she tried to detach herself, I thought my whole world would fall apart."
+    "Not only that, I depended on her to help me with the farm."
+    "I guess I had always known in some abstract way that eventually she would leave, but this..."
+    "This was too fast."
+    "I thought about waking [kid_name] up to talk to her, but I was worried that I might not say the right things since I was feeling so upset."
+    "No, I should wait."
+    "It was getting really late; I should go to bed."
+    "But my mind was racing and my heart was thumping as if I was about to be attacked by wolfslugs."
+    "Finally, I lay down next to [her_name] and tossed and turned, trying to get comfortable. Nothing felt right."
+    "I fidgeted so much that I must have woken up [her_name], who grunted at me and covered her head with the blanket."
+    "Finally, I went and sat outside under the moons and stars."
+    "Every inch of ground was soaked in memories."
+    "She rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
+    "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
+    "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
+    "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
+    "I remember her coming up that hill coming home from school, sometimes with a friend, sometimes by herself."
+    "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
+    "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
+    "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though I'm not sure she knew how to dance herself."
+
+    "Could she really leave all this behind?"
+    "I felt like a horse, the grief weighing on me like an unwelcome rider in an uncomfortable saddle."
+    "...Is this what I had done to my parents when I left?"
+
     "One night I came home and [kid_name] and [her_name] were talking."
     scene farm_interior with fade
     show her concerned at midright
@@ -7198,6 +7259,8 @@ label family30:
 
     her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
+
+
     him surprised "Wait, you're thinking of going back to Earth?!"
     kid nervous "Maybe! I never even thought of it as a possibility, but then Anya said she wanted to stay here with Travis and asked if I wanted her spot!"
     if (boyfriend_name == "Travis"):
@@ -7233,7 +7296,9 @@ label family30:
                 him normal "This is a rare opportunity. I love Talaam, but you can learn so much more about biology from experts there."
             her surprised "Wow, I never thought I'd hear you say that."
             him annoyed "It doesn't mean she has to stay there forever. Hopefully she'll learn everything she can and bring it back here to make Talaam even better."
-            kid concerned "I'll think about it..."
+            her concerned "I'm not sure if that would be possible..."
+            kid concerned "If I did stay here, I know what I definitely {b}don't{/b} want to do."
+            him surprised "What's that?"
             $ authoritarian += 1
         "We need you here.":
             $ demanding += 1
@@ -7241,7 +7306,16 @@ label family30:
             him concerned "[kid_name], we still need you here."
             her annoyed "We can't keep her with us forever."
             him annoyed "There's few enough people on Talaam as it is. We can't afford to lose a single one, especially not our own daughter!"
-            kid concerned "I'll think about it..."
+            kid annoyed "Well it's not up to you, is it?!  I'm an adult now and I get to make my own decisions!"
+            him concerned "That's true, but you ought to listen to the people who have known you longer than anyone else and always have your best interests at heart."
+            kid angry "You just want me to stay here because you want my help on the farm."
+            him angry "That's not the only reason!  [her_name] and I moved here because we wanted to raise kids away from all the crap that goes on on Earth. Do you have any idea of all the things you don't have to worry about, living here?"
+            kid annoyed "No! I don't! And that's one reason why I want to go!"
+            her concerned "You don't have to decide right now..."
+            kid determined "Yeah, I kind of do. Otherwise the shuttle will leave without me."
+            "We were all quiet for a few moments, thinking."
+            kid annoyed "If I stay here, I know one thing I definitely {b}don't{/b} want to do."
+            him surprised "What's that?"
             $ authoritarian += 1
         "Think about it carefully.":
             $ responsive += 1
@@ -7260,7 +7334,9 @@ label family30:
             him normal "Good! If you're not thinking about it a lot, you'll probably make the wrong decision."
             her concerned "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
             kid concerned "Okay... yeah. I guess I have a lot to think about."
-
+            "She was quiet for several moments. We waited. I didn't mean she had to think about everything right now, but maybe she'd have some questions for us."
+            kid determined "I know one thing I don't want to do if I stay here."
+            her surprised "What's that?"
             $ authoritative += 1
         "You should do what makes you happy.":
             $ responsive += 1
@@ -7272,7 +7348,8 @@ label family30:
             kid annoyed "So you're saying it doesn't matter where I go?"
             her concerned "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
             him concerned "It's your choice, sweetie."
-
+            kid determined "Well, I know one thing I {b}don't{/b} want to do."
+            her surprised "What's that?"
             $ permissive += 1
         "Don't ask me what to do.":
             $ responsive -= 1
@@ -7281,9 +7358,16 @@ label family30:
             "She stormed away to her room."
             her annoyed "That was a stupid thing to say."
             him angry "What? It's not like she listens to us."
-            her angry "You don't know your own daughter at all, do you? She acts like she's not listening and she doesn't care what we think, but later when she's thinking she'll hear our words and they will influence her."
+            her angry "You don't know your own daughter at all, do you? She acts like she's not listening and she doesn't care what we think, but she thinks about everything we tell her."
             him determined "Well I've never seen that."
             her determined "I have. Now if you'll excuse me, I need to try and undo all the damage you just did."
+            "She joined [kid_name] in her room and I was left alone. They talked for hours."
+            "That was fine with me. She'd decide what she wanted and tell me then."
+            "In the meantime, somebody had to go and get the work done around here."
             $ neglectful += 1
+            return
+
+    kid concerned "Anyway, I'm going to think about it."
+
 
     return
