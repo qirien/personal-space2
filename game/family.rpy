@@ -6427,6 +6427,14 @@ label family25:
         him "Let's make some dinner. I already have potatoes; we just need some squash."
         "She rolled her eyes and sighed, but washed her hands and got ready to help."
 
+    him surprised "By the way, did you put the goats out this morning?"
+    kid determined "Of course I did."
+    him normal "Really? I didn't know they were on fire!"
+    kid surprised "Huh?"
+    him flirt "Get it?"
+    kid normal "Ohhh, dad!"
+    him normal "I'll go get that squash."
+
     if (is_independent()):
         kid "I can handle it by myself dad."
         him "Are you sure?"
@@ -7180,17 +7188,20 @@ label family29:
             him determined "Everybody should work. Even people taking classes."
             her angry "But--!"
         "If you want to live here, you'll need to help.":
-
+            him determined "Everyone that lives here needs to help out in some way."
         "We can cut back gradually.":
             him determined "I need you until the harvest. After that, we can slowly cut things down."
         "You don't have to work here.":
             him concerned "You don't have to work on the farm. But I could definitely use your help."
+
+    # TODO: finish this
 
     return
 
 # 18.6 Earth years old (ENDING)
 label family30:
     "[kid_name] has finally graduated from Talaam's little school. And, now that she didn't have school every day, she had moved on to other things."
+    $ boyfriend_name = ""
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):    # aCi or aCI
         # Medicine, either at home or on Earth, trying to make her parents happy
@@ -7200,6 +7211,7 @@ label family30:
         # Studies jellypeople and sociology-biology, living with you or married
         "Ever since that trip to the ocean where we communicated with the jelly people, [kid_name] had been obssessed with them."
         "Miranda had been meeting with them and studying them, and so [kid_name] joined her. She was also taking online classes in biology and sociology."
+        # TODO: does she have a boyfriend here?
 
     elif (parenting_style == "permissive"):     # Aci or AcI
         # Farming, either living in her parents' basement or on her own
@@ -7237,20 +7249,28 @@ label family30:
     "I fidgeted so much that I must have woken up [her_name], who grunted at me and covered her head with the blanket."
     "Finally, I went and sat outside under the moons and stars."
     "Every inch of ground was soaked in memories."
+    # TODO: show these
     "She rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
-    "I remember her coming up that hill coming home from school, sometimes with a friend, sometimes by herself."
+    "I remember her coming up that hill coming home from school with [bro_name]."
     "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
-    "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though I'm not sure she knew how to dance herself."
+    "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though she had only ever seen it in videos."
 
     "Could she really leave all this behind?"
-    "I felt like a horse, the grief weighing on me like an unwelcome rider in an uncomfortable saddle."
-    "...Is this what I had done to my parents when I left?"
+    "...could she really leave {b}me{/b} behind?"
+    "The grief weighed on me like I was a horse with an unwelcome rider in the saddle."
+    "And no amount of bucking, shaking, or kicking would dislodge him."
+    "I watched one moon set while the other rose. They could never be in the sky together for long."
+    "But when they were, they lit up the planet with a beautiful warm glow."
+    "I thought about when I left home...the tears on my mother's face, my dad so overcome with emotion he actually gave me the only hug I remember from him."
+    "When I left, my parents must have felt just like I was feeling now..."
 
-    "One night I came home and [kid_name] and [her_name] were talking."
+    "I finally dozed off on the porch and woke up shivering, both moons gone and the sun sending out tentative rays."
+    "[kid_name] and [her_name] were at breakfast. If [kid_name] really only had until tonight, we needed to talk about this now."
+    "As I walked in, it appeared they had started without me."
     scene farm_interior with fade
     show her concerned at midright
     show kid nervous at center
@@ -7259,29 +7279,43 @@ label family30:
 
     her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
-
-
-    him surprised "Wait, you're thinking of going back to Earth?!"
+    her determined "In some ways it's not...Oh, good morning, [his_name]. We saved you some hash browns."
+    "I was not in the mood for hash browns."
+    him determined "So, you're thinking of going back to Earth?!"
     kid nervous "Maybe! I never even thought of it as a possibility, but then Anya said she wanted to stay here with Travis and asked if I wanted her spot!"
     if (boyfriend_name == "Travis"):
         him concerned "I thought you were dating Travis."
-        kid angry "Ugh! Dad, we broke up so long ago! He's been with Anya for a few months, even though I think they're totally toxic to each other, but that's not what we're talking about right now."
+        kid angry "Ugh! Dad, we broke up so long ago! He's been with Anya for like, three months, even though I think they're totally toxic to each other, but anyway..."
     him annoyed "You'd have to be an idiot to go back to Earth. Talaam is so much better; that's why we came here."
     her annoyed "There are some great things about Earth."
     him determined "Like what? Traffic? Urban sprawl? Corrupt governments? Terrorists?"
     her angry "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
+    him annoyed "Yeah, but all the people she loves live will be here, on Talaam."
+    kid concerned "Most of them..."
+    her surprised "Is there someone special to you that's headed back to Earth?"
+    him determined "Please don't tell me this is about following some boy. No boy is worth that!"
+    kid sad "It's not like that! I mean, I have friends that will be going back on the shuttle, like Anya, and Lorant..."
+    if (boyfriend_name == "Lorant"):
+        him angry "It {b}is{/b} about a boy!"
+        her annoyed "I'm sure Lorant's not the only reason she wants to go back to Earth."
+        kid annoyed "Besides, that's what mom did. Follow her crazy boyfriend to a different planet."
+        him determined "That was different. We were married."
+        her determined "Just barely."
+        kid concerned "Anyway, he's just one of the reasons I want to go."
+
     him annoyed "What would you even do on Earth?"
     if (parenting_style == "authoritarian"):
         kid "I want to study medicine and become a doctor, like Mom."
     elif (parenting_style == "authoritative"):
         kid "The best biologists are on Earth. How can I compare Talaam and Earth biology if I've never even been to Earth?"
     else:
-        kid "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
-        kid normal "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
-        her concerned "Well, there's definitely more guys there..."
-        him annoyed "...but I don't know about better ones."
+        kid happy "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
+        if (boyfriend_name == ""):
+            kid normal "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
+            her concerned "Well, there's definitely more guys there..."
+            him annoyed "...but I don't know about better ones."
 
-    kid annoyed "Anyway, I'm just thinking about it, so don't make it into this big deal, okay?"
+    kid annoyed "I'm not even sure if I'll go yet, so don't make it into this big deal, okay?"
     her concerned "I'm glad you're talking to us about it. There's a lot of things to consider."
     menu:
         "What should I say?"
@@ -7297,8 +7331,7 @@ label family30:
             her surprised "Wow, I never thought I'd hear you say that."
             him annoyed "It doesn't mean she has to stay there forever. Hopefully she'll learn everything she can and bring it back here to make Talaam even better."
             her concerned "I'm not sure if that would be possible..."
-            kid concerned "If I did stay here, I know what I definitely {b}don't{/b} want to do."
-            him surprised "What's that?"
+            kid concerned "There's too many things I just don't know...I wish I had more time!"
             $ authoritarian += 1
         "We need you here.":
             $ demanding += 1
@@ -7312,10 +7345,8 @@ label family30:
             him angry "That's not the only reason!  [her_name] and I moved here because we wanted to raise kids away from all the crap that goes on on Earth. Do you have any idea of all the things you don't have to worry about, living here?"
             kid annoyed "No! I don't! And that's one reason why I want to go!"
             her concerned "You don't have to decide right now..."
-            kid determined "Yeah, I kind of do. Otherwise the shuttle will leave without me."
+            kid determined "Yeah, I kind of do. I have to tell Anya by tonight."
             "We were all quiet for a few moments, thinking."
-            kid annoyed "If I stay here, I know one thing I definitely {b}don't{/b} want to do."
-            him surprised "What's that?"
             $ authoritarian += 1
         "Think about it carefully.":
             $ responsive += 1
@@ -7334,9 +7365,7 @@ label family30:
             him normal "Good! If you're not thinking about it a lot, you'll probably make the wrong decision."
             her concerned "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
             kid concerned "Okay... yeah. I guess I have a lot to think about."
-            "She was quiet for several moments. We waited. I didn't mean she had to think about everything right now, but maybe she'd have some questions for us."
-            kid determined "I know one thing I don't want to do if I stay here."
-            her surprised "What's that?"
+            "She was quiet for several moments. We waited."
             $ authoritative += 1
         "You should do what makes you happy.":
             $ responsive += 1
@@ -7348,8 +7377,6 @@ label family30:
             kid annoyed "So you're saying it doesn't matter where I go?"
             her concerned "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
             him concerned "It's your choice, sweetie."
-            kid determined "Well, I know one thing I {b}don't{/b} want to do."
-            her surprised "What's that?"
             $ permissive += 1
         "Don't ask me what to do.":
             $ responsive -= 1
@@ -7367,7 +7394,54 @@ label family30:
             $ neglectful += 1
             return
 
-    kid concerned "Anyway, I'm going to think about it."
+    show bro at right with moveinright
+    "We were all lost in thought when [bro_name] walked in. His eyes were red and tear-stained. He must have been listening from the other room."
+    show bro at quarterright with move
+    bro sad "Don't leave..."
+    "[kid_name] burst into tears also."
+    kid cry "I just don't know!"
+    "...and soon [her_name] was crying, too."
+    her sad "My little girl..."
+    menu:
+        "What should I do?"
+        "Cry":
+            "So many emotions were laid bare, it was like a field after harvest, where all the plants are uprooted and tilled back into the soil."
+            him sad "Oh, [kid_name]..."
+            "We held each other and cried. I suddenly realized that even if [kid_name] didn't go to Earth, eventually she was going to leave us in some way."
+            "And that was what I was crying for."
+            "After we had all exhausted our tears, "
 
+        "Try to cheer everyone up":
+            "I stood back for a few minutes, giving [her_name] and [kid_name] and [bro_name] a minute to cry-hug together. But it didn't seem to make them feel any better."
+            "Worst of all, I started feeling a little teary-eyed myself."
+            "This crying was getting us nowhere. There was only one remedy..."
+            "Dad jokes."
+            him surprised "Hey, hey. Wow. Do you know what I love about Talaam?"
+            her concerned "What?"
+            him determined "Its rotation really makes my day."
+            kid annoyed "Da-ad!"
+            bro normal "Ha-ha"
+            him normal "And, you know, even though it means a lot of work, I'm really looking forward to spring."
+            her surprised "You are?"
+            him determined "Yup. I'm so excited I wet my plants."
+            bro happy "Ha ha ha!"
+            her normal "Okay, that was pretty bad."
+            kid normal "If you're trying to make me want to leave, you're doing a pretty good job."
+            "I brought over some handkerchiefs and everyone composed themselves, except for [bro_name], who was still laughing and looked like he might actually wet his pants."
+
+            her concerned "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
+            kid nervous "Armor on a scarecrow?"
+            him surprised "That sounds a little extreme."
+            her flirt "Its suit is impeccable."
+            bro happy "Get it? ImPECKable?!"
+            kid normal "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
+            bro normal "Looks like someone... can't take the PUNishment!"
+
+        "Leave":
+            "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."
+            return
+
+    him concerned "I know you have a lot to think about, [kid_name]... but do you think you could help me out on the fields while you think? There's a lot to do."
+    # TODO: Something exciting happens where he needs to 'let go' in order to succeed.
 
     return

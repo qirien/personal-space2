@@ -821,7 +821,7 @@ label goats3:
         "Scold [kid_name]." if (year > 7):
             "It must have been [kid_name]. There's no other possibility."
             show kid at midright with moveinright
-            him determined "[kid_name], I'm very disappointed that you let the goats escape."
+            him determined "[kid_name], I'm disappointed that you let the goats escape."
             kid sad "It wasn't me! I closed it all the way, I know I did!"
             him concerned "It's the only explanation that makes any sense."
             kid angry "What if the goats opened it?"
