@@ -1057,6 +1057,33 @@ label work26:
 # Year 28, 17.3 years old
 label work28:
     "Terra either wants her own farm, or wants to quit working for you! Do you hire someone else or try and get her to stay?"
+
+
+    "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
+    kid determined "I don't want to work on this farm."
+    him surprised "You don't?"
+    her concerned "You don't have to..."
+    kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
+    "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
+    "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
+    "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
+    menu:
+        "What should I say?"
+        "If you don't work, you need to pay rent.":
+            him determined "I'm not going to force you to work on the farm, but if you're not, then you'll need to pay rent."
+            her annoyed "Really? You want to charge our own daughter {b}rent{/b}?"
+            him annoyed "Like it or not, that's how the real world works. Everybody needs to do something useful."
+            her surprised "What if she's taking classes?"
+            him determined "Everybody should work. Even people taking classes."
+            her angry "But--!"
+        "If you want to live here, you'll need to help.":
+            him determined "Everyone that lives here needs to help out in some way."
+        "We can cut back gradually.":
+            him determined "I need you until the harvest. After that, we can slowly cut things down."
+        "You don't have to work here.":
+            him concerned "You don't have to work on the farm. But I could definitely use your help."
+
+    # TODO: finish this
     return
 
 # Year 30, 18 years old

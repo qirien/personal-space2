@@ -475,7 +475,7 @@ label community4:
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
     pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
     show pavel
-    pavel "I doubt anyone will volunteer for extra work, so we'd like everyone to nominate someone tonight."
+    pavel "I doubt anyone will volunteer for extra work, so'd like everyone to nominate someone tonight."
     pavel "Then we'll vote on the nominations."
     hide pavel with moveoutright
     show thuc at midright
@@ -5340,7 +5340,7 @@ label community28:
         if against_euthanasia:
             him "Wow, [her_name], you're okay with this?"
             her "It's what Pavel Grayson wanted."
-            him "Okay."
+            him "Okay..."
             jump fill_gap
         else:
             him "[her_name], are you ready for this?"

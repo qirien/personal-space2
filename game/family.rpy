@@ -7167,35 +7167,74 @@ label family28_runaway:
 # What kind of guy should she look for as a husband?
 label family29:
 # idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?  Or they have some reason why they wouldn't get married...
-    "Graduation!"
+    $ parenting_style = get_parenting_style()
+    scene farm_interior with fade
+    show her concerned at midleft
+    show bro at center
+    show him determined at midright
+    with dissolve
+    her concerned "Come on, [his_name] we're going to be late for the graduation!"
+    "I don't know why I was taking so long to get ready. Every time I thought I was ready to go, I remembered one more thing."
+    him surprised "Oh, I should tuck my shirt in!"
+    her annoyed "You can do it on the way there. Let's just go!"
+    scene path with fade
+    "We walked to town like we had thousands of times before, but this time I trudged along as if my boots were covered in mud."
+    "[her_name] strode ahead, intent on arriving promptly, but [bro_name] stayed back with me."
+    bro "Dad? Are you okay?"
+    him concerned "Yeah. I guess I just don't want to go for some reason."
+    bro "Aren't you glad [kid_name]'s graduating?"
+    him determined "Of course. But at the same time... it feels like things are changing."
+    bro "Yeah. She doesn't hang out at home as much anymore."
+    "[bro_name] was a perceptive kid."
+    him concerned "I guess that's normal, as kids grow up..."
+    bro "But it's still sad."
+    him sad "..."
+    bro sad "..."
 
-
-    "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
-    kid determined "I don't want to work on this farm."
-    him surprised "You don't?"
-    her concerned "You don't have to..."
-    kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
-    "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
-    "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
-    "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
     menu:
-        "What should I say?"
-        "If you don't work, you need to pay rent.":
-            him determined "I'm not going to force you to work on the farm, but if you're not, then you'll need to pay rent."
-            her annoyed "Really? You want to charge our own daughter {b}rent{/b}?"
-            him annoyed "Like it or not, that's how the real world works. Everybody needs to do something useful."
-            her surprised "What if she's taking classes?"
-            him determined "Everybody should work. Even people taking classes."
-            her angry "But--!"
-        "If you want to live here, you'll need to help.":
-            him determined "Everyone that lives here needs to help out in some way."
-        "We can cut back gradually.":
-            him determined "I need you until the harvest. After that, we can slowly cut things down."
-        "You don't have to work here.":
-            him concerned "You don't have to work on the farm. But I could definitely use your help."
+        "What should I do?"
+        "Try to cheer up.":
+            him annoyed "Look at us, moping about like it's a funeral. This is supposed to be a graduation celebration! We need to change our attitude!"
+            bro "How?"
+            him sad "I don't know."
+            bro "At least [kid_name] seems happy."
+            him normal "That's true. And that's what we want, right? We want her to be happy, even if it means she spends less time with us?"
+            bro "Yeah, I guess so."
+            him determined "And I can be happy that she's finally done with school!"
+            bro "I wouldn't be happy to be done with school. I like school."
+            him normal "Well, she's happy about it. And don't worry, you can always learn more even after you've graduated."
+            bro "Maybe that's another thing to be happy about?"
+            him happy "Yeah! We've got lots of things to be happy about!"
+        "Think about [kid_name].":
+            him concerned "[kid_name] is pretty happy to be done with school."
+            if ((parenting_style == "authoritative") or (parenting_style == "authoritarian")):
+                bro "She even got pretty good grades."
+            else:
+                bro "Especially since she didn't get very good grades."
+            him normal "I guess we can be happy for her, right?"
+            bro "Yeah, I guess so."
+            him surprised "She still doesn't know what she wants to do, though. It's so different from Earth."
+            bro "How is that?"
+            him normal "On Earth, most kids went straight from high school to a job, or college, or training school, or something like that. Here, though, every kid is doing something different."
+        "Catch up to [her_name].":
+            "[her_name] was getting pretty far ahead."
+            him concerned "Come on, [bro_name], let's catch up to Mom."
+            bro "Okay. Not too fast, though!"
 
-    # TODO: finish this
+    "We hurried to catch up to [her_name], and all too soon we arrived at the graduation ceremony."
+    scene community_center with fade
+    if (kevin_elected):
+        show kevin at center
+        kevin "Welcome to the Talaam graduation ceremony."
+        kevin "This year, we have five students graduating."
+    else:
+        show julia at center
+        julia "Welcome, parents, teachers, friends, and community, to the Talaam graduation ceremony!"
+        julia "This year, we celebrate the graduation of five outstanding students."
 
+    "There were two graduates that I didn't know very well, and then Anya, Oleg, and [kid_name]."
+    "I guess Travis wasn't graduating?"
+    # TODO: finish this.
     return
 
 # 18.6 Earth years old (ENDING)

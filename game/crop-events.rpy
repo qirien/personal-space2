@@ -1,10 +1,5 @@
 # Crop-specific work events
 
-# TODO: First person or third person?
-# TODO: Some crop events kind of assume that you'll get the next crop event
-# the next year.  If you don't plant that crop the next year, some events
-# should reset.
-
 # Default crop event, if no other crop event can be found
 label default_crop_event:
     "The year passed by in a blur: tilling, planting, weeding, harvesting; the endless cycle of life on the farm."
