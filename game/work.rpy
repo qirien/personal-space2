@@ -938,7 +938,7 @@ label work22:
         "A midlife crisis sounds funny.":
             him happy "No, it's funny! Go ahead, tell me what you think I'll do."
             pete "You don't strike me as a flashy car kind of guy..."
-            ilian "And they are in dismally short supply here."
+            ilian "Anyway, those are currently in dismally short supply."
             if (is_liason):
                 sara "You're already the RET liaison, so you don't need to seek a position of power."
             else:
@@ -957,7 +957,7 @@ label work22:
                 thuc "No way. Their marriage is rock solid."
                 him flirt "I already have all the hot alien chicks I need."
                 her surprised "You do?"
-                him happy "Oh yeah. You're from a planet that's not Earth, so you're an alien. And all I need is you."
+                him happy "Oh yeah. You're on a planet that's not Earth, so you're an alien. And all I need is you."
                 "I kissed her, right in front of everybody."
                 sara "Awwwww! Sweet cheese!"
                 her flirt "It's not cheesy if it's true, right?"
@@ -984,7 +984,7 @@ label work22:
     show her normal at midright
     with move
     him surprised "Did you plan all this?"
-    her normal "Well, I had the initial idea, but I had a lot of help from all of your friends."
+    her normal "Well, I had the initial idea, but I had a lot of help from your friends."
     $ helping_faction = strongest_faction()
     show her at center with move
     if (helping_faction == "colonists"):
@@ -1004,7 +1004,7 @@ label work22:
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
-            her annoyed "You guys are awful."
+            her annoyed "..."
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
             $ enable_crop("onions")
@@ -1036,7 +1036,7 @@ label work22:
 # Year 24, 14.8 years old
 label work24:
     "[kid_name] was big enough to do real work on the farm, now. She could help a mama goat give birth, knew which plants were weeds, and could build a fence out of almost anything."
-    "But her favorite was driving the tractor."
+    "But her favorite way to help was driving the tractor."
     scene fields with fade
     "We were using the front loader attachment to add manure and to the fields."
     kid nervous "Please let me do the driving, dad! I know how to do it!"
@@ -1055,12 +1055,103 @@ label work24:
     kid nervous "What?"
     "She couldn't hear me. I started running, following the tractor."
     him concerned "The bucket's too high! Lower the bucket!"
-    "I was too late. She turned the corner, going a little too fast and the higher center of gravity from the raised bucket made the tractor tip over!"
+    "I was too late. She turned the corner, going a little too fast. I felt like time slowed down as I started running. I could see the tractor starting to tip."
+    "I reached out, but I was helpless to stop it. The high, heavy bucket dragged the whole tractor over onto its side."
     kid surprised "Ahhhhhhh!"
-    him surprised "[kid_name]!"
+    him surprised "[kid_name]! Dammit!"
+    "I ran as fast as I could. [kid_name] was quiet, which worried me even more than if she had been screaming."
+    "When I finally reached her, she was unconscious and her leg was pinned under the tractor. I bent over her face and felt her breath."
+    him determined "[kid_name]! [kid_name], wake up!"
+    "I could probably lift the tractor off her, but if she couldn't scoot herself out it was pointless."
+    him angry "[kid_name]!"
+    "She stirred."
+    him determined "Come on, [kid_name]. You're going to be okay."
+    "She tried to get up, but could only sit. Good, at least her spine was okay."
+    kid nervous "Wha-what? I can't - I can't move my leg!"
+    him concerned "I know. It'll be okay. Now, on the count of three, I'm going to lift the tractor, and you need to get out of there, okay?"
+    kid determined "It hurts!"
+    him sad "I know it hurts, but we gotta get you out of there. I don't know if your leg will move, so you might have to use your arms."
+    kid determined "Okay. Ow. Okay. I think I can do that."
+    him angry "1...2...3!"
+    "I heaved up and tilted the tractor. I couldn't tip it all the way back to standing, but hopefully it was enough..."
+    him annoyed "Now, now, now! Out now!"
+    kid nervous "Okay! I'm doing it...I'm clear!"
+    "I set the tractor back down as gently as possible, my arms shaking and aching."
+    "I looked down at my daughter. Her lower leg was bloody and her pants were ripped. She had a bump on her head from where she had hit the ground."
+    kid concerned "Ohhh. Oh, that hurts!"
+    "Her colorful curse surprised me. Looking at her leg, though, I couldn't really blame her."
+    $ work24_stopped_bleeding = False
+    $ work24_walk = False
+    menu work24_first_aid:
+        "What should I do?"
+        "Stop the bleeding." if not work24_stopped_bleeding:
+            him determined "First we better stop the bleeding."
+            "I took off my shirt and wrapped it tightly around her leg."
+            him concerned "Hold this on there, okay?"
+            kid sad "Okay..."
+            $ work24_stopped_bleeding
+            jump work24_first_aid
+        "Carry her to the clinic.":
+            him determined "Let's get you to mom."
+            "I couldn't take the tractor since it had tipped over. I'd get Thuc or someone to help me set it back up later."
+            "I lifted her up in my arms, something I hadn't done for years and years."
+            "She was a lot heavier now."
+            kid sad "Ow! My leg!"
+            him concerned "Sorry...I'll try not to move it."
+            "She rested her head on my chest, and I started on the long walk into town."
+            "My arms, already strained from lifting the tractor, felt heavy and numb, but I walked on."
+            "Finally we arrived at the clinic."
+            scene clinic with fade
+            show her surprised at midright with dissolve
+            show him determined at midleft
+            show kid determined at center
+            with moveinleft
+            her surprised "[his_name]? What's wrong?"
 
+        "See if she can walk." if not (work24_stopped_bleeding or work24_walk):
+            him surprised "Can you stand up?"
+            kid determined "Maybe... ugh. No, not really."
+            "As she tried to stand up, more blood trickled down her leg."
+            $ work24_walk = True
+            jump work24_first_aid
+        "Get some help.":
+            him determined "I'm going to see if I can get some help, okay?"
+            kid sad "Okay..."
+            him concerned "Attention, this is [his_name]. [kid_name] is injured and needs transport to the clinic."
+            "No one answered. I tried again."
+            him determined "I need transport into town for [kid_name] who is injured. She might have broken her leg. Can anyone help?"
+            "[her_name] on the radio" "[his_name]?! Is she okay?"
+            him determined "She's conscious, but bleeding and her leg's hurt."
+            "[her_name] on the radio" "Can't you take the tractor?"
+            him concerned "Nope. That's how she got hurt; tractor tipped over."
+            "Natalia on the radio" "I'm on my way."
+            "[her_name] on the radio" "Thank you, Natalia!"
+            "Natalia arrived on her tractor with the trailer attachment. I nestled in the back with [kid_name] while she drove."
+            kid concerned "Ow!"
+            "Every bump made her leg hurt more. I tried to protect her from the worst bumps but it was a long, rough ride."
+            "When we arrived, [her_name] was ready for us."
+            scene clinic with fade
+            show her surprised at midright with dissolve
+            show him determined at midleft
+            show kid determined at center
+            with moveinleft
 
+    "[her_name] ran over, taking in [kid_name]'s injuries."
+    her concerned "Okay. It's probably not too bad. Set her on the bed here."
+    "I told her the whole story while she and the nurse cleaned and examined the wound. She felt [kid_name]'s leg carefully, noting every wince. She examined the rest of her, too."
+    "[kid_name] was clearly in pain, but also fascinated by what [her_name] was doing."
+    her determined "Broken tibia. Transverse. Fibula seems to be okay. Concussion."
+    "She looked me in the eyes for the first time since I arrived."
+    her angry "We'll talk about why in the world she was the one driving the tractor later."
+    him sad "Is it bad?"
+    her concerned "She'll be okay, [his_name]. But I need to put her under to put in some pins, so why don't you head on home. [bro_name]'s probably wondering where you are."
+    "He had been working on homework when I left, but that was hours ago..."
+    him determined "Okay. Keep me posted."
+    her determined "I will."
+    scene farm_interior with fade
+    "[her_name] stayed at the clinic with [kid_name] that night while she recovered from the surgery. [bro_name] and I had a quiet night at home."
 
+    "They came home the next day, and "
 
 
    "Terra accidentally flips the tractor over while doing her chores, and gets hurt."
