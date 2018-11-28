@@ -1035,6 +1035,34 @@ label work22:
 
 # Year 24, 14.8 years old
 label work24:
+    "[kid_name] was big enough to do real work on the farm, now. She could help a mama goat give birth, knew which plants were weeds, and could build a fence out of almost anything."
+    "But her favorite was driving the tractor."
+    scene fields with fade
+    "We were using the front loader attachment to add manure and to the fields."
+    kid nervous "Please let me do the driving, dad! I know how to do it!"
+    him annoyed "You haven't driven with the front loader attachment. The feel is totally different."
+    kid annoyed "Well, how am I going to learn about it if you don't let me try it?!"
+    "She had a good point. It wasn't really something you could learn just by watching."
+    "But I wanted to keep her safe, too."
+    him determined "I'll do the first run while you rake the manure into a pile. Then I'll decide if you can drive."
+    kid concerned "Ugh. Fine."
+    "I filled the front loader full of manure and drove down to the field we were preparing. I slowed down to turn to the side, and dumped the load on top of the dirt."
+    "Then I drove back."
+    him normal "Your turn. Watch out for the ditch on the side."
+    kid annoyed "Of course, dad, it's only been there my whole life."
+    "She got a load of manure into the bucket and headed down towards the field. The bucket was a lot higher than I usually put it."
+    him annoyed "Lower the bucket!"
+    kid nervous "What?"
+    "She couldn't hear me. I started running, following the tractor."
+    him concerned "The bucket's too high! Lower the bucket!"
+    "I was too late. She turned the corner, going a little too fast and the higher center of gravity from the raised bucket made the tractor tip over!"
+    kid surprised "Ahhhhhhh!"
+    him surprised "[kid_name]!"
+
+
+
+
+
    "Terra accidentally flips the tractor over while doing her chores, and gets hurt."
    "[her_name] argues that you shouldn't have her do such dangerous chores."
    menu:
@@ -1075,7 +1103,10 @@ label work28:
             him annoyed "Like it or not, that's how the real world works. Everybody needs to do something useful."
             her surprised "What if she's taking classes?"
             him determined "Everybody should work. Even people taking classes."
-            her angry "But--!"
+            her angry "So are you going to charge me rent, too?!"
+            him annoyed "That's different! You get paid, and we use the money together. Is [kid_name] going to turn over everything she makes to us?"
+            kid annoyed "No!"
+
         "If you want to live here, you'll need to help.":
             him determined "Everyone that lives here needs to help out in some way."
         "We can cut back gradually.":

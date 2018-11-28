@@ -7444,7 +7444,7 @@ label family30:
     menu:
         "What should I do?"
         "Cry":
-            "So many emotions were laid bare, it was like a field after harvest, where all the plants are uprooted and tilled back into the soil."
+            "So many emotions were laid bare, it was like a field after harvest, where all the plants are uprooted and limp and half-tilled into the soil."
             him sad "Oh, [kid_name]..."
             "We held each other and cried. I suddenly realized that even if [kid_name] didn't go to Earth, eventually she was going to leave us in some way."
             "And that was what I was crying for."
@@ -7458,8 +7458,9 @@ label family30:
             him surprised "Hey, hey. Wow. Do you know what I love about Talaam?"
             her concerned "What?"
             him determined "Its rotation really makes my day."
-            kid annoyed "Da-ad!"
-            bro normal "Ha-ha"
+            her surprised "..."
+            kid annoyed "Was that supposed to be a joke?!"
+            bro normal "Ha-ha!"
             him normal "And, you know, even though it means a lot of work, I'm really looking forward to spring."
             her surprised "You are?"
             him determined "Yup. I'm so excited I wet my plants."
@@ -7472,9 +7473,10 @@ label family30:
             kid nervous "Armor on a scarecrow?"
             him surprised "That sounds a little extreme."
             her flirt "Its suit is impeccable."
+            him concerned "..."
             bro happy "Get it? ImPECKable?!"
             kid normal "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
-            bro normal "Looks like someone... can't take the PUNishment!"
+            him flirt "Looks like someone... can't take the PUNishment!"
 
         "Leave":
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."

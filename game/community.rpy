@@ -383,7 +383,7 @@ label community3:
     scene fields with fade
     show him normal at midright
     show kevin at midleft
-    "A few months later, Kevin asks me about it after I assessed his first batch of crops." #why are you talking to Kevin--expand?
+    "A few months later, Kevin asked me about it after I assessed his first batch of crops." #why are you talking to Kevin--expand?
     kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
     show him concerned
     him "Oh, those. It's just people talking to Pete about stuff."
@@ -420,7 +420,6 @@ label community3:
         "Ask Pavel to encourage meetups":
             show him normal
             him "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
-            $ pass
             jump ask_pavel
 
     label invite_all:
