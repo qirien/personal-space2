@@ -272,10 +272,26 @@ label ending_ACi:
 #8 ACI - becomes an expert in her field, starts to form her own happy family on Talaam
 label ending_ACI:
     "Ending ACI."
+    "[her_name] moved out. We all pitched in to build a dorm-style apartment building for the growing number of non-farmers that didn't need a lot of space."
+    "She seemed to like it; it was closer to town, where she spent most of her time in the library and at the science lab studying biology and sociology."
+    "And she was closer to her boyfriend, Oleg."
+    "We invited them over for dinner about once a week, where she'd catch us up on all the latest developments."
+    scene farm_interior with fade
+    show her normal at right
+    show him normal at midright
+    show kid normal at center
+    show oleg normal at midleft
+    show bro normal at left
+    kid "...so it turns out that the jellies cultivate the cucumber kelp on purpose, and use both it and the fish that feed on it for food and tools."
+    her surprised "The jellies use tools?"
+    kid happy "Oh yeah! I've asked for some scuba gear on the next shuttle, but in the meantime I've been snorkeling down there and it's really amazing the city they've built!"
+    him surprised "A whole city? Wow, we never would have guessed!"
+    oleg "And it never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
+
     "I want a lot of things for [kid_name], but most of all I want her to find some of the same happiness I've found.  Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
-    "So I'm not just happy that she's dating the nicest young man on the entire planet."
+    "So I'm not just happy that she and Oleg are dating."
     "I'm not just happy that she's staying here, on Talaam."
     "I'm also happy she found a way to do something she loves that helps people."
     "She worked hard to earn a dual degree in sociology and biology, and she has learned to understand the jellies in a way that no one else can."

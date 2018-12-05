@@ -1246,9 +1246,6 @@ label work26:
 # Year 28, 17.3 years old
 # Terra doesn't want to help! Pay rent?
 label work28:
-    "Terra either wants her own farm, or wants to quit working for you! Do you hire someone else or try and get her to stay?"
-
-
     "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
     kid determined "I don't want to work on this farm."
     him surprised "You don't?"
@@ -1257,6 +1254,7 @@ label work28:
     "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
     "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
     "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
+    $ work28_rent = 0
     menu:
         "What should I say?"
         "If you don't work, you need to pay rent.":
@@ -1268,15 +1266,64 @@ label work28:
             her angry "So are you going to charge me rent, too?!"
             him annoyed "That's different! You get paid, and we use the money together. Is [kid_name] going to turn over everything she makes to us?"
             kid annoyed "No!"
+            him normal "Everyone in this family helps out. If you're not helping around the house or the farm, then you can help out with money."
+            her annoyed "But--"
+            kid determined "I can pay XXX per month." # TODO: currency check
+            her concerned "No, [kid_name], you might need that money..."
+            menu:
+                "What should I say?"
+                "That's too much.":
+                    him normal "Hey, I don't think your tiny room here is worth that much. Let's say XXX and it'll be fine."
+                    her normal "Oh. That's not that much."
+                    kid determined "Okay, I can do that."
+                    $ work28_rent = 100
+                "That's a deal.":
+                    him normal "Sounds like a deal."
+                    $ work28_rent = 200
+                "That's not enough.":
+                    him annoyed "Are you kidding? You've got your own room, homecooked meals, and use of our resources. That's worth at least XXX."
+                    her determined "No. No way. YYY is the max."
+                    kid determined "I can pay YYY, but not XXX."
+                    him determined "Then I guess that will have to do."
+                    $ work28_rent = 250
+            her concerned "If you can't make it some month, come by the clinic and I can find some work for you."
+            kid annoyed "I'll be fine, Mom."
 
         "If you want to live here, you'll need to help.":
             him determined "Everyone that lives here needs to help out in some way."
+            her "Maybe not on the farm, but in other ways?"
+            kid "Sure, I can do chores and stuff. I just don't want to be your fieldhand."
+            "We worked out some things that [kid_name] could do that weren't farming -- making meals and running errands for [her_name] and I."
+            him concerned "Hopefully I can still count on your help during harvest time."
+            kid "Yeah, for now."
         "We can cut back gradually.":
             him determined "I need you until the harvest. After that, we can slowly cut things down."
+            kid concerned "Okay..."
         "You don't have to work here.":
             him concerned "You don't have to work on the farm. But I could definitely use your help."
+            kid concerned "Maybe just when you really need me."
+            him determined "Okay. Thanks, [kid_name]."
 
-    # TODO: finish this
+    bro "I don't want to work on the farm, either."
+    "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was timid and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
+    "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."
+    menu:
+        "What should I do?"
+        "Reduce the size of my farm.":
+            "The best thing to do was just to not plant as many crops. Then I wouldn't need as much help. Hopefully it would still be enough."
+            $ farm_size -= 4
+        "Hire some help.":
+            if (work28_rent > 0):
+                "With the extra money [kid_name] would be paying in rent, I could afford to hire some help. Surely there'd be someone who'd be willing to do some hard work in exchange for a little extra money."
+            else:
+                "It would cost me, but I thought the cost of hiring another worker would be less than the cost of reducing the field."
+            $ work28_rent -= 100
+        "Have [bro_name] help more.":
+            him normal "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
+            bro "I don't want to..."
+            him concerned "I know. But sometimes we all gotta do things we don't want to do."
+    "I guess it was [kid_name]'s job to grow up and eventually leave us."
+    "I wasn't quite ready for it to start, though."
     return
 
 # Year 30, 18 years old

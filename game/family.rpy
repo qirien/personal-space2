@@ -7315,34 +7315,52 @@ label family29:
     him determined "Okay, okay! Can I ask some questions about these two mystery people, then?"
     kid annoyed "Maybe..."
     $ family29_question_count = 0
+    $ family29_gay = False
+    $ family29_lifegoals = False
+    $ family29_otherrelationships = False
+    $ family29_sex = False
+    $ family29_kids = False
+    $ family29_ready = False
+    $ family29_why = False
+    # You get to ask 3 questions.
     menu family29_questions:
         "What should I ask?"
-        "Do they have similar life goals?":
+        "Is he gay?" if not (family29_gay):
+            him surprised "Is he gay? Is that why he's not attracted to you? I mean, your friend?"
+            kid concerned "I don't think so. I mean, it doesn't seem like he's really attracted to anybody. So...maybe?"
+            $ family29_gay = True
+            $ family29_question_count += 1
+            if (family29_question_count < 3):
+                jump family29_questions
+        "Do they have similar life goals?" if not (family29_lifegoals):
             $ demanding += 1
             him surprised "Do they have similar life goals?"
             kid normal "What does that even mean?"
             him normal "Like, do they both value the same things? Education, hard work, family,  honesty -- things like that."
             kid concerned "Uh, I think so?"
+            $ family29_lifegoals = True
             $ family29_question_count += 1
-            if (family29_question_count < 2):
+            if (family29_question_count < 3):
                 jump family29_questions
-        "Have they been in other relationships?":
+        "Have they been in other relationships?" if not (family29_otherrelationships):
             $ responsive += 1
             him determined "Have they ever been in a serious relationship with anyone else?"
             kid concerned "I'm not answering that one."
+            $ family29_otherrelationships = True
             $ family29_question_count += 1
-            if (family29_question_count < 2):
+            if (family29_question_count < 3):
                 jump family29_questions
-        "Do they view sex the same way?":
+        "Do they view sex the same way?" if not (family29_sex):
             him annoyed "Do they both have similar attitudes about sex?"
             kid annoyed "Definitely not answering that one!"
             him annoyed "Well, it's important! If you're wondering if two best friends can have a successful marriage, it's going to depend a lot on how much they care about sex!"
             kid angry "It's kind of hard to know how much you care about something if you've-- if it's not something you do all the time!"
             "Did that mean she was or wasn't...no, I wasn't going to get sidetracked. This discussion was too important."
+            $ family29_sex = True
             $ family29_question_count += 1
-            if (family29_question_count < 2):
+            if (family29_question_count < 3):
                 jump family29_questions
-        "Do they both want kids?":
+        "Do they both want kids?" if not (family29_kids):
             $ demanding += 1
             him surprised "Do they both want kids?"
             kid concerned "Why would that matter?"
@@ -7352,10 +7370,11 @@ label family29:
             kid concerned "Having kids still seems so weird..."
             him flirting "And, yes, if they're going to have kids together they will need to have sex sometimes to make that happen."
             kid annoyed "Seriously, Dad?!"
+            $ family29_kids = True
             $ family29_question_count += 1
-            if (family29_question_count < 2):
+            if (family29_question_count < 3):
                 jump family29_questions
-        "Are they even ready for marriage?":
+        "Are they even ready for marriage?" if not (family29_ready):
             $ demanding += 1
             him determined "If these anonymous people that you know are anywhere near your age, they probably aren't even ready for marriage."
             kid annoyed "Oh yeah? What makes someone ready for marriage?"
@@ -7376,16 +7395,18 @@ label family29:
                     him determined "If you're not ready to have kids, you're not ready to get married."
                     kid annoyed "But getting married doesn't mean you'll have kids right away."
                     him concerned "No, but it's possible."
+            $ family29_ready = True
             $ family29_question_count += 1
-            if (family29_question_count < 2):
+            if (family29_question_count < 3):
                 jump family29_questions
-        "Why do they want to get married?":
+        "Why do they want to get married?" if not (family29_why):
             $ responsive += 1
             him determined "Why do they want to get married?"
             "She was quiet for a few minutes, thinking."
             kid concerned "I guess.. they don't really know that they do want to get married. Not yet."
+            $ family29_why = True
             $ family29_question_count += 1
-            if (family29_question_count < 2):
+            if (family29_question_count < 3):
                 jump family29_questions
 
     "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
@@ -7454,14 +7475,22 @@ label family29:
             him determined "It means that you choose carefully who you marry; but once you do, love them with your whole heart every day."
         "Follow your heart.":
             him happy "Follow your heart!"
-
+            kid normal "Okay, dad."
+            him normal "No, really. Listen to what your heart wants and then go for it!"
+            kid concerned "What my heart wants..."
         "Don't rush it.":
             him normal "Don't rush it. You're young; you've got plenty of time."
+            kid annoyed "That's what old people always say..."
+            him flirting "And we're right."
+            kid normal "Okay, dad."
         "Don't be stupid.":
             him determined "Don't be stupid."
             kid annoyed "Thanks. Wow. That sure was helpful."
-
+        "We'll always be here for you.":
+            him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
+            kid normal "Thanks, dad."
     "She went inside the house, but I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
+    scene stars with fade
     "[her_name] came out and joined me."
     her "You guys talking about her 'friend'?"
     him "Yeah. Hopefully I said the right things."
@@ -7473,8 +7502,9 @@ label family29:
     him "It feels like we have less and less control over that, doesn't it?"
     her "Yeah..."
     "We sat outside right next to each other, leaning our heads together. Her hair tickled my neck and I breathed in its soft scent of hospital soap and antiseptic."
-    "She massaged my hand in hers, knowing right where each sore spot would be."
-    # TODO: finish this
+    "She massaged my hand in hers, knowing just the right places and just the right amount to push."
+    "I carefully massaged her neck with my other hand, exactly the way she liked."
+    "This happiness, this was what I wanted for [kid_name]... hopefully I was doing what would help her gain it for herself."
     return
 
 # 18.6 Earth years old (ENDING)
