@@ -522,6 +522,7 @@ label work10:
     return
 
 # Year 12, 7.4 years old
+# Brennan's GMO sterile wheat
 label work12:
     scene farm interior with fade
     show him determined at center with dissolve
@@ -580,6 +581,7 @@ label work12:
     return
 
 # Year 14, 8.7 years old
+# Milking Goats
 label work14:
     scene fields with fade
     show him normal at midright
@@ -690,6 +692,7 @@ label work14:
     return
 
 # Year 16, 10 years old
+# Seed exchange or increase size of farm
 label work16:
     nvl clear
     sara_c "There will be a seed exchange this weekend! Bring some seeds to trade! 😋"
@@ -1034,6 +1037,7 @@ label work22:
     return
 
 # Year 24, 14.8 years old
+# Tractor accident
 label work24:
     "[kid_name] was big enough to do real work on the farm, now. She could help a mama goat give birth, knew which plants were weeds, and could build a fence out of almost anything."
     "But her favorite way to help was driving the tractor."
@@ -1149,23 +1153,89 @@ label work24:
     him determined "Okay. Keep me posted."
     her determined "I will."
     scene farm_interior with fade
-    "[her_name] stayed at the clinic with [kid_name] that night while she recovered from the surgery. [bro_name] and I had a quiet night at home."
+    "The next day, when they came home, [her_name] wanted to talk."
+    show her annoyed at midright
+    show him concerned at midleft
+    with dissolve
+    her angry "Why was [kid_name] driving that tractor? She's just a kid!"
+    him annoyed "She's not just a kid! She's almost an adult and very capable!"
+    her annoyed "Not capable enough, apparently."
+    him determined "Does she still have some things to learn? Of course she does. But she drives the tractor all the time just fine."
+    her concerned "I know, it's just... I want more for [kid_name]."
+    him annoyed "Farming isn't good enough?"
+    her sad "It's not that!  Well... maybe it is."
+    him angry "We've been through this before. People will always need to eat! Growing food is one of the most important jobs people do!"
+    her concerned "I know but... it's so dangerous. And she could do so much more."
+    him annoyed "What could be more important than not starving to death??"
+    her annoyed "How about not bleeding to death?"
+    him concerned "Look, I don't want to have a whose-job-is-more-important argument with you. We need both jobs. What's this really about?"
+    her concerned "I don't want her to spend the rest of her life digging in the dirt on this alien planet in the middle of nowhere."
+    him annoyed "Isn't that what {b}we{/b} are doing?"
+    her determined "Yes, but we chose this. She didn't."
+    menu:
+        "What should I say?"
+        "You miss Earth.":
+            $ marriage_strength += 1
+            him concerned "You miss Earth still, don't you."
+            her sad "Sometimes..."
+            him sad "Sorry I dragged you way out here."
+            her normal "No, no, it's good. I like the life we have here."
+            her concerned "I just like Earth, too, and I'd love for her to be able to experience that part of humanity."
+            him determined "If she wants to."
+        "She might not have a choice.":
+            him determined "Well, she's here, and it's not like you can just buy a bus ticket back to Earth. She may be stuck here."
+        "There's nothing good on Earth.":
+            $ marriage_strength -= 1
+            him annoyed "I don't see any reason why she would want to go back to Earth. Good riddance to that crowded, noisy, frivolous, self-absorbed planet!"
+            her annoyed "Some of us liked it."
+            him determined "I still can't see why."
 
-    "They came home the next day, and "
+    her concerned "Look if she really wants to be a farmer here, and that's her passion, then great, teach her to be the best farmer ever."
+    him annoyed "I'm trying to--"
+    her annoyed "I know, that's what you are trying to do already. Just, let me finish. But we shouldn't expect her to do what we do. She needs to decide for herself."
+    him determined "I know that."
+    her concerned "And she needs to stay alive and whole long enough to find that out."
+    him concerned "I'm sorry she got hurt, [her_name]."
+    her determined "It was an accident..."
+    menu:
+        "What should I say?"
+        "I need to teach her better.":
+            him sad "I should have taught her better. Then maybe she wouldn't have gotten hurt."
+            her sad "..."
+            "I heard a faint voice from the other room."
+            kid "Dad, it's not your fault. I was driving too fast. You tried to warn me."
+            him concerned "Thanks, [kid_name]."
+            "I hadn't meant for [kid_name] to overhear us, but maybe it was a good thing. Maybe it would help her understand what we were trying to do."
 
+        "Sometimes you have to learn things the hard way.":
+            him annoyed "You have to understand, this world is just dangerous. She needs to learn how to be careful; maybe this is the only way she could learn that."
+            her annoyed "Maybe you could help her learn in some way that preserves all her limbs."
+            him determined "I wouldn't be doing her any favors if I made everything safe. Then she would never learn how to be careful and solve her own problems."
+            her angry "Well you won't be doing her any favors if she doesn't survive until adulthood, either!"
+            him angry "She survived! She'll be just fine!"
+            her annoyed "Oh, so it's normal to just break your leg once in a while working on the farm?"
+            "I thought I heard [kid_name] trying to say something, but I wasn't sure."
+            kid "Mom?"
+            him annoyed "Yes. Yes, it's totally normal for stuff like this to happen when you're doing real work."
+            her angry "Real work?! You think you're the only one doing real work?"
+            kid "Mom!"
+            "[kid_name] was calling from her room."
+            her concerned "Yes, [kid_name]?"
+            kid "Can you guys keep it down? I'm trying to go to sleep."
+            her annoyed "Sorry, we will."
+            kid "Also, it's not dad's fault. I drove too fast around the corner."
+            her concerned "Don't worry about that."
+            him determined "See? She learned something from this."
+            her annoyed "I just wish I could say the same thing about you."
 
-   "Terra accidentally flips the tractor over while doing her chores, and gets hurt."
-   "[her_name] argues that you shouldn't have her do such dangerous chores."
-   menu:
-       "That's the only way to learn!":
-           $ pass
-       "You're right":
-           $ pass
-       "I just need to teach her better.":
-           $ pass
-   "This turns into an argument about Terra's future - [her_name] doesn't want her stuck on this backward planet working on a farm for the rest of her life, and you ask 'what's wrong with working on a farm for the rest of your life?!'"
-   "The truth is [her_name] still misses Earth and wants Terra to be able to experience it.  Discussion about college/training/future."
-   return
+        "Maybe she shouldn't work on the farm.":
+            him sad "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
+            her concerned "No, I think usually it's good for her. Just... can you just be a little more careful?"
+            him concerned "Yeah..."
+            her determined "I know she looks like an adult, but inside she still has a lot of learning to do."
+            him determined "Don't we all..."
+
+    return
 
 # Year 26, 16.1 years old
 label work26:
@@ -1174,6 +1244,7 @@ label work26:
     return
 
 # Year 28, 17.3 years old
+# Terra doesn't want to help! Pay rent?
 label work28:
     "Terra either wants her own farm, or wants to quit working for you! Do you hire someone else or try and get her to stay?"
 

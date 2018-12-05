@@ -7233,8 +7233,248 @@ label family29:
         julia "This year, we celebrate the graduation of five outstanding students."
 
     "There were two graduates that I didn't know very well, and then Anya, Oleg, and [kid_name]."
-    "I guess Travis wasn't graduating?"
-    # TODO: finish this.
+    "The kids each gave a short speech about education, and the teachers gave out some awards, and then the mayor handed them each a certificate."
+    "The whole community had gathered to celebrate."
+    "Well, everyone except Pete's group. They didn't participate in our schooling system."
+    "[kid_name] and I walked home together."
+    scene path with fade
+    show him normal at midright
+    show kid normal at midleft
+    show night_overlay
+    with dissolve
+    him happy "My daughter... all graduated from school!"
+    kid happy "That's me! Phew, I'm so glad to be done!"
+    him surprised "You didn't like school?"
+    kid surprised "Well... I guess I liked some of it. Just not all those final exams. And it'll feel good to do what I want to do."
+    him normal "Yeah, you've never liked people telling you what to do."
+    "We walked in silence for a few minutes, enjoying the quiet, crisp air."
+    kid nervous "Hey dad?"
+    him surprised "Yeah?"
+    kid concerned "Are you...attracted to Mom?"
+    menu:
+        "What should I say?"
+        "Of course!":
+            him happy "Of course! She's my hot girlfriend-wife person!"
+            kid surprised "So, even though you guys are older, you still look at her and think she's sexy?"
+            him normal "Umm, yeah. Why are you asking this?"
+        "Sometimes.":
+            him normal "Sometimes. Especially when she acts sexy."
+            kid normal "So it's not just her looks?"
+            him determined "Well, that's part of it, but a lot of it is how she acts, how she smiles, what she says."
+            kid concerned "Hmmm."
+            him surprised "Why are you asking this all of a sudden?"
+        "Not as much these days.":
+            him concerned "Well, we are getting older... and we see each other all the time... so, not as much as when we first got together."
+            kid concerned "Hmmm."
+            him surprised "Why are you asking this all of a sudden?"
+
+    kid surprised "Do you think it's important for two people to be physically attracted to each other before getting married?"
+    kid nervous "I mean, I know it's one part of a relationship, but there's plenty of people who are attracted to each other but just aren't good for each other, and probably the opposite might be true, too...?"
+    menu:
+        "What should I say?"
+        "It's not the most important thing.":
+            him determined "Physical attraction is one of the least important parts of being married."
+            kid surprised "Really?"
+            him normal "Yeah... I mean, all those sexy feelings are great and all, but then after several years when you're not horny teenagers anymore it's your friendship and sacrifices for each other that will hold you together."
+            kid normal "Huh... that's not what I thought you'd say."
+            him surprised "Why not?"
+            kid nervous "Well, you and mom are... I mean you're always...it's obvious that you..."
+            him flirting "Yup, your mom and I, we still got it."
+            kid normal "ANYWAY!"
+        "It's somewhat important.":
+            him determined "Well, generally you have sex with the person you're married to, so it helps if you're at least a little bit attracted to them..."
+            kid concerned "Yeah..."
+            him normal "But other things are important too -- having similar life goals, having a good friendship, sacrificing for the other person."
+            kid normal "Huh... that's just what Mom said."
+            him surprised "Oh! Glad we're, uh, on the same page."
+            kid nervous "So... Do you think just being good friends is enough?"
+        "It's really important.":
+            him determined "It's pretty important. I mean... you want to enjoy having sex with your spouse, right?"
+            kid surprised "So you wouldn't enjoy it if you weren't attracted to Mom?"
+            him concerned "Well, I don't know... I guess you could still enjoy it..."
+            kid normal "And what about all the other things you do together?"
+            him determined "Well, maybe it doesn't all have to be physical attraction, but you need some kind of chemistry or else you just won't enjoy being together."
+            kid normal "Huh... I can see why Mom said to ask you about it."
+            him surprised "You talked to Mom about this?"
+            kid annoyed "Yeah, of course. But she said I should get a guy's perspective."
+
+    him surprised "Wait, is this about you? You and..."
+    menu:
+        "...and Oleg?":
+            kid determined "I can't talk about who it is. He would be... This is just really personal stuff, okay?"
+        "...and Trevor?":
+            kid normal "Ha ha, yeah right! Trevor's attracted to everybody. He's got the opposite problem."
+        "...and Lorant?":
+            kid surprised "Lorant? I don't think he-- look, I'm not telling you who it is, it's too personal!"
+        "...and Anya?":
+            kid surprised "Anya?! No, we're not like that. You really don't know anything, do you?"
+    him determined "It'll be hard for me to help you without knowing any more details. I'll keep everything in confidence unless someone's being hurt, okay?"
+    kid nervous "I can't. Sorry, dad."
+    him concerned "Okay, well whoever it is, it sounds like you have a good friend that you're thinking about entering a serious relationship with."
+    kid determined "I'm not saying anything about who it is. Just... assume it's a friend of mine."
+    him determined "Okay, okay! Can I ask some questions about these two mystery people, then?"
+    kid annoyed "Maybe..."
+    $ family29_question_count = 0
+    menu family29_questions:
+        "What should I ask?"
+        "Do they have similar life goals?":
+            $ demanding += 1
+            him surprised "Do they have similar life goals?"
+            kid normal "What does that even mean?"
+            him normal "Like, do they both value the same things? Education, hard work, family,  honesty -- things like that."
+            kid concerned "Uh, I think so?"
+            $ family29_question_count += 1
+            if (family29_question_count < 2):
+                jump family29_questions
+        "Have they been in other relationships?":
+            $ responsive += 1
+            him determined "Have they ever been in a serious relationship with anyone else?"
+            kid concerned "I'm not answering that one."
+            $ family29_question_count += 1
+            if (family29_question_count < 2):
+                jump family29_questions
+        "Do they view sex the same way?":
+            him annoyed "Do they both have similar attitudes about sex?"
+            kid annoyed "Definitely not answering that one!"
+            him annoyed "Well, it's important! If you're wondering if two best friends can have a successful marriage, it's going to depend a lot on how much they care about sex!"
+            kid angry "It's kind of hard to know how much you care about something if you've-- if it's not something you do all the time!"
+            "Did that mean she was or wasn't...no, I wasn't going to get sidetracked. This discussion was too important."
+            $ family29_question_count += 1
+            if (family29_question_count < 2):
+                jump family29_questions
+        "Do they both want kids?":
+            $ demanding += 1
+            him surprised "Do they both want kids?"
+            kid concerned "Why would that matter?"
+            him normal "Well, you know, when a man and a woman get together..."
+            kid annoyed "I know where babies come from! But why should that be a factor for their relationship?"
+            him determined "Having kids is something people usually feel very strongly about. If they're going to make a life together, they should both agree on what kind of life it is."
+            kid concerned "Having kids still seems so weird..."
+            him flirting "And, yes, if they're going to have kids together they will need to have sex sometimes to make that happen."
+            kid annoyed "Seriously, Dad?!"
+            $ family29_question_count += 1
+            if (family29_question_count < 2):
+                jump family29_questions
+        "Are they even ready for marriage?":
+            $ demanding += 1
+            him determined "If these anonymous people that you know are anywhere near your age, they probably aren't even ready for marriage."
+            kid annoyed "Oh yeah? What makes someone ready for marriage?"
+            menu:
+                "What should I say?"
+                "Not being a teenager.":
+                    him annoyed "Not being a teenager, at a bare minimum."
+                    kid determined "Plenty of people get married as teenagers."
+                    him determined "But that doesn't mean they were ready."
+                "Being independent.":
+                    him determined "They should be ready to live on their own. It'd be kind of awkward to get married and then go live with your parents."
+                    kid determined "People do that in plenty of cultures... but that does sound kind of weird."
+                "Having emotional maturity.":
+                    him concerned "You need a certain level of emotional maturity to be able to put the other person first and be unselfish."
+                    kid annoyed "Yeah, yeah, all teenagers are selfish brats."
+                    him normal "It's okay; it's not their fault. Their brains just haven't finished developing yet."
+                "Being ready to have kids.":
+                    him determined "If you're not ready to have kids, you're not ready to get married."
+                    kid annoyed "But getting married doesn't mean you'll have kids right away."
+                    him concerned "No, but it's possible."
+            $ family29_question_count += 1
+            if (family29_question_count < 2):
+                jump family29_questions
+        "Why do they want to get married?":
+            $ responsive += 1
+            him determined "Why do they want to get married?"
+            "She was quiet for a few minutes, thinking."
+            kid concerned "I guess.. they don't really know that they do want to get married. Not yet."
+            $ family29_question_count += 1
+            if (family29_question_count < 2):
+                jump family29_questions
+
+    "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
+    kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
+    him concerned "Hmmm... That actually makese sense. Well, do you want to know what I think?"
+    kid nervous "Um... kind of?"
+    menu:
+        "What should I say?"
+        "They should try a relationship.":
+            him "They should try a relationship. I mean, it's great to think about marriage and all, but that's the whole point of dating and having serious relationships before marriage; to see what it would be like."
+            kid "Try a relationship... including the sex part? I mean, that's the main thing they're worried about."
+            menu:
+                "What should I say?"
+                "Yes, including sex.":
+                    him normal "Yeah, how else would they know if that would work? Obviously they should use birth control first, and--"
+                    kid annoyed "I KNOW, dad. I mean, I'm sure {b}they{/b} know about that."
+                "No, they should save that for marriage.":
+                    him determined "No, they should wait until they're married. As long as they have the other things - deep friendship, unselfish love, and a similar life vision - then it doesn't really matter what their sex is like."
+                    kid surprised "Really?"
+                "No, but they should see if there's any attraction.":
+                    him determined "No, but they don't have to go all the way to see if there's a spark of attraction there. If there's not any attraction at all... then it's probably not going to work."
+                    kid concerned "So you think there has to be some attraction?"
+                    him normal "Yeah, but it doesn't have to be a raging inferno of lust. At least a small spark of 'it might be nice to kiss you'."
+                    kid normal "Oh, dad..."
+
+            him surprised "I guess it also depends on what they think the purpose of marriage is."
+
+        "There's no point in a relationship without physical attraction.":
+            him "You're right. There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
+            kid "So you think it could never work?"
+            him "I don't think so. Especially when you consider what the purpose of marriage is."
+
+    kid surprised "The purpose of marriage?"
+    him concerned "Yeah. You can't get married just because it's the normal thing to do; that's not good enough."
+    kid concerned "Why'd you and mom get married?"
+    him normal "Well, there's a lot of reasons, obviously the first being that we loved each other, but I think the main other reason was..."
+    menu:
+        "To make it official.":
+            him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
+            kid determined "Huh. Okay."
+            $ authoritarian += 1
+        "To create a life together":
+            him happy "We wanted to make something new together, a beautiful life here on this planet with some adorable children."
+            him normal "And we wanted to experience all the joys and struggles of life with the other person at our side."
+            kid normal "Wow, that's so cheesy!"
+            him happy "The best things in life are!"
+            $ authoritative += 1
+        "We felt like it.":
+            him concerned "I don't know, I guess we just wanted to."
+            kid determined "Huh. Okay."
+            $ permissive += 1
+        "I don't know.":
+            him concerned "I don't know exactly why else... it kind of just felt like the thing to do."
+            kid determined "Huh. Okay."
+            $ neglectful += 1
+
+    him normal "Anyway, getting married is awesome if you do it right. I hope that... your friend can make a good choice."
+    kid concerned "Yeah, I'll tell her what you said. Anything else you think she should know?"
+    "Wow. My kid was asking me for advice? I'd better make it good!"
+
+    menu:
+        "What's my advice?"
+        "Choose your love; love your choice.":
+            him happy "Choose your love; love your choice."
+            kid surprised "What does that mean?"
+            him determined "It means that you choose carefully who you marry; but once you do, love them with your whole heart every day."
+        "Follow your heart.":
+            him happy "Follow your heart!"
+
+        "Don't rush it.":
+            him normal "Don't rush it. You're young; you've got plenty of time."
+        "Don't be stupid.":
+            him determined "Don't be stupid."
+            kid annoyed "Thanks. Wow. That sure was helpful."
+
+    "She went inside the house, but I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
+    "[her_name] came out and joined me."
+    her "You guys talking about her 'friend'?"
+    him "Yeah. Hopefully I said the right things."
+    her "What did you say?"
+    him "A lot of things. It made me remember when we got married."
+    her "We didn't really know what we were getting into, did we?"
+    him "There's some things you can't practice -- you just have to experience them for yourself."
+    her "I know...I just want [kid_name] to be happy. Not just short-term happy; long-term, life satisfyingly happy."
+    him "It feels like we have less and less control over that, doesn't it?"
+    her "Yeah..."
+    "We sat outside right next to each other, leaning our heads together. Her hair tickled my neck and I breathed in its soft scent of hospital soap and antiseptic."
+    "She massaged my hand in hers, knowing right where each sore spot would be."
+    # TODO: finish this
     return
 
 # 18.6 Earth years old (ENDING)

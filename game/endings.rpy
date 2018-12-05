@@ -129,7 +129,7 @@ label ending_aci:
 label ending_acI:
     "Ending acI."
     "Even though [kid_name] still lives on Talaam, I worry a lot about her."
-    "She's trying to support herself with her delivery business, but with the miners gone, I can't imagine she's very successful."
+    "She's trying to support herself with her delivery business, but with just a bike, she can't carry very much cargo."
     "I worry that she moved in with Travis because she needed a place to stay, not because she loves him."
     "I worry that she'll be too prideful to ask for help when she needs it."
     "And I worry that I didn't teach her enough for her to be out on her own already."
