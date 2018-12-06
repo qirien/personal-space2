@@ -380,6 +380,9 @@ label work6:
     show kid concerned with dissolve
     "She tried to carry the bucket, but it was too heavy."
     him "Here, I'll carry the bucket. You carry the seeds."
+    kid annoyed "No! I want to carry the bucket!"
+    "She staggered a few steps with the bucket and it dropped, spilling half the water onto the ground."
+    him "Let's try that again..."
     kid happy "Okay, daddy!"
     hide him
     hide kid

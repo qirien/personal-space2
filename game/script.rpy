@@ -12,6 +12,7 @@
 #       To do this, put the "if" inside the menu choice and parse it out in the
 #       screen choice of screens.rpy.
 #       OR, write two menu options for every menu, one for if it's locked and one for if it's unlocked
+#       A later version of Ren'Py should support this automatically...
 ##
 
 label start:

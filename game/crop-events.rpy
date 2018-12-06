@@ -17,7 +17,7 @@ label carrots1:
     him surprised "They still taste good!"
     her surprised "Are they supposed to look like that?"
     him normal "Sometimes it's normal for a few of them to grow weird, but not this many..."
-
+    $ carrots_fallow = False
     menu:
         "What should I do?"
         "Till the soil better. Must be rocks." if (get_extra_work() >= 0):
@@ -29,6 +29,7 @@ label carrots1:
             "I had no idea if it was an Earth pest or a Talaam creature causing it, though."
             "The simplest way to get rid of the pests would be to not plant carrots for a year. With nothing to eat, the pests would die."
             "It would take a while to see if it worked, though."
+            $ carrots_fallow = True
             $ crop_temporarily_disabled = "carrots"
         "Who cares, they taste the same.":
             "I didn't have time to worry about oddly-shaped carrots."
@@ -706,6 +707,7 @@ label goats2:
             $ goats_index = get_crop_index("goats")
             $ crop_info[goats_index][MAXIMUM_INDEX] += 1
             # goats take up another square now.
+    return
 
 # GOATS 3 - escaping goats
 label goats3:

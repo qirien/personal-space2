@@ -3129,6 +3129,7 @@ label community19:
     him "Hey Helen! Got any wolf slug meat?"
     helen "Yes, I've got some. It'll cost you though--we only found one this week and it was pretty young."
     him "How much?"
+    # TODO: currency check
     if c18_no_help_pete:
         helen "80 credits."
         him "Hmm. That's outside my price range. Got any beef bones or beans?"
@@ -4598,8 +4599,8 @@ label community26:
             her "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
             her "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
-        her "I think we should discourage the use firegrass somehow. I don't want to see any more cases of insomnia and depression."
-        brennan "I also don't want to see that. I don't think outlawing firegrass will stop people from using it."
+        her "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
+        brennan "I also don't want to see that. But I don't think outlawing firegrass will stop people from using it."
         brennan "Pete is going to sell firegrass no matter what we decide."
         "How do I feel about the issue?"
         menu:
@@ -4710,7 +4711,7 @@ label community26:
                             brennan "Send me an e-mail after the meeting and we can talk about it."
                             $ brennan_refuses_fewer_hours = True
                             jump educational_app
-                    "Grow more tea plants.": #change to green tea
+                    "Grow more tea plants.":
                         him "Let's make tea plants a priority this growing season."
                         him "If we plant them around the same time, we can process them together too."
                         pavel "I'm interested in making black tea with the leaves."
@@ -4754,6 +4755,7 @@ label community26:
                 $ colonists += 1
                 jump after_firegrass_26
             elif grow_more_tea:
+                # TODO: should we unlock tea as a crop?
                 "I wanted to plant a new field of tea plants, but I couldn't get anyone to help me."
                 "Thuc said that he was too stressed out with his own famr, and Zaina said that the site I picked for the plants was too far away from her house."
                 jump after_firegrass_26

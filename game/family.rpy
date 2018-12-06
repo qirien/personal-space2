@@ -6592,52 +6592,112 @@ label family25:
     return
 
 # 16.1 Earth years old
-# Do you invite her to join you for chores so she can learn, or let her have time with friends?
-# She thinks eating jellies is wrong! Maybe eating all animals is wrong?
-# She calls you names. Do you argue, or discuss what makes something sentient?
+# She thinks eating jellies is wrong!
+# She calls you names. Do you argue, or discuss?
 label family26:
-    # TODO: join these two things together somehow
-    "She disagrees with your recent community decision! She calls you a fascist/spineless worm/panderer."
+    scene farm_interior with fade
+    kid "Dad, what you're doing to Talaam is wrong. We should not be here changing this planet!"
+    him "What are you talking about?"
+    kid "We're contaminating this planet! Look at all our trash, all the non-native species we've introduced, and all the animals here that we've killed or enslaved! The cave we destroyed!"
+    him "You don't think we should be here?"
+    kid "No! We should stop raping this planet and go back where we belong."
     menu:
-        "Listen to her.":
-            "You agree with some of her points, and explain some things she didn't know about."
-            "She still disagrees with you, but you can tell she's thinking about it."
-            $ demanding += 1
-            $ responsive += 1
+        "What should I say?"
+        "I don't appreciate being called a rapist.":
+            him annoyed "Hey, watch what you're calling me. And my friends. And pretty much everyone you know."
+            kid "It's true! The plants and animals of Talaam don't want us here; they just want to be left alone! We're forcing our foreign organisms onto this natural paradise and polluting it!"
+        "Humans are living beings, too.":
+            him annoyed "Humans are living things, too. They have just as much a right to survive as anything else."
+            kid "But we don't have to live here to survive. There's still plenty of room on Earth."
+        "Why do you think this?":
+            him surprised "Why do you say that?"
+            kid "It's true! Just look at everywhere humans have touched on this planet; the mines, the farms, the rubbish heap, the oceans - they are all worse than they were before we arrived!"
+        "Who is feeding you this nonsense?":
+            him annoyed "Who is feeding you this nonsense?"
+            kid "I can see it for myself! It's obvious if you just look around!"
+        "You're talking about the miners, right?":
+            him surprised "You're talking about the miners, right?"
+            kid "Not just the miners! All of us! We're alien invaders here!"
+    him annoyed "So what do you expect me to do? Just walk out into the wilderness and let the 'natural' creatures of Talaam have my body as payment for my sins?"
+    kid "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by us, the alien invaders from Earth!"
+    menu:
+        "What should I do?"
+        "Appeal to logic.":
+            him determined "All living creatures must consume other living creatures to survive. That, too, is a part of nature."
             $ authoritative += 1
-        "You don't know what you're talking about!":
-            $ demanding += 1
+        "Point out her hypocrisy.":
+            him annoyed "Well, you're just as much an alien invader as the rest of us! You eat the food from Talaam; you throw your trash in the rubbish heap. You literally, uh, crap on this planet just like everyone else!"
+            kid angry "But at least I know it's wrong!"
+            him angry "How is it wrong to survive?! To feed and clothe and house other living, sentient humans?!"
+            kid annoyed "You just don't get it at all."
+            "She stomped away to her room, closing the door behind her."
+            "Sometimes, I really didn't understand [kid_name]."
             $ authoritarian += 1
-        "Promise to make a better decision next time":
-            $ responsive += 1
+            return
+        "Try to understand her.":
+            him concerned "So, you're saying that you think it's wrong to come to this planet and live here?"
+            kid "Yes! We didn't even ask permission!"
+            him determined "I would understand that if this planet was inhabited, but we're pretty sure there aren't any people living here..."
+            kid "There might be! Or, maybe intelligent life would evolve in the future if we weren't here! We could be genociding an entire future race and not even know about it."
+            $ authoritative += 1
+        "Admit your guilt.":
+            him concerned "In a way... we are invaders. That's just what we humans do - we take and we break and we aren't happy until everything we see is ours."
+            kid "Yes, exactly! We're just so evil..."
             $ permissive += 1
-        "Laugh it off.":
+        "Walk away.":
+            him annoyed "Your opinion is so ridiculous I won't even dignify it with a response. Talk to me when you have something sane to say."
+            kid angry "Wow. I guess you're too much of an imperialist, planet-destroying colonizer to even understand what I'm saying!"
             $ neglectful += 1
-
-    "[kid_name] comes home smelling like fire grass."
-    "You knew that the miners smoked it, but it hasn't been popular among the colonists... until now."
-    # TODO: change this based on choices in community events.
-    # TODO: give a chance to talk about fire grass earlier
+            return
+    him "So, is there something we can do? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
+    kid "I guess... they probably wouldn't. But they don't need to farm the jellystars!"
+    him surprised "Is that what this is about?"
+    kid "Yes! We already know that the jellysquids can talk, so why are we eating the jellystars?!"
+    him "Okay, there's two problems with your logic. One, I'm not sure they can actually 'talk'. They can mimic letter patterns with their shells."
+    kid "I've talked to them, dad. They're not just copying the patterns, they're actually learning our language!"
+    him "Let me finish. Two, the jellystars and the jellysquids are two completely different organisms."
+    kid "But jellystars can grow into jellysquids!"
+    him "That's the theory. We honestly don't really know much about them."
+    kid "Right! So maybe we shouldn't eat them until we do know more!"
+    if ate_jellyfish:
+        him concerned "And they're so adorable..."
+        kid "Right?!"
     menu:
-        "What's that smell? What have you been up to?":
-            $ demanding += 1
-            $ authoritarian += 1
-        "Hmm, seems like you've been smoking fire grass.  Tell me about it.":
-            $ responsive += 1
-            menu:
-                "Tell her your concerns.":
-                    $ demanding += 1
-                    $ authoritative += 1
-                "Tell her to invite you next time":
-                    $ responsive += 1
-                    $ permissive += 1
-                "Tell her she better not smoke it again, it's not good for her!":
-                    $ responsive -= 1
-                    $ demanding += 1
-                    $ authoritarian += 1
-        "Say nothing. It's just a plant, right?":
-            $ neglectful += 1
-
+        "What should I say?"
+        "You are right.":
+            him "You're absolutely right. We should not be eating jellystars."
+            kid "But no one will listen to me!"
+            him "Well, when you start a conversation by insulting people, they don't usually want to hear more."
+            kid "I was trying to show you how important this is!"
+            him "I know. But if you start too big, people can't get their heads around it. Start with something small and possible."
+            kid "Like, not farming jellystars?"
+            him "Exactly."
+        "I'll consider what you've said.":
+            him "You make some good points, [kid_name]. We definitely are affecting the ecology of this planet, and we should do what we can to take good care of it."
+            kid "I'm not sure that's possible. We're so destructive..."
+            him "I don't think it's feasible to try and get all the humans to leave. But I think if you publish your experience with the jellysquids less people will want to eat jellystars."
+            kid "That's a start..."
+            him "Well, it's something good you can do right now that will help a lot more than calling people rapists."
+            kid "It got your attention, though, didn't it?"
+            him "Yeah, but if I wasn't your dad I wouldn't have listened to you. It made you sound crazy."
+        "You are wrong.":
+            him "Look, this is our planet now, and we can use it however we want. The jellysquids live in the ocean, so they probably don't even care about all the stuff we're doing on land. If they're even smart enough to notice."
+            kid "I guess there's no getting through your thick skull. You're a lost cause, dad."
+            him "I don't need to listen to this."
+        "I'm already doing what I can.":
+            him "Look, I tried to stop the cave mining. I tried to stop the jellystar farming. But I can't make other people not do stuff."
+            if is_liason:
+                kid "You should be able to! Are you the liason or not?!"
+                him "I'm just a liason, not a dictator."
+            else:
+                kid "Well, someone needs to make them stop."
+                him "Maybe you could convince them?"
+                kid "Why would they listen to me?"
+                him "Why wouldn't they?"
+                kid "I'm just a teenager..."
+                him "But you have some knowledge they don't. So share it in the most convincing, honest way you can and let people make their own decisions."
+                kid "I don't know..."
+                him "If you believe in this as strongly as you make it sound, then you will."
     return
 
 # 16.7 Earth years old
