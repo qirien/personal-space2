@@ -129,7 +129,7 @@ label ending_aci:
 label ending_acI:
     "Ending acI."
     "Even though [kid_name] still lives on Talaam, I worry a lot about her."
-    "She's trying to support herself with her delivery business, but with the miners gone, I can't imagine she's very successful."
+    "She's trying to support herself with her delivery business, but with just a bike, she can't carry very much cargo."
     "I worry that she moved in with Travis because she needed a place to stay, not because she loves him."
     "I worry that she'll be too prideful to ask for help when she needs it."
     "And I worry that I didn't teach her enough for her to be out on her own already."
@@ -272,14 +272,66 @@ label ending_ACi:
 #8 ACI - becomes an expert in her field, starts to form her own happy family on Talaam
 label ending_ACI:
     "Ending ACI."
-    "I want a lot of things for [kid_name], but most of all I want her to find some of the same happiness I've found.  Happiness in love, in family, in community."
+    "[her_name] moved out. We all pitched in to build a dorm-style apartment building for the growing number of non-farmers that didn't need a lot of space."
+    "She seemed to like it; it was closer to town, where she spent most of her time in the library and at the science lab studying biology and sociology."
+    "And she was closer to her boyfriend, Oleg."
+    "We invited them over for dinner about once a week, where she'd catch us up on all the latest developments."
+    scene farm_interior with fade
+    show her normal at right
+    show him normal at midright
+    show kid normal at center
+    show oleg normal at midleft
+    show bro normal at left
+    kid "...so it turns out that the jellysquids cultivate the cucumber kelp on purpose, and use both it and the fish that feed on it for food and tools."
+    her surprised "The jellysquids use tools?"
+    kid happy "Yeah! I've asked for some scuba gear on the next shuttle, but in the meantime I've been snorkeling down there and it's really amazing the city they've built!"
+    him surprised "A whole city? How come we never knew about it?"
+    oleg "It never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
+    kid normal "Oleg's made an app to help us map their city, and another to help us communicate better with them."
+    him determined "Better communication would definitely be a good thing."
+    if jellypeople_happy:
+        kid happy "I'm just glad you didn't mess up our first contact with them... they're still recovering from all the shells they lost, but since they moved to another area and merged with another colony they've been growing much better."
+    else:
+        kid concerned "I'm just glad we were able to recover from that terrible first contact..."
+        him surprised "Did they ever find shells for their babies?"
+        kid determined "No, but they merged with another colony and have been able to grow more since then."
+
+    him concerned "This sounds like great research..."
+    kid annoyed "...but you wonder how I'm going to make a living, right?"
+    him flirt "We do prefer our daughter not to starve to death."
+    kid normal "Well, that's what I wanted to tell you! A non-profit group on Earth, the Extraterrestrial Allies Foundation, has approved a grant to pay us for our work, obtain equipment, and send more researchers here to Talaam."
+    if (miners > 10):
+        oleg "RET made a large donation, too, I think on Brennan's advice."
+        him annoyed "They're probably hoping the jellysquids will lead them to more mineral deposits."
+    kid normal "Anyway, enough about me. I want to know what you've been up to, [bro_name]."
+    bro "Me?"
+    kid happy "Yeah!"
+    bro "Just...just regular stuff."
+    her happy "He's actually been studying sunspots and solar flares lately."
+    kid surprised "Really?"
+    bro "Yeah... I've been trying to make a computer model so we can predict solar flares long-term more accurately, but the physics engines just aren't good enough to simulate the sunspots. But with enough data-"
+    oleg "-you'll be able to improve the model, and also improve predictions! That's great! Which physics engine are you using as a base?"
+
+    "I listened to my family talk. I didn't understand half of what Oleg and [bro_name] were talking about, but I loved to see [bro_name] excited about something."
+    "[kid_name] reached over and held Oleg's hand, and he squeezed it back as he extolled the virtues of his favorite physics engine."
+    "I put my arm around [her_name] and pulled her close just as she was about to put a forkful of food in her mouth."
+    "The food fell on her lap and she elbowed me gently."
+    her flirt "Oh, now look one you've done. You've ruined my fanciest clothes."
+    him flirt "Want me to help you clean that off?"
+    her happy "Mom, Dad, can you not? Some of us are trying to eat here."
+    oleg "I don't know; it's kind of sweet to see old people that are still so in love."
+    him surprised "Old people?!"
+    her surprised "I don't see any old people in here..."
+    "We laughed, and talked, and joked around while doing the dishes together. [bro_name] got out his source code to show Oleg, and [her_name] was asking [kid_name] about alien physiology, and I just felt happy to be in the middle of it all."
+
+    "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found.  Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
-    "So I'm not just happy that she's dating the nicest young man on the entire planet."
+    "So I'm not just happy that she and Oleg are dating."
     "I'm not just happy that she's staying here, on Talaam."
     "I'm also happy she found a way to do something she loves that helps people."
-    "She worked hard to earn a dual degree in sociology and biology, and she has learned to understand the jellies in a way that no one else can."
-    "With her mediating between the colony and the jellies, I see a beautiful future of peace ahead."
+    "She's working hard to understand the jellies in a way that no one else can."
+    "With her research and mediation, I see a beautiful future of peace ahead for her."
     "And I'll get to see it all happen."
 
     "Ending 8/8, Happily Ever After Starts Here"

@@ -380,6 +380,9 @@ label work6:
     show kid concerned with dissolve
     "She tried to carry the bucket, but it was too heavy."
     him "Here, I'll carry the bucket. You carry the seeds."
+    kid annoyed "No! I want to carry the bucket!"
+    "She staggered a few steps with the bucket and it dropped, spilling half the water onto the ground."
+    him "Let's try that again..."
     kid happy "Okay, daddy!"
     hide him
     hide kid
@@ -522,6 +525,7 @@ label work10:
     return
 
 # Year 12, 7.4 years old
+# Brennan's GMO sterile wheat
 label work12:
     scene farm interior with fade
     show him determined at center with dissolve
@@ -580,6 +584,7 @@ label work12:
     return
 
 # Year 14, 8.7 years old
+# Milking Goats
 label work14:
     scene fields with fade
     show him normal at midright
@@ -690,6 +695,7 @@ label work14:
     return
 
 # Year 16, 10 years old
+# Seed exchange or increase size of farm
 label work16:
     nvl clear
     sara_c "There will be a seed exchange this weekend! Bring some seeds to trade! 😋"
@@ -938,7 +944,7 @@ label work22:
         "A midlife crisis sounds funny.":
             him happy "No, it's funny! Go ahead, tell me what you think I'll do."
             pete "You don't strike me as a flashy car kind of guy..."
-            ilian "And they are in dismally short supply here."
+            ilian "Anyway, those are currently in dismally short supply."
             if (is_liason):
                 sara "You're already the RET liaison, so you don't need to seek a position of power."
             else:
@@ -957,7 +963,7 @@ label work22:
                 thuc "No way. Their marriage is rock solid."
                 him flirt "I already have all the hot alien chicks I need."
                 her surprised "You do?"
-                him happy "Oh yeah. You're from a planet that's not Earth, so you're an alien. And all I need is you."
+                him happy "Oh yeah. You're on a planet that's not Earth, so you're an alien. And all I need is you."
                 "I kissed her, right in front of everybody."
                 sara "Awwwww! Sweet cheese!"
                 her flirt "It's not cheesy if it's true, right?"
@@ -984,7 +990,7 @@ label work22:
     show her normal at midright
     with move
     him surprised "Did you plan all this?"
-    her normal "Well, I had the initial idea, but I had a lot of help from all of your friends."
+    her normal "Well, I had the initial idea, but I had a lot of help from your friends."
     $ helping_faction = strongest_faction()
     show her at center with move
     if (helping_faction == "colonists"):
@@ -1004,7 +1010,7 @@ label work22:
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
-            her annoyed "You guys are awful."
+            her annoyed "..."
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
             $ enable_crop("onions")
@@ -1034,19 +1040,205 @@ label work22:
     return
 
 # Year 24, 14.8 years old
+# Tractor accident
 label work24:
-   "Terra accidentally flips the tractor over while doing her chores, and gets hurt."
-   "[her_name] argues that you shouldn't have her do such dangerous chores."
-   menu:
-       "That's the only way to learn!":
-           $ pass
-       "You're right":
-           $ pass
-       "I just need to teach her better.":
-           $ pass
-   "This turns into an argument about Terra's future - [her_name] doesn't want her stuck on this backward planet working on a farm for the rest of her life, and you ask 'what's wrong with working on a farm for the rest of your life?!'"
-   "The truth is [her_name] still misses Earth and wants Terra to be able to experience it.  Discussion about college/training/future."
-   return
+    "[kid_name] was big enough to do real work on the farm, now. She could help a mama goat give birth, knew which plants were weeds, and could build a fence out of almost anything."
+    "But her favorite way to help was driving the tractor."
+    scene fields with fade
+    "We were using the front loader attachment to add manure and to the fields."
+    kid nervous "Please let me do the driving, dad! I know how to do it!"
+    him annoyed "You haven't driven with the front loader attachment. The feel is totally different."
+    kid annoyed "Well, how am I going to learn about it if you don't let me try it?!"
+    "She had a good point. It wasn't really something you could learn just by watching."
+    "But I wanted to keep her safe, too."
+    him determined "I'll do the first run while you rake the manure into a pile. Then I'll decide if you can drive."
+    kid concerned "Ugh. Fine."
+    "I filled the front loader full of manure and drove down to the field we were preparing. I slowed down to turn to the side, and dumped the load on top of the dirt."
+    "Then I drove back."
+    him normal "Your turn. Watch out for the ditch on the side."
+    kid annoyed "Of course, dad, it's only been there my whole life."
+    "She got a load of manure into the bucket and headed down towards the field. The bucket was a lot higher than I usually put it."
+    him annoyed "Lower the bucket!"
+    kid nervous "What?"
+    "She couldn't hear me. I started running, following the tractor."
+    him concerned "The bucket's too high! Lower the bucket!"
+    "I was too late. She turned the corner, going a little too fast. I felt like time slowed down as I started running. I could see the tractor starting to tip."
+    "I reached out, but I was helpless to stop it. The high, heavy bucket dragged the whole tractor over onto its side."
+    kid surprised "Ahhhhhhh!"
+    him surprised "[kid_name]! Dammit!"
+    "I ran as fast as I could. [kid_name] was quiet, which worried me even more than if she had been screaming."
+    "When I finally reached her, she was unconscious and her leg was pinned under the tractor. I bent over her face and felt her breath."
+    him determined "[kid_name]! [kid_name], wake up!"
+    "I could probably lift the tractor off her, but if she couldn't scoot herself out it was pointless."
+    him angry "[kid_name]!"
+    "She stirred."
+    him determined "Come on, [kid_name]. You're going to be okay."
+    "She tried to get up, but could only sit. Good, at least her spine was okay."
+    kid nervous "Wha-what? I can't - I can't move my leg!"
+    him concerned "I know. It'll be okay. Now, on the count of three, I'm going to lift the tractor, and you need to get out of there, okay?"
+    kid determined "It hurts!"
+    him sad "I know it hurts, but we gotta get you out of there. I don't know if your leg will move, so you might have to use your arms."
+    kid determined "Okay. Ow. Okay. I think I can do that."
+    him angry "1...2...3!"
+    "I heaved up and tilted the tractor. I couldn't tip it all the way back to standing, but hopefully it was enough..."
+    him annoyed "Now, now, now! Out now!"
+    kid nervous "Okay! I'm doing it...I'm clear!"
+    "I set the tractor back down as gently as possible, my arms shaking and aching."
+    "I looked down at my daughter. Her lower leg was bloody and her pants were ripped. She had a bump on her head from where she had hit the ground."
+    kid concerned "Ohhh. Oh, that hurts!"
+    "Her colorful curse surprised me. Looking at her leg, though, I couldn't really blame her."
+    $ work24_stopped_bleeding = False
+    $ work24_walk = False
+    menu work24_first_aid:
+        "What should I do?"
+        "Stop the bleeding." if not work24_stopped_bleeding:
+            him determined "First we better stop the bleeding."
+            "I took off my shirt and wrapped it tightly around her leg."
+            him concerned "Hold this on there, okay?"
+            kid sad "Okay..."
+            $ work24_stopped_bleeding
+            jump work24_first_aid
+        "Carry her to the clinic.":
+            him determined "Let's get you to mom."
+            "I couldn't take the tractor since it had tipped over. I'd get Thuc or someone to help me set it back up later."
+            "I lifted her up in my arms, something I hadn't done for years and years."
+            "She was a lot heavier now."
+            kid sad "Ow! My leg!"
+            him concerned "Sorry...I'll try not to move it."
+            "She rested her head on my chest, and I started on the long walk into town."
+            "My arms, already strained from lifting the tractor, felt heavy and numb, but I walked on."
+            "Finally we arrived at the clinic."
+            scene clinic with fade
+            show her surprised at midright with dissolve
+            show him determined at midleft
+            show kid determined at center
+            with moveinleft
+            her surprised "[his_name]? What's wrong?"
+
+        "See if she can walk." if not (work24_stopped_bleeding or work24_walk):
+            him surprised "Can you stand up?"
+            kid determined "Maybe... ugh. No, not really."
+            "As she tried to stand up, more blood trickled down her leg."
+            $ work24_walk = True
+            jump work24_first_aid
+        "Get some help.":
+            him determined "I'm going to see if I can get some help, okay?"
+            kid sad "Okay..."
+            him concerned "Attention, this is [his_name]. [kid_name] is injured and needs transport to the clinic."
+            "No one answered. I tried again."
+            him determined "I need transport into town for [kid_name] who is injured. She might have broken her leg. Can anyone help?"
+            "[her_name] on the radio" "[his_name]?! Is she okay?"
+            him determined "She's conscious, but bleeding and her leg's hurt."
+            "[her_name] on the radio" "Can't you take the tractor?"
+            him concerned "Nope. That's how she got hurt; tractor tipped over."
+            "Natalia on the radio" "I'm on my way."
+            "[her_name] on the radio" "Thank you, Natalia!"
+            "Natalia arrived on her tractor with the trailer attachment. I nestled in the back with [kid_name] while she drove."
+            kid concerned "Ow!"
+            "Every bump made her leg hurt more. I tried to protect her from the worst bumps but it was a long, rough ride."
+            "When we arrived, [her_name] was ready for us."
+            scene clinic with fade
+            show her surprised at midright with dissolve
+            show him determined at midleft
+            show kid determined at center
+            with moveinleft
+
+    "[her_name] ran over, taking in [kid_name]'s injuries."
+    her concerned "Okay. It's probably not too bad. Set her on the bed here."
+    "I told her the whole story while she and the nurse cleaned and examined the wound. She felt [kid_name]'s leg carefully, noting every wince. She examined the rest of her, too."
+    "[kid_name] was clearly in pain, but also fascinated by what [her_name] was doing."
+    her determined "Broken tibia. Transverse. Fibula seems to be okay. Concussion."
+    "She looked me in the eyes for the first time since I arrived."
+    her angry "We'll talk about why in the world she was the one driving the tractor later."
+    him sad "Is it bad?"
+    her concerned "She'll be okay, [his_name]. But I need to put her under to put in some pins, so why don't you head on home. [bro_name]'s probably wondering where you are."
+    "He had been working on homework when I left, but that was hours ago..."
+    him determined "Okay. Keep me posted."
+    her determined "I will."
+    scene farm_interior with fade
+    "The next day, when they came home, [her_name] wanted to talk."
+    show her annoyed at midright
+    show him concerned at midleft
+    with dissolve
+    her angry "Why was [kid_name] driving that tractor? She's just a kid!"
+    him annoyed "She's not just a kid! She's almost an adult and very capable!"
+    her annoyed "Not capable enough, apparently."
+    him determined "Does she still have some things to learn? Of course she does. But she drives the tractor all the time just fine."
+    her concerned "I know, it's just... I want more for [kid_name]."
+    him annoyed "Farming isn't good enough?"
+    her sad "It's not that!  Well... maybe it is."
+    him angry "We've been through this before. People will always need to eat! Growing food is one of the most important jobs people do!"
+    her concerned "I know but... it's so dangerous. And she could do so much more."
+    him annoyed "What could be more important than not starving to death??"
+    her annoyed "How about not bleeding to death?"
+    him concerned "Look, I don't want to have a whose-job-is-more-important argument with you. We need both jobs. What's this really about?"
+    her concerned "I don't want her to spend the rest of her life digging in the dirt on this alien planet in the middle of nowhere."
+    him annoyed "Isn't that what {b}we{/b} are doing?"
+    her determined "Yes, but we chose this. She didn't."
+    menu:
+        "What should I say?"
+        "You miss Earth.":
+            $ marriage_strength += 1
+            him concerned "You miss Earth still, don't you."
+            her sad "Sometimes..."
+            him sad "Sorry I dragged you way out here."
+            her normal "No, no, it's good. I like the life we have here."
+            her concerned "I just like Earth, too, and I'd love for her to be able to experience that part of humanity."
+            him determined "If she wants to."
+        "She might not have a choice.":
+            him determined "Well, she's here, and it's not like you can just buy a bus ticket back to Earth. She may be stuck here."
+        "There's nothing good on Earth.":
+            $ marriage_strength -= 1
+            him annoyed "I don't see any reason why she would want to go back to Earth. Good riddance to that crowded, noisy, frivolous, self-absorbed planet!"
+            her annoyed "Some of us liked it."
+            him determined "I still can't see why."
+
+    her concerned "Look if she really wants to be a farmer here, and that's her passion, then great, teach her to be the best farmer ever."
+    him annoyed "I'm trying to--"
+    her annoyed "I know, that's what you are trying to do already. Just, let me finish. But we shouldn't expect her to do what we do. She needs to decide for herself."
+    him determined "I know that."
+    her concerned "And she needs to stay alive and whole long enough to find that out."
+    him concerned "I'm sorry she got hurt, [her_name]."
+    her determined "It was an accident..."
+    menu:
+        "What should I say?"
+        "I need to teach her better.":
+            him sad "I should have taught her better. Then maybe she wouldn't have gotten hurt."
+            her sad "..."
+            "I heard a faint voice from the other room."
+            kid "Dad, it's not your fault. I was driving too fast. You tried to warn me."
+            him concerned "Thanks, [kid_name]."
+            "I hadn't meant for [kid_name] to overhear us, but maybe it was a good thing. Maybe it would help her understand what we were trying to do."
+
+        "Sometimes you have to learn things the hard way.":
+            him annoyed "You have to understand, this world is just dangerous. She needs to learn how to be careful; maybe this is the only way she could learn that."
+            her annoyed "Maybe you could help her learn in some way that preserves all her limbs."
+            him determined "I wouldn't be doing her any favors if I made everything safe. Then she would never learn how to be careful and solve her own problems."
+            her angry "Well you won't be doing her any favors if she doesn't survive until adulthood, either!"
+            him angry "She survived! She'll be just fine!"
+            her annoyed "Oh, so it's normal to just break your leg once in a while working on the farm?"
+            "I thought I heard [kid_name] trying to say something, but I wasn't sure."
+            kid "Mom?"
+            him annoyed "Yes. Yes, it's totally normal for stuff like this to happen when you're doing real work."
+            her angry "Real work?! You think you're the only one doing real work?"
+            kid "Mom!"
+            "[kid_name] was calling from her room."
+            her concerned "Yes, [kid_name]?"
+            kid "Can you guys keep it down? I'm trying to go to sleep."
+            her annoyed "Sorry, we will."
+            kid "Also, it's not dad's fault. I drove too fast around the corner."
+            her concerned "Don't worry about that."
+            him determined "See? She learned something from this."
+            her annoyed "I just wish I could say the same thing about you."
+
+        "Maybe she shouldn't work on the farm.":
+            him sad "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
+            her concerned "No, I think usually it's good for her. Just... can you just be a little more careful?"
+            him concerned "Yeah..."
+            her determined "I know she looks like an adult, but inside she still has a lot of learning to do."
+            him determined "Don't we all..."
+
+    return
 
 # Year 26, 16.1 years old
 label work26:
@@ -1055,8 +1247,86 @@ label work26:
     return
 
 # Year 28, 17.3 years old
+# Terra doesn't want to help! Pay rent?
 label work28:
-    "Terra either wants her own farm, or wants to quit working for you! Do you hire someone else or try and get her to stay?"
+    "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
+    kid determined "I don't want to work on this farm."
+    him surprised "You don't?"
+    her concerned "You don't have to..."
+    kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
+    "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
+    "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
+    "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
+    $ work28_rent = 0
+    menu:
+        "What should I say?"
+        "If you don't work, you need to pay rent.":
+            him determined "I'm not going to force you to work on the farm, but if you're not, then you'll need to pay rent."
+            her annoyed "Really? You want to charge our own daughter {b}rent{/b}?"
+            him annoyed "Like it or not, that's how the real world works. Everybody needs to do something useful."
+            her surprised "What if she's taking classes?"
+            him determined "Everybody should work. Even people taking classes."
+            her angry "So are you going to charge me rent, too?!"
+            him annoyed "That's different! You get paid, and we use the money together. Is [kid_name] going to turn over everything she makes to us?"
+            kid annoyed "No!"
+            him normal "Everyone in this family helps out. If you're not helping around the house or the farm, then you can help out with money."
+            her annoyed "But--"
+            kid determined "I can pay XXX per month." # TODO: currency check
+            her concerned "No, [kid_name], you might need that money..."
+            menu:
+                "What should I say?"
+                "That's too much.":
+                    him normal "Hey, I don't think your tiny room here is worth that much. Let's say XXX and it'll be fine."
+                    her normal "Oh. That's not that much."
+                    kid determined "Okay, I can do that."
+                    $ work28_rent = 100
+                "That's a deal.":
+                    him normal "Sounds like a deal."
+                    $ work28_rent = 200
+                "That's not enough.":
+                    him annoyed "Are you kidding? You've got your own room, homecooked meals, and use of our resources. That's worth at least XXX."
+                    her determined "No. No way. YYY is the max."
+                    kid determined "I can pay YYY, but not XXX."
+                    him determined "Then I guess that will have to do."
+                    $ work28_rent = 250
+            her concerned "If you can't make it some month, come by the clinic and I can find some work for you."
+            kid annoyed "I'll be fine, Mom."
+
+        "If you want to live here, you'll need to help.":
+            him determined "Everyone that lives here needs to help out in some way."
+            her "Maybe not on the farm, but in other ways?"
+            kid "Sure, I can do chores and stuff. I just don't want to be your fieldhand."
+            "We worked out some things that [kid_name] could do that weren't farming -- making meals and running errands for [her_name] and I."
+            him concerned "Hopefully I can still count on your help during harvest time."
+            kid "Yeah, for now."
+        "We can cut back gradually.":
+            him determined "I need you until the harvest. After that, we can slowly cut things down."
+            kid concerned "Okay..."
+        "You don't have to work here.":
+            him concerned "You don't have to work on the farm. But I could definitely use your help."
+            kid concerned "Maybe just when you really need me."
+            him determined "Okay. Thanks, [kid_name]."
+
+    bro "I don't want to work on the farm, either."
+    "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was timid and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
+    "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."
+    menu:
+        "What should I do?"
+        "Reduce the size of my farm.":
+            "The best thing to do was just to not plant as many crops. Then I wouldn't need as much help. Hopefully it would still be enough."
+            $ farm_size -= 4
+        "Hire some help.":
+            if (work28_rent > 0):
+                "With the extra money [kid_name] would be paying in rent, I could afford to hire some help. Surely there'd be someone who'd be willing to do some hard work in exchange for a little extra money."
+            else:
+                "It would cost me, but I thought the cost of hiring another worker would be less than the cost of reducing the field."
+            $ work28_rent -= 100
+        "Have [bro_name] help more.":
+            him normal "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
+            bro "I don't want to..."
+            him concerned "I know. But sometimes we all gotta do things we don't want to do."
+    "I guess it was [kid_name]'s job to grow up and eventually leave us."
+    "I wasn't quite ready for it to start, though."
     return
 
 # Year 30, 18 years old

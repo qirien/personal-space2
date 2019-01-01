@@ -237,7 +237,7 @@ init python:
             for i in range(0, farm_size):
                 current_crop_name = self.items[i]
                 current_crop_count = self.count(current_crop_name)
-                if (current_crop_count >=  most_frequent_count):
+                if ((current_crop_count >=  most_frequent_count) and (current_crop_name != "fallow")):
                     most_frequent_crop = current_crop_name
                     most_frequent_count = current_crop_count
             return most_frequent_crop

@@ -1,10 +1,5 @@
 # Crop-specific work events
 
-# TODO: First person or third person?
-# TODO: Some crop events kind of assume that you'll get the next crop event
-# the next year.  If you don't plant that crop the next year, some events
-# should reset.
-
 # Default crop event, if no other crop event can be found
 label default_crop_event:
     "The year passed by in a blur: tilling, planting, weeding, harvesting; the endless cycle of life on the farm."
@@ -22,7 +17,7 @@ label carrots1:
     him surprised "They still taste good!"
     her surprised "Are they supposed to look like that?"
     him normal "Sometimes it's normal for a few of them to grow weird, but not this many..."
-
+    $ carrots_fallow = False
     menu:
         "What should I do?"
         "Till the soil better. Must be rocks." if (get_extra_work() >= 0):
@@ -34,6 +29,7 @@ label carrots1:
             "I had no idea if it was an Earth pest or a Talaam creature causing it, though."
             "The simplest way to get rid of the pests would be to not plant carrots for a year. With nothing to eat, the pests would die."
             "It would take a while to see if it worked, though."
+            $ carrots_fallow = True
             $ crop_temporarily_disabled = "carrots"
         "Who cares, they taste the same.":
             "I didn't have time to worry about oddly-shaped carrots."
@@ -711,6 +707,7 @@ label goats2:
             $ goats_index = get_crop_index("goats")
             $ crop_info[goats_index][MAXIMUM_INDEX] += 1
             # goats take up another square now.
+    return
 
 # GOATS 3 - escaping goats
 label goats3:
@@ -821,7 +818,7 @@ label goats3:
         "Scold [kid_name]." if (year > 7):
             "It must have been [kid_name]. There's no other possibility."
             show kid at midright with moveinright
-            him determined "[kid_name], I'm very disappointed that you let the goats escape."
+            him determined "[kid_name], I'm disappointed that you let the goats escape."
             kid sad "It wasn't me! I closed it all the way, I know I did!"
             him concerned "It's the only explanation that makes any sense."
             kid angry "What if the goats opened it?"
