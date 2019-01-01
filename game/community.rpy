@@ -1473,7 +1473,7 @@ label community10:
     natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     natalia "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
     martin "And she is a fine writer."
-    natalia "Well she can write and help grow our food!"
+    natalia "Well she can write {b}and{/b} help grow our food!"
     natalia "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
     martin "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin "What would you do in my position? Who do you think should take care of the farm?"
@@ -1492,6 +1492,7 @@ label community10:
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
         #Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
         #right now this choice doesn't affect who gets the farm.
+        # TODO: finish this event
     return
 
 # 11 - shuttle arrives with miners & Brennan
@@ -2894,10 +2895,9 @@ label community17:
     label jellyfishside:
         him "So... what is this?"
         pete "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
-        pete "They start stacking on top of one another and they send off these giant eggs"
+        pete "They start stacking on top of one another and they send off these giant eggs."
         him "Is it safe to eat?"
-        pete "As far as I can tell, it is."
-        pete "Try some. It's delicious."
+        pete "Hasn't killed me yet. Try it; it's real good."
         menu:
             "Try it.":
                 "It tastes cool and slippery, and a little fishy."
@@ -3640,7 +3640,7 @@ label community22:
         brennan "While you're there, see if you can collect any shells from those tablet-like squids."
         zaina "Oh, the glass ones? Are you thinking they could have high mineral content?"
         pete "There are places where they're common. I can show you."
-
+        # TODO: check usage of Indium/element of shells
         "A week later..."
         nvl clear
         zaina_c "So, Pete wasn't kidding when he said that the caves are extensive."
@@ -4262,38 +4262,7 @@ label community25:
     $ touch_25 = False
     $ touch2_25 = False
 
-    "Every night after dinner I liked to catch up on the news around town."
-    "This week Sara was asking about recipes for the jellystars."
-    nvl clear
-    sara_c "After you chop it up, do you just sautee it?"
-    thuc_c "I like it in a little goat cream with beans and garlic."
-    natalia_c "I think Ilian is selling it dried now. Dried jellystar is really good in soup"
-    julia_c "It's especially good with a little of my plum syrup! Ten percent off this week!"
-    natalia_c "I think everyone has tried your plum syrup by now..."
-    sara_c "Jellystar has a pretty high water content... is there anything left after it's dried out?"
-    him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
-    if ate_jellyfish:
-        him_c "Dr. Lily told me that they contain a parasite which could decrease reaction speed."
-        sara_c "Really? I haven't noticed anything like that."
-        him_c "Well, she did say it was only a difference of a few milliseconds."
-        him_c "Also, I think they're too cute to eat."
-        thuc_c "I do feel a twinge of guilt when I eat them. But if they're already processed I don't think about it as much."
-        natalia_c "Yeah, I don't like cutting up the carcasses. It just makes me sad."
-    ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse."
-    ilian_c "It's really cheap right now, and we're still drying more."
-    ilian_c "You can use it for bait when fishing, too."
-    him_c "He's farming the form with the shell?"
-    ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellystar to offload."
-    him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
-    brennan_c "I have been trying to farm jellysquid, which resulted in surplus jellystars."
-    sara_c "Are the jellysquid even the same species?"
-    julia_c "Dr. Lily reported that the jellysquid form is an aggregate of the jellystar one, but she never personally witnessed how it happens."
-    julia_c "She wrote about it in a paper on them. You should probably read it if you're trying to raise them."
-    brennan_c "Thanks, I'll look it up. I've made a few observations of my own."
-    julia_c "You should publish them!"
-    brennan_c "My information is proprietary."
-    julia_c "You could sell it for money then!"
-    brennan_c "Maybe when I have some information worth selling, I'll publish it."
+    "I had seen some tasty-sounding jellystar recipes lately."
     if not ate_jellyfish:
         him "Hmm. These jellystar recipes look kind of good."
         him "Maybe I should try them."
@@ -4303,6 +4272,9 @@ label community25:
                 $ ate_jellyfish = True
             "Don't eat them.":
                 "I decided not to eat them."
+    else:
+        "I ate them all the time, so it was fun to see even more ways to enjoy one of my favorite foods."
+    "The jellystar farm made them quite an economical food."
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
     if (miners > 12):
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."

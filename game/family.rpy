@@ -6963,7 +6963,7 @@ label family28:
     else:
         her "Her job sure keeps her busy."
         him "If that's really what she's doing."
-
+        her surprised "You think she's doing something else?"
     menu:
         "What should I do?"
         "Investigate.":

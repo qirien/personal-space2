@@ -3,8 +3,18 @@
 #
 
 # Determine which ending the user should receive, depending on Terra's stats.
-# TODO: Add community ending
 label ending:
+    "[kid_name]'s childhood was so different from my own. Instead of playgrounds and toys, she had alien creatures and mining conflicts."
+    "I guess we both had parents, and friends, and problems."
+    "Some things are always the same."
+
+    # TODO: community ending stuff
+    # Talk about miners, colonists, luddites, and jellies
+
+
+
+    # TODO: work/farm ending stuff?
+
     # TODO: remove debug code
     "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
     $ parenting_style = get_parenting_style()

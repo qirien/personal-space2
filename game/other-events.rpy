@@ -1,6 +1,7 @@
 ##
 # Other events that happen outside the work/family/community event structure,
 # such as the parenting class.
+# TODO: Write more of these, integrate in yearly screen as button on parenting handbook.
 #
 
 label parenting_class_questions:
@@ -70,9 +71,9 @@ label parenting_class_questions:
                 him surprised "Can't they just talk to [her_name] about it?"
                 naomi "[kid_name] may want to know what you have to say."
                 "That thought had never occurred to me before -- that when [kid_name] asked me a question, she didn't just want an answer, she wanted {b}my{/b} answer."
-            
+
         return
-            
+
 
 label parenting_class1:
     scene community_center with fade
@@ -86,7 +87,7 @@ label parenting_class1:
         "To survive.":
             "I wrote 'Survival'."
             him "You can't do anything else if you're dead."
-            naomi "That is true. What else?"            
+            naomi "That is true. What else?"
             helen "Love."
             natalia "Learning."
         "To be loved.":
@@ -109,12 +110,10 @@ label parenting_class1:
     her surprised "Do we really want our kids to feel safe making mistakes? That sounds dangerous."
     naomi "As parents, part of your job is protect kids from making terrible, life-altering mistakes. But without making small mistakes, they will not learn for themselves."
     helen "I guess Travis could have never learned to walk without falling so many times."
-    natalia "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings." 
+    natalia "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings."
     naomi "Yes, exactly."
-    
+
     "We talked for a while about being patient with kids' mistakes, and common mistakes for different ages. It was reassuring to learn things like wetting the bed and talking back were completely normal."
 
-    call parenting_class_questions    
+    call parenting_class_questions
     return
-    
-    
