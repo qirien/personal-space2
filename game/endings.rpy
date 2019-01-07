@@ -106,6 +106,7 @@ label ending_aci:
     her "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
     brennan "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
+    # TODO: give the user a choice about what to say here
     him "I... I'd appreciate that."
     "He nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."
@@ -209,31 +210,28 @@ label ending_acI:
 # always worried, aims to please people, scared of making mistakes
 label ending_aCi:
     "Ending aCi."
-    scene fields with fade
-    "[kid_name] has just finished weeding the field."
-    "She did a decent job, but I knew she could do better."
-    him determined "I still see a few weeds in there."
-    kid concerned "Okay, I'll go fix it."
+    scene hospital with fade
 
 
-    "I'm never going to be good enough!"
+    kid concerned "I'm never going to be good enough!"
 
     "Ending 3/8, Never Good Enough."
     return
 
-#4 aCI - Rejects your life and returns to Earth to fulfill her dreams and she succeeds, becoming an awesome __________ (or studies jellypeople?), though you worry about her lack of friends/family
+#4 aCI - Returns to Earth to study medicine, though you worry about her lack of friends/family
 label ending_aCI:
     "Ending aCI."
     her "It's not too late to change your mind. You could complete your studies here..."
     kid "I know, mom, but I want to be a real doctor, not just your apprentice. I want to become the best, so Earth is where I need to go."
     him "Study hard, [kid_name]. Make us proud."
     kid sad "I'm trying, dad."
-    her "We are proud. And you'll always have a home here, no matter what happens."
-    her "If you want to. But, oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
+    her determined "We are proud. And you'll always have a home here, no matter what happens."
+    him "Don't get caught up with stupid college stuff, all right? Stay away from the wild parties and the drugs and all that."
+    her "Oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
     kid "I'm excited to see a rain forest. Or any forest at all, actually."
     bro "Send us pictures!"
     him "Wow, my little daughter, on her way to med school..."
-    kid nervous "Oh no...What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school?!"
+    kid nervous "Oh no...What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school!"
     her normal "No backing out now! You'll be fine. I promise."
     him "Don't forget us."
     kid "I'll send you messages when I can."
@@ -246,7 +244,7 @@ label ending_aCI:
     bro "Goodbye!"
     "I didn't know what to say. All I could think about were the things I didn't have a chance to teach her, to tell her."
     "What if she started failing her classes? What if she didn't cook herself good enough food? What if she made huge mistakes and didn't apologize? What if her heart was broken?"
-    "It was too late, now. She'd have to learn from her own mistakes, now."
+    "It was too late for me to teach her those things. She'd have to learn from her own mistakes, now."
     him "Goodbye!"
 
     "Ending 4/8, Down to Earth."

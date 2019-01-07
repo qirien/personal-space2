@@ -7569,7 +7569,7 @@ label family29:
 
 # 18.6 Earth years old (ENDING)
 label family30:
-    "[kid_name] has finally graduated from Talaam's little school. And, now that she didn't have school every day, she had moved on to other things."
+    "[kid_name] had finally graduated from Talaam's little school. And, now that she didn't have school every day, she had moved on to other things."
     $ boyfriend_name = ""
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):    # aCi or aCI
@@ -7580,7 +7580,7 @@ label family30:
         # Studies jellypeople and sociology-biology, living with you or married
         "Ever since that trip to the ocean where we communicated with the jelly people, [kid_name] had been obssessed with them."
         "Miranda had been meeting with them and studying them, and so [kid_name] joined her. She was also taking online classes in biology and sociology."
-        # TODO: does she have a boyfriend here?
+        # TODO: does she have a boyfriend here? Oleg?
 
     elif (parenting_style == "permissive"):     # Aci or AcI
         # Farming, either living in her parents' basement or on her own
@@ -7593,10 +7593,16 @@ label family30:
             $ boyfriend_name = "Travis"
         else:
             $ boyfriend_name = "Lorant"
-        "Or with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
+        "Or hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
+
+    if (attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH) and (independence < INDEPENDENCE_HIGH):
+        # If she is leaving with Lorant, you don't even find out about it until later
+        "Some night she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
+        "If I'd known, would I have tried to stop her? Would it have made a difference?"
+        "I had too many of my own problems to deal with to spare much time for anyone else's."
+        return
 
     # A spot opens up on the shuttle, and [her_name] is considering taking it.
-
     "One night I opened up the computer pad after [kid_name] and [her_name] had gone to bed. There was a message from Anya on it for [kid_name]."
     "I didn't mean to read it, but once I had, I couldn't un-read it."
     nvl clear
@@ -7659,7 +7665,7 @@ label family30:
     her annoyed "There are some great things about Earth."
     him determined "Like what? Traffic? Urban sprawl? Corrupt governments? Terrorists?"
     her angry "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
-    him annoyed "Yeah, but all the people she loves live will be here, on Talaam."
+    him annoyed "Yeah, but all the people she loves will be here, on Talaam."
     kid concerned "Most of them..."
     her surprised "Is there someone special to you that's headed back to Earth?"
     him determined "Please don't tell me this is about following some boy. No boy is worth that!"
@@ -7685,7 +7691,6 @@ label family30:
             him annoyed "...but I don't know about better ones."
 
     kid annoyed "I'm not even sure if I'll go yet, so don't make it into this big deal, okay?"
-    her concerned "I'm glad you're talking to us about it. There's a lot of things to consider."
     menu:
         "What should I say?"
         "Going to Earth would be good for you." if ((parenting_style == "authoritative") or (parenting_style == "authoritarian")):
@@ -7721,7 +7726,7 @@ label family30:
             $ responsive += 1
             $ demanding += 1
             him normal "It's your choice, but please think carefully about the consequences either way."
-            kid surprised "What consequences?"
+            kid surprised "Like what?"
             him concerned "For example, if you went to Earth, it might be difficult to come back here. We might never see you again."
             her concerned "On the other side, if you decide not to go, you might never get that chance again, either."
             him determined "If you went to Earth, you'd be completely alone. No family, no friends, no community supporting you."
@@ -7762,7 +7767,6 @@ label family30:
             "In the meantime, somebody had to go and get the work done around here."
             $ neglectful += 1
             return
-
     show bro at right with moveinright
     "We were all lost in thought when [bro_name] walked in. His eyes were red and tear-stained. He must have been listening from the other room."
     show bro at quarterright with move
@@ -7805,14 +7809,73 @@ label family30:
             her flirt "Its suit is impeccable."
             him concerned "..."
             bro happy "Get it? ImPECKable?!"
-            kid normal "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
+            kid annoyed "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
             him flirt "Looks like someone... can't take the PUNishment!"
 
         "Leave":
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."
             return
 
-    him concerned "I know you have a lot to think about, [kid_name]... but do you think you could help me out on the fields while you think? There's a lot to do."
-    # TODO: Something exciting happens where he needs to 'let go' in order to succeed.
+    her surprised "Is that really what time it is?! I'm late!"
+    bro "I'm late for school!"
+    him concerned "You two take the tractor; I won't need it today."
+    hide bro
+    hide her
+    with moveoutleft
+    $ random_crop = farm.crops.random_crop(include_animals = True)
+    kid "Don't forget, you were going to take a look at the [random_crop] today, dad."
+    him surprised "Oh. The [random_crop], yeah."
+    hide kid with moveoutleft
+    "[kid_name] left to go do her chores. I remember when I had to remind her twenty times to get her to do something, and now {b}she{/b} was reminding {b}me{/b}."
+    him concerned "She really is almost all grown up..."
+    scene farm_interior with fade
+    show her at quarterright
+    show him at midright
+    show kid at center
+    show bro at midleft
+    with dissolve
+    "That night, [kid_name] made us a nice dinner -- roasted vegetables, smoked crabird meat, and a creamy sauce to go on top."
+    "Did that mean she was saying goodbye?"
+    her happy "This is delicious, [kid_name]. It's so nice to come home from work to such a delicious meal."
+    him happy "Especially one you didn't have to make yourself!"
+    bro "It's okay."
+    kid happy "I'm glad the sauce turned out; it was kind of lumpy at first."
+    "We chewed thoughtfully for a few minutes, savoring the herbs and flavors."
+    bro "Are you leaving or not?"
 
+    if (not is_attached()) and (is_competent()) and (is_independent()):
+        kid determined "I am."
+        her sad "Oh, sweetie..."
+        him normal "You're going to Earth to study hard and become the best, right?"
+        kid concerned "Yeah... I decided, if I want to study medicine, I should study from lots of different people. It'd be great to learn from mom, but..."
+        her normal "No, no, you're right, you'll learn so much on Earth! Not just about medicine, but about people and history and biology..."
+        him happy "And pop culture. We don't have fads in quite the same way Earth does."
+        bro sad "Do you have to go?"
+        kid "I don't have to. But I'm going to. I'll miss you, [bro_name]."
+        her sad "My baby girl, leaving forever..."
+        him determined "Don't be like that! We still have a few weeks; we can't spend them moping around."
+    else:
+        kid normal "No. I thought about it, but I'm staying."
+        him surprised "What made you decide that?"
+        if (is_attached()):
+            kid nervous "I mean... I'd miss you guys. You're my family, and that's something I'm not going to find anywhere else."
+        elif (is_competent() and is_independent()):
+            kid normal "How many kids get to grow up and study aliens?! I'm not going to find those anywhere else!"
+        else:
+            kid happy "There's nothing on Earth that could compare to what we have here. It's pretty amazing, once I got to thinking about it."
+            him "You're only saying that because you've never eaten funnel cakes or cotton candy."
+            her annoyed "[his_name]! Shhh!"
+            her happy "Go on, sweetie."
+            kid surprised "Oh. Um, that's it. That's all I wanted to say."
+        her happy "Oh, I'm so glad you're staying. I would have missed you so much!"
+        "[bro_name] didn't say anything, but he gave her a big hug."
+        kid surprised "Ow, not so tight! I love you too, [bro_name]."
+    him happy "Okay, group hug!"
+    her annoyed "Watch the foot!"
+    bro "Your hair is in my face!"
+    "Finally everyone was comfy and we had a minute just to hold one another."
+    "I closed my eyes and tried to remember every detail of this moment, from how my arm barely reached across [bro_name]'s growing shoulders, to how a few tears had streaked across [her_name]'s face."
+    "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong like her mother's and callused like mine."
+    "Their skin was warm under my touch, and I wanted to pull everyone in closer, closer, so that they could never leave."
+    him determined "Out of all the things we've grown over the years... this family is the best."
     return
