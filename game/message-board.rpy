@@ -320,9 +320,9 @@ define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-ic
     color="#e7b1cb", image="julia", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #icy pink
 define martin_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
     color="#9b5b1d", image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
-define miranda_c = Character("Miranda",
+define anya_c = Character("Anya",
     #who_suffix = "  {image=images/icons/miranda-icon.png} ",
-    color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+    color="f3ca14", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
 define lewis_c = Character("Mr. Lewis",
     color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
 define zaina_c = Character ("Zaina",

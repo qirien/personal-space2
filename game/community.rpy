@@ -310,11 +310,11 @@ label community2:
     ilian "That's what I'm here for."
     hide kevin
     with moveoutleft
-    show ilian normal midright
+    show ilian normal at midright
     show him normal at left
     ilian "We probably should start doing things the way it is in the contract."
     ilian "I know it seems less efficient, but it gives us more control in the case of a famine."
-    show him concerned midleft
+    show him concerned at midleft
     with moveinleft
     him "What if the storehouse burns down? Then we'll all have nothing."
     ilian "Or some alien varmint could eat it all no matter where it is."
@@ -326,7 +326,7 @@ label community2:
              $ pass
     label after_contract:
     ilian "Will you start bringing your whole harvest in or not?"
-    show him annoyed midleft
+    show him annoyed at midleft
     him "How about I can write down the amount I harvest and I'll bring in the surplus? Or I could take a picture."
     ilian "I'm pretty sure I could trust you, but it's better if I can measure it all so we can be consistent."
     him "Okay, I see your point."
@@ -2528,9 +2528,9 @@ label community15:
     him "He said that she has severe radiation sickness and that she is going to die in the next week or two."
     her "We'll be doing palliative care."
     him "Just trying to make her suffer less?"
-    her "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning."
-    him "I'll bring the kids over this afternoon."
-    her "Just... check that she's in a condition to see them."
+    her "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
+    him "We'll understand if she's, ah, indisposed. I'll bring the kids over this afternoon."
+    her "Just... check with Pavel first."
     "After I picked the kids up from school, we walked to Naomi and Pavel's house."
     "Pavel was outside."
     pavel "Are you here to see Naomi?"
@@ -2626,7 +2626,9 @@ label community15:
             her "Hey, I make house calls too!"
             her "But I know what you mean. She took care of their spirits, not their bodies."
             #this decision only affects dialogue right now.
-    her "Oh, darn. Who's going to talk at her funeral?"
+    her "Oh, no...who's going to talk at her funeral?"
+    him surprised "Are you putting that together?"
+    her concerned "Yeah... I told Pavel I would; he's in no state to do it himself."
     him "Sara's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
     her "Sounds good. Can you ask her for me?"
     him "Has Naomi's death been announced?"
@@ -2961,10 +2963,9 @@ label community17:
         julia "She brought it out today to dress up for the begging."
         "After the children finished eating, they ran around with pails of water."
         "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
-        "I hand out corn fritters to the children who clean your plate, cup, and utensils."
-        "Thuc and I bring out the special treat we made together. It's made with rice and corn and the kids notice it eagerly."
-        "They start cleaning the serving dishes and you make a show of inspecting their work and giving them the rice-corn treat."
-        "Of course, a few other adults are busy saving leftovers and helping the smallest children clean dishes."
+        "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
+        "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
+        "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
         pavel "It's a shame we don't have any chocolate to give them."
         julia "I miss it too."
         julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
@@ -3127,9 +3128,8 @@ label community19:
     "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
     "Scarfs and gloves with jellystar patterns on them hang from the top."
     him "Hey Helen! Got any wolf slug meat?"
-    helen "Yes, I've got some. It'll cost you though--we only found one this week and it was pretty young."
+    helen "Yeah, I've got some. It'll cost you though--we only found one this week and it was pretty young."
     him "How much?"
-    # TODO: currency check
     if c18_no_help_pete:
         helen "80 credits."
         him "Hmm. That's outside my price range. Got any beef bones or beans?"
@@ -4082,7 +4082,7 @@ label community23:
     bro "I wanna go to the beach too!"
     her "I need you to stay here and make sure [his_name] takes good care of the farm!"
     her "And we'll bring you some fish."
-    bro "okay..."
+    bro "Okay..."
     "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
     "When they got back, they looked tired."
     him "How was it?"
@@ -4110,10 +4110,10 @@ label community23:
         scene black with fade
         "Next week, I was about to do a little buying and selling when I saw Thuc manning a vegetable stand outside the storehouse."
         thuc "Hey, want some extra-creamy goat milk?"
-        him "Yeah, are you selling it?"
+        him "I get plenty from my goats. What are you selling it for, though?"
         thuc "Just 100 credits for a pint."
         menu:
-            "No way.":
+            "That's crazy!":
                 him "You're nuts."
                 thuc "You'll be back."
                 him "Yeah, when you have your goat cheese reduced price for quick sale."
@@ -4122,13 +4122,13 @@ label community23:
                 thuc "Suit yourself."
                 $ colonists += 1 #arguable
                 return
-            "Tempting...":
-                him "I know how good the extra creamy stuff is..."
-                him "But I don't earn that kind of money selling my crops to Ilian."
-                thuc "Give me some of your best crop to sell. I bet I can make you enough money to buy some goat milk."
+            "How come I don't earn that much?":
+                him "I know how good the extra creamy stuff is...But I don't earn that kind of money selling my crops to Ilian."
+                thuc "Give me some of your best crops to sell. I bet I can make you a lot more money than you currently make."
                 him "Yeah, and how much of the profit are you going to pocket?"
                 thuc "I promise I'll only keep ten percent of the sale!"
-                him "Okay, I'll let you try selling these. Message me when they sell!"
+                $ random_crop = farm.crops.random_crop(include_animals = False)
+                him "Okay, I'll let you try selling some [random_crop]. Message me when they sell!"
                 thuc "Oh, I know someone will want them."
                 $ luddites += 1
                 $ thuc_sells_food = True
@@ -4187,7 +4187,7 @@ label community24:
         him "Ugh, is that still a thing?"
         thuc "Yes, it is."
         thuc "Didn't you read Julia's latest 'Talaam Times' that did an economic analysis of our luxury goods and reviewed select products?"
-        him "I didn't want to pay 20 credits for it! That's like the price of beans for a week."
+        him "I didn't want to pay 20 credits for it! That's like the price of beans for a month."
         if not thuc_sells_food:
             him "Hmm. Maybe I could make a little money on the side."
             him "My family might enjoy having some nicer things."
@@ -4230,6 +4230,7 @@ label luxury_good:
             him "Hey, he didn't have my permission to do that."
             kid "He's not making that much money off of it."
             him "Ugh."
+            "I guess I wasn't going to fight a kid over copyright law..."
         "Babysit small children and teach them farming.":
             "I offered to babysit a few small children and give them lots of individual attention for a few hours every morning over the summer."
             "I promised to show them the beauties of Talaam and teach them the joy of farming."
@@ -5464,8 +5465,8 @@ label community29:
         "I didn't really see her at all and forgot about her for a few months."
         "I saw Pete dragging her to the hospital on a stretcher. He refused my help."
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would poke me with a needle accidentally."
-        her "I'm working as fast as possible and I'm not sure she'll make it. Get Van so he can help me."
-        "His radio wasn't working, so I ran all the way to the mining camp to find him. Even running back, it took over an hour."
+        her "I'm working as fast as possible and I'm not sure she'll make it. Get Julia and Van so they can help me."
+        "Her radio wasn't working, so I ran all the way to the mining camp to find them. Even running back, it took over an hour."
         "By the time we got back, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
         her "Go find Ilian!"
@@ -5589,7 +5590,7 @@ label community29:
         her "Let's try charging just one credit."
         pete "What is going on? It still says insufficient funds."
         pete "[his_name], can you try drawing a credit from my account to verify that it's not just something on [her_name]'s tablet?"
-        him "Okay, here"
+        him "Okay, here."
         pete "Still the same problem."
         pete "I know I had over a thousand in there last week."
         pete "Someone stole from me."
@@ -5726,6 +5727,7 @@ label community30:
         jump investigation_start
 
     label investigation_start:
+        $ searched_bed = False
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
         #TODO: a CG here would be great, but not required."
@@ -5760,6 +5762,7 @@ label community30:
                     thuc "Well, they're actually going back to Earth on the shuttle, so we're trying to explain that he's dead."
                     him "Oh, right, that's happening next month! Is Brennan going back?"
                     thuc "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
+                    # TODO: mention Anya
                     him "Except for Joel's..."
                     thuc "Good point!"
                     him "So what were you doing last night? I'm just trying to rule people out right now."
@@ -5887,7 +5890,7 @@ label community30:
             him "Uh, okay."
             nvl clear
             him_c "Hey Oleg, do you know if it's possible to open someone's credit program without their passcode?"
-            oleg_c "Nope, not without wiping everything."
+            oleg_c "nope, not without wiping everything."
             him_c "Is credit data stored in the library server then? Or would wiping someone's tablet erase all their credits?"
             oleg_c "dunno never tried ghgh ~~*~~" #this is supposed to simulate not know what acronyms or emoji the teenagers are using right now
             oleg_c "now i'm curious tho"

@@ -4069,7 +4069,7 @@ label family15:
                 "We don't have the money for that":
                     $ demanding += 1
                     him "We don't have any extra money for things like that."
-                    kid "Really? Not even five cents?" # TODO: currency check?
+                    kid "Really? Not even two credits?"
                     jump allowance_how
         "An allowance?! You already have everything you need!":
             $ demanding += 1
@@ -4101,8 +4101,13 @@ label family15:
             him "She shouldn't get paid to help out her family."
             her annoyed "Why not? You do."
             him "...Fine, whatever, as long as you handle it."
-            # TODO: should this end differently?
-
+            $ allowance = 5
+            hide her with moveoutleft
+            show kid at center
+            show her determined at midleft
+            with moveinleft
+            kid "Yay, mom's going to pay me five credits a week!"
+            "I guess I did say [her_name] should handle it..."
             return
         "No.":
             $ responsive -= 1
@@ -4132,30 +4137,30 @@ label allowance_how:
             kid "Can't you just give me some money?!"
             him "Nope. If you really think you should have an allowance, convince me with a written proposal."
             $ authoritative += 1
-        "You can have a small amount.":
+        "You can have 1 credit per week.":
             $ responsive += 1
-            him "You can have 25 cents a week." # TODO: currency check?
-            kid "25 cents?! That's almost nothing! It'll take me months to save up enough for a jumprope!"
+            him "You can have 1 credit a week."
+            kid "1 credit?! That's almost nothing! It'll take me months to save up enough for a jumprope!"
             him "You can earn more doing extra chores if you want."
             kid "Like when I do the dishes and stuff?"
             him "Not your regular chores, extra chores."
             kid "That's mean."
-            him "It's up to you. If you want to start right now, you can muck out the barn for a dollar."
+            him "It's up to you. If you want to start right now, you can muck out the barn for 3 credits."
             kid "It's so stinky! I hate mucking out the barn!"
             him "Your choice. Better decide soon, though, because I'm about to go do it."
             kid "Okay! Okay! I'll go muck out the barn!"
             him "Great!"
             $ authoritative += 1
-        "You can have a large amount.":
+        "You can have 10 credits per week.":
             $ responsive += 1
-            him "You can have five dollars a week."
+            him "You can have ten credits a week."
             kid "Really? Starting when?"
             him "Right now! Here you go."
             kid "Awesome! I'll be able to buy all sorts of stuff!"
             $ permissive += 1
-        "You can have a large amount, but only if you are good and do your chores.":
+        "You can have 5 credits per week, but only if you are good and do your chores.":
             $ demanding += 1
-            him "You can have five dollars a week if you do all your chores and are good." # TODO: currency check?
+            him "You can have five credits a week if you do all your chores and are good."
             kid "Oh. So basically I'll never get an allowance?"
             him "That's up to you."
             kid "But you never think I'm 'good'! Even when I try really hard and do nice things for everyone and don't hit [bro_name] and do extra chores you never even notice!"
@@ -4357,6 +4362,7 @@ label family16:
             "[her_name], who had been pretty quiet, spoke up."
             her "I don't know about that. It's possible her consciousness is separate from her body and still lives on."
             him "I doubt it."
+            her "Well, that's what I believe, anyway."
         "I don't know.":
             him "I don't know."
             her "I believe some part of her, the part of her that thinks and feels and loves, lives on separate from her body."
@@ -4521,6 +4527,7 @@ label family17:
         "At least he was talking now. Maybe we were making some progress?"
         him surprised "Bread? Really? This whole thing is just about bread?"
         bro "I really like it! I wanted to have it when I got home! But it was all gone.  Wahhhhhhhh!"
+        "Uh-oh... that was my fault. I ate the rest of the bread for lunch."
         $ family17_apologize = False
         $ family17_acknowledge = False
         $ family17_tell = False
@@ -5363,7 +5370,7 @@ label family20:
     him "I can pay you in produce."
     ilian "No, you can't. Everything you grow is supposed to come to the storehouse; it's not even yours."
     him "What were you thinking, then?"
-    ilian "25 credits per lesson. Once a week." # TODO: currency check
+    ilian "25 credits per lesson. Once a week."
     him "I don't know; she could probably teach herself. There's plenty of instructional videos. And I found a music computer program that looks pretty good."
     ilian "All of which are a poor substitute for a living, breathing, personal instructor."
     "I didn't know much about music, but he was probably right."
@@ -6727,8 +6734,7 @@ label family27:
 
 
     him "Do we even have any bikes?"
-    # TODO: currency check
-    $ bike_cost = 300
+    $ bike_cost = 500
     kid "I asked Oleg's mom, and she said she made it. It cost her about [bike_cost] credits worth of materials, plus finding the right kind of plant for the frame."
     him surprised "She uses a plant for the frame?"
     kid "It's a sturdy, hollow plant with lightweight wood."
@@ -6801,7 +6807,7 @@ label family27:
             $ authoritative += 1
             # TODO: decrease her amount of available work?
         "Don't buy her a bike.":
-            him annoyed "Sorry, I don't have 300 credits lying around. Your feet will work just fine."
+            him annoyed "Sorry, I don't have [bike_cost] credits lying around. Your feet will work just fine."
             kid surprised "That's it? Just 'No'?!"
             him angry "I don't have time to discuss it! Go figure it out yourself if you want a bike so bad!"
             kid angry "Maybe I will!"
@@ -7071,12 +7077,12 @@ label family28:
             her "[his_name]!"
             kid "Not too much. I just deliver it."
             him "How much do you make?"
-            kid "About 10 an hour." # TODO: currency check
+            kid "About 10 credits an hour."
             him "Not bad, but you could probably charge a bit more. It's not like you have competition."
             kid "If I charge too much, Pete will just deliver it himself."
             him "True, true."
             her "You're really okay with your daughter making money off these dangerous substances?"
-            him "People are going to use them whether she brings them or not. She's just delivering whatever people need."
+            him "People are going to use them whether she brings them or not. She's just delivering whatever's in demand."
 
         "What are you, a drug dealer?":
             $ demanding += 1
@@ -7270,7 +7276,7 @@ label family29:
             if ((parenting_style == "authoritative") or (parenting_style == "authoritarian")):
                 bro "She even got pretty good grades."
             else:
-                bro "Especially since she didn't get very good grades."
+                bro "Especially since she didn't get very good grades this year."
             him normal "I guess we can be happy for her, right?"
             bro "Yeah, I guess so."
             him surprised "She still doesn't know what she wants to do, though. It's so different from Earth."
@@ -7471,7 +7477,7 @@ label family29:
 
     "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
     kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
-    him concerned "Hmmm... That actually makese sense. Well, do you want to know what I think?"
+    him concerned "Hmmm... That actually makes sense. Well, do you want to know what I think?"
     kid nervous "Um... kind of?"
     menu:
         "What should I say?"
@@ -7625,7 +7631,7 @@ label family30:
     "Finally, I went and sat outside under the moons and stars."
     "Every inch of ground was soaked in memories."
     # TODO: show these
-    "She rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
+    "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
@@ -7829,10 +7835,10 @@ label family30:
     "[kid_name] left to go do her chores. I remember when I had to remind her twenty times to get her to do something, and now {b}she{/b} was reminding {b}me{/b}."
     him concerned "She really is almost all grown up..."
     scene farm_interior with fade
-    show her at quarterright
-    show him at midright
-    show kid at center
-    show bro at midleft
+    show her normal at quarterright
+    show him normal at midright behind her
+    show kid normal at center
+    show bro normal at midleft
     with dissolve
     "That night, [kid_name] made us a nice dinner -- roasted vegetables, smoked crabird meat, and a creamy sauce to go on top."
     "Did that mean she was saying goodbye?"
@@ -7842,7 +7848,7 @@ label family30:
     kid happy "I'm glad the sauce turned out; it was kind of lumpy at first."
     "We chewed thoughtfully for a few minutes, savoring the herbs and flavors."
     bro "Are you leaving or not?"
-
+    "I stopped chewing. I stopped breathing. I couldn't do or think about anything else until I knew the answer to this question."
     if (not is_attached()) and (is_competent()) and (is_independent()):
         kid determined "I am."
         her sad "Oh, sweetie..."
@@ -7871,9 +7877,17 @@ label family30:
         "[bro_name] didn't say anything, but he gave her a big hug."
         kid surprised "Ow, not so tight! I love you too, [bro_name]."
     him happy "Okay, group hug!"
+    show him normal at center with move
+    show her normal at midright with move
     her annoyed "Watch the foot!"
+    show bro at midright with move
     bro "Your hair is in my face!"
     "Finally everyone was comfy and we had a minute just to hold one another."
+    show him sleeping
+    show her sleeping
+    show kid sleeping
+    show bro sleeping
+    with dissolve
     "I closed my eyes and tried to remember every detail of this moment, from how my arm barely reached across [bro_name]'s growing shoulders, to how a few tears had streaked across [her_name]'s face."
     "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong like her mother's and callused like mine."
     "Their skin was warm under my touch, and I wanted to pull everyone in closer, closer, so that they could never leave."

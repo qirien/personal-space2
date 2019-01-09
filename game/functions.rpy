@@ -188,6 +188,17 @@ init -100 python:
             else:
                 return "default_crop_event"
 
+    # Calculate expenses required for the family for this year
+    def get_expenses_required():
+        return (ANNUAL_EXPENSES_BASE + (get_calories_required() * CALORIES_TO_MONEY_MULTIPLIER))
+
+    # Calculate value in credits from crop value
+    def get_credits_from_value(crop_value):
+        crop_credits = 0
+        if (crop_value != 0):
+            crop_credits = (crop_value * crop_value * 4 + 10)
+        return crop_credits
+
     # Calculate nutrition required for the family for this year.
     # TODO: right now this is the same as calories? Is that true?
     def get_nutrition_required():

@@ -13,6 +13,11 @@ screen interscene(year=0, event_type="Work"):
             label "Year [year] of [MAX_YEARS]"
             label "[event_type]"
 
+# TODO: Add a credits pop out and hide screen
+screen show_credits(expense=0):
+    window:
+        hbox:
+            label "Credits: [credits]"
 
 style interscene_window is default:
     xalign 0.0

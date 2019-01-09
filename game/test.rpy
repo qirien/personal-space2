@@ -23,6 +23,65 @@ label tests:
     jump tests
     return
 
+label test_jump_year:
+    "What year should we jump to?"
+    $ year_str = renpy.input("Year", default=1)
+    $ year = int(year_str)
+    menu:
+        "What type of parent are you?"
+        "Authoritarian":
+            $ attachment = 0
+            $ competence = year
+            $ independence = year/4
+            $ demanding = year
+            $ responsive = 0
+            $ authoritarian = year
+            $ authoritative = 0
+            $ permissive = 0
+            $ neglectful = 0
+        "Authoritative":
+            $ attachment = year
+            $ competence = year
+            $ independence = year/2
+            $ demanding = year
+            $ responsive = year
+            $ authoritarian = 0
+            $ authoritative = year
+            $ permissive = 0
+            $ neglectful = 0
+        "Permissive":
+            $ attachment = year
+            $ competence = 0
+            $ independence = 0
+            $ demanding = 0
+            $ responsive = year
+            $ authoritarian = 0
+            $ authoritative = 0
+            $ permissive = year
+            $ neglectful = 0
+        "Neglectful":
+            $ attachment = 0
+            $ competence = 0
+            $ independence = 0
+            $ demanding = 0
+            $ responsive = 0
+            $ authoritarian = 0
+            $ authoritative = 0
+            $ permissive = 0
+            $ neglectful = year
+        "Random":
+            $ attachment = renpy.random.randint(0,year)
+            $ competence = renpy.random.randint(0,year)
+            $ independence = renpy.random.randint(0,year)
+            $ demanding = renpy.random.randint(0,year)
+            $ responsive = renpy.random.randint(0,year)
+            $ authoritarian = renpy.random.randint(0,year)
+            $ authoritative = renpy.random.randint(0,year)
+            $ permissive = renpy.random.randint(0,year)
+            $ neglectful = renpy.random.randint(0,year)
+    $ farm.crops.setDefault()
+    jump life_loop
+
 label test_sprites:
     scene farm_interior with fade
 

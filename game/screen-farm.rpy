@@ -262,7 +262,7 @@ screen crops_totals:
             $ total_calories += crop_info[index][CALORIES_INDEX]
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
             if (year >= 5):
-                $ total_value += crop_info[index][VALUE_INDEX]
+                $ total_value += get_credits_from_value(crop_info[index][VALUE_INDEX])
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
@@ -273,12 +273,18 @@ screen crops_totals:
         text "Work:         " + str(total_work) + " / " + str(get_work_available())
         use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
 
-        if (year >= 5):
-            text "Value:          ¤ " + str(total_value)
+        if (year >= MONEY_YEAR):
+            $ total_expenses = get_expenses_required() - KELLY_SALARY
+            if (total_expenses > total_value):
+                text "Value:    " + str(total_value) + " credits" color red_med
+            else:
+                text "Value:    " + str(total_value) + " credits"
+            text "Expenses: " + str(total_expenses) + " credits"
+            text "Current Balance: [credits] credits"
             # TODO: show this better, show savings, etc.
 
         text " "
-        if (year >= 6):
+        if (year >= KID_WORK_YEAR):
             label "Kids' Assignment"
             bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
             hbox:
