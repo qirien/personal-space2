@@ -133,29 +133,30 @@ label start:
         # Dictionary containing the number of events seen for each crop
         number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
         # TODO: add income
+        credits = 0
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.
         crop_info =     (
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, 100],
-                        ["corn",         9, 5, 8, 7, 50, False, False, 100],    # Grains
-                        ["potatoes",     10, 5, 7, 6, 40, True, False, 100],
-                        ["wheat",        9, 5, 9, 10, 20, False, False, 100],
+                        ["corn",         9, 4, 7, 7, 50, False, False, 100],    # Grains
+                        ["potatoes",     10, 5, 6, 6, 40, True, False, 100],
+                        ["wheat",        9, 5, 8, 10, 20, False, False, 100],
                         ["peppers",      2, 7, 5, 5, 25, False, False, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False,  100],
-                        ["plums",        3, 3, 8, 7, 5, False, True, 1],
-                        ["plums+",       3, 3, 8, 2, 0, False, True, 0],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 7, 3, 4, 15, True, False, 100],
-                        ["strawberries", 1, 2, 8, 6, 5, False, True, 1],
-                        ["strawberries+",1, 2, 8, 4, 0, False, True, 0],
+                        ["plums",        3, 3, 7, 7, 5, False, True, 1],
+                        ["plums+",       3, 3, 7, 2, 0, False, True, 0],    # Perennials are easier after year 1, but can't be moved
+                        ["squash",       4, 7, 2, 4, 15, True, False, 100],
+                        ["strawberries", 1, 2, 6, 6, 5, False, True, 1],
+                        ["strawberries+",1, 2, 6, 4, 0, False, True, 0],
                         ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
                         ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
-                        ["carrots",      3, 6, 4, 4, 10, True, False,  100],   # Root Vegetables
+                        ["carrots",      3, 6, 3, 3, 10, True, False,  100],   # Root Vegetables
                         ["turnips",      3, 5, 1, 4, 10, False, False, 100],
-                        ["onions",       4, 2, 7, 4, 5, False, False, 100],
-                        ["spinach",      1, 6, 5, 3, 10, True, False,  100],   # Leafy greens
-                        ["broccoli",     3, 7, 4, 3, 15, False, False, 100],
-                        ["goats",        8, 10, 10, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
-                        ["honey",         2,  2,  8, 2, 0, False, True, 1])
+                        ["onions",       4, 2, 5, 4, 5, False, False, 100],
+                        ["spinach",      1, 6, 3, 3, 10, True, False,  100],   # Leafy greens
+                        ["broccoli",     3, 7, 2, 3, 15, False, False, 100],
+                        ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
+                        ["honey",         2,  2,  7, 2, 0, False, True, 1])
                         #TODO: have an axe crop that can only be placed on perennials to chop them down?
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
@@ -202,17 +203,29 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    if (mp.his_name):
+    if (mp.jack_name):
         $ his_name = mp.jack_name
+    if (mp.kelly_name):
         $ her_name = mp.kelly_name
-        if (mp.kid_name):
-            $ kid_name = mp.baby_name
+    if (mp.baby_name):
+        $ kid_name = mp.baby_name
 
     show path
     show her normal at midleft
     show kid happy at center,baby_pos
     show him normal at midright
     show computer_pad
+    menu:
+        "Test Farming Screen":
+            $ farm.reset_crops(farm_size)
+            call screen plan_farm
+        "Other Tests":
+            jump tests
+        "Jump to Year":
+            jump test_jump_year
+        "Continue":
+            $ pass
+
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
     "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
     "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
@@ -225,11 +238,6 @@ label start:
             $her_name = renpy.input("Wife's Name", default=her_name)
             $kid_name = renpy.input("Baby girl's Name", default=kid_name)
             jump name_change_loop
-        "Test Farming Screen":
-            $ farm.reset_crops(farm_size)
-            call screen plan_farm
-        "Other Tests":
-            jump tests
 
     scene stars_animated with fade
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
@@ -252,6 +260,7 @@ label start:
     #####################################################################
     # The Loop of Life                                                  #
     #####################################################################
+label life_loop:
     while (year <= MAX_YEARS):
         $ save_name = "Year %d" % year
         $ earth_year = get_earth_years(year)
@@ -265,6 +274,8 @@ label start:
         scene gray_dark with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
+            if (year >= MONEY_YEAR):
+                $ credits += farm.calculate_income(years_yield)
         $ farm.reset_crops(farm_size)
         call screen plan_farm
         $ current_work = get_work_available()

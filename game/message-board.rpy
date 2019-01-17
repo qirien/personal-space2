@@ -8,6 +8,8 @@ label message1:
     naomi_c "Congratulations to Sara and Ilian on the birth of their son Oleg!"
     him_c "I don't know whether to congratulate you or commiserate with you..."
     sara_c "Maybe both? :-D"
+    # TODO: finish this?
+    # Natalia and Julia give great, conflicting baby advice
     nvl clear
     return
 
@@ -15,126 +17,164 @@ label message1:
 # Family: Get work done or play with kid?
 label message2:
     nvl clear
+    # Reference whole harvest problem with convo about crop trading
     return
 
 # Community: Game Night!
 # Family: Camping trip, Terra puts everything into her mouth
 label message3:
     nvl clear
+    # Show outside life, reference decision about whole harvest
     return
 
 # Community: Community Liaison
 # Family: Terra's a picky eater!
 label message4:
     nvl clear
+    # Foreshadow picky eating by looking for pickles/applesauce
     return
 
 # Community: Set aside food for miners?
 # Family: Toilet Training!
 label message5:
     nvl clear
+    # Liaison business -- ratifying charter, objections must be posted by two weeks, blah blah. Kevin feels it's not precise
+    # People encouraging liaison, they don't actually do much yet
     return
 
 # Community: Game Night continued/consequences
 # Family: Terra wants to talk and play when everyone else wants to rest, Ready for another baby?
 label message6:
     nvl clear
+    # busy harvest time - looking forward to holiday Halloween + Thanksgiving
+    # Kevin/Zaina asking about local alien meat
     return
 
 # Community: Comparing compensation
 # Family: Back Talking & Disobedience
 label message7:
     nvl clear
+    # Game night discussion - poker?
     return
 
 # Community: RET will send what luxuries?
 # Family: Play group and first day of school. Baby bro born, else pregnant
 label message8:
     nvl clear
+    # Natalia asking for harvest help as Martin is sick
     return
 
 # Community: Camping with Pete
 # Family: Bossing friends around
 label message9:
     nvl clear
+    # Congrats on baby/pregnant
+    # School talent show!
     return
 
 # Community: Peron's over, who should take care of farm?
 # Family: Fighting with brother OR playing games on tablet when she's not supposed to. Baby bro born if not already
 label message10:
     nvl clear
+    # Location of miners discussed: "why so far" "not far enough!"
     return
 
 # Community: Miners and Brennan arrive on shuttle
 # Family: Dinner Table Manners
 label message11:
     nvl clear
+    # sports teams for various ages forming
+    # literary magazine being compiled by Isabella - write poetry for it??
     return
 
 # Community: missing cow
 # Family: An unknown miner friend, lice
 label message12:
     nvl clear
+    # Miners appear on msg board; create new colonists-only board
+    # People comment on literary magazine
     return
 
-# Community: Save the Cave!
+# Community: Save the Cave/Mountaintop!
 # Family: Sex education, miscarriage
 label message13:
     nvl clear
+    # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
+    # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
     return
 
 # Community: Pete leaves
 # Family: Teacher trouble
 label message14:
     nvl clear
+    # Wait, a shuttle is leaving?? Is anyone leaving?
+    # Nope, it's just for cargo. There are no humans on board, so we don't to worry about excessive g-forces and life support and other petty concerns
     return
 
 # Community: Naomi dies
 # Family: Allowance?
 label message15:
     nvl clear
+    # jumpropes sold by Gardenia, Julia's daughter
+    # meal signup for Naomi
     return
 
 # Community: Trade with luddites?
 # Family: She must clean her room!!
 label message16:
     nvl clear
+    # How is Pete doing? I never talk to him anymore.
+    # Sara went to talk with them, gives update
     return
 
 # Community: Harvest festival with jellyfish!
 # Family: Bro has unexplained crying
 label message17:
     nvl clear
+    # Show how busy harvest time is, negotiate when things are harvested to help each other, kids get school off to help
+    # Julia offers tea to people that help
+    # shouldn't the miners help?? We have our own deadlines
     return
 
 # Community: Miners complain about Pete's cattle
 # Family: Terra needs more baths!
 label message18:
     nvl clear
+    # Someone (Zaina? someone who ate jellies, add to community17 if necessary) is doing a documentary about jellystars and wants footage, art, poetry, etc.
+    # Lily has some stuff for her, they are working together
+    # You can submit a poem!!!
     return
 
 # Community: Crabirds devastate harvest
 # Family: What to do about pornography
 label message19:
     nvl clear
+    # him_c I have some caulk leftover from roof repair if anyone needs it. Trust me, you don't want to wait until the roof's leaking during a solar flare.
+    # Talk about planting season, Peron's planting corn
     return
 
 # Community: Lily's research, she dies
 # Family: Musical instrument?
 label message20:
     nvl clear
+    # Lily and Zaina finished documentary, screening at community center
+    # Why the jellystars? Why not crabirds or wolfslugs??
     return
 
 # Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.
 # Family: Terra's mean and sarcastic
 label message21:
     nvl clear
+    # Naomi's gone, but Sara needs parenting advice. How to deal with teenagers?!
+    # Natalia and Julia give conflicting good advice
     return
 
 # Community: Miners moving to mountain near luddites! If your relationship with both parties is good, you can coordinate and avoid accident. Otherwise bad things can happen (mining stops and you lose your status as RET liason, you scare off the luddites and zero your relationship with them, or you encourage them to stay and Travis loses his leg). This is the second “save the cave” incident; modify the earlier one to be about something other than a cave.
 # Family: Apologize when you falsely accuse Terra? Family activities
 label message22:
     nvl clear
+    # Miners are moving; I wonder if they left anything behind? let's go scavenge!
+    # Don't bother; there's mostly just tire tracks and a flat dirt clearing and some toxic ponds and a bunch of slag
     return
 
 # Community: Glass shell collecting--shells are worth more if mining stopped in 22 and...
@@ -142,18 +182,56 @@ label message22:
 # 14.8 years
 label message23:
     nvl clear
+    # natalia_c Remember back when we didn't use money?? We just helped each other and everyone got along
+    # Everyone except you and Julia
+    # julia_c Hard work should be rewarded!
+    # It's still different from Earth
+    # Capitalism/socialism/spectrum/something else?  We have no economists (Kevin?)
+    # Why are we so focused on money?? We should just hang out and enjoy what we have
     return
 
 # Community: Growing luxury good market, especially if mining stopped in 22. The increased demand for shells led to inflation and Ilian fixes the prices of food. You can choose to write a farming guide, which Oleg makes free, babysit (most lucrative and stressful), or be a farming consultant.
 # Family: Lettie dies; friends with creepy older brother
 label message24:
     nvl clear
+    # Julia links to Talaam Times (write free sample page?)
+    # it's expensive! no advertising revenue?
+    # She didn't review the oatmeal soap because it competes with her goat milk soap
     return
 
 # Community: Brennan’s jellysquid farm. You can talk to Chaco or Pete about the jellysquid farm, depending on your Miner or Luddite relationship scores.
 # Family: Making dinner, talking about education and jobs
 label message25:
     nvl clear
+    sara_c "After you chop it up, do you just sautee it?"
+    thuc_c "I like it in a little goat cream with beans and garlic."
+    natalia_c "I think Ilian is selling it dried now. Dried jellystar is really good in soup"
+    julia_c "It's especially good with a little of my plum syrup! Ten percent off this week!"
+    natalia_c "I think everyone has tried your plum syrup by now..."
+    sara_c "Jellystar has a pretty high water content... is there anything left after it's dried out?"
+    him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
+    if ate_jellyfish:
+        him_c "Dr. Lily told me that they contain a parasite which could decrease reaction speed."
+        sara_c "Really? I haven't noticed anything like that."
+        him_c "Well, she did say it was only a difference of a few milliseconds."
+        him_c "Also, I think they're too cute to eat."
+        thuc_c "I do feel a twinge of guilt when I eat them. But if they're already processed I don't think about it as much."
+        natalia_c "Yeah, I don't like cutting up the carcasses. It just makes me sad."
+    ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse."
+    ilian_c "It's really cheap right now, and we're still drying more."
+    ilian_c "You can use it for bait when fishing, too."
+    him_c "He's farming the form with the shell?"
+    ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellystar to offload."
+    him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
+    brennan_c "I have been trying to farm jellysquid, which resulted in surplus jellystars."
+    sara_c "Are the jellysquid even the same species?"
+    julia_c "Dr. Lily reported that the jellysquid form is an aggregate of the jellystar one, but she never personally witnessed how it happens."
+    julia_c "She wrote about it in a paper on them. You should probably read it if you're trying to raise them."
+    brennan_c "Thanks, I'll look it up. I've made a few observations of my own."
+    julia_c "You should publish them!"
+    brennan_c "My information is proprietary."
+    julia_c "How much?"
+    brennan_c "Not discussing this on the public forum. Message me."
     return
 
 # Community: You can choose to tell colonists that Pete’s beef contains cancer cells.
@@ -162,6 +240,7 @@ label message25:
 # Family: Talking politics? Terra thinks you're a terrible leader. Either you're too strict, treating one group badly (miners? Jellies?), Or you are clueless and you don't even know what people are doing behind your back.
 label message26:
     nvl clear
+    # TODO: pull something out of community26 and put it here
     return
 
 # Community: Reckoning with jellypeople. There are several ways to fail the jellypeople. If you agree to help them, you can either farm mudfish or one of their predators, a fish called a Shill. You can also choose to tell Brennan about possible heavy metals in the mud. Miranda reveals that she and Dr. Lily taught the jellysquid how to “read”.
@@ -177,7 +256,6 @@ label message27:
     helen_c "I don't eat them anymore."
     kid_c "Good! Thank you, Helen!"
 
-
     nvl clear
     return
 
@@ -189,7 +267,7 @@ label message28:
     sara_c "Does this mean we shouldn't eat them anymore?"
     him_c "We shouldn't eat the jellysquids, but they don't mind if we eat jellystars."
     sara_c "But... aren't the jellystars like their babies?! 😧"
-    zaina_c "Their life cycle is not analogous to humans'. The jellystars are not sentient and are more like bacteria than babies."
+    zaina_c "Their life cycle is not analogous to humans'. The jellystars are not sentient and are more like eggs than babies."
     sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! 😍"
     if (ate_jellyfish):
         him_c "They are adorable!"
@@ -199,12 +277,15 @@ label message28:
 # Family: Terra blames you for a big crisis!
 label message29:
     nvl clear
+    # People miss Mayor Grayson - his spice garden is dying but ?? volunteers to take over it as a memorial
+    # Someone also mentions how maybe it was a good thing he didn't drag out a demented life for years, people voice opinions
     return
 
 # Community: MURDER MYSTERY
 # Family: Ending?
 label message30:
     nvl clear
+    # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
     return
 
 
@@ -239,9 +320,9 @@ define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-ic
     color="#e7b1cb", image="julia", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #icy pink
 define martin_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
     color="#9b5b1d", image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
-define miranda_c = Character("Miranda",
+define anya_c = Character("Anya",
     #who_suffix = "  {image=images/icons/miranda-icon.png} ",
-    color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+    color="f3ca14", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
 define lewis_c = Character("Mr. Lewis",
     color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
 define zaina_c = Character ("Zaina",

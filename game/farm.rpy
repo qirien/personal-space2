@@ -77,6 +77,16 @@ init python:
             self.update_history()
             return final_yield
 
+        # Given the percentage yield of each crop square, calculate
+        # how much money will be made
+        def calculate_income(self, crop_yield):
+            income = 0
+            for i in range(0, self.current_size):
+                crop_name = self.crops[i]
+                crop_value = get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
+                income += int((crop_yield[i]/100) * crop_value)
+            return income
+
         # Reset the crops for a new year.
         def reset_crops(self, size=MAX_FARM_SIZE):
             new_crops = Crops(size)
@@ -228,7 +238,7 @@ init python:
                 if (chosen_crop == "fallow"):
                     chosen_crop = ""
 
-            chosen_crop.strip("+")
+            chosen_crop.rstrip("+")
             return chosen_crop
 
         def most_frequent_crop(self):
@@ -240,6 +250,7 @@ init python:
                 if ((current_crop_count >=  most_frequent_count) and (current_crop_name != "fallow")):
                     most_frequent_crop = current_crop_name
                     most_frequent_count = current_crop_count
+            most_frequent_crop.rstrip("+")
             return most_frequent_crop
 
 
