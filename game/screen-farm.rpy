@@ -212,18 +212,19 @@ screen crops_layout:
                         $ nitrogen_usage = crop_info[get_crop_index(current_crop_name)][NITROGEN_INDEX]
                         $ current_nitrogen_level = farm.health[i][Field.NITROGEN_LEVEL_INDEX]
                         $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
-                        $ tint_factor = 1- (current_nitrogen_level / float(Field.NITROGEN_FULL))
+                        $ tint_factor = 1 - (current_nitrogen_level / float(Field.NITROGEN_FULL))
                         $ tint_factor = tint_factor / 2.0
                         frame:
                             if (nitrogen_usage > current_nitrogen_level):
                                 background red_dark
                             else:
+                                # TODO: add a border here
                                 #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
                                 # make poor soils lighter
                                 background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.brightness(tint_factor)))
                             $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
-                                idle imagefile
+                                idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/idle.png")
                                 sensitive (current_crop_name[-1] != "+")
                                 hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                                 xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
@@ -232,8 +233,8 @@ screen crops_layout:
                                 action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
 
                         # use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
-                        bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
-                        # TODO: use a tricolor bar here, too? Or show as bugs in background of field?
+                        #bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
+                        # TODO: Show as bugs in background of field? Or remove completely?
 
                     # history
                     use history_box(i)
