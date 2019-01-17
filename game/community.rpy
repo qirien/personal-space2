@@ -930,11 +930,10 @@ label community7:
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
     zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
     zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
-    show pavel center with move
+    show pavel at midleft with moveinleft
     pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
     hide zaina with moveoutright
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
-    show pavel
     pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
     hide pavel with moveoutright
     show kevin at midright with move
@@ -1118,7 +1117,7 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Natalia = True
                 jump talk_about_luxuries
-            "Thuc Nguyen" if not talked_to_Thuc:
+            "Thuc" if not talked_to_Thuc:
                 show thuc at left
                 with dissolve
                 show thuc sad
@@ -1204,7 +1203,9 @@ label community8:
                 return
     else:
         show fields with fade
-        show sara
+        show sara at midright
+        show him at midleft
+        with dissolve
         sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
         show sara sad
         sara "What would you like?"

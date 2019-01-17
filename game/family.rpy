@@ -1951,18 +1951,18 @@ label family7:
             "I took a deep  breath. I don't know why she was so upset all of a sudden, but me yelling at her wouldn't help the situation any."
             "I realized I had some other options."
             menu:
-                "What should I say?"
-                "Why are you so mad?":
+                "What should I do?"
+                "Ask for details.":
                     him surprised "Why are you so mad?"
                     kid yell "You won't let me play with my toys!"
                     him normal "You can play with them more tomorrow. But right now we need to clean them up because it's bedtime."
                     kid angry "I'm not tired!"
                     jump family7_patience_menu
-                "Clean this up or you won't be able to play with them tomorrow.":
+                "Take her toys away if she doesn't clean them up.":
                     him determined "You need to clean these up or you won't be able to play with your new toys tomorrow."
                     kid yell "No! I'm not done playing!"
                     jump family7_patience_menu
-                "You wish you could play more.":
+                "Sympathize with her":
                     him concerned "You wish you could play with your toys more."
                     kid concerned "Yeah! I'm having too much fun."
                     "I gave her a hug and stroked her hair."
@@ -2168,20 +2168,34 @@ label family7_she_cleaned_up:
 
 label family7_angry_ending:
     $ responsive -= 5
-    hide her with moveoutright
+    hide him
+    hide kid
+    with moveoutright
+    scene kid_bedroom
+    show him determined at midleft
+    show kid sad at midleft
+    with moveinleft
+
     "I picked her up and put her in her room. She pounded her tiny fists on my back but I was so filled with rage and adrenaline that I barely felt them."
+    show kid at midright with move
     him determined "Stay in your room until you can talk with respect!"
-    kid "No I won't!"
+    kid angry "No I won't!"
+    show kid at midleft with move
     "She tried to make a run for it but I caught her arm and pushed her back in. She landed with a thump on the hard floor."
+    show kid cry at midright with move
     "I closed the door before she could make another attempt to escape."
     him angry "You are not the boss! You are a spoiled, whiny, powerless child and {b}I{/b} am the boss of {b}you{/b}!"
     "She started crying. I locked the door from the outside."
     "She threw herself against it, the wood creaking, and started pounding on the door."
-    kid "Let me out!"
+    kid angry "Let me out!"
     "She still didn't understand why she was so wrong."
     him annoyed "You stay in there until you're ready to quit being such a brat!"
-    her angry "..."
+    kid cry "..."
     "The house was suddenly quiet. The only sound was [kid_name]'s sobs, muffled only slightly by the door."
+    scene farm_interior with fade
+    show him determined at midright
+    show her annoyed at midleft
+    with dissolve
     "[kid_name] cried herself to sleep, and I tried to read through my emails, but it was hard to concentrate."
     "[her_name] didn't talk to me either; she wouldn't even look at me. I think she was disappointed in me. That brought all my anger back to the surface again."
     him annoyed "You were a lot of help back there."
@@ -2192,13 +2206,19 @@ label family7_angry_ending:
     her determined "I think there's better ways than intimidation, yes. Do you really want [kid_name] to be afraid of you?"
     him annoyed "Maybe she should be afraid enough to show some manners."
     her annoyed "Respect doesn't come from fear. It comes from trust. And you just destroyed hers."
+    show kid cry at right with moveinright
     kid "Mommy?"
     her concerned "What is it, dear?"
+    show kid at midleft with move
     "[kid_name] ran in and hid her face in [her_name]'s lap. The she spoke, so quietly that I could barely hear."
-    kid "I peed in my bed."
+    kid sad "I peed in my bed."
+    show her angry
     "[her_name] shot me a glare, as if [kid_name]'s bladder problems were my fault. She was probably peeing in the bed on purpose to try to get even with us!"
     "I started to stand up, but [her_name] beat me to it."
     her determined "I'll handle this. I don't trust you right now."
+    hide her
+    hide kid
+    with moveoutleft
     "A sour mix of resentment and anger bubbled through my thoughts. I wanted to lash out, get even, show everyone that I was in charge..."
     "But I didn't want to be that kind of dad."
     "The kind of dad whose own kids were afraid of him."
@@ -2350,6 +2370,7 @@ label family8:
             $ responsive += 1
             $ permissive += 1
 
+    hide kid with moveoutleft
     "[her_name] moved to follow her, but I held her hand."
     him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
     her concerned "I guess so... Is she really going to be okay?"
@@ -2452,6 +2473,7 @@ label family8:
                     him happy "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
                     her normal "Then I don't have anything to worry about."
                     him normal "Nope."
+                    show him at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
                     "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
                     "How long had she known and worried by herself?"
@@ -2459,7 +2481,7 @@ label family8:
                     her concerned "You're still worried."
                     him normal "So are you."
                     her serious "Yes. But it'll be okay."
-                    him serious "We'll figure it out."
+                    him determined "We'll figure it out."
             "We can do this!":
                 $ marriage_strength += 1
                 him determined "This is...this is..."
