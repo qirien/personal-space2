@@ -211,6 +211,46 @@ label ending_acI:
 label ending_aCi:
     "Ending aCi."
     scene hospital with fade
+    show her normal at midright
+    show thuc normal at center
+    show kid normal at midleft
+    with dissolve
+    kid surprised "Is this the right spot for the injection?"
+    her determined "Not quite. Feel the bone there? Now come about two finger's width down... into that muscle there."
+    kid nervous "Right here?"
+    her concerned "Almost... a little lower. See, when you pinch it, it looks like this."
+    kid sad "Maybe you should do it."
+    thuc "Yeah, maybe you should do it, [her_name]. I'm starting to feel a little nervous!"
+    her annoyed "She needs the practice! I'll make sure she does it right. Try again, [kid_name]."
+    kid determined "Okay... right, um, here?"
+    her concerned "Remember, find the triangle."
+    thuc "This is the most painful shot I've ever had, and you haven't even pierced the skin yet!"
+    kid surprised "Here?"
+    her happy "Yes, that's right!"
+    thuc "Ow!"
+    kid concerned "Sorry!!"
+    her determined "Slow down! Slow and steady... there."
+    thuc "So, is that all I need?"
+    her normal "Yes, let me know if you don't start feeling better by tonight."
+    hide thuc with moveoutleft
+    show him at quarterleft with moveinright
+    him happy "Hello, lovely ladies! I brought you some lunch!"
+    kid annoyed "I'm not hungry."
+    hide kid with moveoutright
+    him surprised "What's with her?"
+    her concerned "I tried starting her with some basic hands-on nursing duties today... she's having a hard time."
+    him determined "Well, she's smart, so I'm sure she'll catch on quickly."
+    her annoyed "I hope so."
+    him normal "I'm just glad she found something useful to do."
+    her concerned "Yeah, I guess so."
+    him surprised "What's wrong?"
+    her determined "I'm not sure this is the right job for her."
+    him determined "Well, if she's not going to help grow food, then helping people not die is a pretty good use of her talents."
+    her concerned "She's not very good at it."
+    him surprised "She's not?"
+    her annoyed "No. She feels awkward touching people, and she's always second-guessing herself, and she has a hard time remembering what to do."
+    him determined "I'm sure she just needs more practice. It takes a long time to learn to be a good medical professional, as you know very well."
+    her concerned "Yes... I suppose so."
 
 
     kid concerned "I'm never going to be good enough!"
