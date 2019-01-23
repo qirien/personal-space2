@@ -4,9 +4,10 @@
 
 # Determine which ending the user should receive, depending on Terra's stats.
 label ending:
-    "[kid_name]'s childhood was so different from my own. Instead of playgrounds and toys, she had alien creatures and mining conflicts."
-    "I guess we both had parents, and friends, and problems."
-    "Some things are always the same."
+    "[kid_name]'s childhood was so different from my own. Instead of playgrounds and ready-made toys, she had alien creatures and mining conflicts."
+    "I guess we both had parents, friends, and problems."
+    "And we both grew up as farmers, too."
+    "When she was a baby, I never would have guessed she'd grow up like she did."
 
     # TODO: community ending stuff
     # Talk about miners, colonists, luddites, and jellies
@@ -242,20 +243,22 @@ label ending_aCi:
     him determined "Well, she's smart, so I'm sure she'll catch on quickly."
     her annoyed "I hope so."
     him normal "I'm just glad she found something useful to do."
-    her concerned "Yeah, I guess so."
+    her concerned "Yeah, maybe..."
     him surprised "What's wrong?"
     her determined "I'm not sure this is the right job for her."
     him determined "Well, if she's not going to help grow food, then helping people not die is a pretty good use of her talents."
     her concerned "She's not very good at it."
     him surprised "She's not?"
     her annoyed "No. She feels awkward touching people, and she's always second-guessing herself, and she has a hard time remembering what to do."
-    him determined "I'm sure she just needs more practice. It takes a long time to learn to be a good medical professional, as you know very well."
+    him flirting "I'm sure she just needs more practice. I've heard from a {b}very{/b} reliable source that it takes a lot of time to become a competent medical professional."
     her concerned "Yes... I suppose so."
 
+    "Before I left, I peeked in the other room to check on [kid_name]. She was studying her anatomy book with a ferocious energy, as though it were her opponent in deadly combat."
 
-    kid concerned "I'm never going to be good enough!"
+    him happy "That's my girl! You'll make something of yourself yet!"
+    kid concerned "Yeah yeah, thanks, dad."
 
-    "Ending 3/8, Never Good Enough."
+    "Ending 3/8, Proving Herself."
     return
 
 #4 aCI - Returns to Earth to study medicine, though you worry about her lack of friends/family
@@ -293,8 +296,12 @@ label ending_aCI:
 #5 Aci - stays on your farm helping you, though she doesn't work hard enough to be of much help.
 label ending_Aci:
     "Ending Aci"
-    "I kept expecting [kid_name] to get married and leave us, or go off to pursue her own dreams, but so far she seems content to keep things as they are."
-    "She helps around the farm sometimes, but I still feel like I have to tell her how to do things and keep a close eye on her."
+    scene fields with fade
+    "[kid_name said she didn't want to work on our farm, but..."
+    "That's what she ended up doing."
+    "She also made deliveries, but she always helps me with the harvest and other jobs around the farm that are a lot easier with a few people."
+    "She still needs a lot of direction, but she's willing to do what I ask."
+    "I was expecting [kid_name] to get married and leave us, or go off to pursue her own dreams, but so far she seems content to keep things as they are."
     "I remember when she was little, she wasn't afraid of anything, and she couldn't wait to do new things like go to school or go to the beach."
     "Now, when I ask her what she sees in her future, she just shrugs."
     "She's changed a lot...but in some ways, she's still a kid."
@@ -303,6 +310,7 @@ label ending_Aci:
     "I can't stop thinking these kinds of things."
     "I guess that's part of what it means to be a parent."
 
+    # TODO: add a scene here, not just narration?
     "Ending 5/8, Forever My Little Girl"
 
     return
@@ -310,11 +318,94 @@ label ending_Aci:
 #6 AcI - like #5, but sets out on her own, but you worry she will not know enough or be able to work hard enough
 label ending_AcI:
     "Ending AcI."
+    scene fields with fade
+    show him normal at midright
+    show kid normal at midleft
+    with dissolve
+    him determined "Whoa, your prices have gone up!"
+    kid determined "I want to put a motor on this thing so I can make deliveries faster. It's going to take some money, though."
+    him flirting "Well, you're still the best delivery girl on the entire planet, so I guess I have no choice!"
+    kid happy "Da-ad..."
+    him surprised "We going to see you at dinner tonight?"
+    kid normal "Not tonight, I'm meeting some friends at Travis' place."
+    him concerned "The bar?"
+    kid annoyed "It's mostly a restaurant! Besides, nothing else is open late."
+    him normal "Okay, well, come back tomorrow and I'll have another load for you."
+    kid happy "I will!"
+    hide kid with moveoutleft
+    "I could have just brought my crops to the storehouse myself, of course."
+    "But I wanted an excuse to see [kid_name]. Ever since she moved out I hardly ever see her."
+    show her with moveinright
+    him determined "You just missed her."
+    her concerned "Is she doing okay?"
+    him concerned "She's expanding her business, which is good... but she lives in a tiny shack and probably eats terrible restaurant food all the time, and..."
+    her happy "If that's the worst we have to worry about, then we're doing pretty good."
+    him concerned "I guess so. I just..."
+    her surprised "What?"
+    him determined "I want more for her. When she was little, I'd watch her sleeping and imagine all the amazing things she could do with her life, and now..."
+    her normal "There's nothing wrong with living an ordinary life. She's a good person. She has her own life but she still visits us and she supports herself. What more could you want?"
+    him surprised "Doesn't it feel like a waste to you?"
+    her determined "No! Is your life a waste because you spent it growing food instead of inventing vaccines or leading a revolution or discovering new planets?"
+    him annoyed "No, of course not."
+    her normal "Then hers isn't either. Besides, she's still young -- who knows what else she might do?"
+    him flirting "Too bad you can't say the same thing about us."
+    her flirting "Speak for yourself! I've still got a long life ahead of me."
+    him normal "It's never to late to keep living, right?"
+    her surprised "You don't regret the life we made here... do you?"
+    him concerned "Regret this life...? No. No, I don't. It's been full of work and learning things the hard way, but also full of love and fun times and my favorite people."
+    her happy "Good! I don't regret it, either. It took me a long time to get used to this planet and everything that's different, but now I love it. And I love you."
+    him happy "Love you too, [her_name]."
+    # TODO: write something a bit better here.
+
+    "Ending 6/8 Ordinary Extraterrestrial Life"
     return
 
 #7 ACi - studies sociology/biology online but lives with you
 label ending_ACi:
     "Ending ACi."
+    scene farm_interior with fade
+    show kid normal at midright
+    show her normal at center
+    show bro normal at midleft
+    with dissolve
+    show him normal at quarterleft with moveinleft
+    kid happy "Welcome home, dad!"
+    him determined "Hey."
+    her surprised "Rough day?"
+    him normal "Just tired. I'm glad it's your turn to make dinner, [kid_name]."
+    kid normal "Yeah, just don't expect fine cuisine, I'm not that good of a cook."
+    him happy "As long as it's not writhing or a blackened husk I will eat it!"
+    bro normal "Ugh, not the potato squash thing..."
+    kid annoyed "What's wrong with the potato squash thing??"
+    bro annoyed "It looks like something that came out of a sulfur vent."
+    her determined "[bro_name]!"
+    him happy "Ha ha, it does kind of look like that..."
+    kid concerned "Not you, too!"
+    him normal "...but it tastes really good, and I didn't have to make it, so thank you [kid_name]!"
+    kid annoyed "I think [bro_name] should have to take a turn cooking dinner, too. Isn't he old enough to do that?"
+    bro normal "I'm happy to cook mashed potatoes."
+    kid angry "Is that the only thing you eat?!"
+    her annoyed "Hey, kids, settle down. [kid_name] makes a good point, but Dad and I will talk about it and decide as parents if [bro_name] should start making meals."
+    him normal "For now, let's just appreciate [kid_name]'s meal without comparing it to anything inedible."
+
+    "The meal was actually pretty tasty, even though [bro_name] mostly just picked out the potatoes and mashed them on his plate."
+    him surprised "How are your studies coming, [kid_name]?"
+    kid happy "Great! Zaina said she would help me with astronomy, Thuc is teaching me Earth biology, and Sara's helping me with sociology. Every book is so Earth-centric, though."
+    her flirting "It's almost as if that was the only planet humans lived on for thousands of years."
+    kid normal "Well, it's not now, so they need to update their materials!"
+    bro "Are you still trying to talk to the jellysquids?"
+    kid concerned "Yeah, that's sort of my independent research project. Along with comparing everything I learn about Earth science to what I can actually observe here on Talaam."
+    him happy "Wow... my daughter is doing cutting edge alien research... this is so cool!"
+    bro "Is the astronomy very different?"
+    kid normal "Well, instead of looking for Jupiter and Saturn I look for Sol and the other planets in our system, but a lot of the constellations and galaxies are not too different."
+    him surprised "Really? The stars seem completely foreign from what I remember from Earth..."
+    kid "Well, the axis of rotation is a little different so the hemispheres don't exactly match up, but I can show you a really cool nebula."
+    him "I'd like that."
+    "We ended up watching the stars together. [kid_name] had borrowed a telescope that she setup, and [her_name] brought out some blankets."
+    "[bro_name] and [kid_name] argued about how solar flares affected Talaam's evolutionary past, and [her_name] snuggled up against my shoulder."
+    "I was so proud of these kids... I didn't know exactly what they would accomplish, but for right now I was just enjoying being together."
+
+    "Ending 7/8 The Stars are Right"
     return
 
 #8 ACI - becomes an expert in her field, starts to form her own happy family on Talaam
@@ -322,6 +413,7 @@ label ending_ACI:
     "Ending ACI."
     "[her_name] moved out. We all pitched in to build a dorm-style apartment building for the growing number of non-farmers that didn't need a lot of space."
     "She seemed to like it; it was closer to town, where she spent most of her time in the library and at the science lab studying biology and sociology."
+    # TODO: should your convo about marriage affect this?
     "And she was closer to her boyfriend, Oleg."
     "We invited them over for dinner about once a week, where she'd catch us up on all the latest developments."
     scene farm_interior with fade
@@ -346,7 +438,7 @@ label ending_ACI:
 
     him concerned "This sounds like great research..."
     kid annoyed "...but you wonder how I'm going to make a living, right?"
-    him flirt "We do prefer our daughter not to starve to death."
+    him flirting "We do prefer our daughter not to starve to death."
     kid normal "Well, that's what I wanted to tell you! A non-profit group on Earth, the Extraterrestrial Allies Foundation, has approved a grant to pay us for our work, obtain equipment, and send more researchers here to Talaam."
     if (miners > 10):
         oleg "RET made a large donation, too, I think on Brennan's advice."
@@ -364,8 +456,8 @@ label ending_ACI:
     "[kid_name] reached over and held Oleg's hand, and he squeezed it back as he extolled the virtues of his favorite physics engine."
     "I put my arm around [her_name] and pulled her close just as she was about to put a forkful of food in her mouth."
     "The food fell on her lap and she elbowed me gently."
-    her flirt "Oh, now look one you've done. You've ruined my fanciest clothes."
-    him flirt "Want me to help you clean that off?"
+    her flirting "Oh, now look one you've done. You've ruined my fanciest clothes."
+    him flirting "Want me to help you clean that off?"
     her happy "Mom, Dad, can you not? Some of us are trying to eat here."
     oleg "I don't know; it's kind of sweet to see old people that are still so in love."
     him surprised "Old people?!"

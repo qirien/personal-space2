@@ -6209,7 +6209,7 @@ label community30:
                                     $ checked_Tera = True
                                     $ account_checked_counter + 1
                                     jump account_check
-                                                                   
+
                     else:
                         brennan "I can't do that for you."
                         brennan "If someone finds out I was poking in their accounts, I'll never hear the end of it."
@@ -6272,8 +6272,8 @@ label community30:
                         else:
                             "Brennan took the tablet with him. I wasn't able to look at anyone's account."
                             jump back_to_noel
-                    "Explore other options.":
-                        jump doctors_privilege
+                "Explore other options.":
+                    jump doctors_privilege
 
         else:
             "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
@@ -6281,7 +6281,7 @@ label community30:
                 "Oleg said that he thought Brennan was the only one who could make deposits and withdrawls without the recipient's permission."
                 "But maybe [her_name] would also have this right?"
                 "I asked [her_name] if she could make deposits and withdrawls automatically."
-                nvl_clear
+                nvl clear
                 her_c "Yes, I can. I use it to pay people who work in the hospital."
                 her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawl feature."
                 her_c "Why do you ask?"
@@ -6306,7 +6306,7 @@ label community30:
                                     jump back_to_noel
                                 else:
                                     her_c "Did you want to check anyone else's account?"
-                            
+
                                 menu:
                                     "Julia's" if not checked_julia:
                                         if ban_firegrass:
@@ -6339,67 +6339,66 @@ label community30:
                                     "I'm done.":
                                         $ account_checked_counter + 4
                                         jump account_check_her
-                                        jump
-                                    
-                            else:
-                                her_c "That's clever. Also highly unethical..."
-                                him_c "It's for a good cause!"
-                                her_c "No, sorry. It's too risky."
-                                him_c "But if you don't help me, we might never figure out what happened to Joel."
-                                her_c "And if I do help you, I could lose the trust of my patients."
-                                him_c "I guess I'll have to find some other way to investigate how many credits my suspects have."
-                                "When [her_name] was asleep, I tried getting into her tablet, but she had changed the passcode."
-                                jump back_to_noel
+
+                        else:
+                            her_c "That's clever. Also highly unethical..."
+                            him_c "It's for a good cause!"
+                            her_c "No, sorry. It's too risky."
+                            him_c "But if you don't help me, we might never figure out what happened to Joel."
+                            her_c "And if I do help you, I could lose the trust of my patients."
+                            him_c "I guess I'll have to find some other way to investigate how many credits my suspects have."
+                            "When [her_name] was asleep, I tried getting into her tablet, but she had changed the passcode."
+                            jump back_to_noel
                     "Keep it a secret.":
                         "After [her_name] went to bed, I got out her tablet and typed in the passcode."
                         "I found the accounts program she used for work and opened it up."
                         "Whose account did I want to check?"
-                         label account_check_sneak2:
-                                if account_checked_counter2 > 3:
-                                    "I thought I heard [her_name] stirring and I quickly put her tablet away."
-                                    jump back_to_noel
-                                menu: #allow players to ask about 3 people
-                                    "Noel's" if not checked_noel:
-                                        "Noel has around 100 credits."
-                                        $ checked_noel = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak2
-                                    "Joel's" if not checked_joel:
-                                        if ban_firegrass:
-                                            "Joel has over 10,000 credits."
-                                        else:
-                                            "Joel has over 5,000 credits."
-                                        $ checked_joel = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak2
-                                    "Julia's" if not checked_julia:
-                                        if ban_firegrass:
-                                            "Julia has around 7,000 credits."
-                                        else:
-                                            "Julia has around 4,000 credits."
-                                        $ checked_julia = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak2
-                                    "Van's" if not checked_van:
-                                        "Van has around 200 credits."
-                                        $ checked_van = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak2
-                                    "Sara's" if not checked_sara:
-                                        "Sara has around 2,000 credits."
-                                        $ checked_sara = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak2
-                                    "Oleg's" if not checked_oleg:
-                                        "Oleg has around 1,000 credits." #decide Oleg's level of involvement
-                                        $checked_oleg = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak
-                                    "[kid_name]'s" if not checked_tera:
-                                        "[kid_name] has about 500 credits."
-                                        $ checked_Tera = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_sneak2
+                        label account_check_sneak2:
+                            if account_checked_counter2 > 3:
+                                "I thought I heard [her_name] stirring and I quickly put her tablet away."
+                                jump back_to_noel
+                            menu: #allow players to ask about 3 people
+                                "Noel's" if not checked_noel:
+                                    "Noel has around 100 credits."
+                                    $ checked_noel = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak2
+                                "Joel's" if not checked_joel:
+                                    if ban_firegrass:
+                                        "Joel has over 10,000 credits."
+                                    else:
+                                        "Joel has over 5,000 credits."
+                                    $ checked_joel = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak2
+                                "Julia's" if not checked_julia:
+                                    if ban_firegrass:
+                                        "Julia has around 7,000 credits."
+                                    else:
+                                        "Julia has around 4,000 credits."
+                                    $ checked_julia = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak2
+                                "Van's" if not checked_van:
+                                    "Van has around 200 credits."
+                                    $ checked_van = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak2
+                                "Sara's" if not checked_sara:
+                                    "Sara has around 2,000 credits."
+                                    $ checked_sara = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak2
+                                "Oleg's" if not checked_oleg:
+                                    "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                    $checked_oleg = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak
+                                "[kid_name]'s" if not checked_tera:
+                                    "[kid_name] has about 500 credits."
+                                    $ checked_Tera = True
+                                    $ account_checked_counter + 1
+                                    jump account_check_sneak2
 
         label back_to_noel:
             "I wanted to go back to Noel's place."
@@ -6478,7 +6477,7 @@ label community30:
         label noel_no_confession:
             "I tried messaging Noel a few more times, but didn't get any answers."
             jump who_suspect
-            
+
         label who_suspect:
             "I'm done with most of my investigation."
             "What do I think of the situation?"
@@ -6494,17 +6493,22 @@ label community30:
                     "I suspect foul play. Someone deliberately set this up to kill Joel."
                     "Why did they want to kill him?"
                     menu:
-                        "To get his position on the shuttle."
-                        "To scare Noel."
-                        "??"
-                    
-                    "Who do I think was involved?":
-                        menu:
-                            "Sara and Oleg."
-                            "Julia and Van."
-                            "Noel."
-            
-        
+                        "To get his position on the shuttle.":
+                            "Clearly, someone wanted his position on the shuttle."
+                        "To scare Noel.":
+                            "Somebody wanted to scare Noel into doing what they wanted."
+                        "??":
+                            "I had no idea why they would kill Joel."
+
+            "Who do I think was involved?"
+            menu:
+                "Sara and Oleg.":
+                    "Sara and Oleg seemed the most suspicious."
+                "Julia and Van.":
+                    "Julia and Van had business connections to Noel."
+                "Noel.":
+                    "I don't know if she considered it euthanasia or if she had another motive, but Noel seemed the most likely suspect."
+
 
 # Noel was buying lots of firegrass from Pete at a low cost and selling it to Julia, with Van transporting it at first unknowingly through informal "deliveries" and then knowingly when he got curious enough. Noel was and is making a good amount of money off of this, buying out Pete the first chance she could.
 # Oleg started growing firegrass around three years ago (community 24), and his business started booming around two years ago (Community 26).

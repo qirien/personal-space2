@@ -279,6 +279,7 @@ label message29:
     nvl clear
     # People miss Mayor Grayson - his spice garden is dying but ?? volunteers to take over it as a memorial
     # Someone also mentions how maybe it was a good thing he didn't drag out a demented life for years, people voice opinions
+    # Travis opens a restaurant/bar?
     return
 
 # Community: MURDER MYSTERY
@@ -331,8 +332,11 @@ define zaina_c = Character ("Zaina",
 define kevin_c = Character ("Kevin",
     #who_suffix = "  {image=images/icons/miranda-icon.png} ",
     color="f3ca14", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
-define kid_c = DynamicCharacter ("kid_name",
-    #who_suffix = "  {image=images/icons/kid-icon.png} ",
-    color="#e361ef", image="kid", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
+define oleg_c = Character("Oleg",
+#who_suffix = "  {image=images/icons/oleg-icon.png} ",
+    color="d2d099", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #khaki
+define van_c = Character("Van",
+#who_suffix = "  {image=images/icons/van-icon.png} ",
+        color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")

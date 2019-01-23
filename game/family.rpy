@@ -544,7 +544,7 @@ label family2:
     "I made her up a plate of beans while we talked."
     "From the way she devoured them, I guess she hadn't eaten all day."
     him concerned "How'd Pete take it?"
-    her flirt "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
+    her flirting "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
     him surprised "What about Travis? That kid is the cutest hurricane of destruction I've ever seen."
     her normal "I know. It's hard to believe he's just a year older than [kid_name]..."
 
@@ -601,14 +601,14 @@ label family2:
             her normal "[kid_name] and three other toddlers. Including Travis."
             him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
             her happy "I'm glad you agree."
-            him flirt "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
-            her flirt "I hope so."
+            him flirting "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
+            her flirting "I hope so."
         "I've never watched four toddlers before.":
             $ marriage_strength += 1
             him surprised "Four toddlers at once?! I can barely handle one!"
             her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
             him determined "I guess we'll find out. Hopefully they're not all like Travis."
-            her flirt "Well, I'm sure you'll do just fine, Mr. Superdad."
+            her flirting "Well, I'm sure you'll do just fine, Mr. Superdad."
             him happy "Superdad? Have I earned that title?"
             her happy "I'm pretty sure you have."
             if (family2_work_done >= 5):
@@ -646,7 +646,7 @@ label family3:
     show her happy with dissolve
     show kid shifty at left, baby_pos with move
     extend " Hey, you know what we've never done?"
-    him flirt "I can think of a lot of things."
+    him flirting "I can think of a lot of things."
     her annoyed "As a family?"
     him surprised "Oh. No, what?"
     her happy "Gone on vacation!"
@@ -668,7 +668,7 @@ label family3:
     show kid shifty at right, baby_pos with move
     her concerned "We don't have to go far... just over the south ridge or something. Just take a break from everything for a few days."
     him normal "I know the perfect spot! Let's go tonight!"
-    her flirt "I think we'll need a little time to get a few things together. How about tomorrow?"
+    her flirting "I think we'll need a little time to get a few things together. How about tomorrow?"
     show kid annoyed at midright, baby_pos with move
     him happy "Okay, tomorrow! Right after you're done at the clinic!"
     him surprised "Oh...can you really leave? What if something happens while you're gone?"
@@ -695,13 +695,13 @@ label family3:
     with moveinleft
 
     "Finally, we arrived."
-    him flirt "Remember this spot?"
-    her flirt "It seems kind of familiar... though I mostly remember the food."
+    him flirting "Remember this spot?"
+    her flirting "It seems kind of familiar... though I mostly remember the food."
     show kid shifty at quarterright, baby_pos with move
     him surprised "The food?"
     her happy "Yeah, you made such a delicious picnic dinner!"
     show kid annoyed at right, baby_pos with move
-    show her flirt at center with dissolve
+    show her flirting at center with dissolve
     extend " And then we stayed out here all night long..."
     hide kid with moveoutright
     him happy "Oh, so you do remember!"
@@ -748,7 +748,7 @@ label family3:
     "We gave each other exasperated looks and then laughed."
     show kid happy with dissolve
     him happy "Clearly, this girl needs something to gnaw on."
-    her flirt "Got anything our little hamster can cut her teeth on?"
+    her flirting "Got anything our little hamster can cut her teeth on?"
     him concerned "Maybe..."
 
     menu:
@@ -835,11 +835,11 @@ label family3:
     show kid normal at center, baby_pos
     show night_overlay
     "When it started to get dark, we were both exhausted."
-    him flirt "I was going to suggest some romantic star gazing, but..."
+    him flirting "I was going to suggest some romantic star gazing, but..."
     her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
     him normal "Yeah, I'm exhausted. But wasn't this great?"
     her normal "It was a nice change of scenery. And that sunset was gorgeous."
-    him flirt "Just like you."
+    him flirting "Just like you."
     her happy "Good night, [his_nickname]."
     him normal "Good night, [her_nickname]."
     return
@@ -1103,11 +1103,11 @@ label family5:
     show her normal at midleft
     with dissolve
     her annoyed "That is the third mess of pee I've cleaned up today!"
-    him flirt "Ahh, you're ahead of me, I've only cleaned up two."
+    him flirting "Ahh, you're ahead of me, I've only cleaned up two."
     her concerned "At least now she's finally asleep...I thought she was getting this!"
     him concerned "I thought so too..."
     her sad "I can't keep doing this much laundry. Something has to change."
-    him flirt "We could keep her in the barn with Lettie!"
+    him flirting "We could keep her in the barn with Lettie!"
     her sad "I'm seriously considering it..."
 
     menu:
@@ -1230,11 +1230,11 @@ label family5:
             him happy "Exactly! Let's make sure we have a positive attitude and don't get mad at her for making mistakes while she's learning."
             her concerned "Though that's hard to do when it seems like she's making mistakes on purpose..."
             him concerned "Yeah, she's been kind of ornery lately. Asserting her independence, I think they call it."
-            her flirt "She's getting more like us every day."
+            her flirting "She's getting more like us every day."
             him surprised "Speak for yourself! I, personally, am the picture of humble cooperation!"
             her surprised "Really? So you'll scrub that mud off the floor like I asked you do to last week?"
-            him flirt "Of course! I may be cooperative, but I never claimed to have a great memory."
-            her flirt "Oh, I see."
+            him flirting "Of course! I may be cooperative, but I never claimed to have a great memory."
+            her flirting "Oh, I see."
             $ family5_prepared = True
             jump family5_strategy
         "We should train her differently." if ((family5_research) and (family5_method == "")):
@@ -1306,7 +1306,7 @@ label family5:
                 "I gave her more juice. She had to pee several times that morning, and it seemed to me that she improved at recognizing her body's signals."
             if (family5_reward == "big"):
                 him surprised "If you keep your underwear dry all day, Mommy will get you some new underwear that you can decorate!"
-                her flirt "And you can go riding with Daddy on the horse."
+                her flirting "And you can go riding with Daddy on the horse."
                 kid happy "I ride on horsie!"
                 him normal "Okay, what will you need to do?"
                 kid normal "Have dry underwear."
@@ -1386,7 +1386,7 @@ label family5:
     "There were plenty more accidents, but over the next few months, [kid_name] slowly caught on."
     call bedroom_scene(False, False)
     her concerned "I think I can finally say [kid_name] is potty trained."
-    him flirt "Don't say it out loud! You might jinx it!"
+    him flirting "Don't say it out loud! You might jinx it!"
     her sad "In some ways, that was the hardest part of parenting yet."
     him surprised "Harder than all those sleepless nights when she was a baby?"
     her concerned "I don't know. Maybe it's just whatever thing you're doing at the moment that seems the hardest."
@@ -1396,8 +1396,8 @@ label family5:
     her concerned "No..."
     him concerned "..."
     her normal "Hey, thanks for doing this parenting thing with me."
-    him flirt "There's no one else I'd rather potty-train a two-year-old with!"
-    her flirt "There better not be!"
+    him flirting "There's no one else I'd rather potty-train a two-year-old with!"
+    her flirting "There better not be!"
     him normal "Just you. Always you."
     her sleeping "Mmmm...I love you, [his_name]."
     him sleeping "I love you..."
@@ -1464,7 +1464,7 @@ label family6:
     kid surprised "Why?"
     her surprised "That's a good question! Why is that, [his_name]? Why are people so foolish and don't know their own limits?"
     him annoyed "I don't know what you're talking about."
-    her flirt "Oh, so you don't need this painkiller prescription, then?"
+    her flirting "Oh, so you don't need this painkiller prescription, then?"
     him determined "I didn't say that!"
     kid normal "Why you taking medicine, daddy?"
     him normal "Because I had to lift heavy things all week and my back's killing me."
@@ -1498,17 +1498,17 @@ label family6:
             "I turned the volume down low and [her_name] and I lay dozing on the couch together."
             "We even had time to play a round of the video game we liked to play together."
             her happy "It's been too long since we did something like this together!"
-            him flirt "Yeah, we've gotten pretty bad at this game."
-            her flirt "Good thing we've gotten better at some other things."
+            him flirting "Yeah, we've gotten pretty bad at this game."
+            her flirting "Good thing we've gotten better at some other things."
             him surprised "We have?"
             her normal "Yeah, like... cooking. I love your cooking."
             him normal "I've always been good at cooking."
-            her flirt "That's what I thought, but however good you were before, you're even better now."
+            her flirting "That's what I thought, but however good you were before, you're even better now."
             him concerned "I should cook more often."
             her concerned "Yes, you should. Maybe tonight?"
             him surprised "I thought you were making...wait, are we talking about actual cooking, or, you know, 'cooking'?"
-            her flirt "Both!"
-            him flirt "Then let's cook together tonight, [her_nickname]!"
+            her flirting "Both!"
+            him flirting "Then let's cook together tonight, [her_nickname]!"
 
             $ marriage_strength += 1
             $ permissive += 1
@@ -1556,7 +1556,7 @@ label family6:
                     hide kid with moveoutleft
                     him concerned "You know she's going to make a big mess over there, right?"
                     her normal "I am not even thinking about that right now. I'm thinking about how lovely it is to be snuggled up to you right here, right now."
-                    him flirt "Mmmm, this is pretty nice..."
+                    him flirting "Mmmm, this is pretty nice..."
                     her determined "And it's just water, so don't worry."
                     him concerned "She's getting out the soap..."
                     her surprised "Then it's just soap and water... right?"
@@ -1724,7 +1724,7 @@ label family7:
     "We didn't have a traditional birthday cake, but [her_name] had made some sweetbread and spread some precious melted chocolate on the top."
     "[kid_name] blew out the candle and we settled down to eat our treat."
     kid concerned "Blech, what's this brown stuff on top?"
-    her flirt "It's called chocolate, and if you don't want it, daddy and I will fight over it."
+    her flirting "It's called chocolate, and if you don't want it, daddy and I will fight over it."
     kid annoyed "It's kind of gross."
     "She wiped it off her sweetbread and onto her plate. [her_name] and I both looked at the chocolate, then at each other."
     show kid shifty with dissolve
@@ -1759,7 +1759,7 @@ label family7:
     kid concerned "Who's this?"
     her normal "A baby."
     kid surprised "But we don't have a baby."
-    her flirt "We might someday."
+    her flirting "We might someday."
     him happy "He goes in the cradle, like this."
     "We played dollhouse together for awhile, until it started to get late."
     him normal "Now it's time to put everything away, okay?"
@@ -2053,7 +2053,7 @@ label family7:
                     show kid normal at center
                     kid happy "That was fun, daddy! [kid_name] Crane should come every night!"
                     "Uh-oh... what had I started?!"
-                    her flirt "And now it's time for bed!"
+                    her flirting "And now it's time for bed!"
                     hide her with moveoutleft
                     $ authoritative += 1
                     call family7_bedtime
@@ -2097,7 +2097,7 @@ label family7:
             him surprised "Do you think we should be doing something differently? As parents, I mean?"
             her concerned "Maybe...I don't have any experience here, so it's hard to know if we're doing the right thing."
             him concerned "Yeah...  I wish I could talk to my parents about it."
-            her flirt "I have the feeling that 140 characters isn't going to be enough space for much useful parenting advice."
+            her flirting "I have the feeling that 140 characters isn't going to be enough space for much useful parenting advice."
             him "Well, there's some good parents here, right?"
             her determined "Yeah... maybe? I've never really thought about the other adults as parents, mostly just as people."
             him "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
@@ -2496,8 +2496,8 @@ label family8:
                 extend "I can't believe we're doing this again..."
                 him normal "We're pros, now! It'll be so much easier!"
                 her annoyed "What part of this is easy?!"
-                him flirt "Well, conceiving the baby was pretty easy..."
-                her flirt "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
+                him flirting "Well, conceiving the baby was pretty easy..."
+                her flirting "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
                 him surprised "How would that even work? Like, the baby would start large and shrink as they got older?"
                 her normal "Yeah, that doesn't make much sense, I guess."
                 him happy "I love you even when you don't make sense."
@@ -2505,7 +2505,7 @@ label family8:
                 him concerned "Hey, are you crying?"
                 her normal "Just a little. Stupid pregnancy hormones."
                 him happy "Here, you can wipe your tears on my shirt."
-                her flirt "Now that's true love."
+                her flirting "Now that's true love."
             "How do you feel about it?":
                 $ marriage_strength += 1
                 him surprised "How do you feel about it?"
@@ -2570,7 +2570,7 @@ label baby_delivery:
     him determined "We talked about lots of names..."
     her determined "You let me choose [kid_name]'s name. Now you pick this baby's name."
     him surprised "Really? You trust me to name him?"
-    her flirt "As long as it's one of the names we both agreed on."
+    her flirting "As long as it's one of the names we both agreed on."
     him happy "Okay! Let's see... you look like a..."
     $bro_name = renpy.input("Baby's Name", default=bro_name)
 
@@ -3283,7 +3283,7 @@ label family12:
             him annoyed "No way. I'm not doing that."
             her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
             him "..."
-            her flirt "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
+            her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
             him surprised "That's low."
             her determined "That's life."
 
@@ -3357,7 +3357,7 @@ label family12:
     her laughing "Ha ha ha! You should see the look on your face!"
     him concerned "You're not going to shave your head, right?!"
     her determined "I don't think it'll come to that. You'll have to help me comb my hair, though. I can do some of it myself but I need your help to be thorough."
-    him flirt "I can be thorough."
+    him flirting "I can be thorough."
     her determined "Good, because all of us will need to be 100\% thorough if we want to rid our planet of these lice."
     him concerned "Maybe I should just shave my hair. I don't want to make more work for you."
     her surprised "Well, it's up to you. At least your hair would grow back pretty fast."
@@ -3603,7 +3603,7 @@ label family13:
     kid "Is that a hand?"
     her happy "Yes! There's the baby - you can see the little mouth, and the hand."
     him "Wow, that really makes it seem real."
-    her flirt "That's because it is real."
+    her flirting "That's because it is real."
     bro "That's in your tummy?"
     kid "It's not her tummy, it's her uterus. Only girls have them."
     "[bro_name] looked disappointed."
@@ -5724,13 +5724,13 @@ label family22:
                     him concerned "I guess that's true..."
                 "How do you stay so calm?":
                     him concerned "How do you stay so calm?"
-                    her flirt "I've had lots of practice dealing with troublesome rascals."
+                    her flirting "I've had lots of practice dealing with troublesome rascals."
                     him annoyed "I hope you're not talking about Brennan."
                     her annoyed "No, silly! I'm talking about you... and a lot of my patients, to be honest."
                     him happy "Ooh, sounds like a good story!"
                     her normal "Nope, you know I don't talk about my patients."
-                    him flirt "What about your patience?"
-                    her flirt "I think we've talked about that enough."
+                    him flirting "What about your patience?"
+                    her flirting "I think we've talked about that enough."
                     $ marriage_strength += 1
                 "I love you.":
                     him determined "I love you, [her_name]."
@@ -5801,8 +5801,8 @@ label family22:
         kid "No. They don't buy her anything. I don't think they buy much for themselves, either, except firegrass."
         her concerned "Maybe they're saving up for something for when they go back to Earth."
         him determined "I still think it's weird that some people don't want to stay here."
-        her flirt "Not everyone is in love with alien farms like you."
-        him flirt "I don't know what you're talking about! I'm only in love with you."
+        her flirting "Not everyone is in love with alien farms like you."
+        him flirting "I don't know what you're talking about! I'm only in love with you."
         kid "Anyway, I'm done with my homework. It was pretty easy."
         bro "I'm done, too."
         him happy "We should do something together!"
@@ -6097,7 +6097,7 @@ label family23:
         her surprised "Is that the video I think it is?"
         him happy "Yeah! I wanted to show [kid_name]."
         her happy "Ohh, I remember when it first came out, it was like it was made for us."
-        him flirt "Like you were made for me."
+        him flirting "Like you were made for me."
     return
 
 # 14.8 Earth years old
@@ -6460,7 +6460,7 @@ label family25:
     kid determined "Of course I did."
     him normal "Really? I didn't know they were on fire!"
     kid surprised "Huh?"
-    him flirt "Get it?"
+    him flirting "Get it?"
     kid normal "Ohhh, dad!"
     him normal "I'll go get that squash."
 
@@ -6958,7 +6958,7 @@ label family27:
             him determined "This should be her decision. We should make sure she knows what she's choosing between, and encourage her education, but it's her life."
             her concerned "She's still a kid, though..."
             him annoyed "Not for long. If she doesn't make big decisions now, how is she going to learn how to make them when she's not a kid?"
-            her flirt "Our little baby is growing up..."
+            her flirting "Our little baby is growing up..."
 
         "We should only let her work if she keeps her grades up.":
             him concerned "Her studies are important, but so is her work. So I think she should only be able to keep working if she can also make sure to do all her schoolwork."
@@ -7002,7 +7002,8 @@ label family28:
             her "You want me to follow her? How, fly?"
             him "You're still a decent runner, aren't you?"
             her "You just want to see me get hot and sweaty."
-            him "Wish I could!"
+            him "Wish I could! But it'll be more efficient if we split up."
+            her "Sure, as long as this doesn't turn into a horror movie."
             "She left, and I turned to my computer pad. There were several ways I could go about this..."
             nvl clear
             menu:
@@ -7178,7 +7179,7 @@ label family28:
 
     kid "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
     her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."
-
+    kid "Ugh, you sound like that game we had to play in health class."
     her annoyed "And as your mom, I'd tell you that you're smarter than that."
     menu:
         "What should I say?"
@@ -7834,11 +7835,11 @@ label family30:
             her concerned "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
             kid nervous "Armor on a scarecrow?"
             him surprised "That sounds a little extreme."
-            her flirt "Its suit is impeccable."
+            her flirting "Its suit is impeccable."
             him concerned "..."
             bro happy "Get it? ImPECKable?!"
             kid annoyed "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
-            him flirt "Looks like someone... can't take the PUNishment!"
+            him flirting "Looks like someone... can't take the PUNishment!"
 
         "Leave":
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."

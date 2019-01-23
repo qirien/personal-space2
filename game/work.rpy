@@ -265,7 +265,7 @@ label work2:
     with dissolve
     her surprised "Are you going somewhere?"
     him determined "Yeah, I said I'd help Kevin and Zaina with their garden."
-    her flirt "It wasn't as easy as the video games made it seem, huh?"
+    her flirting "It wasn't as easy as the video games made it seem, huh?"
     him happy "Yeah, turns out there's actually a lot of things that you can't learn just from simulations!"
     her normal "All right, good luck."
     show path with fade
@@ -903,8 +903,8 @@ label work22:
     him surprised "Whoa! What are you guys all doing here in the dark??"
     her happy "Waiting for you, silly! You were supposed to be here fifteen minutes ago!"
     him normal "Sorry, I didn't know this was a time-limited event. Is it really my birthday?"
-    her flirt "It is on Earth. You'd be--"
-    him flirt "--old enough that my age is boring. I can't believe you got all the awesome people in one place at the same time for my birthday."
+    her flirting "It is on Earth. You'd be--"
+    him flirting "--old enough that my age is boring. I can't believe you got all the awesome people in one place at the same time for my birthday."
     her concerned "Well, Brennan and Julia couldn't make it."
     him happy "Like I said, all the awesome people are here!"
     kid normal "You looked so surprised."
@@ -925,7 +925,7 @@ label work22:
     him happy "Yeah, well, at least I have the satisfaction of knowing I'll never be as old as you."
     pete normal "If it makes you feel better, you don't look a day over 39."
     him normal "Uhhh... thanks?"
-    her flirt "I think you look as handsome as ever."
+    her flirting "I think you look as handsome as ever."
     ilian normal "Hmmm, I wonder what [his_name]'s midlife crisis will be?"
     sara sad "That's kind of depressing talk for a birthday, isn't it?"
     menu:
@@ -961,12 +961,12 @@ label work22:
             him surprised "Wait, there's hot alien chicks here? Where?"
             if has_strong_marriage():
                 thuc "No way. Their marriage is rock solid."
-                him flirt "I already have all the hot alien chicks I need."
+                him flirting "I already have all the hot alien chicks I need."
                 her surprised "You do?"
                 him happy "Oh yeah. You're on a planet that's not Earth, so you're an alien. And all I need is you."
                 "I kissed her, right in front of everybody."
                 sara "Awwwww! Sweet cheese!"
-                her flirt "It's not cheesy if it's true, right?"
+                her flirting "It's not cheesy if it's true, right?"
                 pete "Nope. It's still cheesy."
             else:
                 her concerned "I guess I'm lucky we haven't encountered aliens yet."
@@ -997,8 +997,8 @@ label work22:
         show thuc at midright with moveinleft
         her happy "Especially Thuc!"
         thuc "If I don't embarrass you for turning 40, who else will?"
-        her flirt "I don't know; he's pretty good at embarrassing himself."
-        him flirt "Hey, shouldn't you be a little nicer to me on my birthday?"
+        her flirting "I don't know; he's pretty good at embarrassing himself."
+        him flirting "Hey, shouldn't you be a little nicer to me on my birthday?"
         thuc "Which reminds me... I brought you a little something."
         him surprised "You did?"
         if crop_enabled("onions"):

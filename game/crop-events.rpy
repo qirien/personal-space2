@@ -202,7 +202,7 @@ label potatoes2:
             show her at midleft with moveinleft
             her surprised "Mmmm, that smells so good! Like clam chowder!"
             him concerned "If only I had some bacon..."
-            her flirt "How about some smoked crabird?"
+            her flirting "How about some smoked crabird?"
             him normal "That's a start!"
 
         "Make potato chips":
@@ -247,7 +247,7 @@ label potatoes2:
             her surprised "Potato chips?! Mmmm, they're so good. But weren't they expensive?"
             him normal "We can't eat all of these; I need to bag and sell some to make back the money I spent on oil."
             "She looked at the huge vat of oil, and then at my pile of potatoes."
-            her flirt "You're going to be in the kitchen for a long time."
+            her flirting "You're going to be in the kitchen for a long time."
             him "I could use some help..."
             her "I'll take care of everything else around the house; you just keep cooking potato chips!"
             "In the end we managed to make a little extra with the chips, though it was so much work I wasn't sure I'd do it all the time."
@@ -267,7 +267,7 @@ label potatoes2:
             show him normal at midright with move
             her surprised "Is that... dinner?"
             him normal "Yes, it's potato... uh, Cold Potato Mixup!"
-            her flirt "You just made that up, didn't you?"
+            her flirting "You just made that up, didn't you?"
             him happy "Yeah! Want to try it with me?"
             her concerned "I am hungry..."
             him concerned "..."
@@ -276,7 +276,7 @@ label potatoes2:
             her concerned "It's... a different way to eat potatoes."
             him determined "It's not bad."
             her normal "No, it's kind of good... I think it needs some more salt, though."
-            him flirt "More salt, coming right up!"
+            him flirting "More salt, coming right up!"
             her happy "It looks like a lot of work..."
             him concerned "Yeah, I kind of spent all afternoon on it."
             her concerned "It kind of reminds me of potato salad..."
