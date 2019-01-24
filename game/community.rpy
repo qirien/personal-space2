@@ -25,24 +25,18 @@ label community1:
     $ tell_Ngyuens = False
     $ tell_Perons = False
     scene community_center with fade
-    show thuc at midright
+    show thuc normal at midright
     show him normal at center
     show ilian happy at midleft
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, I got in line with my friend Thuc to have some soup."
     thuc "It's pretty exciting to have some new faces around!"
-    show him surprised
-    him "How's it going? Julia couldn't make it?"
-    show thuc sad
-    thuc "No, she was too worn out."
-    show thuc normal
-    thuc "Is [her_name] still at work?"
-    show him concerned
-    him "Yeah, she wants to give the new colonists their first physical as soon as possible."
-    show ilian
-    ilian "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
-    show him happy
-    him "At least there's free soup."
+    him surprised "How's it going? Julia couldn't make it?"
+    thuc sad "No, she was too worn out."
+    thuc normal "Is [her_name] still at work?"
+    him concerned "Yeah, she wants to give the new colonists their first physical as soon as possible."
+    ilian normal "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
+    him happy "At least there's free soup."
     ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "You get your soup and sit with some of the new colonists."
     scene community_center with fade
@@ -51,15 +45,12 @@ label community1:
     show kevin at midright
     him "Hi, I'm [his_name]."
     zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
-    show him determined
-    him "Nice to meet you, Zaina and Kevin. Where will you be living?"
+    him determined "Nice to meet you, Zaina and Kevin. Where will you be living?"
     zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working."
     kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
-    show him surprised
-    him "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
+    him surprised "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
     kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
-    show him concerned
-    him "I understand that from RET's point of view... but we farmers aren't really getting rich out here!"
+    him concerned "I understand that from RET's point of view... but we farmers aren't really getting rich out here!"
     him "I hope you weren't planning on a life of luxury."
     kevin "No, I was not. I was planning on a life of adventure and discovery."
     show him normal
@@ -67,27 +58,21 @@ label community1:
     menu:
         "I'm going to focus on fulfilling my job to RET.":
             $ miners += 1
-            show him determined
-            him "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
-            show him happy
-            him "Plus, growing food is essential for our survival!"
+            him determined "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
+            him happy "Plus, growing food is essential for our survival!"
             kevin "That sounds like a good plan."
         "I came out here for adventure and discovery too.":
-            show him determined
-            him "I love the feeling I get when I look up at the sky and I can see thousands of stars."
+            him determined "I love the feeling I get when I look up at the sky and I can see thousands of stars."
             him "When I see plants and animals I've never seen before, I feel the thrill of discovery."
-            show him normal
-            him "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
+            him normal "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
             him "Nothing on Earth compares."
             kevin "I agree. There's so much to document and try, it's overwhelming."
             $ luddites += 1
         "At the end of the day, working together is what keeps me going.":
-            show him determined
-            him "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
+            him determined "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
             him "At the same time, it's my relationship with my neighbors that I really cherish."
             him "If we were working together on Earth, I'd be lucky to count one or two of my coworkers among my close friends."
-            show him normal
-            him "Here, there's no choice. We have to be close to one another to survive."
+            him normal "Here, there's no choice. We have to be close to one another to survive."
             him "True, we're always in each other's business. But we're always helping one another too."
             kevin "It's kind of like you're a big family then?"
             show him determined
@@ -5622,7 +5607,11 @@ label community30:
     $ checked_van = False
     $ checked_sara = False
     $ checked_oleg = False
-    $ checked_tera = False
+    $ checked_terra = False
+    $ searched_bed = False
+    $ searched_cupboard = False
+    $ searched_sofa = False
+    $ visited_joel_house = False
     $ knows_previous_head_injuries = False
     if kevin_elected:
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
@@ -5736,7 +5725,6 @@ label community30:
         jump investigation_start
 
     label investigation_start:
-        $ searched_bed = False
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
         #TODO: a CG here would be great, but not required."
@@ -5749,7 +5737,7 @@ label community30:
         menu:
             "Visit where Joel died.":
                 label joel_house:
-                    $ visted_Joel_house = True
+                    $ visited_joel_house = True
                     "I made the long walk to the miner's camp. It was rainy, and the path up the mountain was slick."
                     "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
                     "As I walked I thought about Joel. How long had he been disabled? It would be difficult to live in a wheelchair in the mountains."
@@ -5800,18 +5788,18 @@ label community30:
                         "Around the bed." if not searched_bed:
                             "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were boxes of food and a bunch of dust bunnies."
                             $ searched_bed = True
-                            if searched_bed and searched_cupbaord and searched_sofa:
+                            if searched_bed and searched_cupboard and searched_sofa:
                                 jump say_goodbye_30
                             else:
-                                jump where_next
+                                jump where_next_30
                         "In the storage cupboard." if not searched_cupboard:
                             "One shelf had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old pipe."
                             "The pipe looked like it hadn't been used for years."
                             $ searched_cupboard = True
-                            if searched_bed and searched_cupbaord and searched_sofa:
+                            if searched_bed and searched_cupboard and searched_sofa:
                                 jump say_goodbye_30
                             else:
-                                jump where_next
+                                jump where_next_30
                         "On the kids' sofa bed." if not searched_sofa:
                             "There were all kinds of things lodged into the crevices of the sofa bed, which looked like it hadn't been packed away for a long time."
                             "I found a clay ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
@@ -5821,7 +5809,7 @@ label community30:
                             if searched_bed and searched_cupbaord and searched_sofa:
                                 jump say_goodbye_30
                             else:
-                                jump where_next
+                                jump where_next_30
                 "I said goodbye to Thuc and Van and headed back into town."
                 if examined_body:
                     jump olegs_house
@@ -5875,7 +5863,7 @@ label community30:
                     her "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
                     him "I'll stop by his place before meeting you at home."
                     her "Just let me know if I can help! I love this kind of stuff."
-                    if visited_Joel_house:
+                    if visited_joel_house:
                         jump olegs_house
                     else:
                         "I still wanted to examined the scene of the crime."
@@ -6068,7 +6056,7 @@ label community30:
         else:
             him "I'll update you at the end of the investigation."
 
-        if luddites > 10: #check values
+        if (luddites > 10): #check values
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
             pete "{i}What can I help you with?{/i}"
             him "Hey, I'm in kind of a complicated situation."
@@ -6079,7 +6067,7 @@ label community30:
             pete "{i}I'd sure like to see them so I could figure out where all my credits went.{/i}"
             pete "{i}Normally none of us can access it, but there is a way you can tell how much money is in an account.{/i}"
             pete "{i}Most vendor accounts require the user's permission to withdraw funds.{/i}"
-            pete "{i}But Brennan can withdraw funds without the user's permission, at least for the miners.{/i}" #if you want to make this into a puzzle later, you can limit the number of withdrawls. Another possible explanation is making a hold on the money but not charging it.
+            pete "{i}But Brennan can withdraw funds without the user's permission, at least for the miners.{/i}" #if you want to make this into a puzzle later, you can limit the number of withdrawals. Another possible explanation is making a hold on the money but not charging it.
             pete "{i}Gives him some authority I guess.{/i}"
             pete "{i}If you were Brennan, you could withdraw credits until you can't withdraw no more.{/i}"
             pete "{i}That'll tell you how much is in the account.{/i}"
@@ -6204,9 +6192,9 @@ label community30:
                                     $ checked_oleg = True
                                     $ account_checked_counter + 1
                                     jump account_check
-                                "[kid_name]'s" if not checked_tera:
+                                "[kid_name]'s" if not checked_terra:
                                     brennan "[kid_name] has about 500 credits."
-                                    $ checked_Tera = True
+                                    $ checked_terra = True
                                     $ account_checked_counter + 1
                                     jump account_check
 
@@ -6264,9 +6252,9 @@ label community30:
                                         $checked_oleg = True
                                         $ account_checked_counter + 1
                                         jump account_check_sneak
-                                    "[kid_name]'s" if not checked_tera:
+                                    "[kid_name]'s" if not checked_terra:
                                         "[kid_name] has about 500 credits."
-                                        $ checked_Tera = True
+                                        $ checked_terra = True
                                         $ account_checked_counter + 1
                                         jump account_check_sneak
                         else:
@@ -6278,12 +6266,12 @@ label community30:
         else:
             "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
             label doctors_privilege:
-                "Oleg said that he thought Brennan was the only one who could make deposits and withdrawls without the recipient's permission."
+                "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
                 "But maybe [her_name] would also have this right?"
-                "I asked [her_name] if she could make deposits and withdrawls automatically."
+                "I asked [her_name] if she could make deposits and withdrawals automatically."
                 nvl clear
                 her_c "Yes, I can. I use it to pay people who work in the hospital."
-                her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawl feature."
+                her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawal feature."
                 her_c "Why do you ask?"
                 menu:
                     "Tell her about investigating accounts.":
@@ -6331,8 +6319,8 @@ label community30:
                                         $ checked_oleg = True
                                         $ account_checked_counter + 1
                                         jump account_check_her
-                                    "[kid_name]'s" if not checked_tera:
-                                        $ checked_tera = True
+                                    "[kid_name]'s" if not checked_terra:
+                                        $ checked_terra = True
                                         $ account_checked_counter + 1
                                         her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
                                         jump account_check_her
@@ -6354,7 +6342,7 @@ label community30:
                         "I found the accounts program she used for work and opened it up."
                         "Whose account did I want to check?"
                         label account_check_sneak2:
-                            if account_checked_counter2 > 3:
+                            if account_checked_counter > 3:
                                 "I thought I heard [her_name] stirring and I quickly put her tablet away."
                                 jump back_to_noel
                             menu: #allow players to ask about 3 people
@@ -6393,10 +6381,10 @@ label community30:
                                     "Oleg has around 1,000 credits." #decide Oleg's level of involvement
                                     $checked_oleg = True
                                     $ account_checked_counter + 1
-                                    jump account_check_sneak
-                                "[kid_name]'s" if not checked_tera:
+                                    jump account_check_sneak2
+                                "[kid_name]'s" if not checked_terra:
                                     "[kid_name] has about 500 credits."
-                                    $ checked_Tera = True
+                                    $ checked_terra = True
                                     $ account_checked_counter + 1
                                     jump account_check_sneak2
 
@@ -6451,10 +6439,11 @@ label community30:
 
         #TODO: if ban_firegrass
         label noel_confession:
+            scene community_center
             "I met Noel in the community center. She thanked me for helping her."
             "She explained that she knew that Joel's wheelchair brakes were wearing out, but that he wanted to fix them himself."
             "Tears streamed down her face as she told me that she kept meaning to fix them when he was asleep, but she never had the energy."
-            him "I understand that you felt like you could have prevented his death"
+            him "I understand that you felt like you could have prevented his death."
             "Do I have any more questions?"
             menu:
                 "Yes":

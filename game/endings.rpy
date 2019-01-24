@@ -24,28 +24,28 @@ label ending:
         if (competence < COMPETENCE_HIGH):
             # aci and acI
             if (independence < INDEPENDENCE_HIGH):
-                jump ending_aci
+                call ending_aci
             else:
-                jump ending_acI
+                call ending_acI
         else:
             # aCi and aCI
             if (independence < INDEPENDENCE_HIGH):
-                jump ending_aCi
+                call ending_aCi
             else:
-                jump ending_aCI
+                call ending_aCI
     else:
         if (competence < COMPETENCE_HIGH):
             # Aci and AcI
             if (independence < INDEPENDENCE_HIGH):
-                jump ending_Aci
+                call ending_Aci
             else:
-                jump ending_AcI
+                call ending_AcI
         else:
             # ACi and ACI
             if (independence < INDEPENDENCE_HIGH):
-                jump ending_ACi
+                call ending_ACi
             else:
-                jump ending_ACI
+                call ending_ACI
 
     call credits
     return
@@ -223,7 +223,7 @@ label ending_aCi:
     kid sad "Maybe you should do it."
     thuc "Yeah, maybe you should do it, [her_name]. I'm starting to feel a little nervous!"
     her annoyed "She needs the practice! I'll make sure she does it right. Try again, [kid_name]."
-    kid determined "Okay... right, um, here?"
+    kid concerned "Okay... right, um, here?"
     her concerned "Remember, find the triangle."
     thuc "This is the most painful shot I've ever had, and you haven't even pierced the skin yet!"
     kid surprised "Here?"
@@ -234,7 +234,7 @@ label ending_aCi:
     thuc "So, is that all I need?"
     her normal "Yes, let me know if you don't start feeling better by tonight."
     hide thuc with moveoutleft
-    show him at quarterleft with moveinright
+    show him normal at quarterleft with moveinright
     him happy "Hello, lovely ladies! I brought you some lunch!"
     kid annoyed "I'm not hungry."
     hide kid with moveoutright
@@ -381,7 +381,7 @@ label ending_ACi:
     her determined "[bro_name]!"
     him happy "Ha ha, it does kind of look like that..."
     kid concerned "Not you, too!"
-    him normal "...but it tastes really good, and I didn't have to make it, so thank you [kid_name]!"
+    him normal "...but it tastes really good, so thank you [kid_name]!"
     kid annoyed "I think [bro_name] should have to take a turn cooking dinner, too. Isn't he old enough to do that?"
     bro normal "I'm happy to cook mashed potatoes."
     kid angry "Is that the only thing you eat?!"

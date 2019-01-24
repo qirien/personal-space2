@@ -1,6 +1,17 @@
 # These are messages that appear on the colony message board each year
 # The comments above say what will happen that year.
 
+# To change appearance, see screens.rpy, screen nvl
+label yearly_messages:
+    $ message = "message" + `year`
+    $ read_messages = True
+    nvl clear
+    call expression message from _call_expression
+    #computer "\n(End of messages)"
+    nvl clear
+    call screen plan_farm
+    return
+
 # Community: New colonists arrive
 # Family: Terra won't stop crying.
 label message1:
@@ -10,6 +21,14 @@ label message1:
     sara_c "Maybe both? :-D"
     # TODO: finish this?
     # Natalia and Julia give great, conflicting baby advice
+    natalia_c "I hope you can get some time to yourself once in a while still!"
+    julia_c "Nonsense. Babies need their mothers' touch. I hope you are snuggling that baby close as often as possible. And breastfeeding. And swaddling. And cosleeping. And sleeping when the baby sleeps."
+    natalia_c "Julia, those are all fine things, but plenty of parents don't do those things and their kids turn out fine."
+    julia_c "Parents should want what's best for their children. And no one can take the place of a loving mother."
+    her_c "It's totally fine to let someone take your place sometimes. I would go crazy if I had to be holding [kid_name] every second!"
+    him_c "Yeah, give me that baby, it's my turn to snuggle!"
+    sara_c "It's good to see SOME dads enjoy snuggling with their babies."
+
     nvl clear
     return
 

@@ -13,9 +13,8 @@ screen plan_farm:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
         text "User [his_name] has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
-        textbutton "Family" xpos 800 ypos 22 action Show("monthly_screen")
-        textbutton "?" xpos 1077 ypos 22 action Jump("tutorial_ask")
-        textbutton "             " xpos 1085 ypos 22 action ShowMenu("preferences")
+        textbutton "?" xpos 1077 ypos 18 action Jump("farm_tutorial")
+        textbutton "             " xpos 1085 ypos 18 action ShowMenu("preferences")
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -30,7 +29,7 @@ screen plan_farm:
                         label "Farm Plan for Year " + str(year):
                             xalign 0.5
 
-                        use crop_details_screen
+                        use farm_details_screen
 
                         hbox:
                             xfill True
@@ -60,59 +59,17 @@ screen plan_farm:
                             else:
                                 text "Cannot plant crops where there is insufficient nitrogen!" xalign 1.0
 
-label monthly_computer:
-    call screen monthly_screen
+screen colony_messages_button(read_colony_messages):
+    if (not read_colony_messages):
+        text "{color=#FF0}{b}NEW!{/b}{/color} " ypos 30 xalign 1.0 outlines [(1, "#000", 1, 1)]
+    else:
+        text "" ypos 30 xalign 0.0 # We have to have this here or it messes up all the positions
 
-# TODO: delete this screen
-screen monthly_screen:
-    frame:
-        background  "computer_pad_with_screen"
-        # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User {a=call:monthly_computer}[his_name]{/a} has logged on." size 12 xalign 0.1 ypos 15 color "#fff"
-        textbutton "?" xpos 1077 ypos 15 action Jump("tutorial_ask")
-        textbutton "             " xpos 1085 ypos 15 action ShowMenu("preferences")
-        vbox:
-            area (60, 50, 1150, 620)
-            yfill True
-            hbox:
-                xfill True
-                yfill True
-                vbox:
-                    # family details here
-                    frame:
-                        yfill True
-                        background gray_light
-                        has vbox
-                        vbox:
-                            xsize LEFT_COLUMN_WIDTH
-                            # TODO: Add a small family photo
-                            label "Family"
-                            text "[his_name]"
-                            text "[her_name]"
-                            text "[kid_name], [earth_year] earth years"
-                            if (bro_birth_year != 0):
-                                text "[bro_name], [bro_age] earth years"
-
-                            # Display poetry written
-                            # TODO: how do I get the word_board variable here?
-                            textbutton "Poetry" action Show("poetry_display", args=word_board)
-                            # Community info
-
-                        # community/reference details
-                        vbox:
-                            xsize LEFT_COLUMN_WIDTH
-                            label "Community" # TODO: have cute icons for these, like on a phone?
-                            textbutton "Message Board" action Show("messages")
-                            textbutton "Parenting Handbook" action Show("parenting_handbook")
-
-                        vbox:
-                            textbutton "Return to Farm" action Hide("monthly_screen")
-
-
+    textbutton "Message Board" action Jump("yearly_messages")
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
 ##
-screen crop_details_screen:
+screen farm_details_screen:
     hbox:
         xalign 0.5
         xfill True
@@ -136,8 +93,10 @@ screen crop_details_screen:
             vbox:
                 yalign 1.0
                 label "Community" # TODO: have cute icons for these, like on a phone?
-                textbutton "Message Board" action Show("messages")
+                # TODO: have status icons for how much everyone likes you?
+                use colony_messages_button(read_messages)
                 textbutton "Parenting Handbook" action Show("parenting_handbook")
+                # TODO: add parenting quote
 
         # Crop layout area
         vbox:

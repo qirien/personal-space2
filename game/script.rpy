@@ -116,6 +116,7 @@ label start:
         community_22_mined_anyway = False
         jellypeople_happy = False
         kevin_elected = False
+        ban_firegrass = False
 
     # FARM
     python:
@@ -277,6 +278,7 @@ label life_loop:
             if (year >= MONEY_YEAR):
                 $ credits += farm.calculate_income(years_yield)
         $ farm.reset_crops(farm_size)
+        $ read_messages = False
         call screen plan_farm
         $ current_work = get_work_available()
         $ total_work = farm.get_total_work()

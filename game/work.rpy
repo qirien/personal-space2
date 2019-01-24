@@ -236,23 +236,35 @@ label bad_nutrition:
         "I had to trade with other farmers to get a better variety of food."
     return
 
+# TODO: Have an event for not making enough money
+
 # Year 1, 3 mo. old
 label work_intro:
     scene fields with fade
     "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
     "Over the past two years, with a lot of trial and error, I'd found crops and varieties that worked well."
     "I still had a lot of decisions to make, though, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
+    call farm_tutorial
+    return
+
+label farm_tutorial:
+    # TODO: Show screenshots to illustrate this.
     menu:
         "Would you like to see the Farming Tutorial?"
         "Yes.":
-            # TODO: Show screenshots to illustrate this.
-            "The middle of the screen shows the farm layout."
-            "On the right is the current farm's stats."
-            "Below that, I can choose what crops should go where."
-            "On the left, I can see stats for the selected crop."
-            "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
+                "The left part of the screen shows information about my family and colony."
+                "The middle of the screen shows the farm layout."
+                "On the right is the current farm's stats."
+                "When I click on a farm space, I can choose what crop should go there and see information about each crop."
+                "The background color of each space shows how much nitrogen is in this field. If it's a dark color, there's plenty of nitrogen for crops."
+                "If it's a light color, nitrogen in that field is running low. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
+                "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
+                if (year > MONEY_YEAR):
+                    "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
+                "That's it for the farming tutorial."
         "No.":
             $ pass
+
     return
 
 # Year 2, 9 months old
@@ -1247,8 +1259,17 @@ label work26:
     return
 
 # Year 28, 17.3 years old
-# Terra doesn't want to help! Pay rent?
 label work28:
+
+    return
+
+# Year 30, 18 years old
+# Terra doesn't want to help! Pay rent?
+label work30:
+    scene farm_interior with fade
+    show kid normal at midright
+    show him normal at center
+    show her normal at midleft
     "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
     kid determined "I don't want to work on this farm."
     him surprised "You don't?"
@@ -1271,24 +1292,24 @@ label work28:
             kid annoyed "No!"
             him normal "Everyone in this family helps out. If you're not helping around the house or the farm, then you can help out with money."
             her annoyed "But--"
-            kid determined "I can pay XXX per month." # TODO: currency check
+            kid determined "I can pay 150 per month."
             her concerned "No, [kid_name], you might need that money..."
             menu:
                 "What should I say?"
                 "That's too much.":
-                    him normal "Hey, I don't think your tiny room here is worth that much. Let's say XXX and it'll be fine."
+                    him normal "Hey, I don't think your tiny room here is worth that much. Let's say 100 and it'll be fine."
                     her normal "Oh. That's not that much."
                     kid determined "Okay, I can do that."
                     $ work28_rent = 100
                 "That's a deal.":
                     him normal "Sounds like a deal."
-                    $ work28_rent = 200
+                    $ work28_rent = 150
                 "That's not enough.":
-                    him annoyed "Are you kidding? You've got your own room, homecooked meals, and use of our resources. That's worth at least XXX."
-                    her determined "No. No way. YYY is the max."
-                    kid determined "I can pay YYY, but not XXX."
+                    him annoyed "Are you kidding? You've got your own room, homecooked meals, and use of our resources. That's worth at least 250 credits."
+                    her determined "No. No way. 150 is the max!"
+                    kid determined "I can pay 200, but not 250."
                     him determined "Then I guess that will have to do."
-                    $ work28_rent = 250
+                    $ work28_rent = 200
             her concerned "If you can't make it some month, come by the clinic and I can find some work for you."
             kid annoyed "I'll be fine, Mom."
 
@@ -1327,9 +1348,6 @@ label work28:
             him concerned "I know. But sometimes we all gotta do things we don't want to do."
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."
-    return
 
-# Year 30, 18 years old
-label work30:
-    "Summary of how awesome your farm is (or not)"
+    # TODO: actually subtract rent from final total
     return

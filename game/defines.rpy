@@ -67,8 +67,8 @@ init -100:
     ##
 
     # Activity themes
-    #define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
-    define audio.maintheme = ""
+    define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
+    #define audio.maintheme = ""
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"

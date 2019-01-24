@@ -24,8 +24,7 @@ label tests:
     return
 
 label test_jump_year:
-    "What year should we jump to?"
-    $ year_str = renpy.input("Year", default=1)
+    $ year_str = renpy.input("What year should we jump to?", default=1)
     $ year = int(year_str)
     menu:
         "What type of parent are you?"
