@@ -6,7 +6,7 @@ label yearly_messages:
     $ message = "message" + `year`
     $ read_messages = True
     nvl clear
-    call expression message from _call_expression
+    call expression message
     #computer "\n(End of messages)"
     nvl clear
     call screen plan_farm
@@ -23,7 +23,7 @@ label message1:
     # Natalia and Julia give great, conflicting baby advice
     natalia_c "I hope you can get some time to yourself once in a while still!"
     julia_c "Nonsense. Babies need their mothers' touch. I hope you are snuggling that baby close as often as possible. And breastfeeding. And swaddling. And cosleeping. And sleeping when the baby sleeps."
-    natalia_c "Julia, those are all fine things, but plenty of parents don't do those things and their kids turn out fine."
+    natalia_c "Julia, those are all fine things, but babies also need to learn to make do when their parents have to do other things."
     julia_c "Parents should want what's best for their children. And no one can take the place of a loving mother."
     her_c "It's totally fine to let someone take your place sometimes. I would go crazy if I had to be holding [kid_name] every second!"
     him_c "Yeah, give me that baby, it's my turn to snuggle!"
@@ -37,13 +37,59 @@ label message1:
 label message2:
     nvl clear
     # Reference whole harvest problem with convo about crop trading
+    thuc_c "We finally got a good crop of rice!"
+    sara_c "That's great; I know you worked really hard on that!"
+    julia_c "Yes, it only took us three years, but I think we've figured it out."
+    thuc_c "So does anyone want to trade?"
+    him_c "Sure, I've got potatoes."
+    julia_c "I was hoping for something more... flavorful."
+    him_c "Potatoes have plenty of flavor!"
+    martin_c "I have artichokes."
+    julia_c "That sounds perfect!"
+    natalia_c "But we don't need any rice. I was hoping to get some potatoes."
+    pete_c "This is starting to sound like a riddle."
+    him_c "Okay, no problem, I'll send some potatoes to the Perons, and they'll send artichokes to the Nguyens, and the Nguyens can send rice to me."
+    ilian_c "IF ONLY THERE WAS A CENTRAL PLACE TO BRING ALL YOUR FOOD WHERE SOMEONE COULD INVENTORY IT AND KEEP TRACK OF IT AND DISTRIBUTE IT!!!!"
+    pete_c "No need to get all bent out of shape, it all worked out."
+    nvl clear
     return
 
 # Community: Game Night!
 # Family: Camping trip, Terra puts everything into her mouth
 label message3:
-    nvl clear
     # Show outside life, reference decision about whole harvest
+    nvl clear
+    julia_c "We're still doing auditions for The Sound of Music! No experience necessary!"
+    natalia_c "Are rehearsals still going to be every night from 7-10pm?"
+    julia_c "Yes."
+    natalia_c "Wow, who has time for that?"
+    julia_c "Obviously only those with refined tastes. Which, you might be interested to know, includes your son Mateo."
+    natalia_c "Oh, did he get a part?"
+    julia_c "Well, auditions are ongoing... but he does have a fine singing voice."
+    natalia_c "And there's probably not too many other kids his age auditioning."
+    julia_c "We shall see, we shall see."
+
+    nvl clear
+    if (whole_harvest_to_storehouse):
+        ilian_c "Please note the attached schedule for canning duty. We've had a good harvest this year..."
+        pete_c "...so it means more work for everyone."
+        ilian_c "Yes, and more not starving. This is a good thing, people!"
+        sara_c "I don't mind canning duty; it's kind of fun to work with everyone and think about eating these delicious foods."
+        julia_c "You can put Gardenia in the rotation next time; she's old enough to help."
+        ilian_c "I will do that."
+    else:
+        zaina_c "I just found out about this message area... is this where we can arrange to trade crops?"
+        him_c "Yeah, welcome!"
+        zaina_c "That would have been nice to know about when we first got here. Anyway, I have extra zucchini? Like, a lot of extra zucchini."
+        him_c "I thought Kevin was bringing all your stuff to the storehouse?"
+        zaina_c "He was, but there's nothing there to get in exchange. Ilian said you guys all trade on here."
+        ilian_c "Despite the inefficiency, that is the current modus operandi."
+        zaina_c "Anyway, I've already done zucchini pickles, stuffed zucchini, zucchini noodles, baked zucchini, fried zucchini, and if I have to eat another zucchini I seriously think they might all perish in a tragic 'accident'. So please tell me someone is willing to trade?!"
+        natalia_c "I'll trade you some eggs."
+        him_c "I'll trade you potatoes!"
+        zaina_c "Yeah! You just saved some zucchini from a premature death by Zaina Rage. Thanks, guys."
+
+    nvl clear
     return
 
 # Community: Community Liaison
@@ -51,6 +97,18 @@ label message3:
 label message4:
     nvl clear
     # Foreshadow picky eating by looking for pickles/applesauce
+    him_c "Wow, who made that applesauce I picked up at the storehouse?!  That was delicious!"
+    helen_c "I did."
+    pete_c "She's rockin' that applesauce!! Planting those apple trees was the second smartest thing I ever did."
+    him_c "Second smartest?"
+    pete_c "The first was marryin' Helen. Now, she don't like me to brag about her, but..."
+    naomi_c "Would Helen want you to share what you're about to say?"
+    pete_c "...probably not. But, holy hand grenade in a hand basket, she is one fine woman!"
+    helen_c "...anyway, um, Zaina's zucchini pickles are really good, too."
+    him_c "Really? I'll have to try them out."
+    zaina_c "Thanks! Always glad to share the love when it comes to zucchini."
+
+    nvl clear
     return
 
 # Community: Set aside food for miners?
@@ -359,3 +417,6 @@ define van_c = Character("Van",
         color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+
+# TODO: make this look like a EULA document
+define legalese = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")

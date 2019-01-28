@@ -281,8 +281,8 @@ init -100 python:
 label bedroom_scene(show_baby=False, sleeping=True):
     scene bedroom with fade
     if (sleeping):
-        show him sleeping at midleft, squatting
-        show her sleeping at midright, squatting
+        show him sleeping nude at midleft, squatting
+        show her sleeping nude at midright, squatting
     else:
         show him normal at midleft, squatting
         show her normal at midright, squatting

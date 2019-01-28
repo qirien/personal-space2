@@ -31,6 +31,7 @@ label carrots1:
             "It would take a while to see if it worked, though."
             $ carrots_fallow = True
             $ crop_temporarily_disabled = "carrots"
+            # TODO: this doesn't work
         "Who cares, they taste the same.":
             "I didn't have time to worry about oddly-shaped carrots."
             "I just chopped them up and cooked them and then nobody even noticed."

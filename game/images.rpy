@@ -8,7 +8,8 @@ init -10:
     image farm_interior flip = im.Flip("images/bg/farm_interior.jpg", horizontal = True)
     image stars_animated:
         "images/bg/stars.jpg"
-        linear 10.0 zoom 0.5
+        zoom 0.75
+        linear 10.0 zoom 1.25
 
     # GUI
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 10, 10)

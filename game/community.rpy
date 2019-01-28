@@ -4,6 +4,7 @@
 # Feel free to change this if you want. It should be fairly short and remind
 # everyone of the characters and situation.
 label community_intro:
+    scene fields with fade
     "Luckily, we weren't alone on Talaam. There were several hundred other colonists here, now. Enough to feel like a real community, and not just  a few struggling pioneers."
     # show Julia and Ilian?
     "There were some I got along with..."
@@ -284,13 +285,13 @@ label community2:
     if ((random_crop == "tomatoes") or (random_crop == "squash")):
         kevin "Yes, that is why I planted some myself. A popular choice, it seems."
     else:
-        kevin "A variety of foodstuffs is beneficial to anyone's diet."
+        kevin "Yes, a variety of foodstuffs is beneficial to anyone's diet."
     ilian "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we've supposed to have been doing it all along."
     show him surprised at left
     him "Huh, really? How in the world do you have time to farm?"
     kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
     show him annoyed at left
-    him "It might be an amusing pastime for you, but it's our survival you're talking about here."
+    him "It might be an amusing pasttime for you, but it's our survival you're talking about here."
     kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
     ilian "That's what I'm here for."
     hide kevin
@@ -324,18 +325,19 @@ label community2:
             #TODO: make this add to the future stress variable
         "I will keep storing most of my own crops.":
             $ luddites += 1
+        # TODO: finish this scene
     return
 
     label contract: #to do: make this a different font with a white paper fade-in so it looks all businessy. something weird is happening with it right now.
-        computer "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists."
-        computer "Farmers will farm 3 acres to the best of their ability as weather permits."
-        computer "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager"
-        computer "to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."
-        computer "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations"
-        computer "and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
-        computer "Colonist couples of childbearing age must attempt to replace themselves through reproduction."
-        computer "Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
-        computer "RET reserves the right to amend this document as it sees fit."
+        legalese "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists."
+        legalese "Farmers will farm 3 acres to the best of their ability as weather permits."
+        legalese "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager"
+        legalese "to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."
+        legalese "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations"
+        legalese "and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
+        legalese "Colonist couples of childbearing age must attempt to replace themselves through reproduction."
+        legalese "Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
+        legalese "RET reserves the right to amend this document as it sees fit."
     jump after_contract
 
 # 3 - Game Night!
@@ -2067,14 +2069,14 @@ label community12:
                     brennan "Gather up what you can find from the other colonists and hopefully it will be enough to last until the next harvest."
                     brennan "Also, start planting some extra crops for us, otherwise we'll all starve or radiate to death in this forsaken place."
                     him "Okay, I'll do it right away."
-                    computer "Dear farmers of Talaam."
-                    computer "A few years ago I said that we didn't need to save food to feed the miners."
-                    computer "I thought that the miners would have time to hunt and forage and farm in addition to their mining."
-                    computer "I was wrong. RET needs the ore quickly to avoid bankruptcy."
-                    computer "We need RET to continue to support our colony with batteries and medical supplies."
-                    computer "There isn't enough surplus to feed the miners now, at least not in the storehouse."
-                    computer "If you can spare some crops for our miners, I can compensate you."
-                    computer "We also need several farmers to volunteer to plant fast-growing crops and also regular crops."
+                    legalese "Dear farmers of Talaam."
+                    legalese "A few years ago I said that we didn't need to save food to feed the miners."
+                    legalese "I thought that the miners would have time to hunt and forage and farm in addition to their mining."
+                    legalese "I was wrong. RET needs the ore quickly to avoid bankruptcy."
+                    legalese "We need RET to continue to support our colony with batteries and medical supplies."
+                    legalese "There isn't enough surplus to feed the miners now, at least not in the storehouse."
+                    legalese "If you can spare some crops for our miners, I can compensate you."
+                    legalese "We also need several farmers to volunteer to plant fast-growing crops and also regular crops."
                     "Some farmers volunteered to sell extra food, and two or three farmers they'd plant more crops."
                     "After two weeks, we had lots of salad greens and radishes."
                     "But the lettuce and radishes weren't enough to feed the miners."
@@ -2095,11 +2097,11 @@ label community12:
                 label community12_choose_foraging:
                     brennan "Fine. I'll go door-to-door tonight to see if I can buy off some food until you can send over your teachers."
                     him "They'll be there tomorrow morning."
-                    computer "Hello Lily and Pete."
-                    computer "We don't have that much food for the miners, so they need to learn how hunt and forage."
-                    computer "Can you, Lily, teach them to forage, and Pete, can you teach them how to hunt?"
-                    computer "They want to start ASAP."
-                    computer "How does tomorrow morning sound?"
+                    him_c "Hello Lily and Pete."
+                    him_c "We don't have that much food for the miners, so they need to learn how hunt and forage."
+                    him_c "Can you, Lily, teach them to forage, and Pete, can you teach them how to hunt?"
+                    him_c "They want to start ASAP."
+                    him_c "How does tomorrow morning sound?"
                     "Pete agreed to meet the next day, and Dr. Lily the day after."
                     #near the mining camp or outside
                     pete "I know on Earth that hunting is this thing rich people do."

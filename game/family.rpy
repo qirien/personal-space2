@@ -16,12 +16,12 @@ label family_intro:
     call bedroom_scene(True)
     show kid sad with dissolve
     her sleeping "[his_name]."
-    him sleeping "Mrmph?"
+    him nude sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
     show kid cry with dissolve
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
-    him concerned "Okay..."
+    him nude concerned "Okay..."
     show her sleeping
     show kid concerned
     with dissolve
@@ -1426,6 +1426,35 @@ label family6:
     show her normal at center
     show kid normal at right
     with dissolve
+
+    kid surprised "Daddy, what's a elephant?"
+    him surprised "An elephant? It's a big Earth animal with a nose called a trunk that goes all the way to the ground."
+    kid concerned "Really?"
+    him normal "Yeah, here, I'll show you a picture."
+    kid surprised "Did the elephants eat your crops on the farm?"
+    him determined "No, they only live in Africa and south Asia on Earth. And they don't bother people."
+    kid concerned "They're scary!"
+    him surprised "What? No, elephants are really gentle. Lions are the scary ones."
+    her surprised "[his_name]..."
+    kid surprised "Lions?"
+    him normal "Yeah, they're giant cats that eat elephants!"
+    kid normal "Earth is too dangerous."
+    her normal "Earth is actually much safer than Talaam, because there's so many people there and they all watch out for each other."
+    him annoyed "They all spy on each other, you mean."
+    her surprised "Was there an elephant in the game you were playing?"
+    kid annoyed "Yes. But they should have wolfslugs; those are my favorite."
+    him determined "You're scared of elephants, but you like wolfslugs."
+    kid happy "Yep!"
+    her concerned "How strange that must be for her to grow up without experiencing Earth firsthand..."
+    him annoyed "It's not that weird; I never saw elephants as a kid, either."
+    her normal "Yes, but what about pigeons? Or lizards? Or sparrows? She's never seen any of those, either."
+    him concerned "No crickets chirping, no worms on the sidewalk after rain, no snail trails to follow..."
+    kid annoyed "There's turtle snails!"
+    him happy "On the other hand, I think I prefer millicrabs over cockroaches. At least they don't form colonies."
+    her concerned "Now I miss the sounds of birds singing in the morning..."
+    him concerned "Yeah..."
+    kid normal "I can sing in the morning! Oh, Mister Sun, Sun, Mister golden Sun..."
+    "[her_name] and I were quiet for a few minutes, just relaxing and listening to [kid_name] sing."
     him determined "I sure hope you have nothing planned for today."
     her surprised "Why, did you want to do something?"
     him normal "Nope! I want to do a whole lot of nothing today. It's been a crazy week."

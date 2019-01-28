@@ -17,10 +17,21 @@ label tests:
             call omake
         "Sprites":
             call test_sprites
+        "Message Board":
+            call test_message_board
         "Quit":
             return
 
     jump tests
+    return
+
+label test_message_board:
+    $ i = 1
+    while (i <= MAX_YEARS):
+        call interscene_text(i, "Message Board")
+        $ message = "message" + `i`
+        call expression message
+        $ i += 1
     return
 
 label test_jump_year:
