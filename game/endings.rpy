@@ -297,7 +297,7 @@ label ending_aCI:
 label ending_Aci:
     "Ending Aci"
     scene fields with fade
-    "[kid_name said she didn't want to work on our farm, but..."
+    "[kid_name] said she didn't want to work on our farm, but..."
     "That's what she ended up doing."
     "She also made deliveries, but she always helps me with the harvest and other jobs around the farm that are a lot easier with a few people."
     "She still needs a lot of direction, but she's willing to do what I ask."

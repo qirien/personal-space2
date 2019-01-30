@@ -371,9 +371,12 @@ label message30:
 # TODO: redo these with new colors, make icons, etc.
 # NVL mode characters for chat rooms, etc
 define her_c = DynamicCharacter("her_name", who_suffix = "  {image=images/icons/her-icon.png} ",
-    color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # green of her eyes
+    color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # mint green
 define him_c = DynamicCharacter("his_name", who_suffix = "  {image=images/icons/him-icon.png} ",
     color="#bc1e0e", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # red of his eyes
+define kid_c = DynamicCharacter("kid_name",
+#who_suffix = "  {image=images/icons/kid-icon.png} ",
+        color="#ca67ac", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # reddish purple
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
     color="#bf98ff", image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #lavender
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
@@ -411,7 +414,10 @@ define kevin_c = Character ("Kevin",
     color="f3ca14", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
 define oleg_c = Character("Oleg",
 #who_suffix = "  {image=images/icons/oleg-icon.png} ",
-    color="d2d099", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #khaki
+    color="#f3e6bc", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #khaki
+define travis_c = Character("Travis",
+#who_suffix = "  {image=images/icons/travis-icon.png} ",
+    color="#ee7755", image="travis", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #rusty brown
 define van_c = Character("Van",
 #who_suffix = "  {image=images/icons/van-icon.png} ",
         color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue

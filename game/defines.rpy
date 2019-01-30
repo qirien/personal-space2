@@ -54,8 +54,11 @@ init -100:
     # Static variables used for endings
     # TODO: Tweak these so all endings are possible.
     define ATTACHMENT_HIGH = 45 #Max is ~60
+    define ATTACHMENT_MAX = 60
     define COMPETENCE_HIGH = 45 #Max is ~60
+    define COMPETENCE_MAX = 60
     define INDEPENDENCE_HIGH = 20 #Max is ~32
+    define INDEPENDENCE_MAX = 32
 
     define MAX_YEARS = 30
 
@@ -92,7 +95,7 @@ init -100:
 
     define her = DynamicCharacter("her_name", color="#84b766", image="her", ctc="ctc_blink", ctc_position="nestled") #light mint green
     define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
-    define kid = DynamicCharacter("kid_name", color="#e361ef", image="kid", ctc="ctc_blink", ctc_position="nestled") #pinkish purple
+    define kid = DynamicCharacter("kid_name", color="#ca67ac", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
     define bro = DynamicCharacter("bro_name", color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
 
     define naomi = Character("Sister Naomi Grayson", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #light gray
@@ -101,7 +104,7 @@ init -100:
     define sara = Character("Sara Hill-Andrevski", color="#e25057", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
     define thuc = Character("Thuc Nguyen", color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
     define ilian = Character("Ilian Andrevski", color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
-    define oleg = Character("Oleg Hill-Andrevski", color="#42f4bf", image="oleg", ctc="ctc_blink", ctc_position="nestled") #mint green
+    define oleg = Character("Oleg Hill-Andrevski", color="#f3e6bc", image="oleg", ctc="ctc_blink", ctc_position="nestled") #khaki
     define brennan = Character("Brennan Callahan", color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
     define pete = Character("Pete Jennings", color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
     define natalia = Character("Natalia Perón", color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow

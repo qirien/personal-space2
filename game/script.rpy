@@ -109,6 +109,7 @@ label start:
         thuc_has_cattle = False
         ilian_has_cattle = False
         thuc_sells_food = False
+        cave_explored = False
         community_11_kidsonfarm = False
         community_22_mining_stopped = False
         community_22_forced_luddites_leave = False
@@ -272,7 +273,7 @@ label life_loop:
         # FARMING CHOICES
         #play music computer
         hide screen say
-        scene gray_dark with fade
+        scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):

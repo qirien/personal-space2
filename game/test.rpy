@@ -41,30 +41,33 @@ label test_jump_year:
         "What type of parent are you?"
         "Authoritarian":
             $ attachment = 0
-            $ competence = year
-            $ independence = year/4
-            $ demanding = year
-            $ responsive = 0
+            $ competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
+            $ independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
+            $ total_demanding = year
+            $ total_responsive = 0
+            $ total_confident = year/4
             $ authoritarian = year
             $ authoritative = 0
             $ permissive = 0
             $ neglectful = 0
         "Authoritative":
-            $ attachment = year
-            $ competence = year
-            $ independence = year/2
-            $ demanding = year
-            $ responsive = year
+            $ attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
+            $ competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
+            $ independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
+            $ total_demanding = year
+            $ total_responsive = year
+            $ total_confident = year
             $ authoritarian = 0
             $ authoritative = year
             $ permissive = 0
             $ neglectful = 0
         "Permissive":
-            $ attachment = year
+            $ attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
             $ competence = 0
             $ independence = 0
-            $ demanding = 0
-            $ responsive = year
+            $ total_demanding = 0
+            $ total_responsive = year
+            $ total_confident = year/4
             $ authoritarian = 0
             $ authoritative = 0
             $ permissive = year
@@ -73,22 +76,24 @@ label test_jump_year:
             $ attachment = 0
             $ competence = 0
             $ independence = 0
-            $ demanding = 0
-            $ responsive = 0
+            $ total_demanding = 0
+            $ total_responsive = 0
+            $ total_confident = 0
             $ authoritarian = 0
             $ authoritative = 0
             $ permissive = 0
             $ neglectful = year
         "Random":
-            $ attachment = renpy.random.randint(0,year)
-            $ competence = renpy.random.randint(0,year)
-            $ independence = renpy.random.randint(0,year)
-            $ demanding = renpy.random.randint(0,year)
-            $ responsive = renpy.random.randint(0,year)
+            $ attachment = renpy.random.randint(0,ATTACHMENT_MAX)
+            $ competence = renpy.random.randint(0,COMPETENCE_MAX)
+            $ independence = renpy.random.randint(0,INDEPENDENCE_MAX)
+            $ total_demanding = renpy.random.randint(0,COMPETENCE_MAX)
+            $ total_responsive = renpy.random.randint(0,ATTACHMENT_MAX)
+            $ total_confident = renpy.random.randint(0,INDEPENDENCE_MAX)
             $ authoritarian = renpy.random.randint(0,year)
-            $ authoritative = renpy.random.randint(0,year)
-            $ permissive = renpy.random.randint(0,year)
-            $ neglectful = renpy.random.randint(0,year)
+            $ authoritative = renpy.random.randint(0,year-authoritarian)
+            $ permissive = renpy.random.randint(0,year-authoritarian-authoritative)
+            $ neglectful = year-authoritarian-authoritative-permissive
     $ farm.crops.setDefault()
     jump life_loop
 
@@ -172,9 +177,9 @@ label test_family:
 
         # Reset our variables while keeping a running total
         $ total_demanding += demanding
-        $ demanding = 0
+        $ total_demanding = 0
         $ total_responsive += responsive
-        $ responsive = 0
+        $ total_responsive = 0
 
         $ year += 1
 
@@ -202,17 +207,17 @@ label baby_positions:
     with dissolve
     "Here is the baby at midright"
     him annoyed  "I can't even see the baby on the floor"
-    show toddler at midrightbaby with move
+    show toddler at midright, baby_pos with move
     him surprised "Ooh, levitating baby!"
     show her happy at midright behind toddler with moveinright
     her flirting "It looks better if I'm holding her."
-    show toddler at rightbaby with move
+    show toddler at right, baby_pos with move
     kid "But I could also sit on the bed!"
 
     show kid normal at midright with dissolve
 
     kid "I'm kinda short, but I have feet unlike everyone else, so it's OK!"
-    show kid normal at centerkid with move
+    show kid normal at center with move
     kid "But I could stand farther up as long as I have feet!"
     return
 

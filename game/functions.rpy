@@ -80,7 +80,6 @@ label increase_competence:
 label increase_independence:
     $ inc_amount = 0
     $ inc_amount += confident
-    #$ inc_amount += (demanding + responsive) / 2.0
     if (inc_amount > 0):
         $  notifications += "Independence +" + str(inc_amount) + "\n"
     $ independence += inc_amount

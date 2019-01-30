@@ -282,7 +282,7 @@ label work2:
     her normal "All right, good luck."
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
-    show farm with fade
+    scene farm with fade
     show kevin at midright
     show zaina at center
     with dissolve
@@ -334,7 +334,7 @@ label work4:
             tutorial "Your farm is now size [farm_size]!"
             return
 
-    scene bg community_center with fade
+    scene community_center with fade
     show natalia at quarterleft
     show pete at center
     show thuc at quarterright
@@ -540,7 +540,7 @@ label work10:
 # Year 12, 7.4 years old
 # Brennan's GMO sterile wheat
 label work12:
-    scene farm interior with fade
+    scene farm_interior with fade
     show him determined at center with dissolve
     nvl clear
     brennan_c "I have a special offer for all you farmers out there."
@@ -1058,6 +1058,9 @@ label work24:
     "[kid_name] was big enough to do real work on the farm, now. She could help a mama goat give birth, knew which plants were weeds, and could build a fence out of almost anything."
     "But her favorite way to help was driving the tractor."
     scene fields with fade
+    show him normal at midright
+    show kid normal at midleft
+    with dissolve
     "We were using the front loader attachment to add manure and to the fields."
     kid nervous "Please let me do the driving, dad! I know how to do it!"
     him annoyed "You haven't driven with the front loader attachment. The feel is totally different."
@@ -1077,6 +1080,7 @@ label work24:
     him concerned "The bucket's too high! Lower the bucket!"
     "I was too late. She turned the corner, going a little too fast. I felt like time slowed down as I started running. I could see the tractor starting to tip."
     "I reached out, but I was helpless to stop it. The high, heavy bucket dragged the whole tractor over onto its side."
+    # TODO: scene tractor?
     kid surprised "Ahhhhhhh!"
     him surprised "[kid_name]! Dammit!"
     "I ran as fast as I could. [kid_name] was quiet, which worried me even more than if she had been screaming."
@@ -1121,7 +1125,7 @@ label work24:
             "She rested her head on my chest, and I started on the long walk into town."
             "My arms, already strained from lifting the tractor, felt heavy and numb, but I walked on."
             "Finally we arrived at the clinic."
-            scene clinic with fade
+            scene hospital with fade
             show her surprised at midright with dissolve
             show him determined at midleft
             show kid determined at center
@@ -1150,7 +1154,7 @@ label work24:
             kid concerned "Ow!"
             "Every bump made her leg hurt more. I tried to protect her from the worst bumps but it was a long, rough ride."
             "When we arrived, [her_name] was ready for us."
-            scene clinic with fade
+            scene hospital with fade
             show her surprised at midright with dissolve
             show him determined at midleft
             show kid determined at center
@@ -1329,6 +1333,7 @@ label work30:
             kid concerned "Maybe just when you really need me."
             him determined "Okay. Thanks, [kid_name]."
 
+    show bro normal at quarterleft with moveinleft
     bro "I don't want to work on the farm, either."
     "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was timid and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
     "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."

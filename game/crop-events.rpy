@@ -65,7 +65,7 @@ label carrots2:
                 with dissolve
                 kid surprised "What are those?"
                 him happy "It's sushi! Well, it's kind of like sushi."
-                kid pout "It looks like eyeballs."
+                kid nervous "It looks like eyeballs."
                 her normal "It's just rice wrapped around some meat and vegetables. Try it; it's good!"
                 kid shifty "Okay..."
                 him concerned "..."
@@ -387,7 +387,7 @@ label squash1:
                 kevin_c "I do have bees, but not extra."
                 nvl clear
                 "Maybe if I talked to Kevin in person we could work something out."
-                scene farm_exterior_flip with fade
+                scene farm_exterior flip with fade
                 show kevin at midright with dissolve
                 show him normal at midleft with moveinleft
                 him happy "Hey, Kevin! How's it going?"
@@ -993,7 +993,7 @@ label plums2:
             "After some research, I found plums already have a fair amount of sugar and pectin in them. So I decided to slow cook them until they made a thick jam."
             "It was a bit sour, but very flavorful. And the jars should last at least a year."
 
-            scene storehouse with fade
+            scene storeroom with fade
             show ilian at midright with dissolve
             show him normal at midleft with moveinleft
             him "Hey there, Ilian."
@@ -1018,7 +1018,7 @@ label plums2:
             "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
 
     if not (renpy.showing("storehouse")):
-        scene storehouse with fade
+        scene storeroom with fade
         show ilian at midright
         show him normal at midleft with dissolve
 
@@ -1169,7 +1169,7 @@ label spinach2:
                     "And we harvested a lot of wonderful spinach."
                 "Make snail traps":
                     "I put some tasty smelling bait in the middle of a hole covered with boards."
-                    scene field with fade
+                    scene fields with fade
                     show him normal at midright with dissolve
                     "In the morning, the hole was full of turtle-snails, just waiting for me."
                     if (get_work_kid() > 0):
@@ -1218,7 +1218,7 @@ label spinach2:
                                 if (is_independent()):
                                     call spinach2_eat_snails
                                 else:
-                                    hide kid with moveouleft
+                                    hide kid with moveoutleft
                                     "She left, and I carried out the death sentence on the turtle-snails."
 
                     "I made some more traps and repeated the process until no more turtle-snails appeared."

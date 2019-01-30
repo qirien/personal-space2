@@ -138,7 +138,7 @@ label community1:
             $ asked_grow = True
             jump ask_zaina_and_kevin
         "How was the shuttle ride?" if not asked_shuttle:
-            show him flirt
+            show him flirting
             him "Did you start to hate each other a little on the shuttle ride over?"
             kevin "No, I do not believe it is possible for us to hate each other."
             zaina "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
@@ -248,7 +248,7 @@ label community1:
                     show him normal
                     him "Also they have ten kids and Julia is a midwife."
                     zaina "Ten kids? That is a lot."
-                    show him flirt
+                    show him flirting
                     him "They fill our schoolroom nicely. It must have been a real pain on the shuttle though!"
                     zaina "Yeah, there's not exactly a playground on the shuttle."
                     $ tell_Ngyuens = True
@@ -668,7 +668,7 @@ label community5:
     show him annoyed
     him "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
     him "Worst-case scenario, they have to farm for a bit instead of mining all the time."
-    show ilian smile
+    show ilian happy
     ilian "Are you sure? I don't really want to be eaten if we run out of food."
     show him determined
     him "I think people could survive on the wild resources available, as long as they know what they are."
@@ -846,7 +846,7 @@ label community6:
             $ colonists += 1
             show him determined
             him "We need each other to survive. There's no way one person could survive on their own out here."
-            show pete hapy
+            show pete happy
             pete "Is that really true? I've been out there on my own before--there's good foraging and hunting."
             show him surprised
             him "Maybe you could survive on your own, but what about your family?"
@@ -867,7 +867,7 @@ label community6:
             pete "True. But you can see where they're coming from for the most part."
             show pete happy
             pete "And they're not in our face about it. I could go camping tonight and they'd be none the wiser."
-            show him flirt
+            show him flirting
             him "Yeah, as long as your cows were okay with it."
         "We have an obligation to help RET feed their miners now.":
             $ miners += 1
@@ -954,7 +954,7 @@ label community7:
     hide ilian with moveoutleft
     show thuc sad
     thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
-    show him flirt
+    show him flirting
     him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
     show thuc
     thuc "Or 8! Fewer pieces to ship."
@@ -1027,7 +1027,7 @@ label community7:
                 him "What charity would you choose?"
                 show thuc sad
                 thuc "Something to promote sustainable agriculture in developing nations like this one."
-                show him flirt
+                show him flirting
                 him "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
                 show thuc
                 thuc "Burn!"
@@ -1132,7 +1132,7 @@ label community8:
                 show him determined
                 him "Yes, but you might not have responded in time. I need to tell them by the end of the day!"
                 kevin "Very well. Are they sending new tablet batteries like I requested?"
-                show him flirt
+                show him flirting
                 him "Yes, yes, don't worry about that. Ask for something that will boost your morale."
                 kevin "Wouldn't being reminded of the Earth I'll never return to lower my morale?"
                 show him happy
@@ -1204,7 +1204,7 @@ label community8:
         him "Hmm. How about some good old Earth toilet paper?"
         show sara sad
         sara "Great. I can shorten that to TP in the insta-comm."
-        show him flirt
+        show him flirting
         him "Hopefully they won't send me a textbook on Topological Planning."
         show sara
         sara "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
@@ -1429,14 +1429,19 @@ label community9:
 
 # 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
-    show farm_interior with fade
+    scene farm_interior with fade
+    show him at midleft
+    show bro at quarterleft
+    show her at midright
+    show kid at quarterright
+    with dissolve
     her "I'm leaving for work now. Goodbye honey!"
     him "Bye [her_name]. Oh, and don't forget that we're having dinner with the Perons tonight."
     her "I wonder what they wanted to talk about..."
     him "Maybe they're just being friendly?"
     "After weeding and clearing out old growth, Terra comes home from school."
     "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
-    show farm exterior
+    scene farm_exterior
     natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
@@ -1724,7 +1729,7 @@ label community11:
         brennan "No, sorry, I think they just sent some new batteries and stuff."
         natalia "They don't care what happens to us!"
         martin "I would have liked to live a little longer, but in the end, we can only do so much."
-        jump Martin_dead
+        jump Martin_dead_sooner
         $ luddites += 1
 
         label Martin_dead_sooner:
@@ -4819,7 +4824,7 @@ label after_firegrass_26:
             him "Really? You seem so healthy."
             pete "I know you guys think I'm sitting on a bundle of credits but they all go to medicine these days."
             him "Well, I hope your fish are lucrative."
-        return
+    return
 
 
 label community27:
@@ -5542,7 +5547,7 @@ label community29:
         helen "Maybe if I concentrate hard enough, she'll grow an extra eye!"
         him "Do you know what you want to name her?"
         helen "Yes. Before we left, Pete and I agreed to name her Sage."
-        if community_22_compromise OR community_22_mined_anyway:
+        if community_22_compromise or community_22_mined_anyway:
             helen "Oh, I brought a set of Talaam chess with me! Want to play?"
             him "Sure, I'll play."
             "The game was very complex and involved a randomized play field made with elaborate wooden cubes."
@@ -5808,16 +5813,17 @@ label community30:
                             "The kids were pretty excited to see what I unearthed."
                             "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
                             $ searched_sofa = True
-                            if searched_bed and searched_cupbaord and searched_sofa:
+                            if searched_bed and searched_cupboard and searched_sofa:
                                 jump say_goodbye_30
                             else:
                                 jump where_next_30
-                "I said goodbye to Thuc and Van and headed back into town."
-                if examined_body:
-                    jump olegs_house
-                else:
-                    "I still wanted to examine the body."
-                    jump examine_body
+                label say_goodbye_30:
+                    "I said goodbye to Thuc and Van and headed back into town."
+                    if examined_body:
+                        jump olegs_house
+                    else:
+                        "I still wanted to examine the body."
+                        jump examine_body
 
             "Examine the body and Joel's belongings.":
                 label examine_body:
@@ -6097,7 +6103,7 @@ label community30:
                  pete "{i}She always has some sob story about why I should give her a better price, but I don't give in!{/i}"
                  pete "{i}Good luck finding out what happened.{/i}"
                  him "About that... do you have any leads?"
-                 pete "{i}You seriously don't know? Maybe you should ask [kid_name]."
+                 pete "{i}You seriously don't know? Maybe you should ask [kid_name].{/i}"
             "I said goodbye to Pete and pondered what to do with this information."
             kid "How's that investigation going?"
             him "Oh, you were being so quiet that I didn't realize you were here. Well, you heard what Pete and I were talking about."
@@ -6115,7 +6121,7 @@ label community30:
                     kid "..."
                     him "Okay, thanks for your help."
                 else:
-                    kid "You're most interested in Noel's involvement, right?"
+                    kid "You want to know about Noel, right?"
                     kid "Ever since I started my delivery business, Noel has been getting large deliveries of firegrass from everyone."
                     him "Like how large?"
                     kid "Larger than any single person would ever smoke or otherwise consume."

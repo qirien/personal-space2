@@ -94,7 +94,7 @@ label family1:
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
             "I reminded myself that she wouldn't cry forever, that this was just one night, even as I felt like sobbing alongside her with exhaustion."
             "I hated feeling so helpless."
-            scene moon with fade
+            scene moons with fade
             "I wonder if [kid_name] felt the same way?"
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
             "We walked the fields for at least an hour; maybe more."
@@ -139,7 +139,7 @@ label family1:
             "I stepped out into the night, closing the door gently with what little control I had left. I started to run."
             scene fields with fade
             "The crying faded from my ears the further I got from the house, but I could still hear the cries echoing in my head. I ran faster."
-            scene moon with fade
+            scene moons with fade
             "I reached the end of our fields, out of breath, legs and chest aching. The pain felt good; I deserved it."
             "Maybe I wasn't cut out to be a dad. What kind of dad leaves when there's trouble?"
             "But this was trouble I couldn't fix. What was the point in sticking around, when everything I did just seemed to make it worse?"
@@ -688,7 +688,7 @@ label family3:
     with moveoutright
 
     # TODO: get background.
-    # scene sunset with fade
+    scene canyon with fade
     show him normal at midright
     show her normal at midleft
     show kid normal at center, baby_pos
@@ -722,7 +722,7 @@ label family3:
     show him sad at quarterleft with move
     "But then I saw our daughter, sitting on the other side of a large rock."
     # TODO: bg
-    #scene canyon with fade
+    scene sunset with fade
     show kid surprised at quarterright, baby_pos with dissolve
     show him concerned at midright with moveinleft
     him determined "She's over here!"
@@ -828,7 +828,7 @@ label family3:
             $ neglectful += 1
 
     # TODO: bg
-    scene black with fade
+    scene moons with fade
     "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
     show him sleeping at midright
     show her sleeping at center
@@ -3420,10 +3420,6 @@ label family12:
             julia_c "A preventable accident! They expect us to feed them, and then make us waste our precious time with these vermin! I have ten children to decontaminate!"
             $ miners += 1
 
-    miranda_c "Most of us aren't children anymore, Mom."
-    julia_c "Do you have someone else who's willing to check your hair for lice?"
-    miranda_c "..."
-    julia_c "There's plenty of reasons to find a husband, and this is just one of them!"
     lily_c "Miranda and I can assist each other with this task so as not to overburden you."
     julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
     brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad, too. I've got a lot of hair to comb through, here."
@@ -3433,7 +3429,7 @@ label family12:
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
     sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. 🧑"
-    brennan_c "I'm not cutting my hair. I just can't part with these luscious locks."
+    brennan_c "Don't worry; I'll never shave these luscious locks."
     nvl hide
 
     scene farm_interior with fade
@@ -3616,7 +3612,7 @@ label family13:
     "I guess I was getting used to having kids. When I looked back at the time before I was a father, it seemed so long ago."
     "It was hard to even remember when it was just [her_name] and me..."
     "We brought the kids to the clinic so that they could see their new sibling via ultrasound."
-    scene clinic with fade
+    scene hospital with fade
     show him normal at midright
     show her normal at center
     show kid normal at midleft
@@ -3786,7 +3782,7 @@ label family13:
             $ permissive += 1
 
 label family13_end:
-    scene black with fade
+    scene stars with fade
     "We were all excited for a new brother or sister in the family..."
     "...but [her_name] lost the baby."
     "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
@@ -4236,6 +4232,10 @@ label allowance_how:
 label family16:
     "The way my kids grew up was pretty different from how [her_name] and I grew up on Earth. They never experienced things like grocery stores, school fundraisers, football games, or trains."
     "But some things were pretty similar to my own childhood."
+    scene kid_bedroom with fade
+    show him at midright
+    show kid at midleft
+    with dissolve
     him annoyed "Yes, you need to clean your room today."
     kid "But I like it messy! It feels comfortable and I know where everything is!"
     him determined "Really? Where's your hairbrush?"
@@ -4480,7 +4480,7 @@ label family17:
             bro "Owwwww! Wahhhhhhh!"
             "The wailing increased in volume and I decided I'd better go in."
 
-    scene farm_interior with fade
+    scene kid_bedroom with fade
     show bro sad at midright, squatting
     show kid angry at center
     with dissolve
@@ -4690,7 +4690,7 @@ label family17:
         him normal "Of course! If we're going on a quest, we need a party of adventurers! And perhaps a noble steed!"
         "I threw a water bottle and some crabird jerky in my pack and we set off."
         scene barn with fade
-        show lettie at midright with dissolve
+        show horse at midright with dissolve
         show him normal at midleft
         show bro at quarterleft
         with moveinleft
@@ -4824,7 +4824,7 @@ label family17:
                 pete "See you. Take it easy, kid."
 
         scene path with fade
-        show lettie at center
+        show horse at center
         show him normal at center
         show bro normal at center
         with dissolve
@@ -4868,10 +4868,14 @@ label family18:
     "I still couldn't get used to how tall [kid_name] was all of a sudden. It was like my little girl had spent a few years in a portal world and come back to us completely different."
     "Well, not completely different."
     "Sometimes she still acted like a little kid."
+    scene kid_bedroom with fade
+    show him annoyed at midleft
+    show kid annoyed at midright
+    with dissolve
     him annoyed "Yes, I'm serious. You need to take a bath!"
     kid "Can't I just wash off here at the sink?"
     him determined "No. You need a real bath, all over."
-    kid "Ugh, why?! I just had a bath two days ago!"
+    kid annoyed "Ugh, why?! I just had a bath two days ago!"
     menu:
         "What should I say?"
         "Because I said so.":
@@ -4883,11 +4887,11 @@ label family18:
             him determined "You're getting kind of stinky."
         "Because it's healthy.":
             him normal "I want you to be healthy. Right now there is a seriously out of control bacteria party going on in your armpits and who knows where else, and party time is over."
-    kid "Dad!"
+    kid angry "Dad!"
     him normal "Don't you want the truth?"
-    kid sad "You don't have to say it like that."
+    kid nervous "You don't have to say it like that."
     him "Well, you need to take a bath."
-    kid "I really hate taking baths!"
+    kid determined "I really hate taking baths!"
 
     menu:
         "What should I say?"
@@ -5093,7 +5097,10 @@ label family18:
 label family19:
     $ family19_notlikethat = False
     $ family19_questions = False
-    "You're sending an e-mail to the farming committee and looking for a photo you took of some crops when you find a pornographic video stored on the computer pad."
+    scene farm_interior with fade
+    show him normal at center with dissolve
+    "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
+    show him surprised
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
     menu:
         "What should I do?"
@@ -5113,11 +5120,14 @@ label family19:
         "Watch the video.":
            $ demanding -= 1
            "You start watching it and immediately cringe."
+           show him concerned
            "There's nothing romantic or loving about it -- it's designed solely to ramp up hormones and get to a climax as fast as possible."
            "And the rough foreplay seems uncomfortably like rape -- not something you'd want [kid_name] to think was normal."
+           show kid surprised at midleft with moveinleft
+           show him determined at midright with move
            kid surprised "Dad, what are you watching?"
            him "I found this video on here when I was looking at your history."
-           kid blushing "Oh. That."
+           kid nervous "Oh. That."
            jump family19_porn_chat
         "It's not a big deal. Do nothing.":
             "Teenagers are going to watch porn. That's just a fact of life."
@@ -5127,6 +5137,8 @@ label family19:
         "Ask her about it.":
             $ responsive += 1
             him concerned "[kid_name], come sit with me for a minute."
+            show kid surprised at midleft with moveinleft
+            show him determined at midright with move
             kid surprised "What is it, dad?"
             him determined "What can you tell me about this pornography on the computer pad?"
             kid "I don't know."
@@ -5241,7 +5253,10 @@ label family19:
 # 12.4 Earth years old
 # Musical Instrument
 label family20:
-
+    scene farm_interior with fade
+    show him at midright
+    show kid at midleft
+    with dissolve
     kid "Dad, listen to this song."
     him "Okay..."
     "She played me a song where a girl about her age was playing a soulful song on the saxophone."
@@ -5274,7 +5289,7 @@ label family20:
     kid "You mean it might be possible?! That would be so cool!"
     him "I don't know if it's possible! I'm going to find out, though."
 
-    scene black with fade
+    scene stars with fade
 
     nvl clear
     him_c "Anyone have a saxophone? [kid_name] wants to play..."
@@ -5282,9 +5297,10 @@ label family20:
     sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit! 😬"
     kevin_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
     ilian_c "You'd need to make pads out of fabric, and reeds out of wood. They'd have to be really precise."
-    ilian_c "Honestly, almost any other instrument would be easier to make."
     him_c "Okay, thanks. Do you think RET would send one from Earth?"
     brennan_c "Musical instruments aren't on the schedule."
+    ilian_c "Honestly, almost any other instrument would be easier to make. A recorder, or a trombone, or a xylophone..."
+    # TODO: do a trombone instead; saxophones are so complicated!!
 
     scene farm_interior with fade
     kid "So? What did you find?"
@@ -6138,7 +6154,7 @@ label family24:
     "I know [her_name] didn't really get it, but Lettie's been one of my best friends. No matter what's going on, I can always depend on her to be there when I need her."
     "And she always accepts me just the way I am."
     scene barn with fade
-    show lettie at midright
+    show horse at midright
     show him normal at midleft with moveinleft
     him "Hello, old girl."
     "She nickered softly in return and stepped up to me. I patted her neck and talked to her as I got her ready to ride."
@@ -6147,7 +6163,7 @@ label family24:
     him "I know, she's old enough to come home on her own, but it'll be dark, and sometimes it's the only chance I get to talk to her."
     him "Besides, you want a walk, right?"
     scene path with fade
-    show lettie at center
+    show horse at center
     show him normal at center
     with dissolve
     "Lettie seemed to enjoy the walk. Even though she was getting older, it was good for her get out and exercise often."
@@ -6173,19 +6189,19 @@ label family24:
             "Lettie tossed her head."
             him "I guess you probably know what I mean, since you're getting a bit older, too."
 
-    #scene bg miners
+    #scene miners
     "After we arrived at Anya's house, I secured Lettie's tether to the gate."
     "Lettie was breathing a little harder than usual, so I thought I'd let her take a break while I looked for [kid_name]."
     "She seemed happy to be resting, and started grazing on some small nearby shrubs."
     "Anya's father told me they had gone for a walk by the canyon."
-    scene bg canyon
+    scene canyon
     show him normal at midleft with moveinleft
     "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
     "...Maybe especially because she was almost 15."
     him surprised "[kid_name]!"
     "My call echoed up and down the canyon. I listened carefully, but there was no response, so I walked further along."
     hide him with moveoutright
-    scene bg sunset
+    scene sunset
     show him normal at midleft with moveinleft
     him concerned "[kid_name]!"
     show kid normal at midright with moveinright
@@ -6285,7 +6301,7 @@ label lettie_dies:
     scene miner_camp with fade
     show him normal at left
     show kid normal at midleft
-    show lettie at right
+    show horse at right
     with dissolve
     "I was about to say something when I noticed a strange smell. We were almost to where I had tied up Lettie, but something was wrong."
     "The smell was horse diarrhea, and when I ran up Lettie was trembling and shaking."
@@ -6654,6 +6670,9 @@ label family25:
 # She calls you names. Do you argue, or discuss?
 label family26:
     scene farm_interior with fade
+    show him normal at midright
+    show kid annoyed at midleft
+    with dissolve
     kid "Dad, what you're doing to Talaam is wrong. We should not be here changing this planet!"
     him "What are you talking about?"
     kid "We're contaminating this planet! Look at all our trash, all the non-native species we've introduced, and all the animals here that we've killed or enslaved! The cave we destroyed!"
@@ -7055,7 +7074,7 @@ label family28:
 
                     if (miners > 10):
                         him_c "Brennan, have you seen [kid_name]?"
-                        brenann_c "Not today."
+                        brennan_c "Not today."
                         him_c "You don't happen to know where she's at?"
                         brennan_c "No. Sorry."
                         "It was hard to tell online, but it seemed like he was hiding something."
@@ -7389,8 +7408,8 @@ label family29:
     kid surprised "Do you think it's important for two people to be physically attracted to each other before getting married?"
     kid nervous "I mean, I know it's one part of a relationship, but there's plenty of people who are attracted to each other but just aren't good for each other, and probably the opposite might be true, too...?"
     menu:
-        "What should I say?"
-        "It's not the most important thing.":
+        "How important is physical attraction to a marriage?"
+        "It's not very important":
             him determined "Physical attraction is one of the least important parts of being married."
             kid surprised "Really?"
             him normal "Yeah... I mean, all those sexy feelings are great and all, but then after several years when you're not horny teenagers anymore it's your friendship and sacrifices for each other that will hold you together."
@@ -7529,34 +7548,7 @@ label family29:
 
     "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
     kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
-    him concerned "Hmmm... That actually makes sense. Well, do you want to know what I think?"
-    kid nervous "Um... kind of?"
-    menu:
-        "What should I say?"
-        "They should try a relationship.":
-            him "They should try a relationship. I mean, it's great to think about marriage and all, but that's the whole point of dating and having serious relationships before marriage; to see what it would be like."
-            kid "Try a relationship... including the sex part? I mean, that's the main thing they're worried about."
-            menu:
-                "What should I say?"
-                "Yes, including sex.":
-                    him normal "Yeah, how else would they know if that would work? Obviously they should use birth control first, and--"
-                    kid annoyed "I KNOW, dad. I mean, I'm sure {b}they{/b} know about that."
-                "No, they should save that for marriage.":
-                    him determined "No, they should wait until they're married. As long as they have the other things - deep friendship, unselfish love, and a similar life vision - then it doesn't really matter what their sex is like."
-                    kid surprised "Really?"
-                "No, but they should see if there's any attraction.":
-                    him determined "No, but they don't have to go all the way to see if there's a spark of attraction there. If there's not any attraction at all... then it's probably not going to work."
-                    kid concerned "So you think there has to be some attraction?"
-                    him normal "Yeah, but it doesn't have to be a raging inferno of lust. At least a small spark of 'it might be nice to kiss you'."
-                    kid normal "Oh, dad..."
-
-            him surprised "I guess it also depends on what they think the purpose of marriage is."
-
-        "There's no point in a relationship without physical attraction.":
-            him "You're right. There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
-            kid "So you think it could never work?"
-            him "I don't think so. Especially when you consider what the purpose of marriage is."
-
+    him surprised "I guess it also depends on what they think the purpose of marriage is."
     kid surprised "The purpose of marriage?"
     him concerned "Yeah. You can't get married just because it's the normal thing to do; that's not good enough."
     kid concerned "Why'd you and mom get married?"
@@ -7573,7 +7565,7 @@ label family29:
             him happy "The best things in life are!"
             $ authoritative += 1
         "We felt like it.":
-            him concerned "I don't know, I guess we just wanted to."
+            him concerned "It's hard to describe... I guess we both wanted to, so we did it?"
             kid determined "Huh. Okay."
             $ permissive += 1
         "I don't know.":
@@ -7581,7 +7573,7 @@ label family29:
             kid determined "Huh. Okay."
             $ neglectful += 1
 
-    him normal "Anyway, getting married is awesome if you do it right. I hope that... your friend can make a good choice."
+    him normal "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
     kid concerned "Yeah, I'll tell her what you said. Anything else you think she should know?"
     "Wow. My kid was asking me for advice? I'd better make it good!"
 
@@ -7591,24 +7583,38 @@ label family29:
             him happy "Choose your love; love your choice."
             kid surprised "What does that mean?"
             him determined "It means that you choose carefully who you marry; but once you do, love them with your whole heart every day."
+            kid happy "Hmmm, okay. Thanks, dad."
+            $ confident += 1
         "Follow your heart.":
             him happy "Follow your heart!"
             kid normal "Okay, dad."
             him normal "No, really. Listen to what your heart wants and then go for it!"
             kid concerned "What my heart wants..."
+            $ responsive += 1
         "Don't rush it.":
             him normal "Don't rush it. You're young; you've got plenty of time."
             kid annoyed "That's what old people always say..."
-            him flirting "And we're right."
+            him flirting "And we're always right."
             kid normal "Okay, dad."
+            $ demanding += 1
         "Don't be stupid.":
             him determined "Don't be stupid."
             kid annoyed "Thanks. Wow. That sure was helpful."
-        "We'll always be here for you.":
+            $ demanding += 1
+        "Parents will always be there for you.":
             him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
             kid normal "Thanks, dad."
+            $ responsive += 1
+        "They should try a relationship.":
+            him "They should try a relationship. I mean, it's great to think about marriage and all, but that's the whole point of dating and having serious relationships before marriage; to see what it would be like."
+            kid "What if they're still not attracted to each other?"
+            him normal "There's different levels of attraction. You don't need a  raging inferno of lust for a good marriage, but you should probably have at least a small spark of 'it might be nice to kiss you'."
+            kid happy "Ha ha, okay, thanks dad."
+        "There's no point in a relationship without physical attraction.":
+            him "There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
+            kid concerned "Hmmm, okay. Thanks, dad."
     "She went inside the house, but I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
-    scene stars with fade
+    scene moons with fade
     "[her_name] came out and joined me."
     her "You guys talking about her 'friend'?"
     him "Yeah. Hopefully I said the right things."
@@ -7655,32 +7661,47 @@ label family30:
 
     if (attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH) and (independence < INDEPENDENCE_HIGH):
         # If she is leaving with Lorant, you don't even find out about it until later
-        "Some night she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
+        "Some nights she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
         "If I'd known, would I have tried to stop her? Would it have made a difference?"
         "I had too many of my own problems to deal with to spare much time for anyone else's."
         return
 
     # A spot opens up on the shuttle, and [her_name] is considering taking it.
+    scene farm_interior with fade
+    show him normal at center with dissolve
     "One night I opened up the computer pad after [kid_name] and [her_name] had gone to bed. There was a message from Anya on it for [kid_name]."
     "I didn't mean to read it, but once I had, I couldn't un-read it."
+    show him concerned
     nvl clear
     anya_c "Do u want my shuttle spot r not?? Need 2 know by tomorrow nite!"
     nvl clear
+    show him surprised
     "My head started spinning. [kid_name] was thinking of going on the shuttle back to Earth?!"
     "I didn't think it was even a possibility but apparently her friend Anya was willing to give up her spot for [kid_name]."
     if (has_strong_marriage()):
         "I went to talk to [her_name] about it, but she was sound asleep. I remember she'd had to go in early this morning for something urgent, so she was probably really tired."
+    show him concerned
     "[kid_name] couldn't leave... we were a family! She was so tightly woven into the fabric of my life; if she tried to detach herself, I thought my whole world would fall apart."
+    show him determined
     "Not only that, I depended on her to help me with the farm."
     "I guess I had always known in some abstract way that eventually she would leave, but this..."
+    show him sad
     "This was too fast."
     "I thought about waking [kid_name] up to talk to her, but I was worried that I might not say the right things since I was feeling so upset."
+    show him concerned
     "No, I should wait."
     "It was getting really late; I should go to bed."
     "But my mind was racing and my heart was thumping as if I was about to be attacked by wolfslugs."
+    call bedroom_scene(sleeping=False)
+    show her sleeping
+    show him determined
+    with dissolve
     "Finally, I lay down next to [her_name] and tossed and turned, trying to get comfortable. Nothing felt right."
     "I fidgeted so much that I must have woken up [her_name], who grunted at me and covered her head with the blanket."
+    show her annoyed
+    show him concerned
     "Finally, I went and sat outside under the moons and stars."
+    scene moons with fade
     "Every inch of ground was soaked in memories."
     # TODO: show these
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
@@ -7744,7 +7765,7 @@ label family30:
     else:
         kid happy "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
         if (boyfriend_name == ""):
-            kid normal "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
+            kid shifty "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
             her concerned "Well, there's definitely more guys there..."
             him annoyed "...but I don't know about better ones."
 
