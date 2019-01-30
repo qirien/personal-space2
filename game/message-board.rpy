@@ -19,7 +19,6 @@ label message1:
     naomi_c "Congratulations to Sara and Ilian on the birth of their son Oleg!"
     him_c "I don't know whether to congratulate you or commiserate with you..."
     sara_c "Maybe both? :-D"
-    # TODO: finish this?
     # Natalia and Julia give great, conflicting baby advice
     natalia_c "I hope you can get some time to yourself once in a while still!"
     julia_c "Nonsense. Babies need their mothers' touch. I hope you are snuggling that baby close as often as possible. And breastfeeding. And swaddling. And cosleeping. And sleeping when the baby sleeps."
