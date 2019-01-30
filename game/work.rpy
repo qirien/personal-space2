@@ -530,6 +530,7 @@ label work10:
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, once placed, they cannot be moved."
+            # TODO: implement these!!
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."

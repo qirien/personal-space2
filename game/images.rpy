@@ -27,7 +27,7 @@ init -10:
     # Special Sprites
     image baby = "kid-sprites/baby normal.png"
     image toddler = "kid-sprites/toddler normal.png"
-    image child = "kid-sprites/young normal.png"
+    image child = "kid-sprites/kid normal.png"
     image tween = "kid-sprites/tween normal.png"
     image teen = "kid-sprites/teen normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
@@ -40,8 +40,9 @@ init -10:
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
                 "year <= 4", "kid-sprites/baby %s.png" % expression_name,
-                "year <= 12", "kid-sprites/toddler %s.png" % expression_name,
-                "year <= 21", "kid-sprites/tween %s.png" % expression_name,
+                "year <= 8", "kid-sprites/toddler %s.png" % expression_name,
+                "year <= 16", "kid-sprites/kid %s.png" % expression_name,
+                "year <= 22", "kid-sprites/tween %s.png" % expression_name,
                 "True", "kid-sprites/teen %s.png" % expression_name))
             # finer grained images
             # renpy.image(("kid", expression_name), ConditionSwitch(
