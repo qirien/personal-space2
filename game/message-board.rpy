@@ -1,24 +1,13 @@
 # These are messages that appear on the colony message board each year
 # The comments above say what will happen that year.
 
-# To change appearance, see screens.rpy, screen nvl
-label yearly_messages:
-    $ message = "message" + `year`
-    $ read_messages = True
-    nvl clear
-    call expression message
-    #computer "\n(End of messages)"
-    nvl clear
-    call screen plan_farm
-    return
-
 # Community: New colonists arrive
 # Family: Terra won't stop crying.
 label message1:
     nvl clear
     naomi_c "Congratulations to Sara and Ilian on the birth of their son Oleg!"
     him_c "I don't know whether to congratulate you or commiserate with you..."
-    sara_c "Maybe both? :-D"
+    sara_c "Maybe both? 😄"
     # Natalia and Julia give great, conflicting baby advice
     natalia_c "I hope you can get some time to yourself once in a while still!"
     julia_c "Nonsense. Babies need their mothers' touch. I hope you are snuggling that baby close as often as possible. And breastfeeding. And swaddling. And cosleeping. And sleeping when the baby sleeps."
@@ -27,6 +16,11 @@ label message1:
     her_c "It's totally fine to let someone take your place sometimes. I would go crazy if I had to be holding [kid_name] every second!"
     him_c "Yeah, give me that baby, it's my turn to snuggle!"
     sara_c "It's good to see SOME dads enjoy snuggling with their babies."
+    naomi_c "Sara..."
+    julia_c "Anyway, if you want to help Sara and Ilian, we have a signup to bring them a meal."
+    natalia_c "And I made a signup for anyone that would like to volunteer to hold the baby for an hour or so to give them a break."
+    naomi_c "Thank you, those are both wonderful ideas."
+    sara_c "Thank you everyone!! 😂"
 
     nvl clear
     return
@@ -102,7 +96,7 @@ label message4:
     him_c "Second smartest?"
     pete_c "The first was marryin' Helen. Now, she don't like me to brag about her, but..."
     naomi_c "Would Helen want you to share what you're about to say?"
-    pete_c "...probably not. But, holy hand grenade in a hand basket, she is one fine woman!"
+    pete_c "...probably not. But, holy hand grenade in a hot air balloon, she is one fine woman!"
     helen_c "...anyway, um, Zaina's zucchini pickles are really good, too."
     him_c "Really? I'll have to try them out."
     zaina_c "Thanks! Always glad to share the love when it comes to zucchini."
@@ -116,6 +110,21 @@ label message5:
     nvl clear
     # Liaison business -- ratifying charter, objections must be posted by two weeks, blah blah. Kevin feels it's not precise
     # People encouraging liaison, they don't actually do much yet
+    if (is_liason):
+        him_c "Hey, we need to ratify the our charter tomorrow at the meeting in two weeks, so please look it over before then. Now is the time if you have any objections."
+    else:
+        sara_c "If you haven't had a chance to read our new charter, please look it over!  We're ratifying it in two weeks so if you have any issues, let's work them out before then!"
+
+    kevin_c "This clause at the beginning is imprecise. Is biannually based on Earth time or Talaam time?"
+    pete_c "Shouldn't decisions have to be voted on or something? This liason is going to have a lot of power..."
+    naomi_c "Perhaps people with specific objections to the charter could post alternative wording for everyone to choose from?"
+    kevin_c "I will post an edited copy with more precise language."
+    natalia_c "Thanks for being our liason, BTW - I wouldn't wish that job on anyone, but I think you'll do just fine."
+    if (is_liason):
+        him_c "Thank you! I appreciate all the help and support I've received so far."
+    else:
+        sara_c "Thank you everyone!!! You're so kind! 😊~❤"
+
     return
 
 # Community: Game Night continued/consequences

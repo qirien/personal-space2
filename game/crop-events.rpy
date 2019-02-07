@@ -1077,7 +1077,7 @@ label beans2:
             "I needed them to dry, so I decided to hang them up."
             "I strung clothesline zig-zagging around the house and in the barn."
             "I hung them upside down in bunches everywhere."
-            show her at midleft with moveinleft
+            show her normal at midleft with moveinleft
             her flirting "Trying your hand at interior design?"
             him annoyed "I'm trying my hand at saving our beans."
             her surprised "Saving them?"

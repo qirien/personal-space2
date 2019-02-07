@@ -6,13 +6,13 @@
 # "demanding" and "responsive" are just for the current year and affect how much the child's stats increase that month.  They may increase
 # (or in some cases, decrease) by 1-5 each month.
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month.
-# TODO: The only way to get the "authoritative" option is usually to learn more about the situation by choosing "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
+# TODO: Add more "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
 
 # Intro event
 label family_intro:
-    "All [kid_name] needed was a clean diaper, milk, and some love."
+    "All [kid_name] needed at first was a clean diaper, milk, and some love."
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
-
+    play music sad
     call bedroom_scene(True)
     show kid sad with dissolve
     her sleeping "[his_name]."
@@ -37,13 +37,12 @@ label family_intro:
     "She finally finished the bottle, dozing off right away for once."
     "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
     "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
-    "And it did make me feel like more of a \"dad\", instead of just \"the husband of a mother\", if that makes any sense."
     return
 
 # 3 Earth mos. old
 # CAN'T STOP CRYING!!
 label family1:
-    # TODO: check expressions, positions
+    play music tense
     scene farm_interior with fade
     show him concerned at midright
     show her concerned at midleft
@@ -70,7 +69,7 @@ label family1:
             him normal "She'll be fine wrapped up in her blanket. See if you can get some sleep."
             her sad "Are you sure? I know you're tired, too..."
             him happy "If she's still crying in a few hours, it'll be your turn."
-            her happy "Okay, good idea."
+            her concerned "I sure hope she's not... thank you, [his_name]."
             "I snuggled her into her baby carrier and closed the door behind me."
             hide him
             hide kid
@@ -538,7 +537,7 @@ label family2:
     her sad "Helen. She had appendicitis."
     him surprised "Have you ever fixed one of those before?"
     her determined "No, but I did a surgical rotation where I helped perform one. But it's quite different to be the one in charge."
-    him determined "It's a good thing you have a real nurse helping you out now."
+    him determined "It's a good thing you have a real nurse helping you out now instead of Brennan."
     "[her_name] seemed to be thinking about something else, though."
     her concerned "Yeah...I hope Helen will be okay."
     "I made her up a plate of beans while we talked."
@@ -630,6 +629,7 @@ label family2:
 # 18 Earth mos. old
 # Camping trip, putting everything in her mouth
 label family3:
+    play music upbeat
     scene farm_interior with fade
     show him normal at midright
     show her normal at midleft
@@ -656,11 +656,11 @@ label family3:
     him surprised "Where do you want to go? There's no hotels or anything..."
     show kid surprised at center, baby_pos with dissolve
     her surprised "I thought maybe we could go camping?"
-    him happy "That sounds great! I love camping!"
     show kid laugh at center, baby_pos with dissolve
-    "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug." # TODO: animate this?
+    him happy "That sounds great! I love camping!"
     show him at center with move
     show kid normal at jumpinghigh with move
+    "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug."
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
     kid laugh "Ow sai!"
     show kid normal at midright, baby_pos with move
@@ -710,6 +710,7 @@ label family3:
     show her sleeping
     with dissolve
     "I held [her_name] close for a minute, both of us savoring the memory."
+    play music worried
     her surprised "Oh! Where's [kid_name]?!"
     show him surprised with dissolve
     "We had just set her down, and already she had wandered off. We both scanned the area. I tried not to be too worried... she couldn't have gone far, right?"
@@ -739,12 +740,13 @@ label family3:
     "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field equipped with a homing beacon to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
     her concerned "I'm sorry, [his_name]. I should have been watching her closer."
     him surprised "That's just what I was going to say!"
+    play music thoughtful
     show kid annoyed with dissolve
     "[kid_name] strained against [her_name]'s arms and twisted and writhed, trying to get down."
     her sad "Oof! This girl is getting heavy!"
     show kid shifty at midleft, baby_pos with move
     "[her_name] set her down, but she went right back over to her sticks and began chewing on them again."
-    show kid normal at quarterright with move
+    show kid normal at quarterright, baby_pos with move
     "We gave each other exasperated looks and then laughed."
     show kid happy with dissolve
     him happy "Clearly, this girl needs something to gnaw on."
@@ -883,6 +885,7 @@ label family4:
     menu:
         "What should I say?"
         "You must eat this dinner.":
+            play music tense
             $ demanding += 1
             him angry "You're not leaving the table until you eat all of this food."
             kid annoyed "Yucky!"
@@ -998,7 +1001,7 @@ label family4:
                     "But I know when I was a kid, I hated being spanked."
                     "Maybe it changed my behavior for a short time, but mostly I just felt mad at my dad for being out of control."
                     "I have a lot more sympathy for him now."
-                    "It was only later that I realized the irony of me demanding respect and nonviolence from [kid_name] while spanking her."
+                    "It was only later that I realized the irony of me demanding [kid_name] respect and stop hurting people while spanking her."
 
             $ authoritarian += 1
 
@@ -1087,6 +1090,7 @@ label family4:
 # 2.7 Earth years old
 # Toilet Training
 label family5:
+    play music thoughtful
     scene black with fade
     "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, run, and jump. She learned several new words every day."
     show baby with fade

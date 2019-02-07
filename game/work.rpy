@@ -5,6 +5,9 @@ label work_default:
     $ enable_crop("squash")
     return
 
+# TODO: Need event(s) for if you overwork yourself.
+
+
 # Malnutrition Event for if you don't have enough nutrition
 label bad_nutrition:
     $ bad_nutrition_count += 1
@@ -240,6 +243,7 @@ label bad_nutrition:
 
 # Year 1, 3 mo. old
 label work_intro:
+    play music farming
     scene fields with fade
     "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
     "Over the past two years, with a lot of trial and error, I'd found crops and varieties that worked well."

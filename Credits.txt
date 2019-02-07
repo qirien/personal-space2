@@ -8,7 +8,7 @@
 
 The following images are in the public domain.
 
-Starscape <stars.jpg> by NASA, <https://www.nasa.gov/feature/goddard/2016/hubble-reveals-observable-universe-contains-10-times-more-galaxies-than-previously-thought>
+Starscape <stars.jpg> rendered with Celestia, <http://celestia.space>
 
 Mongolian Yurt <farm_exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
 
@@ -16,17 +16,14 @@ Yurt Interior <farm_interior.jpg> by Andrea Landaker, derived from <https://pixa
 
 RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:RoscheiderHof-rathaus-2008-8.jpg>, by Dorothea Witter-Rieder.
 
-Fields <fields.jpg> by Andrea Landaker
+Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Kid Bedroom <kid_bedroom.jpg>, Canyon <canyon.jpg>, Sunset <sunset.jpg> by Andrea Landaker
 
-Bedroom <bedroom.jpg> by Andrea Landaker
-
-Path <path.jpg> by Andrea Landaker
-
-Pond <pond.jpg> by Andrea Landaker
+Moons <moons.jpg>, by Andrea Landaker and Lisa Horner
 
 Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://openclipart.org/detail/171268/boxing-glove> by netalloy
 
 Dirt background <soil.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/ground-earth-clay-soil-nature-549728/> by Humusak
+
 
 
 ==== CC-BY-2.0

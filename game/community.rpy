@@ -4,6 +4,7 @@
 # Feel free to change this if you want. It should be fairly short and remind
 # everyone of the characters and situation.
 label community_intro:
+    play music community
     scene fields with fade
     "Luckily, we weren't alone on Talaam. There were several hundred other colonists here, now. Enough to feel like a real community, and not just  a few struggling pioneers."
     # show Julia and Ilian?
@@ -15,6 +16,7 @@ label community_intro:
 
 # New colonists arrive
 label community1:
+    play music happy
     $ asked_kids = False
     $ asked_family = False
     $ asked_grow = False
@@ -342,6 +344,7 @@ label community2:
 
 # 3 - Game Night!
 label community3:
+    play music exciting
     scene farm_interior with fade
     show thuc sad at midleft
     show him happy at center
@@ -440,33 +443,33 @@ label community3:
 # 4 - Community Liaison
 label community4:
     scene community_center with fade
-    show pavel at center
+    show pavel normal at center
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
     pavel "This is what it said:"
     #TODO: separate style for RET messages?
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ pstyle = get_parenting_style()
+    if (pstyle== "authoritative"):
         "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
-    elif(style == "authoritarian"):
+    elif(pstyle == "authoritarian"):
         "We need a designated contact with the colony that u trust. Send ur decision."
-    elif(style == "permissive"):
+    elif(pstyle == "permissive"):
         "U shld choose some1 2 represent the colony 2 us."
     else:
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
     pavel "It's my job to encourage whatever is best for the colony."
     show pavel sad #this transition is weird... but is it weirder to keep him in the same pose for so long?
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
-    pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
+    pavel normal "The liason will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
-    pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
-    show pavel
-    pavel "I doubt anyone will volunteer for extra work, so'd like everyone to nominate someone tonight."
+    pavel sad "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
+    pavel normal "I doubt anyone will volunteer for extra work, so'd like everyone to nominate someone tonight."
     pavel "Then we'll vote on the nominations."
     hide pavel with moveoutright
-    show thuc at midright
+    show thuc normal at midright
     show him normal at center
-    show lily at midleft
+    show lily normal at midleft
+    with dissolve
     thuc "Wow, who has time for that extra work?"
     thuc "It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liason work."
@@ -490,7 +493,7 @@ label community4:
     show lily happy
     lily "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
     hide thuc with moveoutright
-    show naomi sad at midright
+    show naomi sad at midright with moveinright
     naomi "Hello everyone, have you thought of someone to nominate?"
     him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liason separate from Pavel."
     show naomi
@@ -526,16 +529,16 @@ label community4:
         "My friend Thuc. I think that would be funny.":
             $ pass
     "After the nominations, we voted for our favorite candidate."
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ pstyle = get_parenting_style()
+    if (pstyle== "authoritative"):
         "My fellow colonists elected me to be the new representative."
         $ is_liason = True
         return
-    elif(style == "authoritarian"):
+    elif(pstyle == "authoritarian"):
         "Sara, and Sister Naomi and I were nominated. I had the most votes, but not the majority."
         $ is_liason = True
         return
-    elif(style == "permissive"):
+    elif(pstyle == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
         return
     else:
@@ -556,12 +559,12 @@ label community5:
     if is_liason:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
-        $ style = get_parenting_style()
-        if (style== "authoritative"):
+        $ pstyle = get_parenting_style()
+        if (pstyle== "authoritative"):
             "50 new miner neighbors are coming in 4 Earth years. Plz feed them when they come."
-        elif(style == "authoritarian"):
+        elif(pstyle == "authoritarian"):
             "50 miners are arriving in 4 Earth years. Prepare 2 feed them, and create $ so that they can pay u 4 what they eat."
-        elif(style == "permissive"):
+        elif(pstyle == "permissive"):
             "We're sending fifty miners ur way, so if u could feed them, that would be gr8. They'll have $."
         else:
             "50 new miner neighbors are coming in 4 Earth years. Feed them."
@@ -1066,12 +1069,12 @@ label community8:
     if is_liason:
         show farm_exterior with fade
         "Urgent insta-com from RET!"
-        $ style = get_parenting_style()
-        if (style== "authoritative"):
+        $ pstyle = get_parenting_style()
+        if (pstyle== "authoritative"):
             "Have 10kg Xtra space on the shuttle. What Earth luxuries u like?"
-        elif(style == "authoritarian"):
+        elif(pstyle == "authoritarian"):
             "Tell us what extras to put on the shuttle by this evening."
-        elif(style == "permissive"):
+        elif(pstyle == "permissive"):
             "If u want Earth goods, tell us what u want by 2night!"
         else:
             $ no_luxuries = True
@@ -2556,14 +2559,14 @@ label community15:
     kid "Are you dying?"
     naomi "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other, okay?"
     naomi "[his_name], I've been watching how you parent your children."
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ pstyle = get_parenting_style()
+    if (pstyle== "authoritative"):
         naomi "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
         naomi "Keep up the good work."
-    elif(style == "authoritarian"):
+    elif(pstyle == "authoritarian"):
         naomi "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
         naomi "If you consider Terra's opinion sometimes, I think she will be happier."
-    elif(style == "permissive"):
+    elif(pstyle == "permissive"):
         naomi "You let Terra do her own thing a lot."
         naomi "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
     else:
@@ -2817,12 +2820,12 @@ label community16:
                         pete "What was her title?"
                         him "Overseer of Restraint."
                         pete "Ha. I doubt I would have even noticed something like that."
-                        $ style = get_parenting_style()
-                        if (style== "authoritative"):
+                        $ pstyle = get_parenting_style()
+                        if (pstyle== "authoritative"):
                             him "I think I would notice!"
-                        elif(style == "authoritarian"):
-                            him "I might notice, but I doubt I would do anything."
-                        elif(style == "permissive"):
+                        elif(pstyle == "authoritarian"):
+                            him "I would probably only notice when she did poke him."
+                        elif(pstyle == "permissive"):
                             him "I don't think not poking Oleg would ever happen under my watch."
                         else:
                             him "Yeah, I wouldn't notice either"
@@ -3279,14 +3282,14 @@ label community20:
             # "Dr. Lily wants to return to colony. OK?"
             "Later that day I check to see if they responded."
             #TODO: letter style for their reply
-            $ style = get_parenting_style()
-            if (style== "authoritative"):
+            $ pstyle = get_parenting_style()
+            if (pstyle== "authoritative"):
                 "She may stay as a guest but not as a resident, and she must share her findings from her research."
                 him "Sounds fair to me."
                 "I sent Pavel a message with RET's requests."
                 pavel "I'll pass this on. It sounds like calling her a guest is their way of acknowledging that she left."
                 jump lily_return
-            elif (style == "authoritarian"):
+            elif (pstyle == "authoritarian"):
                 "Don't allow her to return."
                 "I told Pavel that RET didn't want to let her to come back."
                 pavel "I was afraid of that. Well, do you want to let her back or not?"
@@ -3301,7 +3304,7 @@ label community20:
                         him "I think RET made it pretty clear that we shouldn't let her back to the colony."
                         pavel "Okay. I'll send her a message telling her as much."
                         jump lily_not_return
-            elif(style == "permissive"):
+            elif(pstyle == "permissive"):
                 "Yes, of course let her back!"
                 "I told Pavel that RET wanted her back."
                 pavel "I'll tell her what you've decided."

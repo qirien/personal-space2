@@ -50,7 +50,8 @@ screen plan_farm:
                             # TODO: What if no valid layout is possible? Have emergency help button?
                                 xalign 1.0
                                 sensitive valid_layout
-                                action Return()
+                                action Jump("yearly_events")
+
                         if (not valid_layout):
                             if (farm.get_total_calories() < get_calories_required()):
                                 text "Need more calories!" xalign 1.0
@@ -65,7 +66,19 @@ screen colony_messages_button(read_colony_messages):
     else:
         text "" ypos 30 xalign 0.0 # We have to have this here or it messes up all the positions
 
-    textbutton "Message Board" action Jump("yearly_messages")
+    textbutton "Message Board" action Jump("yearly_messages") #Call("yearly_messages")
+
+# To change appearance, see screens.rpy, screen nvl
+label yearly_messages:
+    $ message = "message" + `year`
+    $ read_messages = True
+    nvl clear
+    call expression message
+    #computer "\n(End of messages)"
+    nvl clear
+    call screen plan_farm
+    # TODO: something weird is happening where reading the message board makes the game return to the main menu after picking crops.
+    "You should never see this."
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
 ##
@@ -95,8 +108,10 @@ screen farm_details_screen:
                 label "Community" # TODO: have cute icons for these, like on a phone?
                 # TODO: have status icons for how much everyone likes you?
                 use colony_messages_button(read_messages)
-                textbutton "Parenting Handbook" action Show("parenting_handbook")
+                textbutton "Child Development" action Show("parenting_handbook", zoomin)
                 # TODO: add parenting quote
+
+                # TODO: add music player here
 
         # Crop layout area
         vbox:
@@ -363,19 +378,47 @@ style plan_farm_vbox is vbox:
     spacing 5
 
 # Custom styles for the crop details part of the screen
-style crop_details_frame is frame:
+
+# STYLE COMPUTER_SUB used for subwindows of the main computer screen
+style computer_sub_frame is frame:
     background tan_dark
+
+style computer_sub_label is plan_farm_label:
+    background green_med
+
+style computer_sub_label_text is plan_farm_label_text:
+    color black
+
+style computer_sub_text is plan_farm_text:
+    size 16
+
+style computer_sub_grid is grid
+
+style computer_sub_hbox is hbox:
+    xalign 0.0
+    xfill True
+
+style computer_sub_vbox is vbox:
+    spacing 10
+
+style computer_sub_button is plan_farm_button
+
+style computer_sub_button_text is plan_farm_button_text:
+    idle_color black
+    hover_color white
+    selected_idle_color white
+
+# STYLE CROP_DETAILS_ used for when you click on a space to choose a crop
+style crop_details_frame is computer_sub_frame
 
 style crop_details_vpgrid is vpgrid:
     xalign 0.5
     xfill True
     yalign 1.0
 
-style crop_details_label is plan_farm_label:
-    background green_med
+style crop_details_label is computer_sub_label
 
-style crop_details_label_text is plan_farm_label_text:
-    color black
+style crop_details_label_text is computer_sub_label_text:
     size 20
 
 style crop_details_selected_label is crop_details_label:
@@ -384,12 +427,9 @@ style crop_details_selected_label is crop_details_label:
 style crop_details_selected_label_text is crop_details_label_text:
     color white
 
-style crop_details_button_text is plan_farm_button_text:
-    idle_color black
-    hover_color white
+style crop_details_button_text is computer_sub_button_text
 
-style crop_details_text is plan_farm_text:
-    size 16
+style crop_details_text is computer_sub_text:
     yalign 0.5
     xalign 1.0
 
@@ -407,19 +447,17 @@ style crop_details_positive_bar is bar:
     ysize 5
     yalign 0.5
 
-style crop_details_vbox is vbox:
-    xsize LEFT_COLUMN_WIDTH
-    spacing 10
+style crop_details_vbox is computer_sub_vbox:
+    xsize MIDDLE_COLUMN_WIDTH
 
-style crop_details_hbox is hbox:
-    xsize LEFT_COLUMN_WIDTH
-    xalign 0.0
-    xfill True
+style crop_details_hbox is computer_sub_hbox:
+    xsize MIDDLE_COLUMN_WIDTH
 
-style crop_details_grid is grid:
-    xsize LEFT_COLUMN_WIDTH
+style crop_details_grid is computer_sub_grid:
+    xsize MIDDLE_COLUMN_WIDTH
     spacing 0
 
+# STYLE CROP_LAYOUT_ used for displaying the field of crops
 style crop_layout_vpgrid is vpgrid:
     spacing 16
     xalign 0.5

@@ -24,6 +24,8 @@ label start:
     python:
         save_name = "Intro"
         notifications = ""
+        read_messages = False
+        show_year = 1
 
     # PARENTS
     python:
@@ -242,11 +244,11 @@ label start:
             jump name_change_loop
 
     scene stars_animated with fade
+    play music upbeat
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
     "But being a dad was a different kind of work than I had ever done before."
     "If I could go back, would I change anything? I don't even know."
-    "When [kid_name] was first born, it was a struggle just to get through each day..."
 
     # TODO: show some sort of inter-scene screen
 
@@ -271,7 +273,8 @@ label life_loop:
             $ bro_age = year - bro_birth_year
 
         # FARMING CHOICES
-        #play music computer
+        $ computer_song = renpy.random.choice(audio.computer)
+        play music computer_song fadein 2.0
         hide screen say
         scene stars with fade
         if (year > 1):
@@ -280,56 +283,58 @@ label life_loop:
                 $ credits += farm.calculate_income(years_yield)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
+        $ show_year = year
         call screen plan_farm
-        $ current_work = get_work_available()
-        $ total_work = farm.get_total_work()
 
-        # WORK EVENTS (farming)
-        #play music farming
-        call interscene_text(year, "Work")
-        #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
-        # hide screen interscene #with dissolve
-        $ work_event = get_next_work_event()
-        call expression work_event
+        label yearly_events:
+            $ current_work = get_work_available()
+            $ total_work = farm.get_total_work()
+            # WORK EVENTS (farming)
+            play music farming fadeout 3.0 fadein 3.0
+            call interscene_text(year, "Work")
+            #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
+            # hide screen interscene #with dissolve
+            $ work_event = get_next_work_event()
+            call expression work_event
 
-        # FAMILY EVENTS (parenting/home life)
-        #play music parenting
-        call interscene_text(year, "Family")
-        call expression "family" + str(year)
+            # FAMILY EVENTS (parenting/home life)
+            play music parenting fadeout 3.0 fadein 3.0
+            call interscene_text(year, "Family")
+            call expression "family" + str(year)
 
-        # COMMUNITY EVENTS (building community, helping factions)
-        #play music community
-        call interscene_text(year, "Community")
-        call expression "community" + str(year)
+            # COMMUNITY EVENTS (building community, helping factions)
+            play music community fadeout 3.0 fadein 3.0
+            call interscene_text(year, "Community")
+            call expression "community" + str(year)
 
-        # Increase child stats based on this year's parenting decisions
-        $ notifications = ""
-        scene stars with fade
-        call increase_attachment
-        call increase_competence
-        call increase_independence
-        $ renpy.notify(notifications)
-        "The year passed by like a dream..."
+            # Increase child stats based on this year's parenting decisions
+            $ notifications = ""
+            scene stars with fade
+            call increase_attachment
+            call increase_competence
+            call increase_independence
+            $ renpy.notify(notifications)
+            "The year passed by like a dream..."
 
-        # Reset our variables while keeping a running total
-        $ total_demanding += demanding
-        $ demanding = 0
-        $ total_responsive += responsive
-        $ responsive = 0
-        $ total_confident += confident
-        $ confident = 0
+            # Reset our variables while keeping a running total
+            $ total_demanding += demanding
+            $ demanding = 0
+            $ total_responsive += responsive
+            $ responsive = 0
+            $ total_confident += confident
+            $ confident = 0
 
-        # Autosave
-        $ renpy.force_autosave(take_screenshot=True)
-        $ renpy.notify("Autosaving...")
+            # Autosave
+            $ renpy.force_autosave(take_screenshot=True)
+            $ renpy.notify("Autosaving...")
 
-        # Poetry time!
-        #if (year % 3):
-        #"So much happened this year... I decided to write a poem about it."
-        # Make the word board with appropriate words
-        # TODO: Store poems better for later access.
-        #$ word_board = Board(basic_words, family_words, farm_words)
-        #call make_poem
-        $ year += 1
+            # Poetry time!
+            #if (year % 3):
+            #"So much happened this year... I decided to write a poem about it."
+            # Make the word board with appropriate words
+            # TODO: Store poems better for later access.
+            #$ word_board = Board(basic_words, family_words, farm_words)
+            #call make_poem
+            $ year += 1
     jump ending
     return
