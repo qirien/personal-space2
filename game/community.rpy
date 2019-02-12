@@ -808,41 +808,31 @@ label community5:
 
 # 6 - discussion of choice from 5 at game night
 label community6:
+    play music exciting
     if town_hall_games:
         scene community_center with fade
     else:
-        scene farm_exterior with fade
-    show pete at midright
-    show him normal at left #BUG: his sprite isn't showing up. I'm not sure why not. I tried having him at center as well and had the same problem.
-    # I think I fixed it. You were using 'show' instead of 'scene' for the background so it was putting the background as a sprite and covering up everything else.
-    show thuc at midleft
+        scene farm_interior with fade
+    show pete normal at midright
+    show him normal at left
+    show thuc normal at midleft
+    show helen normal at quarterright
+    with dissolve
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
-    show him determined
-    him "Yes, and I promise to start in the Northern Hemisphere this time."
-    show pete happy
-    pete "Your Antarctica strategy had no sense whatsoever."
-    show him angry
-    him "Trying the same losing strategy every time and hoping it will win has no sense."
-    show pete
-    pete "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
-    show him surprised
-    him "What do you mean? Don't you both have one?"
-    show helen at right
+    him determined "Yes, and I promise to start in the Northern Hemisphere this time."
+    pete happy "Your Antarctica strategy had no sense whatsoever."
+    him angry "Trying the same losing strategy every time and hoping it will win has no sense."
+    pete normal "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
+    him surprised "What do you mean? Don't you both have one?"
     helen "No, because SOMEONE left it out during a solar flare."
-    show pete happy
-    pete "And SOMEONE left their tablet in spittin' distance of a cow."
-    show him normal
-    him "That must be rough."
-    show pete
-    pete "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
+    pete happy "And SOMEONE left their tablet in spittin' distance of a cow."
+    him concerned "That must be rough."
+    pete normal "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
     pete "I can concentrate on what I'm doing."
-    pete "I don't even mind doing my feed calculations for the cattle by hand."
-    show helen happy
-    helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
-    show pete
-    pete "I don't know about me. I kind of like feeling like I'm completely on my own."
-    show thuc sad
-    thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
+    pete happy "I don't even mind doing my feed calculations for the cattle by hand."
+    helen happy "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    pete normal "I don't know about me. I kind of like feeling like I'm completely on my own."
+    thuc sad "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
     menu:
         "What do you think?"
         "We need each other to survive.":
@@ -914,6 +904,7 @@ label community6:
 
 # 7 - Comparing compensation
 label community7:
+    play music thoughtful
     show community_center with fade
     show zaina at midright
     zaina "The fossil record near here contains many vertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
@@ -1067,7 +1058,7 @@ label community8:
     $ talked_about_luxuries_counter = 0
 
     if is_liason:
-        show farm_exterior with fade
+        scene farm_exterior with fade
         "Urgent insta-com from RET!"
         $ pstyle = get_parenting_style()
         if (pstyle== "authoritative"):
@@ -1091,7 +1082,7 @@ label community8:
                 else:
                     "I told Sara what everyone wanted, and she wrote the report."
                     return
-        show farm_exterior with fade
+        scene farm_exterior with fade
         "Who will I talk to about what Earth luxuries they want?"
         menu:
             "Natalia" if not talked_to_Natalia:
@@ -1179,17 +1170,17 @@ label community8:
                 $ talked_to_Pavel = True
                 jump talk_about_luxuries
         label write_report:
-            "What should I write?"
             if talked_to_Natalia:
                 "I don't have enough room to ask for Martin's specific medicine and dosage and all the other things people wanted."
                 menu:
+                    "What should I write?"
                     "Specify the medication and dosage. Do your best with the other stuff.":
                         $ asked_only_medicine = True
                         return
                     "Maximize happiness and ask for everyone else's stuff specifically.":
                         return
             else:
-                "I sent the message."
+                "I squeezed in as much as I could."
                 return
     else:
         show fields with fade
@@ -1316,6 +1307,7 @@ label community9:
             show pete
             pete "Let's use some of the ashes from the fire to help us blend in with the shadows."
             scene path with fade
+            play music tense
             "After sleeping in tents, you wake up early to catch the grass crabs while they're still drowsy."
             "They gather in the sunlight, warming themselves and chewing on sticks"
             "You're about 20 feet away when you stop trying to get closer."
@@ -1432,6 +1424,7 @@ label community9:
 
 # 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
+    play music sad
     scene farm_interior with fade
     show him at midleft
     show bro at quarterleft

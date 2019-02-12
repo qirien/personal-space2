@@ -267,15 +267,17 @@ init python:
         crop_index = get_crop_index(crop_name)
         return crop_info[crop_index][ENABLED_INDEX]
 
-    def enable_crop(crop_name):
+    def enable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
-        renpy.say(tutorial,"You can now grow " + crop_name + " on your farm.")
+        if (notify):
+            renpy.say(tutorial,"You can now grow " + crop_name + " on your farm.")
 
-    def disable_crop(crop_name):
+    def disable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = False
-        renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
+        if (notify):
+            renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
 
     # Delete all instances of crop_name in crops
     def delete_crop(crop_name):

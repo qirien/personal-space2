@@ -420,6 +420,7 @@ label work6:
 # Year 8, 4.8 years old
 # The outhouse is full...
 label work8:
+    play music working
     scene farm_exterior with fade
     "Here's one thing not everyone gets about being a farmer."
     "I'm not just a farmer; I take care of {b}everything{/b}."
@@ -511,11 +512,11 @@ label work10:
             else:
                 him concerned "I, uh, I'm afraid I never planted them."
                 kevin "I see. They are most likely no longer viable."
-        $ disable_crop("plums")
-        $ disable_crop("plums+")
-    else:
-        him "Pretty good! We're even starting to get a few plums on them."
-        kevin "That is good."
+            $ disable_crop("plums")
+            $ disable_crop("plums+", false)
+        else:
+            him "Pretty good! We're even starting to get a few plums on them."
+            kevin "That is good."
 
     him "How's your garden coming, Kevin?"
     kevin "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."

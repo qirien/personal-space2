@@ -3,7 +3,7 @@
 # in saved games here! Those go in script.rpy
 init -100:
     # Variables giving max age of stage in Talaam years
-    define BABY_MAX = 4
+    define BABY_MAX = 3
     define TODDLER_MAX = 8
     define CHILD_MAX = 16
     define TWEEN_MAX = 22
@@ -86,15 +86,21 @@ init -100:
     define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg"]
 
     # Emotional themes
-    define audio.thoughtful = "music/13-The Summer that Never Quite Ended-Jeff Wahl_.ogg"
-    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
+    # Happy/excited
     define audio.exciting = "music/01-Colorado-Jeff Wahl_.ogg"
     define audio.upbeat = "music/01-Learning Patience-Jeff Wahl_.ogg"
-    define audio.tender = "music/15-Surrender-Jeff Wahl_.ogg"
-    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
-    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg"
     define audio.happy = "music/11-Saturday Morning-Jeff Wahl_.ogg"
+    define audio.working = "music/04-Reservoir Ridge-Jeff Wahl_.ogg"
+
+    # Tender/thoughtful
+    define audio.tender = "music/15-Surrender-Jeff Wahl_.ogg"
+    define audio.thoughtful = "music/13-The Summer that Never Quite Ended-Jeff Wahl_.ogg"
+
+    # Sad/Mad
     define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg"
+    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg"
+    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
+    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
 
 
     ##

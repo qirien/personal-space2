@@ -108,6 +108,7 @@ screen farm_details_screen:
                 label "Community" # TODO: have cute icons for these, like on a phone?
                 # TODO: have status icons for how much everyone likes you?
                 use colony_messages_button(read_messages)
+                # TODO: make this have a "NEW!" icon when there's new stuff?
                 textbutton "Child Development" action Show("parenting_handbook", zoomin)
                 # TODO: add parenting quote
 
@@ -127,6 +128,7 @@ screen farm_details_screen:
             use crops_totals
 
 screen crops_available(crop_index=0):
+    on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     frame:
         style_prefix "crop_details"
         yalign 0.5

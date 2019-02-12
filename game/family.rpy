@@ -802,9 +802,9 @@ label family3:
             him annoyed "She shouldn't be chewing on those."
             her normal "Then show her what she can chew on."
             "[her_name] handed her an apple."
-            show her at center with move
+            show her normal at center with move
             her "This is for chewing!"
-            show her at midleft with move
+            show her normal at midleft with move
             show kid surprised with dissolve
             "[kid_name] took the apple and put her mouth on it, but she couldn't figure out how to take a bite with her tiny mouth."
             show kid nervous with dissolve
@@ -829,7 +829,6 @@ label family3:
             $ confident += 1
             $ neglectful += 1
 
-    # TODO: bg
     scene moons with fade
     "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
     show him sleeping at midright
@@ -847,21 +846,29 @@ label family3:
     return
 
 
-# 2 Earth years old
+# 2.4 Earth years old
 # Picky eater!
 label family4:
-    scene farm_interior with fade
+    scene black with fade
     "Months passed by in a busy blur of planting and harvesting."
+    "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, and run around. She learned several new words every day."
+    show baby at center, baby_pos with fade
+    "When I thought back to the tiny helpless creature she was just two years ago, it was hard to even believe this was the same person."
+    hide baby with fade
+    show kid normal at center with fade
+
     "[kid_name] learned several new words every day, and her little fingers that used to be so clumsy were now holding crayons and picking up tiny grains of rice."
     "...and then throwing them on the floor."
+    hide kid with fade
+    scene farm_interior with fade
     show him determined at midright
     show her determined at midleft
-    show kid nervous at center, baby_pos
+    show kid annoyed at center
     with dissolve
     kid "No!"
     her annoyed "Rice is what's for dinner, sweetie."
     him normal "You know daddy's friend Mr. Thuc? He worked hard to grow that rice, so let's not waste it, okay?"
-    kid annoyed "Yucky."
+    kid concerned "Yucky."
     "[her_name] took away [kid_name]'s plate before she could throw any more of it on the floor."
     her concerned "It is kind of plain."
     # TODO: Change based on recent plants grown? Or does that not make sense because everyone's giving them to the storehouse now?
@@ -877,7 +884,7 @@ label family4:
     him concerned "You haven't eaten a thing all dinner!"
     kid annoyed "Ap'sos."
     him annoyed "We don't have applesauce. Right now we're having rice and beans."
-    kid nervous "Ap'sos!"
+    kid angry "Ap'sos!"
     him determined "Where'd you even get applesauce from? I haven't seen it at the storehouse for a long time."
     kid shifty "Travis mommy."
     "Travis' mom - that would be Helen. [kid_name] had been over there for coop daycare today. Somehow she always had sweet things for the kids to eat."
@@ -893,12 +900,12 @@ label family4:
             "She picked up a grain of rice, looked me right in the eyes, and threw it on the floor."
             "I put it right back on her plate."
             him annoyed "You still have to eat it."
-            show kid at midleft, baby_pos with move
+            show kid at midleft with move
             "She slid off her chair and made to run away, but I put her right back in it."
             show him at center with move
-            show kid at center, baby_pos with move
+            show kid at center with move
             him determined "No. Eat your dinner."
-            kid nervous "No! Yucky!"
+            kid angry "No! Yucky!"
             "She squirmed in my hands and started to slide out so I gripped her arms more tightly and held her in place on my lap."
             him annoyed "Eat. Your. Dinner."
             kid angry "No! No no no no no no!"
@@ -913,7 +920,7 @@ label family4:
                 "Leave":
                     $ marriage_strength -= 1
                     him determined "..."
-                    show kid at midleft, baby_pos with move
+                    show kid at midleft with move
                     hide him with moveoutleft
                     "I handed [kid_name] to [her_name] and tried not to slam the door on my way out."
                     scene farm_exterior with fade
@@ -925,7 +932,7 @@ label family4:
                     "I didn't know what to do."
                     scene farm_interior with fade
                     show her normal at midright
-                    show kid normal at midright, baby_pos
+                    show kid normal at midright
                     with dissolve
                     show him determined behind kid,her at midleft with moveinleft
                     "Finally I came back home. [her_name] and [kid_name] were snuggled up on the bed reading a book together."
@@ -954,7 +961,7 @@ label family4:
                             $ demanding += 1
                             him determined "Feeling better? Okay, now it's time to finish your dinner."
                             her annoyed "[his_name]..."
-                            kid nervous "No! Yucky!"
+                            kid angry "No! Yucky!"
                             "And we started all over again..."
                         "Apologize":
                             $ responsive += 1
@@ -965,9 +972,9 @@ label family4:
                             show kid annoyed with dissolve
                             "[kid_name] gave me the stinkeye."
                             him determined "I'm sorry, [kid_name]. I was not trying to hurt you. I'm trying to help you eat healthy foods to grow big and strong."
-                            show kid shifty at center, baby_pos with move
+                            show kid shifty at center with move
                             "[kid_name] seemed to think about this for a moment, then went to the table and carefully spooned up a bit of beans."
-                            show kid laugh at midleft, baby_pos with move
+                            show kid laugh at midleft with move
                             "She brought it over near my mouth."
                             kid normal "Daddy eat."
                             "I opened my mouth and allowed her to feed me."
@@ -1001,7 +1008,7 @@ label family4:
                     "But I know when I was a kid, I hated being spanked."
                     "Maybe it changed my behavior for a short time, but mostly I just felt mad at my dad for being out of control."
                     "I have a lot more sympathy for him now."
-                    "It was only later that I realized the irony of me demanding [kid_name] respect and stop hurting people while spanking her."
+                    "It was only later that I realized the irony of me demanding [kid_name] stop hurting people while spanking her..."
 
             $ authoritarian += 1
 
@@ -1091,15 +1098,7 @@ label family4:
 # Toilet Training
 label family5:
     play music thoughtful
-    scene black with fade
-    "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, run, and jump. She learned several new words every day."
-    show baby with fade
-    "When I thought back to the tiny helpless creature she was just two years ago, it was hard to even believe this was the same person."
-    hide baby with fade
-    show kid normal at center with fade
-    "Learning some things was harder than others, though."
-    hide kid with fade
-    "Once she could pull her pants up and down by herself, we taught her how to use the toilet."
+    "Once [kid_name] could pull her pants up and down by herself, we taught her how to use the toilet."
     "She understood what it was for, and did pretty well for the first few days."
     "Then we had several days where she hardly ever made it to the toilet on time."
     scene farm_interior with fade
@@ -1306,7 +1305,7 @@ label family5:
                 "She stopped and we led her to the potty. She had already peed a little in her underwear, but the rest went in the potty, so I decided to count it as a success despite the additional laundry."
                 her concerned "I'll go get another pair from the clothesline."
                 hide her with moveoutleft
-                show her with moveinleft
+                show her normal at midright with moveinleft
                 "I gave her more juice. She had to pee several times that morning, and it seemed to me that she improved at recognizing her body's signals."
             if (family5_reward == "big"):
                 him surprised "If you keep your underwear dry all day, Mommy will get you some new underwear that you can decorate!"
@@ -1421,6 +1420,7 @@ label family5:
 # 3.5 Earth years old
 # Incessant questions
 label family6:
+    play music [happy, upbeat]
     scene black with fade
     "I remember when [kid_name] was so small and crying incosolably; I couldn't wait for her to learn to talk."
     "Now she was like a perpetual motion machine of questions and opinions."
@@ -1433,21 +1433,26 @@ label family6:
 
     kid surprised "Daddy, what's a elephant?"
     him surprised "An elephant? It's a big Earth animal with a nose called a trunk that goes all the way to the ground."
+    show kid at midright with move
     kid concerned "Really?"
     him normal "Yeah, here, I'll show you a picture."
     kid surprised "Did the elephants eat your crops on the farm?"
+    show kid at quarterright with move
     him determined "No, they only live in Africa and south Asia on Earth. And they don't bother people."
     kid concerned "They're scary!"
     him surprised "What? No, elephants are really gentle. Lions are the scary ones."
     her surprised "[his_name]..."
     kid surprised "Lions?"
     him normal "Yeah, they're giant cats that eat elephants!"
-    kid normal "Earth is too dangerous."
+    show kid at right with move
+    kid concerned "Earth is too dangerous."
     her normal "Earth is actually much safer than Talaam, because there's so many people there and they all watch out for each other."
     him annoyed "They all spy on each other, you mean."
     her surprised "Was there an elephant in the game you were playing?"
+    show kid at midright with move
     kid annoyed "Yes. But they should have wolfslugs; those are my favorite."
     him determined "You're scared of elephants, but you like wolfslugs."
+    show kid at quarterright with move
     kid happy "Yep!"
     her concerned "How strange that must be for her to grow up without experiencing Earth firsthand..."
     him annoyed "It's not that weird; I never saw elephants as a kid, either."
@@ -1457,7 +1462,7 @@ label family6:
     him happy "On the other hand, I think I prefer millicrabs over cockroaches. At least they don't form colonies."
     her concerned "Now I miss the sounds of birds singing in the morning..."
     him concerned "Yeah..."
-    kid normal "I can sing in the morning! Oh, Mister Sun, Sun, Mister golden Sun..."
+    kid normal "I can sing in the morning! ~ Oh, Mister Sun, Sun, Mister golden Sun... ~"
     "[her_name] and I were quiet for a few minutes, just relaxing and listening to [kid_name] sing."
     him determined "I sure hope you have nothing planned for today."
     her surprised "Why, did you want to do something?"
@@ -1501,8 +1506,8 @@ label family6:
     him determined "I didn't say that!"
     kid normal "Why you taking medicine, daddy?"
     him normal "Because I had to lift heavy things all week and my back's killing me."
-    kid sad "Daddy, are you going to die?"
-    him surprised "What? No, no! It just hurts a lot."
+    kid sad "Daddy, I don't want you to die. Why is your back killing you?"
+    him surprised "What? No, no, it's not actually killing me! It just hurts a lot."
     kid happy "OK, good, because I wanna go swimming!"
     her sleeping "What do you think, [his_name]?"
     menu:
@@ -1634,6 +1639,7 @@ label family6:
                     $ authoritative += 1
 
         "No way. We're sitting right here while [kid_name] plays quietly.":
+            play music tense
             $ demanding += 1
             him determined "No. Mom and dad are relaxing, and you, [kid_name] are going to go play quietly."
             kid angry "I want to go swimming!"
@@ -1659,8 +1665,9 @@ label family6:
 
     # TODO: change this to parenting class?
     scene black with fade
+    play music tender
     "Later that night, after [kid_name] went to bed, [her_name] and I took a walk together."
-    scene fields with fade
+    scene sunset with fade
     show him normal at midright
     show her normal at center
     with moveinright
@@ -2028,7 +2035,7 @@ label family7:
                                     "I just had to stay calm and be clear and firm."
                                     show him sad with dissolve
                                     "...Why was that so hard?!"
-                                    show her at quarterleft with move
+                                    show her concerned at quarterleft with move
                                     "[her_name] followed me and gave my shoulders a squeeze."
                                     her surprised "You are being so patient with her!"
                                     him annoyed "Maybe too patient. Why is she acting so bratty, anyway?"
@@ -2141,6 +2148,10 @@ label family7:
     return
 
 label family7_bedtime:
+    scene kid_bedroom with fade
+    show kid normal at midleft
+    show him normal at midright
+    with dissolve
     "I read her a story and kissed her good night."
     "She grabbed my neck and kissed me back."
     kid nervous "I love you, daddy."
@@ -2177,9 +2188,9 @@ label family7_bedtime:
             kid sad "...good night."
 
         "Tell her how you feel.":
-            him annoyed "[kid_name], I just used up all my patience trying to get you to clean up your toys and I am about to explode!"
+            him angry "[kid_name], I just used up all my patience trying to get you to clean up your toys and I am about to explode!"
             kid cry "Daddy..."
-            him determined "So, good night!"
+            him annoyed "So, good night!"
             kid sad "...good night."
     return
 
@@ -2263,6 +2274,7 @@ label family7_angry_ending:
 # 5 Earth years old
 # Play group, First Day of School
 label family8:
+    play music happy
     "It was my turn to host playgroup. It always felt a little frustrating not to be able to go out in the fields and get my work done, but I could also see that it was good for [kid_name]."
     "I'll admit I looked forward to school starting next week. We had just had a preview day where these kids got to see the school and meet the teacher."
     "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
@@ -2362,6 +2374,7 @@ label family8:
                     "Oleg was fine; no need to bring that up again."
 
     scene black with fade
+    play music thoughtful
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
     scene path with fade #TODO: school house background?
     show him normal at midleft
@@ -2621,6 +2634,7 @@ label baby_delivery:
 # 5.5 Earth years old
 # Getting along with friends, being bossy
 label family9:
+    play music upbeat
     "Now that [kid_name] was in school, our family dynamics had changed."
     "Instead of yearning for a few minutes of uninterrupted time and slogging through our weekly turn in the kids' coop, I found myself looking forward to her coming home from school."
     "She seemed to appreciate me more, too."
@@ -2637,7 +2651,7 @@ label family9:
     if (year6_have_baby):
         "I set [bro_name] down so I could give [kid_name] my full attention for a minute."
         show bro at baby_pos
-        show kid at midright, baby_pos with move
+        show kid at midright with move
     "She tackled me with a big hug and I swung her around in a circle."
     show kid happy at quarterright, standing with move
     him happy "Welcome home! Oh, I see you brought Oleg with you. Hi, there!"
@@ -2811,7 +2825,7 @@ label family10:
                 "They didn't seem to even notice I was there, and just kept playing."
             "Just keep watching.":
                 "I didn't want to ruin the moment, so I just watched them."
-        kid shifty "[bro_name]! Look what I built! Here's the volcano. And here's us."
+        kid normal "[bro_name]! Look what I built! Here's the volcano. And here's us."
         "She walked the figurines up the mountain until they reached the top. [bro_name] made to touch the blocks, but she stopped him."
         kid concerned "No no, it's hot."
         bro "Hot?"
@@ -2854,6 +2868,7 @@ label family10:
                         "I pulled my figurine out of the pile of blocks."
                         him determined "\"Don't worry, I'll save you!\""
                         "I dug around, trying to get the other figurines out. I got [kid_name]'s and handed it to her."
+                        show kid surprised
                         him surprised "Quick, we've got to get [bro_name] and mom!"
                         "We rummaged through the blocks until we pulled out their two figurines. I handed [bro_name] his."
                         kid happy "Now run away from the lava!"
@@ -3059,6 +3074,7 @@ label family10:
             call baby_delivery
     return
 
+# TODO: music stopped here
 # 6.8 Earth years old
 # Dinner Table Manners
 # TODO: Continue writing blocking from here
