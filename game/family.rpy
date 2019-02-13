@@ -2623,11 +2623,63 @@ label baby_delivery:
     her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."
     scene farm_interior with fade
     "It took me a long time to get used to [bro_name]'s cleft lip. But the look wasn't the hardest part of it -- it was how hard it was to feed him."
-    "It took half an hour just to feed him one bottle, and I had to help squeeze the bottle for him. His cleft lip made it harder for him to get the suction he needed to get the milk out of the bottle."
-    "And he couldn't really breastfeed well at all."
-    "[kid_name] kind of understood that [bro_name] needed a lot of attention, and we tried to include her in taking care of him and everything else we did."
-    "Still, she probably ended up resenting him a little. And I could understand why. Sometimes I felt frustrated that he needed so much from us."
-    "But, when I forgot myself and just loved him, all that time spent together strengthened our whole family."
+    "It took half an hour just to feed him one bottle because his cleft lip made it harder for him to get the suction he needed."
+    "And he couldn't really breastfeed at all."
+    show him concerned at midright
+    show bro normal at midright, baby_pos
+    show kid concerned at midleft
+    with dissolve
+    kid surprised "Daddy, can you read to me?"
+    him surprised "Ummm... maybe?"
+    "I had [bro_name] balanced on my lap and was concentrating on holding the bottle just right and squeezing it at just the right rate."
+    him concerned "Hold the book open for me... right there..."
+    kid "I can read the front! That word is \"moon\"!"
+    him normal "You're right! Now turn the page... \"In the great green room, there was a telephone...\""
+    him surprised "Oh, sorry [bro_name], I squeezed that too fast. [kid_name], could you get a rag so I can wipe up this milk?"
+    kid annoyed "Fine..."
+    hide kid with moveoutleft
+    show kid annoyed with moveinleft
+    him determined "Now where were we..."
+    kid surprised "Could I hold the bottle?"
+    him surprised "Maybe...it's kind of hard to squeeze it just right."
+    kid normal "I can do it. Just a little at a time."
+    him happy "Yeah, just like that!"
+    kid surprised "Whoops!"
+    him normal "Good thing we still have this rag here."
+    show kid happy
+    show bro happy
+    "Sometimes I felt frustrated that [bro_name] needed so much from us."
+    "But, when I forgot myself and just loved him... I think the experience helped our whole family grew closer together."
+    "Those moments, snuggled up together, those two little lives so dependent on me... I wanted to remember those times forever."
+    menu:
+        "Write a poem?"
+        "Yes":
+            $ word_board = Board(basic_words, family_words, baby_words)
+            call make_poem
+            $ baby_poem = word_board.get_poem_as_string(-1)
+            nvl clear
+            him_c "Sorry to spam you all, but I wrote a poem about our new baby and I wanted to share it with you."
+            thuc_c "All right, let's get the pain over with."
+            helen_c "Hush. I like [his_name]'s poems."
+            him_c "[baby_poem]"
+            ilian_c "Interesting word choice."
+            if ("belly button" in baby_poem):
+                pete_c "Ha. Belly buttons."
+            if (("precious" in baby_poem) or
+                ("cute" in baby_poem) or
+                ("adore" in baby_poem)):
+                julia_c "I think it describes the infinite value of infant life perfectly."
+            if ("mother" in baby_poem):
+                her_c "Awww..."
+            if (("stinky" in baby_poem) or
+                ("pain" in baby_poem) or
+                ("jealous" in baby_poem)):
+                thuc_c "Surprisingly honest."
+            if (len(baby_poem) <= 100):
+                helen_c "Short and sweet; I like it!"
+
+        "No":
+            $ pass
 
     return
 

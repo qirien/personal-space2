@@ -51,8 +51,8 @@ init -100:
     define ANNUAL_EXPENSES_BASE = 2500
     define KELLY_SALARY = 2000
     define CALORIES_TO_MONEY_MULTIPLIER = 14
-    define MONEY_YEAR = 5
-    define KID_WORK_YEAR = 6
+    define MONEY_YEAR = 6
+    define KID_WORK_YEAR = 7
 
     # GUI display sizes
     define CROP_ICON_SIZE = 50

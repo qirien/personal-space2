@@ -79,6 +79,7 @@ init python:
 
         # Given the percentage yield of each crop square, calculate
         # how much money will be made
+        # TODO: tweak this
         def calculate_income(self, crop_yield):
             income = 0
             for i in range(0, self.current_size):
@@ -93,7 +94,7 @@ init python:
             for i in range(0, self.crops.len()):
                 crop_index = get_crop_index(self.crops[i])
                 crop_name = self.crops[i]
-                print str("resetting crop: " + crop_name)
+                #print str("resetting crop: " + crop_name)
                 if (crop_info[crop_index][PERENNIAL_INDEX]):
                     if (crop_name[-1] != "+"):
                         new_crops[i] = crop_name + "+"

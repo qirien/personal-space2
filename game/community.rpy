@@ -898,8 +898,6 @@ label community6:
         him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
         show thuc
         thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
-    else:
-        pass
     return
 
 # 7 - Comparing compensation
@@ -2068,7 +2066,7 @@ label community12:
                     brennan "I'm glad you agree. I know that a lot of families have their own food storage."
                     brennan "This is a dire situation, so I'll loan you 500 credits of my landing fee."
                     brennan "Gather up what you can find from the other colonists and hopefully it will be enough to last until the next harvest."
-                    brennan "Also, start planting some extra crops for us, otherwise we'll all starve or radiate to death in this forsaken place."
+                    brennan "Also, start planting some extra crops for us, otherwise we'll all starve or irradiate to death in this forsaken place."
                     him "Okay, I'll do it right away."
                     legalese "Dear farmers of Talaam."
                     legalese "A few years ago I said that we didn't need to save food to feed the miners."
@@ -2916,14 +2914,12 @@ label community17:
                 "You dip your bread into the very organic-appearing, thick brown dip."
                 "It tastes like beans, with a strange combination of spices."
                 "It's not like anything you've ever tasted before. It's exciting to try something new"
-                $ pass
                 #TODO: set up the variable for here too?
             "Don't try it.":
                 him "I'll pass."
                 brennan "You don't like beans?"
                 him "I'll stick to what I know."
                 brennan "How very... predictable of you."
-                $ pass
         jump justcolony
 
     label justcolony:
@@ -5441,7 +5437,7 @@ label community29:
     her_c "She didn't ask for one, even after I explained the risks of pregnancy to her, so I'm guessing no."
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    if luddites > 5: #should this number be higher?
+    if (luddites > 5): #should this number be higher?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "Huh. Where exactly will she sleep?"
         her_c "She said she could bring her sleeping materials. Maybe we can fold them up when she's not using them?"
@@ -5569,7 +5565,7 @@ label community29:
         "Helen delivered her stillborn baby, but started hemmoraging and had to have a blood transfusion until [her_name] could stop the bleeding."
         "Ilian had her same blood type and gave blood to her."
         her "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
-        helen "I'm glad I survived too."
+        helen "I'm glad I survived, too."
         pete "Me three."
         her "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
         pete "I think I have enough credits to pay you."

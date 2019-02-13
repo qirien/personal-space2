@@ -23,8 +23,8 @@ init python:
     family_words.add_words(family_nouns, family_adjectives, family_verbs, family_other)
 
     # Baby-related words
-    baby_nouns = ["blanket", "nose", "toe", "milk", "baby", "hand", "fist"]
-    baby_adjectives = ["tiny", "cute", "tender", "tight", "precious", "chubby"]
+    baby_nouns = ["blanket", "nose", "toe", "milk", "baby", "hand", "fist", "mouth", "belly button", "blood", "diaper", "scent", "smile", "toy"]
+    baby_adjectives = ["tiny", "cute", "tender", "tight", "precious", "chubby", "stinky", "fragile"]
     baby_verbs = ["cry", "hold", "babble", "cuddle", "yawn", "nap", "crawl", "whisper"]
     baby_other = ["oh"]
     baby_words = Wordpack()

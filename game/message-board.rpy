@@ -125,6 +125,7 @@ label message5:
     else:
         sara_c "Thank you everyone!!! You're so kind! 😊~❤"
 
+    nvl clear
     return
 
 # Community: Game Night continued/consequences
@@ -133,6 +134,22 @@ label message6:
     nvl clear
     # busy harvest time - looking forward to holiday Halloween + Thanksgiving
     # Kevin/Zaina asking about local alien meat
+    if (is_liason):
+        him_c "Harvest festival coming up next week!"
+    else:
+        sara_c "Hope you're all planning on coming to the harvest festival next week!!!"
+    natalia_c "I just hope we can finish the harvest by then."
+    julia_c "Having trouble, are you? I expect to be done tomorrow."
+    natalia_c "It'll work out. It helped having the school kids home for the week."
+    kevin_c "Is it your colony's tradition to eat crabird every year at the harvest festival?"
+    him_c "We have done that a lot... I guess it's becoming a tradition?"
+    julia_c "It's not set in stone."
+    kevin_c "Is any of the local fauna poisonous or inedible?"
+    pete_c "A few animals aren't good for eating, but most are alright. You ought to come hunting with me sometime."
+    helen_c "Sometime when it's not harvest time."
+    pete_c "Right."
+
+    nvl clear
     return
 
 # Community: Comparing compensation
@@ -140,6 +157,15 @@ label message6:
 label message7:
     nvl clear
     # Game night discussion - poker?
+    julia_c "I'm starting a bunco group. Everyone will bring a snack to share and the host provides a prize. Send me a message if you want to join!"
+    natalia_c "Isn't that the dice game with absolutely zero skill involved?"
+    julia_c "The main skill involved is social interaction, so you probably wouldn't excel at it."
+    natalia_c "If by 'social interaction' you mean 'passive-aggressive jibes' then, no, I certainly don't excel at that."
+    pete_c "I don't know; that was a pretty good passive-aggressive jibe right there."
+    thuc_c "We have room for one more player in Maximal Conquest next game night!"
+    helen_c "Just come a little early so we can explain the rules."
+    him_c "Like, a few hours early."
+    nvl clear
     return
 
 # Community: RET will send what luxuries?
@@ -147,6 +173,17 @@ label message7:
 label message8:
     nvl clear
     # Natalia asking for harvest help as Martin is sick
+    if (year6_have_baby):
+        sara_c "[her_name], I know your due date is coming up...are you doing okay?"
+        her_c "I'm okay. I wish I wasn't having the baby during harvest time, though!"
+        sara_c "At least [kid_name] is starting school soon... I'm so excited for her and Oleg to go to kindergarten!"
+    else:
+        sara_c "I'm so excited for [kid_name] and Oleg to go to kindergarten!"
+    julia_c "Those early years are so precious... just cherish every moment while they're small!"
+    natalia_c "Hey, grandma, maybe you could cherish your own grandson this week so Tomás can help us out with the harvest."
+    julia_c "Of course. I would never turn down an opportunity to hold that precious baby!"
+
+    nvl clear
     return
 
 # Community: Camping with Pete
@@ -162,6 +199,22 @@ label message9:
 label message10:
     nvl clear
     # Location of miners discussed: "why so far" "not far enough!"
+    if (is_liason):
+        him_c "We've designated an area for the miners to live, so please take a look at the map and note where their camp will be located."
+    else:
+        sara_c "I just got notice of where the miners will be living. Here's a map!"
+    helen_c "Wow... that's pretty far away. It'll take them an hour to walk into town."
+    pete_c "I don't know; kinda seems not far enough."
+    kevin_c "The location was chosen for its proximity to precious minerals and availability of a clear area suitable for landing on."
+    her_c "Things are going to change a lot when they arrive..."
+    ilian_c "Personally, I'm excited. No offense to any of you, but I could stand to see a few new faces around here."
+    if (year6_have_baby):
+        him_c "What, [bro_name] doesn't count?"
+    else:
+        him_c "What, our new baby doesn't count?"
+    ilian_c "Sorry, no."
+
+    nvl clear
     return
 
 # Community: Miners and Brennan arrive on shuttle
@@ -170,6 +223,28 @@ label message11:
     nvl clear
     # sports teams for various ages forming
     # literary magazine being compiled by Isabella - write poetry for it??
+    ilian_c "Pickup soccer in front of the community center tonight!"
+    helen_c "Oh, good, Travis was asking when you guys were going to play again."
+    natalia_c "Isabella's putting together a literary magazine and wanted me to ask you guys for stories, poetry, or illustrations."
+
+    if (year11_poem == ""):
+        menu:
+            "Should I submit a poem?"
+            "Yes.":
+                him_c "I'll send you one!"
+                $ word_board = Board(basic_words, family_words, farm_words, baby_words)
+                call make_poem
+                $ year11_poem = word_board.get_poem_as_string(-1)
+                #him_c "Here's my poem!\n[year11_poem]"
+                natalia_c "Thanks for your poem; I'll pass it along."
+            "No.":
+                $ pass
+    else:
+        him_c "Did you get mine?"
+        thuc_c "You really sent one in?? I thought you were joking!"
+        him_c "No way! I never joke about poetry!"
+
+    nvl clear
     return
 
 # Community: missing cow

@@ -148,7 +148,7 @@ init -100 python:
         global crop_temporarily_disabled
         # Enable any crops that were temporarily disabled
         if (crop_temporarily_disabled != ""):
-            enable_crop(crop_temporarily_disabled)
+            enable_crop(crop_temporarily_disabled, False)
             crop_temporarily_disabled = ""
 
         #Every even year there is a set event; other years are crop events.

@@ -366,6 +366,7 @@ label work4:
         him surprised "Strawberries?"
         thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
+        # TODO: uncomment when we get some art
         #$ enable_crop("strawberries")
     return
 

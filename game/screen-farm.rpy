@@ -155,7 +155,7 @@ screen crops_available(crop_index=0):
                     else:
                         bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
 
-                    if (year >= 5):
+                    if (year >= MONEY_YEAR):
                         text "Value: "
                         bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                     else:
@@ -287,7 +287,7 @@ screen crops_totals:
             # TODO: show this better, show savings, etc.
 
         text " "
-        if (year > KID_WORK_YEAR):
+        if (year >= KID_WORK_YEAR):
             label "Kids' Assignment"
             bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
             hbox:

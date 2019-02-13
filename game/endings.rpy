@@ -47,6 +47,12 @@ label ending:
             else:
                 call ending_ACI
 
+    menu:
+        "Would you like to see your poems?"
+        "Yes":
+            call screen poetry_display(word_board)
+        "No":
+            $ pass
     call credits
     return
 

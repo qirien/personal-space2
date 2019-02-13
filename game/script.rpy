@@ -25,6 +25,7 @@ label start:
         save_name = "Intro"
         notifications = ""
         read_messages = False
+        year11_poem = ""
 
     # PARENTS
     python:
@@ -282,6 +283,7 @@ label life_loop:
                 $ credits += farm.calculate_income(years_yield)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
+        $ show_year = year
         call screen plan_farm
 
         label yearly_events:
