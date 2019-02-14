@@ -5,6 +5,9 @@ label work_default:
     $ enable_crop("squash")
     return
 
+# TODO: Need event(s) for if you overwork yourself.
+
+
 # Malnutrition Event for if you don't have enough nutrition
 label bad_nutrition:
     $ bad_nutrition_count += 1
@@ -240,6 +243,7 @@ label bad_nutrition:
 
 # Year 1, 3 mo. old
 label work_intro:
+    play music farming
     scene fields with fade
     "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
     "Over the past two years, with a lot of trial and error, I'd found crops and varieties that worked well."
@@ -362,6 +366,7 @@ label work4:
         him surprised "Strawberries?"
         thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
+        # TODO: uncomment when we get some art
         #$ enable_crop("strawberries")
     return
 
@@ -416,6 +421,7 @@ label work6:
 # Year 8, 4.8 years old
 # The outhouse is full...
 label work8:
+    play music working
     scene farm_exterior with fade
     "Here's one thing not everyone gets about being a farmer."
     "I'm not just a farmer; I take care of {b}everything{/b}."
@@ -507,11 +513,11 @@ label work10:
             else:
                 him concerned "I, uh, I'm afraid I never planted them."
                 kevin "I see. They are most likely no longer viable."
-        $ disable_crop("plums")
-        $ disable_crop("plums+")
-    else:
-        him "Pretty good! We're even starting to get a few plums on them."
-        kevin "That is good."
+            $ disable_crop("plums")
+            $ disable_crop("plums+", false)
+        else:
+            him "Pretty good! We're even starting to get a few plums on them."
+            kevin "That is good."
 
     him "How's your garden coming, Kevin?"
     kevin "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."

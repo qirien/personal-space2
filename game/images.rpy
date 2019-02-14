@@ -39,18 +39,11 @@ init -10:
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
-                "year <= 4", "kid-sprites/baby %s.png" % expression_name,
-                "year <= 8", "kid-sprites/toddler %s.png" % expression_name,
-                "year <= 16", "kid-sprites/kid %s.png" % expression_name,
-                "year <= 22", "kid-sprites/tween %s.png" % expression_name,
-                "True", "kid-sprites/teen %s.png" % expression_name))
-            # finer grained images
-            # renpy.image(("kid", expression_name), ConditionSwitch(
-            #     "year <= 2", "kid-sprites/baby %s.png" % expression_name,
-            #     "year <= 6", "kid-sprites/toddler %s.png" % expression_name,
-            #     "year <= 12", "kid-sprites/young %s.png" % expression_name,
-            #     "year <= 20", "kid-sprites/tween %s.png" % expression_name,
-            #     "True", "kid-sprites/teen %s.png" % expression_name))
+                "year <= BABY_MAX", "kid-sprites/baby %s.png" % expression_name,
+                "year <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
+                "year <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
+                "year <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
+                "True", "kid-sprites/teen %s.png" % expression_name))            
 
     image ctc_blink:
            "gui/ctc.png"

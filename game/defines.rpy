@@ -2,11 +2,19 @@
 # DO NOT declare variables that will change or should be saved
 # in saved games here! Those go in script.rpy
 init -100:
+    # Variables giving max age of stage in Talaam years
+    define BABY_MAX = 3
+    define TODDLER_MAX = 8
+    define CHILD_MAX = 16
+    define TWEEN_MAX = 22
+    define YTEEN_MAX = 25
 
     # Static layout variables
     define LEFT_COLUMN_WIDTH = 320
     define MIDDLE_COLUMN_WIDTH = 480
     define RIGHT_COLUMN_WIDTH = 320
+
+    define COMPUTER_SUB_HEIGHT = 400
 
     # Static indices that will never change
     define MAX_FARM_SIZE = 25
@@ -43,8 +51,8 @@ init -100:
     define ANNUAL_EXPENSES_BASE = 2500
     define KELLY_SALARY = 2000
     define CALORIES_TO_MONEY_MULTIPLIER = 14
-    define MONEY_YEAR = 5
-    define KID_WORK_YEAR = 6
+    define MONEY_YEAR = 6
+    define KID_WORK_YEAR = 7
 
     # GUI display sizes
     define CROP_ICON_SIZE = 50
@@ -70,20 +78,29 @@ init -100:
     ##
 
     # Activity themes
-    #define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
-    define audio.maintheme = ""
+    define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
+    #define audio.maintheme = ""
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
-    define audio.computer = ["music/03-Gaja-Amfibia_.ogg"]
+    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg"]
 
     # Emotional themes
-    define audio.thoughtful = "music/13-The Summer that Never Quite Ended-Jeff Wahl_.ogg"
-    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
-    define audio.tender = "music/15-Surrender-Jeff Wahl_.ogg"
-    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
+    # Happy/excited
+    define audio.exciting = "music/01-Colorado-Jeff Wahl_.ogg"
+    define audio.upbeat = "music/01-Learning Patience-Jeff Wahl_.ogg"
     define audio.happy = "music/11-Saturday Morning-Jeff Wahl_.ogg"
+    define audio.working = "music/04-Reservoir Ridge-Jeff Wahl_.ogg"
+
+    # Tender/thoughtful
+    define audio.tender = "music/15-Surrender-Jeff Wahl_.ogg"
+    define audio.thoughtful = "music/13-The Summer that Never Quite Ended-Jeff Wahl_.ogg"
+
+    # Sad/Mad
     define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg"
+    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg"
+    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
+    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
 
 
     ##
@@ -218,3 +235,19 @@ init -100:
 #         return im.MatrixColor(img, im.matrix.desaturate() * im.matrix.tint(1.0, 1.0, 0.7))
 #
 #     config.displayable_prefix["orange"] = orangify
+
+    define childs_mind = {
+    "baby": "My world is small -- my family, blanket, and milk. So when something goes wrong it's like my whole world is collapsing! That's why I cry so much. \n\nI am learning so much every day, but it probably seems slow to you. I'm learning to focus my vision, touch and grab things, make sounds and decode their meaning, and who I can trust to take care of me. Soon I'll even move my whole body and understand a little of what you are saying, and make sounds that mean things. \n\nPlease be patient with me and show me a lot of love; I'm learning as fast as I can!",
+
+    "toddler": "Now that I'm crawling and walking, my world is so much bigger! There's new foods, new faces, and new sensations every day. All this stuff is old to you, but to me it's all new -- the sound of a spoon on a pot, or the touch of sand, or the funny look on your face when I blow a raspberry. \n\nI want to do things myself but I am still clumsy and learning, so please help me explore safely and teach me even when it takes a long time for me to learn. I don't understand water, fire, electricity, or poison so help me be safe from these dangerous things while letting me explore as much as possible!",
+
+    "preschooler": "I am learning how to do even cooler things! I can hop on one foot and name colors and sort toys! I have a great imagination and can benefit from playing with other kids and talking to lots of different people. I am still learning about politeness and what behavior is okay for different situations. \n\nI love rules because then I know what to do, but I get mad if other people don't follow them! Sometimes I think I can do things I can't really do yet, so help me improve my skills while still watching me. I am learning how to decide some things for myself, so please help me learn to make good choices by letting me decide some things!",
+
+    "child": "I can do a lot of things that you can do! I can learn complex skills like doing math, playing sports, and making crafts. I am starting to think more about other people and what will happen in the future, but I'm not very good at it yet. Friends are important to me, but sometimes I don't get along with other people, so help me learn how to be a good friend and fix my mistakes. \n\nPlease support my growing independence by letting me do things for myself and giving me responsibilities!",
+
+    "tween": "I am starting to think more abstractly. I am learning not just about what the world is, but why it is the way it is. When I was little, I thought I was the best person ever, but now I'm starting to see that I'm not. Please help me to recognize my strengths and deal with my weaknesses. \n\nWhat my friends think is becoming more important, but I still want to hear what you have to say. I might argue with you, but please be patient and love me and I'll think about what you say. My body is changing a lot now, too, and I'm starting to wonder what kind of person I want to be.",
+
+    "yteen": "I might be rude to you and push you away when you try to show me affection like you did when I was a kid. I don't want you to tell me what to do. I will probably make some stupid choices and be hard on myself. Usually I don't need you to rescue me, but I need you to support and love me no matter what. \n\nI need to separate myself from you as I'm learning independence, so my words, appearance, music, and friends might seem really strange! \n\nPlease be interested in me and my world without trying to rule over it, and keep loving me and setting limits to protect me while I'm learning.",
+
+    "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please recognize my feelings and help me prepare to live on my own."
+    }

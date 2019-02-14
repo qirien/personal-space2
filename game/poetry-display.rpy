@@ -3,7 +3,6 @@ screen poetry_display(board):
         style_prefix "pp"
         xfill True
         yfill True
-        background "images/stars.jpg"
         frame:
             xpadding 50
             ypadding 50
@@ -30,10 +29,10 @@ screen poetry_display(board):
                 vbox:
                     xalign 0.8
                     spacing 5
-                    textbutton "Add New Poem" action Jump("make_poem") sensitive (len(board.poems) < board.MAX_POEMS)
+                    #textbutton "Add New Poem" action Jump("make_poem") sensitive (len(board.poems) < board.MAX_POEMS)
                     textbutton "Screenshot" action Screenshot()
-                    textbutton "Save" action ShowMenu("save")
-                    textbutton "Quit" action Confirm("Quit to Main Menu?", Return())
+                    textbutton "Share"
+                    textbutton "Done" action Confirm("Are you done with your poems?", Return())
 
 init python:
     def delete_poem(board, poem_number):

@@ -4,6 +4,7 @@
 # Feel free to change this if you want. It should be fairly short and remind
 # everyone of the characters and situation.
 label community_intro:
+    play music community
     scene fields with fade
     "Luckily, we weren't alone on Talaam. There were several hundred other colonists here, now. Enough to feel like a real community, and not just  a few struggling pioneers."
     # show Julia and Ilian?
@@ -15,6 +16,7 @@ label community_intro:
 
 # New colonists arrive
 label community1:
+    play music happy
     $ asked_kids = False
     $ asked_family = False
     $ asked_grow = False
@@ -342,6 +344,7 @@ label community2:
 
 # 3 - Game Night!
 label community3:
+    play music exciting
     scene farm_interior with fade
     show thuc sad at midleft
     show him happy at center
@@ -440,33 +443,33 @@ label community3:
 # 4 - Community Liaison
 label community4:
     scene community_center with fade
-    show pavel at center
+    show pavel normal at center
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
     pavel "This is what it said:"
     #TODO: separate style for RET messages?
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ pstyle = get_parenting_style()
+    if (pstyle== "authoritative"):
         "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
-    elif(style == "authoritarian"):
+    elif(pstyle == "authoritarian"):
         "We need a designated contact with the colony that u trust. Send ur decision."
-    elif(style == "permissive"):
+    elif(pstyle == "permissive"):
         "U shld choose some1 2 represent the colony 2 us."
     else:
         "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
     pavel "It's my job to encourage whatever is best for the colony."
     show pavel sad #this transition is weird... but is it weirder to keep him in the same pose for so long?
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
-    pavel "The liason will have to understand what RET will want and tell them what's possible and what's not."
+    pavel normal "The liason will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
-    pavel "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
-    show pavel
-    pavel "I doubt anyone will volunteer for extra work, so'd like everyone to nominate someone tonight."
+    pavel sad "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
+    pavel normal "I doubt anyone will volunteer for extra work, so'd like everyone to nominate someone tonight."
     pavel "Then we'll vote on the nominations."
     hide pavel with moveoutright
-    show thuc at midright
+    show thuc normal at midright
     show him normal at center
-    show lily at midleft
+    show lily normal at midleft
+    with dissolve
     thuc "Wow, who has time for that extra work?"
     thuc "It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liason work."
@@ -490,7 +493,7 @@ label community4:
     show lily happy
     lily "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
     hide thuc with moveoutright
-    show naomi sad at midright
+    show naomi sad at midright with moveinright
     naomi "Hello everyone, have you thought of someone to nominate?"
     him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liason separate from Pavel."
     show naomi
@@ -526,16 +529,16 @@ label community4:
         "My friend Thuc. I think that would be funny.":
             $ pass
     "After the nominations, we voted for our favorite candidate."
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ pstyle = get_parenting_style()
+    if (pstyle== "authoritative"):
         "My fellow colonists elected me to be the new representative."
         $ is_liason = True
         return
-    elif(style == "authoritarian"):
+    elif(pstyle == "authoritarian"):
         "Sara, and Sister Naomi and I were nominated. I had the most votes, but not the majority."
         $ is_liason = True
         return
-    elif(style == "permissive"):
+    elif(pstyle == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
         return
     else:
@@ -556,12 +559,12 @@ label community5:
     if is_liason:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
-        $ style = get_parenting_style()
-        if (style== "authoritative"):
+        $ pstyle = get_parenting_style()
+        if (pstyle== "authoritative"):
             "50 new miner neighbors are coming in 4 Earth years. Plz feed them when they come."
-        elif(style == "authoritarian"):
+        elif(pstyle == "authoritarian"):
             "50 miners are arriving in 4 Earth years. Prepare 2 feed them, and create $ so that they can pay u 4 what they eat."
-        elif(style == "permissive"):
+        elif(pstyle == "permissive"):
             "We're sending fifty miners ur way, so if u could feed them, that would be gr8. They'll have $."
         else:
             "50 new miner neighbors are coming in 4 Earth years. Feed them."
@@ -805,41 +808,31 @@ label community5:
 
 # 6 - discussion of choice from 5 at game night
 label community6:
+    play music exciting
     if town_hall_games:
         scene community_center with fade
     else:
-        scene farm_exterior with fade
-    show pete at midright
-    show him normal at left #BUG: his sprite isn't showing up. I'm not sure why not. I tried having him at center as well and had the same problem.
-    # I think I fixed it. You were using 'show' instead of 'scene' for the background so it was putting the background as a sprite and covering up everything else.
-    show thuc at midleft
+        scene farm_interior with fade
+    show pete normal at midright
+    show him normal at left
+    show thuc normal at midleft
+    show helen normal at quarterright
+    with dissolve
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
-    show him determined
-    him "Yes, and I promise to start in the Northern Hemisphere this time."
-    show pete happy
-    pete "Your Antarctica strategy had no sense whatsoever."
-    show him angry
-    him "Trying the same losing strategy every time and hoping it will win has no sense."
-    show pete
-    pete "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
-    show him surprised
-    him "What do you mean? Don't you both have one?"
-    show helen at right
+    him determined "Yes, and I promise to start in the Northern Hemisphere this time."
+    pete happy "Your Antarctica strategy had no sense whatsoever."
+    him angry "Trying the same losing strategy every time and hoping it will win has no sense."
+    pete normal "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
+    him surprised "What do you mean? Don't you both have one?"
     helen "No, because SOMEONE left it out during a solar flare."
-    show pete happy
-    pete "And SOMEONE left their tablet in spittin' distance of a cow."
-    show him normal
-    him "That must be rough."
-    show pete
-    pete "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
+    pete happy "And SOMEONE left their tablet in spittin' distance of a cow."
+    him concerned "That must be rough."
+    pete normal "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
     pete "I can concentrate on what I'm doing."
-    pete "I don't even mind doing my feed calculations for the cattle by hand."
-    show helen happy
-    helen "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
-    show pete
-    pete "I don't know about me. I kind of like feeling like I'm completely on my own."
-    show thuc sad
-    thuc "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
+    pete happy "I don't even mind doing my feed calculations for the cattle by hand."
+    helen happy "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    pete normal "I don't know about me. I kind of like feeling like I'm completely on my own."
+    thuc sad "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
     menu:
         "What do you think?"
         "We need each other to survive.":
@@ -905,12 +898,11 @@ label community6:
         him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
         show thuc
         thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
-    else:
-        pass
     return
 
 # 7 - Comparing compensation
 label community7:
+    play music thoughtful
     show community_center with fade
     show zaina at midright
     zaina "The fossil record near here contains many vertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
@@ -1064,14 +1056,14 @@ label community8:
     $ talked_about_luxuries_counter = 0
 
     if is_liason:
-        show farm_exterior with fade
+        scene farm_exterior with fade
         "Urgent insta-com from RET!"
-        $ style = get_parenting_style()
-        if (style== "authoritative"):
+        $ pstyle = get_parenting_style()
+        if (pstyle== "authoritative"):
             "Have 10kg Xtra space on the shuttle. What Earth luxuries u like?"
-        elif(style == "authoritarian"):
+        elif(pstyle == "authoritarian"):
             "Tell us what extras to put on the shuttle by this evening."
-        elif(style == "permissive"):
+        elif(pstyle == "permissive"):
             "If u want Earth goods, tell us what u want by 2night!"
         else:
             $ no_luxuries = True
@@ -1088,7 +1080,7 @@ label community8:
                 else:
                     "I told Sara what everyone wanted, and she wrote the report."
                     return
-        show farm_exterior with fade
+        scene farm_exterior with fade
         "Who will I talk to about what Earth luxuries they want?"
         menu:
             "Natalia" if not talked_to_Natalia:
@@ -1176,17 +1168,17 @@ label community8:
                 $ talked_to_Pavel = True
                 jump talk_about_luxuries
         label write_report:
-            "What should I write?"
             if talked_to_Natalia:
                 "I don't have enough room to ask for Martin's specific medicine and dosage and all the other things people wanted."
                 menu:
+                    "What should I write?"
                     "Specify the medication and dosage. Do your best with the other stuff.":
                         $ asked_only_medicine = True
                         return
                     "Maximize happiness and ask for everyone else's stuff specifically.":
                         return
             else:
-                "I sent the message."
+                "I squeezed in as much as I could."
                 return
     else:
         show fields with fade
@@ -1313,6 +1305,7 @@ label community9:
             show pete
             pete "Let's use some of the ashes from the fire to help us blend in with the shadows."
             scene path with fade
+            play music tense
             "After sleeping in tents, you wake up early to catch the grass crabs while they're still drowsy."
             "They gather in the sunlight, warming themselves and chewing on sticks"
             "You're about 20 feet away when you stop trying to get closer."
@@ -1429,6 +1422,7 @@ label community9:
 
 # 10 - Peron's over for dinner, who should take care of their farm?
 label community10:
+    play music sad
     scene farm_interior with fade
     show him at midleft
     show bro at quarterleft
@@ -2072,7 +2066,7 @@ label community12:
                     brennan "I'm glad you agree. I know that a lot of families have their own food storage."
                     brennan "This is a dire situation, so I'll loan you 500 credits of my landing fee."
                     brennan "Gather up what you can find from the other colonists and hopefully it will be enough to last until the next harvest."
-                    brennan "Also, start planting some extra crops for us, otherwise we'll all starve or radiate to death in this forsaken place."
+                    brennan "Also, start planting some extra crops for us, otherwise we'll all starve or irradiate to death in this forsaken place."
                     him "Okay, I'll do it right away."
                     legalese "Dear farmers of Talaam."
                     legalese "A few years ago I said that we didn't need to save food to feed the miners."
@@ -2556,14 +2550,14 @@ label community15:
     kid "Are you dying?"
     naomi "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other, okay?"
     naomi "[his_name], I've been watching how you parent your children."
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ pstyle = get_parenting_style()
+    if (pstyle== "authoritative"):
         naomi "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
         naomi "Keep up the good work."
-    elif(style == "authoritarian"):
+    elif(pstyle == "authoritarian"):
         naomi "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
         naomi "If you consider Terra's opinion sometimes, I think she will be happier."
-    elif(style == "permissive"):
+    elif(pstyle == "permissive"):
         naomi "You let Terra do her own thing a lot."
         naomi "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
     else:
@@ -2594,7 +2588,7 @@ label community15:
     him "Let us know if you need anything."
     pavel "I will."
     "About a week later, Pavel called [her_name] to tell her that Naomi was dead."
-    her "I'll take her body today and do a few tests, and we can hold the funeral tonight."
+    her "I'll take her body today and do a few tests, and we can hold the funeral tomorrow."
     "She turned the radio off."
     "[her_name] started crying."
     her "It won't be the same without her."
@@ -2627,8 +2621,33 @@ label community15:
     him "Has Naomi's death been announced?"
     her "Pavel just posted about it."
     him "I'll ask Sara if she can speak at the funeral then."
+    nvl clear
+    him_c "Sara, can you speak at Naomi's funeral tomorrow?"
+    sara_c "Yes, of course! But I think you should say something, too."
+    him_c "I'll think about it."
+    nvl clear
+    him "Hey, [her_name], Sara thought I should say something at the funeral..."
+    if (is_liason):
+        her "Well, you are the liason. You can do closing remarks; just keep it short."
+    else:
+        her "You can if you want... somebody needs to speak at the end. Just something short."
+    $ c15_funeral = ""
+    $ c15_funeral_poem = ""
+    menu:
+        "Should I participate in the funeral?"
+        "Prepare a poem":
+            $ c15_funeral = "poem"
+            "The best way to keep it short would be to make a poem. I'd better make it good, though..."
+            $ word_board = Board(basic_words, talaam_words, separation_words)
+            call make_poem
+            $ c15_funeral_poem = word_board.get_poem_as_string(-1)
+        "Say a few words":
+            $ c15_funeral = "speak"
+        "Don't speak at the funeral.":
+            him "I really think you should speak instead."
+            her concerned "I guess I don't have to say much..."
     "The kids had been playing, but were listening to our conversation." #actual conversation w/kid?
-    "Almost everyone came to the funeral that evening."
+    "Almost everyone came to the funeral the next day."
     #background - multipurpose room or chapel
     her "I hope Naomi felt at peace when she died."
     her "Even though she was miserable, she stayed cheerful and optimistic until the very end."
@@ -2651,6 +2670,29 @@ label community15:
     sara "Which is why I will be continuing her tradition of having weekly interfaith discussion groups."
     sara "I may not be as wise or inspiring as Sister Naomi. But I am organized and consistent. So please come and share your life wisdom and experience."
     "Some of the children sang one of the songs Naomi taught them when they were young." #does Brennan do anything? What about the miners? Kevin or Zaina?
+    if (c15_funeral == "poem"):
+        "I walked up to the stand and shared the poem I had written."
+        him "[c15_funeral_poem]"
+    elif (c15_funeral == "speak"):
+        "I walked up to the stand and prepared to speak."
+        menu:
+            "What should I say?"
+            "Naomi was a good woman.":
+                him "Sister Naomi helped take care of my kids when I really needed help."
+                him "She was honest, kind, and thoughtful. She put others' needs before her own."
+                him "We will greatly miss her."
+            "Remember her by caring for each other.":
+                him "Sister Naomi wouldn't want us to spend a bunch of time talking about her. In fact, she'd probably be embarassed."
+                him "She'd want us to remember her by doing the kinds of things she did -- taking time to enjoy the people around us and helping each other."
+                him "So let's remember her every day, and let that memory propel us forward to do good to others."
+            "Life is hard; then we die.":
+                him "Death is a normal part of life."
+                him "That doesn't mean we have to like it, but we do need to accept it, and move on."
+                him "So today we remember Sister Naomi, but tomorrow, let's not waste her hard work by moping about."
+                him "We could die at any time; we need to make the most of whatever time we still have."
+    else:
+        "[her_name] said a prayer of gratitude for Sister Naomi and asking for comfort and the inspiration to know how to help each other."
+
     "We all helped to bury her body. Ilian provided a laser-engraved headstone, and the Nguyen children put wildflowers on her grave."
     "[kid_name] and [bro_name] planted the saplings we brought."
 
@@ -2817,12 +2859,12 @@ label community16:
                         pete "What was her title?"
                         him "Overseer of Restraint."
                         pete "Ha. I doubt I would have even noticed something like that."
-                        $ style = get_parenting_style()
-                        if (style== "authoritative"):
+                        $ pstyle = get_parenting_style()
+                        if (pstyle== "authoritative"):
                             him "I think I would notice!"
-                        elif(style == "authoritarian"):
-                            him "I might notice, but I doubt I would do anything."
-                        elif(style == "permissive"):
+                        elif(pstyle == "authoritarian"):
+                            him "I would probably only notice when she did poke him."
+                        elif(pstyle == "permissive"):
                             him "I don't think not poking Oleg would ever happen under my watch."
                         else:
                             him "Yeah, I wouldn't notice either"
@@ -2920,14 +2962,12 @@ label community17:
                 "You dip your bread into the very organic-appearing, thick brown dip."
                 "It tastes like beans, with a strange combination of spices."
                 "It's not like anything you've ever tasted before. It's exciting to try something new"
-                $ pass
                 #TODO: set up the variable for here too?
             "Don't try it.":
                 him "I'll pass."
                 brennan "You don't like beans?"
                 him "I'll stick to what I know."
                 brennan "How very... predictable of you."
-                $ pass
         jump justcolony
 
     label justcolony:
@@ -3279,14 +3319,14 @@ label community20:
             # "Dr. Lily wants to return to colony. OK?"
             "Later that day I check to see if they responded."
             #TODO: letter style for their reply
-            $ style = get_parenting_style()
-            if (style== "authoritative"):
+            $ pstyle = get_parenting_style()
+            if (pstyle== "authoritative"):
                 "She may stay as a guest but not as a resident, and she must share her findings from her research."
                 him "Sounds fair to me."
                 "I sent Pavel a message with RET's requests."
                 pavel "I'll pass this on. It sounds like calling her a guest is their way of acknowledging that she left."
                 jump lily_return
-            elif (style == "authoritarian"):
+            elif (pstyle == "authoritarian"):
                 "Don't allow her to return."
                 "I told Pavel that RET didn't want to let her to come back."
                 pavel "I was afraid of that. Well, do you want to let her back or not?"
@@ -3301,7 +3341,7 @@ label community20:
                         him "I think RET made it pretty clear that we shouldn't let her back to the colony."
                         pavel "Okay. I'll send her a message telling her as much."
                         jump lily_not_return
-            elif(style == "permissive"):
+            elif(pstyle == "permissive"):
                 "Yes, of course let her back!"
                 "I told Pavel that RET wanted her back."
                 pavel "I'll tell her what you've decided."
@@ -5445,7 +5485,7 @@ label community29:
     her_c "She didn't ask for one, even after I explained the risks of pregnancy to her, so I'm guessing no."
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    if luddites > 5: #should this number be higher?
+    if (luddites > 5): #should this number be higher?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "Huh. Where exactly will she sleep?"
         her_c "She said she could bring her sleeping materials. Maybe we can fold them up when she's not using them?"
@@ -5573,7 +5613,7 @@ label community29:
         "Helen delivered her stillborn baby, but started hemmoraging and had to have a blood transfusion until [her_name] could stop the bleeding."
         "Ilian had her same blood type and gave blood to her."
         her "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
-        helen "I'm glad I survived too."
+        helen "I'm glad I survived, too."
         pete "Me three."
         her "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
         pete "I think I have enough credits to pay you."

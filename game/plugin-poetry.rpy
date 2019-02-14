@@ -22,7 +22,7 @@ screen plugin_poetry(board):
                         spacing 20
                         xalign 0.5
                         textbutton "Reset" action Confirm("Delete this poem?", Reset(board, True))
-                        textbutton "Done" action [FinishPoem(board), Return()]
+                        textbutton "Done" action Confirm("Are you done with this poem?", [FinishPoem(board), Return()])
                     hbox: # Poem lines
                         spacing 2
                         vbox:
