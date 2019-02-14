@@ -2758,7 +2758,7 @@ label family10:
             him normal "Oh yeah?"
             kid normal "The teacher asked Oleg first, and he said he wanted to be a crabird."
             him happy "Ha ha, wow, that'd be weird."
-            kid happy "Yeah! And then I thought, if I could be anything, I'd like to be a spaceship so I could take people anywhere they wanted to go."
+            kid happy "Yeah! And then I thought, if I could be anything, I'd like to be a spaceship so I could take people anywhere they want to go."
             him surprised "A spaceship, huh?"
             kid nervous "Yeah, we could go to Earth whenever we wanted, and I could meet my grandparents, and get stuff people wanted."
             him normal "Who knows, maybe you'll be a pilot or something?"
