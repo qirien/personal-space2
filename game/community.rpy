@@ -2588,7 +2588,7 @@ label community15:
     him "Let us know if you need anything."
     pavel "I will."
     "About a week later, Pavel called [her_name] to tell her that Naomi was dead."
-    her "I'll take her body today and do a few tests, and we can hold the funeral tonight."
+    her "I'll take her body today and do a few tests, and we can hold the funeral tomorrow."
     "She turned the radio off."
     "[her_name] started crying."
     her "It won't be the same without her."
@@ -2621,8 +2621,33 @@ label community15:
     him "Has Naomi's death been announced?"
     her "Pavel just posted about it."
     him "I'll ask Sara if she can speak at the funeral then."
+    nvl clear
+    him_c "Sara, can you speak at Naomi's funeral tomorrow?"
+    sara_c "Yes, of course! But I think you should say something, too."
+    him_c "I'll think about it."
+    nvl clear
+    him "Hey, [her_name], Sara thought I should say something at the funeral..."
+    if (is_liason):
+        her "Well, you are the liason. You can do closing remarks; just keep it short."
+    else:
+        her "You can if you want... somebody needs to speak at the end. Just something short."
+    $ c15_funeral = ""
+    $ c15_funeral_poem = ""
+    menu:
+        "Should I participate in the funeral?"
+        "Prepare a poem":
+            $ c15_funeral = "poem"
+            "The best way to keep it short would be to make a poem. I'd better make it good, though..."
+            $ word_board = Board(basic_words, talaam_words, separation_words)
+            call make_poem
+            $ c15_funeral_poem = word_board.get_poem_as_string(-1)
+        "Say a few words":
+            $ c15_funeral = "speak"
+        "Don't speak at the funeral.":
+            him "I really think you should speak instead."
+            her concerned "I guess I don't have to say much..."
     "The kids had been playing, but were listening to our conversation." #actual conversation w/kid?
-    "Almost everyone came to the funeral that evening."
+    "Almost everyone came to the funeral the next day."
     #background - multipurpose room or chapel
     her "I hope Naomi felt at peace when she died."
     her "Even though she was miserable, she stayed cheerful and optimistic until the very end."
@@ -2645,6 +2670,29 @@ label community15:
     sara "Which is why I will be continuing her tradition of having weekly interfaith discussion groups."
     sara "I may not be as wise or inspiring as Sister Naomi. But I am organized and consistent. So please come and share your life wisdom and experience."
     "Some of the children sang one of the songs Naomi taught them when they were young." #does Brennan do anything? What about the miners? Kevin or Zaina?
+    if (c15_funeral == "poem"):
+        "I walked up to the stand and shared the poem I had written."
+        him "[c15_funeral_poem]"
+    elif (c15_funeral == "speak"):
+        "I walked up to the stand and prepared to speak."
+        menu:
+            "What should I say?"
+            "Naomi was a good woman.":
+                him "Sister Naomi helped take care of my kids when I really needed help."
+                him "She was honest, kind, and thoughtful. She put others' needs before her own."
+                him "We will greatly miss her."
+            "Remember her by caring for each other.":
+                him "Sister Naomi wouldn't want us to spend a bunch of time talking about her. In fact, she'd probably be embarassed."
+                him "She'd want us to remember her by doing the kinds of things she did -- taking time to enjoy the people around us and helping each other."
+                him "So let's remember her every day, and let that memory propel us forward to do good to others."
+            "Life is hard; then we die.":
+                him "Death is a normal part of life."
+                him "That doesn't mean we have to like it, but we do need to accept it, and move on."
+                him "So today we remember Sister Naomi, but tomorrow, let's not waste her hard work by moping about."
+                him "We could die at any time; we need to make the most of whatever time we still have."
+    else:
+        "[her_name] said a prayer of gratitude for Sister Naomi and asking for comfort and the inspiration to know how to help each other."
+
     "We all helped to bury her body. Ilian provided a laser-engraved headstone, and the Nguyen children put wildflowers on her grave."
     "[kid_name] and [bro_name] planted the saplings we brought."
 

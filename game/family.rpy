@@ -322,7 +322,7 @@ label family2:
             with move
             show kid sad at center, baby_pos with move
             "[kid_name] seemed to sense my eagerness to leave, though, or maybe she just missed her routine with her mom, because she didn't want to go to sleep."
-            scene black with fade
+            scene stars with fade
             "When she finally settled down, I rushed out and was able to at least start on another field before she woke up."
             # TODO: lower crop yield
             $ permissive += 1
@@ -849,7 +849,7 @@ label family3:
 # 2.4 Earth years old
 # Picky eater!
 label family4:
-    scene black with fade
+    scene stars with fade
     "Months passed by in a busy blur of planting and harvesting."
     "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, and run around. She learned several new words every day."
     show baby at center, baby_pos with fade
@@ -1262,7 +1262,7 @@ label family5:
             jump family5_strategy
         "I think that's a good plan.":
             him normal "Okay, sounds like we have a plan."
-            scene black with fade
+            scene stars with fade
             "And the next day we began our plan."
             if (family5_method == "keep her outside"):
                 scene farm_exterior with fade
@@ -1337,7 +1337,7 @@ label family5:
                 him surprised "[kid_name], time to use the potty. Then you can have applesauce."
                 kid "I go sit on potty!"
                 "I figured that once she got used to sitting on the potty, we could cut down the reward to every time she actually used it."
-            scene black with fade
+            scene stars with fade
             "I don't know if it was our new methods, or our heightened attention, or what, but she didn't have any other problems that day."
             "The next day, though, she had an accident."
             scene farm_interior with fade
@@ -1382,7 +1382,7 @@ label family5:
             if (family5_method == "keep her outside"):
                 "We decided to spend the day outside again, so that made subsequent messes easier to cleanup."
 
-    scene black with fade
+    scene stars with fade
     "Toilet training was definitely not my favorite part of parenting so far, but I couldn't see any way around it. It was just something everyone had to learn to do."
     if (family5_prepared):
         "It helped that [her_name] and I decided to expect messes. They were still annoying, but they didn't make me quite so mad."
@@ -1421,7 +1421,7 @@ label family5:
 # Incessant questions
 label family6:
     play music [happy, upbeat]
-    scene black with fade
+    scene stars with fade
     "I remember when [kid_name] was so small and crying incosolably; I couldn't wait for her to learn to talk."
     "Now she was like a perpetual motion machine of questions and opinions."
 
@@ -1664,7 +1664,7 @@ label family6:
 
 
     # TODO: change this to parenting class?
-    scene black with fade
+    scene stars with fade
     play music tender
     "Later that night, after [kid_name] went to bed, [her_name] and I took a walk together."
     scene sunset with fade
@@ -2099,14 +2099,14 @@ label family7:
                     call family7_bedtime
 
     if (year6_have_baby):
-        scene black with fade
+        scene stars with fade
         "The next day, we found out [her_name] was pregnant."
         "I felt overwhelmed. I could barely function as a dad of one kid, much less two!"
         "Sometimes, I was amazed that humanity had ever managed to survive past childhood."
         "There was no choice but to keep trying. Maybe in nine months I'd be a better dad than I was now?"
         "I had the feeling it would take more than the passage of time to make a better parent out of me."
     else:
-        scene black with fade
+        scene stars with fade
 
     "I wanted to be a better parent."
     "But I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
@@ -2142,7 +2142,7 @@ label family7:
             her determined "Yeah... maybe? I've never really thought about the other adults as parents, mostly just as people."
             him "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
             her normal "Yeah, I'll ask her!"
-            scene black with fade
+            scene stars with fade
             "After [her_name] talked to her, Sister Naomi agreed to host a parenting workshop one night a week. Her husband, Mayor Grayson, offered to watch the kids so anyone who wanted to could attend."
             call parenting_class1
     return
@@ -2373,7 +2373,7 @@ label family8:
                 "Let it go.":
                     "Oleg was fine; no need to bring that up again."
 
-    scene black with fade
+    scene stars with fade
     play music thoughtful
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
     scene path with fade #TODO: school house background?
@@ -2480,14 +2480,14 @@ label family8:
             ilian "Good. Now I've got to run; I've had three people message me wondering why the storehouse isn't open yet."
 
     if (year6_have_baby):
-        scene black with fade
+        scene stars with fade
         "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
         "A few weeks after school started, [her_name] went into labor in the middle of the night."
         # TODO: Depending on faction, contact someone different to watch Terra?
         call baby_delivery
 
     else:
-        scene black with fade
+        scene stars with fade
         "The next day, we walked [kid_name] to school again. After we dropped her off, [her_name] wanted to talk to me about something."
         $ year8_have_baby = True
         scene path with fade
@@ -2581,7 +2581,7 @@ label baby_delivery:
     her pregnant concerned "You forgot the 'shut up' part."
     him normal "..."
     show julia at midright with moveinright
-    scene black with fade
+    scene stars with fade
     scene hospital with fade
     show him normal at midleft
     show her pregnant concerned at center
@@ -2602,8 +2602,8 @@ label baby_delivery:
         "What an ugly child.":
             him determined "That is the ugliest child I have ever seen."
             julia "[his_name]!"
-            her sad "[his_name]...I'm sorry."
-            him surprised "It's not your fault! I'm just saying whatever pops into my head."
+            her sad "[his_name]..."
+            him surprised "Don't mind me; I'm just saying whatever pops into my head."
         "He's my son!":
             him happy "Wow, this kid looks so goofy, he's definitely my son."
             her concerned "[his_name]..."
@@ -2676,7 +2676,7 @@ label baby_delivery:
                 ("jealous" in baby_poem)):
                 thuc_c "Surprisingly honest."
             if (len(baby_poem) <= 100):
-                helen_c "Short and sweet; I like it!"
+                helen_c "Short and sweet; nice!"
 
         "No":
             $ pass
@@ -3349,7 +3349,7 @@ label family12:
 
 
 
-    scene black with fade
+    scene stars with fade
     "Anya was a good enough kid; she and [kid_name] certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
     "Several days later, though, I noticed something."
     scene farm_interior with fade
@@ -3419,7 +3419,7 @@ label family12:
     "Then I started to comb."
     "And comb."
     "...and comb."
-    scene black with fade
+    scene stars with fade
     scene farm_interior with fade
     show him determined at midright
     show kid normal at center
@@ -3761,17 +3761,17 @@ label family13:
             $ sex_ed_counter = 0
             label sex_ed:
                 if (sex_ed_counter >= 3): #short attention span!
-                        kid "I like playing with babies. But I don't want to have to take care of one all the time."
-                        him "Not now. Maybe someday. Then I can be a grandpa."
-                        kid "Ha ha, then I'll call you Grandpa Dad."
-                        him "I wish you could meet your real grandparents."
-                        kid "Your parents? What would we do?"
-                        him "Maybe you'd ride horses together, or bake cookies, or play with the dogs."
-                        kid "Grandma Grayson said that if we get some more sugar on the next shuttle we can make cookies."
-                        him "You'll let me have one, right?"
-                        kid "Sure, dad."
-                        $ authoritative += 1
-                        jump family13_end
+                    kid "I like playing with babies. But I don't want to have to take care of one all the time."
+                    him "Not now. Maybe someday. Then I can be a grandpa."
+                    kid "Ha ha, then I'll call you Grandpa Dad."
+                    him "I wish you could meet your real grandparents."
+                    kid "Your parents? What would we do?"
+                    him "Maybe you'd ride horses together, or bake cookies, or play with the dogs."
+                    kid "Grandma Grayson said that if we get some more sugar on the next shuttle we can make cookies."
+                    him "You'll let me have one, right?"
+                    kid "Sure, dad."
+                    $ authoritative += 1
+                    jump family13_end
             menu:
                 "What should I tell her about sex?"
                 "Tell her the physical mechanics." if not sex_ed_biology:
@@ -3858,6 +3858,7 @@ label family13_end:
     "We were all excited for a new brother or sister in the family..."
     "...but [her_name] lost the baby."
     "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
+    "That's not what happened at all."
     "It wasn't anything she did; sometimes these things just happen."
     scene farm_interior with fade
     show him concerned at midright
@@ -4189,6 +4190,7 @@ label family15:
                     $ demanding += 1
                     him "We don't have any extra money for things like that."
                     kid "Really? Not even two credits?"
+                    him "Well..."
                     jump allowance_how
         "An allowance?! You already have everything you need!":
             $ demanding += 1
@@ -4255,6 +4257,7 @@ label allowance_how:
             him "Getting money always takes work."
             kid "Can't you just give me some money?!"
             him "Nope. If you really think you should have an allowance, convince me with a written proposal."
+            "I guess she didn't want an allowance too badly, because she never wrote anything up."
             $ authoritative += 1
         "You can have 1 credit per week.":
             $ responsive += 1
@@ -5105,7 +5108,7 @@ label family18:
             kid "You first."
             him "Okay. I love baths."
             hide him with moveoutleft
-            scene black with fade
+            scene stars with fade
             "I went off to the bath. I was going to have the best bath ever."
             him happy "Wow, this warm water feels so good!"
             him surprised "Why didn't I do this earlier?! This is so fun!"
@@ -5411,7 +5414,7 @@ label family20:
             him "Try asking me to go with you."
             kid "Hmph. Fine. Will you come with me to talk to him?"
             him "Sure!"
-            scene black with fade
+            scene stars with fade
             "Ilian agreed to help her make a saxophone. He wanted to make one for himself, too, so they worked on it together every afternoon for a few months."
         "One way or another, I will find you a saxophone!":
             $ responsive += 1
@@ -5422,7 +5425,7 @@ label family20:
             him "I don't think you realize how much work this is going to be."
             kid "Yeah I do!"
             "She had no clue."
-            scene black with fade
+            scene stars with fade
             "Ilian and I worked for months getting everything just right. It seemed like such an inefficient machine, but [kid_name] really wanted one."
             "Ilian wanted one, too, so we worked on the pair of saxophones for weeks."
             "I just hoped [kid_name] would appreciate all our hard work."
@@ -5437,7 +5440,7 @@ label family20:
                     him "Yes, it's impossible."
                     kid "Figures. Why'd you and Mom ever leave Earth, anyway? They have so much cool stuff there. All we have is dirt and crabirds."
                     "I was about to answer her, but then she left the room. I guess it was a rhetorical question."
-                    scene black with fade
+                    scene stars with fade
                     "Several weeks later, [kid_name] came home and slammed the door behind her."
                     him "Hey, watch it!"
                     kid "You lied to me!"
@@ -5463,7 +5466,7 @@ label family20:
                     kid "You're not making any sense."
                     him "Look, I've done what I can do, okay? You want to look into it more, you can ask Ilian about it; he used to play saxophone."
                     kid "Fine, maybe I will."
-                    scene black with fade
+                    scene stars with fade
                     "It turned out Ilian wanted to make a saxophone for himself, and after she begged and begged so he let [kid_name] make one with him in exchange for her minding the storehouse for him sometimes."
                     "It took them several weeks, but [kid_name] was really into it. I guess she was serious about wanting to play the saxophone!"
         "Focus on what you can do.":
@@ -5481,7 +5484,7 @@ label family20:
             "Honestly, I didn't know. I'd never learned to play a musical instrument. But Julia said it would, and I believed her."
             him "Yes."
             kid "...Okay."
-            scene black with fade
+            scene stars with fade
             "Julia expected a lot from [kid_name], but she was quick to praise when [kid_name] improved."
             scene farm_interior with fade
             show him normal at midright
@@ -6177,7 +6180,7 @@ label family23:
     # Afterwards, depending on your attitude, she may come and ask
     # your opinion of some new music she found.
     if (responsive >= 1):
-        scene black with fade
+        scene stars with fade
         scene farm_interior with fade
         show him normal at midright
         show kid normal at center with moveinleft
@@ -6404,7 +6407,7 @@ label lettie_dies:
     "I sensed sort of distantly that [her_name] and [kid_name] were saying comforting things and had their arms around me."
     "Lettie had been with me even longer than [her_name]. We'd grown up together."
     "And now she was gone."
-    scene black with fade
+    scene stars with fade
 
     "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya and Lorant and Oleg showed up and together we all managed to get Lettie's body into the back of the tractor."
     "[her_name] must have called them. She probably knew we'd end up having to move Lettie, one way or another."
@@ -6556,7 +6559,7 @@ label lettie_dies:
 # Thinking about the future
 # foreshadowing ending
 label family25:
-    scene black with fade
+    scene stars with fade
     "[her_name] was busier than ever. Not only did she have to treat the miners from RET and deal with all their extra paperwork, but she also did routine checkups for the colony."
     "Her duties only increased as the number of babies increased and as people got older."
     scene farm_interior with fade
@@ -6586,7 +6589,7 @@ label family25:
         him "Are you sure?"
         kid "Yes! I know you're trying to finish harvesting, so come back in an hour and I'll have it all ready for you."
         him "Thanks, [kid_name], that'd be great."
-        scene black with fade
+        scene stars with fade
 
         if (is_competent()):
             "When I came back an hour later, she had the table set, the potatoes were smothered in a creamy goat cheese sauce, and the squash was roasted with a bit of a caramel edge to it."
@@ -7029,7 +7032,7 @@ label family27:
             her concerned "We should let her be a kid as long as possible, and get as much schooling as she can."
             him determined "And I still need her help on the farm. Even with her and [bro_name] both helping me, it's tough to keep up with the demand for crops."
 
-            scene black with fade
+            scene stars with fade
             "But [kid_name] did not take the news well."
             kid "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
             her concerned "There's still a lot you need to learn. Right now your schooling is more important."
@@ -7200,7 +7203,7 @@ label family28:
             him "Really?"
             her "Yes. I just have a feeling that something's off here."
             him "Well, let me know what you find out."
-            scene black with fade
+            scene stars with fade
 
     scene farm_interior with fade
     show him normal at midright with dissolve
@@ -7352,7 +7355,7 @@ label family28:
     return
 
 label family28_runaway:
-    scene black with fade
+    scene stars with fade
     "[kid_name] took a bag with her stuff and rode off on her bike. I did some asking around and it turned out there was a shack halfway to the mining camp that was used as a drop point."
     "She stayed there for a week, and then came back."
     scene farm_interior with fade
@@ -7820,7 +7823,7 @@ label family30:
     kid concerned "Most of them..."
     her surprised "Is there someone special to you that's headed back to Earth?"
     him determined "Please don't tell me this is about following some boy. No boy is worth that!"
-    kid sad "It's not like that! I mean, I have friends that will be going back on the shuttle, like Anya, and Lorant..."
+    kid sad "It's not like that! I mean, I have friends that will be going back on the shuttle, like Becca, and Lorant..."
     if (boyfriend_name == "Lorant"):
         him angry "It {b}is{/b} about a boy!"
         her annoyed "I'm sure Lorant's not the only reason she wants to go back to Earth."

@@ -147,8 +147,6 @@ label message6:
     kevin_c "Is any of the local fauna poisonous or inedible?"
     pete_c "A few animals aren't good for eating, but most are alright. You ought to come hunting with me sometime."
     helen_c "Sometime when it's not harvest time."
-    pete_c "Right."
-
     nvl clear
     return
 
@@ -192,6 +190,22 @@ label message9:
     nvl clear
     # Congrats on baby/pregnant
     # School talent show!
+    julia_c "I just wanted to thank everyone who participated in the school talent show."
+    sara_c "Van's jokes were so good! He's quite the comedian!"
+    helen_c "I loved Gardenia's paintings. Somehow both soft and arresting."
+    if (year6_have_baby):
+        thuc_c "[kid_name] didn't want to participate?"
+        her_c "Things have been pretty busy with the new baby...we kind of forgot about it."
+        him_c "I thought about it, but then I fell asleep."
+        thuc_c "Next time, then!"
+    else:
+        thuc_c "And [kid_name] did great impressions of everyone on the colony!"
+        sara_c "It was so cute when she pretended to be [her_name] with a baby inside her belly!"
+        her_c "Yeah, she's been really obsessed with my pregnancy."
+        julia_c "Good, she will be a wonderful helper when the baby is born."
+        him_c "I hope so..."
+
+    nvl clear
     return
 
 # Community: Peron's over, who should take care of farm?
@@ -211,7 +225,7 @@ label message10:
     if (year6_have_baby):
         him_c "What, [bro_name] doesn't count?"
     else:
-        him_c "What, our new baby doesn't count?"
+        him_c "What, our soon-to-be-born baby doesn't count?"
     ilian_c "Sorry, no."
 
     nvl clear
@@ -232,10 +246,9 @@ label message11:
             "Should I submit a poem?"
             "Yes.":
                 him_c "I'll send you one!"
-                $ word_board = Board(basic_words, family_words, farm_words, baby_words)
+                $ word_board = Board(basic_words, family_words, farm_words, baby_words, talaam_words)
                 call make_poem
                 $ year11_poem = word_board.get_poem_as_string(-1)
-                #him_c "Here's my poem!\n[year11_poem]"
                 natalia_c "Thanks for your poem; I'll pass it along."
             "No.":
                 $ pass
@@ -253,6 +266,35 @@ label message12:
     nvl clear
     # Miners appear on msg board; create new colonists-only board
     # People comment on literary magazine
+    if (is_liason):
+        him_c "Okay, this area is now private for colonists-only. You can use the old area if you want to talk to everyone on Talaam."
+    else:
+        sara_c "Okay, I setup this new area for colonists only. The old area was kind of overrun by miners!"
+
+    julia_c "Nothing against the miners, but they don't need to hear all about our crops and things like that."
+    martin_c "And we don't need to hear about all their safety classes and deadlines."
+
+    pete_c "I hope y'all took a moment to read the literary magazine. It's the best alien writing you'll ever lay eyes on."
+    if (("jellystar" in year11_poem) or
+        ("jellysquid" in year11_poem)):
+            helen_c "I loved the jellies in [his_name]'s poem!"
+    if (("crabird" in year11_poem) or
+        ("wolf slug" in year11_poem) or
+        ("turtle snail" in year11_poem)):
+            pete_c "You'll never see a poem about crabirds, wolf slugs, or turtle snails in Earth writings!"
+    if (("baby" in year11_poem) or
+        ("father" in year11_poem) or
+        ("mother" in year11_poem)):
+            natalia_c "I thought [his_name]'s poem was a great reminder of the importance of families."
+    if (("goat" in year11_poem) or
+        ("dirt" in year11_poem) or
+        ("harvest" in year11_poem) or
+        ("dig" in year11_poem) or
+        ("seed" in year11_poem)):
+            thuc_c "We need more farming poems like [his_name]'s!"
+    her_c "I loved the story about the brave doctor!"
+
+    nvl clear
     return
 
 # Community: Save the Cave/Mountaintop!
@@ -261,14 +303,27 @@ label message13:
     nvl clear
     # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
     # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
+
+    nvl clear
     return
 
-# Community: Pete leaves
+# Community: Pete leaves - NO MORE PETE/HELEN ON MESSAGE BOARD
 # Family: Teacher trouble
 label message14:
     nvl clear
     # Wait, a shuttle is leaving?? Is anyone leaving?
     # Nope, it's just for cargo. There are no humans on board, so we don't to worry about excessive g-forces and life support and other petty concerns
+    natalia_c "Who's coming to the shuttle launch?"
+    sara_c "Wait, a shuttle's leaving?! Who's on it??"
+    brennan_c "No one's on the shuttle; it's just a load of metal and minerals going back to Earth."
+    kevin_c "We will be controlling it remotely. Onlookers are welcome; however, please stay at least 8 kilometers away for safety reasons."
+    him_c "I'm going to bring the kids!"
+    pete_c "I'll be there."
+    natalia_c "I'm bringing a picnic; bring food if you want to trade!"
+    her_c "Kevin, don't forget ear protection for anyone in your crew closer than 8km. Everyone else shouldn't need it."
+    kid_c "Yay, rocket picnic!"
+
+    nvl clear
     return
 
 # Community: Naomi dies
@@ -277,6 +332,22 @@ label message15:
     nvl clear
     # jumpropes sold by Gardenia, Julia's daughter
     # meal signup for Naomi
+    sara_c "Wow, it's so quiet on here without Pete and Helen! :-O"
+    julia_c "Perhaps this will remind people to put down their devices and go talk to people in person!"
+    ilian_c "Yes, let's talk ON COMPUTERS about HOW IMPORTANT it is to TALK IN PERSON!"
+    sara_c "Or instead of bickering we could do something positive in real life, like sign up to take meals to Naomi and Pavel."
+    natalia_c "Oh dear, is she sick again?"
+    sara_c "Yeah..."
+    julia_c "I'll bring something tonight, so don't worry about dinner, Pavel."
+    pavel_c "Thank you so much. I know she appreciates all of your kind gestures."
+
+    julia_c "Sorry to change the subject, but Gardenia wanted me to let everyone know that she is selling handmade jumpropes for 10 credits each."
+    her_c "I remember playing jumprope as a kid..."
+    thuc_c "I remember using jumpropes to tie up my siblings."
+    martin_c "We used them to lower buckets from our tree house."
+    julia_c "Yes, it is a very versatile toy! And these are woven from the finest plant fibers of Talaam."
+
+    nvl clear
     return
 
 # Community: Trade with luddites?

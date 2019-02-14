@@ -3,15 +3,12 @@
 
 ## The game starts here.
 #
-# TODO: Add parenting class tutorial near the beginning
+# TODO: Add another parenting class before Naomi dies?
 # TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Use scene stars instead of scene black most of the time?
 # TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
-#       To do this, put the "if" inside the menu choice and parse it out in the
-#       screen choice of screens.rpy.
-#       OR, write two menu options for every menu, one for if it's locked and one for if it's unlocked
 #       A later version of Ren'Py should support this automatically...
 ##
 

@@ -48,8 +48,25 @@ label ending:
                 call ending_ACI
 
     menu:
+        "Would you like to make one last poem?"
+        "Yes":
+            menu:
+                "What should it be about?"
+                "My family":
+                    $ word_board = Board(basic_words, family_words, baby_words, separation_words)
+                "Talaam":
+                    $ word_board = Board(basic_words, talaam_words, farm_words)
+                "[her_name]":
+                    $ word_board = Board(basic_words, family_words, romance_words)
+
+            call make_poem
+        "No":
+            $ pass
+    menu:
         "Would you like to see your poems?"
         "Yes":
+            # TODO: this doesn't show all poems because every time you make it a new Board, it deletes all the old poems. Might need to separate board from poems somehow or keep track of them with a separate global variable.
+            # TODO: add 'Share my poems'! link here?
             call screen poetry_display(word_board)
         "No":
             $ pass
@@ -407,6 +424,7 @@ label ending_ACi:
     him surprised "Really? The stars seem completely foreign from what I remember from Earth..."
     kid "Well, the axis of rotation is a little different so the hemispheres don't exactly match up, but I can show you a really cool nebula."
     him "I'd like that."
+    scene stars with fade
     "We ended up watching the stars together. [kid_name] had borrowed a telescope that she setup, and [her_name] brought out some blankets."
     "[bro_name] and [kid_name] argued about how solar flares affected Talaam's evolutionary past, and [her_name] snuggled up against my shoulder."
     "I was so proud of these kids... I didn't know exactly what they would accomplish, but for right now I was just enjoying being together."
