@@ -1486,12 +1486,19 @@ label community10:
 label community11:
     $ chaco_questions = 0
     #The shuttle should return to Earth with the mined material as soon as it is full.
-    show farm_interior with fade
+    scene farm_interior with fade
+    show him normal at midright
+    show her normal at midleft
+    show kid at center
+    show bro at quarterleft
     "The shuttle is set to arrive today!" #make this a family conversation?
     kid "I wonder what the new people will look like."
     him "Well, they'll look like we do. We're all humans."
     her "Unless aliens have secretly taken over Earth!"
-    show sage_and_scrub_brush with fade
+    scene sage_and_scrub_brush with fade
+    show sara normal at midleft
+    show her normal at midright
+    show him normal at center
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
@@ -1504,8 +1511,8 @@ label community11:
     "I was about to introduce myself to one of the miners when I saw someone with amazing red hair."
     "Wait a minute, I recognize him!"
     #BRENNAN ON SCREEN. he looks the same
+    show brennan at quarterright with moveinright
     # Jack definitely doesn't like him, but doesn't have a great reason.
-    # Is Kelly here, too? Could be interesting...
     him surprised "Brennan!"
     brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
     him determined "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
@@ -1520,9 +1527,17 @@ label community11:
     brennan "You don't look like you've aged too badly, considering how much sun you must get."
     brennan "Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I help gather everyone, and the wagon makes for an improptu stage."
+    # TODO: different bg?
+    scene community_center with fade
+    show brennan at center with dissolve
     brennan "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
     brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
     brennan "I sent out the assignments already, so try to find each other!"
+    hide brennan with dissolve
+    show him normal at midleft
+    show her normal at center
+    show chaco at midright
+    with dissolve
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
     # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
@@ -1727,10 +1742,11 @@ label community11:
         $ luddites += 1
 
         label Martin_dead_sooner:
-            "Without the medication, Martin's condition swiftly deteriorates, and he dies later that week."
-            "The family had a small funeral and buried him in the colony graveyard."
-            "Tomás and Joanna Nguyen decide to help out, but they aren't prepared to take full responsibility for the farm."
-            "Hopefully they can learn what they need to know from Natalia and their neighbors."
+            scene stars with fade # TODO: church bg?
+            "Without the medication, Martin's condition swiftly deteriorated, and he died later that week."
+            "The family had a small funeral and buried him in the colony graveyard next to Josephina."
+            "Tomás and Joanna Nguyen decided to help out, but they weren't prepared to take full responsibility for the farm."
+            "We hoped they could learn what they needed to know from Natalia and their neighbors."
             #TODO: should community 10's decision affect this?
         return
 

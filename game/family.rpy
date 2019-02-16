@@ -3126,28 +3126,29 @@ label family10:
             call baby_delivery
     return
 
-# TODO: music stopped here
 # 6.8 Earth years old
 # Dinner Table Manners
-# TODO: Continue writing blocking from here
 label family11:
+    play music problems
     scene farm_interior with fade
     show him normal at midleft
-    show her normal at midright
+    show her normal at quarterright
     show kid normal at center
+    show bro normal at midright
     "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
     "Even [bro_name] usually had something to say."
     "They weren't always peaceful, though..."
-    kid "Beans again? Ugh."
-    him "You can put Special Sauce on them if you want."
+    kid annoyed "Beans again? Ugh."
+    him surprised "You can put Special Sauce on them if you want."
     "We called it \"Special Sauce\", but it was really just homemade ketchup. With fruit instead of sugar."
-    kid "Yeah, gimme the sauce."
+    kid shifty "Yeah, gimme the sauce."
     if (year6_have_baby):
         bro "Gimme sauce!"
     else:
         bro "Ya ya ya ya."
-    her "Say \"please\" when you ask for something."
+    her concerned "Say \"please\" when you ask for something."
     "[kid_name] knew this; she used to say \"please\" and \"thank you\" all the time. But not today."
+    kid annoyed "Gimme the sauce."
     menu:
         "What should I say?"
         "Here you go.":
@@ -3155,7 +3156,7 @@ label family11:
             him determined "Here you go."
             "It wasn't worth making a big deal over."
             "Maybe it was just a one-time thing."
-            kid "Gimme the potatoes."
+            kid normal "Gimme the potatoes."
             "Or maybe not."
             menu:
                 "What should I do?"
@@ -3168,14 +3169,14 @@ label family11:
         "Say \"please\"":
             $ demanding += 1
             $ responsive += 1
-            him "We say \"please\" when we ask for something, and \"thank you\" when someone does something for us."
-            kid "C'mon, pass me the sauce!"
+            him determined "We say \"please\" when we ask for something, and \"thank you\" when someone does something for us."
+            kid determined "C'mon, pass me the sauce!"
         "Where are your manners?!":
             $ demanding += 1
-            him "Where are your manners? I raised you to speak better than that!"
-            kid "C'mon, pass me the sauce!"
+            him annoyed "Where are your manners? I raised you to speak better than that!"
+            kid annoyed "C'mon, pass me the sauce!"
         "I'm eating outside.":
-            him "I'm eating outside."
+            him annoyed "I'm eating outside."
             "Maybe that would get the message across. I just couldn't deal with that kind of garbage right now."
             "I took the special sauce with me."
             $ confident += 1
@@ -3193,7 +3194,8 @@ label family11:
             him annoyed "It is a big deal! I will not have a rude daughter like that in our house!"
             her annoyed "Well we sure aren't kicking her out just because she didn't say \"please\"!"
             him determined "She can come out whenever she's ready to say \"please\"."
-            kid "That'll be NEVER!"
+            kid angry "That'll be NEVER!"
+            hide kid with moveoutright
             her angry "Oh, sure, we'll just starve our kids until they do what we want! Is your ego that important to you!?"
             him angry "It's not my ego! It's basic human decency!"
             her annoyed "Sure, you just keep telling yourself that."
@@ -3205,27 +3207,27 @@ label family11:
             $ confident += 1
             him happy "So, [her_name], what did you work on today?"
             her concerned "I've been researching--"
-            kid "Pass the sauce!"
+            kid annoyed "Pass the sauce!"
             him normal "Go on."
             her concerned "I've been researching the nutritional properties of crabird eggs."
             him surprised "I didn't know you could eat the eggs!"
-            kid "I JUST WANT SOME FOOD!"
+            kid angry "I JUST WANT SOME FOOD!"
             if (year6_have_baby):
                 bro "Me, me me!"
             else:
                 bro "Wahhhhh!"
             her normal "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
-            kid "You're starving your child here!"
+            kid annoyed "You're starving your child here!"
             her concerned "-high levels of certain amino acids."
-            kid "Ugh! Fine! PLEASE pass the sauce!"
+            kid angry "Ugh! Fine! PLEASE pass the sauce!"
             if (year6_have_baby):
                 bro "Peas!"
             else:
                 bro "Wahhhhh!"
 
             him happy "Here you go, [kid_name]. Thanks for asking politely."
-            kid "You're mean."
-            her "I think the word you're looking for is \"thank you\"."
+            kid annoyed "You're mean."
+            her flirting "I think the word you're looking for is \"thank you\"."
             "She just glared at us and then dug in to her beans and sauce."
             "I decided to save that one for another time."
             if (manners_grounded_days >= 1):
@@ -3234,28 +3236,30 @@ label family11:
             return
         "I will wait as long as I need to." if (manners_patience_count >= 2):
             him determined "I will wait as long as I need to."
-            kid "Can I have the sauce?"
-            him "I expect you to use the word \"please\"."
+            kid shifty "Can I have the sauce?"
+            him normal "I expect you to use the word \"please\"."
             $ manners_patience_count += 1
             jump manners_patience
 
         "If you keep talking rudely, you'll be grounded!" if (manners_grounded_days < 7):
             $ demanding += 1
             him annoyed "If you keep talking rudely, you'll be grounded!"
-            kid "Gimme the sauce!"
-            him angry "Okay, you're grounded for another day."
+            kid annoyed "Gimme the sauce!"
             $ manners_grounded_days += 1
             if (manners_grounded_days > 1):
+                him angry "Okay, you're grounded for another day."
                 him "That makes [manners_grounded_days] days, now. Is this really worth it?"
+            else:
+                him angry "Okay, you're grounded for an entire day!"
             jump manners_patience
 
         "As soon as you ask politely, I will pass them to you." if (manners_patience_count < 2):
             $ demanding += 1
             $ responsive += 1
             him determined "As soon as you ask politely, I will pass them to you."
-            kid "What? I just want some sauce and beans!"
+            kid determined "What? I just want some sauce and beans!"
             him annoyed "Then ask politely."
-            kid "Gimme the sauce!"
+            kid annoyed "Gimme the sauce!"
             $ manners_patience_count += 1
             jump manners_patience
 
@@ -3269,7 +3273,6 @@ label family11:
             $ permissive += 1
             return
 
-
 # 7.4 Earth years old
 # Growing Independence, miner friend, lice
 label family12:
@@ -3277,54 +3280,54 @@ label family12:
     show him normal at midright
     show kid normal at midleft with moveinleft
     him happy "Welcome home, [kid_name]! How was school?"
-    kid "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
+    kid surprised "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
     him surprised "Tomorrow? Who's Anya?"
-    kid "One of my friends from school."
+    kid shifty "One of my friends from school."
     him concerned "Really? I don't know of any farmers who have a kid named Anya..."
-    kid "Her parents are miners."
+    kid normal "Her parents are miners."
     him determined "Oh."
     "I wasn't sure what to think about that. On the one hand, I was glad she had a new friend; she'd never had a girl her own age to be friends with before."
     "On the other hand, I didn't know much about the miners. Should I really let her go to someone's house I didn't know?"
-    "I couldn't help but think of Josefina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
-    kid "Please, dad? We're like best friends."
+    "I couldn't help but think of Josephina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+    kid sad "Please, dad? We're like best friends."
     him surprised "Who are her parents?"
-    kid "I don't know; just...parents, I guess."
+    kid annoyed "I don't know; just...parents, I guess."
     menu:
         "What should I say?"
         "Sure, you can go.":
             $ responsive += 1
             $ confident += 1
             him normal "Sure, you can go."
-            kid "Yay! I'm going to message her right now, she'll be so excited!"
+            kid happy "Yay! I'm going to message her right now, she'll be so excited!"
             $ permissive += 1
             call family12_anyas_house
         "Are her parents going to be home?":
             $ demanding += 1
             $ confident += 1
             him concerned "Are her parents going to be home?"
-            kid "Um, yeah, I guess, probably?"
+            kid concerned "Um, yeah, I guess, probably?"
             him determined "You don't know."
-            kid "We don't talk about our parents!"
+            kid annoyed "We don't talk about our parents!"
             him surprised "Why don't I message her parents and get some more information?"
-            kid "Okay. Her last name's Lewis."
+            kid determined "Okay. Her last name's Lewis."
             call family12_contact_parents
         "I don't want you going over to some random miner's house.":
             $ demanding += 1
             him annoyed "I don't want you going over to some random miner's house. I don't know anything about them!"
-            kid "They're not random! Anya's my best friend!"
+            kid angry "They're not random! Anya's my best friend!"
             menu:
                 "What should I say?"
                 "Sorry, I don't have time.":
                     him determined "I don't know them, and I don't have time to get to know them. Sorry, [kid_name]."
-                    kid "You're so mean!"
+                    kid yell "You're so mean!"
                     $ neglectful += 1
                     call family12_disobey
                 "You can't go over to someone's house unless I know them.":
                     $ demanding += 1
                     him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
-                    kid "Well, then you need to get to know Anya's parents!"
+                    kid annoyed "Well, then you need to get to know Anya's parents!"
                     him "Picking my friends is not your job."
-                    kid "But your job is to pick my friends?!"
+                    kid angry "But your job is to pick my friends?!"
                     him "Yes, it is."
                     $ authoritarian += 1
                     call family12_disobey
@@ -3335,7 +3338,7 @@ label family12:
         "Why don't you invite her to come over here?":
             $ demanding += 1
             him concerned "Why don't you invite her to come over here? That'd be easier."
-            kid "I do want to to that, but tomorrow she's going to show me some cool stuff she brought from Earth!"
+            kid concerned "I do want to to that, but tomorrow she's going to show me some cool stuff she brought from Earth!"
             menu:
                 "What should I say?"
                 "You can't go.":
@@ -3355,35 +3358,37 @@ label family12:
     scene farm_interior with fade
     show him normal at midright
     show kid normal at midleft
-    kid "I'm just so itchy! All the time!"
+    kid annoyed "I'm just so itchy! All the time!"
     him surprised "Did you touch a weird plant or something? Where do you itch?"
-    kid "On my head!"
+    kid concerned "On my head!"
     "I was ready for some bizarre alien tick or something (though since most of the animals here were cold blooded, it seemed unlikely), but I wasn't ready for what I found."
     him concerned "You have something in your hair... is this dandruff?"
-    kid "What's dandruff?"
+    kid surprised "What's dandruff?"
     him surprised "There's these tiny white things on your hair. Man, they're really stuck on there good."
-    kid "What? What are they?!"
+    kid concerned "What? What are they?!"
     him "I don't know; here, go wash your hair in the sink and we'll see if that helps it go away."
     "She washed her hair, but the little white things were still there."
     him concerned "They look like little sesame seeds, or..."
-    kid "Or what?!"
+    kid concerned "Or what?!"
     him surprised "Eggs?"
-    kid "Eggs?! From what?!"
+    kid surprised "Eggs?! From what?!"
+    play music tense
     show her normal at quarterleft with moveinleft
     her concerned "Lice. We are currently experiencing an outbreak of lice."
     him annoyed "I thought we left all those horrible parasites back on Earth!"
     her annoyed "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
     him angry "How could that even happen?!"
     her concerned "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
-    kid "I have lice?!"
+    show him concerned
+    kid angry "I have lice?!"
     her determined "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
     menu:
         "What should I say?"
         "I'm not doing that.":
             $ marriage_strength -= 1
-            him annoyed "No way. I'm not doing that."
+            him angry "No way. I'm not doing that."
             her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
-            him "..."
+            him annoyed "..."
             her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
             him surprised "That's low."
             her determined "That's life."
@@ -3392,13 +3397,13 @@ label family12:
             $ marriage_strength += 1
             him concerned "Okay, I'll get started."
 
+    scene stars with fade
     "I had never got rid of lice before. I got them once in school, but all I remember is my mom combing my hair a lot. I'd better read up on it."
     "But [her_name]'s instructions were pretty thorough."
-    # TODO: include these?
 
     "First we queued up a lice comb to be 3D printed at the library."
     scene library with fade
-    show pete at midright with dissolve
+    show pete normal at midright with dissolve
     show him normal at center
     show kid normal at midleft
     with moveinleft
@@ -3409,7 +3414,7 @@ label family12:
     travis "Dad!"
     pete "Anyway, here's your comb."
     him concerned "Thanks for printing it for us."
-    pete "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
+    pete happy "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
 
     scene farm_interior with fade
     show him determined at midright
@@ -3419,28 +3424,28 @@ label family12:
     "Then I started to comb."
     "And comb."
     "...and comb."
-    scene stars with fade
+    scene black with fade
     scene farm_interior with fade
     show him determined at midright
-    show kid normal at center
+    show kid annoyed at center
     with dissolve
-    kid "How much longer is this going to take?!"
-    him "We have to be thorough! Otherwise we won't be able to get rid of them."
-    kid "Can I play on the computer pad?"
+    kid annoyed "How much longer is this going to take?!"
+    him annoyed "We have to be thorough! Otherwise we won't be able to get rid of them."
+    kid surprised "Can I play on the computer pad?"
     menu:
         "What should I say"
         "No, you'll move around too much.":
-            him "No, you'll move around too much."
-            kid "I won't!"
-            him "Yes, you will. Now hold still!"
+            him determined "No, you'll move around too much."
+            kid determined "I won't!"
+            him annoyed "Yes, you will. Now hold still!"
         "No, but why don't we put on a movie?":
             him happy "No, but why don't we put on a movie? I'm getting kind of bored, too."
-            kid "Okay. Can I pick?"
+            kid happy "Okay. Can I pick?"
             him determined "Just as long as it's not Zuppo."
-            kid "Aw, man."
+            kid sad "Aw, man."
         "I guess.":
-            him "I guess..."
-            kid "Yay!"
+            him concerned "I guess..."
+            kid happy "Yay!"
             "It was hard to comb her hair properly when she was playing her game. I did my best, though."
 
     "Now that I knew about lice, my head kept itching. I wasn't sure if it was real or if I was just creeped out."
@@ -3448,7 +3453,9 @@ label family12:
     show her normal at midleft with moveinleft
     her surprised "You got them all?"
     him concerned "I went through her whole head... that's all I can do for today."
+    hide kid with moveoutleft
     her determined "Good, now I'll take a look at your hair."
+    show her at center with move
     "I sat on the stool and waited for the verdict. My scalp itched like crazy."
     her determined "Yup, you have them, too. Where's that comb?"
     "I sat down and she started combing my hair efficiently, dipping the comb in water to rinse off eggs and lice. It was pretty creepy seeing what had been living on my head."
@@ -3467,6 +3474,7 @@ label family12:
         "Shave your head.":
             him happy "You know what, I need a change anyway!  Let's shave it all off!"
             "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
+            # TODO: change his sprite for the rest of the year
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
@@ -3479,7 +3487,7 @@ label family12:
     julia_c "I can't believe someone was so incompetent as to allow lice from Earth to contaminate our entire colony!"
     brennan_c "RET has discovered a mistake was made in the decontamination of personal items. Our procedures have been modified and we regret any inconvenience this mistake may have caused you."
     julia_c "{b}May{/b} have caused?!"
-    martin_c "This isn't just an inconvenience; we lost a lot of valuable time during planting to these bugs. I had to plant tomatoes later than I wanted to; hopefully it won't get too cold before they're ripe."
+    thuc_c "This isn't just an inconvenience; we lost a lot of valuable time during planting to these bugs. I had to delay planting; hopefully it won't get too cold before harvest."
     menu:
         "What should I say?"
         "I lost time, too. The miners should be held responsible for these damages!":
@@ -3494,7 +3502,7 @@ label family12:
 
     lily_c "Miranda and I can assist each other with this task so as not to overburden you."
     julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
-    brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad, too. I've got a lot of hair to comb through, here."
+    brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad. I've got a lot of hair to comb through,"
     pete_c "I'll take care of it."
     sara_c "You're offering to comb through Brennan's hair?! 😳"
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
@@ -3514,7 +3522,7 @@ label family12:
     "And they would play together at school no matter what."
     him concerned "I suppose so."
     kid "Yay!"
-    him annoyed "Now let me check your hair again."
+    him annoyed "But first, let me check your hair again."
 
     return
 
@@ -3563,46 +3571,63 @@ label family12_anyas_house:
     return
 
 label family12_disobey:
+    scene farm_interior with fade
+    show him normal at center with dissolve
     "The next day, [kid_name] was late coming home from school."
     him surprised "Where is that girl?"
     "After an hour, I started to get worried. Then I remembered what she had asked yesterday, and I started to get mad."
+    show him annoyed
     "I called up Mr. Lewis on the radio."
-    # TODO: radio interface
-    him "Mr. Lewis? Is [kid_name] there?"
-    "Mr. Lewis" "I just got home, but no, she's not here."
-    him "Are you sure? She hasn't come home yet..."
-    "Anya" "She just left to go home, dad!"
-    "Mr. Lewis" "Oh. Apparently she just left."
-    him "Thank you; that's good to know."
+    him "{i}Mr. Lewis? Is [kid_name] there?{/i}"
+    "Mr. Lewis" "{i}I just got home, but no, she's not here.{/i}"
+    him "{i}Are you sure? She hasn't come home yet...{/i}"
+    "Anya" "{i}She just left to go home, dad!{/i}"
+    "Mr. Lewis" "{i}Oh. Apparently she just left.{/i}"
+    him "{i}Thank you; that's good to know.{/i}"
     "The sun was starting to go down, but by my calculations, [kid_name] still had at about an hour's walk ahead of her."
     "As long as she could find her way from the miner's camp to the town, she'd be able to find her way home pretty easily. It's not like there were a ton of other places to go or confusing roads."
-    "But it was getting dark, and I kept picturing young Josephina's corpse from her funeral eight years ago..."
+    "But it was getting dark, and I kept picturing [kid_name] as a corpse just like Josephina eight years ago..."
     menu:
         "What should I do?"
         "Go and meet [kid_name].":
             $ responsive += 1
             "I couldn't let her walk all that way alone in the dusk. She was only 7 years old."
+            scene path with fade
             "I saddled Lettie and set out towards town."
             "I found her sitting on the community center steps, looking exhausted, and like maybe she had been crying."
-            # TODO: setup this scene and blocking
+            # TODO: town background? scene
+            show horse at midleft
+            show him normal at midleft
+            with moveinleft
+            show kid nervous at midright
+            show naomi normal at quarterright
+            with dissolve
             naomi "There he his now. See? Look how much he missed you."
+            show kid sad
             "[kid_name] looked up at me with worry in her eyes. Seeing that face, my anger ebbed away like a sand castle before the tide."
-            him "Thanks for looking out for her."
-            naomi "Oh, I think she's looking out for me. She stopped by just in time to help me carry a few things from the storehouse."
-            kid "Sorry, dad."
+            him concerned "Thanks for looking out for her."
+            show kid concerned
+            naomi happy "Oh, I think she's looking out for me. She stopped by just in time to help me carry a few things from the storehouse."
+            kid sad "Sorry, dad."
+            show naomi normal at center with move
             "She looked so sad, and a little afraid. Naomi leaned on my arm to whisper into my ear."
             naomi "Have a nice ride home and then decide what to do about her disobedience, won't you?"
             hide naomi with moveoutright
-            him "Come on, [kid_name]. Let's go home."
+            him determined "Come on, [kid_name]. Let's go home."
+            show kid at center with move
             "[kid_name] sat behind me on Lettie, on a special pad we attached there for double riding. Her little arms wrapped around my waist and her face was pressed against my back."
-            him "I guess you went to Anya's house?"
-            kid "Yes."
-            him "How was it?"
-            kid "It was fun. But it was taking forever to walk home. My feet were hurting."
-            him "Hmmm."
+            him concerned "I guess you went to Anya's house?"
+            kid concerned "Yes."
+            him surprised "How was it?"
+            kid determined "It was fun. But it was taking forever to walk home. My feet hurt."
+            him concerned "Hmmm."
             "The rest of the ride home was quiet, as I thought about what I should do about [kid_name]."
             "Sister Naomi was right; when I took time to think about it, I had a lot more options than just yelling at her, which is what I had originally planned to do."
             "So, when we got home, I had decided what to say."
+            scene farm_interior with fade
+            show him determined at center
+            show kid nervous at midleft
+            with moveinleft
 
         "Wait here.":
             $ demanding += 1
@@ -3611,44 +3636,53 @@ label family12_disobey:
             "I got a message on my computer pad."
             naomi_c "I just sent [kid_name] on home; she stopped at my house to help me carry some things. Please don't be too mad at her."
             him_c "Thanks, Sister Naomi."
-            "I tried to get some things done, but I kept checking down the road, looking for [kid_name]. Finally I saw her, walking wearily down the dirt path as the sun's last rays faded into night."
+            scene sunset with fade
+            show him concerned at right with dissolve
+            "I tried to get some things done, but I kept checking down the road, looking for [kid_name]."
+            show kid nervous at midleft with moveinleft
+            "Finally I saw her, walking wearily down the dirt path as the sun's last rays faded into night."
+            scene farm_interior with fade
+            show him determined at midright with dissolve
+            show kid sad at midleft
+            with moveinleft
             "She trudged into the house and flopped down on the floor. I could tell she had been crying from the dusty tear tracks running down her face."
-            kid "Sorry, dad."
+            kid sad "Sorry, dad."
             "I remembered what Sister Naomi said and bit back the angry rant I had started planning."
-            him "Welcome home, [kid_name]."
+            him normal "Welcome home, [kid_name]."
+            show him normal at center with move
             "I pulled her into a hug and just held her for a few minutes. She wasn't normally the snuggly type, but she stayed in my arms for several minutes."
             "Finally, I figured I'd better tell her what was going to happen."
 
-    him "You disobeyed me and went to Anya's house anyway. Here's the consequences."
+    him determined "You disobeyed me and went to Anya's house anyway. Here's the consequences."
     menu:
         "What should I say?"
         "No playing with friends.":
             $ demanding += 1
             him annoyed "You can't play with friends until you've proven that you can be obedient. I expect you to come straight home from school and not have any friends over."
-            kid "For how long?!"
+            kid angry "For how long?!"
             him determined "Until you've proven that you can be obedient, and I can trust you."
-            kid "Hmph."
+            kid annoyed "Hmph."
             "She wasn't happy about it, but she didn't argue, either."
         "You'll help me with my chores.":
             $ demanding += 1
             him annoyed "You'll need to do extra work with me on the farm until you've proven that you can be obedient. I expect you to do everything exactly as I've asked you. And if something's not clear, you need to ask"
-            kid "For how long?!"
+            kid angry "For how long?!"
             him determined "Until you've proven that you can be obedient, and I can trust you."
-            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], weed this whole field.'"
+            kid nervous "You'll probably make me do super hard stuff like 'Hey [kid_name], weed this whole field.'"
             him normal "I won't ask you to do anything you can't do. But I do expect you to work hard."
             "She wasn't happy about it, but she didn't argue, either."
         "You need to apologize.":
             him annoyed "You need to apologize for what you did."
-            kid "I did apologize!"
+            kid angry "I did apologize!"
             "I just looked at her. She sighed."
-            kid "Fine. Dad, I'm sorry I disobeyed and went to Anya's house when you said not to."
+            kid nervous "Fine. Dad, I'm sorry I disobeyed and went to Anya's house when you said not to."
             him normal "Thank you. I forgive you. Please don't do that ever again."
         "All of the above.":
             $ demanding += 2
-            him "You need to apologize, and instead of playing with friends you'll need to help out extra on the farm and do everything I ask."
-            kid "For how long?!"
+            him determined "You need to apologize, and instead of playing with friends you'll need to help out extra on the farm and do everything I ask."
+            kid angry "For how long?!"
             him determined "Until you've proven that you can be obedient and that I can trust you."
-            kid "You'll probably make me do super hard stuff like 'Hey [kid_name], go weed this whole field.'"
+            kid nervous "You'll probably make me do super hard stuff like 'Hey [kid_name], go weed this whole field.'"
             him normal "I won't ask you to do anything you can't do. But I do expect you to work hard."
             "She wasn't happy about it, but she didn't argue, either."
     "After a week, she had worked pretty hard to obey everything I asked, so I started restoring priveleges."
@@ -3668,7 +3702,7 @@ label family12_anya_come_over:
     return
 
 
-
+# TODO: blocking and music ended here
 
 #####################################################
 #
