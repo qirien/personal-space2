@@ -140,7 +140,7 @@ label message6:
         sara_c "Hope you're all planning on coming to the harvest festival next week!!!"
     natalia_c "I just hope we can finish the harvest by then."
     julia_c "Having trouble, are you? I expect to be done tomorrow."
-    natalia_c "It'll work out. It helped having the school kids home for the week."
+    martin_c "It'll work out. It helped having the school kids home for the week."
     kevin_c "Is it your colony's tradition to eat crabird every year at the harvest festival?"
     him_c "We have done that a lot... I guess it's becoming a tradition?"
     julia_c "It's not set in stone."
@@ -180,6 +180,12 @@ label message8:
     julia_c "Those early years are so precious... just cherish every moment while they're small!"
     natalia_c "Hey, grandma, maybe you could cherish your own grandson this week so Tomás can help us out with the harvest."
     julia_c "Of course. I would never turn down an opportunity to hold that precious baby!"
+    sara_c "I've seen you guys in town a lot... is Martin sick again?"
+    natalia_c "When is he not?"
+    kevin_c "Does he have a chronic illness?"
+    martin_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
+    naomi_c "Can I come over to help you around the house? I'm afraid these old bones aren't much good for harvesting, but I'm sure there's something I can help you with."
+    natalia_c "Thank you, Naomi, I'll let you know."
 
     nvl clear
     return
@@ -231,7 +237,7 @@ label message10:
     nvl clear
     return
 
-# Community: Miners and Brennan arrive on shuttle
+# Community: Miners and Brennan arrive on shuttle; Martin dies
 # Family: Dinner Table Manners
 label message11:
     nvl clear
@@ -272,7 +278,7 @@ label message12:
         sara_c "Okay, I setup this new area for colonists only. The old area was kind of overrun by miners!"
 
     julia_c "Nothing against the miners, but they don't need to hear all about our crops and things like that."
-    martin_c "And we don't need to hear about all their safety classes and deadlines."
+    ilian_c "And we don't need to hear about all their safety classes and deadlines."
 
     pete_c "I hope y'all took a moment to read the literary magazine. It's the best alien writing you'll ever lay eyes on."
     if (("jellystar" in year11_poem) or
@@ -344,7 +350,7 @@ label message15:
     julia_c "Sorry to change the subject, but Gardenia wanted me to let everyone know that she is selling handmade jumpropes for 10 credits each."
     her_c "I remember playing jumprope as a kid..."
     thuc_c "I remember using jumpropes to tie up my siblings."
-    martin_c "We used them to lower buckets from our tree house."
+    ilian_c "We used them to lower buckets from our tree house."
     julia_c "Yes, it is a very versatile toy! And these are woven from the finest plant fibers of Talaam."
 
     nvl clear

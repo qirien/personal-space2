@@ -99,6 +99,7 @@ init -100:
     # Sad/Mad
     define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg"
     define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg"
+    define audio.problems = "music/05-Providence-Ray Montford_.ogg"
     define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
     define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
 
