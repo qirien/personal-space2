@@ -22,7 +22,9 @@ label start:
         save_name = "Intro"
         notifications = ""
         read_messages = False
+        word_board = Board(basic_words, family_words, farm_words)
         year11_poem = ""
+        year18_poem = ""
 
     # PARENTS
     python:
@@ -325,13 +327,6 @@ label life_loop:
             $ renpy.force_autosave(take_screenshot=True)
             $ renpy.notify("Autosaving...")
 
-            # Poetry time!
-            #if (year % 3):
-            #"So much happened this year... I decided to write a poem about it."
-            # Make the word board with appropriate words
-            # TODO: Store poems better for later access.
-            #$ word_board = Board(basic_words, family_words, farm_words)
-            #call make_poem
             $ year += 1
     jump ending
     return

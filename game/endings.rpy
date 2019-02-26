@@ -53,11 +53,11 @@ label ending:
             menu:
                 "What should it be about?"
                 "My family":
-                    $ word_board = Board(basic_words, family_words, baby_words, separation_words)
+                    $ word_board.set_wordpack(basic_words, family_words, baby_words, separation_words)
                 "Talaam":
-                    $ word_board = Board(basic_words, talaam_words, farm_words)
+                    $ word_board.set_wordpack(basic_words, talaam_words, farm_words)
                 "[her_name]":
-                    $ word_board = Board(basic_words, family_words, romance_words)
+                    $ word_board.set_wordpack(basic_words, family_words, romance_words)
 
             call make_poem
         "No":

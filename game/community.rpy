@@ -2654,7 +2654,7 @@ label community15:
         "Prepare a poem":
             $ c15_funeral = "poem"
             "The best way to keep it short would be to make a poem. I'd better make it good, though..."
-            $ word_board = Board(basic_words, talaam_words, separation_words)
+            $ word_board.set_wordpack(basic_words, talaam_words, separation_words)
             call make_poem
             $ c15_funeral_poem = word_board.get_poem_as_string(-1)
         "Say a few words":
@@ -3181,7 +3181,7 @@ label community19:
     him "How much?"
     if c18_no_help_pete:
         helen "80 credits."
-        him "Hmm. That's outside my price range. Got any beef bones or beans?"
+        him "Hmm. That's outside my price range. Got any beef bones or nuts?"
         helen "Nothing like that."
         if ate_jellyfish:
             him "How much for this jellystar scarf?"

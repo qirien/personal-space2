@@ -2654,7 +2654,7 @@ label baby_delivery:
     menu:
         "Write a poem?"
         "Yes":
-            $ word_board = Board(basic_words, family_words, baby_words)
+            $ word_board.set_wordpack(basic_words, family_words, baby_words)
             call make_poem
             $ baby_poem = word_board.get_poem_as_string(-1)
             nvl clear
@@ -3272,6 +3272,7 @@ label family11:
                 "What a pointless battle."
             $ permissive += 1
             return
+    return
 
 # 7.4 Earth years old
 # Growing Independence, miner friend, lice
@@ -4989,6 +4990,8 @@ label family18:
         "What should I say?"
         "Because I said so.":
             him annoyed "Because I said so. I'm the dad; you're the kid. When I say 'Take a bath', you take a bath!"
+            kid annoyed "That's dumb."
+            him happy "And also you stink."
             $ demanding += 1
         "Because you stink.":
             him surprised "Want me to tell you the truth?"
