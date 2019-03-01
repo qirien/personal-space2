@@ -520,6 +520,12 @@ label family2:
             "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
             "After about an hour she finally stopped crying; maybe she had fallen asleep."
             "Or maybe she finally realized that I wasn't going to come back until I was done."
+            scene kid_bedroom with fade
+            "After I finished planting, I went back to the house and peeked in at [kid_name]."
+            "As soon as I opened the door, she started screaming again. She stood up in her crib and glared at me with a heartbroken look of betrayal that I'll never forget."
+            "I tried to make it up to her with cuddles and food, but every time when she started to cheer up, she'd start crying again for no reason."
+            "Well, I guess being stuck alone in her crib for a few hours was a pretty good reason."
+            "She sure let me know what she thought of that."
             $ family2_work_done += 5
             $ neglectful += 1
 
@@ -2215,7 +2221,7 @@ label family7_angry_ending:
     hide him
     hide kid
     with moveoutright
-    scene kid_bedroom
+    scene kid_bedroom with fade
     show him determined at midleft
     show kid sad at midleft
     with moveinleft

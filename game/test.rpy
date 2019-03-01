@@ -1,6 +1,63 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
+label demo:
+    # setup variables
+    $ demo_mode = True
+    $ year6_have_baby = True
+    $ bro_birth_year = 8
+    $ years = [3,7,12,17,27]
+
+    $ attachment = ATTACHMENT_HIGH
+    $ competence = COMPETENCE_HIGH/2
+    $ independence = INDEPENDENCE_HIGH/5
+    $ total_demanding = 5
+    $ total_responsive = 5
+    $ total_confident = 5
+    $ authoritarian = 2
+    $ authoritative = 3
+    $ permissive = 6
+    $ neglectful = 1
+
+
+    # FARMING CHOICES
+    $ computer_song = renpy.random.choice(audio.computer)
+    play music computer_song fadein 2.0
+    hide screen say
+    scene stars with fade
+    if (year > 1):
+        $ years_yield = farm.process_crops()
+        if (year >= MONEY_YEAR):
+            $ credits += farm.calculate_income(years_yield)
+    $ farm.reset_crops(farm_size)
+    $ read_messages = False
+    $ show_year = year
+    call screen plan_farm
+
+label demo_continue:
+    $ year = 3
+    call interscene_text(year, "Family")
+    call family3
+    $ year = 4
+    call interscene_text(year, "Community")
+    call community4
+    $ year = 6
+    call interscene_text(year, "Work")
+    call work6
+    $ year = 10
+    call interscene_text(year, "Community")
+    call community10 # Finish this event
+    $ year = 18
+    $ kid_work_slider = 70
+    call interscene_text(year, "Work")
+    call spinach2
+    $ year = 27
+    call interscene_text(year, "Family")
+    call family27 # Blocking for this event
+    $ year = 30
+    call ending
+    return
+
 label tests:
     menu:
         "Which test would you like to run?"

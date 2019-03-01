@@ -1424,10 +1424,10 @@ label community9:
 label community10:
     play music sad
     scene farm_interior with fade
-    show him at midleft
-    show bro at quarterleft
-    show her at midright
-    show kid at quarterright
+    show him normal at midleft
+    show bro normal at quarterleft
+    show her normal at midright
+    show kid normal at quarterright
     with dissolve
     her "I'm leaving for work now. Goodbye honey!"
     him "Bye [her_name]. Oh, and don't forget that we're having dinner with the Perons tonight."
@@ -1435,12 +1435,23 @@ label community10:
     him "Maybe they're just being friendly?"
     "After weeding and clearing out old growth, Terra comes home from school."
     "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
-    scene farm_exterior
+    scene farm_exterior flip with fade
+    show natalia normal at midright
+    show martin normal at quarterright
+    with dissolve
+    show bro normal at left
+    show kid normal at center
+    show him normal at midleft
+    show her normal at quarterleft
+    with moveinleft
     natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
     "After the meal, Terra runs off to play with the kids."
+    hide kid
+    hide bro
+    with moveoutright
     martin "As you may have heard, I have skin cancer."
     her "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     martin "I know! You are not the only one who knows, however."

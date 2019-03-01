@@ -19,6 +19,7 @@ label start:
 
     # GAME ENGINE
     python:
+        demo_mode = False
         save_name = "Intro"
         notifications = ""
         read_messages = False
@@ -226,6 +227,8 @@ label start:
             jump tests
         "Jump to Year":
             jump test_jump_year
+        "Demo":
+            jump demo
         "Continue":
             $ pass
 
@@ -286,6 +289,8 @@ label life_loop:
         call screen plan_farm
 
         label yearly_events:
+            if demo_mode:
+                jump demo_continue
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
