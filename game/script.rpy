@@ -229,6 +229,8 @@ label start:
             jump test_jump_year
         "Demo":
             jump demo
+        "Trailer":
+            jump trailer
         "Continue":
             $ pass
 

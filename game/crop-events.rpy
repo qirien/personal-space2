@@ -1139,11 +1139,14 @@ label spinach1:
 
 # SPINACH2 - turtle slugs
 label spinach2:
+    play music problems
     $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] += 1
     scene fields with fade
     "This year, I planted my spinach a little earlier to avoid any heat problems."
     "Now it's almost to full size."
     "But something has been eating the plants. I haven't seen anything, but when I checked the leaves, I could see bites taken out."
+    show him determined at center with dissolve
+    him "What could be eating the spinach?"
     $ spinach2_cameras = False
     menu spinach_3_menu:
         "Check the surveillance cameras" if (not spinach2_cameras):
@@ -1154,7 +1157,7 @@ label spinach2:
             show night_overlay with dissolve
             show him annoyed at center with moveinleft
             "After [kid_name] and [her_name] went to bed, I snuck out of the house to examine the spinach plants.  My flashlight caught something small and slimy -- it looked like a snail!"
-            "It's not exactly like an Earth snail -- its shell is hard, but instead of a spiral it's more of a dome, like a turtle. Its body is soft and squishy, but it has little feet protuberances like a caterpillar."
+            "It wasn't exactly like an Earth snail -- its shell's hard, but instead of a spiral it's more of a dome, like a turtle. Its body was soft and squishy, but with little feet protuberances like a caterpillar."
             menu:
                 "What should I do?"
                 "Hand pick them off":
@@ -1224,9 +1227,16 @@ label spinach2:
                     "I made some more traps and repeated the process until no more turtle-snails appeared."
                     "And we harvested a lot of wonderful spinach."
                 "Just pick the spinach early":
+                    "It'd be too much work to kill all the snails. If I just harvested the spinach early then there wouldn't be anything for them to eat."
                     call spinach2_pick_early
         "Just pick the spinach early":
+            "I decided to just pick the spinach. It was still small, but edible. It would probably taste even better."
+            "As I was picking it, I found one of the creatures responsible."
+            "It was small, with a hard, domelike shell. Its body was soft and squishy, but it with little feet protuberances like a caterpillar."
+            "We called them turtle snails. I hoped that after I finished picking the spinach, they wouldn't have anything else to eat and they would leave."
             call spinach2_pick_early
+
+    scene black with fade
     return
 
 label spinach2_eat_snails:
@@ -1255,7 +1265,6 @@ label spinach2_eat_snails:
     return
 
 label spinach2_pick_early:
-    "It'd be too much work to kill all the snails. If I just harvested the spinach early then there wouldn't be anything for them to eat."
     "But spinach isn't the only thing turtle-snails like..."
     if ("beans" in farm.crops):
         $ snail_crop = "beans"

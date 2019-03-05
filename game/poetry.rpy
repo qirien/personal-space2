@@ -10,12 +10,12 @@ init python:
     basic_nouns = ["word", "you", "she", "joy", "I", "we",  "scent", "sound", "me", "pain", "wonder", "dream", "moon", "sun"]
     basic_adjectives = ["beautiful", "blue", "gray", "red", "soft", "feathery",  "pink", "your", "my", "our", "orange", "this", "brown", "dry", "her"]
     basic_verbs = ["jump", "know", "smile", "dance", "sing", "kick", "glow", "is", "are", "eat"]
-    basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when"]
+    basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when", "to"]
     basic_words = Wordpack()
     basic_words.add_words(basic_nouns, basic_adjectives, basic_verbs, basic_other)
 
     # Family-related words
-    family_nouns = ["hair", "family", "face", "father", "mother", "soul", "eye"]
+    family_nouns = ["hair", "family", "face", "father", "mother", "soul", "eye", "daughter", "son", "girl"]
     family_adjectives = ["young", "gentle", "old", "rosy", "happy", "personal", "bright", "clever", "jealous", "sweet"]
     family_verbs = ["touch", "feel", "grow", "build", "adore", "love", "nurture", "thank", "help", "frown", "sleep", "pout"]
     family_other = ["forever", "together"]

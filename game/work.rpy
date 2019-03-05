@@ -378,6 +378,7 @@ label work6:
     show kid normal at center
     show him normal at midleft
     with dissolve
+    window show # TODO: HACK MOVE TO FUNCTION
     $ random_crop = farm.crops.random_crop(include_animals = False)
     him normal "Well, I'm off to plant [random_crop] today."
     kid surprised "Is it fun?"
@@ -396,11 +397,11 @@ label work6:
     "It took all her strength to lift the pump handle, and she had to hang on it with her whole weight to get it to come down, but she did it."
     show kid concerned with dissolve
     "She tried to carry the bucket, but it was too heavy."
-    him "Here, I'll carry the bucket. You carry the seeds."
+    him normal "Here, I'll carry the bucket. You carry the seeds."
     kid annoyed "No! I want to carry the bucket!"
     "She staggered a few steps with the bucket and it dropped, spilling half the water onto the ground."
-    him "Let's try that again..."
-    kid happy "Okay, daddy!"
+    him annoyed "Let's try that again..."
+    kid sad "Okay..."
     hide him
     hide kid
     with moveoutright
@@ -416,6 +417,8 @@ label work6:
 
     tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
     tutorial "And, her competence increases as she helps." # TODO: does it?
+    window hide
+    scene black with fade
     return
 
 # Year 8, 4.8 years old

@@ -10,7 +10,7 @@ label demo:
 
     $ attachment = ATTACHMENT_HIGH
     $ competence = COMPETENCE_HIGH/2
-    $ independence = INDEPENDENCE_HIGH/5
+    $ independence = INDEPENDENCE_HIGH/2
     $ total_demanding = 5
     $ total_responsive = 5
     $ total_confident = 5
@@ -38,11 +38,9 @@ label demo_continue:
     $ year = 3
     call interscene_text(year, "Family")
     call family3
-    $ year = 4
-    call interscene_text(year, "Community")
-    call community4
     $ year = 6
     call interscene_text(year, "Work")
+    play music farming fadeout 3.0 fadein 3.0
     call work6
     $ year = 10
     call interscene_text(year, "Community")
@@ -53,9 +51,63 @@ label demo_continue:
     call spinach2
     $ year = 27
     call interscene_text(year, "Family")
-    call family27 # Blocking for this event
+    call family27
     $ year = 30
+    call interscene_text(year, "Ending")
     call ending
+    return
+
+label trailer:
+    image title = "images/bg/title.jpg"
+    image metasepia = "images/bg/metasepia-logo.jpg"
+    play music maintheme fadein 1.0
+    scene black with fade
+    $ renpy.pause(1.0)
+    scene title with fade
+    $ renpy.pause(2.5)
+    scene metasepia with fade
+    $ renpy.pause(2.0)
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}a sci-fi parenting simulation\nvisual novel{/font}{/size}"
+    $ renpy.pause(2.0)
+
+    $ year = 1
+    call bedroom_scene(True)
+    "All [kid_name] needed at first was a clean diaper, milk, and some love."
+    "It didn't always feel simple, though."
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Raise Your Daughter{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    $ year = 4
+    scene farm_interior with fade
+    show him determined at midright
+    show her determined at midleft
+    show kid annoyed at center
+    with dissolve
+    her annoyed "Rice is what's for dinner, sweetie."
+    kid concerned "Yucky."
+    menu:
+        "What should I say?"
+        "You must eat this dinner.":
+            $ pass
+        "I'll see if I can get you some applesauce.":
+            $ pass
+        "(Say nothing.)":
+            $ pass
+        "You can eat it or not, but there won't be more dinner.":
+            $ pass
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Plan Your Farm{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Lead Your Community{/font}{/size}"
+    $ renpy.pause(1.0)
+
     return
 
 label tests:
