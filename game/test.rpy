@@ -208,11 +208,11 @@ label trailer_after_cleanup:
     $ renpy.pause(1.0)
 
     scene farm_exterior with fade
-    show kid normal at center
-    show him concerned at midright
+    show kid happy at center
+    show him normal at midright
     show her normal at midleft
     "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong and callused like mine."
-    him normal "Out of all the things we've grown over the years... this family is the best."
+    him happy "Out of all the things we've grown over the years... this family is the best."
 
     scene title with fade
     $ renpy.pause(10.0)

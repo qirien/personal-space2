@@ -222,6 +222,7 @@ label start:
     show computer_pad
     menu:
         "Test Farming Screen":
+            $ show_year = 1
             $ farm.reset_crops(farm_size)
             call screen plan_farm
         "Other Tests":

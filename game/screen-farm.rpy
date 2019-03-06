@@ -24,7 +24,7 @@ screen plan_farm:
                 # crop details here
                 frame:
                     yfill True
-                    background gray_dark
+                    background "roundrect_darkgray"
                     vbox:
                         label "Farm Plan for Year " + str(year):
                             xalign 0.5
@@ -35,20 +35,20 @@ screen plan_farm:
                             xfill True
                             null width LEFT_COLUMN_WIDTH
                             textbutton "Clear":
-                                xalign 0.5
+                                xalign 1.0
                                 action [
                                         clear_crops,
                                         renpy.restart_interaction
                                         ]
-                            textbutton "Random":
-                                xalign 0.5
-                                action [
-                                        set_default_crops,
-                                        renpy.restart_interaction
-                                        ]
+                            # textbutton "Random":
+                            #     xalign 0.5
+                            #     action [
+                            #             set_default_crops,
+                            #             renpy.restart_interaction
+                            #             ]
                             textbutton "Accept Plan":
                             # TODO: What if no valid layout is possible? Have emergency help button?
-                                xalign 1.0
+                                xalign 0.5
                                 sensitive valid_layout
                                 action Jump("yearly_events")
 
@@ -93,16 +93,17 @@ screen farm_details_screen:
                 xalign 0.0
                 # TODO: Add a small family photo
                 label "Family"
-                text "[his_name]"
-                text "[her_name]"
-                text "[kid_name], [earth_year] earth years"
+                text "[his_name] & [her_name]"
+                text "[kid_name], [earth_year] earth years old"
                 if (bro_birth_year != 0):
-                    text "[bro_name], [bro_age] earth years"
+                    text "[bro_name], [bro_age] earth years old"
 
                 # Display poetry written
                 # TODO: how do I get the word_board variable here?
                 # textbutton "Poetry" action Show("poetry_display", args=word_board)
                 # Community info
+            null:
+                height 100
             vbox:
                 yalign 1.0
                 label "Community" # TODO: have cute icons for these, like on a phone?
@@ -137,7 +138,7 @@ screen crops_available(crop_index=0):
             $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
             hbox:
                 label crop_name.capitalize()
-                textbutton "X" xpos -20 ypos -6 action Hide("crops_available", zoomout)
+                textbutton "X" xpos -25 ypos -2 action Hide("crops_available", zoomout)
             # TODO: Take out style tag and see if autodetecting of this has been fixed later.
             hbox:
                 grid 2 5:
@@ -361,7 +362,9 @@ init python:
 
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
-    background tan_dark
+    background "roundrect_lightgray"
+    xpadding 5
+    ypadding 5
     xfill True
 
 style plan_farm_label_text is label_text:
@@ -370,8 +373,8 @@ style plan_farm_label_text is label_text:
 
 style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
-    idle_color tan_dark
-    hover_color tan_med
+    idle_color green_med
+    hover_color green_light
 
 style plan_farm_text is text:
     color black
@@ -383,13 +386,13 @@ style plan_farm_vbox is vbox:
 
 # STYLE COMPUTER_SUB used for subwindows of the main computer screen
 style computer_sub_frame is frame:
-    background tan_dark
+    background "roundrect_lightgray"
 
 style computer_sub_label is plan_farm_label:
-    background green_med
+    background "roundrect_darkgray"
 
 style computer_sub_label_text is plan_farm_label_text:
-    color black
+    color white
 
 style computer_sub_text is plan_farm_text:
     size 16
