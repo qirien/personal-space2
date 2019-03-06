@@ -10,9 +10,9 @@ init -100:
     define YTEEN_MAX = 25
 
     # Static layout variables
-    define LEFT_COLUMN_WIDTH = 320
+    define LEFT_COLUMN_WIDTH = 310
     define MIDDLE_COLUMN_WIDTH = 480
-    define RIGHT_COLUMN_WIDTH = 320
+    define RIGHT_COLUMN_WIDTH = 310
 
     define COMPUTER_SUB_HEIGHT = 400
 
