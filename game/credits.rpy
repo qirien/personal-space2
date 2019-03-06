@@ -2,6 +2,7 @@
 # CREDITS
 
 label credits:
+    window hide
     scene stars with fade
     centered "Designed and Written By\n\nAndrea Landaker\n\nRachel Helps"
     centered "Art by Clarissa Helps"

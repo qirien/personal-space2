@@ -1,6 +1,115 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
+label demo:
+    # setup variables
+    $ demo_mode = True
+    $ year6_have_baby = True
+    $ bro_birth_year = 8
+    $ years = [3,7,12,17,27]
+
+    $ attachment = ATTACHMENT_HIGH
+    $ competence = COMPETENCE_HIGH/2
+    $ independence = INDEPENDENCE_HIGH/2
+    $ total_demanding = 5
+    $ total_responsive = 5
+    $ total_confident = 5
+    $ authoritarian = 2
+    $ authoritative = 3
+    $ permissive = 6
+    $ neglectful = 1
+
+
+    # FARMING CHOICES
+    $ computer_song = renpy.random.choice(audio.computer)
+    play music computer_song fadein 2.0
+    hide screen say
+    scene stars with fade
+    if (year > 1):
+        $ years_yield = farm.process_crops()
+        if (year >= MONEY_YEAR):
+            $ credits += farm.calculate_income(years_yield)
+    $ farm.reset_crops(farm_size)
+    $ read_messages = False
+    $ show_year = year
+    call screen plan_farm
+
+label demo_continue:
+    $ year = 3
+    call interscene_text(year, "Family")
+    call family3
+    $ year = 6
+    call interscene_text(year, "Work")
+    play music farming fadeout 3.0 fadein 3.0
+    call work6
+    $ year = 10
+    call interscene_text(year, "Community")
+    call community10 # Finish this event
+    $ year = 18
+    $ kid_work_slider = 70
+    call interscene_text(year, "Work")
+    call spinach2
+    $ year = 27
+    call interscene_text(year, "Family")
+    call family27
+    $ year = 30
+    call interscene_text(year, "Ending")
+    call ending
+    return
+
+label trailer:
+    image title = "images/bg/title.jpg"
+    image metasepia = "images/bg/metasepia-logo.jpg"
+    play music maintheme fadein 1.0
+    scene black with fade
+    $ renpy.pause(1.0)
+    scene title with fade
+    $ renpy.pause(2.5)
+    scene metasepia with fade
+    $ renpy.pause(2.0)
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}a sci-fi parenting simulation\nvisual novel{/font}{/size}"
+    $ renpy.pause(2.0)
+
+    $ year = 1
+    call bedroom_scene(True)
+    "All [kid_name] needed at first was a clean diaper, milk, and some love."
+    "It didn't always feel simple, though."
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Raise Your Daughter{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    $ year = 4
+    scene farm_interior with fade
+    show him determined at midright
+    show her determined at midleft
+    show kid annoyed at center
+    with dissolve
+    her annoyed "Rice is what's for dinner, sweetie."
+    kid concerned "Yucky."
+    menu:
+        "What should I say?"
+        "You must eat this dinner.":
+            $ pass
+        "I'll see if I can get you some applesauce.":
+            $ pass
+        "(Say nothing.)":
+            $ pass
+        "You can eat it or not, but there won't be more dinner.":
+            $ pass
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Plan Your Farm{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Lead Your Community{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    return
+
 label tests:
     menu:
         "Which test would you like to run?"

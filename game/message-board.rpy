@@ -140,7 +140,7 @@ label message6:
         sara_c "Hope you're all planning on coming to the harvest festival next week!!!"
     natalia_c "I just hope we can finish the harvest by then."
     julia_c "Having trouble, are you? I expect to be done tomorrow."
-    natalia_c "It'll work out. It helped having the school kids home for the week."
+    martin_c "It'll work out. It helped having the school kids home for the week."
     kevin_c "Is it your colony's tradition to eat crabird every year at the harvest festival?"
     him_c "We have done that a lot... I guess it's becoming a tradition?"
     julia_c "It's not set in stone."
@@ -180,6 +180,12 @@ label message8:
     julia_c "Those early years are so precious... just cherish every moment while they're small!"
     natalia_c "Hey, grandma, maybe you could cherish your own grandson this week so Tomás can help us out with the harvest."
     julia_c "Of course. I would never turn down an opportunity to hold that precious baby!"
+    sara_c "I've seen you guys in town a lot... is Martin sick again?"
+    natalia_c "When is he not?"
+    kevin_c "Does he have a chronic illness?"
+    martin_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
+    naomi_c "Can I come over to help you around the house? I'm afraid these old bones aren't much good for harvesting, but I'm sure there's something I can help you with."
+    natalia_c "Thank you, Naomi, I'll let you know."
 
     nvl clear
     return
@@ -231,7 +237,7 @@ label message10:
     nvl clear
     return
 
-# Community: Miners and Brennan arrive on shuttle
+# Community: Miners and Brennan arrive on shuttle; Martin dies
 # Family: Dinner Table Manners
 label message11:
     nvl clear
@@ -246,7 +252,7 @@ label message11:
             "Should I submit a poem?"
             "Yes.":
                 him_c "I'll send you one!"
-                $ word_board = Board(basic_words, family_words, farm_words, baby_words, talaam_words)
+                $ word_board.set_wordpack(basic_words, family_words, farm_words, baby_words, talaam_words)
                 call make_poem
                 $ year11_poem = word_board.get_poem_as_string(-1)
                 natalia_c "Thanks for your poem; I'll pass it along."
@@ -272,7 +278,9 @@ label message12:
         sara_c "Okay, I setup this new area for colonists only. The old area was kind of overrun by miners!"
 
     julia_c "Nothing against the miners, but they don't need to hear all about our crops and things like that."
-    martin_c "And we don't need to hear about all their safety classes and deadlines."
+    ilian_c "And we don't need to hear about all their safety classes and deadlines."
+    zaina_c "Hope you don't mind that Kevin and I are on both. I guess we're closer to being miners, but none of them want any zucchini!"
+    natalia_c "That's their loss, then!"
 
     pete_c "I hope y'all took a moment to read the literary magazine. It's the best alien writing you'll ever lay eyes on."
     if (("jellystar" in year11_poem) or
@@ -320,7 +328,7 @@ label message14:
     him_c "I'm going to bring the kids!"
     pete_c "I'll be there."
     natalia_c "I'm bringing a picnic; bring food if you want to trade!"
-    her_c "Kevin, don't forget ear protection for anyone in your crew closer than 8km. Everyone else shouldn't need it."
+    her_c "Kevin, don't forget ear protection for anyone in your crew closer than 5km. Everyone else shouldn't need it."
     kid_c "Yay, rocket picnic!"
 
     nvl clear
@@ -344,7 +352,7 @@ label message15:
     julia_c "Sorry to change the subject, but Gardenia wanted me to let everyone know that she is selling handmade jumpropes for 10 credits each."
     her_c "I remember playing jumprope as a kid..."
     thuc_c "I remember using jumpropes to tie up my siblings."
-    martin_c "We used them to lower buckets from our tree house."
+    ilian_c "We used them to lower buckets from our tree house."
     julia_c "Yes, it is a very versatile toy! And these are woven from the finest plant fibers of Talaam."
 
     nvl clear
@@ -356,6 +364,12 @@ label message16:
     nvl clear
     # How is Pete doing? I never talk to him anymore.
     # Sara went to talk with them, gives update
+    kevin_c "I have not seen Pete since he left... how is he faring?"
+    sara_c "I went to see them the other day. They are living in a tent up by the mountains; it's really pretty up there!"
+    sara_c "Travis was so happy to see me and Oleg; I think he's kind of lonely out there."
+    sara_c "They're working really hard doing everything all on their own, but they're not starving or anything."
+
+
     return
 
 # Community: Harvest festival with jellyfish!
@@ -374,13 +388,34 @@ label message18:
     # Someone (Zaina? someone who ate jellies, add to community17 if necessary) is doing a documentary about jellystars and wants footage, art, poetry, etc.
     # Lily has some stuff for her, they are working together
     # You can submit a poem!!!
+    lily_c "I am putting together a documentary of jellystar material to send to Earth biologists. If you have footage or data about them, please send it to me."
+    zaina_c "I'd like to see that. Those creatures are fascinating!"
+    him_c "What about poetry?"
+    thuc_c "You have jellystar poetry?!"
+    lily_c "...Yes, please send me anything you have."
+    if (year18_poem == ""):
+        menu:
+            "Should I submit a poem?"
+            "Yes":
+                $ word_board.set_wordpack(basic_words, family_words, separation_words, romance_words, talaam_words)
+                call make_poem
+                $ year18_poem = word_board.get_poem_as_string(-1)
+                lily_c "Thank you for the poem, [his_name]."
+                thuc_c "I gotta see the jellystar poem!"
+                him_c "I thought you hated my poems."
+                thuc_c "I love hating your poems."
+                him_c "Sorry, wait until they finish the documentary!"
+            "No":
+                him_c "I don't actually have any jellystar poetry."
     return
 
 # Community: Crabirds devastate harvest
 # Family: What to do about pornography
 label message19:
     nvl clear
-    # him_c I have some caulk leftover from roof repair if anyone needs it. Trust me, you don't want to wait until the roof's leaking during a solar flare.
+    him_c "I have some caulk leftover from roof repair if anyone needs it. Trust me, you don't want to wait until the roof's leaking during a solar flare."
+    thuc_c "Sounds like you have personal experience there!"
+
     # Talk about planting season, Peron's planting corn
     return
 
@@ -390,6 +425,40 @@ label message20:
     nvl clear
     # Lily and Zaina finished documentary, screening at community center
     # Why the jellystars? Why not crabirds or wolfslugs??
+
+    sara_c "I just wanted to congratulate Lily and Zaina on such an amazing documentary! I learned so much about the jellystars!"
+    ilian_c "Mostly, that we don't know much about them."
+    if (ate_jellyfish):
+        him_c "We know they are delicious."
+    else:
+        thuc_c "We know they are delicious!"
+
+    if (year18_poem != ""):
+        sara_c "[his_name], would you mind posting your poem? I wanted to read it again."
+        him_c "Sure."
+        him_c "[year18_poem]"
+
+        if (("sexy" in year18_poem) or
+            ("heart" in year18_poem) or
+            ("beautiful" in year18_poem) or
+            ("love" in year18_poem) or
+            ("kiss" in year18_poem)):
+                brennan_c "Is this really about the jellystars?"
+        if (("unknown" in year18_poem) or
+            ("alien" in year18_poem) or
+            ("strange" in year18_poem) or
+            ("wonder" in year18_poem)):
+                ilian_c "That's surprisingly deep."
+        if (("grow" in year18_poem) or
+            ("dream" in year18_poem) or
+            ("ocean" in year18_poem) or
+            ("together" in year18_poem) or
+            ("joy" in year18_poem)):
+                zaina_c "I think you understand them very well."
+        thuc_c "...I don't hate it!"
+        him_c "That's too bad; I was looking forward to you making fun of it."
+        $ first_word = year18_poem.split()[0]
+        thuc_c "Well, I thought it was kind of weird that you started off with the word \"[first_word]\", but that's about all I can say."
     return
 
 # Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.

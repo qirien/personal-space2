@@ -26,6 +26,10 @@ init -100 python:
             self.generate_display_words()
             return
 
+        def set_wordpack(self, *args):
+            self.wordpacks = list(args)
+            return
+
         # Generates a Wordpack of the proper size to display, with
         # words from all the wordpacks given to this board.
         def generate_display_words(self):

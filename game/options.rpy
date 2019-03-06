@@ -88,6 +88,11 @@ define config.after_load_transition = None
 
 define config.end_game_transition = None
 
+# Transition for when someone says something
+# The "master" part says to only do it on the sprites layer and not on the window layer.
+define config.say_attribute_transition = { "master" : Dissolve(0.5, alpha=True) }
+
+# Transition for when window shown/hidden
 
 ## A variable to set the transition used when the game starts does not exist.
 ## Instead, use a with statement after showing the initial scene.
