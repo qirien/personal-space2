@@ -5642,7 +5642,7 @@ label community29:
 #Van was still visiting Carol's family pretty frequently. Can we just use old Thuc character art for Van? He reports that she was recently using fireweed, but seemed short on credits.
 #Carol's husband's tablet is retained as evidence. He only used the tablet for a few games--he could no longer read or write. Yet it appears that Carol was using the tablet to message someone...
 #Oleg's app is there! It has been modified and her dosage is pretty high.
-#JULIA DEALING FIREWEED (transported by your daughter in some branches?) bum bum bum
+#JULIA DEALING FIREWEED (transported by your daughter?) bum bum bum
 # WHO STOLE PETE'S CREDITS
 
 label community30:
@@ -5660,6 +5660,7 @@ label community30:
     $ searched_sofa = False
     $ visited_joel_house = False
     $ knows_previous_head_injuries = False
+    $ know_noel_received_firegrass_deliveries = False
     if kevin_elected:
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
         kevin "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
@@ -5739,7 +5740,7 @@ label community30:
                 julia "She was under a lot of pressure at the time."
                 julia "Her husband was recently disabled, they had two small children, and she became the family's main breadwinner."
                 julia "In my special mayor files, they referred to her as Carol, but her real name is Noel."
-                him "Wow, great pseudoname?"
+                him "Wow, great pseudoname."
                 julia "You can see how it was easy for me to make the connection there."
         julia "Noel's husband, Joel, died from blunt head trauma last night."
         him "Okay. Was Noel with him at the time?"
@@ -5858,6 +5859,12 @@ label community30:
                             else:
                                 jump where_next_30
                 label say_goodbye_30:
+                    "As I prepared to head out, I noticed a big backpack near the door. It was the kind used for lengthy hiking trips."
+                    him "Whose backpack is this?"
+                    thuc "Oh, that's Van's. Sometimes he stays overnight with the kids, so he brings his sleeping stuff."
+                    him "Seems kind of big just for a sleeping bag."
+                    thuc "There's emergency supplies and medicine in there too."
+                    him "Huh."
                     "I said goodbye to Thuc and Van and headed back into town."
                     if examined_body:
                         jump olegs_house
@@ -6031,7 +6038,14 @@ label community30:
             sara "I don't even know if any of my family back on Earth would be alive by the time I got back."
             sara "My life is here now. But for a while I just needed to believe I could go back if I wanted to."
             him "I can understand that. You wanted to have a backup plan just in case."
-            # TODO: option to say something about how Ilian was freaking out?
+            him "When I was talking to Ilian earlier, he seemed really anxious and angry."
+            sara "Yeah, I don't want to be around him when he gets like that."
+            sara "Usually it's because he expected me to notice something that he thinks is obvious."
+            oleg "Yeah, like when the outhouse got really stinky because you kept forgetting to leave the door open."
+            sara "I don't like sitting on a wet toilet!"
+            sara "Anyway, I'm tired of trying to guess what it is this time, so I told him he would have to work it out on his own."
+            sara "He'll eventually come around."
+            # TODO: is Ilian anxious about a secret related to the accident?
             sara "Thanks for the soup."
             him "You're welcome."
             oleg "Yeah, thanks, this is actually good."
@@ -6085,9 +6099,13 @@ label community30:
             him "I wanted to give you an update."
             him "I examined the wheelchair, and it looks like the breaks were worn and dysfunctional."
             julia "Sounds like an explanation for an accident."
-            him "Possibly. But [her_name] said that it was likely that he had received previous head injuries." #only if your relationship is good enough
-            him "Van also mentioned him falling frequently."
-            julia "This is sounding more like neglect?"
+            if marriage_strength > 8: #should match the previous marriage strength check
+                him "Possibly. But [her_name] said that it was likely that he had received previous head injuries."
+                him "Van also mentioned him falling frequently."
+                julia "This is sounding more like neglect?"
+            else:
+                him "Van says that Joel may have been too distracted by the shooting star to break his fall."
+                julia "So it could have been an accident?"
             him "Yes. There are still a few things I want to investigate."
         else:
             julia "So tell me more about this investigation. It's about Joel's death I assume?"
@@ -6104,7 +6122,7 @@ label community30:
         else:
             him "I'll update you at the end of the investigation."
 
-        if (luddites > 10): #check values
+        if (luddites > 10): #check values #does this if have an else?
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
             pete "{i}What can I help you with?{/i}"
             him "Hey, I'm in kind of a complicated situation."
@@ -6121,7 +6139,7 @@ label community30:
             pete "{i}That'll tell you how much is in the account.{/i}"
             pete "{i}Then just pay 'em back the amount you took out and they won't notice unless they dig real deep into the transaction history.{/i}"
             him "Interesting."
-            pete "{i}Out of curiousity, who was the miner who died?{/i}"
+            pete "{i}I'm curious. Who was the miner who died?{/i}"
             him "It was a man named Joel, who was married to Noel."
             pete "{i}Oh. I've delt with Noel before.{/i}"
             pete "{i}You can't trust anything she says.{/i}"
@@ -6160,6 +6178,7 @@ label community30:
                     him "Which other people?"
                     kid "..."
                     him "Okay, thanks for your help."
+                    $ know_noel_received_firegrass_deliveries = True
                 else:
                     kid "You want to know about Noel, right?"
                     kid "Ever since I started my delivery business, Noel has been getting large deliveries of firegrass from everyone."
@@ -6175,6 +6194,7 @@ label community30:
                     kid "I don't know their names. It's a bunch of miners who don't know what they're doing."
                     him "Is that everyone?"
                     kid "Yeah, everyone currently in the business. The ones I know about, anyway."
+                    $ know_noel_received_firegrass_deliveries = True
             else:
                 "[kid_name] didn't even look up from her tablet."
                 kid "Like I'd tell you."
@@ -6195,14 +6215,15 @@ label community30:
                         brennan "I'll help you. But I don't have all day, so let's do this quickly."
                         label account_check:
                             if account_checked_counter > 3:
-                                brennan "Okay, okay, that's enough."
-                                jump back_to_noel
                                 if checked_joel:
                                     brennan "I bet Noel was hiding her money in Joel's account."
                                     brennan "She was still collecting disability pay, based on various factors, including her reduced salary."
                                     him "Huh. So she didn't make this much money working overtime?"
                                     brennan "No, she has only been working in the mines a few days a week since her suicide attempt."
                                     jump back_to_noel
+                                brennan "Okay, okay, that's enough."
+                                jump back_to_noel
+
                             menu: #allow players to ask about 3 people
                                 "Noel's" if not checked_noel:
                                     brennan "Noel has around 100 credits."
@@ -6256,6 +6277,7 @@ label community30:
                         brennan "Here's the list."
                         brennan "No, don't take a photo of my tablet. I don't want the miners to know that I'm helping you too much."
                         brennan "Oh, it's already time for our evening briefing."
+                        brennan "Take a screenshot and sent it to yourself."
                         if miners > 10:
                             "Brennan left the tablet with me while he went to the briefing."
                             "I hurriedly opened the payments program. Whose account should I check first?"
@@ -6311,7 +6333,7 @@ label community30:
                 "Explore other options.":
                     jump doctors_privilege
 
-        else:
+        else: #in this branch, you don't talk to pete or kid, so you don't know that Noel was receiving shipments of firegrass. you have talked to Oleg though, which so far isn't dependent on another variable.
             "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
             label doctors_privilege:
                 "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
@@ -6437,14 +6459,13 @@ label community30:
                                     jump account_check_sneak2
 
         label back_to_noel:
-            "I wanted to go back to Noel's place."
-            "I brought my barrel-opening tools this time."
+            "I decided to go back to Noel's place. This time, I brought my barrel-opening tools."
             "When I got there, Noel was there, along with her two young sons." #about ages 4 and 6
             "I asked her if I could talk to her about Joel's death, but she didn't want to talk about it, especially not with her children needing her."
             "How should I approach the situation?"
             menu:
                 "Finish searching the premises.":
-                    $ know_noel_had_firegrass = True
+                    $ know_noel_had_firegrass = True #this variable name isn't great... you know she received deliveries if you talk to Pete and kid is attached; this is for when you find it at her house
                     "I told her I had been authorized to search her house and that I wanted to look inside her barrels."
                     "She strongly protested, saying that she would lose water, but I reassured her that the rainy season would last another two weeks."
                     "She offered to open the plugs on the sides of them, so I could see that it was just water, but that made me all the more suspicious."
@@ -6454,7 +6475,7 @@ label community30:
                     "I asked her which friend, but she refused to say."
                     if ban_firegrass:
                         "I told her I would have to report her for possessing firegrass."
-                        "She asked me to go away, so I did."
+                        "She asked me to leave, so I did."
                     jump noel_no_confession
                 "Offer to help entertain her children.":
                     "I could tell that she was exhausted. Her kids looked wired."
@@ -6509,42 +6530,163 @@ label community30:
                 "No":
                     $pass
             "Before she left, I gave her a half-hug. I didn't completely understand her but I still could see that she was suffering."
+            "Afterwards, I met [her_name] in the community center for lunch."
             jump who_suspect
 
         label noel_no_confession:
             "I tried messaging Noel a few more times, but didn't get any answers."
+            "The next day, I met [her_name] in the community center for lunch."
             jump who_suspect
 
         label who_suspect:
-            "I'm done with most of my investigation."
-            "What do I think of the situation?"
+            him "I think I'm done with my investigation."
+            her "Okay. What have you found out so far?"
+            him "Joel died after falling from his wheelchair."
+            him "The broken brakes I found on his wheelchair and the kind of head injury he sustained support the idea that he fell from the chair."
+            him "Of course, if someone had pushed him, they would want to make it look like he fell."
+            if know_noel_received_firegrass_deliveries: 
+                him "[kid_name] told me that Noel received unusually large shipments of firegrass."
+            if checked_joel: 
+                him "I knew that Joel had an unusual amount of credits in his account. " #others?
+            if knows_previous_head_injuries: 
+                him "Joel had had previous head injuries, which could explain why he died so quickly after his fall."
+            her "Do you think it was an accident or was there foul play?"
+                              
             menu:
                 "It was a tragic accident following neglect.":
-                    "Van and Noel definitely should have made fixing Joel's brakes a priority."
-                    "Life got in the way, and they procrastinated something that was more important than they thought it was."
+                    him "Van and Noel definitely should have made fixing Joel's brakes a priority."
+                    him "Life got in the way, and they procrastinated something that was more important than they thought it was."
+                    her "That's it? All that research to find that it was just some accident?"
+                    him "That's right. Sometimes the truth is more boring than fiction."
                     if kevin_elected:
-                        "I was ready to tell Kevin my findings."
+                        him "I'm ready to tell Kevin my findings."
+                        her "Have fun."
+                        "I set up a meeting with Kevin and met him back in the library."
+                        him "I've investigated the situation and I believe that Joel's death was a result of chronic neglect."
+                        kevin "Please elucidate."
+                        him "He fell from the wheelchair because the brakes were broken, and he died from the resulting head injury."
+                        kevin "He died from just one head injury?"
+                        if knows_previous_head_injuries:
+                            him "No, he had fallen before with similar injuries, but they weren't as serious."
+                            kevin "I see."
+                        else:
+                            him "I guess so!"
+                            kevin "That's highly unusual. It usually takes several weeks or a month to die of a single head injury, if they are fatal, which is uncommon."
+                            him "This must have been one of those uncommon occurances."
+                            kevin "I'm still skeptical."
+                        kevin "Who would you consider responsible for the neglect of Joel's health?"
+                        him "Well, Noel, of course. And Van."
+                        kevin "Very well. I will have you testify at their trail next week."
+                        
                     else:
-                        "I was ready to tell Julia my findings."
-                "It was a murder made to look like an accident.":
-                    "I suspect foul play. Someone deliberately set this up to kill Joel."
-                    "Why did they want to kill him?"
-                    menu:
-                        "To get his position on the shuttle.":
-                            "Clearly, someone wanted his position on the shuttle."
-                        "To scare Noel.":
-                            "Somebody wanted to scare Noel into doing what they wanted."
-                        "??":
-                            "I had no idea why they would kill Joel."
+                        him "I'm ready to tell Julia my findings."
+                        her "Enjoy."
+                        "I told Julia I was ready to report my findings and she asked me to come over right away."
+                        him "I've investigated Joel's death and I believe it was the result of chronic neglect."
+                        julia "That's so tragic. What happened, exactly?"
+                        him "Well, as I told you earlier, the brakes on his wheelchair weren't working."
+                        him "When he reached down to pick up his binoculors, he fell. He died from the resulting head injury."
+                        if knows_previous_head_injuries:
+                            julia "And what about the previous head injuries?"
+                            him "Those exacerbated the injury."
+                        else:
+                            julia "That's so unfortunate."
+                        julia "I'll arrange for Noel to be put on trial for neglect, and you can testify of your findings."
 
-            "Who do I think was involved?"
-            menu:
-                "Sara and Oleg.":
-                    "Sara and Oleg seemed the most suspicious."
-                "Julia and Van.":
-                    "Julia and Van had business connections to Noel."
-                "Noel.":
-                    "I don't know if she considered it euthanasia or if she had another motive, but Noel seemed the most likely suspect."
+                "It was a murder made to look like an accident.":
+                    him "I suspect foul play. Someone deliberately set this up to kill Joel."
+                    her "Who do you think it was?"
+                    menu:
+                        "Sara.":
+                            him "Sara seems the most suspicious."
+                            him "Sara said she didn't want to go back on the shuttle anymore, but I think she was lying."
+                            him "I think she wanted to go back to Earth and take Oleg with her."
+                            him "Which means that she'll probably kill again to make a spot for Oleg."
+                            her "Would that really work?"
+                            him "I don't know! That's just what makes the most sense to me."
+                            her "Is Oleg even on the waitlist?"
+                            him "Well, no..."
+                            her "And how did Sara kill Joel?"
+                            him "She could have sabotaged the brakes on his wheelchair in the middle of the night."
+                            her "I don't think she even knows where they live."
+                            him "Okay. You have a point. I don't think it was Sara."
+                            her "Then who was it?"
+                            menu:
+                                "Julia and Van":
+                                    jump julia_and_van
+                                "Noel":
+                                    jump noel
+                        "Julia and Van.":
+                            label julia_and_van:
+                                him "Julia and Van had business connections to Noel."
+                                him "I think she was processing fireweed from Pete and reselling it to them."
+                                him "She wanted to stop, but Julia didn't want her to, and got Van to teach her a lesson."
+                                her "By killing her husband? That doesn't seem like Julia."
+                                her "And if that's true, what is she doing with it all that fireweed?"
+                                him "The most successful murderers are the charismatic and normal-seeming ones."
+                                him "I bet she puts it in her tea that she's always selling."
+                                her "Hmmm. Maybe we could test that idea."
+                                her "And how did Julia and Van kill Joel?"
+                                him "It would have been pretty simple for Van to promise to fix Joel's brakes and then conveniently forget."
+                                her "It's still a little far-fetched, but I'll concede that it's possible."
+                                if kevin_elected:
+                                    him "I'm going to tell Kevin my theory."
+                                else:
+                                    him "If Julia is involved, how will I report my findings to her?"
+                                    her "Don't tell her about your suspicions. Isn't there someone else you could report to?"
+                                    him "Hmm. Is Sara still involved in colony business?"
+                                    her "She'll know what to do."
+                                    nvl clear
+                                    him_c "Hi, Sara. I'm wrapping up my investigation with Joel's death and I think Julia might be involved."
+                                    him_c "Normally I'd report my findings back to her... but obviously I don't want to do that now."
+                                    sara_c "You think Julia had something to do with Joel's death? Wow, I can't wait to hear more."
+                                    sara_c "You're right though, it's not appropriate to report to her. I can arrange for a jury at the next town meeting."
+                                    sara_c "You can come to report your findings, accuse Julia of whatever, and then we'll have the jury right there."
+                                    him_c "Sounds like a plan."
+                                    him "Sara says she can make it happen."
+                                    
+                                    him "In the meantime, can you really test if the tea has firegrass in it?"
+                                    her "I have tools for measuring the amount of caffeine is in a given substance."
+                                    her "But don't you know plants well enough to identify firegrass in a course mixture like tea?"
+                                    him "It's not a typical tea blend. It's a syrup."
+                                    her "I can test it."
+                                    
+                                    
+                        "Noel.":
+                            label noel:
+                                him "I don't know if she considered it euthanasia or if she had another motive, but Noel seems the most likely suspect."
+                                him "She knew firsthand how miserable he was. She also suffers from depression."
+                                him "Maybe she got tired of taking care of him, or his complaining."
+                                her "If she was so tired of him, why wouldn't she just divorce him?"
+                                him "He was dependent on her, so maybe she was afraid that if she divorced him, no one else would take care of him."
+                                him "It would also explain why she's so sad but doesn't want to talk about it."
+                                her "It could also be the case that she was simply neglectful and blames herself for his death."
+                                him "Well if he died because of her neglect, isn't that a form of murder?"
+                                her "That will be up to the jury."
+                                him "I'm ready to give my final report."
+                                if kevin_elected:
+                                    "I arranged to meet with Kevin in the library."
+                                    him "The brakes on Joel's wheelchair were dysfunctional, which directly led to his head injury."
+                                    him "I believe Noel purposefully neglected Joel in order to hasten his demise."
+                                    kevin "What led you to believe that the neglect was intended?"
+                                    him "Fixing the brakes is a simple job that is obviously urgent for someone who spends much of his time in a wheelchair."
+                                    him "Why else would someone procrastinate such a simple task?"
+                                    kevin "Your argument has logic. Let us see what the jury has to say at the trial."
+                                else:
+                                    "I told Julia I was ready to report and she asked me to come over right away."
+                                    him "As you know, the dysfunctional brakes on Joel's wheelchair led to his head injury."
+                                    him "I believe that Noel purposefully didn't fix the brakes to make a fatal accident more likely."
+                                    julia "What would Noel do something like that?"
+                                    him "It's so easy to fix the brakes on a wheelchair. What other reason could there be?"
+                                    julia "Sometimes, when you're depressed and you have small children, even simple things are very difficult."
+                                    him "Her procrastination still killed Joel. Whether she realized it or not, some part of her wanted him gone."
+                                    julia "I completely disagree. I asked you to find evidence, not become an armchair psychologist."
+                                    julia "Do you have anything concrete that shows that Noel disliked or resented Joel?"
+                                    him "It's more a feeling based on her reticience."
+                                    julia "I'm willing to put Noel on trail for neglect, but I don't think she wanted to kill Joel."
+                                    him "Very well."
+                                    julia "Please present your findings to the jury next week."
+
 
 
 # Noel was buying lots of firegrass from Pete at a low cost and selling it to Julia, with Van transporting it at first unknowingly through informal "deliveries" and then knowingly when he got curious enough. Noel was and is making a good amount of money off of this, buying out Pete the first chance she could.
