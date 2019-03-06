@@ -4,6 +4,7 @@
 
 # Determine which ending the user should receive, depending on Terra's stats.
 label ending:
+    play music thoughtful
     "[kid_name]'s childhood was so different from my own. Instead of playgrounds and ready-made toys, she had alien creatures and mining conflicts."
     "I guess we both had parents, friends, and problems."
     "And we both grew up as farmers, too."
@@ -53,11 +54,11 @@ label ending:
             menu:
                 "What should it be about?"
                 "My family":
-                    $ word_board = Board(basic_words, family_words, baby_words, separation_words)
+                    $ word_board.set_wordpack(basic_words, family_words, baby_words, separation_words)
                 "Talaam":
-                    $ word_board = Board(basic_words, talaam_words, farm_words)
+                    $ word_board.set_wordpack(basic_words, talaam_words, farm_words)
                 "[her_name]":
-                    $ word_board = Board(basic_words, family_words, romance_words)
+                    $ word_board.set_wordpack(basic_words, family_words, romance_words)
 
             call make_poem
         "No":
@@ -322,7 +323,7 @@ label ending_Aci:
     scene fields with fade
     "[kid_name] said she didn't want to work on our farm, but..."
     "That's what she ended up doing."
-    "She also made deliveries, but she always helps me with the harvest and other jobs around the farm that are a lot easier with a few people."
+    "She also makes deliveries, but she always helps me with the harvest and other jobs around the farm that are a lot easier with a few people."
     "She still needs a lot of direction, but she's willing to do what I ask."
     "I was expecting [kid_name] to get married and leave us, or go off to pursue her own dreams, but so far she seems content to keep things as they are."
     "I remember when she was little, she wasn't afraid of anything, and she couldn't wait to do new things like go to school or go to the beach."
@@ -488,7 +489,7 @@ label ending_ACI:
     her surprised "I don't see any old people in here..."
     "We laughed, and talked, and joked around while doing the dishes together. [bro_name] got out his source code to show Oleg, and [her_name] was asking [kid_name] about alien physiology, and I just felt happy to be in the middle of it all."
 
-    "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found.  Happiness in love, in family, in community."
+    "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found. Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
     "So I'm not just happy that she and Oleg are dating."
@@ -498,6 +499,6 @@ label ending_ACI:
     "With her research and mediation, I see a beautiful future of peace ahead for her."
     "And I'll get to see it all happen."
 
-    "Ending 8/8, Happily Ever After Starts Here"
+    "Ending 8/8, The Future is Bright"
 
     return

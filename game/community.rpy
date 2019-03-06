@@ -442,8 +442,10 @@ label community3:
 
 # 4 - Community Liaison
 label community4:
+    play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
     show pavel normal at center
+    window show # TODO: HACK MOVE TO FUNCTION
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
     pavel "This is what it said:"
@@ -1424,57 +1426,84 @@ label community9:
 label community10:
     play music sad
     scene farm_interior with fade
-    show him at midleft
-    show bro at quarterleft
-    show her at midright
-    show kid at quarterright
+    show him normal at midleft
+    #show bro normal at quarterleft # TODO: uncomment this when we have a bro sprite
+    show her normal at midright
+    show kid normal at quarterright
     with dissolve
-    her "I'm leaving for work now. Goodbye honey!"
-    him "Bye [her_name]. Oh, and don't forget that we're having dinner with the Perons tonight."
-    her "I wonder what they wanted to talk about..."
-    him "Maybe they're just being friendly?"
-    "After weeding and clearing out old growth, Terra comes home from school."
-    "We make a simple salad together, and when [her_name] arrives we head over to the Peron's."
-    scene farm_exterior
+    her normal "I'm leaving for work now. Goodbye honey!"
+    him happy "Bye, [her_name]. Don't forget; we're having dinner with the Perons tonight."
+    kid happy "Yay, I get to play with Mateo!"
+    her surprised "I wonder what they wanted to talk about..."
+    him surprised "Maybe they're just being friendly?"
+    scene farm_exterior flip with fade
+    show natalia normal at midright
+    show martin normal at quarterright
+    show bro normal at center # TODO: using bro for mateo?
+    with dissolve
+    show him normal at midleft
+    show her normal at quarterleft
+    show kid normal at left
+    with moveinleft
     natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
-    "After the meal, Terra runs off to play with the kids."
+    "After the meal, Terra ran off to play with the other kids."
+    hide kid
+    hide bro
+    with moveoutright
     martin "As you may have heard, I have skin cancer."
-    her "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
-    martin "I know! You are not the only one who knows, however."
+    her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
+    martin happy "I know! You are not the only one who knows, however."
     natalia "The more people who know about your disease, the more people who can help us!"
     if (asked_only_medicine):
-        martin "If I can hang on until the medicine arrives, that should help, but we're still thinking ahead."
+        martin normal "I can hang on until the medicine arrives, but we're still thinking ahead."
     else:
-        martin "I have a few more months to live, but already I'm experiencing fatigue and pain that hamper my work."
-    martin "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
-    natalia "The don't seem as passionate about the farm as you are."
-    him "But now that they're older, don't you have more time to work on the farm?"
-    natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, and knitting new clothes."
+        martin normal "I have a few more months to live, but I'm already slowing down."
+    martin angry "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
+    natalia "They don't seem as passionate about the farm as you are."
+    him surprised "But now that they're older, don't you have more time to work on the farm?"
+    natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, knitting new clothes..."
+    martin happy "Don't get her started!"
+    show him happy
+    show her happy
+    with dissolve
     natalia "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
-    him "Isn't the corn really important for feeding everyone else's animals?"
-    martin "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
-    him "What are your older kids interested in, if not farming?"
+    him concerned "Isn't the corn really important for feeding everyone else's animals?"
+    martin normal "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
+    him surprised "What are your older kids interested in, if not farming?"
     natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
-    natalia "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
-    martin "And she is a fine writer."
+    martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
     natalia "Well she can write {b}and{/b} help grow our food!"
-    natalia "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
-    martin "And Mateo is still too young to do much more than harvest corn and feed the flocks."
-    martin "What would you do in my position? Who do you think should take care of the farm?"
+    martin angry "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
+    natalia "And Mateo is still too young to do much more than harvest corn and feed the flocks."
+    martin normal "What would you do in my position? Who do you think should take care of the farm?"
+    show him concerned
+    show her concerned
+    with dissolve
     $ community11_kidsonfarm = False
     menu:
         "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
             $ community11_kidsonfarm = True
             $ colonists += 1
             $ miners += 1
+            him determined "Tomás is your son. It's his duty to help you out."
+            martin happy "That's what I keep telling her!"
+            natalia "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
+            martin normal "It'll be good for him."
             #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
             #another possible way to improve the iteractivity here would be to help martin compose an argument about why Tomas and Joanna should care about the farm.
-        "Let Natalia scale back the farm. Let their children pursue their dreams.":
+        "Let Natalia scale back the farm.":
             $ community11_kidsonfarm = False
             $ luddites += 1
+            him determined "If nobody wants to do it, you shouldn't force them to."
+            natalia "See? It's important for kids to follow their dreams!"
+            martin angry "Tomás is perfectly capable of running a farm; he's just lazy!"
+            natalia "It's not laziness to prefer working in the lab with his wife."
+            her surprised "But what about the corn everyone needs for their animals?"
+            martin normal "It's mostly Pete's cows that eat it; the smaller animals could live on kitchen scraps and foraging."
+            natalia "Well, then I guess it's Pete's problem."
             #then what happens to the corn everyone needs? they need to decide on how to take care of that. Maybe when Pete leaves it's not as much of an issue, since there is less cattle to feed over the winter.
         #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
         #Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
@@ -2203,8 +2232,6 @@ label community13:
         him "Ugh, Are you talking about Brennan?"
         jump community13_talk_to_brennan
     else:
-        jump community13_nonliason_talk_to_brennan
-
         label community13_nonliason_talk_to_brennan:
             lily "No, this is urgent and important business. Depending on their schedule, they may already be setting up the explosives!"
             lily "I need you to ask Brennan if he can delay mining the cave until we can explore it."
@@ -2215,12 +2242,12 @@ label community13:
             lily "I'm afraid that my concerns may be dismissed due to my age and stature."
             lily "Your company would lend my petition credibility."
             him "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
-            him "Not to mention a nap to take this afternoon, if I can manage it."
-            "It's still dark outside. As we walk to the mines, Dr. Lily tells me about her latest research."
-            "When we arrive, the control station is empty."
+            "I tried to think about what I would say to Brennan, but my mind was full of the chores I wasn't doing and trying to reschedule the entire week."
+            "When we arrived, the control station was empty."
             him "Well, we tried, but he's not here. Let's just send him a message."
             lily "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
             him "I have no idea."
+            # TODO: revise to past tense
             "Dr. Lily knocks on the door of a nearby hut. She knocks for several minutes until she gets an answer."
             lily "He said Brennan lives over here."
             "She knocks on his door. A voice comes from behind the door."
@@ -2654,7 +2681,7 @@ label community15:
         "Prepare a poem":
             $ c15_funeral = "poem"
             "The best way to keep it short would be to make a poem. I'd better make it good, though..."
-            $ word_board = Board(basic_words, talaam_words, separation_words)
+            $ word_board.set_wordpack(basic_words, talaam_words, separation_words)
             call make_poem
             $ c15_funeral_poem = word_board.get_poem_as_string(-1)
         "Say a few words":
@@ -3181,7 +3208,7 @@ label community19:
     him "How much?"
     if c18_no_help_pete:
         helen "80 credits."
-        him "Hmm. That's outside my price range. Got any beef bones or beans?"
+        him "Hmm. That's outside my price range. Got any beef bones or nuts?"
         helen "Nothing like that."
         if ate_jellyfish:
             him "How much for this jellystar scarf?"

@@ -29,7 +29,7 @@ screen parenting_handbook():
                 null width 5
                 vbox:
                     xsize MIDDLE_COLUMN_WIDTH
-                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-27 ypos -40 action Hide("parenting_handbook", zoomout)
+                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-32 ypos -45 action Hide("parenting_handbook", zoomout)
                     use kid_info
 
 screen kid_info:
@@ -86,5 +86,5 @@ style parenting_hbox is computer_sub_hbox
 
 style parenting_button is computer_sub_button:
     xfill True
-    selected_background brown_dark
+    selected_background green_dark
 style parenting_button_text is computer_sub_button_text

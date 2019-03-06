@@ -520,6 +520,12 @@ label family2:
             "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
             "After about an hour she finally stopped crying; maybe she had fallen asleep."
             "Or maybe she finally realized that I wasn't going to come back until I was done."
+            scene kid_bedroom with fade
+            "After I finished planting, I went back to the house and peeked in at [kid_name]."
+            "As soon as I opened the door, she started screaming again. She stood up in her crib and glared at me with a heartbroken look of betrayal that I'll never forget."
+            "I tried to make it up to her with cuddles and food, but every time when she started to cheer up, she'd start crying again for no reason."
+            "Well, I guess being stuck alone in her crib for a few hours was a pretty good reason."
+            "She sure let me know what she thought of that."
             $ family2_work_done += 5
             $ neglectful += 1
 
@@ -631,6 +637,7 @@ label family2:
 label family3:
     play music upbeat
     scene farm_interior with fade
+    window show # TODO: HACK MOVE TO FUNCTION
     show him normal at midright
     show her normal at midleft
     show kid normal at center, baby_pos
@@ -701,7 +708,7 @@ label family3:
     him surprised "The food?"
     her happy "Yeah, you made such a delicious picnic dinner!"
     show kid annoyed at right, baby_pos with move
-    show her flirting at center with dissolve
+    show her flirting at center with move
     extend " And then we stayed out here all night long..."
     hide kid with moveoutright
     him happy "Oh, so you do remember!"
@@ -722,10 +729,9 @@ label family3:
     "It had been only about five minutes since we had seen her, but my mind started to fill with all the terrible things that could have happened to her."
     show him sad at quarterleft with move
     "But then I saw our daughter, sitting on the other side of a large rock."
-    # TODO: bg
     scene sunset with fade
     show kid surprised at quarterright, baby_pos with dissolve
-    show him concerned at midright with moveinleft
+    show him concerned at midright behind kid with moveinleft
     him determined "She's over here!"
     show her sad at quarterright behind kid with moveinleft
     "She was chewing on some sticks she found on the ground."
@@ -748,7 +754,9 @@ label family3:
     "[her_name] set her down, but she went right back over to her sticks and began chewing on them again."
     show kid normal at quarterright, baby_pos with move
     "We gave each other exasperated looks and then laughed."
-    show kid happy with dissolve
+    show kid happy
+    show her normal
+    with dissolve
     him happy "Clearly, this girl needs something to gnaw on."
     her flirting "Got anything our little hamster can cut her teeth on?"
     him concerned "Maybe..."
@@ -817,7 +825,7 @@ label family3:
             "[kid_name] gnawed on it a little more. She could make better progress now that there were some uneven surfaces to work with, but eventually she threw it in the dirt again."
             $ demanding += 1
             $ authoritarian += 1
-        "Let her chew on the sticks. It's good for her immune system, right?":
+        "Just let her chew on them.":
             him normal "Those sticks are fine. They're not poisonous."
             her concerned "But, they're really dirty! She's going to get sick. Animals have probably peed all over them."
             him annoyed "We're outside. That's a totally normal thing."
@@ -841,8 +849,10 @@ label family3:
     him normal "Yeah, I'm exhausted. But wasn't this great?"
     her normal "It was a nice change of scenery. And that sunset was gorgeous."
     him flirting "Just like you."
-    her happy "Good night, [his_nickname]."
+    her normal "Good night, [his_nickname]."
     him normal "Good night, [her_nickname]."
+    window hide
+    scene black with fade
     return
 
 
@@ -2215,7 +2225,7 @@ label family7_angry_ending:
     hide him
     hide kid
     with moveoutright
-    scene kid_bedroom
+    scene kid_bedroom with fade
     show him determined at midleft
     show kid sad at midleft
     with moveinleft
@@ -2654,7 +2664,7 @@ label baby_delivery:
     menu:
         "Write a poem?"
         "Yes":
-            $ word_board = Board(basic_words, family_words, baby_words)
+            $ word_board.set_wordpack(basic_words, family_words, baby_words)
             call make_poem
             $ baby_poem = word_board.get_poem_as_string(-1)
             nvl clear
@@ -3272,6 +3282,7 @@ label family11:
                 "What a pointless battle."
             $ permissive += 1
             return
+    return
 
 # 7.4 Earth years old
 # Growing Independence, miner friend, lice
@@ -4405,7 +4416,7 @@ label family16:
                     "She burst into tears."
                     "When [her_name] came home, [kid_name] sobbed out the entire story to her. [her_name] didn't say anything, but she shot me an angry look over the top of [kid_name]'s head."
                     "After [kid_name] cried herself to sleep, [her_name] turned to me."
-                    her annoyed "You burned all her things?"
+                    her annoyed "You burned all her stuff?!"
                     him determined "She wouldn't clean her room. It was just a bunch of junk, anyway."
                     her angry "It wasn't junk to her!"
                     him angry "Well, she should've taken better care of it!"
@@ -4989,6 +5000,8 @@ label family18:
         "What should I say?"
         "Because I said so.":
             him annoyed "Because I said so. I'm the dad; you're the kid. When I say 'Take a bath', you take a bath!"
+            kid annoyed "That's dumb."
+            him happy "And also you stink."
             $ demanding += 1
         "Because you stink.":
             him surprised "Want me to tell you the truth?"
@@ -6889,47 +6902,47 @@ label family26:
 # 16.7 Earth years old
 # Financial Responsibility & Bikes
 label family27:
-
+    play music working
     scene farm_interior with fade
     show him normal at midright with dissolve
     show kid normal at midleft with moveinleft
     "I was about to go to bed when [kid_name] came into the room."
-    kid "Dad, I need a bike."
+    kid determined "Dad, I need a bike."
     him surprised "A bike?"
-    kid "Yes! I'm so sick of walking to school and back every day!"
-    him "It's not that far."
-    kid "And, not just school, but going to town, too. Every time I want to go it takes me half an hour just to walk there."
+    kid angry "Yes! I'm so sick of walking to school and back every day!"
+    him annoyed "It's not that far."
+    kid annoyed "And, not just school, but going to town, too. Every time I want to go it takes me half an hour just to walk there."
     him surprised "Is that really why you want a bike?"
 
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritative"):
-        kid "I would be a lot more useful to this family with a bike. I could go shopping for you and even ride it around the farm when we work together."
+        kid happy "I would be a lot more useful to this family with a bike. I could go shopping for you and even ride it around the farm when we work together."
     elif (parenting_style == "authoritarian"):
-        kid "It would let me be more independent. Like, if I wanted to get a job somewhere, I would have a way to get there quickly on my own."
+        kid normal "It would let me be more independent. Like, if I wanted to get a job somewhere, I would have a way to get there quickly on my own."
     elif (parenting_style == "permissive"):
-        kid "I've read about bikes in so many books - they're like a totally normal kid thing, and I've never even ridden on one! Oleg's mom has one I've seen her riding around, so I know it's possible!"
+        kid concerned "I've read about bikes in so many books - they're like a totally normal kid thing, and I've never even ridden on one! Oleg's mom has one I've seen her riding around, so I know it's possible!"
     else:
-        kid "I just really want one."
+        kid nervous "I just really want one."
 
 
-    him "Do we even have any bikes?"
+    him annoyed "Do we even have any bikes?"
     $ bike_cost = 500
-    kid "I asked Oleg's mom, and she said she made it. It cost her about [bike_cost] credits worth of materials, plus finding the right kind of plant for the frame."
+    kid determined "I asked Oleg's mom, and she said she made hers. It cost her about [bike_cost] credits worth of materials, plus finding the right kind of plant for the frame."
     him surprised "She uses a plant for the frame?"
-    kid "It's a sturdy, hollow plant with lightweight wood."
+    kid surprised "Yeah, some kind of sturdy, hollow plant with lightweight wood?"
     him determined "Huh. Seems like you've looked into this a bit."
-    kid "Yeah, all I need are the [bike_cost] credits! I can find the plants myself!"
+    kid laugh "Yeah, all I need are the [bike_cost] credits! I can find the plants myself!"
     him concerned "[bike_cost] credits is a lot!"
-    kid "Please, dad?"
+    kid sad "Please, dad?"
 
     menu:
         "What should I do?"
         "Buy her a bike":
             $ responsive += 1
             him surprised "I remember when I first got a bike with gears... it was red, and I attached a playing card to the spokes so it would sound like a motorcycle."
-            kid "A motorcycle is like a motorbike, right?"
+            kid surprised "A motorcycle is like a motorbike, right?"
             him normal "Kind of... Anyway, I agree that you should have a bike. I'll transfer you the credits."
-            kid "Okay, good."
+            kid laugh "Okay!"
             $ permissive += 1
 
         "Have her use her own money.":
@@ -6937,49 +6950,49 @@ label family27:
             $ confident += 1
             if (allowance_amount > 0):
                 # TODO: make sure this makes sense with the numbers
-                him "You have an allowance, you know. You could save up for it yourself."
+                him annoyed "You have an allowance, you know. You could save up for it yourself."
                 $ saving_weeks = int(round(float(bike_cost) / float(allowance_amount)))
-                kid "What?! That would take me like..."
+                kid angry "What?! That would take me like..."
                 "She did some calculations in her head."
                 $ saving_months = saving_weeks / 4.0
-                kid "...[saving_weeks] weeks! That's [saving_months] months, which is way too long for me to wait."
-            him "You could earn your own money."
-            kid "Doing what?"
-            him "Whatever people need."
+                kid annoyed "...[saving_weeks] weeks! That's [saving_months] months, which is way too long for me to wait."
+            him determined "You could earn your own money."
+            kid determined "Doing what?"
+            him normal "Whatever people need."
             if (parenting_style == "permissive"):
-                kid "I'm not going to do whatever people want!"
+                kid angry "I'm not going to do whatever people want!"
             else:
-                kid "That's not very helpful."
+                kid nervous "That's not very helpful."
 
-            him "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
-            kid "Maybe... But who would I even ask?"
+            him determined "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
+            kid annoyed "Maybe... But who would I even ask?"
             # TODO: have these based on stats? or increase stats?
             menu:
                 "What should I tell her?"
                 "Ask in town.":
                     $ responsive += 1
-                    him "You could ask around in town, see what people need."
-                    kid "Okay..."
+                    him normal "You could ask around in town, see what people need."
+                    kid concerned "Okay..."
                 "Find a need and offer to help.":
                     $ responsive += 1
-                    him "Look around and see what people need help with. Then find a way to help them and offer to help for a fair price."
-                    kid "How do I know what people need?"
-                    him "Look on the message board, or ask someone who's connected to the community."
-                    kid "Too bad Sister Naomi's not here anymore..."
-                    him "Yeah, she'd probably have some great ideas. But Pavel or Ilian might know something, too. Or you could ask mom."
-                    kid "Okay."
+                    him normal "Look around and see what people need help with. Then find a way to help them and offer to help for a fair price."
+                    kid surprised "How do I know what people need?"
+                    him determined "Look on the message board, or ask someone who's connected to the community."
+                    kid sad "Too bad Sister Naomi's not here anymore..."
+                    him concerned "Yeah, she'd probably have some great ideas. But Ilian or Natalia might know something, too. Or you could ask mom."
+                    kid nervous "Okay."
                 "Ask the miners.":
                     $ responsive += 1
-                    him "Ask the miners. They work pretty hard all day, and they usually have a lot of credits, so maybe there's things you could do that they would pay for."
-                    kid "Okay, I'll ask next time I go see Anya."
+                    him normal "Ask the miners. They work pretty hard all day, and they usually have a lot of credits, so maybe there's things you could do that they would pay for."
+                    kid determined "Okay, I'll ask next time I go see Anya."
                 "Ask Pete.":
                     $ responsive += 1
-                    him "Ask Pete. He might not be able to pay in credits, but he has stuff you can't get anywhere else that other people might pay well for."
-                    kid "He lives so far away. If I had a bike, maybe that would work. I'm going to ask the miners."
+                    him normal "Ask Pete. He might not be able to pay in credits, but he has stuff you can't get anywhere else that other people might pay well for."
+                    kid annoyed "He lives so far away. If I had a bike, maybe that would work. I'm going to ask the miners."
                 "Figure it out yourself.":
                     $ demanding += 1
-                    him "I'm sure you'll figure something out."
-                    kid "Thanks for nothing."
+                    him normal "I'm sure you'll figure something out."
+                    kid shifty "Thanks for nothing."
 
             "[kid_name] found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
@@ -6994,39 +7007,45 @@ label family27:
         "Offer to buy her one in exchange for more work.":
             $ demanding += 1
             $ confident += 1
-            him "I can understand why you'd want a bike. If I didn't have Lettie, I'd probably want one, too."
-            kid "Yeah! So you'll get me one?"
-            him "Well, not for free."
-            kid "Oh no. What do I have to do?"
-            him "If I'm going to be paying for your bike, then you'll need to do work for me on the bike."
-            kid "Okay, like what?"
-            him "Anything I ask."
-            kid "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
-            him "Those are my terms. If I buy the bike, then I get a say in how the bike is used."
-            kid "That's not fair! You're going to make me waste all my time doing your work!"
-            him "C'mon, I'm not that mean. It'll probably just be a trip to the storehouse once in a while or something."
+            him normal "I can understand why you'd want a bike. Now that Lettie's gone, I kind of want one, too."
+            kid laugh "Yeah! So you'll get me one?"
+            him determined "Well, not for free."
+            kid annoyed "Oh no. What do I have to do?"
+            him normal "If I'm going to be paying for your bike, then you'll need to do work for me on the bike."
+            kid concerned "Okay, like what?"
+            him happy "Anything I ask."
+            kid shifty "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
+            him determined "Those are my terms. If I buy the bike, then I get a say in how the bike is used."
+            kid angry "That's not fair! You're going to make me waste all my time doing your work!"
+            him normal "C'mon, I'm not that mean. It'll probably just be a trip to the storehouse once in a while or something."
             if (is_competent() and is_independent()):
-                kid "Then I want that in writing. I don't want to be your bike slave."
-                him "I'm not sure whether to be impressed or exasperated."
-                kid "Both?"
+                kid determined "Then I want that in writing. I don't want to be your bike slave."
+                him determined "I'm not sure whether to be impressed or exasperated."
+                kid normal "Both?"
                 "We laughed together, and drew up a short contract specifying what exactly I expected from her in return for buying her the bike."
                 $ demanding += 1
                 $ authoritative += 1
             elif (is_attached()):
-                kid "C'mon, dad. Please just let me have a bike? I promise I'll help out sometimes."
-                him "I'll hold you to that."
+                kid sad "C'mon, dad. Please just let me have a bike? I promise I'll help out sometimes."
+                him normal "I'll hold you to that."
                 $ authoritarian += 1
             else:
-                kid "That's not fair!"
-                him "I'm the parent; those are the rules."
+                kid angry "That's not fair!"
+                him normal "I'm the parent; those are the rules."
                 $ authoritarian += 1
 
 
     # TODO: fit this in somehow?
     # TODO: different job depending on personality/ending?
+    scene farm_exterior with fade
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
     "She attached a little cart to the back and started delivering things for people all over the colony."
     "She'd deliver fresh groceries to the miners, supplies to Pete, and even started taking some little kids home from school."
+    play music worried
+    scene farm_interior with fade
+    show him normal at midright
+    show her normal at midleft
+    with dissolve
     her concerned "I'm worried about [kid_name]'s job..."
     him surprised "What? Why?"
     her determined "It takes up a lot of time; she's exhausted by the time she gets home but she still has to do homework."
@@ -7038,18 +7057,18 @@ label family27:
     her angry "What about college?"
     him normal "All they have here is independent study. I think she'd be better off starting to work and then studying more what she actually needs."
     her annoyed "A college education is important."
-    him annoyed "When was the last time you used calculus? History? And you don't need a class to enjoy a good book or think about philosophy or whatever."
+    him surprised "When was the last time you used calculus? History? And you don't need a class to enjoy a good book or think about philosophy or whatever."
     her determined "I use math all the time at work."
     him determined "But not calculus."
     her concerned "...No, but I use the same kind of thinking and complex problem-solving and abstraction that calculus trains you to do."
-    him determined "Okay, what about history?"
+    him angry "Okay, what about history?"
     her determined "History is all about finding the common threads among humanity. Since we moved here, it's become even more important to me."
     him surprised "How?"
     her concerned "The parallels help me understand our situation better."
     him annoyed "Like what?"
     her determined "In some ways we like the settlers on the Oregon Trail -- forging a new path, exploring, and trying to make a wild, lonely place a home."
     her concerned "Understanding the grievances of populists and revolutionaries throughout history helps me undestand why Pete left -- and to be wary of what RET could become."
-    him determined "Okay, but [kid_name] could still work and study at the same time."
+    him normal "Okay, but [kid_name] could still work and study at the same time."
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
     $ parenting_style = get_parenting_style()
 
@@ -7068,15 +7087,20 @@ label family27:
 
             scene stars with fade
             "But [kid_name] did not take the news well."
-            kid "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
+            scene farm_interior with fade
+            show him normal at midleft
+            show her normal at midright
+            show kid annoyed at center
+            with dissolve
+            kid angry "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
             her concerned "There's still a lot you need to learn. Right now your schooling is more important."
             if (parenting_style == "authoritative"):
-                kid "Maybe you're right..."
+                kid sad "Maybe you're right..."
                 $ family27_no_work = True
             elif (parenting_style == "authoritarian"):
-                kid "You want me to be a productive and useful adult, right?"
+                kid annoyed "You want me to be a productive and useful adult, right?"
                 him determined "Yes, but we also want to you to get a good education and help out at home."
-                kid "How about if I can keep my job as long as I also do my chores and do my schoolwork?"
+                kid determined "How about if I can keep my job as long as I also do my chores and do my schoolwork?"
                 "She had a point. But we were the parents, and it was our job to do what was best for her. Hopefully we knew what that was."
                 "I looked at [her_name]. She shrugged. I guess this decision was up to me."
                 menu:
@@ -7084,29 +7108,29 @@ label family27:
                     "You have a deal.":
                         $ responsive += 1
                         him normal "We can try it. But I expect you to get good grades and do your chores. Whatever work you can fit in around that is fine."
-                        kid "Thank you, dad! I'm glad you listened to me."
+                        kid normal "Thank you, dad! I'm glad you listened to me."
                         "Hopefully I wouldn't regret this..."
                     "No deal. You may not work.":
                         him annoyed "[kid_name], I said no. Stop arguing!"
-                        kid "You never listen to me! Whose life is this anyway?!"
+                        kid angry "You never listen to me! Whose life is this anyway?!"
                         her concerned "Sweetie..."
-                        kid "Sorry, mom, I don't have time. I have to go cram my head full of useless facts instead of doing real work."
+                        kid nervous "Sorry, mom, I don't have time. I have to go cram my head full of useless facts instead of doing real work."
                         "She left to her room."
                         "Hopefully we were doing the right thing..."
                         $ family27_no_work = True
 
             elif (parenting_style == "permissive"):
-                kid "No! You guys can't be serious?! I always get good grades and do everything you ask, why can't you just let me do what I want?!"
-                him "Sorry, [kid_name]. We just want what's best for you."
-                kid "Well maybe next time you could bother to figure that out! Hint: it's not quitting my job!"
-                her "[kid_name]..."
+                kid yell "No! You guys can't be serious?! I always get decent grades and do everything you ask; why can't you just let me do what I want?!"
+                him concerned "Sorry, [kid_name]. We just want what's best for you."
+                kid annoyed "Well maybe next time you could bother to figure that out! Hint: it's not quitting my job!"
+                her concerned "[kid_name]..."
                 "She left to her room."
                 "Hopefully we were doing the right thing..."
                 $ family27_no_work = True
             else:
-                kid "I'm sick of working on this farm! Why can't you let me choose my own life?!"
-                him "Sorry, [kid_name]. We just want what's best for you."
-                kid "No, you just want what's best for {b}you{/b}."
+                kid yell "I'm sick of working on this farm! Why can't you let me choose my own life?!"
+                him concerned "Sorry, [kid_name]. We just want what's best for you."
+                kid annoyed "No, you just want what's best for {b}you{/b}."
                 "She left to her room."
                 "Hopefully we were doing the right thing..."
                 $ family27_no_work = True

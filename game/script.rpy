@@ -19,10 +19,14 @@ label start:
 
     # GAME ENGINE
     python:
+        demo_mode = False
+        trailer_mode = False
         save_name = "Intro"
         notifications = ""
         read_messages = False
+        word_board = Board(basic_words, family_words, farm_words)
         year11_poem = ""
+        year18_poem = ""
 
     # PARENTS
     python:
@@ -218,12 +222,17 @@ label start:
     show computer_pad
     menu:
         "Test Farming Screen":
+            $ show_year = 1
             $ farm.reset_crops(farm_size)
             call screen plan_farm
         "Other Tests":
             jump tests
         "Jump to Year":
             jump test_jump_year
+        "Demo":
+            jump demo
+        "Trailer":
+            jump trailer
         "Continue":
             $ pass
 
@@ -284,6 +293,10 @@ label life_loop:
         call screen plan_farm
 
         label yearly_events:
+            if demo_mode:
+                jump demo_continue
+            if trailer_mode:
+                jump trailer_continue
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
@@ -325,13 +338,6 @@ label life_loop:
             $ renpy.force_autosave(take_screenshot=True)
             $ renpy.notify("Autosaving...")
 
-            # Poetry time!
-            #if (year % 3):
-            #"So much happened this year... I decided to write a poem about it."
-            # Make the word board with appropriate words
-            # TODO: Store poems better for later access.
-            #$ word_board = Board(basic_words, family_words, farm_words)
-            #call make_poem
             $ year += 1
     jump ending
     return

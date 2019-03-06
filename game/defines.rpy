@@ -10,9 +10,9 @@ init -100:
     define YTEEN_MAX = 25
 
     # Static layout variables
-    define LEFT_COLUMN_WIDTH = 320
+    define LEFT_COLUMN_WIDTH = 310
     define MIDDLE_COLUMN_WIDTH = 480
-    define RIGHT_COLUMN_WIDTH = 320
+    define RIGHT_COLUMN_WIDTH = 310
 
     define COMPUTER_SUB_HEIGHT = 400
 
@@ -226,6 +226,7 @@ init -100:
     transform up_and_down:
         linear 0.7 yoffset 100
         linear 0.7 yoffset -100
+        linear 0.7 yoffset 0
 
 # TODO: remove this if we decide not to make people orange with Displayable Prefixes
 #     image him happy orange = "orange:him happy"
