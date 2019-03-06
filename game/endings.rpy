@@ -489,7 +489,7 @@ label ending_ACI:
     her surprised "I don't see any old people in here..."
     "We laughed, and talked, and joked around while doing the dishes together. [bro_name] got out his source code to show Oleg, and [her_name] was asking [kid_name] about alien physiology, and I just felt happy to be in the middle of it all."
 
-    "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found.  Happiness in love, in family, in community."
+    "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found. Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
     "So I'm not just happy that she and Oleg are dating."
@@ -499,6 +499,6 @@ label ending_ACI:
     "With her research and mediation, I see a beautiful future of peace ahead for her."
     "And I'll get to see it all happen."
 
-    "Ending 8/8, Happily Ever After Starts Here"
+    "Ending 8/8, The Future is Bright"
 
     return

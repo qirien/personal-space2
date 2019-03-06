@@ -2232,8 +2232,6 @@ label community13:
         him "Ugh, Are you talking about Brennan?"
         jump community13_talk_to_brennan
     else:
-        jump community13_nonliason_talk_to_brennan
-
         label community13_nonliason_talk_to_brennan:
             lily "No, this is urgent and important business. Depending on their schedule, they may already be setting up the explosives!"
             lily "I need you to ask Brennan if he can delay mining the cave until we can explore it."
@@ -2244,12 +2242,12 @@ label community13:
             lily "I'm afraid that my concerns may be dismissed due to my age and stature."
             lily "Your company would lend my petition credibility."
             him "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
-            him "Not to mention a nap to take this afternoon, if I can manage it."
-            "It's still dark outside. As we walk to the mines, Dr. Lily tells me about her latest research."
-            "When we arrive, the control station is empty."
+            "I tried to think about what I would say to Brennan, but my mind was full of the chores I wasn't doing and trying to reschedule the entire week."
+            "When we arrived, the control station was empty."
             him "Well, we tried, but he's not here. Let's just send him a message."
             lily "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
             him "I have no idea."
+            # TODO: revise to past tense
             "Dr. Lily knocks on the door of a nearby hut. She knocks for several minutes until she gets an answer."
             lily "He said Brennan lives over here."
             "She knocks on his door. A voice comes from behind the door."

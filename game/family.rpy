@@ -4416,7 +4416,7 @@ label family16:
                     "She burst into tears."
                     "When [her_name] came home, [kid_name] sobbed out the entire story to her. [her_name] didn't say anything, but she shot me an angry look over the top of [kid_name]'s head."
                     "After [kid_name] cried herself to sleep, [her_name] turned to me."
-                    her annoyed "You burned all her things?"
+                    her annoyed "You burned all her stuff?!"
                     him determined "She wouldn't clean her room. It was just a bunch of junk, anyway."
                     her angry "It wasn't junk to her!"
                     him angry "Well, she should've taken better care of it!"

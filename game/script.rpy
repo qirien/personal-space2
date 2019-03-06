@@ -20,6 +20,7 @@ label start:
     # GAME ENGINE
     python:
         demo_mode = False
+        trailer_mode = False
         save_name = "Intro"
         notifications = ""
         read_messages = False
@@ -293,6 +294,8 @@ label life_loop:
         label yearly_events:
             if demo_mode:
                 jump demo_continue
+            if trailer_mode:
+                jump trailer_continue
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)

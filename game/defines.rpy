@@ -226,6 +226,7 @@ init -100:
     transform up_and_down:
         linear 0.7 yoffset 100
         linear 0.7 yoffset -100
+        linear 0.7 yoffset 0
 
 # TODO: remove this if we decide not to make people orange with Displayable Prefixes
 #     image him happy orange = "orange:him happy"
