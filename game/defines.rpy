@@ -55,7 +55,7 @@ init -100:
     define KID_WORK_YEAR = 7
 
     # GUI display sizes
-    define CROP_ICON_SIZE = 50
+    define CROP_ICON_SIZE = 64
     define CROP_LAYOUT_BAR_SIZE = CROP_ICON_SIZE + 8
     define CROP_LAYOUT_BAR_WIDTH = CROP_ICON_SIZE / 10
 

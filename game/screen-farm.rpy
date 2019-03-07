@@ -27,16 +27,14 @@ screen plan_farm:
                     background "roundrect_darkgray"
 
                     vbox:
-                        label "Farm Plan for Year " + str(year):
-                                xalign 0.5
                         use farm_details_screen
 
                         hbox:
                             frame:
-                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH
+                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + 25
                                 style "plan_farm_subframe"
-                                vbox:
-                                    label "Status"
+                                hbox:
+                                    label "Status" xsize 100
                                     # TODO: allow more than one status?
                                     if (not valid_layout):
                                         if (farm.get_total_calories() < get_calories_required()):
@@ -56,12 +54,12 @@ screen plan_farm:
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
-                                textbutton "Random":
-                                    style "round_button"
-                                    action [
-                                            set_default_crops,
-                                            renpy.restart_interaction
-                                            ]
+                                # textbutton "Random":
+                                #     style "round_button"
+                                #     action [
+                                #             set_default_crops,
+                                #             renpy.restart_interaction
+                                #             ]
                                 textbutton "Accept Plan":
                                 # TODO: What if no valid layout is possible? Have emergency help button?
                                     style "round_button"
@@ -99,6 +97,10 @@ screen farm_details_screen:
         # Show family info
         vbox:
             xsize LEFT_COLUMN_WIDTH
+            frame:
+                style "plan_farm_subframe"
+                label "Farm Plan for Year " + str(year):
+                    xalign 0.5
             frame:
                 style "plan_farm_subframe"
                 vbox:
@@ -146,6 +148,8 @@ screen farm_details_screen:
                 label "Total"
                 use crops_totals
 
+# TODO: mask the rest of the screen?
+# TODO: add a shadow on sub screens
 screen crops_available(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     frame:
@@ -408,6 +412,7 @@ style plan_farm_text is text:
     color black
 
 style plan_farm_status_text is plan_farm_text:
+    yalign 0.5
     italic True
     xoffset 15
     color red_med
@@ -417,6 +422,8 @@ style plan_farm_vbox is vbox:
 
 style plan_farm_subframe is frame:
     background "roundrect_lightgray"
+    xpadding 8
+    ypadding 8
 
 # Custom styles for the crop details part of the screen
 

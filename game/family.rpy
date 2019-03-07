@@ -15,14 +15,14 @@ label family_intro:
     play music sad
     call bedroom_scene(True)
     show kid sad with dissolve
-    her sleeping "[his_name]."
+    her nude sleeping "[his_name]."
     him nude sleeping "Mrmph?"
-    her concerned "[kid_name]'s crying."
+    her nude concerned "[kid_name]'s crying."
     show kid cry with dissolve
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
     him nude concerned "Okay..."
-    show her sleeping
+    show her nude sleeping
     show kid concerned
     with dissolve
     "I changed her diaper as quietly as I could. I tried not to disturb [her_name], but I could tell she was still awake."
@@ -35,6 +35,7 @@ label family_intro:
     "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."
     show kid normal with dissolve
     "She finally finished the bottle, dozing off right away for once."
+    show him nude sleeping with dissolve
     "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
     "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
     return
@@ -861,13 +862,13 @@ label family3:
 label family4:
     scene stars with fade
     "Months passed by in a busy blur of planting and harvesting."
-    "[kid_name] was learning so much every day. She could drink from a cup, sing little songs, and run around. She learned several new words every day."
-    show baby at center, baby_pos with fade
+    "[kid_name] was learning so quickly. She could drink from a cup, sing little songs, and run around. She learned several new words every day."
+    show baby at center, baby_pos with dissolve
     "When I thought back to the tiny helpless creature she was just two years ago, it was hard to even believe this was the same person."
-    hide baby with fade
-    show kid normal at center with fade
+    hide baby with dissolve
+    show kid normal at center with dissolve
 
-    "[kid_name] learned several new words every day, and her little fingers that used to be so clumsy were now holding crayons and picking up tiny grains of rice."
+    "[kid_name]'s little fingers that used to be so clumsy were now holding crayons and picking up tiny grains of rice."
     "...and then throwing them on the floor."
     hide kid with fade
     scene farm_interior with fade
@@ -1102,6 +1103,7 @@ label family4:
             "And, sure enough, the next time we had rice and beans she just ate them without complaining."
             "Sometimes I just didn't understand [kid_name]."
             $ authoritative += 1
+    scene black with fade
     return
 
 # 2.7 Earth years old
@@ -7063,12 +7065,12 @@ label family27:
     her concerned "...No, but I use the same kind of thinking and complex problem-solving and abstraction that calculus trains you to do."
     him angry "Okay, what about history?"
     her determined "History is all about finding the common threads among humanity. Since we moved here, it's become even more important to me."
-    him surprised "How?"
+    him surprised "Really? How?"
     her concerned "The parallels help me understand our situation better."
-    him annoyed "Like what?"
-    her determined "In some ways we like the settlers on the Oregon Trail -- forging a new path, exploring, and trying to make a wild, lonely place a home."
+    him annoyed "What's that supposed to mean?"
+    her determined "In some ways we're like the settlers on the Oregon Trail -- forging a new path, exploring, and trying to make a wild, lonely place a home."
     her concerned "Understanding the grievances of populists and revolutionaries throughout history helps me undestand why Pete left -- and to be wary of what RET could become."
-    him normal "Okay, but [kid_name] could still work and study at the same time."
+    him concerned "Okay, but [kid_name] could still work and study at the same time."
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
     $ parenting_style = get_parenting_style()
 

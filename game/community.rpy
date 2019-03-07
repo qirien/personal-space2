@@ -1719,7 +1719,7 @@ label community11:
 
             if talked_to_Thuc:
                 thuc "I can start growing these peanuts right away!"
-                # TODO: uncomment this when peanut icon available
+                # TODO: uncomment these when icons available
                 # $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
@@ -2206,60 +2206,69 @@ label community13:
     $ cave_partially_explored = False
 
     "I awoke one morning to knocking on my door, and [kid_name] asking me to answer the door."
+    scene farm_exterior with fade
+    show lily normal at midright with dissolve
+    show him surprised at midleft with moveinleft
     lily "[his_name], we must act at once. Zaina told me about an enormous natural cave that the miners are set to run into tomorrow."
-    lily "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
-    lily "Not to mention that a natural cave could be an exciting destination for family day trips!"
-    lily "Although the mile-long descent might be a bit much for young children."
-    him "That sounds really interesting, but can we discuss it later? I'd like to get some more sleep."
+    lily angry "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
+    lily happy "Not to mention that a natural cave could be an exciting destination for family day trips!"
+    lily normal "Although the mile-long descent might be a bit much for young children."
+    him concerned "That sounds really interesting, but can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
     if is_liason:
-        lily "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
-        him "Alright. What do you need me to ask?"
-        lily "Tell them to delay the mining on that branch of the mine until we can fully explore it."
-        him "Do they already know about the cave?"
-        lily "Have you told them about it? Then no."
-        him "Do you know what specific branch it is?"
-        lily "Yes, Zaina mentioned it, let me look it up."
+        lily angry "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
+        him determined "Alright. What do you need me to ask?"
+        lily normal "Tell them to delay the mining on that branch of the mine until we can fully explore it."
+        him surprised "Do they already know about the cave?"
+        lily angry "Have you told them about it? Then no."
+        him concerned "Do you know what specific branch it is?"
+        lily normal "Yes, Zaina mentioned it, let me look it up."
         lily "She says it's the third branch off the descent shaft. The one they call Little Durban." #Durban is a South African town
-        him "Alright. I wrote: 'Please halt mining on Little Durban. Natural cave found.'"
-        lily "I hope that I can still endure a cave exploration. It has been a long time since I've done any climbing."
-        him "I've seen you walking around town. I bet you can handle it."
-        lily "I can walk, but I'm unsure of my crawling competence."
-        lily "Aged bodies do not heal as quickly as young ones like yours."
-        him "Oh, they already replied. They said to go with whatever Brennan says."
-        lily "I can't believe this. Tell them I said to stop the mining!"
-        him "I can't send another message for twenty-four more hours."
-        lily "Then we must inquire with the next person who can give us permission to explore the cave."
-        him "Ugh, Are you talking about Brennan?"
+        him determined "Alright. I wrote: 'Please halt mining on Little Durban. Natural cave found.'"
+        lily angry "I hope that I can still endure a cave exploration. It has been a long time since I've done any climbing."
+        him normal "I've seen you walking around town. I bet you can handle it."
+        lily normal "I can walk, but I'm unsure of my crawling competence."
+        lily happy "Aged bodies do not heal as quickly as young ones like yours."
+        him surprised "Oh, they already replied. They said to go with whatever Brennan says."
+        lily angry "I can't believe this. Tell them I said to stop the mining!"
+        him concerned "I can't send another message for twenty-four more hours."
+        lily normal "Then we must inquire with the next person who can give us permission to explore the cave."
+        him annoyed "Ugh, Are you talking about Brennan?"
         jump community13_talk_to_brennan
     else:
         label community13_nonliason_talk_to_brennan:
             lily "No, this is urgent and important business. Depending on their schedule, they may already be setting up the explosives!"
             lily "I need you to ask Brennan if he can delay mining the cave until we can explore it."
-            jump community13_talk_to_brennan
 
         label community13_talk_to_brennan:
-            him "You talk to Brennan. I need to make breakfast."
-            lily "I'm afraid that my concerns may be dismissed due to my age and stature."
-            lily "Your company would lend my petition credibility."
-            him "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
+            him concerned "You talk to Brennan. I need to make breakfast."
+            lily angry "I'm afraid that my concerns may be dismissed due to my age and stature."
+            lily normal "Your company would lend my petition credibility."
+            him determined "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
             "I tried to think about what I would say to Brennan, but my mind was full of the chores I wasn't doing and trying to reschedule the entire week."
+            scene canyon with fade
+            show lily normal at midright
+            show him determined at midleft
+            with moveinleft
             "When we arrived, the control station was empty."
-            him "Well, we tried, but he's not here. Let's just send him a message."
-            lily "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
-            him "I have no idea."
-            # TODO: revise to past tense
-            "Dr. Lily knocks on the door of a nearby hut. She knocks for several minutes until she gets an answer."
+            him surprised "Well, we tried, but he's not here. Let's just send him a message."
+            lily angry "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
+            him determined "I have no idea."
+            "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
             lily "He said Brennan lives over here."
-            "She knocks on his door. A voice comes from behind the door."
+            "She knocked on his door. A voice came from behind the door."
             brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
             lily "We're not here to ask for a personal day."
-            "He opens the door."
             brennan "Oh, sorry. I thought you were someone else."
-            brennan "Who do I owe for the pleasure of your visit?"
-            lily "Zaina. She told me that you are about to mine through an underground cave today or tomorrow."
-            lily "I would like to explore the cave. Once you reach the cave, I urge you to delay mining activity in order to allow for data collection."
-            brennan "The one in little Durban? We did run into the cave last night just before quitting for the day."
-            lily "Is there any way you can delay mining on that branch?"
+            scene yurt_interior with fade
+            show brennan normal at midright with dissolve
+            show lily normal at center
+            show him determined at midleft
+            with moveinleft
+            brennan happy "Who do I owe for the pleasure of your visit?"
+            lily angry "Zaina. She told me that you are about to mine through an underground cave today or tomorrow."
+            lily normal "I would like to explore the cave. Once you reach the cave, I urge you to delay mining activity in order to allow for data collection."
+            brennan normal "The one in little Durban? We did run into the cave last night just before quitting for the day."
+            lily angry "Is there any way you can delay mining on that branch?"
             if require_whole_harvest or rationing:
                 brennan "I don't know. What will RET think?"
                 him "We asked them, and they said to defer to your judgement."
@@ -2352,22 +2361,26 @@ label community13:
                         $ cave_partially_explored = True
                         jump cave_unexplored
             else:
-                brennan "ABSOLUTELY not."
-                brennan "We're far enough behind as it is."
-                lily "But demolishing this cave is irreversible."
-                lily "There may be flora and fauna unique to the cave that we may never document if you destroy it unexplored."
-                brennan "RET going out of business would also be irreversible, which might happen if I don't continue mining right away, thanks to this guy."
-                him "At least you have enough to eat, and it's food you grew or found yourself."
-                brennan "You imposed your values on how we get our food. I'm imposing my values on when we can spare time to scientific research."
-                lily "You are making a mistake."
-                him "We're already behind schedule. What difference would a few days make?"
-                brennan "I said no. Please leave."
+                brennan angry "ABSOLUTELY not. We're far enough behind as it is."
+                lily normal "But demolishing this cave is irreversible! There may be flora and fauna unique to the cave that we may never be able to document."
+                brennan normal "RET going out of business would also be irreversible, which might happen if I don't continue mining right away, thanks to this guy."
+                him annoyed "At least you have enough to eat, and it's food you grew or found yourself."
+                brennan angry "You imposed your values on how we get our food. I'm imposing my values on when we can spare time to scientific research."
+                lily angry "You are making a mistake."
+                him concerned "You're already behind schedule. What difference would a few days make?"
+                brennan angry "I said no. Please leave."
                 "Dr. Lily looked furious, but she left."
+                hide him
+                hide lily
+                with moveoutleft
                 jump cave_unexplored
 
     label cave_unexplored:
+        scene stars with fade
         "That night, she sent a message to the other colonists about how Brennan refused to let her explore the cave."
         "She invited everyone to join her in a protest the next morning."
+        if demo_mode:
+            jump demo_after_cave
         "The next day, Pete, Helen, Natalia, and Joanna joined her."
         "I went too."
         menu:

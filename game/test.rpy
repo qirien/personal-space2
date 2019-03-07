@@ -35,16 +35,13 @@ label demo:
     call screen plan_farm
 
 label demo_continue:
-    $ year = 3
+    $ year = 4
     call interscene_text(year, "Family")
-    call family3
-    $ year = 6
-    call interscene_text(year, "Work")
-    play music farming fadeout 3.0 fadein 3.0
-    call work6
-    $ year = 10
+    call family4
+    $ year = 13
     call interscene_text(year, "Community")
-    call community10 # Finish this event
+    call community13
+label demo_after_cave:
     $ year = 18
     $ kid_work_slider = 70
     call interscene_text(year, "Work")
@@ -52,9 +49,8 @@ label demo_continue:
     $ year = 27
     call interscene_text(year, "Family")
     call family27
-    $ year = 30
-    call interscene_text(year, "Ending")
-    call ending
+    scene stars with fade
+    "End of demo for \"Space to Grow\""
     return
 
 label trailer:
@@ -195,13 +191,13 @@ label trailer_after_cleanup:
     hide kid with dissolve
     $ year = CHILD_MAX
     show kid normal with dissolve
-    hide kid with fade
+    hide kid with dissolve
     $ year = TWEEN_MAX
     show kid normal with dissolve
-    hide kid with fade
+    hide kid with dissolve
     $ year = YTEEN_MAX
     show kid normal with dissolve
-    hide kid with fade
+    hide kid with dissolve
 
     scene black with fade
     show text "{size=60}{font=fonts/SP-Marker Font.otf}with protection, nourishment, and love.{/font}{/size}"
