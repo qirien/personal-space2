@@ -5717,6 +5717,8 @@ label community30:
     $ visited_joel_house = False
     $ knows_previous_head_injuries = False
     $ know_noel_received_firegrass_deliveries = False
+    $ talked_to_pete = False
+    $ accuse_noel_of_murder = False
     if kevin_elected:
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
         kevin "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
@@ -5990,6 +5992,21 @@ label community30:
             ilian "Yeah, Sara's always asking me where Oleg is like I'm some kind of walking Oleg-GPS."
             ilian "If she cares so much, why doesn't she follow him around?"
             ilian "I'm the one stuck here all day."
+            him "I have a question for you then."
+            "I pull out the ring I found at Noel's house and show it to Ilian."
+            him "Any idea what this is? It looks like it came from the 3D printer, and I know that you've been helping to monitor that."
+            ilian "Hmm. I have seen this before, come to think of it. Did you get it from Oleg?"
+            him "No, from Noel's house."
+            ilian "What do you think it is?"
+            him "Well, it's too small to be a bracelet, unless it's a bracelet meant for a baby maybe."
+            ilian "The one I saw looked just like that. I bet we can see who created the original object in the 3D printer history."
+            ilian "Let's look. I think I can access the 3D printer history from here."
+            "Ilian connects the 3D printer in the fabrication center to his tablet and brings up the printer history. We have to search for a while to find it."
+            ilian "Here it is! It looks like Julia printed five copies about two years ago. It looks like she originally designed it too."
+            him "But... why?"
+            ilian "Maybe it has something to do with her newspaper business."
+            ilian "Or maybe she meant for them to be adult-sized bracelets but messed up on the scaling. Who knows."
+            him "Hey earlier it seemed like you felt frustrated by your job here."
             him "If you're feeling burned out, maybe you could get someone to help you so you can have some time off."
             ilian "No. No, no, no. I've already been over this so many times."
             ilian "I can't trust anyone else with my job. Without me, the colony would be in utter chaos."
@@ -6077,7 +6094,7 @@ label community30:
             him "I'm just doing a little research on who is on the waitlist for the shuttle going back to Earth."
             him "You know, since Joel died, there's an empty spot."
             him "Brennan told me that you're first on the list. Is that right?"
-            #she only opens up if your colony value is high enough
+            #she only opens up if your colony value is high enough?
             sara "Oh, is that what this is about. Ha."
             sara "Yes, I am first on the list."
             sara "Back when the miners first arrived, Ilian and I had a big fight over who should get up in the night with Oleg."
@@ -6172,6 +6189,17 @@ label community30:
         him "On Joel's tablet, there were a few messages to you. Do you know anything about that?"
         julia "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying
         him "Okay, that makes sense."
+        "Should I ask about the ring?"
+        menu:
+            "Yes.":
+                him "One more thing. I found this ring-like object at Noel's house. Do you know what it is?"
+                "It seemed like Julia recognized it."
+                julia "Maybe some kind of toy?"
+                him "I had Ilian look in the printing history and he said that you printed it."
+                julia "Is that right? I've printed a lot of things..."
+                julia "Maybe this was an experimental canning lid."
+            "No.":
+                "I didn't ask her about the ring."
         julia "Do keep me updated about the status of the case."
         if not kevin_elected:
             him "Will do."
@@ -6219,6 +6247,7 @@ label community30:
                  him "About that... do you have any leads?"
                  pete "{i}You seriously don't know? Maybe you should ask [kid_name].{/i}"
             "I said goodbye to Pete and pondered what to do with this information."
+            $ talked_to_pete = True
             kid "How's that investigation going?"
             him "Oh, you were being so quiet that I didn't realize you were here. Well, you heard what Pete and I were talking about."
             kid "Yep."
@@ -6633,6 +6662,37 @@ label community30:
                         kevin "Who would you consider responsible for the neglect of Joel's health?"
                         him "Well, Noel, of course. And Van."
                         kevin "Very well. I will have you testify at their trail next week."
+                        "Thuc was appointed to prepare a defense for Noel and Van."
+                        "We didn't talk much that week. The day of the trail came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
+                        "I showed the photos of the broken brake and explained how their dysfunction was caused by normal wear and tear."
+                        "I had [her_name] testify that Joel's head injury was consistent with his fall."
+                        if knows_previous_head_injuries:
+                            "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
+                        "Thuc talked about how we all forget things from time to time even if we don't want to."
+                        "He said it could have been any one of us that forgot to do something that ended up killing someone."
+                        "Thuc and I left the room while the jury convened."
+                        him "Well, I think we both did our jobs."
+                        thuc "I hope we can put this incident behind us soon."
+                        "After thirty minutes the jury was still going. Sara told us to go home and come back the next morning."
+                        "The next morning, we awaited the verdict."
+                        if knows_previous_head_injuries:
+                            sara "The jury found Noel and Van guilty of criminal negligance."
+                            sara "Together with the mayor, they decided that Noel and Van should attend therapy with me weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
+                            sara "They also agreed that Thuc could count up to 50 hours of babysitting as community service."
+                            thuc "Come on. He makes so little that his whole job should be considered community service."
+                            sara "That's what the jury decided. Would you like to make a formal appeal?"
+                            thuc "Nah, I guess it could be worse."
+                            sara "We'll consider the case closed then."
+                            return
+                        else:
+                            sara "The jury found Noel and Van guilty of negligance, but not to a criminal degree."
+                            sara "Together with the mayor, they decided that Noel and Van should attend three months of weekly therapy with me and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
+                            thuc "Sounds fair."
+                            him "A man died and the punishment is therapy and a little service?"
+                            sara "Do you have more evidence to submit? It sounded like a one-time mistake that anyone could make."
+                            him "No, no more evidence to submit."
+                            sara "We'll consider the case closed then."
+                            return
                         
                     else:
                         him "I'm ready to tell Julia my findings."
@@ -6648,6 +6708,39 @@ label community30:
                         else:
                             julia "That's so unfortunate."
                         julia "I'll arrange for Noel to be put on trial for neglect, and you can testify of your findings."
+                        him "Okay."
+                        label accuse_noel_neglect:
+                            "Thuc was appointed to prepare a defense for Noel."
+                            "The day of the trail came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
+                            if accuse_noel_of_murder:
+                                "I showed how easy it was to replace the brake pads, and that failing to do this was not just neglect, but probably stemming from a desire to kill Joel."
+                            else:
+                                "I showed the photos of the broken brake and explained how their dysfunction was caused by normal wear and tear."
+                            "I had [her_name] testify that Joel's head injury was consistent with his fall."
+                            if knows_previous_head_injuries:
+                                "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
+                            "Thuc talked about how we all forget things from time to time even if we don't want to."
+                            "He said it could have been any one of us that forgot to do something that ended up killing someone."
+                            "Thuc and I left the room while the jury convened."
+                            him "Well, I think we both did our jobs."
+                            thuc "I hope we can put this incident behind us soon."
+                            "After thirty minutes the jury was still going. Sara told us to go home and come back the next morning."
+                            "The next morning, we awaited the verdict."
+                            if knows_previous_head_injuries:
+                                sara "The jury found Noel guilty of criminal negligance."
+                                sara "Together with the mayor, they decided that Noel should attend therapy with me weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
+                                thuc "Sounds fair."
+                                sara "We'll consider the case closed then."
+                                return
+                            else:
+                                sara "The jury found Noel guilty of negligance, but not to a criminal degree."
+                                sara "Together with the mayor, they decided that Noel should attend three months of weekly therapy with me and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
+                                thuc "Sounds fair."
+                                him "A man died and the punishment is therapy and a little service?"
+                                sara "Do you have more evidence to submit? It sounded like a one-time mistake that anyone could make."
+                                him "No, no more evidence to submit."
+                                sara "We'll consider the case closed then."
+                                return
 
                 "It was a murder made to look like an accident.":
                     him "I suspect foul play. Someone deliberately set this up to kill Joel."
@@ -6687,6 +6780,9 @@ label community30:
                                 her "It's still a little far-fetched, but I'll concede that it's possible."
                                 if kevin_elected:
                                     him "I'm going to tell Kevin my theory."
+                                    "I told Kevin my theory, and he agreed to set up a trial charging Julia and Van with conspiring to murder Joel."
+                                    jump accuse_julia
+                                    
                                 else:
                                     him "If Julia is involved, how will I report my findings to her?"
                                     her "Don't tell her about your suspicions. Isn't there someone else you could report to?"
@@ -6698,14 +6794,59 @@ label community30:
                                     sara_c "You think Julia had something to do with Joel's death? Wow, I can't wait to hear more."
                                     sara_c "You're right though, it's not appropriate to report to her. I can arrange for a jury at the next town meeting."
                                     sara_c "You can come to report your findings, accuse Julia of whatever, and then we'll have the jury right there."
+                                    sara_c "But what are you accusing her of? I need to arrange for the defense as well."
+                                    him_c "I'm accusing her of conspiring to murder Joel. And I'm accusing Van of putting that plan into action."
+                                    sara_c "Got it. See you next week."
                                     him_c "Sounds like a plan."
-                                    him "Sara says she can make it happen."
                                     
+                                    him "Sara says she can make it happen."
                                     him "In the meantime, can you really test if the tea has firegrass in it?"
                                     her "I have tools for measuring the amount of caffeine is in a given substance."
                                     her "But don't you know plants well enough to identify firegrass in a course mixture like tea?"
                                     him "It's not a typical tea blend. It's a syrup."
-                                    her "I can test it."
+                                    her "I'll test it."
+                                    
+                                    label accuse_julia:
+                                        "The day of the trial came. Zaina was acting as the defense."
+                                        "Twelve colonists acted as the jury."
+                                        if checked_joel:
+                                            "I told the jury that Joel had an unusual amount of credits in his account when he died."
+                                            "Zaina asked about how I knew this information. When I couldn't explain, Sara dismissed the evidence."
+                                        "I showed the photos of the broken brake and explained how their dysfunction was caused by wear and tear."
+                                        "I also showed how easy it was to replace the brake pads, and that failing to do this was not just neglect, but probably stemming from a desire to kill Joel."
+                                        "Zaina argued that I couldn't prove that anyone wanted to kill Joel, and that it could have been just neglect."
+                                        "I had [her_name] testify that Joel's head injury was consistent with his fall."
+                                        if knows_previous_head_injuries:
+                                            "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
+                                        if talked_to_pete:
+                                            "I had arranged for Pete to come and testify about how Noel had bought large quantities for firegrass from him."
+                                        if know_noel_has_firegrass:
+                                            "I testified about how I had found hidden firegrass at Noel's house."
+                                        "[her_name] testified to finding elevated caffeine levels in Julia's plum tea syrup, consistent with it containing firegrass."
+                                        if not ban_firegrass:
+                                            "Zaina emphasized that buying and using firegrass was perfectly legal."
+                                        else:
+                                            "I emphasized that dealing in firegrass without knowledge from a doctor was against our colony's law."
+                                        "I told the jury that the most logical conclusion was that Noel had wanted to stop buying firegrass for Julia, but in retaliation, Julia had Van murder Joel to teach Noel a lesson."
+                                        "Zaina said that while Julia and Noel may have been business partners, that the unfortunate loss of Joel was unconnected."
+                                        sara "Thank you both for your arguments. Please go home while the jury deliberates, and I'll tell you their verdict in the morning."
+                                        "I had trouble sleeping, and eagerly awaited the verdict."
+                                        "The next morning I went to the community center, where Zaina joined me."
+                                        sara "The jury decided that Julia and Van were not guilty of murder, but that Van was guilty of neglect."
+                                        if ban_firegrass:
+                                            sara "They also found Julia guilty of selling firegrass-derived products without the oversight of a physician and without notifying her buyers."
+                                            if talked_to_pete or know_noel_has_firegrass:
+                                                sara "They found Noel guilty of posession of firegrass without a license."
+                                        else:
+                                            sara "They also found Julia guilty of misrepresenting her plum tea syrup."
+                                        sara "Everyone will have to attend weekly therapy sessions with me for a month and do some community service hours."
+                                        him "But it's clear that Julia was somehow involved with Noel's buying all that firegrass."
+                                        zaina "And you also have no evidence of that!"
+                                        sara "Zaina is right. You have evidence for a lot of things, but no real connection between Julia and Noel."
+                                        him "But Van is over there all the time!"
+                                        sara "I'm sorry, but that's not evidence! The case is closed."
+                                        #the most material connection is the plastic measuring ring--this should at least be mentioned in the trial
+                                        return
                                     
                                     
                         "Noel.":
@@ -6728,6 +6869,9 @@ label community30:
                                     him "Fixing the brakes is a simple job that is obviously urgent for someone who spends much of his time in a wheelchair."
                                     him "Why else would someone procrastinate such a simple task?"
                                     kevin "Your argument has logic. Let us see what the jury has to say at the trial."
+                                    $ accuse_noel_of_murder = True
+                                    jump accuse_noel_neglect
+                                    
                                 else:
                                     "I told Julia I was ready to report and she asked me to come over right away."
                                     him "As you know, the dysfunctional brakes on Joel's wheelchair led to his head injury."
@@ -6742,6 +6886,7 @@ label community30:
                                     julia "I'm willing to put Noel on trail for neglect, but I don't think she wanted to kill Joel."
                                     him "Very well."
                                     julia "Please present your findings to the jury next week."
+                                    jump accuse_noel_neglect
 
 
 
