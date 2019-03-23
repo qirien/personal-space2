@@ -35,16 +35,13 @@ label demo:
     call screen plan_farm
 
 label demo_continue:
-    $ year = 3
+    $ year = 4
     call interscene_text(year, "Family")
-    call family3
-    $ year = 6
-    call interscene_text(year, "Work")
-    play music farming fadeout 3.0 fadein 3.0
-    call work6
-    $ year = 10
+    call family4
+    $ year = 13
     call interscene_text(year, "Community")
-    call community10 # Finish this event
+    call community13
+label demo_after_cave:
     $ year = 18
     $ kid_work_slider = 70
     call interscene_text(year, "Work")
@@ -52,12 +49,12 @@ label demo_continue:
     $ year = 27
     call interscene_text(year, "Family")
     call family27
-    $ year = 30
-    call interscene_text(year, "Ending")
-    call ending
+    scene stars with fade
+    "End of demo for \"Space to Grow\""
     return
 
 label trailer:
+    $ trailer_mode = True
     image title = "images/bg/title.jpg"
     image metasepia = "images/bg/metasepia-logo.jpg"
     play music maintheme fadein 1.0
@@ -75,7 +72,11 @@ label trailer:
     $ year = 1
     call bedroom_scene(True)
     "All [kid_name] needed at first was a clean diaper, milk, and some love."
-    "It didn't always feel simple, though."
+    show kid sad with dissolve
+    show him nude concerned
+    show her nude concerned
+    with dissolve
+    "It wasn't always that simple, though."
 
     scene black with fade
     show text "{size=60}{font=fonts/SP-Marker Font.otf}Raise Your Daughter{/font}{/size}"
@@ -89,6 +90,11 @@ label trailer:
     with dissolve
     her annoyed "Rice is what's for dinner, sweetie."
     kid concerned "Yucky."
+
+    $ time = 2
+    $ timer_range = 2
+    $ timer_jump = "trailer_after_dinner"
+    show screen countdown
     menu:
         "What should I say?"
         "You must eat this dinner.":
@@ -100,13 +106,115 @@ label trailer:
         "You can eat it or not, but there won't be more dinner.":
             $ pass
 
+label trailer_after_dinner:
+    hide screen countdown
     scene black with fade
     show text "{size=60}{font=fonts/SP-Marker Font.otf}Plan Your Farm{/font}{/size}"
     $ renpy.pause(1.0)
+    $ farm_size = 9
+    call screen plan_farm
 
+label trailer_continue:
     scene black with fade
     show text "{size=60}{font=fonts/SP-Marker Font.otf}Lead Your Community{/font}{/size}"
     $ renpy.pause(1.0)
+
+    scene community_center with fade
+    show lily normal at midright
+    show him determined at midleft
+    with dissolve
+    lily angry "Tell them to delay mining on that branch until we can fully explore it."
+    him concerned "I can send the insta-com, but they might not respond in time."
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Will you parent with an iron fist...{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    $ year = 4
+    scene farm_interior with fade
+    show him determined at midright
+    show kid annoyed at center
+    him angry "You're not leaving the table until you eat all of this food!"
+    show kid at up_and_down
+    kid angry "No! No no no no no no!"
+    show her surprised at midleft with moveinleft
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}...or indulge your daughter's whims...{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    $ year = 17
+    scene farm_interior with fade
+    show him surprised at midleft
+    show kid normal at midright
+    kid concerned "Dad, I really want an allowance."
+    him normal "You can have ten credits a week."
+    kid happy "Really? Awesome! I'll be able to buy all sorts of stuff!"
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}...or something else entirely?{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    $ year = 9
+    scene kid_bedroom with fade
+    show him annoyed at midright
+    show kid annoyed at midleft
+    kid angry "No! I won't clean up!"
+    "I took a deep  breath. I realized I had some other options."
+    $ time = 2
+    $ timer_range = 2
+    $ timer_jump = "trailer_after_cleanup"
+    show screen countdown
+    menu:
+        "What should I do?"
+        "Ask for details.":
+            $ pass
+        "Take her toys away if she doesn't clean them up.":
+            $ pass
+        "Sympathize with her":
+            $ pass
+        "Make cleaning up a game.":
+            $ pass
+
+label trailer_after_cleanup:
+    hide screen countdown
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}Create a space for her to grow{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    scene black with fade
+    $ year = BABY_MAX
+    show kid normal with dissolve
+    hide kid with dissolve
+    $ year = TODDLER_MAX
+    show kid normal with dissolve
+    hide kid with dissolve
+    $ year = CHILD_MAX
+    show kid normal with dissolve
+    hide kid with dissolve
+    $ year = TWEEN_MAX
+    show kid normal with dissolve
+    hide kid with dissolve
+    $ year = YTEEN_MAX
+    show kid normal with dissolve
+    hide kid with dissolve
+
+    scene black with fade
+    show text "{size=60}{font=fonts/SP-Marker Font.otf}with protection, nourishment, and love.{/font}{/size}"
+    $ renpy.pause(1.0)
+
+    scene farm_exterior with fade
+    show kid happy at center
+    show him normal at midright
+    show her normal at midleft
+    "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong and callused like mine."
+    him happy "Out of all the things we've grown over the years... this family is the best."
+
+    scene title with fade
+    $ renpy.pause(10.0)
+
+    scene black with fade
+    $ renpy.pause(5.0)
 
     return
 
@@ -347,3 +455,6 @@ label test_positions:
     show natalia at right
     "end test positions"
     return
+
+screen countdown:
+    timer 0.01 repeat True action If(time > 0, true=SetVariable('time', time - 0.02), false=[Hide('countdown'), Jump(timer_jump)])

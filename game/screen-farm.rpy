@@ -24,41 +24,49 @@ screen plan_farm:
                 # crop details here
                 frame:
                     yfill True
-                    background gray_dark
-                    vbox:
-                        label "Farm Plan for Year " + str(year):
-                            xalign 0.5
+                    background "roundrect_darkgray"
 
+                    vbox:
                         use farm_details_screen
 
                         hbox:
-                            xfill True
-                            null width LEFT_COLUMN_WIDTH
-                            textbutton "Clear":
-                                xalign 0.5
-                                action [
-                                        clear_crops,
-                                        renpy.restart_interaction
-                                        ]
-                            textbutton "Random":
-                                xalign 0.5
-                                action [
-                                        set_default_crops,
-                                        renpy.restart_interaction
-                                        ]
-                            textbutton "Accept Plan":
-                            # TODO: What if no valid layout is possible? Have emergency help button?
-                                xalign 1.0
-                                sensitive valid_layout
-                                action Jump("yearly_events")
+                            frame:
+                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + 25
+                                style "plan_farm_subframe"
+                                hbox:
+                                    label "Status" xsize 100
+                                    # TODO: allow more than one status?
+                                    if (not valid_layout):
+                                        if (farm.get_total_calories() < get_calories_required()):
+                                            text "Need more calories!" style "plan_farm_status_text"
+                                        elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
+                                            text "Need to allocate all goats!" style "plan_farm_status_text"
+                                        else:
+                                            text "Cannot plant crops where there is insufficient nitrogen!" style "plan_farm_status_text"
+                                    else:
+                                        text "OK!" style "plan_farm_status_text"
+                            hbox:
+                                xfill True
+                                xsize RIGHT_COLUMN_WIDTH
+                                textbutton "Clear":
+                                    style "round_button"
+                                    action [
+                                            clear_crops,
+                                            renpy.restart_interaction
+                                            ]
+                                # textbutton "Random":
+                                #     style "round_button"
+                                #     action [
+                                #             set_default_crops,
+                                #             renpy.restart_interaction
+                                #             ]
+                                textbutton "Accept Plan":
+                                # TODO: What if no valid layout is possible? Have emergency help button?
+                                    style "round_button"
+                                    sensitive valid_layout
+                                    action Jump("yearly_events")
 
-                        if (not valid_layout):
-                            if (farm.get_total_calories() < get_calories_required()):
-                                text "Need more calories!" xalign 1.0
-                            elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
-                                text "Need to allocate all goats!" xalign 1.0
-                            else:
-                                text "Cannot plant crops where there is insufficient nitrogen!" xalign 1.0
+
 
 screen colony_messages_button(read_colony_messages):
     if (not read_colony_messages):
@@ -66,7 +74,7 @@ screen colony_messages_button(read_colony_messages):
     else:
         text "" ypos 30 xalign 0.0 # We have to have this here or it messes up all the positions
 
-    textbutton "Message Board" action Jump("yearly_messages") #Call("yearly_messages")
+    textbutton "Message Board" action Jump("yearly_messages") xoffset 20 #Call("yearly_messages")
 
 # To change appearance, see screens.rpy, screen nvl
 label yearly_messages:
@@ -89,44 +97,59 @@ screen farm_details_screen:
         # Show family info
         vbox:
             xsize LEFT_COLUMN_WIDTH
-            vbox:
-                xalign 0.0
-                # TODO: Add a small family photo
-                label "Family"
-                text "[his_name]"
-                text "[her_name]"
-                text "[kid_name], [earth_year] earth years"
-                if (bro_birth_year != 0):
-                    text "[bro_name], [bro_age] earth years"
+            frame:
+                style "plan_farm_subframe"
+                label "Farm Plan for Year " + str(year):
+                    xalign 0.5
+            frame:
+                style "plan_farm_subframe"
+                vbox:
+                    xalign 0.0
+                    # TODO: Add a small family photo
+                    label "Family"
+                    text "[his_name] & [her_name]"
+                    text "[kid_name], [earth_year] earth years old"
+                    if (bro_birth_year != 0):
+                        text "[bro_name], [bro_age] earth years old"
 
-                # Display poetry written
-                # TODO: how do I get the word_board variable here?
-                # textbutton "Poetry" action Show("poetry_display", args=word_board)
-                # Community info
-            vbox:
-                yalign 1.0
-                label "Community" # TODO: have cute icons for these, like on a phone?
-                # TODO: have status icons for how much everyone likes you?
-                use colony_messages_button(read_messages)
-                # TODO: make this have a "NEW!" icon when there's new stuff?
-                textbutton "Child Development" action Show("parenting_handbook", zoomin)
-                # TODO: add parenting quote
+                    # Display poetry written
+                    # TODO: how do I get the word_board variable here?
+                    # textbutton "Poetry" action Show("poetry_display", args=word_board)
+                    # Community info
+            null:
+                height 100
+            frame:
+                style "plan_farm_subframe"
+                vbox:
+                    yalign 1.0
+                    label "Community" # TODO: have cute icons for these, like on a phone?
+                    # TODO: have status icons for how much everyone likes you?
+                    use colony_messages_button(read_messages)
+                    # TODO: make this have a "NEW!" icon when there's new stuff?
+                    textbutton "Child Development" action Show("parenting_handbook", zoomin) xoffset 20
+                    # TODO: add parenting quote
 
-                # TODO: add music player here
+                    # TODO: add music player here
 
         # Crop layout area
-        vbox:
-            xsize MIDDLE_COLUMN_WIDTH
-            label "Layout"
-            use crops_layout
+        frame:
+            style "plan_farm_subframe"
+            vbox:
+                xsize MIDDLE_COLUMN_WIDTH
+                label "Layout"
+                use crops_layout
 
         # Totals so far
-        vbox:
-            xalign 0.5
-            xsize RIGHT_COLUMN_WIDTH
-            label "Total"
-            use crops_totals
+        frame:
+            style "plan_farm_subframe"
+            vbox:
+                xalign 0.5
+                xsize RIGHT_COLUMN_WIDTH
+                label "Total"
+                use crops_totals
 
+# TODO: mask the rest of the screen?
+# TODO: add a shadow on sub screens
 screen crops_available(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     frame:
@@ -137,7 +160,7 @@ screen crops_available(crop_index=0):
             $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
             hbox:
                 label crop_name.capitalize()
-                textbutton "X" xpos -20 ypos -6 action Hide("crops_available", zoomout)
+                textbutton "X" xpos -25 ypos -2 action Hide("crops_available", zoomout)
             # TODO: Take out style tag and see if autodetecting of this has been fixed later.
             hbox:
                 grid 2 5:
@@ -361,38 +384,61 @@ init python:
 
 # Custom styles for the farm planning screen
 style plan_farm_label is label:
-    background tan_dark
+    xpadding 5
+    ypadding 5
     xfill True
 
 style plan_farm_label_text is label_text:
     color black
     font "fonts/Questrial-Regular.otf"
 
+style plan_farm_button is button
+
 style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
-    idle_color tan_dark
-    hover_color tan_med
+    idle_color green_dark
+    hover_color green_med
+
+style round_button is plan_farm_button:
+    background "roundrect_medgreen"
+    xalign 1.0
+
+style round_button_text is plan_farm_button_text:
+    idle_color gray_light
+    hover_color white
+    insensitive_color gray_dark
 
 style plan_farm_text is text:
     color black
 
+style plan_farm_status_text is plan_farm_text:
+    yalign 0.5
+    italic True
+    xoffset 15
+    color red_med
+
 style plan_farm_vbox is vbox:
     spacing 5
+
+style plan_farm_subframe is frame:
+    background "roundrect_lightgray"
+    xpadding 8
+    ypadding 8
 
 # Custom styles for the crop details part of the screen
 
 # STYLE COMPUTER_SUB used for subwindows of the main computer screen
 style computer_sub_frame is frame:
-    background tan_dark
+    background "roundrect_darkgray"
 
-style computer_sub_label is plan_farm_label:
-    background green_med
+style computer_sub_label is plan_farm_label
 
 style computer_sub_label_text is plan_farm_label_text:
-    color black
+    color green_light
 
 style computer_sub_text is plan_farm_text:
     size 16
+    color white
 
 style computer_sub_grid is grid
 

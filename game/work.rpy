@@ -252,16 +252,21 @@ label work_intro:
     return
 
 label farm_tutorial:
-    # TODO: Show screenshots to illustrate this.
+    # TODO: Update screenshots to illustrate this.
     menu:
         "Would you like to see the Farming Tutorial?"
         "Yes.":
+                scene tutorial-left with fade
                 "The left part of the screen shows information about my family and colony."
+                scene tutorial-mid with dissolve
                 "The middle of the screen shows the farm layout."
+                scene tutorial-right with dissolve
                 "On the right is the current farm's stats."
+                scene tutorial-mid with dissolve
                 "When I click on a farm space, I can choose what crop should go there and see information about each crop."
                 "The background color of each space shows how much nitrogen is in this field. If it's a dark color, there's plenty of nitrogen for crops."
                 "If it's a light color, nitrogen in that field is running low. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
+                scene tutorial-right with dissolve
                 "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
@@ -536,7 +541,7 @@ label work10:
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin "Very well. I shall mark you down for bees."
-            $ enable_crop("honey")
+            # $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, once placed, they cannot be moved."
             # TODO: implement these!!
@@ -585,7 +590,7 @@ label work12:
             brennan "Ah, can't you take a joke?"
             him determined "..."
             brennan "...Right. Here's your wheat."
-            $ enable_crop("wheat")
+            # $ enable_crop("wheat")
             # TODO: implement annual fee
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
@@ -600,7 +605,7 @@ label work12:
             him "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
             natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
             him "That would be great!"
-            $ enable_crop("corn")
+            # $ enable_crop("corn")
 
     "I was looking forward to growing something new."
     return
@@ -785,7 +790,7 @@ label work16:
             else:
                 "Kevin took some of my seeds, and I decided to take some of the chile pepper seeds."
                 natalia "You won't be disappointed!"
-                $ enable_crop("peppers")
+                # $ enable_crop("peppers")
 
         "Expand your farmland.":
             $ luddites += 1
@@ -1028,14 +1033,14 @@ label work22:
             him concerned "Ummm... maybe?"
             thuc "Sorry; it's the only thing I could think of that you didn't already have."
             him happy "No, this is great! I love more variety. Thanks, Thuc."
-            $ enable_crop("turnips")
+            # $ enable_crop("turnips")
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
             her annoyed "..."
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
-            $ enable_crop("onions")
+            # $ enable_crop("onions")
     elif (helping_faction == "luddites"):
         show pete at midright with moveinleft
         her happy "Especially Pete!"
@@ -1048,7 +1053,7 @@ label work22:
         pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
         her laughing "So true! And it's really healthy, too."
         him happy "Great, thank you Pete! It's always good to have some more variety."
-        $ enable_crop("broccoli")
+        # $ enable_crop("broccoli")
     else:
         show chaco at midright with moveinleft
         her happy "Especially Chaco!"

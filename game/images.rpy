@@ -12,8 +12,9 @@ init -10:
         linear 10.0 zoom 1.25
 
     # GUI
-    image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 10, 10)
-    image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 10, 10)
+    image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 16, 16)
+    image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 16, 16)
+    image roundrect_medgreen = Frame("gui/roundrect-medgreen.png", 10, 10)
     image soil = Frame("gui/soil.jpg")
 
     image computer_pad = "gui/computer pad.png"
@@ -43,7 +44,7 @@ init -10:
                 "year <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
                 "year <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
                 "year <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
-                "True", "kid-sprites/teen %s.png" % expression_name))            
+                "True", "kid-sprites/teen %s.png" % expression_name))
 
     image ctc_blink:
            "gui/ctc.png"

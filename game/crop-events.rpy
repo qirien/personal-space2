@@ -982,7 +982,7 @@ label plums2:
             thuc "This is nice and fresh, so you can plant it or eat it."
             him "Mmmm, this'll be good! Thank you!"
             "I couldn't wait to eat some, but even better, now I could grow my own."
-            $ enable_crop("garlic")
+            # $ enable_crop("garlic")
             return
 
         "Make jam" if (get_extra_work() >= 0):
@@ -1006,10 +1006,10 @@ label plums2:
                 "Which should I choose?"
                 "Onions":
                     him "Give me the onions."
-                    $ enable_crop("onions")
+                    # $ enable_crop("onions")
                 "Turnips":
                     him "How about the turnips?"
-                    $ enable_crop("turnips")
+                    # $ enable_crop("turnips")
             ilian "Fine. Here you go."
             "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
             return
@@ -1029,7 +1029,7 @@ label plums2:
         "Buy onions.":
             # TODO: currency check, subtract amount for onions.
             "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-            $ enable_crop("onions")
+            # $ enable_crop("onions")
         "Don't buy onions":
             "I decided not to buy them. I had enough crops to deal with."
 
@@ -1311,7 +1311,7 @@ label strawberries1:
             kid "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
-            $ enable_crop("strawberries")
+            # $ enable_crop("strawberries")
         "Sell the extra plants.":
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear
@@ -1382,7 +1382,7 @@ label strawberries2:
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
 
-            $ enable_crop("strawberries")
+            # $ enable_crop("strawberries")
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             # TODO: Test this...

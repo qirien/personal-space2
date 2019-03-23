@@ -20,6 +20,7 @@ label start:
     # GAME ENGINE
     python:
         demo_mode = False
+        trailer_mode = False
         save_name = "Intro"
         notifications = ""
         read_messages = False
@@ -207,33 +208,38 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    if (mp.jack_name):
-        $ his_name = mp.jack_name
-    if (mp.kelly_name):
-        $ her_name = mp.kelly_name
-    if (mp.baby_name):
-        $ kid_name = mp.baby_name
+    "Welcome to the demo of Space to Grow!"
+    "While the story is mostly complete, there are a few holes here and there -- not every scene has full graphics yet, you can't unlock crops, and there are still some bugs."
+    "However, you should be able to get a feel for the game and enjoy the story."
+    "Thanks for playing!"
 
     show path
     show her normal at midleft
     show kid happy at center,baby_pos
     show him normal at midright
     show computer_pad
-    menu:
-        "Test Farming Screen":
-            $ farm.reset_crops(farm_size)
-            call screen plan_farm
-        "Other Tests":
-            jump tests
-        "Jump to Year":
-            jump test_jump_year
-        "Demo":
-            jump demo
-        "Trailer":
-            jump trailer
-        "Continue":
-            $ pass
+    # menu:
+    #     "Test Farming Screen":
+    #         $ show_year = 1
+    #         $ farm.reset_crops(farm_size)
+    #         call screen plan_farm
+    #     "Other Tests":
+    #         jump tests
+    #     "Jump to Year":
+    #         jump test_jump_year
+    #     "Demo":
+    #         jump demo
+    #     "Trailer":
+    #         jump trailer
+    #     "Continue":
+    #         $ pass
 
+    if (mp.jack_name):
+        $ his_name = mp.jack_name
+    if (mp.kelly_name):
+        $ her_name = mp.kelly_name
+    if (mp.baby_name):
+        $ kid_name = mp.baby_name
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
     "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
     "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
@@ -261,6 +267,7 @@ label start:
     call community_intro
     call work_intro
 
+    scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
     "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
@@ -293,6 +300,8 @@ label life_loop:
         label yearly_events:
             if demo_mode:
                 jump demo_continue
+            if trailer_mode:
+                jump trailer_continue
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
