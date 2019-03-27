@@ -897,11 +897,12 @@ label tomatoes2:
             "Sweetest tomatoes":
                 $ tomatoes2_action = "sweetness"
     else:
-        "The tomatoes have the same rotten bottom area as last time, only now it's even worse!"
-        "You do some research and find out that usually that means there's too much nitrogen in the soil and not enough calcium."
+        "The tomatoes had the same rotten bottom area as last time, only now it's even worse!"
+        "I did some research and found out that usually means there's too much nitrogen in the soil and not enough calcium."
         if (tomatoes1_action == "fertilize"):
             "So adding more fertilizer just made it worse."
         "Most of my tomatoes were useless..."
+        "...but at least I knew what to do next year."
         # TODO: decreased yield/money
     return
 
@@ -930,16 +931,16 @@ label plums1:
     "I was happy to see the plum trees getting larger and larger."
     "They didn't have any fruit now, so it felt like a lot of work for nothing."
     "But I knew if I kept taking care of them and fertilizing them, eventually they would bear fruit."
+    "Kind of like raising kids, actually. All that work when they were babies, changing diapers, and holding them, and feeding them..."
+    "But, unlike the plum tree, I didn't know for sure what kind of adult I would eventually get."
     return
 
 # Several years later
 # Prunes or jam?
 label plums2:
-    scene fields with fade
-    show him at center with dissolve
+    scene plum_blossoms with fade
     "I'll never forget the first time the plum trees really bloomed..."
     "Thousands of pink blossoms covered the trees this spring, and when they fell, their petals covered the ground in a soft pink carpet."
-    # TODO: plum blossom CG? bg?
     if ("honey" in farm.crops):
         "The bees helped the pollination a lot."
     else:
@@ -961,6 +962,7 @@ label plums2:
         "What should I do?"
         "Make prunes" if (get_extra_work() >= 0):
             $ make_item = "prunes"
+            scene farm_interior with fade
             "I pitted them and put them on a rack to dry."
             "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
             show her normal at midleft with moveinleft
@@ -986,6 +988,7 @@ label plums2:
             return
 
         "Make jam" if (get_extra_work() >= 0):
+            scene farm_interior with fade
             $ make_item = "jam"
             "I decided to make jam."
             "My mother always made jam with sugar and pectin."
@@ -999,9 +1002,9 @@ label plums2:
             him "Hey there, Ilian."
             ilian "Oh. Hello."
             him happy "How much can you give me for this plum jam?"
-            ilian "I can only give you amount." # TODO: currency check.
+            ilian "I can only give you 50 credits." # TODO: currency check.
             him surprised "What? Why is that?"
-            ilian "I'm out of money. But if you'd like to exchange, I can give you onions or turnips."
+            ilian "I'm out of money. But if you'd like to exchange, I can give you seeds for onions or turnips."
             menu:
                 "Which should I choose?"
                 "Onions":
@@ -1016,6 +1019,7 @@ label plums2:
 
         "Just bring the plums to the storehouse.":
             "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
+            "I earned 40 credits for them." # TODO: currency check
 
     if not (renpy.showing("storehouse")):
         scene storeroom with fade
@@ -1135,6 +1139,7 @@ label spinach1:
             her surprised "Is the spinach ready yet? I wanted to make a salad to go with dinner."
             him concerned "Sorry, no spinach this year. It got too hot."
             her concerned "Oh...that's too bad."
+            him normal "Don't worry; we'll definitely have some next year."
     return
 
 # SPINACH2 - turtle slugs

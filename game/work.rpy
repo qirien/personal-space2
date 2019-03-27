@@ -1278,7 +1278,43 @@ label work26:
     return
 
 # Year 28, 17.3 years old
+# Deal with restaurant?
 label work28:
+    "Talaam changed a lot while [kid_name] was growing up. When we started, it was just a bunch of farms and a community center."
+    "Now we had two doctors, a dedicated fabricator shop, a dentist, a butcher, and a baker."
+    "And, soon, our very first restaurant."
+
+    nvl clear
+    travis_c "You are all invited to the Grand Opening of Jelly Laugh, Talaam's first restaurant, next weekend! The first 10 customers get free pancakes!"
+    julia_c "A restaurant?! Who has enough credits to go there?"
+    zaina_c "It might be nice for special occasions."
+    brennan_c "Might you be serving your dad's special cider?"
+    travis_c "We've got several types of cider."
+    natalia_c "Wait, is this a bar?"
+    travis_c "It's a family-friendly restaurant."
+    ilian_c "Finally, Talaam has developed into a truly cultured society."
+    nvl clear
+
+    scene farm_interior with fade
+    show her concerned at midright
+    show kid normal at center
+    show bro normal at midleft
+    with dissolve
+    show him normal at quarterleft with moveinleft
+    him happy "Hey guys, who wants to go out to eat?"
+    show her surprised with dissolve
+    kid surprised "Like, outside?"
+    him normal "No, like to a restaurant!"
+    kid happy "Ooh, I've heard of those! Is Travis finally opening a place?"
+    him surprised "Yeah, you've heard of it?"
+    kid normal "Of course. He was trying to get me to work there but I wanted to wait to see if he was actually going to make it happen first."
+    her happy "I haven't been out to eat in... years!"
+    "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
+    "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
+    "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
+
+
+    # TODO: finish this.
 
     return
 

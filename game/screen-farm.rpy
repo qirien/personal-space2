@@ -99,7 +99,7 @@ screen farm_details_screen:
             xsize LEFT_COLUMN_WIDTH
             frame:
                 style "plan_farm_subframe"
-                label "Farm Plan for Year " + str(year):
+                label "Year " + str(year):
                     xalign 0.5
             frame:
                 style "plan_farm_subframe"
@@ -107,10 +107,10 @@ screen farm_details_screen:
                     xalign 0.0
                     # TODO: Add a small family photo
                     label "Family"
-                    text "[his_name] & [her_name]"
-                    text "[kid_name], [earth_year] earth years old"
+                    text "[his_name] & [her_name]" xoffset 20
+                    text "[kid_name], [earth_year] earth years old" xoffset 20
                     if (bro_birth_year != 0):
-                        text "[bro_name], [bro_age] earth years old"
+                        text "[bro_name], [bro_age] earth years old" xoffset 20
 
                     # Display poetry written
                     # TODO: how do I get the word_board variable here?

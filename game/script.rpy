@@ -215,7 +215,7 @@ label start:
 
     show path
     show her normal at midleft
-    show kid happy at center,baby_pos
+    show child at center
     show him normal at midright
     show computer_pad
     # menu:

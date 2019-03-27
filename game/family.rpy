@@ -5800,6 +5800,7 @@ label family21:
 
 # 13.6 Earth years old
 # You falsely accused Terra! Apologize?
+# Also, do something together as a family
 label family22:
 
     scene farm_interior with fade
@@ -5859,12 +5860,12 @@ label family22:
             $ responsive += 1
             $ confident += 1
             "I owed [kid_name] an apology. I had accused her of stealing and lying, when she was innocent."
-            # TODO: have a Terra's room bg?
             "I knocked on her door."
-            kid "What?"
-            show kid normal at midleft
-            show him normal at midright
+            scene kid_bedroom with fade
+            show kid normal at midright
             with dissolve
+            kid "What?"
+            show him normal at midleft with moveinleft
             him "I'm sorry, [kid_name]. I got mad at you and thought you were lying but I was wrong."
             kid "See?! You never trust me!"
             him determined "You have lied to me in the past, which makes it hard for me to know when you're telling the truth."
@@ -5910,10 +5911,10 @@ label family22:
 
         "Talk to [bro_name]":
             "That wasn't enough. [bro_name] needed a serious talking-to! I followed him back to his room."
-            # TODO: room bg here?
             hide her with dissolve
+            scene bro_bedroom with fade
             show bro at midleft with dissolve
-            show him normal at midright with move
+            show him normal at midright with moveinright
             him determined "[bro_name], I can't believe you stole the applesauce! Don't you know how hard we work to have treats like that?"
             bro "I was just hungry."
             him angry "Yeah, but you can't just eat whatever you want! We have carrots you can eat anytime for snacks if you're hungry."
@@ -6076,8 +6077,6 @@ label family23:
     him annoyed "Does texting help you concentrate, too?"
     kid "Yes!"
     him angry "You shouldn't text during homework! It's distracting!"
-    kid "What?!"
-    him annoyed "You heard what I said."
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):
         $ demanding += 1
@@ -6181,7 +6180,10 @@ label family23:
         "You should hang out with friends in person.":
             $ responsive += 1
             him determined "You should hang out with your friends in person. It'll mean more that way."
-            kid "We don't have time! We have so much homework, and Oleg has to work in the storehouse, and I help you on the farm..." # TODO: change based on how much she is helping you on the farm?
+            if (kid_work_slider >= 50):
+                kid "We don't have time! We have so much homework, and Oleg has to work in the storehouse, and I help you on the farm..."
+            else:
+                kid "We don't have time!  Oleg's always working in the storehouse, and we both have a ton of homework."
             him normal "If you have time to chat on the tablet, then I think you have time to hang out!"
             kid "Well, he chats with me when there's no one at the storehouse and he's just sitting around."
             him happy "He could come over here after work!"
@@ -6189,7 +6191,7 @@ label family23:
             him normal "You can invite some other friends, too. You guys need to talk more in person. Talking online just isn't the same."
             kid "Really? Then how come you and Mom are always sending each other messages?"
             him happy "That's in addition to good, quality meatspace time."
-            kid "Meatspace! Ugh, dad, that's such a gross expression. It makes me think of Travis's dad butchering cows."
+            kid "Meatspace! Ugh, dad, that's such a gross expression. It makes me think of butchering goats."
             him normal "That's just one of the many exciting things happening in the real world."
             kid "That's exactly why I worry about inviting my friends over."
             him surprised "You're worried they'll find out you got your sense of humor from me?"
@@ -6629,7 +6631,7 @@ label family25:
     kid determined "Of course I did."
     him normal "Really? I didn't know they were on fire!"
     kid surprised "Huh?"
-    him flirting "Get it?"
+    him flirting "Get it? 'Put the goats out'?"
     kid normal "Ohhh, dad!"
     him normal "I'll go get that squash."
 
@@ -6729,25 +6731,46 @@ label family25:
     if (is_attached()):
         if (is_competent()):
             if (is_independent()):
-                "ACI"
+                #"ACI"
+                kid annoyed "I just can't wait to live on my own!"
+                him concerned "You're that excited to leave us?"
+                kid normal "No, silly! But I could totally take care of myself, and then I could hang out with you guys whenever I wanted."
             else:
-                "ACi"
+                # "ACi"
+                kid concerned "If I left, I'd be worried about you and Mom."
+                him surprised "Worried about us?"
+                kid sad "Yeah, what if you got old and had no one to take care of you?"
+                him normal "Awww, that's so sweet of you!"
         else:
             if (is_independent()):
-                "AcI"
+                #"AcI"
+                kid normal "I love you guys so much; it'd be really hard to leave."
+                him normal "We sure would miss you!"
             else:
-                "Aci"
+                #"Aci"
+                kid concerned "I could never leave... Talaam's the only home I've ever known."
+                him determined "Well... you could, but I think you're better off here, with us."
     else:
         if (is_competent()):
             if (is_independent()):
-                "aCI"
+                #"aCI"
+                kid determined "Talaam is so small...and there's hardly any people here. Earth seems way better."
+                him annoyed "Depends on what you want to do, I guess."
             else:
-                "aCi"
+                #"aCi"
+                kid concerned "I'm sure Earth is cool, but there's a lot to learn here, too."
+                him happy "I know, right??"
         else:
             if (is_independent()):
-                "acI"
+                # "acI"
+                kid annoyed "I can't wait to be out on my own..."
+                him concerned "You're that excited to leave us?"
+                kid normal "Mostly just to do whatever {b}I{/b} want to do!"
+                him sad "Oh. Okay."
             else:
-                "aci"
+                #                 "aci"
+                kid sad "I've always wanted to see Earth..."
+                him sad "Yeah..."
 
     kid "What do you think I should do?"
     menu:
@@ -7438,7 +7461,6 @@ label family28_runaway:
 # Graduation! Terra is stressed out about tests and a big social problem (Oleg? Travis? Anya?)
 # What kind of guy should she look for as a husband?
 label family29:
-# idea: if she is on the path to end up with Oleg, is he not attracted to her but they are great friends and they have to decide if they want to get married anyway?  Or they have some reason why they wouldn't get married...
     $ parenting_style = get_parenting_style()
     scene farm_interior with fade
     show her concerned at midleft
@@ -7768,7 +7790,7 @@ label family29:
 
 # 18.6 Earth years old (ENDING)
 label family30:
-    "[kid_name] had finally graduated from Talaam's little school. And, now that she didn't have school every day, she had moved on to other things."
+    "Now that [kid_name] didn't have school every day, she had moved on to other things."
     $ boyfriend_name = ""
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):    # aCi or aCI
