@@ -1156,7 +1156,7 @@ label work24:
             "I took off my shirt and wrapped it tightly around her leg."
             him concerned "Hold this on there, okay?"
             kid sad "Okay..."
-            $ work24_stopped_bleeding
+            $ work24_stopped_bleeding = True
             jump work24_first_aid
         "Carry her to the clinic.":
             him determined "Let's get you to mom."
@@ -1190,7 +1190,7 @@ label work24:
             him surprised "Can you stand up?"
             show kid determined at right, standing with move
             kid determined "Maybe... ugh. No, not really."
-            show kid determined at right, squatting with move
+            show kid sad at right, squatting with move
             "As she tried to stand up, more blood trickled down her leg."
             $ work24_walk = True
             jump work24_first_aid
