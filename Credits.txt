@@ -24,6 +24,7 @@ Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://opencl
 
 Dirt background <soil.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/ground-earth-clay-soil-nature-549728/> by Humusak
 
+Tractor <tractor.png> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2437919">Hanomag Tractor</a> by <a href="https://pixabay.com/users/Emslichter-1377910/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2437919">Emslichter</a>
 
 
 ==== CC-BY-2.0

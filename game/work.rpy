@@ -1072,8 +1072,9 @@ label work24:
     "[kid_name] was big enough to do real work on the farm, now. She could help a mama goat give birth, knew which plants were weeds, and could build a fence out of almost anything."
     "But her favorite way to help was driving the tractor."
     scene fields with fade
-    show him normal at midright
-    show kid normal at midleft
+    show tractor at midleft
+    show him normal at midleft
+    show kid normal at midright
     with dissolve
     "We were using the front loader attachment to add manure and to the fields."
     kid nervous "Please let me do the driving, dad! I know how to do it!"
@@ -1083,20 +1084,44 @@ label work24:
     "But I wanted to keep her safe, too."
     him determined "I'll do the first run while you rake the manure into a pile. Then I'll decide if you can drive."
     kid concerned "Ugh. Fine."
+    show kid at left with move
+    show tractor at quarterright
+    show him determined at quarterright
+    with slowmove
+
     "I filled the front loader full of manure and drove down to the field we were preparing. I slowed down to turn to the side, and dumped the load on top of the dirt."
     "Then I drove back."
+    show tractor at quarterleft
+    show him at quarterleft
+    with move
     him normal "Your turn. Watch out for the ditch on the side."
+    show him at left with move
+    show kid annoyed at quarterleft with move
     kid annoyed "Of course, dad, it's only been there my whole life."
     "She got a load of manure into the bucket and headed down towards the field. The bucket was a lot higher than I usually put it."
+    show tractor at center
+    show kid shifty at center
+    with move
     him annoyed "Lower the bucket!"
-    kid nervous "What?"
+    kid surprised "What?"
     "She couldn't hear me. I started running, following the tractor."
-    him concerned "The bucket's too high! Lower the bucket!"
+    show tractor at midright
+    show kid surprised at midright
+    show him surprised at midleft
+    with move
+    him surprised "The bucket's too high! Lower the bucket!"
     "I was too late. She turned the corner, going a little too fast. I felt like time slowed down as I started running. I could see the tractor starting to tip."
+    show tractor at quarterright
+    show kid surprised at quarterright
+    show him at center
+    with slowmove
     "I reached out, but I was helpless to stop it. The high, heavy bucket dragged the whole tractor over onto its side."
-    # TODO: scene tractor?
-    kid surprised "Ahhhhhhh!"
+    hide tractor with moveoutright
+    show kid at right, sitting with move
+    kid angry "Ahhhhhhh!"
     him surprised "[kid_name]! Dammit!"
+    show kid nervous with dissolve
+    show him determined at midright, squatting with move
     "I ran as fast as I could. [kid_name] was quiet, which worried me even more than if she had been screaming."
     "When I finally reached her, she was unconscious and her leg was pinned under the tractor. I bent over her face and felt her breath."
     him determined "[kid_name]! [kid_name], wake up!"
@@ -1105,19 +1130,23 @@ label work24:
     "She stirred."
     him determined "Come on, [kid_name]. You're going to be okay."
     "She tried to get up, but could only sit. Good, at least her spine was okay."
-    kid nervous "Wha-what? I can't - I can't move my leg!"
+    kid sad "Wha-what? I can't - I can't move my leg!"
     him concerned "I know. It'll be okay. Now, on the count of three, I'm going to lift the tractor, and you need to get out of there, okay?"
-    kid determined "It hurts!"
+    kid annoyed "It hurts!"
     him sad "I know it hurts, but we gotta get you out of there. I don't know if your leg will move, so you might have to use your arms."
     kid determined "Okay. Ow. Okay. I think I can do that."
     him angry "1...2...3!"
     "I heaved up and tilted the tractor. I couldn't tip it all the way back to standing, but hopefully it was enough..."
     him annoyed "Now, now, now! Out now!"
-    kid nervous "Okay! I'm doing it...I'm clear!"
+    show kid determined at right, squatting with move
+    kid angry "Okay! I'm doing it...I'm clear!"
     "I set the tractor back down as gently as possible, my arms shaking and aching."
+    show him concerned at midright, standing
+    show kid annoyed with dissolve
+    with move
     "I looked down at my daughter. Her lower leg was bloody and her pants were ripped. She had a bump on her head from where she had hit the ground."
-    kid concerned "Ohhh. Oh, that hurts!"
-    "Her colorful curse surprised me. Looking at her leg, though, I couldn't really blame her."
+    kid nervous "Ohhh. Oh, that hurts!"
+    "She continued with a colorful curse that shocked me. Looking at her leg, though, I couldn't really blame her."
     $ work24_stopped_bleeding = False
     $ work24_walk = False
     menu work24_first_aid:
@@ -1132,11 +1161,22 @@ label work24:
         "Carry her to the clinic.":
             him determined "Let's get you to mom."
             "I couldn't take the tractor since it had tipped over. I'd get Thuc or someone to help me set it back up later."
+            show him at right with move
             "I lifted her up in my arms, something I hadn't done for years and years."
+            show him concerned at midright
+            show kid sad at midright, squatting
+            with slowmove
             "She was a lot heavier now."
+            show him concerned at center
+            show kid sad at center, squatting
+            with move
             kid sad "Ow! My leg!"
             him concerned "Sorry...I'll try not to move it."
             "She rested her head on my chest, and I started on the long walk into town."
+            hide him
+            hide kid
+            with moveoutleft
+            scene path with fade
             "My arms, already strained from lifting the tractor, felt heavy and numb, but I walked on."
             "Finally we arrived at the clinic."
             scene hospital with fade
@@ -1148,13 +1188,16 @@ label work24:
 
         "See if she can walk." if not (work24_stopped_bleeding or work24_walk):
             him surprised "Can you stand up?"
+            show kid determined at right, standing with move
             kid determined "Maybe... ugh. No, not really."
+            show kid determined at right, squatting with move
             "As she tried to stand up, more blood trickled down her leg."
             $ work24_walk = True
             jump work24_first_aid
         "Get some help.":
             him determined "I'm going to see if I can get some help, okay?"
             kid sad "Okay..."
+            "I switched on my radio."
             him concerned "Attention, this is [his_name]. [kid_name] is injured and needs transport to the clinic."
             "No one answered. I tried again."
             him determined "I need transport into town for [kid_name] who is injured. She might have broken her leg. Can anyone help?"
@@ -1164,7 +1207,11 @@ label work24:
             him concerned "Nope. That's how she got hurt; tractor tipped over."
             "Natalia on the radio" "I'm on my way."
             "[her_name] on the radio" "Thank you, Natalia!"
+            show tractor at center
+            show natalia normal at center
+            with moveinleft
             "Natalia arrived on her tractor with the trailer attachment. I nestled in the back with [kid_name] while she drove."
+            scene path with fade
             kid concerned "Ow!"
             "Every bump made her leg hurt more. I tried to protect her from the worst bumps but it was a long, rough ride."
             "When we arrived, [her_name] was ready for us."

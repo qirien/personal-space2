@@ -148,6 +148,7 @@ init -100:
     define fade = Fade(0.2, 0.2, 0.2)
     define irisout = CropMove(0.5, "irisout")
     define irisin = CropMove(0.5, "irisin")
+    define slowmove = MoveTransition(1.25)
     transform midleft:
         xpos 0.35 xanchor 0.5 ypos 1.0 yanchor 1.0
     transform midright:
@@ -172,6 +173,8 @@ init -100:
 
     # Baby positions for being held
     define baby_ypos = 540
+    transform babybackpack_pos:
+        ypos baby_ypos-180 xoffset -80 yanchor 1.0
     transform baby_pos:
         ypos baby_ypos yanchor 1.0
     transform centerbabybed:

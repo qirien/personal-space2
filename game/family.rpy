@@ -395,16 +395,20 @@ label family2:
             him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
             him happy "There we go! We're going to go make plants grow!"
             kid happy "Daa!"
-            scene tractor with fade
+            scene fields with fade
+            show tractor at midleft
+            show kid normal at midleft, babybackpack_pos
+            show him normal at midleft
+            with moveinleft
             "We got on the tractor and I drove back to the field that needed planting."
             "I had to kind of sit on the edge of the seat so that there was room behind me for the backpack. It wasn't the comfiest seat, but it worked."
             "Terra cooed and kicked and played with my hair and seemed to enjoy the ride..."
             "...for about ten minutes."
-            kid normal "Aaaa!"
+            kid determined "Aaaa!"
             him happy "I know! Isn't this fun?!"
             kid angry "Aaa! Aaaaaah!"
             him surprised "I guess it's probably pretty boring for you, huh?"
-            kid normal "..."
+            kid concerned "..."
             him concerned "Sorry, baby, but we have to get this work done, or we won't have food to eat."
             kid angry "Aaaa!"
             "She kicked her legs more, in frustration now. She pushed against me, trying to worm her way out of the backpack, but she was strapped in tight."
@@ -422,11 +426,11 @@ label family2:
                     $ responsive += 1
                     "I tried to remember some songs she might like."
                     him surprised "Do you know 'Head, shoulders, knees, and toes?"
-                    "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that I learned in elementary school Spanish class, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
+                    "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that I learned in Spanish class, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
                     him normal "You like that?"
                     kid normal "Aaa, baaa baa baa, daa."
                     him happy "Yeah!"
-                    kid angry "..."
+                    kid annoyed "..."
                     him concerned "I need to learn some more songs!"
                     jump family2_baby_activities
 
@@ -452,10 +456,14 @@ label family2:
                     $ responsive += 1
                     him surprised "You probably want something to play with, huh? I didn't bring any toys..."
                     him happy "But kids have been growing up since before toys were invented, so I think we'll be okay! Here, have a stick."
+                    show kid concerned
                     "She took the stick and stuck it in her mouth. Then she whacked my head with it."
+                    show kid normal
                     him sad "Ouch."
+                    show kid laugh
                     "Then she dropped it."
                     him annoyed "I'm not going to get much done if I have to keep picking up your stick. Don't drop it, okay?"
+                    show kid concerned
                     "She held onto it for several minutes, whacking my head or chewing on it, or whatever she was doing. It was hard to see her while she was in the backpack."
                     "And then she dropped it."
                     kid angry "Aaaa!"
@@ -469,19 +477,19 @@ label family2:
                     him surprised "You feeling lonely back there? Don't worry, we're together, [kid_name]!"
                     kid angry "Baa, baaaaaa!"
                     him surprised "Ooh, are you turning into a sheep? Your arm is so soft, it's like a little lamb. Baa, baa!"
-                    kid happy "Baa, baa!"
+                    kid laugh "Baa, baa!"
                     him happy "Yeah, you're a little sheep! Or maybe you're a baby cow?"
                     kid normal "..."
                     him normal "You know, a cow. Moo, moo?"
-                    kid normal "Maa, maaa."
+                    kid concerned "Maa, maaa."
                     him happy "Did you say 'mama'? Ha ha, don't let mom hear you comparing her to a cow. She wouldn't like that."
-                    kid angry "Aaaa!"
+                    kid cry "Aaaa!"
                     him surprised "Hey, don't worry, I won't tell her. Ummm, hmmm, what else should we talk about?"
                     kid angry "Aaaa!"
                     him normal "Yeah, I don't want to talk about politics either. Why don't I tell you about plants?"
-                    kid normal "Aaa?"
+                    kid concerned "Aaa?"
                     him normal "Plants need water, sunlight, and nutrients from the soil to survive. But if you want them to grow big and strong, you have to make sure they have the right amounts of all of these."
-                    kid angry "Aaah! Aaa! Aaaaaaaa!"
+                    kid annoyed "Aaah! Aaa! Aaaaaaaa!"
                     him annoyed "Okay, you don't have to scream, we don't have to talk about plants if you don't want to."
                     jump family2_baby_activities
 
@@ -498,32 +506,49 @@ label family2:
                     $ demanding += 1
                     $ family2_work_done += 5
                     him concerned "I'm sorry, [kid_name], but I just need to get this work done. I know it's boring for you, but you'll survive, okay?"
+                    show kid angry
                     $ authoritative += 1
 
                 "Give up and go home." if ((family2_activity_count >= 1) and (family2_activity_count < 4)):
                     $ responsive += 1
                     him concerned "You're probably pretty uncomfortable and bored back there, huh? I guess I'll have to just do this another time."
+                    show kid concerned
                     $ permissive += 1
 
                 "Finish up and go home." if (family2_activity_count >= 4):
                     $ demanding += 1
                     $ confident += 1
                     him happy "Guess what, [kid_name]?? We're all done!"
-                    kid angry "Aaa!"
+                    kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
                     $ authoritarian += 1
 
         "Leave her in her crib.":
+            scene kid_bedroom with fade
+            show him normal at center
+            show kid concerned at center, baby_pos
+            with moveinleft
             "I put her in her crib. She wouldn't like it, but she'd be safe enough there for a few hours while I finished the planting."
+            show him at midleft with move
+            show kid cry with dissolve
             "Sure enough, she cried as soon as I set her down. I turned on the baby monitor, but turned the volume on my receiver down so I couldn't hear her screaming."
+            hide him with moveoutleft
+            scene fields with fade
+            show tractor at midleft
+            show him determined at midleft
+            with moveinleft
             "I closed the door, hopped on the tractor and sped away from the house."
             "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
             "After about an hour she finally stopped crying; maybe she had fallen asleep."
             "Or maybe she finally realized that I wasn't going to come back until I was done."
             scene kid_bedroom with fade
+            show kid concerned at center, baby_pos with dissolve
             "After I finished planting, I went back to the house and peeked in at [kid_name]."
+            show him concerned at left with moveinleft
+            show kid angry with dissolve
             "As soon as I opened the door, she started screaming again. She stood up in her crib and glared at me with a heartbroken look of betrayal that I'll never forget."
+            show kid sad with dissolve
             "I tried to make it up to her with cuddles and food, but every time when she started to cheer up, she'd start crying again for no reason."
             "Well, I guess being stuck alone in her crib for a few hours was a pretty good reason."
             "She sure let me know what she thought of that."
@@ -6460,7 +6485,7 @@ label lettie_dies:
     "And now she was gone."
     scene stars with fade
 
-    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya and Lorant and Oleg showed up and together we all managed to get Lettie's body into the back of the tractor."
+    "That whole evening was kind of a blur. Thuc arrived with his tractor and a big trailer. Anya and Lorant and Oleg showed up and together we all managed to get Lettie's body into the trailer."
     "[her_name] must have called them. She probably knew we'd end up having to move Lettie, one way or another."
     "I didn't cry, but I didn't say much, either. I just concentrated on the next thing to do."
     # TODO: change who helps based on community scores?

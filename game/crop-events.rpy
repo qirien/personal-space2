@@ -1042,11 +1042,18 @@ label plums2:
 # BEANS 1 - How to harvest beans
 label beans1:
     scene fields with fade
-    show him normal at center with dissolve
+    show tractor at midleft
+    show him normal at midleft
+    with dissolve
     him happy "Look at all these beans!"
     him normal "And they're finally dry enough to harvest."
     "I drove the tractor down the rows so the puller attachment could pluck up the plants from the ground."
+    show tractor at midright
+    show him determined at midright
+    with move
     "Then I fed them into the sheller to separate the pods from the beans."
+    scene farm_exterior with fade
+    show him normal at center with dissolve
     if (year >= 7):
         show kid normal at midleft with moveinleft
         kid "Can I turn the crank?"
