@@ -18,13 +18,15 @@ RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, deriv
 
 Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Kid Bedroom <kid_bedroom.jpg>, Canyon <canyon.jpg>, Sunset <sunset.jpg> by Andrea Landaker
 
-Moons <moons.jpg>, by Andrea Landaker and Lisa Horner
+Moons <moons.jpg>, Ocean <ocean.jpg>, and Ocean Sunset <ocean-sunset.jpg> by Andrea Landaker and Lisa Horner
 
 Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://openclipart.org/detail/171268/boxing-glove> by netalloy
 
 Dirt background <soil.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/ground-earth-clay-soil-nature-549728/> by Humusak
 
 Tractor <tractor.png> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2437919">Hanomag Tractor</a> by <a href="https://pixabay.com/users/Emslichter-1377910/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2437919">Emslichter</a>
+
+Church <church.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1398784">Church Pews Religion</a>, by <a href="https://pixabay.com/users/miltritter-2124646/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1398784">Milt Ritter</a>.
 
 
 ==== CC-BY-2.0
@@ -44,6 +46,7 @@ The following images used as part of the GUI are in the public domain:
 
 Camera Lens by RG1024, <https://openclipart.org/detail/20295/camera-lens>
 Textbox twig frame by Firkin from "Poems and Pictures", 1865
+Watering Can by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">OpenClipart-Vectors</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">Pixabay</a>
 
 === Fonts
 Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>

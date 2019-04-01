@@ -1297,8 +1297,10 @@ label community9:
             show thuc sad
             thuc "Here [his_name], let me help set up the snares."
             "After a quick dinner of dried fruit and mashed beans, I set the snares."
-            show night_overlay with dissolve
-            show pete
+            scene bonfire with fade
+            show pete normal at center
+            show thuc normal at midleft
+            show him normal at midright
             pete "Before we turn in, let's make some camouflage for ourselves."
             show thuc sad
             thuc "I was thinking about that too. We can tie some leaves to our bodies, but it will be noisy."
@@ -1524,7 +1526,7 @@ label community11:
     kid "I wonder what the new people will look like."
     him "Well, they'll look like we do. We're all humans."
     her "Unless aliens have secretly taken over Earth!"
-    scene sage_and_scrub_brush with fade
+    scene plain with fade
     show sara normal at midleft
     show her normal at midright
     show him normal at center
@@ -1537,7 +1539,7 @@ label community11:
     him "They look pretty strong. Almost as strong as all the farmers we have here."
     her "Farmers have to be in good physical condition too!"
     sara "Pavel is already greeting everyone. Let's join him."
-    "I was about to introduce myself to one of the miners when I saw someone with amazing red hair."
+    "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
     "Wait a minute, I recognize him!"
     #BRENNAN ON SCREEN. he looks the same
     show brennan at quarterright with moveinright
@@ -1555,9 +1557,8 @@ label community11:
     him "..."
     brennan "You don't look like you've aged too badly, considering how much sun you must get."
     brennan "Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
-    "I help gather everyone, and the wagon makes for an improptu stage."
-    # TODO: different bg?
-    scene community_center with fade
+    "I whistled long and loud."
+    him angry "Hey, listen up! Quiet down, everyone!"
     show brennan at center with dissolve
     brennan "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
     brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
@@ -1749,7 +1750,8 @@ label community11:
                 pavel "I'm so happy right now!"
 
         if asked_only_medicine:
-            "Thanks to the cancer medicine, Martin is able to work on the farm for six more months before dying a peaceful death."
+            "Thanks to the cancer medicine, Martin was able to work on the farm for six more months before dying a peaceful death."
+            scene church with fade
             "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
             "They promised to help with the corn and turkeys."
@@ -1771,7 +1773,7 @@ label community11:
         $ luddites += 1
 
         label Martin_dead_sooner:
-            scene stars with fade # TODO: church bg?
+            scene church with fade
             "Without the medication, Martin's condition swiftly deteriorated, and he died later that week."
             "The family had a small funeral and buried him in the colony graveyard next to Josephina."
             "Tomás and Joanna Nguyen decided to help out, but they weren't prepared to take full responsibility for the farm."
@@ -2702,14 +2704,20 @@ label community15:
         "Don't speak at the funeral.":
             him "I really think you should speak instead."
             her concerned "I guess I don't have to say much..."
-    "The kids had been playing, but were listening to our conversation." #actual conversation w/kid?
+    "The kids had been playing, but were listening to our conversation." #TODO: actual conversation w/kid?
+    scene church with fade
     "Almost everyone came to the funeral the next day."
     #background - multipurpose room or chapel
+    show her concerned at center with moveinleft
     her "I hope Naomi felt at peace when she died."
     her "Even though she was miserable, she stayed cheerful and optimistic until the very end."
+    hide her with moveoutright
+    show pavel sad at center with moveinleft
     pavel "Naomi died of severe radiation sickness. I don't know if it was preventable or not."
     pavel "There were many times where she felt it was more important to attend to the needs of people in our community rather than take shelter from solar radiation."
     pavel "She constantly sacrificed her own needs to fulfill those of others, perhaps to an unreasonable degree. May her work live on in the way we treat each other." #you could have him say different things based on the community variable
+    hide pavel with moveoutright
+    show sara sad at center with moveinleft
     sara "Sister Naomi was my mentor and friend. After I had Oleg, I had pretty bad depression for the first year after he was born."
     sara "Sister Naomi visited me every day until I felt normal again. When I felt like it would have been better for me to die and have someone else watch Oleg, she helped me get out of the house to seek treatment." #depression meds available?
     sara "I know I'm not the only one she's helped this way. I'm sure each of you have a story about how Sister Naomi helped you feel like you were a necessary part of our community."
@@ -2725,11 +2733,15 @@ label community15:
     sara "So instead of hoping that my hopelessness will go away, I am staring it in the face."
     sara "Which is why I will be continuing her tradition of having weekly interfaith discussion groups."
     sara "I may not be as wise or inspiring as Sister Naomi. But I am organized and consistent. So please come and share your life wisdom and experience."
+    hide sara with moveoutright
     "Some of the children sang one of the songs Naomi taught them when they were young." #does Brennan do anything? What about the miners? Kevin or Zaina?
     if (c15_funeral == "poem"):
+        show him determined at center with moveinleft
         "I walked up to the stand and shared the poem I had written."
         him "[c15_funeral_poem]"
+        hide him with moveoutright
     elif (c15_funeral == "speak"):
+        show him determined at center with moveinleft
         "I walked up to the stand and prepared to speak."
         menu:
             "What should I say?"
@@ -2746,6 +2758,7 @@ label community15:
                 him "That doesn't mean we have to like it, but we do need to accept it, and move on."
                 him "So today we remember Sister Naomi, but tomorrow, let's not waste her hard work by moping about."
                 him "We could die at any time; we need to make the most of whatever time we still have."
+        hide him with moveoutright
     else:
         "[her_name] said a prayer of gratitude for Sister Naomi and asking for comfort and the inspiration to know how to help each other."
 
@@ -2753,6 +2766,10 @@ label community15:
     "[kid_name] and [bro_name] planted the saplings we brought."
 
     #back home
+    scene farm_interior with fade
+    show him determined at midleft
+    show her concerned at midright
+    with moveinleft
     him "So... How often was Naomi out in the radiation to get severe radiation sickness?"
     her "She was outside during an entire solar flare multiple times."
     her "She didn't say why, but I think she was checking up on Pete and Helen."
@@ -3029,6 +3046,7 @@ label community17:
     label justcolony:
         #which background? this is the end for all the other events as well. maybe don't have the luddites host if it's too complicated, or devise alternate small talk.
         # Have some kind of bonfire background?
+        scene bonfire with fade
         "I set my dish next to the ones from the other families on the buffet table."
         "Everyone helps themselves and sits down--some on tables and some on the ground."
         martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
@@ -3086,7 +3104,7 @@ label community17:
 
     #more likely to take a later risk if you have the parasite? doesn't have to be just like toxoplasmosis.
     # also if you meet with the luddites, Pete can answer questions about cattle health.
-    # if BOTH luddites and miners are there, they start trade negotiations? affects the fire grass event later.
+    # if BOTH luddites and miners are there, they start trade negotiations? affects the firegrass event later.
 
 
 label community18:
@@ -3501,7 +3519,12 @@ label community20:
 
 
 label community21:
+    scene community_center with fade
     "It's predictably overcast this time of year. Lots of people go camping now since there isn't as much danger from solar flare radiation."
+    show thuc normal at midright
+    show him normal at midleft
+    with dissolve
+
     thuc "A big group is headed to the seashore this weekend. Want to come with your family?"
     him "Yeah, I need a change of pace. Are any of your kids staying behind? I just need someone to take care of a few things while we're gone."
     thuc "Sure, send Gardenia a message. She's staying with Miranda while the rest of us explore."
@@ -3515,20 +3538,25 @@ label community21:
     thuc "It's not like you're entrusting your farm to him! Just tolerate his presence."
     him "Okay, whatever."
     thuc "We're going to form a caravan up at the fork in the road near the miner's camp."
+    scene stars with fade
     "My family was really excited to see the ocean, even though it would take about a day of walking to get there."
     "We met at the appointed time and place, with rations and blankets in our backpacks."
+    scene plain with fade
+    show brennan normal with dissolve
     brennan "Thanks for coming out to this joint miner-colonist outing! I'll be laying down a few ground rules."
     brennan "First, always stick with a buddy while we're traveling to the ocean."
     brennan "Don't eat anything unless you are certain it's edible."
     brennan "When you pee, make sure you're far from the river or food. And no smoking in tents!"
+    scene path with fade
     "We started walking along."
     her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [her_name] was born."
     her "There's a path here and everything."
     kevin "Yes, I like to visit the ocean at least once a month. And Pete and his cattle are excellent at making a pathway."
     him "Pete comes through here?"
     kevin "Yeah, his family winters near the beach." #TODO: does the player know this some other way? can't remember
+    scene canyon with fade
     "We had to climb through some rocky areas, but our progress was good."
-    him "What's with the no smoking rule? I didn't know we had anything to smoke around here."
+    him "What's with the no smoking rule? I didn't know we had anything to smoke around here." # TODO: remember this from the first game?
     kevin "Firegrass. It's a mild stimulant that the miners use to stay awake so they can work and extended period of time"
     kevin "It's stronger than caffeine."
     kevin "Most miners only use it when they really have to stay up longer, but some smoke every day."
@@ -3553,16 +3581,18 @@ label community21:
     brennan "Really? I wonder what that makes you, then..." #is this too weird
     him "A mongoose."
     kid "What's a mongoose?"
-    him "A cute, furry mammal that eats snakes."
+    him "A cute, furry mammal that preys on snakes."
     brennan "Interesting..."
     "We kept walking the rest of the day, chatting with each other while we walked."
+    scene ocean_sunset with fade
     "We arrived at the ocean in time to frantically set up our tent before sunset."
-    #line about what their kids are doing
+    "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
     "The moon rose, and we saw glowing lights in the ocean from the jellystars just below the surface."
     if ate_jellyfish:
         "I felt a strange attraction to the lights, and watched them until I fell asleep on the beach."
     else:
         "They were beautiful to watch for a few hours while we set up a fire and warmed up food for dinner."
+    scene ocean with fade
     "After a breakfast of soaked grain the next morning, I smelled a smoke that reminded me of curry. It was just some of the miners smoking firegrass in pipes though."
     "We spent time playing on the beach, even though it wasn't especially warm."
     "Some people caught fish or jellystars and tried cooking them."
@@ -3629,8 +3659,8 @@ label community21:
         him "It's not like we have a luxury good market here, so I guess the money they make here will translate into some kind of Earth currency?"
         zaina "Yes. Some of the miners come from incredibly poor backgrounds. They make more money in a day than they do in a month back on Earth."
         zaina "But most of them have gotten it into their head that if they just push themselves for another few years that they can help all their family get out of debt and retire early."
-        him "And the fire grass just allows them to be more productive."
-        brennan "I don't think it's worth the trade-off. For every extra night a miner works on fire grass, they need a day to recover and catch up on sleep."
+        him "And the firegrass just allows them to be more productive."
+        brennan "I don't think it's worth the trade-off. For every extra night a miner works on firegrass, they need a day to recover and catch up on sleep."
         brennan "Most of the time they don't stay home. And they way some of them keep using it can't be healthy."
         brennan "I don't know what Pete is doing with all the credits he's amassing from selling it."
         him "He buys some expensive things, like medicine. But part of me thinks that he's just going to delete it all like some kind of anarchist."
@@ -3684,6 +3714,7 @@ label community21:
                     brennan "Let's give him a few fossils or something when we get back. I'll talk to him."
 
     else:
+        scene bonfire with fade
         "[kid_name] caught a fish with Zaina, and we cooked it over an open fire."
         "It looks like the miners had the same idea. They got a huge bonfire going."
         her "Wow, that bonfire is huge! Let's go check it out."
@@ -5506,6 +5537,7 @@ label no_euthanasia:
     "One day Julia was late coming to watch him, and Sara left him alone."
     "Julia couldn't find him that night and we all started searching for him."
     "In the morning, we found his body drowned in the river."
+    scene church with fade
     "His funeral was well-attended, and we reminisced about his optimistic spirit."
     return
 
@@ -6629,14 +6661,14 @@ label community30:
             him "Joel died after falling from his wheelchair."
             him "The broken brakes I found on his wheelchair and the kind of head injury he sustained support the idea that he fell from the chair."
             him "Of course, if someone had pushed him, they would want to make it look like he fell."
-            if know_noel_received_firegrass_deliveries: 
+            if know_noel_received_firegrass_deliveries:
                 him "[kid_name] told me that Noel received unusually large shipments of firegrass."
-            if checked_joel: 
+            if checked_joel:
                 him "I knew that Joel had an unusual amount of credits in his account. " #others?
-            if knows_previous_head_injuries: 
+            if knows_previous_head_injuries:
                 him "Joel had had previous head injuries, which could explain why he died so quickly after his fall."
             her "Do you think it was an accident or was there foul play?"
-                              
+
             menu:
                 "It was a tragic accident following neglect.":
                     him "Van and Noel definitely should have made fixing Joel's brakes a priority."
@@ -6693,7 +6725,7 @@ label community30:
                             him "No, no more evidence to submit."
                             sara "We'll consider the case closed then."
                             return
-                        
+
                     else:
                         him "I'm ready to tell Julia my findings."
                         her "Enjoy."
@@ -6782,7 +6814,7 @@ label community30:
                                     him "I'm going to tell Kevin my theory."
                                     "I told Kevin my theory, and he agreed to set up a trial charging Julia and Van with conspiring to murder Joel."
                                     jump accuse_julia
-                                    
+
                                 else:
                                     him "If Julia is involved, how will I report my findings to her?"
                                     her "Don't tell her about your suspicions. Isn't there someone else you could report to?"
@@ -6798,14 +6830,14 @@ label community30:
                                     him_c "I'm accusing her of conspiring to murder Joel. And I'm accusing Van of putting that plan into action."
                                     sara_c "Got it. See you next week."
                                     him_c "Sounds like a plan."
-                                    
+
                                     him "Sara says she can make it happen."
                                     him "In the meantime, can you really test if the tea has firegrass in it?"
                                     her "I have tools for measuring the amount of caffeine is in a given substance."
                                     her "But don't you know plants well enough to identify firegrass in a course mixture like tea?"
                                     him "It's not a typical tea blend. It's a syrup."
                                     her "I'll test it."
-                                    
+
                                     label accuse_julia:
                                         "The day of the trial came. Zaina was acting as the defense."
                                         "Twelve colonists acted as the jury."
@@ -6847,8 +6879,8 @@ label community30:
                                         sara "I'm sorry, but that's not evidence! The case is closed."
                                         #the most material connection is the plastic measuring ring--this should at least be mentioned in the trial
                                         return
-                                    
-                                    
+
+
                         "Noel.":
                             label noel:
                                 him "I don't know if she considered it euthanasia or if she had another motive, but Noel seems the most likely suspect."
@@ -6871,7 +6903,7 @@ label community30:
                                     kevin "Your argument has logic. Let us see what the jury has to say at the trial."
                                     $ accuse_noel_of_murder = True
                                     jump accuse_noel_neglect
-                                    
+
                                 else:
                                     "I told Julia I was ready to report and she asked me to come over right away."
                                     him "As you know, the dysfunctional brakes on Joel's wheelchair led to his head injury."

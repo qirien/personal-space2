@@ -720,7 +720,6 @@ label family3:
     hide kid
     with moveoutright
 
-    # TODO: get background.
     scene canyon with fade
     show him normal at midright
     show her normal at midleft
@@ -863,8 +862,9 @@ label family3:
             $ confident += 1
             $ neglectful += 1
 
-    scene moons with fade
+    scene bonfire with fade
     "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
+    scene moons with fade
     show him sleeping at midright
     show her sleeping at center
     show kid normal at center, baby_pos
@@ -4435,6 +4435,7 @@ label family16:
                     "I didn't say anything. I just took it all out back and dumped it in a pile."
                     "Some of it could probably be recycled, but why should that be my job?"
                     "Then I lit it on fire."
+                    scene bonfire with fade
                     "[kid_name] came running out and screamed when she saw the blaze."
                     kid "No! Stop! I'll clean it up!"
                     him determined "If you won't take care of your things, then you don't get to have things."
@@ -7341,7 +7342,7 @@ label family28:
         "What are you, a drug dealer?":
             $ demanding += 1
             him angry "What are you, a drug dealer?!"
-            kid "Dad, it's just some cider and some fire grass. Fire grass is not that different from the coffee you're always wishing you had."
+            kid "Dad, it's just some cider and some firegrass. Firegrass is not that different from the coffee you're always wishing you had."
             him "You're enabling people to keep using the stuff!"
             kid "People are going to use it whether I deliver it or not! I'm making good money with this."
             him "Money's not the only issue!"
@@ -7390,7 +7391,7 @@ label family28:
                     "[her_name] shot me a glare. I was just trying to help, but maybe I'd let her handle this one."
                     her "Is that acceptable to you?"
                     kid "Fine."
-                    her "Good! I'm glad we could work something out. You can do better than delivering fire grass and alcohol."
+                    her "Good! I'm glad we could work something out. You can do better than delivering firegrass and alcohol."
                     $ authoritative += 1
                 "You can keep your job":
                     $ responsive += 1
@@ -7449,7 +7450,7 @@ label family28:
     him "In our culture, a guy like Brennan giving alcohol to a teenage girl is like..."
     her "It's like..."
     kid "What? What is it like?"
-    him "Like giving fire grass to a two year old, just to watch them act all crazy."
+    him "Like giving firegrass to a two year old, just to watch them act all crazy."
     her concerned "Some people think it's fun to get other people drunk."
     him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
     kid "You mean like... Brennan wouldn't do that!"
