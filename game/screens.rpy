@@ -332,6 +332,8 @@ screen navigation():
 
         textbutton _("Preferences") action ShowMenu("preferences")
 
+        textbutton _("Achievements") action ShowMenu("achievements")
+
         if _in_replay:
 
             textbutton _("End Replay") action EndReplay(confirm=True)
@@ -1147,6 +1149,29 @@ style help_label_text:
 ################################################################################
 ## Additional screens
 ################################################################################
+
+screen achievements():
+    tag menu
+
+    if renpy.mobile:
+        $ cols = 2
+    else:
+        $ cols = 3
+
+    use game_menu(_("Achievements"), scroll="viewport"):
+
+        vpgrid:
+            xfill True
+            cols cols
+            spacing 10
+            for title in achievement_list:
+                vbox:
+                    if (achievement.has(title)):
+                        text "[title]"
+                    else:
+                        text "{font=fonts/OpenSansEmoji.otf}🔒{/font} [title]"
+                        # TODO: use font with unicode support
+
 
 
 ## Confirm screen ##############################################################

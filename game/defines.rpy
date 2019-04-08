@@ -241,6 +241,36 @@ init -100:
 #
 #     config.displayable_prefix["orange"] = orangify
 
+    # Setup ACHIEVEMENTS
+    python:
+        achievement_list = [
+        # Achievements for each ending
+        "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
+        # Achievements for each parenting style
+        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Father Failure",
+        # Achievements for each community favored
+        "Xenophiliac", "Don't Tread on Me", "Law & Order", "What's Yours is Mine",
+        # Game Progression
+        "Binary System", # became a father of two
+        "Carbon Copy", # trained your daughter in farming
+        "Patience Grandmaster", # kept your cool around a toddler
+        "Talked the Talk", # answered kid_name's sex ed questions
+        "Over the Hill", # turned 40
+        # Special weird things
+        "Scurvy Dog", # got scurvy
+        "Rich Dad", # saved a lot of money
+        "Good Husband", # had a good relationship with her_name
+        "Potato Diet", # planted almost all potatoes
+        "Mutant Ninja Berries", # had mutated strawberries
+        "Chez Dad", # ate escargot
+        "Family Beeswax" # got bees
+        ]
+
+        for title in achievement_list:
+            achievement.register(title)
+
+
+    # Setup parenting manual
     define childs_mind = {
     "baby": "My world is small -- my family, blanket, and milk. So when something goes wrong it's like my whole world is collapsing! That's why I cry so much. \n\nI am learning so much every day, but it probably seems slow to you. I'm learning to focus my vision, touch and grab things, make sounds and decode their meaning, and who I can trust to take care of me. Soon I'll even move my whole body and understand a little of what you are saying, and make sounds that mean things. \n\nPlease be patient with me and show me a lot of love; I'm learning as fast as I can!",
 

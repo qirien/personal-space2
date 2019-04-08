@@ -77,18 +77,23 @@ label ending:
 #1 aci - Blames you for everything. Clingy. Follows (miner?) boyfriend back to Earth but you know the relationship won't last.
 label ending_aci:
     "Ending aci"
+    scene plains with fade
+    show him determined at center
+    show her normal at midright
+    with dissolve
     her surprised "Where's [kid_name]? I thought she'd want to say goodbye to Anya."
     him surprised "I thought Anya was staying here, with Travis."
     her concerned "I thought they broke up..."
     him normal "I can't keep track of who's with who anymore!"
 
-    brennan "[her_name]. I just wanted to say I'm sorry."
+    show brennan normal at midleft with moveinleft
+    brennan normal "[her_name]. I just wanted to say I'm sorry."
     her surprised "Sorry for what?"
-    brennan "That [kid_name]'s leaving. I tried to convince her to stay, but after everything she told me... well, I can't blame her."
+    brennan mad "That [kid_name]'s leaving. I tried to convince her to stay, but after everything she told me... well, I can't blame her."
     him annoyed "Leaving? Leaving for where?"
-    brennan "Earth, of course. Where else would we be headed?"
+    brennan normal "Earth, of course. Where else would we be headed?"
     him angry "She's NOT going with YOU!"
-    brennan "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
+    brennan mad "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
     her determined "No. We did not."
     him "There she is!"
     her concerned "[kid_name]! You-- you're leaving?!"
@@ -158,6 +163,7 @@ label ending_aci:
     her sad "None of that will bring my baby [kid_name] back."
 
     "Ending 1/8, Bring Back my Baby."
+    $ achievement.grant("Bring Back my Baby")
 
     return
 

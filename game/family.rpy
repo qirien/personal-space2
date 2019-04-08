@@ -1796,7 +1796,7 @@ label family7:
     show her normal at midleft
     show kid normal at center
     with dissolve
-    "[his_name] and [her_name]" "♫ ~ Happy Birthday to you! ~ ♫" # TODO: Use a different, unicode font for the musical notes so that they will show up.
+    "[his_name] and [her_name]" "{font=fonts/OpenSansEmoji.otf}🎶{/font} ~ Happy Birthday to you! ~ {font=fonts/OpenSansEmoji.otf}🎶{/font}"
     him happy "Make a wish!"
     "We didn't have a traditional birthday cake, but [her_name] had made some sweetbread and spread some precious melted chocolate on the top."
     "[kid_name] blew out the candle and we settled down to eat our treat."
