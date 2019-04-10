@@ -1220,207 +1220,227 @@ label community8:
 
 # 9 - camping with Pete
 label community9:
-    show pond with fade
-    show pete at midright
+    scene pond with fade
+    show pete normal at midright
     show him normal at midleft #he isn't appearing in my testing... not sure why not.
-    pete "Hey, [his_name]!"
-    show him happy
-    him "Hi Pete."
-    show pete happy
-    pete "Out to catch some fish?"
-    show him normal
-    him "No, just taking a walk."
-    show pete
+    pete happy "Hey, [his_name]!"
+    him happy "Hi Pete."
+    pete normal "Out to catch some fish?"
+    him normal "No, just taking a walk."
     pete "How's the farm?"
-    show him happy
-    him "Doing okay I guess."
-    show pete happy
-    pete "I miss having guy's night!"
-    show him concerned
-    him "Yeah. Things got really busy with our last harvest and we never really picked it up again."
-    show pete
-    pete "What do you say to accompanying me on a hunting expedition?"
-    show him surprised
-    him "Now?"
-    show pete happy
-    pete "No, this weekend. We can camp overnight so we can get further from the colony."
-    show him concerned
-    him "Is that really necessary?"
-    show pete
-    pete "Yes, the hunting is no good around the colony. I think all the strange animal sounds scares off the smaller creatures."
-    pete "We'll only go a few miles out. Until we find a herd of those grass crabs."
+    him "Not bad. Just finished all the planting for the season."
+    pete "Don't see you much since we quit having guy's night."
+    him concerned "Yeah, that was fun, we should do that again."
+    pete "I'm going hunting this weekend. Come along if you want."
+    him surprised "Really? Where?"
+    pete happy "I'm gonna hike out a couple klicks, spend the night, then see if I can get one of those big grass crabs."
+    him determined "Overnight?"
+    pete normal "Yeah, the grass crabs avoid the towns and farms - they like wide grassy areas."
     "What do I tell Pete?"
     menu:
         "Sounds fun! Go with him and invite Thuc.": #you learn the particulars of how to camp safe from radiation.
             $ luddites += 1
             $ colonists += 1
-            show pete
-            pete "We have two radiation-proof tents that RET sent with us."
-            pete "I don't like relying on them for so many things though, so I'm going to try out my own radiation-proof tent."
-            show him surprised
-            him "And you're testing it on us?"
-            show pete happy
-            pete "No, we'll use the RET tents. I will test my homemade tent though."
-            show pete
-            pete "Bring something to sleep on and some food. And get a bow and arrow from the community center."
-            show him determined
-            him "Not the rifles?"
-            show pete happy
-            pete "With the guns, they all run away when they hear the shot. I want to see if the bow and arrow does any better."
-            pete "Plus it seems funner to use a bow."
-            show him concerned
-            him "I haven't praticed shooting a bow and arrow before."
-            show pete
-            pete "Not even in the simulations on the shuttle ride out here? We had so much time for that!"
-            show him angry
-            him "I was more concerned about reading the latest research on alien plants and running farm simulations."
-            pete "You can set up traps then. I want to fell one of these creatures by my own power!"
-            show him concerned
-            him "I'll bring some wire for snares I guess."
+            him normal "That sounds fun. We should invite Thuc, too. Do you have the right equipment?"
+            pete normal "We've got two radiation-proof tents from RET. I don't like relying on them for so many things though, so I'm going to try out my own."
+            him surprised "And you're testing it on us?"
+            pete happy "Nah, we'll bring both. Still gotta test the one I made."
+            pete normal "Bring something to sleep on and some food. And get a bow from the community center."
+            him determined "Not the rifles?"
+            pete normal "With the guns, they all run away when they hear the shot."
+            pete happy "And I want to show you the bow I made. You might not be able to draw it, though."
+            him annoyed "We'll see about that... though I haven't praticed shooting a bow and arrow since I was a kid..."
+            pete happy "You can set up traps, then."
+            him normal "Or maybe I'll do both. We'll see which is more effective."
+            scene storeroom with fade
+            "I told Thuc about the campout and he decided to join us, bringing a crossbow from the storehouse. I picked up some wire and cord for snares, as well as a compound bow."
             scene path with fade
-            show thuc at center
-            show pete at midright
+            "Pete led us on a hike that lasted all afternoon. Finally, we found the herd."
+            scene plain with fade
+            show thuc normal at center
+            show pete normal at midright
             show him normal at midleft
-            "I tell Thuc about the campout and he joins us that weekend, bringing a bow from the community center."
-            "We find a group of grass crabs and observe them for a while."
-            "The grass crabs are about the size of a capybara, but have less meat because of their large shells."
-            "While they eat grass, they also eat the woody parts of plants. Their large beak-like claw cuts through the woody part, which allows them to suck on it while on the move."
+            "The grass crabs were about the size of a capybara, but had less meat because of their large shells."
+            "They ate a lot of grass, and also the woody parts of plants. Their large beak-like claw could cut through branches, which allowed them to gnaw on it while on the move."
             #makes sense?
-            show thuc sad
-            thuc "It seems like in the morning, they like to be in the sun, but then in the evening, they like to be in the shade."
-            show pete
-            pete "They're like insects. The can't make their own body heat so they have to position themselves well."
-            show thuc
-            him "This herd is a pretty good size. There are some juveniles and also some older animals."
-            show pete happy at midleft
-            pete "You can see some of the trails they've been on. Wait for them to settle for the night and then put the traps on the trail."
-            show thuc sad
-            thuc "Here [his_name], let me help set up the snares."
-            "After a quick dinner of dried fruit and mashed beans, I set the snares."
+            thuc sad "It seems like in the morning, they like to be in the sun, but then in the evening, they like to be in the shade."
+            pete normal "They're cold-blooded critters, like insects. The can't make their own body heat."
+            show thuc normal
+            him surprised "This herd is a pretty good size. There's all different sizes of them."
+            scene canyon with fade
+            show thuc normal at midright
+            show pete normal at center
+            show him normal at midleft
+            with dissolve
+            "We setup a camp nearby, and Pete strung his giant longbow and waxed the string."
+            pete "Here, give this baby a try. Aim for that dead tree over there."
+            him determined "Isn't there supposed to be some place for the arrow to rest?"
+            pete "Don't need it. It just rests on your hand."
+            "I picked up the bow and nocked an arrow... but couldn't pull it back more than a few inches. The arrow plinked harmlessly off the tree."
+            him normal "Ha ha, at least I hit the tree."
+            thuc normal "You made this bow?"
+            pete normal "Yup. Carved it from a single branch."
+            "He drew an arrow, nocked it, and pulled the string back all the way to his jaw. The arrow flew into the dead tree and almost came out the other side."
+            him annoyed "I prefer a compound bow."
+            "I got out my own bow and shot an arrow at our target, and it sunk in with a satisfying {i}thunk{/i}."
+            "Thuc got out his crossbow and we took turns trying it out, too."
+            "We recovered our arrows and bolts, and I noticed it was getting dark."
+            show night_overlay
+            him normal "I'm going to go setup those snares."
+            thuc normal "I saw some trails back there. Might be a good spot."
+            pete "I'm going to get a fire going. We'll eat when you get back."
+            hide him
+            hide thuc
+            with moveoutright
+            hide pete with moveoutleft
+
             scene bonfire with fade
             show pete normal at center
-            show thuc normal at midleft
+            show thuc normal at quarterright
             show him normal at midright
-            pete "Before we turn in, let's make some camouflage for ourselves."
-            show thuc sad
-            thuc "I was thinking about that too. We can tie some leaves to our bodies, but it will be noisy."
-            show pete happy
-            pete "We can at least make our clothing more inconspicuous by making the coloring irregular."
-            show pete
-            pete "Let's use some of the ashes from the fire to help us blend in with the shadows."
-            scene path with fade
+            show night_overlay
+            with dissolve
+
+            "When we returned, Pete had some beans cooking on a small fire and was making what looked like a cloak of branches and small pieces of yarn."
+            him surprised "What are you making, Pete?"
+            pete "A ghillie suit."
+            thuc sad "Do you think that will really help camouflage you from the grass crabs?"
+            pete happy "These critters have eyes, right? I reckon it'll help."
+            thuc normal "I'm going for something a little easier."
+            "He dredged his jacket in some ashes from the fire to mottle its coloring."
+            "I didn't go to quite as great of lengths as Pete, but I did tie some branches to my hat and smudge soot on my clothes."
+            pete "They'll never see us coming!"
+            # TODO: can we show this?
+
+            scene plain with fade
+            show night_overlay
             play music tense
-            "After sleeping in tents, you wake up early to catch the grass crabs while they're still drowsy."
-            "They gather in the sunlight, warming themselves and chewing on sticks"
-            "You're about 20 feet away when you stop trying to get closer."
-            show pete at midright
+            "The next day, we woke up before the sun to catch the grass crabs while they're still drowsy."
+            "By the time we found them, the sun was starting to come up, and the grass crabs were warming themselves and chewing on sticks."
+            show pete normal at midleft
+            show him determined at quarterleft
+            show thuc normal at left
+            "At about 100 meters, we stopped to figure out our approach. Pete whispered so quietly I could barely hear him."
             pete "Those two big ones look like good targets."
-            show him determined at left
-            him "Try not to lose any arrows."
-            show thuc sad at midleft
-            thuc "I won't lose them but I will definitely loose them."
-            show him annoyed
-            him "..."
-            show thuc
-            thuc "   "
-            "One of the grass crabs looks in your direction and everyone gets silent."
-            "The group starts slowly moving away."
-            "Pete points to himself and makes a circular motion."
-            "He points to a different grass crab that is a bit further off."
-            "You all creep around quietly, giving the grass crabs a wide berth. It's slow and laborious."
-            #creative blocking ideas?
-            "You wish that you had just scared the herd into your snares, since that would have taken less time."
-            "It seems like you're maneuvering all morning. Finally, Pete gives you a thumbs-up and draws his bow."
-            "He hits one of the animals, but it simply walks off with an arrow sticking out of it."
-            show thuc sad
-            thuc "It's still alive!"
-            "Together you stalk the animal to see if it will fall over."
-            show pete happy
-            pete "I think I hit it right where its heart should be. Of course, with those shells, it's hard to tell how deep the arrow went."
-            "It's lying down and not moving. Pete approaches, knife in hand."
-            "Suddenly, the animal pinches Pete's leg with its front claw!"
-            show pete
-            pete "Yeeeowch!"
+            show him determined at creepright
+            show pete normal at creepright
+            show thuc sad at creepright
+
+            "We readied our arrows and snuck closer."
+            him determined "Try not to lose any arrows."
+            thuc sad "I won't lose them but I will definitely loose them."
+            him annoyed "..."
+            thuc normal "..."
+            "One of the grass crabs looked in our direction. Then another. And another."
+            "The herd started slowly moving away."
+            "Pete pointed to himself and made a circular motion."
+            "He pointed to a different grass crab on the far edge of the herd."
+            show him determined at creepreset
+            show pete normal at creepreset
+            show thuc sad at creepreset
+
+            "We followed him quietly, giving the grass crabs a wide berth. I felt like just shooting from here, but I was worried it would be too far for the arrow to go through their thick shells."
+            "So we continued our painfully slow creeping."
+
+            "It would have been faster to just scare the herd towards my snares, but honestly, I wasn't sure they would work. Grass crabs were pretty different from rabbits."
+            "It seemed like we were maneuvering all morning. Finally, Pete gave a thumbs-up and drew his bow."
+            "I guess he was going to shoot first. He probably had the best chance of piercing their armor. Still, Thuc and I didn't want to be left out. I aimed at the same crab."
+            "As soon as I saw him loose his arrow out of the corner of my eye, I let mine loose, too."
+            "My arrow sailed over its shell, but Thuc's stuck out of the crab's leg."
+            "Pete's hit the crab square in the front part of the shell, but it simply walked off with the arrow sticking out of it."
+            thuc sad "It's still alive!"
+            show him determined at midleft
+            show pete normal at center
+            show thuc sad at quarterleft
+            with move
+
+            "Together, we stalked the animal to see if it would fall over."
+            pete happy "I think I hit it right where its heart should be. Of course, with those shells, it's hard to tell how deep the arrow went."
+            play music exciting
+            "The animal fell to the ground, motionless. Pete approached it with a large hunting knife."
+            show pete at midright with move
+            "Suddenly, the animal pinched Pete's leg with its giant front claw!"
+            show pete normal at squatting with move
+            pete normal "Yeeeowch!"
             # TODO: Should this be a timed menu?
             menu:
                 "Tackle the crab.":
                     $ luddites += 1
                     #TODO: I want the injured-hand option to result in making less money that month, if we do the currency thing.
-                    "You tackle grass crab from behind, easily outweighing it."
-                    "The crab releases Pete and tries wildly to pinch you, but the claw isn't flexible enough to reach you while you're on its back."
-                    "Pete stabs the crab, but cuts your arm in the process."
-                    show pete happy
-                    pete "We got 'em!"
-                    show him surprised
-                    him "Your leg!"
-                    show pete
-                    pete "I think it looks worse than it is."
-                    show him concerned
-                    him "Let's get back to camp."
-                "Uhhh.":
-                    $ pass
-                    "You freeze, not knowing what to do. Thuc steps on the crab's claw, and it releases its grip on Pete's leg, but the grass crab scratches Thuc with its smaller, comb-like arm."
-                    "Pete thrusts his dagger into the crevice where the crab's shells meet."
-                    show pete happy
-                    pete "Got 'em!"
-                    show him concerned
-                    him "Are you guys okay?"
-                    show pete
-                    pete "It doesn't feel too bad. Let's get back to camp and see how things are."
-            "You help Thuc to haul the grass crab back to the camp."
-            show fields with fade
+                    show him at right with move
+                    "I tackled the grass crab from behind, easily outweighing it."
+                    "The crab tried to get at me with its other, smaller claw, but couldn't reach back that far."
+                    "The crab's wild swinging made Pete lose his balance, and he fell forward onto the crab, his knife slicing through my arm and into the top of the crab's shell."
+                    "Finally, the crab quit moving and we were able to pry Pete's leg out of the claw."
+                    show pete at standing with move
+                    pete happy "We got 'em!"
+                    thuc normal "But at what cost? You guys look awful."
+                    "I looked down at the blood streaming down my arm, and the blood welling through Pete's pant leg."
+                "Stay here.":
+                    show thuc at right with move
+                    "I froze. Thuc stepped forward onto the crab's claw, and it released its grip on Pete's leg."
+                    "However, it brought up its smaller claw and scratched Thuc's cheek."
+                    "Pete thrust his knife into the crevice where the crab's shell plates met."
+                    show pete at standing with move
+                    pete happy "Got 'em!"
+                    him concerned "Are you guys okay?"
+                    pete normal "It doesn't feel too bad. Let's get back to camp and see how things are."
+            thuc normal "We may look bad... but he looks worse!"
+            "We bound up our wounds and then the three of us hauled the grass crab back to camp. Pete was limping a bit but otherwise seemed okay."
+            hide pete
+            hide him
+            hide thuc
+            with moveoutleft
+
+            play music tender
+            scene canyon with fade
             show him determined at midleft
-            show pete at midright
-            him "Here, sit down, let's clean these wounds."
-            show pete happy at midright
-            pete "Nothing a bandage can't fix."
-            "After everyone is patched up, you find that you've captured a grass crab in one of your snares."
-            "Pete gives the grass crab a decoy stick to hold so Thuc can attack it from behind."
-            show him happy
-            him "This is going to be delicious."
-            show pete
-            pete "Let's eat some and then head back."
-            "After making a fire, a solar flare warning comes up on the radio."
-            show pete happy
-            pete "Fantastic. I can test my homemade tent."
-            show him surprised
-            him "What did you make your homemade tent out of?"
-            show pete
-            pete "The fabric is leather. That doesn't do anything for radiation."
-            pete "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
-            "Pete pours the water in, and it gradually fills the tent's lining."
-            "After about twenty minutes, the radio comes on again to say that the flare has abated."
-            show pete happy
-            pete "And it appears to reduce solar radiation! Too bad it's completely dark in there."
-            "Some water leaked from the tent during the time you were waiting."
-            show pete
-            pete "It looks like it has a few leaks too."
-            show him surprised
-            him "Hmm. Aren't these shells radiation-proof? Maybe you could build a house out of them."
-            show pete happy
-            pete "Good idea. I'll save them so I can experiment."
-            "After eating some of the meat, you and Pete and Thuc bring the rest back to the colony."
-            show pete
-            pete "We process cattle all the time, so we can finish butchering the grass crab. I'll make sure you get some."
-            pete "Come by in a few hours if you want something fresh, otherwise it's all going to be jerky."
-            show him happy
-            him "Thanks Pete."
+            show thuc normal at center
+            show pete normal at midright
+            with dissolve
+            "On our way back, we checked the snares. One of them had a crab leg in it... but there was no sign of the rest of the crab."
+            him happy "This is going to be delicious."
+            pete happy "Let's cook some up before we head home."
+            "Just as we got our fire started, a solar flare warning came up on the radio."
+            pete normal "Fantastic. I can test my homemade tent."
+            him surprised "How did you make it?"
+            pete normal "The fabric is leather. That doesn't do anything for radiation."
+            pete happy "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
+            "Pete pours the water in, and it gradually fills the tent's lining. He put a radiation monitor inside the tent and we gathered in other tent for the duration of the solar flare."
+            "After about twenty minutes, the radio came on again to say that the flare has abated."
+            "Pete checked his monitor to see the results of the test."
+            pete happy "And it appears to reduce solar radiation! Too bad it's completely dark in there."
+            him annoyed "And there's some water on the floor -- looks like a leak."
+            pete normal "Hmmm, yeah, still needs some work."
+            him surprised "Hmm. These shells probably protect the crabs from radiation... maybe you could build something out of them?"
+            pete happy "Good idea. I'll save them so I can experiment."
+            scene bonfire with fade
+            show pete normal at center
+            show thuc normal at midright
+            show him normal at quarterright
+            with dissolve
+            "Finally, we were able to roast and eat the grass crab. The meat was surprisingly sweet."
+            "We couldn't eat all of it, so we split it up between the three of us to bring home."
+            pete "Here's some salt water to keep it fresh for the hike home."
+            him normal "Thanks, Pete."
+            pete "We oughta do this more often."
+            thuc normal "Sure, except with less blood next time."
+            him happy "Sounds good to me!"
         "Sounds dangerous. I have to focus on farming right now anyway.":
             $ miners += 1 #not sure which side colonists +1 should go on for this one.
-            show him concerned
-            him "What happens if you get pinched by one of those things? It doesn't sound safe."
-            show pete
+            him concerned "What happens if you get pinched by one of those things? It doesn't sound safe."
             pete "That's the whole point! Gets your blood moving."
             show him determined
-            him "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
-            "Pete went hunting on his own. But he brought back some jerky from the grass crab he killed."
+            him determined "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
+            "Pete went hunting on his own. But he brought back some meat from the grass crab he killed, preserved in salt water."
             #scene change
-            show him happy
-            him "This is delicious."
-            show pete happy
-            pete "It took me nearly all day to finally hit one. Then I had to chase it down!"
-            show him surprised
-            him "Was it worth it?"
+            scene community_center with fade
+            show him normal at midleft
+            show pete normal at midright
+            with dissolve
+            him happy "This is delicious!"
+            pete happy "It took me nearly all day to finally hit one. Then I had to chase it down!"
+            him surprised "Was it worth it?"
             pete "Hell yes! Herding cattle is fine for everyday, but every once in a while I need some excitement in my life."
     return
 
@@ -1894,6 +1914,7 @@ label community12:
                 "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
                 pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
                 "We walk through the village on the way to the control station, which is higher up on the foothill."
+                scene cabins with fade
                 "Rivulets of waste water flow down the road as we approach. It doesn't smell like urine, so it's probably leftovers from washing."
                 "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than mine, if that's even possible."
                 "We walk by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
@@ -2317,6 +2338,7 @@ label community13:
                         zaina "I have about as much as I can use, but I fully support Lily's research."
                         lily "Knowing more about our planet benefits everyone."
                         him "I'm on my way. Let's talk to Brennan together."
+                        scene cabins with fade
                         "I walked over to the camp. We found Brennan reading a book near his hut."
                         brennan "How's the expedition?"
                         zaina "It was fantastic. The cave's beauty is beyond the capacity of verbal description."
@@ -3170,6 +3192,7 @@ label community18:
                 $ c18_waited = True
                 jump cow_options
 
+    scene cabins with fade
     "I go out to the miner's camp on Lettie with my binoculars to look for Pete."
     brennan "Hey, we had a few cows come through our settlement about twenty minutes ago."
     brennan "They ate up half of our herb garden."
@@ -3741,6 +3764,12 @@ label community22:
         him_c "Pete can come. See you all there."
 
         "The next evening..."
+        scene cabins with fade
+        show him at left
+        show zaina at midleft
+        show pete at midright
+        show brennan at center
+        with dissolve
         brennan "We've almost completely mined the rare metals from the first mountain."
         pete "It's not much of a mountain anymore."
         brennan "That is an unfortunate side effect of mining. A side effect which concerns you, because the next logical place for us to mine is a mountain near your wintering area."
@@ -3887,6 +3916,9 @@ label community22:
                         brennan_c "Intimidating, yes. But I don't know if I could trust them not to fire them."
                         him_c "I'll go with them then."
                         "I made arrangements for my farm for the next two days and picked up the guns. Then I met Brennan at his new camp about four miles away from us."
+                        scene cabins with fade
+                        show him normal at midleft
+                        show brennan normal at midright
                         him "Okay Brennan, who's coming with me?"
                         brennan "Bandile and Chaco have agreed to come with you."
                         "On the way there, I told them our plan was to intimidate, not kill. I gave them both guns."
@@ -5587,7 +5619,9 @@ label community29:
         "I saw Pete dragging her to the hospital on a stretcher. He refused my help."
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would poke me with a needle accidentally."
         her "I'm working as fast as possible and I'm not sure she'll make it. Get Julia and Van so they can help me."
+        scene cabins with fade
         "Her radio wasn't working, so I ran all the way to the mining camp to find them. Even running back, it took over an hour."
+        scene hospital with fade
         "By the time we got back, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
         her "Go find Ilian!"
@@ -5876,6 +5910,7 @@ label community30:
             "Visit where Joel died.":
                 label joel_house:
                     $ visited_joel_house = True
+                    scene cabins with fade
                     "I made the long walk to the miner's camp. It was rainy, and the path up the mountain was slick."
                     "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
                     "As I walked I thought about Joel. How long had he been disabled? It would be difficult to live in a wheelchair in the mountains."
@@ -5886,6 +5921,7 @@ label community30:
                     "The camp itself was in a flat area of the mountain."
                     "I asked where I could find Noel, and an old woman pointed me in the right direction."
                     #knock sound?
+                    scene yurt_interior with fade
                     him "Hi, Noel? Hello? Are you here?"
                     thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
                     him "I'm here to examine where Joel died."

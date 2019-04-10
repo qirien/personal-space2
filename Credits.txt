@@ -28,7 +28,11 @@ Tractor <tractor.png> by Andrea Landaker, derived from <a href="https://pixabay.
 
 Church <church.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1398784">Church Pews Religion</a>, by <a href="https://pixabay.com/users/miltritter-2124646/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1398784">Milt Ritter</a>.
 
-Bonfire <bonfire.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2604925">Fire Flame Burn</a> by <a href="https://pixabay.com/users/StockSnap-894430/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2604925">StockSnap</a> from 
+Bonfire <bonfire.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2604925">Fire Flame Burn</a> by <a href="https://pixabay.com/users/StockSnap-894430/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2604925">StockSnap</a>.
+
+Restaurant <restaurant.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=105758">Hungary Rest Area Picnic Spot</a> by <a href="https://pixabay.com/users/12019-12019/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=105758">David Mark</a>.
+
+Miner Cabins <cabins.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=255705">Cabins Sheds Shacks</a> by <a href="https://pixabay.com/users/hifijohn-145879/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=255705">hifijohn</a>
 
 
 ==== CC-BY-2.0

@@ -170,6 +170,11 @@ init -100:
         linear 0.7 yoffset -150
         linear 0.7 yoffset 0
 
+    transform creepright:
+        linear 10.0 xoffset 200
+    transform creepreset:
+        linear 10.0 xoffset 0
+
 
     # Baby positions for being held
     define baby_ypos = 540
@@ -243,6 +248,7 @@ init -100:
 
     # Setup ACHIEVEMENTS
     python:
+        # TODO: implement unlocking by calling achievement.grant(name)
         achievement_list = [
         # Achievements for each ending
         "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",

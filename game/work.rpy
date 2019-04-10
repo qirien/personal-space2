@@ -1357,8 +1357,12 @@ label work28:
     kid normal "Of course. He was trying to get me to work there but I wanted to wait to see if he was actually going to make it happen first."
     her happy "I haven't been out to eat in... years!"
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
+    scene restaurant with fade
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
+    "Plus, the place wasn't that big."
+    "Basically, he had hooked up a fridge to his tractor's power, setup a little grill, and put out some benches and tables."
+
 
 
     # TODO: finish this.

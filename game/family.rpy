@@ -6341,19 +6341,19 @@ label family24:
             "Lettie tossed her head."
             him "I guess you probably know what I mean, since you're getting a bit older, too."
 
-    #scene miners
+    scene cabins with fade
     "After we arrived at Anya's house, I secured Lettie's tether to the gate."
     "Lettie was breathing a little harder than usual, so I thought I'd let her take a break while I looked for [kid_name]."
     "She seemed happy to be resting, and started grazing on some small nearby shrubs."
     "Anya's father told me they had gone for a walk by the canyon."
-    scene canyon
+    scene canyon with fade
     show him normal at midleft with moveinleft
     "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
     "...Maybe especially because she was almost 15."
     him surprised "[kid_name]!"
     "My call echoed up and down the canyon. I listened carefully, but there was no response, so I walked further along."
     hide him with moveoutright
-    scene sunset
+    scene sunset with fade
     show him normal at midleft with moveinleft
     him concerned "[kid_name]!"
     show kid normal at midright with moveinright
@@ -6450,7 +6450,7 @@ label family24:
         kid "Now you suddenly care about what I do?"
 
 label lettie_dies:
-    scene miner_camp with fade
+    scene cabins with fade
     show him normal at left
     show kid normal at midleft
     show horse at right

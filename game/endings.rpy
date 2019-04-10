@@ -171,15 +171,15 @@ label ending_aci:
 label ending_acI:
     "Ending acI."
     "Even though [kid_name] still lives on Talaam, I worry a lot about her."
-    "She's trying to support herself with her delivery business, but with just a bike, she can't carry very much cargo."
-    "I worry that she moved in with Travis because she needed a place to stay, not because she loves him."
+    "She's got more competition with deliveries and now it's harder for her to get business."
+    "I worry that she moved in with Travis because she needed a job and a place to stay, not because she really loves him."
     "I worry that she'll be too prideful to ask for help when she needs it."
     "And I worry that I didn't teach her enough for her to be out on her own already."
     "And the worst part about these worries is that, for the most part, I can't do anything about them."
     "I try to talk to her, to be there for her..."
     "...but she doesn't want anything to do with me."
 
-    scene farm_exterior with fade
+    scene restaurant with fade
     show travis at midright
     show kid at center
     with dissolve
