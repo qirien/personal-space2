@@ -199,6 +199,8 @@ label start:
         seen_low_a = False
         seen_low_m = False
 
+        year28_promised_potatoes = False
+
         # Crop event variables
         crop_temporarily_disabled = ""
         squash2_method = ""

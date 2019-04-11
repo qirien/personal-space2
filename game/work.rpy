@@ -1358,15 +1358,182 @@ label work28:
     her happy "I haven't been out to eat in... years!"
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
     scene restaurant with fade
+    show travis normal at center with dissolve
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
     "Plus, the place wasn't that big."
-    "Basically, he had hooked up a fridge to his tractor's power, setup a little grill, and put out some benches and tables."
+    "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
+    "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
+    "We waited in line for thirty minutes while he and his sister cooked pancakes."
+    travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
+    kid determined "Are your parents okay with you running a restaurant?"
+    travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
+    menu:
+        "What should I say?"
+        "Forget it!":
+            "That was way too expensive."
+            him concerned "Uh, sorry, I changed my mind."
+            her annoyed "You can't change your mind now!"
+            him annoyed "But that price is ridiculous!"
+            her normal "Then I'm buying."
+            "Before I could protest she paid for pancakes and cider for the whole family."
+            $ credits -= 60
+        "Just pancakes.":
+            him normal "Just pancakes for four."
+            travis "Pancakes for four, got it!"
+            her concerned "Oh, I wanted to try the cider..."
+            travis "Plus one cider!"
+            $ credits -= 45
+        "Pancakes and cider for the whole family!":
+            him happy "Pancakes and cider for everyone!"
+            kid laugh "Nice!"
+            $ credits -= 60
 
+    "We smothered our pancakes in various toppings and sat down to eat."
+    her sleeping "Oh yeah..."
+    him sleeping "Mmmm, pancakes..."
+    "He had cut the wheat with cornmeal, which was probably cheaper, and there was definitely a lot of buttermilk in them from his parents' cows."
+    "But they were light and fluffy and hot and delicious."
+    kid surprised "This is so good! How come we never eat pancakes?"
+    if ("wheat" in farm.crops):
+        him concerned "I usually sell the wheat because it brings in a lot of money."
+    elif ("corn" in farm.crops):
+        him concerned "You need wheat and cornmeal to make these, and wheat is pretty expensive here still."
+    else:
+        him concerned "Wheat is pretty expensive..."
+    her determined "Plus, you need eggs. We don't usually have all those ingredients around all the time."
+    kid flirting "Maybe Travis would teach me how to make them..."
+    him annoyed "Or your parents could teach you. It's not hard."
+    her flirting "Oh, but I'm sure it'd be so much more fun to learn from Travis~"
+    kid annoyed "Mom! He just makes good pancakes, that's all!"
 
+    "We stayed for a while after we ate, talking to friends and neighbors and enjoying being together."
+    "After Travis finished cooking, he came up to me."
 
-    # TODO: finish this.
+    travis "Hey, I wanted to talk to you."
+    him surprised "To me?"
+    travis "Yeah, you grow potatoes, right?"
+    him normal "Sometimes..."
+    travis "I want to add potato dishes to the menu. They're cheap, filling, and easy. Can I get your promise that you'll grow at least three fields of potatoes next year and sell them to me?"
 
+    menu:
+        "What should I say?"
+        "As long as your price is reasonable.":
+            travis "Oh, it'll be very reasonable. In fact, I'm willing to pay you a more than the storehouse for your very best potatoes."
+            him happy "Then we have a deal!"
+            $ year28_promised_potatoes = True
+
+        "I can't promise that.":
+            him concerned "There's a lot of factors that come into play while planning my farm... I can't promise you that."
+            travis "I see. Well, I'm sure someone else grows potatoes."
+    show pete at midleft with moveinleft
+    him normal "Hey, Pete. How do you feel about all this? It's not exactly independent living away from everyone else."
+    pete "Well, Travis is old enough to decide for himself, I reckon. But he's not depending on RET for anything, so I'm proud of that."
+    him determined "Yeah, but he's depending on everyone else -- you can't have a restaurant without any customers. You always said you wanted to be self-sufficient, not depend on anyone for anything."
+    pete "The main thing is, he decided to open a restaurant. Not a committee, not some pasty-faced government dandy, not even his dad. So I'm okay with that."
+    him normal "Good! I gotta say, I'm okay with it, too -- especially if he keeps making those great pancakes."
+    pete "And it's a great market for my cider."
+
+    scene path with fade
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
+    "We walked home with full bellies and high spirits."
+    kid happy "Thanks for buying us pancakes!"
+    bro happy "Yeah, they were really good."
+    show him concerned with dissolve
+    "A melancholy feeling sprouted in my chest as we walked. My tiny remote town had grown large enough for a restaurant."
+    "Was it really still the wild frontier if I could just go into town and get pancakes whenever I wanted?"
+    hide kid
+    hide bro
+    with dissolve
+    show her at center with move
+    her concerned "What is it, [his_name]?"
+    him sad "Our town sure is changing..."
+    her determined "And it's about time."
+    him surprised "You don't miss the days when there weren't so many people here? When you knew every single person on the planet?"
+    her concerned "Not really..."
+    him concerned "When there gets to be so many people... it's easier to justify just doing whatever you want."
+    her surprised "What are you worried about?"
+    him sad "What if Talaam becomes just like Earth? Where you just worry about pleasing your boss, and your boss just worries about making money, and that sense of community is lost?"
+    her concerned "It might..."
+    him concerned "Sometimes it feels like all my hard work is for nothing."
+    her sad "Oh, [his_name]..."
+    him normal "Sorry, I must be getting old to be whining like that."
+    her flirting "Getting old, huh? You better find happiness where you can, then."
+    him flirting "I think I found some, right here."
+
+    return
+
+# You only get this event if you promised potatoes to Travis
+label work29_potatoes:
+    scene fields with fade
+    show him determined at midright
+    with dissolve
+    show travis at midleft with moveinleft
+
+    him normal "Hey there, Travis!"
+    if (farm.crops.count("potatoes") >= 3):
+        travis "Hey, thanks for growing all those potatoes like I asked. The fries are one of my most popular items."
+        $ credits += 1000
+        "He had paid me 1000 credits more than the storehouse would have, so I was pretty happy with the arrangement."
+        him happy "No problem. You need anything else?"
+        travis "Yeah, actually. I was hoping to buy some honey from you so I can sell ice cream."
+        if ("honey" in farm.crops):
+            him concerned "I am going to have some honey this year..."
+            travis "Great, will you sell it to me? I can pay in advance."
+            him determined "Hmmm. Let me think about that."
+            "There was something about the idea that bothered me... I stood in silence for a moment, trying to figure out what it was."
+            "Then I figured it out. There was not that much honey on Talaam. If he bought all of mine, his ice cream would be one of the few sweet things on the whole planet."
+            "If I sold to him, would I be creating a monopoly? He already had the only restaurant..."
+            "Though I guess there was nothing stopping someone else from creating a restaurant if they really wanted to."
+            menu:
+                "What should I say?"
+                "Sure.":
+                    him normal "Sure, I'll save some honey for you."
+                    "We worked out the specifics, and he paid me 500 credits."
+                    $ credits += 500
+                    $ luddites += 1
+                "I don't want to do that.":
+                    him concerned "Sorry, I don't want to sell all my honey to you. You can buy it from the storehouse like everyone else."
+                    travis "If that's what you want."
+                    $ colonists += 1
+        else:
+            him concerned "Sorry, I don't have any honey this year."
+            travis "Okay, well, think about it for next year!"
+            $ luddites += 1
+
+    else:
+        travis "Hey... I thought you agreed to grow three fields of potatoes for me."
+        "I thought back to the pancake breakfast at the restaurant... I had agreed to do that."
+        menu:
+            "What should I say?"
+            "Sorry.":
+                "I shrugged."
+                him determined "Sorry."
+                travis "'Sorry'? That's it? I thought I could trust you."
+                him annoyed "Hey, we didn't have a contract or anything. I was going to be doing you a favor."
+                travis "I didn't think two honest people needed a contract to keep their word. I guess I was wrong."
+                $ luddites -= 1
+            "I can sell you something else.":
+                him concerned "Hey, I'm really sorry about that... can I sell you something else?"
+                travis "Hmmm... I'm looking at buying honey to make ice cream, if you have any of that."
+                if (farm.crop.contains("honey")):
+                    him normal "I do have honey."
+                    travis "I guess that'll work."
+                    "We worked out the specifics, and he paid me 500 credits."
+                    $ credits += 500
+                else:
+                    him sad "Sorry, I don't have honey, either."
+                    travis "Forget it, then."
+                    $ luddites -= 1
+            "I can sell you the potatoes I have." if (farm.crops.contains("potatoes")):
+                $ potato_count = farm.crops.count("potatoes")
+                him "I can sell you the potatoes I do have."
+                travis "I guess that'll work."
+                $ credits += (300 * potato_count)
+                "He paid me for the potatoes and left."
     return
 
 # Year 30, 18 years old

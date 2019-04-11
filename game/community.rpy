@@ -1142,7 +1142,7 @@ label community8:
                 pavel "those really cheap frozen pizzas from Glosemitto's, slow-roasted coffee, Fabrielle brand pelmeni,"
                 pavel "sourdough bread, calamari, egg rolls but especially the sweet-and-sour sauce with lots of high fructose corn syrup,"
                 pavel "Goods Inside cereal, homogenized milk, cotton candy, cheesecake, tuna salad, Michele's meat-alike paste,"
-                pavel "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cheese really."
+                pavel "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cow cheese really."
                 show pavel
                 pavel "And that's just the food I miss!"
                 show him surprised
@@ -2496,7 +2496,7 @@ label community14:
     "Soon the shuttle was just a twinkle in the sky, and it disappeared."
     "Kevin continued his narration. About seven minutes later he said that we'd reached orbit."
     pete "Before y'all go, I have an announcement to make."
-    pete "Helen and Travis and me are moving."
+    pete "Helen and I are taking our family and moving away."
     pavel "Is there something wrong with your house?"
     pete "Nothing wrong with the ranch."
     pete "We're tired of working for RET. We want to try to make it on our own."
@@ -2903,7 +2903,7 @@ label community16:
         "How is your family?" if not talked_family_c16:
             him "How do Helen and Travis like living in the wild?"
             pete "Helen misses her TV shows sometimes, but we've been singing and dancing a lot more."
-            pete "I think Travis gets lonely, but he has plenty of work to help with."
+            pete "I think Travis gets lonely, but he and the other kids have plenty of work to help with."
             pete "He's been getting really into wood carving though. He made a really good crabird the other day."
             pete "We really miss some of the tools like shovels and hammers."
             pete "We've tried to make our own, but it's not the same."
@@ -5028,6 +5028,7 @@ label community27:
             "I tried to leave, but the jellystars kept my boat from moving."
             jump boat_capsized
         # if ate_jellyfish AND touched_jellystar_25: I still want to do something with this variable cluster
+        # TODO: Maybe if you did both of those, you don't have any other choice but to engage.
         "Engage.":
             him "I am interested in communicating with these aliens."
             kid "Tell it! It can't hear you."

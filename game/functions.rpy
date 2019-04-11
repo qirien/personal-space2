@@ -164,6 +164,10 @@ init -100 python:
             event_name = "work" + str(year)
             return event_name
         else:
+            # special potato event
+            if ((year == 29) and (year28_promised_potatoes)):
+                return "work29_potatoes"
+
             # Find a good crop event.
             # Make a set (no duplicates) of the next crop event for each crop in our field. Then, randomly pick one.
             possible_events = set()
