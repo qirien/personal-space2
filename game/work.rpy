@@ -1311,7 +1311,7 @@ label work24:
 
         "Maybe she shouldn't work on the farm.":
             him sad "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
-            her concerned "No, I think usually it's good for her. Just... can you just be a little more careful?"
+            her concerned "I think usually it's good for her. Just... can you just be a little more careful?"
             him concerned "Yeah..."
             her determined "I know she looks like an adult, but inside she still has a lot of learning to do."
             him determined "Don't we all..."
@@ -1320,8 +1320,60 @@ label work24:
 
 # Year 26, 16.1 years old
 label work26:
-    "You throw out your back."
-    "People from your favorite faction and your family help you, or not."
+      "Everyone knows about harvesting on the farm."
+      "And everyone knows about planting."
+      "But there's another step that is just as important that doesn't get a lot of credit."
+      "Preparing."
+      "After every harvest, I try to take a short break and then get ready for the next crops."
+      "I test the soil to determine how much and what kinds of fertilizer to use."
+      "I oil tools and machines and try to repair any that have broken."
+      "I do an inventory of what seeds we have and try to decide how much we need to grow for each crop."
+      "I didn't really need help, but I kind of wanted [kid_name] to learn that there was more to farming than just physical labor."
+      "But it would probably take longer if I had to explain it all to her..."
+      menu:
+	"What should I do?"
+	"Have [kid_name] help":
+	      "It might be more work, but it'd be worth it for how much [kid_name] would learn."
+	      scene farm_interior with fade
+	      show him determined at midleft
+	      show kid normal at midright
+	      with dissolve
+	      him normal "Hey, [kid_name]..."
+	      kid annoyed "Don't tell me there's more work to do!  I thought we just finished the harvest!"
+	      him annoyed "No more harvesting for now. This is fun. C'mon, I'll show you."
+	      kid surprised "Really? What are you doing?"
+	      scene fields with fade
+	      show him normal at midright
+	      show kid normal at midleft
+	      with moveinleft
+	      him determined "We need to go to these exact GPS coordinates..."
+	      kid happy "Ooh, is there treasure buried underground?!"
+	      him happy "If the raw materials for life-sustaining food counts as treasure, then YES!"
+	      kid annoyed "Not really what I mean..."
+	      him normal "Anyway, take this soil probe, and get a good sample... yes. Let's get a bunch of those from this list of coordinates."
+	      kid angry "So... basically we're collecting dirt?"
+	      him happy "Yes, but in a systematic way. Since we collect from the same spots every year, we can more accurately compare data."
+	      kid surprised "What kind of data?"
+	      him determined "Water retention, pH, and nutrient levels for potassium, phosphorus, and nitrogen."
+	      kid concerned "Why do you care?"
+	      him normal "These things determine what kind of fertilizer we add."
+	      kid surprised "Don't we just always add goat manure?"
+	      him determined "Well, yeah, but how much? And do you need anything else, like bone meal or sand or ashes?"
+	      kid concerned "I guess... you could just add them all?"
+	      him concerned "Too much of certain nutrients isn't good for the crops, either. So instead of guessing, we can run some tests and do some math."
+	      kid flirting "Wow, you're so scientific."
+	      him happy "I know!"
+	      "I showed her how to collect the samples, test them, and enter in the results."
+	      "Then we made a plan."
+	      "It made me happy to share my plans with someone... [her_name] never really cared about them. Maybe [kid_name] didn't care that much, either, but she had time to listen to me."	      	      
+	      $ independence += 1
+	"Do it myself.":
+	      "I kind of liked planning and preparing and doing the whole farm myself. Why should I share the easiest part with [kid_name]?"
+	      "Well, it wasn't always easy. But it wasn't physically taxing and it was kind of fun."
+	      scene fields with fade
+	      "I spent a few days taking soil samples, analyzing them, and making up a plan for the next year."
+	      "I felt a sense of satisfaction at coming up with a plan completely on my own, with no one to answer to but myself (unless Ilian decided to complain that we weren't growing enough potatoes again)."
+            
     return
 
 # Year 28, 17.3 years old
@@ -1579,7 +1631,7 @@ label work30:
                     $ work28_rent = 150
                 "That's not enough.":
                     him annoyed "Are you kidding? You've got your own room, homecooked meals, and use of our resources. That's worth at least 250 credits."
-                    her determined "No. No way. 150 is the max!"
+                    her determined "[his_name], be reasonable. She's just getting started on her own."
                     kid determined "I can pay 200, but not 250."
                     him determined "Then I guess that will have to do."
                     $ work28_rent = 200
@@ -1598,8 +1650,11 @@ label work30:
             kid concerned "Okay..."
         "You don't have to work here.":
             him concerned "You don't have to work on the farm. But I could definitely use your help."
-            kid concerned "Maybe just when you really need me."
-            him determined "Okay. Thanks, [kid_name]."
+	    if (is_attached()):
+	       kid concerned "Maybe just when you really need me."
+               him determined "Okay. Thanks, [kid_name]."
+	    else:
+		kid concerned "Uh, yeah, we'll see."
 
     show bro normal at quarterleft with moveinleft
     bro "I don't want to work on the farm, either."
@@ -1623,5 +1678,5 @@ label work30:
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."
 
-    # TODO: actually subtract rent from final total
+    $ credits += work28_rent
     return
