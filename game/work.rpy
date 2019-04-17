@@ -5,7 +5,78 @@ label work_default:
     $ enable_crop("squash")
     return
 
-# TODO: Need event(s) for if you overwork yourself.
+# Event for if you overwork yourself.
+label overwork:
+    $ overwork_count += 1
+
+    if (overwork_count <= 1):
+        "I like a challenge."
+        "I like to push myself to work hard, be productive, and get things done."
+        "But this year, I took on too much."
+        "I was already exhausted from working dawn-to-dusk on weeding and maintaining the fields, and my list of to-dos was getting longer and longer."
+        "Harvest loomed ever closer, like a meteor hovering overhead."
+    else:
+        "I should have known better, but I could tell that I was trying to take on too much (again)."
+    # The first time you ask for help from a group, it's a bonding experience. After that, they get annoyed.
+    # TODO: write these
+    menu:
+        "What should I do?"
+        "Ask other farmers for help.":
+            overwork_colonists += 1
+
+            if (overwork_colonists <= 1):
+                $ colonists += 1
+            else:
+                $ colonists -= 1
+        "Ask miners for help." if (year > miners_arrive_year):
+            overwork_miners += 1
+            if (overwork_miners <= 1):
+                $ miners += 1
+            else:
+                $ miners -= 1
+        "Ask your family for help.":
+            $ overwork_family += 1
+            if (overwork_family <= 1):
+                $ marriage_strength += 1
+                $ responsive += 1
+                $ demanding += 1
+            else:
+                $ marriage_strength -= 1
+                $ responsive -= 1
+                $ demanding -= 1
+        "Ask Pete's group for help." if (year > pete_leave_year):
+            $ overwork_luddites += 1
+            if (overwork_luddites <= 1):
+                $ luddites += 1
+            else:
+                $ luddites -= 1
+        "Don't ask for help.":
+            $ overwork_self += 1
+            "Everyone else had their own problems. I got myself into this mess; now I would get myself out of it."
+            if (overwork_self <= 1):
+                "I stayed up late; I woke up early. I didn't do anything else for weeks except take care of the farm."
+                scene fields with fade
+                show him concerned at center with dissolve
+                him concerned "I can do this... just one more week."
+                scene black with fade
+                scene fields with fade
+                show tractor at midleft
+                show him sad at center with dissolve
+
+                him sad "Just one more day..."
+                window hide
+                show black with irisin
+                hide black with irisout
+                window show
+                "It was when I fell asleep at the wheel of my tractor that I realized I was pushing myself too hard."
+                "I had to get some rest..."
+                "And my harvest suffered."
+            else:
+                "But there was a limit to how much I could physically do, and my harvest suffered."
+
+            # TODO: productivity loss
+
+
 
 
 # Malnutrition Event for if you don't have enough nutrition
@@ -1320,60 +1391,59 @@ label work24:
 
 # Year 26, 16.1 years old
 label work26:
-      "Everyone knows about harvesting on the farm."
-      "And everyone knows about planting."
-      "But there's another step that is just as important that doesn't get a lot of credit."
-      "Preparing."
-      "After every harvest, I try to take a short break and then get ready for the next crops."
-      "I test the soil to determine how much and what kinds of fertilizer to use."
-      "I oil tools and machines and try to repair any that have broken."
-      "I do an inventory of what seeds we have and try to decide how much we need to grow for each crop."
-      "I didn't really need help, but I kind of wanted [kid_name] to learn that there was more to farming than just physical labor."
-      "But it would probably take longer if I had to explain it all to her..."
-      menu:
-	"What should I do?"
-	"Have [kid_name] help":
-	      "It might be more work, but it'd be worth it for how much [kid_name] would learn."
-	      scene farm_interior with fade
-	      show him determined at midleft
-	      show kid normal at midright
-	      with dissolve
-	      him normal "Hey, [kid_name]..."
-	      kid annoyed "Don't tell me there's more work to do!  I thought we just finished the harvest!"
-	      him annoyed "No more harvesting for now. This is fun. C'mon, I'll show you."
-	      kid surprised "Really? What are you doing?"
-	      scene fields with fade
-	      show him normal at midright
-	      show kid normal at midleft
-	      with moveinleft
-	      him determined "We need to go to these exact GPS coordinates..."
-	      kid happy "Ooh, is there treasure buried underground?!"
-	      him happy "If the raw materials for life-sustaining food counts as treasure, then YES!"
-	      kid annoyed "Not really what I mean..."
-	      him normal "Anyway, take this soil probe, and get a good sample... yes. Let's get a bunch of those from this list of coordinates."
-	      kid angry "So... basically we're collecting dirt?"
-	      him happy "Yes, but in a systematic way. Since we collect from the same spots every year, we can more accurately compare data."
-	      kid surprised "What kind of data?"
-	      him determined "Water retention, pH, and nutrient levels for potassium, phosphorus, and nitrogen."
-	      kid concerned "Why do you care?"
-	      him normal "These things determine what kind of fertilizer we add."
-	      kid surprised "Don't we just always add goat manure?"
-	      him determined "Well, yeah, but how much? And do you need anything else, like bone meal or sand or ashes?"
-	      kid concerned "I guess... you could just add them all?"
-	      him concerned "Too much of certain nutrients isn't good for the crops, either. So instead of guessing, we can run some tests and do some math."
-	      kid flirting "Wow, you're so scientific."
-	      him happy "I know!"
-	      "I showed her how to collect the samples, test them, and enter in the results."
-	      "Then we made a plan."
-	      "It made me happy to share my plans with someone... [her_name] never really cared about them. Maybe [kid_name] didn't care that much, either, but she had time to listen to me."	      	      
-	      $ independence += 1
-	"Do it myself.":
-	      "I kind of liked planning and preparing and doing the whole farm myself. Why should I share the easiest part with [kid_name]?"
-	      "Well, it wasn't always easy. But it wasn't physically taxing and it was kind of fun."
-	      scene fields with fade
-	      "I spent a few days taking soil samples, analyzing them, and making up a plan for the next year."
-	      "I felt a sense of satisfaction at coming up with a plan completely on my own, with no one to answer to but myself (unless Ilian decided to complain that we weren't growing enough potatoes again)."
-            
+    "Everyone knows about harvesting on the farm."
+    "And everyone knows about planting."
+    "But there's another step that is just as important that doesn't get a lot of credit."
+    "Preparing."
+    "After every harvest, I try to take a short break and then get ready for the next crops."
+    "I test the soil to determine how much and what kinds of fertilizer to use."
+    "I oil tools and machines and try to repair any that have broken."
+    "I do an inventory of what seeds we have and try to decide how much we need to grow for each crop."
+    "I didn't really need help, but I kind of wanted [kid_name] to learn that there was more to farming than just physical labor."
+    "But it would probably take longer if I had to explain it all to her..."
+    menu:
+        "What should I do?"
+        "Have [kid_name] help":
+            "It might be more work, but it'd be worth it for how much [kid_name] would learn."
+            scene farm_interior with fade
+            show him determined at midleft
+            show kid normal at midright
+            with dissolve
+            him normal "Hey, [kid_name]..."
+            kid annoyed "Don't tell me there's more work to do!  I thought we just finished the harvest!"
+            him annoyed "No more harvesting for now. This is fun. C'mon, I'll show you."
+            kid surprised "Really? What are you doing?"
+            scene fields with fade
+            show him normal at midright
+            show kid normal at midleft
+            with moveinleft
+            him determined "We need to go to these exact GPS coordinates..."
+            kid happy "Ooh, is there treasure buried underground?!"
+            him happy "If the raw materials for life-sustaining food counts as treasure, then YES!"
+            kid annoyed "Not really what I mean..."
+            him normal "Anyway, take this soil probe, and get a good sample... yes. Let's get a bunch of those from this list of coordinates."
+            kid angry "So... basically we're collecting dirt?"
+            him happy "Yes, but in a systematic way. Since we collect from the same spots every year, we can more accurately compare data."
+            kid surprised "What kind of data?"
+            him determined "Water retention, pH, and nutrient levels for potassium, phosphorus, and nitrogen."
+            kid concerned "Why do you care?"
+            him normal "These things determine what kind of fertilizer we add."
+            kid surprised "Don't we just always add goat manure?"
+            him determined "Well, yeah, but how much? And do you need anything else, like bone meal or sand or ashes?"
+            kid concerned "I guess... you could just add them all?"
+            him concerned "Too much of certain nutrients isn't good for the crops, either. So instead of guessing, we can run some tests and do some math."
+            kid flirting "Wow, you're so scientific."
+            him happy "I know!"
+            "I showed her how to collect the samples, test them, and enter in the results."
+            "Then we made a plan."
+            "It made me happy to share my plans with someone... [her_name] never really cared about them. Maybe [kid_name] didn't care that much, either, but she had time to listen to me."
+            $ independence += 1
+        "Do it myself.":
+            "I kind of liked planning and preparing and doing the whole farm myself. Why should I share the easiest part with [kid_name]?"
+            "Well, it wasn't always easy. But it wasn't physically taxing and it was kind of fun."
+            scene fields with fade
+            "I spent a few days taking soil samples, analyzing them, and making up a plan for the next year."
+            "I felt a sense of satisfaction at coming up with a plan completely on my own, with no one to answer to but myself (unless Ilian decided to complain that we weren't growing enough potatoes again)."
     return
 
 # Year 28, 17.3 years old
@@ -1650,11 +1720,11 @@ label work30:
             kid concerned "Okay..."
         "You don't have to work here.":
             him concerned "You don't have to work on the farm. But I could definitely use your help."
-	    if (is_attached()):
-	       kid concerned "Maybe just when you really need me."
+            if (is_attached()):
+               kid concerned "Maybe just when you really need me."
                him determined "Okay. Thanks, [kid_name]."
-	    else:
-		kid concerned "Uh, yeah, we'll see."
+            else:
+                kid concerned "Uh, yeah, we'll see."
 
     show bro normal at quarterleft with moveinleft
     bro "I don't want to work on the farm, either."

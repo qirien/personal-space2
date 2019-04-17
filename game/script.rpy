@@ -104,6 +104,8 @@ label start:
         miners = 0
         luddites = 0
         jellies = 0
+        miners_arrive_year = 11
+        pete_leave_year = 14  #this doesn't change, but some events depend on it
         require_whole_harvest = False
         rationing = False
         lily_mad_at_RET = False
@@ -191,6 +193,13 @@ label start:
         total_work = 0
 
         current_work = 0
+
+        overwork_count = 0
+        overwork_colonists = 0
+        overwork_miners = 0
+        overwork_family = 0
+        overwork_luddites = 0
+        overwork_self = 0
 
         bad_nutrition_count = 0
         seen_low_cam = False
