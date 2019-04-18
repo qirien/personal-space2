@@ -200,6 +200,17 @@ init -100 python:
             else:
                 return "default_crop_event"
 
+    # Change amount of credits you have
+    # TODO: have a summary screen at the end of each year that shows all the notifications in a pretty way?
+    def modify_credits(amount):
+        global credits, notifications
+        credits += amount
+        if (amount >= 0):
+            notifications += "Credits +" + str(amount) + "\n"
+        else:
+            notifications += "Credits " + str(amount) + "\n"
+
+
     # Calculate expenses required for the family for this year
     def get_expenses_required():
         return (ANNUAL_EXPENSES_BASE + (get_calories_required() * CALORIES_TO_MONEY_MULTIPLIER))

@@ -302,7 +302,9 @@ label life_loop:
         if (year > 1):
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
-                $ credits += farm.calculate_income(years_yield)
+                $ modify_credits(farm.calculate_income(years_yield))
+                if (allowance_amount != 0):
+                    $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ show_year = year

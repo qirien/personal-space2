@@ -4227,7 +4227,6 @@ label family15:
     scene farm_interior with fade
     show him normal at midright
     show kid normal at midleft
-    # TODO: Modify allowance_amount based on this event and do something with it.
     kid "Dad, I need some money. Can I have an allowance?"
     him happy "[kid_name], I have no problem with ants. I already 'allow ants.'  Get it??"
     kid "Ha ha. That doesn't even make sense. So can I?"
@@ -4294,13 +4293,13 @@ label family15:
             him "She shouldn't get paid to help out her family."
             her annoyed "Why not? You do."
             him "...Fine, whatever, as long as you handle it."
-            $ allowance = 5
             hide her with moveoutleft
             show kid at center
             show her determined at midleft
             with moveinleft
             kid "Yay, mom's going to pay me five credits a week!"
             "I guess I did say [her_name] should handle it..."
+            $ allowance_amount = 5
             return
         "No.":
             $ responsive -= 1
@@ -4344,6 +4343,7 @@ label allowance_how:
             him "Your choice. Better decide soon, though, because I'm about to go do it."
             kid "Okay! Okay! I'll go muck out the barn!"
             him "Great!"
+            $ allowance_amount = 5
             $ authoritative += 1
         "You can have 10 credits per week.":
             $ responsive += 1
@@ -4351,6 +4351,7 @@ label allowance_how:
             kid "Really? Starting when?"
             him "Right now! Here you go."
             kid "Awesome! I'll be able to buy all sorts of stuff!"
+            $ allowance_amount = 10
             $ permissive += 1
         "You can have 5 credits per week, but only if you are good and do your chores.":
             $ demanding += 1
@@ -4370,6 +4371,7 @@ label allowance_how:
                     him "Yeah, I don't expect you to be perfect, but I do expect you to try to improve, OK?"
                     kid "Okay, I guess."
                     $ authoritative += 1
+            $ allowance_amount = 5
 
     return
 
@@ -5602,9 +5604,11 @@ label family20:
             him "What happened to a 'personal instructor'?"
             ilian "If you're paying less, you get less. That's how the world works."
             him "All right, fine."
+            $ modify_credits(-20*28)
         "You have a deal.":
             him "You have a deal. It's not like you have any competition in the saxophone teaching business."
             ilian "I'm glad you realize the value of the musical arts."
+            $ modify_credits(-25*28)
         "Isn't there something else we could exchange?":
             him "Isn't there something else we could exchange?"
             ilian "You don't have anything I want."
@@ -5612,7 +5616,7 @@ label family20:
             ilian "Oleg hates horses."
             him "I could come help you process food while she's in her lesson. Canning, dehydrating, whatever."
             ilian "That could work. Fine; you have a deal."
-        # TODO: make you now have less work available. Also subtract the money.
+        # TODO: make you now have less work available.
     "I was worried that the saxophone would just be a fad [kid_name] went through, but she really got into it."
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played, I could hear her expressing emotions even she didn't know she had."
@@ -6995,6 +6999,7 @@ label family27:
             him normal "Kind of... Anyway, I agree that you should have a bike. I'll transfer you the credits."
             kid laugh "Okay!"
             $ permissive += 1
+            $ modify_credits(-bike_cost)
 
         "Have her use her own money.":
             $ demanding += 1
@@ -7084,6 +7089,7 @@ label family27:
                 kid angry "That's not fair!"
                 him normal "I'm the parent; those are the rules."
                 $ authoritarian += 1
+            $ modify_credits(-bike_cost)
 
 
     # TODO: fit this in somehow?

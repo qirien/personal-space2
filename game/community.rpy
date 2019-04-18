@@ -2153,6 +2153,7 @@ label community12:
                     chaco "I can give you plenty of credits for them."#make this a decision if we have food/money variables
                     him "We don't have a lot of extra food right now, but we can spare a little."
                     chaco "This is great. I'm so sick of radish salad."
+                    $ modify_credits(50)
                     him "You know, if you have the credits, I bet Pete could do some hunting for you."
                     chaco "Huh. I'll ask."
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
@@ -2364,6 +2365,14 @@ label community13:
                         "We hurriedly messaged everyone, and started going door-to-door to explain the situation."
                         if (colonists >= 10):
                             #if we implement currency, ask how much to donate
+                            menu:
+                                "I decided to donate..."
+                                "10 credits":
+                                    $ modify_credits(-10)
+                                "50 credits":
+                                    $ modify_credits(-50)
+                                "200 credits":
+                                    $ modify_credits(-200)
                             "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
                             "Pete was especially supportive."
                             "We reached the goal by 11:30pm."
@@ -2419,7 +2428,7 @@ label community13:
                 "I watched as the protestors matched in a circle, chanting and yelling."
                 "It seemed pretty silly to me. Didn't we have better things to be doing?"
                 $ miners += 1
-        brennan "Hey, I get that you're upset. you guys should move away from this area. There could be particles in the air that aren't good to breathe." #tried to google this but I'm still not sure if this would happen
+        brennan "Hey, I get that you're upset. But you should move away from this area. There could be particles in the air that aren't good to breathe." #tried to google this but I'm still not sure if this would happen
         # That's OK, BSing is in-character for him.
         lily "We're not budging an inch!"
         if cave_partially_explored:
@@ -2429,7 +2438,7 @@ label community13:
         "Dr. Lily left without saying anything."
         "The next day I saw Dr. Lily to get some test results for my soil."
         him "How's my soil doing?"
-        her "Phosphorus levels are low. I recommend that you increase manure levels."
+        lily "Phosphorus levels are low. I recommend that you increase manure levels."
         him "I'll see if I can work some more in."
         menu:
             "Say something about the cave":
@@ -4251,6 +4260,7 @@ label community23:
         kid "Hey, that's my money you're talking about."
         her "I helped. Some of that money is rightfully mine."
         kid "You can have 100 credits of it. But the rest is mine."
+        $ modify_credits(100)
         him "Oh yeah, we need to get some rice to go with dinner tonight."
         her "I know. We stopped by the storehouse on the way home."
         "She handed me a cup of rice."
@@ -4376,6 +4386,7 @@ label luxury_good:
             "I had Julia write a review of it in 'Talaam Times'."
             "Finally I was ready to sell it for 100 credits!"
             "After a month it had sold just four copies." #+400/40 credits
+            $ modify_credits(400)
             kid "Hey dad, that farming guide you wrote is really popular."
             him "Really?"
             kid "Yeah, Oleg bought it and made an app version!"
@@ -4391,6 +4402,7 @@ label luxury_good:
             "At first it was really difficult. The kids had a hard time changing their routines."
             "I had forgotten how hard it is to do anything with kids in the house, so often I'd still be working on my farm after dinner."
             "I did make a lot of money though!" #+2000/200 credits but more stress?
+            $ modify_credits(2000)
         "Consult on small farming projects.":
             "I advertised my professional farm consulting in the 'Talaam Times.'"
             "I was surprised when Oleg was my first customer."
@@ -4401,6 +4413,7 @@ label luxury_good:
             kid "He's been doing phosphorus measurements and everything."
             "A few other people took me up on it, but I didn't make a lot of money off of it."
             "There were plenty of books and other farmers people could consult for free." #+400/40 credits
+            $ modify_credits(400)
     return
 
 label community25:
