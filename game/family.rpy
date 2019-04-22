@@ -5647,7 +5647,7 @@ label family21:
     bro "Well, what do you think I should use?"
     kid "Duh! The sniper blaster! They're weak against blast damage and you can keep your distance so you don't die in like five seconds like you do every time!"
     bro "I hate the scope; it's too hard."
-    kid "It's only hard if you're a total n00b." # TODO: make up some Talaam slang here?
+    kid "It's only hard if you're a wimpy sprout."
     "[bro_name] was almost in tears. [kid_name] was focused on the game and didn't seem to notice."
     menu:
         "What should I do?"
@@ -5667,9 +5667,9 @@ label family21:
                 "Turn it off now.":
                     $ demanding += 1
                     him angry "Turn it off now!"
-                    kid "Seriously, dad?"
+                    kid surprised "Seriously, dad?"
                     him annoyed "Yes. Right now."
-                    kid "Ugh! Fine. There. What's so important you couldn't wait for five minutes?"
+                    kid angry "Ugh! Fine. There. What's so important you couldn't wait for five minutes?"
                 "Turn it off as soon as the round is over.":
                     $ responsive += 1
                     him determined "Turn it off as soon as the round is over."
@@ -5746,7 +5746,7 @@ label family21:
                             $ confident += 1
                             $ demanding += 1
                             him determined "You can play together as long as you are being polite. You're on the same team, remember?"
-                            kid "Okay, but, [bro_name] can you pick a different weapon next time?"
+                            kid "Please, please, PLEASE [bro_name] can you pick a different weapon next time?"
                             bro "Yeah, I guess."
                             him normal "Okay! That's more like it!"
                             $ authoritarian += 1
@@ -5820,7 +5820,7 @@ label family21:
             kid "Yeah! Got it!"
             bro "Now get back! Stay away from the tower!"
             kid "Almost there..."
-            bro "He's chasing you... but he's too slow! Yeah! We did it!"
+            bro "He's chasing you... I can shoot a smoke bomb! Yeah! We did it!"
             kid "Yeah!"
             "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
             "I guess they could get along, when they wanted to."
@@ -6941,8 +6941,8 @@ label family26:
         "I'm already doing what I can.":
             him "Look, I tried to stop the cave mining. I tried to stop the jellystar farming. But I can't make other people not do stuff."
             if is_liason:
-                kid "You should be able to! Are you the liason or not?!"
-                him "I'm just a liason, not a dictator."
+                kid "You should be able to! Are you the liaison or not?!"
+                him "I'm just a liaison, not a dictator."
             else:
                 kid "Well, someone needs to make them stop."
                 him "Maybe you could convince them?"

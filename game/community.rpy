@@ -3588,8 +3588,8 @@ label community21:
     kevin "Yeah, his family winters near the beach." #TODO: does the player know this some other way? can't remember
     scene canyon with fade
     "We had to climb through some rocky areas, but our progress was good."
-    him "What's with the no smoking rule? I didn't know we had anything to smoke around here." # TODO: remember this from the first game?
-    kevin "Firegrass. It's a mild stimulant that the miners use to stay awake so they can work and extended period of time"
+    him "What's with the no smoking rule? Is it really a problem?"
+    kevin "Firegrass is pretty popular. It's a mild stimulant that the miners use to stay awake so they can work and extended period of time"
     kevin "It's stronger than caffeine."
     kevin "Most miners only use it when they really have to stay up longer, but some smoke every day."
     him "And RET allows that?"
@@ -3607,7 +3607,7 @@ label community21:
     brennan "Hi [kid_name], how are you doing?"
     kid "Who are you?"
     brennan "My name is Brennan. I help the miners keep on schedule."
-    kid "Oh yeah, I've heard of you. It's your fault my friend's parents are always stressed out."
+    kid "Oh yeah, I've heard of you. It's your fault Anya's parents are always stressed out."
     brennan "That's one way of looking at it."
     kid "Dad says that you might talk pretty but that underneath you're like a snake."
     brennan "Really? I wonder what that makes you, then..." #is this too weird
@@ -3625,7 +3625,7 @@ label community21:
     else:
         "They were beautiful to watch for a few hours while we set up a fire and warmed up food for dinner."
     scene ocean with fade
-    "After a breakfast of soaked grain the next morning, I smelled a smoke that reminded me of curry. It was just some of the miners smoking firegrass in pipes though."
+    "After a breakfast of mush the next morning, I smelled a smoke that reminded me of curry. It was just some of the miners smoking firegrass in pipes though."
     "We spent time playing on the beach, even though it wasn't especially warm."
     "Some people caught fish or jellystars and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
@@ -3659,7 +3659,7 @@ label community21:
         "At first, the colors changed rapidly."
         "Then words started to appear on its back."
         him "Are those...?"
-        pete "Yes, they appear to be English words. Maybe they learned from one of those new waterproof tablets that somehow got lost in the ocean?"
+        pete "Yes, they appear to be English words. Maybe they learned from that waterproof tablet that Lily accidentally dropped in the ocean?"
         pete "They appear to have taught themselves word patterns. I don't think they understand what they're for though."
         kid "Oh, it's just like that game I used to play on my tablet. Here, you just have to..."
         "She moved the word around by touching a dragging it, just like you would on a tablet."
@@ -4667,16 +4667,12 @@ label community26:
     her "He dries it in the sun, usually under a solar flare, so that's no surprise."
     her "However, the cells in Pete's meat are often irregular and probably cancerous."
     him "Okay... but eating cancer doesn't give you cancer, right?"
-    her "They probably don't, but it's safer not to eat them. There have been cases where cancer travelled through saliva or injections."
-    him "But the cells are dead in meat, so why would it matter?"
-    her "It hasn't really been studied before. It's probably safer not to eat cancerous meat."
+    her "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
     him "What about the cows from the colony?"
     her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
-    her "We have moveable shade structures for our cows, and they eat alfalfa during the rainy season."
-    him "Yeah, but Pete's cows have those UV blankets, don't they?"
-    her "They do, but I think they don't work very well. I've seen the cows take them off."
-    her "My question for you is if you think I should publish the results of my study."
-    her "If people keep eating this meat, it might shorten their lifespan."
+    him "Pete's cows are outside more, but they have those UV blankets."
+    her "I don't think they don't work very well. I've seen the cows pull them off."
+    her "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
     menu:
         "Yes, definitely.":
             him "People should know the risks of what they're eating. You should definitely tell everyone."
@@ -4688,7 +4684,7 @@ label community26:
             $ colonists += 1
         "No, don't publish the study.":
             him "How many samples have you studied? I think it's too early to draw conclusions."
-            her "True, my sample size is pretty small. I'll keep studying it."
+            her "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
         "You should at least tell Pete." if luddites >5:
             him "Pete should know that his cows are developing cancer."
             him "Maybe he can adjust his radiation-shielding measures."
@@ -4704,6 +4700,9 @@ label community26:
     her "She has frequent panic attacks and has lost an unhealthy amount of weight."
     her "Mayor Grayson agrees that we don't have the resources for a mental hospital."
     her "Sara completed training to do some mental health counseling and has started sessions with her, but she needs more than just therapy."
+    him "Like medicine?"
+    her "We don't have the kind that would help her."
+    him "Hmmm."
     her "She doesn't seem to be getting better anytime soon. She has suicidal tendencies."
     him "We should help her change something in her life to break this cycle."
     her "I feel like I've done everything I can. I'm going to present her case to the town council to see if they have other ideas."
@@ -5407,17 +5406,17 @@ label community28:
             her "It's different when it's an old person, because they can consent to euthanasia before it gets bad."
             him "That's just giving up."
             her "There's no known cure."
-            him "What about all those sweet moments people have with dementia patients? Like when they suddenly remember who you are and it makes you want to cry, you're so happy?"
-            her "Those moments are great for caretakers. How often have you heard a patient with dementia mention those moments?"
-            him "It's still meaningful, even if you can't remember it."
-            her "This isn't about what I want. It's about what Mayor Grayson might want."
+            him "There's plenty of enjoyable things in life even if you can't remember them. You don't have to remember anything to appreciate a good meal, or share a joke with someone, or enjoy a sunset."
+            her "But is that enough to make life worth living?"
+            him "I would still want to live, if only for those everyday moments."
+            her "Well, this isn't about what you or I want. It's about what Mayor Grayson might want."
             him "Okay, okay."
             $ against_euthanasia = True
     "The next day, Sara sent out a message saying that Mayor Grayson was ready to retire and that we would be electing a new mayor at a meeting next week."
     if is_liason:
         "She also invited me and [her_name] to a meeting that night to discuss Mayor Pavel Grayson's future."
         # Julia is here too. Brennan is here if your mining relationship is high enough. explain why Julia is there?
-        sara "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #check last three events to see if Pavel is in them
+        sara "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #TODO: check last three events to see if Pavel is in them
         sara "Pavel has requested that he be allowed to end his own life before his cognitive abilities decline too much more. He agreed on a threshold with [her_name]."
         sara "He wrote down his wishes and signed it, and I witnessed this. He was oriented to time, place, and circumstance at the time."
         sara "[her_name] has agreed to do weekly assessments and determine Pavel's cognitive abilities."
@@ -5427,7 +5426,7 @@ label community28:
         her "I compared a recent assessment to his scores in previous years, and Mayor Grayson's, I mean, Pavel Grayson's dementia appears to be declining."
         her "At this rate, he may need constant supervision in six months to a year."
         her "I wouldn't be able to supervise him and perform my duties as a doctor at the same time."
-        her "My assistant could watch her half of her normal hours, but it would decrease the amount of preventative care visits she makes." #gender check assistant
+        her "My assistant could watch him for half of her normal hours, but it would decrease the amount of preventative care visits she makes." #gender check assistant
         her "We're putting the question of whether or not to euthanize Pavel Grayson up for discussion."
         if against_euthanasia:
             him "I don't think Pavel should give up so quickly. Maybe his cognitive decline won't be as quick as we think it will be."
@@ -5576,9 +5575,7 @@ label no_euthanasia:
     pavel "I did."
     him "No, you didn't. Put your hands in the water."
     "He would wander through the house fiddling with anything that he happened upon."
-    her "Soon you guys are going to need to watch him at the hospital."
-    him "Why?"
-    her "He'll stop using the bathroom. He'll need to be spoon-fed food."
+    her "He needs adult-sized diapers... and someone to spoon-feed him. We should probably move him to the hospital."
     him "We can do it."
     "One day Julia was late coming to watch him, and Sara left him alone."
     "Julia couldn't find him that night and we all started searching for him."
@@ -5616,9 +5613,10 @@ label community29:
     him_c "Is that a bad thing?"
     her_c "She's in her mid-forties in Earth years. Even in regular hospitals, that's considered a high-risk pregnancy."
     him_c "Oh... do you think she'll want an abortion?"
-    her_c "She didn't ask for one, even after I explained the risks of pregnancy to her, so I'm guessing no."
+    her_c "She didn't ask for one."
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
+    # TODO: wouldn't she stay with Travis at his restaurant?
     if (luddites > 5): #should this number be higher?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "Huh. Where exactly will she sleep?"
@@ -5684,7 +5682,7 @@ label community29:
         her "He followed me about halfway back... it was super awkward."
         her "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
         him "What are you going to do about him not paying?"
-        her "I guess I won't give him hospital services until he makes an effort to pay. It's more the principal of the matter now."
+        her "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
         him "Yeah, it's not like you can actually buy more hospital supplies with the credits."
         her "Exactly."
         return

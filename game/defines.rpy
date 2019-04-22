@@ -265,7 +265,7 @@ init -100:
         # Special weird things
         "Scurvy Dog", # got scurvy
         "Rich Dad", # saved a lot of money
-        "Good Husband", # had a good relationship with her_name
+        "Better Half", # had a good relationship with her_name
         "Potato Diet", # planted almost all potatoes
         "Mutant Ninja Berries", # had mutated strawberries
         "Chez Dad", # ate escargot

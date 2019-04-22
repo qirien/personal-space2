@@ -1604,6 +1604,8 @@ label work28:
     "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
     "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
     "We waited in line for thirty minutes while he and his sister cooked pancakes."
+    if community_22_mined_anyway:
+        "He had adapted quite well to his prosthetic leg; he didn't even limp anymore."
     travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
     kid determined "Are your parents okay with you running a restaurant?"
     travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
