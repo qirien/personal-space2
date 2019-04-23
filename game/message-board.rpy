@@ -219,6 +219,8 @@ label message9:
 label message10:
     nvl clear
     # Location of miners discussed: "why so far" "not far enough!"
+    # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
+    # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
     if (is_liason):
         him_c "We've designated an area for the miners to live, so please take a look at the map and note where their camp will be located."
     else:
@@ -226,6 +228,13 @@ label message10:
     helen_c "Wow... that's pretty far away. It'll take them an hour to walk into town."
     pete_c "I don't know; kinda seems not far enough."
     kevin_c "The location was chosen for its proximity to precious minerals and availability of a clear area suitable for landing on."
+    her_c "What are they mining, anyway? It'd have to be something pretty valuable to send shuttles light years away for it..."
+    kevin_c "Scandium, terbium, indium, copper, phosphorus..."
+    thuc_c "I've heard of some of those words."
+    him_c "Phosphorus is an important part of fertilizer."
+    kevin_c "The rest are mainly used in electronics, solar panels, and cryogenics."
+    her_c "Is Earth completely out of them or something?"
+    lily_c "No, but here on Talaam they are much easier to access. While on Earth you might need to sift through garbage heaps to sort and recycle individual parts, here they are just below the surface."
     her_c "Things are going to change a lot when they arrive..."
     ilian_c "Personally, I'm excited. No offense to any of you, but I could stand to see a few new faces around here."
     if (year6_have_baby):
@@ -309,8 +318,21 @@ label message12:
 # Family: Sex education, miscarriage
 label message13:
     nvl clear
-    # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
-    # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
+    brennan_c "Please tell me we've exterminated all the lice..."
+    her_c "I think we're in the clear. If anyone finds more, please come to me right away so we can limit their spread."
+    him_c "I hope you guys didn't bring bed bugs with you, too."
+    brennan_c "If we did, we'll be sure to send them your way first."
+    her_c "Anyway, I thought I'd let you all know that we're expecting another baby!"
+    sara_c "Really?! That's great! {font=fonts/OpenSansEmoji.otf}😃🎉{/font}"
+    natalia_c "Congratulations!"
+    thuc_c "Wow, three kids... you'll be outnumbered."
+    him_c "Tell me about it!"
+    julia_c "After the first two, it's a lot easier."
+    natalia_c "I don't know... my last one was my most difficult baby of all."
+    julia_c "Oh, is that why you stopped at five?"
+    natalia_c "No, actually we wanted more kids but I had to have a hysterectomy right after Mateo. Thanks for bringing it up."
+    julia_c "I...I'm sorry. I didn't mean to bring up such a sensitive topic."
+    natalia_c "That's okay, now you have no excuse for being insensitive."
 
     nvl clear
     return
@@ -365,10 +387,18 @@ label message16:
     # How is Pete doing? I never talk to him anymore.
     # Sara went to talk with them, gives update
     kevin_c "I have not seen Pete since he left... how is he faring?"
-    sara_c "I went to see them the other day. They are living in a tent up by the mountains; it's really pretty up there! Travis was so happy to see me and Oleg; I think he's kind of lonely out there."
+    sara_c "I went to see them the other day. They are living in a tent up by the mountains; it's really pretty up there! Travis was so happy to see me and Oleg; he misses his friends."
     pavel_c "Do they have enough to eat?"
     sara_c "They're working really hard doing everything all on their own, but they're not starving or anything."
+    if (lily_mad_at_RET):
+        her_c "What about Dr. Lily? Isn't she getting kind of old?"
+        sara_c "She lives near them. She's still getting around great and staying healthy."
+    if not (asked_only_medicines):
+        natalia_c "Tomás and Joanna like it out there. They've tunneled a house out of the ground and are doing farming and research."
 
+    ilian_c "It's only a matter of time before they come back. They'll need civilization sooner or later."
+    sara_c "People have survived for centuries living without 'civilization'."
+    ilian_c "Only if they have no other choice."
 
     return
 
