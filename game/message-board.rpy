@@ -351,7 +351,11 @@ label message14:
     pete_c "I'll be there."
     natalia_c "I'm bringing a picnic; bring food if you want to trade!"
     her_c "Kevin, don't forget ear protection for anyone in your crew closer than 5km. Everyone else shouldn't need it."
-    kid_c "Yay, rocket picnic! -=|⁐⁐⁐⁐⁐⁐>"
+    kid_c "Yaaaaaay, rocket picnic! -=|⁐⁐⁐⁐⁐⁐>"
+    ilian_c "I didn't realize this message area was for kids."
+    naomi_c "No reason it shouldn't be, if they have something to add to the conversation. But perhaps they would also like their own area."
+    oleg_c "I alredy made one no adults allowed tbfy ha ha"
+    sara_c "We'll see about that."
 
     nvl clear
     return
@@ -365,8 +369,8 @@ label message15:
     sara_c "Wow, it's so quiet on here without Pete and Helen! :-O"
     julia_c "Perhaps this will remind people to put down their devices and go talk to people in person!"
     ilian_c "Yes, let's talk ON COMPUTERS about HOW IMPORTANT it is to TALK IN PERSON!"
-    sara_c "Or instead of bickering we could do something positive in real life, like sign up to take meals to Naomi and Pavel."
-    natalia_c "Oh dear, is she sick again?"
+    sara_c "ORRRR, we could do something positive in real life, like sign up to take meals to Naomi and Pavel."
+    thuc_c "Is she sick again?"
     sara_c "Yeah..."
     julia_c "I'll bring something tonight, so don't worry about dinner, Pavel."
     pavel_c "Thank you so much. I know she appreciates all of your kind gestures."
@@ -406,9 +410,19 @@ label message16:
 # Family: Bro has unexplained crying
 label message17:
     nvl clear
-    # TODO: Show how busy harvest time is, negotiate when things are harvested to help each other, kids get school off to help
+    # how busy harvest time is, negotiate when things are harvested to help each other, kids get school off to help
     # Julia offers tea to people that help
     # shouldn't the miners help?? We have our own deadlines
+    pavel_c "No school for the next month due to harvest!"
+    brennan_c "I still think that's a wonky schedule. What about the miner kids? They don't have a harvest."
+    pavel_c "They could still use a break."
+    him_c "We could use the miners' help. Maybe we could all work together."
+    brennan_c "Sorry, we have our own deadlines."
+    julia_c "I'll have my special tea brewed for anyone that comes to help on Wednesday!"
+    sara_c "That stuff is so good! What's in it, anyway?"
+    julia_c "It's my secret recipe."
+
+    nvl clear
     return
 
 # Community: Miners complain about Pete's cattle
@@ -445,8 +459,17 @@ label message19:
     nvl clear
     him_c "I have some caulk leftover from roof repair if anyone needs it. Trust me, you don't want to wait until the roof's leaking during a solar flare."
     thuc_c "Sounds like you have personal experience there!"
+    him_c "Hey, what's everyone planting this season? Anything new?"
+    natalia_c "Mostly feed corn, but also beans, summer squash, sweet corn, popping corn, peppers, and tomatoes."
+    thuc_c "The usual: rice, onions, garlic, turnips, cabbage, and plenty of hay and clover for the goats."
+    pavel_c "I'm expanding my spice garden this year and adding cinnamon!"
+    kevin_c "I plan to grow more varieties of fruit in my orchards."
+    him_c "Wow, we're going to eat well this year! I'm still thinking about mine..."
+    oleg_c "potatoes plz!"
+    kid_c "strawberries plz!"
+    him_c "I'll think about it."
 
-    # TODO: Talk about planting season, Peron's planting corn
+    nvl clear
     return
 
 # Community: Lily's research, she dies
@@ -713,10 +736,20 @@ label message29:
     return
 
 # Community: MURDER MYSTERY
-# Family: Ending?
+# Family: is she taking the shuttle back to Earth??
 label message30:
     nvl clear
     # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
+    brennan_c "It's going to be busy these next few days, so if I don't get a chance, I wanted to say farewell to all of you."
+    sara_c "Are you ever coming back?"
+    brennan_c "I sure hope not. I thought two years was bad; twelve years is way too long to go without a decent bed, shower, pub, club, restaurant... I could go on and on."
+    travis_c "At least we have a restaurant now!"
+    brennan_c "That's the only thing that's made this last year bearable."
+    him_c "If you can't appreciate the amazing beauty of Talaam, you don't deserve to be here."
+    brennan_c "I certainly deserve better than this."
+    julia_c "So who's in charge of the miners now?"
+    brennan_c "Someone new. Only a few miners are staying on for a second term."
+    her_c "We wish you well, Brennan."
 
     nvl clear
     return

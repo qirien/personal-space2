@@ -7891,7 +7891,7 @@ label family30:
     show him concerned
     "Finally, I went and sat outside under the moons and stars."
     scene moons with fade
-    "Every inch of ground was soaked in memories."
+    "Every inch of ground was saturated with memories."
     # TODO: show these
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
@@ -7941,7 +7941,7 @@ label family30:
     if (boyfriend_name == "Lorant"):
         him angry "It {b}is{/b} about a boy!"
         her annoyed "I'm sure Lorant's not the only reason she wants to go back to Earth."
-        kid annoyed "Besides, that's what mom did. Follow her crazy boyfriend to a different planet."
+        kid annoyed "Besides, that's what Mom did. Follow her crazy boyfriend to a different planet."
         him determined "That was different. We were married."
         her determined "Just barely."
         kid concerned "Anyway, he's just one of the reasons I want to go."

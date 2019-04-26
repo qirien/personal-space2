@@ -1090,9 +1090,9 @@ label work18_after_clean:
 
 # Year 20, 12 years old
 label work20:
-    "Miners want cheap/fast/calorie-dense food. Will you cater to their needs?"
-    "Also, Terra likes it as she is eating more and growing taller than ever."
     "or, solar panels are wearing out due to solar flares."
+    # there's a thief - turns out to be Oleg or Travis. Once you catch him, what do you do?
+    
     return
 
 # Year 22, 13.6 years old
