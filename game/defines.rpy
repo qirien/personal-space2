@@ -9,6 +9,14 @@ init -100:
     define TWEEN_MAX = 22
     define YTEEN_MAX = 25
 
+    # Talaam Events
+    define MINERS_ARRIVE_YEAR = 11
+    define MARTIN_DIES_YEAR = 11
+    define PETE_LEAVES_YEAR = 14
+    define NAOMI_DIES_YEAR = 15
+    define PETE_LEAVES_CAVES_YEAR = 22
+    define PAVEL_DIES_YEAR = 28
+
     # Static layout variables
     define LEFT_COLUMN_WIDTH = 310
     define MIDDLE_COLUMN_WIDTH = 480

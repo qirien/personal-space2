@@ -622,8 +622,10 @@ label goats2:
             "I felt bad for Pete. Maybe he would like some goats."
             "I couldn't send him a message; radio communications weren't private."
             "I'd have to just go over there."
-            # TODO: background for Pete?  Like this? https://pixabay.com/en/barn-field-agriculture-countryside-238512/
-            scene fields with fade
+            if (year >= PETE_LEAVES_CAVES_YEAR):
+                scene canyon with fade
+            else:
+                scene cave with fade
             show pete at midright with dissolve
             show him normal at midleft with moveinleft
             if (luddites_strength() >= 1):
@@ -1399,5 +1401,161 @@ label strawberries2:
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             # TODO: Test this...
             $ farm.crops.delete_crop("strawberries+")
+
+    return
+
+# Honey event
+# Can only happen year 11+
+label honey1:
+    "Having bees wasn't just good for pollinating plants; I also really enjoyed when we got to harvest the honey."
+    "But when I went to harvest the honey, I noticed something."
+    him surprised "Some of the honey is missing!"
+    "A whole frame was gone."
+    "At first, I thought maybe I had made a mistake and just forgot to put it in or something. But when I looked around, I found it several meters away."
+    "All the honey and the comb had been clumsily scraped off. I looked around for tracks but didn't see any."
+    him angry "Who did this?!"
+    "I went to my security cameras and looked at the footage. There was nothing during the past week... it must have been done a while ago."
+    "But I finally found the thief. It was late at night, so the footage was black and white and a little blurry."
+    him surprised "It looks like... a kid?!"
+    "The kid looked about [kid_name]'s age. At first I thought maybe it was her... but then I noticed that the kid entered and left from the path that led to town."
+    "I couldn't make out his features, but it looked like a boy wearing a wide-brimmed hat."
+    "There couldn't be that many kids that age with that kid of hat on the planet."
+    menu:
+        "What should I do?"
+        "Ask on the colony message area.":
+            nvl clear
+            him_c "Hey, I'm looking for a kid about [kid_name]'s age with a wide-brimmed hat. Anyone know who that could be?"
+            natalia_c "I have a hat like that but my kids are all older. What happened?"
+            if (year <= NAOMI_DIES_YEAR):
+                naomi_c "Is something wrong?"
+            menu:
+                "What should I say?"
+                "He stole some honey.":
+                    him_c "He stole some of my honey."
+
+                "Just looking for him.":
+                    him_c "Nothing in particular. Just looking for him."
+                    ilian_c "You wouldn't be looking without a reason. What'd he do?"
+                    if (year <= NAOMI_DIES_YEAR):
+                        naomi_c "Please be honest with us, [his_name]."
+                    him_c "...he stole some honey from our farm."
+            sara_c "That's awful! He's not one of the miner's kids, is he?"
+            brennan_c "Nope, not one of ours."
+            julia_c "Kids these days..."
+            nvl clear
+            "No one had any more information on the message board, but I got a private message later that day."
+            if (year <= NAOMI_DIES_YEAR):
+                naomi_c "The honey thief may be from Pete and Helen's family."
+            else:
+                sara_c "Hey, have you considered that the honey thief might be Pete and Helen's son?"
+            him_c "You think it's Travis? It would explain why no one recognized him... Thanks, I'll look into it."
+            nvl clear
+
+        "Look for a kid with a wide-brimmed hat.":
+            "I kept my eyes peeled in town, and even made an excuse to stop by the school, but I didn't see any kids that matched the video."
+            "I finally asked [her_name] about it. She knows almost everyone because of her work, but I wasn't sure she'd want to tell me."
+            scene hospital with fade
+            show her normal at midright with dissolve
+            show him normal at midleft with moveinleft
+            him surprised "Hey do you recognize this kid?"
+            "I showed her the footage."
+            her surprised "A honey thief, huh?"
+            him determined "Looks like it."
+            her concerned "I can't say for sure... but it looks like Oleg or Travis."
+            him concerned "That's what I thought..."
+            her determined "No, it's definitely Travis. I recognize those clothes."
+
+        "Ask [kid_name] if she recognizes him.":
+            scene farm_interior with fade
+            show kid normal at midright with dissolve
+            show him normal at midleft with moveinleft
+            him determined "Do you know who this is?"
+            "I showed her the video footage."
+            kid surprised "Wait... play it again?"
+            "I could tell from the expression on her face that she knew who it was."
+            kid nervous "Is he in trouble?"
+            him annoyed "Well, he did steal honey from our farm."
+            kid concerned "What are you going to do to him?"
+            him surprised "I just want to talk to him."
+            kid nervous "I... I think it's Travis."
+
+    "It was time to pay Travis a visit."
+    if (year <= PETE_LEAVES_YEAR):
+        scene farm_exterior flip with fade
+    elif (year <= PETE_LEAVES_CAVES_YEAR):
+        scene cave with fade
+    else:
+        scene canyon with fade
+
+    show helen normal at center
+    show travis normal at midright
+    with dissolve
+    show him normal at midleft with moveinleft
+    helen "Oh. Hello, [his_name]."
+    him normal "Hey there, Helen. How's it going?"
+    helen "Okay, I guess. What brings you way out here?"
+    menu:
+        "What should I do?"
+        "Talk to Helen about Travis":
+            him determined "I'll get right to the point. Travis stole some of our honey."
+            show travis normal at quarterright with move
+            helen "Oh, really? Why do you think that?"
+            show travis normal at right with move
+            him concerned "I have video footage right here."
+            "I showed her the security video."
+            helen "Hmmm. Travis!"
+            travis "I was just going to go, uh, do my chores!"
+            show helen normal at quarterright with move
+            helen "C'mere and talk with [his_name]. And"
+            "She whispered something in his ear that I didn't hear."
+            show travis normal at midright with move
+            hide helen with moveoutright
+        "Talk to Travis directly.":
+            him determined "Travis, I need to talk to you."
+
+    travis "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
+    him annoyed "Don't change the subject. I caught you stealing my honey."
+    travis "Oh, uh, what?"
+    "I showed him the video. Standing here and comparing him to the video, it was easier to tell that it was him."
+    "He fidgeted and looked around as if wondering if there was an escape route."
+    him determined "I know it was you."
+    travis "Oh. Uh. Yeah."
+    menu:
+        "What should I say?"
+        "Why did you do it?":
+            him concerned "Why did you steal from me?"
+            travis "I don't know."
+            him surprised "You don't have a good reason?"
+            travis "Not really. I mean, honey tastes good. It's really sweet."
+            him annoyed "That's the only reason?"
+            travis "Pretty much."
+        "I expect full compensation.":
+            him determined "I expect you to compensate me for that honey. It's about 50 credits worth."
+            travis "50 credits?!"
+            him concerned "If you don't have the credits, you can work for me instead."
+        "(Wait for him to say something)":
+            "I just waited. He shifted his weight from one foot to the other. I waited some more. Finally, he said quietly,"
+            travis "I'm sorry I stole your honey."
+            him normal "Thank you, Travis. Please don't let it happen again."
+            travis "I won't."
+            "I waited some more. He cleared his throat and looked around."
+            travis "So is that it?"
+            him determined "Well, usually when someone steals something, they apologize and then give it back."
+            travis "Oh. I can't give it back; we already ate it."
+            him surprised "We?"
+            travis "My brothers and sisters and I."
+            "Well, at least he shared his ill-gotten goods."
+            him determined "So what are you going to do instead?"
+            travis "Oh. Ummm, I could probably give you some cheese. I helped make it."
+            him normal "That sounds good. Why don't you and your parents work out something and bring it by later?"
+            travis "Okay."
+
+        "I'm disappointed you would steal from me.":
+            him sad "I'm disappointed you would steal from me."
+            travis "It's nothing against you personally! We just really wanted something sweet."
+            him surprised "We?"
+            travis "My brothers and sisters and I."
+            him concerned "I see. Unfortunately, I can no longer trust you like I once did."
+            travis "Oh."
 
     return

@@ -126,14 +126,13 @@ label overwork:
                 her concerned "I'll help you out this time. But this is the last time."
                 him concerned "Thank you, [her_name]."
 
-        "Ask Pete's group for help." if ((year > pete_leave_year) and (overwork_luddites < 2)):
+        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_luddites < 2)):
             $ overwork_luddites += 1
             if (overwork_luddites <= 1):
                 $ luddites += 1
-                scene canyon with fade
-                show pete normal at midright
-                show him normal at midleft
-                with dissolve
+                scene cave with fade
+                show pete normal at midleft with dissolve
+                show him normal at midright with moveinright
                 him happy "Pete! I feel like I never see you anymore!"
                 pete happy "That's because you don't."
                 him normal "Well, yeah, but it's not like you live on a different planet or anything."
@@ -1092,7 +1091,7 @@ label work18_after_clean:
 label work20:
     "or, solar panels are wearing out due to solar flares."
     # there's a thief - turns out to be Oleg or Travis. Once you catch him, what do you do?
-    
+
     return
 
 # Year 22, 13.6 years old

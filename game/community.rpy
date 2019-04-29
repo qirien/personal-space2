@@ -1796,7 +1796,7 @@ label community11:
             scene church with fade
             "Without the medication, Martin's condition swiftly deteriorated, and he died later that week."
             "The family had a small funeral and buried him in the colony graveyard next to Josephina."
-            "Tomás and Joanna Nguyen decided to help out, but they weren't prepared to take full responsibility for the farm."
+            "Tomás and Joanna Nguyen decided to help out their mother, but they weren't prepared to take full responsibility for the farm."
             "We hoped they could learn what they needed to know from Natalia and their neighbors."
             #TODO: should community 10's decision affect this?
         return
@@ -2313,6 +2313,7 @@ label community13:
                 lily "You can work on your farm. We just need someone to listen to the radio so that we can call for help if something happens."
                 him "I can do that."
                 "Dr. Lily told me her radio frequency, and I went home to work."
+                scene cave with fade
                 "I listened to Dr. Lily and Zaina chatting with each other while they explored the cave. Miranda Peron, Dr. Lily's research assistant, came too."
                 "She and Zaina took lots of photos, and Zaina took some rock samples." #put in actual conversations? or just summarize it all?
                 # TODO: actual conversations are more interesting
@@ -2416,6 +2417,7 @@ label community13:
             jump demo_after_cave
         "The next day, Pete, Helen, Natalia, and Joanna joined her."
         "I went too."
+        scene cave with fade
         menu:
             "I protested with them.":
                 "I marched around yelling."
@@ -3931,7 +3933,8 @@ label community22:
                         him "Okay Brennan, who's coming with me?"
                         brennan "Bandile and Chaco have agreed to come with you."
                         "On the way there, I told them our plan was to intimidate, not kill. I gave them both guns."
-                        "After we got there, we couldn't find the cave entrance. We saw Helen, though."
+                        "We saw Helen as we approached the cave entrance."
+                        scene cave with fade
                         helen "Travis, go find the little ones and stay inside."
                         him "Hello Helen. We're looking for Pete."
                         helen "What do you want with him? And why are you carrying those guns?"
@@ -4031,7 +4034,7 @@ label community22:
     elif (luddites > 5):
         "Pete called me on the radio one evening."
         pete "We've been hearing and feeling explosions in the mountain a lot lately."
-        pete "Are the miners working on our side of the mountain? Seriously, what's going on?" #or would his tone be more indignant?  YES
+        pete "What do those damn miners think they're doing?!"
         him "That's possible. I know they finished mining in the mountain closest to us."
         pete "I am not moving. They can mine somewhere else."
         pete "The cave we have now protects us from radiation but lets in light through cracks in the sides."
@@ -4180,7 +4183,7 @@ label mining_anyway:
     pete "Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking."
     her "Is he breathing? Does he have a heartbeat?"
     pete "He's alive and he called us for help. But he's completely stuck underneath a rock right now."
-    her "See if you can keep him warm. Maybe a small warm-blooded animal could sneak back there?"
+    her "See if you can keep him warm. Maybe a small warm-blooded animal could sneak back there?" # what? I don't get this
     her "The cave is probably unstable. If you try to get him out, you could make it worse or get stuck yourself."
     pete "There must be something we can do. I can't sit and watch him die."
     her "Don't try to move him until I have more information. I'll radio back to you in five minutes."
