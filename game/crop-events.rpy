@@ -396,23 +396,25 @@ label squash1:
                 kevin "I apologize, but I do not have extra bees at this time."
                 him concerned "Could I maybe, like, borrow them, just for a few weeks?"
                 kevin "I could rent them to you."
-                # TODO: currency check.
                 menu:
                     "What should I say?"
                     "Could we trade?":
                         him surprised "Could we trade? Maybe for squash?"
                         kevin "Squash and goat's milk, in these quantities."
                         him normal "Looks reasonable. It's a deal."
-                    "Okay, how about for 10?":
-                        him normal "Okay, how about 10?"
-                        kevin "That is insufficient. I propose 20."
-                        him surprised "Maybe 15?"
-                        kevin "18 is the lowest I will consider."
-                        him normal "All right, 18 it is."
-                    "I'll pay you 20.":
-                        him normal "I'll pay you 20 for them."
+                        $ modify_credits(-50) # TODO: decrease crops instead?
+                    "Okay, how about for 50?":
+                        him normal "Okay, how about 50?"
+                        kevin "That is insufficient. I propose 80."
+                        him surprised "Maybe 60?"
+                        kevin "75 is the lowest I will consider."
+                        him normal "All right, 75 it is."
+                        $ modify_credits(-75)
+                    "I'll pay you 100.":
+                        him normal "I'll pay you 100 for them."
                         kevin "That is acceptable."
                         him "It's a deal."
+                        $ modify_credits(-100)
                 kevin "Good. I will write up a contract."
                 him annoyed "A contract, huh?"
                 kevin "Yes. That way the terms are clear and unarguable by both sides."
@@ -426,7 +428,7 @@ label squash1:
             "Forget the squash for this season":
                 "I didn't have time to baby the plants. They'd have to survive on their own."
                 "Some of them produced fruit, but most didn't. What a waste..."
-                # TODO: decrease food/income
+                $ modify_credits(-200)
     return
 
 # SQUASH2 - squash bugs
@@ -622,8 +624,10 @@ label goats2:
             "I felt bad for Pete. Maybe he would like some goats."
             "I couldn't send him a message; radio communications weren't private."
             "I'd have to just go over there."
-            # TODO: background for Pete?  Like this? https://pixabay.com/en/barn-field-agriculture-countryside-238512/
-            scene fields with fade
+            if (year >= PETE_LEAVES_CAVES_YEAR):
+                scene shack with fade
+            else:
+                scene cave with fade
             show pete at midright with dissolve
             show him normal at midleft with moveinleft
             if (luddites_strength() >= 1):
@@ -984,7 +988,7 @@ label plums2:
             thuc "This is nice and fresh, so you can plant it or eat it."
             him "Mmmm, this'll be good! Thank you!"
             "I couldn't wait to eat some, but even better, now I could grow my own."
-            # $ enable_crop("garlic")
+            $ enable_crop("garlic")
             return
 
         "Make jam" if (get_extra_work() >= 0):
@@ -1009,10 +1013,10 @@ label plums2:
                 "Which should I choose?"
                 "Onions":
                     him "Give me the onions."
-                    # $ enable_crop("onions")
+                    $ enable_crop("onions")
                 "Turnips":
                     him "How about the turnips?"
-                    # $ enable_crop("turnips")
+                    $ enable_crop("turnips")
             ilian "Fine. Here you go."
             "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
             return
@@ -1033,7 +1037,7 @@ label plums2:
         "Buy onions.":
             # TODO: currency check, subtract amount for onions.
             "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-            # $ enable_crop("onions")
+            $ enable_crop("onions")
         "Don't buy onions":
             "I decided not to buy them. I had enough crops to deal with."
 
@@ -1323,21 +1327,21 @@ label strawberries1:
             kid "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
-            # $ enable_crop("strawberries")
+            $ enable_crop("strawberries")
         "Sell the extra plants.":
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear
             him_c "I've got some extra strawberry plants I'm willing to sell. They grow fast and easy and taste delicious!"
             sara_c "😲 I want some!!!"
             ilian_c "We don't even have a farm."
-            sara_c "We have some dirt! I need strawberries!!! 😍😋🍓"
+            sara_c "We have some dirt! I need strawberries!!! {font=fonts/OpenSansEmoji.otf}😍😋🍓{/font}"
             natalia_c "Oh, my grandkids would love those. I'll take a few."
             kevin_c "I would like to plant some for additional vitamin C."
             him_c "Okay, I should have enough to everyone to have a few."
             thuc_c "I have strawberry plants, too. I'll sell them for the same price as [his_name]."
             nvl clear
-            # TODO: currency check, add some income.
             "I was able to make a little extra money selling strawberry plants."
+            $ modify_credits(100)
         "Leave them alone.":
             "I was too busy this year. I decided to just leave them there and deal with them later."
 
@@ -1394,10 +1398,193 @@ label strawberries2:
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
 
-            # $ enable_crop("strawberries")
+            $ enable_crop("strawberries")
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             # TODO: Test this...
             $ farm.crops.delete_crop("strawberries+")
+
+    return
+
+# Honey event
+# Can only happen year 11+
+label honey1:
+    "Having bees wasn't just good for pollinating plants; I also really enjoyed when we got to harvest the honey."
+    "But when I went to harvest the honey, I noticed something."
+    him surprised "Some of the honey is missing!"
+    "A whole frame was gone."
+    "At first, I thought maybe I had made a mistake and just forgot to put it in or something. But when I looked around, I found it several meters away."
+    "All the honey and the comb had been clumsily scraped off. I looked around for tracks but didn't see any."
+    him angry "Who did this?!"
+    "I went to my security cameras and looked at the footage. There was nothing during the past week... it must have been done a while ago."
+    "But I finally found the thief. It was late at night, so the footage was black and white and a little blurry."
+    him surprised "It looks like... a kid?!"
+    "The kid looked about [kid_name]'s age. At first I thought maybe it was her... but then I noticed that the kid entered and left from the path that led to town."
+    "I couldn't make out his features, but it looked like a boy wearing a wide-brimmed hat."
+    "There couldn't be that many kids that age with that kid of hat on the planet."
+    menu:
+        "What should I do?"
+        "Ask on the colony message area.":
+            nvl clear
+            him_c "Hey, I'm looking for a kid about [kid_name]'s age with a wide-brimmed hat. Anyone know who that could be?"
+            natalia_c "I have a hat like that but my kids are all older. What happened?"
+            if (year <= NAOMI_DIES_YEAR):
+                naomi_c "Is something wrong?"
+            menu:
+                "What should I say?"
+                "He stole some honey.":
+                    him_c "He stole some of my honey."
+
+                "Just looking for him.":
+                    him_c "Nothing in particular. Just looking for him."
+                    ilian_c "You wouldn't be looking without a reason. What'd he do?"
+                    if (year <= NAOMI_DIES_YEAR):
+                        naomi_c "Please be honest with us, [his_name]."
+                    him_c "...he stole some honey from our farm."
+            sara_c "That's awful! He's not one of the miner's kids, is he?"
+            brennan_c "Nope, not one of ours."
+            julia_c "Kids these days..."
+            nvl clear
+            "No one had any more information on the message board, but I got a private message later that day."
+            if (year <= NAOMI_DIES_YEAR):
+                naomi_c "The honey thief may be from Pete and Helen's family."
+            else:
+                sara_c "Hey, have you considered that the honey thief might be Pete and Helen's son?"
+            him_c "You think it's Travis? It would explain why no one recognized him... Thanks, I'll look into it."
+            nvl clear
+
+        "Look for a kid with a wide-brimmed hat.":
+            "I kept my eyes peeled in town, and even made an excuse to stop by the school, but I didn't see any kids that matched the video."
+            "I finally asked [her_name] about it. She knows almost everyone because of her work, but I wasn't sure she'd want to tell me."
+            scene hospital with fade
+            show her normal at midright with dissolve
+            show him normal at midleft with moveinleft
+            him surprised "Hey do you recognize this kid?"
+            "I showed her the footage."
+            her surprised "A honey thief, huh?"
+            him determined "Looks like it."
+            her concerned "I can't say for sure... but it looks like Oleg or Travis."
+            him concerned "That's what I thought..."
+            her determined "No, it's definitely Travis. I recognize those clothes."
+
+        "Ask [kid_name] if she recognizes him.":
+            scene farm_interior with fade
+            show kid normal at midright with dissolve
+            show him normal at midleft with moveinleft
+            him determined "Do you know who this is?"
+            "I showed her the video footage."
+            kid surprised "Wait... play it again?"
+            "I could tell from the expression on her face that she knew who it was."
+            kid nervous "Is he in trouble?"
+            him annoyed "Well, he did steal honey from our farm."
+            kid concerned "What are you going to do to him?"
+            him surprised "I just want to talk to him."
+            kid nervous "I... I think it's Travis."
+
+    "It was time to pay Travis a visit."
+    if (year <= PETE_LEAVES_YEAR):
+        scene farm_exterior flip with fade
+    elif (year <= PETE_LEAVES_CAVES_YEAR):
+        scene cave with fade
+    else:
+        scene shack with fade
+
+    show helen normal at center
+    show travis normal at midright
+    with dissolve
+    show him normal at midleft with moveinleft
+    helen "Oh. Hello, [his_name]."
+    him normal "Hey there, Helen. How's it going?"
+    helen "Okay, I guess. What brings you way out here?"
+    menu:
+        "What should I do?"
+        "Talk to Helen about Travis":
+            him determined "I'll get right to the point. Travis stole some of our honey."
+            show travis normal at quarterright with move
+            helen "Oh, really? Why do you think that?"
+            show travis normal at right with move
+            him concerned "I have video footage right here."
+            "I showed her the security video."
+            helen "Hmmm. Travis!"
+            travis "I was just going to go, uh, do my chores!"
+            show helen normal at quarterright with move
+            helen "C'mere and talk with [his_name]. And"
+            "She whispered something in his ear that I didn't hear."
+            show travis normal at midright with move
+            hide helen with moveoutright
+        "Talk to Travis directly.":
+            him determined "Travis, I need to talk to you."
+
+    travis "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
+    him annoyed "Don't change the subject. I caught you stealing my honey."
+    travis "Oh, uh, what?"
+    "I showed him the video. Standing here and comparing him to the video, it was easier to tell that it was him."
+    "He fidgeted and looked around as if wondering if there was an escape route."
+    him determined "I know it was you."
+    travis "Oh. Uh. Yeah."
+    menu:
+        "What should I say?"
+        "Why did you do it?":
+            him concerned "Why did you steal from me?"
+            travis "I don't know."
+            him surprised "You don't have a good reason?"
+            travis "Not really. I mean, honey tastes good. It's really sweet."
+            him annoyed "That's the only reason?"
+            travis "Pretty much."
+        "I expect full compensation.":
+            him determined "I expect you to compensate me for that honey. It's about 50 credits worth."
+            travis "50 credits?!"
+            him concerned "If you don't have the credits, you can work for me instead."
+            travis "..."
+            him surprised "What was that?"
+            travis "...okay."
+        "(Wait for him to say something)":
+            "I just waited. He shifted his weight from one foot to the other. I waited some more. Finally, he said quietly,"
+            travis "I'm sorry I stole your honey."
+            him normal "Thank you, Travis. Please don't let it happen again."
+            travis "I won't."
+            "I waited some more. He cleared his throat and looked around."
+            travis "So is that it?"
+            him determined "Well, usually when someone steals something, they apologize and then give it back."
+            travis "Oh. I can't give it back; we already ate it."
+            him surprised "We?"
+            travis "My brothers and sisters and I."
+            "Well, at least he shared his ill-gotten goods."
+            him determined "So what are you going to do instead?"
+            travis "Oh. Ummm, I could probably give you some cheese. I helped make it."
+            him normal "That sounds good. Why don't you and your parents work out something and bring it by later?"
+            travis "Okay."
+
+        "I'm disappointed you would steal from me.":
+            him sad "I'm disappointed you would steal from me."
+            travis "It's nothing against you personally! We just really wanted something sweet."
+            him surprised "We?"
+            travis "My brothers and sisters and I. Sometimes we just get really hungry."
+            him concerned "I see. Unfortunately, I can no longer trust you like I once did."
+            travis "Oh."
+            him sad "But if you're really hungry, come ask and I'll give you some food."
+            travis "Oh. I mean, we don't need a handout or anything, we're doing just fine--"
+            him normal "It's okay. I get it."
+    him surprised "Is your family doing okay out here by yourselves?"
+    travis "My dad's always saying how we gotta live on our own, do everything ourselves, be independent."
+    him concerned "Yeah..."
+    travis "I guess that was my way of trying to do something on my own."
+
+    menu:
+        "What should I say?"
+        "Quit stealing.":
+            him determined "I understand what you're saying, but you can't steal from people."
+            travis "Yeah."
+        "Want to learn beekeeping?":
+            him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
+            travis "I don't know if I like bees..."
+            him normal "You probably got stung a lot during your heist, huh?"
+            travis "Yeah... but I wasn't going to walk away empty-handed!"
+            him happy "Well, learning how to handle bees without getting stung is part of beekeeping!"
+            travis "Well... that'd be stellar."
+            him normal "Great! You can pay off the honey you stole by working with the bees."
+        "Good luck.":
+            him determined "Good luck living on your own."
+            travis "Okay, thanks."
 
     return

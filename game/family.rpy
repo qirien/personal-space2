@@ -3336,7 +3336,7 @@ label family12:
             $ responsive += 1
             $ confident += 1
             him normal "Sure, you can go."
-            kid happy "Yay! I'm going to message her right now, she'll be so excited!"
+            kid happy "Stellar! I'm going to message her right now, she'll be so excited!"
             $ permissive += 1
             call family12_anyas_house
         "Are her parents going to be home?":
@@ -3483,7 +3483,7 @@ label family12:
             kid sad "Aw, man."
         "I guess.":
             him concerned "I guess..."
-            kid happy "Yay!"
+            kid happy "Stellar!"
             "It was hard to comb her hair properly when she was playing her game. I did my best, though."
 
     "Now that I knew about lice, my head kept itching. I wasn't sure if it was real or if I was just creeped out."
@@ -4227,7 +4227,6 @@ label family15:
     scene farm_interior with fade
     show him normal at midright
     show kid normal at midleft
-    # TODO: Modify allowance_amount based on this event and do something with it.
     kid "Dad, I need some money. Can I have an allowance?"
     him happy "[kid_name], I have no problem with ants. I already 'allow ants.'  Get it??"
     kid "Ha ha. That doesn't even make sense. So can I?"
@@ -4294,13 +4293,13 @@ label family15:
             him "She shouldn't get paid to help out her family."
             her annoyed "Why not? You do."
             him "...Fine, whatever, as long as you handle it."
-            $ allowance = 5
             hide her with moveoutleft
             show kid at center
             show her determined at midleft
             with moveinleft
             kid "Yay, mom's going to pay me five credits a week!"
             "I guess I did say [her_name] should handle it..."
+            $ allowance_amount = 5
             return
         "No.":
             $ responsive -= 1
@@ -4344,6 +4343,7 @@ label allowance_how:
             him "Your choice. Better decide soon, though, because I'm about to go do it."
             kid "Okay! Okay! I'll go muck out the barn!"
             him "Great!"
+            $ allowance_amount = 5
             $ authoritative += 1
         "You can have 10 credits per week.":
             $ responsive += 1
@@ -4351,6 +4351,7 @@ label allowance_how:
             kid "Really? Starting when?"
             him "Right now! Here you go."
             kid "Awesome! I'll be able to buy all sorts of stuff!"
+            $ allowance_amount = 10
             $ permissive += 1
         "You can have 5 credits per week, but only if you are good and do your chores.":
             $ demanding += 1
@@ -4370,6 +4371,7 @@ label allowance_how:
                     him "Yeah, I don't expect you to be perfect, but I do expect you to try to improve, OK?"
                     kid "Okay, I guess."
                     $ authoritative += 1
+            $ allowance_amount = 5
 
     return
 
@@ -5602,9 +5604,11 @@ label family20:
             him "What happened to a 'personal instructor'?"
             ilian "If you're paying less, you get less. That's how the world works."
             him "All right, fine."
+            $ modify_credits(-20*28)
         "You have a deal.":
             him "You have a deal. It's not like you have any competition in the saxophone teaching business."
             ilian "I'm glad you realize the value of the musical arts."
+            $ modify_credits(-25*28)
         "Isn't there something else we could exchange?":
             him "Isn't there something else we could exchange?"
             ilian "You don't have anything I want."
@@ -5612,7 +5616,7 @@ label family20:
             ilian "Oleg hates horses."
             him "I could come help you process food while she's in her lesson. Canning, dehydrating, whatever."
             ilian "That could work. Fine; you have a deal."
-        # TODO: make you now have less work available. Also subtract the money.
+        # TODO: make you now have less work available.
     "I was worried that the saxophone would just be a fad [kid_name] went through, but she really got into it."
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played, I could hear her expressing emotions even she didn't know she had."
@@ -5643,7 +5647,7 @@ label family21:
     bro "Well, what do you think I should use?"
     kid "Duh! The sniper blaster! They're weak against blast damage and you can keep your distance so you don't die in like five seconds like you do every time!"
     bro "I hate the scope; it's too hard."
-    kid "It's only hard if you're a total n00b." # TODO: make up some Talaam slang here?
+    kid "It's only hard if you're a wimpy sprout."
     "[bro_name] was almost in tears. [kid_name] was focused on the game and didn't seem to notice."
     menu:
         "What should I do?"
@@ -5663,9 +5667,9 @@ label family21:
                 "Turn it off now.":
                     $ demanding += 1
                     him angry "Turn it off now!"
-                    kid "Seriously, dad?"
+                    kid surprised "Seriously, dad?"
                     him annoyed "Yes. Right now."
-                    kid "Ugh! Fine. There. What's so important you couldn't wait for five minutes?"
+                    kid angry "Ugh! Fine. There. What's so important you couldn't wait for five minutes?"
                 "Turn it off as soon as the round is over.":
                     $ responsive += 1
                     him determined "Turn it off as soon as the round is over."
@@ -5742,7 +5746,7 @@ label family21:
                             $ confident += 1
                             $ demanding += 1
                             him determined "You can play together as long as you are being polite. You're on the same team, remember?"
-                            kid "Okay, but, [bro_name] can you pick a different weapon next time?"
+                            kid "Please, please, PLEASE [bro_name] can you pick a different weapon next time?"
                             bro "Yeah, I guess."
                             him normal "Okay! That's more like it!"
                             $ authoritarian += 1
@@ -5816,7 +5820,7 @@ label family21:
             kid "Yeah! Got it!"
             bro "Now get back! Stay away from the tower!"
             kid "Almost there..."
-            bro "He's chasing you... but he's too slow! Yeah! We did it!"
+            bro "He's chasing you... I can shoot a smoke bomb! Yeah! We did it!"
             kid "Yeah!"
             "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
             "I guess they could get along, when they wanted to."
@@ -6937,8 +6941,8 @@ label family26:
         "I'm already doing what I can.":
             him "Look, I tried to stop the cave mining. I tried to stop the jellystar farming. But I can't make other people not do stuff."
             if is_liason:
-                kid "You should be able to! Are you the liason or not?!"
-                him "I'm just a liason, not a dictator."
+                kid "You should be able to! Are you the liaison or not?!"
+                him "I'm just a liaison, not a dictator."
             else:
                 kid "Well, someone needs to make them stop."
                 him "Maybe you could convince them?"
@@ -6995,6 +6999,7 @@ label family27:
             him normal "Kind of... Anyway, I agree that you should have a bike. I'll transfer you the credits."
             kid laugh "Okay!"
             $ permissive += 1
+            $ modify_credits(-bike_cost)
 
         "Have her use her own money.":
             $ demanding += 1
@@ -7084,6 +7089,7 @@ label family27:
                 kid angry "That's not fair!"
                 him normal "I'm the parent; those are the rules."
                 $ authoritarian += 1
+            $ modify_credits(-bike_cost)
 
 
     # TODO: fit this in somehow?
@@ -7885,7 +7891,7 @@ label family30:
     show him concerned
     "Finally, I went and sat outside under the moons and stars."
     scene moons with fade
-    "Every inch of ground was soaked in memories."
+    "Every inch of ground was saturated with memories."
     # TODO: show these
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
@@ -7935,7 +7941,7 @@ label family30:
     if (boyfriend_name == "Lorant"):
         him angry "It {b}is{/b} about a boy!"
         her annoyed "I'm sure Lorant's not the only reason she wants to go back to Earth."
-        kid annoyed "Besides, that's what mom did. Follow her crazy boyfriend to a different planet."
+        kid annoyed "Besides, that's what Mom did. Follow her crazy boyfriend to a different planet."
         him determined "That was different. We were married."
         her determined "Just barely."
         kid concerned "Anyway, he's just one of the reasons I want to go."

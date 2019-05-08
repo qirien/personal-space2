@@ -5,7 +5,196 @@ label work_default:
     $ enable_crop("squash")
     return
 
-# TODO: Need event(s) for if you overwork yourself.
+# Event for if you overwork yourself.
+label overwork:
+    $ overwork_count += 1
+    $ random_crop = farm.crops.random_crop(True, False)
+
+    if (overwork_count <= 1):
+        "I like a challenge."
+        "I push myself to work hard, be productive, and get things done."
+        "But this year, I took on too much."
+        "I was already exhausted from working dawn-to-dusk on weeding and maintaining the fields, and my list of to-dos was getting longer and longer."
+        "Harvest loomed ever closer, like a meteor hovering overhead."
+    else:
+        "I should have known better, but I could tell that I was trying to take on too much (again)."
+    # The first time you ask for help from a group, it's a bonding experience. After that, they get annoyed.
+    menu:
+        "What should I do?"
+        "Ask other farmers for help." if (overwork_colonists < 2):
+            $ overwork_colonists += 1
+            if (overwork_colonists <= 1):
+                $ colonists += 1
+                him_c "Hey, anyone want some free [random_crop]? I could use a hand harvesting them."
+                thuc_c "Are you kidding? I love [random_crop]."
+                julia_c "Got more than you can handle, eh?"
+                zaina_c "If there's free fresh food, I'm there."
+                him_c "Thanks, everyone..."
+                scene fields with fade
+                show him normal at center
+                show thuc normal at midright
+                show julia normal at quarterright
+                show zaina normal at midleft
+                show kevin normal at quarterleft
+                with dissolve
+                "With everyone's help, we were able to harvest all the [random_crop]. Everyone took home a bunch, too, so I had less to process."
+            else:
+                $ colonists -= 1
+                him_c "Hey, I have extra [random_crop] for anyone that wants to help with the harvest."
+                thuc_c "Now?? I could use a hand myself, actually."
+                zaina_c "I could probably stop by in a few days..."
+                scene fields with fade
+                show him determined at midright
+                show zaina normal at midleft
+                "Not many people showed up, but we were able to harvest most of the tomatoes."
+
+        "Ask miners for help." if ((year > miners_arrive_year) and (overwork_miners < 2)):
+            $ overwork_miners += 1
+            if (overwork_miners <= 1):
+                $ miners += 1
+                "Ugh. Asking for help was hard enough... but asking for help from Brennan? Maybe I could just post something on the miner's message area."
+                "But unfortunately, I didn't have access to it."
+                him_c "Brennan, can you post a notice that if any miners are looking for free food, they can come help harvest [random_crop]?"
+                brennan_c "Why would any of them want to do that?"
+                him_c "It's fresher and tastier if you pick it yourself."
+                brennan_c "Hmmm. Not sure you'll get many takers, but if you send it to me, I'll post it."
+                scene fields with fade
+                show him normal at midright
+                show lorant at midleft
+                with dissolve
+                "It turned out a couple of miner families thought it would be fun to harvest food for a day."
+                "They only stayed for a few hours, but at least they made a dent in the plentiful [random_crop]."
+            else:
+                $ miners -= 1
+                him_c "Brennan, can you post a message asking if any miners want to help with the [random_crop] harvest?"
+                brennan_c "Again? This seems like poor planning on your part."
+                him_c "Can you just send the message?"
+                brennan_c "Surely you don't expect us to come running every time you have a problem."
+                him_c "CAN YOU PLEASE JUST ASK??!"
+                brennan_c "Of course. Don't get so cheesed off."
+                scene fields with fade
+                "A few miners sent some of their kids that were too young for the mines, so I kind of ended up babysitting them all trying to make sure they did it right and didn't trample everything."
+                "They picked a few [random_crop], but a lot of them just went to waste."
+        "Ask your family for help." if (overwork_family < 2) :
+            $ overwork_family += 1
+            if (overwork_family <= 1):
+                $ marriage_strength += 1
+                $ responsive += 1
+                $ demanding += 1
+                call bedroom_scene(False, False)
+                show him determined with dissolve
+                show her surprised with dissolve
+                show him concerned with dissolve
+                show her annoyed with dissolve
+                her annoyed "All right. Out with it. Why can't you sleep?"
+                him concerned "I need to harvest the [random_crop]..."
+                her surprised "And... why is that a problem?"
+                him sad "There's... a lot. Maybe too much, with all the other crops I have to worry about, too."
+                her determined "Do you need some help?"
+                him concerned "No, I could probably do it on my own..."
+                her annoyed "Let me rephrase that. Do you want some help?"
+                him sad "I know you're busy, but..."
+                her determined "Nope, I'll help you out."
+                if (year >= TODDLER_MAX):
+                    her normal "[kid_name] can help, too."
+                if (year >= CHILD_MAX):
+                    him determined "And [bro_name]."
+                her concerned "I don't have any appointments in the mornings this week, so I'll work here with you and then go in late. Okay?"
+                him concerned "Thanks, [her_name]..."
+                her annoyed "Now will you please go to sleep?"
+                scene fields with fade
+                "[her_name] wasn't an expert or anything, but with her help we were able to harvest all the [random_crop]."
+
+            else:
+                $ marriage_strength -= 1
+                $ responsive -= 1
+                $ demanding -= 1
+                scene farm_interior with fade
+                show him normal at midright
+                show her normal at midleft
+                show kid normal at quarterleft
+                him surprised "Hey, I'm kind of worried about the [random_crop]..."
+                her surprised "What's wrong?"
+                him concerned "I don't know if I have time to harvest them all..."
+                her annoyed "You knew this would happen."
+                him surprised "What do you mean?"
+                her angry "You planted all those [random_crop] knowing full well that you wouldn't have time to harvest them all yourself."
+                him concerned "Well, I wasn't completely sure..."
+                her annoyed "You can't just overplant your farm and expect me to help you out every time! I have a job already!"
+                him angry "Fine! Don't help me, then."
+                her concerned "I'll help you out this time. But this is the last time."
+                him concerned "Thank you, [her_name]."
+
+        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_luddites < 2)):
+            $ overwork_luddites += 1
+            if (overwork_luddites <= 1):
+                $ luddites += 1
+                if (year >= PETE_LEAVES_CAVE_YEAR):
+                    scene shack with fade
+                else:
+                    scene cave with fade
+                show pete normal at midleft with dissolve
+                show him normal at midright with moveinright
+                him happy "Pete! I feel like I never see you anymore!"
+                pete happy "That's because you don't."
+                him normal "Well, yeah, but it's not like you live on a different planet or anything."
+                pete normal "Nope."
+                him concerned "Hey, want to come help harvest [crop_name]? You can take some home with you."
+                pete happy "I could probably find a few hours this week. Mind if I bring the whole family?"
+                him happy "Bring anyone you like! Honestly, I could really use your help."
+                scene fields with fade
+                show him at midleft
+                show pete at center
+                show helen at midright
+                show travis at quarterright
+                show lily at quarterleft
+                "With so many people, it didn't take us very long to harvest all the [random_crop]."
+                him happy "Thanks, guys!"
+            else:
+                $ luddites -= 1
+                scene shack with fade
+                show pete normal at midright
+                show him normal at midleft
+                with dissolve
+                him happy "Hey, Pete! Want to come help harvest [random_crop]?"
+                pete normal "Not really. I got a bunch of other stuff going on right now."
+                him sad "Oh..."
+                pete normal "Don't look like that..."
+                him concerned "I'll find some other way..."
+                pete normal "I'll send Travis over. That's all the help I can spare at the moment, though."
+                him normal "Thanks, I think that'll be good enough."
+
+        "Don't ask for help.":
+            $ overwork_self += 1
+            "Everyone else had their own problems. I got myself into this mess; now I would get myself out of it."
+            if (overwork_self <= 1):
+                "I stayed up late; I woke up early. I didn't do anything else for weeks except take care of the farm."
+                scene fields with fade
+                show tractor at center
+                show him concerned at center
+                with dissolve
+                him concerned "I can do this... just one more week."
+                scene black with fade
+                scene fields with fade
+                show tractor at center
+                show him sad at center
+                with dissolve
+
+                him sad "Just one more day..."
+                window hide
+                show black with irisin
+                hide black with irisout
+                window show
+                show him sleeping with dissolve
+                "It was when I fell asleep at the wheel of my tractor that I realized I was pushing myself too hard."
+                show him sad with dissolve
+                "I had to get some rest..."
+                "And my harvest suffered."
+            else:
+                "But there was a limit to how much I could physically do, and my harvest suffered."
+                $ modify_credits(-300)
+    return
+
 
 
 # Malnutrition Event for if you don't have enough nutrition
@@ -371,8 +560,8 @@ label work4:
         him surprised "Strawberries?"
         thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
-        # TODO: uncomment when we get some art
-        #$ enable_crop("strawberries")
+        # TODO: test this
+        $ enable_crop("strawberries")
     return
 
 # Year 6, 3.5 years old
@@ -541,7 +730,7 @@ label work10:
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin "Very well. I shall mark you down for bees."
-            # $ enable_crop("honey")
+            $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, once placed, they cannot be moved."
             # TODO: implement these!!
@@ -590,8 +779,8 @@ label work12:
             brennan "Ah, can't you take a joke?"
             him determined "..."
             brennan "...Right. Here's your wheat."
-            # $ enable_crop("wheat")
-            # TODO: implement annual fee
+            $ enable_crop("wheat")
+            # TODO: implement annual fee, test
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
             $ luddites += 1
@@ -605,7 +794,7 @@ label work12:
             him "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
             natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
             him "That would be great!"
-            # $ enable_crop("corn")
+            $ enable_crop("corn")
 
     "I was looking forward to growing something new."
     return
@@ -790,7 +979,7 @@ label work16:
             else:
                 "Kevin took some of my seeds, and I decided to take some of the chile pepper seeds."
                 natalia "You won't be disappointed!"
-                # $ enable_crop("peppers")
+                $ enable_crop("peppers")
 
         "Expand your farmland.":
             $ luddites += 1
@@ -901,10 +1090,40 @@ label work18_after_clean:
     return
 
 # Year 20, 12 years old
+# Irrigation Trouble
 label work20:
-    "Miners want cheap/fast/calorie-dense food. Will you cater to their needs?"
-    "Also, Terra likes it as she is eating more and growing taller than ever."
-    "or, solar panels are wearing out due to solar flares."
+    scene fields with fade
+    "With Talaam's frequent rains, we didn't need to irrigate the fields very often."
+    "But I had a system of gates and canals I could open up if needed to get extra water from the river when it didn't rain enough."
+    "After a week with no rain, and no rain in the forecast, I decided to open up the gates and let in some river water."
+    scene irrigation with fade
+    show him normal at center with moveinleft
+    "But when I got there, the river was so low that barely any water came into the canal."
+    him surprised "Where'd all the water go?"
+    "I followed the river upstream to Thuc's farm."
+    scene irrigation flip with fade
+    show thuc normal at midright with dissolve
+    show him normal at midleft with moveinleft
+    him surprised "The river is low here, too."
+    thuc sad "Yeah, I went to flood the fields and there was nothing left."
+    $ work20_thuc_present = False
+    menu:
+        "What should I say?"
+        "Let's check it out.":
+            him determined "I'm going to check it out. Come with me if you want."
+            thuc normal "I was just going to tell you the same thing."
+            $ work20_thuc_present = True
+        "Did you use all the water?":
+            "Thuc's irrigation techniques are a bit different from mine, since he grows different crops. His require a lot more water because they need to be flooded."
+            him annoyed "Did you use all the water?"
+            thuc "No more than usual."
+            him determined "Huh. Well, I'm going to go check it out."
+
+    "I headed farther upstream, past the town, and up into the hills."
+
+
+
+
     return
 
 # Year 22, 13.6 years old
@@ -915,7 +1134,7 @@ label work22:
     show him determined at left behind night_overlay with moveinleft
     # TODO: show silhouettes?
     him determined "Why did [her_name] want to meet me here? It makes no sense..."
-    him annoyed "And the light's are off, which means she's not even here...?"
+    him annoyed "And the lights are off, which means she's not even here...?"
     hide night_overlay with dissolve
     show her laughing at quarterleft
     show bro happy at quarterleft
@@ -1033,14 +1252,14 @@ label work22:
             him concerned "Ummm... maybe?"
             thuc "Sorry; it's the only thing I could think of that you didn't already have."
             him happy "No, this is great! I love more variety. Thanks, Thuc."
-            # $ enable_crop("turnips")
+            $ enable_crop("turnips")
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
             her annoyed "..."
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
-            # $ enable_crop("onions")
+            $ enable_crop("onions")
     elif (helping_faction == "luddites"):
         show pete at midright with moveinleft
         her happy "Especially Pete!"
@@ -1053,7 +1272,7 @@ label work22:
         pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
         her laughing "So true! And it's really healthy, too."
         him happy "Great, thank you Pete! It's always good to have some more variety."
-        # $ enable_crop("broccoli")
+        $ enable_crop("broccoli")
     else:
         show chaco at midright with moveinleft
         her happy "Especially Chaco!"
@@ -1311,7 +1530,7 @@ label work24:
 
         "Maybe she shouldn't work on the farm.":
             him sad "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
-            her concerned "No, I think usually it's good for her. Just... can you just be a little more careful?"
+            her concerned "I think usually it's good for her. Just... can you just be a little more careful?"
             him concerned "Yeah..."
             her determined "I know she looks like an adult, but inside she still has a lot of learning to do."
             him determined "Don't we all..."
@@ -1320,8 +1539,59 @@ label work24:
 
 # Year 26, 16.1 years old
 label work26:
-    "You throw out your back."
-    "People from your favorite faction and your family help you, or not."
+    "Everyone knows about harvesting on the farm."
+    "And everyone knows about planting."
+    "But there's another step that is just as important that doesn't get a lot of credit."
+    "Preparing."
+    "After every harvest, I try to take a short break and then get ready for the next crops."
+    "I test the soil to determine how much and what kinds of fertilizer to use."
+    "I oil tools and machines and try to repair any that have broken."
+    "I do an inventory of what seeds we have and try to decide how much we need to grow for each crop."
+    "I didn't really need help, but I kind of wanted [kid_name] to learn that there was more to farming than just physical labor."
+    "But it would probably take longer if I had to explain it all to her..."
+    menu:
+        "What should I do?"
+        "Have [kid_name] help":
+            "It might be more work, but it'd be worth it for how much [kid_name] would learn."
+            scene farm_interior with fade
+            show him determined at midleft
+            show kid normal at midright
+            with dissolve
+            him normal "Hey, [kid_name]..."
+            kid annoyed "Don't tell me there's more work to do!  I thought we just finished the harvest!"
+            him annoyed "No more harvesting for now. This is fun. C'mon, I'll show you."
+            kid surprised "Really? What are you doing?"
+            scene fields with fade
+            show him normal at midright
+            show kid normal at midleft
+            with moveinleft
+            him determined "We need to go to these exact GPS coordinates..."
+            kid happy "Ooh, is there treasure buried underground?!"
+            him happy "If the raw materials for life-sustaining food counts as treasure, then YES!"
+            kid annoyed "Not really what I mean..."
+            him normal "Anyway, take this soil probe, and get a good sample... yes. Let's get a bunch of those from this list of coordinates."
+            kid angry "So... basically we're collecting dirt?"
+            him happy "Yes, but in a systematic way. Since we collect from the same spots every year, we can more accurately compare data."
+            kid surprised "What kind of data?"
+            him determined "Water retention, pH, and nutrient levels for potassium, phosphorus, and nitrogen."
+            kid concerned "Why do you care?"
+            him normal "These things determine what kind of fertilizer we add."
+            kid surprised "Don't we just always add goat manure?"
+            him determined "Well, yeah, but how much? And do you need anything else, like bone meal or sand or ashes?"
+            kid concerned "I guess... you could just add them all?"
+            him concerned "Too much of certain nutrients isn't good for the crops, either. So instead of guessing, we can run some tests and do some math."
+            kid flirting "Wow, you're so scientific."
+            him happy "I know!"
+            "I showed her how to collect the samples, test them, and enter in the results."
+            "Then we made a plan."
+            "It made me happy to share my plans with someone... [her_name] never really cared about them. Maybe [kid_name] didn't care that much, either, but she had time to listen to me."
+            $ independence += 1
+        "Do it myself.":
+            "I kind of liked planning and preparing and doing the whole farm myself. Why should I share the easiest part with [kid_name]?"
+            "Well, it wasn't always easy. But it wasn't physically taxing and it was kind of fun."
+            scene fields with fade
+            "I spent a few days taking soil samples, analyzing them, and making up a plan for the next year."
+            "I felt a sense of satisfaction at coming up with a plan completely on my own, with no one to answer to but myself (unless Ilian decided to complain that we weren't growing enough potatoes again)."
     return
 
 # Year 28, 17.3 years old
@@ -1365,6 +1635,8 @@ label work28:
     "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
     "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
     "We waited in line for thirty minutes while he and his sister cooked pancakes."
+    if community_22_mined_anyway:
+        "He had adapted quite well to his prosthetic leg; he didn't even limp anymore."
     travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
     kid determined "Are your parents okay with you running a restaurant?"
     travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
@@ -1476,7 +1748,7 @@ label work29_potatoes:
     him normal "Hey there, Travis!"
     if (farm.crops.count("potatoes") >= 3):
         travis "Hey, thanks for growing all those potatoes like I asked. The fries are one of my most popular items."
-        $ credits += 1000
+        $ modify_credits(1000)
         "He had paid me 1000 credits more than the storehouse would have, so I was pretty happy with the arrangement."
         him happy "No problem. You need anything else?"
         travis "Yeah, actually. I was hoping to buy some honey from you so I can sell ice cream."
@@ -1493,7 +1765,7 @@ label work29_potatoes:
                 "Sure.":
                     him normal "Sure, I'll save some honey for you."
                     "We worked out the specifics, and he paid me 500 credits."
-                    $ credits += 500
+                    $ modify_credits(500)
                     $ luddites += 1
                 "I don't want to do that.":
                     him concerned "Sorry, I don't want to sell all my honey to you. You can buy it from the storehouse like everyone else."
@@ -1523,7 +1795,7 @@ label work29_potatoes:
                     him normal "I do have honey."
                     travis "I guess that'll work."
                     "We worked out the specifics, and he paid me 500 credits."
-                    $ credits += 500
+                    $ modify_credits(500)
                 else:
                     him sad "Sorry, I don't have honey, either."
                     travis "Forget it, then."
@@ -1532,7 +1804,7 @@ label work29_potatoes:
                 $ potato_count = farm.crops.count("potatoes")
                 him "I can sell you the potatoes I do have."
                 travis "I guess that'll work."
-                $ credits += (300 * potato_count)
+                $ modify_credits(300 * potato_count)
                 "He paid me for the potatoes and left."
     return
 
@@ -1579,7 +1851,7 @@ label work30:
                     $ work28_rent = 150
                 "That's not enough.":
                     him annoyed "Are you kidding? You've got your own room, homecooked meals, and use of our resources. That's worth at least 250 credits."
-                    her determined "No. No way. 150 is the max!"
+                    her determined "[his_name], be reasonable. She's just getting started on her own."
                     kid determined "I can pay 200, but not 250."
                     him determined "Then I guess that will have to do."
                     $ work28_rent = 200
@@ -1598,8 +1870,11 @@ label work30:
             kid concerned "Okay..."
         "You don't have to work here.":
             him concerned "You don't have to work on the farm. But I could definitely use your help."
-            kid concerned "Maybe just when you really need me."
-            him determined "Okay. Thanks, [kid_name]."
+            if (is_attached()):
+               kid concerned "Maybe just when you really need me."
+               him determined "Okay. Thanks, [kid_name]."
+            else:
+                kid concerned "Uh, yeah, we'll see."
 
     show bro normal at quarterleft with moveinleft
     bro "I don't want to work on the farm, either."
@@ -1623,5 +1898,5 @@ label work30:
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."
 
-    # TODO: actually subtract rent from final total
+    $ modify_credits(work28_rent)
     return

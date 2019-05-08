@@ -153,16 +153,25 @@ init -100 python:
 
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events (we have 22)
-        # HOWEVER, if nutrition is low, you don't get to do any of that. Instead
+
+        # IF nutrition is low, you don't get to do any of that. Instead
         # you have to take care of the nutrition problem.
         malnutrition_threshold = renpy.random.randint(-5, 0)
         if (get_extra_nutrition() <= malnutrition_threshold):
             return "bad_nutrition"
 
+        # If you overworked yourself too much, you also get an overwork event
+        overwork_threshold = renpy.random.randint(-5, -1)
+        if (get_extra_work() <= overwork_threshold):
+            return "overwork"
+
+        # Is this an even year? then we have a set work event
         if ((year % 2) == 0):
             # Call the next set event
             event_name = "work" + str(year)
             return event_name
+
+        # Otherwise, we get a random crop event
         else:
             # special potato event
             if ((year == 29) and (year28_promised_potatoes)):
@@ -190,6 +199,17 @@ init -100 python:
                 return random_event
             else:
                 return "default_crop_event"
+
+    # Change amount of credits you have
+    # TODO: have a summary screen at the end of each year that shows all the notifications in a pretty way?
+    def modify_credits(amount):
+        global credits, notifications
+        credits += amount
+        if (amount >= 0):
+            notifications += "Credits +" + str(amount) + "\n"
+        else:
+            notifications += "Credits " + str(amount) + "\n"
+
 
     # Calculate expenses required for the family for this year
     def get_expenses_required():

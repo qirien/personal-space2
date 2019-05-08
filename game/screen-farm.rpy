@@ -54,12 +54,12 @@ screen plan_farm:
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
-                                # textbutton "Random":
-                                #     style "round_button"
-                                #     action [
-                                #             set_default_crops,
-                                #             renpy.restart_interaction
-                                #             ]
+                                textbutton "Random":
+                                    style "round_button"
+                                    action [
+                                            set_default_crops,
+                                            renpy.restart_interaction
+                                            ]
                                 textbutton "Accept Plan":
                                 # TODO: What if no valid layout is possible? Have emergency help button?
                                     style "round_button"

@@ -219,6 +219,8 @@ label message9:
 label message10:
     nvl clear
     # Location of miners discussed: "why so far" "not far enough!"
+    # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
+    # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
     if (is_liason):
         him_c "We've designated an area for the miners to live, so please take a look at the map and note where their camp will be located."
     else:
@@ -226,6 +228,13 @@ label message10:
     helen_c "Wow... that's pretty far away. It'll take them an hour to walk into town."
     pete_c "I don't know; kinda seems not far enough."
     kevin_c "The location was chosen for its proximity to precious minerals and availability of a clear area suitable for landing on."
+    her_c "What are they mining, anyway? It'd have to be something pretty valuable to send shuttles light years away for it..."
+    kevin_c "Scandium, terbium, indium, copper, phosphorus..."
+    thuc_c "I've heard of some of those words."
+    him_c "Phosphorus is an important part of fertilizer."
+    kevin_c "The rest are mainly used in electronics, solar panels, and cryogenics."
+    her_c "Is Earth completely out of them or something?"
+    lily_c "No, but here on Talaam they are much easier to access. While on Earth you might need to sift through garbage heaps to sort and recycle individual parts, here they are just below the surface."
     her_c "Things are going to change a lot when they arrive..."
     ilian_c "Personally, I'm excited. No offense to any of you, but I could stand to see a few new faces around here."
     if (year6_have_baby):
@@ -309,8 +318,21 @@ label message12:
 # Family: Sex education, miscarriage
 label message13:
     nvl clear
-    # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
-    # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
+    brennan_c "Please tell me we've exterminated all the lice..."
+    her_c "I think we're in the clear. If anyone finds more, please come to me right away so we can limit their spread."
+    him_c "I hope you guys didn't bring bed bugs with you, too."
+    brennan_c "If we did, we'll be sure to send them your way first."
+    her_c "Anyway, I thought I'd let you all know that we're expecting another baby!"
+    sara_c "Really?! That's great! {font=fonts/OpenSansEmoji.otf}😃🎉{/font}"
+    natalia_c "Congratulations!"
+    thuc_c "Wow, three kids... you'll be outnumbered."
+    him_c "Tell me about it!"
+    julia_c "After the first two, it's a lot easier."
+    natalia_c "I don't know... my last one was my most difficult baby of all."
+    julia_c "Oh, is that why you stopped at five?"
+    natalia_c "No, actually we wanted more kids but I had to have a hysterectomy right after Mateo. Thanks for bringing it up."
+    julia_c "I...I'm sorry. I didn't mean to bring up such a sensitive topic."
+    natalia_c "That's okay, now you have no excuse for being insensitive."
 
     nvl clear
     return
@@ -329,7 +351,11 @@ label message14:
     pete_c "I'll be there."
     natalia_c "I'm bringing a picnic; bring food if you want to trade!"
     her_c "Kevin, don't forget ear protection for anyone in your crew closer than 5km. Everyone else shouldn't need it."
-    kid_c "Yay, rocket picnic!"
+    kid_c "Stellar! A rocket picnic! -=|⁐⁐⁐⁐⁐⁐>"
+    ilian_c "I didn't realize this message area was for kids."
+    naomi_c "No reason it shouldn't be, if they have something to add to the conversation. But perhaps they would also like their own area."
+    oleg_c "I alredy made one no adults allowed tbfy ha ha  q.\_/.p"
+    sara_c "We'll see about that."
 
     nvl clear
     return
@@ -343,8 +369,8 @@ label message15:
     sara_c "Wow, it's so quiet on here without Pete and Helen! :-O"
     julia_c "Perhaps this will remind people to put down their devices and go talk to people in person!"
     ilian_c "Yes, let's talk ON COMPUTERS about HOW IMPORTANT it is to TALK IN PERSON!"
-    sara_c "Or instead of bickering we could do something positive in real life, like sign up to take meals to Naomi and Pavel."
-    natalia_c "Oh dear, is she sick again?"
+    sara_c "ORRRR, we could do something positive in real life, like sign up to take meals to Naomi and Pavel."
+    thuc_c "Is she sick again?"
     sara_c "Yeah..."
     julia_c "I'll bring something tonight, so don't worry about dinner, Pavel."
     pavel_c "Thank you so much. I know she appreciates all of your kind gestures."
@@ -365,10 +391,18 @@ label message16:
     # How is Pete doing? I never talk to him anymore.
     # Sara went to talk with them, gives update
     kevin_c "I have not seen Pete since he left... how is he faring?"
-    sara_c "I went to see them the other day. They are living in a tent up by the mountains; it's really pretty up there!"
-    sara_c "Travis was so happy to see me and Oleg; I think he's kind of lonely out there."
+    sara_c "I went to see them the other day. They are living in a tent up by the mountains; it's really pretty up there! Travis was so happy to see me and Oleg; he misses his friends."
+    pavel_c "Do they have enough to eat?"
     sara_c "They're working really hard doing everything all on their own, but they're not starving or anything."
+    if (lily_mad_at_RET):
+        her_c "What about Dr. Lily? Isn't she getting kind of old?"
+        sara_c "She lives near them. She's still getting around great and staying healthy."
+    if not (asked_only_medicines):
+        natalia_c "Tomás and Joanna like it out there. They've tunneled a house out of the ground and are doing farming and research."
 
+    ilian_c "It's only a matter of time before they come back. They'll need civilization sooner or later."
+    sara_c "People have survived for centuries living without 'civilization'."
+    ilian_c "Only if they have no other choice."
 
     return
 
@@ -376,9 +410,19 @@ label message16:
 # Family: Bro has unexplained crying
 label message17:
     nvl clear
-    # Show how busy harvest time is, negotiate when things are harvested to help each other, kids get school off to help
+    # how busy harvest time is, negotiate when things are harvested to help each other, kids get school off to help
     # Julia offers tea to people that help
     # shouldn't the miners help?? We have our own deadlines
+    pavel_c "No school for the next month due to harvest!"
+    brennan_c "I still think that's a wonky schedule. What about the miner kids? They don't have a harvest."
+    pavel_c "They could still use a break."
+    him_c "We could use the miners' help. Maybe we could all work together."
+    brennan_c "Sorry, we have our own deadlines."
+    julia_c "I'll have my special tea brewed for anyone that comes to help on Wednesday!"
+    sara_c "That stuff is so good! What's in it, anyway?"
+    julia_c "It's my secret recipe."
+
+    nvl clear
     return
 
 # Community: Miners complain about Pete's cattle
@@ -415,8 +459,17 @@ label message19:
     nvl clear
     him_c "I have some caulk leftover from roof repair if anyone needs it. Trust me, you don't want to wait until the roof's leaking during a solar flare."
     thuc_c "Sounds like you have personal experience there!"
+    him_c "Hey, what's everyone planting this season? Anything new?"
+    natalia_c "Mostly feed corn, but also beans, summer squash, sweet corn, popping corn, peppers, and tomatoes."
+    thuc_c "The usual: rice, onions, garlic, turnips, cabbage, and plenty of hay and clover for the goats."
+    pavel_c "I'm expanding my spice garden this year and adding cinnamon!"
+    kevin_c "I plan to grow more varieties of fruit in my orchards."
+    him_c "Wow, we're going to eat well this year! I'm still thinking about mine..."
+    oleg_c "potatoes plz!"
+    kid_c "strawberries plz!"
+    him_c "I'll think about it."
 
-    # Talk about planting season, Peron's planting corn
+    nvl clear
     return
 
 # Community: Lily's research, she dies
@@ -426,7 +479,7 @@ label message20:
     # Lily and Zaina finished documentary, screening at community center
     # Why the jellystars? Why not crabirds or wolfslugs??
 
-    sara_c "I just wanted to congratulate Lily and Zaina on such an amazing documentary! I learned so much about the jellystars!"
+    sara_c "I just wanted to congratulate Lily, Miranda, and Zaina on such an amazing documentary! I learned so much about the jellystars!"
     ilian_c "Mostly, that we don't know much about them."
     if (ate_jellyfish):
         him_c "We know they are delicious."
@@ -459,6 +512,10 @@ label message20:
         him_c "That's too bad; I was looking forward to you making fun of it."
         $ first_word = year18_poem.split()[0]
         thuc_c "Well, I thought it was kind of weird that you started off with the word \"[first_word]\", but that's about all I can say."
+    pavel_c "How come nobody wants to make a documentary about crabirds?"
+    him_c "Or turtle snails!"
+    ilian_c "Because they're ugly pests."
+
     return
 
 # Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.
@@ -467,14 +524,37 @@ label message21:
     nvl clear
     # Naomi's gone, but Sara needs parenting advice. How to deal with teenagers?!
     # Natalia and Julia give conflicting good advice
+    sara_c "I can't believe I'm old enough to have a teenager!! 😱"
+    her_c  "I know! I still feel like a teenager sometimes..."
+    him_c "Like a teenager, except responsible?"
+    sara_c "Ouch... speaking of which, every time I talk to Oleg it turns into an argument! I ask him to take out the trash and he blows up in my face!"
+    ilian_c "You could just stop talking to him."
+    sara_c "I wish I could ask Naomi...😢"
+    natalia_c "He still needs you. Look at it from his perspective - strange chemicals are flooding his brain while he's dealing with new social issues, AND people are telling him what to do all the time."
+    julia_c "Lay your expectations out clearly with consequences. You shouldn't have to ask him to do these things; he knows what his chores are. If he fails to do them, he faces the consequences. He'll learn soon enough."
+    her_c "I think Naomi would remind you give him lots of love, but maybe in a different way than when he was little?"
+    sara_c "Maybe so... I appreciate the advice, guys."
+
     return
 
-# Community: Miners moving to mountain near luddites! If your relationship with both parties is good, you can coordinate and avoid accident. Otherwise bad things can happen (mining stops and you lose your status as RET liason, you scare off the luddites and zero your relationship with them, or you encourage them to stay and Travis loses his leg). This is the second “save the cave” incident; modify the earlier one to be about something other than a cave.
+# Community: Miners moving to mountain near luddites!
 # Family: Apologize when you falsely accuse Terra? Family activities
 label message22:
     nvl clear
     # Miners are moving; I wonder if they left anything behind? let's go scavenge!
     # Don't bother; there's mostly just tire tracks and a flat dirt clearing and some toxic ponds and a bunch of slag
+    him_c "Hey, somehow I ended up with these socks from the camping trip, but they don't belong to anyone in our family... If they're yours, let me know!"
+    natalia_c "Oh, I think those might be Mateo's."
+    him_c "Okay, I'll have [kid_name] bring them to school this week."
+    ilian_c "By the way, we have a special on salted fish that I bought from Pete, so stop by soon if you want some."
+    pavel_c "Ooh, anyone interested in making fish sauce?"
+    julia_c "If there's enough demand, we could make some. But it takes months."
+    thuc_c "And it makes everything smell like fish."
+    pavel_c "Isn't anyone else interested in fish sauce??"
+    natalia_c "Not really."
+    him_c "I don't know what I'd use it for."
+    thuc_c "Maybe we can make a small batch togther, Pavel."
+
     return
 
 # Community: Glass shell collecting--shells are worth more if mining stopped in 22 and...
@@ -482,21 +562,41 @@ label message22:
 # 14.8 years
 label message23:
     nvl clear
-    # natalia_c Remember back when we didn't use money?? We just helped each other and everyone got along
-    # Everyone except you and Julia
-    # julia_c Hard work should be rewarded!
-    # It's still different from Earth
-    # Capitalism/socialism/spectrum/something else?  We have no economists (Kevin?)
-    # Why are we so focused on money?? We should just hang out and enjoy what we have
+    natalia_c "Remember back when we didn't use money? We just helped each other and everyone got along."
+    him_c "Everyone except you and Julia."
+    julia_c "Money is a universal human invention. There's nothing wrong with rewarding hard work."
+    him_c "It's not exactly like Earth, though -- no 401ks, stock markets, or taxes..."
+    kevin_c "Perhaps the next shuttle should include some economic analysts to ensure the financial security of Talaam's future."
+    sara_c "Ugh, why all the focus on money? We should just help each other and enjoy what we have."
+    ilian_c "Sounds like a quick way to pecuniary failure. You have to know how much you have before you know how much you can spare!"
+    natalia_c "There's plenty to go around, as long as we help each other!"
+    julia_c "And as long as everyone does their fair share of work."
+    kevin_c "Which is precisely the reason currency was invented; as a concrete, exchangeable measurement of work."
+    him_c "Too bad you can't eat it."
     return
 
 # Community: Growing luxury good market, especially if mining stopped in 22. The increased demand for shells led to inflation and Ilian fixes the prices of food. You can choose to write a farming guide, which Oleg makes free, babysit (most lucrative and stressful), or be a farming consultant.
 # Family: Lettie dies; friends with creepy older brother
 label message24:
     nvl clear
-    # Julia links to Talaam Times (write free sample page?)
+    # Julia links to Talaam Times (TODO: write free sample page?)
     # it's expensive! no advertising revenue?
     # She didn't review the oatmeal soap because it competes with her goat milk soap
+    julia_c "I hope I can count on all of you to subscribe to Talaam's first newspaper, the Talaam Times!"
+    sara_c "Are we really big enough for a newspaper?!"
+    thuc_c "It's really more of a newsletter."
+    julia_c "Our first issue has a gardening section, cooking section, local news items, miner's update, weather and solar flare predictions, and product reviews."
+    zaina_c "That could be useful... where can I get it?"
+    julia_c "It's available by subscription only, for the low price of 20 credits per year. Individual issues cost 5 credits each."
+    him_c "This is for a monthly newsletter?!"
+    sara_c "Why is it so expensive?!"
+    julia_c "Unlike on Earth, there's no advertising revenue, so I have to charge more."
+    natalia_c "But... you're not printing it on actual paper, right? This is a digital newsletter."
+    julia_c "Yes, obviously."
+    natalia_c "So it costs you the same amount to make no matter how many people subscribe. So shouldn't you make it cheap to get lots of subscribers?"
+    julia_c "I think it's a fair price."
+    natalia_c "We'll see if anyone agrees with you."
+
     return
 
 # Community: Brennan’s jellysquid farm. You can talk to Chaco or Pete about the jellysquid farm, depending on your Miner or Luddite relationship scores.
@@ -511,15 +611,13 @@ label message25:
     sara_c "Jellystar has a pretty high water content... is there anything left after it's dried out?"
     him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
     if ate_jellyfish:
-        him_c "Dr. Lily told me that they contain a parasite which could decrease reaction speed."
+        him_c "Dr. Lily once told me that they contain a parasite which could decrease reaction speed."
         sara_c "Really? I haven't noticed anything like that."
         him_c "Well, she did say it was only a difference of a few milliseconds."
         him_c "Also, I think they're too cute to eat."
         thuc_c "I do feel a twinge of guilt when I eat them. But if they're already processed I don't think about it as much."
         natalia_c "Yeah, I don't like cutting up the carcasses. It just makes me sad."
-    ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse."
-    ilian_c "It's really cheap right now, and we're still drying more."
-    ilian_c "You can use it for bait when fishing, too."
+    ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse. It's really cheap right now, and we're still drying more. You can use it for bait when fishing, too."
     him_c "He's farming the form with the shell?"
     ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellystar to offload."
     him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
@@ -531,7 +629,8 @@ label message25:
     julia_c "You should publish them!"
     brennan_c "My information is proprietary."
     julia_c "How much?"
-    brennan_c "Not discussing this on the public forum. Message me."
+    brennan_c "Message me."
+    nvl clear
     return
 
 # Community: You can choose to tell colonists that Pete’s beef contains cancer cells.
@@ -540,21 +639,48 @@ label message25:
 # Family: Talking politics? Terra thinks you're a terrible leader. Either you're too strict, treating one group badly (miners? Jellies?), Or you are clueless and you don't even know what people are doing behind your back.
 label message26:
     nvl clear
-    # TODO: pull something out of community26 and put it here
+
+    him_c "Hey, Thuc, how's Gardenia doing?"
+    thuc_c "Good! I thought I would never see her when she got married to that miner, but they actually come around all the time."
+    julia_c "Especially when they know there will be lots of food."
+    him_c "Your grandkids are getting big now, too! Looks like you're teaching them to juggle?"
+    thuc_c "Heh. Yeah, he keeps sneaking off to juggle when he's supposed to be pulling weeds."
+    sara_c "Speaking of kids, have you heard from Raúl lately, Natalia?"
+    natalia_c "He comes over every weekend or so. Whenever he can get a break from mining."
+    her_c "I always thought he'd become a farmer, like you and Martin. He always loved digging in the dirt."
+    natalia_c "Since Martin died, he's been trying to help out the family. He can earn so much more as a miner that he feels it's the best way to help out."
+    pavel_c "Oh! I have good news! I'm a great-grandfather now!"
+    thuc_c "You've always been a great grandfather."
+    pavel_c "Yes, but now everybody has to call me that."
+    him_c "Congrats, you GREAT grandfather, you!"
+    pavel_c "I just wish I could hold the baby and be there with them..."
+    natalia_c "I have a couple of grandbabies you can borrow for a while. Come over for dinner tomorrow night, and bring some of your curry spices!"
+    pavel_c "Thank you Natalia but... well... yes, perhaps I will."
+
+    nvl clear
     return
 
 # Community: Reckoning with jellypeople. There are several ways to fail the jellypeople. If you agree to help them, you can either farm mudfish or one of their predators, a fish called a Shill. You can also choose to tell Brennan about possible heavy metals in the mud. Miranda reveals that she and Dr. Lily taught the jellysquid how to “read”.
 # Family: Terra wants a bike!
 label message27:
     nvl clear
-    kid_c "Save the jellystars! They grow into intelligent jellysquids! Don't eat them!"
+    kid_c "Save the jellystars! These stellar animals grow into intelligent jellysquids! Don't eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
     sara_c "But they're so tasty and cheap..."
     brennan_c "And a good source of protein."
-    kid_c "So are babies but we don't eat them!!!"
-    zaina_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
+    kid_c "So are babies but we don't eat those, do we!!?"
+    pavel_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
     natalia_c "Yeah, we have way more important things to worry about."
-    helen_c "I don't eat them anymore."
-    kid_c "Good! Thank you, Helen!"
+    zaina_c "I don't eat them anymore."
+    kid_c "Good! Thank you, Zaina; you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
+    pavel_c "It's so important to eat well. Though I do love jelly with peanut butter... that's okay, isn't it?"
+    kid_c "Um, yeah, I think so, I was talking about jellystars."
+    pavel_c "Is that a new candy?"
+    kid_c "No, you know, jellystars, the creatures that live in the sea?"
+    pavel_c "We should ask Dr. Lily about that."
+    kid_c "Sorry, but I think she died."
+    pavel_c "Oh, dear. That is distressing news."
+    natalia_c "It was several years ago, Pavel. It's okay."
+    pavel_c "I'm sorry; it was rude of me to bring it up."
 
     nvl clear
     return
@@ -566,11 +692,12 @@ label message28:
     thuc_c "So the jellysquid are like, real live aliens?! That's so cool!"
     sara_c "Does this mean we shouldn't eat them anymore?"
     him_c "We shouldn't eat the jellysquids, but they don't mind if we eat jellystars."
-    sara_c "But... aren't the jellystars like their babies?! 😧"
+    sara_c "But... aren't the jellystars like their babies?! {font=fonts/OpenSansEmoji.otf}😧{/font}"
     zaina_c "Their life cycle is not analogous to humans'. The jellystars are not sentient and are more like eggs than babies."
-    sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! 😍"
+    sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! {font=fonts/OpenSansEmoji.otf}😍{/font}"
     if (ate_jellyfish):
         him_c "They are adorable!"
+    kid_c "Yay, Sara! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
     nvl clear
 
 # Community: brainstorming: Pete is desperate for more credits after Helen has a high-risk pregnancy. No one is buying fireweed from him anymore… because he’s being undersold by Julia. [If you told Brennan about the heavy metals in the mud, he’s now mining there and making the water silty--so jellysquid no longer appear in the area. Otherwise maybe the jellypeople are helping you, or nothing.]
@@ -580,13 +707,51 @@ label message29:
     # People miss Mayor Grayson - his spice garden is dying but ?? volunteers to take over it as a memorial
     # Someone also mentions how maybe it was a good thing he didn't drag out a demented life for years, people voice opinions
     # Travis opens a restaurant/bar?
+    if kevin_elected:
+        kevin_c "I received an Earth QEC message from Mayor Grayson's family."
+        kevin_c "It says, 'Thank you for taking care of Pavel when we could not. We apologize that he became a burden but appreciate the bonds you shared with him.'"
+    else:
+        julia_c "I just got a QEC message from Mayor Grayson's family."
+        julia_c "It says, 'Thank you for taking care of Pavel when we could not. We apologize that he became a burden but appreciate the bonds you shared with him.'"
+    natalia_c "He has a wonderful family..."
+    if no_euthanasia_26:
+        sara_c "If only I hadn't left him that night... maybe he would still be alive."
+        julia_c "If you're going to blame anyone, blame me. I was late for my shift."
+        her_c "You might as well blame the new baby you were delivering that was the cause of you being late. It was an accident; it wasn't anyone's fault."
+        him_c "I know he didn't remember much at the end... but I do know that we helped him to feel loved and happy when we took care of him."
+    else:
+        him_c "At least they weren't mad at us for allowing him to commit suicide."
+        natalia_c "He was so lonely without Naomi and his family. We tried to be there for him, but nothing can replace your own family."
+        her_c "It was what he wanted."
+    thuc_c "What's going to happen to his spice garden? It's starting to look a little dead."
+    julia_c "Someone should live in that house, too... it needs a little work but it's right in the middle of town."
+    travis_c "Hey, is it okay if I move in there? I want a permanent home for my restaurant, and I'd definitely take care of the spice garden."
+    if kevin_elected:
+        kevin_c "I will put it on the agenda for the next town council meeting."
+    else:
+        julia_c "I'm sure it will be fine. I'll just run it by the town council."
+    him_c "I'll make a memorial plaque to go in the garden... so we can always remember Pavel, and Naomi."
+
+    nvl clear
     return
 
 # Community: MURDER MYSTERY
-# Family: Ending?
+# Family: is she taking the shuttle back to Earth??
 label message30:
     nvl clear
     # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
+    brennan_c "It's going to be busy these next few days, so if I don't get a chance, I wanted to say farewell to all of you."
+    sara_c "Are you ever coming back?"
+    brennan_c "I sure hope not. I thought two years was bad; twelve years is way too long to go without a decent bed, shower, pub, club, restaurant... I could go on and on."
+    travis_c "At least we have a restaurant now!"
+    brennan_c "That's the only thing that's made this last year bearable."
+    him_c "If you can't appreciate the amazing beauty of Talaam, you don't deserve to be here."
+    brennan_c "I certainly deserve better than this."
+    julia_c "So who's in charge of the miners now?"
+    brennan_c "Someone new. Only a few miners are staying on for a second term."
+    her_c "We wish you well, Brennan."
+
+    nvl clear
     return
 
 

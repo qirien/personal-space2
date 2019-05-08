@@ -239,7 +239,7 @@ init python:
                 if (chosen_crop == "fallow"):
                     chosen_crop = ""
 
-            chosen_crop.rstrip("+")
+            chosen_crop = chosen_crop.rstrip("+")
             return chosen_crop
 
         def most_frequent_crop(self):
@@ -251,7 +251,7 @@ init python:
                 if ((current_crop_count >=  most_frequent_count) and (current_crop_name != "fallow")):
                     most_frequent_crop = current_crop_name
                     most_frequent_count = current_crop_count
-            most_frequent_crop.rstrip("+")
+            most_frequent_crop = most_frequent_crop.rstrip("+")
             return most_frequent_crop
 
 
