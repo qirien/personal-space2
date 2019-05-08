@@ -396,23 +396,25 @@ label squash1:
                 kevin "I apologize, but I do not have extra bees at this time."
                 him concerned "Could I maybe, like, borrow them, just for a few weeks?"
                 kevin "I could rent them to you."
-                # TODO: currency check.
                 menu:
                     "What should I say?"
                     "Could we trade?":
                         him surprised "Could we trade? Maybe for squash?"
                         kevin "Squash and goat's milk, in these quantities."
                         him normal "Looks reasonable. It's a deal."
-                    "Okay, how about for 10?":
-                        him normal "Okay, how about 10?"
-                        kevin "That is insufficient. I propose 20."
-                        him surprised "Maybe 15?"
-                        kevin "18 is the lowest I will consider."
-                        him normal "All right, 18 it is."
-                    "I'll pay you 20.":
-                        him normal "I'll pay you 20 for them."
+                        $ modify_credits(-50) # TODO: decrease crops instead?
+                    "Okay, how about for 50?":
+                        him normal "Okay, how about 50?"
+                        kevin "That is insufficient. I propose 80."
+                        him surprised "Maybe 60?"
+                        kevin "75 is the lowest I will consider."
+                        him normal "All right, 75 it is."
+                        $ modify_credits(-75)
+                    "I'll pay you 100.":
+                        him normal "I'll pay you 100 for them."
                         kevin "That is acceptable."
                         him "It's a deal."
+                        $ modify_credits(-100)
                 kevin "Good. I will write up a contract."
                 him annoyed "A contract, huh?"
                 kevin "Yes. That way the terms are clear and unarguable by both sides."
@@ -426,7 +428,7 @@ label squash1:
             "Forget the squash for this season":
                 "I didn't have time to baby the plants. They'd have to survive on their own."
                 "Some of them produced fruit, but most didn't. What a waste..."
-                # TODO: decrease food/income
+                $ modify_credits(-200)
     return
 
 # SQUASH2 - squash bugs
@@ -623,7 +625,7 @@ label goats2:
             "I couldn't send him a message; radio communications weren't private."
             "I'd have to just go over there."
             if (year >= PETE_LEAVES_CAVES_YEAR):
-                scene canyon with fade
+                scene shack with fade
             else:
                 scene cave with fade
             show pete at midright with dissolve
@@ -986,7 +988,7 @@ label plums2:
             thuc "This is nice and fresh, so you can plant it or eat it."
             him "Mmmm, this'll be good! Thank you!"
             "I couldn't wait to eat some, but even better, now I could grow my own."
-            # $ enable_crop("garlic")
+            $ enable_crop("garlic")
             return
 
         "Make jam" if (get_extra_work() >= 0):
@@ -1011,10 +1013,10 @@ label plums2:
                 "Which should I choose?"
                 "Onions":
                     him "Give me the onions."
-                    # $ enable_crop("onions")
+                    $ enable_crop("onions")
                 "Turnips":
                     him "How about the turnips?"
-                    # $ enable_crop("turnips")
+                    $ enable_crop("turnips")
             ilian "Fine. Here you go."
             "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
             return
@@ -1035,7 +1037,7 @@ label plums2:
         "Buy onions.":
             # TODO: currency check, subtract amount for onions.
             "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-            # $ enable_crop("onions")
+            $ enable_crop("onions")
         "Don't buy onions":
             "I decided not to buy them. I had enough crops to deal with."
 
@@ -1325,21 +1327,21 @@ label strawberries1:
             kid "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
-            # $ enable_crop("strawberries")
+            $ enable_crop("strawberries")
         "Sell the extra plants.":
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear
             him_c "I've got some extra strawberry plants I'm willing to sell. They grow fast and easy and taste delicious!"
             sara_c "😲 I want some!!!"
             ilian_c "We don't even have a farm."
-            sara_c "We have some dirt! I need strawberries!!! 😍😋🍓"
+            sara_c "We have some dirt! I need strawberries!!! {font=fonts/OpenSansEmoji.otf}😍😋🍓{/font}"
             natalia_c "Oh, my grandkids would love those. I'll take a few."
             kevin_c "I would like to plant some for additional vitamin C."
             him_c "Okay, I should have enough to everyone to have a few."
             thuc_c "I have strawberry plants, too. I'll sell them for the same price as [his_name]."
             nvl clear
-            # TODO: currency check, add some income.
             "I was able to make a little extra money selling strawberry plants."
+            $ modify_credits(100)
         "Leave them alone.":
             "I was too busy this year. I decided to just leave them there and deal with them later."
 
@@ -1396,7 +1398,7 @@ label strawberries2:
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
 
-            # $ enable_crop("strawberries")
+            $ enable_crop("strawberries")
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             # TODO: Test this...
@@ -1485,7 +1487,7 @@ label honey1:
     elif (year <= PETE_LEAVES_CAVES_YEAR):
         scene cave with fade
     else:
-        scene canyon with fade
+        scene shack with fade
 
     show helen normal at center
     show travis normal at midright
@@ -1533,6 +1535,9 @@ label honey1:
             him determined "I expect you to compensate me for that honey. It's about 50 credits worth."
             travis "50 credits?!"
             him concerned "If you don't have the credits, you can work for me instead."
+            travis "..."
+            him surprised "What was that?"
+            travis "...okay."
         "(Wait for him to say something)":
             "I just waited. He shifted his weight from one foot to the other. I waited some more. Finally, he said quietly,"
             travis "I'm sorry I stole your honey."
@@ -1554,8 +1559,32 @@ label honey1:
             him sad "I'm disappointed you would steal from me."
             travis "It's nothing against you personally! We just really wanted something sweet."
             him surprised "We?"
-            travis "My brothers and sisters and I."
+            travis "My brothers and sisters and I. Sometimes we just get really hungry."
             him concerned "I see. Unfortunately, I can no longer trust you like I once did."
             travis "Oh."
+            him sad "But if you're really hungry, come ask and I'll give you some food."
+            travis "Oh. I mean, we don't need a handout or anything, we're doing just fine--"
+            him normal "It's okay. I get it."
+    him surprised "Is your family doing okay out here by yourselves?"
+    travis "My dad's always saying how we gotta live on our own, do everything ourselves, be independent."
+    him concerned "Yeah..."
+    travis "I guess that was my way of trying to do something on my own."
+
+    menu:
+        "What should I say?"
+        "Quit stealing.":
+            him determined "I understand what you're saying, but you can't steal from people."
+            travis "Yeah."
+        "Want to learn beekeeping?":
+            him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
+            travis "I don't know if I like bees..."
+            him normal "You probably got stung a lot during your heist, huh?"
+            travis "Yeah... but I wasn't going to walk away empty-handed!"
+            him happy "Well, learning how to handle bees without getting stung is part of beekeeping!"
+            travis "Well... that'd be stellar."
+            him normal "Great! You can pay off the honey you stole by working with the bees."
+        "Good luck.":
+            him determined "Good luck living on your own."
+            travis "Okay, thanks."
 
     return

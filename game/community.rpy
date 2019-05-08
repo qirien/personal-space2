@@ -1441,7 +1441,7 @@ label community9:
             him happy "This is delicious!"
             pete happy "It took me nearly all day to finally hit one. Then I had to chase it down!"
             him surprised "Was it worth it?"
-            pete "Hell yes! Herding cattle is fine for everyday, but every once in a while I need some excitement in my life."
+            pete "Hell yes! Herding cattle is fine for everyday, but every once in a while a man needs some excitement in his life."
     return
 
 # 10 - Peron's over for dinner, who should take care of their farm?
@@ -1740,8 +1740,8 @@ label community11:
 
             if talked_to_Thuc:
                 thuc "I can start growing these peanuts right away!"
-                # TODO: uncomment these when icons available
-                # $ enable_crop("peanuts")
+                # TODO: test this
+                $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
@@ -1762,8 +1762,8 @@ label community11:
             pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
             him "Oh, I hope so!"
             pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
-            # TODO: allow planting spices? garlic at least?
-            # enable_crop("garlic")
+            # TODO: test this
+            $ enable_crop("garlic")
 
             if (talked_to_Pavel and is_liason):
                 him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
@@ -6105,7 +6105,7 @@ label community30:
             him_c "Hey Oleg, do you know if it's possible to open someone's credit program without their passcode?"
             oleg_c "nope, not without wiping everything."
             him_c "Is credit data stored in the library server then? Or would wiping someone's tablet erase all their credits?"
-            oleg_c "dunno never tried ghgh ~~*~~" #this is supposed to simulate not know what acronyms or emoji the teenagers are using right now
+            oleg_c "dunno never tried ghgh {font=fonts/OpenSansEmoji.otf}¯\_(⌣̯̀⌣́)_/¯{/font}" #this is supposed to simulate not know what acronyms or emoji the teenagers are using right now
             oleg_c "now i'm curious tho"
             him_c "It must be stored centrally, because even after Helen lost her tablet, I don't remember her losing her credits."
             him_c "Ilian is asking me to ask you if you're going to stay with your mom the whole rainy season."

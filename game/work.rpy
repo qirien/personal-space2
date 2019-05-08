@@ -19,7 +19,6 @@ label overwork:
     else:
         "I should have known better, but I could tell that I was trying to take on too much (again)."
     # The first time you ask for help from a group, it's a bonding experience. After that, they get annoyed.
-    # TODO: write these
     menu:
         "What should I do?"
         "Ask other farmers for help." if (overwork_colonists < 2):
@@ -130,7 +129,10 @@ label overwork:
             $ overwork_luddites += 1
             if (overwork_luddites <= 1):
                 $ luddites += 1
-                scene cave with fade
+                if (year >= PETE_LEAVES_CAVE_YEAR):
+                    scene shack with fade
+                else:
+                    scene cave with fade
                 show pete normal at midleft with dissolve
                 show him normal at midright with moveinright
                 him happy "Pete! I feel like I never see you anymore!"
@@ -150,7 +152,7 @@ label overwork:
                 him happy "Thanks, guys!"
             else:
                 $ luddites -= 1
-                scene canyon with fade
+                scene shack with fade
                 show pete normal at midright
                 show him normal at midleft
                 with dissolve
@@ -558,8 +560,8 @@ label work4:
         him surprised "Strawberries?"
         thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
-        # TODO: uncomment when we get some art
-        #$ enable_crop("strawberries")
+        # TODO: test this
+        $ enable_crop("strawberries")
     return
 
 # Year 6, 3.5 years old
@@ -728,7 +730,7 @@ label work10:
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin "Very well. I shall mark you down for bees."
-            # $ enable_crop("honey")
+            $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, once placed, they cannot be moved."
             # TODO: implement these!!
@@ -777,8 +779,8 @@ label work12:
             brennan "Ah, can't you take a joke?"
             him determined "..."
             brennan "...Right. Here's your wheat."
-            # $ enable_crop("wheat")
-            # TODO: implement annual fee
+            $ enable_crop("wheat")
+            # TODO: implement annual fee, test
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
             $ luddites += 1
@@ -792,7 +794,7 @@ label work12:
             him "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
             natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
             him "That would be great!"
-            # $ enable_crop("corn")
+            $ enable_crop("corn")
 
     "I was looking forward to growing something new."
     return
@@ -977,7 +979,7 @@ label work16:
             else:
                 "Kevin took some of my seeds, and I decided to take some of the chile pepper seeds."
                 natalia "You won't be disappointed!"
-                # $ enable_crop("peppers")
+                $ enable_crop("peppers")
 
         "Expand your farmland.":
             $ luddites += 1
@@ -1088,9 +1090,39 @@ label work18_after_clean:
     return
 
 # Year 20, 12 years old
+# Irrigation Trouble
 label work20:
-    "or, solar panels are wearing out due to solar flares."
-    # there's a thief - turns out to be Oleg or Travis. Once you catch him, what do you do?
+    scene fields with fade
+    "With Talaam's frequent rains, we didn't need to irrigate the fields very often."
+    "But I had a system of gates and canals I could open up if needed to get extra water from the river when it didn't rain enough."
+    "After a week with no rain, and no rain in the forecast, I decided to open up the gates and let in some river water."
+    scene irrigation with fade
+    show him normal at center with moveinleft
+    "But when I got there, the river was so low that barely any water came into the canal."
+    him surprised "Where'd all the water go?"
+    "I followed the river upstream to Thuc's farm."
+    scene irrigation flip with fade
+    show thuc normal at midright with dissolve
+    show him normal at midleft with moveinleft
+    him surprised "The river is low here, too."
+    thuc sad "Yeah, I went to flood the fields and there was nothing left."
+    $ work20_thuc_present = False
+    menu:
+        "What should I say?"
+        "Let's check it out.":
+            him determined "I'm going to check it out. Come with me if you want."
+            thuc normal "I was just going to tell you the same thing."
+            $ work20_thuc_present = True
+        "Did you use all the water?":
+            "Thuc's irrigation techniques are a bit different from mine, since he grows different crops. His require a lot more water because they need to be flooded."
+            him annoyed "Did you use all the water?"
+            thuc "No more than usual."
+            him determined "Huh. Well, I'm going to go check it out."
+
+    "I headed farther upstream, past the town, and up into the hills."
+
+
+
 
     return
 
@@ -1102,7 +1134,7 @@ label work22:
     show him determined at left behind night_overlay with moveinleft
     # TODO: show silhouettes?
     him determined "Why did [her_name] want to meet me here? It makes no sense..."
-    him annoyed "And the light's are off, which means she's not even here...?"
+    him annoyed "And the lights are off, which means she's not even here...?"
     hide night_overlay with dissolve
     show her laughing at quarterleft
     show bro happy at quarterleft
@@ -1220,14 +1252,14 @@ label work22:
             him concerned "Ummm... maybe?"
             thuc "Sorry; it's the only thing I could think of that you didn't already have."
             him happy "No, this is great! I love more variety. Thanks, Thuc."
-            # $ enable_crop("turnips")
+            $ enable_crop("turnips")
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
             her annoyed "..."
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
-            # $ enable_crop("onions")
+            $ enable_crop("onions")
     elif (helping_faction == "luddites"):
         show pete at midright with moveinleft
         her happy "Especially Pete!"
@@ -1240,7 +1272,7 @@ label work22:
         pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
         her laughing "So true! And it's really healthy, too."
         him happy "Great, thank you Pete! It's always good to have some more variety."
-        # $ enable_crop("broccoli")
+        $ enable_crop("broccoli")
     else:
         show chaco at midright with moveinleft
         her happy "Especially Chaco!"

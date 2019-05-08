@@ -136,7 +136,7 @@ label start:
         years_yield = [100] * farm_size
 
         # Dictionary containing the number of events seen for each crop
-        number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "blueberries":0, "beans":0, "snow peas":0, "peanuts":0, "carrots":0, "beets":0, "turnips":0, "onions":0, "garlic":0, "cabbage":0, "spinach":0, "broccoli":0, "goats":0}
+        number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
         # TODO: add income
         credits = 0
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
@@ -158,6 +158,7 @@ label start:
                         ["carrots",      3, 6, 3, 3, 10, True, False,  100],   # Root Vegetables
                         ["turnips",      3, 5, 1, 4, 10, False, False, 100],
                         ["onions",       4, 2, 5, 4, 5, False, False, 100],
+                        ["garlic",       2, 3, 5, 2, 4, False, False, 100],
                         ["spinach",      1, 6, 3, 3, 10, True, False,  100],   # Leafy greens
                         ["broccoli",     3, 7, 2, 3, 15, False, False, 100],
                         ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
@@ -178,6 +179,7 @@ label start:
             "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
             "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
             "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
+            "garlic" : "Their pungent flavor is versatile and sought after.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
             "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
             "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",

@@ -351,10 +351,10 @@ label message14:
     pete_c "I'll be there."
     natalia_c "I'm bringing a picnic; bring food if you want to trade!"
     her_c "Kevin, don't forget ear protection for anyone in your crew closer than 5km. Everyone else shouldn't need it."
-    kid_c "Yaaaaaay, rocket picnic! -=|⁐⁐⁐⁐⁐⁐>"
+    kid_c "Stellar! A rocket picnic! -=|⁐⁐⁐⁐⁐⁐>"
     ilian_c "I didn't realize this message area was for kids."
     naomi_c "No reason it shouldn't be, if they have something to add to the conversation. But perhaps they would also like their own area."
-    oleg_c "I alredy made one no adults allowed tbfy ha ha"
+    oleg_c "I alredy made one no adults allowed tbfy ha ha  q.\_/.p"
     sara_c "We'll see about that."
 
     nvl clear
@@ -664,14 +664,14 @@ label message26:
 # Family: Terra wants a bike!
 label message27:
     nvl clear
-    kid_c "Save the jellystars! They grow into intelligent jellysquids! Don't eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
+    kid_c "Save the jellystars! These stellar animals grow into intelligent jellysquids! Don't eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
     sara_c "But they're so tasty and cheap..."
     brennan_c "And a good source of protein."
     kid_c "So are babies but we don't eat those, do we!!?"
     pavel_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
     natalia_c "Yeah, we have way more important things to worry about."
     zaina_c "I don't eat them anymore."
-    kid_c "Good! Thank you, Zaina!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
+    kid_c "Good! Thank you, Zaina; you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
     pavel_c "It's so important to eat well. Though I do love jelly with peanut butter... that's okay, isn't it?"
     kid_c "Um, yeah, I think so, I was talking about jellystars."
     pavel_c "Is that a new candy?"

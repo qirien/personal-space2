@@ -3336,7 +3336,7 @@ label family12:
             $ responsive += 1
             $ confident += 1
             him normal "Sure, you can go."
-            kid happy "Yay! I'm going to message her right now, she'll be so excited!"
+            kid happy "Stellar! I'm going to message her right now, she'll be so excited!"
             $ permissive += 1
             call family12_anyas_house
         "Are her parents going to be home?":
@@ -3483,7 +3483,7 @@ label family12:
             kid sad "Aw, man."
         "I guess.":
             him concerned "I guess..."
-            kid happy "Yay!"
+            kid happy "Stellar!"
             "It was hard to comb her hair properly when she was playing her game. I did my best, though."
 
     "Now that I knew about lice, my head kept itching. I wasn't sure if it was real or if I was just creeped out."
