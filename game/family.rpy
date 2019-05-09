@@ -3399,7 +3399,7 @@ label family12:
     kid annoyed "I'm just so itchy! All the time!"
     him surprised "Did you touch a weird plant or something? Where do you itch?"
     kid concerned "On my head!"
-    "I was ready for some bizarre alien tick or something (though since most of the animals here were cold blooded, it seemed unlikely), but I wasn't ready for what I found."
+    "I was ready for some bizarre alien tick or something, but I wasn't ready for what I found."
     him concerned "You have something in your hair... is this dandruff?"
     kid surprised "What's dandruff?"
     him surprised "There's these tiny white things on your hair. Man, they're really stuck on there good."
@@ -3589,7 +3589,7 @@ label family12_contact_parents:
     return
 
 label family12_anyas_house:
-    scene farm_exterior flip with fade
+    scene cabin with fade
     "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
     "But when I got there and knocked on the door, a teenager answered the door."
     "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."

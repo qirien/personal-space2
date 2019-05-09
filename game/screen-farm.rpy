@@ -1,9 +1,6 @@
 # Farm Planning Screen
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 #
-# TODO: Get some graphics and pretty this up
-# TODO: show kids' ages and farm/community info
-# TODO: make the crop selection a separate screen so it will work on phones
 
 screen plan_farm:
     tag plan_farm
@@ -41,10 +38,13 @@ screen plan_farm:
                                             text "Need more calories!" style "plan_farm_status_text"
                                         elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
                                             text "Need to allocate all goats!" style "plan_farm_status_text"
+                                        elif (crop_enabled("honey") and (farm.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
+                                            text "Need to allocate all bees!"
+                                            style "plan_farm_status_text"
                                         else:
                                             text "Cannot plant crops where there is insufficient nitrogen!" style "plan_farm_status_text"
                                     else:
-                                        text "OK!" style "plan_farm_status_text"
+                                        text "OK!" style "plan_farm_status_text" color green_dark
                             hbox:
                                 xfill True
                                 xsize RIGHT_COLUMN_WIDTH
@@ -136,6 +136,7 @@ screen farm_details_screen:
             style "plan_farm_subframe"
             vbox:
                 xsize MIDDLE_COLUMN_WIDTH
+                ysize TOP_SECTION_HEIGHT
                 label "Layout"
                 use crops_layout
 
@@ -145,6 +146,7 @@ screen farm_details_screen:
             vbox:
                 xalign 0.5
                 xsize RIGHT_COLUMN_WIDTH
+                ysize TOP_SECTION_HEIGHT
                 label "Total"
                 use crops_totals
 
@@ -171,7 +173,7 @@ screen crops_available(crop_index=0):
                     bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                     text "Work: "
                     bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                    text "Nitrogen: "
+                    text "Nitrogen Usage: "
                     $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
                     if (crop_nitrogen <= 0):
                         bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar"
@@ -184,12 +186,12 @@ screen crops_available(crop_index=0):
                     else:
                         null
                         null
-                text crop_descriptions[crop_name]
+                text crop_descriptions[crop_name.rstrip("+")]
             null height 30
             vpgrid:
                 # TODO: change this based on number of enabled crops?
                 cols 4
-                spacing 10
+                spacing 5
                 draggable True
                 mousewheel True
                 #scrollbars "vertical"
@@ -248,22 +250,21 @@ screen crops_layout:
                             $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
                                 idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/idle.png")
-                                sensitive (current_crop_name[-1] != "+")
                                 hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
                                 xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                 anchor (0.5, 0.5)
                                 align  (0.5, 0.5)
-                                action ShowTransient("crops_available", zoomin, i)
-                                # TODO: REMOVE OLD
-                                # action [ SetCrop(i, crop_info[selected_crop_index][NAME_INDEX]), renpy.restart_interaction ]
-
-                        # use tricolor_bar(current_nitrogen_level, new_nitrogen_level, Field.NITROGEN_FULL, CROP_LAYOUT_BAR_SIZE)
-                        #bar value farm.health[i][Field.PEST_LEVEL_INDEX] range Field.PEST_MAX style "crop_layout_bar"
+                                action [If(
+                                (current_crop_name[-1] == "+"),
+                                    Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("crops_available", zoomin, i)),
+                                    ShowTransient("crops_available", zoomin, i))
+                                    ]
                         # TODO: Show as bugs in background of field? Or remove completely?
 
                     # history
-                    use history_box(i)
+                    # use history_box(i)
 
+# Shows past three years of the crop at specified index.
 screen history_box(index):
     hbox:
         $ history_icon_size = CROP_ICON_SIZE // 2

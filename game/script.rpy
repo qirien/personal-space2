@@ -129,7 +129,7 @@ label start:
 
         # Work/crops
         farm_size = 12
-        farm = Field(farm_size, MAX_FARM_SIZE);
+        farm = Field(farm_size, FARM_SIZE_MAXIMUM);
         selected_crop_index = 0
 
         # Yield of most recent set of crops, in percentages
@@ -151,18 +151,18 @@ label start:
                         ["plums",        3, 3, 7, 7, 5, False, True, 1],
                         ["plums+",       3, 3, 7, 2, 0, False, True, 0],    # Perennials are easier after year 1, but can't be moved
                         ["squash",       4, 7, 2, 4, 15, True, False, 100],
-                        ["strawberries", 1, 2, 6, 6, 5, False, True, 1],
-                        ["strawberries+",1, 2, 6, 4, 0, False, True, 0],
+                        ["strawberries", 1, 2, 6, 4, 5, False, True, 1],
+                        ["strawberries+",1, 2, 6, 2, 0, False, True, 0],
                         ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
                         ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
                         ["carrots",      3, 6, 3, 3, 10, True, False,  100],   # Root Vegetables
                         ["turnips",      3, 5, 1, 4, 10, False, False, 100],
                         ["onions",       4, 2, 5, 4, 5, False, False, 100],
-                        ["garlic",       2, 3, 5, 2, 4, False, False, 100],
+                        ["garlic",       1, 3, 5, 2, 4, False, False, 100],
                         ["spinach",      1, 6, 3, 3, 10, True, False,  100],   # Leafy greens
                         ["broccoli",     3, 7, 2, 3, 15, False, False, 100],
                         ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
-                        ["honey",         2,  2,  7, 2, 0, False, True, 1])
+                        ["honey",         2,  2,  8, 2, 0, False, False, 1])
                         #TODO: have an axe crop that can only be placed on perennials to chop them down?
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
@@ -219,31 +219,31 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
+    menu:
+        "Test Farming Screen":
+            $ show_year = 1
+            $ farm.reset_crops(farm_size)
+            call screen plan_farm
+        "Other Tests":
+            jump tests
+        "Jump to Year":
+            jump test_jump_year
+        "Demo":
+            jump demo
+        "Trailer":
+            jump trailer
+        "Continue":
+            $ pass
+
     "Welcome to the demo of Space to Grow!"
     "While the story is mostly complete, there are a few holes here and there -- not every scene has full graphics yet, you can't unlock crops, and there are still some bugs."
     "However, you should be able to get a feel for the game and enjoy the story."
-    "Thanks for playing!"
 
     show path
     show her normal at midleft
     show child at center
     show him normal at midright
     show computer_pad
-    # menu:
-    #     "Test Farming Screen":
-    #         $ show_year = 1
-    #         $ farm.reset_crops(farm_size)
-    #         call screen plan_farm
-    #     "Other Tests":
-    #         jump tests
-    #     "Jump to Year":
-    #         jump test_jump_year
-    #     "Demo":
-    #         jump demo
-    #     "Trailer":
-    #         jump trailer
-    #     "Continue":
-    #         $ pass
 
     if (mp.jack_name):
         $ his_name = mp.jack_name
@@ -323,6 +323,8 @@ label life_loop:
             #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
             # hide screen interscene #with dissolve
             $ work_event = get_next_work_event()
+            if (get_extra_work() >= UNDERWORK_THRESHOLD):
+                call underwork
             call expression work_event
 
             # FAMILY EVENTS (parenting/home life)
@@ -341,8 +343,8 @@ label life_loop:
             call increase_attachment
             call increase_competence
             call increase_independence
-            $ renpy.notify(notifications)
-            "The year passed by like a dream..."
+            #$ renpy.notify(notifications)
+            call screen yearly_summary
 
             # Reset our variables while keeping a running total
             $ total_demanding += demanding

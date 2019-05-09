@@ -5,6 +5,13 @@ label work_default:
     $ enable_crop("squash")
     return
 
+label underwork:
+    $ success = modify_farm_size(2)
+    if success:
+        scene fields with fade
+        "I ended up with a lot of extra time on my hands, so I decided to prepare two more fields for crops."
+    return
+
 # Event for if you overwork yourself.
 label overwork:
     $ overwork_count += 1
@@ -224,7 +231,7 @@ label bad_nutrition:
         # are we using currency yet?
         if (year > 5):
             her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to spend our money on that."
-            # TODO: subtract some money
+            $ modify_credits(-50)
         else:
             her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to trade as much."
         return
@@ -253,9 +260,9 @@ label bad_nutrition:
             him surprised "Can't we just buy what we need from the storehouse?"
             her annoyed "Yes, but it gets expensive. Here's a list."
             "She had made a list of foods we needed to buy."
-            # TODO: currency check
             him concerned "Sorry, [her_name]. I feel like I failed you."
             her determined "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
+            $ modify_credits(-50)
 
         # Low Vitamin A & C
         elif (farm.low_vitamin_c() and farm.low_vitamin_a() and (not seen_low_ca)):
@@ -289,7 +296,7 @@ label bad_nutrition:
                         "What should I say?"
                         "You're right.":
                             him_c "You're right, Ilian. Sorry, guys, I'm going to have to back out. I'm taking the goat's milk to the storehouse where you can buy it from Ilian."
-                            # TODO: currency check?
+                            $ modify_credits(-50)
                             "I ended up paying a premium for peppers and squash for the family diet."
                             return
                         "We should only bring extra.":
@@ -415,7 +422,7 @@ label bad_nutrition:
             him normal "Well then, I'm glad you caught it."
             her normal "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
             him determined "Okay."
-            # TODO: currency check
+            $ modify_credits(-50)
         return
 
     # fall through for times without a special event.
@@ -423,9 +430,10 @@ label bad_nutrition:
 
     if (year > 5):
         "I had to spend money at the storehouse to buy some different foods."
-        # TODO: currency check, subtract some money
+        $ modify_credits(-50)
     else:
         "I had to trade with other farmers to get a better variety of food."
+
     return
 
 # TODO: Have an event for not making enough money
@@ -522,14 +530,12 @@ label work4:
 
         "Go, but don't bring anything.":
             "I didn't want to miss the Fall Festival. I worked hard to prepare and plow one new field, and then I headed over."
-            $ farm_size += 1
-            tutorial "Your farm is now size [farm_size]!"
+            $ modify_farm_size(1)
 
-        "Don't go. Expand fields instead.":
-            $ farm_size += 4
+        "Don't go. Expand fields instead." if (farm_size < FARM_SIZE_MAXIMUM):
             "The festival was fun, but my farm was more important. Maybe I'd go next year..."
             "I worked hard to rip out the native vegetation and plow the new fields."
-            tutorial "Your farm is now size [farm_size]!"
+            $ modify_farm_size(4)
             return
 
     scene community_center with fade
@@ -732,7 +738,7 @@ label work10:
             kevin "Very well. I shall mark you down for bees."
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
-            tutorial "However, once placed, they cannot be moved."
+            tutorial "However, they must be placed every year."
             # TODO: implement these!!
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
@@ -981,7 +987,7 @@ label work16:
                 natalia "You won't be disappointed!"
                 $ enable_crop("peppers")
 
-        "Expand your farmland.":
+        "Expand your farmland." if (farm_size < FARM_SIZE_MAXIMUM):
             $ luddites += 1
             "I had already worked everything out with Pete. I'd have to miss this seed exchange. Hopefully they'd have more in the future."
             scene fields with fade
@@ -990,7 +996,7 @@ label work16:
             pete "You ready to make this fence?"
             him determined "You bet!"
             "It took us all day, but now I had four more fields for planting!"
-            $ farm_size += 4
+            $ modify_farm_size(4)
     return
 
 # Year 18, 11.1 years old
@@ -1882,9 +1888,9 @@ label work30:
     "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."
     menu:
         "What should I do?"
-        "Reduce the size of my farm.":
+        "Reduce the size of my farm."  if (farm_size > FARM_SIZE_MINIMUM):
             "The best thing to do was just to not plant as many crops. Then I wouldn't need as much help. Hopefully it would still be enough."
-            $ farm_size -= 4
+            $ modify_farm_size(-2)
         "Hire some help.":
             if (work28_rent > 0):
                 "With the extra money [kid_name] would be paying in rent, I could afford to hire some help. Surely there'd be someone who'd be willing to do some hard work in exchange for a little extra money."

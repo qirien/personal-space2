@@ -21,12 +21,15 @@ init -100:
     define LEFT_COLUMN_WIDTH = 310
     define MIDDLE_COLUMN_WIDTH = 480
     define RIGHT_COLUMN_WIDTH = 310
-
+    define TOP_SECTION_HEIGHT = 520
     define COMPUTER_SUB_HEIGHT = 400
 
-    # Static indices that will never change
-    define MAX_FARM_SIZE = 25
+    # Farming parameters
+    define FARM_SIZE_MAXIMUM = 25
+    define FARM_SIZE_MINIMUM = 9
+    define UNDERWORK_THRESHOLD = 5
 
+    # Static indices that will never change
     define NAME_INDEX = 0
     define CALORIES_INDEX = 1
     define NUTRITION_INDEX = 2
@@ -41,13 +44,13 @@ init -100:
     define CROP_STATS_MAX = 10
 
     # Nutritional data
-    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
+    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
     define VITAMIN_A_LOW = 15
 
-    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
+    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20
 
-    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "spinach":4, "broccoli":1, "goats":1, "honey":0}
+    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":4, "broccoli":1, "goats":1, "honey":0}
     define MAGNESIUM_LOW = 10
 
     # Calorie data
@@ -273,6 +276,7 @@ init -100:
         # Special weird things
         "Scurvy Dog", # got scurvy
         "Rich Dad", # saved a lot of money
+        "Poor Dad", # been in debt
         "Better Half", # had a good relationship with her_name
         "Potato Diet", # planted almost all potatoes
         "Mutant Ninja Berries", # had mutated strawberries
@@ -300,3 +304,39 @@ init -100:
 
     "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please recognize my feelings and help me prepare to live on my own."
     }
+
+# Quotes to show at the end of each year.
+define parenting_quotes = [
+    "", #0 not needed
+    "\"Love can change a person the way a parent can change a baby- awkwardly, and often with a great deal of mess.\"\n\n{i}Horseradish{/i}, Lemony Snicket", #1
+    "", #2
+    "", #3
+    "", #4
+    "", #5
+    "", #6
+    "", #7
+    "", #8
+    "", #9
+    "", #10
+    "", #11
+    "", #12
+    "", #13
+    "", #14
+    "\"Our children’s well-being affects ours, and ours affects theirs.\"\n\n{i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}, Myla and John Kabat-Zinn", #15
+    "", #16
+    "", #17
+    "", #18
+    "", #19
+    "", #20
+    "\"All research indicates that the most significant influence on the life of a teenager comes from his or her parents.\"\n\n{i}The Five Love Languages of Teenagers{/i}, Gary Chapman", #21
+    "", #22
+    "", #23
+    "", #24
+    "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\n{i}The Five Love Languages of Teenagers{/i}, Gary Chapman", #25
+    "", #26
+    "", #27
+    "", #28
+    "", #29
+    "\"Raising a child is in many ways is a long process of saying goodbye.\"\n\n{i}Parenting : Contemporary Clinical Perspectives{/i}, Tuber, Steven, ed.", #30
+
+]

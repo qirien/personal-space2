@@ -2269,7 +2269,7 @@ label community13:
             lily normal "Your company would lend my petition credibility."
             him determined "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
             "I tried to think about what I would say to Brennan, but my mind was full of the chores I wasn't doing and trying to reschedule the entire week."
-            scene canyon with fade
+            scene cabins with fade
             show lily normal at midright
             show him determined at midleft
             with moveinleft
@@ -2482,6 +2482,16 @@ label community13:
 
 # 14 - Pete leaves
 label community14:
+    scene plain with fade
+    show brennan normal at quarterright
+    show pavel normal at left
+    show thuc normal at right
+    show helen normal at midright
+    show pete normal at center
+    show him normal at midleft
+    show lily normal at quarterleft
+    with dissolve
+
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
     "Today they're sending it back to Earth so RET can sell it."
     "Everyone gathered to watch the shuttle go off."

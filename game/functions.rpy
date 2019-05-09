@@ -160,7 +160,7 @@ init -100 python:
         if (get_extra_nutrition() <= malnutrition_threshold):
             return "bad_nutrition"
 
-        # If you overworked yourself too much, you also get an overwork event
+        # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
         if (get_extra_work() <= overwork_threshold):
             return "overwork"
@@ -210,6 +210,21 @@ init -100 python:
         else:
             notifications += "Credits " + str(amount) + "\n"
 
+    def modify_farm_size(amount):
+        global farm_size, notifications
+        if ((farm_size+amount) < FARM_SIZE_MINIMUM):
+            farm_size = FARM_SIZE_MINIMUM
+            return False
+        elif ((farm_size+amount) > FARM_SIZE_MAXIMUM):
+            farm_size = FARM_SIZE_MAXIMUM
+            return False
+        else:
+            if (amount >= 0):
+                notifications += "Farm size +" + str(amount) + "\n"
+            else:
+                notifications += "Farm size " + str(amount) + "\n"
+            farm_size += amount
+            return True
 
     # Calculate expenses required for the family for this year
     def get_expenses_required():

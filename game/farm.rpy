@@ -19,7 +19,7 @@ init python:
 
         NITROGEN_LEVEL_INDEX = 0
         PEST_LEVEL_INDEX = 1
-        def __init__(self, current_size, max_size=MAX_FARM_SIZE):
+        def __init__(self, current_size, max_size=FARM_SIZE_MAXIMUM):
             self.current_size = current_size
             self.max_size = max_size
 
@@ -89,7 +89,7 @@ init python:
             return income
 
         # Reset the crops for a new year.
-        def reset_crops(self, size=MAX_FARM_SIZE):
+        def reset_crops(self, size=FARM_SIZE_MAXIMUM):
             new_crops = Crops(size)
             for i in range(0, self.crops.len()):
                 crop_index = get_crop_index(self.crops[i])
@@ -187,7 +187,7 @@ init python:
     ##
     class Crops(renpy.store.object):
         # Initialize as an empty field of a certain size
-        def __init__(self, size=MAX_FARM_SIZE):
+        def __init__(self, size=FARM_SIZE_MAXIMUM):
             self.items = ["fallow"] * size
 
         # Set the crop at [index] to [crop_name]

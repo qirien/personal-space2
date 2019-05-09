@@ -19,6 +19,58 @@ screen show_credits(expense=0):
         hbox:
             label "Credits: [credits]"
 
+# Show a summary of changes for the previous year
+# TODO: abstract out computer pad stuff somehow
+# TODO: Do we really  need a separate screen for this? Or can we put it on the computer pad screen somewhere? In the parenting manual?
+screen yearly_summary():
+    key "K_RETURN" action Return()
+    key "K_SPACE" action Return()
+    style_prefix "plan_farm"
+    frame:
+        background  "computer_pad_with_screen"
+        # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
+        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
+        textbutton "?" xpos 1077 ypos 18 action Jump("farm_tutorial")
+        textbutton "             " xpos 1085 ypos 18 action ShowMenu("preferences")
+        vbox:
+            area (60, 50, 1150, 620)
+            yfill True
+            hbox:
+                xfill True
+                yfill True
+                frame:
+                    yfill True
+                    background "roundrect_darkgray"
+                    vbox:
+                        hbox:
+                            frame:
+                                xsize LEFT_COLUMN_WIDTH
+                                ysize TOP_SECTION_HEIGHT
+                                style "plan_farm_subframe"
+                                vbox:
+                                    label "Year [year] Summary"
+                                    null height 10
+                                    text notifications
+                            frame:
+                                xsize MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
+                                ysize TOP_SECTION_HEIGHT
+                                style "plan_farm_subframe"
+                                vbox:
+                                     label "Quote"
+                                     null height 10
+                                     text parenting_quotes[year]
+                        frame:
+                            xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
+                            style "plan_farm_subframe"
+                            vbox:
+                                xfill True
+                                text "The year passed by like a dream..."
+                                textbutton "Continue":
+                                     style "round_button"
+                                     xalign 0.5
+                                     action Return()
+
+
 style interscene_window is default:
     xalign 0.0
     yalign 0.0
