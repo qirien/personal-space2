@@ -354,6 +354,11 @@ label potatoes3:
     her normal "We saved you some dinner..."
     him determined "As long as it's not potatoes."
     # TODO: lose money based on number of potato fields?
+
+    if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        "There was one good thing that came out of all this, though."
+        "Since I didn't have to harvest potatoes, I did have some time to prepare new fields for crops."
+        $ modify_farm_size(2)
     return
 
 # SQUASH1 - not getting fertilized
@@ -843,7 +848,7 @@ label goats3:
                 "Observe the goats together.":
                     jump goat3_observe
                 "Get back to work.":
-                    him annoyed "That's not possible. One of must have not closed it all the way, and I know it wasn't me, so it had to be you. Time to get back to work."
+                    him annoyed "That's not possible. One of us must not have closed it all the way, and I know it wasn't me, so it had to be you. Time to get back to work."
                     kid concerned "Okay, but it wasn't me."
                     "I slid the bolt closed and pushed it down. At least this time the gate was secure."
                     "We went back to weeding the [random_crop] and after twenty minutes I went to check on the goats."
@@ -896,10 +901,18 @@ label tomatoes2:
             "Now, I needed to choose which fruits to save seeds from for planting next year."
             "First tomatoes":
                 $ tomatoes2_action = "early harvest"
+                "I wanted the tomatoes to ripen as quickly as possible. Less time from seed to harvest is more efficient!"
             "Biggest tomatoes":
                 $ tomatoes2_action = "size"
+                "I wanted the biggest tomatoes. I remembered submitting my largest tomato to the county fair as a kid. It had seemed so enormous... but when I saw the tomato that beat it, I was blown away."
+                "I wanted to see how big Talaam tomatoes could get."
             "Sweetest tomatoes":
                 $ tomatoes2_action = "sweetness"
+                "Sweet tomatoes were the best for eating. I can't stand mealy or bland tomatoes."
+
+        if ((get_available_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+            "After harvesting tomatoes and their seeds, I had enough extra time to get another field ready for planting crops on next year."
+            $ modify_farm_size(1)
     else:
         "The tomatoes had the same rotten bottom area as last time, only now it's even worse!"
         "I did some research and found out that usually means there's too much nitrogen in the soil and not enough calcium."
@@ -928,6 +941,9 @@ label tomatoes3:
         "Finally, I had a good tomato harvest. The tomatoes were firm all over and there were plenty of them."
         "Time for salsa, spaghetti sauce, and maybe even some pizza!"
 
+    if ((get_available_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        "Now that the tomato harvest was finally over, I could start thinking about next year... I wanted another field for crops, so I cleared and fenced another field."
+        $ modify_farm_size(1)
     return
 
 # PLUMS 1 - trees growing
@@ -1290,14 +1306,10 @@ label spinach2_pick_early:
         $ snail_crop = "squash"
     elif ("broccoli" in farm.crops):
         $ snail_crop = "broccoli"
-    elif ("cabbage" in farm.crops):
-        $ snail_crop = "cabbage"
     elif ("strawberries" in farm.crops):
         $ snail_crop = "strawberries"
     elif ("carrots" in farm.crops):
         $ snail_crop = "carrots"
-    elif ("snow peas" in farm.crops):
-        $ snail_crop = "snow peas"
     else:
         $ snail_crop = "other crops"
     "After we picked the spinach, they moved on to our [snail_crop]."

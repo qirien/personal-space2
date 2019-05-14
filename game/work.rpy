@@ -2,14 +2,6 @@
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
-    $ enable_crop("squash")
-    return
-
-label underwork:
-    $ success = modify_farm_size(2)
-    if success:
-        scene fields with fade
-        "I ended up with a lot of extra time on my hands, so I decided to prepare two more fields for crops."
     return
 
 # Event for if you overwork yourself.
@@ -616,7 +608,7 @@ label work6:
     "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
 
     tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
-    tutorial "And, her competence increases as she helps." # TODO: does it?
+    tutorial "Her competence increases as she learns and helps."
     window hide
     scene black with fade
     return
@@ -668,6 +660,7 @@ label work8:
             "I ended up building a new outhouse on top of a small hill, with a container for the waste that could be rotated."
             "I built a couple of containers so that two could be decomposing into compost while the other was being actively used."
             "It took several days, and the new outhouse would be a bit more work to maintain, but I felt like it was worth it to solve the problem the right way."
+            # TODO: nitrogen doesn't go down as fast because more fertilizer?
 
     scene farm_interior with fade
     show her normal at midright
@@ -698,6 +691,9 @@ label work8:
             her annoyed "Yeah, I'll make dinner. I don't want to wait that long."
             him happy "Thanks, sweetie!"
 
+    if ((work8_choice != "improve") and (get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        "Since I only spent one day on the outhouse, I had enough time to prepare some more space for future crops."
+        $ modify_farm_size(2)
     return
 
 # Year 10, 6.2 years old
@@ -738,7 +734,7 @@ label work10:
             kevin "Very well. I shall mark you down for bees."
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
-            tutorial "However, they must be placed every year."
+            tutorial "However, you have to allocate a space for them every year."
             # TODO: implement these!!
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
@@ -803,6 +799,10 @@ label work12:
             $ enable_crop("corn")
 
     "I was looking forward to growing something new."
+    if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        "I had a little extra time on my hands and decided to prepare some more land for crops."
+        "Both my family and the colony were growing larger and demanding more food than ever."
+        $ modify_farm_size(2)
     return
 
 # Year 14, 8.7 years old
@@ -1093,6 +1093,10 @@ label work18:
 label work18_after_clean:
     "We had a quick lunch together, and then, since the solar flare was over, we each went our separate ways."
     "And I could finally get to fixing the roof!"
+
+    if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        "I finished faster than I thought, and I had time to prepare another field for planting."
+        $ modify_farm_size(1)
     return
 
 # Year 20, 12 years old
@@ -1126,7 +1130,7 @@ label work20:
             him determined "Huh. Well, I'm going to go check it out."
 
     "I headed farther upstream, past the town, and up into the hills."
-
+    # TODO: FInish this
 
 
 
@@ -1288,7 +1292,7 @@ label work22:
         "He handed me some credits."
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."
-        # TODO: add money
+        $ modify_credits(25)
     return
 
 # Year 24, 14.8 years old
@@ -1591,6 +1595,9 @@ label work26:
             "I showed her how to collect the samples, test them, and enter in the results."
             "Then we made a plan."
             "It made me happy to share my plans with someone... [her_name] never really cared about them. Maybe [kid_name] didn't care that much, either, but she had time to listen to me."
+            if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+                "I even decided to show her how to prepare a new field for crops. She helped with the tilling and fencing and everything."
+                $ modify_farm_size(1)
             $ independence += 1
         "Do it myself.":
             "I kind of liked planning and preparing and doing the whole farm myself. Why should I share the easiest part with [kid_name]?"
@@ -1884,7 +1891,7 @@ label work30:
 
     show bro normal at quarterleft with moveinleft
     bro "I don't want to work on the farm, either."
-    "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was timid and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
+    "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was gentle and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
     "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."
     menu:
         "What should I do?"
@@ -1905,4 +1912,6 @@ label work30:
     "I wasn't quite ready for it to start, though."
 
     $ modify_credits(work28_rent)
+    # She and Bro only can help a little now.
+    $ kid_other_work = int(competence *.75)
     return

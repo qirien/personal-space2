@@ -670,7 +670,7 @@ label message27:
     kid_c "So are babies but we don't eat those, do we!!?"
     pavel_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
     natalia_c "Yeah, we have way more important things to worry about."
-    zaina_c "I don't eat them anymore."
+    zaina_c "After learning more about them, I decided not to eat them anymore. Go read some of the research."
     kid_c "Good! Thank you, Zaina; you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
     pavel_c "It's so important to eat well. Though I do love jelly with peanut butter... that's okay, isn't it?"
     kid_c "Um, yeah, I think so, I was talking about jellystars."

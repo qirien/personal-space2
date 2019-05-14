@@ -6872,7 +6872,7 @@ label family26:
         "You're talking about the miners, right?":
             him surprised "You're talking about the miners, right?"
             kid "Not just the miners! All of us! We're alien invaders here!"
-    him annoyed "So what do you expect me to do? Just walk out into the wilderness and let the 'natural' creatures of Talaam have my body as payment for my sins?"
+    him annoyed "So what do you expect me to do? Just walk out into the wilderness and let the 'natural' creatures of Talaam have my body as payment for my sins against the planet?"
     kid "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by us, the alien invaders from Earth!"
     menu:
         "What should I do?"
@@ -7053,7 +7053,6 @@ label family27:
             "[kid_name] found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
             $ authoritative += 1
-            # TODO: decrease her amount of available work?
         "Don't buy her a bike.":
             him annoyed "Sorry, I don't have [bike_cost] credits lying around. Your feet will work just fine."
             kid surprised "That's it? Just 'No'?!"
@@ -7092,7 +7091,6 @@ label family27:
             $ modify_credits(-bike_cost)
 
 
-    # TODO: fit this in somehow?
     # TODO: different job depending on personality/ending?
     scene farm_exterior with fade
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
@@ -7129,7 +7127,8 @@ label family27:
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
     $ parenting_style = get_parenting_style()
 
-    # TODO: Make this affect available work or something.
+    # Reduce available work (even if you tell her not to work, she still does)
+    $ kid_other_work = int(competence * .35)
     menu:
         "What should I say?"
         "We should encourage her work.":
@@ -7375,7 +7374,6 @@ label family28:
                     kid "I will. I'm sick of your arbitrary rules and you making decisions for me."
                     her "[kid_name]..."
                     kid "No, I should have done this months ago. I'm done with this house, with your stupid rules, with... you!"
-                    # TODO: does she actually leave?
                     $ neglectful += 1
                     jump family28_run_away
                 "Think about it and decide for yourself.":
@@ -7487,6 +7485,9 @@ label family28_runaway:
     kid "I ate whatever I wanted from the storehouse. Bread, fruit, cheese-- I'm telling you, I make good money."
     her happy "I'm glad you're okay. I missed you, though!"
     "[her_name] gave [kid_name] a big hug. [kid_name] glared at me over [her_name]'s shoulder when I didn't join in."
+
+    # She is even less willing to work for you now
+    $ kid_other_work = int(competence * .75)
     return
 
 # 18 Earth years old
@@ -7738,10 +7739,8 @@ label family29:
     "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
     kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
     him surprised "I guess it also depends on what they think the purpose of marriage is."
-    kid surprised "The purpose of marriage?"
-    him concerned "Yeah. You can't get married just because it's the normal thing to do; that's not good enough."
     kid concerned "Why'd you and mom get married?"
-    him normal "Well, there's a lot of reasons, obviously the first being that we loved each other, but I think the main other reason was..."
+    him normal "Well, there's a lot of reasons, obviously the first being that we loved each other, but I think it was also..."
     menu:
         "To make it official.":
             him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
@@ -7771,7 +7770,7 @@ label family29:
         "Choose your love; love your choice.":
             him happy "Choose your love; love your choice."
             kid surprised "What does that mean?"
-            him determined "It means that you choose carefully who you marry; but once you do, love them with your whole heart every day."
+            him determined "It means that you should choose carefully who you marry; but once you do, love them with your whole heart every day."
             kid happy "Hmmm, okay. Thanks, dad."
             $ confident += 1
         "Follow your heart.":
@@ -7817,7 +7816,10 @@ label family29:
     "We sat outside right next to each other, leaning our heads together. Her hair tickled my neck and I breathed in its soft scent of hospital soap and antiseptic."
     "She massaged my hand in hers, knowing just the right places and just the right amount to push."
     "I carefully massaged her neck with my other hand, exactly the way she liked."
-    "This happiness, this was what I wanted for [kid_name]... hopefully I was doing what would help her gain it for herself."
+    her "Mmmmm."
+    "We leaned into each other and gazed up at the moons."
+    "This happiness, this was what I wanted for [kid_name]..."
+    "Was that too much to ask?"
     return
 
 # 18.6 Earth years old (ENDING)

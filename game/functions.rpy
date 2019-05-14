@@ -268,7 +268,7 @@ init -100 python:
         return WORK_BASE + get_work_kid()
 
     def get_work_kid():
-        return int(competence * (kid_work_slider / 100.0))
+        return int(competence * (kid_work_slider / 100.0) - kid_other_work)
 
     def get_extra_work():
         total_work = 0

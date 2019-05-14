@@ -44,7 +44,7 @@ init python:
                 crop_name = self.crops[i]
                 current_nitrogen = self.health[i][Field.NITROGEN_LEVEL_INDEX]
                 current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
-                #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
+                print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
                 # Decrease yield based on randomness and number of times crop has been in that spot lately.
                 # Set pest level of field after crops.
                 if (crop_name == "fallow"):
@@ -57,19 +57,19 @@ init python:
                 new_pests = bounded_value(new_pests, Field.PEST_NONE, Field.PEST_MAX)
                 self.health[i][Field.PEST_LEVEL_INDEX] = new_pests
 
-                #print "Pest Factor[" + str(i) + "] is " + str(pest_factor)
+                print "Pest Factor[" + str(i) + "] is " + str(pest_factor)
 
                 # Decrease yield if there's not enough nitrogen
                 # Set nitrogen level of the field after crops
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
-                #print "New Nitrogen: " + str(new_nitrogen)
+                print "New Nitrogen: " + str(new_nitrogen)
                 if (new_nitrogen < 0):
                     nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100
 
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
 
-                #print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor)
+                print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor)
 
                 # TODO: Use bees in calculations.
                 final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor

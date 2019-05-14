@@ -79,6 +79,7 @@ label start:
         independence = 0
 
         kid_work_slider = 0
+        kid_other_work = 0
 
         sex_ed_biology = False
         sex_ed_commitment = False
@@ -323,8 +324,6 @@ label life_loop:
             #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
             # hide screen interscene #with dissolve
             $ work_event = get_next_work_event()
-            if (get_extra_work() >= UNDERWORK_THRESHOLD):
-                call underwork
             call expression work_event
 
             # FAMILY EVENTS (parenting/home life)
