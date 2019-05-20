@@ -152,71 +152,90 @@ screen farm_details_screen:
 
 # TODO: mask the rest of the screen?
 # TODO: add a shadow on sub screens
-screen crops_available(crop_index=0):
+screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     frame:
         style_prefix "crop_details"
         yalign 0.5
         xalign 0.5
-        vbox:
-            $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
-            hbox:
-                label crop_name.capitalize()
-                textbutton "X" xpos -25 ypos -2 action Hide("crops_available", zoomout)
-            # TODO: Take out style tag and see if autodetecting of this has been fixed later.
-            hbox:
-                grid 2 5:
-                    # TODO: Make each of these a different color and have a key so they take up less room.
-                    text "Calories: "
-                    bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                    text "Nutrition: "
-                    bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                    text "Work: "
-                    bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                    text "Nitrogen Usage: "
-                    $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
-                    if (crop_nitrogen <= 0):
-                        bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar"
-                    else:
-                        bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
+        hbox:
+            xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 20
+            spacing 10
+            vbox:
+                spacing 10
+                style_prefix "field_info"
+                xsize LEFT_COLUMN_WIDTH
+                label "Field Status"
+                label "History" style "crop_details_label" text_color white
+                use history_box(crop_index)
+                null height 20
+                label "Health" style "crop_details_label" text_color white
+                text "Nitrogen Level: " + get_level_fuzzy(1 - (farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX] / float(Field.NITROGEN_FULL)))
+                text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
 
-                    if (year >= MONEY_YEAR):
-                        text "Value: "
-                        bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                    else:
-                        null
-                        null
-                text crop_descriptions[crop_name.rstrip("+")]
-            null height 30
-            vpgrid:
-                # TODO: change this based on number of enabled crops?
-                cols 4
-                spacing 5
-                draggable True
-                mousewheel True
-                #scrollbars "vertical"
-                side_xalign 0.5
+            frame:
+                style "plan_farm_subframe"
+                vbox:
+                    hbox:
+                        label "New Crop" style "computer_sub_label" text_color green_dark
+                        textbutton "X" xpos 50 ypos -2 action Hide("choose_crop", zoomout)
+                    $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
+                    label crop_name.capitalize()
+                    # TODO: Take out style tag and see if autodetecting of this has been fixed later.
+                    hbox:
+                        grid 2 5:
+                            # TODO: Make each of these a different color and have a key so they take up less room.
+                            text "Calories: "
+                            bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            text "Nutrition: "
+                            bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            text "Work: "
+                            bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            text "Nitrogen Usage: "
+                            $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
+                            if (crop_nitrogen <= 0):
+                                bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar"
+                            else:
+                                bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
 
-                for j in range(0, len(crop_info)):
-                    # only show currently enabled crops where we haven't planted the maximum yet
-                    if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0)):
-                        $ crop_name = crop_info[j][NAME_INDEX]
-                        $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
-                        $ imagefile = get_crop_filename(crop_name)
-                        $ is_selected = (selected_crop_index == j)
+                            if (year >= MONEY_YEAR):
+                                text "Value: "
+                                bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            else:
+                                null
+                                null
+                        text crop_descriptions[crop_name.rstrip("+")]
+                    null height 30
+                    vpgrid:
+                        # TODO: change this based on number of enabled crops?
+                        cols 4
+                        spacing 5
+                        draggable True
+                        mousewheel True
+                        #scrollbars "vertical"
+                        side_xalign 0.5
 
-                        imagebutton:
-                            idle imagefile
-                            hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                            selected_idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                            insensitive LiveComposite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (0,0), Solid(gray_transparent))
-                            xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
-                            anchor (0.5, 0.5)
-                            align  (0.5, 0.5)
-                            selected is_selected
-                            sensitive (not max_crops_reached)
-                            hovered SetLocalVariable("selected_crop_index", j)
-                            action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("crops_available", zoomout)]
+                        for j in range(0, len(crop_info)):
+                            # only show currently enabled crops where we haven't planted the maximum yet
+                            if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0) and
+                            (crop_temporarily_disabled != crop_info[j][NAME_INDEX])):
+                                $ crop_name = crop_info[j][NAME_INDEX]
+                                $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
+                                $ imagefile = get_crop_filename(crop_name)
+                                $ is_selected = (selected_crop_index == j)
+
+                                imagebutton:
+                                    idle imagefile
+                                    hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                    selected_idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                    insensitive LiveComposite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (0,0), Solid(gray_transparent))
+                                    xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
+                                    anchor (0.5, 0.5)
+                                    align  (0.5, 0.5)
+                                    selected is_selected
+                                    sensitive (not max_crops_reached)
+                                    hovered SetLocalVariable("selected_crop_index", j)
+                                    action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
 
 screen crops_layout:
     frame:
@@ -239,14 +258,22 @@ screen crops_layout:
                         $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
                         $ tint_factor = 1 - (current_nitrogen_level / float(Field.NITROGEN_FULL))
                         $ tint_factor = tint_factor / 2.0
+                        $ current_pest_level = farm.health[i][Field.PEST_LEVEL_INDEX]
+                        $ pest_factor = (current_pest_level / float(Field.PEST_MAX))
                         frame:
                             if (nitrogen_usage > current_nitrogen_level):
                                 background red_dark
                             else:
                                 # TODO: add a border here
                                 #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
-                                # make poor soils lighter
-                                background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.brightness(tint_factor)))
+                                # make poor soils lighter and
+                                # put the pests on top
+                                background Frame(Composite(
+                                    (CROP_ICON_SIZE, CROP_ICON_SIZE),
+                                    (0,0), im.MatrixColor("gui/crop icons/background.png",    im.matrix.brightness(tint_factor)),
+                                    (0,0), get_pest_image(pest_factor)
+                                    ))
+
                             $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
                                 idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/idle.png")
@@ -256,22 +283,23 @@ screen crops_layout:
                                 align  (0.5, 0.5)
                                 action [If(
                                 (current_crop_name[-1] == "+"),
-                                    Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("crops_available", zoomin, i)),
-                                    ShowTransient("crops_available", zoomin, i))
+                                    Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("choose_crop", zoomin, i)),
+                                    ShowTransient("choose_crop", zoomin, i))
                                     ]
                         # TODO: Show as bugs in background of field? Or remove completely?
 
-                    # history
-                    # use history_box(i)
-
 # Shows past three years of the crop at specified index.
 screen history_box(index):
+    style_prefix "crop_history"
     hbox:
-        $ history_icon_size = CROP_ICON_SIZE // 2
+        $ history_icon_size = CROP_ICON_SIZE // 1.5
         for past_crop in range(0, Field.HISTORY_SIZE):
             $ past_crop_name = farm.history[index][past_crop]
             $ imagefile = get_crop_filename(past_crop_name)
             add imagefile size (history_icon_size, history_icon_size)
+
+style crop_history_hbox is crop_details_hbox:
+    xsize LEFT_COLUMN_WIDTH
 
 screen crops_totals:
     vbox:
@@ -431,6 +459,8 @@ style plan_farm_subframe is frame:
 # STYLE COMPUTER_SUB used for subwindows of the main computer screen
 style computer_sub_frame is frame:
     background "roundrect_darkgray"
+    xpadding 8
+    ypadding 8
 
 style computer_sub_label is plan_farm_label
 
@@ -469,6 +499,7 @@ style crop_details_label is computer_sub_label
 
 style crop_details_label_text is computer_sub_label_text:
     size 20
+    color black
 
 style crop_details_selected_label is crop_details_label:
     background tan_dark
@@ -500,11 +531,20 @@ style crop_details_vbox is computer_sub_vbox:
     xsize MIDDLE_COLUMN_WIDTH
 
 style crop_details_hbox is computer_sub_hbox:
-    xsize MIDDLE_COLUMN_WIDTH
+    xsize (MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH) / 2
 
 style crop_details_grid is computer_sub_grid:
     xsize MIDDLE_COLUMN_WIDTH
     spacing 0
+
+# STYLE FIELD_INFO_ used for displaying the details of a field when you click on one
+style field_info_hbox is computer_sub_hbox
+style field_info_label is computer_sub_label
+style field_info_label_text is computer_sub_label_text
+style field_info_text is computer_sub_text:
+    xoffset 20
+    color black
+
 
 # STYLE CROP_LAYOUT_ used for displaying the field of crops
 style crop_layout_vpgrid is vpgrid:

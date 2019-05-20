@@ -38,8 +38,8 @@ init -100:
     define NITROGEN_INDEX = 5
     define ENABLED_INDEX = 6
     define PERENNIAL_INDEX = 7
-    define MAXIMUM_INDEX = 8
-    define DESCRIPTION_INDEX = 9
+    define POLLINATED_INDEX = 8
+    define MAXIMUM_INDEX = 9
 
     define CROP_STATS_MAX = 10
 

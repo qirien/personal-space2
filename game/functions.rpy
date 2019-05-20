@@ -237,6 +237,10 @@ init -100 python:
             crop_credits = (crop_value * crop_value * 4 + 10)
         return crop_credits
 
+    # TODO: use this during lots of modify_credits that are based on crops
+    def get_credits_from_name(crop_name):
+        return get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
+
     # Calculate nutrition required for the family for this year.
     # TODO: right now this is the same as calories? Is that true?
     def get_nutrition_required():
@@ -311,6 +315,28 @@ init -100 python:
             return "miners"
         elif (luddites >= colonists >= miners):
             return "luddites"
+
+    # Returns a fuzzy description of the given percentage.
+    # Used for nitrogen and pest levels.
+    def get_level_fuzzy(percentage):
+        if (percentage < 0.1):
+            return "{color=#0f0}Good{/color}"
+        elif (percentage < 0.33):
+            return "{color=#fff}OK{/color}"
+        elif (percentage < 0.66):
+            return "{color=#ff0}Warning{/color}"
+        else:
+            return "{color=#f00}Danger{/color}"
+
+    def get_pest_image(pest_factor):
+        if (pest_factor < 0.1):
+            return Null(CROP_ICON_SIZE, CROP_ICON_SIZE)
+        elif (pest_factor < 0.33):
+            return Image("gui/crop icons/pest-low.png")
+        elif (pest_factor < 0.66):
+            return Image("gui/crop icons/pest-med.png")
+        else:
+            return Image("gui/crop icons/pest-high.png")
 
 
 ##

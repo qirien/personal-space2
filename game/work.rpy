@@ -47,7 +47,7 @@ label overwork:
                 show zaina normal at midleft
                 "Not many people showed up, but we were able to harvest most of the tomatoes."
 
-        "Ask miners for help." if ((year > miners_arrive_year) and (overwork_miners < 2)):
+        "Ask miners for help." if ((year > MINERS_ARRIVE_YEAR) and (overwork_miners < 2)):
             $ overwork_miners += 1
             if (overwork_miners <= 1):
                 $ miners += 1
@@ -573,6 +573,7 @@ label work6:
     window show # TODO: HACK MOVE TO FUNCTION
     $ random_crop = farm.crops.random_crop(include_animals = False)
     him normal "Well, I'm off to plant [random_crop] today."
+    # TODO: we might get a crop that doesn't work with seeds... fix this
     kid surprised "Is it fun?"
     him concerned "Kind of? Not as fun as harvesting, but you do get to dig in the dirt and drop in seeds..."
     kid nervous "Can I help?"
@@ -606,6 +607,7 @@ label work6:
     kid surprised "Okay...One, two, free!"
     him happy "Good!"
     "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
+    $ competence += 2
 
     tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
     tutorial "Her competence increases as she learns and helps."

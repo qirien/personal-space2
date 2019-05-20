@@ -445,7 +445,6 @@ label community4:
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
     show pavel normal at center
-    window show # TODO: HACK MOVE TO FUNCTION
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
     pavel "This is what it said:"
