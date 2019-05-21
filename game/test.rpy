@@ -1,6 +1,51 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
+label test_farming_screen:
+    $ testing_mode = True
+    # randomly enable crops
+    if (renpy.random.random() > 0.5):
+        $ enable_crop("strawberries")
+    if (renpy.random.random() > 0.7):
+        $ enable_crop("garlic")
+    if (renpy.random.random() > 0.8):
+        $ enable_crop("broccoli")
+    if (renpy.random.random() > 0.6):
+        $ enable_crop("onions")
+    if (renpy.random.random() > 0.5):
+        $ enable_crop("plums")
+    if (renpy.random.random() > 0.2):
+        $ enable_crop("honey")
+    if (renpy.random.random() > 0.5):
+        $ enable_crop("peppers")
+    if (renpy.random.random() > 0.5):
+        $ enable_crop("corn")
+    if (renpy.random.random() > 0.5):
+        $ enable_crop("wheat")
+    if (renpy.random.random() > 0.5):
+        $ enable_crop("peanuts")
+    if (renpy.random.random() > 0.9):
+        $ enable_crop("turnips")
+    while (year <= MAX_YEARS):
+        $ competence = year
+        $ earth_year = get_earth_years(year)
+        if (year > 1):
+            $ years_yield = farm.process_crops()
+            if (year >= MONEY_YEAR):
+                $ modify_credits(farm.calculate_income(years_yield))
+                $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
+                if (allowance_amount != 0):
+                    $ modify_credits(allowance_amount * 7)
+        $ farm.reset_crops(farm_size)
+        $ read_messages = False
+        $ show_year = year
+        call screen plan_farm
+        label test_continue:
+            if (renpy.random.random() > 0.8):
+                $ farm_size += 1
+            $ year += 1
+    return
+
 label demo:
     # setup variables
     $ demo_mode = True

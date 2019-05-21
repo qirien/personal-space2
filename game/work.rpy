@@ -1132,9 +1132,57 @@ label work20:
             him determined "Huh. Well, I'm going to go check it out."
 
     "I headed farther upstream, past the town, and up into the hills."
+    scene canyon with fade
+    show him normal at midleft
+    if (work20_thuc_present):
+        show thuc normal at left
+    with moveinleft
+    "The river was low up here, too. Finally, we reached the miner's camp."
+    scene cabins with fade
+    show brennan at midright with dissolve
+    show him normal at midleft
+    if (work20_thuc_present):
+        show thuc normal at quarterleft
+    with moveinleft
+    "As soon as we got to the camp, it was obvious what had happened. Much of the river was diverted to give water for the mining machinery."
+
+    him annoyed "Hey, you're stealing all the water! There's none left for our crops downstream!"
+    brennan "Sorry, our refining processes use a lot of water."
+    him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
+    if work20_thuc_present:
+        thuc "Well, who knows? Maybe we can eat what they're making up here?"
+    brennan "You'll have to get your water from somewhere else."
+
+    menu:
+        "What should I say?"
+        "You need to get your water elsewhere.":
+            him annoyed "No, YOU need to get YOUR water from somewhere else! This is farming water!"
+            if work20_thuc_present:
+                thuc "We depend on having easy access to water to grow all our crops."
+            brennan angry "Sorry, I have my orders."
+        "(Say nothing)":
+            "I took a deep breath and just looked at him. He looked back into my eyes with a stubborn expression on his face, and an uncomfortable silence stretched between us like taffy."
+            "I realized I had some other options here."
+            menu:
+                "What should I say?"
+                "Let's work something out.":
+                    him concerned "We don't have to fight about this."
+                    brennan "Good. Then leave us alone."
+                    him determined "I know you all want to eat, and I don't want to interfere with your mining--"
+                    if (miners >= 10):
+                        brennan "[his_name]..."
+                    else:
+                        brennan "Yeah, right."
+
+
+                "Can you please just wait until it rains?":
+                    him concerned "If you can hold off on your operations just until it rains, then I think we can manage."
+
+        "Food is more important than mining!":
+            him annoyed "Food is more important than mining!"
+            brennan angry "Without this mining, you wouldn't be here at all."
+
     # TODO: FInish this
-
-
 
     return
 

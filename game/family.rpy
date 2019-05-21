@@ -3589,7 +3589,7 @@ label family12_contact_parents:
     return
 
 label family12_anyas_house:
-    scene cabin with fade
+    scene cabins with fade
     "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
     "But when I got there and knocked on the door, a teenager answered the door."
     "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."
@@ -4438,7 +4438,7 @@ label family16:
                     "Some of it could probably be recycled, but why should that be my job?"
                     "Then I lit it on fire."
                     scene bonfire with fade
-                    "[kid_name] came running out and screamed when she saw the blaze."
+                    "[kid_name] came running out screaming when she saw the blaze."
                     kid "No! Stop! I'll clean it up!"
                     him determined "If you won't take care of your things, then you don't get to have things."
                     kid "You are the worst dad ever!"
@@ -4853,7 +4853,7 @@ label family17:
             "Who should I ask about bread?"
             "Ilian, the storehouse manager":
                 "I cringed, but I thought grumpy old Ilian would probably be the most likely to have bread."
-                scene storehouse with fade
+                scene storeroom with fade
                 show ilian at midright with dissolve
                 show him normal at midleft
                 show bro at quarterleft
@@ -7375,7 +7375,7 @@ label family28:
                     her "[kid_name]..."
                     kid "No, I should have done this months ago. I'm done with this house, with your stupid rules, with... you!"
                     $ neglectful += 1
-                    jump family28_run_away
+                    jump family28_runaway
                 "Think about it and decide for yourself.":
                     him determined "If you think that's best. But before you decide, will you think about it and make a plan?"
                     kid "A plan?"
@@ -7411,7 +7411,7 @@ label family28:
                     him annoyed "Just you wait, she'll come crawling back here in a day or two begging our forgiveness."
                     her concerned "I hope you're right..."
                     $ authoritarian += 1
-                    jump family28_run_away
+                    jump family28_runaway
 
     kid "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
     her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."

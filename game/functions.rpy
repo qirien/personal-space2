@@ -319,7 +319,7 @@ init -100 python:
     # Returns a fuzzy description of the given percentage.
     # Used for nitrogen and pest levels.
     def get_level_fuzzy(percentage):
-        if (percentage < 0.1):
+        if (percentage < 0.05):
             return "{color=#0f0}Good{/color}"
         elif (percentage < 0.33):
             return "{color=#fff}OK{/color}"
@@ -329,7 +329,7 @@ init -100 python:
             return "{color=#f00}Danger{/color}"
 
     def get_pest_image(pest_factor):
-        if (pest_factor < 0.1):
+        if (pest_factor < 0.05):
             return Null(CROP_ICON_SIZE, CROP_ICON_SIZE)
         elif (pest_factor < 0.33):
             return Image("gui/crop icons/pest-low.png")

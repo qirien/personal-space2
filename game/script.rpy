@@ -21,6 +21,7 @@ label start:
     python:
         demo_mode = False
         trailer_mode = False
+        testing_mode = False
         save_name = "Intro"
         notifications = ""
         read_messages = False
@@ -182,8 +183,8 @@ label start:
             "garlic" : "Their pungent flavor is versatile and sought after.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
             "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
-            "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",
-            "honey" : "Bees help pollinate crops and provide honey, which sells for a high price."
+            "goats" : "Goats restore nitrogen, eat pests, and provide nutritious milk and meat.",
+            "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
         # Got rid of blueberries, snow peas, beets, garlic, cabbage
 
@@ -219,24 +220,22 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    menu:
-        "Test Farming Screen":
-            $ show_year = 1
-            $ farm.reset_crops(farm_size)
-            call screen plan_farm
-        "Other Tests":
-            jump tests
-        "Jump to Year":
-            jump test_jump_year
-        "Demo":
-            jump demo
-        "Trailer":
-            jump trailer
-        "Continue":
-            $ pass
+    # menu:
+    #     "Test Farming Screen":
+    #         jump test_farming_screen
+    #     "Other Tests":
+    #         jump tests
+    #     "Jump to Year":
+    #         jump test_jump_year
+    #     "Demo":
+    #         jump demo
+    #     "Trailer":
+    #         jump trailer
+    #     "Continue":
+    #         $ pass
 
     "Welcome to the demo of Space to Grow!"
-    "While the story is mostly complete, there are a few holes here and there -- not every scene has full graphics yet, you can't unlock crops, and there are still some bugs."
+    "While the story is mostly complete, not every scene has full graphics yet, the crop planting mechanics are still under development, and a few scenes are unfinished."
     "However, you should be able to get a feel for the game and enjoy the story."
 
     show path
@@ -316,6 +315,8 @@ label life_loop:
                 jump demo_continue
             if trailer_mode:
                 jump trailer_continue
+            if testing_mode:
+                jump test_continue
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
