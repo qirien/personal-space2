@@ -4443,7 +4443,9 @@ label family16:
                     him determined "If you won't take care of your things, then you don't get to have things."
                     kid "You are the worst dad ever!"
                     him annoyed "Also, you're grounded. You didn't do what I asked and you spoke to me rudely."
-                    "She burst into tears."
+                    "She burst into tears and ran away."
+                    "I stood watching the flames for a long time."
+                    scene farm_interior with fade
                     "When [her_name] came home, [kid_name] sobbed out the entire story to her. [her_name] didn't say anything, but she shot me an angry look over the top of [kid_name]'s head."
                     "After [kid_name] cried herself to sleep, [her_name] turned to me."
                     her annoyed "You burned all her stuff?!"
