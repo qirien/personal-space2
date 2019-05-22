@@ -1455,7 +1455,7 @@ label family5:
     return
 
 # 3.5 Earth years old
-# Incessant questions
+# Incessant questions, a relaxing day together
 label family6:
     play music [happy, upbeat]
     scene stars with fade

@@ -1880,9 +1880,10 @@ label work30:
     show her normal at midleft
     "[kid_name] took a deep breath. I braced myself, sensing I was about to hear something I wouldn't like."
     kid determined "I don't want to work on this farm."
-    him surprised "You don't?"
+    him annoyed "What?!"
     her concerned "You don't have to..."
     kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
+    # TODO: Show him being more upset
     "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
     "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
     "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
