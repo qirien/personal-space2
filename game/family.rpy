@@ -5662,7 +5662,7 @@ label family21:
             kid "Really? You didn't see that guy whose been slobbering over your shoulder for the last ten minutes?"
             bro "I did, but I couldn't move in time!"
             him annoyed "Pause your game and listen to me!"
-            kid "I can't pause it; it's online. We still have a chance to beat Travis if [bro_name] would stop rolling on the ground like a baby."
+            kid "I can't pause it; it's online. We still have a chance to beat Travis if [bro_name] would stop rolling on the ground like a turtle snail."
             bro "I'm hiding!"
             menu:
                 "What should I say?"
@@ -5720,7 +5720,7 @@ label family21:
                             $ authoritarian += 1
                     "I felt kind of bad taking away their video games, but it was the simplest solution I could see to the problem."
                     "But soon enough, they were fighting again..."
-                    kid "Can you just run like a normal person without swinging your arms around like a jellyfish?!"
+                    kid "Can you just run like a normal person without swinging your arms around like a jellysquid?!"
                     bro "I'm not trying to!"
                     "Maybe siblings just always fought, and there was nothing I could do about it..."
                     return

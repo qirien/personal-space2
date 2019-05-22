@@ -5,7 +5,6 @@
 #
 # TODO: Add another parenting class before Naomi dies?
 # TODO: Warn halfway for bad/inconsistent parenting?
-# TODO: Use scene stars instead of scene black most of the time?
 # TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
 #       the first time through, and second time through show what you'd need
 #       to get that choice.

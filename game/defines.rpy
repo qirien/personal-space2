@@ -308,35 +308,35 @@ init -100:
 # Quotes to show at the end of each year.
 define parenting_quotes = [
     "", #0 not needed
-    "\"Love can change a person the way a parent can change a baby- awkwardly, and often with a great deal of mess.\"\n\n{i}Horseradish{/i}, Lemony Snicket", #1
-    "\"It is essential that a child's life not be ruled by the adult's need for efficiency. Efficiency is the enemy of infancy.\"\n\n{i}Between Parent and Child{/i}, Haim G. Ginott", #2
-    "", #3
-    "\"It is easier to build strong children than to repair broken men.\"\n\n Frederick Douglass", #4
-    "\"Effective parenting centers around love: love that is not permissive, love that doesn’t tolerate disrespect, but also love that is powerful enough to allow kids to make mistakes and permit them to live with the consequences of those mistakes.\"\n\n{i}Parenting with Love and Logic{/i}, Foster W. Cline", #5
-    "\"When a parent is not sure of what to do, it is best to do nothing but think and clarify his own attitudes.\"\n\n{i}Between Parent and Child{/i}, Haim G. Ginott", #6
+    "\"Love can change a person the way a parent can change a baby- awkwardly, and often with a great deal of mess.\"\n\nLemony Snicket, {i}Horseradish{/i}", #1
+    "\"It is essential that a child's life not be ruled by the adult's need for efficiency. Efficiency is the enemy of infancy.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #2
+    "\"Effective parenting centers around love: love that is not permissive, love that doesn’t tolerate disrespect, but also love that is powerful enough to allow kids to make mistakes and permit them to live with the consequences of those mistakes.\"\n\nFoster W. Cline, {i}Parenting with Love and Logic{/i}", #3
+    "\"It is easier to build strong children than to repair broken men.\"\n\n -- Frederick Douglass", #4
+    "\"We experience so much more joy, as well as positive results, when we remember to make sure that the message of love gets through.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #5
+    "\"When a parent is not sure of what to do, it is best to do nothing but think and clarify his own attitudes.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #6
     "\"Children are educated by what the grown-up is and not by his talk.\"\n\n -- Carl Jung", #7
     "\"At the end of the day, the most overwhelming key to a child's success is the positive involvement of parents.\"\n\nJane D. Hull", #8
-    "", #9
-    "\"Love is expressed in how we pass the bread, or how we say good morning, and not just in the big trip to Disney World.\"\n\n{i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}, Myla and John Kabat-Zinn", #10
-    "", #11
-    "", #12
-    "\"Misbehavior of children must be recognized as a need to teach appropriate behavior, not an excuse to punish. Punishment is a terrible teacher. It only teaches children how not to behave.\"\n\n {i}The Power of Positive Parenting{/i}, Glenn Latham", #13
-    "", #14
-    "\"Our children’s well-being affects ours, and ours affects theirs.\"\n\n{i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}, Myla and John Kabat-Zinn", #15
-    "\"When a child is in the midst of strong emotions, he cannot listen to anyone. He cannot accept advice or consolation or constructive criticism. He wants us to understand him.\"\n\n{i}Between Parent and Child{/i}, Haim G. Ginott", #16
-    "", #17
-    "\"Perhaps parenting styles are less important than people have been led to believe. Perhaps human nature is more robust than most people give it credit for — perhaps children are designed to resist whatever their parents do to them.\"\n\n\"Parenting Styles Have Changed But Children Have Not\", Judith Rich Harris", #18
-    "", #19
-    "\"A limit should be so stated that it tells the child clearly (a) what constitutes unacceptable conduct; (b) what substitute will be accepted…. A limit must be stated in a manner that is deliberately calculated to minimize resentment , and to save self-esteem. The very process of limit-setting should convey authority, not insult.\"\n\n{i}Between Parent and Child{/i}, Haim G. Ginott", #20
-    "\"All research indicates that the most significant influence on the life of a teenager comes from his or her parents.\"\n\n{i}The Five Love Languages of Teenagers{/i}, Gary Chapman", #21
-    "", #22
-    "", #23
-    "", #24
-    "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\n{i}The Five Love Languages of Teenagers{/i}, Gary Chapman", #25
-    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached. They accomplish this by creating a situation in which the caregiver separates from them (because of the \'hatred\'), but they themselves stay attached (by not directly expressing or even consciously feeling the hatred).\" \n\n{i}Parenting : Contemporary Clinical Perspectives{/i}, Tuber, Steven, ed.", #26
-    "", #27
-    "", #28
-    "\"When the child internalizes a secure internal working model of self in relation to caregivers, a remarkable thing can occur— the child can dare to turn their back on caregivers and walk away from them\"\n\n{i}Parenting : Contemporary Clinical Perspectives{/i}, Tuber, Steven, ed.", #29
-    "\"Raising a child is in many ways is a long process of saying goodbye.\"\n\n{i}Parenting : Contemporary Clinical Perspectives{/i}, Tuber, Steven, ed.", #30
+    "\"Research has shown that the most effective way to reduce problem behavior in children is to strengthen desirable behavior through positive reinforcement rather than trying to weaken undesirable behavior using aversive or negative processes.\"\n\nS.W. Bijou, {i}The International Encyclopedia of Education{/i}", #9
+    "\"Love is expressed in how we pass the bread, or how we say good morning, and not just in the big trip to Disney World.\"\n\nMyla and John Kabat-Zinn, {i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}", #10
+    "\"...communication with children is based on respect and on skill. It requires (a) that messages preserve the child's as well as the parent's self-respect; (b) that statements of understanding precede statements of advice and instruction.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #11
+    "\"The right age to inform a child about sexual matters is when he asks questions….Our explanation should be factual but it does not need to give full account.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #12
+    "\"Misbehavior of children must be recognized as a need to teach appropriate behavior, not an excuse to punish. Punishment is a terrible teacher. It only teaches children how not to behave.\"\n\nGlenn Latham, {i}The Power of Positive Parenting{/i}", #13
+    "\"We often rob children of opportunities to feel belonging and significance in meaningful ways through responsible contributions and then complain and criticize them for not developing responsibility. We need to provide opportunities for children to experience responsibility in direct relationship to the privileges they enjoy.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #14
+    "\"Our children’s well-being affects ours, and ours affects theirs.\"\n\nMyla and John Kabat-Zinn, {i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}", #15
+    "\"When a child is in the midst of strong emotions, he cannot listen to anyone. He cannot accept advice or consolation or constructive criticism. He wants us to understand him.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #16
+    "\"The power of empathy and acceptance is immense, and deeply transformative both for the person receiving them and for the person according them.\"\n\nMyla and John Kabat-Zinn, {i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}", #17
+    "\"Perhaps parenting styles are less important than people have been led to believe. Perhaps human nature is more robust than most people give it credit for — perhaps children are designed to resist whatever their parents do to them.\"\n\nJudith Rich Harris, \"Parenting Styles Have Changed But Children Have Not\"", #18
+    "\"The best solution to any problem lies within the skin of the person who rightfully owns the problem.\"\n\nFoster W. Cline, {i}Parenting with Love and Logic{/i}", #19
+    "\"A limit should be so stated that it tells the child clearly (a) what constitutes unacceptable conduct; (b) what substitute will be accepted…. A limit must be stated in a manner that is deliberately calculated to minimize resentment , and to save self-esteem. The very process of limit-setting should convey authority, not insult.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #20
+    "\"All research indicates that the most significant influence on the life of a teenager comes from his or her parents.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #21
+    "\"Where did we ever get the crazy idea that in order to make children do better, first we have to make them feel worse? Think of the last time you felt humiliated or treated unfairly. Did you feel like cooperating or doing better?\"\n\nJane Nelson, {i}Positive Discipline{/i}", #22
+    "\"Excessive control usually involves punishment which is humiliating to children. Permissiveness is humiliating to adults. Positive discipline is based on mutual respect and cooperation. Positive discipline incorporates firmness with dignity and respect.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #23
+    "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\n --Heraclitus", #24
+    "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #25
+    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached. They accomplish this by creating a situation in which the caregiver separates from them (because of the \'hatred\'), but they themselves stay attached (by not directly expressing or even consciously feeling the hatred).\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
+    "\"There is a cognitive bias that makes people overestimate their own importance and their own ability to influence how things turn out - not just in child-rearing but in everything they do.\"\n\n -- Judith R. Harris", #27
+    "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
+    "\"When the child internalizes a secure internal working model of self in relation to caregivers, a remarkable thing can occur— the child can dare to turn their back on caregivers and walk away from them\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #29
+    "\"Raising a child is in many ways is a long process of saying goodbye.\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #30
 
 ]
