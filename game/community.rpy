@@ -446,7 +446,7 @@ label community4:
     scene community_center with fade
     show pavel normal at center
     "Pavel, our mayor, called a town meeting."
-    pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 250 characters because of the limitations of the technology."
+    pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 140 characters because of the limitations of the technology."
     pavel "This is what it said:"
     #TODO: separate style for RET messages?
     $ pstyle = get_parenting_style()

@@ -215,6 +215,7 @@ style input:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#choice
 
+#TODO: Better menu interface for lots of choices, like in work20
 screen choice(items):
     style_prefix "choice"
 

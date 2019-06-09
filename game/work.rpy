@@ -558,7 +558,6 @@ label work4:
         him surprised "Strawberries?"
         thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
-        # TODO: test this
         $ enable_crop("strawberries")
     return
 
@@ -737,7 +736,6 @@ label work10:
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
-            # TODO: implement these!!
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."
@@ -1114,8 +1112,8 @@ label work20:
     him surprised "Where'd all the water go?"
     "I followed the river upstream to Thuc's farm."
     scene irrigation flip with fade
-    show thuc normal at midright with dissolve
-    show him normal at midleft with moveinleft
+    show thuc sad at midright with dissolve
+    show him determined at midleft with moveinleft
     him surprised "The river is low here, too."
     thuc sad "Yeah, I went to flood the fields and there was nothing left."
     $ work20_thuc_present = False
@@ -1137,9 +1135,9 @@ label work20:
     if (work20_thuc_present):
         show thuc normal at left
     with moveinleft
-    "The river was low up here, too. Finally, we reached the miner's camp."
-    scene cabins with fade
-    show brennan at midright with dissolve
+    "The river was low up here, too. Finally, I reached the miner's camp."
+    scene cabins with fade # TODO: mining background?
+    show brennan normal at midright with dissolve
     show him normal at midleft
     if (work20_thuc_present):
         show thuc normal at quarterleft
@@ -1147,7 +1145,7 @@ label work20:
     "As soon as we got to the camp, it was obvious what had happened. Much of the river was diverted to give water for the mining machinery."
 
     him annoyed "Hey, you're stealing all the water! There's none left for our crops downstream!"
-    brennan "Sorry, our refining processes use a lot of water."
+    brennan "Sorry, our refining processes use a lot of water. The river flows over there now."
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
         thuc "Well, who knows? Maybe we can eat what they're making up here?"
@@ -1155,12 +1153,13 @@ label work20:
 
     menu:
         "What should I say?"
-        "You need to get your water elsewhere.":
+        "YOU need to get YOUR water elsewhere.":
             him annoyed "No, YOU need to get YOUR water from somewhere else! This is farming water!"
             if work20_thuc_present:
                 thuc "We depend on having easy access to water to grow all our crops."
             brennan angry "Sorry, I have my orders."
         "(Say nothing)":
+            show him determined with dissolve
             "I took a deep breath and just looked at him. He looked back into my eyes with a stubborn expression on his face, and an uncomfortable silence stretched between us like taffy."
             "I realized I had some other options here."
             menu:
@@ -1171,19 +1170,201 @@ label work20:
                     him determined "I know you all want to eat, and I don't want to interfere with your mining--"
                     if (miners >= 10):
                         brennan "[his_name]..."
+                        him determined "It's not just about me and Thuc right now. It's about our whole community."
+                        brennan "Look, I understand what you're saying, [his_name]. Obviously you need water. But my hands are tied."
                     else:
-                        brennan "Yeah, right."
-
+                        brennan "Yeah, right. You've done nothing but work against me since I got here."
+                        him angry "It's not about you!"
+                        brennan "I know you hate what RET's doing here, and you're just looking for excuses to stop us. Go complain somewhere else."
 
                 "Can you please just wait until it rains?":
                     him concerned "If you can hold off on your operations just until it rains, then I think we can manage."
+                    brennan "Sorry, [his_name], but I have my own deadlines."
 
         "Food is more important than mining!":
             him annoyed "Food is more important than mining!"
             brennan angry "Without this mining, you wouldn't be here at all."
+            him concerned "Without food, none of us will be here very long."
+            brennan "Then we'll all have to box the devil."
+            him surprised "What?"
+            brennan "We'll all just have to make do, won't we?"
 
-    # TODO: FInish this
+    "I left when it was clear nothing would be accomplished."
+    if (work20_thuc_present):
+        thuc "Sorry, [his_name]. We tried..."
+        him determined "I'm not done yet."
+    scene farm_interior with fade
 
+    if (miners >= 10):
+        nvl clear
+        him_c "Brennan, if we both explain to RET why the farmers need that water, I'm sure they'll understand."
+        brennan_c "...If you can get them to authorize a deadline extension, then I can help you."
+        "Together, we composed a careful message to RET with our limited characters."
+        him_c "The water miners are using for mining is needed to ensure crops survive. Brennan and I plan to treat and redirect water post-mining back to farm. Please authorize deadline extension."
+        ret_c "Extension authorized. Proceed with plan."
+        nvl clear
+        "Thuc and I helped Brennan redirect the water back to the original river route after going through water treatment."
+        "I breathed a sigh of relief as water flooded through the gates to my crops again."
+
+        return
+
+    else:
+        "There was nothing I could say to change Brennan's mind."
+        "But there had to be something I could do besides watch my crops dry up..."
+        menu:
+            "What should I do?"
+            "Search RET's legal documents":
+                "It sounded about as fun as giving myself a root canal with a backhoe."
+                "But if I could find some legal description of how the water was supposed to be shared, Brennan would probably honor it."
+                "And I knew just the person so ask for help."
+                scene storehouse with fade
+                show ilian normal at midright with dissolve
+                show him normal at midleft with moveinleft
+                him normal "Hey there, Ilian!"
+                ilian "Hi. What do you need? Oil? Salt? Sugar?"
+                him determined "I'm not here for supplies. I need help with legalese."
+                ilian "So... why are you here?"
+                him normal "You read up on the contract we signed with RET and you didn't even have to. I'm looking for some legal protection for water rights, and I hope there's something in a legal document about it."
+                ilian "We're fighting over water rights now? Isn't that just like an old Western..."
+                him determined "This is serious! My crops are dying! I won't have anything left for the storehouse if this keeps up!"
+                ilian "Fine, we can take a look."
+                "Ilian knew right where to find the documents, so we were already ahead of what I knew."
+                ilian "Hmmm, water protection, water wildlife, water treatment..."
+                ilian happy "Aha! Water diversion...water may be diverted no more than two kilometers from its origin for use with mining... water must be treated after mining use... farmers may be required to modify water distribution to accomodate..."
+                him concerned "That doesn't sound good."
+                ilian normal "If you can prove he diverted the water more than two kilometers, you have a chance. Otherwise, you're supposed to modify your systems to accomodate for his water diversion."
+                him sad "I don't think it's more than two kilometers..."
+                ilian "Why am I not surprised?"
+                him determined "Thanks anyway."
+            "Ask RET for help":
+                "This was exactly the kind of thing we needed a liaison for."
+                if (is_liason):
+                    "And I guess that meant it was up to me to talk to RET about it."
+                    "I'd better think carefully about what message to send to Earth. I had 140 characters to use on the quantum entanglement device."
+                    $ work20_message = ""
+                    $ work20_message_score = 0
+                    menu work20_message_menu:
+                        "RET Message:\n[work20_message]"
+                        "Crops dying":
+                            $ work20_message += "Crops dying "
+                            $ work20_message_score += 1
+                            jump work20_message_check
+                        "River diverted for mining":
+                            $ work20_message += "River diverted for mining "
+                            jump work20_message_check
+                        "URGENT!":
+                            $ work20_message += "URGENT! "
+                            jump work20_message_check
+                        "HELP!":
+                            $ work20_message += "HELP!"
+                            jump work20_message_check
+                        "Brennan refuses to help":
+                            $ work20_message += "Brennan refuses to help "
+                            jump work20_message_check
+                        "No water for crops":
+                            $ work20_message += "No water for crops "
+                            $ work20_message_score += 1
+                            jump work20_message_check
+                        "Brennan stole our irrigation water for mining":
+                            $ work20_message += "Brennan stole our irrigation water for mining "
+                            jump work20_message_check
+                        "Tried to negotiate with Brennan but he refused to work with us":
+                            $ work20_message += "Tried to negotiate with Brennan but he refused to work with us "
+                            $ work20_message_score += 1
+                            jump work20_message_check
+                        "Please help":
+                            $ work20_message += "Please help"
+                            jump work20_message_check
+                        "Please require Brennan to redirect water back to original stream":
+                            $ work20_message += "Please require Brennan to redirect water back to original stream "
+                            $ work20_message_score += 2
+                            jump work20_message_check
+                        "No rain":
+                            $ work20_message += "No rain"
+                            jump work20_message_check
+                        "I looked at my crops this morning and they weren't doing so well":
+                            $ work20_message += "I looked at my crops this morning and they weren't doing so well "
+                            jump work20_message_check
+                        "I noticed there was no water in the river, so I followed it upstream":
+                            $ work20_message += "I noticed there was no water in the river, so I followed it upstream "
+                            jump work20_message_check
+                        "I talked with Brennan and asked him politely to return the water, but he said he won't":
+                            $ work20_message += "I talked with Brennan and asked him politely to return the water, but he said he won't "
+                            jump work20_message_check
+                        "(Finish)":
+                            jump work20_message_done
+
+                    label work20_message_check:
+                        if (len(work20_message) >= 100):
+                            menu:
+                                "It's getting pretty long... Is this message good?\n[work20_message]"
+                                "Yes, send it.":
+                                    jump work20_message_done
+                                "No, start over.":
+                                    $ work20_message = ""
+                                    $ work20_message_score = 0
+                                    jump work20_message_menu
+                        else:
+                            jump work20_message_menu
+
+                    label work20_message_done:
+                        him_c "[work20_message]"
+                        "After several hours, I still had no response. I finally looked up the Earth timetable and realized it was the middle of the night there."
+                        "Finally, a response came back."
+                        if (work20_message_score >= 2):
+                            ret_c "If Brennan did not give prior notice to redirection, he must ensure outflow goes back to river. Otherwise, you must work out alternative water source."
+                            "That was exactly what I was hoping for."
+                            "Brennan griped and complained, but once he put some miners working on it, the water came back quickly."
+                            "I breathed a sigh of relief as water flooded through the gates to my crops again."
+                            return
+                        else:
+                            ret_c "Brennan justified. You must work out alternative water source."
+                            "I tried to explain how important it was, but they wouldn't budge."
+                            jump work20_other_water
+
+                else:
+                    "So I asked Sara to send RET a message about it."
+                    sara_c "No water for your crops?! That's awful! :-( I'll ask."
+                    him_c "Did you hear back from RET yet?"
+                    sara_c "They said you need to work out an alternative water source."
+                    him_c "What?!"
+                    sara_c "I'm sorry, [his_name]; apparently Brennan is allowed to divert the river for mining."
+
+            "Get more farmers involved":
+                "This wasn't just my problem. We needed all the farmers to be united in this."
+                "But it was harder than I thought."
+                "Some had more drought-tolerant plants and weren't worried. Others sourced their water from underground instead of the river."
+                "At least Thuc was on my side."
+                jump work20_other_water
+
+        "Since RET wouldn't help, I'd just have to find some other way of getting the water I needed."
+        label work20_other_water:
+            scene farm_interior with fade
+            show him determined at midright
+            show thuc sad at midleft
+            with dissolve
+            thuc "So, our only options are to either build wells and pumps, or build a canal from where Brennan diverted the water to?"
+            him sad "That's the way I see it."
+            thuc normal "The water table is high enough here that we could probably just build a well."
+            him normal "Yeah, with a windmill pump, and a pond for storage. Just like the one on my grandpa's farm..."
+            thuc "Sounds like a plan!"
+            scene irrigation with fade
+            show him determined at midright
+            show thuc sad at midleft
+            with dissolve
+            "We got approval for the materials and started construction."
+            "It was tough work digging the well, even with the auger tractor attachment. The auger was only meant for post holes, but we made some extensions so it would be long enough to drill a well."
+            "Our first windmill wasn't centered or level, so we ended up having to take it apart and put it back together again."
+            "Digging the pond wasn't tricky, just a lot of hard work."
+            if (colonists >= 10):
+                "When the other farmers heard about what we were doing, some of them came by to lend a hand."
+            elif (luddites >= 10):
+                show pete normal at quarterleft with moveinleft
+                "When Pete heard about what we were doing, he came by to lend a hand."
+                pete "See, that's why you should quit working for the Man and come live out on your own, like me!"
+            "When the water came rushing out onto my fields again, my shoulders finally relaxed for the first time in days."
+            "We managed to keep most of our crops from dying, but they probably wouldn't yield as much this year."
+            # TODO: decrease yield?
     return
 
 # Year 22, 13.6 years old

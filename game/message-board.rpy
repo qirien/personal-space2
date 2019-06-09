@@ -451,6 +451,7 @@ label message18:
                 him_c "Sorry, wait until they finish the documentary!"
             "No":
                 him_c "I don't actually have any jellystar poetry."
+    nvl clear
     return
 
 # Community: Crabirds devastate harvest
@@ -516,6 +517,7 @@ label message20:
     him_c "Or turtle snails!"
     ilian_c "Because they're ugly pests."
 
+    nvl clear
     return
 
 # Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.
@@ -535,6 +537,7 @@ label message21:
     her_c "I think Naomi would remind you give him lots of love, but maybe in a different way than when he was little?"
     sara_c "Maybe so... I appreciate the advice, guys."
 
+    nvl clear
     return
 
 # Community: Miners moving to mountain near luddites!
@@ -555,6 +558,7 @@ label message22:
     him_c "I don't know what I'd use it for."
     thuc_c "Maybe we can make a small batch togther, Pavel."
 
+    nvl clear
     return
 
 # Community: Glass shell collecting--shells are worth more if mining stopped in 22 and...
@@ -573,6 +577,7 @@ label message23:
     julia_c "And as long as everyone does their fair share of work."
     kevin_c "Which is precisely the reason currency was invented; as a concrete, exchangeable measurement of work."
     him_c "Too bad you can't eat it."
+    nvl clear
     return
 
 # Community: Growing luxury good market, especially if mining stopped in 22. The increased demand for shells led to inflation and Ilian fixes the prices of food. You can choose to write a farming guide, which Oleg makes free, babysit (most lucrative and stressful), or be a farming consultant.
@@ -596,7 +601,7 @@ label message24:
     natalia_c "So it costs you the same amount to make no matter how many people subscribe. So shouldn't you make it cheap to get lots of subscribers?"
     julia_c "I think it's a fair price."
     natalia_c "We'll see if anyone agrees with you."
-
+    nvl clear
     return
 
 # Community: Brennan’s jellysquid farm. You can talk to Chaco or Pete about the jellysquid farm, depending on your Miner or Luddite relationship scores.
@@ -699,6 +704,7 @@ label message28:
         him_c "They are adorable!"
     kid_c "Yay, Sara! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
     nvl clear
+    return
 
 # Community: brainstorming: Pete is desperate for more credits after Helen has a high-risk pregnancy. No one is buying fireweed from him anymore… because he’s being undersold by Julia. [If you told Brennan about the heavy metals in the mud, he’s now mining there and making the water silty--so jellysquid no longer appear in the area. Otherwise maybe the jellypeople are helping you, or nothing.]
 # Family: Terra blames you for a big crisis!
@@ -809,6 +815,9 @@ define travis_c = Character("Travis",
 define van_c = Character("Van",
 #who_suffix = "  {image=images/icons/van-icon.png} ",
         color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue
+define ret_c = Character("RET",
+#who_suffix = "  {image=images/icons/ret-icon.png} ",
+        color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #gray
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 
