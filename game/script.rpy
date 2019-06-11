@@ -296,7 +296,7 @@ label life_loop:
         $ computer_song = renpy.random.choice(audio.computer)
         play music computer_song fadein 2.0
         hide screen say
-        scene stars with fade
+        #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
@@ -307,7 +307,7 @@ label life_loop:
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ show_year = year
-        call screen plan_farm
+        call screen plan_farm with fade with fade
 
         label yearly_events:
             if demo_mode:
@@ -338,12 +338,14 @@ label life_loop:
 
             # Increase child stats based on this year's parenting decisions
             $ notifications = ""
-            scene stars with fade
+            stop music fadeout 3.0
+            call interscene_text(year, "End")
             call increase_attachment
             call increase_competence
             call increase_independence
             #$ renpy.notify(notifications)
-            call screen yearly_summary
+            scene black with fade
+            call screen yearly_summary with fade with fade
 
             # Reset our variables while keeping a running total
             $ total_demanding += demanding

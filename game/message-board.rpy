@@ -160,6 +160,7 @@ label message7:
     julia_c "The main skill involved is social interaction, so you probably wouldn't excel at it."
     natalia_c "If by 'social interaction' you mean 'passive-aggressive jibes' then, no, I certainly don't excel at that."
     pete_c "I don't know; that was a pretty good passive-aggressive jibe right there."
+    julia_c "Perhaps the poker group would be of more interest to you."
     thuc_c "We have room for one more player in Maximal Conquest next game night!"
     helen_c "Just come a little early so we can explain the rules."
     him_c "Like, a few hours early."
@@ -669,20 +670,20 @@ label message26:
 # Family: Terra wants a bike!
 label message27:
     nvl clear
-    kid_c "Save the jellystars! These stellar animals grow into intelligent jellysquids! Don't eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
+    kid_c "save the jellystars! these stellar animals grow into intelligent jellysquids! DON'T eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
     sara_c "But they're so tasty and cheap..."
     brennan_c "And a good source of protein."
-    kid_c "So are babies but we don't eat those, do we!!?"
+    kid_c "so are babies but we don't eat those do we!!?"
     pavel_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
     natalia_c "Yeah, we have way more important things to worry about."
     zaina_c "After learning more about them, I decided not to eat them anymore. Go read some of the research."
-    kid_c "Good! Thank you, Zaina; you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
+    kid_c "good! thank you zaina you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
     pavel_c "It's so important to eat well. Though I do love jelly with peanut butter... that's okay, isn't it?"
     kid_c "Um, yeah, I think so, I was talking about jellystars."
     pavel_c "Is that a new candy?"
-    kid_c "No, you know, jellystars, the creatures that live in the sea?"
+    kid_c "no, you know jellystars, the creatures that live in the sea?"
     pavel_c "We should ask Dr. Lily about that."
-    kid_c "Sorry, but I think she died."
+    kid_c "sorry but I think she died."
     pavel_c "Oh, dear. That is distressing news."
     natalia_c "It was several years ago, Pavel. It's okay."
     pavel_c "I'm sorry; it was rude of me to bring it up."
@@ -702,7 +703,8 @@ label message28:
     sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! {font=fonts/OpenSansEmoji.otf}😍{/font}"
     if (ate_jellyfish):
         him_c "They are adorable!"
-    kid_c "Yay, Sara! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
+    kid_c "yay, sara! ur such a stellar mom! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
+    oleg_c "only bc she's not ur mom. now she won't cook me jellies. (q n p)"
     nvl clear
     return
 
@@ -746,6 +748,10 @@ label message29:
 label message30:
     nvl clear
     # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
+    sara_c "Is it true there's going to be chocolate coming on the shuttle?!"
+    him_c "They are including some coffee, sugar, and chocolate, yes."
+    sara_c "Yay! 😍"
+
     brennan_c "It's going to be busy these next few days, so if I don't get a chance, I wanted to say farewell to all of you."
     sara_c "Are you ever coming back?"
     brennan_c "I sure hope not. I thought two years was bad; twelve years is way too long to go without a decent bed, shower, pub, club, restaurant... I could go on and on."

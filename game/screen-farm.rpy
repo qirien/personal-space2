@@ -224,6 +224,7 @@ screen choose_crop(crop_index=0):
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == j)
 
+                                # TODO: for mobile, tap once to select and tap again to choose.
                                 imagebutton:
                                     idle imagefile
                                     hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
@@ -239,9 +240,11 @@ screen choose_crop(crop_index=0):
 
 screen crops_layout:
     frame:
+        yfill True
         background "soil"
         #background brown_dark
         vpgrid:
+            yalign 0.5
             style_prefix "crop_layout"
 
             # number of columns is the square root of farm_size

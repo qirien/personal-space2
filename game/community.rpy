@@ -54,11 +54,11 @@ label community1:
     him surprised "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
     kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
     him concerned "I understand that from RET's point of view... but we farmers aren't really getting rich out here!"
-    him "I hope you weren't planning on a life of luxury."
+    him surprised "I hope you weren't planning on a life of luxury."
     kevin "No, I was not. I was planning on a life of adventure and discovery."
     show him normal
-    "What kind of life was I planning on?"
     menu:
+        "What kind of life was I planning on?"
         "I'm going to focus on fulfilling my job to RET.":
             $ miners += 1
             him determined "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
