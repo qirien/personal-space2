@@ -10,7 +10,7 @@
 
 # Intro event
 label family_intro:
-    "All [kid_name] needed at first was a clean diaper, milk, and some love."
+    "All [kid_name] needed at first was a clean diaper, milk, and some love. Simple, right?"
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
     play music sad
     call bedroom_scene(True)
@@ -230,11 +230,60 @@ label family1:
             $ authoritarian += 1
 
     call bedroom_scene(show_baby=True)
-    show kid happy with dissolve
+    show kid normal with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
-    him determined "She really needs us, doesn't she?"
-    her concerned "We both need you."
+    him nude annoyed "She really needs us, doesn't she?"
+    her nude concerned "We both need you."
+
+    menu:
+        "Write a poem?"
+        "Yes":
+            window hide
+            $ word_board.set_wordpack(basic_words, family_words, baby_words)
+            call make_poem
+            $ baby_poem = word_board.get_poem_as_string(-1)
+
+            scene farm_interior with fade
+            show her normal at midright
+            show kid normal at midright, baby_pos
+            with dissolve
+            show him normal at midleft with moveinleft
+            him happy "Want to hear my new poem?"
+            her flirting "I can tell you really want to share it with me."
+            him normal "I think you'll like it. Okay, here it is."
+            him determined "[baby_poem]"
+            if (("fragile" in baby_poem) or
+                ("love" in baby_poem) or
+                ("milk" in baby_poem) or
+                ("gentle" in baby_poem) or
+                ("smile" in baby_poem) or
+                ("tender" in baby_poem)):
+                her happy "Awwww! Yeah, that's our little [kid_name]!"
+                him happy "I'm glad you agree!"
+            elif (("precious" in baby_poem) or
+                ("cute" in baby_poem) or
+                ("joy" in baby_poem) or 
+                ("adore" in baby_poem)):
+                her concerned "Isn't that idealizing babies just a little?"
+                him concerned "Well, yeah. I don't need help remembering all the screaming and the mess!"
+                her happy "That's true!"
+            elif ("mother" in baby_poem):
+                her happy "You didn't tell me it was a poem about me!"
+                him happy "You two are my world; of course I put you in there!"
+            elif (("stinky" in baby_poem) or
+                ("pain" in baby_poem) or
+                ("blood" in baby_poem)):
+                her concerned "That's... exactly how it is. I'm not sure I like it, but it's definitely true."
+            elif (len(baby_poem) <= 50):
+                her surprised "Wow, it's... very short!"
+            else:
+                her normal "Hmmm. Okay."
+                him surprised "That's it? 'Okay'?"
+                her concerned "I...I'm not sure what else to say."
+
+        "No":
+            $ pass
 
     return
 

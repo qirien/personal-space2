@@ -51,6 +51,7 @@ screen yearly_summary():
                                     label "Year [year] Summary"
                                     null height 10
                                     text notifications
+                                    # TODO: include community stats here?
                             frame:
                                 xsize MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT

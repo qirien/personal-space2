@@ -19,7 +19,6 @@ screen parenting_handbook():
             hbox:
                 vbox:
                     xsize LEFT_COLUMN_WIDTH
-                    label "Table of Contents"
                     textbutton "Baby (0-1)" selected (show_year <= BABY_MAX) action SetVariable("show_year", BABY_MAX)
                     textbutton "Toddler (2-4)" selected (BABY_MAX < show_year <= TODDLER_MAX) action SetVariable("show_year", TODDLER_MAX)
                     textbutton "Child (5-8)" selected (TODDLER_MAX < show_year <= CHILD_MAX) action SetVariable("show_year", CHILD_MAX)

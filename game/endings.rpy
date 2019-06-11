@@ -136,9 +136,18 @@ label ending_aci:
     her "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
     brennan "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
-    # TODO: give the user a choice about what to say here
-    him "I... I'd appreciate that."
-    "He nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
+    menu:
+        "What should I say."
+        "...thanks.":
+            him "I... I'd appreciate that."
+        "(Don't say anything)":
+            "I didn't say anything. I couldn't say anything nice, and I thought I might regret all the not-so-nice retorts running through my brain."
+        "If anything happens to her...!":
+            him angry "If anything happens to her...!"
+            brennan "Anything? All sorts of things will happen to her! But you don't get a say in that anymore. You gave that up when you shut her out of your life."
+            her concerned "Let it go, [his_name]. This isn't helping anything."
+
+    "Brennan nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."
     "I found her in our room, heaving great sobs."
     her sad "She's gone. My little girl. She's really gone."
@@ -160,7 +169,7 @@ label ending_aci:
     her sad "Then what are we supposed to do now?"
     him determined "The only thing we can do is try and be better than we were. Maybe she's back on Earth, but we can still send her messages. We can try and do better with [bro_name]."
     her concerned "That's true, but..."
-    her sad "None of that will bring my baby [kid_name] back."
+    her sad "None of that will bring my baby back."
 
     "Ending 1/8, Bring Back my Baby."
     $ achievement.grant("Bring Back my Baby")

@@ -238,10 +238,11 @@ label start:
     "However, you should be able to get a feel for the game and enjoy the story."
 
     show path
-    show her normal at midleft
+    show her flirting at midleft
+    show him happy at midright
     show child at center
-    show him normal at midright
-    show computer_pad
+    #show computer_pad
+    show polaroid
 
     if (mp.jack_name):
         $ his_name = mp.jack_name
@@ -266,8 +267,7 @@ label start:
     play music upbeat
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
-    "But being a dad was a different kind of work than I had ever done before."
-    "If I could go back, would I change anything? I don't even know."
+    "But being a dad was a different kind of work than I had ever done before..."
 
     # TODO: show some sort of inter-scene screen
 

@@ -231,7 +231,6 @@ screen choice(items):
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
 
-style choice_vbox is vbox
 style choice_button is button
 style choice_button_text is button_text
 style choice_chosen is choice_button:
@@ -240,11 +239,10 @@ style choice_chosen is choice_button:
 style choice_chosen_text is choice_button_text:
     italic True
 
-style choice_vbox:
+style choice_vbox is vbox:
     xalign 0.5
     ypos 270
     yanchor 0.5
-
     spacing gui.choice_spacing
 
 style choice_button is default:
