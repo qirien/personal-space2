@@ -219,19 +219,19 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    # menu:
-    #     "Test Farming Screen":
-    #         jump test_farming_screen
-    #     "Other Tests":
-    #         jump tests
-    #     "Jump to Year":
-    #         jump test_jump_year
-    #     "Demo":
-    #         jump demo
-    #     "Trailer":
-    #         jump trailer
-    #     "Continue":
-    #         $ pass
+    menu:
+        "Test Farming Screen":
+            jump test_farming_screen
+        "Other Tests":
+            jump tests
+        "Jump to Year":
+            jump test_jump_year
+        "Demo":
+            jump demo
+        "Trailer":
+            jump trailer
+        "Continue":
+            $ pass
 
     "Welcome to the demo of Space to Grow!"
     "While the story is mostly complete, not every scene has full graphics yet, the crop planting mechanics are still under development, and a few scenes are unfinished."
