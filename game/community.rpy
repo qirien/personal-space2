@@ -2225,43 +2225,45 @@ label community12:
                     "They miners seemed pretty happy to eat their carrots and potatoes, and soon the prices of crops started to stabilize."
                     return
 
-# 13 - Save the cave!
+# 13 - Save your water purity!
 label community13:
-    $ cave_partially_explored = False
+    $ saddle_partially_explored = False
 
     "I awoke one morning to knocking on my door, and [kid_name] asking me to answer the door."
     scene farm_exterior with fade
     show lily normal at midright with dissolve
     show him surprised at midleft with moveinleft
-    lily "[his_name], we must act at once. Zaina told me about an enormous natural cave that the miners are set to run into tomorrow."
-    lily angry "We must explore it! There could be unique flora and fauna. The structures in the cave could help us understand this planet's geology."
-    lily happy "Not to mention that a natural cave could be an exciting destination for family day trips!"
-    lily normal "Although the mile-long descent might be a bit much for young children."
-    him concerned "That sounds really interesting, but can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
+    lily "[his_name], we must act at once. In my weekly testing, I found that our water is showing trace amounts of heavy metals!"
+    lil angry "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
+    lily angry "It will probably poison some local wildlife! As well as us!"
+    him normal "I certainly don't want heavy metals in my irrigation water."
+    him concerned "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
     if is_liason:
         lily angry "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
         him determined "Alright. What do you need me to ask?"
-        lily normal "Tell them to delay the mining on that branch of the mine until we can fully explore it."
-        him surprised "Do they already know about the cave?"
+        lily normal "Tell them to delay further ore processing until the tailings dam has been repaired."
+        him surprised "Do they already know about contamination?"
         lily angry "Have you told them about it? Then no."
-        him concerned "Do you know what specific branch it is?"
+        him concerned "Are you sure it's the tailings dam?"
+        lily angry "I am not completely certain, but it is the most likely culprit."
+        him concerned "Do you know where it is?"
         lily normal "Yes, Zaina mentioned it, let me look it up."
-        lily "She says it's the third branch off the descent shaft. The one they call Little Durban." #Durban is a South African town
-        him determined "Alright. I wrote: 'Please halt mining on Little Durban. Natural cave found.'"
-        lily angry "I hope that I can still endure a cave exploration. It has been a long time since I've done any climbing."
+        lily "She says it's on the mountain's saddle. I have the coordinates."
+        him determined "Alright. I wrote: 'Please halt ore processing until tailings dam repaired.'"
+        lily angry "I hope that I can still endure climbing to the top of this mountain."
         him normal "I've seen you walking around town. I bet you can handle it."
-        lily normal "I can walk, but I'm unsure of my crawling competence."
+        lily normal "I can walk, but I'm unsure of my climbing competence."
         lily happy "Aged bodies do not heal as quickly as young ones like yours."
         him surprised "Oh, they already replied. They said to go with whatever Brennan says."
-        lily angry "I can't believe this. Tell them I said to stop the mining!"
-        him concerned "I can't send another message for twenty-four more hours."
-        lily normal "Then we must inquire with the next person who can give us permission to explore the cave."
+        lily angry "I can't believe this. Tell them I said to stop ore processing!"
+        him concerned "I can't send another message for twenty-four hours."
+        lily normal "Then we must inquire with the next person who can stop this contamination."
         him annoyed "Ugh, Are you talking about Brennan?"
         jump community13_talk_to_brennan
     else:
         label community13_nonliason_talk_to_brennan:
-            lily "No, this is urgent and important business. Depending on their schedule, they may already be setting up the explosives!"
-            lily "I need you to ask Brennan if he can delay mining the cave until we can explore it."
+            lily "No, this is urgent and important business. Depending on their schedule, they may already be processing more ore!"
+            lily "I need you to ask Brennan if he can delay ore processing until they fix the breach."
 
         label community13_talk_to_brennan:
             him concerned "You talk to Brennan. I need to make breakfast."
@@ -2275,7 +2277,7 @@ label community13:
             with moveinleft
             "When we arrived, the control station was empty."
             him surprised "Well, we tried, but he's not here. Let's just send him a message."
-            lily angry "I don't want to risk them destroying the cave. Do you know where Brennan sleeps?"
+            lily angry "I don't want to risk them poisoning any more wildlife, or people. Do you know where Brennan sleeps?"
             him determined "I have no idea."
             "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
             lily "He said Brennan lives over here."
@@ -2289,42 +2291,36 @@ label community13:
             show him determined at midleft
             with moveinleft
             brennan happy "Who do I owe for the pleasure of your visit?"
-            lily angry "Zaina. She told me that you are about to mine through an underground cave today or tomorrow."
-            lily normal "I would like to explore the cave. Once you reach the cave, I urge you to delay mining activity in order to allow for data collection."
-            brennan normal "The one in little Durban? We did run into the cave last night just before quitting for the day."
-            lily angry "Is there any way you can delay mining on that branch?"
+            lily angry "Me. Your tailings dam is not sufficiently contained and is contaminating river water with heavy metals."
+            lily normal "I urge you to delay any more ore processing until the breach is repaired."
+            brennan normal "There were some heavy rains and a tiny trickle got out. Kevin is observing and drawing up plans for how to repair it."
+            lily angry "But you're not stopping any ore processing?"
             if require_whole_harvest or rationing:
                 brennan "I don't know. What will RET think?"
                 him "We asked them, and they said to defer to your judgement."
-                lily "I've never had the opportunity to study a cave here before. I believe it would be beneficial for our entire community."
-                brennan "The thing is, it's off of the descent tunnel. If it were just a branch it would be fine to leave for a few days or months."
-                brennan "But the most promising deposits are still deeper down! Even if I have all of our miners work on branches, their mining won't be as effective as digging deeper and then branching."
-                brennan "Zaina made a bunch of frequency tables if you're curious."
-                lily "But an opportunity like this is unprecedented. And what we study may impact those frequency tables."
-                brennan "More data is good for mining, definitely. How long do you need to explore the caves?"
-                lily "How long can you give me?"
-                brennan "I can definitely give you 8 hours."
-                lily "I need at least two days. Depending on how extensive the cave is, I might need months."
-                brennan "I'm willing to give you and Zaina two days. And I want updated frequency tables from Zaina."
-                lily "I will inform Zaina. Can you supply us with headlamps and radios?"
-                brennan "Yes. You'll need your own rope system and support personnel though."
-                lily "I'll go get Zaina now. [his_name], can you be our support person?"
-                him "I really need to get back to the farm."
-                lily "You can work on your farm. We just need someone to listen to the radio so that we can call for help if something happens."
-                him "I can do that."
-                "Dr. Lily told me her radio frequency, and I went home to work."
-                scene cave with fade
-                "I listened to Dr. Lily and Zaina chatting with each other while they explored the cave. Miranda Peron, Dr. Lily's research assistant, came too."
-                "She and Zaina took lots of photos, and Zaina took some rock samples." #put in actual conversations? or just summarize it all?
-                # TODO: actual conversations are more interesting
-                "They were still exploring when [her_name] came back from work and we listened to it in the background."
-                "As I was going to bed, they reported that they were done for the day and made it out safely."
-                "The next day, I turned the radio on to find that Lily and Zaina were already exploring the cave again."
-                "They breathlessly related how they found a pool of water with eyeless snail-like fish."
-                "Dr. Lily reported finding a vertebrate without a shell or exoskeleton, which she said was the first of its kind she'd ever seen."
-                "She got some video footage, but wasn't able to capture it. She said it looks kind of like a newt."
-                lily "[his_name], we need more time to explore this cave. If they mine through this, they might destroy animals that don't exist anywhere else."
-                lily "A vertabrate like this without a shell could be invaluable to our research."
+                lily "Any amount of heavy metals in drinking water can harm humans and animals who drink it."
+                brennan "The thing is, ore processing is one of the bottlenecks in our efficiency."
+                brennan "If we delay it by any amount, our efficiency is greatly hampered."
+                brennan "Plus stopping ore processing won't reduce the amount of the leak."
+                lily "Yes, but..."
+                him "It makes it look like you don't care about other people when you continue with business as usual during a health emergency."
+                brennan "If I were more concerned about RET's image, what you're saying would make sense. But we're all RET employees, so we should all want what's best for the company."
+                brennan "Even if it makes it look like I don't care about water quality."
+                brennan "Lily, how's this: You continue to do testing in a few locations to see how bad the contamination is."
+                brennan "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
+                lily "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
+                # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
+                him "Wait, seriously?" 
+                lily "Yes, seriously. If you ingest enough heavy metals, you could die."
+                lily "I have access to a recipe for a metal organic framework polymer that could remove metals, but I will need to fine-tune it to the contamination."
+                brennan "That sounds useful to have on hand."
+                lily "Do you have anyone trained in chemistry lab work who could help me?"
+                brennan "I bet Zaina would help you."
+                him "I can't tell a pipette from a pipe cleaner, but if [her_name] is having a slow day, maybe she could help?"
+                "Dr. Lily started messaging people and I went home to work."
+                #Talk to Kevin to find out that sun flares accelerated degredation of trailings dam materials
+                #Dr. Lily makes it sound like it's Brennan's fault that everything is wrong in her community-wide message
+                
                 lily "Tell Brennan we can't mine this cave until we explore it further."
                 if is_liason:
                     him "Hey, I'm the liason between RET and the colonists, not between the colonists and the miners. Tell him yourself."
