@@ -17,7 +17,7 @@ init -10:
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 16, 16)
     image roundrect_lightgray = Frame("gui/roundrect-lightgray.png", 16, 16)
     image roundrect_medgreen = Frame("gui/roundrect-medgreen.png", 10, 10)
-    image soil = Frame("gui/soil.jpg")
+    image soil = Frame("gui/soil.png")
 
     image computer_pad = "gui/computer pad.png"
     image computer_pad_with_screen = LiveComposite(

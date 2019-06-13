@@ -23,7 +23,7 @@ define gui.show_name = False
 
 ## The version of the game.
 
-define config.version = "0.2"
+define config.version = "0.3"
 
 
 ## Text that is placed on the game's about screen. To insert a blank line
@@ -186,7 +186,7 @@ init python:
     build.classify('**/.**', None)
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
-    build.classify('resources', None)
+    build.classify('resources/**', None)
 
     ## To archive files, classify them as 'archive'.
 

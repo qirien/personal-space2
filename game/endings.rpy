@@ -89,23 +89,23 @@ label ending_aci:
     show brennan normal at midleft with moveinleft
     brennan normal "[her_name]. I just wanted to say I'm sorry."
     her surprised "Sorry for what?"
-    brennan mad "That [kid_name]'s leaving. I tried to convince her to stay, but after everything she told me... well, I can't blame her."
+    brennan angry "That [kid_name]'s leaving. I tried to convince her to stay, but after everything she told me... well, I can't blame her."
     him annoyed "Leaving? Leaving for where?"
     brennan normal "Earth, of course. Where else would we be headed?"
     him angry "She's NOT going with YOU!"
-    brennan mad "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
+    brennan angry "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
     her determined "No. We did not."
     him "There she is!"
     her concerned "[kid_name]! You-- you're leaving?!"
     kid "Yeah."
     him angry "Like hell you are! You take that bag right back home right now!"
-    brennan "Sorry, she's a legal adult and she signed a contract."
+    brennan normal "Sorry, she's a legal adult and she signed a contract."
     her sad "Why would you do this?"
     kid "Lorant loves me. We're happy together. And I've always wanted to go to Earth."
     him determined "But we'll never see you again."
     kid "You hardly ever saw me when I lived with you, so I don't see what the big difference will be."
     her sad "Isn't there some way I can change your mind?"
-    brennan "It's too late for that. The contract is signed."
+    brennan angry "It's too late for that. The contract is signed."
     kid "Mom, I... I'm sorry. I love you, but I want to go."
     "[her_name] embraced her tightly for several minutes, as if stamping in her mind every detail about our daughter."
     menu:
@@ -124,21 +124,30 @@ label ending_aci:
     "Just like that, she was gone from my life."
     "I never saw her again."
     him angry "How could you let her sign a contract like that without even mentioning it to us?!"
-    brennan "It's not my fault if you don't know what's going on in your own kid's life."
+    brennan normal "It's not my fault if you don't know what's going on in your own kid's life."
     her "Brenann!"
     # TODO: adjust based on whether you are a good farmer/liason or not
-    brennan "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liason, but you're a terrible father."
+    brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liason, but you're a terrible father."
     him "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
-    brennan "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
+    brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
     her "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
     him "I'd be happy if he never thought of me again."
     brennan "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
     her "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
     brennan "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
-    # TODO: give the user a choice about what to say here
-    him "I... I'd appreciate that."
-    "He nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
+    menu:
+        "What should I say."
+        "...thanks.":
+            him "I... I'd appreciate that."
+        "(Don't say anything)":
+            "I didn't say anything. I couldn't say anything nice, and I thought I might regret all the not-so-nice retorts running through my brain."
+        "If anything happens to her...!":
+            him angry "If anything happens to her...!"
+            brennan "Anything? All sorts of things will happen to her! But you don't get a say in that anymore. You gave that up when you shut her out of your life."
+            her concerned "Let it go, [his_name]. This isn't helping anything."
+
+    "Brennan nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."
     "I found her in our room, heaving great sobs."
     her sad "She's gone. My little girl. She's really gone."
@@ -160,7 +169,7 @@ label ending_aci:
     her sad "Then what are we supposed to do now?"
     him determined "The only thing we can do is try and be better than we were. Maybe she's back on Earth, but we can still send her messages. We can try and do better with [bro_name]."
     her concerned "That's true, but..."
-    her sad "None of that will bring my baby [kid_name] back."
+    her sad "None of that will bring my baby back."
 
     "Ending 1/8, Bring Back my Baby."
     $ achievement.grant("Bring Back my Baby")

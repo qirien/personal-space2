@@ -5,7 +5,6 @@
 #
 # TODO: Add another parenting class before Naomi dies?
 # TODO: Warn halfway for bad/inconsistent parenting?
-# TODO: Use scene stars instead of scene black most of the time?
 # TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
@@ -21,6 +20,7 @@ label start:
     python:
         demo_mode = False
         trailer_mode = False
+        testing_mode = False
         save_name = "Intro"
         notifications = ""
         read_messages = False
@@ -141,30 +141,29 @@ label start:
         # TODO: add income
         credits = 0
         crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
-        # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, and maximum allowed.
+        # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
         crop_info =     (
-                        ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, 100],
-                        ["corn",         9, 4, 7, 7, 50, False, False, 100],    # Grains
-                        ["potatoes",     10, 5, 6, 6, 40, True, False, 100],
-                        ["wheat",        9, 5, 8, 10, 20, False, False, 100],
-                        ["peppers",      2, 7, 5, 5, 25, False, False, 100],    # "Fruits"
-                        ["tomatoes",     3, 6, 6, 6, 15, True, False,  100],
-                        ["plums",        3, 3, 7, 7, 5, False, True, 1],
-                        ["plums+",       3, 3, 7, 2, 0, False, True, 0],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 7, 2, 4, 15, True, False, 100],
-                        ["strawberries", 1, 2, 6, 4, 5, False, True, 1],
-                        ["strawberries+",1, 2, 6, 2, 0, False, True, 0],
-                        ["beans",        6, 8, 4, 7, -20, True, False, 100],   # Legumes
-                        ["peanuts",      7, 8, 5, 8, -50, False, False, 100],
-                        ["carrots",      3, 6, 3, 3, 10, True, False,  100],   # Root Vegetables
-                        ["turnips",      3, 5, 1, 4, 10, False, False, 100],
-                        ["onions",       4, 2, 5, 4, 5, False, False, 100],
-                        ["garlic",       1, 3, 5, 2, 4, False, False, 100],
-                        ["spinach",      1, 6, 3, 3, 10, True, False,  100],   # Leafy greens
-                        ["broccoli",     3, 7, 2, 3, 15, False, False, 100],
-                        ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, 1],   # Miscellaneous
-                        ["honey",         2,  2,  8, 2, 0, False, False, 1])
-                        #TODO: have an axe crop that can only be placed on perennials to chop them down?
+                        ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
+                        ["corn",         9, 4, 7, 7, 50, False, False, False, 100],    # Grains
+                        ["potatoes",     10, 5, 6, 6, 40, True, False, False, 100],
+                        ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
+                        ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
+                        ["tomatoes",     3, 6, 6, 6, 15, True, False, True, 100],
+                        ["plums",        3, 3, 7, 7, 5, False, True, True, 1],
+                        ["plums+",       3, 3, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
+                        ["squash",       4, 7, 2, 4, 15, True, False, True, 100],
+                        ["strawberries", 1, 2, 6, 4, 5, False, True, True, 1],
+                        ["strawberries+",1, 2, 6, 2, 0, False, True, True, 0],
+                        ["beans",        6, 8, 4, 7, -20, True, False, True, 100],   # Legumes
+                        ["peanuts",      7, 8, 5, 8, -50, False, False, False, 100],
+                        ["carrots",      3, 6, 3, 3, 10, True, False, False, 100],   # Root Vegetables
+                        ["turnips",      3, 5, 1, 4, 10, False, False, False, 100],
+                        ["onions",       4, 2, 5, 4, 5, False, False, False, 100],
+                        ["garlic",       1, 3, 5, 2, 4, False, False, False, 100],
+                        ["spinach",      1, 6, 3, 2, 10, True, False, False, 100],   # Leafy greens
+                        ["broccoli",     3, 7, 2, 3, 15, False, False, False, 100],
+                        ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
+                        ["honey",         2,  2,  8, 2, 0, False, False, False, 1])
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
@@ -183,8 +182,8 @@ label start:
             "garlic" : "Their pungent flavor is versatile and sought after.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
             "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
-            "goats" : "Goats restore nitrogen, eat weeds, and provide milk (and sometimes meat).",
-            "honey" : "Bees help pollinate crops and provide honey, which sells for a high price."
+            "goats" : "Goats restore nitrogen, eat pests, and provide nutritious milk and meat.",
+            "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
         # Got rid of blueberries, snow peas, beets, garlic, cabbage
 
@@ -222,9 +221,7 @@ label start:
     scene stars with fade
     menu:
         "Test Farming Screen":
-            $ show_year = 1
-            $ farm.reset_crops(farm_size)
-            call screen plan_farm
+            jump test_farming_screen
         "Other Tests":
             jump tests
         "Jump to Year":
@@ -237,14 +234,15 @@ label start:
             $ pass
 
     "Welcome to the demo of Space to Grow!"
-    "While the story is mostly complete, there are a few holes here and there -- not every scene has full graphics yet, you can't unlock crops, and there are still some bugs."
+    "While the story is mostly complete, not every scene has full graphics yet, the crop planting mechanics are still under development, and a few scenes are unfinished."
     "However, you should be able to get a feel for the game and enjoy the story."
 
     show path
-    show her normal at midleft
+    show her flirting at midleft
+    show him happy at midright
     show child at center
-    show him normal at midright
-    show computer_pad
+    #show computer_pad
+    show polaroid
 
     if (mp.jack_name):
         $ his_name = mp.jack_name
@@ -269,8 +267,7 @@ label start:
     play music upbeat
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
-    "But being a dad was a different kind of work than I had ever done before."
-    "If I could go back, would I change anything? I don't even know."
+    "But being a dad was a different kind of work than I had ever done before..."
 
     # TODO: show some sort of inter-scene screen
 
@@ -299,23 +296,26 @@ label life_loop:
         $ computer_song = renpy.random.choice(audio.computer)
         play music computer_song fadein 2.0
         hide screen say
-        scene stars with fade
+        #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
                 $ modify_credits(farm.calculate_income(years_yield))
+                $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ show_year = year
-        call screen plan_farm
+        call screen plan_farm with fade with fade
 
         label yearly_events:
             if demo_mode:
                 jump demo_continue
             if trailer_mode:
                 jump trailer_continue
+            if testing_mode:
+                jump test_continue
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
@@ -338,12 +338,14 @@ label life_loop:
 
             # Increase child stats based on this year's parenting decisions
             $ notifications = ""
-            scene stars with fade
+            stop music fadeout 3.0
+            call interscene_text(year, "End")
             call increase_attachment
             call increase_competence
             call increase_independence
             #$ renpy.notify(notifications)
-            call screen yearly_summary
+            scene black with fade
+            call screen yearly_summary with fade with fade
 
             # Reset our variables while keeping a running total
             $ total_demanding += demanding

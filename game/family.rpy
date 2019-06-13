@@ -10,7 +10,7 @@
 
 # Intro event
 label family_intro:
-    "All [kid_name] needed at first was a clean diaper, milk, and some love."
+    "All [kid_name] needed at first was a clean diaper, milk, and some love. Simple, right?"
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
     play music sad
     call bedroom_scene(True)
@@ -230,11 +230,60 @@ label family1:
             $ authoritarian += 1
 
     call bedroom_scene(show_baby=True)
-    show kid happy with dissolve
+    show kid normal with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
-    him determined "She really needs us, doesn't she?"
-    her concerned "We both need you."
+    him nude annoyed "She really needs us, doesn't she?"
+    her nude concerned "We both need you."
+
+    menu:
+        "Write a poem?"
+        "Yes":
+            window hide
+            $ word_board.set_wordpack(basic_words, family_words, baby_words)
+            call make_poem
+            $ baby_poem = word_board.get_poem_as_string(-1)
+
+            scene farm_interior with fade
+            show her normal at midright
+            show kid normal at midright, baby_pos
+            with dissolve
+            show him normal at midleft with moveinleft
+            him happy "Want to hear my new poem?"
+            her flirting "I can tell you really want to share it with me."
+            him normal "I think you'll like it. Okay, here it is."
+            him determined "[baby_poem]"
+            if (("fragile" in baby_poem) or
+                ("love" in baby_poem) or
+                ("milk" in baby_poem) or
+                ("gentle" in baby_poem) or
+                ("smile" in baby_poem) or
+                ("tender" in baby_poem)):
+                her happy "Awwww! Yeah, that's our little [kid_name]!"
+                him happy "I'm glad you agree!"
+            elif (("precious" in baby_poem) or
+                ("cute" in baby_poem) or
+                ("joy" in baby_poem) or 
+                ("adore" in baby_poem)):
+                her concerned "Isn't that idealizing babies just a little?"
+                him concerned "Well, yeah. I don't need help remembering all the screaming and the mess!"
+                her happy "That's true!"
+            elif ("mother" in baby_poem):
+                her happy "You didn't tell me it was a poem about me!"
+                him happy "You two are my world; of course I put you in there!"
+            elif (("stinky" in baby_poem) or
+                ("pain" in baby_poem) or
+                ("blood" in baby_poem)):
+                her concerned "That's... exactly how it is. I'm not sure I like it, but it's definitely true."
+            elif (len(baby_poem) <= 50):
+                her surprised "Wow, it's... very short!"
+            else:
+                her normal "Hmmm. Okay."
+                him surprised "That's it? 'Okay'?"
+                her concerned "I...I'm not sure what else to say."
+
+        "No":
+            $ pass
 
     return
 
@@ -1455,7 +1504,7 @@ label family5:
     return
 
 # 3.5 Earth years old
-# Incessant questions
+# Incessant questions, a relaxing day together
 label family6:
     play music [happy, upbeat]
     scene stars with fade
@@ -3589,7 +3638,7 @@ label family12_contact_parents:
     return
 
 label family12_anyas_house:
-    scene cabin with fade
+    scene cabins with fade
     "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
     "But when I got there and knocked on the door, a teenager answered the door."
     "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."
@@ -4438,12 +4487,14 @@ label family16:
                     "Some of it could probably be recycled, but why should that be my job?"
                     "Then I lit it on fire."
                     scene bonfire with fade
-                    "[kid_name] came running out and screamed when she saw the blaze."
+                    "[kid_name] came running out screaming when she saw the blaze."
                     kid "No! Stop! I'll clean it up!"
                     him determined "If you won't take care of your things, then you don't get to have things."
                     kid "You are the worst dad ever!"
                     him annoyed "Also, you're grounded. You didn't do what I asked and you spoke to me rudely."
-                    "She burst into tears."
+                    "She burst into tears and ran away."
+                    "I stood watching the flames for a long time."
+                    scene farm_interior with fade
                     "When [her_name] came home, [kid_name] sobbed out the entire story to her. [her_name] didn't say anything, but she shot me an angry look over the top of [kid_name]'s head."
                     "After [kid_name] cried herself to sleep, [her_name] turned to me."
                     her annoyed "You burned all her stuff?!"
@@ -4853,7 +4904,7 @@ label family17:
             "Who should I ask about bread?"
             "Ilian, the storehouse manager":
                 "I cringed, but I thought grumpy old Ilian would probably be the most likely to have bread."
-                scene storehouse with fade
+                scene storeroom with fade
                 show ilian at midright with dissolve
                 show him normal at midleft
                 show bro at quarterleft
@@ -5660,7 +5711,7 @@ label family21:
             kid "Really? You didn't see that guy whose been slobbering over your shoulder for the last ten minutes?"
             bro "I did, but I couldn't move in time!"
             him annoyed "Pause your game and listen to me!"
-            kid "I can't pause it; it's online. We still have a chance to beat Travis if [bro_name] would stop rolling on the ground like a baby."
+            kid "I can't pause it; it's online. We still have a chance to beat Travis if [bro_name] would stop rolling on the ground like a turtle snail."
             bro "I'm hiding!"
             menu:
                 "What should I say?"
@@ -5718,7 +5769,7 @@ label family21:
                             $ authoritarian += 1
                     "I felt kind of bad taking away their video games, but it was the simplest solution I could see to the problem."
                     "But soon enough, they were fighting again..."
-                    kid "Can you just run like a normal person without swinging your arms around like a jellyfish?!"
+                    kid "Can you just run like a normal person without swinging your arms around like a jellysquid?!"
                     bro "I'm not trying to!"
                     "Maybe siblings just always fought, and there was nothing I could do about it..."
                     return
@@ -7375,7 +7426,7 @@ label family28:
                     her "[kid_name]..."
                     kid "No, I should have done this months ago. I'm done with this house, with your stupid rules, with... you!"
                     $ neglectful += 1
-                    jump family28_run_away
+                    jump family28_runaway
                 "Think about it and decide for yourself.":
                     him determined "If you think that's best. But before you decide, will you think about it and make a plan?"
                     kid "A plan?"
@@ -7411,7 +7462,7 @@ label family28:
                     him annoyed "Just you wait, she'll come crawling back here in a day or two begging our forgiveness."
                     her concerned "I hope you're right..."
                     $ authoritarian += 1
-                    jump family28_run_away
+                    jump family28_runaway
 
     kid "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
     her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."

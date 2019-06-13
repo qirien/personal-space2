@@ -160,6 +160,7 @@ label message7:
     julia_c "The main skill involved is social interaction, so you probably wouldn't excel at it."
     natalia_c "If by 'social interaction' you mean 'passive-aggressive jibes' then, no, I certainly don't excel at that."
     pete_c "I don't know; that was a pretty good passive-aggressive jibe right there."
+    julia_c "Perhaps the poker group would be of more interest to you."
     thuc_c "We have room for one more player in Maximal Conquest next game night!"
     helen_c "Just come a little early so we can explain the rules."
     him_c "Like, a few hours early."
@@ -451,6 +452,7 @@ label message18:
                 him_c "Sorry, wait until they finish the documentary!"
             "No":
                 him_c "I don't actually have any jellystar poetry."
+    nvl clear
     return
 
 # Community: Crabirds devastate harvest
@@ -516,6 +518,7 @@ label message20:
     him_c "Or turtle snails!"
     ilian_c "Because they're ugly pests."
 
+    nvl clear
     return
 
 # Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.
@@ -535,6 +538,7 @@ label message21:
     her_c "I think Naomi would remind you give him lots of love, but maybe in a different way than when he was little?"
     sara_c "Maybe so... I appreciate the advice, guys."
 
+    nvl clear
     return
 
 # Community: Miners moving to mountain near luddites!
@@ -555,6 +559,7 @@ label message22:
     him_c "I don't know what I'd use it for."
     thuc_c "Maybe we can make a small batch togther, Pavel."
 
+    nvl clear
     return
 
 # Community: Glass shell collecting--shells are worth more if mining stopped in 22 and...
@@ -573,6 +578,7 @@ label message23:
     julia_c "And as long as everyone does their fair share of work."
     kevin_c "Which is precisely the reason currency was invented; as a concrete, exchangeable measurement of work."
     him_c "Too bad you can't eat it."
+    nvl clear
     return
 
 # Community: Growing luxury good market, especially if mining stopped in 22. The increased demand for shells led to inflation and Ilian fixes the prices of food. You can choose to write a farming guide, which Oleg makes free, babysit (most lucrative and stressful), or be a farming consultant.
@@ -596,7 +602,7 @@ label message24:
     natalia_c "So it costs you the same amount to make no matter how many people subscribe. So shouldn't you make it cheap to get lots of subscribers?"
     julia_c "I think it's a fair price."
     natalia_c "We'll see if anyone agrees with you."
-
+    nvl clear
     return
 
 # Community: Brennan’s jellysquid farm. You can talk to Chaco or Pete about the jellysquid farm, depending on your Miner or Luddite relationship scores.
@@ -664,20 +670,20 @@ label message26:
 # Family: Terra wants a bike!
 label message27:
     nvl clear
-    kid_c "Save the jellystars! These stellar animals grow into intelligent jellysquids! Don't eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
+    kid_c "save the jellystars! these stellar animals grow into intelligent jellysquids! DON'T eat them!!!!!!!!!!!!!!!!!!!!!!!!!!!! {font=fonts/OpenSansEmoji.otf}(>˛<’!){/font}"
     sara_c "But they're so tasty and cheap..."
     brennan_c "And a good source of protein."
-    kid_c "So are babies but we don't eat those, do we!!?"
+    kid_c "so are babies but we don't eat those do we!!?"
     pavel_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
     natalia_c "Yeah, we have way more important things to worry about."
     zaina_c "After learning more about them, I decided not to eat them anymore. Go read some of the research."
-    kid_c "Good! Thank you, Zaina; you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
+    kid_c "good! thank you zaina you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
     pavel_c "It's so important to eat well. Though I do love jelly with peanut butter... that's okay, isn't it?"
     kid_c "Um, yeah, I think so, I was talking about jellystars."
     pavel_c "Is that a new candy?"
-    kid_c "No, you know, jellystars, the creatures that live in the sea?"
+    kid_c "no, you know jellystars, the creatures that live in the sea?"
     pavel_c "We should ask Dr. Lily about that."
-    kid_c "Sorry, but I think she died."
+    kid_c "sorry but I think she died."
     pavel_c "Oh, dear. That is distressing news."
     natalia_c "It was several years ago, Pavel. It's okay."
     pavel_c "I'm sorry; it was rude of me to bring it up."
@@ -697,8 +703,10 @@ label message28:
     sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! {font=fonts/OpenSansEmoji.otf}😍{/font}"
     if (ate_jellyfish):
         him_c "They are adorable!"
-    kid_c "Yay, Sara! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
+    kid_c "yay, sara! ur such a stellar mom! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
+    oleg_c "only bc she's not ur mom. now she won't cook me jellies. (q n p)"
     nvl clear
+    return
 
 # Community: brainstorming: Pete is desperate for more credits after Helen has a high-risk pregnancy. No one is buying fireweed from him anymore… because he’s being undersold by Julia. [If you told Brennan about the heavy metals in the mud, he’s now mining there and making the water silty--so jellysquid no longer appear in the area. Otherwise maybe the jellypeople are helping you, or nothing.]
 # Family: Terra blames you for a big crisis!
@@ -740,6 +748,10 @@ label message29:
 label message30:
     nvl clear
     # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
+    sara_c "Is it true there's going to be chocolate coming on the shuttle?!"
+    him_c "They are including some coffee, sugar, and chocolate, yes."
+    sara_c "Yay! 😍"
+
     brennan_c "It's going to be busy these next few days, so if I don't get a chance, I wanted to say farewell to all of you."
     sara_c "Are you ever coming back?"
     brennan_c "I sure hope not. I thought two years was bad; twelve years is way too long to go without a decent bed, shower, pub, club, restaurant... I could go on and on."
@@ -809,6 +821,9 @@ define travis_c = Character("Travis",
 define van_c = Character("Van",
 #who_suffix = "  {image=images/icons/van-icon.png} ",
         color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue
+define ret_c = Character("RET",
+#who_suffix = "  {image=images/icons/ret-icon.png} ",
+        color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #gray
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 

@@ -40,6 +40,8 @@ Cave <cave.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?u
 
 Shack <shack.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2598901">Blue Sky Clouds</a>, by by <a href="https://pixabay.com/users/StockSnap-894430/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2598901">StockSnap</a>
 
+Polaroid <polaroid.png> from <a href="https://pixabay.com/vectors/polaroid-film-blank-retro-32180/">Polaroid Film Blank</a> by <a href="https://pixabay.com/users/Clker-Free-Vector-Images-3736/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=32180">Clker-Free-Vector-Images</a>
+
 ==== CC-BY-2.0
 storehouse1 <storehouse1.jpg>, "Mr. Vernon Kitchen and Storeroom" by Mr. Gray <https://www.flickr.com/photos/socsci/18933614460/in/photostream/>
 community_center <community_center.jpg>, "South Broadway Cultural Center's Multi-Purpose Room" by Albuquerque South Broadway Cultural Center <https://www.flickr.com/photos/south-broadway-cultural-center/5555481119/>
