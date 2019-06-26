@@ -12,7 +12,6 @@ screen plugin_poetry(board):
         frame:
             xpadding 50
             yfill True
-            background "#aaaaaa"
             vbox: # Poem, then words
                 vbox: # Title, then poem
                     xfill True

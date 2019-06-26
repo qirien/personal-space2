@@ -92,7 +92,7 @@ label start:
 
     # COMMUNITY
     python:
-        is_liason = False
+        is_liaison = False
         asked_only_medicine = False
         trade_with_luddites = False
         invited_luddites = False

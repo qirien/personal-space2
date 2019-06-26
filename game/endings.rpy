@@ -126,8 +126,8 @@ label ending_aci:
     him angry "How could you let her sign a contract like that without even mentioning it to us?!"
     brennan normal "It's not my fault if you don't know what's going on in your own kid's life."
     her "Brenann!"
-    # TODO: adjust based on whether you are a good farmer/liason or not
-    brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liason, but you're a terrible father."
+    # TODO: adjust based on whether you are a good farmer/liaison or not
+    brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liaison, but you're a terrible father."
     him "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
     brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
     her "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"

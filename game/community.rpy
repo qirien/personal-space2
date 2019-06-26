@@ -14,7 +14,9 @@ label community_intro:
     # show Julia and Ilian?
     "There were some I got along with..."
     # show Thuc and Natalia and Pete?
-    hide pete, thuc, natalia
+    hide pete
+    hide thuc
+    hide natalia
     with dissolve
     show julia normal at midleft
     show ilian normal at midright
@@ -156,7 +158,6 @@ label community1:
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
             zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
-            # TODO: Show sprites for people as we talk about them.
             him surprised "I guess I can."
             scene stars with fade
             label colony_gossip:
@@ -438,29 +439,27 @@ label community3:
         "I don't know if anyone actually did anything about it, but the thought was there."
         return
 
-# TODO: revision stopped here
 # 4 - Community Liaison
 label community4:
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
     show pavel normal at center
     "Pavel, our mayor, called a town meeting."
-    pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 140 characters because of the limitations of the technology."
-    pavel "This is what it said:"
-    #TODO: separate style for RET messages?
+    pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 250 characters, you know."
+    pavel "They said:"
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
-        ret_c "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
+        ret_c "Please elect a liaison to help RET & colonists communicate & resolve conflicts."
     elif(pstyle == "authoritarian"):
-        ret_c "We need a designated contact with the colony that u trust. Send ur decision."
+        ret_c "You must choose a liaison. Must be someone trustworthy, flexible, to work with colonists and us."
     elif(pstyle == "permissive"):
-        ret_c "U shld choose some1 2 represent the colony 2 us."
+        ret_c "We think it would facilitate interactions between RET and colonists, if you could pick one person as a liaison..."
     else:
-        ret_c "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+        ret_c "Please elect a liaison to help RET and colonists communicate and resolve conflicts of interest."
     pavel "It's my job to encourage whatever is best for the colony."
     show pavel sad #TODO: this transition is weird... but is it weirder to keep him in the same pose for so long? His arm gets tired!
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
-    pavel normal "The liason will have to understand what RET will want and tell them what's possible and what's not."
+    pavel normal "The liaison will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
     pavel sad "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
     pavel normal "I doubt anyone will volunteer for extra work, so I'd like everyone to nominate someone tonight."
@@ -470,82 +469,70 @@ label community4:
     show him normal at center
     show lily normal at midleft
     with dissolve
-    thuc "Wow, who has time for that extra work?"
-    thuc "It's hard enough just raising five goats and ten kids."
-    lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liason work."
-    show him happy
-    him "At least you know your own personality well, although I think that you don't give yourself enough credit."
-    show lily angry
-    lily "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
-    show him normal
-    show lily
-    lily "Who do you think would be a good candidate for liasonship?"
-    show him determined
-    him "Hmm... Naomi seems like someone who could de-escalate conflict well."
-    show thuc sad
-    thuc "But she's married to Pavel, so she might have a conflict of interest..."
-    show him surprised
-    him "How so?"
-    show thuc
+    thuc "Wow, who has time for that extra work? It's hard enough just raising five goats and ten kids."
+    lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
+    him happy "At least you know your own personality well, although I think that you don't give yourself enough credit."
+    lily angry "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
+    show pete normal at quarterleft with moveinleft
+    pete normal "We need someone who'll stand up for us. Speak out against their stupid rules."
+    him concerned "But it needs to be someone tactful, or else RET won't listen to them..."
+    hide pete with moveoutleft
+    lily normal "Who do you think would be a good candidate for liaisonship?"
+    him determined "Hmm... Naomi seems like someone who could de-escalate conflict well."
+    thuc sad "But she's married to Pavel, so she might have a conflict of interest..."
+    him surprised "How so?"
     thuc "Like if she had to choose between the best choice for RET or something Pavel would be happy with, she might choose what Pavel would want for the sake of their marriage."
-    show him normal
-    him "I don't think she would do that. She can make tough decisions."
-    show lily happy
-    lily "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
-    hide thuc with moveoutright
-    show naomi sad at midright with moveinright
+    him determined "I don't think she would do that. She can make tough decisions."
+    lily happy "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
+    show naomi normal at quarterright with moveinright
     naomi "Hello everyone, have you thought of someone to nominate?"
-    him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liason separate from Pavel."
-    show naomi
-    naomi "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
-    show him happy
-    him "Isn't that what we want from a liason?"
-    show lily
-    lily "What does putting the colonists's needs first mean in this context? Our survival has been RET's main goal with establishing this colony."
-    show him normal
-    him "RET didn't really explain why we need a liason."
-    lily "Regardless, I must choose someone. What do you think of Sara?"
-    him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the small beaurocratic work we have."
-    show naomi happy
-    naomi "Now that Oleg is a little older, she might be up to something like this."
-    him "Maybe. Oleg is about the same age as Terra, and she's still quite the handful."
+    him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liaison separate from Pavel."
+    naomi sad "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
+    him happy "Isn't that what we want from a liaison?"
+    lily "What does 'putting the colonists's needs first' mean in this context? Our survival has been RET's main goal with establishing this colony."
+    him determined "RET didn't really explain why we need a liaison."
+    lily normal "Regardless, I must choose someone. What do you think of Sara?"
+    him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
+    naomi happy "Now that Oleg is a little older, she might be up to something like this."
+    him concerned "Maybe. Oleg is about the same age as Terra, and she's still quite the handful."
     naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
-    show lily happy
-    lily "And based on your relationships with other colonists, your socialization skills are at least average."
-    show him surprised
-    him "Hang on. I already feel pretty busy just with farming committee meetings, raising Terra, and the farming stuff."
+    lily happy "And based on your relationships with other colonists, your socialization skills are at least average."
+    thuc happy "Yeah! Let's make [his_name] do it!"
+    him surprised "Hang on. I already feel pretty busy just with farming committee meetings, raising Terra, and the farming stuff."
     naomi "We're all busy. Someone has to do this."
-    show lily
-    lily "This discussion has helped me decide who to nominate. Thank you."
+    lily normal "This discussion has helped me decide who to nominate. Thank you."
     hide lily with moveoutleft
-    hide naomi with moveoutright
+    hide naomi
+    hide thuc
+    with moveoutright
     menu:
         "Who should I nominate? I can't nominate myself."
 
-        "Sister Naomi, our religious leader and childcare leader.":
-            $ pass
-        "My wife's friend Sara. She's familiar with colony politics since she assists the mayor.":
-            $ pass
-        "My friend Thuc. I think that would be funny.":
-            $ pass
+        "Sister Naomi. She'll do what's best for everyone.":
+            $ colonists += 1
+        "Sara. She's familiar with colony politics since she assists the mayor.":
+            $ miners += 1
+        "Pete. He'll make sure RET doesn't get too much control.":
+            $ luddites += 1
     "After the nominations, we voted for our favorite candidate."
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
         "My fellow colonists elected me to be the new representative."
-        $ is_liason = True
+        $ is_liaison = True
         return
     elif(pstyle == "authoritarian"):
-        "Sara, and Sister Naomi and I were nominated. I had the most votes, but not the majority."
-        $ is_liason = True
+        "Sara, and Sister Naomi and I were nominated. I had the most votes, but not by much."
+        $ is_liaison = True
         return
     elif(pstyle == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
         return
     else:
         "Sara is elected as the new representative."
-        #should a leader of the militia be elected here as well?
+        #TODO: should a leader of the militia be elected here as well?
     return
 
+# TODO: community revision stopped here
 # 5 - Set aside food for miners?
 label community5:
     $ talked_cans = False
@@ -556,7 +543,7 @@ label community5:
     "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     # context/scene for this decision? is it a town meeting? you, Ilian, sara, Pavel?
-    if is_liason:
+    if is_liaison:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
         $ pstyle = get_parenting_style()
@@ -958,7 +945,7 @@ label community7:
     thuc "They have more responsibilities than I did at their age, so they have to grow up fast."
     show thuc sad
     thuc "And none of my family are getting paid for completely transplanting our lives here."
-    if is_liason:
+    if is_liaison:
         show thuc
         thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
@@ -1055,7 +1042,7 @@ label community8:
     $ talked_to_Pavel = False
     $ talked_about_luxuries_counter = 0
 
-    if is_liason:
+    if is_liaison:
         scene farm_exterior with fade
         "Urgent insta-com from RET!"
         $ pstyle = get_parenting_style()
@@ -1074,7 +1061,7 @@ label community8:
         "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
-                if is_liason:
+                if is_liaison:
                     him "Oh, it's already the afternoon! I need to send in my report right away."
                     jump write_report
                 else:
@@ -1719,7 +1706,7 @@ label community11:
             him "Oh, I hope so!"
             pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
 
-            if (talked_to_Pavel and is_liason):
+            if (talked_to_Pavel and is_liaison):
                 him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
                 pavel "I'm so happy right now!"
 
@@ -1727,7 +1714,7 @@ label community11:
             "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
             natalia "This isn't the kind of medicine we needed! This is useless!"
 
-            if is_liason:
+            if is_liaison:
                 natalia "Did you tell them what kind of medicine Martin needed?"
                 him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
             else:
@@ -1763,7 +1750,7 @@ label community11:
             # TODO: test this
             $ enable_crop("garlic")
 
-            if (talked_to_Pavel and is_liason):
+            if (talked_to_Pavel and is_liaison):
                 him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
                 pavel "I'm so happy right now!"
 
@@ -2040,7 +2027,7 @@ label community12:
                 "Later I heard he never found her."
                 return
     else:
-        #rationing is the default for the non-liason option, so non-liasons should not see this event.
+        #rationing is the default for the non-liaison option, so non-liaisons should not see this event.
         #should there be an option to switch to rationing again before this?
         #in your fields
         "I'm working out in the fields when I see a redheaded figure approaching."
@@ -2107,7 +2094,7 @@ label community12:
                                 him "I hadn't thought of it that way. You have a good point."
                                 jump community12_choose_farming
                             "I can and will make that decision.":
-                                him "I'm not making these decisions on some whim. The colonists elected me to be the liason to RET."
+                                him "I'm not making these decisions on some whim. The colonists elected me to be the liaison to RET."
                                 him "That means they trust my judgement."
                                 him "And I think we should stick to what I decided, which was to have the miners hunt and forage for most of their food."
                                 jump community12_choose_foraging
@@ -2236,7 +2223,7 @@ label community13:
     lily happy "Not to mention that a natural cave could be an exciting destination for family day trips!"
     lily normal "Although the mile-long descent might be a bit much for young children."
     him concerned "That sounds really interesting, but can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
-    if is_liason:
+    if is_liaison:
         lily angry "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
         him determined "Alright. What do you need me to ask?"
         lily normal "Tell them to delay the mining on that branch of the mine until we can fully explore it."
@@ -2257,7 +2244,7 @@ label community13:
         him annoyed "Ugh, Are you talking about Brennan?"
         jump community13_talk_to_brennan
     else:
-        label community13_nonliason_talk_to_brennan:
+        label community13_nonliaison_talk_to_brennan:
             lily "No, this is urgent and important business. Depending on their schedule, they may already be setting up the explosives!"
             lily "I need you to ask Brennan if he can delay mining the cave until we can explore it."
 
@@ -2324,8 +2311,8 @@ label community13:
                 lily "[his_name], we need more time to explore this cave. If they mine through this, they might destroy animals that don't exist anywhere else."
                 lily "A vertabrate like this without a shell could be invaluable to our research."
                 lily "Tell Brennan we can't mine this cave until we explore it further."
-                if is_liason:
-                    him "Hey, I'm the liason between RET and the colonists, not between the colonists and the miners. Tell him yourself."
+                if is_liaison:
+                    him "Hey, I'm the liaison between RET and the colonists, not between the colonists and the miners. Tell him yourself."
                 else:
                     him "I'm no research lobbyiest. Tell him yourself."
                 lily "I'm not proficient in presuasive rhetoric. And I don't have strong ties to other colonists through friendships or family."
@@ -2569,7 +2556,7 @@ label community14:
             him "Seriously though, take care of yourselves."
             $ luddites += 1
             $ pass
-    if is_liason:
+    if is_liaison:
         "What do I do with Pete and Helen's remaining cattle?"
         menu:
             "Ask Thuc if any of his kids can look after them.":
@@ -2726,8 +2713,8 @@ label community15:
     him_c "I'll think about it."
     nvl clear
     him "Hey, [her_name], Sara thought I should say something at the funeral..."
-    if (is_liason):
-        her "Well, you are the liason. You can do closing remarks; just keep it short."
+    if (is_liaison):
+        her "Well, you are the liaison. You can do closing remarks; just keep it short."
     else:
         her "You can if you want... somebody needs to speak at the end. Just something short."
     $ c15_funeral = ""
@@ -3349,7 +3336,7 @@ label community19:
     ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
     if thuc_has_cattle:
         thuc_c "Ouch. That's going to impact our herd next year. Maybe I'll make a bunch of jerky."
-        if is_liason:
+        if is_liaison:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
@@ -3372,7 +3359,7 @@ label community19:
             thuc_c "Will do."
     else:
         ilian_c "What should we do with those four cows?"
-        if is_liason:
+        if is_liaison:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
@@ -3771,7 +3758,7 @@ label community21:
 
 
 label community22:
-    if (miners > 10) and (luddites > 9) and (is_liason):
+    if (miners > 10) and (luddites > 9) and (is_liaison):
         nvl clear
         brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing the luddites' home."
         brennan_c "Except I don't know how to get ahold of Pete."
@@ -3829,7 +3816,7 @@ label community22:
         # does this need a stat +=?
         return
 
-    elif (miners > 10) and (luddites > 9) and not (is_liason):
+    elif (miners > 10) and (luddites > 9) and not (is_liaison):
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in his winter area. Do you know where he is right now?"
         him_c "Actually, he has a two-way radio now! I can sort of text him."
@@ -3849,7 +3836,7 @@ label community22:
 
     elif (miners > 5):
         nvl clear
-        if is_liason:
+        if is_liaison:
             brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you about our future mining prospects."
             kevin_c "I am unable to attend, but Zaina will be there."
             him_c "See you there."
@@ -4107,7 +4094,7 @@ label community22:
                 pete "That's something I've been wondering about. Why can't we make those things here?"
                 him "We don't have the infrastructure for it."
                 pete "We would if RET would send it to us. They don't want us to be completely independent."
-                if is_liason:
+                if is_liaison:
                     him "I'll ask RET about it and get back to you."
                     pete "I'd appreciate that."
                 him "Maybe there's a different reason. But whatever it is, we can't change RET's mind right away."
@@ -4124,23 +4111,23 @@ label community22:
                 jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
         label stopped_mining:
-            "The mining stopped." #this can happen if you're not the liason, after the luddites vandalize mining equipment
-            if is_liason:
+            "The mining stopped." #this can happen if you're not the liaison, after the luddites vandalize mining equipment
+            if is_liaison:
                 "I didn't mention anything to RET, but Brennan must have, because Mayor Grayson sent me an urgent message the next day."
                 pavel_c "Please come meet me in my office today."
                 him_c "Okay, what's is about?"
                 pavel_c "I think you know..."
                 "I guess RET probably wasn't happy that the mining had stopped."
-                pavel "RET has asked me to designate a new liason."
+                pavel "RET has asked me to designate a new liaison."
                 him "Okay. Fine."
                 pavel "What did you think would happen? You didn't even consult them."
                 him "I know what they would have said."
                 pavel "But you have to let them say it. You're not the only one in contact with them."
-                pavel "RET asked me to make the nominations for two candidates. I'm sending out a poll tonight to vote for the new liason."
+                pavel "RET asked me to make the nominations for two candidates. I'm sending out a poll tonight to vote for the new liaison."
                 him "This will just help me focus on farming--the important work."
-                "Sara won the most votes and became the new liason."
+                "Sara won the most votes and became the new liaison."
 
-                $ is_liason = False
+                $ is_liaison = False
 
                 jump sara_RET_22
                 return
@@ -4168,7 +4155,7 @@ label community22:
 
             #$ style = get_parenting_style()
            # if (style== "authoritative"):
-           #     "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
+           #     "Plz elect a liaison 2 help RET & colonists communicate & resolve conflicts."
             #elif(style == "authoritarian"):
             #    "We need a designated contact with the colony that u trust. Send ur decision."
             #elif(style == "permissive"):
@@ -4225,7 +4212,7 @@ label community23:
     kid "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
     him "How much money are we talking about here?"
     if community_22_mining_stopped:
-        # you are never the liason in this option, since you lose liasonship in community 22 if you choose to stop mining
+        # you are never the liaison in this option, since you lose liaisonship in community 22 if you choose to stop mining
         kid "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
         him "Really? That seems strange."
         kid "That's what Anya told me."
@@ -4718,7 +4705,7 @@ label community26:
     him "We should help her change something in her life to break this cycle."
     her "I feel like I've done everything I can. I'm going to present her case to the town council to see if they have other ideas."
 
-    if is_liason:
+    if is_liaison:
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
         her "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol although that is not her real name."
         her "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
@@ -5145,7 +5132,7 @@ label call_to_squid:
                 brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him "I have my own farm to run!"
                 brennan "I can give you some credits for someone else to take care of your farm."
-                brennan "I need you to be our new alien liason!"
+                brennan "I need you to be our new alien liaison!"
                 $ shell_count += 2
             else:
                 brennan "All my jellysquid farms were destroyed anyway. I can't farm them anymore."
@@ -5424,7 +5411,7 @@ label community28:
             him "Okay, okay."
             $ against_euthanasia = True
     "The next day, Sara sent out a message saying that Mayor Grayson was ready to retire and that we would be electing a new mayor at a meeting next week."
-    if is_liason:
+    if is_liaison:
         "She also invited me and [her_name] to a meeting that night to discuss Mayor Pavel Grayson's future."
         # Julia is here too. Brennan is here if your mining relationship is high enough. explain why Julia is there?
         sara "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #TODO: check last three events to see if Pavel is in them
@@ -5498,7 +5485,7 @@ label community28:
             him "I know, but you still have to give him a fatal injection right? Technically you'll be the one killing him."
             her "In a procedure he requested."
             jump fill_gap
-    # if is not liason
+    # if is not liaison
 
 
 label fill_gap:

@@ -50,7 +50,7 @@ hospital <hospital.jpg>, "Inauguración del Hospital Municipal de Chiconcuac" by
 === GUI
 
 All GUI images are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
-Crop icons by Rachel Helps.
+Crop icons by Rachel Helps and Clarissa Helps.
 
 The following images are licensed under CC-BY-4.0:
 Texture Images (vegetation, wood) by Eric Matyas, <http://www.soundimage.org>
@@ -75,7 +75,7 @@ OpenSansEmoji by MorbZ, <https://github.com/MorbZ/OpenSansEmoji>
 
 .License
 ****
-"Our Personal Space 2" Character Sprites © 2014-2017 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+"Our Personal Space 2" Character Sprites © 2017-2019 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
 
 This artwork is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -88,7 +88,7 @@ If not, see <http://www.gnu.org/licenses/>.
 
 .License
 ****
-"Our Personal Space 2" Character Sprites © 2014-2017 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+"Our Personal Space 2" Character Sprites © 2017-2019 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
 
 This artwork is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>.
 ****

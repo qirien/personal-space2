@@ -263,7 +263,7 @@ label family1:
                 him happy "I'm glad you agree!"
             elif (("precious" in baby_poem) or
                 ("cute" in baby_poem) or
-                ("joy" in baby_poem) or 
+                ("joy" in baby_poem) or
                 ("adore" in baby_poem)):
                 her concerned "Isn't that idealizing babies just a little?"
                 him concerned "Well, yeah. I don't need help remembering all the screaming and the mess!"
@@ -6570,8 +6570,8 @@ label lettie_dies:
     her_c "[his_name]!"
     sara_c "😢"
     him_c "If you don't pull out weeds, they'll suck the life out of all the good plants you're trying to grow."
-    if (is_liason):
-        brennan_c "I'm going to pretend I didn't hear the RET liason comparing our entire mining operation to poisonous weeds."
+    if (is_liaison):
+        brennan_c "I'm going to pretend I didn't hear the RET liaison comparing our entire mining operation to poisonous weeds."
         brennan_c "If anything, you guys are the parasites. Where do you think all your technology and supplies come from?"
     else:
         brennan_c "I'm sure you'd be ecstatic if RET's entire operation just keeled over tomorrow."
@@ -6991,7 +6991,7 @@ label family26:
             him "I don't need to listen to this."
         "I'm already doing what I can.":
             him "Look, I tried to stop the cave mining. I tried to stop the jellystar farming. But I can't make other people not do stuff."
-            if is_liason:
+            if is_liaison:
                 kid "You should be able to! Are you the liaison or not?!"
                 him "I'm just a liaison, not a dictator."
             else:

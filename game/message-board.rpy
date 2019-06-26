@@ -110,17 +110,17 @@ label message5:
     nvl clear
     # Liaison business -- ratifying charter, objections must be posted by two weeks, blah blah. Kevin feels it's not precise
     # People encouraging liaison, they don't actually do much yet
-    if (is_liason):
+    if (is_liaison):
         him_c "Hey, we need to ratify the our charter tomorrow at the meeting in two weeks, so please look it over before then. Now is the time if you have any objections."
     else:
         sara_c "If you haven't had a chance to read our new charter, please look it over!  We're ratifying it in two weeks so if you have any issues, let's work them out before then!"
 
     kevin_c "This clause at the beginning is imprecise. Is biannually based on Earth time or Talaam time?"
-    pete_c "Shouldn't decisions have to be voted on or something? This liason is going to have a lot of power..."
+    pete_c "Shouldn't decisions have to be voted on or something? This liaison is going to have a lot of power..."
     naomi_c "Perhaps people with specific objections to the charter could post alternative wording for everyone to choose from?"
     kevin_c "I will post an edited copy with more precise language."
-    natalia_c "Thanks for being our liason, BTW - I wouldn't wish that job on anyone, but I think you'll do just fine."
-    if (is_liason):
+    natalia_c "Thanks for being our liaison, BTW - I wouldn't wish that job on anyone, but I think you'll do just fine."
+    if (is_liaison):
         him_c "Thank you! I appreciate all the help and support I've received so far."
     else:
         sara_c "Thank you everyone!!! You're so kind! 😊~❤"
@@ -134,7 +134,7 @@ label message6:
     nvl clear
     # busy harvest time - looking forward to holiday Halloween + Thanksgiving
     # Kevin/Zaina asking about local alien meat
-    if (is_liason):
+    if (is_liaison):
         him_c "Harvest festival coming up next week!"
     else:
         sara_c "Hope you're all planning on coming to the harvest festival next week!!!"
@@ -222,7 +222,7 @@ label message10:
     # Location of miners discussed: "why so far" "not far enough!"
     # What kind of mining are they doing, anyway?? Why? What are they mining? How is it profitable?
     # Indium is used in LCDs, solar panels, cryogenics. Finding a lot! Also copper is running out
-    if (is_liason):
+    if (is_liaison):
         him_c "We've designated an area for the miners to live, so please take a look at the map and note where their camp will be located."
     else:
         sara_c "I just got notice of where the miners will be living. Here's a map!"
@@ -282,7 +282,7 @@ label message12:
     nvl clear
     # Miners appear on msg board; create new colonists-only board
     # People comment on literary magazine
-    if (is_liason):
+    if (is_liaison):
         him_c "Okay, this area is now private for colonists-only. You can use the old area if you want to talk to everyone on Talaam."
     else:
         sara_c "Okay, I setup this new area for colonists only. The old area was kind of overrun by miners!"
