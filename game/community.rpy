@@ -171,11 +171,14 @@ label community1:
                     him "[her_name] is my wife and she's also the doctor in our clinic."
                     him "She tries to be objective, but she also feels passionate about her job."
                     zaina "I think that describes most of us."
+                    show her determined with dissolve
                     him "Some people have complained that her bedside manner is a little callous."
                     him "So her objectivity is more relevant to customer satisfaction than, say, mine."
                     kevin "Are you implying that your carrots cannot feel your love?"
                     him "Correct. Unless that love manifests itself in better care."
-                    hide her with dissolve
+                    hide her
+                    hide kid
+                    with dissolve
                     $ tell_Kelly = True
                     jump colony_gossip
                 "Naomi and Pavel" if not tell_Graysons:
@@ -215,8 +218,8 @@ label community1:
                     show martin normal at midleft
                     show natalia normal at midright
                     with dissolve
-                    him "Martin and Natalia Peron have four kids. Or, well, they used to have five."
-                    zaina "Used to?"
+                    him "Martin and Natalia Peron grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, well, four now, I guess."
+                    zaina "Now?"
                     him "There was an accident... and their daughter died when she was four years old."
                     zaina "What a shame. What happened?"
                     menu:
@@ -235,7 +238,7 @@ label community1:
                             zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
                             him "Yeah. The Perons are still pretty sad about it and hold a vigil every year where it happened."
                             # TODO: give bonus to luddites here?
-                    him "Their kids are getting older and should be able to help around the colony more."
+                    him "Anyway, their kids are old enough to help around the colony a lot. Their oldest son just got married."
                     hide martin
                     hide natalia
                     with dissolve
@@ -247,7 +250,7 @@ label community1:
                     with dissolve
                     him "If you ever need to look something up or make something, our library is the place to go."
                     him "Pete is our librarian and also our cattle rancher."
-                    him "He has a wife, Helen, but I don't see much of her since their ranch is pretty far out."
+                    him "He has a wife and a son about [kid_name]'s age. Travis, that's his name."
                     hide pete
                     hide helen
                     with dissolve
@@ -532,7 +535,6 @@ label community4:
         #TODO: should a leader of the militia be elected here as well?
     return
 
-# TODO: community revision stopped here
 # 5 - Set aside food for miners?
 label community5:
     $ talked_cans = False
@@ -540,7 +542,8 @@ label community5:
     $ talked_something = False
     $ talked_canning_dairy = False
     show farm_exterior with fade
-    "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
+    "Zaina and Kevin discovered indium and some other valuable resources nearby and developed a mining plan."
+    "They said RET was sending a shuttle of miners that would arrive in several years."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     # context/scene for this decision? is it a town meeting? you, Ilian, sara, Pavel?
     if is_liaison:
@@ -584,23 +587,21 @@ label community5:
                 jump ration_harvest
             "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
                 $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
+                $ miners -= 1
                 jump no_formal_rationing
     else:
         scene community_center with fade
-        show sara at midright
+        show sara normal at midright
         show him normal at midleft
         "Sara called you in to discuss the latest news from RET."
-        sara "RET is sending miners to start mining the Indium that Zaina and Kevin found."
+        sara "RET is sending miners to start mining the indium that Zaina and Kevin found."
         sara "The miners won't arrive for another four Earth years."
         if (whole_harvest_to_storehouse == True):
-            show sara sad
             sara "Ilian tells me that we'll have enough food for them if we start storing a little now."
         else:
-            show sara sad
-            sara "We're not sure if we'll have enough food for them or not."
-        sara "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+            sara sad "We're not sure if we'll have enough food for them or not."
+        sara normal "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
         sara "Next harvest we'll start accepting canned goods as well. You can can large amounts in the storehouse, or bring in what you can at home."
-        show sara
         sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         sara "I'll be grading your crops against the RET standards."
         show sara sad
@@ -617,60 +618,46 @@ label community5:
     return
 
     label whole_harvest_required:
-    show him determined
-    him "Let's have the farmers bring their whole harvest to the storehouse, so you can measure it."
-    him "I'll ask them to start farming more beans and wheat too, since those store well."
-    show ilian happy
-    ilian "I'll need some help to build silos for the wheat."
-    show him surprised
-    him "This way we'll definitely have enough for the miners, right?"
-    show ilian
-    ilian "Yes. They won't even need to forage, unless they want some extra meat."
-    jump ration_harvest
+    him determined "Let's have the farmers bring their whole harvest to the storehouse, so you can measure it."
+    him normal "I'll ask them to start farming more beans and wheat too, since those store well."
+    ilian happy "I'll need some help to build silos for the wheat."
+    him surprised "This way we'll definitely have enough for the miners, right?"
+    ilian normal "Yes. They won't even need to forage, unless they want some extra meat."
+    him normal "Good. I don't want any trouble with RET."
 
     label ration_harvest:
-    ilian "I support your plan, but I'm worried about how we'll enforce it."
-    ilian "Some of the other farmers are reluctant to centrally locate food."
-    show him surprised
-    him "Oh? Like who?"
+    ilian "I support your plan, but not everyone' as enthusiastic about this. Some of the other farmers are reluctant to centrally locate food."
+    him surprised "Oh? Like who?"
     ilian "Like Pete and Martin."
     show ilian happy
-    ilian "I think they'd listen to you if you tried to persuade them though."
-    show ilian
-    ilian "We'll pay credits for their surplus, which they can use to buy other crops."
-    show him determined
-    him "I'll talk to them."
-    jump talk_about_food_storage
+    ilian happy "I think they'd listen to you if you tried to persuade them though."
+    him concerned "How do you think I should do that?"
+    ilian normal "Make sure they know we'll pay credits for their surplus, which they can use to buy other crops."
+    him determined "I'll talk to them."
 
     label talk_about_food_storage:
     scene farm_exterior with fade
     show him normal at midright
-    show pete at midleft
+    show pete normal at midleft
     him "Hey Pete. How are your cattle doing?"
-    show pete happy
-    pete "Surprisingly hale for living on an alien planet."
-    show him determined
-    him "Great. There's something I want to ask you about."
-    him "I heard that you're not storing much surplus in the storehouse."
+    pete happy "Surprisingly hale for living on an alien planet."
+    him determined "Great. There's something I want to ask you about."
+    him concerned "I heard that you're not storing much surplus in the storehouse."
     jump pete_no_storehouse
 
     label no_formal_rationing:
-    show him annoyed
-    him "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
+    him annoyed "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
     him "Worst-case scenario, they have to farm for a bit instead of mining all the time."
-    show ilian happy
-    ilian "Are you sure? I don't really want to be eaten if we run out of food."
-    show him determined
-    him "I think people could survive on the wild resources available, as long as they know what they are."
-    show ilian
-    ilian "Okay, whatever you say."
+    ilian normal "Are you sure? I don't really want to be eaten if we run out of food."
+    him determined "I think people could survive on the wild resources available, as long as they know what they are."
+    ilian "Yeah, I bet if we cross our fingers I'm SURE food will just APPEAR somehow."
+    him annoyed "'Somehow' meaning they'll have to work just like we do for food. Nothing wrong with that."
     return
 
     label pete_no_storehouse:
     show pete
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
-    pete "I can't make cheese that doesn't mold right away."
-    pete "The best way to store my surplus is to keep growing this herd."
+    pete "Cheese doesn't keep well, either, for the same reasons. The best way to store my surplus is to keep growing this herd."
     label convince_Pete:
     menu:
         "Is that really the best way?"
@@ -678,118 +665,82 @@ label community5:
             show him normal
             him "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
             him "How about it?"
-            pete "I don't think anyone should have to eat canned meat, not when they live next to me!"
-            him "Well, they're your cows."
+            pete "I don't think anyone should have to eat canned meat, not when they live next to me! I mean, which would you rather have, spam or steak?"
+            him "Good point."
             $ talked_cans = True
             jump convince_Pete
         "You'll need credits to get other food." if not talked_credits:
-            show him normal
-            him "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
-            him "How will you afford vegetables and grain?"
-            show pete happy
-            pete "Plenty of people are willing to trade for or buy milk and beef."
-            show pete
-            pete "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either."
+            him concerned "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
+            him surprised "How will you afford vegetables and grain?"
+            pete happy "Plenty of people are willing to trade for or buy milk and beef."
+            pete normal "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either."
             pete "I prefer to deal directly with my customers."
             $ talked_credits = True
             jump convince_Pete
         "If we canned some beef, then we'd have meat even if your herd died suddenly." if not talked_something:
-            show him surprised
-            him "What if one day you wake up and your whole herd of cattle is gone?"
-            show him determined
-            him "If you canned some meat, then we would at least have something."
-            show pete happy
-            pete "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
-            show pete
-            pete "Plus I think canned meat is revolting. I would rather just eat vegetables."
+            him surprised "What if one day you wake up and your whole herd of cattle is gone?"
+            him determined "If you canned some meat, then we would at least have something."
+            pete happy "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
+            pete normal "Plus I think canned meat is revolting. I would rather just eat vegetables."
             $ talked_something = True
             jump convince_Pete
         "We could can some of the dairy products." if not talked_canning_dairy:
-            show him happy
-            him "We could try making dried milk powder or clarified butter, which would last a long time."
-            pete "Why would we do that when we have plenty of fresh stuff?"
-            show him determined
-            him "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
-            him "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
-            show pete happy
-            pete "Hmm. That is a good point."
+            him normal "We could try making dried milk powder or clarified butter, which would last a long time."
+            pete normal "Why would we do that when we have plenty of fresh stuff?"
+            him determined "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
+            him surprised "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
+            pete happy "Hmm. That is a good point."
             show pete
             $ talked_canning_dairy = True
             jump convince_Pete
-        "I guess that's what Pete is going to do.":
-            show him concerned
-            him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
-            pete "Glad you understand."
+        "Just think about it, okay?":
+            him concerned "I know it's difficult to store beef and dairy that long. Just think about maybe storing some long-term."
+            pete normal "All right, then."
             jump canning_dairy
 
     label canning_dairy:
     if talked_canning_dairy:
-        show pete happy
-        pete "I'll look into canning some milk and butter though."
-        show him happy
-        him "Great!"
+        pete happy "I'll take a look at canning milk and butter."
+        him happy "Great!"
         $ colonists += 1
-    else:
-        pass
+    scene path with fade
+    "Next I had to try to convince Martin..."
     scene fields with fade
-    show martin at midleft
-    show him normal at midright
-    him "So Martin, how's your farm doing?"
-    show martin angry
-    martin "Recently some of our turkeys got sick and we couldn't even eat their meat after they died."
-    show him concerned
-    him "How about your beans, are they doing well?"
-    show martin happy
-    martin "Yes! We eat them about as fast as we can grow them."
-    show him normal
-    him "I was thinking if you had some extras, you could can them and store them in the storehouse."
+    show martin at midleft with dissolve
+    show him normal at midright with moveinleft
+    him surprised "So Martin, how's your farm doing?"
+    martin angry "Not so good. Some of our turkeys got sick, and when they died we couldn't eat them because the meat was contaminated."
+    him concerned "Oh man, that's rough. Are your beans doing okay, at least?"
+    martin happy "Yes! We eat them about as fast as we can grow them."
+    him normal "I was thinking if you had some extras, you could can them and store them in the storehouse."
     show martin
-    martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
+    martin "I would if I we had extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
     if require_whole_harvest:
-        show him determined
-        him "Starting from now on, you'll need to bring in your harvest to Ilian if you want other crops."
-        him "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
-        show martin angry
-        martin "What if I don't want to do that?"
-        show him annoyed
-        him "It's in your contract."
-        show martin
-        martin "Well the way we've been doing it has been working just fine."
-        show him concerned
-        him "We didn't have fifty extra mouths to feed then."
-        show martin angry
-        martin "And we don't now! I think you're overreacting. We have plenty of food."
-        show him determined
-        him "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
-        show martin
-        martin "We eat most of our crops soon after harvesting them. But we do try to store a little extra."
-        show him normal
-        him "I get what you're saying. Just write down how much you eat and tell Ilian."
-        him "Then if you have extra, bring that in once a week and he can calculate how your crops are doing."
-        show martin angry
-        martin "Okay, I think I can do that. But I still think this is excessive."
+        him determined "From now on, you'll need to bring in your harvest to Ilian if you want other crops."
+        him concerned "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
+        martin angry "What if I don't want to do that?"
+        him annoyed "It's in your contract."
+        martin normal "Well, the way we've been doing it is working just fine."
+        him concerned "We didn't have fifty extra mouths to feed then."
+        martin angry "And we don't now! I think you're overreacting. We have plenty of food."
+        him determined "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
+        martin normal "We eat most of our crops soon after harvesting them. We store just a little extra."
+        him determined "I get what you're saying. Just write down how much you eat and tell Ilian."
+        him normal "Then if you have extra, bring that in and he can calculate our food surplus."
+        martin angry "Seems like a lot of work for nothing. But I don't really have a choice, huh?"
     elif rationing:
-        show him determined
-        him "Starting from now on, I need you to bring in twenty percent of your harvest."
-        him "That number may change, but this is the easiest way to start storing a little food for the miners."
-        show martin angry
-        martin "What if I don't have enough food to bring in twenty percent?"
-        show him concerned
-        him "Then bring in ten percent. Just try to keep track so we have an idea of how much food we have collectively."
-        show martin
-        martin "Alright. I'll do it."
-        show him normal
-        him "Thank you."
+        him determined "Starting from now on, I need you to bring in twenty percent of your harvest."
+        him concerned "That number may change, but this is the easiest way to start storing a little food for the miners."
+        martin angry "Twenty percent? I don't have enough food to bring in twenty percent!"
+        him concerned "Then bring in ten percent. Just try to keep track so we have an idea of how much food we have collectively."
+        martin "Seems like a waste of time... but I'll do it."
+        him normal "Thank you. This will help us calculate our food production and surplus."
     else:
-        show him determined
-        him "It works well now, but soon we'll be trading credits instead of food."
-        show martin happy
-        martin "I'm happy to take your credits then."
-        show him normal
-        him "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
-        show martin
-        martin "Good to know."
+        him determined "It works well now, but soon we'll be trading credits instead of food."
+        martin happy "I'm happy to take your credits then."
+        him normal "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
+        martin "Okay, will do."
     return
 
 
@@ -804,89 +755,70 @@ label community6:
     show him normal at left
     show thuc normal at midleft
     show helen normal at quarterright
+    show kevin normal at quarterleft
     with dissolve
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
+    kevin "I have read the rules and watched the tutorial. I am prepared to join you."
     him determined "Yes, and I promise to start in the Northern Hemisphere this time."
     pete happy "Your Antarctica strategy had no sense whatsoever."
     him angry "Trying the same losing strategy every time and hoping it will win has no sense."
-    pete normal "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
+    pete normal "I'll make you eat your words."
+    him surprised "Hey, if you're both here, where are your kids?"
+    helen "They're sleeping. Sister Naomi's there, just in case."
+    him normal "Cool. I tried to convince [her_name] to use the radio as a baby monitor, but [her_name] sometimes takes a long time to get to sleep so we didn't think it would work."
+    pete normal "Hey, can we keep score on your tablet? Ours is out for repairs."
     him surprised "What do you mean? Don't you both have one?"
     helen "No, because SOMEONE left it out during a solar flare."
     pete happy "And SOMEONE left their tablet in spittin' distance of a cow."
     him concerned "That must be rough."
-    pete normal "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
-    pete "I can concentrate on what I'm doing."
-    pete happy "I don't even mind doing my feed calculations for the cattle by hand."
-    helen happy "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
-    pete normal "I don't know about me. I kind of like feeling like I'm completely on my own."
-    thuc sad "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
+    pete normal "Nah, it's better. I used to check my tablet for new messages all day long. I haven't checked them for a week and I haven't missed anything."
+    pete happy "Instead I'm living more in the moment. I don't even mind doing my feed calculations for the cattle by hand."
+    helen happy "I miss watching Skulls of Iron. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    pete normal "You can keep it. I like feeling like I'm completely on my own, getting away from all the drama in town and online."
+    thuc sad "But you're still having game night, and you have your family, too, so it's not like you're completely isolated."
     menu:
         "What do you think?"
         "We need each other to survive.":
             $ colonists += 1
-            show him determined
-            him "We need each other to survive. There's no way one person could survive on their own out here."
-            show pete happy
-            pete "Is that really true? I've been out there on my own before--there's good foraging and hunting."
-            show him surprised
-            him "Maybe you could survive on your own, but what about your family?"
-            show pete
-            pete "They can help forage too!"
+            him determined "We need each other to survive. There's no way one person could survive on their own out here."
+            pete happy "Is that really true? I've been out there on my own before--there's good foraging and hunting."
+            him surprised "Maybe you could survive on your own, but what about your family?"
+            pete normal "They can help forage, too!"
             pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
-            show pete happy
-            pete "It's definitely more reliable to live in a community where we can help each other."
+            pete happy "And it's handy to have some folks around. Otherwise, who would I crush in Maximal Conquest?"
         "I understand wanting to be away from it all.":
             $ luddites += 1
-            show him determined
-            him "I understand wanting to be away from it all. It's part of the reason I came here."
-            show pete happy
-            pete "We don't have to deal with inane government interference or rules made for the sake of havin' 'em."
-            show him concerned
-            him "Although some of RETs demands have felt that way..."
-            show pete
-            pete "True. But you can see where they're coming from for the most part."
-            show pete happy
-            pete "And they're not in our face about it. I could go camping tonight and they'd be none the wiser."
-            show him flirting
-            him "Yeah, as long as your cows were okay with it."
+            him determined "I understand wanting to be away from it all. It's part of the reason I came here."
+            pete happy "We don't have to deal with inane government interference or rules made just for the sake of havin' 'em."
+            him concerned "Although some of RETs demands have felt that way..."
+            pete normal "True. But you can see where they're coming from for the most part."
+            pete happy "And they're not in our face about it. I could go set out on my own tonight and they'd be none the wiser."
+            helen "You could, as long as you planned it out with your wife first."
         "We have an obligation to help RET feed their miners now.":
             $ miners += 1
-            show him determined
-            him "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
-            him "If we all went rogue, those miners would starve to death."
-            show him concerned
-            him "And we wouldn't be holding up our end of the bargain. It's expensive to send us out here."
-            show pete happy
-            pete "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I wouldn't feel badly about changing my side of things."
-            show him surprised
-            him "What do you mean?"
-            show pete
-            pete "What if we don't have enough food for all these miners?"
+            him determined "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
+            him concerned "If we all went rogue, those miners would starve to death. And we wouldn't be holding up our end of the bargain. It was expensive to send us out here."
+            pete happy "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I might have to change things, too."
+            him surprised "What do you mean?"
+            pete normal "What if we don't have enough food for all these miners?"
             pete "If that happens, you bet I'm going to look after me and my own first."
             pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
-            show pete happy
-            pete "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
-            show him concerned
-            him "Good point. I hope we can mange."
+            pete happy "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
+            him concerned "Good point. I hope we can manage."
     if require_whole_harvest:
         $ rationing = True
         $ require_whole_harvest = False
-        show thuc
-        thuc "Speaking of food, Ilian just sent out a message that we don't have to bring in our whole harvest anymore."
+        thuc normal "Speaking of food, Ilian just sent out a message that we don't have to bring in all the surplus anymore."
         thuc "He has enough data, and he sent out a table of who should bring in how much."
         thuc "It ended up being about twenty percent for most farmers." #TODO: is this a reasonable amount?
-        show pete
-        pete "I deliver directly to my customers, so I've just been sending Ilian my stats."
-        show thuc sad
-        thuc "I guess it doesn't really make sense to bring in a calf either."
-        show pete happy
-        pete "Nope."
-        show him happy
-        him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
-        show thuc
-        thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
+        pete normal "I deliver directly to my customers, so I've just been sending Ilian my stats."
+        thuc sad "I guess it doesn't really make sense to bring in a calf to the storehouse."
+        pete happy "Nope."
+        him happy "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
+        thuc normal "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
     return
 
+# TODO: Community revision stopped here.
 # 7 - Comparing compensation
 label community7:
     play music thoughtful
