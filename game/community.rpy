@@ -497,11 +497,11 @@ label community4:
     lily normal "Regardless, I must choose someone. What do you think of Sara?"
     him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
     naomi happy "Now that Oleg is a little older, she might be up to something like this."
-    him concerned "Maybe. Oleg is about the same age as Terra, and she's still quite the handful."
+    him concerned "Maybe. Oleg is about the same age as [kid_name], and she's still quite the handful."
     naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
     lily happy "And based on your relationships with other colonists, your socialization skills are at least average."
     thuc happy "Yeah! Let's make [his_name] do it!"
-    him surprised "Hang on. I already feel pretty busy just with farming committee meetings, raising Terra, and the farming stuff."
+    him surprised "Hang on. I already feel pretty busy just with farming committee meetings, raising [kid_name], and the farming stuff."
     naomi "We're all busy. Someone has to do this."
     lily normal "This discussion has helped me decide who to nominate. Thank you."
     hide lily with moveoutleft
@@ -818,153 +818,115 @@ label community6:
         thuc normal "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
     return
 
-# TODO: Community revision stopped here.
 # 7 - Comparing compensation
 label community7:
     play music thoughtful
     show community_center with fade
-    show zaina at midright
-    zaina "The fossil record near here contains many vertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
+    show zaina normal at center with dissolve
+    zaina "The fossil record near here contains many invertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
     zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
     zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
-    show pavel at midleft with moveinleft
-    pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
+    show zaina at midright with move
+    show pavel normal at midleft with moveinleft
+    pavel "Thank you, Zaina, for the presentation on Talaam's probable geologic history."
     hide zaina with moveoutright
+    show pavel at center with move
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
-    pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
+    pavel "I know you're all very busy, so we've provided some delicious snacks to encourage you to stay!"
     hide pavel with moveoutright
-    show kevin at midright with move
-    show him normal at midleft
-    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam and socialize."
-    show him surprised
-    him "RET didn't give you any money? At least I know that my parents are taken care of."
+    show kevin at midright with moveinright
+    show him normal at midleft with moveinleft
+    kevin "I'm surprised that they're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam and socialize."
+    him surprised "RET didn't give you any money? At least I know that my parents are taken care of."
     kevin "What do you mean?"
-    show him happy
-    him "RET gave me a bunch of money that I used for their retirement fund."
+    him happy "RET gave me a bunch of money that I used for their retirement fund."
     kevin "They made me no such offer."
-    show thuc at center with move
+    show him at center with move
+    show thuc normal at midleft
+    show helen normal at quarterleft
+    with moveinleft
+    show ilian normal at quarterright
+    with moveinright
     thuc "I practically had to pay RET to let me come. What gives?"
-    show him annoyed
-    him "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
-    show ilian happy at left with move
-    ilian "Maybe some of us were happy to leave our Earth lives behind."
-    show helen happy at right with move #too many people!?
-    helen "This is a new one for me. Ilian has a secret past?"
-    show ilian
-    ilian "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
+    him annoyed "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
+    ilian happy "Maybe some of us were happy to leave our Earth lives behind."
+    helen happy "This is a new one for me. Ilian has a secret past?"
+    ilian normal "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
     ilian "RET said they would take care of it."
-    show helen
-    helen "Do you know if they did?"
-    show ilian happy
-    ilian "I haven't heard from any debt collectors since."
-    kevin "You may have noticed but it's very difficult for people on Earth to contact you here."
-    show ilian
-    ilian "It was win-win for me."
+    helen normal "Do you know if they did?"
+    ilian happy "I haven't heard from any debt collectors since."
+    kevin "You may have noticed it's very difficult for people on Earth to contact you here."
+    ilian normal "It was win-win for me."
     kevin "I was so intent on coming to Talaam that I didn't think to negotiate compensation."
-    hide ilian with moveoutleft
-    show thuc sad
-    thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
-    show him flirting
-    him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
-    show thuc
-    thuc "Or 8! Fewer pieces to ship."
+    hide ilian with moveoutright
+    thuc sad "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
+    him flirting "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
+    thuc normal "Or 8! Fewer pieces to ship."
     kevin "Did your children suffer developmental delays because of the journey?"
-    show thuc sad
-    thuc "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
-    thuc "They're not necessarily reading sooner, but we genuinely need their help on the farm."
-    show thuc
+    thuc sad "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
+    thuc normal "They're not necessarily reading sooner, but we genuinely need their help on the farm."
     thuc "They have more responsibilities than I did at their age, so they have to grow up fast."
-    show thuc sad
-    thuc "And none of my family are getting paid for completely transplanting our lives here."
+    thuc sad "But, unlike [his_name], none of my family are getting paid for our work here."
     if is_liaison:
-        show thuc
-        thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
+        thuc normal "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
             "What will you do for Thuc?"
             "Ask RET in my next e-mail.":
                 $ miners += 1
-                show him normal
-                him "I can ask them in my next e-mail."
-                show thuc sad
-                thuc "E-mail? Not an insta-com?"
-                show him happy
-                him "I only get so many instant communication slots."
-                show thuc
-                thuc "But by the time they get your e-mail no one will remember me."
-                show him determined
-                him "I think RET has bigger things to worry about."
-                show thuc sad
-                thuc "Fine, an e-mail is fine."
+                him normal "I can ask them in my next e-mail."
+                thuc sad "E-mail? Not an insta-com?"
+                him happy "I only get so many instant communication slots."
+                thuc normal "But by the time they get your e-mail no one will remember me."
+                him determined "I think RET has bigger things to worry about."
+                thuc sad "Fine, an e-mail is fine."
             "From a business standpoint, you're stuck here.":
                 $ luddites += 1
-                show him annoyed
-                him "You don't have any leverage over them. It's not like you can quit now."
-                show thuc sad
-                thuc "I sure do have leverage!"
-                thuc "I could decide to leave the colony!"
-                show him concerned
-                him "You wouldn't seriously consider that."
-                show helen happy
-                helen "I don't know, he looks pretty serious."
-                show thuc
-                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people."
-                show thuc sad
-                thuc "I just don't like the idea that I have no power over my life."
+                him annoyed "You don't have any leverage over them. It's not like you can quit now."
+                thuc sad "I sure do have leverage! I could decide to leave the colony!"
+                him concerned "You wouldn't seriously consider that."
+                helen happy "I don't know, he looks pretty serious."
+                thuc normal "I'm joking. Rice cultivation is kind of pointless for just twelve people."
+                thuc sad "I just don't like the idea that I have no power over my life."
             "I hear you, but let's focus on the here and now.":
                 $ colonists += 1
-                show him determined
-                him "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
-                him "Let's leave the past in the past."
-                show him happy
-                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
-                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+                him determined "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
+                him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc normal "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     else:
         hide kevin with moveoutright
-        show sara at midright
-        show thuc
-        thuc "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
-        show sara sad
-        sara "I heard that RET is economizing, but I can ask."
-        thuc "Thanks. Do you think RET will do anything, [his_name]?"
+        show sara normal at midright with moveinright
+        thuc normal "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
+        sara sad "I heard that RET is economizing, but I can ask."
+        thuc sad "Thanks. Do you think RET will do anything, [his_name]?"
         menu:
-            "What do you think RET should do for Thuc?"
-            "Make a big donation.":
+            "What do you think RET will do for Thuc?"
+            "They should make a big donation.":
                 $ miners += 1
-                show him determined
-                him "They should make a big donation in your name."
-                thuc "Right?"
-                show him surprised
-                him "What charity would you choose?"
-                show thuc sad
-                thuc "Something to promote sustainable agriculture in developing nations like this one."
-                show him flirting
-                him "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
-                show thuc
-                thuc "Burn!"
+                him determined "They should make a big donation in your name."
+                thuc normal "Right?"
+                him surprised "What charity would you choose?"
+                thuc sad "Something to promote sustainable agriculture in developing nations like this one."
+                him flirting "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
+                thuc normal "Burn!"
             "They won't do anything.":
                 $ luddites += 1
-                show him concerned
-                him "You're stuck here. You have no choice but to be an employee of RET."
-                show thuc sad
-                thuc "I could decide to leave the colony!"
+                him concerned "You're stuck here. You have no choice but to be an employee of RET."
+                thuc sad "I could decide to leave the colony!"
                 show him surprised
-                him "You wouldn't seriously consider that."
-                show helen sad
-                helen "I don't know, he looks pretty serious."
-                show thuc
-                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people."
-                show thuc sad
-                thuc "I just don't like the idea that I have no power over my life."
+                him surprised "You wouldn't seriously consider that."
+                helen sad "I don't know, he looks pretty serious."
+                thuc normal "I'm joking. Rice cultivation is kind of pointless for just twelve people."
+                thuc sad "I just don't like the idea that I have no power over my life."
             "They probably won't do anything, but we have more important things to worry about.":
                 $ colonists += 1
-                show him determined
-                him "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
+                him determined "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
                 show him happy
-                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
-                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+                him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc happy "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     return
 
+# TODO: community revision stopped here
 # 8 - What luxuries should RET send?
 label community8:
     $ talked_to_Natalia = False
@@ -1388,7 +1350,7 @@ label community10:
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
-    "After the meal, Terra ran off to play with the other kids."
+    "After the meal, [kid_name] ran off to play with the other kids."
     hide kid
     hide bro
     with moveoutright
@@ -1759,7 +1721,7 @@ label community12:
             chaco "You're welcome. Thanks for the food."
             chaco "I brought my telescope like you asked. I can show you some stars."
             chaco "We might be able to see Earth's sun if it's clear."
-            him "Great. I think Terra will love that."
+            him "Great. I think [kid_name] will love that."
             "Seeing our old sun, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silhouetted in the sunset."
             "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and trains and restaurants." #believable?
             him "It shows how far away we really are."
@@ -2574,9 +2536,9 @@ label community15:
         naomi "Keep up the good work."
     elif(pstyle == "authoritarian"):
         naomi "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
-        naomi "If you consider Terra's opinion sometimes, I think she will be happier."
+        naomi "If you consider [kid_name]'s opinion sometimes, I think she will be happier."
     elif(pstyle == "permissive"):
-        naomi "You let Terra do her own thing a lot."
+        naomi "You let [kid_name] do her own thing a lot."
         naomi "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
     else:
         naomi "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
@@ -2888,7 +2850,7 @@ label community16:
                     "She was good at that.":
                         him "She was always making something for someone's birthday or just celebrating some made-up holiday."
                         pete "That's true. When Travis found a grove of Ringlets, she made him a crown of leaves and called him the explorer prince."
-                        him "She did something similar when Terra went a whole day without poking Oleg."
+                        him "She did something similar when [kid_name] went a whole day without poking Oleg."
                         pete "What was her title?"
                         him "Overseer of Restraint."
                         pete "Ha. I doubt I would have even noticed something like that."
