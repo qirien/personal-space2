@@ -2605,7 +2605,7 @@ label family8:
                     him happy "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
                     her normal "Then I don't have anything to worry about."
                     him normal "Nope."
-                    show him at center with move
+                    show him concerned at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
                     "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
                     "How long had she known and worried by herself?"
