@@ -214,11 +214,11 @@ label community1:
                     hide lily with dissolve
                     $ tell_Lily = True
                     jump colony_gossip
-                "Martin and Natalia" if not tell_Perons:
+                "Martín and Natalia" if not tell_Perons:
                     show martin normal at midleft
                     show natalia normal at midright
                     with dissolve
-                    him "Martin and Natalia Perón grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, well, four now, I guess."
+                    him "Martín and Natalia Perón grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, well, four now, I guess."
                     zaina "Now?"
                     him "There was an accident... and their daughter died when she was four years old."
                     zaina "What a shame. What happened?"
@@ -609,7 +609,7 @@ label community5:
         show him surprised
         him "Really? Like who?"
         show sara
-        sara "Pete and Martin are the ones you know the best."
+        sara "Pete and Martín are the ones you know the best."
         show him determined
         him "I'll talk to them." #this could also be a choice... how neglectful do you want to be
         $ rationing = True
@@ -628,7 +628,7 @@ label community5:
     label ration_harvest:
     ilian "I support your plan, but not everyone' as enthusiastic about this. Some of the other farmers are reluctant to centrally locate food."
     him surprised "Oh? Like who?"
-    ilian "Like Pete and Martin."
+    ilian "Like Pete and Martín."
     show ilian happy
     ilian happy "I think they'd listen to you if you tried to persuade them though."
     him concerned "How do you think I should do that?"
@@ -704,11 +704,11 @@ label community5:
         him happy "Great!"
         $ colonists += 1
     scene path with fade
-    "Next I had to try to convince Martin..."
+    "Next I had to try to convince Martín..."
     scene fields with fade
     show martin at midleft with dissolve
     show him normal at midright with moveinleft
-    him surprised "So Martin, how's your farm doing?"
+    him surprised "So Martín, how's your farm doing?"
     martin angry "Not so good. Some of our turkeys got sick, and when they died we couldn't eat them because the meat was contaminated."
     him concerned "Oh man, that's rough. Are your beans doing okay, at least?"
     martin happy "Yes! We eat them about as fast as we can grow them."
@@ -967,7 +967,7 @@ label community8:
                 show him normal at midleft
                 show natalia normal at midright
                 with dissolve
-                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be."
+                natalia "I don't care what else comes from Earth, but there had better be some medication for Martín in there. The longer he lives, the happier our family will be."
                 him concerned "What medication does he need?"
                 natalia "[her_name] said he needed Vemurafecholoronib. Let's see... 500 mg for six months and 1000 mg for another 6 months."
                 him surprised "Won't RET be sending this anyway?"
@@ -1035,7 +1035,7 @@ label community8:
                 jump talk_about_luxuries
         label write_report:
             if talked_to_Natalia:
-                "I don't have enough room to ask for Martin's specific medicine and dosage and all the other things people wanted."
+                "I don't have enough room to ask for Martín's specific medicine and dosage and all the other things people wanted."
                 menu:
                     "What should I write?"
                     "Specify the medication and dosage. Do your best with the other stuff.":
@@ -1434,7 +1434,6 @@ label community10:
     nvl clear
     return
 
-# TODO: community revision stopped here
 # 11 - shuttle arrives with miners & Brennan
 label community11:
     $ chaco_questions = 0
@@ -1442,145 +1441,164 @@ label community11:
     scene farm_interior with fade
     show him normal at midright
     show her normal at midleft
-    show kid at center
-    show bro at quarterleft
-    "The shuttle is set to arrive today!" #make this a family conversation?
-    kid "I wonder what the new people will look like."
-    him "Well, they'll look like we do. We're all humans."
-    her "Unless aliens have secretly taken over Earth!"
+    show kid normal at center
+    show bro normal at quarterleft
+    her happy "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
+    kid surprised "I wonder what the new people will look like?"
+    him happy "Well, they'll look like we do. We're all humans."
+    her flirting "Unless aliens have secretly taken over Earth while we were gone!"
+
     scene plain with fade
     show sara normal at midleft
+    show oleg normal at quarterleft
     show her normal at midright
     show him normal at center
+    show kid surprised at quarterright
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
-    sara "Wow, those guys are built. The women, too -- solid!"
-    her "Yeah, I'd expect that miners have to be in good physical condition."
-    him "They look pretty strong. Almost as strong as all the farmers we have here."
-    her "Farmers have to be in good physical condition too!"
-    sara "Pavel is already greeting everyone. Let's join him."
+    sara normal "Wow, those guys are built. The women, too -- solid!"
+    her concerned "Yeah, I'd expect that miners have to be in good physical condition."
+    him surprised "They look pretty strong. Almost as strong as all the farmers we have here."
+    her flirting "Farmers have to be in good physical condition too!"
+    sara normal "Pavel is already greeting everyone. Let's join him."
+    hide sara
+    hide oleg
+    with moveoutleft
     "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
-    "Wait a minute, I recognize him!"
+    him annoyed "Wait a minute, I recognize him!"
     #BRENNAN ON SCREEN. he looks the same
-    show brennan at quarterright with moveinright
+    show brennan normal at quarterleft with moveinleft
     # Jack definitely doesn't like him, but doesn't have a great reason.
     him surprised "Brennan!"
-    brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
+    brennan happy "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
     him determined "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
-    brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
-    brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
-    her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
-    brennan "I'm really happy to be breathing fresh air, with my feet on solid ground again."
-    brennan "How is your daughter? How old is she now in Earth years?"
-    him "She's almost seven. You still don't look a day over 30."
-    brennan "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
-    him "..."
-    brennan "You don't look like you've aged too badly, considering how much sun you must get."
-    brennan "Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
+    brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
+    brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
+    her happy "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
+    brennan happy "I'm really happy to be breathing fresh air, with my feet on solid ground again."
+    brennan normal "How is your daughter? How old is she now in Earth years?"
+    kid annoyed "I'm seven... well, almost seven. It's complicated. Anyway, I'm going to see if they'll let me look inside the shuttle!"
+    hide kid with moveoutright
+    her flirting "You still don't look a day over 30."
+    brennan normal "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
+    him annoyed "No wonder you didn't want to stay on Earth."
+    brennan happy "You don't look like you've aged too badly, considering how much sun you must get."
+    him angry "Wow, really? Martin just died of skin cancer last year and you make a sun exposure joke?"
+    brennan angry "Sorry...I didn't know."
+    her concerned "Of course you didn't."
+    brennan normal "Anyway... Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I whistled long and loud."
-    him angry "Hey, listen up! Quiet down, everyone!"
-    show brennan at center with dissolve
-    brennan "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
-    brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
-    brennan "I sent out the assignments already, so try to find each other!"
-    hide brennan with dissolve
+    him surprised "Hey, listen up! Quiet down, everyone!"
+    hide him
+    hide her
+    hide sara
+    with moveoutleft
+    show brennan normal at center with move
+    brennan happy "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
+    brennan normal "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
+    brennan normal "I sent out the assignments already, so try to find each other!"
+    scene plain with fade
     show him normal at midleft
     show her normal at center
-    show chaco at midright
+    show chaco normal at midright
     with dissolve
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
     # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
-    menu chaco_coversation_loop:
-        "What should I ask him?"
-        "How was the shuttle ride?":
-            him "How was the trip over?"
-            chaco "Fine."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Was it hard to adjust?":
-            him "Did it take a while to adjust to living in such a small space?"
-            chaco "No."
-            him "I felt so cramped when I came over. Sometimes I just wanted some fresh air so badly, I felt like I would die."
-            chaco "They gave us sleeping medicine part of the time."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Do you have any hobbies?":
-            him "What do you like to do in your free time?"
-            chaco "Look at the stars."
-            him "Well this is a great place for stargazing. We've had to invent a lot of new constellations though."
-            chaco "Sounds interesting."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Do you have a family?":
-            him "Is anyone waiting for you back on Earth?"
-            chaco "No."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What is your favorite color?":
-            him "What's your favorite color?"
-            chaco "Blue."
-            him "Light blue or dark blue?"
-            chaco "Dark blue."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What do you like to eat?":
-            him "What's your favorite food?"
-            chaco "Steak."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What do you think of Brennan?":
-            him "How do you like Brennan?"
-            chaco "He talks too much. And he worries too much."
-            him "Sounds about right."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Are you religious?":
-            him "Do you believe in God?"
-            chaco "Yes."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What is your blood type?":
-            him "What's your blood type?"
-            chaco "O positive."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "How tall are you?":
-            him "How tall are you?"
-            chaco "172 centimeters."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "If you were stuck on a desert island with all of your coworkers, who would you eat first?":
-            him "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
-            chaco "Hmmm. Whoever died first."
-            him "That's a practical answer."
-            chaco "I'm practical."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
+    label chaco_coversation_loop:
+        show him normal
+        show her normal
+        with dissolve
+        menu:
+            "What should I ask him?"
+            "How was the shuttle ride?":
+                him surprised "How was the trip over?"
+                chaco "Fine."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Was it hard to adjust?":
+                him surprised "Did it take a while to adjust to living in such a small space?"
+                chaco "No."
+                her happy "I felt so cramped when I came over. Sometimes I just wanted some fresh air so badly, I felt like I would die."
+                chaco "They gave us sleeping medicine part of the time."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Do you have any hobbies?":
+                him surprised "What do you like to do in your free time?"
+                chaco "Look at the stars."
+                him happy "Well, this is a great place for stargazing. We've had to invent several new constellations though."
+                chaco "Sounds interesting."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Do you have a family?":
+                him concerned "Is anyone waiting for you back on Earth?"
+                chaco "No."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What is your favorite color?":
+                him surprised "What's your favorite color?"
+                chaco "Blue."
+                him determined "Light blue or dark blue?"
+                chaco "Dark blue."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What do you like to eat?":
+                him surprised "What's your favorite food?"
+                chaco "Steak."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What do you think of Brennan?":
+                him annoyed "How do you like Brennan?"
+                chaco "He talks too much. And he worries too much."
+                him normal "Sounds about right."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Are you religious?":
+                him surprised "Are you religious? Do you believe in God?"
+                chaco "Yes."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What is your blood type?":
+                him surprised "What's your blood type?"
+                chaco "O positive."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "How tall are you?":
+                him surprised "How tall are you?"
+                chaco "172 centimeters."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "If you were stuck on a desert island with all of your coworkers, who would you eat first?":
+                him surprised "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
+                chaco "Hmmm. Whoever died first."
+                him normal "That's a practical answer."
+                chaco "I'm practical."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
 
     label twenty_questions:
         "I feel like we're playing 20 questions here! He's probably overwhelmed from the arrival."
@@ -1588,69 +1606,114 @@ label community11:
     if no_luxuries:
         jump no_luxuries
     else:
-        brennan "We might need some help unpacking. RET sent a package for you guys, so come unpack it!"
-        him "I can help you with that."
-        him "New batteries for almost everything! And a few new tablets."
-        if asked_only_medicine:
-            "The exact medicine for Martin came! They included a bunch of other stuff, but some of it wasn't exactly what wanted."
-            "The Perón family is crying happily."
-            her "Hey, where's the Gouda cheese culture? I was really looking forward to it."
+        scene community_center with fade
+        show brennan normal at quarterright
+        show him normal at center
+        with dissolve
+        brennan normal "We might need some help unpacking. RET sent a package for you guys, so come unpack it!"
+        him determined "I can help with that."
+        hide brennan with moveoutright
+        him surprised "New batteries for almost everything! And a few new tablets."
 
+        if asked_only_medicine:
+            show her normal at quarterleft
+            with moveinleft
+            show natalia normal at right
+            show martin normal at quarterright
+            with moveinright
+            "The exact medicine for Martín came! They included a bunch of other stuff, but some of it wasn't exactly what we wanted."
+            "The Perón family is crying happily and hugging Martín."
+            her annoyed "Hey, where's the Gouda cheese culture? I was really looking forward to it."
+
+            hide martin
+            hide natalia
+            with moveoutright
+            hide her with moveoutleft
+            show thuc normal at midleft with moveinleft
+            show sara normal at midright with moveinright
             #refer back to community8 for this
             if talked_to_Thuc:
-                thuc "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
+                thuc sad "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
             else:
-                thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
+                thuc normal "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
             if talked_to_Sara:
-                sara "I asked for a bicycle, is that here?"
-                him "No, I'm sorry. I couldn't fit everything into the message."
-                sara "A bike would probably get tons of flat tires around here anyway."
-                him "This looks like a software upgrade for the 3D printer though!"
+                sara normal "I asked for a bicycle, is that here?"
+                him concerned "No, I'm sorry. I couldn't fit everything into the message."
+                sara sad "A bike would probably get tons of flat tires around here anyway."
+                him normal "This looks like a software upgrade for the 3D printer though!"
             else:
-                sara "It looks like there's a software upgrade here for the 3D printer."
+                sara normal "It looks like there's a software upgrade here for the 3D printer."
+                him normal "Great!"
+
+            hide sara
+            hide thuc
+            with dissolve
+            show kevin normal at quarterright with moveinright
+            show pavel normal at quarterleft, behind him
+            with moveinleft
 
             if talked_to_Kevin:
                 kevin "Did they send the rest of Tulip House?"
-                him "I'm not sure. There's a big hard drive here for the library though!"
+                him concerned "I'm not sure. There's a big hard drive here for the library though!"
                 kevin "There's bound to be something good in there."
             else:
                 kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
-                him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+                him happy "It looks like they sent us a hard drive for the library. You and Pete can look over it."
                 kevin "Looking forward to it!"
 
-            pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
-            him "Oh, I hope so!"
-            pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            pavel normal "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            him happy "I sure hope so! This garlic looks great!"
+            pavel normal "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            $ enable_crop("garlic")
 
             if (talked_to_Pavel and is_liaison):
-                him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-                pavel "I'm so happy right now!"
+                him normal "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+                pavel sad "I'm so happy right now!"
 
         else:
-            "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
+            show her normal at left
+            show sara normal at midleft
+            with moveinleft
+            show natalia normal at right
+            show martin angry at quarterright
+            with moveinright
+            "RET sent medicine for Martín, but when I gave it to him, he and Natalia looked crestfallen."
             natalia "This isn't the kind of medicine we needed! This is useless!"
 
             if is_liaison:
-                natalia "Did you tell them what kind of medicine Martin needed?"
-                him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
+                natalia "Did you tell them what kind of medicine Martín needed?"
+                him concerned "I told them Martín needed medicine, and I assumed that they knew what kind from the doctor's reports."
             else:
-                natalia "Sara, why didn't you tell them the exact kind of medicine Martin needed?"
-                sara "I'm sorry, I thought they knew what he needed! I just put medicine."
+                natalia "Sara, why didn't you tell them the exact kind of medicine Martín needed?"
+                sara sad "I'm sorry, I thought they knew what he needed! I just put medicine."
 
-            her "Oooh, Gouda cheese culture!"
+            her happy "Oooh, Gouda cheese culture!"
+
+            hide her
+            with moveoutleft
+            hide martin
+            hide natalia
+            with moveoutright
+
+            show thuc normal at midright with moveinright
 
             if talked_to_Thuc:
-                thuc "I can start growing these peanuts right away!"
+                thuc normal "I can start growing these peanuts right away!"
                 # TODO: test this
                 $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
             if talked_to_Sara:
-                sara "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
+                sara normal "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
             else:
-                sara "It looks like there's a software upgrade here for the 3D printer."
+                sara normal "It looks like there's a software upgrade here for the 3D printer."
+
+            hide sara with moveoutleft
+            hide thuc with moveoutright
+            show kevin at midright with moveinright
+            show pavel at midleft with moveinleft
 
             if talked_to_Kevin:
                 kevin "Did they send the rest of Tulip House?"
@@ -1661,18 +1724,18 @@ label community11:
                 him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
                 kevin "Looking forward to it!"
 
-            pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
-            him "Oh, I hope so!"
+            pavel normal "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            him surprised "Oh, I hope so! Look, garlic!"
             pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
-            # TODO: test this
             $ enable_crop("garlic")
 
             if (talked_to_Pavel and is_liaison):
-                him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-                pavel "I'm so happy right now!"
+                him normal "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+                pavel sad "I'm so happy right now!"
 
+        scene black with fade
         if asked_only_medicine:
-            "Thanks to the cancer medicine, Martin was able to work on the farm for six more months before dying a peaceful death."
+            "Thanks to the cancer medicine, Martín was able to work on the farm for six more months before dying a peaceful death."
             scene church with fade
             "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
@@ -1682,27 +1745,32 @@ label community11:
         else:
             jump Martin_dead_sooner
             $ luddites += 1
-    return
+        return
 
     label no_luxuries:
+        scene community_center with fade
+        show brennan normal at midright
+        show him normal at center
+        show natalia normal at midleft
+        show martin normal at quarterleft
+        with dissolve
         brennan "Can you help us unpack?"
-        him "That's what we came out here for."
-        natalia "Did RET send any medicine for Martin?"
-        brennan "No, sorry, I think they just sent some new batteries and stuff."
+        him determined "That's what we came out here for."
+        natalia "Did RET send any medicine for Martín?"
+        brennan normal "No, sorry, I think they just sent some new batteries and stuff."
         natalia "They don't care what happens to us!"
-        martin "I would have liked to live a little longer, but in the end, we can only do so much."
-        jump Martin_dead_sooner
+        martin angry "I would have liked to live a little longer, but in the end, we can only do so much."
         $ luddites += 1
 
         label Martin_dead_sooner:
             scene church with fade
-            "Without the medication, Martin's condition swiftly deteriorated, and he died later that week."
+            "Without the medication, Martín's condition swiftly deteriorated, and he died the next week."
             "The family had a small funeral and buried him in the colony graveyard next to Josephina."
             "Tomás and Joanna Nguyen decided to help out their mother, but they weren't prepared to take full responsibility for the farm."
             "We hoped they could learn what they needed to know from Natalia and their neighbors."
-            #TODO: should community 10's decision affect this?
-        return
+    return
 
+# TODO: community editing ends here
 # 12 - missing cow
 label community12:
     $ sara_investigates = False
@@ -2996,7 +3064,7 @@ label community17:
         "Everyone helps themselves and sits down--some on tables and some on the ground."
         martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
         him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
-        "Martin takes a bite."
+        "Martín takes a bite."
         martin "It's not bad. But you should be careful not to mix it too much after you add the flour."
         him "I know..."
         martin "You might have been better off just leaving out the flour completely."
