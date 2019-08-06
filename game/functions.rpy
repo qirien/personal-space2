@@ -355,6 +355,7 @@ label bedroom_scene(show_baby=False, sleeping=True):
     show bedroom_overlay
     show night_overlay
     with dissolve
+    return
 
 ##
 # Poem making function
