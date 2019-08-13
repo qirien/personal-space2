@@ -2976,27 +2976,57 @@ label community16:
 
     return
 
-
+# COMMUNITY 17
+# Harvest festival; who do you invite? chance to eat jellyfish...
 label community17:
+    $ community_17_activity = ""
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
-    "This year I'm in charge of inviting guests. Who will I invite?"
+    if (is_liason):
+        "Someone needs to plan it... but who?"
+        menu:
+            "Plan it yourself.":
+                $ community_17_planparty = True
+                "I decided to plan it myself. I knew what made a good harvest festival."
+                "First, I needed to decide whom to invite."
+
+            "Ask Sara and [her_name] to plan it.":
+                "I asked Sara and [her_name] to plan the festival. They made a good team for that sort of thing. But they wanted to know who was invited."
     menu:
-        "The miners and the luddites." if ((luddites >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
+        "The miners and Pete's group." if ((luddites >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
+            "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_luddites = True
             $ invited_miners = True
             jump ludditesandminers
-        "The luddites." if (luddites >= 7):
+        "Pete's group." if (luddites >= 7):
+            "I thought it'd be a good idea to invite Pete's group."
             $ invited_luddites = True
             jump justluddites
         "The miners." if (miners >= 7):
+            "I guess we should invite the miners."
             $ invited_miners = True
             jump justminers
-        "The usual--all the other colonists.":
-            $ pass
+        "The usual-- just all the other colonists.":
+            "We don't need to invite anyone else. It's a harvest festival, after all, so we should celebrate everyone who did the actual farming."
             jump justcolony
 
-    label ludditesandminers:
-        "Pete offered to host, and slaughtered a bull for the occasion."
+    if (community_17_planparty):
+        "We needed some activities."
+        menu:
+            "What kinds of activities should we have?"
+            "Contests.":
+                $ community_17_activity = "contests"
+                "I decided to ask Julia to organize some contests. She always liked to have a say in things."
+            "Icebreaker games.":
+                $ community_17_activity = "games"
+                "I figured we could play some easy social games to get everyone talking. I asked Thuc to be in charge of that; he was good at making everyone feel relaxed."
+            "Performances.":
+                $ community_17_activity = "performances"
+                "We had a lot of talent in our little community -- it would be a great chance to hear people perform."
+                "I asked Ilian to be in charge of that. He loved music, and he's such a critic that he'll only ask people with real talent."
+        "Last was the food. I figured I'd just have everyone bring something."
+
+    if (invited_luddites and invited_minters):
+        "Pete offered to slaughter a steer for the occasion."
         "Almost all the miners came, bringing some bean stew."
         brennan "This beef is amazing. Do you have any extra I could buy from you?"
         pete "You know, credits are not worth that much too me right now."
@@ -3007,15 +3037,14 @@ label community17:
         pete "Any metals?"
         brennan "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
         pete "Great. Now I just need to figure out how to make a bellows!"
-        "The luddites brought a strange seafood dish."
-        jump jellyfishside
+        "Pete also brought a strange seafood dish."
 
-    label justluddites:
-        "Pete offered to host, and slaughtered a bull for the occasion."
-        "He also brought a strange side dish."
-        jump jellyfishside
+    elif invited_luddites:
+        "Pete offered to slaughter a steer for the occasion."
+        "The colonists brought their best vegetables and fruits, and even some different kinds of bread and pudding."
+        "Pete also brought a strange side dish."
 
-    label jellyfishside:
+    if invited_luddites:
         him "So... what is this?"
         pete "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
         pete "They start stacking on top of one another and they send off these giant eggs."
@@ -3031,14 +3060,11 @@ label community17:
             "Don't try it.":
                 him "I'll pass."
                 pete "Suit yourself."
-                $ pass
         him "Can you come do a class on cattle health? You're the only expert around." #see community 14 for who got the cattle
-        pete "I could, if you can give me a few more tools."
-        pete "I can live without most things, but I could use another good knife and some twine."
+        pete "I could, if you can help me out with a knife and some twine."
         him "I think we can arrange for that."
-        jump justcolony
 
-    label justminers:
+    elif invited_miners:
         "We invited the miners to join us. After all, their success is what enables us to continue to live here."
         brennan "We didn't have time to go hunting, but we DO have time to soak beans."
         him "Is this a soup or a dip? It smells... different."
@@ -3054,47 +3080,192 @@ label community17:
                 brennan "You don't like beans?"
                 him "I'll stick to what I know."
                 brennan "How very... predictable of you."
-        jump justcolony
 
-    label justcolony:
-        #which background? this is the end for all the other events as well. maybe don't have the luddites host if it's too complicated, or devise alternate small talk.
-        # Have some kind of bonfire background?
-        scene bonfire with fade
-        "I set my dish next to the ones from the other families on the buffet table."
-        "Everyone helps themselves and sits down--some on tables and some on the ground."
-        martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
-        him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
-        "Martín takes a bite."
-        martin "It's not bad. But you should be careful not to mix it too much after you add the flour."
-        him "I know..."
-        martin "You might have been better off just leaving out the flour completely."
-        him "Did you try Thuc's goat curry? Where did he get the spices for that?"
-        pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
-        him "It's been so long since I've had these kinds of spices. It tastes amazing."
-        pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
-        thuc "Thanks to you my children know the difference between cumin and cardamom!"
-        him "Which goat are we eating tonight?"
-        thuc "Shorts."
-        pavel "That's a weird name for a goat."
-        thuc "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
-        thuc "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
-        julia "Oh, and don't forget Cape!"
-        julia "Last year Gardenia insisted on wearing this cape she made everywhere."
-        julia "She brought it out today to dress up for the begging."
-        "After the children finished eating, they ran around with pails of water."
-        "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
-        "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
-        "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
-        "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
-        pavel "It's a shame we don't have any chocolate to give them."
-        julia "I miss it too."
-        julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
-        thuc "They still sound pretty entitled to me!"
-        him "Some things never change."
+    scene community_center with fade
+    show thuc normal at quarterleft
+    show julia normal at left
+    show pavel normal at quarterright
+    show him normal at midleft
+    show natalia normal at midright
+    with dissolve
+    "I set my dish next to the ones from the other families on the buffet table."
+    "Everyone helped themselves and sat down--some at tables and some on the ground."
+    natalia "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
+    him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
+    natalia "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
+    him "I know..."
+    natalia "You might have been better off just leaving out the flour completely."
+    him "Did you try Thuc's goat curry? Where did he get the spices for that?"
+    pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
+    him "It's been so long since I've had these kinds of spices. It tastes amazing."
+    pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
+    thuc "Thanks to you my children know the difference between cumin and cardamom!"
+    him "Which goat are we eating tonight?"
+    thuc "Shorts."
+    pavel "That's a weird name for a goat."
+    thuc "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
+    thuc "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
+    julia "Oh, and don't forget Cape!"
+    julia "Last year Gardenia insisted on wearing this cape she made everywhere."
+    julia "She brought it out today to dress up for the begging."
+    "After the children finished eating, they ran around with pails of water."
+    "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
+    "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
+    "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
+    "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
+    pavel "It's a shame we don't have any chocolate to give them."
+    natalia "I miss it too."
+    julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
+    thuc "They still sound pretty entitled to me!"
+    him "Some things never change."
 
+    scene community_center with fade
+    if (community_17_activity == "contests"):
+        show julia normal at center with dissolve
+        "After everything was cleaned up, it was time for our contests."
+        "Julia announced the different events. I wonder if I should participate...?"
+        menu:
+            "Which one should I enter?"
+            "The seed spitting contest.":
+                "I had spent many days sitting on the back porch spitting seeds with my cousins. I knew all the tricks and felt pretty confident I could do well."
+                "Kevin apparently had managed to grow a few watermelons, though it wasn't really warm enough for it."
+                "The contest was simple: spit two seeds as far as possible. Whoever spits the farthest seed wins."
+                julia "Our first contestant will be... Natalia. Huh. Spitting is something you might actually be good at."
+                show natalia normal at midleft with moveinleft
+                natalia "You bet I am!"
+                show natalia at midright with move
+                "She got a good seed in mouth, backed up several feet, and then ran up to the line, spitting at the last possible second with an audible 'pbbt'."
+                "Natalia's seeds went at least ten meters."
+                hide natalia with moveoutright
+                "This was going to be a tough contest."
+                show sara normal at midleft with moveinleft
+                "Sara entered, but her first one ended up dribbling out of her mouth. She tried to spit the second one better, but it ended up hitting Julia on the chin."
+                julia angry "Out of bounds!"
+                hide sara with moveoutright
+                show kid determined at midleft with moveinleft
+                show julia normal with dissolve
+                "[kid_name] gave it a try. She spat the first one high in the air, but it didn't go very far. The second she spat hard, down at the ground, and it bounced and made it just past Natalia's."
+                julia "Well done, [kid_name]! That was spectacular!"
+                show kid happy with moveoutright
+                show him determined at midleft with moveinleft
+                "Then it was my turn. I was the last contestant."
+                "I stepped up to the line, got a big fat seed in my mouth, and got ready to spit."
+                show kid concerned at left with moveinleft
+                "[kid_name]'s face caught my eye and I paused. She looked... worried."
+                menu:
+                    "What should I do?"
+                    "Give it my best effort.":
+                        "I had to give it my best effort. If [kid_name] won, I wanted it to be for real."
+                        "I flicked my head to give the seed great momentum. It sailed through the air."
+                        "The seed bounced once, twice, and then stopped."
+                        julia "The first seed is behind Natalia's! So far [kid_name] is still winning!"
+                        "No way. I had one seed left. I was going to make this one count!"
+                        "I reared my head back, and spat with my whole body."
+                        "The seed bounced and rolled... just ahead of [kid_name]'s."
+                        julia "We have a winner! [his_name]'s went the furthest!"
+                        him happy "And [kid_name]'s a close second!"
+                        show kid nervous with dissolve
+                        $ demanding += 1
+
+                    "Let [kid_name] beat you.":
+                        "I wanted to win... but I wanted [kid_name] to win even more."
+                        "I made a big show of spitting hard, but I didn't give it my secret head flick that my cousins and I had worked out."
+                        "It landed way behind [kid_name]'s."
+                        "My second landed near the first."
+                        show kid happy with dissolve
+                        him concerned "Oh man! I used to be so good at this!"
+                        kid normal "I beat you! I beat you, dad!"
+                        him happy "You sure did!"
+                        hide him with moveoutleft
+                        show kid at midleft with move
+                        julia normal "We have a winner!"
+                        kid laugh "I can't believe it!"
+                        $ responsive += 1
+
+            "The apple peeling contest.":
+                "I'm pretty handy with a knife, so I figured I'd try the apple peeling contest. We all got an apple and a knife, and our job was to make as long of a peel as possible without it breaking."
+                show pavel normal at left
+                show her normal at quarterleft
+                show him normal at midleft
+                with moveinleft
+                show zaina normal at right
+                show kevin normal at quarterright
+                show thuc normal at midright
+                with moveinright
+                julia "On your mark... get set... GO!"
+                "Even though she made it sound like a race, I tried to take my time. I had to make the peeling narrow enough to be very long, but wide enough that it wouldn't break..."
+                "I felt bad for Kevin, whose peel kept breaking. He was trying to make it way too thin."
+                kevin "This is more challenging than it appears."
+                zaina "Yeah, I think I'm just going to eat mine. None of mine are as long as theirs!"
+                hide kevin
+                hide zaina
+                with moveoutright
+                "Pavel kept dropping the knife. He used to be good at this sort of thing, but he just wasn't as dextrous as he used to be."
+
+                hide pavel with moveoutleft
+                "[her_name] finished first with a peel about as long as she was tall."
+                her happy "I do have a lot of practice with a scalpel!"
+                "But her peel was much wider than mine, so I knew my peel would be longer."
+                "I was more worried about my real competition - Thuc."
+                show him determined with dissolve
+                "If he was as good at using knives as he was at juggling them, I was in for a tough challenge."
+                "He and I were both cutting slowly and carefully, our eyes fixed on the sharp blade cutting the peel."
+                show him annoyed with dissolve
+                julia "What a contest we have here! Both evenly matched! Both slicing with such care and precision!"
+                natalia "C'mon, we know who you want to win!"
+                julia "I am a neutral announcer! I am completely impartial, even if one of the contestants is my husband!"
+                if invited_luddites:
+                    pete "C'mon, [his_name]! You got this!"
+                if invited_miners:
+                    brennan "My money's on Thuc. There's no way [his_name] will win this."
+                    if (has_strong_marriage()):
+                        her normal "Are you talking actual money? How much? Because I'm betting on [his_name]."
+                    else:
+                        her concerned "They're so evenly matched; either one could win this."
+                "I tried to ignore all the comments and concentrate."
+                show him concerned with dissolve
+                "Finally, we were both finished. We laid the peels out on the ground carefully so they wouldn't break. It was going to be close..."
+                julia "And the winner is..."
+                show him surprised
+                if (invited_miners and invited_luddites and has_strong_marriage()):
+                    julia "[his_name]!"
+                    him happy "Yes!!!"
+                else:
+                    julia "Thuc!"
+                    thuc "Wow, really?"
+                    julia "Good job, sweetie."
+            "The arm wrestling contest.":
+                "I work hard all day, so I'm probably pretty strong, right? Though I guess a lot of other people do, too..."
+                # TODO: Finish this
+            "Don't enter any contests.":
+                $ pass
+    elif (community_17_activity == "games"):
+        show thuc normal at center with dissolve
+        "Thuc got up and announced we were going to start off with some group juggling."
+        him happy "No knives, I hope!"
+        thuc "Not for you dinosaurs!"
+        "We got into a big circle and tossed around an apple, saying the person's name as we threw it to them."
+        "Then he added another apple, and another, and another."
+        "When we got to about fifteen it was complete chaos, but everyone was laughing."
+        thuc "Okay! For our next game, I need a volunteer to leave the room!"
+        "No one was raising their hand except [kid_name]. I figured it might be best if an adult went first to show everyone how it was done, so I raised my hand, too."
+        thuc "[his_name]! I can always count on you to be a guinea pig."
+        "I left the room, and when I came back, they had formed a line of people."
+
+
+
+    elif (community_17_activity == "performances"):
+        show ilian normal at center with dissolve
+        "Ilian,"
+
+    scene bonfire with fade
+    "We ended the night grouped around a blazing bonfire."
+    "The flames' warmth warded off the damp chill growing in the night air."
+
+    scene black with fade
     if ate_jellyfish:
         #move to a later, more sparse event?
-        "After the dinner, you can't stop thinking about the seafood that Pete brought."
+        "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
         "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
         if lily_mad_at_RET:
@@ -3389,7 +3560,7 @@ label community20:
         him "Hmm. I haven't heard much from them so I assume they're happy."
         if luddites > 10:
             him "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
-            pavel "That's true, but we're setting a precedent here. What if in 80 years, the luddites are 15-20 people and suddenly want to join back with us?"
+            pavel "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him "That doesn't sound like a problem."
             pavel "Well, it's like RET is rehiring them, since we grow food for the miners and for ourselves."
             him "They could live near us and not work for RET."
@@ -3745,7 +3916,7 @@ label community21:
 label community22:
     if (miners > 10) and (luddites > 9) and (is_liaison):
         nvl clear
-        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing the luddites' home."
+        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing his home."
         brennan_c "Except I don't know how to get ahold of Pete."
         him_c "Oh, he has a radio now. I can sort of text him with it."
         brennan_c "How 21st-century. Ask him if he can meet tomorrow evening at the canteen in the miner camp. Around 5pm, if he has a watch."
@@ -3842,14 +4013,14 @@ label community22:
         else:
             nvl clear
             sara_c "Hey [his_name]. You knew Pete pretty well, right?"
-            sara_c "Brennan is going to start mining in the mountain where Pete and the other luddites are living. Could you give us some advice on how to proceed?"
+            sara_c "Brennan is going to start mining in the mountain where Pete and his group are living. Could you give us some advice on how to proceed?"
             sara_c "We're trying to decide if we could get him to leave or if we should cut our losses now."
             sara_c "I just added you to the chat."
             jump Pete_stay_or_go
 
         label Pete_stay_or_go:
             nvl clear
-            zaina_c "The luddites are currently living in caves in that mountain."
+            zaina_c "Pete's group is currently living in caves in that mountain."
             zaina_c "Pete wouldn't let me inside to explore them. He said that they weren't moving under any circumstance and that we should mine somewhere else."
             zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
             brennan_c "There he goes, acting like he owns the place. Sheesh. I don't really want to force him out, but that mountain is the best place to mine."
@@ -3934,7 +4105,7 @@ label community22:
                         pete "Fine. We'll leave the caves. Just give us five days."
                         him "Okay. Let her go."
                         "Bandile let go of Helen. She looked at me like I was vomit."
-                        "The luddites left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
+                        "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
                         $ luddites = 0 #or a large minus to the relationship
                         $ miners += 1
@@ -3975,7 +4146,7 @@ label community22:
                         him_c "What have you got against Pete?"
                         brennan_c "It's nothing personal. We've already established that it's the most efficient place to mine for rare metals."
                         brennan_c "The more efficient we are at mining, the better chance RET has to support us for a longer period of time."
-                        him_c "But we'll have to sacrifice our relationship to the luddites to do so."
+                        him_c "But we'll have to sacrifice our relationship with Pete's group to do so."
                         zaina_c "It was their decision to leave the colony, and it's our decision to keep mining the mountain."
                         jump mining_anyway
 
@@ -3997,7 +4168,7 @@ label community22:
 
 #                else:
                 brennan_c "It's too risky not to mine it. We're going to continue whether they're there or not."
-                brennan_c "It's not like the luddites have ever stuck it out for us."
+                brennan_c "It's not like Pete has ever stuck it out for us."
                 him_c "Not sure why you asked my advice if you're just going to do what you planned anyway."
                 brennan_c "I thought you might have an idea of how to convince him to leave. He obviously doesn't need more money."
                 him_c "I don't think anything you do would convince him to leave."
@@ -4034,7 +4205,7 @@ label community22:
         brennan_c "Can he show me the deed to the land?"
         him_c "You know we don't have deeds for anything here."
         brennan_c "I think we've talked about this before. If we don't mine effectively, we'll lose RET's support. We need the medical supplies and materials they send us periodically."
-        him_c "The luddites don't see it that way."
+        him_c "Pete's group doesn't see it that way."
         brennan_c "I don't have much else in my persuasive arsenal. It's dangerous for them to stay, and leaving would help our entire community."
         him_c "Surely there are other mountains you could mine?"
         brennan_c "There are, but Zaina has been exploring and taking samples over the last few years. That mountain has the best chance of having the most rare metals for a 50-mile radius."
