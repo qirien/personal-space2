@@ -16,3 +16,4 @@ game/saves
 art/
 resources
 .android.json
+*.ogg

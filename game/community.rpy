@@ -14,7 +14,9 @@ label community_intro:
     # show Julia and Ilian?
     "There were some I got along with..."
     # show Thuc and Natalia and Pete?
-    hide pete, thuc, natalia
+    hide pete
+    hide thuc
+    hide natalia
     with dissolve
     show julia normal at midleft
     show ilian normal at midright
