@@ -355,3 +355,12 @@ label bedroom_scene(show_baby=False, sleeping=True):
     show bedroom_overlay
     show night_overlay
     with dissolve
+    return
+
+##
+# Poem making function
+##
+label make_poem:
+    $ word_board.generate_display_words()
+    call screen plugin_poetry(word_board)
+    return

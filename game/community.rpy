@@ -158,7 +158,6 @@ label community1:
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
             zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
-            # TODO: Show sprites for people as we talk about them.
             him surprised "I guess I can."
             scene stars with fade
             label colony_gossip:
@@ -172,11 +171,14 @@ label community1:
                     him "[her_name] is my wife and she's also the doctor in our clinic."
                     him "She tries to be objective, but she also feels passionate about her job."
                     zaina "I think that describes most of us."
+                    show her determined with dissolve
                     him "Some people have complained that her bedside manner is a little callous."
                     him "So her objectivity is more relevant to customer satisfaction than, say, mine."
                     kevin "Are you implying that your carrots cannot feel your love?"
                     him "Correct. Unless that love manifests itself in better care."
-                    hide her with dissolve
+                    hide her
+                    hide kid
+                    with dissolve
                     $ tell_Kelly = True
                     jump colony_gossip
                 "Naomi and Pavel" if not tell_Graysons:
@@ -212,12 +214,12 @@ label community1:
                     hide lily with dissolve
                     $ tell_Lily = True
                     jump colony_gossip
-                "Martin and Natalia" if not tell_Perons:
+                "Martín and Natalia" if not tell_Perons:
                     show martin normal at midleft
                     show natalia normal at midright
                     with dissolve
-                    him "Martin and Natalia Peron have four kids. Or, well, they used to have five."
-                    zaina "Used to?"
+                    him "Martín and Natalia Perón grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, well, four now, I guess."
+                    zaina "Now?"
                     him "There was an accident... and their daughter died when she was four years old."
                     zaina "What a shame. What happened?"
                     menu:
@@ -225,7 +227,7 @@ label community1:
                         "Pete ran over her with his tractor.":
                             him "Pete was driving his tractor and didn't see her in time..."
                             zaina "How awful. I bet he still feels bad about it."
-                            him "The Perons have a vigil every year to remember her."
+                            him "The Peróns have a vigil every year to remember her."
                             zaina "Are accidents like that common?"
                             him "No, I mean, usually accidents aren't so bad that someone dies."
                             him "I'm not sure if Natalia will ever forgive Pete."
@@ -234,9 +236,9 @@ label community1:
                             zaina "Was it a self-driving tractor or something?"
                             him "No, one of my friends was driving it."
                             zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
-                            him "Yeah. The Perons are still pretty sad about it and hold a vigil every year where it happened."
+                            him "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
                             # TODO: give bonus to luddites here?
-                    him "Their kids are getting older and should be able to help around the colony more."
+                    him "Anyway, their kids are old enough to help around the colony a lot. Their oldest son just got married."
                     hide martin
                     hide natalia
                     with dissolve
@@ -248,7 +250,7 @@ label community1:
                     with dissolve
                     him "If you ever need to look something up or make something, our library is the place to go."
                     him "Pete is our librarian and also our cattle rancher."
-                    him "He has a wife, Helen, but I don't see much of her since their ranch is pretty far out."
+                    him "He has a wife and a son about [kid_name]'s age. Travis, that's his name."
                     hide pete
                     hide helen
                     with dissolve
@@ -440,29 +442,27 @@ label community3:
         "I don't know if anyone actually did anything about it, but the thought was there."
         return
 
-# TODO: revision stopped here
 # 4 - Community Liaison
 label community4:
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
     show pavel normal at center
     "Pavel, our mayor, called a town meeting."
-    pavel "Rare Earth Tech sent us an instantaneous message, which was limited to 140 characters because of the limitations of the technology."
-    pavel "This is what it said:"
-    #TODO: separate style for RET messages?
+    pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 250 characters, you know."
+    pavel "They said:"
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
-        ret_c "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
+        ret_c "Please elect a liaison to help RET & colonists communicate & resolve conflicts."
     elif(pstyle == "authoritarian"):
-        ret_c "We need a designated contact with the colony that u trust. Send ur decision."
+        ret_c "You must choose a liaison. Must be someone trustworthy, flexible, to work with colonists and us."
     elif(pstyle == "permissive"):
-        ret_c "U shld choose some1 2 represent the colony 2 us."
+        ret_c "We think it would facilitate interactions between RET and colonists, if you could pick one person as a liaison..."
     else:
-        ret_c "Please elect a liason to help RET and colonists communicate and resolve conflicts of interest."
+        ret_c "Please elect a liaison to help RET and colonists communicate and resolve conflicts of interest."
     pavel "It's my job to encourage whatever is best for the colony."
     show pavel sad #TODO: this transition is weird... but is it weirder to keep him in the same pose for so long? His arm gets tired!
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
-    pavel normal "The liason will have to understand what RET will want and tell them what's possible and what's not."
+    pavel normal "The liaison will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
     pavel sad "There may be times when you have to make unpopular decisions, or take the blame for mistakes that weren't yours."
     pavel normal "I doubt anyone will volunteer for extra work, so I'd like everyone to nominate someone tonight."
@@ -472,80 +472,67 @@ label community4:
     show him normal at center
     show lily normal at midleft
     with dissolve
-    thuc "Wow, who has time for that extra work?"
-    thuc "It's hard enough just raising five goats and ten kids."
-    lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liason work."
-    show him happy
-    him "At least you know your own personality well, although I think that you don't give yourself enough credit."
-    show lily angry
-    lily "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
-    show him normal
-    show lily
-    lily "Who do you think would be a good candidate for liasonship?"
-    show him determined
-    him "Hmm... Naomi seems like someone who could de-escalate conflict well."
-    show thuc sad
-    thuc "But she's married to Pavel, so she might have a conflict of interest..."
-    show him surprised
-    him "How so?"
-    show thuc
+    thuc "Wow, who has time for that extra work? It's hard enough just raising five goats and ten kids."
+    lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
+    him happy "At least you know your own personality well, although I think that you don't give yourself enough credit."
+    lily angry "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
+    show pete normal at quarterleft with moveinleft
+    pete normal "We need someone who'll stand up for us. Speak out against their stupid rules."
+    him concerned "But it needs to be someone tactful, or else RET won't listen to them..."
+    hide pete with moveoutleft
+    lily normal "Who do you think would be a good candidate for liaisonship?"
+    him determined "Hmm... Naomi seems like someone who could de-escalate conflict well."
+    thuc sad "But she's married to Pavel, so she might have a conflict of interest..."
+    him surprised "How so?"
     thuc "Like if she had to choose between the best choice for RET or something Pavel would be happy with, she might choose what Pavel would want for the sake of their marriage."
-    show him normal
-    him "I don't think she would do that. She can make tough decisions."
-    show lily happy
-    lily "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
-    hide thuc with moveoutright
-    show naomi sad at midright with moveinright
+    him determined "I don't think she would do that. She can make tough decisions."
+    lily happy "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
+    show naomi normal at quarterright with moveinright
     naomi "Hello everyone, have you thought of someone to nominate?"
-    him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liason separate from Pavel."
-    show naomi
-    naomi "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
-    show him happy
-    him "Isn't that what we want from a liason?"
-    show lily
-    lily "What does putting the colonists's needs first mean in this context? Our survival has been RET's main goal with establishing this colony."
-    show him normal
-    him "RET didn't really explain why we need a liason."
-    lily "Regardless, I must choose someone. What do you think of Sara?"
-    him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the small beaurocratic work we have."
-    show naomi happy
-    naomi "Now that Oleg is a little older, she might be up to something like this."
-    him "Maybe. Oleg is about the same age as Terra, and she's still quite the handful."
+    him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liaison separate from Pavel."
+    naomi sad "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
+    him happy "Isn't that what we want from a liaison?"
+    lily "What does 'putting the colonists's needs first' mean in this context? Our survival has been RET's main goal with establishing this colony."
+    him determined "RET didn't really explain why we need a liaison."
+    lily normal "Regardless, I must choose someone. What do you think of Sara?"
+    him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
+    naomi happy "Now that Oleg is a little older, she might be up to something like this."
+    him concerned "Maybe. Oleg is about the same age as [kid_name], and she's still quite the handful."
     naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
-    show lily happy
-    lily "And based on your relationships with other colonists, your socialization skills are at least average."
-    show him surprised
-    him "Hang on. I already feel pretty busy just with farming committee meetings, raising Terra, and the farming stuff."
+    lily happy "And based on your relationships with other colonists, your socialization skills are at least average."
+    thuc happy "Yeah! Let's make [his_name] do it!"
+    him surprised "Hang on. I already feel pretty busy just with farming committee meetings, raising [kid_name], and the farming stuff."
     naomi "We're all busy. Someone has to do this."
-    show lily
-    lily "This discussion has helped me decide who to nominate. Thank you."
+    lily normal "This discussion has helped me decide who to nominate. Thank you."
     hide lily with moveoutleft
-    hide naomi with moveoutright
+    hide naomi
+    hide thuc
+    with moveoutright
     menu:
         "Who should I nominate? I can't nominate myself."
 
-        "Sister Naomi, our religious leader and childcare leader.":
-            $ pass
-        "My wife's friend Sara. She's familiar with colony politics since she assists the mayor.":
-            $ pass
-        "My friend Thuc. I think that would be funny.":
-            $ pass
+        "Sister Naomi. She'll do what's best for everyone.":
+            $ colonists += 1
+        "Sara. She's familiar with colony politics since she assists the mayor.":
+            $ miners += 1
+        "Pete. He'll make sure RET doesn't get too much control.":
+            $ luddites += 1
     "After the nominations, we voted for our favorite candidate."
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
         "My fellow colonists elected me to be the new representative."
-        $ is_liason = True
+        $ is_liaison = True
         return
     elif(pstyle == "authoritarian"):
-        "Sara, and Sister Naomi and I were nominated. I had the most votes, but not the majority."
-        $ is_liason = True
+        "Sara, and Sister Naomi and I were nominated. I had the most votes, but not by much."
+        $ is_liaison = True
         return
     elif(pstyle == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
         return
     else:
         "Sara is elected as the new representative."
-        #should a leader of the militia be elected here as well?
+        #TODO: should a leader of the militia be elected here as well?
     return
 
 # 5 - Set aside food for miners?
@@ -555,10 +542,11 @@ label community5:
     $ talked_something = False
     $ talked_canning_dairy = False
     show farm_exterior with fade
-    "Zaina and Kevin discovered Indium nearby and have a plan for how to mine it."
+    "Zaina and Kevin discovered indium and some other valuable resources nearby and developed a mining plan."
+    "They said RET was sending a shuttle of miners that would arrive in several years."
     # It will take 4 Earth years for the miners to arrive. About 8 Talaam years.
     # context/scene for this decision? is it a town meeting? you, Ilian, sara, Pavel?
-    if is_liason:
+    if is_liaison:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
         $ pstyle = get_parenting_style()
@@ -599,23 +587,21 @@ label community5:
                 jump ration_harvest
             "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
                 $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
+                $ miners -= 1
                 jump no_formal_rationing
     else:
         scene community_center with fade
-        show sara at midright
+        show sara normal at midright
         show him normal at midleft
         "Sara called you in to discuss the latest news from RET."
-        sara "RET is sending miners to start mining the Indium that Zaina and Kevin found."
+        sara "RET is sending miners to start mining the indium that Zaina and Kevin found."
         sara "The miners won't arrive for another four Earth years."
         if (whole_harvest_to_storehouse == True):
-            show sara sad
             sara "Ilian tells me that we'll have enough food for them if we start storing a little now."
         else:
-            show sara sad
-            sara "We're not sure if we'll have enough food for them or not."
-        sara "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
+            sara sad "We're not sure if we'll have enough food for them or not."
+        sara normal "We will start storing the surplus of food that keeps the longest. I've started construction of a few silos for dried grains and beans."
         sara "Next harvest we'll start accepting canned goods as well. You can can large amounts in the storehouse, or bring in what you can at home."
-        show sara
         sara "Your hard-won crops won't go unnoticed. Starting today, we'll be issuing encrypted digital currency to pay for your crops, which you can use to buy luxury goods that are coming with the miners."
         sara "I'll be grading your crops against the RET standards."
         show sara sad
@@ -623,7 +609,7 @@ label community5:
         show him surprised
         him "Really? Like who?"
         show sara
-        sara "Pete and Martin are the ones you know the best."
+        sara "Pete and Martín are the ones you know the best."
         show him determined
         him "I'll talk to them." #this could also be a choice... how neglectful do you want to be
         $ rationing = True
@@ -632,60 +618,46 @@ label community5:
     return
 
     label whole_harvest_required:
-    show him determined
-    him "Let's have the farmers bring their whole harvest to the storehouse, so you can measure it."
-    him "I'll ask them to start farming more beans and wheat too, since those store well."
-    show ilian happy
-    ilian "I'll need some help to build silos for the wheat."
-    show him surprised
-    him "This way we'll definitely have enough for the miners, right?"
-    show ilian
-    ilian "Yes. They won't even need to forage, unless they want some extra meat."
-    jump ration_harvest
+    him determined "Let's have the farmers bring their whole harvest to the storehouse, so you can measure it."
+    him normal "I'll ask them to start farming more beans and wheat too, since those store well."
+    ilian happy "I'll need some help to build silos for the wheat."
+    him surprised "This way we'll definitely have enough for the miners, right?"
+    ilian normal "Yes. They won't even need to forage, unless they want some extra meat."
+    him normal "Good. I don't want any trouble with RET."
 
     label ration_harvest:
-    ilian "I support your plan, but I'm worried about how we'll enforce it."
-    ilian "Some of the other farmers are reluctant to centrally locate food."
-    show him surprised
-    him "Oh? Like who?"
-    ilian "Like Pete and Martin."
+    ilian "I support your plan, but not everyone' as enthusiastic about this. Some of the other farmers are reluctant to centrally locate food."
+    him surprised "Oh? Like who?"
+    ilian "Like Pete and Martín."
     show ilian happy
-    ilian "I think they'd listen to you if you tried to persuade them though."
-    show ilian
-    ilian "We'll pay credits for their surplus, which they can use to buy other crops."
-    show him determined
-    him "I'll talk to them."
-    jump talk_about_food_storage
+    ilian happy "I think they'd listen to you if you tried to persuade them though."
+    him concerned "How do you think I should do that?"
+    ilian normal "Make sure they know we'll pay credits for their surplus, which they can use to buy other crops."
+    him determined "I'll talk to them."
 
     label talk_about_food_storage:
     scene farm_exterior with fade
     show him normal at midright
-    show pete at midleft
+    show pete normal at midleft
     him "Hey Pete. How are your cattle doing?"
-    show pete happy
-    pete "Surprisingly hale for living on an alien planet."
-    show him determined
-    him "Great. There's something I want to ask you about."
-    him "I heard that you're not storing much surplus in the storehouse."
+    pete happy "Surprisingly hale for living on an alien planet."
+    him determined "Great. There's something I want to ask you about."
+    him concerned "I heard that you're not storing much surplus in the storehouse."
     jump pete_no_storehouse
 
     label no_formal_rationing:
-    show him annoyed
-    him "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
+    him annoyed "We can figure it out when they get here. Growing food for miners wasn't in our contracts, so it sets a bad precedent to save food for them."
     him "Worst-case scenario, they have to farm for a bit instead of mining all the time."
-    show ilian happy
-    ilian "Are you sure? I don't really want to be eaten if we run out of food."
-    show him determined
-    him "I think people could survive on the wild resources available, as long as they know what they are."
-    show ilian
-    ilian "Okay, whatever you say."
+    ilian normal "Are you sure? I don't really want to be eaten if we run out of food."
+    him determined "I think people could survive on the wild resources available, as long as they know what they are."
+    ilian "Yeah, I bet if we cross our fingers I'm SURE food will just APPEAR somehow."
+    him annoyed "'Somehow' meaning they'll have to work just like we do for food. Nothing wrong with that."
     return
 
     label pete_no_storehouse:
     show pete
     pete "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
-    pete "I can't make cheese that doesn't mold right away."
-    pete "The best way to store my surplus is to keep growing this herd."
+    pete "Cheese doesn't keep well, either, for the same reasons. The best way to store my surplus is to keep growing this herd."
     label convince_Pete:
     menu:
         "Is that really the best way?"
@@ -693,118 +665,82 @@ label community5:
             show him normal
             him "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
             him "How about it?"
-            pete "I don't think anyone should have to eat canned meat, not when they live next to me!"
-            him "Well, they're your cows."
+            pete "I don't think anyone should have to eat canned meat, not when they live next to me! I mean, which would you rather have, spam or steak?"
+            him "Good point."
             $ talked_cans = True
             jump convince_Pete
         "You'll need credits to get other food." if not talked_credits:
-            show him normal
-            him "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
-            him "How will you afford vegetables and grain?"
-            show pete happy
-            pete "Plenty of people are willing to trade for or buy milk and beef."
-            show pete
-            pete "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either."
+            him concerned "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
+            him surprised "How will you afford vegetables and grain?"
+            pete happy "Plenty of people are willing to trade for or buy milk and beef."
+            pete normal "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either."
             pete "I prefer to deal directly with my customers."
             $ talked_credits = True
             jump convince_Pete
         "If we canned some beef, then we'd have meat even if your herd died suddenly." if not talked_something:
-            show him surprised
-            him "What if one day you wake up and your whole herd of cattle is gone?"
-            show him determined
-            him "If you canned some meat, then we would at least have something."
-            show pete happy
-            pete "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
-            show pete
-            pete "Plus I think canned meat is revolting. I would rather just eat vegetables."
+            him surprised "What if one day you wake up and your whole herd of cattle is gone?"
+            him determined "If you canned some meat, then we would at least have something."
+            pete happy "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
+            pete normal "Plus I think canned meat is revolting. I would rather just eat vegetables."
             $ talked_something = True
             jump convince_Pete
         "We could can some of the dairy products." if not talked_canning_dairy:
-            show him happy
-            him "We could try making dried milk powder or clarified butter, which would last a long time."
-            pete "Why would we do that when we have plenty of fresh stuff?"
-            show him determined
-            him "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
-            him "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
-            show pete happy
-            pete "Hmm. That is a good point."
+            him normal "We could try making dried milk powder or clarified butter, which would last a long time."
+            pete normal "Why would we do that when we have plenty of fresh stuff?"
+            him determined "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
+            him surprised "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
+            pete happy "Hmm. That is a good point."
             show pete
             $ talked_canning_dairy = True
             jump convince_Pete
-        "I guess that's what Pete is going to do.":
-            show him concerned
-            him "Yeah, you're right. Sorry, I didn't really think about how difficult it would be to store beef and dairy that long."
-            pete "Glad you understand."
+        "Just think about it, okay?":
+            him concerned "I know it's difficult to store beef and dairy that long. Just think about maybe storing some long-term."
+            pete normal "All right, then."
             jump canning_dairy
 
     label canning_dairy:
     if talked_canning_dairy:
-        show pete happy
-        pete "I'll look into canning some milk and butter though."
-        show him happy
-        him "Great!"
+        pete happy "I'll take a look at canning milk and butter."
+        him happy "Great!"
         $ colonists += 1
-    else:
-        pass
+    scene path with fade
+    "Next I had to try to convince Martín..."
     scene fields with fade
-    show martin at midleft
-    show him normal at midright
-    him "So Martin, how's your farm doing?"
-    show martin angry
-    martin "Recently some of our turkeys got sick and we couldn't even eat their meat after they died."
-    show him concerned
-    him "How about your beans, are they doing well?"
-    show martin happy
-    martin "Yes! We eat them about as fast as we can grow them."
-    show him normal
-    him "I was thinking if you had some extras, you could can them and store them in the storehouse."
+    show martin at midleft with dissolve
+    show him normal at midright with moveinleft
+    him surprised "So Martín, how's your farm doing?"
+    martin angry "Not so good. Some of our turkeys got sick, and when they died we couldn't eat them because the meat was contaminated."
+    him concerned "Oh man, that's rough. Are your beans doing okay, at least?"
+    martin happy "Yes! We eat them about as fast as we can grow them."
+    him normal "I was thinking if you had some extras, you could can them and store them in the storehouse."
     show martin
-    martin "I would if I thought we would have extras. But we're usually trading them to other people for their crops."
+    martin "I would if I we had extras. But we're usually trading them to other people for their crops."
     martin "You should know that. [her_name] usually trades vegetables for our eggs and corn."
     if require_whole_harvest:
-        show him determined
-        him "Starting from now on, you'll need to bring in your harvest to Ilian if you want other crops."
-        him "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
-        show martin angry
-        martin "What if I don't want to do that?"
-        show him annoyed
-        him "It's in your contract."
-        show martin
-        martin "Well the way we've been doing it has been working just fine."
-        show him concerned
-        him "We didn't have fifty extra mouths to feed then."
-        show martin angry
-        martin "And we don't now! I think you're overreacting. We have plenty of food."
-        show him determined
-        him "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
-        show martin
-        martin "We eat most of our crops soon after harvesting them. But we do try to store a little extra."
-        show him normal
-        him "I get what you're saying. Just write down how much you eat and tell Ilian."
-        him "Then if you have extra, bring that in once a week and he can calculate how your crops are doing."
-        show martin angry
-        martin "Okay, I think I can do that. But I still think this is excessive."
+        him determined "From now on, you'll need to bring in your harvest to Ilian if you want other crops."
+        him concerned "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
+        martin angry "What if I don't want to do that?"
+        him annoyed "It's in your contract."
+        martin normal "Well, the way we've been doing it is working just fine."
+        him concerned "We didn't have fifty extra mouths to feed then."
+        martin angry "And we don't now! I think you're overreacting. We have plenty of food."
+        him determined "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
+        martin normal "We eat most of our crops soon after harvesting them. We store just a little extra."
+        him determined "I get what you're saying. Just write down how much you eat and tell Ilian."
+        him normal "Then if you have extra, bring that in and he can calculate our food surplus."
+        martin angry "Seems like a lot of work for nothing. But I don't really have a choice, huh?"
     elif rationing:
-        show him determined
-        him "Starting from now on, I need you to bring in twenty percent of your harvest."
-        him "That number may change, but this is the easiest way to start storing a little food for the miners."
-        show martin angry
-        martin "What if I don't have enough food to bring in twenty percent?"
-        show him concerned
-        him "Then bring in ten percent. Just try to keep track so we have an idea of how much food we have collectively."
-        show martin
-        martin "Alright. I'll do it."
-        show him normal
-        him "Thank you."
+        him determined "Starting from now on, I need you to bring in twenty percent of your harvest."
+        him concerned "That number may change, but this is the easiest way to start storing a little food for the miners."
+        martin angry "Twenty percent? I don't have enough food to bring in twenty percent!"
+        him concerned "Then bring in ten percent. Just try to keep track so we have an idea of how much food we have collectively."
+        martin "Seems like a waste of time... but I'll do it."
+        him normal "Thank you. This will help us calculate our food production and surplus."
     else:
-        show him determined
-        him "It works well now, but soon we'll be trading credits instead of food."
-        show martin happy
-        martin "I'm happy to take your credits then."
-        show him normal
-        him "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
-        show martin
-        martin "Good to know."
+        him determined "It works well now, but soon we'll be trading credits instead of food."
+        martin happy "I'm happy to take your credits then."
+        him normal "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
+        martin "Okay, will do."
     return
 
 
@@ -819,233 +755,175 @@ label community6:
     show him normal at left
     show thuc normal at midleft
     show helen normal at quarterright
+    show kevin normal at quarterleft
     with dissolve
     thuc "I brought 'Maximal Conquest' tonight, are you guys up for it?"
+    kevin "I have read the rules and watched the tutorial. I am prepared to join you."
     him determined "Yes, and I promise to start in the Northern Hemisphere this time."
     pete happy "Your Antarctica strategy had no sense whatsoever."
     him angry "Trying the same losing strategy every time and hoping it will win has no sense."
-    pete normal "I'll make you eat your words. Can we keep track of score on your tablet? Ours is out for repairs."
+    pete normal "I'll make you eat your words."
+    him surprised "Hey, if you're both here, where are your kids?"
+    helen "They're sleeping. Sister Naomi's there, just in case."
+    him normal "Cool. I tried to convince [her_name] to use the radio as a baby monitor, but [her_name] sometimes takes a long time to get to sleep so we didn't think it would work."
+    pete normal "Hey, can we keep score on your tablet? Ours is out for repairs."
     him surprised "What do you mean? Don't you both have one?"
     helen "No, because SOMEONE left it out during a solar flare."
     pete happy "And SOMEONE left their tablet in spittin' distance of a cow."
     him concerned "That must be rough."
-    pete normal "Nah, it's better. I used to check my tablet for new messages all day long. Now I know how useless most of them were."
-    pete "I can concentrate on what I'm doing."
-    pete happy "I don't even mind doing my feed calculations for the cattle by hand."
-    helen happy "I miss watching TV. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
-    pete normal "I don't know about me. I kind of like feeling like I'm completely on my own."
-    thuc sad "But you still are having game night, and you have your family too, so it's not like you're completely isolated."
+    pete normal "Nah, it's better. I used to check my tablet for new messages all day long. I haven't checked them for a week and I haven't missed anything."
+    pete happy "Instead I'm living more in the moment. I don't even mind doing my feed calculations for the cattle by hand."
+    helen happy "I miss watching Skulls of Iron. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
+    pete normal "You can keep it. I like feeling like I'm completely on my own, getting away from all the drama in town and online."
+    thuc sad "But you're still having game night, and you have your family, too, so it's not like you're completely isolated."
     menu:
         "What do you think?"
         "We need each other to survive.":
             $ colonists += 1
-            show him determined
-            him "We need each other to survive. There's no way one person could survive on their own out here."
-            show pete happy
-            pete "Is that really true? I've been out there on my own before--there's good foraging and hunting."
-            show him surprised
-            him "Maybe you could survive on your own, but what about your family?"
-            show pete
-            pete "They can help forage too!"
+            him determined "We need each other to survive. There's no way one person could survive on their own out here."
+            pete happy "Is that really true? I've been out there on my own before--there's good foraging and hunting."
+            him surprised "Maybe you could survive on your own, but what about your family?"
+            pete normal "They can help forage, too!"
             pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
-            show pete happy
-            pete "It's definitely more reliable to live in a community where we can help each other."
+            pete happy "And it's handy to have some folks around. Otherwise, who would I crush in Maximal Conquest?"
         "I understand wanting to be away from it all.":
             $ luddites += 1
-            show him determined
-            him "I understand wanting to be away from it all. It's part of the reason I came here."
-            show pete happy
-            pete "We don't have to deal with inane government interference or rules made for the sake of havin' 'em."
-            show him concerned
-            him "Although some of RETs demands have felt that way..."
-            show pete
-            pete "True. But you can see where they're coming from for the most part."
-            show pete happy
-            pete "And they're not in our face about it. I could go camping tonight and they'd be none the wiser."
-            show him flirting
-            him "Yeah, as long as your cows were okay with it."
+            him determined "I understand wanting to be away from it all. It's part of the reason I came here."
+            pete happy "We don't have to deal with inane government interference or rules made just for the sake of havin' 'em."
+            him concerned "Although some of RETs demands have felt that way..."
+            pete normal "True. But you can see where they're coming from for the most part."
+            pete happy "And they're not in our face about it. I could go set out on my own tonight and they'd be none the wiser."
+            helen "You could, as long as you planned it out with your wife first."
         "We have an obligation to help RET feed their miners now.":
             $ miners += 1
-            show him determined
-            him "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
-            him "If we all went rogue, those miners would starve to death."
-            show him concerned
-            him "And we wouldn't be holding up our end of the bargain. It's expensive to send us out here."
-            show pete happy
-            pete "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I wouldn't feel badly about changing my side of things."
-            show him surprised
-            him "What do you mean?"
-            show pete
-            pete "What if we don't have enough food for all these miners?"
+            him determined "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
+            him concerned "If we all went rogue, those miners would starve to death. And we wouldn't be holding up our end of the bargain. It was expensive to send us out here."
+            pete happy "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I might have to change things, too."
+            him surprised "What do you mean?"
+            pete normal "What if we don't have enough food for all these miners?"
             pete "If that happens, you bet I'm going to look after me and my own first."
             pete "We're promised enough food to live off of, but if that doesn't exist, there's no way RET can make it right."
-            show pete happy
-            pete "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
-            show him concerned
-            him "Good point. I hope we can mange."
+            pete happy "We're all trying to farm as efficiently as we can. But if RET overestimated our yields, I don't want to pay for it."
+            him concerned "Good point. I hope we can manage."
     if require_whole_harvest:
         $ rationing = True
         $ require_whole_harvest = False
-        show thuc
-        thuc "Speaking of food, Ilian just sent out a message that we don't have to bring in our whole harvest anymore."
+        thuc normal "Speaking of food, Ilian just sent out a message that we don't have to bring in all the surplus anymore."
         thuc "He has enough data, and he sent out a table of who should bring in how much."
         thuc "It ended up being about twenty percent for most farmers." #TODO: is this a reasonable amount?
-        show pete
-        pete "I deliver directly to my customers, so I've just been sending Ilian my stats."
-        show thuc sad
-        thuc "I guess it doesn't really make sense to bring in a calf either."
-        show pete happy
-        pete "Nope."
-        show him happy
-        him "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
-        show thuc
-        thuc "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
+        pete normal "I deliver directly to my customers, so I've just been sending Ilian my stats."
+        thuc sad "I guess it doesn't really make sense to bring in a calf to the storehouse."
+        pete happy "Nope."
+        him happy "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
+        thuc normal "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
     return
 
 # 7 - Comparing compensation
 label community7:
     play music thoughtful
     show community_center with fade
-    show zaina at midright
-    zaina "The fossil record near here contains many vertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
+    show zaina normal at center with dissolve
+    zaina "The fossil record near here contains many invertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
     zaina "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
     zaina "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
     zaina "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
-    show pavel at midleft with moveinleft
-    pavel "Thank you, Zaina, for the presentation on Terra's probable geologic history."
+    show zaina at midright with move
+    show pavel normal at midleft with moveinleft
+    pavel "Thank you, Zaina, for the presentation on Talaam's probable geologic history."
     hide zaina with moveoutright
+    show pavel at center with move
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
-    pavel "I know you're all very busy, so we've arranged for a few extra free carrots for those of you who stay and socialize for fifteen minutes."
+    pavel "I know you're all very busy, so we've provided some delicious snacks to encourage you to stay!"
     hide pavel with moveoutright
-    show kevin at midright with move
-    show him normal at midleft
-    kevin "I'm surprised that you're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam and socialize."
-    show him surprised
-    him "RET didn't give you any money? At least I know that my parents are taken care of."
+    show kevin at midright with moveinright
+    show him normal at midleft with moveinleft
+    kevin "I'm surprised that they're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam and socialize."
+    him surprised "RET didn't give you any money? At least I know that my parents are taken care of."
     kevin "What do you mean?"
-    show him happy
-    him "RET gave me a bunch of money that I used for their retirement fund."
+    him happy "RET gave me a bunch of money that I used for their retirement fund."
     kevin "They made me no such offer."
-    show thuc at center with move
+    show him at center with move
+    show thuc normal at midleft
+    show helen normal at quarterleft
+    with moveinleft
+    show ilian normal at quarterright
+    with moveinright
     thuc "I practically had to pay RET to let me come. What gives?"
-    show him annoyed
-    him "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
-    show ilian happy at left with move
-    ilian "Maybe some of us were happy to leave our Earth lives behind."
-    show helen happy at right with move #too many people!?
-    helen "This is a new one for me. Ilian has a secret past?"
-    show ilian
-    ilian "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
+    him annoyed "Huh. You're basically giving up your lives on Earth, so I'm surprised that they didn't offer you some kind of compensation for that."
+    ilian happy "Maybe some of us were happy to leave our Earth lives behind."
+    helen happy "This is a new one for me. Ilian has a secret past?"
+    ilian normal "There's nothing secret about it. I was about to default on my loans for my restaurant supply store."
     ilian "RET said they would take care of it."
-    show helen
-    helen "Do you know if they did?"
-    show ilian happy
-    ilian "I haven't heard from any debt collectors since."
-    kevin "You may have noticed but it's very difficult for people on Earth to contact you here."
-    show ilian
-    ilian "It was win-win for me."
+    helen normal "Do you know if they did?"
+    ilian happy "I haven't heard from any debt collectors since."
+    kevin "You may have noticed it's very difficult for people on Earth to contact you here."
+    ilian normal "It was win-win for me."
     kevin "I was so intent on coming to Talaam that I didn't think to negotiate compensation."
-    hide ilian with moveoutleft
-    show thuc sad
-    thuc "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
-    show him flirting
-    him "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
-    show thuc
-    thuc "Or 8! Fewer pieces to ship."
+    hide ilian with moveoutright
+    thuc sad "I wish I had thought of negotiating too. Now that I think about it, they really needed me."
+    him flirting "Oh come on. They could have found some other sustainable agriculture specialist with 10 kids."
+    thuc normal "Or 8! Fewer pieces to ship."
     kevin "Did your children suffer developmental delays because of the journey?"
-    show thuc sad
-    thuc "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
-    thuc "They're not necessarily reading sooner, but we genuinely need their help on the farm."
-    show thuc
+    thuc sad "One of them is a little shorter than the rest, but other than that I'd say that being on a different planet has accelerated their development."
+    thuc normal "They're not necessarily reading sooner, but we genuinely need their help on the farm."
     thuc "They have more responsibilities than I did at their age, so they have to grow up fast."
-    show thuc sad
-    thuc "And none of my family are getting paid for completely transplanting our lives here."
-    if is_liason:
-        show thuc
-        thuc "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
+    thuc sad "But, unlike [his_name], none of my family are getting paid for our work here."
+    if is_liaison:
+        thuc normal "Hey [his_name], can I make a formal request? I'd like RET to donate $10,000 to the charity of my choice."
         menu:
             "What will you do for Thuc?"
             "Ask RET in my next e-mail.":
                 $ miners += 1
-                show him normal
-                him "I can ask them in my next e-mail."
-                show thuc sad
-                thuc "E-mail? Not an insta-com?"
-                show him happy
-                him "I only get so many instant communication slots."
-                show thuc
-                thuc "But by the time they get your e-mail no one will remember me."
-                show him determined
-                him "I think RET has bigger things to worry about."
-                show thuc sad
-                thuc "Fine, an e-mail is fine."
+                him normal "I can ask them in my next e-mail."
+                thuc sad "E-mail? Not an insta-com?"
+                him happy "I only get so many instant communication slots."
+                thuc normal "But by the time they get your e-mail no one will remember me."
+                him determined "I think RET has bigger things to worry about."
+                thuc sad "Fine, an e-mail is fine."
             "From a business standpoint, you're stuck here.":
                 $ luddites += 1
-                show him annoyed
-                him "You don't have any leverage over them. It's not like you can quit now."
-                show thuc sad
-                thuc "I sure do have leverage!"
-                thuc "I could decide to leave the colony!"
-                show him concerned
-                him "You wouldn't seriously consider that."
-                show helen happy
-                helen "I don't know, he looks pretty serious."
-                show thuc
-                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people."
-                show thuc sad
-                thuc "I just don't like the idea that I have no power over my life."
+                him annoyed "You don't have any leverage over them. It's not like you can quit now."
+                thuc sad "I sure do have leverage! I could decide to leave the colony!"
+                him concerned "You wouldn't seriously consider that."
+                helen happy "I don't know, he looks pretty serious."
+                thuc normal "I'm joking. Rice cultivation is kind of pointless for just twelve people."
+                thuc sad "I just don't like the idea that I have no power over my life."
             "I hear you, but let's focus on the here and now.":
                 $ colonists += 1
-                show him determined
-                him "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
-                him "Let's leave the past in the past."
-                show him happy
-                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
-                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+                him determined "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
+                him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc normal "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     else:
         hide kevin with moveoutright
-        show sara at midright
-        show thuc
-        thuc "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
-        show sara sad
-        sara "I heard that RET is economizing, but I can ask."
-        thuc "Thanks. Do you think RET will do anything, [his_name]?"
+        show sara normal at midright with moveinright
+        thuc normal "Hey, Sara, help me out here. Could you ask RET to send my back pay to the charity of my choice?"
+        sara sad "I heard that RET is economizing, but I can ask."
+        thuc sad "Thanks. Do you think RET will do anything, [his_name]?"
         menu:
-            "What do you think RET should do for Thuc?"
-            "Make a big donation.":
+            "What do you think RET will do for Thuc?"
+            "They should make a big donation.":
                 $ miners += 1
-                show him determined
-                him "They should make a big donation in your name."
-                thuc "Right?"
-                show him surprised
-                him "What charity would you choose?"
-                show thuc sad
-                thuc "Something to promote sustainable agriculture in developing nations like this one."
-                show him flirting
-                him "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
-                show thuc
-                thuc "Burn!"
+                him determined "They should make a big donation in your name."
+                thuc normal "Right?"
+                him surprised "What charity would you choose?"
+                thuc sad "Something to promote sustainable agriculture in developing nations like this one."
+                him flirting "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
+                thuc normal "Burn!"
             "They won't do anything.":
                 $ luddites += 1
-                show him concerned
-                him "You're stuck here. You have no choice but to be an employee of RET."
-                show thuc sad
-                thuc "I could decide to leave the colony!"
+                him concerned "You're stuck here. You have no choice but to be an employee of RET."
+                thuc sad "I could decide to leave the colony!"
                 show him surprised
-                him "You wouldn't seriously consider that."
-                show helen sad
-                helen "I don't know, he looks pretty serious."
-                show thuc
-                thuc "I'm joking. Rice cultivation is kind of pointless for just twelve people."
-                show thuc sad
-                thuc "I just don't like the idea that I have no power over my life."
+                him surprised "You wouldn't seriously consider that."
+                helen sad "I don't know, he looks pretty serious."
+                thuc normal "I'm joking. Rice cultivation is kind of pointless for just twelve people."
+                thuc sad "I just don't like the idea that I have no power over my life."
             "They probably won't do anything, but we have more important things to worry about.":
                 $ colonists += 1
-                show him determined
-                him "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
+                him determined "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
                 show him happy
-                him "Get stinking rich off your enormous farm and have a feast to make us all jealous."
-                thuc "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+                him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
+                thuc happy "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
     return
 
 # 8 - What luxuries should RET send?
@@ -1057,12 +935,12 @@ label community8:
     $ talked_to_Pavel = False
     $ talked_about_luxuries_counter = 0
 
-    if is_liason:
+    if is_liaison:
         scene farm_exterior with fade
         "Urgent insta-com from RET!"
         $ pstyle = get_parenting_style()
-        if (pstyle== "authoritative"):
-            "Have 10kg Xtra space on the shuttle. What Earth luxuries u like?"
+        if (pstyle == "authoritative"):
+            "Have 10kg xtra space on the shuttle. What Earth luxuries needed?"
         elif(pstyle == "authoritarian"):
             "Tell us what extras to put on the shuttle by this evening."
         elif(pstyle == "permissive"):
@@ -1073,105 +951,91 @@ label community8:
         "RET must be talking about the shuttle coming with the miners."
         "I'm not sure why they couldn't have asked about our preferences sooner."
         "I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
-        "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY."
+        "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY!"
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
-                if is_liason:
-                    him "Oh, it's already the afternoon! I need to send in my report right away."
+                if is_liaison:
+                    him surprised "Oh, it's already the afternoon! I need to send in my report right away."
                     jump write_report
                 else:
                     "I told Sara what everyone wanted, and she wrote the report."
                     return
-        scene farm_exterior with fade
+        scene farm_exterior flip with fade
         "Who will I talk to about what Earth luxuries they want?"
         menu:
             "Natalia" if not talked_to_Natalia:
-                show natalia at left
+                show him normal at midleft
+                show natalia normal at midright
                 with dissolve
-                natalia "I don't care what else comes from Earth, but there had better be some medication for Martin in there. The longer he lives, the happier our family will be."
-                show him concerned
-                him "What medication does he need?"
+                natalia "I don't care what else comes from Earth, but there had better be some medication for Martín in there. The longer he lives, the happier our family will be."
+                him concerned "What medication does he need?"
                 natalia "[her_name] said he needed Vemurafecholoronib. Let's see... 500 mg for six months and 1000 mg for another 6 months."
-                show him surprised
-                him "Won't RET be sending this anyway?"
+                him surprised "Won't RET be sending this anyway?"
                 natalia "They told [her_name] that it wasn't possible, but maybe you can do something."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Natalia = True
                 jump talk_about_luxuries
             "Thuc" if not talked_to_Thuc:
-                show thuc at left
+                show him normal at midleft
+                show thuc normal at midright
                 with dissolve
-                show thuc sad
-                thuc "I'd like to grow peanuts. Regular, unroasted peanuts will work fine for cultivation purposes."
-                show thuc
-                thuc "Then I can make peanut stew and peanut butter!"
-                # TODO: if you do this, then allow the user to plant peanuts also
+                thuc sad "I'd like to grow peanuts. They have to be raw, though, or I can't plant them."
+                thuc normal "Then I can make peanut stew and peanut butter!"
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Thuc = True
                 jump talk_about_luxuries
             "Sara" if not talked_to_Sara:
-                show sara at right with dissolve
+                show him normal at midleft
+                show sara normal at midright
+                with dissolve
                 sara "Oh, I don't know if this is possible, but I would really, really love a bicycle."
-                show sara sad
-                sara "I'm terrible with horses and I hate how they just eat more of our food."
-                show sara
-                sara "A bicycle wouldn't get hurt by radiation and can go faster in some situations."
-                # Would she also want one so that her son could use it?
+                sara sad "I'm terrible with horses and I hate how they just eat more of our food."
+                sara normal "A bicycle wouldn't get hurt by radiation and can go faster in some situations. And maybe Oleg can ride it when he gets older!"
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Sara = True
                 jump talk_about_luxuries
             "Kevin" if not talked_to_Kevin:
-                show kevin at left with dissolve
+                show him normal at midleft
+                show kevin normal at midright
+                with dissolve
                 kevin "This is an extremely inefficient way to gather information. Could you not have contacted me electronically?"
-                show him determined
-                him "Yes, but you might not have responded in time. I need to tell them by the end of the day!"
+                him determined "Yes, but you might not have responded in time. I need to tell them by the end of the day!"
                 kevin "Very well. Are they sending new tablet batteries like I requested?"
-                show him flirting
-                him "Yes, yes, don't worry about that. Ask for something that will boost your morale."
+                him happy "Yes, yes, don't worry about that. Ask for something that will boost your morale."
                 kevin "Wouldn't being reminded of the Earth I'll never return to lower my morale?"
-                show him happy
-                him "It sounds like you don't want anything."
+                him normal "It sounds like you don't want anything."
                 kevin "I would like the remaining episodes of the show Tulip House."
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Kevin = True
                 jump talk_about_luxuries
             "Pavel" if not talked_to_Pavel:
-                show pavel sad at left with dissolve
+                show him normal at midleft
+                show pavel sad at midright
+                with dissolve
                 pavel "Oh, there are so many things I miss."
-                pavel "Sushi, wine, tempura, Krem de la Krem donuts, French fries, falafal, fried chicken,"
-                pavel "those really cheap frozen pizzas from Glosemitto's, slow-roasted coffee, Fabrielle brand pelmeni,"
-                pavel "sourdough bread, calamari, egg rolls but especially the sweet-and-sour sauce with lots of high fructose corn syrup,"
-                pavel "Goods Inside cereal, homogenized milk, cotton candy, cheesecake, tuna salad, Michele's meat-alike paste,"
-                pavel "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cow cheese really."
-                show pavel
-                pavel "And that's just the food I miss!"
-                show him surprised
-                him "Wow. Well, it needs to be non-perishable or at least have a long shelf life, so I think that eliminates most of the things on your list."
-                show him happy
-                him "I could put you down for curry powder though."
-                show pavel sad
-                pavel "Oh, well make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
-                show him determined
-                him "I'll see what I--"
-                show pavel
-                pavel "Wait, wouldn't it make more sense to grow the spices so I can make my own curry powder?"
-                show him normal
-                him "Sure."
+                pavel normal "Sushi, wine, tempura, Krem de la Krem donuts, French fries, falafal, fried chicken,"
+                pavel sad "those really cheap frozen pizzas from Glosemitto's, slow-roasted coffee, Fabrielle brand pelmeni,"
+                pavel normal "sourdough bread, calamari, egg rolls but especially the sweet-and-sour sauce with lots of high fructose corn syrup,"
+                pavel sad "Goods Inside cereal, homogenized milk, cotton candy, cheesecake, tuna salad, Michele's meat-alike paste,"
+                pavel normal "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cow cheese really."
+                pavel sad "And that's just the {b}food{/b} I miss!"
+                him surprised "Wow. Well, it needs to be non-perishable or at least have a long shelf life, so I think that eliminates most of the things on your list."
+                him normal "I could put you down for curry powder though."
+                pavel sad "Oh, well make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
+                him determined "I'll see what I--"
+                pavel normal "Wait, wouldn't it make more sense to grow the spices so I can make my own curry powder?"
+                him normal "Sure."
                 pavel "Okay, so just ask them to send me seeds for all the spices in PatiPal's Extra Hot Curry Powder along with a recipe."
-                show him concerned
-                him "Hmm. I need to put this in an insta-com."
-                show pavel sad
-                pavel "Oh dear. How did they not tell you about this sooner?"
-                show him sad
-                him "I think they only knew about the extra space on the shuttle this morning."
-                show pavel
-                pavel "You are going to have to cram a lot into that message!"
+                him concerned "Hmm. I need to put this in an insta-com."
+                pavel sad "Oh dear. How did they not tell you about this sooner?"
+                him sad "I think they only knew about the extra space on the shuttle this morning."
+                pavel normal "You are going to have to cram a lot into that message!"
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Pavel = True
                 jump talk_about_luxuries
         label write_report:
             if talked_to_Natalia:
-                "I don't have enough room to ask for Martin's specific medicine and dosage and all the other things people wanted."
+                "I don't have enough room to ask for Martín's specific medicine and dosage and all the other things people wanted."
                 menu:
                     "What should I write?"
                     "Specify the medication and dosage. Do your best with the other stuff.":
@@ -1184,37 +1048,30 @@ label community8:
                 return
     else:
         show fields with fade
-        show sara at midright
-        show him at midleft
+        show sara normal at midright
+        show him normal at midleft
         with dissolve
         sara "RET just told me that they have extra space on their shuttle and they can send some extra things from Earth to us."
-        show sara sad
-        sara "What would you like?"
-        show him determined
-        him "Let me think about that."
-        show sara
-        sara "I need to know right now."
-        show him happy
-        him "Hmm. How about some good old Earth toilet paper?"
-        show sara sad
+        sara sad "What would you like?"
+        him determined "Let me think about that."
+        sara normal "I need to know right now."
+        him happy "Hmm. How about some good old Earth toilet paper?"
         sara "Great. I can shorten that to TP in the insta-comm."
-        show him flirting
-        him "Hopefully they won't send me a textbook on Topological Planning."
-        show sara
-        sara "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
-        sara "Can you help me ask everyone else what they want? I have a list here of people you know and could ask pretty easily."
-        show him normal
-        him "Okay, yeah, I can do that."
+        him flirting "Hopefully they won't send me a textbook on Topological Planning."
+        sara sad "Don't get your hopes up. But look on the bright side: in four years you probably won't even remember what you asked for!"
+        him determined "How is that looking on the bright side?!"
+        sara normal "Hey, could you help me ask everyone else what they want? I have a list here of people you know and could ask pretty easily."
+        him normal "Okay, yeah, I can do that."
         jump talk_about_luxuries
 
     label luxuries_absent:
-        show bedroom with fade
-        show him determined at left with dissolve
-        show her at right with dissolve
-        him "Man, I really miss Earth toilet paper."
-        her "Wouldn't it be great if RET sent some on the next shuttle?"
-        show him concerned
-        him "Yeah, that's never going to happen."
+        scene farm_interior with fade
+        show him determined at midleft
+        show her normal at midright
+        with dissolve
+        him concerned "Man, I really miss Earth toilet paper."
+        her happy "Wouldn't it be great if RET sent some on the next shuttle?"
+        him determined "Yeah, that's never going to happen."
 
     return
 
@@ -1222,7 +1079,7 @@ label community8:
 label community9:
     scene pond with fade
     show pete normal at midright
-    show him normal at midleft #he isn't appearing in my testing... not sure why not.
+    show him normal at midleft
     pete happy "Hey, [his_name]!"
     him happy "Hi Pete."
     pete normal "Out to catch some fish?"
@@ -1259,7 +1116,7 @@ label community9:
             scene plain with fade
             show thuc normal at center
             show pete normal at midright
-            show him normal at midleft
+            show him determined at midleft
             "The grass crabs were about the size of a capybara, but had less meat because of their large shells."
             "They ate a lot of grass, and also the woody parts of plants. Their large beak-like claw could cut through branches, which allowed them to gnaw on it while on the move."
             #makes sense?
@@ -1308,6 +1165,7 @@ label community9:
             pete happy "These critters have eyes, right? I reckon it'll help."
             thuc normal "I'm going for something a little easier."
             "He dredged his jacket in some ashes from the fire to mottle its coloring."
+            show him determined with dissolve
             "I didn't go to quite as great of lengths as Pete, but I did tie some branches to my hat and smudge soot on my clothes."
             pete "They'll never see us coming!"
             # TODO: can we show this?
@@ -1367,12 +1225,14 @@ label community9:
                 "Tackle the crab.":
                     $ luddites += 1
                     #TODO: I want the injured-hand option to result in making less money that month, if we do the currency thing.
-                    show him at right with move
+                    show him annoyed at right with move
                     "I tackled the grass crab from behind, easily outweighing it."
                     "The crab tried to get at me with its other, smaller claw, but couldn't reach back that far."
                     "The crab's wild swinging made Pete lose his balance, and he fell forward onto the crab, his knife slicing through my arm and into the top of the crab's shell."
+                    show him angry with dissolve
                     "Finally, the crab quit moving and we were able to pry Pete's leg out of the claw."
                     show pete at standing with move
+                    show him concerned with dissolve
                     pete happy "We got 'em!"
                     thuc normal "But at what cost? You guys look awful."
                     "I looked down at the blood streaming down my arm, and the blood welling through Pete's pant leg."
@@ -1385,7 +1245,7 @@ label community9:
                     pete happy "Got 'em!"
                     him concerned "Are you guys okay?"
                     pete normal "It doesn't feel too bad. Let's get back to camp and see how things are."
-            thuc normal "We may look bad... but he looks worse!"
+            him flirting "We may look bad... but he looks worse!"
             "We bound up our wounds and then the three of us hauled the grass crab back to camp. Pete was limping a bit but otherwise seemed okay."
             hide pete
             hide him
@@ -1406,7 +1266,7 @@ label community9:
             him surprised "How did you make it?"
             pete normal "The fabric is leather. That doesn't do anything for radiation."
             pete happy "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
-            "Pete pours the water in, and it gradually fills the tent's lining. He put a radiation monitor inside the tent and we gathered in other tent for the duration of the solar flare."
+            "Pete poured the water in, and it gradually filled the tent's lining. He put a radiation monitor inside the tent and we gathered in the other tent for the duration of the solar flare."
             "After about twenty minutes, the radio came on again to say that the flare has abated."
             "Pete checked his monitor to see the results of the test."
             pete happy "And it appears to reduce solar radiation! Too bad it's completely dark in there."
@@ -1433,7 +1293,6 @@ label community9:
             show him determined
             him determined "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
             "Pete went hunting on his own. But he brought back some meat from the grass crab he killed, preserved in salt water."
-            #scene change
             scene community_center with fade
             show him normal at midleft
             show pete normal at midright
@@ -1444,24 +1303,24 @@ label community9:
             pete "Hell yes! Herding cattle is fine for everyday, but every once in a while a man needs some excitement in his life."
     return
 
-# 10 - Peron's over for dinner, who should take care of their farm?
+# 10 - Perón's over for dinner, who should take care of their farm?
 label community10:
     play music sad
     scene farm_interior with fade
     show him normal at midleft
-    #show bro normal at quarterleft # TODO: uncomment this when we have a bro sprite
+    show bro normal at quarterleft # TODO: is he a baby here?
     show her normal at midright
     show kid normal at quarterright
     with dissolve
     her normal "I'm leaving for work now. Goodbye honey!"
-    him happy "Bye, [her_name]. Don't forget; we're having dinner with the Perons tonight."
+    him happy "Bye, [her_name]. Don't forget; we're having dinner with the Peróns tonight."
     kid happy "Yay, I get to play with Mateo!"
     her surprised "I wonder what they wanted to talk about..."
     him surprised "Maybe they're just being friendly?"
     scene farm_exterior flip with fade
     show natalia normal at midright
     show martin normal at quarterright
-    show bro normal at center # TODO: using bro for mateo?
+    show bro normal at center # TODO: show Perón's kids? use OPS1 kid sprites?
     with dissolve
     show him normal at midleft
     show her normal at quarterleft
@@ -1469,9 +1328,9 @@ label community10:
     with moveinleft
     natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
-    "We ate outside, where the Perons had built two picnic benches, with some crabbird shells modified to be stools."
+    "We ate outside, where the Peróns had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
-    "After the meal, Terra ran off to play with the other kids."
+    "After the meal, [kid_name] ran off to play with the other kids."
     hide kid
     hide bro
     with moveoutright
@@ -1484,16 +1343,18 @@ label community10:
     else:
         martin normal "I have a few more months to live, but I'm already slowing down."
     martin angry "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
-    natalia "They don't seem as passionate about the farm as you are."
+    natalia "They aren't as passionate about the farm as you are."
     him surprised "But now that they're older, don't you have more time to work on the farm?"
-    natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, knitting new clothes..."
+    natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, mending and reworking clothes..."
     martin happy "Don't get her started!"
     show him happy
     show her happy
     with dissolve
     natalia "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
+    show her surprised with dissolve
     him concerned "Isn't the corn really important for feeding everyone else's animals?"
     martin normal "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
+    show her determined with dissolve
     him surprised "What are your older kids interested in, if not farming?"
     natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
@@ -1513,9 +1374,34 @@ label community10:
             him determined "Tomás is your son. It's his duty to help you out."
             martin happy "That's what I keep telling her!"
             natalia "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
-            martin normal "It'll be good for him."
+            martin normal "We've all had to sacrifice at one time or another... This is something worth sacrificing for."
+            natalia "But how will you convince Tomás of that?"
+            martin angry "What do you think would convince him, [his_name]?"
+            menu:
+                "What should I say?"
+                "Duty is more important than personal desires.":
+                    him concerned "We all have duties. We may not always enjoy them, but only when everyone does their part can we all survive together."
+                    martin happy "Exactly!"
+                "This is a matter of survival.":
+                    him angry "This isn't a buffet where he can just pick the things he likes! This is survival!"
+                    natalia "Now that's dramatic!"
+                    martin normal "And also true! I'm not sure he realizes that."
+                "Train someone else to take your place.":
+                    him concerned "If he doesn't want to take over the farm, then he needs to train someone else to do that job. But in the meantime, it's his responsibility."
+                    natalia "I like that. That gives him options. And Raúl or Mateo might be more interested in farming, anyway."
+                    martin normal "Josephina loved growing things. She would have helped, too."
+                    natalia "I know she would have."
+                "This is about family.":
+                    him concerned "His family needs him. I know you guys are a close family; he'll understand that."
+                    natalia "I don't want to make him feel guilty..."
+                    martin normal "Maybe he needs to feel a little guilty to do what he needs to do."
+
+            scene black with fade
+            "I kind of forgot about our conversation, until one day Natalia sent me a message."
+            nvl clear
+            natalia_c "Thanks for helping us with Tomás. We talked to him, and he's decided he will help out at the farm, at least for a little while."
+            him_c "Glad to hear it! He's a good kid."
             #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
-            #another possible way to improve the iteractivity here would be to help martin compose an argument about why Tomas and Joanna should care about the farm.
         "Let Natalia scale back the farm.":
             $ community11_kidsonfarm = False
             $ luddites += 1
@@ -1526,11 +1412,26 @@ label community10:
             her surprised "But what about the corn everyone needs for their animals?"
             martin normal "It's mostly Pete's cows that eat it; the smaller animals could live on kitchen scraps and foraging."
             natalia "Well, then I guess it's Pete's problem."
+            him concerned "Just... cut back gradually. It'll take time for everyone to adjust."
+            scene black with fade
+            nvl clear
+            natalia_c "Due to our advancing age and health issues and lack of interest from our offspring, we need to cut back on the amount of corn we grow."
+            ilian_c "What?! We need to be increasing our yield, not decreasing it!"
+            natalia_c "It's mostly animal feed, anyway."
+            pete_c "My cows sure ain't eating any less than they used to. How's that gonna work?"
+            martin_c "It can't be helped! I'm dying of cancer and most of my kids aren't becoming farmers!"
+            julia_c "You let them choose other things!"
+            natalia_c "You should talk! Joanna's no farmer, either!"
+            julia_c "But her other siblings are, so we don't have this problem."
+
+            "Natalia's announcement caused such an uproar that finally Tomás came on and stated that he would help with the corn so that there would be enough for everyone."
+
+            "I felt like my advice had caused a big ruckus... but then again, maybe without that he wouldn't have been willing to step up. It certainly made everyone appreciate the corn that the Peróns grew."
+
+            "I felt a little bad for Tomás, but in the end it was his choice. And I admired him for choosing the good of the colony over his own desires."
             #then what happens to the corn everyone needs? they need to decide on how to take care of that. Maybe when Pete leaves it's not as much of an issue, since there is less cattle to feed over the winter.
-        #Possibly an option (would have work event ramifications): "I can help plan the crops, but I need help from Martin's children to execute the plans."
-        #Perhaps a miner wants to switch jobs and be a farmer?  I guess that require this event to be later?
-        #right now this choice doesn't affect who gets the farm.
-        # TODO: finish this event
+
+    nvl clear
     return
 
 # 11 - shuttle arrives with miners & Brennan
@@ -1540,145 +1441,164 @@ label community11:
     scene farm_interior with fade
     show him normal at midright
     show her normal at midleft
-    show kid at center
-    show bro at quarterleft
-    "The shuttle is set to arrive today!" #make this a family conversation?
-    kid "I wonder what the new people will look like."
-    him "Well, they'll look like we do. We're all humans."
-    her "Unless aliens have secretly taken over Earth!"
+    show kid normal at center
+    show bro normal at quarterleft
+    her happy "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
+    kid surprised "I wonder what the new people will look like?"
+    him happy "Well, they'll look like we do. We're all humans."
+    her flirting "Unless aliens have secretly taken over Earth while we were gone!"
+
     scene plain with fade
     show sara normal at midleft
+    show oleg normal at quarterleft
     show her normal at midright
     show him normal at center
+    show kid surprised at quarterright
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
-    sara "Wow, those guys are built. The women, too -- solid!"
-    her "Yeah, I'd expect that miners have to be in good physical condition."
-    him "They look pretty strong. Almost as strong as all the farmers we have here."
-    her "Farmers have to be in good physical condition too!"
-    sara "Pavel is already greeting everyone. Let's join him."
+    sara normal "Wow, those guys are built. The women, too -- solid!"
+    her concerned "Yeah, I'd expect that miners have to be in good physical condition."
+    him surprised "They look pretty strong. Almost as strong as all the farmers we have here."
+    her flirting "Farmers have to be in good physical condition too!"
+    sara normal "Pavel is already greeting everyone. Let's join him."
+    hide sara
+    hide oleg
+    with moveoutleft
     "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
-    "Wait a minute, I recognize him!"
+    him annoyed "Wait a minute, I recognize him!"
     #BRENNAN ON SCREEN. he looks the same
-    show brennan at quarterright with moveinright
+    show brennan normal at quarterleft with moveinleft
     # Jack definitely doesn't like him, but doesn't have a great reason.
     him surprised "Brennan!"
-    brennan "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
+    brennan happy "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
     him determined "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
-    brennan "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
-    brennan "Plus, I was the only applicant with relevant experience, having lived here for a year before."
-    her "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
-    brennan "I'm really happy to be breathing fresh air, with my feet on solid ground again."
-    brennan "How is your daughter? How old is she now in Earth years?"
-    him "She's almost seven. You still don't look a day over 30."
-    brennan "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
-    him "..."
-    brennan "You don't look like you've aged too badly, considering how much sun you must get."
-    brennan "Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
+    brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
+    brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
+    her happy "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
+    brennan happy "I'm really happy to be breathing fresh air, with my feet on solid ground again."
+    brennan normal "How is your daughter? How old is she now in Earth years?"
+    kid annoyed "I'm seven... well, almost seven. It's complicated. Anyway, I'm going to see if they'll let me look inside the shuttle!"
+    hide kid with moveoutright
+    her flirting "You still don't look a day over 30."
+    brennan normal "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
+    him annoyed "No wonder you didn't want to stay on Earth."
+    brennan happy "You don't look like you've aged too badly, considering how much sun you must get."
+    him angry "Wow, really? Martin just died of skin cancer last year and you make a sun exposure joke?"
+    brennan angry "Sorry...I didn't know."
+    her concerned "Of course you didn't."
+    brennan normal "Anyway... Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I whistled long and loud."
-    him angry "Hey, listen up! Quiet down, everyone!"
-    show brennan at center with dissolve
-    brennan "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
-    brennan "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
-    brennan "I sent out the assignments already, so try to find each other!"
-    hide brennan with dissolve
+    him surprised "Hey, listen up! Quiet down, everyone!"
+    hide him
+    hide her
+    hide sara
+    with moveoutleft
+    show brennan normal at center with move
+    brennan happy "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
+    brennan normal "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
+    brennan normal "I sent out the assignments already, so try to find each other!"
+    scene plain with fade
     show him normal at midleft
     show her normal at center
-    show chaco at midright
+    show chaco normal at midright
     with dissolve
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
     # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
-    menu chaco_coversation_loop:
-        "What should I ask him?"
-        "How was the shuttle ride?":
-            him "How was the trip over?"
-            chaco "Fine."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Was it hard to adjust?":
-            him "Did it take a while to adjust to living in such a small space?"
-            chaco "No."
-            him "I felt so cramped when I came over. Sometimes I just wanted some fresh air so badly, I felt like I would die."
-            chaco "They gave us sleeping medicine part of the time."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Do you have any hobbies?":
-            him "What do you like to do in your free time?"
-            chaco "Look at the stars."
-            him "Well this is a great place for stargazing. We've had to invent a lot of new constellations though."
-            chaco "Sounds interesting."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Do you have a family?":
-            him "Is anyone waiting for you back on Earth?"
-            chaco "No."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What is your favorite color?":
-            him "What's your favorite color?"
-            chaco "Blue."
-            him "Light blue or dark blue?"
-            chaco "Dark blue."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What do you like to eat?":
-            him "What's your favorite food?"
-            chaco "Steak."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What do you think of Brennan?":
-            him "How do you like Brennan?"
-            chaco "He talks too much. And he worries too much."
-            him "Sounds about right."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "Are you religious?":
-            him "Do you believe in God?"
-            chaco "Yes."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "What is your blood type?":
-            him "What's your blood type?"
-            chaco "O positive."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "How tall are you?":
-            him "How tall are you?"
-            chaco "172 centimeters."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
-        "If you were stuck on a desert island with all of your coworkers, who would you eat first?":
-            him "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
-            chaco "Hmmm. Whoever died first."
-            him "That's a practical answer."
-            chaco "I'm practical."
-            $ chaco_questions += 1
-            if (chaco_questions >= 4):
-                jump twenty_questions
-            jump chaco_coversation_loop
+    label chaco_coversation_loop:
+        show him normal
+        show her normal
+        with dissolve
+        menu:
+            "What should I ask him?"
+            "How was the shuttle ride?":
+                him surprised "How was the trip over?"
+                chaco "Fine."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Was it hard to adjust?":
+                him surprised "Did it take a while to adjust to living in such a small space?"
+                chaco "No."
+                her happy "I felt so cramped when I came over. Sometimes I just wanted some fresh air so badly, I felt like I would die."
+                chaco "They gave us sleeping medicine part of the time."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Do you have any hobbies?":
+                him surprised "What do you like to do in your free time?"
+                chaco "Look at the stars."
+                him happy "Well, this is a great place for stargazing. We've had to invent several new constellations though."
+                chaco "Sounds interesting."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Do you have a family?":
+                him concerned "Is anyone waiting for you back on Earth?"
+                chaco "No."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What is your favorite color?":
+                him surprised "What's your favorite color?"
+                chaco "Blue."
+                him determined "Light blue or dark blue?"
+                chaco "Dark blue."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What do you like to eat?":
+                him surprised "What's your favorite food?"
+                chaco "Steak."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What do you think of Brennan?":
+                him annoyed "How do you like Brennan?"
+                chaco "He talks too much. And he worries too much."
+                him normal "Sounds about right."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "Are you religious?":
+                him surprised "Are you religious? Do you believe in God?"
+                chaco "Yes."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "What is your blood type?":
+                him surprised "What's your blood type?"
+                chaco "O positive."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "How tall are you?":
+                him surprised "How tall are you?"
+                chaco "172 centimeters."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
+            "If you were stuck on a desert island with all of your coworkers, who would you eat first?":
+                him surprised "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
+                chaco "Hmmm. Whoever died first."
+                him normal "That's a practical answer."
+                chaco "I'm practical."
+                $ chaco_questions += 1
+                if (chaco_questions >= 4):
+                    jump twenty_questions
+                jump chaco_coversation_loop
 
     label twenty_questions:
         "I feel like we're playing 20 questions here! He's probably overwhelmed from the arrival."
@@ -1686,69 +1606,114 @@ label community11:
     if no_luxuries:
         jump no_luxuries
     else:
-        brennan "We might need some help unpacking. RET sent a package for you guys, so come unpack it!"
-        him "I can help you with that."
-        him "New batteries for almost everything! And a few new tablets."
-        if asked_only_medicine:
-            "The exact medicine for Martin came! They included a bunch of other stuff, but some of it wasn't exactly what wanted."
-            "The Peron family is crying happily."
-            her "Hey, where's the Gouda cheese culture? I was really looking forward to it."
+        scene community_center with fade
+        show brennan normal at quarterright
+        show him normal at center
+        with dissolve
+        brennan normal "We might need some help unpacking. RET sent a package for you guys, so come unpack it!"
+        him determined "I can help with that."
+        hide brennan with moveoutright
+        him surprised "New batteries for almost everything! And a few new tablets."
 
+        if asked_only_medicine:
+            show her normal at quarterleft
+            with moveinleft
+            show natalia normal at right
+            show martin normal at quarterright
+            with moveinright
+            "The exact medicine for Martín came! They included a bunch of other stuff, but some of it wasn't exactly what we wanted."
+            "The Perón family is crying happily and hugging Martín."
+            her annoyed "Hey, where's the Gouda cheese culture? I was really looking forward to it."
+
+            hide martin
+            hide natalia
+            with moveoutright
+            hide her with moveoutleft
+            show thuc normal at midleft with moveinleft
+            show sara normal at midright with moveinright
             #refer back to community8 for this
             if talked_to_Thuc:
-                thuc "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
+                thuc sad "These peanuts are roasted. I thought I told you they needed to be unroasted! I can't grow them this way."
             else:
-                thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
+                thuc normal "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
             if talked_to_Sara:
-                sara "I asked for a bicycle, is that here?"
-                him "No, I'm sorry. I couldn't fit everything into the message."
-                sara "A bike would probably get tons of flat tires around here anyway."
-                him "This looks like a software upgrade for the 3D printer though!"
+                sara normal "I asked for a bicycle, is that here?"
+                him concerned "No, I'm sorry. I couldn't fit everything into the message."
+                sara sad "A bike would probably get tons of flat tires around here anyway."
+                him normal "This looks like a software upgrade for the 3D printer though!"
             else:
-                sara "It looks like there's a software upgrade here for the 3D printer."
+                sara normal "It looks like there's a software upgrade here for the 3D printer."
+                him normal "Great!"
+
+            hide sara
+            hide thuc
+            with dissolve
+            show kevin normal at quarterright with moveinright
+            show pavel normal at quarterleft, behind him
+            with moveinleft
 
             if talked_to_Kevin:
                 kevin "Did they send the rest of Tulip House?"
-                him "I'm not sure. There's a big hard drive here for the library though!"
+                him concerned "I'm not sure. There's a big hard drive here for the library though!"
                 kevin "There's bound to be something good in there."
             else:
                 kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
-                him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+                him happy "It looks like they sent us a hard drive for the library. You and Pete can look over it."
                 kevin "Looking forward to it!"
 
-            pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
-            him "Oh, I hope so!"
-            pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            pavel normal "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            him happy "I sure hope so! This garlic looks great!"
+            pavel normal "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            $ enable_crop("garlic")
 
-            if (talked_to_Pavel and is_liason):
-                him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-                pavel "I'm so happy right now!"
+            if (talked_to_Pavel and is_liaison):
+                him normal "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+                pavel sad "I'm so happy right now!"
 
         else:
-            "RET sent medicine for Martin, but when I gave it to him, he and Natalie looked crestfallen."
+            show her normal at left
+            show sara normal at midleft
+            with moveinleft
+            show natalia normal at right
+            show martin angry at quarterright
+            with moveinright
+            "RET sent medicine for Martín, but when I gave it to him, he and Natalia looked crestfallen."
             natalia "This isn't the kind of medicine we needed! This is useless!"
 
-            if is_liason:
-                natalia "Did you tell them what kind of medicine Martin needed?"
-                him "I told them Martin needed medicine, and I assumed that they knew what kind from the doctor's reports."
+            if is_liaison:
+                natalia "Did you tell them what kind of medicine Martín needed?"
+                him concerned "I told them Martín needed medicine, and I assumed that they knew what kind from the doctor's reports."
             else:
-                natalia "Sara, why didn't you tell them the exact kind of medicine Martin needed?"
-                sara "I'm sorry, I thought they knew what he needed! I just put medicine."
+                natalia "Sara, why didn't you tell them the exact kind of medicine Martín needed?"
+                sara sad "I'm sorry, I thought they knew what he needed! I just put medicine."
 
-            her "Oooh, Gouda cheese culture!"
+            her happy "Oooh, Gouda cheese culture!"
+
+            hide her
+            with moveoutleft
+            hide martin
+            hide natalia
+            with moveoutright
+
+            show thuc normal at midright with moveinright
 
             if talked_to_Thuc:
-                thuc "I can start growing these peanuts right away!"
+                thuc normal "I can start growing these peanuts right away!"
                 # TODO: test this
                 $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
             if talked_to_Sara:
-                sara "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
+                sara normal "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
             else:
-                sara "It looks like there's a software upgrade here for the 3D printer."
+                sara normal "It looks like there's a software upgrade here for the 3D printer."
+
+            hide sara with moveoutleft
+            hide thuc with moveoutright
+            show kevin at midright with moveinright
+            show pavel at midleft with moveinleft
 
             if talked_to_Kevin:
                 kevin "Did they send the rest of Tulip House?"
@@ -1759,18 +1724,18 @@ label community11:
                 him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
                 kevin "Looking forward to it!"
 
-            pavel "These look like plastic pages with compartments full of... seeds? Are these spices?"
-            him "Oh, I hope so!"
+            pavel normal "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            him surprised "Oh, I hope so! Look, garlic!"
             pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
-            # TODO: test this
             $ enable_crop("garlic")
 
-            if (talked_to_Pavel and is_liason):
-                him "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-                pavel "I'm so happy right now!"
+            if (talked_to_Pavel and is_liaison):
+                him normal "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
+                pavel sad "I'm so happy right now!"
 
+        scene black with fade
         if asked_only_medicine:
-            "Thanks to the cancer medicine, Martin was able to work on the farm for six more months before dying a peaceful death."
+            "Thanks to the cancer medicine, Martín was able to work on the farm for six more months before dying a peaceful death."
             scene church with fade
             "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
@@ -1780,27 +1745,32 @@ label community11:
         else:
             jump Martin_dead_sooner
             $ luddites += 1
-    return
+        return
 
     label no_luxuries:
+        scene community_center with fade
+        show brennan normal at midright
+        show him normal at center
+        show natalia normal at midleft
+        show martin normal at quarterleft
+        with dissolve
         brennan "Can you help us unpack?"
-        him "That's what we came out here for."
-        natalia "Did RET send any medicine for Martin?"
-        brennan "No, sorry, I think they just sent some new batteries and stuff."
+        him determined "That's what we came out here for."
+        natalia "Did RET send any medicine for Martín?"
+        brennan normal "No, sorry, I think they just sent some new batteries and stuff."
         natalia "They don't care what happens to us!"
-        martin "I would have liked to live a little longer, but in the end, we can only do so much."
-        jump Martin_dead_sooner
+        martin angry "I would have liked to live a little longer, but in the end, we can only do so much."
         $ luddites += 1
 
         label Martin_dead_sooner:
             scene church with fade
-            "Without the medication, Martin's condition swiftly deteriorated, and he died later that week."
+            "Without the medication, Martín's condition swiftly deteriorated, and he died the next week."
             "The family had a small funeral and buried him in the colony graveyard next to Josephina."
             "Tomás and Joanna Nguyen decided to help out their mother, but they weren't prepared to take full responsibility for the farm."
             "We hoped they could learn what they needed to know from Natalia and their neighbors."
-            #TODO: should community 10's decision affect this?
-        return
+    return
 
+# TODO: community editing ends here
 # 12 - missing cow
 label community12:
     $ sara_investigates = False
@@ -1842,7 +1812,7 @@ label community12:
             chaco "You're welcome. Thanks for the food."
             chaco "I brought my telescope like you asked. I can show you some stars."
             chaco "We might be able to see Earth's sun if it's clear."
-            him "Great. I think Terra will love that."
+            him "Great. I think [kid_name] will love that."
             "Seeing our old sun, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silhouetted in the sunset."
             "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and trains and restaurants." #believable?
             him "It shows how far away we really are."
@@ -2042,7 +2012,7 @@ label community12:
                 "Later I heard he never found her."
                 return
     else:
-        #rationing is the default for the non-liason option, so non-liasons should not see this event.
+        #rationing is the default for the non-liaison option, so non-liaisons should not see this event.
         #should there be an option to switch to rationing again before this?
         #in your fields
         "I'm working out in the fields when I see a redheaded figure approaching."
@@ -2109,7 +2079,7 @@ label community12:
                                 him "I hadn't thought of it that way. You have a good point."
                                 jump community12_choose_farming
                             "I can and will make that decision.":
-                                him "I'm not making these decisions on some whim. The colonists elected me to be the liason to RET."
+                                him "I'm not making these decisions on some whim. The colonists elected me to be the liaison to RET."
                                 him "That means they trust my judgement."
                                 him "And I think we should stick to what I decided, which was to have the miners hunt and forage for most of their food."
                                 jump community12_choose_foraging
@@ -2238,7 +2208,7 @@ label community13:
     lily angry "It will probably poison some local wildlife! As well as us!"
     him normal "I certainly don't want heavy metals in my irrigation water."
     him concerned "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
-    if is_liason:
+    if is_liaison:
         lily angry "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
         him determined "Alright. What do you need me to ask?"
         lily normal "Tell them to delay further ore processing until the tailings dam has been repaired."
@@ -2261,7 +2231,7 @@ label community13:
         him annoyed "Ugh, Are you talking about Brennan?"
         jump community13_talk_to_brennan
     else:
-        label community13_nonliason_talk_to_brennan:
+        label community13_nonliaison_talk_to_brennan:
             lily "No, this is urgent and important business. Depending on their schedule, they may already be processing more ore!"
             lily "I need you to ask Brennan if he can delay ore processing until they fix the breach."
 
@@ -2320,10 +2290,10 @@ label community13:
                 "Dr. Lily started messaging people and I went home to work."
                 #Talk to Kevin to find out that sun flares accelerated degredation of trailings dam materials
                 #Dr. Lily makes it sound like it's Brennan's fault that everything is wrong in her community-wide message
-                
+        
                 lily "Tell Brennan we can't mine this cave until we explore it further."
-                if is_liason:
-                    him "Hey, I'm the liason between RET and the colonists, not between the colonists and the miners. Tell him yourself."
+                if is_liaison:
+                    him "Hey, I'm the liaison between RET and the colonists, not between the colonists and the miners. Tell him yourself."
                 else:
                     him "I'm no research lobbyiest. Tell him yourself."
                 lily "I'm not proficient in presuasive rhetoric. And I don't have strong ties to other colonists through friendships or family."
@@ -2535,7 +2505,7 @@ label community14:
         lily "There is so much more to learn about this planet."
     if not (asked_only_medicine):
         pete "They don't even care about us enough to send the right medicines."
-        "Tomás Peron and Joanna Nguyen tell us their plans to go with Pete and his family."
+        "Tomás Perón and Joanna Nguyen tell us their plans to go with Pete and his family."
         $ luddites += 1
     pete "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
     pete "But that was before we had credits."
@@ -2567,7 +2537,7 @@ label community14:
             him "Seriously though, take care of yourselves."
             $ luddites += 1
             $ pass
-    if is_liason:
+    if is_liaison:
         "What do I do with Pete and Helen's remaining cattle?"
         menu:
             "Ask Thuc if any of his kids can look after them.":
@@ -2653,9 +2623,9 @@ label community15:
         naomi "Keep up the good work."
     elif(pstyle == "authoritarian"):
         naomi "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
-        naomi "If you consider Terra's opinion sometimes, I think she will be happier."
+        naomi "If you consider [kid_name]'s opinion sometimes, I think she will be happier."
     elif(pstyle == "permissive"):
-        naomi "You let Terra do her own thing a lot."
+        naomi "You let [kid_name] do her own thing a lot."
         naomi "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
     else:
         naomi "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
@@ -2724,8 +2694,8 @@ label community15:
     him_c "I'll think about it."
     nvl clear
     him "Hey, [her_name], Sara thought I should say something at the funeral..."
-    if (is_liason):
-        her "Well, you are the liason. You can do closing remarks; just keep it short."
+    if (is_liaison):
+        her "Well, you are the liaison. You can do closing remarks; just keep it short."
     else:
         her "You can if you want... somebody needs to speak at the end. Just something short."
     $ c15_funeral = ""
@@ -2848,7 +2818,7 @@ label community15:
 #    "About a month later, Dr. Lily had a stroke."
 #    "She announced that Miranda would be the new head scientist."
 #    "Miranda had been working with Dr. Lily for the last ten years or so."
-    # Miranda Peron (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
+    # Miranda Perón (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
     return
 
 
@@ -2967,7 +2937,7 @@ label community16:
                     "She was good at that.":
                         him "She was always making something for someone's birthday or just celebrating some made-up holiday."
                         pete "That's true. When Travis found a grove of Ringlets, she made him a crown of leaves and called him the explorer prince."
-                        him "She did something similar when Terra went a whole day without poking Oleg."
+                        him "She did something similar when [kid_name] went a whole day without poking Oleg."
                         pete "What was her title?"
                         him "Overseer of Restraint."
                         pete "Ha. I doubt I would have even noticed something like that."
@@ -3002,27 +2972,57 @@ label community16:
 
     return
 
-
+# COMMUNITY 17
+# Harvest festival; who do you invite? chance to eat jellyfish...
 label community17:
+    $ community_17_activity = ""
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
-    "This year I'm in charge of inviting guests. Who will I invite?"
+    if (is_liason):
+        "Someone needs to plan it... but who?"
+        menu:
+            "Plan it yourself.":
+                $ community_17_planparty = True
+                "I decided to plan it myself. I knew what made a good harvest festival."
+                "First, I needed to decide whom to invite."
+
+            "Ask Sara and [her_name] to plan it.":
+                "I asked Sara and [her_name] to plan the festival. They made a good team for that sort of thing. But they wanted to know who was invited."
     menu:
-        "The miners and the luddites." if ((luddites >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
+        "The miners and Pete's group." if ((luddites >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
+            "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_luddites = True
             $ invited_miners = True
             jump ludditesandminers
-        "The luddites." if (luddites >= 7):
+        "Pete's group." if (luddites >= 7):
+            "I thought it'd be a good idea to invite Pete's group."
             $ invited_luddites = True
             jump justluddites
         "The miners." if (miners >= 7):
+            "I guess we should invite the miners."
             $ invited_miners = True
             jump justminers
-        "The usual--all the other colonists.":
-            $ pass
+        "The usual-- just all the other colonists.":
+            "We don't need to invite anyone else. It's a harvest festival, after all, so we should celebrate everyone who did the actual farming."
             jump justcolony
 
-    label ludditesandminers:
-        "Pete offered to host, and slaughtered a bull for the occasion."
+    if (community_17_planparty):
+        "We needed some activities."
+        menu:
+            "What kinds of activities should we have?"
+            "Contests.":
+                $ community_17_activity = "contests"
+                "I decided to ask Julia to organize some contests. She always liked to have a say in things."
+            "Icebreaker games.":
+                $ community_17_activity = "games"
+                "I figured we could play some easy social games to get everyone talking. I asked Thuc to be in charge of that; he was good at making everyone feel relaxed."
+            "Performances.":
+                $ community_17_activity = "performances"
+                "We had a lot of talent in our little community -- it would be a great chance to hear people perform."
+                "I asked Ilian to be in charge of that. He loved music, and he's such a critic that he'll only ask people with real talent."
+        "Last was the food. I figured I'd just have everyone bring something."
+
+    if (invited_luddites and invited_minters):
+        "Pete offered to slaughter a steer for the occasion."
         "Almost all the miners came, bringing some bean stew."
         brennan "This beef is amazing. Do you have any extra I could buy from you?"
         pete "You know, credits are not worth that much too me right now."
@@ -3033,15 +3033,14 @@ label community17:
         pete "Any metals?"
         brennan "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
         pete "Great. Now I just need to figure out how to make a bellows!"
-        "The luddites brought a strange seafood dish."
-        jump jellyfishside
+        "Pete also brought a strange seafood dish."
 
-    label justluddites:
-        "Pete offered to host, and slaughtered a bull for the occasion."
-        "He also brought a strange side dish."
-        jump jellyfishside
+    elif invited_luddites:
+        "Pete offered to slaughter a steer for the occasion."
+        "The colonists brought their best vegetables and fruits, and even some different kinds of bread and pudding."
+        "Pete also brought a strange side dish."
 
-    label jellyfishside:
+    if invited_luddites:
         him "So... what is this?"
         pete "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
         pete "They start stacking on top of one another and they send off these giant eggs."
@@ -3057,14 +3056,11 @@ label community17:
             "Don't try it.":
                 him "I'll pass."
                 pete "Suit yourself."
-                $ pass
         him "Can you come do a class on cattle health? You're the only expert around." #see community 14 for who got the cattle
-        pete "I could, if you can give me a few more tools."
-        pete "I can live without most things, but I could use another good knife and some twine."
+        pete "I could, if you can help me out with a knife and some twine."
         him "I think we can arrange for that."
-        jump justcolony
 
-    label justminers:
+    elif invited_miners:
         "We invited the miners to join us. After all, their success is what enables us to continue to live here."
         brennan "We didn't have time to go hunting, but we DO have time to soak beans."
         him "Is this a soup or a dip? It smells... different."
@@ -3080,47 +3076,192 @@ label community17:
                 brennan "You don't like beans?"
                 him "I'll stick to what I know."
                 brennan "How very... predictable of you."
-        jump justcolony
 
-    label justcolony:
-        #which background? this is the end for all the other events as well. maybe don't have the luddites host if it's too complicated, or devise alternate small talk.
-        # Have some kind of bonfire background?
-        scene bonfire with fade
-        "I set my dish next to the ones from the other families on the buffet table."
-        "Everyone helps themselves and sits down--some on tables and some on the ground."
-        martin "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
-        him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
-        "Martin takes a bite."
-        martin "It's not bad. But you should be careful not to mix it too much after you add the flour."
-        him "I know..."
-        martin "You might have been better off just leaving out the flour completely."
-        him "Did you try Thuc's goat curry? Where did he get the spices for that?"
-        pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
-        him "It's been so long since I've had these kinds of spices. It tastes amazing."
-        pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
-        thuc "Thanks to you my children know the difference between cumin and cardamom!"
-        him "Which goat are we eating tonight?"
-        thuc "Shorts."
-        pavel "That's a weird name for a goat."
-        thuc "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
-        thuc "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
-        julia "Oh, and don't forget Cape!"
-        julia "Last year Gardenia insisted on wearing this cape she made everywhere."
-        julia "She brought it out today to dress up for the begging."
-        "After the children finished eating, they ran around with pails of water."
-        "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
-        "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
-        "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
-        "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
-        pavel "It's a shame we don't have any chocolate to give them."
-        julia "I miss it too."
-        julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
-        thuc "They still sound pretty entitled to me!"
-        him "Some things never change."
+    scene community_center with fade
+    show thuc normal at quarterleft
+    show julia normal at left
+    show pavel normal at quarterright
+    show him normal at midleft
+    show natalia normal at midright
+    with dissolve
+    "I set my dish next to the ones from the other families on the buffet table."
+    "Everyone helped themselves and sat down--some at tables and some on the ground."
+    natalia "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
+    him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
+    natalia "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
+    him "I know..."
+    natalia "You might have been better off just leaving out the flour completely."
+    him "Did you try Thuc's goat curry? Where did he get the spices for that?"
+    pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
+    him "It's been so long since I've had these kinds of spices. It tastes amazing."
+    pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
+    thuc "Thanks to you my children know the difference between cumin and cardamom!"
+    him "Which goat are we eating tonight?"
+    thuc "Shorts."
+    pavel "That's a weird name for a goat."
+    thuc "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
+    thuc "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
+    julia "Oh, and don't forget Cape!"
+    julia "Last year Gardenia insisted on wearing this cape she made everywhere."
+    julia "She brought it out today to dress up for the begging."
+    "After the children finished eating, they ran around with pails of water."
+    "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
+    "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
+    "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
+    "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
+    pavel "It's a shame we don't have any chocolate to give them."
+    natalia "I miss it too."
+    julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
+    thuc "They still sound pretty entitled to me!"
+    him "Some things never change."
 
+    scene community_center with fade
+    if (community_17_activity == "contests"):
+        show julia normal at center with dissolve
+        "After everything was cleaned up, it was time for our contests."
+        "Julia announced the different events. I wonder if I should participate...?"
+        menu:
+            "Which one should I enter?"
+            "The seed spitting contest.":
+                "I had spent many days sitting on the back porch spitting seeds with my cousins. I knew all the tricks and felt pretty confident I could do well."
+                "Kevin apparently had managed to grow a few watermelons, though it wasn't really warm enough for it."
+                "The contest was simple: spit two seeds as far as possible. Whoever spits the farthest seed wins."
+                julia "Our first contestant will be... Natalia. Huh. Spitting is something you might actually be good at."
+                show natalia normal at midleft with moveinleft
+                natalia "You bet I am!"
+                show natalia at midright with move
+                "She got a good seed in mouth, backed up several feet, and then ran up to the line, spitting at the last possible second with an audible 'pbbt'."
+                "Natalia's seeds went at least ten meters."
+                hide natalia with moveoutright
+                "This was going to be a tough contest."
+                show sara normal at midleft with moveinleft
+                "Sara entered, but her first one ended up dribbling out of her mouth. She tried to spit the second one better, but it ended up hitting Julia on the chin."
+                julia angry "Out of bounds!"
+                hide sara with moveoutright
+                show kid determined at midleft with moveinleft
+                show julia normal with dissolve
+                "[kid_name] gave it a try. She spat the first one high in the air, but it didn't go very far. The second she spat hard, down at the ground, and it bounced and made it just past Natalia's."
+                julia "Well done, [kid_name]! That was spectacular!"
+                show kid happy with moveoutright
+                show him determined at midleft with moveinleft
+                "Then it was my turn. I was the last contestant."
+                "I stepped up to the line, got a big fat seed in my mouth, and got ready to spit."
+                show kid concerned at left with moveinleft
+                "[kid_name]'s face caught my eye and I paused. She looked... worried."
+                menu:
+                    "What should I do?"
+                    "Give it my best effort.":
+                        "I had to give it my best effort. If [kid_name] won, I wanted it to be for real."
+                        "I flicked my head to give the seed great momentum. It sailed through the air."
+                        "The seed bounced once, twice, and then stopped."
+                        julia "The first seed is behind Natalia's! So far [kid_name] is still winning!"
+                        "No way. I had one seed left. I was going to make this one count!"
+                        "I reared my head back, and spat with my whole body."
+                        "The seed bounced and rolled... just ahead of [kid_name]'s."
+                        julia "We have a winner! [his_name]'s went the furthest!"
+                        him happy "And [kid_name]'s a close second!"
+                        show kid nervous with dissolve
+                        $ demanding += 1
+
+                    "Let [kid_name] beat you.":
+                        "I wanted to win... but I wanted [kid_name] to win even more."
+                        "I made a big show of spitting hard, but I didn't give it my secret head flick that my cousins and I had worked out."
+                        "It landed way behind [kid_name]'s."
+                        "My second landed near the first."
+                        show kid happy with dissolve
+                        him concerned "Oh man! I used to be so good at this!"
+                        kid normal "I beat you! I beat you, dad!"
+                        him happy "You sure did!"
+                        hide him with moveoutleft
+                        show kid at midleft with move
+                        julia normal "We have a winner!"
+                        kid laugh "I can't believe it!"
+                        $ responsive += 1
+
+            "The apple peeling contest.":
+                "I'm pretty handy with a knife, so I figured I'd try the apple peeling contest. We all got an apple and a knife, and our job was to make as long of a peel as possible without it breaking."
+                show pavel normal at left
+                show her normal at quarterleft
+                show him normal at midleft
+                with moveinleft
+                show zaina normal at right
+                show kevin normal at quarterright
+                show thuc normal at midright
+                with moveinright
+                julia "On your mark... get set... GO!"
+                "Even though she made it sound like a race, I tried to take my time. I had to make the peeling narrow enough to be very long, but wide enough that it wouldn't break..."
+                "I felt bad for Kevin, whose peel kept breaking. He was trying to make it way too thin."
+                kevin "This is more challenging than it appears."
+                zaina "Yeah, I think I'm just going to eat mine. None of mine are as long as theirs!"
+                hide kevin
+                hide zaina
+                with moveoutright
+                "Pavel kept dropping the knife. He used to be good at this sort of thing, but he just wasn't as dextrous as he used to be."
+
+                hide pavel with moveoutleft
+                "[her_name] finished first with a peel about as long as she was tall."
+                her happy "I do have a lot of practice with a scalpel!"
+                "But her peel was much wider than mine, so I knew my peel would be longer."
+                "I was more worried about my real competition - Thuc."
+                show him determined with dissolve
+                "If he was as good at using knives as he was at juggling them, I was in for a tough challenge."
+                "He and I were both cutting slowly and carefully, our eyes fixed on the sharp blade cutting the peel."
+                show him annoyed with dissolve
+                julia "What a contest we have here! Both evenly matched! Both slicing with such care and precision!"
+                natalia "C'mon, we know who you want to win!"
+                julia "I am a neutral announcer! I am completely impartial, even if one of the contestants is my husband!"
+                if invited_luddites:
+                    pete "C'mon, [his_name]! You got this!"
+                if invited_miners:
+                    brennan "My money's on Thuc. There's no way [his_name] will win this."
+                    if (has_strong_marriage()):
+                        her normal "Are you talking actual money? How much? Because I'm betting on [his_name]."
+                    else:
+                        her concerned "They're so evenly matched; either one could win this."
+                "I tried to ignore all the comments and concentrate."
+                show him concerned with dissolve
+                "Finally, we were both finished. We laid the peels out on the ground carefully so they wouldn't break. It was going to be close..."
+                julia "And the winner is..."
+                show him surprised
+                if (invited_miners and invited_luddites and has_strong_marriage()):
+                    julia "[his_name]!"
+                    him happy "Yes!!!"
+                else:
+                    julia "Thuc!"
+                    thuc "Wow, really?"
+                    julia "Good job, sweetie."
+            "The arm wrestling contest.":
+                "I work hard all day, so I'm probably pretty strong, right? Though I guess a lot of other people do, too..."
+                # TODO: Finish this
+            "Don't enter any contests.":
+                $ pass
+    elif (community_17_activity == "games"):
+        show thuc normal at center with dissolve
+        "Thuc got up and announced we were going to start off with some group juggling."
+        him happy "No knives, I hope!"
+        thuc "Not for you dinosaurs!"
+        "We got into a big circle and tossed around an apple, saying the person's name as we threw it to them."
+        "Then he added another apple, and another, and another."
+        "When we got to about fifteen it was complete chaos, but everyone was laughing."
+        thuc "Okay! For our next game, I need a volunteer to leave the room!"
+        "No one was raising their hand except [kid_name]. I figured it might be best if an adult went first to show everyone how it was done, so I raised my hand, too."
+        thuc "[his_name]! I can always count on you to be a guinea pig."
+        "I left the room, and when I came back, they had formed a line of people."
+
+
+
+    elif (community_17_activity == "performances"):
+        show ilian normal at center with dissolve
+        "Ilian,"
+
+    scene bonfire with fade
+    "We ended the night grouped around a blazing bonfire."
+    "The flames' warmth warded off the damp chill growing in the night air."
+
+    scene black with fade
     if ate_jellyfish:
         #move to a later, more sparse event?
-        "After the dinner, you can't stop thinking about the seafood that Pete brought."
+        "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
         him "I wonder what they look like." #to self
         "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
         if lily_mad_at_RET:
@@ -3313,7 +3454,7 @@ label community19:
     "A few weeks later, we were all gearing up for the fall harvest."
     her "I love this time of year. Harvesting food together makes me feel like we'll live another year."
     her "It does seem more efficient to stagger the crops though."
-    him "Yeah, Tomas Peron likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest."
+    him "Yeah, Tomas Perón likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest."
     him "He said that the corn should be ready in five days. Can you get work off?"
     her "Yeah, I don't have any appointments since everyone else is helping with the harvest!"
     her "And if someone gets injured I'll be right there!"
@@ -3329,7 +3470,7 @@ label community19:
     him_c "Aren't there patches of wild alfalfa we could feed them?" #I haven't figured out why they can't do this.
     thuc_c "The wild alfalfa is too far away, and it starts dying as soon as the rainy season starts. Plus it's mixed in with native weeds."
     her "What's going on? Some exciting gossip?"
-    him "Crabbirds ate all the Peron's corn, so we won't be harvesting it together."
+    him "Crabbirds ate all the Perón's corn, so we won't be harvesting it together."
     her "Whaaaaat? What will the cows eat all winter?"
     him "That's what everyone's wondering. Maybe they can increase the amount of alfalfa in the feed?"
     her "I wonder why there were so many crabbirds. We've never seen this many before, have we?"
@@ -3347,7 +3488,7 @@ label community19:
     ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
     if thuc_has_cattle:
         thuc_c "Ouch. That's going to impact our herd next year. Maybe I'll make a bunch of jerky."
-        if is_liason:
+        if is_liaison:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
@@ -3370,7 +3511,7 @@ label community19:
             thuc_c "Will do."
     else:
         ilian_c "What should we do with those four cows?"
-        if is_liason:
+        if is_liaison:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
@@ -3415,7 +3556,7 @@ label community20:
         him "Hmm. I haven't heard much from them so I assume they're happy."
         if luddites > 10:
             him "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
-            pavel "That's true, but we're setting a precedent here. What if in 80 years, the luddites are 15-20 people and suddenly want to join back with us?"
+            pavel "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him "That doesn't sound like a problem."
             pavel "Well, it's like RET is rehiring them, since we grow food for the miners and for ourselves."
             him "They could live near us and not work for RET."
@@ -3477,7 +3618,7 @@ label community20:
                         jump lily_not_return
 
         label lily_return:
-            "Lily moved in with her former lab assistant, Miranda Peron."
+            "Lily moved in with her former lab assistant, Miranda Perón."
             "One day she called me in to the lab."
             him "Hello Dr. Lily. Welcome back!"
             lily "Thank you. I still do not approve of RET's practices, but I do not believe they felt the gravity of my protest."
@@ -3769,9 +3910,9 @@ label community21:
 
 
 label community22:
-    if (miners > 10) and (luddites > 9) and (is_liason):
+    if (miners > 10) and (luddites > 9) and (is_liaison):
         nvl clear
-        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing the luddites' home."
+        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing his home."
         brennan_c "Except I don't know how to get ahold of Pete."
         him_c "Oh, he has a radio now. I can sort of text him with it."
         brennan_c "How 21st-century. Ask him if he can meet tomorrow evening at the canteen in the miner camp. Around 5pm, if he has a watch."
@@ -3827,7 +3968,7 @@ label community22:
         # does this need a stat +=?
         return
 
-    elif (miners > 10) and (luddites > 9) and not (is_liason):
+    elif (miners > 10) and (luddites > 9) and not (is_liaison):
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in his winter area. Do you know where he is right now?"
         him_c "Actually, he has a two-way radio now! I can sort of text him."
@@ -3847,7 +3988,7 @@ label community22:
 
     elif (miners > 5):
         nvl clear
-        if is_liason:
+        if is_liaison:
             brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you about our future mining prospects."
             kevin_c "I am unable to attend, but Zaina will be there."
             him_c "See you there."
@@ -3868,14 +4009,14 @@ label community22:
         else:
             nvl clear
             sara_c "Hey [his_name]. You knew Pete pretty well, right?"
-            sara_c "Brennan is going to start mining in the mountain where Pete and the other luddites are living. Could you give us some advice on how to proceed?"
+            sara_c "Brennan is going to start mining in the mountain where Pete and his group are living. Could you give us some advice on how to proceed?"
             sara_c "We're trying to decide if we could get him to leave or if we should cut our losses now."
             sara_c "I just added you to the chat."
             jump Pete_stay_or_go
 
         label Pete_stay_or_go:
             nvl clear
-            zaina_c "The luddites are currently living in caves in that mountain."
+            zaina_c "Pete's group is currently living in caves in that mountain."
             zaina_c "Pete wouldn't let me inside to explore them. He said that they weren't moving under any circumstance and that we should mine somewhere else."
             zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
             brennan_c "There he goes, acting like he owns the place. Sheesh. I don't really want to force him out, but that mountain is the best place to mine."
@@ -3960,7 +4101,7 @@ label community22:
                         pete "Fine. We'll leave the caves. Just give us five days."
                         him "Okay. Let her go."
                         "Bandile let go of Helen. She looked at me like I was vomit."
-                        "The luddites left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
+                        "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
                         $ luddites = 0 #or a large minus to the relationship
                         $ miners += 1
@@ -4001,7 +4142,7 @@ label community22:
                         him_c "What have you got against Pete?"
                         brennan_c "It's nothing personal. We've already established that it's the most efficient place to mine for rare metals."
                         brennan_c "The more efficient we are at mining, the better chance RET has to support us for a longer period of time."
-                        him_c "But we'll have to sacrifice our relationship to the luddites to do so."
+                        him_c "But we'll have to sacrifice our relationship with Pete's group to do so."
                         zaina_c "It was their decision to leave the colony, and it's our decision to keep mining the mountain."
                         jump mining_anyway
 
@@ -4023,7 +4164,7 @@ label community22:
 
 #                else:
                 brennan_c "It's too risky not to mine it. We're going to continue whether they're there or not."
-                brennan_c "It's not like the luddites have ever stuck it out for us."
+                brennan_c "It's not like Pete has ever stuck it out for us."
                 him_c "Not sure why you asked my advice if you're just going to do what you planned anyway."
                 brennan_c "I thought you might have an idea of how to convince him to leave. He obviously doesn't need more money."
                 him_c "I don't think anything you do would convince him to leave."
@@ -4060,7 +4201,7 @@ label community22:
         brennan_c "Can he show me the deed to the land?"
         him_c "You know we don't have deeds for anything here."
         brennan_c "I think we've talked about this before. If we don't mine effectively, we'll lose RET's support. We need the medical supplies and materials they send us periodically."
-        him_c "The luddites don't see it that way."
+        him_c "Pete's group doesn't see it that way."
         brennan_c "I don't have much else in my persuasive arsenal. It's dangerous for them to stay, and leaving would help our entire community."
         him_c "Surely there are other mountains you could mine?"
         brennan_c "There are, but Zaina has been exploring and taking samples over the last few years. That mountain has the best chance of having the most rare metals for a 50-mile radius."
@@ -4105,7 +4246,7 @@ label community22:
                 pete "That's something I've been wondering about. Why can't we make those things here?"
                 him "We don't have the infrastructure for it."
                 pete "We would if RET would send it to us. They don't want us to be completely independent."
-                if is_liason:
+                if is_liaison:
                     him "I'll ask RET about it and get back to you."
                     pete "I'd appreciate that."
                 him "Maybe there's a different reason. But whatever it is, we can't change RET's mind right away."
@@ -4122,23 +4263,23 @@ label community22:
                 jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
         label stopped_mining:
-            "The mining stopped." #this can happen if you're not the liason, after the luddites vandalize mining equipment
-            if is_liason:
+            "The mining stopped." #this can happen if you're not the liaison, after the luddites vandalize mining equipment
+            if is_liaison:
                 "I didn't mention anything to RET, but Brennan must have, because Mayor Grayson sent me an urgent message the next day."
                 pavel_c "Please come meet me in my office today."
                 him_c "Okay, what's is about?"
                 pavel_c "I think you know..."
                 "I guess RET probably wasn't happy that the mining had stopped."
-                pavel "RET has asked me to designate a new liason."
+                pavel "RET has asked me to designate a new liaison."
                 him "Okay. Fine."
                 pavel "What did you think would happen? You didn't even consult them."
                 him "I know what they would have said."
                 pavel "But you have to let them say it. You're not the only one in contact with them."
-                pavel "RET asked me to make the nominations for two candidates. I'm sending out a poll tonight to vote for the new liason."
+                pavel "RET asked me to make the nominations for two candidates. I'm sending out a poll tonight to vote for the new liaison."
                 him "This will just help me focus on farming--the important work."
-                "Sara won the most votes and became the new liason."
+                "Sara won the most votes and became the new liaison."
 
-                $ is_liason = False
+                $ is_liaison = False
 
                 jump sara_RET_22
                 return
@@ -4166,7 +4307,7 @@ label community22:
 
             #$ style = get_parenting_style()
            # if (style== "authoritative"):
-           #     "Plz elect a liason 2 help RET & colonists communicate & resolve conflicts."
+           #     "Plz elect a liaison 2 help RET & colonists communicate & resolve conflicts."
             #elif(style == "authoritarian"):
             #    "We need a designated contact with the colony that u trust. Send ur decision."
             #elif(style == "permissive"):
@@ -4223,7 +4364,7 @@ label community23:
     kid "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
     him "How much money are we talking about here?"
     if community_22_mining_stopped:
-        # you are never the liason in this option, since you lose liasonship in community 22 if you choose to stop mining
+        # you are never the liaison in this option, since you lose liaisonship in community 22 if you choose to stop mining
         kid "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
         him "Really? That seems strange."
         kid "That's what Anya told me."
@@ -4716,7 +4857,7 @@ label community26:
     him "We should help her change something in her life to break this cycle."
     her "I feel like I've done everything I can. I'm going to present her case to the town council to see if they have other ideas."
 
-    if is_liason:
+    if is_liaison:
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
         her "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol although that is not her real name."
         her "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
@@ -5143,7 +5284,7 @@ label call_to_squid:
                 brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him "I have my own farm to run!"
                 brennan "I can give you some credits for someone else to take care of your farm."
-                brennan "I need you to be our new alien liason!"
+                brennan "I need you to be our new alien liaison!"
                 $ shell_count += 2
             else:
                 brennan "All my jellysquid farms were destroyed anyway. I can't farm them anymore."
@@ -5422,7 +5563,7 @@ label community28:
             him "Okay, okay."
             $ against_euthanasia = True
     "The next day, Sara sent out a message saying that Mayor Grayson was ready to retire and that we would be electing a new mayor at a meeting next week."
-    if is_liason:
+    if is_liaison:
         "She also invited me and [her_name] to a meeting that night to discuss Mayor Pavel Grayson's future."
         # Julia is here too. Brennan is here if your mining relationship is high enough. explain why Julia is there?
         sara "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #TODO: check last three events to see if Pavel is in them
@@ -5496,7 +5637,7 @@ label community28:
             him "I know, but you still have to give him a fatal injection right? Technically you'll be the one killing him."
             her "In a procedure he requested."
             jump fill_gap
-    # if is not liason
+    # if is not liaison
 
 
 label fill_gap:

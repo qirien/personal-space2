@@ -61,8 +61,3 @@ init python:
     talaam_other = ["huh", "but", "together"]
     talaam_words = Wordpack()
     talaam_words.add_words(talaam_nouns, talaam_adjectives, talaam_verbs, talaam_other)
-
-label make_poem:
-    $ word_board.generate_display_words()
-    call screen plugin_poetry(word_board)
-    return

@@ -7,7 +7,6 @@ screen poetry_display(board):
             xpadding 50
             ypadding 50
             yfill True
-            background "#aaaaaa"
             hbox:
                 xfill True
                 vbox:

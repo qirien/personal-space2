@@ -35,7 +35,7 @@ label parenting_class_questions:
             naomi "Then perhaps  neither can play with the toy until they both agree on how they will share it."
             him normal "Okay, I'll try that."
             naomi "Just try to remember to focus on solving problems together, not pointing fingers at each other."
-            if (is_liason):
+            if (is_liaison):
                 him determined "That's good advice for everyone."
                 naomi "Yes, there is much overlap between parenting and leading a community."
                 him normal "Thanks for the leadership training, Sister Naomi."

@@ -282,7 +282,7 @@ label bad_nutrition:
             natalia_c "Sure; I'll bring tomatoes, too."
             if (whole_harvest_required):
                 ilian_c "Shouldn't you be bringing all that to the storehouse?"
-                if is_liason:
+                if is_liaison:
                     "He caught me there. I was being pretty hypocritical, going around the system I was telling everyone else to follow."
                     menu:
                         "What should I say?"
@@ -296,7 +296,7 @@ label bad_nutrition:
                             $ rationing = True
                             $ require_whole_harvest = False
                             ilian_c "Really? You're changing it, just like that?"
-                            him_c "Being the liason has to be good for something."
+                            him_c "Being the liaison has to be good for something."
                             natalia_c "I'm not complaining."
                         "(Don't say anything)":
                             "I didn't say anything. Everyone knew that requirement was mostly for show, right?"
@@ -1238,7 +1238,7 @@ label work20:
                 him determined "Thanks anyway."
             "Ask RET for help":
                 "This was exactly the kind of thing we needed a liaison for."
-                if (is_liason):
+                if (is_liaison):
                     "And I guess that meant it was up to me to talk to RET about it."
                     "I'd better think carefully about what message to send to Earth. I had 140 characters to use on the quantum entanglement device."
                     $ work20_message = ""
@@ -1432,7 +1432,7 @@ label work22:
             him happy "No, it's funny! Go ahead, tell me what you think I'll do."
             pete "You don't strike me as a flashy car kind of guy..."
             ilian "Anyway, those are currently in dismally short supply."
-            if (is_liason):
+            if (is_liaison):
                 sara "You're already the RET liaison, so you don't need to seek a position of power."
             else:
                 sara "Maybe he'll seek a position of power in the community? Run for mayor?"

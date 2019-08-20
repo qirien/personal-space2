@@ -92,7 +92,7 @@ label start:
 
     # COMMUNITY
     python:
-        is_liason = False
+        is_liaison = False
         asked_only_medicine = False
         trade_with_luddites = False
         invited_luddites = False
@@ -115,6 +115,7 @@ label start:
         thuc_sells_food = False
         cave_explored = False
         community_11_kidsonfarm = False
+        community_17_planparty = False
         community_22_mining_stopped = False
         community_22_forced_luddites_leave = False
         community_22_compromise = False

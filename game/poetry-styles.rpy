@@ -22,3 +22,6 @@ style pp_label is label:
 style pp_label_text is label_text:
     color green_dark
     font "fonts/DejaVuSerif.ttf"
+
+style pp_frame is frame:
+    background gray_light

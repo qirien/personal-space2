@@ -62,44 +62,6 @@ init -100 python:
 
             return
 
-        # def add_to_size(self, size_tuple, *args):
-        #     import random
-        #     num_nouns = size_tuple[Wordpack.NOUN_INDEX]
-        #     num_adjectives = size_tuple[Wordpack.ADJECTIVE_INDEX]
-        #     num_verbs = size_tuple[Wordpack.VERB_INDEX]
-        #     num_other = size_tuple[Wordpack.OTHER_INDEX]
-        #
-        #     new_list = []
-        #     newwords = []
-        #     num_wordpacks = len(args)
-        #
-        #     self.nouns = add_words_to_size(self.nouns, num_nouns, args.nouns) # can't actually do args.nouns
-        #     self.adjectives = self.add_words_to_size(Wordpack.ADJECTIVE_INDEX, num_adjectives, args)
-        #     self.verbs = self.add_words_to_size(Wordpack.VERB_INDEX, num_verbs, args)
-        #     self.other = self.add_words_to_size(Wordpack.OTHER_INDEX, num_other, args)
-        #
-        #
-        #
-        #
-        # # Given a list of words, add evenly selected words from the word lists in args until it gets to a certain size.
-        # def add_words_to_size(new_list, new_size, *args):
-        #     # If we already have more words than we need, randomly select
-        #     # to size and return
-        #     if (len(new_list) >= new_size):
-        #         return random.sample(new_list, new_size)
-        #     # Otherwise, add from each wordlist given until we don't need any more words.
-        #     else:
-        #         needed_words = new_size - len(new_list)
-        #         words_added = 0
-        #         words_per_pack = needed_words // num_wordpacks
-        #         for newwords in args:
-        #             new_list += random.sample(newwords, words_per_pack)
-        #             needed_words -= words_per_pack
-        #             num_wordpacks -= 1
-        #             # this will update the words_per_pack so it will work with uneven division
-        #             words_per_pack = needed_words // num_wordpacks
-        #     return new_list
-
         def get_nouns(self):
             return self.nouns
 
