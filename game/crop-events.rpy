@@ -635,7 +635,7 @@ label goats2:
                 scene cave with fade
             show pete at midright with dissolve
             show him normal at midleft with moveinleft
-            if (luddites_strength() >= 1):
+            if (mavericks_strength() >= 1):
                 pete "Hey there, [his_name]. Good to see ya."
             else:
                 pete "What do {b}you{/b} want?"
@@ -646,7 +646,7 @@ label goats2:
             him "Sure, I can spare one. She's almost full grown."
             pete "Alrighty then. I'll have some beef to trade you for, alright?"
             him "Sounds good. Later, Pete."
-            $ luddites += 1
+            $ mavericks += 1
         "Send the meat to the storehouse":
             "I didn't want to have two goat herds. That would just be too much work."
             "So I slaughtered them, cut up the meat, and sent it to the storehouse."

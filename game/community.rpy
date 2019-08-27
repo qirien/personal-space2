@@ -85,7 +85,7 @@ label community1:
             him normal "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
             him determined "Nothing on Earth compares."
             kevin "I agree. There's so much to document and try, it's overwhelming."
-            $ luddites += 1
+            $ mavericks += 1
         "At the end of the day, working together is what keeps me going.":
             him determined "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
             him normal "At the same time, it's my relationship with my neighbors that I really cherish."
@@ -237,7 +237,7 @@ label community1:
                             him "No, one of my friends was driving it."
                             zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
                             him "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
-                            # TODO: give bonus to luddites here?
+                            # TODO: give bonus to mavericks here?
                     him "Anyway, their kids are old enough to help around the colony a lot. Their oldest son just got married."
                     hide martin
                     hide natalia
@@ -341,7 +341,7 @@ label community2:
             him normal "Great, I'll do that."
             #TODO: make this add to the future stress variable
         "I will keep storing most of my own crops.":
-            $ luddites += 1
+            $ mavericks += 1
             him annoyed "I'm not changing how I do things because of what some lawyer at RET said. I'll do what's efficient and good for everyone."
             ilian "Hmph. Well, we'll see how that works out."
     return
@@ -408,7 +408,7 @@ label community3:
         "Don't invite them.":
             him determined "They can make their own game night if they want."
             him normal "I want to enjoy myself, not be teaching other people how to play games the whole time."
-            $ luddites += 1 #rationale: the luddites are a product of the colonists becoming more fractured
+            $ mavericks += 1 #rationale: the mavericks are a product of the colonists becoming more fractured
             jump no_invite
         "Ask Pavel to encourage meetups":
             him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
@@ -516,7 +516,7 @@ label community4:
         "Sara. She's familiar with colony politics since she assists the mayor.":
             $ miners += 1
         "Pete. He'll make sure RET doesn't get too much control.":
-            $ luddites += 1
+            $ mavericks += 1
     "After the nominations, we voted for our favorite candidate."
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
@@ -586,7 +586,7 @@ label community5:
                 $ rationing = True
                 jump ration_harvest
             "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
-                $ pass #rationale: this has pros and cons for luddites, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
+                $ pass #rationale: this has pros and cons for mavericks, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
                 $ miners -= 1
                 jump no_formal_rationing
     else:
@@ -787,7 +787,7 @@ label community6:
             pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
             pete happy "And it's handy to have some folks around. Otherwise, who would I crush in Maximal Conquest?"
         "I understand wanting to be away from it all.":
-            $ luddites += 1
+            $ mavericks += 1
             him determined "I understand wanting to be away from it all. It's part of the reason I came here."
             pete happy "We don't have to deal with inane government interference or rules made just for the sake of havin' 'em."
             him concerned "Although some of RETs demands have felt that way..."
@@ -881,7 +881,7 @@ label community7:
                 him determined "I think RET has bigger things to worry about."
                 thuc sad "Fine, an e-mail is fine."
             "From a business standpoint, you're stuck here.":
-                $ luddites += 1
+                $ mavericks += 1
                 him annoyed "You don't have any leverage over them. It's not like you can quit now."
                 thuc sad "I sure do have leverage! I could decide to leave the colony!"
                 him concerned "You wouldn't seriously consider that."
@@ -910,7 +910,7 @@ label community7:
                 him flirting "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
                 thuc normal "Burn!"
             "They won't do anything.":
-                $ luddites += 1
+                $ mavericks += 1
                 him concerned "You're stuck here. You have no choice but to be an employee of RET."
                 thuc sad "I could decide to leave the colony!"
                 show him surprised
@@ -1096,7 +1096,7 @@ label community9:
     "What do I tell Pete?"
     menu:
         "Sounds fun! Go with him and invite Thuc.": #you learn the particulars of how to camp safe from radiation.
-            $ luddites += 1
+            $ mavericks += 1
             $ colonists += 1
             him normal "That sounds fun. We should invite Thuc, too. Do you have the right equipment?"
             pete normal "We've got two radiation-proof tents from RET. I don't like relying on them for so many things though, so I'm going to try out my own."
@@ -1223,7 +1223,7 @@ label community9:
             # TODO: Should this be a timed menu?
             menu:
                 "Tackle the crab.":
-                    $ luddites += 1
+                    $ mavericks += 1
                     #TODO: I want the injured-hand option to result in making less money that month, if we do the currency thing.
                     show him annoyed at right with move
                     "I tackled the grass crab from behind, easily outweighing it."
@@ -1401,10 +1401,10 @@ label community10:
             nvl clear
             natalia_c "Thanks for helping us with Tomás. We talked to him, and he's decided he will help out at the farm, at least for a little while."
             him_c "Glad to hear it! He's a good kid."
-            #more investment in older farms; Tomas and Joanna are less likely to join the luddites this way
+            #more investment in older farms; Tomas and Joanna are less likely to join the mavericks this way
         "Let Natalia scale back the farm.":
             $ community11_kidsonfarm = False
-            $ luddites += 1
+            $ mavericks += 1
             him determined "If nobody wants to do it, you shouldn't force them to."
             natalia "See? It's important for kids to follow their dreams!"
             martin angry "Tomás is perfectly capable of running a farm; he's just lazy!"
@@ -1744,7 +1744,7 @@ label community11:
             $ colonists += 1
         else:
             jump Martin_dead_sooner
-            $ luddites += 1
+            $ mavericks += 1
         return
 
     label no_luxuries:
@@ -1760,7 +1760,7 @@ label community11:
         brennan normal "No, sorry, I think they just sent some new batteries and stuff."
         natalia "They don't care what happens to us!"
         martin angry "I would have liked to live a little longer, but in the end, we can only do so much."
-        $ luddites += 1
+        $ mavericks += 1
 
         label Martin_dead_sooner:
             scene church with fade
@@ -1975,7 +1975,7 @@ label community12:
                     jump tell_Pete
 
             label message_Bandile:
-                # $ luddites += 1 not sure if this makes sense
+                # $ mavericks += 1 not sure if this makes sense
                 "I sent Bandile a message asking about the cow." #e-mail/message UI thing
                 "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
                 "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
@@ -2503,14 +2503,14 @@ label community14:
         lily "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
         lily "I'm going with Pete and his family."
-        $ luddites += 1
+        $ mavericks += 1
     else:
         lily "I plan to visit you often."
         lily "There is so much more to learn about this planet."
     if not (asked_only_medicine):
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen tell us their plans to go with Pete and his family."
-        $ luddites += 1
+        $ mavericks += 1
     pete "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
     pete "But that was before we had credits."
     pete "We're leaving our house and everything in it. Maybe some newlywed couple will want to live there."
@@ -2539,7 +2539,7 @@ label community14:
         "Joke that I wish I could join them.":
             him "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
             him "Seriously though, take care of yourselves."
-            $ luddites += 1
+            $ mavericks += 1
             $ pass
     if is_liaison:
         "What do I do with Pete and Helen's remaining cattle?"
@@ -2818,7 +2818,7 @@ label community15:
             "I didn't say anything, just sat and held [her_name], both of us lost in our own thoughts."
 
     # Dr. Lily has a stroke and worries about her progress being lost if she should die.
-    # should this go in the next event? what happens if she left with the luddites?
+    # should this go in the next event? what happens if she left with the mavericks?
 #    "About a month later, Dr. Lily had a stroke."
 #    "She announced that Miranda would be the new head scientist."
 #    "Miranda had been working with Dr. Lily for the last ten years or so."
@@ -2852,7 +2852,7 @@ label community16:
             him "Do everything you can for Pete. He's an important part of our community."
             him "We'll lose a lot of hands-on knowledge about cattle if he dies."
             her "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
-            $ luddites += 1
+            $ mavericks += 1
         "Don't use important resources on him.":
             him "Try to see if you can treat him without using up our medical supplies."
             her "Um, they already tried that. He needs medicine."
@@ -2961,7 +2961,7 @@ label community16:
                              "Sure.":
                                  him "That sounds amazing. I'll be over right away."
                                  pete "See you soon."
-                                 $ luddites += 1
+                                 $ mavericks += 1
                              "I'm busy.":
                                  him "As tempting as that is, I can't spare any time away from the farm."
                                  pete "Come on."
@@ -2992,15 +2992,15 @@ label community17:
             "Ask Sara and [her_name] to plan it.":
                 "I asked Sara and [her_name] to plan the festival. They made a good team for that sort of thing. But they wanted to know who was invited."
     menu:
-        "The miners and Pete's group." if ((luddites >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
+        "The miners and Pete's group." if ((mavericks >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
-            $ invited_luddites = True
+            $ invited_mavericks = True
             $ invited_miners = True
-            jump ludditesandminers
-        "Pete's group." if (luddites >= 7):
+            jump mavericksandminers
+        "Pete's group." if (mavericks >= 7):
             "I thought it'd be a good idea to invite Pete's group."
-            $ invited_luddites = True
-            jump justluddites
+            $ invited_mavericks = True
+            jump justmavericks
         "The miners." if (miners >= 7):
             "I guess we should invite the miners."
             $ invited_miners = True
@@ -3025,7 +3025,7 @@ label community17:
                 "I asked Ilian to be in charge of that. He loved music, and he's such a critic that he'll only ask people with real talent."
         "Last was the food. I figured I'd just have everyone bring something."
 
-    if (invited_luddites and invited_minters):
+    if (invited_mavericks and invited_miners):
         "Pete offered to slaughter a steer for the occasion."
         "Almost all the miners came, bringing some bean stew."
         brennan "This beef is amazing. Do you have any extra I could buy from you?"
@@ -3039,12 +3039,12 @@ label community17:
         pete "Great. Now I just need to figure out how to make a bellows!"
         "Pete also brought a strange seafood dish."
 
-    elif invited_luddites:
+    elif invited_mavericks:
         "Pete offered to slaughter a steer for the occasion."
         "The colonists brought their best vegetables and fruits, and even some different kinds of bread and pudding."
         "Pete also brought a strange side dish."
 
-    if invited_luddites:
+    if invited_mavericks:
         him "So... what is this?"
         pete "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
         pete "They start stacking on top of one another and they send off these giant eggs."
@@ -3214,7 +3214,7 @@ label community17:
                 julia "What a contest we have here! Both evenly matched! Both slicing with such care and precision!"
                 natalia "C'mon, we know who you want to win!"
                 julia "I am a neutral announcer! I am completely impartial, even if one of the contestants is my husband!"
-                if invited_luddites:
+                if invited_mavericks:
                     pete "C'mon, [his_name]! You got this!"
                 if invited_miners:
                     brennan "My money's on Thuc. There's no way [his_name] will win this."
@@ -3227,16 +3227,146 @@ label community17:
                 "Finally, we were both finished. We laid the peels out on the ground carefully so they wouldn't break. It was going to be close..."
                 julia "And the winner is..."
                 show him surprised
-                if (invited_miners and invited_luddites and has_strong_marriage()):
+                if (invited_miners and invited_mavericks and has_strong_marriage()):
                     julia "[his_name]!"
-                    him happy "Yes!!!"
+                    him excited "Yes!!!"
                 else:
                     julia "Thuc!"
                     thuc "Wow, really?"
                     julia "Good job, sweetie."
             "The arm wrestling contest.":
-                "I work hard all day, so I'm probably pretty strong, right? Though I guess a lot of other people do, too..."
-                # TODO: Finish this
+                "I work hard all day, so I'm probably pretty strong, right? Maybe not the strongest, but enough not to embarrass myself."
+
+                julia "And now, our next round will be... [his_name] versus Kevin!"
+                show him determined at midleft with moveinleft
+                "Really? Kevin didn't strike me as the arm-wrestling type."
+                show kevin normal at midright with moveinright
+                kevin "I have studied up on many effective arm wrestling techniques. This contest is not purely about physical strength."
+                him surprised "So... you're saying that I'm stronger than you, but you read about some fancy tricks and that's why you'll win?"
+                kevin "To put it in simple terms, yet."
+                him smirk "We'll see about that!"
+                "We locked arms, and Julia blew her whistle."
+                menu:
+                    "What should I do?"
+                    "Go for a quick win.":
+                        "I knew I was stronger than him. I didn't want him to have time to use any of his fancy 'techniques'."
+                        "So I put all my energy into one huge burst, and slammed his hand down."
+                        kevin "I did not even get a chance to try the knuckle curl or the toproll."
+                        him annoyed "Too bad, Kevin."
+
+                    "Take it slow and try to outlast him.":
+                        "I didn't have anything to worry about. I could take my time."
+                        "We pulled against each other for a minute or two, and then he tried to adjust his grip, pulling our hands closer to his side of the table."
+                        "Our arms tilted towards his side."
+                        him annoyed "I don't think so, Kevin!"
+                        "I moved my elbow back so we were centered again."
+                        kevin "Hmmm. That did not work as well as the video suggested it would."
+                        "We pulled against each other for a while. I felt like it was time for the match to be over."
+                        "But Kevin was tall and had a lot of leverage. I strained against his arm, and finally I managed to pull his arm towards my side."
+                        "Kevin twisted his wrist, trying to open my hand."
+                        "But I wasn't going to let him do that."
+                        "I hooked his wrist, twisting his arm slightly, and pushed his hand down to the table."
+                        kevin "Well done. Perhaps I require more practice."
+                        him annoyed "Good game, Kevin."
+                hide kevin with moveoutright
+                if invited_miners:
+                    show brennan normal at midright with moveinright
+                    "The highlight of the evening was when I beat Brennan in about 1.6 seconds."
+                    brennan angry "I wasn't ready!"
+                    hide brennan with moveoutright
+                if invited_mavericks:
+                    show pete normal at midright with moveinright
+                    "I was a little worried about going up against Pete, but he had no technique. He was no match for my wrist hook."
+                    pete "I'm not sure how that happened, but good job, [his_name]."
+                    hide pete with moveoutright
+                "Several rounds later, we were at the finals."
+                julia "And for the final round, we have... [his_name] versus Ilian!"
+                show ilian normal at midright with moveinright
+                "Really? Well, if Ilian made it this far, he must be pretty good."
+                "We squared off on either side of the table."
+                julia "Go!"
+                "We both pushed against each other, not too hard, just testing the other guy."
+                ilian happy "When we're finished, you're going to be kissing the floor."
+                him annoyed "I'd take that over kissing your ugly mug."
+                "My hand inched forward. He was a tough opponent, but I could do this. Especially if I could make him lose his cool."
+                ilian normal "I hope you're ready to lose."
+                menu:
+                    "What should I say?"
+                    "Take it easy.":
+                        him surprised "Take it easy, Ilian, it's just a game."
+                        ilian "A game that you clearly don't understand at all."
+                        "I couldn't hold up any longer."
+                        jump community17_lose_to_ilian
+                    "The only thing I'll be losing is...":
+                        menu:
+                            "The only thing I'll be losing is..."
+                            "my lunch if I have to keep smelling you.":
+                                him determined "The only thing I'll be losing is my lunch, if I have to sit here and smell you much longer!"
+                                ilian normal "Oh no; I didn't mean to upset your delicate constitution. I didn't realize you were so feeble."
+                                ilian happy "In fact, you're so weak, old ladies stop and help {b}you{/b} cross the street."
+                                menu community17_trash_talk:
+                                    "What should I say?"
+                                    "You're so rude...":
+                                        him annoyed "You're so rude, old ladies wouldn't stop to help you even if you had a heart attack in the middle of the street."
+                                    "You're so stupid...":
+                                        him annoyed "You're so stupid, when Pete told you a drink was on the house you ran to get a ladder."
+                                    "You're so wimpy...":
+                                        him annoyed "You're so wimpy, everytime you press a key on the keyboard you have to stop to catch your breath."
+                                    "Knock it off, Ilian.":
+                                        him annoyed "Knock it off, Ilian."
+                                        ilian normal "Giving up so easily?"
+                                        jump community17_lose_to_ilian
+
+                                ilian normal "Really? Well, you're so ugly, [her_name] kissed your horse once because she thought it was you."
+                                menu:
+                                    "What should I say?"
+                                    "That just means I have a good-looking horse.":
+                                        him happy "That doesn't mean I'm ugly. It means I have a good-looking horse!"
+                                        "Everyone burst out laughing. Even Ilian's mouth twitched. I took advantage of his momentary lapse in concentration and slammed his hand down."
+                                        julia "[his_name] is the winner!"
+                                        him laugh "All right!"
+                                    "This is stupid.":
+                                        him angry "This is stupid!"
+                                        ilian normal "Worst. Comeback. Ever."
+                                        jump community17_lose_to_ilian
+                                    "At least my wife wants to kiss me.":
+                                        him angry "Hey, at least my wife actually wants to kiss me."
+                                        "The room was suddenly very quiet. Ilian and Sara's marital problems were common knowledge, but I felt that I had overstepped myself."
+                                        him concerned "Sorry... that was out of line."
+                                        ilian normal "Yes, it was."
+                                        $ colonists -= 1
+                                        jump community17_lose_to_ilian
+
+                            "my marbles if I have to keep listening to your ranting.":
+                                him happy "The only thing i'll be losing is my marbles, if I have to listen to more of your ranting."
+                                ilian happy "If all it takes is a few rants to make you crazy, you must not be very far off!"
+                                ilian normal "In fact, you're so crazy that every time you go running, you take the psycho-path."
+                                jump community17_trash_talk
+
+                            "my temper if you don't shut up!":
+                                him angry "The only thing I'll be losing is my temper, if you don't shut up!"
+                                ilian normal "Oh, that was a brilliant comeback, [his_name]. The scintillating intellect at work."
+                                him yell "Be quiet and play!"
+                                ilian happy "I know that's how you talk to your kids, but it won't work on me."
+                                "That smug look on his face... he was infuriating! I roared and poured all my strength into pushing his hand down."
+                                "But he was ready for that, and when I couldn't push any more, that's when he made his move."
+                                jump community17_lose_to_ilian
+                    "(Say nothing)":
+                        "I didn't respond; I just concentrated on the battle."
+                        ilian normal "You're so weak, you ask [bro_name] to help you lift your fork to your face when you eat."
+                        "It was so ridiculous I almost laughed. But I tried to stay focused on the arm wrestling."
+                        ilian happy "You're so weak, you use a Q-tip as a barbell when you work out."
+                        "The corner of my mouth twitched, but my arm stayed strong."
+                        ilian normal "You're SOOOO weak, [her_name] has to hold you up every time she gives you a kiss so you don't fall over."
+                        "I snorted a short laugh."
+                        him happy "Well, she {b}is{/b} a really good kisser..."
+                        "...and, just like that, my concentration was broken."
+                        label community_17_lose_to_ilian:
+                            "Ilian pushed my hand down, and the match was over."
+                            show him pout with dissolve
+                            julia "We have a winner! Ilian!"
+                            ilian happy "What else did you expect?"
+
             "Don't enter any contests.":
                 $ pass
     elif (community_17_activity == "games"):
@@ -3250,9 +3380,79 @@ label community17:
         thuc "Okay! For our next game, I need a volunteer to leave the room!"
         "No one was raising their hand except [kid_name]. I figured it might be best if an adult went first to show everyone how it was done, so I raised my hand, too."
         thuc "[his_name]! I can always count on you to be a guinea pig."
+        hide him with moveoutleft
         "I left the room, and when I came back, they had formed a line of people."
+        show him at midleft with moveoutleft
+        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what the ailment is."
+        hide thuc with moveoutleft
+        him content "Oh, okay, I think I've played this before."
+        "I looked around at everyone."
+        scene community_center with fade
+        if (invited_mavericks):
+            show helen normal at left
+        show thuc normal at quarterleft
+        show zaina normal at midleft
+        show ilian normal at center
+        show pavel normal at midright
+        show natalia normal at quarterright
+        if (invited_miners):
+            show brennan normal at right
+        with dissolve
+        if (invited_mavericks):
+            "Time to ask Helen a question."
+            $ patient = "helen"
+            call c17_psy_menu
+        $ patient = "thuc"
+        "I decided to ask Thuc something."
+        call c17_psy_menu
+        $ patient = "zaina"
+        "I needed a question for Zaina."
+        call c17_psy_menu
+        $ patient = "ilian"
+        "What should I ask Ilian?"
+        call c17_psy_menu
+        $ patient = "pavel"
+        "Pavel's turn."
+        call c17_psy_menu
+        $ patient = "natalia"
+        "Next is Natalia."
+        call c17_psy_menu
+        if invited_miners:
+            $ patient = "brennan"
+            call c17_psy_menu
+        jump c17_psy_decide
 
+        menu c17_psy_menu:
+            "What should I ask?"
+            "What's your name?":
+                him surprised "What's your name?"
+            "How old are your kids?":
+                him surprised "How old are your kids?"
+            "What's your favorite food?":
+                him surprised "What's your favorite food?"
+            "What do you like to do for fun?":
+                him surprised "What do you like to do for fun?"
+            "If you got arrested, what would it be for?":
+                him surprised "If you got arrested, what would it be for?"
+            "What's your job?":
+                him surprised "What's your job?"
+            "If you had a superpower, what would it be?":
+                him surprised "If you had a superpower, what would it be?"
 
+        label c17_psy_decide:
+            him determined "You guys are all acting like..."
+            menu:
+                "Who is everyone acting like?"
+                "The person on their left.":
+                    him doubt "The person on your left?"
+                "The person on their right.":
+                    him doubt "The person on your right?"
+                "Pavel.":
+                    him doubt "Pavel?"
+                "Me.":
+                    him doubt "Me?"
+                "Their spouse.":
+                    him doubt "Your spouse?"
 
     elif (community_17_activity == "performances"):
         show ilian normal at center with dissolve
@@ -3287,8 +3487,8 @@ label community17:
         return
 
     #more likely to take a later risk if you have the parasite? doesn't have to be just like toxoplasmosis.
-    # also if you meet with the luddites, Pete can answer questions about cattle health.
-    # if BOTH luddites and miners are there, they start trade negotiations? affects the firegrass event later.
+    # also if you meet with the mavericks, Pete can answer questions about cattle health.
+    # if BOTH mavericks and miners are there, they start trade negotiations? affects the firegrass event later.
 
 
 label community18:
@@ -3369,7 +3569,7 @@ label community18:
     "Should I help herd the cows?"
     menu:
         "I can help.":
-            $ luddites += 1
+            $ mavericks += 1
             $ miners += 1
             him "Sure thing." #make this a choice as well?
             "We work together to herd the cattle into a group."
@@ -3399,7 +3599,7 @@ label community18:
             pete "You're not gonna help one bit?"
             him "No, I'm not."
             pete "I won't forget this."
-            if (luddites <= 5):
+            if (mavericks <= 5):
                 him "You need to compensate the miners and colonists for the losses they incurred."
                 pete "You need to stop being a jerk."
             "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
@@ -3496,7 +3696,7 @@ label community19:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
-                    $ luddites += 1
+                    $ mavericks += 1
                     him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
                     thuc_c "Are you sure? Cows are worth a lot of money. I'd rather sell them."
                     him_c "You could try that. If you have a bunch of meat all at once, we're not all going to be able to buy it, so keep that in mind."
@@ -3519,7 +3719,7 @@ label community19:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
-                    $ luddites += 1
+                    $ mavericks += 1
                     him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
                     ilian_c "I've been investing quite a bit of credits into these cows. I'll see if Pete wants to buy them though."
                     him_c "Okay. I know that you think you could make jerky out of all of them, but we only want to consume a certain amount of jerky..."
@@ -3558,7 +3758,7 @@ label community20:
         pavel "She wants to move back to the colony."
         pavel "We don't have a precedent for this situation. What do you think RET would want?"
         him "Hmm. I haven't heard much from them so I assume they're happy."
-        if luddites > 10:
+        if mavericks > 10:
             him "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
             pavel "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him "That doesn't sound like a problem."
@@ -3783,7 +3983,7 @@ label community21:
     "Some people caught fish or jellystars and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     "That evening, Pete and his family stopped by."
-    if luddites > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
+    if mavericks > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
         #maybe Travis should be in this event too?
         pete "Hey it's good to see you guys!"
         pete "I have a two-way radio now. It turns out communication is good for business."
@@ -3859,7 +4059,7 @@ label community21:
         her "Too true. A few of the miners have mentioned it to me. I can give out recommended doses and warn about side effects, but we don't really know what the long-term side effects are right now."
         brennan "Ultimately it's their responsibility."
         her "But we need to make sure they have enough information to make good decisions."
-        if luddites > 8:
+        if mavericks > 8:
             pete "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
             brennan "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
             brennan "If I knew how much to take for a little pick-me-up that would still let me sleep at night I use it occasionaly."
@@ -3885,7 +4085,7 @@ label community21:
             "That sounds..."
             menu:
                 "fair.":
-                    $ luddites += 1
+                    $ mavericks += 1
                     him "If you came to my farm and picked my tomatoes I would say the same thing."
                     him "It's only fair for us to compensate him for his work."
                     zaina "Okay, how much do you want to pay for the fish your family ate?"
@@ -3914,7 +4114,7 @@ label community21:
 
 
 label community22:
-    if (miners > 10) and (luddites > 9) and (is_liaison):
+    if (miners > 10) and (mavericks > 9) and (is_liaison):
         nvl clear
         brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing his home."
         brennan_c "Except I don't know how to get ahold of Pete."
@@ -3972,7 +4172,7 @@ label community22:
         # does this need a stat +=?
         return
 
-    elif (miners > 10) and (luddites > 9) and not (is_liaison):
+    elif (miners > 10) and (mavericks > 9) and not (is_liaison):
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in his winter area. Do you know where he is right now?"
         him_c "Actually, he has a two-way radio now! I can sort of text him."
@@ -4107,9 +4307,9 @@ label community22:
                         "Bandile let go of Helen. She looked at me like I was vomit."
                         "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
-                        $ luddites = 0 #or a large minus to the relationship
+                        $ mavericks = 0 #or a large minus to the relationship
                         $ miners += 1
-                        $ community_22_forced_luddites_leave = True
+                        $ community_22_forced_mavericks_leave = True
                         return
                     # "No, this isn't right. "
                     #     him_c "This is getting too intense. I don't think it's worth fighting over."
@@ -4122,13 +4322,13 @@ label community22:
 #                        him_c "He's too stubborn to leave if we push him out."
 #                        him_c "Let's mine somewhere else for now. Who knows, maybe in 15 years he won't even live there anymore."
 #                        zaina_c "But that mountain is the best place for mining right now."
-#                        brennan_c "I don't want to create an army of potential saboteurs by displacing the luddites."
+#                        brennan_c "I don't want to create an army of potential saboteurs by displacing the mavericks."
 #                        brennan_c "Let's find the next-best place and mine there."
 #                        zaina_c "Alright. I'll send you the details."
-#                        $ luddites += 1
+#                        $ mavericks += 1
 #                        jump stopped_mining
 
-#                        if luddites > 5:
+#                        if mavericks > 5:
 #                            him_c "This is getting too intense. I don't think it's worth fighting over."
 #                            brennan_c "We've already starting mining the mountain..."
 #                            him_c "Well Pete isn't living in the whole thing. Can you just mine around him or something?"
@@ -4155,16 +4355,16 @@ label community22:
                 him_c "Why don't you mine somewhere else for now?"
                 zaina_c "Other mountains aren't as dense with the rare metals we seek."
 
-#                if luddites > 5:
+#                if mavericks > 5:
 #                    label stop_mining:
 #                        brennan_c "I'm worried about what RET will say when I tell them we're changing mining locations..."
-#                        brennan_c "But I also don't want to create an army of potential saboteurs by displacing the luddites."
+#                        brennan_c "But I also don't want to create an army of potential saboteurs by displacing the mavericks."
 #                        him_c "If RET gives you grief you can blame me."
 #                        brennan_c "Will do. Let's find the next-best place and mine there."
 #                        zaina_c "Alright. I'll send you the details."
-#                        $ luddites += 1
+#                        $ mavericks += 1
 #                        jump stopped_mining
-#                        #does this seem too easy? maybe each stopped mining branch should also have the luddites vandalizing the equipment?
+#                        #does this seem too easy? maybe each stopped mining branch should also have the mavericks vandalizing the equipment?
 
 #                else:
                 brennan_c "It's too risky not to mine it. We're going to continue whether they're there or not."
@@ -4182,7 +4382,7 @@ label community22:
                 "I left the conversation."
                 jump mining_anyway
 
-    elif (luddites > 5):
+    elif (mavericks > 5):
         "Pete called me on the radio one evening."
         pete "We've been hearing and feeling explosions in the mountain a lot lately."
         pete "What do those damn miners think they're doing?!"
@@ -4267,7 +4467,7 @@ label community22:
                 jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
         label stopped_mining:
-            "The mining stopped." #this can happen if you're not the liaison, after the luddites vandalize mining equipment
+            "The mining stopped." #this can happen if you're not the liaison, after the mavericks vandalize mining equipment
             if is_liaison:
                 "I didn't mention anything to RET, but Brennan must have, because Mayor Grayson sent me an urgent message the next day."
                 pavel_c "Please come meet me in my office today."
@@ -4294,7 +4494,7 @@ label community22:
                 sara_c "What's the big idea? Can we really not do anything?"
                 him_c "Well, Pete doesn't want to move, so yes, we really can't do anything to get him to leave."
                 sara_c "They're insisting that we resume mining."
-                him_c "Tell them we can't because don't want to accidentally hurt the luddites."
+                him_c "Tell them we can't because don't want to accidentally hurt the mavericks."
                 sara_c "And the equipment is getting mysteriously vandalized..."
                 him_c "Right? It just isn't worth it."
                 sara_c "RET wants to authorize use of force against anyone caught making unauthorized modifications to mining equipment."
@@ -4319,14 +4519,14 @@ label community22:
             #else:
 
     else:
-        #try to calibrate to make this end pretty rare. maybe just compare mining value to luddites in elif?
+        #try to calibrate to make this end pretty rare. maybe just compare mining value to mavericks in elif?
         "The miners started working in a different mountain this year."
-        "It happened to be the same mountain that the luddites wintered in by the ocean."
+        "It happened to be the same mountain that the mavericks wintered in by the ocean."
         jump mining_anyway
         return
 
 label mining_anyway:
-    "Brennan continued with the mining even though the luddites were still living in the caves."
+    "Brennan continued with the mining even though the mavericks were still living in the caves."
     "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
     pete "[her_name], do you copy? Please, are you there? We have a medical emergency."
     her "I'm here. What's wrong?"
@@ -4446,12 +4646,12 @@ label community23:
                 $ random_crop = farm.crops.random_crop(include_animals = False)
                 him "Okay, I'll let you try selling some [random_crop]. Message me when they sell!"
                 thuc "Oh, I know someone will want them."
-                $ luddites += 1
+                $ mavericks += 1
                 $ thuc_sells_food = True
                 return
 
     else:
-        #(community_22_forced_luddites_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
+        #(community_22_forced_mavericks_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
         kid "We found ten shells!"
         her "That's fifty credits for you!"
         kid "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
@@ -4468,7 +4668,7 @@ label community23:
                 "[bro_name] and I spent the next hour shelling and cleaning the shellfish."
                 "Well, [bro_name] mostly watched and played with the shells."
                 him "Now we'll be able to have clam chowder whenever we want!"
-                $ luddites += 1 #also debateable
+                $ mavericks += 1 #also debateable
             "Eat some now and sell the rest.":
                 him "Let's have some with dinner and sell the rest tomorrow."
                 her "Okay, can you take care of it?"
@@ -4660,7 +4860,7 @@ label community25:
                     chaco "You too."
                     jump after_convo_25
 
-    elif (luddites > 10):
+    elif (mavericks > 10):
         "I looked around the coast for the jellystar farm."
         "I saw Pete standing on a pier and walked down to say hi."
         "Out on the pier, I could see that the jellystars were enclosed by large net walls."
@@ -4783,7 +4983,7 @@ label community25:
             return
 
 
-    else: #if neither miners or luddites is high enough
+    else: #if neither miners or mavericks is high enough
         "I looked around the coast for the jellystar farm."
         "I found a pier surrounded by nets that enclosed bunches of jellystar."
         "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
@@ -4814,7 +5014,7 @@ label community26:
     #artifical meat and firegrass--too much for one event?
 
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
-    if luddites > 5:
+    if mavericks > 5:
         her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
         her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
     her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
@@ -4839,13 +5039,13 @@ label community26:
         "No, don't publish the study.":
             him "How many samples have you studied? I think it's too early to draw conclusions."
             her "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
-        "You should at least tell Pete." if luddites >5:
+        "You should at least tell Pete." if mavericks >5:
             him "Pete should know that his cows are developing cancer."
             him "Maybe he can adjust his radiation-shielding measures."
             her "That's a good idea. I'll make that suggestion."
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
-            $ luddites += 1
+            $ mavericks += 1
 
     her "Also, I met with a miner this week who was a heavy user of firegrass."
     her "She has severe insomnia and depression."
@@ -5014,7 +5214,7 @@ label community26:
                         him "Let them use firegrass if they want to."
                         her "Part of my job is telling people the correct dosage for drugs to take and taking care of people who use too much."
                         her "I'd much prefer to prevent people from using too much firegrass to begin with."
-                        $ luddites += 1
+                        $ mavericks += 1
                         jump educational_app
         label educational_app:
             her "I'd like to work with Oleg on making that app. Pavel, can you provide us some credits so I can pay him?"
@@ -5106,13 +5306,13 @@ label after_firegrass_26:
             "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
             "[her_name] didn't eat it."
             $ keep_buying_pete_beef = True
-            $ luddites += 1
+            $ mavericks += 1
             return
         "Eat as much synthetic meat as possible.":
             "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
             $ stop_buying_beef = True
             $ colonists += 1
-    if (luddites > 8):
+    if (mavericks > 8):
         "Pete stopped by to chat one sunny day while I was sowing some new seeds."
         pete "How's it going?"
         him "Not bad. I'm optimistic about this new crop."
@@ -5266,7 +5466,7 @@ label call_to_squid:
             "The net of jellystars pushed us back towards shore."
             her "What on Earth happened to you?"
             kid "I think you mean 'What on Talaam' happened to us."
-            if luddites > 10:
+            if mavericks > 10:
                 him "Any idea what happened to the nets?"
                 pete "Nope. I figured it was some angry miner or colonist."
                 pete "Or maybe Travis on a bad day."
@@ -5754,7 +5954,7 @@ label community29:
 
     else:
         "Julia was a behind-the-scenes kind of mayor. Things went smoothly because she talked to everyone privately, and she was able to distribute important information through her newspaper."
-        "Eventually interviews with each resident of Talaam were featured in the Talaam Times, including the luddites and the miners."
+        "Eventually interviews with each resident of Talaam were featured in the Talaam Times, including the mavericks and the miners."
 
     if jellypeople_happy:
         "I kept communicating with the jellypeople through the jellysquids. We traded land meat for seafood."
@@ -5771,7 +5971,7 @@ label community29:
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
     # TODO: wouldn't she stay with Travis at his restaurant?
-    if (luddites > 5): #should this number be higher?
+    if (mavericks > 5): #should this number be higher?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "Huh. Where exactly will she sleep?"
         her_c "She said she could bring her sleeping materials. Maybe we can fold them up when she's not using them?"
@@ -6440,7 +6640,7 @@ label community30:
         else:
             him "I'll update you at the end of the investigation."
 
-        if (luddites > 10): #check values #does this if have an else?
+        if (mavericks > 10): #check values #does this if have an else?
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
             pete "{i}What can I help you with?{/i}"
             him "Hey, I'm in kind of a complicated situation."
@@ -7138,7 +7338,7 @@ label community30:
 
 
     "The latest shuttles from RET have arrived."
-    if ((luddites >= 12) and (miners >=12)):
+    if ((mavericks >= 12) and (miners >=12)):
         "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return

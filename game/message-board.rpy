@@ -385,7 +385,7 @@ label message15:
     nvl clear
     return
 
-# Community: Trade with luddites?
+# Community: Trade with mavericks?
 # Family: She must clean her room!!
 label message16:
     nvl clear
@@ -521,7 +521,7 @@ label message20:
     nvl clear
     return
 
-# Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.
+# Community: Visit ocean. Build relationship with miners or mavericks depending on their values. Discuss firegrass w/miners if relationship is high enough.
 # Family: Terra's mean and sarcastic
 label message21:
     nvl clear
@@ -541,7 +541,7 @@ label message21:
     nvl clear
     return
 
-# Community: Miners moving to mountain near luddites!
+# Community: Miners moving to mountain near mavericks!
 # Family: Apologize when you falsely accuse Terra? Family activities
 label message22:
     nvl clear

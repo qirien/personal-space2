@@ -457,7 +457,7 @@ label test_community:
         $ year += 1
 
     "Game complete."
-    "Luddites: [luddites]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
+    "mavericks: [mavericks]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
     return
 
 image toddler = "sprites/toddler.png"

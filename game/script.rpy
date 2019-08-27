@@ -63,6 +63,7 @@ label start:
         bro_age = 0
         year6_have_baby = False
         year8_have_baby = False
+        family12_shaved_head = False
         family27_no_work = False
         plays_saxophone = False
 
@@ -94,8 +95,8 @@ label start:
     python:
         is_liaison = False
         asked_only_medicine = False
-        trade_with_luddites = False
-        invited_luddites = False
+        trade_with_mavericks = False
+        invited_mavericks = False
         invited_miners = False
         whole_harvest_to_storehouse = False
         town_hall_games = False
@@ -103,7 +104,7 @@ label start:
         # Community groups. The higher the variable, the better your relationship with that group is.
         colonists = 0
         miners = 0
-        luddites = 0
+        mavericks = 0
         jellies = 0
         require_whole_harvest = False
         rationing = False
@@ -117,7 +118,7 @@ label start:
         community_11_kidsonfarm = False
         community_17_planparty = False
         community_22_mining_stopped = False
-        community_22_forced_luddites_leave = False
+        community_22_forced_mavericks_leave = False
         community_22_compromise = False
         community_22_mined_anyway = False
         jellypeople_happy = False
@@ -199,7 +200,7 @@ label start:
         overwork_colonists = 0
         overwork_miners = 0
         overwork_family = 0
-        overwork_luddites = 0
+        overwork_mavericks = 0
         overwork_self = 0
 
         bad_nutrition_count = 0

@@ -300,8 +300,8 @@ init -100 python:
 
     # Return strength of relationships given current year
     # 1 or greater means strong, less than 1 means weak
-    def luddites_strength():
-        return (luddites / (year / 3.0))
+    def mavericks_strength():
+        return (mavericks / (year / 3.0))
     def miners_strength():
         return (miners / (year / 3.0))
     def colonists_strength():
@@ -309,12 +309,12 @@ init -100 python:
 
     # Returns the strongest faction
     def strongest_faction():
-        if (colonists >= miners >= luddites):
+        if (colonists >= miners >= mavericks):
             return "colonists"
-        elif (miners >= colonists >= luddites):
+        elif (miners >= colonists >= mavericks):
             return "miners"
-        elif (luddites >= colonists >= miners):
-            return "luddites"
+        elif (mavericks >= colonists >= miners):
+            return "mavericks"
 
     # Returns a fuzzy description of the given percentage.
     # Used for nitrogen and pest levels.
