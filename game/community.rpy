@@ -2204,7 +2204,7 @@ label community13:
     show lily normal at midright with dissolve
     show him surprised at midleft with moveinleft
     lily "[his_name], we must act at once. In my weekly testing, I found that our water is showing trace amounts of heavy metals!"
-    lil angry "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
+    lily angry "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
     lily angry "It will probably poison some local wildlife! As well as us!"
     him normal "I certainly don't want heavy metals in my irrigation water."
     him concerned "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
@@ -2222,7 +2222,7 @@ label community13:
         him determined "Alright. I wrote: 'Please halt ore processing until tailings dam repaired.'"
         lily angry "I hope that I can still endure climbing to the top of this mountain."
         him normal "I've seen you walking around town. I bet you can handle it."
-        lily normal "I can walk, but I'm unsure of my climbing competence."
+        lily normal "I can walk, but climbing a mountain is far more strenuous."
         lily happy "Aged bodies do not heal as quickly as young ones like yours."
         him surprised "Oh, they already replied. They said to go with whatever Brennan says."
         lily angry "I can't believe this. Tell them I said to stop ore processing!"
@@ -2265,186 +2265,170 @@ label community13:
             lily normal "I urge you to delay any more ore processing until the breach is repaired."
             brennan normal "There were some heavy rains and a tiny trickle got out. Kevin is observing and drawing up plans for how to repair it."
             lily angry "But you're not stopping any ore processing?"
-            if require_whole_harvest or rationing:
-                brennan "I don't know. What will RET think?"
+            brennan "I don't know. What will RET think?"
+            if is_liaison:
                 him "We asked them, and they said to defer to your judgement."
-                lily "Any amount of heavy metals in drinking water can harm humans and animals who drink it."
-                brennan "The thing is, ore processing is one of the bottlenecks in our efficiency."
-                brennan "If we delay it by any amount, our efficiency is greatly hampered."
-                brennan "Plus stopping ore processing won't reduce the amount of the leak."
-                lily "Yes, but..."
-                him "It makes it look like you don't care about other people when you continue with business as usual during a health emergency."
-                brennan "If I were more concerned about RET's image, what you're saying would make sense. But we're all RET employees, so we should all want what's best for the company."
-                brennan "Even if it makes it look like I don't care about water quality."
-                brennan "Lily, how's this: You continue to do testing in a few locations to see how bad the contamination is."
-                brennan "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
-                lily "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
-                # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
-                him "Wait, seriously?" 
-                lily "Yes, seriously. If you ingest enough heavy metals, you could die."
-                lily "I have access to a recipe for a metal organic framework polymer that could remove metals, but I will need to fine-tune it to the contamination."
-                brennan "That sounds useful to have on hand."
-                lily "Do you have anyone trained in chemistry lab work who could help me?"
-                brennan "I bet Zaina would help you."
-                him "I can't tell a pipette from a pipe cleaner, but if [her_name] is having a slow day, maybe she could help?"
-                "Dr. Lily started messaging people and I went home to work."
-                #Talk to Kevin to find out that sun flares accelerated degredation of trailings dam materials
-                #Dr. Lily makes it sound like it's Brennan's fault that everything is wrong in her community-wide message
-        
-                lily "Tell Brennan we can't mine this cave until we explore it further."
-                if is_liaison:
-                    him "Hey, I'm the liaison between RET and the colonists, not between the colonists and the miners. Tell him yourself."
-                else:
-                    him "I'm no research lobbyiest. Tell him yourself."
-                lily "I'm not proficient in presuasive rhetoric. And I don't have strong ties to other colonists through friendships or family."
-                lily "Brennan worked with your wife. He would be more likely to listen to you since he knows you."
-                lily "Would you please talk to Brennan as a personal favor?"
-                menu:
-                    "Yes.":
-                        him "Okay. We've come this far."
-                        him "How would Brennan benefit from stopping the mining? Zaina, do you need more data?"
-                        zaina "I have about as much as I can use, but I fully support Lily's research."
-                        lily "Knowing more about our planet benefits everyone."
-                        him "I'm on my way. Let's talk to Brennan together."
-                        scene cabins with fade
-                        "I walked over to the camp. We found Brennan reading a book near his hut."
-                        brennan "How's the expedition?"
-                        zaina "It was fantastic. The cave's beauty is beyond the capacity of verbal description."
-                        lily "We found a very unusual species that could help us understand life on this planet."
-                        brennan "Great. I'm glad that no one was hurt and that you could collect some data."
-                        zaina "I have updated frequency tables for you--small tweaks, mostly."
-                        brennan "Thank you!" #winning smile
-                        him "Oh, can I see some of the pictures of the cave? Brennan, do you want to see too?"
-                        brennan "Sure."
-                        "Zaina showed us the photos of the cave on her tablet."
-                        zaina "Unfortunately the newt-thing's habitat and the cave pond are in the mining trajectory."
-                        zaina "Normally I would have been able to see the water with my imaging tools, but some layers were very resistant to radiation."
-                        brennan "I see. We'll have to watch out for the water and drain it when we get to that point."
-                        # Lily looks really upset
-                        him "Maybe you could go around it? Then you wouldn't have to worry about all that water."
-                        brennan "We're bound to hit the water sooner or later. Might as well get it over with."
-                        him "Lily really, really wants a few more days to study the cave. Is there any kind of side tunnel you could work on?"
-                        brennan "That's what we've been doing the last two days. We really need to get back to the main descent tunnel so we can get to the right level for the metals we need."
-                        him "What would it take to halt the mining for two days?"
-                        brennan "If you compensated the miners with credits for the days they couldn't work, they would probably be happy. But I would still be two days behind schedule."
-                        zaina "But if you go ahead with the mining, it might damage your relations with the other colonists, who are very much in favor of research."
-                        brennan "Look, if you can get the credits together by midnight, I'll tell the miners that they can have paid vacation for the next two days."
-                        "We hurriedly messaged everyone, and started going door-to-door to explain the situation."
-                        if (colonists >= 10):
-                            #if we implement currency, ask how much to donate
-                            menu:
-                                "I decided to donate..."
-                                "10 credits":
-                                    $ modify_credits(-10)
-                                "50 credits":
-                                    $ modify_credits(-50)
-                                "200 credits":
-                                    $ modify_credits(-200)
-                            "The support was overwhelming. Maybe everyone was just relieved to have something to spend their hard-earned credits on."
-                            "Pete was especially supportive."
-                            "We reached the goal by 11:30pm."
-                            "Lily and Zaina gathered more samples and photographs of the cave before it was destroyed."
-                            "They even managed to capture a few of the newt-like creatures."
-                            jump cave_explored
-                        else:
-                            "Pete donated a lot of credits, and there were a few small donations, but it wasn't enough to pay the miners for one day, let alone two."
-                            "We gave up around midnight, returning the credits to those who donated."
-                            $ cave_partially_explored = True
-                            jump cave_unexplored
-                            #sit-in protest from Lily and Miranda? Would that make sense?
-
-                    "No.":
-                        him "Sorry, I've already talked to Brennan more than I normally would for you."
-                        him "I'm happy that you were able to explore the cave, but I don't think we can justify asking Brennan for more time when he's already doing you a favor."
-                        lily "I understand. Perhaps Pete will be able to assist me in your stead."
-                        "She and Pete made an impassioned plea, but they were not successful."
-                        $ cave_partially_explored = True
-                        jump cave_unexplored
             else:
-                brennan angry "ABSOLUTELY not. We're far enough behind as it is."
-                lily normal "But demolishing this cave is irreversible! There may be flora and fauna unique to the cave that we may never be able to document."
-                brennan normal "RET going out of business would also be irreversible, which might happen if I don't continue mining right away, thanks to this guy."
-                him annoyed "At least you have enough to eat, and it's food you grew or found yourself."
-                brennan angry "You imposed your values on how we get our food. I'm imposing my values on when we can spare time to scientific research."
-                lily angry "You are making a mistake."
-                him concerned "You're already behind schedule. What difference would a few days make?"
-                brennan angry "I said no. Please leave."
-                "Dr. Lily looked furious, but she left."
-                hide him
-                hide lily
-                with moveoutleft
-                jump cave_unexplored
-
-    label cave_unexplored:
-        scene stars with fade
-        "That night, she sent a message to the other colonists about how Brennan refused to let her explore the cave."
-        "She invited everyone to join her in a protest the next morning."
-        if demo_mode:
-            jump demo_after_cave
-        "The next day, Pete, Helen, Natalia, and Joanna joined her."
-        "I went too."
-        scene cave with fade
-        menu:
-            "I protested with them.":
-                "I marched around yelling."
-                him "RET just wants moNEY!"
-                pete "Save our cave! Save our cave!"
-                lily "Conserve Talaam! Don't end up wrong!"
-                "It felt cathartic to express my outrage."
-                $ colonists += 1
-            "I just wanted to see what would happen.":
-                "I watched as the protestors matched in a circle, chanting and yelling."
-                "It seemed pretty silly to me. Didn't we have better things to be doing?"
-                $ miners += 1
-        brennan "Hey, I get that you're upset. But you should move away from this area. There could be particles in the air that aren't good to breathe." #tried to google this but I'm still not sure if this would happen
-        # That's OK, BSing is in-character for him.
-        lily "We're not budging an inch!"
-        if cave_partially_explored:
-            lily "The cave newts cannot leave! We will endure this pollution in their honor."
-        brennan "It's your funeral."
-        "A few minutes later, we heard and felt the blasts."
-        "Dr. Lily left without saying anything."
-        "The next day I saw Dr. Lily to get some test results for my soil."
-        him "How's my soil doing?"
-        lily "Phosphorus levels are low. I recommend that you increase manure levels."
-        him "I'll see if I can work some more in."
-        menu:
-            "Say something about the cave":
+                lily "We don't have time to find out what they think."
+            lily "Any amount of heavy metals in drinking water can harm humans and animals who drink it."
+            brennan "The thing is, ore processing is one of the bottlenecks in our efficiency."
+            brennan "If we delay it by any amount, it will delay our whole timeline."
+            brennan "Plus stopping ore processing won't reduce the amount of the leak."
+            lily "Yes, but..."
+            him "It makes it look like you don't care about other people when you continue with business as usual during a health emergency."
+            brennan "If I were more concerned about RET's image, what you're saying would make sense. But we're all RET employees, so we should all want what's best for the company."
+            brennan "Even if it makes it look like I don't care about water quality."
+            brennan "Lily, how's this: You continue to do testing in a few locations to see how bad the contamination is."
+            brennan "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
+            lily "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
+            # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
+            him "Wait, seriously?" 
+            lily "Yes, seriously. If you ingest enough heavy metals, you could die."
+            lily "I have access to a recipe for a metal organic framework polymer that could remove metals, but I will need to fine-tune it to the contamination."
+            brennan "That sounds useful to have on hand."
+            lily "Do you have anyone trained in chemistry lab work who could help me?"
+            brennan "I bet Zaina would help you."
+            him "I can't tell a pipette from a pipe cleaner, but if [her_name] is having a slow day, maybe she could help?"
+            "Dr. Lily started messaging people and I went home to work."
+            nvl clear
+            lily_c "Heavy metals have been detected in our water supply." 
+            lily_c "Distill all irrigation and culinary water until further notice."
+            lily_c "Please tell your neighbors if they do not typically see these messages."
+            thuc_c "I don't have a way to distill any water right now."
+            ilian_c "We have a few emergency distillers that I'll put out right away, but they'll only make enough for drinking."
+            thuc_c "How long has the contamination been going on?"
+            lily_c "Sometime in the last week."
+            her_c "What metals exactly?"
+            lily_c "Arsenic and mercury in trace amounts."
+            her_c "Please send me the details." #https://www.medlife.com/blog/heavy-metal-poisoning-symptoms-treatments/ treatment includes chelates, but they can take away other important minerals
+            him_c "I don't think we can distill enough water for the crops. Does anyone know of an alternative water supply?"
+            brennan_c "Is this really necessary? Dr. Lily's test only detected trace amounts."
+            lily_c "Trace amounts can easily concentrate in fruits, vegetables, and roots."
+            her_c "Our bodies can handle small amounts of heavy metals... Dr. Lily, I'll be right over to discuss what the health recommendations should be."
+            "I set up a small distillery on our stove, but it would only make enough water to drink that night."
+            "I consulted the map Zaina had been working on as she scouted the surrounding land for good mining spots."
+            "Zaina had climbed other mountains in the same range as the ones close to our river, which also had water flowing from them, but none of them were nearby."
+            "It also occured to me that we could gather water upstream from the tailings pond."
+            "[kid_name] came back from school with her little brother and I explained that we needed to be careful with our water for now."
+            "[her_name] came back from work early. We started preparing dinner together."
+            her "There's an emergency town meeting tonight to discuss the water contamination."
+            if is_liaison:
+                him "I know, I saw the message."
+                her "Well, should we just bring the kids along?"
                 menu:
-                    "Too bad they had to demolish that cave.":
-                        him "I wish there had been some other way for the mining to continue."
-                        if cave_partially_explored:
-                            lily "It was indeed disappointing to simply catch a glimpse of what we could have observed."
-                        else:
-                            lily "I feel incredulous that Brennan decided to throw away this research opportunity."
-                        lily "I cannot affect circumstances further, however."
-                    "At least you got to see some of the cave." if cave_partially_explored:
-                        him "At least you were able to partially explore the cave."
-                        lily "I know that I could have gathered more data. I am unable to forget that."
-                        lily "What if those cave newts contain the secret to unshelled vertebrate survival?"
-                        lily "We may never know."
-                    "Brennan is just worried." if (not cave_partially_explored):
-                        him "I know it seems like Brennan was being a jerk, but he's just worried about RET's survival."
-                        lily "I understand his arguments. I think research is more important to our survival than having a shuttle shipment leave on time."
-            "Don't say anything.":
-                "I didn't say anything about the cave."
-        $ lily_mad_at_RET = True
-    return
-
-    label cave_explored:
-        $ cave_explored = True
-        "I saw Dr. Lily the day after the miners demolished the cave to get the tests back from my soil samples."
-        him "So this soil is fine?"
-        lily "Nothing unusual. Phosphorus levels are low, so add more manure next time."
-        him "Okay, I'll work in some extra."
-        him "Are these the little cave newts you rescued?"
-        lily "Yes! They seem to be thriving in captivity."
-        lily "They have an interesting secretion that I think helps insulate them against cold temperatures in the cave."
-        him "Cool. It's a shame they had to excavate right where the cave was."
-        lily "Yes, it was. We did everything we could."
+                    "No, I'll stay home with them.":
+                        him "I'll get the kids to bed on time. You have more expertise with heavy metal poisoning than I do anyway."
+                        him "You can tell me all about the meeting, and I'll report it to RET later."
+                        jump meeting_abstain
+                    "Yeah, we should both go to the meeting.":
+                        him "It's my duty to know what's going on so I can represent the interests of the colonists to RET."
+                        him "Plus this way the kids can see what local politics are like in action!"
+                        her "They're just going to run around and look for other children to play with, and then go to bed late and be cranky all day tomorrow."
+                        him "Probably."
+                        him "Okay everyone, let's get ready to go!"
+                        kid "I hope Oleg is there!"
+                        "Oleg was there, along with Sara, Ilian, Mayor Grayson, Dr. Lily, Brennan, and Kevin."
+                        "Sara opened the meeting, and Dr. Lily explained her findings."
+                        pavel "Were you aware of this leak, Brennan?"
+                        brennan "We discovered the leak yesterday afternoon, but since Kevin calculated that the contamination would be minimal, we took a wait-and-see approach."
+                        lily "That is irresponsible. Any water contamination should be reported immediately."
+                        brennan "To whom? We don't exactly have a utilities commission."
+                        lily "To me! I already do routine testing on our water."
+                        her "I would like to be notified as well, since it could impact the health of colonists and miners."
+                        pavel "I would also like to know of any mining activity that could impact colonists."
+                        brennan "In the future I will notify you all."
+                        brennan "Now that we have that out of the way, Kevin, could you tell us a little more about why this happened and how we can prevent it in the future?"
+                        kevin "Yes, I would be happy to." #see http://www.itv.org/en/research-line/technology-of-dams-and-tailings-disposal/ for info on how tailings dams are made
+                        kevin "Several unpredictable factors worked in tandem and resulted in a breach to part of the tailings dam."
+                        kevin "The crest of the dam was constructed for foot traffic, but not vehicle traffic, but at some point a vehicle crossed the dam, damaging its structure."
+                        kevin "We repaired this and posted new signs. However, heavy rains caused more erosion than expected, possibly because plant and soil types are not analogous to Earth's." 
+                        kevin "I also did not anticipate that the nearby resistive rocks would cause extra solar damage to our electronic warning system." # https://www.nationalgeographic.com/science/2019/03/solar-storms-worse-damage-if-you-live-near-certain-rocks-geology/
+                        kevin "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
+                        kevin "I have been able to stop the leak for now, but I am still researching materials for the repair."
+                        brennan "Thank you Kevin. When do you think the repair will be done?"
+                        kevin "Definitely by the end of the week." #kevin can leave screen
+                        lily "I am working on a polymer that can break down the metal contaminants. I will need to synthesize some chemicals, and it will take at least two days to prepare the necessary amounts."
+                        her "I will assist Dr. Lily with the synthesis. Our water only contains trace amounts of metals, and I believe that we can still use it for irrigation water."
+                        lily "I completely disagree. We should not knowingly ingest poison."
+                        her "We don't have the capacity to distill enough water for crops. If we don't use the river water, we'll starve because we won't have enough food."
+                        "What do I think we should do?"
+                        menu:
+                            "Find an alternate water source.":
+                                him "I agree with Dr. Lily. Why risk permanent brain damage when we could avoid it?"
+                                him "If samples showed elevated levels of heavy metals, there are probably spots in the river where that amount is even higher."
+                                him "Could we divert the mountain stream so that it doesn't pass by the tailings pond?"
+                                brennan "We're currently using power from the stream in our ore mill, so no, that is not an option."
+                                jump diaper_interruption
+                            "Use the tainted water.":
+                                him "Kevin said that he stopped the leak for now, so the heavy metal content of the water should be decreasing as we speak."
+                                him "Also, [her_name] stated that the levels are low enough for humans to safely consume."
+                                lily "It's true that my samples measured at levels low enough for 'safe' human consumption. However, it's likely that parts of the river have more heavy metals than the samples I measured."
+                                jump diaper_interruption
+                            "Let colonists decide for themselves.":
+                                him "Let's give everyone all the information we have and let them decide for themselves."
+                                lily "If there is no way to get pure water, colonists will default to using the river water like they always have."
+                                lily "Is that really a decision?"
+                                her "Let's just tell them it's fine to use the river water then."
+                                jump diaper_interruption
+                        label diaper_interruption:
+                                kid "Dad, [bro_name] has a stinky diaper."
+                                him "Thanks for telling me."
+                                kid "I think it's leaking..."
+                                menu:
+                                    "Take care of [bro_name].":
+                                        him "I'd better take care of him right away then."
+                                    "Ask [her_name].":
+                                        him "I looked at [her_name]. She was reading something on her tablet intently."
+                                        him "[her_name], could you change [bro_name]'s diaper?"
+                                        her "Could you do it please? This discussion is really important to me."
+                                "I left the discussion and changed [bro_name]'s diaper."
+                                "When I got back, everyone was discussing the best emergency response system."
+                                her "We decided to let farmers irrigate with river water, and Zaina will help Dr. Lily and I synthesize the polymer, hopefully by tomorrow."
+                                her "Dr. Lily is anxious to continue her work, so I've agreed to go help her tonight."
+                                him "I kind of volunteered you. Are you up for it? You could be up all night."
+                                her "I know. This way we're both happy, sort of. Can you take the kids home?"
+                                him "Sure."
+                                "I took [kid_name] and [bro_name] home and put them to bed. [bro_name] took a long time to fall asleep, but it gave me some time to research heavy metal contamination in crops."
+                                "The fruits and vegetables would be fine, but if we ate chickens who ate the contaminated food, it could be a problem."
+            else:
+                label meeting_abstain:
+                    "I put [kid_name] and [bro_name] to bed like normal."
+                    "I took some time to do more research on heavy metals and the things we eat."
+                    "Even if the fruits and vegetables were fine, eating chickens that ate those vegetables could be a problem."
+                    nvl clear
+                    her_c "Hey, we're done with the meeting, but I'm going to help Dr. Lily tonight, so don't wait up."
+                    him_c "How was it?"
+                    her_c "Based on the levels in the samples, I told everyone we should be fine to use the river water for irrigation."
+                    her_c "Dr. Lily said that we should err on the side of caution and use an alternative water source."
+                    her_c "We couldn't really find an alternative, so I'm going to help Dr. Lily and Zaina synthesize a polymer to neutralize the metals."
+                    him_c "Wow. Sounds science-y."
+                    her_c "It's going to be kind of like making a huge batch of sourdough bread, except with less room for error."
+                    her_c "If carefully measuring and combining things is science, then sure, it's science-y."
+                    him_c "Good luck then."
+            "The next day, [her_name] came home early in the morning."
+            "While she was sleeping in, Dr. Lily asked me to help disperse the polymer."
+            "I got the kids to school and co-op care, respectively, and got bottles of the polymer and location details from Dr. Lily."
+            "One location was out by Pete's farm."
+            #change location to Pete's farm
+            pete "What brings you out here today? I don't see a wagon, so I'm guessing you don't need manure."
+            him "No, I'm on a mission from Dr. Lily. Did you hear about the heavy metal contamination from the mining?"
+            pete "No, I haven't heard a thing. Tell me all about it."
+            him "The tailings pond in the ore processing area on the saddle of the mountain had a leak."
+            pete "A leak that went into our river?"
+            him "Yeah. It wasn't very much, and they were able to stop it before it got too bad... but this concoction should neutralize the metals."
+            pete "I don't know what's worse, the metals or the stuff you're putting in to fix 'em."
+            him "On Earth we ate and drank trace amounts of heavy metals all the time. We just didn't know it."
+            pete "I knew about it! All that poison everywhere is part of why I wanted to leave!"
+            pete "Didn't take long for big business to sully this planet."
+            him "You joined that big business when you signed up to come here!"
+            pete "That's a decision I question more and more each day."
+            pete "Well, go ahead and do your job."
+            him "I will."
+            "The last bottle had to be released by the tailings dam, and I hiked halfway up the mountain to deliver it to Kevin, who took it the rest of the way."
+            kevin "I do hope there are no long-term consequences of the leak. I feel personally responsible."
+            him "We can't change what happened. All we can do now is try to learn from this and do better next time."
+            return
     # Pete should be a vocal opponent of the mining to foreshadow next month.
-    # Perhaps something tragic, like someone decides to do a sit-in to protest the mining, but the miners don't know about it, and they get blown up as the excavation continues?
-    return
 
 # 14 - Pete leaves
 label community14:
