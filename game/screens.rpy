@@ -1373,8 +1373,11 @@ screen nvl_dialogue(dialogue):
     for d in dialogue:
         $ index += 1
         $ is_jack = False
+        if (d.who_args["color"] is not None):
+            $ new_color = Color(d.who_args["color"]).shade(0.65)
+        else:
+            $ new_color = gray_dark
         window:
-            #xfill True
             id d.window_id
 
             hbox:
@@ -1392,10 +1395,11 @@ screen nvl_dialogue(dialogue):
 
                 frame:
                     style "nvl_dialogue_frame"
-                    if ((index % 2) == 0):
-                        background "roundrect_darkgray"
-                    else:
-                        background "roundrect_lightgray"
+                    background RoundRect(new_color)
+                    # if ((index % 2) == 0):
+                    #     background "roundrect_darkgray"
+                    # else:
+                    #     background "roundrect_lightgray"
                     if (is_jack):
                         xalign 1.0
                         xoffset 10
