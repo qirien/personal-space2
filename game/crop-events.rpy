@@ -1056,7 +1056,6 @@ label plums2:
             $ enable_crop("onions")
         "Don't buy onions":
             "I decided not to buy them. I had enough crops to deal with."
-
     return
 
 # BEANS 1 - How to harvest beans

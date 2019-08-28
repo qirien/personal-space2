@@ -2282,7 +2282,7 @@ label community13:
             brennan "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
             lily "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
             # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
-            him "Wait, seriously?" 
+            him "Wait, seriously?"
             lily "Yes, seriously. If you ingest enough heavy metals, you could die."
             lily "I have access to a recipe for a metal organic framework polymer that could remove metals, but I will need to fine-tune it to the contamination."
             brennan "That sounds useful to have on hand."
@@ -2291,7 +2291,7 @@ label community13:
             him "I can't tell a pipette from a pipe cleaner, but if [her_name] is having a slow day, maybe she could help?"
             "Dr. Lily started messaging people and I went home to work."
             nvl clear
-            lily_c "Heavy metals have been detected in our water supply." 
+            lily_c "Heavy metals have been detected in our water supply."
             lily_c "Distill all irrigation and culinary water until further notice."
             lily_c "Please tell your neighbors if they do not typically see these messages."
             thuc_c "I don't have a way to distill any water right now."
@@ -2341,7 +2341,7 @@ label community13:
                         kevin "Yes, I would be happy to." #see http://www.itv.org/en/research-line/technology-of-dams-and-tailings-disposal/ for info on how tailings dams are made
                         kevin "Several unpredictable factors worked in tandem and resulted in a breach to part of the tailings dam."
                         kevin "The crest of the dam was constructed for foot traffic, but not vehicle traffic, but at some point a vehicle crossed the dam, damaging its structure."
-                        kevin "We repaired this and posted new signs. However, heavy rains caused more erosion than expected, possibly because plant and soil types are not analogous to Earth's." 
+                        kevin "We repaired this and posted new signs. However, heavy rains caused more erosion than expected, possibly because plant and soil types are not analogous to Earth's."
                         kevin "I also did not anticipate that the nearby resistive rocks would cause extra solar damage to our electronic warning system." # https://www.nationalgeographic.com/science/2019/03/solar-storms-worse-damage-if-you-live-near-certain-rocks-geology/
                         kevin "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
                         kevin "I have been able to stop the leak for now, but I am still researching materials for the repair."
@@ -2957,11 +2957,11 @@ label community16:
     return
 
 # COMMUNITY 17
-# Harvest festival; who do you invite? chance to eat jellyfish...
+# Harvest festival; whom do you invite? chance to eat jellyfish...
 label community17:
-    $ community_17_activity = ""
+    $ community_17_activity = renpy.random.choice(["contests", "games", "performances"])
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
-    if (is_liason):
+    if (is_liaison):
         "Someone needs to plan it... but who?"
         menu:
             "Plan it yourself.":
@@ -2976,18 +2976,14 @@ label community17:
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_mavericks = True
             $ invited_miners = True
-            jump mavericksandminers
         "Pete's group." if (mavericks >= 7):
             "I thought it'd be a good idea to invite Pete's group."
             $ invited_mavericks = True
-            jump justmavericks
         "The miners." if (miners >= 7):
             "I guess we should invite the miners."
             $ invited_miners = True
-            jump justminers
         "The usual-- just all the other colonists.":
             "We don't need to invite anyone else. It's a harvest festival, after all, so we should celebrate everyone who did the actual farming."
-            jump justcolony
 
     if (community_17_planparty):
         "We needed some activities."
@@ -3005,6 +3001,7 @@ label community17:
                 "I asked Ilian to be in charge of that. He loved music, and he's such a critic that he'll only ask people with real talent."
         "Last was the food. I figured I'd just have everyone bring something."
 
+    play music audio.upbeat
     if (invited_mavericks and invited_miners):
         "Pete offered to slaughter a steer for the occasion."
         "Almost all the miners came, bringing some bean stew."
@@ -3071,7 +3068,7 @@ label community17:
     "I set my dish next to the ones from the other families on the buffet table."
     "Everyone helped themselves and sat down--some at tables and some on the ground."
     natalia "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
-    him "Well, it's kind of like a souffle, but I don't have an electric mixer, or a reliable oven."
+    him "Well, it's kind of like a souffleé, but I don't have an electric mixer, or a reliable oven."
     natalia "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
     him "I know..."
     natalia "You might have been better off just leaving out the flour completely."
@@ -3100,9 +3097,10 @@ label community17:
     him "Some things never change."
 
     scene community_center with fade
+    play music audio.exciting
     if (community_17_activity == "contests"):
         show julia normal at center with dissolve
-        "After everything was cleaned up, it was time for our contests."
+        "After everything was cleaned up, it was time for some contests."
         "Julia announced the different events. I wonder if I should participate...?"
         menu:
             "Which one should I enter?"
@@ -3165,12 +3163,12 @@ label community17:
             "The apple peeling contest.":
                 "I'm pretty handy with a knife, so I figured I'd try the apple peeling contest. We all got an apple and a knife, and our job was to make as long of a peel as possible without it breaking."
                 show pavel normal at left
-                show her normal at quarterleft
-                show him normal at midleft
+                show her determined at quarterleft
+                show him determined at midleft
                 with moveinleft
                 show zaina normal at right
                 show kevin normal at quarterright
-                show thuc normal at midright
+                show thuc sad at midright
                 with moveinright
                 julia "On your mark... get set... GO!"
                 "Even though she made it sound like a race, I tried to take my time. I had to make the peeling narrow enough to be very long, but wide enough that it wouldn't break..."
@@ -3186,6 +3184,7 @@ label community17:
                 "[her_name] finished first with a peel about as long as she was tall."
                 her happy "I do have a lot of practice with a scalpel!"
                 "But her peel was much wider than mine, so I knew my peel would be longer."
+                hide her with moveoutleft
                 "I was more worried about my real competition - Thuc."
                 show him determined with dissolve
                 "If he was as good at using knives as he was at juggling them, I was in for a tough challenge."
@@ -3226,13 +3225,15 @@ label community17:
                 kevin "To put it in simple terms, yet."
                 him smirk "We'll see about that!"
                 "We locked arms, and Julia blew her whistle."
+                show him determined with dissolve
                 menu:
                     "What should I do?"
                     "Go for a quick win.":
                         "I knew I was stronger than him. I didn't want him to have time to use any of his fancy 'techniques'."
                         "So I put all my energy into one huge burst, and slammed his hand down."
+                        show him annoyed sweat with dissolve
                         kevin "I did not even get a chance to try the knuckle curl or the toproll."
-                        him annoyed "Too bad, Kevin."
+                        him concerned sweat "Too bad, Kevin."
 
                     "Take it slow and try to outlast him.":
                         "I didn't have anything to worry about. I could take my time."
@@ -3348,36 +3349,60 @@ label community17:
                             ilian happy "What else did you expect?"
 
             "Don't enter any contests.":
-                $ pass
+                "I didn't really want to enter any contests. I decided to just watch."
+                "Thuc won the apple peeling contest -- he wasn't just good at throwing knives, apparently."
+                "Ilian won the arm-wrestling. He intimidated all his opponents with his ruthless trash talking."
+                "And I was so proud of [kid_name] for winning the seed-spitting contest!"
+                "Maybe that was kind of sad that the thing she was best at was spitting melon seeds...but I was still happy for her."
     elif (community_17_activity == "games"):
         show thuc normal at center with dissolve
-        "Thuc got up and announced we were going to start off with some group juggling."
+        "Thuc got up and announced we were going to have some games, starting off with group juggling."
         him happy "No knives, I hope!"
         thuc "Not for you dinosaurs!"
+        scene community_center with fade
+        if (invited_mavericks):
+            show pete normal at left
+            # show travis if we have a good sprite for this age?
+        show thuc normal at quarterleft
+        show her normal at midleft
+        show bro normal at center
+        show kevin normal at midright
+        show oleg normal at quarterright
+        if (invited_miners):
+            show brennan normal at right
         "We got into a big circle and tossed around an apple, saying the person's name as we threw it to them."
+        kevin "Your turn, [bro_name]"
+        bro surprised "Uh, Mom!"
+        her surprised "Oleg!"
         "Then he added another apple, and another, and another."
         "When we got to about fifteen it was complete chaos, but everyone was laughing."
-        thuc "Okay! For our next game, I need a volunteer to leave the room!"
-        "No one was raising their hand except [kid_name]. I figured it might be best if an adult went first to show everyone how it was done, so I raised my hand, too."
-        thuc "[his_name]! I can always count on you to be a guinea pig."
+        show bro sad
+        show her concerned
+        with dissolve
+        "[bro_name] got hit in the head and [her_name] took him to a corner to try to console him."
+        "Thuc broke us up into smaller groups for the next game."
+        scene community_center with fade
+        show thuc normal at center
+        show him normal at midleft
+        show kid normal at quarterleft
+        thuc "Each group needs a volunteer to leave the room!"
+        "[kid_name] raised her hand from our group, but I figured it might be best if an adult went first to show everyone how it was done, so I volunteered."
         hide him with moveoutleft
-        "I left the room, and when I came back, they had formed a line of people."
-        show him at midleft with moveoutleft
-        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what the ailment is."
-        hide thuc with moveoutleft
-        him content "Oh, okay, I think I've played this before."
-        "I looked around at everyone."
+        "I left the room, and when I came back, my group had formed a circle."
         scene community_center with fade
         if (invited_mavericks):
             show helen normal at left
         show thuc normal at quarterleft
         show zaina normal at midleft
-        show ilian normal at center
+        show kid normal at center
         show pavel normal at midright
         show natalia normal at quarterright
         if (invited_miners):
             show brennan normal at right
         with dissolve
+        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their ailment is."
+        him content "Oh, okay, I think I've played this before."
+        "I looked around the circle ."
         if (invited_mavericks):
             "Time to ask Helen a question."
             $ patient = "helen"
@@ -3388,8 +3413,8 @@ label community17:
         $ patient = "zaina"
         "I needed a question for Zaina."
         call c17_psy_menu
-        $ patient = "ilian"
-        "What should I ask Ilian?"
+        $ patient = "kid"
+        "What should I ask [kid_name]?"
         call c17_psy_menu
         $ patient = "pavel"
         "Pavel's turn."
@@ -3399,6 +3424,7 @@ label community17:
         call c17_psy_menu
         if invited_miners:
             $ patient = "brennan"
+            "I guess I should ask Brennan something."
             call c17_psy_menu
         jump c17_psy_decide
 
@@ -3406,38 +3432,204 @@ label community17:
             "What should I ask?"
             "What's your name?":
                 him surprised "What's your name?"
-            "How old are your kids?":
-                him surprised "How old are your kids?"
+                if (patient == "helen"):
+                    helen "We're, like, best friends, and you don't know my name?!"
+                elif (patient == "thuc"):
+                    thuc "You can't remember my name? I didn't know your memory was so bad."
+                elif (patient == "zaina"):
+                    zaina "If you don't know my name, then you're really in trouble."
+                elif (patient == "kid"):
+                    kid "My name is...uh...Grandpa?"
+                elif (patient == "pavel"):
+                    pavel "Wait, which way are we... oh, right, sorry. My name is, uh, Chicken Lady!"
+                elif (patient == "natalia"):
+                    natalia "You've been spending too much time with your cabbages if you can't remember my name."
+                elif (patient == "brennan"):
+                    if (invited_mavericks):
+                        brennan "Why are you asking? Did RET put you up to this?"
+                    else:
+                        brennan "If you're asking my name, you must be from a parallel universe or something."
             "What's your favorite food?":
                 him surprised "What's your favorite food?"
+                if (patient == "helen"):
+                    helen "Probably goat meat and rice... or something??"
+                elif (patient == "thuc"):
+                    thuc "I like pickles."
+                elif (patient == "zaina"):
+                    zaina "Anything sweet!"
+                elif (patient == "kid"):
+                    kid "I like spicy stuff."
+                elif (patient == "pavel"):
+                    pavel "Oh, there's too many to pick just one! Wait, no, I'm supposed to... uh, I mean... a good soufflé?"
+                elif (patient == "natalia"):
+                    if (invited_mavericks or invited_miners):
+                        natalia "Something with a kick to it."
+                    else:
+                        natalia "Jerky."
+                elif (patient == "brennan"):
+                    if (invited_mavericks):
+                        brennan "I wish I could have some chocolate."
+                    else:
+                        brennan "Spicy meat, yum."
             "What do you like to do for fun?":
                 him surprised "What do you like to do for fun?"
+                if (patient == "helen"):
+                    helen "Throw things."
+                elif (patient == "thuc"):
+                    thuc "I think I like to...go hiking?"
+                elif (patient == "zaina"):
+                    zaina "Probably play with friends."
+                elif (patient == "kid"):
+                    kid "I like when kids come and visit."
+                elif (patient == "pavel"):
+                    pavel "Ooh! I know, I like to knit!"
+                elif (patient == "natalia"):
+                    if (invited_miners):
+                        natalia "I like to go on dates."
+                    else:
+                        natalia "I like playing complicated board games."
+                elif (patient == "brennan"):
+                    brennan "Probably target practice or something."
+
             "If you got arrested, what would it be for?":
                 him surprised "If you got arrested, what would it be for?"
+                if (patient == "helen"):
+                    helen "Accidentally causing a knife injury."
+                elif (patient == "thuc"):
+                    thuc "Being a mad scientist."
+                elif (patient == "zaina"):
+                    zaina "A prank gone wrong."
+                elif (patient == "kid"):
+                    kid "What's 'arrested'?"
+                    pavel "Back on Earth if you broke the law the police would come and take you to jail."
+                    kid "Oh! Well, he wouldn't...er, {b}I{/b} wouldn't do anything like that."
+                elif (patient == "pavel"):
+                    pavel "I don't think she would ever... I mean, I would ever be arrested."
+                elif (patient == "natalia"):
+                    if (invited_miners or invited_mavericks):
+                        natalia "Drunk and disorderly conduct."
+                    else:
+                        natalia "Something boring like trespassing."
+                elif (patient == "brennan"):
+                    brennan "Reckless driving."
             "What's your job?":
                 him surprised "What's your job?"
+                if (patient == "helen"):
+                    helen "Same as you."
+                elif (patient == "thuc"):
+                    thuc "Digging in the dirt."
+                elif (patient == "zaina"):
+                    zaina "Getting smarter."
+                elif (patient == "kid"):
+                    kid "I mostly sit around and... write messages?"
+                elif (patient == "pavel"):
+                    pavel "I grow delicious things to eat!"
+                elif (patient == "natalia"):
+                    if (invited_miners):
+                        natalia "Causing trouble."
+                    elif invited_mavericks:
+                        natalia "Everything my husband doesn't get done."
+                    else:
+                        natalia "Growing things."
+                elif (patient == "brennan"):
+                    brennan "Keeping things alive."
             "If you had a superpower, what would it be?":
                 him surprised "If you had a superpower, what would it be?"
-
+                if (patient == "helen"):
+                    helen "Probably super speed."
+                elif (patient == "thuc"):
+                    thuc "X-ray vision!"
+                elif (patient == "zaina"):
+                    zaina "A supersonic whine that brings villains to their knees."
+                elif (patient == "kid"):
+                    kid "Probably... flying!"
+                elif (patient == "pavel"):
+                    pavel "I've always thought it would be cool to control time. Then you'd have as much of it as you wanted."
+                elif (patient == "natalia"):
+                    if (invited_miners):
+                        natalia "Probably mind control."
+                    else:
+                        natalia "Telepathy."
+                elif (patient == "brennan"):
+                    brennan "Some kind of psionic powers."
+        return
         label c17_psy_decide:
             him determined "You guys are all acting like..."
             menu:
-                "Who is everyone acting like?"
-                "The person on their left.":
-                    him doubt "The person on your left?"
-                "The person on their right.":
-                    him doubt "The person on your right?"
+                "What is everyone acting like?"
                 "Pavel.":
                     him doubt "Pavel?"
                 "Me.":
                     him doubt "Me?"
-                "Their spouse.":
-                    him doubt "Your spouse?"
-
+                "You're ten years younger.":
+                    him doubt "You're ten years younger?"
+                "You're all just lying.":
+                    him doubt "You're all just lying. There's not really a pattern to it."
+                "The person on their left.":
+                    him doubt "The person on your left?"
+                    thuc happy "That's right! You guessed it."
+                    natalia "Though some of the answers were not very accurate."
+                    thuc "I know! That's kind of the point, though"
+                    jump c17_after_activities
+                "The person on their right.":
+                    him doubt "The person on your right?"
+            thuc "Nope! Sorry, [his_name]. We were all acting like the person on our left."
+            kid "That was hard!"
+            pavel "I'm afraid I didn't always answer very well, either."
+            kid "Can I go next?"
     elif (community_17_activity == "performances"):
-        show ilian normal at center with dissolve
-        "Ilian,"
+        show him normal at center
+        show kid normal at midleft
+        show her normal at quarterleft
+        show bro normal at left
+        with dissolve
+        "Ilian had arranged for some people to perform for us."
+        # TODO: play a bari solo?
+        show ilian normal at quarterright with dissolve
+        "He started us off with a solo on his enormous saxophone."
+        "Well, he didn't actually have a saxophone; it wouldn't have fit on the shuttle."
+        "So he played a video of himself playing on Earth. At first I thought it was kind of cheating to play a video, but he was pretty good."
+        hide ilian with moveoutright
+        show julia mad at quarterright with moveinleft
+        "Next, Julia sang a song about how she was the best at everything. It was supposed to be funny, but it was a little too true. She did have a good voice, though."
+        her surprised "Did she used to sing opera?"
+        him surprised "Maybe so!"
+        hide julia with moveoutright
+        show him normal
+        show her normal
+        with dissolve
+        show oleg at quarterright with moveinleft
+        "Oleg performed a magic trick with some playing cards."
+        kid surprised "How did he do that??"
+        him content "I'm not sure; you'll have to ask him."
+        hide oleg with moveoutright
+        if (invited_mavericks):
+            show helen at quarterright with moveinright
+            "Helen drew a quick caricature of Mayor Grayson."
+            kid surprised "She can draw so fast!"
+            him happy "And it looks just like him!"
+            her concerned "I don't know; his nose looks a little clownish, if you ask me."
+            hide helen with moveoutright
+        "Thuc and Julia's kids performed a skit about throwing pebbles in the river. Then Gardenia came in all wet, and when asked what was wrong, she yelled, 'My name is Pebbles!'"
+        kid laugh "That was the best one so far!"
+        "Last, Kevin came on and told some jokes."
+        show kevin at quarterright with moveinright
+        show him normal
+        show her normal
+        show kid normal
+        with dissolve
+        kevin "Three statisticians are out deer hunting. The first one shoots and hits a tree five meters to the left."
+        kevin "The second shoots and hits a tree five meters to the right."
+        kevin "The third jumps up and down shouting, 'We got him! We got him!'"
+        her laughing "That is so true."
+        kid annoyed "Huh? I don't get it."
+        him happy "Because if you average the first two, you get a hit, right?"
+        kid surprised "Oh... right."
+        her concerned "Because in statistics you do a lot of averages...?"
+        kid happy "Ohhh, I get it!  Ha ha ha!"
+        bro concerned "What's an average?"
 
+label c17_after_activities:
     scene bonfire with fade
     "We ended the night grouped around a blazing bonfire."
     "The flames' warmth warded off the damp chill growing in the night air."
@@ -3485,14 +3677,14 @@ label community18:
         ilian_c "No, those must be Pete's."
     natalia_c "Any advice on how to scare them away?"
     ilian_c "Yell at them and wave your arms."
-    natalia_c "Tried that."
+    natalia_c "tried that"
     thuc_c "I didn't hear you so I don't think you're yelling loudly enough!"
-    natalia_c "Come over and do it yourself if you like."
-    natalia_c "Nevermind, they're coming to you!"
+    natalia_c "come over and do it yourself then!"
+    natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
     "My fence isn't robust enough to protect against cattle. I run out to the front yard."
-    him "GO HOME COWS! KEEP MOVING!"
-    him "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
+    him angry "GO HOME COWS! KEEP MOVING!"
+    him yell "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
     "They look a little scared, but they start creeping back as soon as a turn my back."
     label cow_options:
         "How will I handle the cows?"

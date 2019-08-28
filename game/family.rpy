@@ -4663,9 +4663,13 @@ label family17:
         "Hurry and go help.":
             $ responsive += 1
             "I quickened my pace and, just before I entered the house, overheard [kid_name] yelling."
+            hide him with moveoutleft
             kid angry "Get- Off- My- BED!"
+            scene farm_interior with fade
+            show him determined at center with moveinleft
             "There was a loud THUMP - probably the sound of [kid_name] pushing [bro_name] off her bed and onto the floor."
             bro "Owwwww! Wahhhhhhh!"
+            hide him with moveoutright
             him determined "Stop!"
         "Leave them alone.":
             $ responsive -= 1
@@ -4688,7 +4692,7 @@ label family17:
     show bro sad at midright, squatting
     show kid angry at center
     with dissolve
-    show him normal at midleft with moveinleft
+    show him determined at midleft with moveinleft
 
     him surprised "What's going on here?"
     kid sad "[bro_name] keeps crying and he won't stop or even tell me what's going on and he's making a huge mess!"
