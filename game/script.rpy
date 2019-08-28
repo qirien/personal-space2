@@ -295,8 +295,8 @@ label life_loop:
             $ bro_age = year - bro_birth_year
 
         # FARMING CHOICES
-        $ computer_song = renpy.random.choice(audio.computer)
-        play music computer_song fadein 2.0
+        $ renpy.random.shuffle(audio.computer)
+        play music audio.computer fadein 2.0
         hide screen say
         #scene stars with fade
         if (year > 1):

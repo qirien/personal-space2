@@ -770,11 +770,11 @@ label message30:
 
 # TODO: redo these with new colors, make icons, etc.
 # NVL mode characters for chat rooms, etc
-define her_c = DynamicCharacter("her_name", who_suffix = "  {image=images/icons/her-icon.png} ",
+define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images/icons/her-icon.png} ",
     color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # mint green
-define him_c = DynamicCharacter("his_name", who_suffix = "  {image=images/icons/him-icon.png} ",
+define him_c = Character("his_name", dynamic=True, who_suffix = "  {image=images/icons/him-icon.png} ",
     color="#bc1e0e", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # red of his eyes
-define kid_c = DynamicCharacter("kid_name",
+define kid_c = Character("kid_name", dynamic=True,
 #who_suffix = "  {image=images/icons/kid-icon.png} ",
         color="#ca67ac", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # reddish purple
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",

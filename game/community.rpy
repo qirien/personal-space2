@@ -3584,7 +3584,7 @@ label community17:
         show bro normal at left
         with dissolve
         "Ilian had arranged for some people to perform for us."
-        # TODO: play a bari solo?
+        # TODO: play a bari solo song?
         show ilian normal at quarterright with dissolve
         "He started us off with a solo on his enormous saxophone."
         "Well, he didn't actually have a saxophone; it wouldn't have fit on the shuttle."
