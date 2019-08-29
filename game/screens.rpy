@@ -1352,11 +1352,9 @@ screen nvl(dialogue, items=None):
             vpgrid:
                 cols 1
                 yinitial 1.0
-
                 use nvl_dialogue(dialogue)
 
         else:
-
             use nvl_dialogue(dialogue)
 
         ## Displays the menu, if given. The menu may be displayed incorrectly if
@@ -1374,25 +1372,51 @@ screen nvl_dialogue(dialogue):
     $ index = 0
     for d in dialogue:
         $ index += 1
+        $ is_jack = False
+        if (d.who_args["color"] is not None):
+            $ new_color = Color(d.who_args["color"]).shade(0.65)
+        else:
+            $ new_color = gray_dark
         window:
             id d.window_id
 
-            fixed:
+            hbox:
+                xfill True
                 yfit gui.nvl_height is None
-
                 if d.who is not None:
-
-                    text d.who:
-                        id d.who_id
+                    $ is_jack = d.who.startswith(his_name)
+                    if (not is_jack):
+                        text d.who:
+                            id d.who_id
+                    else:
+                        text " " id d.who_id
+                else:
+                    text " " id d.who_id
 
                 frame:
                     style "nvl_dialogue_frame"
-                    if ((index % 2) == 0):
-                        background "roundrect_darkgray"
-                    else:
-                        background "roundrect_lightgray"
+                    background RoundRect(new_color)
+                    # if ((index % 2) == 0):
+                    #     background "roundrect_darkgray"
+                    # else:
+                    #     background "roundrect_lightgray"
+                    if (is_jack):
+                        xalign 1.0
+                        xoffset 10
                     text d.what:
                         id d.what_id
+                        if (is_jack):
+                            xalign 1.0
+                            text_align 1.0
+                if (is_jack):
+                    text d.who:
+                        id d.who_id
+                        xalign 0.0
+                        xpos 15
+                        text_align 0.0
+                else:
+                    text " " id d.who_id
+
 
 
 ## This controls the maximum number of NVL-mode entries that can be displayed at
@@ -1402,7 +1426,6 @@ define config.nvl_list_length = 5
 style nvl_window is default
 style nvl_entry is default
 
-style nvl_label is say_label
 style nvl_dialogue is say_dialogue:
     font gui.nvl_font
 
@@ -1420,7 +1443,7 @@ style nvl_entry:
     #xfill True
     ysize gui.nvl_height
 
-style nvl_label:
+style nvl_label is say_label:
     xpos gui.nvl_name_xpos
     xanchor gui.nvl_name_xalign
     ypos gui.nvl_name_ypos
@@ -1428,6 +1451,7 @@ style nvl_label:
     xsize gui.nvl_name_width
     min_width gui.nvl_name_width
     text_align gui.nvl_name_xalign
+    xalign 1.0
 
 style nvl_dialogue_frame:
     xpos gui.nvl_text_xpos

@@ -3561,7 +3561,8 @@ label family12:
         "Shave your head.":
             him happy "You know what, I need a change anyway!  Let's shave it all off!"
             "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
-            # TODO: change his sprite for the rest of the year
+            $ family12_shaved_head = True
+            # TODO: change his sprite for the rest of the year?
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
@@ -3569,6 +3570,8 @@ label family12:
     scene stars with fade
     "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
     "[her_name] said we needed to keep looking out for them for a few months."
+    if (family12_shaved_head):
+        "It didn't take too long for my hair to grow back, though it seemed like it had a lot more gray hairs than before."
     "It was amazing how these tiny insects took over our lives for a while. The whole community was pretty upset about it."
     nvl clear
     julia_c "I can't believe someone was so incompetent as to allow lice from Earth to contaminate our entire colony!"
@@ -4660,9 +4663,13 @@ label family17:
         "Hurry and go help.":
             $ responsive += 1
             "I quickened my pace and, just before I entered the house, overheard [kid_name] yelling."
+            hide him with moveoutleft
             kid angry "Get- Off- My- BED!"
+            scene farm_interior with fade
+            show him determined at center with moveinleft
             "There was a loud THUMP - probably the sound of [kid_name] pushing [bro_name] off her bed and onto the floor."
             bro "Owwwww! Wahhhhhhh!"
+            hide him with moveoutright
             him determined "Stop!"
         "Leave them alone.":
             $ responsive -= 1
@@ -4685,7 +4692,7 @@ label family17:
     show bro sad at midright, squatting
     show kid angry at center
     with dissolve
-    show him normal at midleft with moveinleft
+    show him determined at midleft with moveinleft
 
     him surprised "What's going on here?"
     kid sad "[bro_name] keeps crying and he won't stop or even tell me what's going on and he's making a huge mess!"
@@ -4980,7 +4987,7 @@ label family17:
                 bro "Okay."
                 "As we left, the sun was setting. It was too late to go anywhere else, so we headed home."
 
-            "Pete, leader of the luddites":
+            "Pete, leader of the mavericks":
                 him determined "Let's go ask Pete."
                 bro "Mister Pete is scary."
                 him surprised "What, really? Pete?"
@@ -6583,7 +6590,7 @@ label lettie_dies:
     menu:
         "That problem was..."
         "The miners and RET were ruining our planet.":
-            $ luddites += 1
+            $ mavericks += 1
             "The miners and RET were ruining our planet."
             "I mean, I guess it was only because of RET that we had the funding to come here in the first place."
             "But I wished they'd just leave us alone. I wished they would leave [kid_name] alone."
@@ -7297,7 +7304,7 @@ label family28:
             menu:
                 "Ask around.":
                     "I decided to ask around. Maybe someone else had seen her."
-                    if (luddites > 10):
+                    if (mavericks > 10):
                         him_c "Hey, Pete, I'm looking for [kid_name]. Any idea where she's at?"
                         pete_c "She usually comes over here around this time. Want me to tell her something?"
                         him_c "Oh, is she hanging out with Travis?"

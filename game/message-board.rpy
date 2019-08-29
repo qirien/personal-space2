@@ -385,7 +385,7 @@ label message15:
     nvl clear
     return
 
-# Community: Trade with luddites?
+# Community: Trade with mavericks?
 # Family: She must clean her room!!
 label message16:
     nvl clear
@@ -521,7 +521,7 @@ label message20:
     nvl clear
     return
 
-# Community: Visit ocean. Build relationship with miners or luddites depending on their values. Discuss firegrass w/miners if relationship is high enough.
+# Community: Visit ocean. Build relationship with miners or mavericks depending on their values. Discuss firegrass w/miners if relationship is high enough.
 # Family: Terra's mean and sarcastic
 label message21:
     nvl clear
@@ -541,7 +541,7 @@ label message21:
     nvl clear
     return
 
-# Community: Miners moving to mountain near luddites!
+# Community: Miners moving to mountain near mavericks!
 # Family: Apologize when you falsely accuse Terra? Family activities
 label message22:
     nvl clear
@@ -770,11 +770,11 @@ label message30:
 
 # TODO: redo these with new colors, make icons, etc.
 # NVL mode characters for chat rooms, etc
-define her_c = DynamicCharacter("her_name", who_suffix = "  {image=images/icons/her-icon.png} ",
+define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images/icons/her-icon.png} ",
     color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # mint green
-define him_c = DynamicCharacter("his_name", who_suffix = "  {image=images/icons/him-icon.png} ",
+define him_c = Character("his_name", dynamic=True, who_suffix = "  {image=images/icons/him-icon.png} ",
     color="#bc1e0e", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # red of his eyes
-define kid_c = DynamicCharacter("kid_name",
+define kid_c = Character("kid_name", dynamic=True,
 #who_suffix = "  {image=images/icons/kid-icon.png} ",
         color="#ca67ac", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # reddish purple
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
@@ -782,9 +782,9 @@ define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-ic
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
     color="#cccccc", image="pavel_c", kind=nvl, ctc="ctc_blink", ctc_position="nestled")   #gray
 define lily_c = Character("Dr. Lily", who_suffix = "  {image=images/icons/lily-icon.png} ",
-    color="#7580d0", image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #grayish blue
+    color="#655283", image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #dark purple
 define sara_c = Character("Sara", who_suffix = "  {image=images/icons/sara-icon.png} ",
-    color="#e25057", image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  # salmon pink
+    color="#ff6767", image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  # salmon pink
 define thuc_c = Character("Thuc", who_suffix = "  {image=images/icons/thuc-icon.png} ",
     color="a9ff22", image="thuc", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #lime green
 define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-icon.png} ",
@@ -803,18 +803,19 @@ define martin_c = Character("Martín", who_suffix = "  {image=images/icons/marti
     color="#9b5b1d", image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
 define anya_c = Character("Anya",
     #who_suffix = "  {image=images/icons/miranda-icon.png} ",
-    color="f3ca14", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+    color="#53b5ab", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #cyan
 define lewis_c = Character("Mr. Lewis",
-    color="f3ca14", image="miranda", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+    color="f3ca14", image="lewis", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+# TODO: change these colors here and in defines.rpy once we have images for them
 define zaina_c = Character ("Zaina",
-    #who_suffix = "  {image=images/icons/miranda-icon.png} ",
-    color="f3ca14", image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
+    #who_suffix = "  {image=images/icons/zaina-icon.png} ",
+    color="#d8cd87", image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
 define kevin_c = Character ("Kevin",
-    #who_suffix = "  {image=images/icons/miranda-icon.png} ",
-    color="f3ca14", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
+    #who_suffix = "  {image=images/icons/kevin-icon.png} ",
+    color="#324cc5", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
 define oleg_c = Character("Oleg",
 #who_suffix = "  {image=images/icons/oleg-icon.png} ",
-    color="#f3e6bc", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #khaki
+    color="#d8a687", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #sandstone
 define travis_c = Character("Travis",
 #who_suffix = "  {image=images/icons/travis-icon.png} ",
     color="#ee7755", image="travis", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #rusty brown

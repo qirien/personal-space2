@@ -124,10 +124,10 @@ label overwork:
                 her concerned "I'll help you out this time. But this is the last time."
                 him concerned "Thank you, [her_name]."
 
-        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_luddites < 2)):
-            $ overwork_luddites += 1
-            if (overwork_luddites <= 1):
-                $ luddites += 1
+        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_mavericks < 2)):
+            $ overwork_mavericks += 1
+            if (overwork_mavericks <= 1):
+                $ mavericks += 1
                 if (year >= PETE_LEAVES_CAVE_YEAR):
                     scene shack with fade
                 else:
@@ -150,7 +150,7 @@ label overwork:
                 "With so many people, it didn't take us very long to harvest all the [random_crop]."
                 him happy "Thanks, guys!"
             else:
-                $ luddites -= 1
+                $ mavericks -= 1
                 scene shack with fade
                 show pete normal at midright
                 show him normal at midleft
@@ -300,7 +300,7 @@ label bad_nutrition:
                             natalia_c "I'm not complaining."
                         "(Don't say anything)":
                             "I didn't say anything. Everyone knew that requirement was mostly for show, right?"
-                            $ luddites += 1
+                            $ mavericks += 1
                             $ colonists -= 1
                             $ miners -= 1
                 else:
@@ -785,7 +785,7 @@ label work12:
             # TODO: implement annual fee, test
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
-            $ luddites += 1
+            $ mavericks += 1
             him_c "No thanks, Brennan."
             "Later, Natalia came over for a visit."
             natalia "I need something for my farm that's easier to grow. Do you have any suggestions?"
@@ -988,7 +988,7 @@ label work16:
                 $ enable_crop("peppers")
 
         "Expand your farmland." if (farm_size < FARM_SIZE_MAXIMUM):
-            $ luddites += 1
+            $ mavericks += 1
             "I had already worked everything out with Pete. I'd have to miss this seed exchange. Hopefully they'd have more in the future."
             scene fields with fade
             show him normal at midleft with dissolve
@@ -1358,7 +1358,7 @@ label work20:
             "Digging the pond wasn't tricky, just a lot of hard work."
             if (colonists >= 10):
                 "When the other farmers heard about what we were doing, some of them came by to lend a hand."
-            elif (luddites >= 10):
+            elif (mavericks >= 10):
                 show pete normal at quarterleft with moveinleft
                 "When Pete heard about what we were doing, he came by to lend a hand."
                 pete "See, that's why you should quit working for the Man and come live out on your own, like me!"
@@ -1501,7 +1501,7 @@ label work22:
             thuc "You can plant them if you want."
             him normal "I will; thank you!"
             $ enable_crop("onions")
-    elif (helping_faction == "luddites"):
+    elif (helping_faction == "mavericks"):
         show pete at midright with moveinleft
         her happy "Especially Pete!"
         pete "I thought you'd get a kick outta a surprise party."
@@ -2010,7 +2010,7 @@ label work29_potatoes:
                     him normal "Sure, I'll save some honey for you."
                     "We worked out the specifics, and he paid me 500 credits."
                     $ modify_credits(500)
-                    $ luddites += 1
+                    $ mavericks += 1
                 "I don't want to do that.":
                     him concerned "Sorry, I don't want to sell all my honey to you. You can buy it from the storehouse like everyone else."
                     travis "If that's what you want."
@@ -2018,7 +2018,7 @@ label work29_potatoes:
         else:
             him concerned "Sorry, I don't have any honey this year."
             travis "Okay, well, think about it for next year!"
-            $ luddites += 1
+            $ mavericks += 1
 
     else:
         travis "Hey... I thought you agreed to grow three fields of potatoes for me."
@@ -2031,7 +2031,7 @@ label work29_potatoes:
                 travis "'Sorry'? That's it? I thought I could trust you."
                 him annoyed "Hey, we didn't have a contract or anything. I was going to be doing you a favor."
                 travis "I didn't think two honest people needed a contract to keep their word. I guess I was wrong."
-                $ luddites -= 1
+                $ mavericks -= 1
             "I can sell you something else.":
                 him concerned "Hey, I'm really sorry about that... can I sell you something else?"
                 travis "Hmmm... I'm looking at buying honey to make ice cream, if you have any of that."
@@ -2043,7 +2043,7 @@ label work29_potatoes:
                 else:
                     him sad "Sorry, I don't have honey, either."
                     travis "Forget it, then."
-                    $ luddites -= 1
+                    $ mavericks -= 1
             "I can sell you the potatoes I have." if (farm.crops.contains("potatoes")):
                 $ potato_count = farm.crops.count("potatoes")
                 him "I can sell you the potatoes I do have."

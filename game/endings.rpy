@@ -11,7 +11,7 @@ label ending:
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
     # TODO: community ending stuff
-    # Talk about miners, colonists, luddites, and jellies
+    # Talk about miners, colonists, mavericks, and jellies
 
 
 
@@ -176,7 +176,7 @@ label ending_aci:
 
     return
 
-#2 acI - Rejects your life and joins luddites, but fails. Moves from one job to the next, but drives away people around her and isn't good at anything.
+#2 acI - Rejects your life and joins mavericks, but fails. Moves from one job to the next, but drives away people around her and isn't good at anything.
 label ending_acI:
     "Ending acI."
     "Even though [kid_name] still lives on Talaam, I worry a lot about her."

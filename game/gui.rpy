@@ -400,17 +400,17 @@ define gui.nvl_height = None
 
 ## The spacing between NVL-mode entries when gui.nvl_height is None, and between
 ## NVL-mode entries and an NVL-mode menu.
-define gui.nvl_spacing = 20
+define gui.nvl_spacing = 10
 
 ## The position, width, and alignment of the label giving the name of the
 ## speaking character.
-define gui.nvl_name_xpos = 400
+define gui.nvl_name_xpos = 250
 define gui.nvl_name_ypos = 0
-define gui.nvl_name_width = 350
+define gui.nvl_name_width = 200
 define gui.nvl_name_xalign = 1.0
 
 ## The position, width, and alignment of the dialogue text.
-define gui.nvl_text_xpos = 430
+define gui.nvl_text_xpos = 0
 define gui.nvl_text_ypos = 8
 define gui.nvl_text_width = 630
 define gui.nvl_text_xalign = 0.0

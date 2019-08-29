@@ -110,7 +110,8 @@ screen farm_details_screen:
                     text "[his_name] & [her_name]" xoffset 20
                     text "[kid_name], [earth_year] earth years old" xoffset 20
                     if (bro_birth_year != 0):
-                        text "[bro_name], [bro_age] earth years old" xoffset 20
+                        $ bro_earth_age = get_earth_years([bro_age])
+                        text "[bro_name], [bro_earth_age] earth years old" xoffset 20
 
                     # Display poetry written
                     # TODO: how do I get the word_board variable here?

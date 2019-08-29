@@ -288,6 +288,31 @@ label tests:
     return
 
 label test_message_board:
+    nvl clear
+    her_c "We are testing all the characters on the message board."
+    him_c "Just so see what they look like"
+    kid_c "And make sure it looks good!"
+    naomi_c "I'm sure it's fine."
+    pavel_c "I agree."
+    lily_c "But testing is important."
+    sara_c "Don't worry so much!!! :-D"
+    thuc_c "You got this, bro."
+    ilian_c "Yes, keep saying it and maybe it will come true."
+    brennan_c "Positive thinking, right?"
+    pete_c "You gotta start somewhere."
+    natalia_c "But you also need to finish!"
+    helen_c "..."
+    julia_c "Practice makes perfect."
+    martin_c "Finish before I croak already!"
+    anya_c "what??"
+    lewis_c "I don't know..."
+    zaina_c "Interesting experiment."
+    kevin_c "It lacks rigor."
+    oleg_c "ghhghhh he said 'rigor'"
+    travis_c "iknow right?"
+    van_c "::sigh::"
+    ret_c "This conversation is unproductive."
+    nvl clear
     $ i = 1
     while (i <= MAX_YEARS):
         call interscene_text(i, "Message Board")
@@ -457,7 +482,7 @@ label test_community:
         $ year += 1
 
     "Game complete."
-    "Luddites: [luddites]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
+    "mavericks: [mavericks]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
     return
 
 image toddler = "sprites/toddler.png"
