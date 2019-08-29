@@ -569,7 +569,6 @@ label work6:
     show kid normal at center
     show him normal at midleft
     with dissolve
-    window show # TODO: HACK MOVE TO FUNCTION
     $ random_crop = farm.crops.random_crop(include_animals = False)
     him normal "Well, I'm off to plant [random_crop] today."
     # TODO: we might get a crop that doesn't work with seeds... fix this

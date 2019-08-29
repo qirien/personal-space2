@@ -712,7 +712,6 @@ label family2:
 label family3:
     play music upbeat
     scene farm_interior with fade
-    window show # TODO: HACK MOVE TO FUNCTION
     show him normal at midright
     show her normal at midleft
     show kid normal at center, baby_pos
