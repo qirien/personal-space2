@@ -301,8 +301,9 @@ label life_loop:
         #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
-            if (year >= MONEY_YEAR):
-                $ modify_credits(farm.calculate_income(years_yield))
+            if (year > MONEY_YEAR):
+                $ income = farm.calculate_income(years_yield)
+                $ modify_credits(income)
                 $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)

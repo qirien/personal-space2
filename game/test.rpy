@@ -44,6 +44,7 @@ label test_farming_screen:
             if (renpy.random.random() > 0.8):
                 $ farm_size += 1
             $ year += 1
+            $ notifications = ""
     return
 
 label demo:

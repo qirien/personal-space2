@@ -42,53 +42,55 @@ init python:
             current_nitrogen = 0
             current_pests = 0
             for i in range(0, self.current_size):
-                pest_factor = 0 # how pests affect yield
-                pest_growth = 0 # how much pests increase/decrease this year
                 nitrogen_factor = 0
                 crop_name = self.crops[i]
                 current_nitrogen = self.health[i][Field.NITROGEN_LEVEL_INDEX]
-                current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
-                #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
-                # Decrease yield based on randomness and number of times crop has been in that spot lately.
-                # Set pest level of field after crops.
-                if (crop_info[get_crop_index(crop_name)][PERENNIAL_INDEX]):
-                    pest_growth = pest_factor = 0 # not PEST_NONE because otherwise pests will slowly increase
-                elif (crop_name == "fallow"):
-                    pest_growth = current_pests / Field.PEST_FALLOW_REDUCTION
-                    pest_factor = 0
-                elif (crop_name == "goats"):
-                    pest_growth = current_pests / Field.PEST_GOAT_REDUCTION
-                    pest_factor = 0
-                elif (crop_name == "honey"):
-                    pest_growth = current_pests / Field.PEST_BEE_REDUCTION
-                    pest_factor = 0
-                elif (self.history[i].count(crop_name) == 0):
-                    pest_growth = current_pests / Field.PEST_OTHER_CROP_REDUCTION
-                    pest_factor = 0
-                else:
-                    pest_growth = pest_factor = int(current_pests * renpy.random.random() * (1.5 * self.history[i].count(crop_name)))
-
-                # Update pests for that field
-                new_pests = self.health[i][Field.PEST_LEVEL_INDEX] + pest_growth
-                new_pests = bounded_value(new_pests, Field.PEST_NONE, Field.PEST_MAX)
-                self.health[i][Field.PEST_LEVEL_INDEX] = new_pests
-
-                # At most you can lose half your yield from pests
-                pest_factor = bounded_value(pest_factor, 0, Field.PEST_MAX/2)
-
-                # print "Pest Factor[" + str(i) + "] is " + str(pest_factor) + ", pest_growth= " + str(pest_growth)
-
                 # Decrease yield if there's not enough nitrogen
                 # Set nitrogen level of the field after crops
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
                 # print "New Nitrogen: " + str(new_nitrogen)
+                # TODO: Delete this; it should never happen
                 if (new_nitrogen < 0):
                     nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100
 
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
 
-                #print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor) + ", Pest Factor is " + str(pest_factor)
+                pest_factor = 0 # how pests affect yield
+                pest_growth = 0 # how much pests increase/decrease this year
+                # If pest calculation is on
+                # TODO: Set difficulty level? Remove completely?
+                if USE_PESTS:
+                    current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
+                    #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
+                    # Decrease yield based on randomness and number of times crop has been in that spot lately.
+                    # Set pest level of field after crops.
+                    if (crop_info[get_crop_index(crop_name)][PERENNIAL_INDEX]):
+                        pest_growth = 0
+                        pest_factor = 0 # not PEST_NONE because otherwise pests will slowly increase
+                    elif (crop_name == "fallow"):
+                        pest_growth = current_pests / Field.PEST_FALLOW_REDUCTION
+                        pest_factor = 0
+                    elif (crop_name == "goats"):
+                        pest_growth = current_pests / Field.PEST_GOAT_REDUCTION
+                        pest_factor = 0
+                    elif (crop_name == "honey"):
+                        pest_growth = current_pests / Field.PEST_BEE_REDUCTION
+                        pest_factor = 0
+                    elif (self.history[i].count(crop_name) == 0):
+                        pest_growth = current_pests / Field.PEST_OTHER_CROP_REDUCTION
+                        pest_factor = 0
+                    else:
+                        pest_growth = pest_factor = int(current_pests * renpy.random.random() * (1.5 * self.history[i].count(crop_name)))
+
+                    # Update pests for that field
+                    new_pests = self.health[i][Field.PEST_LEVEL_INDEX] + pest_growth
+                    new_pests = bounded_value(new_pests, Field.PEST_NONE, Field.PEST_MAX)
+                    self.health[i][Field.PEST_LEVEL_INDEX] = new_pests
+
+                    # At most you can lose half your yield from pests
+                    pest_factor = bounded_value(pest_factor, 0, Field.PEST_MAX/2)
+                    # print "Pest Factor[" + str(i) + "] is " + str(pest_factor) + ", pest_growth= " + str(pest_growth)
 
                 # Bee Calculation
                 # Boost what is adjacent - -1 and +1 for horizontal,
@@ -104,15 +106,17 @@ init python:
                     # middle column somewhere
                     else:
                         indices = [i-num_columns, i-1, i+1, i+num_columns]
-                    for index in indices:
+                    #print "Bee boosting: " + str(indices)
+                    for curr_index in indices:
                         # if it's not out of bounds
-                        if ((index >= 0) and (index < len(final_yield))):
+                        if ((curr_index >= 0) and (curr_index < len(final_yield))):
                             # if it's a pollinated crop
-                            if crop_info[get_crop_index(self.crops[index])][POLLINATED_INDEX]:
-                                final_yield[index] = final_yield[index] + Field.BEE_BOOST
+                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
+                                final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
 
                 # TODO: still runaway pests on perennials...
                 # Subtract pests and nitrogen deficiency from final yield
+                print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor) + ", Pest Factor is " + str(pest_factor)
                 final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
 
             self.update_history()
@@ -126,7 +130,9 @@ init python:
             for i in range(0, self.current_size):
                 crop_name = self.crops[i]
                 crop_value = get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
-                income += int((crop_yield[i]/100) * crop_value)
+                final_value = (crop_yield[i]/100.0) * crop_value
+                print "crop_yield " + str(crop_yield[i]) + " crop_value " + str(crop_value) + " final_value " + str(final_value)
+                income += int(final_value)
             return income
 
         # Reset the crops for a new year.

@@ -122,15 +122,14 @@ screen farm_details_screen:
             frame:
                 style "plan_farm_subframe"
                 vbox:
-                    yalign 1.0
                     label "Community" # TODO: have cute icons for these, like on a phone?
                     # TODO: have status icons for how much everyone likes you?
                     use colony_messages_button(read_messages)
                     # TODO: make this have a "NEW!" icon when there's new stuff?
                     textbutton "Child Development" action Show("parenting_handbook", zoomin) xoffset 20
                     # TODO: add parenting quote
+                    text notifications
 
-                    # TODO: add music player here
 
         # Crop layout area
         frame:
@@ -152,7 +151,6 @@ screen farm_details_screen:
                 use crops_totals
 
 # TODO: mask the rest of the screen?
-# TODO: add a shadow on sub screens
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     frame:
@@ -172,7 +170,8 @@ screen choose_crop(crop_index=0):
                 null height 20
                 label "Health" style "crop_details_label" text_color white
                 text "Nitrogen Level: " + get_level_fuzzy(1 - (farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX] / float(Field.NITROGEN_FULL)))
-                text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
+                if USE_PESTS:
+                    text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
 
             frame:
                 style "plan_farm_subframe"
@@ -225,7 +224,6 @@ screen choose_crop(crop_index=0):
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == j)
 
-                                # TODO: for mobile, tap once to select and tap again to choose.
                                 imagebutton:
                                     idle imagefile
                                     hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
@@ -236,8 +234,13 @@ screen choose_crop(crop_index=0):
                                     align  (0.5, 0.5)
                                     selected is_selected
                                     sensitive (not max_crops_reached)
-                                    hovered SetLocalVariable("selected_crop_index", j)
-                                    action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
+                                    if (not renpy.variant("touch")):
+                                        hovered SetLocalVariable("selected_crop_index", j)
+                                    if renpy.variant("touch"):
+                                        action If((selected_crop_index == j), [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", j))
+                                    else:
+                                        action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
+
 
 screen crops_layout:
     frame:
@@ -262,6 +265,8 @@ screen crops_layout:
                         $ new_nitrogen_level = bounded_value(current_nitrogen_level - nitrogen_usage, 0, Field.NITROGEN_FULL)
                         $ tint_factor = 1 - (current_nitrogen_level / float(Field.NITROGEN_FULL))
                         $ tint_factor = tint_factor / 2.0
+
+                        # TODO: Remove if no pests or set USE_PESTS
                         $ current_pest_level = farm.health[i][Field.PEST_LEVEL_INDEX]
                         $ pest_factor = (current_pest_level / float(Field.PEST_MAX))
                         frame:
@@ -272,6 +277,7 @@ screen crops_layout:
                                 #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
                                 # make poor soils lighter and
                                 # put the pests on top
+                                # TODO: if we're not using pests, take them out.
                                 background Frame(Composite(
                                     (CROP_ICON_SIZE, CROP_ICON_SIZE),
                                     (0,0), im.MatrixColor("gui/crop icons/background.png",    im.matrix.brightness(tint_factor)),
@@ -320,8 +326,9 @@ screen crops_totals:
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ total_calories += crop_info[index][CALORIES_INDEX]
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
-            if (year >= 5):
+            if (year >= MONEY_YEAR):
                 $ total_value += get_credits_from_value(crop_info[index][VALUE_INDEX])
+                # TODO: Need to take into account pests here, so the user is not surprised.
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
