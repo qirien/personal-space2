@@ -1245,45 +1245,44 @@ label work20:
                 if (is_liaison):
                     "And I guess that meant it was up to me to talk to RET about it."
                     "I'd better think carefully about what message to send to Earth. I had 140 characters to use on the quantum entanglement device."
-                    label work20_msg_menu:
-                        $ work20_message = ""
-                        $ work20_message_score = 0
-                        $ work20_menuset = set()
-                        menu work20_message_menu:
-                            set work20_menuset
-                            "RET Message:\n[work20_message]"
-                            "River diverted for mining":
-                                $ work20_message += "River diverted for mining "
-                                jump work20_message_check
-                            "Brennan refuses to help":
-                                $ work20_message += "Brennan refuses to help "
-                                jump work20_message_check
-                            "No water for crops":
-                                $ work20_message += "No water for crops "
-                                $ work20_message_score += 1
-                                jump work20_message_check
-                            "Brennan stole our irrigation water for mining":
-                                $ work20_message += "Brennan stole our irrigation water for mining "
-                                jump work20_message_check
-                            "Tried to negotiate with Brennan but he refused to work with us":
-                                $ work20_message += "Tried to negotiate with Brennan but he refused to work with us "
-                                $ work20_message_score += 1
-                                jump work20_message_check
-                            "Please help":
-                                $ work20_message += "Please help "
-                                jump work20_message_check
-                            "Please require Brennan to redirect water back to original stream":
-                                $ work20_message += "Please require Brennan to redirect water back to original stream "
-                                $ work20_message_score += 2
-                                jump work20_message_check
-                            "I noticed there was no water in the river, so I followed it upstream":
-                                $ work20_message += "I noticed there was no water in the river, so I followed it upstream "
-                                jump work20_message_check
-                            "I talked with Brennan and asked him politely to return the water, but he said he won't":
-                                $ work20_message += "I talked with Brennan and asked him politely to return the water, but he said he won't "
-                                jump work20_message_check
-                            "(Finish)":
-                                jump work20_message_done
+                    $ work20_message = ""
+                    $ work20_message_score = 0
+                    $ work20_menuset = set()
+                    menu work20_message_menu:
+                        set work20_menuset
+                        "RET Message:\n[work20_message]"
+                        "River diverted for mining":
+                            $ work20_message += "River diverted for mining "
+                            jump work20_message_check
+                        "Brennan refuses to help":
+                            $ work20_message += "Brennan refuses to help "
+                            jump work20_message_check
+                        "No water for crops":
+                            $ work20_message += "No water for crops "
+                            $ work20_message_score += 1
+                            jump work20_message_check
+                        "Brennan stole our irrigation water for mining":
+                            $ work20_message += "Brennan stole our irrigation water for mining "
+                            jump work20_message_check
+                        "Tried to negotiate with Brennan but he refused to work with us":
+                            $ work20_message += "Tried to negotiate with Brennan but he refused to work with us "
+                            $ work20_message_score += 1
+                            jump work20_message_check
+                        "Please help":
+                            $ work20_message += "Please help "
+                            jump work20_message_check
+                        "Please require Brennan to redirect water back to original stream":
+                            $ work20_message += "Please require Brennan to redirect water back to original stream "
+                            $ work20_message_score += 2
+                            jump work20_message_check
+                        "I noticed there was no water in the river, so I followed it upstream":
+                            $ work20_message += "I noticed there was no water in the river, so I followed it upstream "
+                            jump work20_message_check
+                        "I talked with Brennan and asked him politely to return the water, but he said he won't":
+                            $ work20_message += "I talked with Brennan and asked him politely to return the water, but he said he won't "
+                            jump work20_message_check
+                        "(Finish)":
+                            jump work20_message_done
 
                         label work20_message_check:
                             if (len(work20_message) >= 100):
