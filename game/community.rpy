@@ -2388,6 +2388,11 @@ label community13:
                                 lily angry "Is that really a decision?"
                                 her normal "Let's just tell them it's fine to use the river water then."
                                 jump diaper_interruption
+                            "Delay normal irrigation for a few days.":
+                                him determined "The soil is still a bit damp from the last time I irrigated. I think my crops could survive without water for another two or three days."
+                                her normal "That's fine for your crops, but what about Thuc's rice?"
+                                him normal "True, they do need constant water..."
+                                jump diaper_interruption
                         label diaper_interruption:
                                 show kid normal at right with dissolve
                                 kid "Dad, [bro_name] has a stinky diaper."
@@ -2468,8 +2473,7 @@ label community13:
             kevin normal "I do hope there are no long-term consequences of the leak. I feel personally responsible."
             him determined "We can't change what happened. All we can do now is try to learn from this and do better next time."
             return
-        #use if (has_strong_marriage())
-    # Pete should be a vocal opponent of the mining to foreshadow next month.
+# TODO: a decision to trigger lily_mad_at_RET. look up cave_explored as well? in community20
 
 # 14 - Pete leaves
 label community14:
@@ -2519,15 +2523,15 @@ label community14:
         pete "The miners don't respect my property. They stole one of my cows and never returned her."
     else:
         pete "They expect us to feed the miners, but we can barely feed ourselves."
-    pete "They don't respect the natural beauty of Talaam, and they destroyed a cave in the course of their mining."
-    if lily_mad_at_RET:
-        lily "They don't respect the needs of researchers either."
-        lily "I came here to study this planet, not destroy it."
-        lily "I'm going with Pete and his family."
-        $ mavericks += 1
-    else:
-        lily "I plan to visit you often."
-        lily "There is so much more to learn about this planet."
+        pete "They don't respect the natural beauty of Talaam, and they destroyed a cave in the course of their mining."
+#    if lily_mad_at_RET:
+#        lily "They don't respect the needs of researchers either."
+#        lily "I came here to study this planet, not destroy it."
+#        lily "I'm going with Pete and his family."
+#        $ mavericks += 1
+#    else:
+#        lily "I plan to visit you often."
+#        lily "There is so much more to learn about this planet."
     if not (asked_only_medicine):
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen tell us their plans to go with Pete and his family."
@@ -2586,6 +2590,7 @@ label community14:
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
     else:
         "Pete and Helen's cattle went to Ilian, who wanted to take care of them."
+        $ ilian_has_cattle = True
     return
 
 
@@ -3679,7 +3684,7 @@ label c17_after_activities:
     if ate_jellyfish:
         #move to a later, more sparse event?
         "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
-        him "I wonder what they look like." #to self
+        "I wonder what they look like." #to self
         "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
         if lily_mad_at_RET:
             "She responds via the instant messaging software. Guess she hasn't given up all technology."
@@ -3963,6 +3968,7 @@ label community19:
 
 
 label community20:
+    #Lily wants to return to the colony in her old age
 
     if lily_mad_at_RET:
         "Pavel called me in to meet with him."
@@ -4648,7 +4654,7 @@ label community22:
                 "A few weeks later, Brennan messaged me again."
                 nvl clear
                 brennan_c "Our mining equipment keeps breaking down and we suspect someone is sabotaging it."
-                brennan_c "Some of the repairs have been seriously difficult to repair."
+                brennan_c "Some of the damage has been seriously difficult to repair."
                 brennan_c "Do you know anything about this?"
                 him_c "I bet if you starting mining somewhere else it would stop."
                 brennan_c "This is ridiculous. You're a traitor to our cause."
@@ -5571,6 +5577,7 @@ label community27:
     $ shell_count = 0
     $ serve_mudfish = False
     $ serve_Shills = False
+    $ asked_shell_food = False
     "It was time for our now-annual trip to the ocean."
     "When we got there, we were surprised to see more fish than usual."
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
@@ -5598,7 +5605,7 @@ label community27:
     "Something under the surface was emitting a light."
     "It came closer to the surface, and I could see part of it."
     "It had way more than ten tentacles and was a little smaller than our rowboat." #this line is optional--if Clarissa wants to draw it. They are not humanoid. DO THEY HAVE SHELLS is the important question
-    "Jellystars joined in a chain from it to the jellysquid in my bucket."
+    "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
         "Run away.":
@@ -5680,6 +5687,7 @@ label call_to_squid:
             her "What on Earth happened to you?"
             kid "I think you mean 'What on Talaam' happened to us."
             if mavericks > 10:
+                "I went to Pete's house as soon as we got back." #because it's not necessarily the cave anymore
                 him "Any idea what happened to the nets?"
                 pete "Nope. I figured it was some angry miner or colonist."
                 pete "Or maybe Travis on a bad day."
@@ -5725,171 +5733,192 @@ label call_to_squid:
                 "Jellysquid" "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
                 "Jellysquid" "More. Hundreds."
-                #change this to integrate with the magnetic poetry app
-#                "I kept tracing a question mark."
-#                "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
-#                him "That's not a lot to work with. Hmmm."
-#                #could be a menu here later.
-#                menu:
-#                    "Why":
-#                        menu:
-#                           "Why..."
-#                            "you":
-#                                menu:
-#`                                  "Why you..."
-#                                    "live shell?":
-#                                        "Jellysquid" "Shell save us from enemy."
-#                                    "live not?":
-#                                        "Jellysquid" "You kill my children and keep their shells."
-#                                        "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
-#                            "we":
-#                                menu:
-#                                    "live shell?":
-#                                        "Jellysquid" "You don't live in a shell. Your shell is inside you."
-#                                    "live not?":
-#                                        "Jellysquid" "Do you eat? You need to eat to live."
-#                    "What":
-#                        menu:
-#                            "you?":
-#                                "Jellysquid" "I am an animal in the water."
-#                                "Jellysquid" "What are you?"
-#                                him "Hmm. My options are kind of limited."
-#                                menu:
-#                                    "We not food.":
-#                                        "Jellysquid" "All animals are food."
-#                                    "We not shell.":
-#                                        "Jellysquid" "Then why do you need shell?"
-#                                    "We live not.":
-#                                        "That is not possible. Dead things don't move."
-#                            "we?":
-#                                "Jellysquid" "You are new animals. We do not know what you are."
-#                            "shell":
-#                                "Jellysquid." "Shell protects children."
-#                            "shell food"
-#                    "Where":
-#                        menu:
-#                            "you":
-#                                menu:
-#                                    "live?":
-#                                        "Jellysquid" "We live here, in the ocean."
-#                                    "food?":
-#                                        "Jellysquid" "Our food is fish, light, and plants."
-#                                    "not live?":
-#                                        "Jellysquid" "We do not live on land."
-#                            "we":
-#                                menu:
-#                                    "live?":
-#                                        "Jellysquid" "You live on land. You know it. Why do you ask?"
-#                                    "food?":
-#                                        "Jellysquid." "Your food is on land. And water."
-#                                    "not live?":
-#                                        "Jellysquid." "You do not live in the ocean."
+                "I kept tracing a question mark."
+                "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
+                him "That's not a lot to work with. Hmmm."
+                menu question_menu:
+                    "Why":
+                        "Why..."
+                        menu:
+                            "you...":
+                                "Why you..."
+                                menu:                 
+                                    "live shell?":
+                                        "Jellysquid" "Shell save us from enemy."
+                                        jump question_menu
+                                    "live not?":
+                                        "Jellysquid" "You kill my children and keep their shells."
+                                        "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
+                                        jump question_menu
+                            "we...":
+                                "Why we..."
+                                menu:                                    
+                                    "live shell?":
+                                        "Jellysquid" "You don't live in a shell. Your shell is inside you."
+                                        jump question_menu
+                                    "live not?":
+                                        "Jellysquid" "Do you eat? You need to eat to live."
+                                        jump question_menu
+                    "What":
+                        "What..."
+                        menu:
+                            "you?":
+                                "Jellysquid" "I am an animal in the water."
+                                "Jellysquid" "What are you?"
+                                him "Hmm. My options are kind of limited."
+                                menu:
+                                    "We not food.":
+                                        "Jellysquid" "All animals are food."
+                                        jump question_menu
+                                    "We not shell.":
+                                        "Jellysquid" "Then why do you need shell?"
+                                        jump question_menu
+                                    "We live not.":
+                                        "That is not possible. Dead things don't move."
+                                        jump question_menu
+                            "we?":
+                                "Jellysquid" "You are new animals. We do not know what you are."
+                                jump question_menu
+                            "shell?":
+                                "Jellysquid." "Shell protects children."
+                                jump question_menu
+                            "shell food?":
+                                "Jellysquid" "Other shells make shells."
+                                "Jellysquid" "Some rocks make shells."
+                                "Jellysquid" "Maybe mud fish? Mud fish tastes bad."
+                                him "Hmmm. Good to know."
+                                him "Why shell food is not?"
+                                "Jellysquid" "You took food."
+                                "The display changed and asked me to bring more shells back."
+                                "I knew that I probably couldn't find more shells, so instead I promised to look for shell food."
+                                $ asked_shell_food = True
+                                jump question_menu
+                                #you need to see this option for the plot to progress
+                    "Where":
+                        "Where..."
+                        menu:
+                            "you...":
+                                "Where you..."
+                                menu:
+                                    "live?":
+                                        "Jellysquid" "We live here, in the ocean."
+                                        jump question_menu
+                                    "food?":
+                                        "Jellysquid" "Our food is fish, light, and plants."
+                                        jump question_menu
+                                    "not live?":
+                                        "Jellysquid" "We do not live on land."
+                                        jump question_menu
+                            "we...":
+                                "Where we..."
+                                menu:
+                                    "live?":
+                                        "Jellysquid" "You live on land. You know it. Why do you ask?"
+                                        jump question_menu
+                                    "food?":
+                                        "Jellysquid." "Your food is on land. And water."
+                                        jump question_menu
+                                    "not live?":
+                                        "Jellysquid." "You do not live in the ocean."
+                                        jump question_menu
+                            
+                    "Finish talking" if asked_shell_food:
+                        "I felt like I understood enough to try and help."
+                        "I put the jellysquid back in the water."
+                        jump back_to_farm27
+                        
+                label back_to_farm27:
+                    "I went back to the colony and my farm."
+                    "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
+                    "When I mentioned the mudfish, she looked excited."
+                    zaina "A few years ago I studied that fish."
+                    him "What eats it?"
+                    zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
+                    him "The ones called Shills? Because they make a really cool noise but disappear if you approach them?"
+                    him "How do they compare to jellysquid shells for metal content?"
+                    zaina "Well, it's not edible for humans. Let me bring up the report."
+                    zaina "Some species had a high level of heavy metals. I don't know what kind though."
+                    him "Wow, this could be big! The same kind of metals that RET wants?"
+                    him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud."
+                    zaina "Or we could just keep doing what's working, which is digging in the mountains."
+                    zaina "Brennan gave up on the jellysquid farms. Just leave well enough alone."  # TODO: decide if jellymother is her or them. make capitalization consistent.
+                    him "They can sort of write to us Zaina! How are you not curious about that?"
+                    zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
+                    zaina "I helped Dr. Lily teach them how to 'write'."
+                    zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
+                    zaina "These animals are one of the most interesting beings I've studied. If Brennan were to mine in the mud, it would mess up their habitat even more."
+                    him "Okay, bad idea. But back to the jelly mother:"
+                    him "They asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
+                    zaina "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
+                    him "Or maybe the Shills that eat the mud fish would have the right minerals in their meat?"
+                    zaina "I can do some field research this weekend."
+                    him "Great. Maybe the jellymother will talk to you too."
+                    zaina "You're not coming with me?"
+                    him "I've been out there twice already. Message me if there's an emergency."
+                    "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
+                    nvl clear
+                    zaina_c "Wooooow I just got back from talking to... her? it?"
+                    zaina_c "Alien life! Talking! To us!"
+                    him_c "Were they angry?"
+                    zaina_c "She was confused that you weren't there, but I managed to talk to her!"
+                    zaina_c "I'll tell you everything when I get back. Gotta save my battery in case it's cloudy tomorrow."
+                    "Next week, Zaina returned and asked me to meet with her."
+                    zaina "The jellysquid seemed to remember me, so I didn't have trouble getting them to try a few different foods."
+                    zaina "I was able to catch a few mudfish and feed their filets to a jellysquid."
+                    zaina "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
+                    zaina "I had a hard time catching the Shill, despite using mudfish as bait. Eventually the Jellymother found me and I told her what I was trying to do."
+                    zaina "She seemed surprised. The Shill is difficult capture, so they rarely eat it."
+                    zaina "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
+                    zaina "She killed a Shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
+                    zaina "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
+                    him "So what do you think would be best for the jellysquids?"
+                    zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
+                    zaina "The jellysquid can easily eat the Shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
+                    him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
+                    zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
+                    "What do I think is better?"
+                    menu: #should this be a decision? remove it?
+                        "Serve mudfish to the jellysquids.":
+                            him "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
+                            him "Also, we won't have to worry about shell overgrowth."
+                            zaina "I just hope the colony is strong enough to help with this."
+                            $ serve_mudfish = True
+                            jump aquaculture
+                        "Have them eat Shills.":
+                            him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
+                            him "If they keep eating Shills, they won't have to rely on us to create new shells."
+                            zaina "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
+                            him "Right."
+                            zaina "I just hope the colony is strong enough to help with this"
+                            $ serve_Shills = True
+                            jump aquaculture
 
-#                him "What are you?"
-
-
-#                him "What is shell food?"
-#                "Jellysquid" "Other shells make shells."
-#                "Jellysquid" "Some rocks make shells."
-#                "Jellysquid" "Maybe mud fish? Mud fish tastes bad."
-#                him "Hmmm. Good to know."
-#                him "Why shell food is not?"
-#                "Jellysquid" "You took food."
-                "The display changed and asked me to bring more shells back."
-                "I knew that I probably couldn't find more shells, so instead I promised to look for shell food."
-                "I went back to the colony and my farm."
-                "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
-                "When I mentioned the mudfish, she looked excited."
-                zaina "A few years ago I studied that fish."
-                him "What eats it?"
-                zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
-                him "The ones called Shills? Because they make a really cool noise but disappear if you approach them?"
-                him "How do they compare to jellysquid shells for metal content?"
-                zaina "Well, it's not edible for humans. Let me bring up the report."
-                zaina "Some species had a high level of heavy metals. I don't know what kind though."
-                him "Wow, this could be big! The same kind of metals that RET wants?"
-                him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud."
-                zaina "Or they could just keep doing what's working, which is digging in the mountains."
-                zaina "Brennan gave up on the jellysquid farms. Just leave well enough alone."
-                him "I told the jellymother I would try to help her!" # TODO: decide if jellymother is her or them. make capitalization consistent.
-                zaina "Sometimes the most helpful thing you can do is to go away."
-                him "They can sort of write to us Zaina! How are you not curious about that?"
-                zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
-                zaina "I helped Dr. Lily teach them how to 'write'."
-                zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
-                zaina "These animals are one of the most interesting beings I've studied. I don't want mining to wipe them out."
-                him "They asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
-                zaina "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
-                him "Or maybe the Shills that eat the mud fish would have the right minerals in their meat?"
-                zaina "I can do some field research this weekend."
-                him "Great. Maybe the jellymother will talk to you too."
-                zaina "You're not coming with me?"
-                him "I've been out there twice already. Message me if there's an emergency."
-                "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
-                "I could tell Breannan and Zaina about possibly mining in the mud instead of in the mountains."
-                menu:
-                    "Tell them.":
-                        "I told Brennan and Zaina about the heavy metals in the mud. They sounded exicted to try mining it."
-                        #currently there's no follow-up for this decision... remove it?
-                    "Don't tell them.":
-                        "I decided not to tell Brennan and Zaina about the heavy metals in the mud."
-                "Next week, Zaina returned and asked me to meet with her."
-                zaina "The jellysquid seemed to remember me, so I didn't have trouble getting them to try a few different foods."
-                zaina "I was able to catch a few mudfish and feed their filets to a jellysquid."
-                zaina "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
-                zaina "I had a hard time catching the Shill, despite using mudfish as bait. Eventually the Jellymother found me and I told her what I was trying to do."
-                zaina "She seemed surprised. The Shill is difficult capture, so they rarely eat it."
-                zaina "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
-                zaina "She killed a Shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
-                zaina "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
-                him "So what do you think would be best for the jellysquids?"
-                zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
-                zaina "The jellysquid can easily eat the Shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
-                him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
-                zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
-                "What do I think is better?"
-                menu: #should this be a decision? remove it?
-                    "Serve mudfish to the jellysquids.":
-                        him "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
-                        him "Also, we won't have to worry about shell overgrowth."
-                        zaina "I just hope the colony is strong enough to help with this."
-                        $ serve_mudfish = True
-                        jump aquaculture
-                    "Have them eat Shills.":
-                        him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
-                        him "If they keep eating Shills, they won't have to rely on us to create new shells."
-                        zaina "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
-                        him "Right."
-                        zaina "I just hope the colony is strong enough to help with this"
-                        $ serve_Shills = True
-                        jump aquaculture
-
-                        label aquaculture:
-                            "I started making plans for a fish farm off the coast."
-                            "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
-                            "After I explained my plans to the Jellymother, she said that she could help trap a few of the first fish to start the farm."
-                            if colonists > 10:
-                                "The other colonists helped me dig the farm-pond and line it with rocks."
-                                if serve_mudfish:
-                                    "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
-                                    "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
-                                    "After about six months, the Jellymother told us that our efforts at reparation were sufficient."
-                                    "She presented us with some of the fish we could eat as a token of good will."
-                                    $ jellypeople_happy = True
-                                    return
+                            label aquaculture:
+                                "I started making plans for a fish farm off the coast."
+                                "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
+                                "After I explained my plans to the Jellymother, she said that she could help trap a few of the first fish to start the farm."
+                                if colonists > 10:
+                                    "The other colonists helped me dig the farm-pond and line it with rocks."
+                                    if serve_mudfish:
+                                        "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
+                                        "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
+                                        "After about six months, the Jellymother told us that our efforts at reparation were sufficient."
+                                        "She presented us with some of the fish we could eat as a token of good will."
+                                        $ jellypeople_happy = True
+                                        return
+                                    else:
+                                        "Shills had a longer incubation period than I anticipated. The jellymother started feeding Shills to emerging jellysquids."
+                                        "Farming the Shills took weekly maintence, which we shared. After the Shills were big enough to fend for themselves, we released them into the wild."
+                                        "A few of the jellysquid ate too much Shill and ended up with large shells, but they seemed to adapt to it fairly well."
+                                        "The Jellymother seemed impressed that we followed up on our promise."
+                                        "She presented us with some of the fish we could eat as a token of good will."
+                                        $ jellypeople_happy = True
+                                        return
                                 else:
-                                    "Shills had a longer incubation period than I anticipated. The jellymother started feeding Shills to emerging jellysquids."
-                                    "Farming the Shills took weekly maintence, which we shared. After the Shills were big enough to fend for themselves, we released them into the wild."
-                                    "A few of the jellysquid ate too much Shill and ended up with large shells, but they seemed to adapt to it fairly well."
-                                    "The Jellymother seemed impressed that we followed up on our promise."
-                                    "She presented us with some of the fish we could eat as a token of good will."
-                                    $ jellypeople_happy = True
+                                    "I didn't have enough help from the other colonists to finish digging the farm-pond."
+                                    "The Jellymother disappeared and we rarely saw any of the jelly creatures again."
                                     return
-                            else:
-                                "I didn't have enough help from the other colonists to finish digging the farm-pond."
-                                "The Jellymother disappeared and we rarely saw any of the jelly creatures again."
-                                return
-               #this is getting long. put into next event?
+                   #this is getting long. put into next event?
             else: #if shell count is less than 2
                 "Jellysquid" "Did you bring more?"
                 him "Uhhh"
@@ -7303,7 +7332,7 @@ label community30:
                             kevin "I see."
                         else:
                             him "I guess so!"
-                            kevin "That's highly unusual. It usually takes several weeks or a month to die of a single head injury, if they are fatal, which is uncommon."
+                            kevin "That's highly unusual. In my own research I found that it usually takes several weeks or a month to die of a single head injury, if they are fatal, which is uncommon."
                             him "This must have been one of those uncommon occurances."
                             kevin "I'm still skeptical."
                         kevin "Who would you consider responsible for the neglect of Joel's health?"
@@ -7356,6 +7385,7 @@ label community30:
                             julia "That's so unfortunate."
                         julia "I'll arrange for Noel to be put on trial for neglect, and you can testify of your findings."
                         him "Okay."
+                        
                         label accuse_noel_neglect:
                             "Thuc was appointed to prepare a defense for Noel."
                             "The day of the trail came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
@@ -7438,7 +7468,7 @@ label community30:
                                     nvl clear
                                     him_c "Hi, Sara. I'm wrapping up my investigation with Joel's death and I think Julia might be involved."
                                     him_c "Normally I'd report my findings back to her... but obviously I don't want to do that now."
-                                    sara_c "You think Julia had something to do with Joel's death? Wow, I can't wait to hear more."
+                                    sara_c "You think Julia had something to do with Joel's death? Wow, I was not expecting that."
                                     sara_c "You're right though, it's not appropriate to report to her. I can arrange for a jury at the next town meeting."
                                     sara_c "You can come to report your findings, accuse Julia of whatever, and then we'll have the jury right there."
                                     sara_c "But what are you accusing her of? I need to arrange for the defense as well."
