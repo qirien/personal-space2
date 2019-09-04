@@ -1373,10 +1373,7 @@ screen nvl_dialogue(dialogue):
     for d in dialogue:
         $ index += 1
         $ is_jack = False
-        if (d.who_args["color"] is not None):
-            $ new_color = Color(d.who_args["color"]).shade(0.65)
-        else:
-            $ new_color = gray_dark
+        $ new_color = gray_dark
         window:
             id d.window_id
 
@@ -1385,6 +1382,8 @@ screen nvl_dialogue(dialogue):
                 yfit gui.nvl_height is None
                 if d.who is not None:
                     $ is_jack = d.who.startswith(his_name)
+                    if (d.who_args["color"] is not None):
+                        $ new_color = Color(d.who_args["color"]).shade(0.65)
                     if (not is_jack):
                         text d.who:
                             id d.who_id
@@ -1396,10 +1395,8 @@ screen nvl_dialogue(dialogue):
                 frame:
                     style "nvl_dialogue_frame"
                     background RoundRect(new_color)
-                    # if ((index % 2) == 0):
-                    #     background "roundrect_darkgray"
-                    # else:
-                    #     background "roundrect_lightgray"
+                    # TODO: RoundRect is deprecated...
+                    # Apply a color transform to a gray roundrect?
                     if (is_jack):
                         xalign 1.0
                         xoffset 10

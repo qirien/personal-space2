@@ -28,6 +28,7 @@ init -100:
     define FARM_SIZE_MAXIMUM = 25
     define FARM_SIZE_MINIMUM = 9
     define UNDERWORK_THRESHOLD = 5
+    define USE_PESTS = False
 
     # Static indices that will never change
     define NAME_INDEX = 0

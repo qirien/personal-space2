@@ -44,6 +44,7 @@ label test_farming_screen:
             if (renpy.random.random() > 0.8):
                 $ farm_size += 1
             $ year += 1
+            $ notifications = ""
     return
 
 label demo:
@@ -289,7 +290,7 @@ label tests:
 
 label test_message_board:
     nvl clear
-    her_c "We are testing all the characters on the message board."
+    her_c "We are testing all the characters on the message board. 😃"
     him_c "Just so see what they look like"
     kid_c "And make sure it looks good!"
     naomi_c "I'm sure it's fine."
