@@ -1101,6 +1101,8 @@ label work18_after_clean:
 # Year 20, 12 years old
 # Irrigation Trouble
 label work20:
+    # TODO: Add in reference to community13. Also have Brennan explain WHY this change occurred;
+    # for example, they are moving the mining camp so they want it to be easier to access the water from camp?
     scene fields with fade
     "With Talaam's frequent rains, we didn't need to irrigate the fields very often."
     "But I had a system of gates and canals I could open up if needed to get extra water from the river when it didn't rain enough."
