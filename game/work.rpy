@@ -1245,6 +1245,7 @@ label work20:
                 if (is_liaison):
                     "And I guess that meant it was up to me to talk to RET about it."
                     "I'd better think carefully about what message to send to Earth. I had 140 characters to use on the quantum entanglement device."
+
                     $ work20_message = ""
                     $ work20_message_score = 0
                     $ work20_menuset = set()
@@ -1284,19 +1285,19 @@ label work20:
                         "(Finish)":
                             jump work20_message_done
 
-                        label work20_message_check:
-                            if (len(work20_message) >= 100):
-                                menu:
-                                    "It's getting pretty long... Is this message good?\n[work20_message]"
-                                    "Yes, send it.":
-                                        jump work20_message_done
-                                    "No, start over.":
-                                        $ work20_message = ""
-                                        $ work20_message_score = 0
-                                        $ work20_menuset = set()
-                                        jump work20_message_menu
-                            else:
-                                jump work20_message_menu
+                    label work20_message_check:
+                        if (len(work20_message) >= 100):
+                            menu:
+                                "It's getting pretty long... Is this message good?\n[work20_message]"
+                                "Yes, send it.":
+                                    jump work20_message_done
+                                "No, start over.":
+                                    $ work20_message = ""
+                                    $ work20_message_score = 0
+                                    $ work20_menuset = set()
+                                    jump work20_message_menu
+                        else:
+                            jump work20_message_menu
 
                     label work20_message_done:
                         him_c "[work20_message]"
