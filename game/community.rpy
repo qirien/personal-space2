@@ -5805,10 +5805,10 @@ label call_to_squid:
                 "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
                 him "That's not a lot to work with. Hmmm."
                 menu question_menu:
-                    "Why" if not uliveshell and not ulivenot and not weliveshell and not welivenot:
+                    "Why" if ((not uliveshell) and (not ulivenot) and (not weliveshell) and (not welivenot)):
                         "Why..."
                         menu:
-                            "you..." if not uliveshell and not ulivenot:
+                            "you..." if ((not uliveshell) and (not ulivenot)):
                                 "Why you..."
                                 menu:                 
                                     "live shell?" if not uliveshell:
@@ -5820,7 +5820,7 @@ label call_to_squid:
                                         "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
                                         $ ulivenot = True
                                         jump question_menu
-                            "we..." if not weliveshell and not welivenot:
+                            "we..." if ((not weliveshell) and (not welivenot)):
                                 "Why we..."
                                 menu:                                    
                                     "live shell?" if not weliveshell:
@@ -5831,7 +5831,7 @@ label call_to_squid:
                                         "Jellysquid" "Do you eat? You need to eat to live."
                                         $welivenot = True
                                         jump question_menu
-                    "What" if not whatu and not whatwe and not whatshell and not asked_shell_food:
+                    "What" if ((not whatu) and (not whatwe) and (not whatshell) and (not asked_shell_food)):
                         "What..."
                         menu:
                             "you?" if not whatu:
@@ -5869,10 +5869,10 @@ label call_to_squid:
                                 $ asked_shell_food = True
                                 jump question_menu
                                 #you need to see this option for the plot to progress
-                    "Where" if not whereulive and not whereufood and not whereunotlive and not wherewelive and not wherewefood and not wherewenotlive:
+                    "Where" if ((not whereulive) and (not whereufood) and (not whereunotlive) and (not wherewelive) and (not wherewefood) and (not wherewenotlive)):
                         "Where..."
                         menu:
-                            "you..." if not whereulive and not whereufood and not whereunotlive:
+                            "you..." if ((not whereulive) and (not whereufood) and (not whereunotlive)):
                                 "Where you..."
                                 menu:
                                     "live?" if not whereulive:
@@ -5887,7 +5887,7 @@ label call_to_squid:
                                         "Jellysquid" "We do not live on land."
                                         $ whereunotlive = True
                                         jump question_menu
-                            "we..." if not wherewelive and not wherewefood and not wherewenotlive:
+                            "we..." if ((not wherewelive) and (not wherewefood) and (not wherewenotlive)):
                                 "Where we..."
                                 menu:
                                     "live?" if not wherewelive:
@@ -6457,6 +6457,7 @@ label community29:
 # WHO STOLE PETE'S CREDITS
 
 label community30:
+    #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not 
     $ account_checked_counter = 0
     $ know_noel_had_firegrass = False
     $ checked_noel = False
@@ -6511,7 +6512,7 @@ label community30:
         kevin "She says that he dropped his binoculars but told her to keep looking. He reached down to grab them and his wheelchair tipped over."
         kevin "He fell face-first onto the concrete-like material just outside their home."
         kevin "She wasn't able to lift him up, so she rolled him over. She said he was completely unconscious and had stopped breathing."
-        kevin "By the time she received assistance from the nearby nurse, he was already dead."
+        kevin "By the time she received assistance from a nearby nurse, he was already dead."
         him "I see. Is [her_name] going to do an autopsy?"
         kevin "Yes, we just delivered the body to the medical wing."
         him "Do I have your official authorization to question Noel and any witnesses?"
@@ -6665,7 +6666,7 @@ label community30:
                                 jump where_next_30
                         "On the kids' sofa bed." if not searched_sofa:
                             "There were all kinds of things lodged into the crevices of the sofa bed, which looked like it hadn't been packed away for a long time."
-                            "I found a clay ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
+                            "I found a plastic ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
                             "The kids were pretty excited to see what I unearthed."
                             "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
                             $ searched_sofa = True
@@ -6700,7 +6701,7 @@ label community30:
                     him "Is that consistent with an injury sustained from falling from a wheelchair?"
                     her "Yes..."
                     him "But?"
-                    if marriage_strength > 8: #TODO: check if this is a reasonable number
+                    if (has_strong_marriage()):
                         $ knows_previous_head_injuries = True
                         her "Most of the time, it takes a while to die from a traumatic brain injury. Usually the person with head trauma goes into a coma for a month or something."
                         her "This seemed really sudden."
@@ -6758,8 +6759,8 @@ label community30:
             him "Well, it's too small to be a bracelet, unless it's a bracelet meant for a baby maybe."
             ilian "The one I saw looked just like that. I bet we can see who created the original object in the 3D printer history."
             ilian "Let's look. I think I can access the 3D printer history from here."
-            "Ilian connects the 3D printer in the fabrication center to his tablet and brings up the printer history. We have to search for a while to find it."
-            ilian "Here it is! It looks like Julia printed five copies about two years ago. It looks like she originally designed it too."
+            "Ilian connected the 3D printer in the fabrication center to his tablet and brought up the printer history. We had to search for a while to find it."
+            ilian "Here it is! It looks like Julia printed five copies about two years ago. Also, she authored the original design."
             him "But... why?"
             ilian "Maybe it has something to do with her newspaper business."
             ilian "Or maybe she meant for them to be adult-sized bracelets but messed up on the scaling. Who knows."
@@ -6882,6 +6883,11 @@ label community30:
             oleg "I thought about what you were saying, about the credit information being stored somewhere."
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
+            oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
+            oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
+            him "That sounds like it would work. I don't have admin status though..."
+            oleg "I think Brennan does."
+            him "Thanks."
 
         "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
         "I still wanted to talk to Noel herself, about what happened."
@@ -6890,6 +6896,7 @@ label community30:
         "I also wanted to go back to the scene of the crime to look in the barrel."
         "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
 
+        "The next morning, I sent Noel a message first thing."
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
         him "She's not answering me."
@@ -6900,7 +6907,7 @@ label community30:
         van_c "How are you?"
         him_c "Good. So as you know, I'm investigating Joel's death..."
         him_c "What can you tell me about Joel's home life?"
-        van_c "So, as you know, I'm pretty well acquainted with Noel and her family."
+        van_c "I've been around Noel and her family for years."
         van_c "For a few months while she was trying to quit firegrass I was taking her children to and from the co-op every day and watching them on weekends."
         van_c "Recently I've only been going over there a few times a week, but I'll probably be there all this week."
         him_c "Did you check on Joel during these times?"
@@ -6929,7 +6936,7 @@ label community30:
             him "I wanted to give you an update."
             him "I examined the wheelchair, and it looks like the breaks were worn and dysfunctional."
             julia "Sounds like an explanation for an accident."
-            if marriage_strength > 8: #should match the previous marriage strength check
+            if knows_previous_head_injuries:
                 him "Possibly. But [her_name] said that it was likely that he had received previous head injuries."
                 him "Van also mentioned him falling frequently."
                 julia "This is sounding more like neglect?"
@@ -7192,7 +7199,7 @@ label community30:
                         her_c "How does that involve me?"
                         him_c "You can withdraw money from their account in different increments to test how much money is in the account."
                         him_c "Then you can deposit it all right back and no one would know."
-                        if marriage_strength > 8:
+                        if (has_strong_marriage()):
                             her_c "That's clever. Also highly unethical, but I think in a real investigation you'd have a way to see this kind of thing."
                             her_c "You want to check on Noel and Joel, right? It looks like Noel only has about 100 credits."
                             her_c "Joel on the other hand..."
@@ -7362,7 +7369,7 @@ label community30:
                         "Why did Joel have so much money in his account?" if checked_joel:
                             him "I found out that Joel has quite a bit of money in his account. Why is that?"
                             "Noel explained that she was simply saving money there in case of an emergency."
-                        "What is this clay ring for?": #for portioning bundles of firegrass
+                        "What is this plastic ring for?": #for portioning bundles of firegrass
                             "Noel stared at it for a few minutes."
                             "She said it must be a children's toy."
                         "Van told me that Joel had previous head injuries. Why is that?" if knows_previous_head_injuries:
