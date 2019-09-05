@@ -2230,7 +2230,19 @@ label community13:
     else: # not the liaison
         lily angry "No, this is urgent and important business. Depending on their schedule, they may already be processing more ore!"
         lily normal "I need you to ask Brennan if he can delay ore processing until they fix the breach."
-
+        him normal "Let's at least ask Sara to ask RET what they want."
+        lily normal "As long as it doesn't take too long."
+        nvl clear
+        him_c "Hey Sara, Dr. Lily told me that there are signs of heavy metals in our water."
+        sara_c "That can't be good. How can I help?"
+        him_c "Dr. Lily thinks it's from the miner's tailings dam. Can you ask RET what we should do?"
+        sara_c "I can try... give me a minute."
+        lily normal "What did she say?"
+        him normal "She's asking them now. I'll tell you as soon as I know what they say."
+        lily normal "Come with me to consult with Brennan about this urgent matter."
+        him concerned "Can't we just message him?"
+        lily angry "An in-person meeting has more impact."
+        
     # Whether you're the liaison or not, you go talk with Brennan
     him concerned "You talk to Brennan. I need to make breakfast."
     lily angry "I'm afraid that my concerns may be dismissed due to my age and stature."
@@ -2263,9 +2275,11 @@ label community13:
     lily angry "But you're not stopping any ore processing?"
     brennan normal "I don't know. What will RET think?"
     if is_liaison:
-        him "We asked them, and they said to defer to your judgement."
+        him normal "We asked them, and they said to defer to your judgement."
     else:
-        lily "We don't have time to find out what they think."
+        him normal "Let me check to see if Sara got back to me."
+        sara_c "RET says to go with whatever Brennan decides."
+        him surprised "They said you can decide what we should do."
     lily angry "Any amount of heavy metals in drinking water can harm humans and animals who drink it."
     brennan angry "The thing is, ore processing is one of the bottlenecks in our efficiency."
     brennan angry "If we delay it by any amount, it will delay our whole timeline."
@@ -2274,7 +2288,6 @@ label community13:
     him concerned "It makes it look like you don't care about other people when you continue with business as usual during a health emergency."
     brennan normal "If I were more concerned about RET's image, what you're saying would make sense. But we're all RET employees, so we should all want what's best for the company."
     brennan angry "Even if it makes it look like I don't care about water quality."
-
     "I wasn't sure they were ever going to agree. Maybe I could propose something they would both agree to."
     him surprised "Okay, how about this--"
     "They both turned and looked at me suspiciously."
@@ -2294,7 +2307,7 @@ label community13:
             $ c13_lily_happiness -= 1
         "...work on something to extract the heavy metals":
             him determined "Lily, is there something you could do to get the metals out of the water and the ground?"
-            lily "Distillation will remove most of the heavy metals from water."
+            lily "Distillation will remove heavy metals from water."
             him surprised "Really?"
             lily "Yes. Though treating large amounts of water this way may prove troublesome."
             $ c13_lily_happiness += 1
@@ -2304,14 +2317,17 @@ label community13:
         "Brennan, how about if you..."
         "...allocate more people to speed up Kevin's repairs.":
             him determined "Can you allocate more people so the repairs go as fast as possible?"
-            brennan "Sure, I can do that."
-            $ c13_lily_happiness += 1
+            brennan "Kevin is still drawing up plans for the repair."
+            brennan "As soon as he knows what he needs, I'll support him as much as possible."
+            lily angry "Throwing more people at this problem isn't going to solve it."
+            $ c13_lily_happiness -= 1
         "...delay for just one day.":
             him determined "Can you just delay for one day, and use all your resources to start fixing this problem?"
             brennan "No, I already explained that I cannot. Not at all."
+            brennan "Kevin is spending all his energy on fixing the leak. Delaying mining does nothing to help."
         "...send out an apology.":
             him determined "You should send out a big apology."
-            lily "What will that accomplish?"
+            lily angry "What will that accomplish?"
             brennan "Yeah, that does nothing. We need to fix the actual problem."
             $ c13_lily_happiness -= 1
         "...never mind.":
@@ -2319,6 +2335,7 @@ label community13:
 
     if (c13_lily_happiness < 1):
         $ lily_mad_at_RET = True
+        
     brennan normal "Lily, how's this: You continue to do testing in a few locations to see how bad the contamination is."
     brennan normal "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
     lily normal "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
@@ -2352,7 +2369,7 @@ label community13:
     "I consulted the map Zaina had been working on as she scouted the surrounding land for good mining spots."
     "Zaina had climbed other mountains in the same range as the ones close to our river, which also had water flowing from them, but none of them were nearby."
     "It also occured to me that we could gather water upstream from the tailings pond."
-    show kid normal at midright with dissolve
+    show kid at midright with dissolve
     "[kid_name] came back from school with her little brother and I explained that we needed to be careful with our water for now."
     show her normal at center with dissolve
     "[her_name] came back from work early. We started preparing dinner together."
@@ -2394,6 +2411,7 @@ label community13:
                 hide lily
                 hide pavel
                 hide her
+                hide brennan
                 show kevin normal at midleft with dissolve
                 kevin "Yes, I would be happy to." #see http://www.itv.org/en/research-line/technology-of-dams-and-tailings-disposal/ for info on how tailings dams are made
                 kevin "Several unpredictable factors worked in tandem and resulted in a breach to part of the tailings dam."
@@ -2403,8 +2421,9 @@ label community13:
                 kevin "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
                 kevin "I have been able to stop the leak for now, but I am still researching materials for the repair."
                 brennan normal "Thank you Kevin. When do you think the repair will be done?"
-                kevin "Definitely by the end of the week."
+                kevin "Certainly by the end of the week."
                 hide kevin
+                show brennan normal at center with dissolve
                 show lily normal at midleft with dissolve
                 show her normal at left with dissolve
                 show him at midright with dissolve
@@ -2431,58 +2450,13 @@ label community13:
                         lily angry "Is that really a decision?"
                         her normal "Let's just tell them it's fine to use the river water then."
                         jump diaper_interruption
+
                 label diaper_interruption:
-                        show kid normal at right with dissolve
+                        show kid at right with dissolve
                         kid "Dad, [bro_name] has a stinky diaper."
                         him normal "Thanks for telling me."
                         kid "I think it's leaking..."
                         menu:
-                            "Find an alternate water source.":
-                                him determined "I agree with Dr. Lily. Why risk permanent brain damage when we could avoid it?"
-                                him determined "If samples showed elevated levels of heavy metals, there are probably spots in the river where that amount is even higher."
-                                him normal "Could we divert the mountain stream so that it doesn't pass by the tailings pond?"
-                                brennan angry "We're currently using power from the stream in our ore mill, so no, that is not an option."
-                                jump diaper_interruption
-                            "Use the tainted water.":
-                                him determined "Kevin said that he stopped the leak for now, so the heavy metal content of the water should be decreasing as we speak."
-                                him normal "Also, [her_name] stated that the levels are low enough for humans to safely consume."
-                                lily normal "It's true that my samples measured at levels low enough for 'safe' human consumption. However, it's likely that parts of the river have more heavy metals than the samples I measured."
-                                jump diaper_interruption
-                            "Let colonists decide for themselves.":
-                                him determined "Let's give everyone all the information we have and let them decide for themselves."
-                                lily normal "If there is no way to get pure water, colonists will default to using the river water like they always have."
-                                lily angry "Is that really a decision?"
-                                her normal "Let's just tell them it's fine to use the river water then."
-                                jump diaper_interruption
-                            "Delay normal irrigation for a few days.":
-                                him determined "The soil is still a bit damp from the last time I irrigated. I think my crops could survive without water for another two or three days."
-                                her normal "That's fine for your crops, but what about Thuc's rice?"
-                                him normal "True, they do need constant water..."
-                                jump diaper_interruption
-                        label diaper_interruption:
-                                show kid normal at right with dissolve
-                                kid "Dad, [bro_name] has a stinky diaper."
-                                him normal "Thanks for telling me."
-                                kid "I think it's leaking..."
-                                menu:
-                                    "Take care of [bro_name].":
-                                        him concerned "I'd better take care of him right away then."
-                                    "Ask [her_name].":
-                                        "I looked at [her_name]. She was reading something on her tablet intently."
-                                        him concerned "[her_name], could you change [bro_name]'s diaper?"
-                                        if (has_strong_marriage()):
-                                            her concerned "Could you do it please? This discussion is really important to me."
-                                        else:
-                                            her angry "No, I need to make sure farmers can access irrigation water."
-                                            him annoyed "Fine."
-                                hide lily
-                                hide brennan
-                                hide her
-                                "I left the discussion and changed [bro_name]'s diaper."
-                                #bro sprites?
-                                "When I got back, everyone was discussing the best emergency response system."
-                                show her normal at left with dissolve
-                                her normal "We decided to let farmers irrigate with river water, and Zaina will help Dr. Lily and I synthesize the polymer, hopefully by tomorrow."
                             "Take care of [bro_name].":
                                 him concerned "I'd better take care of him right away then."
                             "Ask [her_name].":
@@ -2490,32 +2464,56 @@ label community13:
                                 him concerned "[her_name], could you change [bro_name]'s diaper?"
                                 if (has_strong_marriage()):
                                     her concerned "Could you do it please? This discussion is really important to me."
+                                    him normal "I'm on it."
                                 else:
                                     her angry "No, I need to make sure farmers can access irrigation water."
-                                    him annoyed "Fine."
-                                scene farm_interior with fade
-                                "I took [kid_name] and [bro_name] home and put them to bed. [bro_name] took a long time to fall asleep, but it gave me some time to research heavy metal contamination in crops."
-                                "The fruits and vegetables would be fine, but if we ate chickens who ate the contaminated food, it could be a problem." #TODO: follow-up somewhere?
-            else:
-                label meeting_abstain:
-                    "I put [kid_name] and [bro_name] to bed like normal."
-                    "I took some time to do more research on heavy metals and the things we eat."
-                    "Even if the fruits and vegetables were fine, eating chickens that ate those vegetables could be a problem."
-                    nvl clear
-                    her_c "Hey, we're done with the meeting, but I'm going to help Dr. Lily tonight, so don't wait up."
-                    him_c "How was it?"
-                    her_c "Based on the levels in the samples, I told everyone we should be fine to use the river water for irrigation."
-                    her_c "Dr. Lily said that we should err on the side of caution and use an alternative water source."
-                    her_c "We couldn't really find an alternative, so I'm going to help Dr. Lily and Zaina synthesize a polymer to neutralize the metals."
-                    him_c "Wow. Sounds science-y."
-                    her_c "It's going to be kind of like making a huge batch of sourdough bread, except with less room for error."
-                    her_c "If carefully measuring and combining things is science, then sure, it's science-y."
-                    him_c "Good luck then."
+                                    him annoyed "Okay, sheesh."
+                        hide lily
+                        hide brennan
+                        hide her
+                        "I left the discussion and changed [bro_name]'s diaper."
+                        #bro sprites?
+                        "When I got back, everyone was discussing the best emergency response system."
+                        show her normal at left with dissolve
+                        her normal "We decided to let farmers irrigate with river water, and Zaina will help Dr. Lily and I synthesize the polymer, hopefully by tomorrow."
+                        if (has_strong_marriage()):
+                            her concerned "Dr. Lily is anxious to continue her work, so I've agreed to go help her tonight."
+                            him concerned "I kind of volunteered you. Are you up for it? You could be up all night."
+                            her normal "I know. This is a compromise Dr. Lily and I are both satisfied with. Can you take the kids home?"
+                            him normal "Sure."
+                        else:
+                            her annoyed "Dr. Lily enlisted me to help her tonight."
+                            him concerned "Are you up for that?"
+                            her annoyed "I'm not sure I really have a choice... she said that you told her I could help."
+                            her normal "I guess I can stay and help her and you can put the kids to bed."
+                            him annoyed "Fine."
+                        "I took [kid_name] and [bro_name] home and put them to bed. [bro_name] took a long time to fall asleep, but it gave me some time to research heavy metal contamination in crops."
+                        "The fruits and vegetables would be fine, but if we ate chickens who ate the contaminated food, it could be a problem." #TODO: follow-up somewhere?
+    else:
+        him normal "Good luck getting everyone to agree to something."
+        hide her with dissolve
+        label meeting_abstain:
+            "I put [kid_name] and [bro_name] to bed like normal."
+            hide kid with dissolve
+            # hide bro
+            "I took some time to do more research on heavy metals and the things we eat."
+            "Even if the fruits and vegetables were fine, eating chickens that ate those vegetables could be a problem."
+            nvl clear
+            her_c "Hey, we're done with the meeting, but I'm going to help Dr. Lily tonight, so don't wait up."
+            him_c "How was it?"
+            her_c "Based on the levels in the samples, I told everyone we should be fine to use the river water for irrigation."
+            her_c "Dr. Lily said that we should err on the side of caution and use an alternative water source."
+            her_c "We couldn't really find an alternative, so I'm going to help Dr. Lily and Zaina synthesize a polymer to neutralize the metals."
+            him_c "Wow. Sounds science-y."
+            her_c "It's going to be kind of like making a huge batch of sourdough bread, except with less room for error."
+            her_c "If carefully measuring and combining things is science, then sure, it's science-y."
+            him_c "Good luck then."
+            scene farm_exterior
             "The next day, [her_name] came home early in the morning."
             "While she was sleeping in, Dr. Lily asked me to help disperse the polymer."
             "I got the kids to school and co-op care, respectively, and got bottles of the polymer and location details from Dr. Lily."
-            "One location was out by Pete's farm."
             scene irrigation with fade
+            "One location was out by Pete's farm."
             show pete normal at midright with dissolve
             show him normal at midleft with dissolve
             pete normal "What brings you out here today? I don't see a wagon, so I'm guessing you don't need manure."
@@ -2532,13 +2530,13 @@ label community13:
             pete angry "That's a decision I question more and more each day."
             pete normal "Well, go ahead and do your job."
             him normal "I will."
-            "The last bottle had to be released by the tailings dam, and I hiked halfway up the mountain to deliver it to Kevin, who took it the rest of the way."
             scene cabins with fade
+            "The last bottle had to be released by the tailings dam, and I hiked halfway up the mountain to deliver it to Kevin, who took it the rest of the way."
             show kevin normal at midright with dissolve
             show him normal at midleft with dissolve
             kevin normal "I do hope there are no long-term consequences of the leak. I feel personally responsible."
             him determined "We can't change what happened. All we can do now is try to learn from this and do better next time."
-            return
+    return
 # TODO: a decision to trigger lily_mad_at_RET. look up cave_explored as well? in community20
 
 # 14 - Pete leaves
@@ -2589,15 +2587,15 @@ label community14:
         pete "The miners don't respect my property. They stole one of my cows and never returned her."
     else:
         pete "They expect us to feed the miners, but we can barely feed ourselves."
-        pete "They don't respect the natural beauty of Talaam, and they destroyed a cave in the course of their mining."
-#    if lily_mad_at_RET:
-#        lily "They don't respect the needs of researchers either."
-#        lily "I came here to study this planet, not destroy it."
-#        lily "I'm going with Pete and his family."
-#        $ mavericks += 1
-#    else:
-#        lily "I plan to visit you often."
-#        lily "There is so much more to learn about this planet."
+        pete "They don't respect the natural beauty of Talaam. They've already polluted our water."
+    if lily_mad_at_RET:
+        lily "They don't respect the needs of researchers either."
+        lily "I came here to study this planet, not destroy it."
+        lily "I'm going with Pete and his family."
+        $ mavericks += 1
+    else:
+        lily "I plan to visit you often."
+        lily "There is so much more to learn about this planet."
     if not (asked_only_medicine):
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen tell us their plans to go with Pete and his family."
@@ -3083,6 +3081,9 @@ label community17:
 
             "Ask Sara and [her_name] to plan it.":
                 "I asked Sara and [her_name] to plan the festival. They made a good team for that sort of thing. But they wanted to know who was invited."
+    else:
+        "Sara asked me who we should invite to the festival this year."
+        
     menu:
         "The miners and Pete's group." if ((mavericks >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
@@ -5674,7 +5675,7 @@ label community27:
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
-        "Run away.":
+        "Run away." if not ate_jellyfish and touched_jellystar_25:
             him "I don't want to explain this when I don't really understand it myself."
             him "Let's go home."
             "I tried to leave, but the jellystars kept my boat from moving."
