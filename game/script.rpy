@@ -121,6 +121,7 @@ label start:
         community_22_forced_mavericks_leave = False
         community_22_compromise = False
         community_22_mined_anyway = False
+        touched_jellystar_25 = False
         jellypeople_happy = False
         kevin_elected = False
         ban_firegrass = False

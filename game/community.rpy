@@ -4169,19 +4169,6 @@ label community20:
         else:
             pass
 
-        if cave_explored:
-            lily "We have been able to breed the cave newts in captivity."
-            lily "We did tests on their skin secretions, and they are remarkably resistent to radiation."
-            lily "We have been able to isolate the radiation-resistant compounds. For now, we are unable to duplicate them."
-            lily "However, if we continue breeding the newts, we can harvest enough of their skin secretions to make a salve that will protect the wearer from radiation for 12 hours."
-            him "Wow. That's fantastic."
-            lily "We're also looking into applications to fabrics, but unfortunately they all wash out."
-            lily "It's definitely research worth funding."
-            him "Oh, undoubtedly. I think we all agree on that."
-            lily "I'm glad you feel that way."
-        else:
-            pass
-
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "Zaina said that she wanted to see the ocean one last time before she died."
         "We never saw her again."
@@ -5644,7 +5631,21 @@ label community27:
     $ shell_count = 0
     $ serve_mudfish = False
     $ serve_Shills = False
+    #conversation with jellymother variables
     $ asked_shell_food = False
+    $ uliveshell = False
+    $ ulivenot = False
+    $ weliveshell = False
+    $ welivenot = False
+    $ whatu = False
+    $ whatwe = False
+    $ whatshell = False
+    $ whereulive = False
+    $ whereufood = False
+    $ whereunotlive = False
+    $ wherewelive = False
+    $ wherewefood = False
+    $ wherewenotlive = False
     "It was time for our now-annual trip to the ocean."
     "When we got there, we were surprised to see more fish than usual."
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
@@ -5675,7 +5676,7 @@ label community27:
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
-        "Run away." if not ate_jellyfish and touched_jellystar_25:
+        "Run away." if not ate_jellyfish and not touched_jellystar_25:
             him "I don't want to explain this when I don't really understand it myself."
             him "Let's go home."
             "I tried to leave, but the jellystars kept my boat from moving."
@@ -5804,35 +5805,40 @@ label call_to_squid:
                 "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
                 him "That's not a lot to work with. Hmmm."
                 menu question_menu:
-                    "Why":
+                    "Why" if not uliveshell and not ulivenot and not weliveshell and not welivenot:
                         "Why..."
                         menu:
-                            "you...":
+                            "you..." if not uliveshell and not ulivenot:
                                 "Why you..."
                                 menu:                 
-                                    "live shell?":
+                                    "live shell?" if not uliveshell:
                                         "Jellysquid" "Shell save us from enemy."
+                                        $ uliveshell = True
                                         jump question_menu
-                                    "live not?":
+                                    "live not?" if not ulivenot:
                                         "Jellysquid" "You kill my children and keep their shells."
                                         "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
+                                        $ ulivenot = True
                                         jump question_menu
-                            "we...":
+                            "we..." if not weliveshell and not welivenot:
                                 "Why we..."
                                 menu:                                    
-                                    "live shell?":
+                                    "live shell?" if not weliveshell:
                                         "Jellysquid" "You don't live in a shell. Your shell is inside you."
+                                        $ weliveshell = True
                                         jump question_menu
-                                    "live not?":
+                                    "live not?" if not welivenot:
                                         "Jellysquid" "Do you eat? You need to eat to live."
+                                        $welivenot = True
                                         jump question_menu
-                    "What":
+                    "What" if not whatu and not whatwe and not whatshell and not asked_shell_food:
                         "What..."
                         menu:
-                            "you?":
+                            "you?" if not whatu:
                                 "Jellysquid" "I am an animal in the water."
                                 "Jellysquid" "What are you?"
                                 him "Hmm. My options are kind of limited."
+                                $ whatu = True
                                 menu:
                                     "We not food.":
                                         "Jellysquid" "All animals are food."
@@ -5843,13 +5849,15 @@ label call_to_squid:
                                     "We live not.":
                                         "That is not possible. Dead things don't move."
                                         jump question_menu
-                            "we?":
+                            "we?" if not whatwe:
                                 "Jellysquid" "You are new animals. We do not know what you are."
+                                $ whatwe = True
                                 jump question_menu
-                            "shell?":
+                            "shell?" if not whatshell:
                                 "Jellysquid." "Shell protects children."
+                                $ whatshell = True
                                 jump question_menu
-                            "shell food?":
+                            "shell food?" if not asked_shell_food:
                                 "Jellysquid" "Other shells make shells."
                                 "Jellysquid" "Some rocks make shells."
                                 "Jellysquid" "Maybe mud fish? Mud fish tastes bad."
@@ -5861,32 +5869,38 @@ label call_to_squid:
                                 $ asked_shell_food = True
                                 jump question_menu
                                 #you need to see this option for the plot to progress
-                    "Where":
+                    "Where" if not whereulive and not whereufood and not whereunotlive and not wherewelive and not wherewefood and not wherewenotlive:
                         "Where..."
                         menu:
-                            "you...":
+                            "you..." if not whereulive and not whereufood and not whereunotlive:
                                 "Where you..."
                                 menu:
-                                    "live?":
+                                    "live?" if not whereulive:
                                         "Jellysquid" "We live here, in the ocean."
+                                        $ whereulive = True
                                         jump question_menu
-                                    "food?":
+                                    "food?" if not whereufood:
                                         "Jellysquid" "Our food is fish, light, and plants."
+                                        $ whereufood = True
                                         jump question_menu
-                                    "not live?":
+                                    "not live?" if not whereunotlive:
                                         "Jellysquid" "We do not live on land."
+                                        $ whereunotlive = True
                                         jump question_menu
-                            "we...":
+                            "we..." if not wherewelive and not wherewefood and not wherewenotlive:
                                 "Where we..."
                                 menu:
-                                    "live?":
+                                    "live?" if not wherewelive:
                                         "Jellysquid" "You live on land. You know it. Why do you ask?"
+                                        $ wherewelive = True
                                         jump question_menu
-                                    "food?":
+                                    "food?" if not wherewefood:
                                         "Jellysquid." "Your food is on land. And water."
+                                        $ wherewefood = True
                                         jump question_menu
-                                    "not live?":
+                                    "not live?" if not wherewenotlive:
                                         "Jellysquid." "You do not live in the ocean."
+                                        $ wherewenotlive = True
                                         jump question_menu
                             
                     "Finish talking" if asked_shell_food:
