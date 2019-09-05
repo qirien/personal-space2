@@ -290,7 +290,7 @@ define gui.skip_ypos = 10
 define gui.notify_ypos = 45
 
 ## The spacing between menu choices.
-define gui.choice_spacing = 8
+define gui.choice_spacing = 6
 
 ## Buttons in the navigation section of the main and game menus.
 define gui.navigation_spacing = 10
@@ -460,9 +460,6 @@ init python:
         gui.name_xpos = 80
         gui.text_xpos = 90
         gui.text_width = 1100
-
-        ## Change the size and spacing of items in the game menu.
-        gui.choice_button_width = 1240
 
         gui.navigation_spacing = 20
         gui.pref_button_spacing = 10

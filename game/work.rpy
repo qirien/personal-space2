@@ -1132,16 +1132,16 @@ label work20:
 
     "I headed farther upstream, past the town, and up into the hills."
     scene canyon with fade
-    show him normal at midleft
+    show him determined at midleft
     if (work20_thuc_present):
         show thuc normal at left
     with moveinleft
     "The river was low up here, too. Finally, I reached the miner's camp."
     scene cabins with fade # TODO: mining background?
     show brennan normal at midright with dissolve
-    show him normal at midleft
+    show him determined at midleft
     if (work20_thuc_present):
-        show thuc normal at quarterleft
+        show thuc sad at quarterleft
     with moveinleft
     "As soon as we got to the camp, it was obvious what had happened. Much of the river was diverted to give water for the mining machinery."
 
@@ -1150,7 +1150,7 @@ label work20:
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
         thuc "Well, who knows? Maybe we can eat what they're making up here?"
-    brennan "You'll have to get your water from somewhere else."
+    brennan mad "You'll have to get your water from somewhere else."
 
     menu:
         "What should I say?"
@@ -1160,7 +1160,7 @@ label work20:
                 thuc "We depend on having easy access to water to grow all our crops."
             brennan angry "Sorry, I have my orders."
         "(Say nothing)":
-            show him determined with dissolve
+            show him pout with dissolve
             "I took a deep breath and just looked at him. He looked back into my eyes with a stubborn expression on his face, and an uncomfortable silence stretched between us like taffy."
             "I realized I had some other options here."
             menu:
@@ -1171,7 +1171,10 @@ label work20:
                     him determined "I know you all want to eat, and I don't want to interfere with your mining--"
                     if (miners >= 10):
                         brennan "[his_name]..."
-                        him determined "It's not just about me and Thuc right now. It's about our whole community."
+                        if (work20_thuc_present):
+                            him determined "It's not just about me and Thuc right now. It's about our whole community."
+                        else:
+                            him determined "It's not just about me. It's about our whole community."
                         brennan "Look, I understand what you're saying, [his_name]. Obviously you need water. But my hands are tied."
                     else:
                         brennan "Yeah, right. You've done nothing but work against me since I got here."
@@ -1189,7 +1192,7 @@ label work20:
             brennan "Then we'll all have to box the devil."
             him surprised "What?"
             brennan "We'll all just have to make do, won't we?"
-
+    hide brennan with moveoutright
     "I left when it was clear nothing would be accomplished."
     if (work20_thuc_present):
         thuc "Sorry, [his_name]. We tried..."
@@ -1242,22 +1245,15 @@ label work20:
                 if (is_liaison):
                     "And I guess that meant it was up to me to talk to RET about it."
                     "I'd better think carefully about what message to send to Earth. I had 140 characters to use on the quantum entanglement device."
+
                     $ work20_message = ""
                     $ work20_message_score = 0
+                    $ work20_menuset = set()
                     menu work20_message_menu:
+                        set work20_menuset
                         "RET Message:\n[work20_message]"
-                        "Crops dying":
-                            $ work20_message += "Crops dying "
-                            $ work20_message_score += 1
-                            jump work20_message_check
                         "River diverted for mining":
                             $ work20_message += "River diverted for mining "
-                            jump work20_message_check
-                        "URGENT!":
-                            $ work20_message += "URGENT! "
-                            jump work20_message_check
-                        "HELP!":
-                            $ work20_message += "HELP!"
                             jump work20_message_check
                         "Brennan refuses to help":
                             $ work20_message += "Brennan refuses to help "
@@ -1274,17 +1270,11 @@ label work20:
                             $ work20_message_score += 1
                             jump work20_message_check
                         "Please help":
-                            $ work20_message += "Please help"
+                            $ work20_message += "Please help "
                             jump work20_message_check
                         "Please require Brennan to redirect water back to original stream":
                             $ work20_message += "Please require Brennan to redirect water back to original stream "
                             $ work20_message_score += 2
-                            jump work20_message_check
-                        "No rain":
-                            $ work20_message += "No rain"
-                            jump work20_message_check
-                        "I looked at my crops this morning and they weren't doing so well":
-                            $ work20_message += "I looked at my crops this morning and they weren't doing so well "
                             jump work20_message_check
                         "I noticed there was no water in the river, so I followed it upstream":
                             $ work20_message += "I noticed there was no water in the river, so I followed it upstream "
@@ -1304,6 +1294,7 @@ label work20:
                                 "No, start over.":
                                     $ work20_message = ""
                                     $ work20_message_score = 0
+                                    $ work20_menuset = set()
                                     jump work20_message_menu
                         else:
                             jump work20_message_menu
@@ -1313,13 +1304,13 @@ label work20:
                         "After several hours, I still had no response. I finally looked up the Earth timetable and realized it was the middle of the night there."
                         "Finally, a response came back."
                         if (work20_message_score >= 2):
-                            ret_c "If Brennan did not give prior notice to redirection, he must ensure outflow goes back to river. Otherwise, you must work out alternative water source."
+                            ret_c "If Mr. Callahan did not give prior notice to redirection, he must ensure outflow goes back to river. Otherwise, you must work out alternative water source."
                             "That was exactly what I was hoping for."
                             "Brennan griped and complained, but once he put some miners working on it, the water came back quickly."
                             "I breathed a sigh of relief as water flooded through the gates to my crops again."
                             return
                         else:
-                            ret_c "Brennan justified. You must work out alternative water source."
+                            ret_c "Mr. Callahan justified. You must work out alternative water source."
                             "I tried to explain how important it was, but they wouldn't budge."
                             jump work20_other_water
 

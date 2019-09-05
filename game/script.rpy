@@ -221,6 +221,7 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
+    "Welcome to the demo of Space to Grow!"
     menu:
         "Test Farming Screen":
             jump test_farming_screen
@@ -235,7 +236,6 @@ label start:
         "Continue":
             $ pass
 
-    "Welcome to the demo of Space to Grow!"
     "While the story is mostly complete, not every scene has full graphics yet, the crop planting mechanics are still under development, and a few scenes are unfinished."
     "However, you should be able to get a feel for the game and enjoy the story."
 
