@@ -5811,11 +5811,11 @@ label call_to_squid:
                             "you..." if ((not uliveshell) and (not ulivenot)):
                                 "Why you..."
                                 menu:                 
-                                    "live shell?" if not uliveshell:
+                                    "live shell?" if (not uliveshell):
                                         "Jellysquid" "Shell save us from enemy."
                                         $ uliveshell = True
                                         jump question_menu
-                                    "live not?" if not ulivenot:
+                                    "live not?" if (not ulivenot):
                                         "Jellysquid" "You kill my children and keep their shells."
                                         "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
                                         $ ulivenot = True
@@ -5823,18 +5823,18 @@ label call_to_squid:
                             "we..." if ((not weliveshell) and (not welivenot)):
                                 "Why we..."
                                 menu:                                    
-                                    "live shell?" if not weliveshell:
+                                    "live shell?" if (not weliveshell):
                                         "Jellysquid" "You don't live in a shell. Your shell is inside you."
                                         $ weliveshell = True
                                         jump question_menu
-                                    "live not?" if not welivenot:
+                                    "live not?" if (not welivenot):
                                         "Jellysquid" "Do you eat? You need to eat to live."
                                         $welivenot = True
                                         jump question_menu
                     "What" if ((not whatu) and (not whatwe) and (not whatshell) and (not asked_shell_food)):
                         "What..."
                         menu:
-                            "you?" if not whatu:
+                            "you?" if (not whatu):
                                 "Jellysquid" "I am an animal in the water."
                                 "Jellysquid" "What are you?"
                                 him "Hmm. My options are kind of limited."
@@ -5849,15 +5849,15 @@ label call_to_squid:
                                     "We live not.":
                                         "That is not possible. Dead things don't move."
                                         jump question_menu
-                            "we?" if not whatwe:
+                            "we?" if (not whatwe):
                                 "Jellysquid" "You are new animals. We do not know what you are."
                                 $ whatwe = True
                                 jump question_menu
-                            "shell?" if not whatshell:
+                            "shell?" if (not whatshell):
                                 "Jellysquid." "Shell protects children."
                                 $ whatshell = True
                                 jump question_menu
-                            "shell food?" if not asked_shell_food:
+                            "shell food?" if (not asked_shell_food):
                                 "Jellysquid" "Other shells make shells."
                                 "Jellysquid" "Some rocks make shells."
                                 "Jellysquid" "Maybe mud fish? Mud fish tastes bad."
@@ -5875,30 +5875,30 @@ label call_to_squid:
                             "you..." if ((not whereulive) and (not whereufood) and (not whereunotlive)):
                                 "Where you..."
                                 menu:
-                                    "live?" if not whereulive:
+                                    "live?" if (not whereulive):
                                         "Jellysquid" "We live here, in the ocean."
                                         $ whereulive = True
                                         jump question_menu
-                                    "food?" if not whereufood:
+                                    "food?" if (not whereufood):
                                         "Jellysquid" "Our food is fish, light, and plants."
                                         $ whereufood = True
                                         jump question_menu
-                                    "not live?" if not whereunotlive:
+                                    "not live?" if (not whereunotlive):
                                         "Jellysquid" "We do not live on land."
                                         $ whereunotlive = True
                                         jump question_menu
                             "we..." if ((not wherewelive) and (not wherewefood) and (not wherewenotlive)):
                                 "Where we..."
                                 menu:
-                                    "live?" if not wherewelive:
+                                    "live?" if (not wherewelive):
                                         "Jellysquid" "You live on land. You know it. Why do you ask?"
                                         $ wherewelive = True
                                         jump question_menu
-                                    "food?" if not wherewefood:
+                                    "food?" if (not wherewefood):
                                         "Jellysquid." "Your food is on land. And water."
                                         $ wherewefood = True
                                         jump question_menu
-                                    "not live?" if not wherewenotlive:
+                                    "not live?" if (not wherewenotlive):
                                         "Jellysquid." "You do not live in the ocean."
                                         $ wherewenotlive = True
                                         jump question_menu
@@ -6293,10 +6293,12 @@ label community29:
     her_c "She didn't ask for one."
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    # TODO: wouldn't she stay with Travis at his restaurant?
     if (mavericks > 5): #should this number be higher?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
-        him_c "Huh. Where exactly will she sleep?"
+        him_c "She doesn't want to stay with Travis at his restaurant?"
+        her_c "It's noisy in the evenings and there isn't really room for her there."
+        him_c "There's not that much room for her here either."
+        him_c "Where would she sleep?"
         her_c "She said she could bring her sleeping materials. Maybe we can fold them up when she's not using them?"
         him_c "If she's okay with that... maybe we can go camping to have a little privacy now and then *wink*."
         "Helen came to stay with us. She gave us a big wheel of cheese and a string of dried fish the day she arrived."
@@ -6305,13 +6307,13 @@ label community29:
         her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
         her_c "That way I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
-        "I saw Pete dragging her to the hospital on a stretcher. He refused my help."
+        "I saw Pete dragging her to the hospital on a stretcher. He accepted my help in a rushed frenzy."
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would poke me with a needle accidentally."
-        her "I'm working as fast as possible and I'm not sure she'll make it. Get Julia and Van so they can help me."
+        her "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
-        "Her radio wasn't working, so I ran all the way to the mining camp to find them. Even running back, it took over an hour."
+        "I called them on the radio, but they were in the mining camp. The came as soon as they could, but it took over half an hour."
         scene hospital with fade
-        "By the time we got back, Helen had delivered the baby, but it was stillborn."
+        "By the time they arrived, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
         her "Go find Ilian!"
         him "Why?"
@@ -6338,7 +6340,7 @@ label community29:
         kevin_c "I saw him drying fish by the ocean a few days ago."
         her "[his_name], I'm going to take the wagon to find Pete. Want to come with me?"
         him "Why? I doubt he wants to see us."
-        her "Pete authorized me to withdraw the credits I needed from his account, but it was completely empty."
+        her "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
         her "I need to talk to him."
         him "Okay. I don't think I can leave the farm this week, but take the radio and keep me updated."
         her "Will do."
@@ -6354,7 +6356,7 @@ label community29:
         "I didn't hear from [her_name] until she got back the next evening."
         "She gave me a big hug."
         him "Welcome back! How'd it go?"
-        her "Thanks. At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
+        her "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
         him "Huh."
         her "He followed me about halfway back... it was super awkward."
         her "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
@@ -6362,7 +6364,7 @@ label community29:
         her "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
         him "Yeah, it's not like you can actually buy more hospital supplies with the credits."
         her "Exactly."
-        return
+        jump credits29
 
     label helen_convo_29:
         him "How are you liking life back in the colony?"
@@ -6371,7 +6373,7 @@ label community29:
         helen "It's funny because I used to read up on all the latest community forum posts when I lived here."
         helen "It made me feel more isolated, because I never had any cool news to share."
         helen "I haven't looked at a forum in ages and it's such a relief. If someone wants to tell me something, they can come find me."
-        helen "If it's not important or someone else can take care of it, then no one bothers me!"
+        helen "If someone else can take care of it, then no one bothers me!"
         helen "I really miss my family though, and certain foods we like to make."
         him "Really? What kind of food?"
         helen "Well, when we butcher a cow certain cuts sell pretty quickly even at high prices. But other parts aren't as popular."
@@ -6444,7 +6446,21 @@ label community29:
         her "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
         helen "We don't have any use for those things now... besides selling them."
         "After Helen was well enough, she and Pete left. They buried Sage's body near the base of the mountain."
-        return
+        jump credits29
+        
+        label credits29:
+            scene farm_interior
+            show him midright with dissolve
+            show her center with dissolve
+            show kid left with dissolve
+            kid "I heard a rumor that Pete's credits were stolen."
+            her "That's what Pete said."
+            kid "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
+            him "This is the first I've heard of it."
+            kid "..."
+            return
+        
+        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that. 
 
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
@@ -6454,7 +6470,7 @@ label community29:
 #Carol's husband's tablet is retained as evidence. He only used the tablet for a few games--he could no longer read or write. Yet it appears that Carol was using the tablet to message someone...
 #Oleg's app is there! It has been modified and her dosage is pretty high.
 #JULIA DEALING FIREWEED (transported by your daughter?) bum bum bum
-# WHO STOLE PETE'S CREDITS
+# WHO STOLE PETE'S CREDITS???
 
 label community30:
     #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not 
@@ -6475,6 +6491,7 @@ label community30:
     $ know_noel_received_firegrass_deliveries = False
     $ talked_to_pete = False
     $ accuse_noel_of_murder = False
+    $ know_rings_purpose = False
     if kevin_elected:
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
         kevin "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
@@ -6844,7 +6861,6 @@ label community30:
             sara "Yes? Can I help you?"
             him "Hi Sara. Is it okay if I come in?"
             him "I brought soup."
-            #sara only lets you in if you have a good relationship w the colony
             sara "Sure. What's up?"
             him "It might take a while... why don't you guys eat while I ask a few questions?"
             sara "Okay..."
@@ -6852,7 +6868,7 @@ label community30:
             him "I'm just doing a little research on who is on the waitlist for the shuttle going back to Earth."
             him "You know, since Joel died, there's an empty spot."
             him "Brennan told me that you're first on the list. Is that right?"
-            #she only opens up if your colony value is high enough?
+            #she only opens up if your colony value is high enough? overly complicated
             sara "Oh, is that what this is about. Ha."
             sara "Yes, I am first on the list."
             sara "Back when the miners first arrived, Ilian and I had a big fight over who should get up in the night with Oleg."
@@ -6876,26 +6892,53 @@ label community30:
             sara "I don't like sitting on a wet toilet!"
             sara "Anyway, I'm tired of trying to guess what it is this time, so I told him he would have to work it out on his own."
             sara "He'll eventually come around."
-            # TODO: is Ilian anxious about a secret related to the accident?
+            # TODO: is Ilian anxious about a secret related to the accident? or knowing about Oleg's firegrass farm?
             sara "Thanks for the soup."
             him "You're welcome."
             oleg "Yeah, thanks, this is actually good."
             oleg "I thought about what you were saying, about the credit information being stored somewhere."
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
-            oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
-            oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
-            him "That sounds like it would work. I don't have admin status though..."
-            oleg "I think Brennan does."
-            him "Thanks."
+            
+            if (mavericks > 10):
+                pass #you find out about the below strategy if you talk to Pete
+            else:
+                oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
+                oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
+                him "That sounds like it would work. I don't have admin status though..."
+                oleg "I think Brennan does."
+                him "Thanks." 
+            
+            "As I got up to leave, the plastic ring from earlier fell out of my pocket."
+            oleg "Hey, you dropped this. Where did you get one of those?"
+            him "I found it while investigating Noel's home. Do you know what it is?"
+            oleg "Nevermind, I thought it looked like one of the videogame controllers we printed."
+            "I headed back home in the rain."
 
         "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
         "I still wanted to talk to Noel herself, about what happened."
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
         "I also wanted to go back to the scene of the crime to look in the barrel."
-        "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
-
+        if (mavericks > 10): 
+            "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
+        else:
+            pass
+        if colonists > 10:
+            nvl clear
+            oleg_c "i actually did recognize that ring"
+            him_c "What is it?"
+            oleg_c "it's a way of measuring bundles of firegrass to sell to people"
+            oleg_c "don't ask how i kno"
+            him_c "Ilian told me that Julia designed and printed out the rings. Is she involved in this?"
+            oleg_c "ugh"
+            oleg_c "duh"
+            him_c "How?"
+            "He stopped answering me."
+            $ know_rings_purpose = True
+        else:
+            pass
+        
         "The next morning, I sent Noel a message first thing."
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
@@ -6996,7 +7039,7 @@ label community30:
                 pete "{i}She keeps trying to get me to lower the price of firegrass for her.{/i}"
                 him "She buys firegrass from you?"
                 pete "{i}She insists that she doesn't use it anymore and that it's for a friend.{/i}"
-                pete "{i}I give her a discount because she buys in bulk and does more of the processing.{/i}"
+                pete "{i}I give her a discount because she buys in bulk and does more of the processing.{/i}" #bundling up the firegrass in amounts determined by the little plastic ring
                 pete "{i}I don't really care who it's for as long as she has the money.{/i}"
                 pete "{i}She treats me like her personal therapist.{/i}"
                 pete "{i}I feel like I have to listen to her or she might stop buying from me.{/i}"
@@ -7025,7 +7068,7 @@ label community30:
                     him "From Pete?"
                     kid "Yeah, from Pete and some other people."
                     him "Which other people?"
-                    kid "..."
+                    kid "..." # Miners who took over Oleg's firegrass farm
                     him "Okay, thanks for your help."
                     $ know_noel_received_firegrass_deliveries = True
                 else:
@@ -7083,7 +7126,7 @@ label community30:
                                     if ban_firegrass:
                                         brennan "Joel has over 10,000 credits."
                                     else:
-                                        brennan "Joel has over 5,000 credits."
+                                        brennan "Joel has over 7,000 credits."
                                     $ checked_joel = True
                                     $ account_checked_counter + 1
                                     jump account_check
@@ -7370,14 +7413,14 @@ label community30:
                             him "I found out that Joel has quite a bit of money in his account. Why is that?"
                             "Noel explained that she was simply saving money there in case of an emergency."
                         "What is this plastic ring for?": #for portioning bundles of firegrass
-                            "Noel stared at it for a few minutes."
+                            "Noel stared at it for a minute."
                             "She said it must be a children's toy."
                         "Van told me that Joel had previous head injuries. Why is that?" if knows_previous_head_injuries:
                             "Noel explained that Joel often vehemently refused help when it was necessary."
                             "Because of this, he often fell out of his wheelchair and hit his head."
                             "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
                 "No":
-                    $pass
+                    pass
             "Before she left, I gave her a half-hug. I didn't completely understand her but I still could see that she was suffering."
             "Afterwards, I met [her_name] in the community center for lunch."
             jump who_suspect
@@ -7395,6 +7438,8 @@ label community30:
             him "Of course, if someone had pushed him, they would want to make it look like he fell."
             if know_noel_received_firegrass_deliveries:
                 him "[kid_name] told me that Noel received unusually large shipments of firegrass."
+            if know_noel_had_firegrass:
+                him "I found firegrass hidden in one of Noel's rain barrels."
             if checked_joel:
                 him "I knew that Joel had an unusual amount of credits in his account. " #others?
             if knows_previous_head_injuries:
@@ -7402,6 +7447,7 @@ label community30:
             her "Do you think it was an accident or was there foul play?"
 
             menu:
+                # TODO: Add Joel wanting to commit suicide as an option?
                 "It was a tragic accident following neglect.":
                     him "Van and Noel definitely should have made fixing Joel's brakes a priority."
                     him "Life got in the way, and they procrastinated something that was more important than they thought it was."
@@ -7592,15 +7638,19 @@ label community30:
                                             "Zaina emphasized that buying and using firegrass was perfectly legal."
                                         else:
                                             "I emphasized that dealing in firegrass without knowledge from a doctor was against our colony's law."
-                                        "I told the jury that the most logical conclusion was that Noel had wanted to stop buying firegrass for Julia, but in retaliation, Julia had Van murder Joel to teach Noel a lesson."
-                                        "Zaina said that while Julia and Noel may have been business partners, that the unfortunate loss of Joel was unconnected."
+                                        if know_rings_purpose:
+                                            "I argued that the presence of the firegrass-measuring ring, which had been designed and distributed by Julia, proved their business connection."
+                                            "I told the jury that the most logical conclusion was that Noel had wanted to stop buying firegrass for Julia, but in retaliation, Julia had Van murder Joel to teach Noel a lesson."
+                                            "Zaina said that while Julia and Noel may have been business partners, that the unfortunate loss of Joel was unconnected."
+                                        else:
+                                            "Zaina argued that I had no real way of connecting Noel to Julia."
                                         sara "Thank you both for your arguments. Please go home while the jury deliberates, and I'll tell you their verdict in the morning."
                                         "I had trouble sleeping, and eagerly awaited the verdict."
                                         "The next morning I went to the community center, where Zaina joined me."
                                         sara "The jury decided that Julia and Van were not guilty of murder, but that Van was guilty of neglect."
                                         if ban_firegrass:
                                             sara "They also found Julia guilty of selling firegrass-derived products without the oversight of a physician and without notifying her buyers."
-                                            if talked_to_pete or know_noel_has_firegrass:
+                                            if talked_to_pete or know_noel_has_firegrass or talked_to_pete:
                                                 sara "They found Noel guilty of posession of firegrass without a license."
                                         else:
                                             sara "They also found Julia guilty of misrepresenting her plum tea syrup."
@@ -7608,9 +7658,14 @@ label community30:
                                         him "But it's clear that Julia was somehow involved with Noel's buying all that firegrass."
                                         zaina "And you also have no evidence of that!"
                                         sara "Zaina is right. You have evidence for a lot of things, but no real connection between Julia and Noel."
-                                        him "But Van is over there all the time!"
-                                        sara "I'm sorry, but that's not evidence! The case is closed."
-                                        #the most material connection is the plastic measuring ring--this should at least be mentioned in the trial
+                                        if know_rings_purpose:
+                                            him "Why else would she have had the plastic ring Julia designed to measure firegrass bundles?"
+                                            zaina "She could have made it for something else and other people just started using it for firegrass bundles."
+                                            zaina "Or maybe it was intended for firegrass, but that doesn't mean she murdered Joel."
+                                            sara "Zaina is right. The case is closed."
+                                        else:
+                                            him "But Van is over there all the time!"
+                                            sara "I'm sorry, but that's not evidence! The case is closed."
                                         return
 
 
