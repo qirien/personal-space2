@@ -158,29 +158,27 @@ label community1:
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
             zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
-            him surprised "I guess I can."
+            him surprised "Yes, I can."
+            him normal "First let me tell you a little bit about my family."
             scene stars with fade
+            show her normal at center
+            show kid normal at center, baby_pos
+            with dissolve
+            him "I have a daughter, [kid_name] - she's about three Earth months old."
+            him "[her_name] is my wife and she's also the doctor in our clinic."
+            him "She tries to be objective, but she also feels passionate about her job."
+            zaina "I think that describes most of us."
+            show her determined with dissolve
+            him "Some people have complained that her bedside manner is a little callous."
+            him "So her objectivity is more relevant to customer satisfaction than, say, mine."
+            kevin "Are you implying that your carrots cannot feel your love?"
+            him "Correct. Unless that love manifests itself in better care."
+            hide her
+            hide kid
+            with dissolve
             label colony_gossip:
             menu:
-                "Who should I tell them about?"
-                "[her_name] and [kid_name]" if not tell_Kelly:
-                    show her normal at center
-                    show kid normal at center, baby_pos
-                    with dissolve
-                    him "I have a daughter, [kid_name] - she's about three Earth months old."
-                    him "[her_name] is my wife and she's also the doctor in our clinic."
-                    him "She tries to be objective, but she also feels passionate about her job."
-                    zaina "I think that describes most of us."
-                    show her determined with dissolve
-                    him "Some people have complained that her bedside manner is a little callous."
-                    him "So her objectivity is more relevant to customer satisfaction than, say, mine."
-                    kevin "Are you implying that your carrots cannot feel your love?"
-                    him "Correct. Unless that love manifests itself in better care."
-                    hide her
-                    hide kid
-                    with dissolve
-                    $ tell_Kelly = True
-                    jump colony_gossip
+                "Who else should I tell them about?"
                 "Naomi and Pavel" if not tell_Graysons:
                     show naomi normal at midright
                     show pavel normal at midleft
@@ -472,7 +470,7 @@ label community4:
     show him normal at center
     show lily normal at midleft
     with dissolve
-    thuc "Wow, who has time for that extra work? It's hard enough just raising five goats and ten kids."
+    thuc "Who has time for that extra work? It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
     him happy "At least you know your own personality well, although I think that you don't give yourself enough credit."
     lily angry "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
@@ -2125,7 +2123,7 @@ label community12:
                     chaco "This is great. I'm so sick of radish salad."
                     $ modify_credits(50)
                     him "You know, if you have the credits, I bet Pete could do some hunting for you."
-                    chaco "Huh. I'll ask."
+                    chaco "I'll ask him."
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
                     "Dr. Lily took a few people out foraging."
                     "The miners lived off the meat and foraged food for almost a month."
@@ -3085,14 +3083,14 @@ label community17:
         "Sara asked me who we should invite to the festival this year."
         
     menu:
-        "The miners and Pete's group." if ((mavericks >= 7) and (miners >=7)): #TODO: make sure it's possible to get this option
+        "The miners and Pete's group." if ((mavericks >= 6) and (miners >=6)): #TODO: make sure it's possible to get this option
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_mavericks = True
             $ invited_miners = True
-        "Pete's group." if (mavericks >= 7):
+        "Pete's group." if (mavericks >= 6):
             "I thought it'd be a good idea to invite Pete's group."
             $ invited_mavericks = True
-        "The miners." if (miners >= 7):
+        "The miners." if (miners >= 6):
             "I guess we should invite the miners."
             $ invited_miners = True
         "The usual-- just all the other colonists.":
@@ -3893,6 +3891,8 @@ label community18:
 
 label community19:
     #you could substitute Pete for Helen in this scene; I just wanted to give Helen some more screen time.
+    #this event is currently stand-alone (doesn't affect other events except with relationship values)
+    #TODO: affect actual credits
     her "Hey, I told Sara that we could bring something to dinner this weekend."
     her "I know that the fall harvest isn't quite ready yet... can you get some of that wolf slug meat from Pete?"
     him "Sure. Helen usually comes through town on Tuesday selling it."
@@ -4044,7 +4044,7 @@ label community20:
         pavel "She wants to move back to the colony."
         pavel "We don't have a precedent for this situation. What do you think RET would want?"
         him "Hmm. I haven't heard much from them so I assume they're happy."
-        if mavericks > 10:
+        if mavericks > 9: #maxiumum is 16 at this point
             him "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
             pavel "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him "That doesn't sound like a problem."
@@ -4170,7 +4170,6 @@ label community20:
             pass
 
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
-        "Zaina said that she wanted to see the ocean one last time before she died."
         "We never saw her again."
 
     return
@@ -4256,7 +4255,7 @@ label community21:
     "Some people caught fish or jellystars and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     "That evening, Pete and his family stopped by."
-    if mavericks > 10: #TODO: calibrate this number and others. don't make this event too easy to trigger.
+    if mavericks > 9: #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
         #maybe Travis should be in this event too?
         pete "Hey it's good to see you guys!"
         pete "I have a two-way radio now. It turns out communication is good for business."
@@ -4302,7 +4301,7 @@ label community21:
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
         "The kids played with these weird transparent shells."
-    if miners > 10:
+    if miners > 9: #maximum is 15
         #put Chaco in here somewhere? we haven't seen him in a while
         brennan "Zaina and some of the miners caught a bunch of fish. Want to join us for a little roasting party?"
         her "I saw that earlier. They caught the edible ones? I'm surprised the jellystars couldn't get them all."
@@ -4332,7 +4331,7 @@ label community21:
         her "Too true. A few of the miners have mentioned it to me. I can give out recommended doses and warn about side effects, but we don't really know what the long-term side effects are right now."
         brennan "Ultimately it's their responsibility."
         her "But we need to make sure they have enough information to make good decisions."
-        if mavericks > 8:
+        if mavericks > 7:
             pete "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
             brennan "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
             brennan "If I knew how much to take for a little pick-me-up that would still let me sleep at night I use it occasionaly."
@@ -4387,7 +4386,7 @@ label community21:
 
 
 label community22:
-    if (miners > 10) and (mavericks > 9) and (is_liaison):
+    if (miners > 6) and (mavericks > 6) and (is_liaison):
         nvl clear
         brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine without disturbing his home."
         brennan_c "Except I don't know how to get ahold of Pete."
@@ -4445,7 +4444,7 @@ label community22:
         # does this need a stat +=?
         return
 
-    elif (miners > 10) and (mavericks > 9) and not (is_liaison):
+    elif (miners > 6) and (mavericks > 6) and not (is_liaison):
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in his winter area. Do you know where he is right now?"
         him_c "Actually, he has a two-way radio now! I can sort of text him."
@@ -4807,7 +4806,7 @@ label mining_anyway:
     pete "Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking."
     her "Is he breathing? Does he have a heartbeat?"
     pete "He's alive and he called us for help. But he's completely stuck underneath a rock right now."
-    her "See if you can keep him warm. Maybe a small warm-blooded animal could sneak back there?" # what? I don't get this
+    her "See if you can keep him warm."
     her "The cave is probably unstable. If you try to get him out, you could make it worse or get stuck yourself."
     pete "There must be something we can do. I can't sit and watch him die."
     her "Don't try to move him until I have more information. I'll radio back to you in five minutes."
@@ -4815,7 +4814,7 @@ label mining_anyway:
     him "That did not sound good." #would Terra say something here too?
     her "No, it didn't."
     her "I need an expert opinion..."
-    "[her_name] radioed Kevin and explained the situation. He was sympathetic and offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
+    "[her_name] radioed Kevin and explained the situation. He offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
     "She told Pete about their plan and he agreed to let them come help Travis."
     her "I'll take the necessary medical supplies with me. It looks like I'll be gone the next two days, but we'll stay in contact over the radio."
     him "Good luck."
@@ -4832,7 +4831,44 @@ label mining_anyway:
 
 label community23:
     # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
+    # Pete's cows have cancer
     # Terra is 14 here
+    $ pete_knows_his_cows_have_cancer = False
+    
+    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
+    if mavericks > 5:
+        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
+    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her "However, the cells in Pete's meat are often irregular and probably cancerous."
+    him "Okay... but eating cancer doesn't give you cancer, right?"
+    her "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
+    him "What about the cows from the colony?"
+    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    him "Pete's cows are outside more, but they have those UV blankets."
+    her "I don't think they don't work very well. I've seen the cows pull them off."
+    her "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
+    menu:
+        "Yes, definitely.":
+            him "People should know the risks of what they're eating. You should definitely tell everyone."
+            him "Just be honest about how much we don't know."
+            her "Okay."
+            "[her_name] wrote up a brief paper summarizing her findings."
+            "A few people read it and stopped buying meat from Pete."
+            $ study_published_23 = True
+            $ colonists += 1
+        "No, don't publish the study.":
+            him "How many samples have you studied? I think it's too early to draw conclusions."
+            her "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
+        "You should at least tell Pete." if mavericks >5:
+            him "Pete should know that his cows are developing cancer."
+            him "Maybe he can adjust his radiation-shielding measures."
+            her "That's a good idea. I'll make that suggestion."
+            "Pete started experimenting with different ways to shield his cows from radiation."
+            $ pete_knows_his_cows_have_cancer = True
+            $ mavericks += 1
+            
     kid "Can Anya and I go to the beach this weekend?"
     him "By yourselves?"
     kid "No, Anya's parents are going."
@@ -4975,7 +5011,7 @@ label community24:
         thuc "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
         him "Ugh, is that still a thing?"
         thuc "Yes, it is."
-        thuc "Didn't you read Julia's latest 'Talaam Times' that did an economic analysis of our luxury goods and reviewed select products?"
+        thuc "Didn't you read Julia's latest {i}Talaam Times{/i} that did an economic analysis of our luxury goods and reviewed select products?"
         him "I didn't want to pay 20 credits for it! That's like the price of beans for a month."
         if not thuc_sells_food:
             him "Hmm. Maybe I could make a little money on the side."
@@ -4998,7 +5034,7 @@ label community24:
         thuc "Yes, she says it's formulated to kill Talaam microflora."
         him "This sounds like something I don't actually need."
         thuc "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
-        thuc "Julia gave it a flourescent review in 'Talaam Times'. The miners love that kind of stuff."
+        thuc "Julia gave it a flourescent review in {i}Talaam Times{/i}. The miners love that kind of stuff."
         thuc "The price of firegrass has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
         thuc "You should consider producing some kind of luxury good or service to make some extra money."
         jump luxury_good
@@ -5010,7 +5046,7 @@ label luxury_good:
         "Write a guide for beginning farmers on Talaam.":
             "I spent a few months writing a comprehensive guide to beginning farming on Talaam."
             "I had [her_name] edit it, and I had Thuc guest write a chapter."
-            "I had Julia write a review of it in 'Talaam Times'."
+            "I had Julia write a review of it in {i}Talaam Times{/i}."
             "Finally I was ready to sell it for 100 credits!"
             "After a month it had sold just four copies." #+400/40 credits
             $ modify_credits(400)
@@ -5031,7 +5067,7 @@ label luxury_good:
             "I did make a lot of money though!" #+2000/200 credits but more stress?
             $ modify_credits(2000)
         "Consult on small farming projects.":
-            "I advertised my professional farm consulting in the 'Talaam Times.'"
+            "I advertised my professional farm consulting in the {i}Talaam Times{/i}."
             "I was surprised when Oleg was my first customer."
             "He had a lot of questions about a hypothetical plant that was a lot like firegrass."
             "I told him that I couldn't give him advice on how to grow imaginary crops and taught him some general farming principles."
@@ -5277,50 +5313,14 @@ label community25:
                     #the jellysquid farms are somewhat successful, but often the jellysquid will die before completely forming a shell, for unknown reasons.
 
 label community26:
-    $ study_published_26 = False
     $ work_fewer_hours = False
     $ brennan_refuses_fewer_hours = False
     $ grow_more_tea = False
-    $ pete_knows_his_cows_have_cancer = False
     $ keep_buying_pete_beef = False
     $ stop_buying_beef = False
     #artifical meat and firegrass--too much for one event?
 
-    her "So, I was having a slow day and I decided to do some research in the lab on our diet."
-    if mavericks > 5:
-        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
-        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
-    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
-    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
-    her "However, the cells in Pete's meat are often irregular and probably cancerous."
-    him "Okay... but eating cancer doesn't give you cancer, right?"
-    her "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
-    him "What about the cows from the colony?"
-    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
-    him "Pete's cows are outside more, but they have those UV blankets."
-    her "I don't think they don't work very well. I've seen the cows pull them off."
-    her "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
-    menu:
-        "Yes, definitely.":
-            him "People should know the risks of what they're eating. You should definitely tell everyone."
-            him "Just be honest about how much we don't know."
-            her "Okay."
-            "[her_name] wrote up a brief paper summarizing her findings."
-            "A few people read it and stopped buying meat from Pete."
-            $ study_published_26 = True
-            $ colonists += 1
-        "No, don't publish the study.":
-            him "How many samples have you studied? I think it's too early to draw conclusions."
-            her "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
-        "You should at least tell Pete." if mavericks >5:
-            him "Pete should know that his cows are developing cancer."
-            him "Maybe he can adjust his radiation-shielding measures."
-            her "That's a good idea. I'll make that suggestion."
-            "Pete started experimenting with different ways to shield his cows from radiation."
-            $ pete_knows_his_cows_have_cancer = True
-            $ mavericks += 1
-
-    her "Also, I met with a miner this week who was a heavy user of firegrass."
+    her "I met with a miner this week who was a heavy user of firegrass."
     her "She has severe insomnia and depression."
     him "And sleeping pills don't help?"
     her "Well, they do help her sleep, but then she feels sleepy in the morning and usually uses firegrass to help her feel more awake."
@@ -5412,7 +5412,7 @@ label community26:
                         him "Is it really necessary for the miners to work through the night?"
                         brennan "We have a quota from RET we're supposed to meet each year. Sometimes it's not necessary and sometimes it is."
                         pavel "What if you cut down their hours? It could actually increase productivity."
-                        if (miners > 10): #is it mean to make this an option where it won't work?
+                        if (miners > 8): #is it mean to make this an option where it won't work?
                             brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
                             $ miners += 1
                             $ work_fewer_hours = True
@@ -5430,7 +5430,7 @@ label community26:
                 sara "I know an enterprising young person who could make an app about how to use firegrass."
                 him "Is it Oleg?"
                 sara "Yes! He is really interested in educational technology."
-                if miners > 10:
+                if (miners > 8):
                     sara "You could have them access their own health stats from the database and it could tell them their recommended dosage."
                     her "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
                     her "Also, there is no way I'm giving Oleg access to the health database."
@@ -5466,7 +5466,7 @@ label community26:
                         him "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
                         her "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
                         him "Reducing their work hours should discourage them from using it more."
-                        if (miners > 10): #is it mean to make this an option where it won't work?
+                        if (miners > 8): #is it mean to make this an option where it won't work?
                             brennan "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
                             $ miners += 1
                             $ work_fewer_hours = True
@@ -5531,97 +5531,96 @@ label community26:
         #better alt?
         jump after_firegrass_26
 
-    # better transition. conversation with RET where they say it's coming? have some of this conveyed through dialogue.
-label after_firegrass_26:
-    "About once a year, we've been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
-    "This year it seemed like they anticipated [her_name]'s research on meat, even though the shuttle had been sent years beforehand."
-    "Ilian called a meeting to discuss the changes that came with the shuttle."
-    ilian "The shuttle this year came with equipment and recipes for growing synthetic meat."
-    ilian "Some of you may have tried some in the shuttle on the way over but the instructions say that the flavor has improved considerably."
-    thuc "Well, that wouldn't take much."
-    ilian "We're also to stop eating chicken, goat, turkey, and cow meat and to use the synthetic meat as a replacement."
-    him "Can we still eat native meats?"
-    ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
-    if study_published_26:
-        ilian "You may have read [her_name]'s study about Pete's cattle having cancer and their meat possibly being carcinogenic."
-        ilian "RET had come to similar conclusions seven years ago, not just about Pete's cattle, but any animals that are exposed to high UV radiation regularly."
-    else:
-        ilian "Seven years ago RET completed several research studies that led them to believe that the meat of any animal exposed to high UV radiation is carcinogenic."
-    if thuc_has_cattle:
-        thuc "Well, there goes two-thirds of my income."
-    else:
-        ilian "After I go to all the trouble to learn how to breed these things..."
-    ilian "Also, sending cows to Talaam was a very unpopular decision with environmenal agencies, and RET has made agreements to reduce our cattle herds to zero."
-    thuc "Zero? That seems a little extreme."
-    ilian "That's the final goal. They expect us to halve our herd in two years."
-    thuc "Not having bacon or beef or chicken is a terrible blow to our flavor options for meals."
-    thuc "What about milk, dairy, and egg products? Are they exposed to the radiation as well?"
-    ilian "Um, they didn't specifically say anything about that..."
-    thuc "We should keep chickens and turkeys for their eggs and feathers at least."
-    # TODO: what about your goats?
-    ilian "I agree."
-    if thuc_has_cattle:
-        thuc "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
-        ilian "You can start by building the laboratory to grow the meat in."
-    else:
-        ilian "I'll be heading up the synthetic meat production, which will be in a laboratory building we'll build near the storehouse."
-    ilian "I'm going to to a demonstration for you here which shows you how the meat is grown."
-    "Ilian showed us a petri dish.'" #find a picture of a petri dish
-    ilian "This is where we grow the meat from bovine stem cells. Every day I feed it a little food, or growth culture."
-    ilian "We sprinkle a little xantham gum on top to prevent fungal growth."
-    ilian "Workers in the lab will feed the cells and eventually start stretching them out to make the texture more appealing."
-    ilian "You can all try a sample here so you know what to expect."
-    sara "Hmm, the texture is good. It doesn't have a strong taste."
-    ilian "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
-    "Hmm. I could live with this. Do I want to?"
-    menu:
-        "Keep buying beef from Pete.":
-            "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
-            "[her_name] didn't eat it."
-            $ keep_buying_pete_beef = True
-            $ mavericks += 1
-            return
-        "Eat as much synthetic meat as possible.":
-            "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
-            $ stop_buying_beef = True
-            $ colonists += 1
-    if (mavericks > 8):
-        "Pete stopped by to chat one sunny day while I was sowing some new seeds."
-        pete "How's it going?"
-        him "Not bad. I'm optimistic about this new crop."
-        him "How are you?"
-        pete "The clouds still drop rain and wolfslugs still fear me."
-        pete "But I haven't been selling as much firegrass or beef lately. Did some people make an 'avoid-Pete' club?"
-        him "No, nothing so extreme."
-        him "One of the miners was a heavy user of firegrass for a few years, and it started to really impact her sleep and mental health."
-        him "A bunch of us tried to educate people about its dangers and discourage them from abusing it."
-        pete "Hmm. That's not what I heard."
-        pete "I heard that someone is selling firegrass for cheaper than I am. So now everyone gets it from him instead of me."
-        if stop_buying_beef:
-            pete "And I heard that you're growing your own meat now."
-            if pete_knows_his_cows_have_cancer:
-                pete "I guess it was only a matter of time, seein' how my cows are sick and all."
-                pete "I still don't understand why them having cancer makes them bad to eat. That's not how cancer works."
-            else:
-                pete "What gives?"
-                him "Your cows and all our Earth creatures we eat for meat have cancer and eating them can give cancer to humans."
-                pete "That's not how cancer works. Eating a cancerous cell doesn't give you cancer."
-            him "How do you know?"
-            pete "Simple biology! Dead cells don't affect living ones."
-            him "They do if you eat those dead cells!"
-            pete "I can tell I'm not persuading you. I might just have to invest more in my fish farms. Those are okay to eat still, right?"
-            him "Yeah, the water diffuses the radiation."
-            pete "Let me know if you want some next time I come 'round"
+    label after_firegrass_26:
+        "About once a year, we'd been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
+        "This year it seemed like they anticipated [her_name]'s previous research on meat, even though the shuttle had been sent years beforehand."
+        "Ilian called a meeting to discuss this year's shipment."
+        ilian "The shuttle this year came with equipment and recipes for growing synthetic meat."
+        ilian "Some of you may have tried some in the shuttle on the way over but the instructions say that the flavor has improved considerably."
+        thuc "Well, that wouldn't take much."
+        ilian "We're also to stop eating chicken, goat, turkey, and cow meat and to use the synthetic meat as a replacement."
+        him "Can we still eat native meats?"
+        ilian "It doesn't mention native jelly stars, fish, wolf slugs, or any other aliens, so I think we're okay there."
+        if study_published_23:
+            ilian "You may have read [her_name]'s study about Pete's cattle having cancer and their meat possibly being carcinogenic."
+            ilian "RET had come to similar conclusions seven years ago, not just about Pete's cattle, but any animals that are exposed to high UV radiation regularly."
         else:
-            pete "I heard that you're growing meat in a lab now."
-            pete "Except you apparently prefer my beef."
-            him "Even if it is carcinogenic, it adds so much to my life satisfaction that I don't mind dying a little earlier."
-            pete "I doubt it's true. You don't get cancer from eating cancerous cells."
-            pete "If that were true I would have arthritis and bloating and all the other things my cattle suffered from before I ate them."
-            pete "Instead I just have high blood pressure."
-            him "Really? You seem so healthy."
-            pete "I know you guys think I'm sitting on a bundle of credits but they all go to medicine these days."
-            him "Well, I hope your fish are lucrative."
+            ilian "Seven years ago RET completed several research studies that led them to believe that the meat of any animal exposed to high UV radiation is carcinogenic."
+        if thuc_has_cattle:
+            thuc "Well, there goes two-thirds of my income."
+        else:
+            ilian "After I go to all the trouble to learn how to breed these things..."
+        ilian "Also, sending cows to Talaam was a very unpopular decision with environmenal agencies, and RET has made agreements to reduce our cattle herds to zero."
+        thuc "Zero? That seems a little extreme."
+        ilian "That's the final goal. They expect us to halve our herd in two years."
+        thuc "Not having bacon or beef or chicken is a terrible blow to our flavor options for meals."
+        thuc "What about milk, dairy, and egg products? Are they exposed to the radiation as well?"
+        ilian "Um, they didn't specifically say anything about that..."
+        thuc "We should keep chickens and turkeys for their eggs and feathers at least."
+        # TODO: what about your goats?
+        ilian "I agree."
+        if thuc_has_cattle:
+            thuc "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
+            ilian "You can start by building the laboratory to grow the meat in."
+        else:
+            ilian "I'll be heading up the synthetic meat production, which will be in a laboratory building we'll build near the storehouse."
+        ilian "I'm going to to a demonstration for you here which shows you how the meat is grown."
+        "Ilian showed us a petri dish.'" #find a picture of a petri dish
+        ilian "This is where we grow the meat from bovine stem cells. Every day I feed it a little food, or growth culture."
+        ilian "We sprinkle a little xantham gum on top to prevent fungal growth."
+        ilian "Workers in the lab will feed the cells and eventually start stretching them out to make the texture more appealing."
+        ilian "You can all try a sample here so you know what to expect."
+        sara "Hmm, the texture is good. It doesn't have a strong taste."
+        ilian "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
+        "Hmm. I could live with this. Do I want to?"
+        menu:
+            "Keep buying beef from Pete.":
+                "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
+                "[her_name] didn't eat it."
+                $ keep_buying_pete_beef = True
+                $ mavericks += 1
+                return
+            "Eat as much synthetic meat as possible.":
+                "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
+                $ stop_buying_beef = True
+                $ colonists += 1
+        if (mavericks > 8): #maxiumum is 18
+            "Pete stopped by to chat one sunny day while I was sowing some new seeds."
+            pete "How's it going?"
+            him "Not bad. I'm optimistic about this new crop."
+            him "How are you?"
+            pete "The clouds still drop rain and wolfslugs still fear me."
+            pete "But I haven't been selling as much firegrass or beef lately. Did some people make an 'avoid-Pete' club?"
+            him "No, nothing so extreme."
+            him "One of the miners was a heavy user of firegrass for a few years, and it started to really impact her sleep and mental health."
+            him "A bunch of us tried to educate people about its dangers and discourage them from abusing it."
+            pete "Hmm. That's not what I heard."
+            pete "I heard that someone is selling firegrass for cheaper than I am. So now everyone gets it from him instead of me."
+            if stop_buying_beef:
+                pete "And I heard that you're growing your own meat now."
+                if pete_knows_his_cows_have_cancer:
+                    pete "I guess it was only a matter of time, seein' how my cows are sick and all."
+                    pete "I still don't understand why them having cancer makes them bad to eat. That's not how cancer works."
+                else:
+                    pete "What gives?"
+                    him "Your cows and all our Earth creatures we eat for meat have cancer and eating them can give cancer to humans."
+                    pete "That's not how cancer works. Eating a cancerous cell doesn't give you cancer."
+                him "How do you know?"
+                pete "Simple biology! Dead cells don't affect living ones."
+                him "They do if you eat those dead cells!"
+                pete "I can tell I'm not persuading you. I might just have to invest more in my fish farms. Those are okay to eat still, right?"
+                him "Yeah, the water diffuses the radiation."
+                pete "Let me know if you want some next time I come 'round"
+            else:
+                pete "I heard that you're growing meat in a lab now."
+                pete "Except you apparently prefer my beef."
+                him "Even if it is carcinogenic, it adds so much to my life satisfaction that I don't mind dying a little earlier."
+                pete "I doubt it's true. You don't get cancer from eating cancerous cells."
+                pete "If that were true I would have arthritis and bloating and all the other things my cattle suffered from before I ate them."
+                pete "Instead I just have high blood pressure."
+                him "Really? You seem so healthy."
+                pete "I know you guys think I'm sitting on a bundle of credits but they all go to medicine these days."
+                him "Well, I hope your fish are lucrative."
     return
 
 
@@ -5630,7 +5629,7 @@ label community27:
     #if community_22_mining_stopped, the gathering of shells was more intense
     $ shell_count = 0
     $ serve_mudfish = False
-    $ serve_Shills = False
+    $ serve_shills = False
     #conversation with jellymother variables
     $ asked_shell_food = False
     $ uliveshell = False
@@ -5662,7 +5661,7 @@ label community27:
     "Jellysquid" "We can't find shells."
     him "What is it trying to say? I thought they made their own shells."
     kid "Maybe they need to see another shell to know how to make it?"
-    him "Hmm. They do seem to be intelligent animals, but usually growing a body part isn't a conscious process."
+    him "Hmm. They do seem to be intelligent animals, but isn't it part of their body?"
     "Jellysquid" "Help me?"
     "Then the back of the jellysquid looked like the literacy game again."
     "'Grown-ups only! Needs permission to access more content.'"
@@ -5676,14 +5675,12 @@ label community27:
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
-        "Run away." if not ate_jellyfish and not touched_jellystar_25:
+        "Run away.":
             him "I don't want to explain this when I don't really understand it myself."
             him "Let's go home."
             "I tried to leave, but the jellystars kept my boat from moving."
             jump boat_capsized
-        # if ate_jellyfish AND touched_jellystar_25: I still want to do something with this variable cluster
-        # TODO: Maybe if you did both of those, you don't have any other choice but to engage.
-        "Engage.":
+        "Engage." if (ate_jellyfish) or (touched_jellystar): #does this include AND?
             him "I am interested in communicating with these aliens."
             kid "Tell it! It can't hear you."
             him "Okay, I'll touch the jellysquid's back."
@@ -5691,12 +5688,13 @@ label community27:
 
 label text_conversation:
     "It started displaying text."
-    "Jellysquid" "Where are the baby's clothes?" #this should come after asking about the babies
+    "Jellysquid" "My babies can't grow."
+    "Jellysquid" "Where are the baby's shells?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
     "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
     menu:
         "I":
-            him "Brennan is basically a part of my group. I'm partially responsible for his actions."
+            him "Brennan and I are humans and co-workers. I'm partially responsible for his actions in her eyes."
             menu:
                 "stole them":
                     him "We took the shells without proper research or community consensus."
@@ -5754,7 +5752,7 @@ label call_to_squid:
             "The net of jellystars pushed us back towards shore."
             her "What on Earth happened to you?"
             kid "I think you mean 'What on Talaam' happened to us."
-            if mavericks > 10:
+            if (mavericks > 8):
                 "I went to Pete's house as soon as we got back." #because it's not necessarily the cave anymore
                 him "Any idea what happened to the nets?"
                 pete "Nope. I figured it was some angry miner or colonist."
@@ -5773,7 +5771,7 @@ label call_to_squid:
             him "Well... recently I met with a squid... mother? intelligent entity? They seemed really upset about the shells being gone."
             brennan "Really? Did you get a picture? What did it look like and how did it communicate with you?"
             "I told him about what had happened."
-            if (miners > 10):
+            if (miners > 8):
                 brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him "I have my own farm to run!"
                 brennan "I can give you some credits for someone else to take care of your farm."
@@ -5784,8 +5782,8 @@ label call_to_squid:
                 brennan "And I already made promises to the miners based on the shells I have now."
                 brennan "Sorry, my hands are tied."
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
-            "I had Julia print it in that week's {i}Talaam Times{/i}" #italics
-            if (colonists > 10):
+            "I had Julia print it in that week's {i}Talaam Times{/i}"
+            if (colonists > 8):
                 "Four families gave me one shell each."
                 $ shell_count += 4
             else:
@@ -5912,49 +5910,57 @@ label call_to_squid:
                     "I went back to the colony and my farm."
                     "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
                     "When I mentioned the mudfish, she looked excited."
-                    zaina "A few years ago I studied that fish."
+                    zaina "I remember that fish!"
                     him "What eats it?"
-                    zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish will eat it without a problem."
-                    him "The ones called Shills? Because they make a really cool noise but disappear if you approach them?"
-                    him "How do they compare to jellysquid shells for metal content?"
-                    zaina "Well, it's not edible for humans. Let me bring up the report."
-                    zaina "Some species had a high level of heavy metals. I don't know what kind though."
-                    him "Wow, this could be big! The same kind of metals that RET wants?"
-                    him "Maybe instead of taking the shells, Brennan could just mine the mud. The mudfish probably eats some kind of worm that gets the metals from the mud."
-                    zaina "Or we could just keep doing what's working, which is digging in the mountains."
-                    zaina "Brennan gave up on the jellysquid farms. Just leave well enough alone."  # TODO: decide if jellymother is her or them. make capitalization consistent.
+                    zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish eat it without a problem."
+                    him "The ones called shills? Because they make a really cool noise but disappear if you approach them?"
+                    him "How do the mudfish compare to jellysquid shells for metal content?"
+                    zaina "Let's see... "
+                    zaina "It looks like the metals in the mudfish meat are similar to the metals in the shells."
+                    him "Sounds promising."
+                    zaina "Should we really be helping them?"
+                    him "I feel like since my fellow humans took the shells to begin with that I have a responsibility to help them."
+                    zaina "We could end up making things worse."
                     him "They can sort of write to us Zaina! How are you not curious about that?"
-                    zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
+                    zaina "I've actually spent several years studying them."
                     zaina "I helped Dr. Lily teach them how to 'write'."
-                    zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others and how they could teach each other new things so quickly."
-                    zaina "These animals are one of the most interesting beings I've studied. If Brennan were to mine in the mud, it would mess up their habitat even more."
-                    him "Okay, bad idea. But back to the jelly mother:"
-                    him "They asked for help finding shell food. It sounds like this mud fish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
+                    zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
+                    zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others." 
+                    zaina "If a central brain can link up to the jellysquids, it also explains how jellysquids we'd never seen before already knew how to interact with us."
+                    zaina "These animals are one of the most interesting beings I've studied."
+                    him "Wow. Why didn't you tell the rest of us what you were doing?"
+                    zaina "We alluded to it in our reports. We weren't sure if we were dealing with intelligent life or something like a very smart parrot."
+                    zaina "We didn't want everyone to get excited for no reason."
+                    zaina "Also, maybe we were a little protective and selfish of our discoveries."
+                    zaina "I admit that I'm jealous that she showed herself to you."
+                    zaina "Why make contact with you now? Why not when I was actively trying to communicate with her kind?" #part of Dr. Lily's consciousness in the jellymother now? ~~
+                    him "I don't know. "
+                    him "The jelly mother asked for help finding shell food. It sounds like this mudfish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
                     zaina "I think it's just the skin that tastes bad. So maybe if we caught them and made them into filets, they would eat them?"
                     him "Or maybe the Shills that eat the mud fish would have the right minerals in their meat?"
                     zaina "I can do some field research this weekend."
                     him "Great. Maybe the jellymother will talk to you too."
                     zaina "You're not coming with me?"
-                    him "I've been out there twice already. Message me if there's an emergency."
+                    him "I've been out there twice already. I need to work on my farm"
                     "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
                     nvl clear
-                    zaina_c "Wooooow I just got back from talking to... her? it?"
+                    zaina_c "Wooooow I just got back from talking to... her? them?"
                     zaina_c "Alien life! Talking! To us!"
-                    him_c "Were they angry?"
+                    him_c "Was she angry?"
                     zaina_c "She was confused that you weren't there, but I managed to talk to her!"
                     zaina_c "I'll tell you everything when I get back. Gotta save my battery in case it's cloudy tomorrow."
                     "Next week, Zaina returned and asked me to meet with her."
-                    zaina "The jellysquid seemed to remember me, so I didn't have trouble getting them to try a few different foods."
+                    zaina "The jellysquid seemed to remember me, so I didn't have trouble getting her to try a few different foods."
                     zaina "I was able to catch a few mudfish and feed their filets to a jellysquid."
                     zaina "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
-                    zaina "I had a hard time catching the Shill, despite using mudfish as bait. Eventually the Jellymother found me and I told her what I was trying to do."
-                    zaina "She seemed surprised. The Shill is difficult capture, so they rarely eat it."
+                    zaina "I had a hard time catching the shill, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
+                    zaina "She seemed surprised. The shill is difficult capture, so they rarely eat it."
                     zaina "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
-                    zaina "She killed a Shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
+                    zaina "She killed a shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
                     zaina "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
                     him "So what do you think would be best for the jellysquids?"
                     zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
-                    zaina "The jellysquid can easily eat the Shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
+                    zaina "The jellysquid can easily eat the shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
                     him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
                     zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
                     "What do I think is better?"
@@ -5965,39 +5971,39 @@ label call_to_squid:
                             zaina "I just hope the colony is strong enough to help with this."
                             $ serve_mudfish = True
                             jump aquaculture
-                        "Have them eat Shills.":
+                        "Have them eat shills.":
                             him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
-                            him "If they keep eating Shills, they won't have to rely on us to create new shells."
+                            him "If they keep eating shills, they won't have to rely on us to create new shells."
                             zaina "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
                             him "Right."
                             zaina "I just hope the colony is strong enough to help with this"
-                            $ serve_Shills = True
+                            $ serve_shills = True
                             jump aquaculture
 
                             label aquaculture:
                                 "I started making plans for a fish farm off the coast."
                                 "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
-                                "After I explained my plans to the Jellymother, she said that she could help trap a few of the first fish to start the farm."
+                                "After I explained my plans to the jellymother, she said that she could help trap a few of the first fish to start the farm."
                                 if colonists > 10:
                                     "The other colonists helped me dig the farm-pond and line it with rocks."
                                     if serve_mudfish:
                                         "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
                                         "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
-                                        "After about six months, the Jellymother told us that our efforts at reparation were sufficient."
+                                        "After about six months, the jellymother told us that our efforts at reparation were sufficient."
                                         "She presented us with some of the fish we could eat as a token of good will."
                                         $ jellypeople_happy = True
                                         return
                                     else:
-                                        "Shills had a longer incubation period than I anticipated. The jellymother started feeding Shills to emerging jellysquids."
-                                        "Farming the Shills took weekly maintence, which we shared. After the Shills were big enough to fend for themselves, we released them into the wild."
-                                        "A few of the jellysquid ate too much Shill and ended up with large shells, but they seemed to adapt to it fairly well."
-                                        "The Jellymother seemed impressed that we followed up on our promise."
+                                        "Shills had a longer incubation period than I anticipated. The jellymother started feeding shills to emerging jellysquids."
+                                        "Farming the shills took weekly maintence, which we shared. After the shills were big enough to fend for themselves, we released them into the wild."
+                                        "A few of the jellysquid ate too much shill and ended up with large shells, but they seemed to adapt to it fairly well."
+                                        "The jellymother seemed impressed that we followed up on our promise."
                                         "She presented us with some of the fish we could eat as a token of good will."
                                         $ jellypeople_happy = True
                                         return
                                 else:
                                     "I didn't have enough help from the other colonists to finish digging the farm-pond."
-                                    "The Jellymother disappeared and we rarely saw any of the jelly creatures again."
+                                    "The jellymother disappeared and we rarely saw any of the jelly creatures again."
                                     return
                    #this is getting long. put into next event?
             else: #if shell count is less than 2
@@ -6019,7 +6025,7 @@ label call_to_squid:
             jump boat_capsized
 
 label boat_capsized:
-    "They capsized my boat, and I fell into the water."
+    "The creature capsized my boat, and I fell into the water."
     "We grabbed onto the boat and tried to turn it over."
     if (ate_jellyfish) and (touched_jellystar_25):
         "A jellysquid slapped my neck, and I felt sorry for this bereaved mother."
@@ -6197,7 +6203,7 @@ label fill_gap:
             jump after_vote
 
     label after_vote:
-        if miners > 10:
+        if miners > 9:
             sara "The votes are in, and the majority voted to allow miners to vote."
             sara "I'll be coordinating with Brennan to set up the voting program with the miners. We should be able to vote next week though."
             ilian "You guys are going to regret this. Hope you like Kevin as your mayor."
@@ -6269,6 +6275,7 @@ label euthanasia:
 
 
 label community29:
+    #Helen pregnant
     if kevin_elected:
         "Kevin was a logical mayor, as we'd expect from him. Though he assured us of his objectivity, he helped the miners more often than anyone else."
         "He worked with them and talked with them more than he did to us, so it wasn't surprising."
@@ -6277,7 +6284,7 @@ label community29:
 
     else:
         "Julia was a behind-the-scenes kind of mayor. Things went smoothly because she talked to everyone privately, and she was able to distribute important information through her newspaper."
-        "Eventually interviews with each resident of Talaam were featured in the Talaam Times, including the mavericks and the miners."
+        "Eventually interviews with each resident of Talaam were featured in the {i}Talaam Times{/i}, including the mavericks and the miners."
 
     if jellypeople_happy:
         "I kept communicating with the jellypeople through the jellysquids. We traded land meat for seafood."
@@ -6900,7 +6907,7 @@ label community30:
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
             
-            if (mavericks > 10):
+            if (mavericks > 8):
                 pass #you find out about the below strategy if you talk to Pete
             else:
                 oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
@@ -6920,11 +6927,11 @@ label community30:
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
         "I also wanted to go back to the scene of the crime to look in the barrel."
-        if (mavericks > 10): 
+        if (mavericks > 8): 
             "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
         else:
             pass
-        if colonists > 10:
+        if colonists > 8:
             nvl clear
             oleg_c "i actually did recognize that ring"
             him_c "What is it?"
@@ -7013,7 +7020,7 @@ label community30:
         else:
             him "I'll update you at the end of the investigation."
 
-        if (mavericks > 10): #check values #does this if have an else?
+        if (mavericks > 8): #check values
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
             pete "{i}What can I help you with?{/i}"
             him "Hey, I'm in kind of a complicated situation."
@@ -7716,7 +7723,7 @@ label community30:
 # Did Noel start buying out Oleg as well as Pete? She didn't have enough places to store it. But she would play the two off each other.
 # What was Julia doing with all that firegrass? She put it in her secret plum tea syrup, which was very popular!
 
-# If firegrass was banned, then demand for Julia's "secret plum tea" would have increased, making her and Noel richer?
+# If firegrass was banned, then demand for Julia's "secret plum tea" would have increased, making her and Noel richer
 
 # Why did Noel hide her profits in Joel's account? Out of an anxious desire to store money for their life back on Earth, she wanted to keep collecting disability pay as long as possible after her suicide attempt.
 # How did Joel die? Van and Noel knew that Joel's wheelchair brakes were breaking down. In fact, they had repaired them many times in the past. This time Joel wanted to do it himself but he kept putting it off.
@@ -7724,7 +7731,28 @@ label community30:
 
 
     "The latest shuttles from RET have arrived."
-    if ((mavericks >= 12) and (miners >=12)):
-        "New miners are arriving to replace the ones who are leaving. I'm kind of sad to see some of them go."
+    #not sure how I want to do the endings :-(
+    
+    if (miners >= 12):
+        "New miners have arrived to replace the ones who are leaving. I'm kind of sad to see some of them go."
+    if (mavericks >= 12): 
+        "Pete and the other people living away from the colony prospered. Sometimes a family from the colony would join them."
+    if (colonists >= 12):
+        "We continued to grow our farms and discover more about life on Talaam."
+    if jellypeople_happy:
+        "We collaborated with the jellymother to create and maintain more fish farms."
+            
+    if (mavericks <= 5):
+        "Pete lived away from the colony, but the other mavericks came back to live with the colony."
+        "They said it was too difficult to find enough food without our farming equipment."
+#        if (colonists <= 5):
+            
+    if (miners <= 5):
+        "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
+        "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
+        if (colonists <= 5):
+            "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
+            "Some of us died of malnutrition and exhaustion."
+
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return

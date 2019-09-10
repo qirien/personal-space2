@@ -125,6 +125,7 @@ label start:
         jellypeople_happy = False
         kevin_elected = False
         ban_firegrass = False
+        study_published_23 = False
 
     # FARM
     python:
