@@ -204,7 +204,7 @@ label community1:
                     kevin "RET does prefer people who have multiple talents."
                     kevin "I'm also a shuttle pilot, for example."
                     him "Oh, really? When did you have time to learn that?"
-                    kevin "Well, my father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
+                    kevin "My father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
                     kevin "After I obtained my pilot's license, I worked as a pilot for several years."
                     him "But at some point you decided to study engineering."
                     kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
@@ -216,7 +216,7 @@ label community1:
                     show martin normal at midleft
                     show natalia normal at midright
                     with dissolve
-                    him "Martín and Natalia Perón grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, well, four now, I guess."
+                    him "Martín and Natalia Perón grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, four now, I guess."
                     zaina "Now?"
                     him "There was an accident... and their daughter died when she was four years old."
                     zaina "What a shame. What happened?"
@@ -276,7 +276,7 @@ label community1:
                     show zaina normal at center
                     show kevin normal at midright
                     with dissolve
-                    him happy "Well, it was nice to meet you both."
+                    him happy "It was nice to meet you both."
                     kevin "Undoubtedly we shall meet again."
                     zaina "We'll have to have you over for dinner sometime."
 
@@ -341,7 +341,7 @@ label community2:
         "I will keep storing most of my own crops.":
             $ mavericks += 1
             him annoyed "I'm not changing how I do things because of what some lawyer at RET said. I'll do what's efficient and good for everyone."
-            ilian "Hmph. Well, we'll see how that works out."
+            ilian "Hmph. We'll see how that works out."
     return
 
     label contract:
@@ -372,13 +372,13 @@ label community3:
     thuc normal "I think you just won the game."
     him surprised "I don't know, there might be a way for you to make a religious conquest!"
     thuc sad "Nope. I resign."
-    pete happy "Well, that was a good game. I should have situated myself better from the beginning. I got caught up in collecting gold instead of buildin' an army."
+    pete happy "That was a good game. I should have situated myself better at the start. I got caught up in collecting gold instead of buildin' an army."
     him normal "Same time next month?"
-    pete happy "Yes, I reckon so. I'll remind you on the community bulletin."
+    pete happy "I reckon so. I'll remind you on the community bulletin."
     him concerned "Can we call it something other than game night? All the new colonists will think we're a bunch of nerds."
-    pete normal "Well, we are a bunch of nerds."
-    him determined "Fine, then they'll believe me when I tell everyone we're doing an 'intensive research session.'"
-    pete happy "Ha! Fine by me. As long as everyone else calls it that they'll be none the wiser."
+    pete normal "That's what we are. You don't get to farm in space without bein' a little bit of a nerd."
+    him determined "Then they'll believe me when I tell everyone we're doing an 'intensive research session.'"
+    pete happy "Ha! You ashamed to be playing games? As long as everyone else calls it that they'll be none the wiser."
     scene fields with fade
     show him normal at midright
     show kevin at midleft
@@ -493,7 +493,7 @@ label community4:
     lily "What does 'putting the colonists's needs first' mean in this context? Our survival has been RET's main goal with establishing this colony."
     him determined "RET didn't really explain why we need a liaison."
     lily normal "Regardless, I must choose someone. What do you think of Sara?"
-    him "Well, she helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
+    him "She helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
     naomi happy "Now that Oleg is a little older, she might be up to something like this."
     him concerned "Maybe. Oleg is about the same age as [kid_name], and she's still quite the handful."
     naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
@@ -562,7 +562,7 @@ label community5:
         show ilian at center
         show him normal at midleft
         if (whole_harvest_to_storehouse == True):
-            ilian "Well, a few farmers are already bringing their whole harvest to the storehouse."
+            ilian "A few farmers are already bringing their whole harvest to the storehouse."
             show ilian happy
             ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of potatoes and beans."
             show ilian
@@ -685,7 +685,7 @@ label community5:
         "We could can some of the dairy products." if not talked_canning_dairy:
             him normal "We could try making dried milk powder or clarified butter, which would last a long time."
             pete normal "Why would we do that when we have plenty of fresh stuff?"
-            him determined "Well, I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
+            him determined "I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
             him surprised "Or they could end up eating some plant that makes the milk taste bad, so you'd be missing out on an opportunity to sell."
             pete happy "Hmm. That is a good point."
             show pete
@@ -719,7 +719,7 @@ label community5:
         him concerned "We need to prepare to feed the miners, and this is the easiest way to ensure that everyone has enough food."
         martin angry "What if I don't want to do that?"
         him annoyed "It's in your contract."
-        martin normal "Well, the way we've been doing it is working just fine."
+        martin normal "The way we've been doing it is working just fine."
         him concerned "We didn't have fifty extra mouths to feed then."
         martin angry "And we don't now! I think you're overreacting. We have plenty of food."
         him determined "How about you prove that I'm overreacting by bringing all your food to Ilian so we know what we have to work with?"
@@ -737,8 +737,8 @@ label community5:
     else:
         him determined "It works well now, but soon we'll be trading credits instead of food."
         martin happy "I'm happy to take your credits then."
-        him normal "Okay, well if you ever need more credits, you can always sell your beans to Ilian."
-        martin "Okay, will do."
+        him normal "If you ever need more credits, you can always sell your beans to Ilian."
+        martin "Okay, okay."
     return
 
 
@@ -1017,9 +1017,9 @@ label community8:
                 pavel sad "Goods Inside cereal, homogenized milk, cotton candy, cheesecake, tuna salad, Michele's meat-alike paste,"
                 pavel normal "really hot salsa, tortillas, curry powder, Chocolate Confession ice cream, and Swiss cheese, or any cow cheese really."
                 pavel sad "And that's just the {b}food{/b} I miss!"
-                him surprised "Wow. Well, it needs to be non-perishable or at least have a long shelf life, so I think that eliminates most of the things on your list."
+                him surprised "Wow. Keep in mind that it needs to be non-perishable or at least have a long shelf life. That eliminates most of the things on your list."
                 him normal "I could put you down for curry powder though."
-                pavel sad "Oh, well make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
+                pavel sad "Just make sure it's PatiPal's Extra Hot Curry Powder. It's the only one worth having."
                 him determined "I'll see what I--"
                 pavel normal "Wait, wouldn't it make more sense to grow the spices so I can make my own curry powder?"
                 him normal "Sure."
@@ -1356,7 +1356,7 @@ label community10:
     him surprised "What are your older kids interested in, if not farming?"
     natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
-    natalia "Well she can write {b}and{/b} help grow our food!"
+    natalia "She can write {b}and{/b} help grow our food!"
     martin angry "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
     natalia "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin normal "What would you do in my position? Who do you think should take care of the farm?"
@@ -1409,7 +1409,7 @@ label community10:
             natalia "It's not laziness to prefer working in the lab with his wife."
             her surprised "But what about the corn everyone needs for their animals?"
             martin normal "It's mostly Pete's cows that eat it; the smaller animals could live on kitchen scraps and foraging."
-            natalia "Well, then I guess it's Pete's problem."
+            natalia "Then I guess it's Pete's problem."
             him concerned "Just... cut back gradually. It'll take time for everyone to adjust."
             scene black with fade
             nvl clear
@@ -1443,7 +1443,7 @@ label community11:
     show bro normal at quarterleft
     her happy "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
     kid surprised "I wonder what the new people will look like?"
-    him happy "Well, they'll look like we do. We're all humans."
+    him happy "They'll look like we do. We're all humans."
     her flirting "Unless aliens have secretly taken over Earth while we were gone!"
 
     scene plain with fade
@@ -1530,7 +1530,7 @@ label community11:
             "Do you have any hobbies?":
                 him surprised "What do you like to do in your free time?"
                 chaco "Look at the stars."
-                him happy "Well, this is a great place for stargazing. We've had to invent several new constellations though."
+                him happy "This is a great place for stargazing. Some of the constellations even look the same."
                 chaco "Sounds interesting."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
@@ -1777,217 +1777,266 @@ label community12:
     $ talked_bankrupt = False
     if require_whole_harvest or rationing:
         label beef_shortage:
+            scene storeroom with fade
+            show him normal at midleft
+            show ilian normal at midright
+            with dissolve
             him "Oh, and I need a pound of ground beef."
-            ilian "Unfortunately, we are completely out of beef."
-            him "What?"
-            ilian "We're completely out of beef."
-            him "I heard you, but I didn't believe you. I thought we had plenty of beef."
-            ilian "Well, first the miners maxxed out their allotment. So we're completely out of canned beef. Then one of Pete's cows went missing."
-            ilian "It was also a dairy cow, so we're low on milk."
-            him "Well, did it just wander off?"
+            ilian normal "Unfortunately, we are completely out of beef."
+            him surprised "What?"
+            ilian normal"We're completely out of beef."
+            him pout "I heard you, but I didn't believe you. I thought we had plenty of beef."
+            ilian normal "We would have, but the miners maxxed out their allotment. So we're completely out of canned beef. Then one of Pete's cows went missing."
+            ilian normal "It was also a dairy cow, so we're low on milk."
+            him doubt "Well, did it just wander off?"
             ilian "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
-            him "Is there going to be an investigation or something?"
-            ilian "Not my problem. We've got lots of chicken meat if you're desperate for meat."
-            him "Well I happen to really like beef, and my family likes butter. I want to find out what happened."
-            ilian "Go ahead and ask Pete, he knows what happened."
-
-            "Since Pete lives far away, I e-mailed him to get the details."
-            "In Pete's reply, he e-mailed me, Pavel, Sara, and Natalia." #integrate in e-mail UI-looking thing?
-
+            him concerned "Is there going to be an investigation or something?"
+            ilian happy "Not my problem. We've got lots of chicken meat if you're desperate for meat."
+            him determined "I happen to really like beef, and my family likes butter. I want to find out what happened."
+            ilian normal "Go ahead and ask Pete, he knows what happened."
             nvl clear
-            pete_c "Thanks for asking about the cattle. A few people have asked so I'm e-mailing all of you right now. I have put tiny screws that look like security cameras at intervals around my fence and I haven't had any more cattle go missing."
-            "I rolled my eyes. Like that would fool anyone."
-            pete_c "I think it was the miners. There were tracks of two people with boots and the missing cow that went out the gate toward the miners."
-            pete_c "They had to wake up the cow and push her; I can tell they had a hard time but I bet they had some treat to get her to move."
+            him_c "Hey, Pete, what happened to all our beef?"
+            pete_c "That's what I'd like to know!" 
+            pete_c "Pavel, Sara, and Natalia have been asking about them too, so I cc'd them on this message."
+            pete_c "I've put tiny screws that look like security cameras at intervals around my fence and so far it's working!!"
+            him_c "Like that would fool anyone."
+            pete_c "I think it was the miners. Two different boot tracks went out the gate with the cow's prints."
+            pete_c "They had to wake up the cow and push her. I can tell they had a hard time but I bet they had a plum or something to get her going."
             pete_c "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
             pete_c "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
             pete_c "We'll have to live without beef for a while so that we can give everyone some next season."
             nvl hide
-
+            
+            scene farm_interior with fade
+            show him normal at midleft
+            show chaco at midright
+            show kid normal at left
+            with dissolve
             "That night we had Chaco over for dinner again as part of our welcome miner program."
             "It was a habit now, and after a few weeks, Chaco got more comfortable with us and talked more."
             him "Thanks for helping with the dishes, Chaco."
             chaco "You're welcome. Thanks for the food."
             chaco "I brought my telescope like you asked. I can show you some stars."
             chaco "We might be able to see Earth's sun if it's clear."
-            him "Great. I think [kid_name] will love that."
+            him excited "Great. I think [kid_name] will love that."
+            scene moons with fade
+            show chaco at center with moveinleft
+            show kid happy at midright with moveinleft
+            show him sad at midleft with moveinleft
             "Seeing our old sun, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silhouetted in the sunset."
             "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and trains and restaurants." #believable?
-            him "It shows how far away we really are."
+            him sad "It shows how far away we really are."
             kid "How far away are we?"
-            chaco "About four light years." #more precise answer?
+            chaco "About four light years." #TODO: more precise answer?
             "We looked at the sky."
-            him "Oh, a shooting star!"
-            kid "I saw it! I saw it!"
+            him excited "Oh, a shooting star!"
+            kid happy "I saw it! I saw it!"
             "I pulled myself out of my nostalgia. No point in moping about Earth."
+            show him determined at midleft
             "Especially when we had problems here... Chaco might know something about the missing cow. What should I ask?"
             menu:
                 "Do you eat beef often?":
-                    him "Do you eat beef often?"
-                    chaco "Yes, I do. We usually have a barbeque when we get past our mining quota."
-                    him "That sounds fun."
+                    him determined "Do you eat beef often?"
+                    chaco "Yes, I do. We have a barbeque when we go past our mining goal."
+                    chaco "Exceed. That's the word. When we exceed our quota."
+                    him content "That sounds fun."
                     chaco "It is."
                     $ miners += 1
                     $ know_BBQ = True
-                "Do you know about the missing cow?":
-                    him "Hey did you hear about the missing cow?"
+                "Did the miners steal the cow?":
+                    him determined "Do you know if the miners stole the cow that went missing?"
                     "Chaco keeps looking at the sky, his face inscrutible."
-                    chaco "No?"
-                    him "Pete said that one of his cows went missing."
-                    him "He said the cow's tracks were going towards the miner camp."
-                    chaco "Hmmm. I don't know anything about that."
-                    him "Pete said there wouldn't be any more beef this season."
+                    chaco "No, I don't know anything about that."
+                    him concerned "Pete said that one of his cows went missing."
+                    him concerned "He said the cow's tracks were going towards the miner camp."
+                    chaco "I hope he can find it."
+                    him sad "Pete said there wouldn't be any more beef this season."
                     chaco "No more beef? That's not good."
             "Chaco packed up his telescope and went home."
-
-            "Later on, Pavel sent me a message."
-            pavel "[his_name], we have to find out what happened to that cow."
+            scene farm_exterior with fade
+            "The next day, Pavel sent me a message."
+            nvl clear
+            pavel_c "[his_name], we have to find out what happened to that cow."
             if know_BBQ:
-                him "I heard from Chaco that they have barbeques when they mine over quota."
-            else:
-                pass
-            pavel "Hmm. We need to ask the miners what they know."
-            pavel "I know beef is really popular in South African and Chilean cuisine, and I think most of the miners are from those two countries."
-            pavel "Can you come with me tomorrow morning? I was able to arrange a meeting with Brennan."
-            him "...sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
-            pavel "You were the first person I asked."
-            him "Is it because I'm a guy?"
-            pavel "And you're interested in what happened to the cow! Three-quarters of the miners are men, so it just seemed like a guy's thing."
+                him_c "I heard from Chaco that they have barbeques when they mine over quota."
+            pavel_c "Hmm. We need to ask the miners what they know."
+            pavel_c "I know beef is really popular in South African and Chilean cuisine, and I think most of the miners are from those two countries."
+            pavel_c "Can you come with me tomorrow morning? I was able to arrange a meeting with Brennan."
+            him_c "...sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
+            pavel_c"You were the first person I asked."
+            him_c "Is it because I'm a guy?"
+            pavel_c "And you're interested in what happened to the cow! Three-quarters of the miners are men, so it just seemed like a guy's thing."
             menu:
                 "Let's ask Sara if she wants to come too.":
+                    him_c "I'll invite Sara to come with us."
                     $ colonists += 1
                     $ sara_investigates = True
                     "You messaged Sara about meeting Brennan tomorrow morning, and she agreed to come with you."
                 "Let's go by ourselves.":
-                    pass
+                    him_c "Okay, let's keep it a guy thing."
 
             if sara_investigates:
-                "The next day, you meet Pavel and Sara on the road to the miner's village."
+                scene path with fade
+                show him normal at midleft with moveinleft
+                show sara normal at midright with moveinright
+                show pavel normal at center with moveinright
+                "The next day, I met Pavel and Sara on the road to the miner's village."
                 sara "You guys can talk to Brennan. I'll say I'm really into cooking and ask one of the wives what she knows about the cow."
                 pavel "Actually, most of the couples who came along are both miners."
                 pavel "There are a few people who don't work in the mines though."
                 pavel "I think I can talk at length about cooking better than you can. How about I do the recipe swap thing and you can grill Brennan?"
                 sara "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
-                him "Sounds good."
+                him smirk "Sounds good."
                 jump mining_village
             else:
-                "The next day, you meet Pavel on the road to the miner's village."
-                him "I think one of us should talk to Brennan while the other tries to talk to some of the other people in the miners' village."
+                scene path with fade
+                show him normal at moveinright
+                show pavel normal at midleft 
+                with dissolve
+                "The next day, I met Pavel on the road to the miner's village."
+                him determined "I think one of us should talk to Brennan while the other tries to talk to some of the other people in the miners' village."
                 pavel "I've been meaning to ask one of the cooks about her recipes. Are you comfortable talking to Brennan?"
-                him "I guess. Sometimes I want to punch his pretty face, but I can restrain myself."
+                him annoyed "Sometimes I want to punch his pretty face, but I can restrain myself."
                 pavel "He means well."
                 jump mining_village
 
             label mining_village:
                 "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
                 pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
+                hide him with moveoutright
+                hide pavel with moveoutright
+                if sara_investigates:
+                    hide sara with moveoutright
                 "We walk through the village on the way to the control station, which is higher up on the foothill."
                 scene cabins with fade
+                show him normal at midleft with moveinright
+                show pavel normal at left with moveinright
+                with dissolve
+                if sara_investigates:
+                    show sara normal at center with moveinleft
                 "Rivulets of waste water flow down the road as we approach. It doesn't smell like urine, so it's probably leftovers from washing."
                 "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than mine, if that's even possible."
                 "We walk by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
                 "Pavel stops and asks her a question about her laundry, and they start talking. He motions for me to continue without him."
+                hide pavel with moveoutleft
+                show yurt_interior
+                show brennan normal at midright
+                with dissolve
                 "I arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
                 brennan "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
 
                 if sara_investigates:
+                    show him normal at left with moveinright #TODO: him and sara sprites not currently showing up
+                    show sara normal at midleft with moveinright
                     brennan "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
-                    brennan "I do have some tea though, if you would like some."
+                    brennan happy "I do have some tea though, if you would like some."
                     sara "I would like some."
-                    him "No thanks."
+                    him determined "No thanks."
                     "Brennan serves Sara some tea."
                     brennan "So there's a missing cow, is there?"
-                    sara "Yes. Have you seen any cows around here? The cow's tracks came this way."
+                    sara sad "Yes. Have you seen any cows around here? The cow's tracks came this way."
                     brennan "Sorry, but I haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
                     if know_BBQ:
                         sara "I heard that your team likes to have a barbeque when they make it past their mining quota. It seems like you might help supply the beef for that?"
                         brennan "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
-                        sara "Okay, who is their supervisor then?"
+                        sara sad "Okay, who is their supervisor then?"
                         brennan "His name is Bandile. He's down in the mines all day though. You could try messaging him."
                     brennan "I hope you find the missing cow."
                     brennan "Now if you don't mind, I need to get back to work."
-
+                    scene cabins with fade
+                    show him normal at midleft with moveinright
+                    if sara_investigates:
+                        show sara normal at center with moveinright
                     "We left and headed down the mountain. Pavel waved and joined us."
+                    show pavel normal at left with moveinleft
                     pavel "How was your conversation with Brennan?"
-                    him "Not great. I can't tell if he's hiding something or just defensive."
-                    sara "Brennan acts like it doesn't matter what they eat, as long as they're alive."
-                    pavel "I imagine that's how most employers feel about their miners."
-                    sara "I don't know why he's playing it so cool. Everyone loves food, right?"
-                    him "If he acted too concerned about food, then he'd have to admit the missing cow is partially his problem."
-                    pavel "For what?"
+                    him concerned "Not great. I can't tell if he's hiding something or just defensive."
+                    sara sad "Brennan acts like it doesn't matter what they eat, as long as they're alive."
+                    pavel sad "I imagine that's how most employers feel about their miners."
+                    sara sad "I don't know why he's playing it so cool. Everyone loves food, right?"
+                    him doubt "If he acted too concerned about food, then he'd have to admit the missing cow is partially his problem."
+                    pavel normal "I did find out that the miners were planning a celebration."
+                    him doubt "For what?"
                     pavel "They wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
-                    sara "Aww, they have community events too!"
+                    sara normal "Aww, they have community events too!"
                     if know_BBQ:
                         sara "Brennan said that the miners's supervisor, Bandile, is in charge of the celebrations."
                         sara "He recommended messaging him. Can you do that [his_name]?"
-                        him "Yes. I want to get to the bottom of this."
+                        him normal "Yes. I want to get to the bottom of this."
                         jump message_Bandile
                     else:
-                        him "Where do we go from here?"
-                        pavel "Can you tell Pete what we found out?"
+                        him normal "Where do we go from here?"
+                        pavel normal "Can you tell Pete what we found out?"
                         jump tell_Pete
 
                 else:
+                    show him normal at midleft with moveinright
                     brennan "Hello, [his_name].  We don't have any extra chairs, so I'm afraid you'll have to stand."
                     brennan "I do have some tea though, if you would like some."
-                    him "No thanks."
+                    him determined "No thanks."
                     "Brennan sipped his tea."
-                    brennan "How's [her_name] doing? I haven't seen her much since I arrived."
-                    him "Just fine, thanks."
+                    brennan happy "How's [her_name] doing? I haven't seen her much since I arrived."
+                    him annoyed "Just fine, thanks."
                     brennan "So there's a missing cow, is there?"
-                    him "Yeah. Pete says that he thinks it was one of your miners. Is that possible?"
+                    him determined "Yeah. Pete says that he thinks it was one of your miners. Is that possible?"
                     brennan "I think we would have noticed if someone had stolen a cow."
-                    him "No, but you could have slaughtered it already."
-                    brennan "How would we have slaughtered it? We have plenty of heavy machinery for cutting through stone but they are too big for cutting up one small cow. Also it would completely mangle the meat."
-                    him "I don't know how you would have slaughtered it."
+                    him doubt "No, but you could have slaughtered it already."
+                    brennan angry "How would we have slaughtered it? We have plenty of heavy machinery for cutting through stone but they are too big for cutting up one small cow. Also it would completely mangle the meat."
+                    him pout "I don't know how you would have slaughtered it."
                     if know_BBQ:
-                        him "Chaco told me that you often have barbeques. Is that right?"
+                        him pout "Chaco told me that you often have barbeques. Is that right?"
                         brennan "Yeah, the miners's supervisor organizes them every so often. Keeps morale up."
-                        him "I thought you were the supervisor."
+                        him surprised "I thought you were the supervisor."
                         brennan "No, I'm the project manager."
-                        him "What's the difference?"
+                        him surprised "What's the difference?"
                         brennan "I tell everyone how fast the mining has to go for us to be on schedule."
                         brennan "It's not just a monthly check-in kind of thing. I have daily plans for our project, and have to make changes on the fly based on what the miners find, or if someone gets injured."
                         brennan "It's like if we all went on a long walk to the ocean. Probably one of us would be the navigator, making sure we were going the right direction and ready to camp at nightfall. That's me."
                         brennan "Another person would notice if someone was lagging behind, or unhappy for some reason. That's the supervisor."
                         brennan "Surely you have a project manager for the colony's agricultural work?"
-                        him "We all trust each other to do our jobs."
+                        him pout "We all trust each other to do our jobs."
                         brennan "Of course. How... quaint."
                     else:
                         pass
                     brennan "I need to get back to work. I hope you can find the missing cow."
-                    him "I hope so too."
+                    him determined "I hope so too."
                     "I left and headed down the mountain. Pavel waved and joined me."
                     pavel "How was your conversation with Brennan?"
-                    him "Not great. I can't tell if he's hiding something or not."
-                    pavel "Understandable."
+                    him doubt "Not great. I can't tell if he's hiding something or not."
+                    pavel sad "Understandable."
                     pavel "I met Lisa and she seemed to know something, but didn't say exactly what she knew."
-                    him "Do they have the cow hiding in one of these communal buildings?"
+                    him doubt "Do they have the cow hiding in one of these communal buildings?"
                     pavel "I don't know. I do know that they were planning to celebrate a special occasion, probably with some meat."
-                    him "Oh. What was the occasion?"
+                    him annoyed "Oh. What was the occasion?"
                     pavel "One of their teenagers passed some complicated tests and they're going to allow her to operate heavy machinery."
-                    him "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
+                    him concerned "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
                     pavel "No, just that they wished they had some beef."
-                    him "Where do we go from here?"
+                    him normal "Where do we go from here?"
                     pavel "Can you tell Pete what we found out?"
                     jump tell_Pete
 
             label message_Bandile:
                 # $ mavericks += 1 not sure if this makes sense
-                "I sent Bandile a message asking about the cow." #e-mail/message UI thing
-                "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
-                "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
-                "We were buying beef and having barbeques almost fortnighly, and everyone really enjoyed them."
-                "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
-                "I heard that two of our miners went on a renegade mission to steal the cow."
-                "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
-                "Some of our miners completely understand why we need to save the cows for calving. A few either don't understand or don't care."
-                "Someone let the cow go the next day and no one has seen it since."
-                "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
-                "I talked to the men who took the cow and they agreed to give Pete 100 credits each as an apology."
-                "That was the end of the message."
-                "I told Pete that one of the miners stole his cow, and that Bandile sent him 100 credits in apology."
-                #pete angry
+                scene farm_exterior with fade
+                "I sent Bandile a message asking about the cow."
+                nvl clear
+                him_c "Hi Bandile, this is [his_name] with the colonists. My friend Pete is missing a cow."
+                him_c "Her tracks went in the direction of the miner's camp. Do you know anything that could help us find her?"
+                legalese "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
+                legalese "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
+                legalese "We were buying beef and having barbeques almost fortnighly, and everyone really enjoyed them."
+                legalese "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
+                legalese "I heard that two of our miners went on a renegade mission to steal the cow."
+                legalese "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
+                legalese "Some of our miners completely understand why we need to save the cows for calving. A few either don't understand or don't care."
+                legalese "Someone let the cow go the next day and no one has seen it since."
+                legalese "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
+                show him at midleft
+                show pete normal at midright 
+                with dissolve
+                him sad sweat "Hey Pete! I found out what happened to your cow."
+                him annoyed sweat "You were right, it was the miners, but they weren't in agreement about it."
+                him pout "Bandile, their supervisor, sends 100 credits as an apology. I think he already transferred it to your account."
                 pete "They think 100 credits is going to replace her?"
                 pete "She could have had about three more calves."
                 pete "Least I can do is try to find her."
@@ -1996,114 +2045,121 @@ label community12:
 
             label tell_Pete:
                 him "Okay, I'll tell him what we know."
-                #scene change
-                him "Pete, we don't know for sure, but it seems pretty likely that some miners took your cow, but she escaped."
+                scene farm_exterior
+                show him at midleft with dissolve
+                show pete at midright with dissolve
+                him sad sweat "Pete, we don't know for sure, but it seems pretty likely that some miners took your cow, but she escaped."
                 pete "Yeah, that's about what I thought too."
                 pete "Are they going to find her for me?"
-                him "No. I don't think they even know which direction she went."
-                #pete angry
+                him pout "No. I don't think they even know which direction she went."
                 pete "I don't believe this. They steal my cow and then expect me to find her?"
-                pete "She could have had three more calves. That's a pretty valuable cow to my herd."
+                pete "She could have had three more calves."
                 pete "Who do they think they are anyway?"
-                him "Sorry, I tried, but I couldn't find anything definitive."
+                him pout "Sorry, I tried, but I couldn't find anything definitive."
                 pete "Least I can do is try to find her."
-                "Later I heard he never found her."
+                "I don't think he ever found her."
                 return
     else:
         #rationing is the default for the non-liaison option, so non-liaisons should not see this event.
         #should there be an option to switch to rationing again before this?
         #in your fields
+        $ miners -=1
+        scene fields with dissolve
+        show him normal at midleft
         "I'm working out in the fields when I see a redheaded figure approaching."
-        brennan "You have got some explaining to do."
-        him "What do you mean?"
-        brennan "I can't get food for my miners from Ilian. He's been stalling me over the last month, and we've eaten all our emergency rations."
-        brennan "Finally Ilian told me that there isn't enough extra food for everyone, because you farmers decided not to plant extra crops."
-        brennan "What an idiotic decision. Ilian just said it was someone on the colony planning committee."
-        brennan "I looked at the minutes. I know exactly who was behind this. You decided not to save food for us? You think we can hunt and forage?"
-        him "There's plenty of food if you know where to look."
-        brennan "We don't have time to look for food. We need to spend all our time mining to stay on schedule."
-        him "Feeding miners wasn't in our contract."
-        brennan "Well, employees are supposed to do what their employers ask them to!"
-        brennan "The whole reason you guys are farming is to support the miners, so we can send precious metals back and fund this whole thing."
+        show brennan angry at midright with moveinleft
+        brennan angry "You have got some explaining to do."
+        him surprised "What do you mean?"
+        brennan angry "I can't get food for my miners from Ilian. He's been stalling me over the last month, and we've eaten all our emergency rations."
+        brennan angry "Finally Ilian told me that there isn't enough extra food for everyone, because you farmers decided not to plant extra crops."
+        brennan angry "What an idiotic decision. Ilian just said it was someone on the colony planning committee."
+        brennan angry "I looked at the minutes. I know exactly who was behind this. You decided not to save food for us? You think we can hunt and forage?"
+        him explaining "There's plenty of food if you know where to look."
+        brennan angry "We don't have time to look for food. We need to spend all our time mining to stay on schedule."
+        him doubt "Feeding miners wasn't in our contract."
+        brennan "Contracts can only cover so much. Employees are supposed to do what their employers ask them to!"
+        brennan angry "The whole reason you guys are farming is to support the miners, so we can send precious metals back and fund this whole thing."
         brennan "I thought you and the other colonists were pretty happy to be away from Earth."
-        him "Why don't you try learning how to hunt and then get angry at me?"
-        him "There is so much wildlife here and a lot of it is edible. You already have a few people who work in support capacities, like cooking and cleaning, right?"
+        him pout "Why don't you try learning how to hunt and then get angry at me?"
+        him explaining "There is so much wildlife here and a lot of it is edible. You already have a few people who work in support capacities, like cooking and cleaning, right?"
         brennan "That's just four people."
-        him "Maybe they can do some of the foraging too."
-        brennan "Okay. Who's going to teach them what they can eat?"
-        him "Dr. Lily can. It's half the reason she's here."
+        him doubt "Maybe they can do some of the foraging too."
+        brennan angry "Okay. Who's going to teach them what they can eat?"
+        him explaining "Dr. Lily can. It's half the reason she's here."
         him "As for hunting, I think that your workers will enjoy a change of pace. It might even make them more productive."
-        brennan "I've tasted crabbird though. It's not as good as chicken."
-        him "We have some really good recipes. Put enough spices on it and you can hardly tell the difference."
-        him "You can start growing some spices and potatoes. We'll start you off and then soon you'll be enjoying the joys of farming!"
+        brennan normal"I've tasted crabbird though. It's not as good as chicken."
+        him normal "We have some really good recipes. Put enough spices on it and you can hardly tell the difference."
+        him explaining "You can start growing some spices and potatoes. We'll start you off and then soon you'll be enjoying the joys of farming!"
         him "Pete can teach you how to hunt."
-        brennan "If you have enough time to teach us how to hunt and forage and farm, you would have had enough time to plant a few more crops for us to eat."
-        him "We probably could have done that. But I think it's more important that you take care of your own food."
-        brennan "Every man a farmer, eh? What a primitive philosophy in our modern age of efficient specialization."
-        him "I don't want to be feeding miners in twenty years. I want to be enjoying my own family and community."
-        brennan "Over half of us are here for life. So we're part of your little community now."
-        him "Here for life? You make it sound like a prison sentence."
-        brennan "For some of us, it is."
-        brennan "There's a very real chance that RET could go bankrupt because of this."
+        brennan angry "If you have enough time to teach us how to hunt and forage and farm, you would have had enough time to plant a few more crops for us to eat."
+        him normal "We probably could have done that. But I think it's more important that you take care of your own food."
+        brennan normal "Every man a farmer, eh? What a primitive philosophy in our modern age of efficient specialization."
+        him pout "I don't want to be feeding miners in twenty years. I want to be enjoying my own family and community."
+        brennan angry "Over half of us are here for life. So we're part of your little community now."
+        him angry "Here for life? You make it sound like a prison sentence."
+        brennan angry "For some of us, it is."
+        brennan angry "There's a very real chance that RET could go bankrupt because of this."
         menu community12_RET_bankrupt:
             "How would they go bankrupt?" if not talked_bankrupt:
-                him "What do you mean?"
-                brennan "I can't believe you don't understand this."
-                brennan "RET makes money from supplying electronics manufacturers with rare metals."
+                him pout "What do you mean?"
+                brennan angry "I can't believe you don't understand this."
+                brennan normal "RET makes money from supplying electronics manufacturers with rare metals."
                 brennan "They're scraping by right now doing things like buying and scavenging scrap electronics."
                 brennan "They've gone ridiculously into debt to try getting metal off this planet. It's already been almost a decade since they started."
-                him "I thought they had some government funding and grants and stuff."
-                brennan "They did. They still do. But that doesn't cover most of the expenses."
-                brennan "My job is to get that shuttle full of metal and send it back ASAP."
+                him doubt "I thought they had some government funding and grants and stuff."
+                brennan angry "They did. They still do. But that doesn't cover most of the expenses."
+                brennan normal "My job is to get that shuttle full of metal and send it back ASAP."
                 brennan "That way RET can continue supporting our survival."
                 $ talked_bankrupt = True
                 jump community12_RET_bankrupt
             "Why is RET going bankrupt so bad?":
-                him "So RET goes bankrupt. We can survive without them!"
-                brennan "You can be blasé about it now. But you guys depend on them for all kinds of stuff."
+                him pout "So RET goes bankrupt. We can survive without them!"
+                brennan angry "You can be blasé about it now. But you guys depend on them for all kinds of stuff."
                 brennan "Your tablets, all your medicine and medical equipment, your solar panels, your batteries."
-                brennan "And most crucially, the equipment to detect and broadcast solar flares."
+                brennan normal "And most crucially, the equipment to detect and broadcast solar flares."
                 brennan "Could you really live without all that?"
                 menu:
                     "It would be difficult, but we could.":
                         # increase luddite relationship?
-                        him "More people would die of preventable causes. But I think that overall we could survive."
-                        brennan "Why would you want more people to die instead of fewer?"
-                        him "Because then we wouldn't be dependent on some possibly-unethical company for our survival."
-                        brennan "Yeah, and you're so ethical, you're willing to die to be independent."
-                        brennan "You shouldn't be making that decision for everyone else, too."
+                        him determined "More people would die of preventable causes. But I think that overall we could survive."
+                        brennan normal "Why would you want more people to die instead of fewer?"
+                        him pout "Because then we wouldn't be dependent on some possibly-unethical company for our survival."
+                        brennan angry "Yeah, and you're so ethical, you're willing to die to be independent."
+                        brennan normal "You shouldn't be making that decision for everyone else, too."
                         menu:
                             "True enough.":
-                                him "I hadn't thought of it that way. You have a good point."
+                                him determined "I hadn't thought of it that way. You have a good point."
                                 jump community12_choose_farming
                             "I can and will make that decision.":
-                                him "I'm not making these decisions on some whim. The colonists elected me to be the liaison to RET."
-                                him "That means they trust my judgement."
-                                him "And I think we should stick to what I decided, which was to have the miners hunt and forage for most of their food."
+                                him determined "I'm not making these decisions on some whim. The colonists elected me to be the liaison to RET."
+                                him pout "That means they trust my judgement."
+                                him pout "And I think we should stick to what I decided, which was to have the miners hunt and forage for most of their food."
                                 jump community12_choose_foraging
                     "No, we couldn't.":
-                        him "We couldn't live without all that technology."
-                        him "This isn't like Earth where we've evolved to survive in our environment and have centuries of knowledge to lean on."
-                        him "Without our solar flare detection technology, we'd probably all die within a few years or be stuck living in caves."
+                        him determined "We couldn't live without all that technology."
+                        him determined "This isn't like Earth where we've evolved to survive in our environment and have centuries of knowledge to lean on."
+                        him sad "Without our solar flare detection technology, we'd probably all die within a few years or be stuck living in caves."
                         brennan "I'm glad you understand the situation then."
-                        him "Yes, I understand."
+                        him sad "Yes, I understand."
                         jump community12_choose_farming
             "You're right, RET could go bankrupt.":
-                him "I know what I'm doing. I know that RET could go bankrupt and then we'd stop getting supplies from them."
-                him "We have enough to survive. By the time our solar panels and radios give out, we'll probably have figured out how to fix them."
-                him "Especially with all your mining equipment, it won't be long before we can produce our own crude electronics."
-                him "We won't have all of the great medicines and medical equipment like they have on Earth."
-                him "More of us would die without RET, but I'm prepared to accept that."
-                him "There's also a chance that they won't go bankrupt, or that some other company would take over from them if they did."
-                him "I know you don't like it, but I'm sticking to my decision."
+                him pout "I know what I'm doing. I know that RET could go bankrupt and then we'd stop getting supplies from them."
+                him pout "We have enough to survive. By the time our solar panels and radios give out, we'll probably have figured out how to fix them."
+                him normal "Especially with all your mining equipment, it won't be long before we can produce our own crude electronics."
+                him explaining "We won't have all of the great medicines and medical equipment like they have on Earth."
+                him sad "More of us would die without RET, but I'm prepared to accept that."
+                him explaining "There's also a chance that they won't go bankrupt, or that some other company would take over from them if they did."
+                him pout "I know you don't like it, but I'm sticking to my decision."
                 jump community12_choose_foraging
 
                 label community12_choose_farming:
-                    brennan "I'm glad you agree. I know that a lot of families have their own food storage."
+                    brennan normal "I'm glad you agree. I know that a lot of families have their own food storage."
                     brennan "This is a dire situation, so I'll loan you 500 credits of my landing fee."
                     brennan "Gather up what you can find from the other colonists and hopefully it will be enough to last until the next harvest."
                     brennan "Also, start planting some extra crops for us, otherwise we'll all starve or irradiate to death in this forsaken place."
-                    him "Okay, I'll do it right away."
+                    him concerned "Okay, I'll do it right away."
+                    hide brennan
+                    hide him
                     legalese "Dear farmers of Talaam."
                     legalese "A few years ago I said that we didn't need to save food to feed the miners."
                     legalese "I thought that the miners would have time to hunt and forage and farm in addition to their mining."
@@ -2112,18 +2168,23 @@ label community12:
                     legalese "There isn't enough surplus to feed the miners now, at least not in the storehouse."
                     legalese "If you can spare some crops for our miners, I can compensate you."
                     legalese "We also need several farmers to volunteer to plant fast-growing crops and also regular crops."
+                    scene stars with fade
                     "Some farmers volunteered to sell extra food, and two or three farmers they'd plant more crops."
                     "After two weeks, we had lots of salad greens and radishes."
                     "But the lettuce and radishes weren't enough to feed the miners."
+                    scene farm_exterior with dissolve
+                    show him normal at midleft
+                    show chaco at midright
                     chaco "Thank you so much for dinner tonight."
-                    him "You're welcome."
+                    him happy "You're welcome."
                     chaco "Could you sell me some of your crops?"
                     chaco "I can give you plenty of credits for them."#make this a decision if we have food/money variables
-                    him "We don't have a lot of extra food right now, but we can spare a little."
+                    him determined "We don't have a lot of extra food right now, but we can spare a little."
                     chaco "This is great. I'm so sick of radish salad."
                     $ modify_credits(50)
-                    him "You know, if you have the credits, I bet Pete could do some hunting for you."
+                    him explaining "You know, if you have the credits, I bet Pete could do some hunting for you."
                     chaco "I'll ask him."
+                    scene stars with dissolve
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
                     "Dr. Lily took a few people out foraging."
                     "The miners lived off the meat and foraged food for almost a month."
@@ -2131,61 +2192,79 @@ label community12:
                     return
 
                 label community12_choose_foraging:
-                    brennan "Fine. I'll go door-to-door tonight to see if I can buy off some food until you can send over your teachers."
-                    him "They'll be there tomorrow morning."
+                    $ miners -=1
+                    brennan angry "Fine. I'll go door-to-door tonight to see if I can buy off some food until you can send over your teachers."
+                    him normal "They'll be there tomorrow morning."
+                    nvl clear
                     him_c "Hello Lily and Pete."
                     him_c "We don't have that much food for the miners, so they need to learn how hunt and forage."
                     him_c "Can you, Lily, teach them to forage, and Pete, can you teach them how to hunt?"
                     him_c "They want to start ASAP."
                     him_c "How does tomorrow morning sound?"
-                    "Pete agreed to meet the next day, and Dr. Lily the day after."
-                    #near the mining camp or outside
-                    pete "I know on Earth that hunting is this thing rich people do."
+                    pete_c "I have time tomorrow morning."
+                    lily_c "I have some experiments I need to attend to tomorrow."
+                    lily_c "However, I am available the day after tomorrow."
+                    scene cabins with dissolve
+                    show pete normal at midleft with dissolve
+                    pete normal "I know on Earth that hunting is this thing rich people do."
                     pete "Here it's a matter of survival. There's no caddy who's going to show you where to stand and when to shoot."
-                    pete "I'll start by describing some of the nearby game."
-                    pete "We'll set up some of our big traps and make some snares."
-                    pete "Then I'll show you some of my favorite hunting spots, and we'll do basic target practice."
+                    pete happy "I'll start by describing some of the nearby game."
+                    pete happy "We'll set up some of our big traps and make some snares."
+                    pete happy "Then I'll show you some of my favorite hunting spots, and we'll do basic target practice."
                     pete "I hope you spent some time on the hunting sims because they do teach you how to aim quickly."
                     pete "You guys won't be hunting with guns, since we want to save ammo."
-                    pete "But if we can't shoot anything with crossbows today, I'll shoot something so you guys can eat."
+                    pete happy "But if we can't shoot anything with crossbows today, I'll shoot something so you guys can eat."
                     "There were cheers at the mention of meat."
-                    pete "I'll come back next week and we can talk about fishing, too."
+                    pete normal "I'll come back next week and we can talk about fishing, too."
                     "I checked back in with them that evening, and they were roasting a whole grass crab."
                     "They were processing a few crabirds too."
+                    scene cabins with dissolve
+                    show him normal at left
+                    show lily normal at midleft
+                    with dissolve
                     "The next day, Dr. Lily started her instruction."
-                    "Around 20 people showed up for the class."
-                    lily "There are at least 20 edible plants on this planet."
+                    "Around fifteen people showed up for the class."
+                    lily normal "There are at least twenty edible plants on this planet."
                     lily "We haven't studied their effects on the diet long-term, but Earth animal studies are promising."
-                    lily "Of those 20 edible plants, six are commonly used in cooking."
+                    lily happy "Of those twenty edible plants, six are commonly used in cooking."
                     "One of the miners asked what was wrong with the other fourteen."
-                    lily "Some taste very bitter, or have a very strong taste that we haven't found a use for. Others are easy to confuse with lethal plants, or have strange side effects."
-                    lily "I've sent you all the most detailed maps we have of foraging locations."
-                    lily "I've also made simplified versions based on the current season."
-                    lily "It's likely that you will exhaust these locations. Please mark other good foraging locations you find on the map so you can find them again later."
-                    lily "The sidebar shows detailed leaf, flower, and root images, but the best way to learn is to practice finding it in the wild."
+                    lily happy "Some taste very bitter, or have a very strong taste that we haven't found a use for. Others are easy to confuse with lethal plants, or have strange side effects."
+                    lily happy "I've sent you all the most detailed maps we have of foraging locations."
+                    lily happy "I've also made simplified versions based on the current season."
+                    lily normal "It's likely that you will exhaust these locations. Please mark other good foraging locations you find on the map so you can find them again later."
+                    lily "The sidebar shows detailed leaf, flower, and root images, but the best way to learn is to practice finding them in the wild."
                     lily "There's a good location about a half mile away. I'll show you some other common plants on the way."
+                    hide lily with moveoutleft
                     "While they hiked around that afternoon, I tilled up some ground near the miners's quarters."
-                    him "These seeds don't need to be very deep. One of you can use this stick to make a small hole in the ground, and another person can follow and plant seeds in the holes."
+                    him explaining "These seeds don't need to be very deep. One of you can use this stick to make a small hole in the ground, and another person can follow and plant seeds in the holes."
                     "We planted some crops that could be harvested quickly, like green lettuce and radishes."
+                    scene cabins with fade
+                    show him normal at midleft
                     "The next day, I helped set up a rudimentary irrigation system and we planted more long-term crops."
+                    scene farm_exterior with dissolve
+                    show him normal at midleft
+                    show chaco at midright
+                    with dissolve
                     "I asked Chaco about how things were going at our weekly dinner."
+                    him "So, how do you like the new food?"
                     chaco "The meat isn't bad."
                     chaco "I miss bread."
-                    him "Do you like hunting?"
+                    him content "Do you like hunting?"
                     chaco "We buy our meat from Pete."
-                    him "You're not going hunting?"
+                    him concerned "You're not going hunting?"
                     #chaco looks uncomfortable
                     chaco "No. Brennan said we don't have time."
-                    him "Okay, so Pete is selling meat on the side."
-                    him "What about your farm?"
+                    him determined "Okay, so Pete is selling meat on the side."
+                    him determined "What about your farm?"
                     chaco "We paid some other farmers to come take care of it."
                     chaco "Brennan said it would be easier and quicker for us to focus on mining."
                     chaco "He said that we're probably going to be stuck here unless we work hard."
-                    him "Yes, he does say that."
+                    him pout "Yes, he does say that."
                     chaco "Is it true?"
-                    him "It's true that I decided to let you be in charge of your own food."
-                    him "I was hoping that being connected to your food would help you feel alive."
+                    him sad "It's true that I decided to let you be in charge of your own food."
+                    him determined "I was hoping that being connected to your food would help you feel alive."
                     chaco "Eating food definitely helps."
+                    show stars with dissolve
                     "Other colonists told me how they were helping the miners by doing extra work on the side."
                     "Some of the teenagers from the colony had a great time foraging on the weekends, selling their finds to the miners, and spending their money on the weird crafts they made for each other."
                     "The prices of food from the storehouse started to rise, but we sold crops at a higher price too."
@@ -2252,7 +2331,7 @@ label community13:
     show him determined at midleft
     with moveinleft
     "When we arrived, the control station was empty."
-    him surprised "Well, we tried, but he's not here. Let's just send him a message."
+    him surprised "Look, we tried, but he's not here. Let's just send him a message."
     lily angry "I don't want to risk them poisoning any more wildlife, or people. Do you know where Brennan sleeps?"
     him determined "I have no idea."
     "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
@@ -2374,7 +2453,7 @@ label community13:
     her normal "There's an emergency town meeting tonight to discuss the water contamination."
     if is_liaison:
         him determined "I know, I saw the message."
-        her serious "Well, should we just bring the kids along?"
+        her serious "Should we just bring the kids along?"
         menu:
             "No, I'll stay home with them.":
                 him happy "I'll get the kids to bed on time. You have more expertise with heavy metal poisoning than I do anyway."
@@ -2526,7 +2605,7 @@ label community13:
             pete normal "Didn't take long for big business to sully this planet."
             him annoyed "You joined that big business when you signed up to come here!"
             pete angry "That's a decision I question more and more each day."
-            pete normal "Well, go ahead and do your job."
+            pete normal "Don't stop on my accout. Go ahead and do your job."
             him normal "I will."
             scene cabins with fade
             "The last bottle had to be released by the tailings dam, and I hiked halfway up the mountain to deliver it to Kevin, who took it the rest of the way."
@@ -2658,10 +2737,9 @@ label community14:
 
 # 15 - Naomi dies
 label community15:
-    "In the early morning, [her_name]'s radio went off." #TODO: should we make a special kind of "radio" textbox like with e-mails?
-    # in OPS 1 I just had the characters name be "X on the radio", but perhaps italics or something would make the difference more obvious, too?
-    pavel "[her_name], I think you should come over here."
-    pavel "Naomi is really sick."
+    "In the early morning, [her_name]'s radio went off."
+    pavel "{i}[her_name], I think you should come over here.{/i}"
+    pavel "{i}Naomi is really sick.{/i}"
     her "What are her symptoms?"
     "[her_name] continued talking on the radio as she put on her boots and coat and took my tractor down the road."
     "I fell back asleep and woke up an hour later and started making breakfast"
@@ -2787,7 +2865,7 @@ label community15:
     nvl clear
     him "Hey, [her_name], Sara thought I should say something at the funeral..."
     if (is_liaison):
-        her "Well, you are the liaison. You can do closing remarks; just keep it short."
+        her "Since you're the liaison? Sure. You can do closing remarks; just keep it short."
     else:
         her "You can if you want... somebody needs to speak at the end. Just something short."
     $ c15_funeral = ""
@@ -2972,8 +3050,8 @@ label community16:
             pete "Mostly the same ones. There are some bugs I hadn't seen before that look kind of like pill bugs."
             pete "I've been working on some other ways to deflect radiation though!"
             him "Really? It seems like you wouldn't have the technology..."
-            pete "Well, I had been working on it before I left. I found out that the shells of all these animals are resistent to radiation."
-            him "Huh. Makes sense."
+            pete "I'd started working on it before I left. I found out that the shells of all these animals are resistent to radiation."
+            him "That makes sense. Why didn't I think of that?"
             pete "The main problem is that the shells are brittle, so I can't bend them into other shapes, but I've been experimenting with different treatments for them."
             him "That's really interesting."
             #offer to help prototype
@@ -3179,7 +3257,7 @@ label community17:
     "I set my dish next to the ones from the other families on the buffet table."
     "Everyone helped themselves and sat down--some at tables and some on the ground."
     natalia "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
-    him "Well, it's kind of like a souffleé, but I don't have an electric mixer, or a reliable oven."
+    him "It's kind of like a souffleé, but I don't have an electric mixer, or a reliable oven."
     natalia "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
     him "I know..."
     natalia "You might have been better off just leaving out the flour completely."
@@ -4581,7 +4659,7 @@ label community22:
                         #TODO: expand?
                         $ mavericks = 0 #or a large minus to the relationship
                         $ miners += 1
-                        $ community_22_forced_mavericks_leave = True
+                        $ community_22_forced_mavericks_leave = True #this variable isn't used again
                         return
                     # "No, this isn't right. "
                     #     him_c "This is getting too intense. I don't think it's worth fighting over."
@@ -4656,14 +4734,14 @@ label community22:
 
     elif (mavericks > 5):
         "Pete called me on the radio one evening."
-        pete "We've been hearing and feeling explosions in the mountain a lot lately."
-        pete "What do those damn miners think they're doing?!"
-        him "That's possible. I know they finished mining in the mountain closest to us."
-        pete "I am not moving. They can mine somewhere else."
-        pete "The cave we have now protects us from radiation but lets in light through cracks in the sides."
-        pete "The tunnels are large enough to move around in, and we store food and supplies here."
-        pete "There's even a semi-covered area for the cows."
-        pete "If they keep mining, someone's going to get hurt."
+        pete "{i}We've been hearing and feeling explosions in the mountain a lot lately.{/i}"
+        pete "{i}What do those damn miners think they're doing?!{/i}"
+        him "That's possible. I know they finished mining in the mountain closest to us.{/i}"
+        pete "{i}I am not moving. They can mine somewhere else.{/i}"
+        pete "{i}The cave we have now protects us from radiation but lets in light through cracks in the sides.{/i}"
+        pete "{i}The tunnels are large enough to move around in, and we store food and supplies here.{/i}"
+        pete "{i}There's even a semi-covered area for the cows.{/i}"
+        pete "{i}If they keep mining, someone's going to get hurt.{/i}"
         him "Let me see what I can find out."
         nvl clear
         him_c "Hey Brennan. Are you guys mining in the mountain near the ocean?"
@@ -4685,22 +4763,22 @@ label community22:
         him_c "Okay, okay. I'll talk to Pete, but no promises."
         "I tried paging Pete on the radio, but there was no answer."
         "I left him a sort of text message telling him to call me later."
-        pete "So, what's going on?"
+        pete "{i}So, what's going on?{/i}"
         him "You were right. The miners are digging in your mountain."
-        pete "I knew it."
+        pete "{i}I knew it.{/i}"
         him "I chatted with Brennan, and he said it's the most mineral-rich mountain in a 50-mile radius."
-        pete "Really? So that's why I haven't found anything similar in all my travels..."
-        pete "We still don't want to move."
+        pete "{i}Really? So that's why I haven't found anything similar in all my travels...{/i}"
+        pete "{i}We still don't want to move.{/i}"
         menu: #should this be a choice? or based on a lower level of relationship w/ miners?
             "What should I recommend?"
             "You should resist.":
                 him "I don't think you should have to move."
                 him "I think that if you refuse to move that they will have to work around you."
-                pete "Hmm. So I should call their bluff?"
+                pete "{i}Hmm. So I should call their bluff?{/i}"
                 him "Yeah. Plus I know you could do a lot of damage just by loosening a few bolts on their mining equipment."
-                pete "So I'd be threatening them back, basically."
+                pete "{i}So I'd be threatening them back, basically.{/i}"
                 him "You're the one who doesn't want to move. I'm just telling you one way I think you could stay."
-                pete "I like the way you think."
+                pete "{i}I like the way you think.{/i}"
                 nvl clear
                 him_c "Pete says he's not going to move."
                 brennan_c "Well, he knows what's coming. This is on his head now."
@@ -4719,22 +4797,22 @@ label community22:
             "I don't think it's worth fighting over.":
                 him "I know you don't want to move. But Brennan has made some good points."
                 him "The better mining goes, the longer RET will support our colony by sending us medical supplies and other things we can't make here."
-                pete "That's something I've been wondering about. Why can't we make those things here?"
+                pete "{i}That's something I've been wondering about. Why can't we make those things here?{/i}"
                 him "We don't have the infrastructure for it."
-                pete "We would if RET would send it to us. They don't want us to be completely independent."
+                pete "{i}We would if RET would send it to us. They don't want us to be completely independent.{/i}"
                 if is_liaison:
                     him "I'll ask RET about it and get back to you."
-                    pete "I'd appreciate that."
+                    pete "{i}I'd appreciate that.{/i}"
                 him "Maybe there's a different reason. But whatever it is, we can't change RET's mind right away."
-                pete "Can they just avoid mining around our cave?"
+                pete "{i}Can they just avoid mining around our cave?{/i}"
 #                if miners > 5:
 #                    him "I think they'd need you to let them in your cave so they could know how deep it goes."
 #                    pete "If that's what it comes down to, I think I can let someone in."
 #                    "Pete let Zaina map his cave, and the miners were able to dig around it."
 #                else:
                 him "I don't know. Maybe if they were willing to go in and measure your caves, they would know enough to avoid them."
-                pete "I don't think they care enough to make that kind of effort."
-                pete "I could just stay here and hope it doesn't hurt us."
+                pete "{i}I don't think they care enough to make that kind of effort.{/i}"
+                pete "{i}I could just stay here and hope it doesn't hurt us.{/i}"
                 him "That sounds risky."
                 jump mining_anyway #the two branches aren't symmetric in possible endings... okay?
 
@@ -4745,9 +4823,9 @@ label community22:
                 pavel_c "Please come meet me in my office today."
                 him_c "Okay, what's is about?"
                 pavel_c "I think you know..."
-                "I guess RET probably wasn't happy that the mining had stopped."
+                "RET probably wasn't happy that the mining had stopped."
                 pavel "RET has asked me to designate a new liaison."
-                him "Okay. Fine."
+                him "Okay. Fine with me."
                 pavel "What did you think would happen? You didn't even consult them."
                 him "I know what they would have said."
                 pavel "But you have to let them say it. You're not the only one in contact with them."
@@ -4800,15 +4878,15 @@ label community22:
 label mining_anyway:
     "Brennan continued with the mining even though the mavericks were still living in the caves."
     "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
-    pete "[her_name], do you copy? Please, are you there? We have a medical emergency."
+    pete "{i}[her_name], do you copy? Please, are you there? We have a medical emergency.{/i}"
     her "I'm here. What's wrong?"
     "Pete sounds distraught."
-    pete "Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking."
+    pete "{i}Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking.{/i}"
     her "Is he breathing? Does he have a heartbeat?"
-    pete "He's alive and he called us for help. But he's completely stuck underneath a rock right now."
+    pete "{i}He's alive and he called us for help. But he's completely stuck underneath a rock right now.{/i}"
     her "See if you can keep him warm."
     her "The cave is probably unstable. If you try to get him out, you could make it worse or get stuck yourself."
-    pete "There must be something we can do. I can't sit and watch him die."
+    pete "{i}There must be something we can do. I can't sit and watch him die.{/i}"
     her "Don't try to move him until I have more information. I'll radio back to you in five minutes."
     "She turned the radio off."
     him "That did not sound good." #would Terra say something here too?
@@ -7063,7 +7141,7 @@ label community30:
             "I said goodbye to Pete and pondered what to do with this information."
             $ talked_to_pete = True
             kid "How's that investigation going?"
-            him "Oh, you were being so quiet that I didn't realize you were here. Well, you heard what Pete and I were talking about."
+            him "Oh, you were being so quiet that I didn't realize you were here. You heard what Pete and I were talking about."
             kid "Yep."
             him "Who else is dealing with firegrass these days?"
             if (is_attached()):
@@ -7477,7 +7555,7 @@ label community30:
                             him "This must have been one of those uncommon occurances."
                             kevin "I'm still skeptical."
                         kevin "Who would you consider responsible for the neglect of Joel's health?"
-                        him "Well, Noel, of course. And Van."
+                        him "Noel, of course. And Van."
                         kevin "Very well. I will have you testify at their trail next week."
                         "Thuc was appointed to prepare a defense for Noel and Van."
                         "We didn't talk much that week. The day of the trail came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
@@ -7488,7 +7566,7 @@ label community30:
                         "Thuc talked about how we all forget things from time to time even if we don't want to."
                         "He said it could have been any one of us that forgot to do something that ended up killing someone."
                         "Thuc and I left the room while the jury convened."
-                        him "Well, I think we both did our jobs."
+                        him "I think we both did our jobs."
                         thuc "I hope we can put this incident behind us soon."
                         "After thirty minutes the jury was still going. Sara told us to go home and come back the next morning."
                         "The next morning, we awaited the verdict."
@@ -7517,7 +7595,7 @@ label community30:
                         "I told Julia I was ready to report my findings and she asked me to come over right away."
                         him "I've investigated Joel's death and I believe it was the result of chronic neglect."
                         julia "That's so tragic. What happened, exactly?"
-                        him "Well, as I told you earlier, the brakes on his wheelchair weren't working."
+                        him "As I told you earlier, the brakes on his wheelchair weren't working."
                         him "When he reached down to pick up his binoculors, he fell. He died from the resulting head injury."
                         if knows_previous_head_injuries:
                             julia "And what about the previous head injuries?"
@@ -7540,7 +7618,7 @@ label community30:
                             "Thuc talked about how we all forget things from time to time even if we don't want to."
                             "He said it could have been any one of us that forgot to do something that ended up killing someone."
                             "Thuc and I left the room while the jury convened."
-                            him "Well, I think we both did our jobs."
+                            him "I think we both did our jobs."
                             thuc "I hope we can put this incident behind us soon."
                             "After thirty minutes the jury was still going. Sara told us to go home and come back the next morning."
                             "The next morning, we awaited the verdict."
@@ -7572,7 +7650,7 @@ label community30:
                             her "Would that really work?"
                             him "I don't know! That's just what makes the most sense to me."
                             her "Is Oleg even on the waitlist?"
-                            him "Well, no..."
+                            him "No, not that I know of..."
                             her "And how did Sara kill Joel?"
                             him "She could have sabotaged the brakes on his wheelchair in the middle of the night."
                             her "I don't think she even knows where they live."
@@ -7685,7 +7763,7 @@ label community30:
                                 him "He was dependent on her, so maybe she was afraid that if she divorced him, no one else would take care of him."
                                 him "It would also explain why she's so sad but doesn't want to talk about it."
                                 her "It could also be the case that she was simply neglectful and blames herself for his death."
-                                him "Well if he died because of her neglect, isn't that a form of murder?"
+                                him "If he died because of her neglect, isn't that a form of murder?"
                                 her "That will be up to the jury."
                                 him "I'm ready to give my final report."
                                 if kevin_elected:
