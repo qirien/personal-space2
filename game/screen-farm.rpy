@@ -186,11 +186,15 @@ screen choose_crop(crop_index=0):
                         grid 2 5:
                             # TODO: Make each of these a different color and have a key so they take up less room.
                             text "Calories: "
-                            bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            text icons_from_value(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX) xalign 0.0
+                            # bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                             text "Nutrition: "
-                            bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            text icons_from_value(crop_info[selected_crop_index][NUTRITION_INDEX], NUTRITION_INDEX) xalign 0.0
+                            #bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
                             text "Work: "
-                            bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            text icons_from_value(crop_info[selected_crop_index][WORK_INDEX], WORK_INDEX) xalign 0.0
+                            #bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            # TODO: finish converting to 1-5 scale with 0.5 increments.
                             text "Nitrogen Usage: "
                             $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
                             if (crop_nitrogen <= 0):
@@ -523,6 +527,7 @@ style crop_details_button_text is computer_sub_button_text
 style crop_details_text is computer_sub_text:
     yalign 0.5
     xalign 1.0
+    font "DejaVuSans.ttf"
 
 style crop_details_bar is bar:
     left_bar Frame(Solid(red_dark))

@@ -52,7 +52,7 @@ label demo:
     $ demo_mode = True
     $ year6_have_baby = True
     $ bro_birth_year = 8
-    $ years = [3,7,12,17,27]
+    $ demo_years = [3,7,12,17,27]
 
     $ attachment = ATTACHMENT_HIGH
     $ competence = COMPETENCE_HIGH/2
@@ -119,8 +119,8 @@ label trailer:
     call bedroom_scene(True)
     "All [kid_name] needed at first was a clean diaper, milk, and some love."
     show kid sad with dissolve
-    show him nude concerned
-    show her nude concerned
+    show him concerned
+    show her concerned
     with dissolve
     "It wasn't always that simple, though."
 
