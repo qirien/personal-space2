@@ -252,9 +252,8 @@ screen stat_icons(stat_value, stat_index):
 
         for i in range(0, stat_value//2):
             add STAT_ICON_BASE + stat_icon_name + ".png"
-        #if (stat_value%2 > 0):
-        # TODO: add half steps
-        #    add STAT_ICONS[index] xalign 0.0
+        if (stat_value%2 > 0):
+            add STAT_ICON_BASE + stat_icon_name + "-half.png"
 
 screen crops_layout:
     frame:
