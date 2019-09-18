@@ -43,7 +43,8 @@ init -100:
     define MAXIMUM_INDEX = 9
 
     define CROP_STATS_MAX = 10
-    define STAT_ICONS = ["","❤","💊","¤","‍🔧","💩"]
+    define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Nutrition", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
+    define STAT_ICON_BASE = "gui/emoji/"    
 
     # Nutritional data
     define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}

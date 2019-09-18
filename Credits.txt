@@ -55,11 +55,15 @@ Crop icons by Rachel Helps and Clarissa Helps.
 The following images are licensed under CC-BY-4.0:
 Texture Images (vegetation, wood) by Eric Matyas, <http://www.soundimage.org>
 
+The following images are licensed under the Apache 2.0 License, <http://www.apache.org/licenses/LICENSE-2.0>:
+Noto Emoji, <https://github.com/googlefonts/noto-emoji>
+
 The following images used as part of the GUI are in the public domain:
 
 Camera Lens by RG1024, <https://openclipart.org/detail/20295/camera-lens>
 Textbox twig frame by Firkin from "Poems and Pictures", 1865
 Watering Can by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">OpenClipart-Vectors</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">Pixabay</a>
+
 
 === Fonts
 Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>

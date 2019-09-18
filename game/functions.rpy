@@ -293,14 +293,6 @@ init -100 python:
         nutrition_required = get_nutrition_required()
         return -(nutrition_required - total_nutrition)
 
-    def icons_from_value(value, index):
-        icons = ""
-        for i in range(0, value//2):
-            icons += STAT_ICONS[index]
-        if (value%2 > 0):
-            icons += "+"
-        return icons
-
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
     def has_strong_marriage():

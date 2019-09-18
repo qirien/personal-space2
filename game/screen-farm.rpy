@@ -181,33 +181,29 @@ screen choose_crop(crop_index=0):
                         textbutton "X" xpos 50 ypos -2 action Hide("choose_crop", zoomout)
                     $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                     label crop_name.capitalize()
-                    # TODO: Take out style tag and see if autodetecting of this has been fixed later.
                     hbox:
-                        grid 2 5:
-                            # TODO: Make each of these a different color and have a key so they take up less room.
-                            text "Calories: "
-                            text icons_from_value(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX) xalign 0.0
-                            # bar value crop_info[selected_crop_index][CALORIES_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                            text "Nutrition: "
-                            text icons_from_value(crop_info[selected_crop_index][NUTRITION_INDEX], NUTRITION_INDEX) xalign 0.0
-                            #bar value crop_info[selected_crop_index][NUTRITION_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                            text "Work: "
-                            text icons_from_value(crop_info[selected_crop_index][WORK_INDEX], WORK_INDEX) xalign 0.0
-                            #bar value crop_info[selected_crop_index][WORK_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                            # TODO: finish converting to 1-5 scale with 0.5 increments.
-                            text "Nitrogen Usage: "
-                            $ crop_nitrogen = crop_info[selected_crop_index][NITROGEN_INDEX]
-                            if (crop_nitrogen <= 0):
-                                bar value (-crop_nitrogen) range Field.NITROGEN_FULL style "crop_details_positive_bar"
-                            else:
-                                bar value crop_nitrogen range Field.NITROGEN_FULL style "crop_details_bar"
+                        vbox:
+                            xsize 60
+                            hbox:
+                                text "Calories: "
+                                use stat_icons(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX)
+                            hbox:
+                                text "Nutrition: "
+                                use stat_icons(crop_info[selected_crop_index][NUTRITION_INDEX], NUTRITION_INDEX)
+                            hbox:
+                                text "Work: "
+                                use stat_icons(crop_info[selected_crop_index][WORK_INDEX], WORK_INDEX)
+                                # TODO: finish converting to 1-5 scale with 0.5 increments.
+                            hbox:
+                                text "Nitrogen Usage: "
+                                use stat_icons(crop_info[selected_crop_index][NITROGEN_INDEX]/5, NITROGEN_INDEX)
 
-                            if (year >= MONEY_YEAR):
-                                text "Value: "
-                                bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                            else:
-                                null
-                                null
+                                if (year >= MONEY_YEAR):
+                                    text "Value: "
+                                    bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                                else:
+                                    null
+                                    null
                         text crop_descriptions[crop_name.rstrip("+")]
                     null height 30
                     vpgrid:
@@ -245,6 +241,20 @@ screen choose_crop(crop_index=0):
                                     else:
                                         action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
 
+screen stat_icons(stat_value, stat_index):
+    hbox:
+        # must be a nitrogen-giving thing
+        if (stat_value < 0):
+            $ stat_icon_name = "nitrogen-add"
+            $ stat_value = -stat_value
+        else:
+            $ stat_icon_name = CROP_INFO_INDEX_NAMES[stat_index].lower()
+
+        for i in range(0, stat_value//2):
+            add STAT_ICON_BASE + stat_icon_name + ".png"
+        #if (stat_value%2 > 0):
+        # TODO: add half steps
+        #    add STAT_ICONS[index] xalign 0.0
 
 screen crops_layout:
     frame:
