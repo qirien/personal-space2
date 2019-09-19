@@ -15,14 +15,14 @@ label family_intro:
     play music sad
     call bedroom_scene(True)
     show kid sad with dissolve
-    her nude sleeping "[his_name]."
-    him nude sleeping "Mrmph?"
-    her nude concerned "[kid_name]'s crying."
+    her sleeping "[his_name]."
+    him sleeping "Mrmph?"
+    her concerned "[kid_name]'s crying."
     show kid cry with dissolve
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
-    him nude concerned "Okay..."
-    show her nude sleeping
+    him concerned "Okay..."
+    show her sleeping
     show kid concerned
     with dissolve
     "I changed her diaper as quietly as I could. I tried not to disturb [her_name], but I could tell she was still awake."
@@ -35,7 +35,7 @@ label family_intro:
     "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."
     show kid normal with dissolve
     "She finally finished the bottle, dozing off right away for once."
-    show him nude sleeping with dissolve
+    show him sleeping with dissolve
     "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
     "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
     return
@@ -233,8 +233,8 @@ label family1:
     show kid normal with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
-    him nude annoyed "She really needs us, doesn't she?"
-    her nude concerned "We both need you."
+    him annoyed "She really needs us, doesn't she?"
+    her concerned "We both need you."
 
     menu:
         "Write a poem?"
