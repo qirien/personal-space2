@@ -1919,15 +1919,15 @@ label community12:
                 "We walk by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
                 "Pavel stops and asks her a question about her laundry, and they start talking. He motions for me to continue without him."
                 hide pavel with moveoutleft
-                show yurt_interior
+                scene yurt_interior with dissolve
                 show brennan normal at midright
                 with dissolve
                 "I arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
                 brennan "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
 
                 if sara_investigates:
-                    show him normal at left with moveinright #TODO: him and sara sprites not currently showing up
-                    show sara normal at midleft with moveinright
+                    show him normal at left with moveinleft
+                    show sara normal at midleft with moveinleft
                     brennan "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
                     brennan happy "I do have some tea though, if you would like some."
                     sara "I would like some."
@@ -2655,10 +2655,10 @@ label community14:
     pete "Before y'all go, I have an announcement to make."
     pete "Helen and I are taking our family and moving away."
     pavel "Is there something wrong with your house?"
-    pete "Nothing wrong with the ranch."
-    pete "We're tired of working for RET. We want to try to make it on our own."
-    pete "Part of the reason I came here was to live off the land."
-    pete "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people."
+    pete happy "Nothing wrong with the ranch."
+    pete normal "We're tired of working for RET. We want to try to make it on our own."
+    pete happy "Part of the reason I came here was to live off the land."
+    pete normal "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people."
     pete "They haven't treated us fairly."
     if require_whole_harvest or rationing:
         pete "The miners don't respect my property. They stole one of my cows and never returned her."
@@ -2666,9 +2666,9 @@ label community14:
         pete "They expect us to feed the miners, but we can barely feed ourselves."
         pete "They don't respect the natural beauty of Talaam. They've already polluted our water."
     if lily_mad_at_RET:
-        lily "They don't respect the needs of researchers either."
+        lily angry "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
-        lily "I'm going with Pete and his family."
+        lily normal "I'm going with Pete and his family."
         $ mavericks += 1
     else:
         lily "I plan to visit you often."
@@ -2677,43 +2677,43 @@ label community14:
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen tell us their plans to go with Pete and his family."
         $ mavericks += 1
-    pete "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
+    pete normal "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
     pete "But that was before we had credits."
     pete "We're leaving our house and everything in it. Maybe some newlywed couple will want to live there."
     pete "I will be taking my radio and some metal foam sheeting, which I paid for with some of the credits I own."
-    #how does pete plan to deal with credits? he probably has a good amount
     pete "I'll leave the same amount of cattle the ranch started with, plus some, and take a herd with me."
+    pete "I'll still have my credits in case I can't trade for what I need."
     "Everyone starts talking when Pete sits down."
     "Some families are telling Pete and his family goodbye, while others leave awkwardly."
     "I push through the crowd to tell Pete some parting words."
     "What do I say?"
     menu:
-        "Warn them that they are doomed.":
-            him "Don't leave! You'll die out there!"
-            pete "I've camped out for days on hunting trips. It's not that much more dangerous than living here."
-            him "But what if you get hurt or develop skin cancer? What are your cows going to eat?"
-            pete "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
-            him "This is your family you're experimenting with."
+        "Warn them of their impending doom.":
+            him cry "Don't leave! You'll die out there!"
+            pete happy "I've camped out for days on hunting trips. It's not that much more dangerous than living here."
+            him sad "But what if you get hurt or develop skin cancer? What are your cows going to eat?"
+            pete normal "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
+            him concerned "This is your family you're experimenting with."
             pete "My family's why I'm doing this. I don't like our present condition, so I'm changing it."
         "Tell them that I understand.":
-            him "I'm sad to see you go, Pete."
-            him "I understand why you're leaving, but I'll miss you guys."
+            him sad "I'm sad to see you go, Pete."
+            him concerned "I understand why you're leaving, but I'll miss you guys."
             pete "I'm sure we'll see each other every now and then."
-            him "I'd tell you to take pictures, but I guess you won't have your tablet with you."
-            pete "I'll see if I can train crabirds to send messages."
+            him flirting "I'd tell you to take pictures, but I guess you won't have your tablet with you."
+            pete happy "I'll see if I can train crabirds to send messages."
             $ colonists += 1
         "Joke that I wish I could join them.":
-            him "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
-            him "Seriously though, take care of yourselves."
+            him flirting "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
+            him concerned "Seriously though, take care of yourselves."
             $ mavericks += 1
             $ pass
     if is_liaison:
         "What do I do with Pete and Helen's remaining cattle?"
         menu:
             "Ask Thuc if any of his kids can look after them.":
-                him "Hey, Thuc, can someone in your family look after the rest of the cattle?"
-                thuc "It's not our specialty but I'm sure we can learn."
-                thuc "Some of the older kids would probably like living on the ranch."
+                him annoyed "Hey, Thuc, can someone in your family look after the rest of the cattle?"
+                thuc sad "It's not our specialty but I'm sure we can learn."
+                thuc normal "Some of the older kids would probably like living on the ranch."
                 $ colonists += 1
                 $ thuc_has_cattle = True
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
@@ -2722,10 +2722,10 @@ label community14:
             # Maybe offer them to the miners?
             #   $ pass
             "Wait for a volunteer.":
-                him "Does anyone want to take the rest of the cattle?"
-                ilian "I'll take them. I know how to butcher them at least."
-                thuc "They'll be a fair bit of work. Want some of my kids to help you out?"
-                ilian "Sure."
+                him annoyed "Does anyone want to take the rest of the cattle?"
+                ilian normal "I'll take them. I know how to butcher them at least."
+                thuc sad "They'll be a fair bit of work. Want some of my kids to help you out?"
+                ilian happy "Sure."
                 $ miners += 1
                 $ ilian_has_cattle = True
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
@@ -2737,137 +2737,172 @@ label community14:
 
 # 15 - Naomi dies
 label community15:
+    scene bedroom with fade
+    show night_overlay
+    show her sleeping at midright, squatting
+    show him sleeping at midleft, squatting
+    show bedroom_overlay
     "In the early morning, [her_name]'s radio went off."
     pavel "{i}[her_name], I think you should come over here.{/i}"
+    show her surprised
     pavel "{i}Naomi is really sick.{/i}"
-    her "What are her symptoms?"
+    her surprised "What are her symptoms?" 
+    hide her with moveoutright
     "[her_name] continued talking on the radio as she put on her boots and coat and took my tractor down the road."
     "I fell back asleep and woke up an hour later and started making breakfast"
-    her "Hi, I'm back."
-    him "Is she...?"
-    her "It's... pretty bad."
-    him "Oh. What's wrong with her?"
-    her "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
+    scene farm_interior with dissolve
+    show him normal at midleft with dissolve
+    show her normal at midright with moveinright
+    her normal "Hi, I'm back."
+    him concerned "Is she...?"
+    her serious "It's... pretty bad."
+    him determined "Oh. What's wrong with her?"
+    her serious "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
     "I checked my tablet."
-    him "He said that she has severe radiation sickness and that she is going to die in the next week or two."
-    her "We'll be doing palliative care."
-    him "Just trying to make her suffer less?"
-    her "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
-    him "We'll understand if she's, ah, indisposed. I'll bring the kids over this afternoon."
-    her "Just... check with Pavel first."
+    him sad "He said that she has severe radiation sickness and that she is going to die in the next week or two."
+    her concerned "We'll be doing palliative care."
+    him pout "Just trying to make her suffer less?"
+    her sad "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
+    him concerned "We'll understand if she's, ah, indisposed. I'll bring the kids over this afternoon."
+    her serious "Just... check with Pavel first."
+    scene path with fade
+    show him sad at midleft with moveinleft
+    show kid nervous at center with moveinleft
+    show bro sad at left with moveinleft
+    show pavel normal at right with dissolve
     "After I picked the kids up from school, we walked to Naomi and Pavel's house."
     "Pavel was outside."
-    pavel "Are you here to see Naomi?"
-    him "Yes. Is that alright? I don't want to add to her suffering..."
+    pavel sad "Are you here to see Naomi?"
+    him doubt "Yes. Is that alright? I don't want to add to her suffering..."
     pavel "It's fine. Now is a good time. Sara is in there right now, so you can go in when she comes out."
-    him "Okay. This feels so sudden. Is everything going to be okay?"
+    him sad "Okay. This feels so sudden. Is everything going to be okay?"
     pavel "I am very sad that Naomi is not going to live longer."
     pavel "We all have to die at some point though. Naomi has been ministering to her neighbors and their children, which was what she was passionate about."
     pavel "She likes to say that even though we don't have modern plumbing, we can be civilized by loving each other."
+    show sara sad at midright with moveinright
     "Sara stepped out. Tears were streaming down her face."
     "Should I do or say something?"
     menu:
         #this menu might give players a false sense that you have a relationship meter with Sara
         "Pur your arm around her shoulder.":
+            show him concerned at center
             "I put my arm around her shoulder."
-            sara "It's hard to see her like this. But I'm glad I said goodbye."
+            sara sad "It's hard to see her like this. But I'm glad I said goodbye."
+            hide sara with moveoutright
             $ colonists += 2
         "Say you're sorry.":
-            him "I'm sorry for your loss."
-            sara "It's our loss, not just mine."
+            him concerned "I'm sorry for your loss."
+            sara sad "It's our loss, not just mine."
+            hide sara with moveoutright
             $ colonists += 1
         "Say nothing.":
             "Sara walked away quietly sniffing."
-            pass
+            hide sara with moveoutright
+    scene kid_bedroom with dissolve
     "I entered the room with the kids."
-    kid "It stinks in here."
-    him "Sometimes that happens when you're sick."
-    naomi "[his_name], did you come to say goodbye too?"
-    him "Yeah. Thanks for everything you've done for us." #more detail
-    kid "Are you dying?"
-    naomi "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other, okay?"
-    naomi "[his_name], I've been watching how you parent your children."
+    show him sad at midleft with dissolve
+    show bro normal at left with dissolve
+    show kid nervous at center with dissolve
+    with moveinleft
+    show naomi normal at midright with dissolve
+    kid annoyed "It stinks in here."
+    him determined "Sometimes that happens when you're sick."
+    naomi normal "[his_name], did you come to say goodbye too?"
+    him normal "Yeah. Thanks for everything you've done for us." #TODO: more detail? work Naomi into earlier scenes?
+    kid concerned "Are you dying?"
+    naomi sad "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other, okay?"
+    naomi normal "[his_name], I've been watching how you parent your children."
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
-        naomi "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
-        naomi "Keep up the good work."
+        naomi happy "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
+        naomi normal "Keep up the good work."
     elif(pstyle == "authoritarian"):
-        naomi "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
-        naomi "If you consider [kid_name]'s opinion sometimes, I think she will be happier."
+        naomi sad "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
+        naomi normal "If you consider [kid_name]'s opinion sometimes, I think she will be happier."
     elif(pstyle == "permissive"):
-        naomi "You let [kid_name] do her own thing a lot."
-        naomi "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
+        naomi happy "You let [kid_name] do her own thing a lot."
+        naomi normal "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
     else:
-        naomi "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
-        naomi "If you don't like being with your children, what was the point of having them?"
-        naomi "You might as well make a lifelong friend who might take care of you when you're old like me."
-    #would love some input/edits on this part
-    him "Oh, uh, thanks for the advice."
-    kid "What happens after you die?"
-    naomi "Some people believe that we go to a different world. Some people believe that we come back in another life."
-    naomi "Some people believe that our existence ends with death."
-    naomi "No matter what happens, I'll be alive in your memories of me."
-    kid "I'll forget."
-    naomi "Dying is a natural part of life. Your crops don't stay alive forever, do they?"
-    kid "We have a tree that's been growing since I was a baby!"
-    naomi "Can you plant a tree for me when I die?"
-    kid "Yes."
-    naomi "You can plant it on my grave, and then you can think about how my body is becoming a tree."
-    kid "Gross."
-    naomi "And let [bro_name] help."
-    naomi "Come give me a hug."
+        naomi sad "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
+        naomi normal "If you don't like being with your children, what was the point of having them?"
+        naomi happy "You might as well make a lifelong friend who might take care of you when you're old like me."
+    him surprised "Oh, uh, thanks for the advice."
+    kid nervous "What happens after you die?"
+    naomi normal "Some people believe that we go to a different world. Some people believe that we come back in another life."
+    naomi sad "Some people believe that our existence ends with death."
+    naomi happy "No matter what happens, I'll be alive in your memories of me."
+    kid sad "I'll forget."
+    naomi normal "Dying is a natural part of life. Your crops don't stay alive forever, do they?"
+    kid normal "We have a tree that's been growing since I was a baby!"
+    naomi sad "Can you plant a tree for me when I die?"
+    kid sad "Yes."
+    naomi happy "You can plant it on my grave, and then you can think about how my body is becoming a tree."
+    kid annoyed "Gross."
+    naomi normal "And let [bro_name] help."
+    naomi sad "Come give me a hug."
+    show kid determined at midright
+    show bro normal at midright
+    with move #TODO: better hug "animation"?
     "[kid_name] and [bro_name] gave her a hug."
-    him "We'll be sure to plant that tree, Naomi. Thank you for letting us visit even though you're sick."
-    naomi "It's my pleasure. On your way out, tell Pavel that I'm going to take a break."
-    him "I'll tell him."
+    him normal "We'll be sure to plant that tree, Naomi. Thank you for letting us visit even though you're sick."
+    naomi happy "It's my pleasure. On your way out, tell Pavel that I'm going to take a break."
+    him pout "I'll tell him."
+    scene path with fade
+    show pavel sad at right with dissolve
+    show kid nervous at left with moveinright
+    show bro normal at midleft with moveinright
+    show him sad at center with moveinright
     "We left, and I told Pavel that Naomi wanted a break."
-    pavel "Seriously, thank you for coming by."
-    him "Let us know if you need anything."
-    pavel "I will."
+    pavel sad "Seriously, thank you for coming by."
+    him sad "Let us know if you need anything."
+    pavel sad "I will."
+    scene farm_interior with dissolve
+    show him sad at midleft
+    show her concerned at midright
+    with dissolve
     "About a week later, Pavel called [her_name] to tell her that Naomi was dead."
-    her "I'll take her body today and do a few tests, and we can hold the funeral tomorrow."
+    her concerned "I'll take her body today and do a few tests, and we can hold the funeral tomorrow."
     "She turned the radio off."
     "[her_name] started crying."
-    her "It won't be the same without her."
+    her sad "It won't be the same without her."
     her "Who will reassure us when we're feeling hopeless?"
     her "Who will give me hope that there's something bigger out there?"
     menu:
         "It'll be okay.":
-            him "I'm sure someone will fill the gap."
-            her "It's not like you ever liked going to church."
-            #another menu choice here
-            him "Yeah, but I know she cared about us."
-            him "Sometimes she'd stop by our house just to see how we were doing."
-            her "I guess that was part of her ministry."
-            him "She understood that some of us don't care for organized religion."
-            him "She knew that it was about caring for other people."
+            him content "I'm sure someone will fill the gap."
+            her annoyed "It's not like you ever liked going to church."
+            him concerned "Yeah, but I know she cared about us."
+            him content "Sometimes she'd stop by our house just to see how we were doing."
+            her sad "I guess that was part of her ministry."
+            him determined "She understood that some of us don't care for organized religion."
+            him normal "She knew that it was about caring for other people."
         "No one can replace her.":
-            him "She's irreplaceable. We all are, since we're unique human beings."
-            him "But I think other people can inspire us, even if they can't do it the way Naomi did."
-            her "I know. But she's just so good at it."
-            him "That's true. She could have been just a preacher, but she filled in the gaps."
-            him "She watched our children and took care of sick people."
-            her "Hey, I make house calls too!"
-            her "But I know what you mean. She took care of their spirits, not their bodies."
+            him content "She's irreplaceable. We all are, since we're unique human beings."
+            him concerned "But I think other people can inspire us, even if they can't do it the way Naomi did."
+            her concerned "I know. But she's just so good at it."
+            him content "That's true. She could have been just a preacher, but she filled in the gaps."
+            him normal "She watched our children and took care of sick people."
+            her annoyed "Hey, I make house calls too!"
+            her sad "But I know what you mean. She took care of their spirits, not their bodies."
             #this decision only affects dialogue right now.
-    her "Oh, no...who's going to talk at her funeral?"
+    her concerned "Oh, no...who's going to talk at her funeral?"
     him surprised "Are you putting that together?"
     her concerned "Yeah... I told Pavel I would; he's in no state to do it himself."
-    him "Sara's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
-    her "Sounds good. Can you ask her for me?"
-    him "Has Naomi's death been announced?"
-    her "Pavel just posted about it."
-    him "I'll ask Sara if she can speak at the funeral then."
+    him doubt "Sara's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
+    her seriuos "Sounds good. Can you ask her for me?"
+    him determined "Has Naomi's death been announced?"
+    her concerned "Pavel just posted about it."
+    him concerned "I'll ask Sara if she can speak at the funeral then."
     nvl clear
     him_c "Sara, can you speak at Naomi's funeral tomorrow?"
     sara_c "Yes, of course! But I think you should say something, too."
     him_c "I'll think about it."
     nvl clear
-    him "Hey, [her_name], Sara thought I should say something at the funeral..."
+    him annoyed "Hey, [her_name], Sara thought I should say something at the funeral..."
     if (is_liaison):
-        her "Since you're the liaison? Sure. You can do closing remarks; just keep it short."
+        her normal "Since you're the liaison? Sure. You can do closing remarks; just keep it short."
     else:
-        her "You can if you want... somebody needs to speak at the end. Just something short."
+        her normal "You can if you want... somebody needs to speak at the end. Just something short."
     $ c15_funeral = ""
     $ c15_funeral_poem = ""
     menu:
@@ -2881,9 +2916,8 @@ label community15:
         "Say a few words":
             $ c15_funeral = "speak"
         "Don't speak at the funeral.":
-            him "I really think you should speak instead."
+            him determined "I really think you should speak instead."
             her concerned "I guess I don't have to say much..."
-    "The kids had been playing, but were listening to our conversation." #TODO: actual conversation w/kid?
     scene church with fade
     "Almost everyone came to the funeral the next day."
     #background - multipurpose room or chapel
@@ -2907,10 +2941,10 @@ label community15:
     sara "One time she was alone in her house and there was a giant spider in her shower."
     sara "She knew that she could kill it with her shampoo bottle. But instead of killing the spider, she decided to touch it."
     sara "She held it in her hands and looked into its eyes. She said that she could feel that the spider was terrified and curious."
-    sara "I'm not sure if I believe this part, but she said they held eye contact for five minutes."
-    sara "Then she put it outside. And she wasn't afraid of spiders anymore."
+    sara normal "I'm not sure if I believe this part, but she said they held eye contact for five minutes."
+    sara sad "Then she put it outside. And she wasn't afraid of spiders anymore."
     sara "So instead of hoping that my hopelessness will go away, I am staring it in the face."
-    sara "Which is why I will be continuing her tradition of having weekly interfaith discussion groups."
+    sara normal "Which is why I will be continuing her tradition of having weekly interfaith discussion groups."
     sara "I may not be as wise or inspiring as Sister Naomi. But I am organized and consistent. So please come and share your life wisdom and experience."
     hide sara with moveoutright
     "Some of the children sang one of the songs Naomi taught them when they were young." #does Brennan do anything? What about the miners? Kevin or Zaina?
@@ -2926,17 +2960,17 @@ label community15:
             "What should I say?"
             "Naomi was a good woman.":
                 him "Sister Naomi helped take care of my kids when I really needed help."
-                him "She was honest, kind, and thoughtful. She put others' needs before her own."
-                him "We will greatly miss her."
+                him concerned "She was honest, kind, and thoughtful. She put others' needs before her own."
+                him content "We will greatly miss her."
             "Remember her by caring for each other.":
                 him "Sister Naomi wouldn't want us to spend a bunch of time talking about her. In fact, she'd probably be embarassed."
-                him "She'd want us to remember her by doing the kinds of things she did -- taking time to enjoy the people around us and helping each other."
-                him "So let's remember her every day, and let that memory propel us forward to do good to others."
+                him concerned "She'd want us to remember her by doing the kinds of things she did -- taking time to enjoy the people around us and helping each other."
+                him content "So let's remember her every day, and let that memory propel us forward to do good to others."
             "Life is hard; then we die.":
                 him "Death is a normal part of life."
-                him "That doesn't mean we have to like it, but we do need to accept it, and move on."
-                him "So today we remember Sister Naomi, but tomorrow, let's not waste her hard work by moping about."
-                him "We could die at any time; we need to make the most of whatever time we still have."
+                him pout "That doesn't mean we have to like it, but we do need to accept it, and move on."
+                him determined "So today we remember Sister Naomi, but tomorrow, let's not waste her hard work by moping about."
+                him annoyed "We could die at any time; we need to make the most of whatever time we still have."
         hide him with moveoutright
     else:
         "[her_name] said a prayer of gratitude for Sister Naomi and asking for comfort and the inspiration to know how to help each other."
@@ -2944,42 +2978,41 @@ label community15:
     "We all helped to bury her body. Ilian provided a laser-engraved headstone, and the Nguyen children put wildflowers on her grave."
     "[kid_name] and [bro_name] planted the saplings we brought."
 
-    #back home
     scene farm_interior with fade
-    show him determined at midleft
+    show him doubt at midleft
     show her concerned at midright
     with moveinleft
-    him "So... How often was Naomi out in the radiation to get severe radiation sickness?"
-    her "She was outside during an entire solar flare multiple times."
-    her "She didn't say why, but I think she was checking up on Pete and Helen."
-    him "So she probably knew there was a flare, but couldn't find shelter in time?"
-    her "That seems likely."
-    him "Too bad she wasn't inspired to take a tent with her."
-    her "She probably felt that she didn't have time, or maybe someone else had checked them out."
-    him "Someone ought to invent a radiation umbrella or something."
-    her "It's not that simple..."
-    him "Nothing is."
+    him doubt "So... How often was Naomi out in the radiation to get severe radiation sickness?"
+    her concerned "She was outside during an entire solar flare multiple times."
+    her sad "She didn't say why, but I think she was checking up on Pete and Helen."
+    him pout "So she probably knew there was a flare, but couldn't find shelter in time?"
+    her concerned "That seems likely."
+    him doubt "Too bad she wasn't inspired to take a tent with her."
+    her sad "She probably felt that she didn't have time, or maybe someone else had checked them out."
+    him concerned "Someone ought to invent a radiation umbrella or something."
+    her surprised "It's not that simple..."
+    him sad "Nothing is."
     menu:
         "What should I say?"
         "I'll miss her.":
-            him "I'll miss her."
-            her "Me, too."
+            him concerned "I'll miss her."
+            her sad "Me, too."
         "Farewell to a great leader.":
-            him "Farewell to a great leader. She loved and worked hard, even for people who didn't agree with her."
-            her "Yes . . . I want to be more like that."
+            him concerned "Farewell to a great leader. She loved and worked hard, even for people who didn't agree with her."
+            her sad "Yes . . . I want to be more like that."
         "I'm not going to die like that.":
-            him "I'm not going to die like that. And you better not, either."
-            her "We all have to die sometime . . . I'd never thought about you dying before."
-            him "What would you do if I died? Go back to Earth? Would you get married again?"
-            her "I don't know... I'm tied to this planet, now -- too many people need me."
-            him "We both have a lot of people depending on us, don't we?"
-            her "Yeah, so you better stay healthy! No dying!"
-            him "You're not allowed to die yet, either."
+            him determined "I'm not going to die like that. And you better not, either."
+            her sad "We all have to die sometime . . . I'd never thought about you dying before."
+            him pout "What would you do if I died? Go back to Earth? Would you get married again?"
+            her concerned "I don't know... I'm tied to this planet, now -- too many people need me."
+            him normal "We both have a lot of people depending on us, don't we?"
+            her flirting "Yeah, so you better stay healthy! No dying!"
+            him flirting "You're not allowed to die yet, either."
             "We joked about it, but inside I was terrified that [her_name] would die and leave me a single dad of two kids. There was no way I could be everything for them on my own."
-            him "I love you, [her_name]."
-            her "I never get tired of hearing you say that."
-            him "Don't you mean, 'I love you, too'?"
-            her "I love you, too, [his_name]."
+            him content "I love you, [her_name]."
+            her happy "I never get tired of hearing you say that."
+            him happy "Don't you mean, 'I love you, too'?"
+            her laughing "I love you, too, [his_name]."
         "(Don't say anything)":
             "I didn't say anything, just sat and held [her_name], both of us lost in our own thoughts."
 
