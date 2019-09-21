@@ -167,7 +167,7 @@ label start:
                         ["spinach",      1, 6, 3, 2, 10, True, False, False, 100],   # Leafy greens
                         ["broccoli",     3, 7, 2, 3, 15, False, False, False, 100],
                         ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
-                        ["honey",         2,  2,  8, 2, 0, False, False, False, 1])
+                        ["honey",         2,  2,  8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",

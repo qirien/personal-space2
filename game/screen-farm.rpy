@@ -1,5 +1,5 @@
-# Farm Planning Screen
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
+# Farm Planning Screen
 #
 
 screen plan_farm:
@@ -182,28 +182,29 @@ screen choose_crop(crop_index=0):
                     $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                     label crop_name.capitalize()
                     hbox:
-                        vbox:
-                            xsize 60
-                            hbox:
-                                text "Calories: "
+                    # TODO: The text here gets cut off on the left
+                        vpgrid:
+                            cols 2
+                            style_prefix "crop_status"
+                            text "Calories: "
+                            frame:
                                 use stat_icons(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX)
-                            hbox:
-                                text "Nutrition: "
+                            text "Nutrition: "
+                            frame:
                                 use stat_icons(crop_info[selected_crop_index][NUTRITION_INDEX], NUTRITION_INDEX)
-                            hbox:
-                                text "Work: "
+                            text "Work: "
+                            frame:
                                 use stat_icons(crop_info[selected_crop_index][WORK_INDEX], WORK_INDEX)
-                                # TODO: finish converting to 1-5 scale with 0.5 increments.
-                            hbox:
-                                text "Nitrogen Usage: "
+                            text "Nitrogen: "
+                            frame:
                                 use stat_icons(crop_info[selected_crop_index][NITROGEN_INDEX]/5, NITROGEN_INDEX)
 
-                                if (year >= MONEY_YEAR):
-                                    text "Value: "
-                                    bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
-                                else:
-                                    null
-                                    null
+                            if (year >= MONEY_YEAR):
+                                text "Value: "
+                                bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                            else:
+                                null
+                                null
                         text crop_descriptions[crop_name.rstrip("+")]
                     null height 30
                     vpgrid:
@@ -243,10 +244,11 @@ screen choose_crop(crop_index=0):
 
 screen stat_icons(stat_value, stat_index):
     hbox:
+        style "stat_icon_hbox"
         # must be a nitrogen-giving thing
         if (stat_value < 0):
             $ stat_icon_name = "nitrogen-add"
-            $ stat_value = -stat_value
+            $ stat_value = -stat_value/2
         else:
             $ stat_icon_name = CROP_INFO_INDEX_NAMES[stat_index].lower()
 
@@ -322,7 +324,8 @@ screen history_box(index):
             add imagefile size (history_icon_size, history_icon_size)
 
 style crop_history_hbox is crop_details_hbox:
-    xsize LEFT_COLUMN_WIDTH
+    xsize LEFT_COLUMN_WIDTH-10
+    xalign 0.5
 
 screen crops_totals:
     vbox:
@@ -522,7 +525,8 @@ style crop_details_vpgrid is vpgrid:
 style crop_details_label is computer_sub_label
 
 style crop_details_label_text is computer_sub_label_text:
-    size 20
+    size 26
+    xalign 0.5
     color black
 
 style crop_details_selected_label is crop_details_label:
@@ -556,7 +560,9 @@ style crop_details_vbox is computer_sub_vbox:
     xsize MIDDLE_COLUMN_WIDTH
 
 style crop_details_hbox is computer_sub_hbox:
-    xsize (MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH) / 2
+    xsize MIDDLE_COLUMN_WIDTH-10
+    spacing 10
+    xalign 0.5
 
 style crop_details_grid is computer_sub_grid:
     xsize MIDDLE_COLUMN_WIDTH
@@ -614,3 +620,15 @@ style normal_bar_horizontal is crop_layout_bar:
 style crop_totals_bar is crop_layout_bar
 
 style work_slider is slider
+
+style crop_status_vpgrid:
+    xsize 260
+    xspacing 5
+    yspacing 10
+
+style crop_status_frame is frame:
+    background None
+
+style crop_status_text is text:
+    xfill True
+    xalign 1.0
