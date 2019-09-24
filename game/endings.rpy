@@ -47,6 +47,30 @@ label ending:
                 call ending_ACi
             else:
                 call ending_ACI
+                
+    # community ending
+    if (colonists >= 10):
+        if (miners >= 10):
+            if (mavericks >= 10):
+                call ending CMiMa
+            else:
+                call ending CMima
+        else:
+            if (mavericks >= 10):
+                call ending CmiMa
+            else:
+                call ending Cmima
+    else:
+        if (miners >= 10):
+            if (mavericks >= 10):
+                call ending cMiMa
+            else:
+                call ending cMima
+        else:
+            if (mavericks >= 10):
+                call ending cmiMa
+            else:
+                call ending cmima
 
     menu:
         "Would you like to make one last poem?"
@@ -516,4 +540,73 @@ label ending_ACI:
 
     "Ending 8/8, The Future is Bright"
 
-    return
+    
+label ending_CMiMa:
+    "Over the next few years, our colony flourished."
+    "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
+    "But we had enough food that sharing wasn't a problem."
+    "RET continued to support us with supplies, and eventually we became more self-sufficient."
+    "The miners continued their jobs, and many stayed on Talaam after retiring."
+    "Even though our colony was doing fine, every once in a while, a family would join the mavericks."
+    "Their low-tech hacks inspired creativity and making do with less."
+    # TODO: heavy rains in "good" endings, but they cope somehow?
+label ending_CMima:
+    "Over the next few years, our colony flourished."
+    "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
+    "But we had enough food that sharing wasn't a problem."
+    "RET continued to support us with supplies, and eventually we became more self-sufficient."
+    "The miners continued their jobs, and many stayed on Talaam after retiring."
+    "The mavericks, however, had a hard time surviving, and by the end of a few years, most had died or rejoined the colonists."
+    "Pete insisted on living on his own even when everyone else had given up."
+label ending_CmiMa:
+    "Over the next few years, our colony flourished."
+    "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
+    "But we had enough food that sharing wasn't a problem."
+    "The miners weren't doing well though, and RET struggled to support them."
+    "Another company bought out RET but they didn't improve things."
+    "I was surprised to hear that Brennan joined the mavericks after declaring his disguist with the new management."
+    "One day, all the miners quit their jobs. Some joined the colony."
+    "Others tried living on their own and ended up stealing food from us, but eventually we worked things out."
+label ending_Cmima:
+    "Our colony kept on going like it always had."
+    "We were focused on our own needs."
+    "The miners didn't do well enough to support RET, and another company bought them out."
+    "I was surprised when Brennan quit his job and took up farming after declaring his disguist with the new management."
+    "One day, all the miners quit their jobs. Some joined the colony."
+    "The mavericks weren't doing well either, and an outbreak of a foodborne illness left many of them sick or dead."
+    "Many joined back with the colony if they were well enough."
+    "Pete insisted on living on his own even when everyone else had given up."
+label ending_cMiMa:
+    "Over the next few years, the colony had difficulty making enough food to survive."
+    "People started hoarding food. Some continued to work through solar flares, only to die from the following radiation poisoning in a few years."
+    "We became less like a colony and more like a few loosely-connected settlers."
+    "Did some families join the mavericks? Or did they just leave in search of food one day, never to return?"
+    "The miners bought their food from the mavericks, and the mavericks in turn used their credits to access the colony's technology."
+    "Pete would sometimes take over the library for a day, lamenting how the databases these days were only used for entertainment and not for education."
+    "He and Brennan developed a business relationship."
+label ending_cMima:
+    "RET gave permission to the miners to use violent force on anyone who sabotagued or otherwise hindered the miners's operations."
+    "A year of violent rains upset crops and native wildlife."
+    "Floods destroyed our food storage of dried goods, and some people had to move to higher ground permanently."
+    "The mavericks, also suffering from the weather, started stealing food from wherever they could find it."
+    "A few were caught by the miners and beaten."
+    "Eventually, the Brennan sent some of his miners to help hunt and forage in areas that weren't flooded."
+    "Part of the colony ended up moving to a drier part of the continent."
+label ending_cmiMa:
+    "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
+    "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
+    "The colony wasn't doing well either, with our farms yielding less and less food each year."
+    "Luckily, the mavericks had long ago learned how to survive without external help."
+    "They shared their food with us and helped us build up our farms, but it was at a price."
+    "In return for their food and labor, the mavericks required some of the colonists to join them."
+    "People still died more often since we didn't have access to medical equipment from Earth, but we didn't all die out."
+label ending_cmima: #is this ending even possible?
+    "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
+    "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
+    "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
+    "The mavericks weren't doing any better."
+    "A year of heavy rains made problems for everyone."
+    "Floods destroyed our food storage, contaminated our water, and completely killed off some of our crops."
+    "After moving to higher ground, we tried again with the seeds we managed to save."
+    "Some of us died of malnutrition and exhaustion."
+    "It felt like soon our bones and possessions would be the only evidence of our existence here."
