@@ -14,6 +14,7 @@ init -100:
     define MARTIN_DIES_YEAR = 11
     define PETE_LEAVES_YEAR = 14
     define NAOMI_DIES_YEAR = 15
+    define LILY_DIES_YEAR = 20
     define PETE_LEAVES_CAVES_YEAR = 22
     define PAVEL_DIES_YEAR = 28
 
@@ -44,7 +45,7 @@ init -100:
 
     define CROP_STATS_MAX = 10
     define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Nutrition", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
-    define STAT_ICON_BASE = "gui/emoji/"    
+    define STAT_ICON_BASE = "gui/emoji/"
 
     # Nutritional data
     define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
@@ -72,6 +73,7 @@ init -100:
     define CROP_ICON_SIZE = 64
     define CROP_LAYOUT_BAR_SIZE = CROP_ICON_SIZE + 8
     define CROP_LAYOUT_BAR_WIDTH = CROP_ICON_SIZE / 10
+    define CROP_STATUS_ICON_SIZE = 32
 
     # Static variables used for endings
     # TODO: Tweak these so all endings are possible.

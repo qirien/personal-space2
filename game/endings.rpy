@@ -13,12 +13,36 @@ label ending:
     # TODO: community ending stuff
     # Talk about miners, colonists, mavericks, and jellies
 
-
-
     # TODO: work/farm ending stuff?
 
     # TODO: remove debug code
     "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
+    # community ending
+    if (colonists >= 10):
+        if (miners >= 10):
+            if (mavericks >= 10):
+                call ending_CMiMa
+            else:
+                call ending_CMima
+        else:
+            if (mavericks >= 10):
+                call ending_CmiMa
+            else:
+                call ending_Cmima
+    else:
+        if (miners >= 10):
+            if (mavericks >= 10):
+                call ending_cMiMa
+            else:
+                call ending_cMima
+        else:
+            if (mavericks >= 10):
+                call ending_cmiMa
+            else:
+                call ending_cmima
+
+    "For now, though, I was more concerned with [kid_name]."
+
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
     if (attachment < ATTACHMENT_HIGH):
@@ -47,30 +71,6 @@ label ending:
                 call ending_ACi
             else:
                 call ending_ACI
-                
-    # community ending
-    if (colonists >= 10):
-        if (miners >= 10):
-            if (mavericks >= 10):
-                call ending CMiMa
-            else:
-                call ending CMima
-        else:
-            if (mavericks >= 10):
-                call ending CmiMa
-            else:
-                call ending Cmima
-    else:
-        if (miners >= 10):
-            if (mavericks >= 10):
-                call ending cMiMa
-            else:
-                call ending cMima
-        else:
-            if (mavericks >= 10):
-                call ending cmiMa
-            else:
-                call ending cmima
 
     menu:
         "Would you like to make one last poem?"
@@ -119,18 +119,20 @@ label ending_aci:
     him angry "She's NOT going with YOU!"
     brennan angry "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
     her determined "No. We did not."
-    him "There she is!"
+    him surprised "There she is!"
+    show kid at midleft with moveinleft
+    show brennan at left with move
     her concerned "[kid_name]! You-- you're leaving?!"
-    kid "Yeah."
+    kid annoyed "Yeah."
     him angry "Like hell you are! You take that bag right back home right now!"
     brennan normal "Sorry, she's a legal adult and she signed a contract."
     her sad "Why would you do this?"
-    kid "Lorant loves me. We're happy together. And I've always wanted to go to Earth."
+    kid angry "Lorant loves me. We're happy together. And I've always wanted to go to Earth."
     him determined "But we'll never see you again."
-    kid "You hardly ever saw me when I lived with you, so I don't see what the big difference will be."
+    kid shifty "You hardly ever saw me when I lived with you, so I don't see what the big difference will be."
     her sad "Isn't there some way I can change your mind?"
     brennan angry "It's too late for that. The contract is signed."
-    kid "Mom, I... I'm sorry. I love you, but I want to go."
+    kid cry "Mom, I... I'm sorry. I love you, but I want to go."
     "[her_name] embraced her tightly for several minutes, as if stamping in her mind every detail about our daughter."
     menu:
         "What should I say?"
@@ -142,51 +144,56 @@ label ending_aci:
         "We'll miss you.":
             him concerned "We'll miss you..."
 
-    kid "Goodbye, dad."
+    kid sad "Goodbye, dad."
     "She hugged me briefly, and then turned around. She ran to catch up to Lorant, clinging to his arm as they boarded the shuttle."
     hide kid with moveoutright
+    show brennan at midleft with move
     "Just like that, she was gone from my life."
     "I never saw her again."
-    him angry "How could you let her sign a contract like that without even mentioning it to us?!"
+    him yell "How could you let her sign a contract like that without even mentioning it to us?!"
     brennan normal "It's not my fault if you don't know what's going on in your own kid's life."
-    her "Brenann!"
+    her surprised "Brenann!"
     # TODO: adjust based on whether you are a good farmer/liaison or not
     brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liaison, but you're a terrible father."
-    him "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
+    him angry "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
     brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
-    her "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
-    him "I'd be happy if he never thought of me again."
-    brennan "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
-    her "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
-    brennan "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
+    her yell "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
+    him annoyed "I'd be happy if he never thought of me again."
+    brennan sad "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
+    her concerned "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
+    brennan normal "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
     menu:
         "What should I say."
         "...thanks.":
-            him "I... I'd appreciate that."
+            him concerned "I... I'd appreciate that."
         "(Don't say anything)":
             "I didn't say anything. I couldn't say anything nice, and I thought I might regret all the not-so-nice retorts running through my brain."
         "If anything happens to her...!":
             him angry "If anything happens to her...!"
-            brennan "Anything? All sorts of things will happen to her! But you don't get a say in that anymore. You gave that up when you shut her out of your life."
+            brennan angry "Anything? All sorts of things will happen to her! But you don't get a say in that anymore. You gave that up when you shut her out of your life."
             her concerned "Let it go, [his_name]. This isn't helping anything."
 
+    hide brennan with moveoutright
+    show him concerned at midleft with move
+    show her concerned at midright with move
+    with dissolve
     "Brennan nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."
     "I found her in our room, heaving great sobs."
-    her sad "She's gone. My little girl. She's really gone."
-    him concerned "We knew it would happen someday..."
+    her cry "She's gone. My little girl. She's really gone."
+    him concerned "We knew she would leave someday..."
     her annoyed "But not like this! She left because we failed her. And now we'll probably never see her again."
-    him "It's not our fault she chose to go back to Earth with some idiot!"
+    him angry "It's not our fault she chose to go back to Earth with some idiot!"
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):
-        her "Isn't it? We never gave her any space! We tried to control her life and never let her make her own decisions!"
+        her sad "Isn't it? We never gave her any space! We tried to control her life and never let her make her own decisions!"
     elif (parenting_style == "authoritative"):
-        her "Isn't it? Were we too strict? Not strict enough? Maybe I didn't spend enough time with her..."
+        her sad "Isn't it? Were we too strict? Not strict enough? Maybe I didn't spend enough time with her..."
     elif (parenting_style == "permissive"):
-        her "Isn't it? We just let her do whatever she wanted! Why are we surprised when she keeps doing exactly that?!"
+        her sad "Isn't it? We just let her do whatever she wanted! Why are we surprised when she keeps doing exactly that?!"
     else:
-        her "Isn't it? We just weren't there for her often enough. We were too absorbed in our own lives..."
+        her sad "Isn't it? We just weren't there for her often enough. We were too absorbed in our own lives..."
     him angry "You can't think that way!"
     her surprised "What do you mean?"
     him annoyed "You can't second-guess every decision you ever made. What's done is done."
@@ -219,13 +226,13 @@ label ending_acI:
     show him at midleft
     with moveinleft
     him concerned "Hey, [kid_name]."
-    kid "Dad. What are you doing here?"
-    him "I just had some extra pickles and thought you might like some."
+    kid annoyed "Dad. What are you doing here?"
+    him sad "I just had some extra pickles and thought you might like some."
     "I held them out like I used to hold carrots out for Lettie when I was training her."
     "She looked at Travis, who shrugged and walked off."
     hide travis with moveoutright
     "She took the pickles but didn't get too close."
-    kid "Thanks."
+    kid concerned "Thanks."
     him "If there's anything you need help with--"
     kid "Dad, I'm fine."
     him "How's Travis?"
@@ -302,7 +309,7 @@ label ending_aCi:
     kid annoyed "I'm not hungry."
     hide kid with moveoutright
     him surprised "What's with her?"
-    her concerned "I tried starting her with some basic hands-on nursing duties today... she's having a hard time."
+    her concerned "I tried starting her with some basic hands-on nursing duties today but... she's having a hard time."
     him determined "Well, she's smart, so I'm sure she'll catch on quickly."
     her annoyed "I hope so."
     him normal "I'm just glad she found something useful to do."
@@ -319,7 +326,8 @@ label ending_aCi:
     "Before I left, I peeked in the other room to check on [kid_name]. She was studying her anatomy book with a ferocious energy, as though it were her opponent in deadly combat."
 
     him happy "That's my girl! You'll make something of yourself yet!"
-    kid concerned "Yeah yeah, thanks, dad."
+    "She didn't say anything, just nodded and continued reading, her forehead scrunched up in concentration."
+    "She was trying so hard. I was proud of her. I almost said something, but then I stopped myself. I didn't want her to get sloppy."
 
     "Ending 3/8, Proving Herself."
     return
@@ -332,7 +340,7 @@ label ending_aCI:
     him "Study hard, [kid_name]. Make us proud."
     kid sad "I'm trying, dad."
     her determined "We are proud. And you'll always have a home here, no matter what happens."
-    him "Don't get caught up with stupid college stuff, all right? Stay away from the wild parties and the drugs and all that."
+    him "Don't get caught up with stupid college stuff, all right? Stay away from the wild parties and the drugs and the cheating and all that."
     her "Oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
     kid "I'm excited to see a rain forest. Or any forest at all, actually."
     bro "Send us pictures!"
@@ -525,7 +533,7 @@ label ending_ACI:
     her happy "Mom, Dad, can you not? Some of us are trying to eat here."
     oleg "I don't know; it's kind of sweet to see old people that are still so in love."
     him surprised "Old people?!"
-    her surprised "I don't see any old people in here..."
+    her flirting "I don't see any old people in here..."
     "We laughed, and talked, and joked around while doing the dishes together. [bro_name] got out his source code to show Oleg, and [her_name] was asking [kid_name] about alien physiology, and I just felt happy to be in the middle of it all."
 
     "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found. Happiness in love, in family, in community."
@@ -535,21 +543,27 @@ label ending_ACI:
     "I'm not just happy that she's staying here, on Talaam."
     "I'm also happy she found a way to do something she loves that helps people."
     "She's working hard to understand the jellies in a way that no one else can."
-    "With her research and mediation, I see a beautiful future of peace ahead for her."
+    "With her research and mediation, I see a bright, peaceful future ahead for her."
     "And I'll get to see it all happen."
 
     "Ending 8/8, The Future is Bright"
+    return
 
-    
+# COMMUNITY ENDINGS
+# TODO: Add some dialogue/messages/interaction with others instead of just narration?
+# TODO: Add some sprites/backgrounds to go with each thing?
+
 label ending_CMiMa:
     "Over the next few years, our colony flourished."
     "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
     "But we had enough food that sharing wasn't a problem."
     "RET continued to support us with supplies, and eventually we became more self-sufficient."
     "The miners continued their jobs, and many stayed on Talaam after retiring."
-    "Even though our colony was doing fine, every once in a while, a family would join the mavericks."
+    "Even though our colony was doing fine, every once in a while, a family would join Pete and the mavericks."
     "Their low-tech hacks inspired creativity and making do with less."
     # TODO: heavy rains in "good" endings, but they cope somehow?
+    return
+
 label ending_CMima:
     "Over the next few years, our colony flourished."
     "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
@@ -558,15 +572,20 @@ label ending_CMima:
     "The miners continued their jobs, and many stayed on Talaam after retiring."
     "The mavericks, however, had a hard time surviving, and by the end of a few years, most had died or rejoined the colonists."
     "Pete insisted on living on his own even when everyone else had given up."
+    return
+
 label ending_CmiMa:
     "Over the next few years, our colony flourished."
     "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
     "But we had enough food that sharing wasn't a problem."
     "The miners weren't doing well though, and RET struggled to support them."
     "Another company bought out RET but they didn't improve things."
-    "I was surprised to hear that Brennan joined the mavericks after declaring his disguist with the new management."
+    "I was surprised to hear that Brennan joined the mavericks after declaring his disgust with the new management."
     "One day, all the miners quit their jobs. Some joined the colony."
     "Others tried living on their own and ended up stealing food from us, but eventually we worked things out."
+    # TODO: More details?? Sounds interesting!
+    return
+
 label ending_Cmima:
     "Our colony kept on going like it always had."
     "We were focused on our own needs."
@@ -576,6 +595,8 @@ label ending_Cmima:
     "The mavericks weren't doing well either, and an outbreak of a foodborne illness left many of them sick or dead."
     "Many joined back with the colony if they were well enough."
     "Pete insisted on living on his own even when everyone else had given up."
+    return
+
 label ending_cMiMa:
     "Over the next few years, the colony had difficulty making enough food to survive."
     "People started hoarding food. Some continued to work through solar flares, only to die from the following radiation poisoning in a few years."
@@ -584,6 +605,8 @@ label ending_cMiMa:
     "The miners bought their food from the mavericks, and the mavericks in turn used their credits to access the colony's technology."
     "Pete would sometimes take over the library for a day, lamenting how the databases these days were only used for entertainment and not for education."
     "He and Brennan developed a business relationship."
+    return
+
 label ending_cMima:
     "RET gave permission to the miners to use violent force on anyone who sabotagued or otherwise hindered the miners's operations."
     "A year of violent rains upset crops and native wildlife."
@@ -592,6 +615,8 @@ label ending_cMima:
     "A few were caught by the miners and beaten."
     "Eventually, the Brennan sent some of his miners to help hunt and forage in areas that weren't flooded."
     "Part of the colony ended up moving to a drier part of the continent."
+    return
+
 label ending_cmiMa:
     "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
     "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
@@ -600,6 +625,8 @@ label ending_cmiMa:
     "They shared their food with us and helped us build up our farms, but it was at a price."
     "In return for their food and labor, the mavericks required some of the colonists to join them."
     "People still died more often since we didn't have access to medical equipment from Earth, but we didn't all die out."
+    return
+
 label ending_cmima: #is this ending even possible?
     "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
     "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
@@ -610,3 +637,4 @@ label ending_cmima: #is this ending even possible?
     "After moving to higher ground, we tried again with the seeds we managed to save."
     "Some of us died of malnutrition and exhaustion."
     "It felt like soon our bones and possessions would be the only evidence of our existence here."
+    return

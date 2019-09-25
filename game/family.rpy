@@ -475,7 +475,7 @@ label family2:
                     $ responsive += 1
                     "I tried to remember some songs she might like."
                     him surprised "Do you know 'Head, shoulders, knees, and toes?"
-                    "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that I learned in Spanish class, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
+                    "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that my abuelita used to sing to me, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
                     him normal "You like that?"
                     kid normal "Aaa, baaa baa baa, daa."
                     him happy "Yeah!"
@@ -525,7 +525,7 @@ label family2:
                     $ responsive += 1
                     him surprised "You feeling lonely back there? Don't worry, we're together, [kid_name]!"
                     kid angry "Baa, baaaaaa!"
-                    him surprised "Ooh, are you turning into a sheep? Your arm is so soft, it's like a little lamb. Baa, baa!"
+                    him normal "Ooh, are you turning into a sheep? Your arm is so soft, it's like a little lamb. Baa, baa!"
                     kid laugh "Baa, baa!"
                     him happy "Yeah, you're a little sheep! Or maybe you're a baby cow?"
                     kid normal "..."
@@ -538,6 +538,8 @@ label family2:
                     him normal "Yeah, I don't want to talk about politics either. Why don't I tell you about plants?"
                     kid concerned "Aaa?"
                     him normal "Plants need water, sunlight, and nutrients from the soil to survive. But if you want them to grow big and strong, you have to make sure they have the right amounts of all of these."
+                    kid normal "Pa pa?"
+                    him happy "Yeah, you gotta rotate your plants! That's why I'm always moving the goats around and stuff."
                     kid annoyed "Aaah! Aaa! Aaaaaaaa!"
                     him annoyed "Okay, you don't have to scream, we don't have to talk about plants if you don't want to."
                     jump family2_baby_activities
@@ -606,14 +608,14 @@ label family2:
 
     scene farm_interior with fade
     show him determined at midright with dissolve
-    show her concerned at midleft with moveinleft
+    show her sad at midleft with moveinleft
     "Late that night, after I fed [kid_name] dinner and she had fallen asleep, [her_name] finally came home."
     "She trudged into the house, looking at least as tired as I felt."
-    show him normal at midleft with move
+    show him normal at center with move
     "I caught her up in a big hug and kissed her twice."
     show him surprised at midright with move
     him surprised "Rough day?"
-    her concerned "Yeah. We had to operate... it wasn't pretty, but she survived."
+    her determined "Yeah. We had to operate... it wasn't pretty, but she survived."
     him concerned "Operate?! Sounds serious... who was it?"
     her sad "Helen. She had appendicitis."
     him surprised "Have you ever fixed one of those before?"
@@ -624,9 +626,9 @@ label family2:
     "I made her up a plate of beans while we talked."
     "From the way she devoured them, I guess she hadn't eaten all day."
     him concerned "How'd Pete take it?"
-    her flirting "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
+    her normal "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
     him surprised "What about Travis? That kid is the cutest hurricane of destruction I've ever seen."
-    her normal "I know. It's hard to believe he's just a year older than [kid_name]..."
+    her surprised "I know. It's hard to believe he's just a year older than [kid_name]..."
 
     her concerned "How was [kid_name]? I guess she's asleep now?"
     him normal "Yeah, she's asleep. "
@@ -696,8 +698,9 @@ label family2:
                 "[her_name] saw the look on my face and stroked my face."
                 her surprised "What is it?"
                 him sad "Today was... it was a long day."
+                show her at center with move
                 "She leaned her head on my shoulder and sighed."
-                her concerned "Me too, [his_nickname]. But we're still here, together, all three of us."
+                her sleeping "Me too, [his_nickname]. Me too."
 
     return
 
@@ -7977,7 +7980,7 @@ label family30:
     show her concerned at midright
     show kid nervous at center
     with dissolve
-    show him normal at midleft with moveinleft
+    show him normal at midleft behind kid with moveinleft
 
     her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
@@ -8169,6 +8172,10 @@ label family30:
     kid happy "I'm glad the sauce turned out; it was kind of lumpy at first."
     "We chewed thoughtfully for a few minutes, savoring the herbs and flavors."
     bro "Are you leaving or not?"
+    show him surprised
+    show her surprised
+    show kid concerned
+    with dissolve
     "I stopped chewing. I stopped breathing. I couldn't do or think about anything else until I knew the answer to this question."
     if (not is_attached()) and (is_competent()) and (is_independent()):
         kid determined "I am."
@@ -8198,7 +8205,7 @@ label family30:
         "[bro_name] didn't say anything, but he gave her a big hug."
         kid surprised "Ow, not so tight! I love you too, [bro_name]."
     him happy "Okay, group hug!"
-    show him normal at center with move
+    show him normal at midleft with move
     show her normal at midright with move
     her annoyed "Watch the foot!"
     show bro at midright with move

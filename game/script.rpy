@@ -126,6 +126,7 @@ label start:
         kevin_elected = False
         ban_firegrass = False
         study_published_23 = False
+        helen_dead = False
 
     # FARM
     python:
