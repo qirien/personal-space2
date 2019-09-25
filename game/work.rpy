@@ -485,7 +485,7 @@ label work2:
     her normal "All right, good luck."
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
-    scene farm with fade
+    scene fields with fade
     show kevin at midright
     show zaina at center
     with dissolve
@@ -501,7 +501,7 @@ label work2:
     zaina "I think we'll be too busy taking care of these plants to write much about it right now!"
     kevin "Perhaps at a future time."
     zaina "Anyway, thanks for helping us out. Our trees didn't bear many plums, but here's a few of the ones we got. Maybe you can plant the seeds after you eat them?"
-    him surprised "Plums? That'll be delicious; thank you!"
+    him happy "Plums? That'll be delicious; thank you!"
     zaina "Thank you, [his_name]!"
 
     # TODO: Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.

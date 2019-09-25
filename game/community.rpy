@@ -290,7 +290,7 @@ label community2:
     scene storeroom
     with dissolve
     show kevin at midleft
-    show ilian at midright
+    show ilian normal at midright
     kevin "It is part of our contract that I bring you my whole harvest, even if I will consume all of it."
     ilian "I do appreciate your thoroughness. I hope it wasn't too much trouble to show me your buckets of tomatoes and squash."
     ilian "For things that keep a long time, you don't have to bring them right away."
@@ -414,10 +414,10 @@ label community3:
 
     label invite_all:
         scene community_center with fade
-        show kevin at left
-        show thuc at midleft
-        show him at center
-        show sara at midright
+        show kevin normal at left
+        show thuc normal at midleft
+        show him normal at center
+        show sara normal at midright
 
         "Next month, we invited everyone to town hall to game night."
         "A handful started a poker game at another table, but Kevin wanted to join our game instead."
@@ -425,10 +425,10 @@ label community3:
 
     label no_invite:
         scene farm_interior with fade
-        show kevin at left
-        show thuc at midleft
-        show him at center
-        show pete at midright
+        show kevin normal at left
+        show thuc normal at midleft
+        show him normal at center
+        show pete normal at midright
         "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
         "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
         return
@@ -559,14 +559,12 @@ label community5:
 
         "I decided to meet with Ilian to see what he thought."
         scene storeroom with fade
-        show ilian at center
+        show ilian normal at center
         show him normal at midleft
         if (whole_harvest_to_storehouse == True):
             ilian "A few farmers are already bringing their whole harvest to the storehouse."
-            show ilian happy
-            ilian "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of potatoes and beans."
-            show ilian
-            ilian "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
+            ilian happy "Based on the harvests of those farmers, we can probably grow and store enough food for the miners, but they will have to eat a lot of potatoes and beans."
+            ilian normal "Assuming our chickens are still around in four Earth years, we could have hens ready for them to have eggs as well."
         else:
             ilian "I don't know how much food you guys are storing, so I have no idea if we'll have enough food for them or not."
             ilian "If worst comes to worst, they could farm instead of mining, which I'm sure RET would be THRILLED with."
