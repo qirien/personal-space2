@@ -160,33 +160,32 @@ screen choose_crop(crop_index=0):
         hbox:
             xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 20
             spacing 10
-            vbox:
-                spacing 10
-                style_prefix "field_info"
-                xsize LEFT_COLUMN_WIDTH
-                label "Field Status"
-                label "History" style "crop_details_label" text_color white
-                use history_box(crop_index)
-                null height 20
-                label "Health" style "crop_details_label" text_color white
-                text "Nitrogen Level: " + get_level_fuzzy(1 - (farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX] / float(Field.NITROGEN_FULL)))
-                if USE_PESTS:
-                    text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
+            # vbox:
+            #     spacing 10
+            #     style_prefix "field_info"
+            #     xsize LEFT_COLUMN_WIDTH
+            #     label "Field Status"
+            #     label "History" style "crop_details_label" text_color white
+            #     use history_box(crop_index)
+            #     null height 20
+            #     label "Health" style "crop_details_label" text_color white
+            #     text "Nitrogen Level: " + get_level_fuzzy(1 - (farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX] / float(Field.NITROGEN_FULL)))
+            #     if USE_PESTS:
+            #         text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
 
             frame:
                 style "plan_farm_subframe"
                 vbox:
                     hbox:
-                        label "New Crop" style "computer_sub_label" text_color green_dark
-                        textbutton "X" xpos 50 ypos -2 action Hide("choose_crop", zoomout)
-                    $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
-                    label crop_name.capitalize()
+                        $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
+                        label crop_name.capitalize()
+                        textbutton "X" xpos -25 ypos -2 action Hide("choose_crop", zoomout)
                     hbox:
+                        style_prefix "crop_status"
                     # TODO: The text here gets cut off on the left
                         vpgrid:
                             cols 2
-                            style_prefix "crop_status"
-                            text "Calories: "
+                            text "   Calories: " #extra spaces are needed because vpgrid takes size for ALL children from size of first child
                             frame:
                                 use stat_icons(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX)
                             text "Nutrition: "
@@ -201,7 +200,7 @@ screen choose_crop(crop_index=0):
 
                             if (year >= MONEY_YEAR):
                                 text "Value: "
-                                bar value crop_info[selected_crop_index][VALUE_INDEX] range CROP_STATS_MAX style "crop_details_bar"
+                                use stat_icons(crop_info[selected_crop_index][VALUE_INDEX], VALUE_INDEX)
                             else:
                                 null
                                 null
@@ -526,8 +525,8 @@ style crop_details_label is computer_sub_label
 
 style crop_details_label_text is computer_sub_label_text:
     size 26
-    xalign 0.5
-    color black
+    xalign 0.0
+    color green_dark
 
 style crop_details_selected_label is crop_details_label:
     background tan_dark
@@ -557,7 +556,7 @@ style crop_details_positive_bar is bar:
     yalign 0.5
 
 style crop_details_vbox is computer_sub_vbox:
-    xsize MIDDLE_COLUMN_WIDTH
+    xsize MIDDLE_COLUMN_WIDTH+LEFT_COLUMN_WIDTH
 
 style crop_details_hbox is computer_sub_hbox:
     xsize MIDDLE_COLUMN_WIDTH-10
@@ -622,12 +621,16 @@ style crop_totals_bar is crop_layout_bar
 style work_slider is slider
 
 style crop_status_vpgrid:
-    xsize 260
+    xsize CROP_STATUS_ICON_SIZE*5*2
     xspacing 5
     yspacing 10
 
 style crop_status_frame is frame:
     background None
+
+style crop_status_hbox is hbox:
+    xsize CROP_STATUS_ICON_SIZE*5*2*2
+    xalign 0.5
 
 style crop_status_text is text:
     xfill True

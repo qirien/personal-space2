@@ -1796,7 +1796,7 @@ label community12:
             ilian normal "Go ahead and ask Pete, he knows what happened."
             nvl clear
             him_c "Hey, Pete, what happened to all our beef?"
-            pete_c "That's what I'd like to know!" 
+            pete_c "That's what I'd like to know!"
             pete_c "Pavel, Sara, and Natalia have been asking about them too, so I cc'd them on this message."
             pete_c "I've put tiny screws that look like security cameras at intervals around my fence and so far it's working!!"
             him_c "Like that would fool anyone."
@@ -1806,7 +1806,7 @@ label community12:
             pete_c "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
             pete_c "We'll have to live without beef for a while so that we can give everyone some next season."
             nvl hide
-            
+
             scene farm_interior with fade
             show him normal at midleft
             show chaco at midright
@@ -1891,7 +1891,7 @@ label community12:
             else:
                 scene path with fade
                 show him normal at moveinright
-                show pavel normal at midleft 
+                show pavel normal at midleft
                 with dissolve
                 "The next day, I met Pavel on the road to the miner's village."
                 him determined "I think one of us should talk to Brennan while the other tries to talk to some of the other people in the miners' village."
@@ -2032,7 +2032,7 @@ label community12:
                 legalese "Someone let the cow go the next day and no one has seen it since."
                 legalese "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
                 show him at midleft
-                show pete normal at midright 
+                show pete normal at midright
                 with dissolve
                 him sad sweat "Hey Pete! I found out what happened to your cow."
                 him annoyed sweat "You were right, it was the miners, but they weren't in agreement about it."
@@ -2319,7 +2319,7 @@ label community13:
         lily normal "Come with me to consult with Brennan about this urgent matter."
         him concerned "Can't we just message him?"
         lily angry "An in-person meeting has more impact."
-        
+
     # Whether you're the liaison or not, you go talk with Brennan
     him concerned "You talk to Brennan. I need to make breakfast."
     lily angry "I'm afraid that my concerns may be dismissed due to my age and stature."
@@ -2412,7 +2412,7 @@ label community13:
 
     if (c13_lily_happiness < 1):
         $ lily_mad_at_RET = True
-        
+
     brennan normal "Lily, how's this: You continue to do testing in a few locations to see how bad the contamination is."
     brennan normal "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
     lily normal "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
@@ -2746,7 +2746,7 @@ label community15:
     pavel "{i}[her_name], I think you should come over here.{/i}"
     show her surprised
     pavel "{i}Naomi is really sick.{/i}"
-    her surprised "What are her symptoms?" 
+    her surprised "What are her symptoms?"
     hide her with moveoutright
     "[her_name] continued talking on the radio as she put on her boots and coat and took my tractor down the road."
     "I fell back asleep and woke up an hour later and started making breakfast"
@@ -2920,7 +2920,6 @@ label community15:
             her concerned "I guess I don't have to say much..."
     scene church with fade
     "Almost everyone came to the funeral the next day."
-    #background - multipurpose room or chapel
     show her concerned at center with moveinleft
     her "I hope Naomi felt at peace when she died."
     her "Even though she was miserable, she stayed cheerful and optimistic until the very end."
@@ -3190,7 +3189,7 @@ label community17:
                 "I asked Sara and [her_name] to plan the festival. They made a good team for that sort of thing. But they wanted to know who was invited."
     else:
         "Sara asked me who we should invite to the festival this year."
-        
+
     menu:
         "The miners and Pete's group." if ((mavericks >= 6) and (miners >=6)): #TODO: make sure it's possible to get this option
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
@@ -4943,7 +4942,7 @@ label community23:
     # Pete's cows have cancer
     # Terra is 14 here
     $ pete_knows_his_cows_have_cancer = False
-    
+
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
     if mavericks > 5:
         her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
@@ -4977,7 +4976,7 @@ label community23:
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
             $ mavericks += 1
-            
+
     kid "Can Anya and I go to the beach this weekend?"
     him "By yourselves?"
     kid "No, Anya's parents are going."
@@ -5917,7 +5916,7 @@ label call_to_squid:
                         menu:
                             "you..." if ((not uliveshell) and (not ulivenot)):
                                 "Why you..."
-                                menu:                 
+                                menu:
                                     "live shell?" if (not uliveshell):
                                         "Jellysquid" "Shell save us from enemy."
                                         $ uliveshell = True
@@ -5929,7 +5928,7 @@ label call_to_squid:
                                         jump question_menu
                             "we..." if ((not weliveshell) and (not welivenot)):
                                 "Why we..."
-                                menu:                                    
+                                menu:
                                     "live shell?" if (not weliveshell):
                                         "Jellysquid" "You don't live in a shell. Your shell is inside you."
                                         $ weliveshell = True
@@ -6009,12 +6008,12 @@ label call_to_squid:
                                         "Jellysquid." "You do not live in the ocean."
                                         $ wherewenotlive = True
                                         jump question_menu
-                            
+
                     "Finish talking" if asked_shell_food:
                         "I felt like I understood enough to try and help."
                         "I put the jellysquid back in the water."
                         jump back_to_farm27
-                        
+
                 label back_to_farm27:
                     "I went back to the colony and my farm."
                     "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
@@ -6034,7 +6033,7 @@ label call_to_squid:
                     zaina "I've actually spent several years studying them."
                     zaina "I helped Dr. Lily teach them how to 'write'."
                     zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
-                    zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others." 
+                    zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others."
                     zaina "If a central brain can link up to the jellysquids, it also explains how jellysquids we'd never seen before already knew how to interact with us."
                     zaina "These animals are one of the most interesting beings I've studied."
                     him "Wow. Why didn't you tell the rest of us what you were doing?"
@@ -6446,6 +6445,7 @@ label community29:
         "We heard the heart rate monitor slowing, and then it stopped."
         "[her_name] tried to resucitate Helen for a long time, but was not successful."
         her "We were too late. I'm so sorry Pete."
+        $ helen_dead = True
         "Tears streamed down his face. He stayed with her body until [her_name] locked the hospital for the day."
         "Later Pete came back for the body, which he buried in a grave near the ocean."
         "A few weeks later there were still some loose ends from her hospital stay."
@@ -6563,7 +6563,7 @@ label community29:
         helen "We don't have any use for those things now... besides selling them."
         "After Helen was well enough, she and Pete left. They buried Sage's body near the base of the mountain."
         jump credits29
-        
+
         label credits29:
             scene farm_interior
             show him midright with dissolve
@@ -6575,8 +6575,8 @@ label community29:
             him "This is the first I've heard of it."
             kid "..."
             return
-        
-        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that. 
+
+        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that.
 
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
@@ -6589,7 +6589,7 @@ label community29:
 # WHO STOLE PETE'S CREDITS???
 
 label community30:
-    #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not 
+    #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not
     $ account_checked_counter = 0
     $ know_noel_had_firegrass = False
     $ checked_noel = False
@@ -7015,7 +7015,7 @@ label community30:
             oleg "I thought about what you were saying, about the credit information being stored somewhere."
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
-            
+
             if (mavericks > 8):
                 pass #you find out about the below strategy if you talk to Pete
             else:
@@ -7023,8 +7023,8 @@ label community30:
                 oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
                 him "That sounds like it would work. I don't have admin status though..."
                 oleg "I think Brennan does."
-                him "Thanks." 
-            
+                him "Thanks."
+
             "As I got up to leave, the plastic ring from earlier fell out of my pocket."
             oleg "Hey, you dropped this. Where did you get one of those?"
             him "I found it while investigating Noel's home. Do you know what it is?"
@@ -7036,7 +7036,7 @@ label community30:
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
         "I also wanted to go back to the scene of the crime to look in the barrel."
-        if (mavericks > 8): 
+        if (mavericks > 8):
             "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
         else:
             pass
@@ -7054,7 +7054,7 @@ label community30:
             $ know_rings_purpose = True
         else:
             pass
-        
+
         "The next morning, I sent Noel a message first thing."
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
@@ -7603,7 +7603,7 @@ label community30:
                         "The next morning, we awaited the verdict."
                         if knows_previous_head_injuries:
                             sara "The jury found Noel and Van guilty of criminal negligance."
-                            sara "Together with the mayor, they decided that Noel and Van should attend therapy with me weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
+                            sara "Together with the mayor, they decided that Noel and Van should attend therapy weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
                             sara "They also agreed that Thuc could count up to 50 hours of babysitting as community service."
                             thuc "Come on. He makes so little that his whole job should be considered community service."
                             sara "That's what the jury decided. Would you like to make a formal appeal?"
@@ -7612,7 +7612,7 @@ label community30:
                             return
                         else:
                             sara "The jury found Noel and Van guilty of negligance, but not to a criminal degree."
-                            sara "Together with the mayor, they decided that Noel and Van should attend three months of weekly therapy with me and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
+                            sara "Together with the mayor, they decided that Noel and Van should attend three months of weekly therapy and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
                             thuc "Sounds fair."
                             him "A man died and the punishment is therapy and a little service?"
                             sara "Do you have more evidence to submit? It sounded like a one-time mistake that anyone could make."
@@ -7622,7 +7622,6 @@ label community30:
 
                     else:
                         him "I'm ready to tell Julia my findings."
-                        her "Enjoy."
                         "I told Julia I was ready to report my findings and she asked me to come over right away."
                         him "I've investigated Joel's death and I believe it was the result of chronic neglect."
                         julia "That's so tragic. What happened, exactly?"
@@ -7635,7 +7634,7 @@ label community30:
                             julia "That's so unfortunate."
                         julia "I'll arrange for Noel to be put on trial for neglect, and you can testify of your findings."
                         him "Okay."
-                        
+
                         label accuse_noel_neglect:
                             "Thuc was appointed to prepare a defense for Noel."
                             "The day of the trail came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
@@ -7655,13 +7654,13 @@ label community30:
                             "The next morning, we awaited the verdict."
                             if knows_previous_head_injuries:
                                 sara "The jury found Noel guilty of criminal negligance."
-                                sara "Together with the mayor, they decided that Noel should attend therapy with me weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
+                                sara "Together with the mayor, they decided that Noel should attend therapy weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
                                 thuc "Sounds fair."
                                 sara "We'll consider the case closed then."
                                 return
                             else:
                                 sara "The jury found Noel guilty of negligance, but not to a criminal degree."
-                                sara "Together with the mayor, they decided that Noel should attend three months of weekly therapy with me and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
+                                sara "Together with the mayor, they decided that Noel should attend three months of weekly therapy and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
                                 thuc "Sounds fair."
                                 him "A man died and the punishment is therapy and a little service?"
                                 sara "Do you have more evidence to submit? It sounded like a one-time mistake that anyone could make."
@@ -7841,21 +7840,21 @@ label community30:
 
     "The latest shuttles from RET have arrived."
     #not sure how I want to do the endings :-(
-    
+
     if (miners >= 12):
         "New miners have arrived to replace the ones who are leaving. I'm kind of sad to see some of them go."
-    if (mavericks >= 12): 
+    if (mavericks >= 12):
         "Pete and the other people living away from the colony prospered. Sometimes a family from the colony would join them."
     if (colonists >= 12):
         "We continued to grow our farms and discover more about life on Talaam."
     if jellypeople_happy:
         "We collaborated with the jellymother to create and maintain more fish farms."
-            
+
     if (mavericks <= 5):
         "Pete lived away from the colony, but the other mavericks came back to live with the colony."
         "They said it was too difficult to find enough food without our farming equipment."
 #        if (colonists <= 5):
-            
+
     if (miners <= 5):
         "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
         "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."

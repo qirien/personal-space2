@@ -355,7 +355,7 @@ label message14:
     kid_c "Stellar! A rocket picnic! -=|⁐⁐⁐⁐⁐⁐>"
     ilian_c "I didn't realize this message area was for kids."
     naomi_c "No reason it shouldn't be, if they have something to add to the conversation. But perhaps they would also like their own area."
-    oleg_c "I alredy made one no adults allowed tbfy ha ha  q.\_/.p"
+    oleg_c "I alredy made one no adults allowed tbfy gh gh  q.\_/.p"
     sara_c "We'll see about that."
 
     nvl clear

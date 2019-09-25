@@ -7977,7 +7977,7 @@ label family30:
     show her concerned at midright
     show kid nervous at center
     with dissolve
-    show him normal at midleft with moveinleft
+    show him normal at midleft behind kid with moveinleft
 
     her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
@@ -8169,6 +8169,10 @@ label family30:
     kid happy "I'm glad the sauce turned out; it was kind of lumpy at first."
     "We chewed thoughtfully for a few minutes, savoring the herbs and flavors."
     bro "Are you leaving or not?"
+    show him surprised
+    show her surprised
+    show kid concerned
+    with dissolve
     "I stopped chewing. I stopped breathing. I couldn't do or think about anything else until I knew the answer to this question."
     if (not is_attached()) and (is_competent()) and (is_independent()):
         kid determined "I am."
@@ -8198,7 +8202,7 @@ label family30:
         "[bro_name] didn't say anything, but he gave her a big hug."
         kid surprised "Ow, not so tight! I love you too, [bro_name]."
     him happy "Okay, group hug!"
-    show him normal at center with move
+    show him normal at midleft with move
     show her normal at midright with move
     her annoyed "Watch the foot!"
     show bro at midright with move

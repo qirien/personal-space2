@@ -128,7 +128,7 @@ label overwork:
             $ overwork_mavericks += 1
             if (overwork_mavericks <= 1):
                 $ mavericks += 1
-                if (year >= PETE_LEAVES_CAVE_YEAR):
+                if (year >= PETE_LEAVES_YEAR):
                     scene shack with fade
                 else:
                     scene cave with fade
@@ -142,11 +142,13 @@ label overwork:
                 pete happy "I could probably find a few hours this week. Mind if I bring the whole family?"
                 him happy "Bring anyone you like! Honestly, I could really use your help."
                 scene fields with fade
-                show him at midleft
-                show pete at center
-                show helen at midright
-                show travis at quarterright
-                show lily at quarterleft
+                show him normal at midleft
+                show pete normal at center
+                if (not helen_dead):
+                    show helen normal at midright
+                show travis normal at quarterright
+                if (year <= LILY_DIES_YEAR):
+                    show lily normal at quarterleft
                 "With so many people, it didn't take us very long to harvest all the [random_crop]."
                 him happy "Thanks, guys!"
             else:
@@ -329,7 +331,10 @@ label bad_nutrition:
             him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
             her annoyed "Like, someone didn't plant enough fruits and vegetables scurvy."
             him surprised "How come you and [kid_name] don't have it?"
-            her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
+            if (not helen_dead):
+                her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
+            else:
+                her concerned "Sometimes we get applesauce from the storehouse."
             him annoyed "And you don't share it with me?!"
             her annoyed "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
             him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
