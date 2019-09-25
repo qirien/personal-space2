@@ -877,7 +877,7 @@ label community7:
                 him happy "I only get so many instant communication slots."
                 thuc normal "But by the time they get your e-mail no one will remember me."
                 him determined "I think RET has bigger things to worry about."
-                thuc sad "Fine, an e-mail is fine."
+                thuc sad "An e-mail is fine."
             "From a business standpoint, you're stuck here.":
                 $ mavericks += 1
                 him annoyed "You don't have any leverage over them. It's not like you can quit now."
@@ -3177,6 +3177,8 @@ label community16:
 # Harvest festival; whom do you invite? chance to eat jellyfish...
 label community17:
     $ community_17_activity = renpy.random.choice(["contests", "games", "performances"])
+    scene starts with dissolve
+    show him normal at midleft
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
     if (is_liaison):
         "Someone needs to plan it... but who?"
@@ -3221,32 +3223,38 @@ label community17:
                 "I asked Ilian to be in charge of that. He loved music, and he's such a critic that he'll only ask people with real talent."
         "Last was the food. I figured I'd just have everyone bring something."
 
+    scene plain with dissolve
+    show him normal at midleft
     play music audio.upbeat
     if (invited_mavericks and invited_miners):
+        show pete normal at left with moveinleft
         "Pete offered to slaughter a steer for the occasion."
+        show brennan normal at center with moveinright
+        show chaco normal at midright with moveinright
         "Almost all the miners came, bringing some bean stew."
         brennan "This beef is amazing. Do you have any extra I could buy from you?"
         pete "You know, credits are not worth that much too me right now."
-        pete "We can always use more beans though."
-        brennan "Credits are the only thing we have!"
-        pete "I don't have a tablet, and I asked RET to delete my name from their records when I left, so I actually have no way of using credits."
-        brennan "We've also got lots of rocks?"
+        pete happy "We can always use more beans though."
+        brennan happy "Credits are the only thing we have!"
+        pete normal "I don't have a tablet, and I asked RET to delete my name from their records when I left, so I actually have no way of using credits." #TODO: how does he deal in credits later?
+        brennan normal "We've also got lots of rocks?"
         pete "Any metals?"
         brennan "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
-        pete "Great. Now I just need to figure out how to make a bellows!"
+        pete happy "Great. Now I just need to figure out how to make a bellows!"
         "Pete also brought a strange seafood dish."
 
     elif invited_mavericks:
+        show pete normal at left with moveinleft
         "Pete offered to slaughter a steer for the occasion."
         "The colonists brought their best vegetables and fruits, and even some different kinds of bread and pudding."
         "Pete also brought a strange side dish."
 
     if invited_mavericks:
-        him "So... what is this?"
-        pete "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
-        pete "They start stacking on top of one another and they send off these giant eggs."
-        him "Is it safe to eat?"
-        pete "Hasn't killed me yet. Try it; it's real good."
+        him determined "So... what is this?"
+        pete normal "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
+        pete "Sometimes they stay stuck together and you can reel in eight or ten at once."
+        him pout "Is it safe to eat?"
+        pete happy "Hasn't killed me yet. Try it; it's real good."
         menu:
             "Try it.":
                 "It tastes cool and slippery, and a little fishy."
@@ -3255,28 +3263,27 @@ label community17:
                 "But before you know it, you've eaten the whole thing."
                 $ ate_jellyfish = True
             "Don't try it.":
-                him "I'll pass."
-                pete "Suit yourself."
-        him "Can you come do a class on cattle health? You're the only expert around." #see community 14 for who got the cattle
-        pete "I could, if you can help me out with a knife and some twine."
-        him "I think we can arrange for that."
+                him normal "I'll pass."
+                pete normal "Suit yourself."
+        him content "Can you come do a class on cattle health? You're the only expert around." #see community 14 for who got the cattle
+        pete normal "I could, if you can help me out with a knife and some twine."
+        him happy "I think we can arrange for that."
 
     elif invited_miners:
         "We invited the miners to join us. After all, their success is what enables us to continue to live here."
-        brennan "We didn't have time to go hunting, but we DO have time to soak beans."
-        him "Is this a soup or a dip? It smells... different."
-        brennan "Neither. Either. Both! Try some."
+        brennan normal "We didn't have time to go hunting, but we DO have time to soak beans."
+        him doubt "Is this a soup or a dip? It smells... different."
+        brennan happy "Neither. Either. Both! Try some."
         menu:
             "Try it.":
                 "You dip your bread into the very organic-appearing, thick brown dip."
                 "It tastes like beans, with a strange combination of spices."
                 "It's not like anything you've ever tasted before. It's exciting to try something new"
-                #TODO: set up the variable for here too?
             "Don't try it.":
-                him "I'll pass."
-                brennan "You don't like beans?"
-                him "I'll stick to what I know."
-                brennan "How very... predictable of you."
+                him normal "I'll pass."
+                brennan normal "You don't like beans?"
+                him pout "I'll stick to what I know."
+                brennan normal "How very... predictable of you."
 
     scene community_center with fade
     show thuc normal at quarterleft
@@ -3288,33 +3295,33 @@ label community17:
     "I set my dish next to the ones from the other families on the buffet table."
     "Everyone helped themselves and sat down--some at tables and some on the ground."
     natalia "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
-    him "It's kind of like a souffleé, but I don't have an electric mixer, or a reliable oven."
+    him smirk "It's kind of like a souffleé, but I don't have an electric mixer, or a reliable oven."
     natalia "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
-    him "I know..."
+    him sad "I know..."
     natalia "You might have been better off just leaving out the flour completely."
-    him "Did you try Thuc's goat curry? Where did he get the spices for that?"
+    him normal "Did you try Thuc's goat curry? Where did he get the spices for that?"
     pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
-    him "It's been so long since I've had these kinds of spices. It tastes amazing."
+    him excited "It's been so long since I've had these kinds of spices. It tastes amazing."
     pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
     thuc "Thanks to you my children know the difference between cumin and cardamom!"
-    him "Which goat are we eating tonight?"
-    thuc "Shorts."
+    him happy "Which goat are we eating tonight?"
+    thuc sad "Shorts."
     pavel "That's a weird name for a goat."
-    thuc "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
-    thuc "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
+    thuc normal "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
+    thuc sad "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
     julia "Oh, and don't forget Cape!"
-    julia "Last year Gardenia insisted on wearing this cape she made everywhere."
-    julia "She brought it out today to dress up for the begging."
+    julia mad "Last year Gardenia insisted on wearing this cape she made everywhere."
+    julia normal "She brought it out today to dress up for the begging."
     "After the children finished eating, they ran around with pails of water."
     "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
     "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
     "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
     "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
-    pavel "It's a shame we don't have any chocolate to give them."
+    pavel sad "It's a shame we don't have any chocolate to give them."
     natalia "I miss it too."
-    julia "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
-    thuc "They still sound pretty entitled to me!"
-    him "Some things never change."
+    julia mad "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
+    thuc sad "They still sound pretty entitled to me!"
+    him laugh "Some things never change."
 
     scene community_center with fade
     play music audio.exciting
@@ -3858,22 +3865,23 @@ label c17_after_activities:
     if ate_jellyfish:
         #move to a later, more sparse event?
         "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
-        "I wonder what they look like." #to self
-        "I write an e-mail to Dr. Lily asking if she has any pictures." #but only if lily went with them? maybe she should go either way?
+        "I wonder what they look like."
+        nvl clear
+        him_c "Dr. Lily, do you have any photos of the sea creature Pete brought?"
         if lily_mad_at_RET:
-            "She responds via the instant messaging software. Guess she hasn't given up all technology."
+            "She responded via the messaging software. Guess she hadn't given up all technology."
         else:
             "She still lives in the colony, but she's been hanging out a lot with Pete to study local flora and fauna."
-        lily "I don't have a camera capable of taking photos underwater, but here are some photos of the animal out of water."
-        lily "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish. But they have five tentacles, so I've been calling them jellystars."
-        lily "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
-        "I feel relief just looking at the photos of the creature out of water and the drawings."
-        "I start making my own drawings, and send a few back to Lily."
-        lily "Did you eat some of this jellystar at the feast?"
-        him "Yes, I did. Are they in season?"
-        lily "I find your interest in them highly unusual."
-        him "Why? Aren't they beautiful creatures?"
-        lily "Yes. They are."
+        lily_c "I don't have a camera capable of taking photos underwater, but I'll e-mail you some photos of them out of water."
+        lily_c "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish. But they have five tentacles, so I've been calling them jellystars."
+        lily_c "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
+        "I felt relief just looking at the photos of the creature out of water and the drawings."
+        "I started making my own drawings, and send a few back to Lily."
+        lily_c "Did you eat some of this jellystar at the feast?"
+        him_c "Yes. Are they in season?"
+        lily_c "I find your interest in them highly unusual."
+        him_c "Why? Aren't they beautiful creatures?"
+        lily_c "Yes. They are."
         return
     else:
         return
@@ -3895,6 +3903,7 @@ label community18:
     else:
         natalia_c "Ilian, did the cattle get out or something?"
         ilian_c "No, those must be Pete's."
+        ilian_c "His usually have those big UV blankets on them."
     natalia_c "Any advice on how to scare them away?"
     ilian_c "Yell at them and wave your arms."
     natalia_c "tried that"
@@ -3902,18 +3911,23 @@ label community18:
     natalia_c "come over and do it yourself then!"
     natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
-    "My fence isn't robust enough to protect against cattle. I run out to the front yard."
+    scene fields with fade
+    show him yelling at left with moveinleft
+    "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
     him angry "GO HOME COWS! KEEP MOVING!"
+    show him yell at center
     him yell "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
-    "They look a little scared, but they start creeping back as soon as a turn my back."
+    show him yell at midright
+    "They looked a little scared, but they started creeping back as soon as I turned my back."
     label cow_options:
-        "How will I handle the cows?"
+        "How should I handle the cows?"
         menu:
             "Herd them to our ranch.":
-                "I hop on Lettie and herd the cows over to the ranch."
-                "The cows are nervous, but I calmly block their way if they try to escape."
-                "It took a few tries to get them to go the direction of the ranch, so I bribed them with a little of Lettie's hay. They seem skittish."
-                "A few of them seem to recognize the ranch when we get there and it's easy to let them into the herd."
+                scene path with fade
+                "I hopped onto Lettie and herded the cows over to the ranch."
+                "The cows were nervous, but I calmly blocked their way if they tried to escape."
+                "It took me a few tries to get them to go the direction of the ranch, so I bribed them with a little of Lettie's hay. They seemed skittish."
+                "A few of them seemed to recognize the ranch when we got there, which made it easier for them to join the herd."
                 if thuc_has_cattle:
                     nvl clear
                     thuc_c "What are Pete's cattle doing out here? I thought he and the others were camped by the sea."
@@ -3930,7 +3944,7 @@ label community18:
                     him_c "Ilian, I herded the escaped cattle into the ranch with yours."
                     ilian_c "NOOOOOOOOOOOOOOOOOOO"
                     ilian_c "Quick, see if you can separate them while you still can!"
-                    him_c "They're pretty easy to spot. They're wearing bright blue blankets, probably to protect them from sunburns."
+                    him_c "They're the ones with the bright blue blankets, like you said."
                     ilian_c "But they might have parasites or bad habits!"
                     ilian_c "Please separate them somehow. Put them into the barn or something."
                     him_c "Sorry, I don't think I can do that. Hopefully Pete can sort it all out soon."
@@ -3941,59 +3955,61 @@ label community18:
                 $ c18_cows_in_street = True
             "Wait to see if someone comes for them." if not (c18_waited):
                 "I stand guard in front of my house and wait for something to happen."
-                "I yell at them whenever they come near, and they start going the other direction."
+                "I yell at them whenever they come near, but now they're not as scared of me."
                 "Hmm. This isn't working."
                 $ c18_waited = True
                 jump cow_options
 
     scene cabins with fade
-    "I go out to the miner's camp on Lettie with my binoculars to look for Pete."
-    brennan "Hey, we had a few cows come through our settlement about twenty minutes ago."
+    show him at midleft with moveinleft
+    show brennan at center with dissolve
+    "I hopped onto Lettie and rode to the miner's camp, using my binoculars to look for Pete."
+    brennan normal "Hey, we had a few cows come through our settlement about twenty minutes ago."
     brennan "They ate up half of our herb garden."
-    brennan "Whose cows are these?"
-    him "Well, we think they must be Pete's, because all of ours are accounted for."
+    brennan angry "Whose cows are these?"
+    him "They must be Pete's, because his have those UV blankets on them."
     him "I was actually trying to find Pete to ask him about this."
-    # Pete comes running in, breathless and sweaty
+    show pete at midright with moveinright
     pete "Yep, these're my cows. We ran into a swarm of land lobsters while trying to get back to the summer pasture and the herd split."
     pete "The larger part of the herd is happily grazing about a half mile down the river."
     pete "[his_name], you and your horse are just what we need. Can you help me herd the stragglers?"
-    brennan "Yes, please, get these cows out of here."
+    brennan normal "Yes, please, get these cows out of here."
     "Should I help herd the cows?"
     menu:
         "I can help.":
             $ mavericks += 1
             $ miners += 1
-            him "Sure thing." #make this a choice as well?
+            him normal "Sure thing." #make this a choice as well?
             "We work together to herd the cattle into a group."
             if c18_cows_in_ranch:
                 him  "I found three of your cows and herded them into the old ranch."
             else:
                 him "Three of your cows are eating hay in front of my house."
-            pete "Let's pick them up on the way out."
+            pete happy "Let's pick them up on the way out."
             "Some of the cows were lying down, and we had to wait for them to get up and stretch out."
-            pete "Don't push them too hard. They'll get stressed out and are more likely to bolt when they get the opportunity."
+            pete normal "Don't push them too hard. They'll get stressed out and are more likely to bolt when they get the opportunity."
             pete "I'm pretty slow, but I know where we're going, so I'll take the front."
             "Eventually, the stragglers joined the rest of the herd."
-            pete "Thanks [his_name]."
-            pete "I have a cow that is on her last legs. I'll bring her to the butchery and give out some meat as an apology for the trouble."
-            him "That would be a good idea."
+            pete happy "Thanks [his_name]."
+            pete normal "I have a cow that is on her last legs. I'll bring her to the butchery and give out some meat as an apology for the trouble."
+            him concerned "That would be a good idea."
             "We spent the next month enjoying steak, beef stew, and beef jerky."
         "No, I don't want to.":
             $ c18_no_help_pete = True
-            him "Sorry, I can't help you right now. I need to get back to the farm."
+            him normal "Sorry, I can't help you right now. I need to get back to the farm."
             if c18_cows_in_ranch:
-                him  "I found three of your cows and herded them into the old ranch."
+                him pout "I found three of your cows and herded them into the old ranch."
             else:
-                him "Three of your cows are eating hay in front of my house."
-            him "Keep better track of your cows, Pete."
-            pete "Can I use Lettie to herd them?"
-            him "No, I don't let just anyone ride her."
+                him pout "Three of your cows are eating hay in front of my house."
+            him sad "Keep better track of your cows, Pete."
+            pete normal "Can I use Lettie to herd them?"
+            him concerned "No, I don't let just anyone ride her."
             pete "You're not gonna help one bit?"
-            him "No, I'm not."
+            him annoyed "No, I'm not."
             pete "I won't forget this."
             if (mavericks <= 5):
-                him "You need to compensate the miners and colonists for the losses they incurred."
-                pete "You need to stop being a jerk."
+                him pout "You need to compensate the miners and colonists for the losses they incurred."
+                pete normal "You need to stop being a jerk."
             "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
     return
 
@@ -4002,20 +4018,28 @@ label community19:
     #you could substitute Pete for Helen in this scene; I just wanted to give Helen some more screen time.
     #this event is currently stand-alone (doesn't affect other events except with relationship values)
     #TODO: affect actual credits
-    her "Hey, I told Sara that we could bring something to dinner this weekend."
-    her "I know that the fall harvest isn't quite ready yet... can you get some of that wolf slug meat from Pete?"
-    him "Sure. Helen usually comes through town on Tuesday selling it."
-    her "Oh, so Helen can sully herself with credits instead of Pete trading this and that."
-    him "I don't mind. Credits are so much more convenient."
-    her "But they're also completely abstract. A credit only represents something because we decide it's valuable."
-    him "The same could be said of any object that we sell."
-    her "Tell me that when you're hungry! I budgeted up to 20 credits for meat or protein, so see what you can get."
+    scene farm_interior with dissolve
+    show him normal at midleft
+    show her happy at midright
+    with dissolve
+    her happy "Hey, I told Sara that we could bring something to dinner this weekend."
+    her serious "I know that the fall harvest isn't quite ready yet... can you get some of that wolf slug meat from Pete?"
+    him concerned "Sure. Helen usually comes through town on Tuesday selling it."
+    her annoyed "Oh, so Helen can sully herself with credits instead of Pete trading this and that."
+    him normal "I don't mind. Credits are so much more convenient."
+    her normal "But they're also completely abstract. A credit only represents something because we decide it's valuable."
+    him determined "The same could be said of any object that we sell."
+    her flirting "Tell me that when you're hungry! I budgeted up to 20 credits for meat or protein, so see what you can get."
+    scene path with dissolve
+    show helen normal at midright with moveinleft
+    show him normal at midleft with moveinleft
     "That Tuesday I saw Helen coming through town with a large backpack of wares to sell."
     "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
+    #TODO: sound for this
     "Scarfs and gloves with jellystar patterns on them hang from the top."
-    him "Hey Helen! Got any wolf slug meat?"
+    him content "Hey Helen! Got any wolf slug meat?"
     helen "Yeah, I've got some. It'll cost you though--we only found one this week and it was pretty young."
-    him "How much?"
+    him determined "How much?"
     if c18_no_help_pete:
         helen "80 credits."
         him "Hmm. That's outside my price range. Got any beef bones or nuts?"
@@ -7838,30 +7862,29 @@ label community30:
 # How did Joel die? Van and Noel knew that Joel's wheelchair brakes were breaking down. In fact, they had repaired them many times in the past. This time Joel wanted to do it himself but he kept putting it off.
 # Also, Joel wouldn't let Van or Noel repair the wheelchair for him. He had been acting depressed frequently. So maybe he felt like it wasn't worth fixing.
 
-
-    "The latest shuttles from RET have arrived."
-    #not sure how I want to do the endings :-(
+    return
+#    #see endings.rpy for current draft of endings
     
-    if (miners >= 12):
-        "New miners have arrived to replace the ones who are leaving. I'm kind of sad to see some of them go."
-    if (mavericks >= 12): 
-        "Pete and the other people living away from the colony prospered. Sometimes a family from the colony would join them."
-    if (colonists >= 12):
-        "We continued to grow our farms and discover more about life on Talaam."
-    if jellypeople_happy:
-        "We collaborated with the jellymother to create and maintain more fish farms."
+#    if (miners >= 12):
+#        "New miners have arrived to replace the ones who are leaving. I'm kind of sad to see some of them go."
+#    if (mavericks >= 12): 
+#        "Pete and the other people living away from the colony prospered. Sometimes a family from the colony would join them."
+#    if (colonists >= 12):
+#        "We continued to grow our farms and discover more about life on Talaam."
+#    if jellypeople_happy:
+#        "We collaborated with the jellymother to create and maintain more fish farms."
             
-    if (mavericks <= 5):
-        "Pete lived away from the colony, but the other mavericks came back to live with the colony."
-        "They said it was too difficult to find enough food without our farming equipment."
+#    if (mavericks <= 5):
+#        "Pete lived away from the colony, but the other mavericks came back to live with the colony."
+#        "They said it was too difficult to find enough food without our farming equipment."
+##        if (colonists <= 5):
+            
+#    if (miners <= 5):
+#        "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
+#        "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
 #        if (colonists <= 5):
-            
-    if (miners <= 5):
-        "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
-        "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
-        if (colonists <= 5):
-            "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
-            "Some of us died of malnutrition and exhaustion."
+#            "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
+#            "Some of us died of malnutrition and exhaustion."
 
     #TODO: fill in the various endings, figure out what the threshold numbers should be
     return
