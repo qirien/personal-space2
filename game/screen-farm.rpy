@@ -128,7 +128,8 @@ screen farm_details_screen:
                     # TODO: make this have a "NEW!" icon when there's new stuff?
                     textbutton "Child Development" action Show("parenting_handbook", zoomin) xoffset 20
                     # TODO: add parenting quote
-                    text notifications
+                    # TODO: show these somewhere beside previous screen?
+                    # text notifications
 
 
         # Crop layout area

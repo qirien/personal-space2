@@ -3814,7 +3814,7 @@ label family13:
     show him normal at midright
     show her normal at center
     show kid normal at midleft
-    show bro at quarterleft
+    show bro normal at quarterleft
     with dissolve
 
     her normal "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
@@ -3823,21 +3823,21 @@ label family13:
     her concerned "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
     him normal "You could have asked the nurse to help, right?"
     her normal "Yeah, but I wanted it to be just our family."
-    kid "Is that a hand?"
+    kid surprised "Is that a hand?"
     her happy "Yes! There's the baby - you can see the little mouth, and the hand."
     him "Wow, that really makes it seem real."
     her flirting "That's because it is real."
     bro "That's in your tummy?"
-    kid "It's not her tummy, it's her uterus. Only girls have them."
+    kid annoyed "It's not her tummy, it's her uterus. Only girls have them."
     "[bro_name] looked disappointed."
-    bro "Why?"
-    him "Men and women have mostly the same parts, but a few different parts so they can come together and make babies."
-    her "We still have a long time before this baby is born, but that's good. We need time to get ready!"
-    bro "Babies cry a lot."
-    him "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
-    kid "So how come [bro_name] still cries all the time?"
-    bro "I do not!"
-    her "I cry sometimes, too. Sometimes words just aren't enough."
+    bro concerned "Why?"
+    him explaining "Men and women have mostly the same parts, but a few different parts so they can come together and make babies."
+    her normal "We still have a long time before this baby is born, but that's good. We need time to get ready!"
+    bro annoyed "Babies cry a lot."
+    him normal "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
+    kid surprised "So how come [bro_name] still cries all the time?"
+    bro sad "I do not!"
+    her determined "I cry sometimes, too. Sometimes words just aren't enough."
     "I helped [her_name] put away the ultrasound machine, and we started to walk back home."
     scene path with fade
     "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and I on ahead."
@@ -3846,14 +3846,14 @@ label family13:
     show him normal at midright
     show kid normal at midleft
     with dissolve
-    kid "Dad, I have a question."
-    him "What is it?"
+    kid surprised "Dad, I have a question."
+    him surprised "What is it?"
 
     # TODO: Is this different based on earlier decisions?
-    kid "So, you need a man and a woman to make a baby, right?"
-    him "Right..."
-    kid "Well, how, exactly, does that work? I mean, they come together, but... how?"
-    him "Let me think about the best way to explain that to you..."
+    kid concerned "So, you need a man and a woman to make a baby, right?"
+    him normal "Right..."
+    kid nervous "Well, how, exactly, does that work? I mean, they come together, but... how?"
+    him concerned "Let me think about the best way to explain that to you..."
     menu:
         "She's not ready for this":
             $ demanding += 1
@@ -6365,13 +6365,13 @@ label family23:
 # Hanging out with Anya and her older brother
 # Lettie dies.
 label family24:
+    scene barn with fade
+    show horse at midright
     "My horse, Lettie, was almost a member of the family. But she was over twenty-five years old, now, and it was starting to show."
     "She was the only horse on the colony; at one point there were plans for horse breeding, but when RET found precious ores they sent mining equipment instead."
     "I know [her_name] didn't really get it, but Lettie's been one of my best friends. No matter what's going on, I can always depend on her to be there when I need her."
     "And she always accepts me just the way I am."
-    scene barn with fade
-    show horse at midright
-    show him normal at midleft with moveinleft
+    show him normal at midleft behind horse with moveinleft
     him "Hello, old girl."
     "She nickered softly in return and stepped up to me. I patted her neck and talked to her as I got her ready to ride."
     him "We're going to go pickup [kid_name] from Anya's house."
@@ -6530,20 +6530,22 @@ label lettie_dies:
     "I looked around. In Lettie's mouth I found some short, flat needles from an evergreen bush nearby."
     "The bush was not a plant native to Talaam. In fact, it looked like."
     him determined "Yew."
-    kid "Me? I didn't do anything!"
+    kid surprised "Me? I didn't do anything!"
     him concerned "No, a yew tree. Or bush, looks like. Who plants yew where there's horses around?!"
     "My mind raced. Yew poisoning was well-known, but there was no antidote. There were some treatments we could try...if we could get them in time."
     "I pulled out my radio. My hand was trembling and I was a lot less coherent than I wanted to be."
     him angry "[her_name]! At the miner's village... Lettie's sick. I need your help!"
+    show kid sad with dissolve
     her "What's wrong with her?"
     him concerned "Yew. There was a yew bush, and she ate it... maybe a lot of it."
     "I knew I should give her more information, but my brain felt stuck, as if mired in glue."
     her "I'll bring activated charcoal and the stomach pump right away."
     "Lettie convulsed, and I patted her on the side of her neck."
-    him "Okay, okay old girl. [her_name]'s coming."
+    him determined "Okay, okay old girl. [her_name]'s coming."
     "But by the time [her_name] arrived, it was too late."
     "Lettie's heart had stopped."
-    show her normal at center with moveinright
+    show him sad with dissolve
+    show her normal at quarterright behind horse with moveinright
     her sad "I'm so sorry, [his_name]."
     "I sensed sort of distantly that [her_name] and [kid_name] were saying comforting things and had their arms around me."
     "Lettie had been with me even longer than [her_name]. We'd grown up together."
@@ -6614,7 +6616,10 @@ label lettie_dies:
             "I knew I needed to forgive, but I couldn't just yet."
             "And even if I forgave them, I'm not sure I could ever trust that family."
 
+    scene farm_interior with fade
+    show him sad at midright with dissolve
     "[her_name] interrupted my musings."
+    show her concerned at midleft with moveinleft
     her "Hey, sweetie."
     him "Hey."
     "She sat next to me and held my hand."
