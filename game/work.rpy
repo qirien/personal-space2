@@ -1148,7 +1148,7 @@ label work20:
         show thuc normal at left
     with moveinleft
     "Further upstream we arrived at the diversion for farming water. There wasn't much water there, either. Finally, I reached the miner's camp."
-    scene cabins with fade # TODO: mining background?
+    scene mine with fade
     show brennan normal at midright with dissolve
     show him determined at midleft
     if (work20_thuc_present):
@@ -1161,7 +1161,7 @@ label work20:
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
         thuc "Well, who knows? Maybe we can eat what they're making up here?"
-    brennan mad "You'll have to get your water from somewhere else."
+    brennan angry "You'll have to get your water from somewhere else."
 
     menu:
         "What should I say?"

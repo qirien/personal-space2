@@ -10,10 +10,6 @@ The following images are in the public domain.
 
 Starscape <stars.jpg> rendered with Celestia, <http://celestia.space>
 
-Mongolian Yurt <farm_exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
-
-Yurt Interior <farm_interior.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/yurt-holiday-travel-camping-1441610/>, by Sabine van Erp
-
 RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:RoscheiderHof-rathaus-2008-8.jpg>, by Dorothea Witter-Rieder.
 
 Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Kid Bedroom <kid_bedroom.jpg>, Canyon <canyon.jpg>, Sunset <sunset.jpg> by Andrea Landaker
@@ -21,6 +17,14 @@ Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Ki
 Moons <moons.jpg>, Ocean <ocean.jpg>, and Ocean Sunset <ocean-sunset.jpg> by Andrea Landaker and Lisa Horner
 
 Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://openclipart.org/detail/171268/boxing-glove> by netalloy
+
+==== Pixabay License <https://pixabay.com/service/terms/#license>
+
+Mongolian Yurt <farm_exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
+
+Yurt Interior <farm_interior.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/yurt-holiday-travel-camping-1441610/>, by Sabine van Erp
+
+Mining Camp <mine.jpg> by Andrea Landaker, derived from <https://pixabay.com/photos/machinery-mine-construction-site-2653706/>, by Shibang
 
 Dirt background <soil.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/ground-earth-clay-soil-nature-549728/> by Humusak
 
@@ -41,6 +45,12 @@ Cave <cave.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?u
 Shack <shack.jpg> by Andrea Landaker, derived from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2598901">Blue Sky Clouds</a>, by by <a href="https://pixabay.com/users/StockSnap-894430/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=2598901">StockSnap</a>
 
 Polaroid <polaroid.png> from <a href="https://pixabay.com/vectors/polaroid-film-blank-retro-32180/">Polaroid Film Blank</a> by <a href="https://pixabay.com/users/Clker-Free-Vector-Images-3736/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=32180">Clker-Free-Vector-Images</a>
+
+==== CC-BY-3.0
+
+The following images are licensed CC-BY-3.0.
+
+EketorpsBorgHayBarn <barn.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:EketorpsBorgHayBarn.jpg>, by Marcus Budde.
 
 ==== CC-BY-2.0
 storehouse1 <storehouse1.jpg>, "Mr. Vernon Kitchen and Storeroom" by Mr. Gray <https://www.flickr.com/photos/socsci/18933614460/in/photostream/>
