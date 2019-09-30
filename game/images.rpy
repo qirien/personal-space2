@@ -48,6 +48,17 @@ init -10:
                 "year <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
                 "True", "kid-sprites/teen %s.png" % expression_name))
 
+    # TODO: Add the family, with expressions depending on stats.
+    # TODO: Have a different background for each month
+    # TODO: Improve layout
+    image family_photo = Crop((0,0,500,370), LiveComposite(
+        (500, 370),
+        (0,0), im.FactorScale("images/bg/pond.jpg", 0.4),
+        (250, 50), im.FactorScale("images/sprites/him/him normal.png", 0.4),
+        (0,0), im.FactorScale("images/bg/polaroid.png", 0.4)
+        )
+        )
+
     image ctc_blink:
            "gui/ctc.png"
            linear 0.5 alpha 1.0

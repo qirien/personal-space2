@@ -99,20 +99,26 @@ screen farm_details_screen:
             xsize LEFT_COLUMN_WIDTH
             frame:
                 style "plan_farm_subframe"
-                label "Year " + str(year):
-                    xalign 0.5
-            frame:
-                style "plan_farm_subframe"
                 vbox:
                     xalign 0.0
                     label "Family"
                     text "[his_name] & [her_name]" xoffset 20
-                    text "[kid_name], [earth_year] earth years old" xoffset 20
+                    if (earth_year < 2):
+                        $ kid_months = int(earth_year * 12)
+                        $ kid_age = str(kid_months) + " Earth months old"
+                    else:
+                        $ kid_age = str(int(earth_year)) + " Earth years old"
+                    text "[kid_name], [kid_age]" xoffset 20
                     if (bro_birth_year != 0):
-                        $ bro_earth_age = get_earth_years([bro_age])
-                        text "[bro_name], [bro_earth_age] earth years old" xoffset 20
+                        if (earth_year < 2):
+                            $ bro_months = int(get_earth_years(bro_age) * 12)
+                            $ bro_age = str(bro_months) + " Earth months old"
+                        else:
+                            $ bro_age = str(int(get_earth_years(bro_age))) + " Earth years old"
+                        text "[bro_name], [bro_age]" xoffset 20
                     else:
                         text " "
+                    text " "
 
                     text notifications italic True xoffset 20
 
@@ -142,7 +148,10 @@ screen farm_details_screen:
             vbox:
                 xsize MIDDLE_COLUMN_WIDTH
                 ysize TOP_SECTION_HEIGHT
-                label "Layout"
+                hbox:
+                    label "Layout" xfill False
+                    null width 275
+                    label "Year " + str(year) xalign 1.0 text_color green_dark
                 use crops_layout
 
         # Totals so far
@@ -286,25 +295,26 @@ screen crops_layout:
                         $ tint_factor = 1 - (current_nitrogen_level / float(Field.NITROGEN_FULL))
                         $ tint_factor = tint_factor / 2.0
 
-                        # TODO: Remove if no pests or set USE_PESTS
-                        $ current_pest_level = farm.health[i][Field.PEST_LEVEL_INDEX]
-                        $ pest_factor = (current_pest_level / float(Field.PEST_MAX))
+                        if (USE_PESTS):
+                            $ current_pest_level = farm.health[i][Field.PEST_LEVEL_INDEX]
+                            $ pest_factor = (current_pest_level / float(Field.PEST_MAX))
                         frame:
                             if (nitrogen_usage > current_nitrogen_level):
                                 background red_dark
                             else:
-                                # TODO: add a border here
                                 #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
                                 # make poor soils lighter and
-                                # put the pests on top
-                                # TODO: if we're not using pests, take them out.
+                                # (optionally) put the pests on top
                                 background Frame(Composite(
                                     (CROP_ICON_SIZE, CROP_ICON_SIZE),
-                                    (0,0), im.MatrixColor("gui/crop icons/background.png",    im.matrix.brightness(tint_factor)),
-                                    (0,0), get_pest_image(pest_factor)
+                                    (0,0), im.MatrixColor("gui/crop icons/background.png",    im.matrix.brightness(tint_factor))
+                                    #(0,0), get_pest_image(pest_factor)
                                     ))
 
-                            $ imagefile = get_crop_filename(current_crop_name)
+                            if (current_crop_name == "fallow"):
+                                $ imagefile = "gui/crop icons/blank.png"
+                            else:
+                                $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
                                 idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/idle.png")
                                 hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
@@ -316,7 +326,6 @@ screen crops_layout:
                                     Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("choose_crop", zoomin, i)),
                                     ShowTransient("choose_crop", zoomin, i))
                                     ]
-                        # TODO: Show as bugs in background of field? Or remove completely?
 
 # Shows past three years of the crop at specified index.
 screen history_box(index):
@@ -521,6 +530,7 @@ style computer_sub_button_text is plan_farm_button_text:
 
 # STYLE CROP_DETAILS_ used for when you click on a space to choose a crop
 style crop_details_frame is computer_sub_frame
+
 
 style crop_details_vpgrid is vpgrid:
     xalign 0.5

@@ -1899,6 +1899,10 @@ label community12:
                 jump mining_village
 
             label mining_village:
+                scene mine with fade
+                show pavel normal at midleft
+                show him normal at midright
+                with moveinleft
                 "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
                 pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
                 hide him with moveoutright
@@ -2323,8 +2327,9 @@ label community13:
     lily angry "I'm afraid that my concerns may be dismissed due to my age and stature."
     lily normal "Your company would lend my petition credibility."
     him determined "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
+    scene path with fade
     "I tried to think about what I would say to Brennan, but my mind was full of the chores I wasn't doing and trying to reschedule the entire week."
-    scene cabins with fade
+    scene mine with fade
     show him determined at midleft
     show lily normal at midright
     with moveinleft
@@ -2334,14 +2339,21 @@ label community13:
     him determined "I have no idea."
     "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
     lily normal "He said Brennan lives over here."
+    hide him
+    hide lily
+    with moveoutright
+    scene cabins with fade
+    show him determined at midleft
+    show lily normal at midright
+    with moveinleft
     "She knocked on his door. A voice came from behind the door."
     brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
     lily normal "We're not here to ask for a personal day."
     brennan "Oh, sorry. I thought you were someone else."
     scene yurt_interior with fade
     show brennan normal at midright with dissolve
-    show lily normal at center
     show him determined at midleft
+    show lily normal at center
     with moveinleft
     brennan happy "Who do I owe for the pleasure of your visit?"
     lily angry "Me. Your tailings dam is not sufficiently contained and is contaminating river water with heavy metals."

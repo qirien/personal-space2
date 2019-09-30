@@ -44,16 +44,19 @@ screen yearly_summary():
                     vbox:
                         hbox:
                             frame:
-                                xsize LEFT_COLUMN_WIDTH
+                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT
                                 style "plan_farm_subframe"
-                                vbox:
-                                    label "Year [year] Summary"
-                                    null height 10
-                                    text notifications
-                                    # TODO: include community stats here?
+                                hbox:
+                                    vbox:
+                                        xsize 200
+                                        label "Year [year] Summary"
+                                        null height 10
+                                        text notifications
+                                        # TODO: include community stats here?
+                                    add "family_photo" yalign 0.5
                             frame:
-                                xsize MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
+                                xsize RIGHT_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT
                                 style "plan_farm_subframe"
                                 vbox:
@@ -70,7 +73,6 @@ screen yearly_summary():
                                      style "round_button"
                                      xalign 0.5
                                      action Return()
-
 
 style interscene_window is default:
     xalign 0.0

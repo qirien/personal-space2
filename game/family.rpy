@@ -4032,6 +4032,7 @@ label family13_end:
             him happy "Okay, but we gotta be real quiet, okay? Like ninja chefs!"
             "I cringed every time [kid_name] banged a pot or when [bro_name] dropped the silverware while trying to set the table."
             "[her_name] probably didn't have the best nap, but when she got up..."
+            show her surprised at left with moveinleft
             her surprised "What's all this?"
             kid happy "We made you dinner!"
             bro normal "We're ninja chefs!"
@@ -4051,7 +4052,7 @@ label family13_end:
     him concerned "Hey, hey, it's not your fault."
     her sad "Maybe if I hadn't worked so hard, or eaten better food, or..."
     him determined "You're a doctor; you know sometimes these things just happen."
-    her serious "Just because we don't know the cause doesn't mean there isn't one!"
+    her cry "Just because we don't know the cause doesn't mean there isn't one!"
     menu:
         "What should I say?"
         "You did your best.":
@@ -4081,6 +4082,10 @@ label family13_end:
             "I listened to her sob quietly into her pillow. I reached over to give her a hug, but she got out of bed and went outside."
             "Maybe she just needed to grieve by herself."
             return
+    show her at center, squatting with move
+    show her cry
+    show him concerned 
+    with dissolve
     "I gave her a tissue for her nose, and then held her close. We both grieved, but at least we could share our grief with each other."
 
     return
