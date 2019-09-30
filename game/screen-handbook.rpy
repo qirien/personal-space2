@@ -1,6 +1,6 @@
 # Child Development Tips
 #
-# Includes information from this:
+# For more information, see:
 # https://www.cdc.gov/ncbddd/childdevelopment/positiveparenting/index.html
 
 screen parenting_handbook():

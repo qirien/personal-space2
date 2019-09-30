@@ -60,7 +60,7 @@ screen plan_farm:
                                             set_default_crops,
                                             renpy.restart_interaction
                                             ]
-                                textbutton "Accept Plan":
+                                textbutton "Done":
                                 # TODO: What if no valid layout is possible? Have emergency help button?
                                     style "round_button"
                                     sensitive valid_layout
@@ -105,30 +105,30 @@ screen farm_details_screen:
                 style "plan_farm_subframe"
                 vbox:
                     xalign 0.0
-                    # TODO: Add a small family photo
                     label "Family"
                     text "[his_name] & [her_name]" xoffset 20
                     text "[kid_name], [earth_year] earth years old" xoffset 20
                     if (bro_birth_year != 0):
                         $ bro_earth_age = get_earth_years([bro_age])
                         text "[bro_name], [bro_earth_age] earth years old" xoffset 20
+                    else:
+                        text " "
 
-                    # Display poetry written
-                    # TODO: how do I get the word_board variable here?
-                    # textbutton "Poetry" action Show("poetry_display", args=word_board)
-                    # Community info
-            null:
-                height 100
+                    text notifications italic True xoffset 20
+
+            # Community info
             frame:
                 style "plan_farm_subframe"
                 vbox:
                     label "Community" # TODO: have cute icons for these, like on a phone?
-                    # TODO: have status icons for how much everyone likes you?
+                    # TODO: have icons for how much each group likes you?
                     use colony_messages_button(read_messages)
                     # TODO: make this have a "NEW!" icon when there's new stuff?
                     textbutton "Child Development" action Show("parenting_handbook", zoomin) xoffset 20
                     # TODO: add parenting quote
-                    text notifications
+                    # TODO: Display poetry written
+                    # TODO: how do I get the word_board variable here?
+                    # textbutton "Poetry" action Show("poetry_display", args=word_board)
 
 
         # Crop layout area
@@ -176,10 +176,11 @@ screen choose_crop(crop_index=0):
             frame:
                 style "plan_farm_subframe"
                 vbox:
+                    xfill True
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                         label crop_name.capitalize()
-                        textbutton "X" xpos -25 ypos -2 action Hide("choose_crop", zoomout)
+                        textbutton "X" xpos 120 ypos -2 action Hide("choose_crop", zoomout)
                     hbox:
                         style_prefix "crop_status"
                     # TODO: The text here gets cut off on the left
@@ -208,8 +209,8 @@ screen choose_crop(crop_index=0):
                     null height 30
                     vpgrid:
                         # TODO: change this based on number of enabled crops?
-                        cols 4
-                        spacing 5
+                        cols 5
+                        spacing 10
                         draggable True
                         mousewheel True
                         #scrollbars "vertical"
