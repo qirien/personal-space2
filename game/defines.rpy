@@ -175,7 +175,7 @@ init -100:
     transform sitting:
         ypos 0.45 yanchor 0.0
     transform squatting:
-        ypos 0.25 yanchor 0.0
+        ypos 0.30 yanchor 0.0
     transform standing:
         ypos 1.0 yanchor 1.0
     transform jumping:

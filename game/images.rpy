@@ -35,6 +35,10 @@ init -10:
     image teen = "kid-sprites/teen normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
+    # Temporary Sprites
+    image oleg normal = im.MatrixColor("images/sprites/bro sad.png", im.matrix.brightness(-0.5))
+    image travis normal = "images/sprites/bro normal.png"
+
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)
     init python:
@@ -48,13 +52,24 @@ init -10:
                 "year <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
                 "True", "kid-sprites/teen %s.png" % expression_name))
 
+        # Define images for bro (baby, toddler, young, tween, teen)
+        # For each expression, add a baby, toddler, young, tween, teen depending on current year
+        # TODO: right now these are just kid's sprites. Change them to be unique.
+        for expression_name in kid_expressions:
+            renpy.image(("bro", expression_name), ConditionSwitch(
+                "(year-bro_birth_year) <= BABY_MAX", "kid-sprites/baby %s.png" % expression_name,
+                "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
+                "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
+                "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
+                "True", "kid-sprites/teen %s.png" % expression_name))
+
     # TODO: Add the family, with expressions depending on stats.
     # TODO: Have a different background for each month
     # TODO: Improve layout
     image family_photo = Crop((0,0,500,370), LiveComposite(
         (500, 370),
         (0,0), im.FactorScale("images/bg/pond.jpg", 0.4),
-        (250, 50), im.FactorScale("images/sprites/him/him normal.png", 0.4),
+        #(250, 50), im.FactorScale("images/sprites/him/him normal.png", 0.4),
         (0,0), im.FactorScale("images/bg/polaroid.png", 0.4)
         )
         )

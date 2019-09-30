@@ -77,6 +77,14 @@ label parenting_class_questions:
 
 label parenting_class1:
     scene community_center with fade
+    show natalia normal at midright
+    show him normal at midleft
+    show helen normal at quarterright
+    show her normal at quarterleft
+    show ilian normal at left
+    show sara normal at right
+    show naomi normal at center
+    with dissolve
     naomi "I'm so glad you all want to learn about being better parents."
     natalia "I mostly just have a problem with one kid."
     helen "How is this going to work when all our kids are such different ages?"
@@ -86,13 +94,13 @@ label parenting_class1:
         "What does a child need most?"
         "To survive.":
             "I wrote 'Survival'."
-            him "You can't do anything else if you're dead."
+            him determined "You can't do anything else if you're dead."
             naomi "That is true. What else?"
             helen "Love."
             natalia "Learning."
         "To be loved.":
             "I wrote 'Love'."
-            him "If you feel loved and secure, you have the motivation to do anything else."
+            him determined "If you feel loved and secure, you have the motivation to do anything else."
             naomi "Good, love is important. What else does a child need?"
             natalia "Survival is important, too. They need to be safe."
             helen "On Earth that might have been a given, but here..."
@@ -100,7 +108,7 @@ label parenting_class1:
             him "They also need to learn how to be adults. Otherwise, what's the point?"
         "To learn.":
             "I wrote 'Learning'."
-            him "The whole job of kids is to learn to be responsible adults. Without that, there's no point in having kids."
+            him determined "The whole job of kids is to learn to be responsible adults. Without that, there's no point in having kids."
             naomi "Yes, I see. What else does a child need?"
             natalia "Survival, of course."
             helen "And love."
