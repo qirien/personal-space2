@@ -126,9 +126,14 @@ screen farm_details_screen:
                     # TODO: make this have a "NEW!" icon when there's new stuff?
                     textbutton "Child Development" action Show("parenting_handbook", zoomin) xoffset 20
                     # TODO: add parenting quote
+
                     # TODO: Display poetry written
                     # TODO: how do I get the word_board variable here?
                     # textbutton "Poetry" action Show("poetry_display", args=word_board)
+
+                    # TODO: show these somewhere beside previous screen?
+                    # text notifications
+
 
 
         # Crop layout area
