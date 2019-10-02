@@ -3916,7 +3916,7 @@ label community18:
     natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
     scene fields with fade
-    show him yelling at left with moveinleft
+    show him angry at left with moveinleft
     "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
     him angry "GO HOME COWS! KEEP MOVING!"
     show him yell at center
