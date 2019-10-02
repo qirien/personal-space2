@@ -1900,6 +1900,10 @@ label community12:
                 jump mining_village
 
             label mining_village:
+                scene mine with fade
+                show pavel normal at midleft
+                show him normal at midright
+                with moveinleft
                 "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
                 pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
                 hide him with moveoutright
@@ -2324,10 +2328,11 @@ label community13:
     lily angry "I'm afraid that my concerns may be dismissed due to my age and stature."
     lily normal "Your company would lend my petition credibility."
     him determined "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
+    scene path with fade
     "I tried to think about what I would say to Brennan, but my mind was full of the chores I wasn't doing and trying to reschedule the entire week."
-    scene cabins with fade
-    show lily normal at midright
+    scene mine with fade
     show him determined at midleft
+    show lily normal at midright
     with moveinleft
     "When we arrived, the control station was empty."
     him surprised "Look, we tried, but he's not here. Let's just send him a message."
@@ -2335,14 +2340,21 @@ label community13:
     him determined "I have no idea."
     "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
     lily normal "He said Brennan lives over here."
+    hide him
+    hide lily
+    with moveoutright
+    scene cabins with fade
+    show him determined at midleft
+    show lily normal at midright
+    with moveinleft
     "She knocked on his door. A voice came from behind the door."
     brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
     lily normal "We're not here to ask for a personal day."
     brennan "Oh, sorry. I thought you were someone else."
     scene yurt_interior with fade
     show brennan normal at midright with dissolve
-    show lily normal at center
     show him determined at midleft
+    show lily normal at center
     with moveinleft
     brennan happy "Who do I owe for the pleasure of your visit?"
     lily angry "Me. Your tailings dam is not sufficiently contained and is contaminating river water with heavy metals."
@@ -2367,28 +2379,25 @@ label community13:
     "I wasn't sure they were ever going to agree. Maybe I could propose something they would both agree to."
     him surprised "Okay, how about this--"
     "They both turned and looked at me suspiciously."
-    # TODO: You have a chance to propose a compromise better than Brennan's?
-    # Somewhere in here, set lily_mad_at_RET
+
     $ c13_lily_happiness = 0
     menu:
         "Lily, how about if you..."
         "...test some more locations.":
             him determined "Lily, can you test some more locations so we know how bad the problem is?"
-            lily mad "We already know it's bad enough that it needs to be fixed."
+            lily angry "We already know it's bad enough that it needs to be fixed."
             him concerned "Yeah, but what areas will need treatment?"
         "...just give up.":
             him determined "Lily, just give it up already. You're not going to win against RET."
             brennan "Surprisingly practical."
-            lily "I am now questioning the merits of asking you for help, [his_name]. Whether through cynicism or despair, giving up will accomplish nothing."
+            lily angry "I am now questioning the merits of asking you for help, [his_name]. Whether through cynicism or despair, giving up will accomplish nothing."
             $ c13_lily_happiness -= 1
         "...work on something to extract the heavy metals":
             him determined "Lily, is there something you could do to get the metals out of the water and the ground?"
-            lily "Distillation will remove heavy metals from water."
+            lily normal "Distillation will remove heavy metals from water."
             him surprised "Really?"
-            lily "Yes. Though treating large amounts of water this way may prove troublesome."
+            lily angry "Yes. Though treating large amounts of water this way may prove troublesome."
             $ c13_lily_happiness += 1
-        "...never mind.":
-            $ pass
     menu:
         "Brennan, how about if you..."
         "...allocate more people to speed up Kevin's repairs.":
@@ -2399,20 +2408,18 @@ label community13:
             $ c13_lily_happiness -= 1
         "...delay for just one day.":
             him determined "Can you just delay for one day, and use all your resources to start fixing this problem?"
-            brennan "No, I already explained that I cannot. Not at all."
-            brennan "Kevin is spending all his energy on fixing the leak. Delaying mining does nothing to help."
+            brennan angry "No, I already explained that I cannot. Not at all."
+            brennan normal "Kevin is spending all his energy on fixing the leak. Delaying mining does nothing to help."
         "...send out an apology.":
             him determined "You should send out a big apology."
             lily angry "What will that accomplish?"
             brennan "Yeah, that does nothing. We need to fix the actual problem."
             $ c13_lily_happiness -= 1
-        "...never mind.":
-            $ pass
 
     if (c13_lily_happiness < 1):
         $ lily_mad_at_RET = True
 
-    brennan normal "Lily, how's this: You continue to do testing in a few locations to see how bad the contamination is."
+    brennan normal "Alright, Lily, you continue to do testing in a few locations to see how bad the contamination is."
     brennan normal "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
     lily normal "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
     # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
@@ -2445,14 +2452,14 @@ label community13:
     "I consulted the map Zaina had been working on as she scouted the surrounding land for good mining spots."
     "Zaina had climbed other mountains in the same range as the ones close to our river, which also had water flowing from them, but none of them were nearby."
     "It also occured to me that we could gather water upstream from the tailings pond."
-    show kid at midright with dissolve
+    show kid normal at midright with dissolve
     "[kid_name] came back from school with her little brother and I explained that we needed to be careful with our water for now."
     show her normal at center with dissolve
     "[her_name] came back from work early. We started preparing dinner together."
-    her normal "There's an emergency town meeting tonight to discuss the water contamination."
+    her determined "There's an emergency town meeting tonight to discuss the water contamination."
     if is_liaison:
         him determined "I know, I saw the message."
-        her serious "Should we just bring the kids along?"
+        her surprised "Should we just bring the kids along?"
         menu:
             "No, I'll stay home with them.":
                 him happy "I'll get the kids to bed on time. You have more expertise with heavy metal poisoning than I do anyway."
@@ -2463,7 +2470,7 @@ label community13:
                 him happy "Plus this way the kids can see what local politics are like in action!"
                 her annoyed "They're just going to run around and look for other children to play with, and then go to bed late and be cranky all day tomorrow."
                 him normal "Probably."
-                him angry "Okay everyone, let's get ready to go!"
+                him determined "Okay everyone, let's get ready to go!"
                 kid happy "I hope Oleg is there!"
                 scene community_center with fade
                 "Oleg was there, along with Sara, Ilian, Mayor Grayson, Dr. Lily, Brennan, and Kevin."
@@ -2472,9 +2479,10 @@ label community13:
                 hide sara
                 show lily normal at midleft with dissolve
                 lily angry "Heavy metals leaked from the tailings dam into the river we use for irrigation and drinking water."
-                show pavel sad at midright with dissolve
-                show brennan normal at center with dissolve
-                show her normal at left with dissolve
+                show pavel sad at midright
+                show brennan normal at center
+                show her normal at left
+                with dissolve
                 pavel normal "Were you aware of this leak, Brennan?"
                 brennan normal "We discovered the leak yesterday afternoon, but since Kevin calculated that the contamination would be minimal, we took a wait-and-see approach."
                 lily normal "That is irresponsible. Any water contamination should be reported immediately."
@@ -2499,10 +2507,11 @@ label community13:
                 brennan normal "Thank you Kevin. When do you think the repair will be done?"
                 kevin "Certainly by the end of the week."
                 hide kevin
-                show brennan normal at center with dissolve
-                show lily normal at midleft with dissolve
-                show her normal at left with dissolve
-                show him at midright with dissolve
+                show brennan normal at center
+                show lily normal at midleft
+                show her normal at left
+                show him determined at midright
+                with dissolve
                 lily normal "I am working on a polymer that can break down the metal contaminants. I will need to synthesize some chemicals, and it will take at least two days to prepare the necessary amounts."
                 her normal "I can assist Dr. Lily with the synthesis. Our water only contains trace amounts of metals, and I believe that we can still use it for irrigation water."
                 lily angry "I completely disagree. We should not knowingly ingest poison."
@@ -2514,24 +2523,21 @@ label community13:
                         him determined "If samples showed elevated levels of heavy metals, there are probably spots in the river where that amount is even higher."
                         him normal "Could we divert the mountain stream so that it doesn't pass by the tailings pond?"
                         brennan angry "We're currently using power from the stream in our ore mill, so no, that is not an option."
-                        jump diaper_interruption
                     "Use the tainted water.":
                         him determined "Kevin said that he stopped the leak for now, so the heavy metal content of the water should be decreasing as we speak."
                         him normal "Also, [her_name] stated that the levels are low enough for humans to safely consume."
                         lily normal "It's true that my samples measured at levels low enough for 'safe' human consumption. However, it's likely that parts of the river have more heavy metals than the samples I measured."
-                        jump diaper_interruption
                     "Let colonists decide for themselves.":
                         him determined "Let's give everyone all the information we have and let them decide for themselves."
                         lily normal "If there is no way to get pure water, colonists will default to using the river water like they always have."
                         lily angry "Is that really a decision?"
                         her normal "Let's just tell them it's fine to use the river water then."
-                        jump diaper_interruption
 
                 label diaper_interruption:
-                        show kid at right with dissolve
-                        kid "Dad, [bro_name] has a stinky diaper."
+                        show kid concerned at right with moveinright
+                        kid annoyed "Dad, [bro_name] has a stinky diaper."
                         him normal "Thanks for telling me."
-                        kid "I think it's leaking..."
+                        kid sad "I think it's leaking..."
                         menu:
                             "Take care of [bro_name].":
                                 him concerned "I'd better take care of him right away then."
@@ -2563,6 +2569,7 @@ label community13:
                             her annoyed "I'm not sure I really have a choice... she said that you told her I could help."
                             her normal "I guess I can stay and help her and you can put the kids to bed."
                             him annoyed "Fine."
+                        scene farm_interior with fade
                         "I took [kid_name] and [bro_name] home and put them to bed. [bro_name] took a long time to fall asleep, but it gave me some time to research heavy metal contamination in crops."
                         "The fruits and vegetables would be fine, but if we ate chickens who ate the contaminated food, it could be a problem." #TODO: follow-up somewhere?
     else:
@@ -3913,8 +3920,13 @@ label community18:
     natalia_c "come over and do it yourself then!"
     natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
+<<<<<<< HEAD
     scene fields with dissolve
     show him yell at left with moveinleft
+=======
+    scene fields with fade
+    show him angry at left with moveinleft
+>>>>>>> efa124286076e8fabe307c8ad64ad8b66133ad8a
     "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
     # TODO: there's a flicker back to the texting background here. not sure why.
     him "GO HOME COWS! KEEP MOVING!"
@@ -7992,21 +8004,21 @@ label community30:
 
     return
 #    #see endings.rpy for current draft of endings
-    
+
 #    if (miners >= 12):
 #        "New miners have arrived to replace the ones who are leaving. I'm kind of sad to see some of them go."
-#    if (mavericks >= 12): 
+#    if (mavericks >= 12):
 #        "Pete and the other people living away from the colony prospered. Sometimes a family from the colony would join them."
 #    if (colonists >= 12):
 #        "We continued to grow our farms and discover more about life on Talaam."
 #    if jellypeople_happy:
 #        "We collaborated with the jellymother to create and maintain more fish farms."
-            
+
 #    if (mavericks <= 5):
 #        "Pete lived away from the colony, but the other mavericks came back to live with the colony."
 #        "They said it was too difficult to find enough food without our farming equipment."
 ##        if (colonists <= 5):
-            
+
 #    if (miners <= 5):
 #        "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
 #        "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."

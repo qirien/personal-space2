@@ -16,6 +16,8 @@ label start:
     # Initialize dynamic variables that need to be saved with saved game state.
     # These have to be here instead of in an init block to tell Ren'Py that they will change and should be saved with the game state.
 
+    # TODO: Disable music if it doesn't exist.... maybe free version doesn't have music?
+
     # GAME ENGINE
     python:
         demo_mode = False
@@ -175,11 +177,11 @@ label start:
             "potatoes" : "A starchy root vegetable with a lot of calories that doesn't take too much work.",
             "wheat" : "A nutritious grain, usually made into bread.",
             "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
-            "tomatoes" : "A juicy, acidic fruit useful raw, in sauces, or salsas.",
+            "tomatoes" : "A popular, versatile fruit useful raw or cooked.",
             "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
-            "squash" : "This vegetable keeps well and is easy to grow.",
+            "squash" : "This hearty vegetable keeps well and is easy to grow.",
             "strawberries" : "Small, sweet, and delicious! They come back every year.",
-            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious.",
+            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious. They also fix nitrogen in the soil.",
             "peanuts" : "This legume takes hard work to harvest, shell, and boil, but keeps well and makes peanut butter.",
             "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
             "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
@@ -224,7 +226,7 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    "Welcome to the demo of Space to Grow!"
+    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
     menu:
         "Test Farming Screen":
             jump test_farming_screen
@@ -238,9 +240,6 @@ label start:
             jump trailer
         "Continue":
             $ pass
-
-    "While the story is mostly complete, not every scene has full graphics yet, the crop planting mechanics are still under development, and a few scenes are unfinished."
-    "However, you should be able to get a feel for the game and enjoy the story."
 
     show path
     show her flirting at midleft

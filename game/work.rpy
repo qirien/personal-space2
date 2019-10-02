@@ -1,4 +1,5 @@
 ## Work Events
+# INITIAL BLOCKING COMPLETE
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
@@ -128,7 +129,7 @@ label overwork:
             $ overwork_mavericks += 1
             if (overwork_mavericks <= 1):
                 $ mavericks += 1
-                if (year >= PETE_LEAVES_YEAR):
+                if (year >= PETE_LEAVES_CAVE_YEAR):
                     scene shack with fade
                 else:
                     scene cave with fade
@@ -142,13 +143,11 @@ label overwork:
                 pete happy "I could probably find a few hours this week. Mind if I bring the whole family?"
                 him happy "Bring anyone you like! Honestly, I could really use your help."
                 scene fields with fade
-                show him normal at midleft
-                show pete normal at center
-                if (not helen_dead):
-                    show helen normal at midright
-                show travis normal at quarterright
-                if (year <= LILY_DIES_YEAR):
-                    show lily normal at quarterleft
+                show him at midleft
+                show pete at center
+                show helen at midright
+                show travis at quarterright
+                show lily at quarterleft
                 "With so many people, it didn't take us very long to harvest all the [random_crop]."
                 him happy "Thanks, guys!"
             else:
@@ -331,10 +330,7 @@ label bad_nutrition:
             him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
             her annoyed "Like, someone didn't plant enough fruits and vegetables scurvy."
             him surprised "How come you and [kid_name] don't have it?"
-            if (not helen_dead):
-                her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
-            else:
-                her concerned "Sometimes we get applesauce from the storehouse."
+            her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
             him annoyed "And you don't share it with me?!"
             her annoyed "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
             him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
@@ -485,23 +481,23 @@ label work2:
     her normal "All right, good luck."
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
-    scene fields with fade
+    scene farm with fade
     show kevin at midright
     show zaina at center
     with dissolve
     show him normal at midleft with moveinleft
 
     zaina "Thanks for coming, [his_name]. I can't believe I ever thought growing my own food would be easy!"
-    him "Well, some parts aren't too hard. But it helps if you know what you're doing."
+    him concerned "Well, some parts aren't too hard. But it helps if you know what you're doing."
     "I walked through their fields with them, pointing out plants that needed different location, or different irrigation, or different nutrients in the soil. Some were more sensitive to solar flares than others, too."
     kevin "This information was not in the farming guide I was given."
-    him "Yeah, you can't learn everything about alien farming from a book."
+    him normal "Yeah, you can't learn everything about alien farming from a book."
     kevin "That is unfortunate. Perhaps such a book should be made."
-    him "If you want to write it, go right ahead."
+    him annoyed "If you want to write it, go right ahead."
     zaina "I think we'll be too busy taking care of these plants to write much about it right now!"
     kevin "Perhaps at a future time."
     zaina "Anyway, thanks for helping us out. Our trees didn't bear many plums, but here's a few of the ones we got. Maybe you can plant the seeds after you eat them?"
-    him happy "Plums? That'll be delicious; thank you!"
+    him surprised "Plums? That'll be delicious; thank you!"
     zaina "Thank you, [his_name]!"
 
     # TODO: Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.
@@ -720,10 +716,10 @@ label work10:
             $ disable_crop("plums")
             $ disable_crop("plums+", false)
         else:
-            him "Pretty good! We're even starting to get a few plums on them."
+            him happy "Pretty good! We're even starting to get a few plums on them."
             kevin "That is good."
 
-    him "How's your garden coming, Kevin?"
+    him surprised "How's your garden coming, Kevin?"
     kevin "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."
     him concerned "There could be several reasons for that..."
     kevin "After factoring out other issues such as soil quality, solar flares, and unreported crops, I have come to a conclusion."
@@ -776,15 +772,15 @@ label work12:
         "What should I do?"
         "Sign a wheat contract.":
             $ miners += 1
-            scene miners_camp
-            show brennan at midright with dissolve
+            scene miners_camp with fade
+            show brennan normal at midright with dissolve
             show him at midleft with moveinleft
             him normal "I'm interested in the wheat."
             brennan "Good, good. Seems like you're smarter than you look."
             him annoyed "Don't make me change my mind."
-            brennan "Ah, can't you take a joke?"
+            brennan angry "Ah, can't you take a joke?"
             him determined "..."
-            brennan "...Right. Here's your wheat."
+            brennan normal "...Right. Here's your wheat."
             $ enable_crop("wheat")
             # TODO: implement annual fee, test
             # you sold your soul but can now grow wheat.
@@ -792,14 +788,18 @@ label work12:
             $ mavericks += 1
             him_c "No thanks, Brennan."
             "Later, Natalia came over for a visit."
+            scene farm_interior with fade
+            show him normal at midright
+            show natalia normal at midleft
+            with dissolve
             natalia "I need something for my farm that's easier to grow. Do you have any suggestions?"
-            him "You've been growing corn, right?"
+            him surprised "You've been growing corn, right?"
             natalia "Yes, and it's quite time-intensive."
-            him "Have you tried potatoes?"
+            him normal "Have you tried potatoes?"
             natalia "No, do they do well here?"
-            him "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
+            him determined "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
             natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
-            him "That would be great!"
+            him normal "It's a deal."
             $ enable_crop("corn")
 
     "I was looking forward to growing something new."
@@ -823,9 +823,9 @@ label work14:
         "I love seeing her grow more independent. When she's done feeding the goats, she doesn't sit around waiting for me to tell her what to do."
         "She looks around and starts doing whatever is needed, whether it's a fence that needs repairing, weeds that need to be pulled, or produce that needs to be harvested."
         "Sometimes she's a little too independent."
-        kid "I want to milk the goats!"
+        kid happy "I want to milk the goats!"
         him surprised "You do?"
-        kid "Yeah! I bet I can do it all by myself!"
+        kid normal "Yeah! I bet I can do it all by myself!"
         "She'd watched me many times, but the technique is a little tricky."
 
     elif (style == "authoritarian"):
@@ -843,16 +843,20 @@ label work14:
     him normal "You're old enough to learn how to milk goats. Come with me."
     scene barn with fade
     show goat at center
-    show him normal at midright
-    show kid normal at midleft
+    show him normal at midleft
+    show kid normal at midright
     with moveinleft
     "I showed her how to lead the goat to the milking stand, wash off her udder, and set up some food for her."
+    show kid surprised with dissolve
     "I helped her practice the finger motions needed to squirt the milk into the bucket."
     "She was tentative at first, but she seemed to be figuring it out."
+    scene fields with fade
     "I left for a minute to check on something, but I wasn't gone for more than five minutes when I heard a scream."
-    hide him with moveoutright
+    scene barn with faded
+    show goat at center
+    show kid cry at midright with dissolve
+    show him concerned at midleft with moveinleft
     "I dashed back into the barn and saw [kid_name] crying, the bucket tipped over, and the goat lying down, looking quite satisfied."
-    show him at midright with moveinright
 
     menu:
         "What should I do?"
@@ -936,27 +940,27 @@ label work16:
     menu:
         "What should I do?"
         "Go to the seed exchange.":
-            him_c "I'll be there, too!  I'm bringing [random_crop] seeds!"
+            him_c "I'll be there, too!  I'm bringing [random_crop]!"
             sara_c "Oooh, great! 😃"
             nvl clear
             scene community_center with fade
-            show pavel at quarterleft
-            show sara at midleft
-            show natalia at center
-            show kevin at quarterright
-            show zaina at right
+            show pavel normal at quarterleft
+            show sara normal at midleft
+            show natalia normal at center
+            show kevin normal at quarterright
+            show zaina normal at right
             with dissolve
             show him normal at left with moveinleft
             "There were a lot of people at the seed exchange!"
             pavel "Welcome, [his_name]! Good to see you!"
-            him normal "Thanks. Where should I put these [random_crop] seeds?"
+            him normal "Thanks. Where should I put these?"
             sara "There's an empty spot on the table there. Oh, you brought a sign. Perfect."
             $ colonists += 1
             show him at midright with move
             him surprised "You said your chile peppers are spicy and sweet?"
             natalia "Oh yes. If you pick them green, they're a little bitter and more savory. If you wait until they turn red, they're sweeter. But the spiciness is the same either way."
             him normal "Sounds very flavorful!"
-            kevin "[his_name], are those your [random_crop] seeds? Would you recommend that crop?"
+            kevin "[his_name], I was thinking about growing [random_crop]? Would you recommend it to me?"
             menu:
                 "What should I say?"
                 "Yeah, you'll like them!":
@@ -996,7 +1000,7 @@ label work16:
             "I had already worked everything out with Pete. I'd have to miss this seed exchange. Hopefully they'd have more in the future."
             scene fields with fade
             show him normal at midleft with dissolve
-            show pete at midright with moveinright
+            show pete normal at midright with moveinright
             pete "You ready to make this fence?"
             him determined "You bet!"
             "It took us all day, but now I had four more fields for planting!"
@@ -1019,7 +1023,7 @@ label work18:
     "I don't know how it got a hole in it - the waterproof roof material was really pretty sturdy. Maybe a crabird managed to poke a hole in it with its claws or the wind blew a branch into it."
     "There was just one problem..."
     nvl clear
-    if (year <= 20):
+    if (year <= LILY_DIES_YEAR):
         lily_c "Major solar flare predicted sometime this morning."
     else:
         zaina_c "We've got a major solar flare this morning. It'll be short, but strong."
@@ -1043,7 +1047,9 @@ label work18:
     "She tickled [bro_name] excitedly. He flinched and tried to push her hands away."
     bro concerned "Stop!"
     her annoyed "[kid_name]..."
-    kid annoyed "What?! I'm just trying to play with him! Too bad he hates me."
+    kid annoyed "What?! I'm just trying to play with him!"
+    bro sad "I don't like that!"
+    kid sad "Ugh, why do you hate me so much?!"
     him annoyed "He doesn't hate you, he just hates being tickled. Leave him alone."
 
     "Okay, I did not want to spend my whole morning playing police officer. I needed something for these kids to do."
@@ -1078,7 +1084,7 @@ label work18:
             $ confident += 1
         "Write the jobs on pieces of paper and have each person choose randomly.":
             him happy "Okay, it's time for the kitchen cleaning lottery!"
-            kid annoyed "I already know I don't want to win."
+            kid annoyed "I hope I don't 'win'."
             him normal "In this box are four chores. Each person will choose one randomly and that will be their chore for the morning!"
             him flirting "[her_name], would you like to go first?"
             her annoyed "...Sure."
@@ -1110,8 +1116,8 @@ label work20:
     # for example, they are moving the mining camp so they want it to be easier to access the water from camp?
     scene fields with fade
     "With Talaam's frequent rains, we didn't need to irrigate the fields very often."
-    "But I had a system of gates and canals I could open up if needed to get extra water from the river when it didn't rain enough."
-    "After a week with no rain, and no rain in the forecast, I decided to open up the gates and let in some river water."
+    "But we had a system of gates and canals we could open up to get extra water from the river when it didn't rain enough."
+    "After a week with no rain, and no rain in the forecast, I decided to open up the gates and let in some mountain river water."
     scene irrigation with fade
     show him normal at center with moveinleft
     "But when I got there, the river was so low that barely any water came into the canal."
@@ -1135,27 +1141,27 @@ label work20:
             thuc "No more than usual."
             him determined "Huh. Well, I'm going to go check it out."
 
-    "I headed farther upstream, past the town, and up into the hills."
+    "I headed farther upstream, past the town, and up into the hills. We passed the dam that Kevin had fixed a few years ago. It seemed to be holding up."
     scene canyon with fade
     show him determined at midleft
     if (work20_thuc_present):
         show thuc normal at left
     with moveinleft
-    "The river was low up here, too. Finally, I reached the miner's camp."
-    scene cabins with fade # TODO: mining background?
+    "Further upstream we arrived at the diversion for farming water. There wasn't much water there, either. Finally, I reached the miner's camp."
+    scene mine with fade
     show brennan normal at midright with dissolve
     show him determined at midleft
     if (work20_thuc_present):
         show thuc sad at quarterleft
     with moveinleft
-    "As soon as we got to the camp, it was obvious what had happened. Much of the river was diverted to give water for the mining machinery."
+    "As soon as we got to the camp, it was obvious what had happened. Much of the river had been diverted to give water for the mining machinery."
 
     him annoyed "Hey, you're stealing all the water! There's none left for our crops downstream!"
-    brennan "Sorry, our refining processes use a lot of water. The river flows over there now."
+    brennan "Sorry, our refining processes use a lot of water. The river flows over here now."
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
         thuc "Well, who knows? Maybe we can eat what they're making up here?"
-    brennan mad "You'll have to get your water from somewhere else."
+    brennan angry "You'll have to get your water from somewhere else."
 
     menu:
         "What should I say?"
@@ -1166,7 +1172,7 @@ label work20:
             brennan angry "Sorry, I have my orders."
         "(Say nothing)":
             show him pout with dissolve
-            "I took a deep breath and just looked at him. He looked back into my eyes with a stubborn expression on his face, and an uncomfortable silence stretched between us like taffy."
+            "I took a deep breath and just looked at him. He looked back into my eyes with a stubborn expression on his face, and an uncomfortable silence stretched between us like a yawn."
             "I realized I had some other options here."
             menu:
                 "What should I say?"
@@ -1204,7 +1210,7 @@ label work20:
         him determined "I'm not done yet."
     scene farm_interior with fade
 
-    if (miners >= 10):
+    if (miners_strength() >= 1):
         nvl clear
         him_c "Brennan, if we both explain to RET why the farmers need that water, I'm sure they'll understand."
         brennan_c "...If you can get them to authorize a deadline extension, then I can help you."
@@ -1214,7 +1220,6 @@ label work20:
         nvl clear
         "Thuc and I helped Brennan redirect the water back to the original river route after going through water treatment."
         "I breathed a sigh of relief as water flooded through the gates to my crops again."
-
         return
 
     else:
@@ -1353,15 +1358,16 @@ label work20:
             "It was tough work digging the well, even with the auger tractor attachment. The auger was only meant for post holes, but we made some extensions so it would be long enough to drill a well."
             "Our first windmill wasn't centered or level, so we ended up having to take it apart and put it back together again."
             "Digging the pond wasn't tricky, just a lot of hard work."
-            if (colonists >= 10):
+            if (colonists_strength() >= 1):
                 "When the other farmers heard about what we were doing, some of them came by to lend a hand."
-            elif (mavericks >= 10):
+            elif (mavericks_strength() >= 1):
                 show pete normal at quarterleft with moveinleft
                 "When Pete heard about what we were doing, he came by to lend a hand."
                 pete "See, that's why you should quit working for the Man and come live out on your own, like me!"
             "When the water came rushing out onto my fields again, my shoulders finally relaxed for the first time in days."
             "We managed to keep most of our crops from dying, but they probably wouldn't yield as much this year."
             # TODO: decrease yield?
+            $ modify_credits(-100)
     return
 
 # Year 22, 13.6 years old
@@ -1520,7 +1526,7 @@ label work22:
         "He handed me some credits."
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."
-        $ modify_credits(25)
+        $ modify_credits(50)
     return
 
 # Year 24, 14.8 years old
@@ -1563,19 +1569,19 @@ label work24:
     kid surprised "What?"
     "She couldn't hear me. I started running, following the tractor."
     show tractor at midright
-    show kid surprised at midright
+    show kid concerned at midright
     show him surprised at midleft
     with move
-    him surprised "The bucket's too high! Lower the bucket!"
+    him angry "The bucket's too high! Lower the bucket!"
     "I was too late. She turned the corner, going a little too fast. I felt like time slowed down as I started running. I could see the tractor starting to tip."
     show tractor at quarterright
-    show kid surprised at quarterright
+    show kid at quarterright
     show him at center
     with slowmove
     "I reached out, but I was helpless to stop it. The high, heavy bucket dragged the whole tractor over onto its side."
     hide tractor with moveoutright
     show kid at right, sitting with move
-    kid angry "Ahhhhhhh!"
+    kid determined "Ahhhhhhh!"
     him surprised "[kid_name]! Dammit!"
     show kid nervous with dissolve
     show him determined at midright, squatting with move
@@ -1680,6 +1686,7 @@ label work24:
 
     "[her_name] ran over, taking in [kid_name]'s injuries."
     her concerned "Okay. It's probably not too bad. Set her on the bed here."
+    show kid cry with dissolve
     "I told her the whole story while she and the nurse cleaned and examined the wound. She felt [kid_name]'s leg carefully, noting every wince. She examined the rest of her, too."
     "[kid_name] was clearly in pain, but also fascinated by what [her_name] was doing."
     her determined "Broken tibia. Transverse. Fibula seems to be okay. Concussion."
@@ -1687,6 +1694,7 @@ label work24:
     her angry "We'll talk about why in the world she was the one driving the tractor later."
     him sad "Is it bad?"
     her concerned "She'll be okay, [his_name]. But I need to put her under to put in some pins, so why don't you head on home. [bro_name]'s probably wondering where you are."
+    show kid nervous with dissolve
     "He had been working on homework when I left, but that was hours ago..."
     him determined "Okay. Keep me posted."
     her determined "I will."
@@ -1733,7 +1741,7 @@ label work24:
     her annoyed "I know, that's what you are trying to do already. Just, let me finish. But we shouldn't expect her to do what we do. She needs to decide for herself."
     him determined "I know that."
     her concerned "And she needs to stay alive and whole long enough to find that out."
-    him concerned "I'm sorry she got hurt, [her_name]."
+    him sad "I'm sorry she got hurt, [her_name]."
     her determined "It was an accident..."
     menu:
         "What should I say?"
