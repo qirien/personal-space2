@@ -67,7 +67,7 @@ label start:
         year8_have_baby = False
         family12_shaved_head = False
         family27_no_work = False
-        plays_saxophone = False
+        plays_trombone = False
 
         marriage_strength = 0
 
