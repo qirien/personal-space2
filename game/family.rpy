@@ -5456,18 +5456,19 @@ label family19:
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
     show him surprised
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
+    "We didn't have access to the entire Earth internet, but somehow their automated algorithms had chosen this for inclusion in our local copy."
     menu:
         "What should I do?"
         "Punish Terra.":
            $ demanding += 1
            him annoyed "[kid_name]!"
-           kid "What?"
-           him "I found your pornography on the computer pad."
-           kid "Dad, I can explain--"
-           him "I don't want to hear it. I can't believe you would watch that filth."
-           kid "I just--"
+           kid surprised "What?"
+           him determined "I found your pornography on the computer pad."
+           kid shifty "Dad, I can explain--"
+           him sad "I don't want to hear it. I can't believe you would watch that filth."
+           kid determined "I just--"
            him annoyed "No. You are grounded -- from using the computer pad, from hanging out with friends, everything!"
-           kid "Dad, you won't even let me talk!"
+           kid annoyed "Dad, you won't even let me talk!"
            him angry "There's nothing to discuss! I don't ever want to find you doing something like that again!"
            kid angry "Ugh, you don't even listen!"
            $ authoritarian += 1
@@ -5476,12 +5477,12 @@ label family19:
            "You start watching it and immediately cringe."
            show him concerned
            "There's nothing romantic or loving about it -- it's designed solely to ramp up hormones and get to a climax as fast as possible."
-           "And the rough foreplay seems uncomfortably like rape -- not something you'd want [kid_name] to think was normal."
+           "And the rough foreplay borders on rape -- not something you'd want [kid_name] to think was normal."
            show kid surprised at midleft with moveinleft
            show him determined at midright with move
            kid surprised "Dad, what are you watching?"
-           him "I found this video on here when I was looking at your history."
-           kid nervous "Oh. That."
+           him surprised "I found this video on here when I was looking at your history."
+           kid shifty "Oh. That."
            jump family19_porn_chat
         "It's not a big deal. Do nothing.":
             "Teenagers are going to watch porn. That's just a fact of life."
@@ -5495,9 +5496,9 @@ label family19:
             show him determined at midright with move
             kid surprised "What is it, dad?"
             him determined "What can you tell me about this pornography on the computer pad?"
-            kid "I don't know."
+            kid annoyed "I don't know."
             him surprised "I know that it's from when you were using it."
-            kid "Yeah..."
+            kid shifty "Yeah..."
             "She falls silent. You sense that she wants to leave, but she might also have questions that she doesn't know how to ask."
 
             menu family19_porn_chat:
@@ -5505,32 +5506,32 @@ label family19:
                "Tell me about what happened." if (sex_ed_biology):
                    $ demanding += 1
                    $ responsive += 1
-                   him "Tell me about what happened."
-                   kid "It was an accident."
-                   him "I know sometimes pornography can come up when you're not even looking for it."
-                   kid "Yeah, I wasn't! I was just looking up something about a book I was reading."
-                   him "I know. I probably should have talked to you about it before. But it's kind of hard for me to talk about sometimes, since sex is such a private thing."
-                   kid "Then why do people make videos like that?"
-                   him "That's a good question. I know a lot of them are trying to make money. Some are trying to express themselves."
-                   kid "I just... I just couldn't stop watching it."
-                   him "I know -- our brains are wired to respond to sex very strongly. And at your age, it's probably something you're curious about."
-                   kid "..."
-                   him "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
-                   kid "A plan?"
-                   him "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you decide what to do."
-                   kid "..."
-                   him "Will you do that?"
-                   kid "..."
+                   him concerned "Tell me about what happened."
+                   kid sad "It was an accident."
+                   him determined "I know sometimes pornography can come up when you're not even looking for it."
+                   kid annoyed "Yeah, I wasn't! I was just looking up something about a book I was reading."
+                   him sad "I know. I probably should have talked to you about it before. But it's kind of hard for me to talk about sometimes, since sex is such a private thing."
+                   kid surprised "Then why do people make videos like that?"
+                   him concerned "That's a good question. I know a lot of them are trying to make money. Some are trying to express themselves."
+                   kid shifty "I just... I just couldn't stop watching it."
+                   him determined "I know -- our brains are wired to respond to sex very strongly. And at your age, it's probably something you're curious about."
+                   kid nervous "..."
+                   him normal "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
+                   kid surprised "A plan?"
+                   him determined "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you decide what to do."
+                   kid concerned "..."
+                   him surprised "Will you do that?"
+                   kid determined "..."
                    "She didn't say anything, just pulled at a strand of her hair and twisted it."
-                   him "Can you please do that?"
-                   kid "...okay."
-                   him "And if you have questions about sex, I hope you'll ask me or mom."
-                   kid "..."
-                   him "..."
+                   him concerned "Can you please do that?"
+                   kid shifty "...okay."
+                   him normal "And if you have questions about sex, I hope you'll ask me or mom."
+                   kid shifty "..."
+                   him concerned "..."
                    $ parenting_style = get_parenting_style()
                    if ((parenting_style == "permissive") or
                        (parenting_style == "authoritative")):
-                       kid "Does it hurt?"
+                       kid surprised "Does it hurt?"
                        him "Not if you're doing it right. Good sex is when both people are trying to help the other person feel good and show their love for each other."
                    "She didn't look at me, and I could tell she had a lot on her mind. But it was hard for her to say what she was thinking."
                    "I reached over and hugged her."
