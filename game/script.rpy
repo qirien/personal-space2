@@ -248,6 +248,7 @@ label start:
     show child at center
     #show computer_pad
     show polaroid
+    with dissolve
 
     if (mp.jack_name):
         $ his_name = mp.jack_name
