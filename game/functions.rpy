@@ -137,8 +137,8 @@ init -100 python:
     # There are 196 27-hour days per year on Talaam,
     #       (7 months in a year, 7 days in a week, 4 weeks in a month)
     # and 365 24-hour days on Earth
-    def get_earth_years(years):
-        hours = years * 196.0 * 27.0
+    def get_earth_years(talaam_years):
+        hours = float(talaam_years) * 196.0 * 27.0
         earth_years = hours / 24.0 / 365.25
         earth_years = round(earth_years, 1)
         return earth_years
