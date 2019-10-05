@@ -4,27 +4,27 @@
 label test_farming_screen:
     $ testing_mode = True
     # randomly enable crops
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("strawberries")
-    if (renpy.random.random() > 0.7):
+    if (renpy.random.random()  > 0.7):
         $ enable_crop("garlic")
-    if (renpy.random.random() > 0.8):
+    if (renpy.random.random()  > 0.8):
         $ enable_crop("broccoli")
-    if (renpy.random.random() > 0.6):
+    if (renpy.random.random()  > 0.6):
         $ enable_crop("onions")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("plums")
-    if (renpy.random.random() > 0.2):
+    if (renpy.random.random()  > 0.2):
         $ enable_crop("honey")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("peppers")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("corn")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("wheat")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("peanuts")
-    if (renpy.random.random() > 0.9):
+    if (renpy.random.random()  > 0.9):
         $ enable_crop("turnips")
     while (year <= MAX_YEARS):
         $ competence = year
@@ -33,7 +33,7 @@ label test_farming_screen:
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
                 $ modify_credits(farm.calculate_income(years_yield))
-                $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
+                $ modify_credits(-(get_expenses_required()  - KELLY_SALARY))
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)
@@ -41,7 +41,7 @@ label test_farming_screen:
         $ show_year = year
         call screen plan_farm
         label test_continue:
-            if (renpy.random.random() > 0.8):
+            if (renpy.random.random()  > 0.8):
                 $ farm_size += 1
             $ year += 1
             $ notifications = ""
@@ -97,6 +97,55 @@ label demo_after_cave:
     call family27
     scene stars with fade
     "End of demo for \"Space to Grow\""
+    return
+
+label screenshots:
+    $ year = 8
+    scene barn with fade
+    show him annoyed at quarterleft
+    show kid nervous at quarterright
+    show boy sad at right
+    menu:
+        "[kid_name] hurt her friend's feelings."
+        "A)  Make her apologize":
+            $ pass
+        "B)  Discuss how she can apologize":
+            $ pass
+        "C)  Apologize to his mom":
+            $ pass
+        "D)  Let it go":
+            $ pass
+
+    $ year = 9
+    scene kid_bedroom with fade
+    show him sad at quarterleft
+    show kid annoyed at quarterright
+    menu:
+        "[kid_name] won't clean up."
+        "A)  Take her toys away":
+            $ pass
+        "B)  Sympathize with her":
+            $ pass
+        "C)  Just clean them up":
+            $ pass
+        "D)  Do nothing":
+            $ pass
+
+    $ year = 17
+    scene farm_interior with fade
+    show him surprised at quarterleft
+    show kid concerned at quarterright
+    menu:
+        "[kid_name] wants help with a hard video game."
+        "A)  Remind her video games are a waste of time":
+            $ pass
+        "B)  Empathize with her, but let her figure it out":
+            $ pass
+        "C)  Help her beat the level":
+            $ pass
+        "D)  Ignore her":
+            $ pass
+
     return
 
 label trailer:
