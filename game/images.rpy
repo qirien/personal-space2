@@ -35,7 +35,7 @@ init -10:
     image teen = "kid-sprites/teen normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
-    # Temporary Sprites
+    # Temporary Sprites: TODO delete these
     image oleg normal = im.MatrixColor("images/sprites/bro sad.png", im.matrix.brightness(-0.5))
     image travis normal = "images/sprites/bro normal.png"
 

@@ -1661,15 +1661,15 @@ label work24:
             him determined "I'm going to see if I can get some help, okay?"
             kid sad "Okay..."
             "I switched on my radio."
-            him concerned "Attention, this is [his_name]. [kid_name] is injured and needs transport to the clinic."
+            him concerned "{i}Attention, this is [his_name]. [kid_name] is injured and needs transport to the clinic.{/i}"
             "No one answered. I tried again."
-            him determined "I need transport into town for [kid_name] who is injured. She might have broken her leg. Can anyone help?"
-            "[her_name] on the radio" "[his_name]?! Is she okay?"
-            him determined "She's conscious, but bleeding and her leg's hurt."
-            "[her_name] on the radio" "Can't you take the tractor?"
-            him concerned "Nope. That's how she got hurt; tractor tipped over."
-            "Natalia on the radio" "I'm on my way."
-            "[her_name] on the radio" "Thank you, Natalia!"
+            him determined "{i}I need transport into town for [kid_name] who is injured. She might have broken her leg. Can anyone help?{/i}"
+            her "{i}[his_name]?! Is she okay?{/i}"
+            him determined "{i}She's conscious, but bleeding and her leg's hurt.{/i}"
+            her "{i}Can't you take the tractor?{/i}"
+            him concerned "{i}Nope. That's how she got hurt; tractor tipped over.{/i}"
+            natalia "{i}I'm on my way.{/i}"
+            her "{i}Thank you, Natalia!{/i}"
             show tractor at center
             show natalia normal at center
             with moveinleft
