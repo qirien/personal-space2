@@ -965,7 +965,7 @@ label family4:
     show her determined at midleft
     show kid annoyed at center
     with dissolve
-    kid "No!"
+    kid annoyed "No!"
     her annoyed "Rice is what's for dinner, sweetie."
     him normal "You know daddy's friend Mr. Thuc? He worked hard to grow that rice, so let's not waste it, okay?"
     kid concerned "Yucky."
@@ -1162,13 +1162,13 @@ label family4:
             $ responsive += 1
             $ confident += 1
             him determined "This is what's for dinner. You can eat it or not."
-            kid "Yucky."
+            kid annoyed "Yucky."
             him normal "You don't have to like it. But I think it's pretty good."
             "I closed my eyes and savored the feel of the chunky beans and onions, each individual grain of rice, the melding of starch and protein and amino acids and whatever else is in food."
             "[kid_name] looked at me skeptically."
             him normal "Well, I guess if you're hungry then eventually you'll eat."
             "She slid down off her chair and toddled over to the pantry. She stood on her tiptoes to grab a jar of pickles and brought it to the table."
-            kid "Want 'ickles."
+            kid shifty "Want 'ickles."
             menu:
                 "What should I say?"
                 "No pickles.":
@@ -1176,15 +1176,16 @@ label family4:
                 "You can have some pickles after you eat your dinner.":
                     $ demanding += 1
                     $ responsive += 1
-                    him "You can have some pickles after you eat your dinner."
+                    him concerned "You can have some pickles after you eat your dinner."
                     "Was this bribery or positive reinforcement? I wasn't sure, and honestly, I was starting to not care. I just wanted dinner to be over."
-                    kid "'ickles!"
-                    him "After dinner."
-                    kid "'ickles!"
-                    him "..."
-                    kid "..."
+                    kid annoyed "'ickles!"
+                    him annoyed "After dinner."
+                    kid angry "'ickles!"
+                    him determined "..."
+                    kid concerned "..."
+                    show him normal with dissolve
                     "I ate my food, pretending not to care about what [kid_name] did. When I was done, I opened the jar of pickles and put three on my plate."
-                    him happy "Yay, I finished my dinner, I can eat pickles!"
+                    him explaining "Yay, I finished my dinner, I can eat pickles!"
                     "[kid_name] was not convinced. She reached for the pickle jar, but I pushed it away."
                     him normal "After dinner."
 
@@ -1398,7 +1399,7 @@ label family5:
                 him surprised "You sure you don't want more?"
                 kid concerned "No. I full now."
                 her concerned "Okay, do you remember what happens when you drink a lot?"
-                kid "I not thirsty."
+                kid nervous "I not thirsty."
                 him happy "That's right, but what else happens? What does your body make?"
                 "She thought about this for a minute."
                 kid laugh "If I not thirsty, I run like this!"
@@ -1429,7 +1430,7 @@ label family5:
                 him surprised "Where does your pee go?"
                 kid normal "In the potty."
                 her normal "Right. So you pee in the potty, and your underwear stays dry. Got it?"
-                kid "Okay."
+                kid nervous "Okay."
             if (family5_reward == "small"):
                 him surprised "Every time you sit on the potty, you can have a spoonful of applesauce!"
                 kid shifty "I go sit on potty now!"
@@ -1446,7 +1447,7 @@ label family5:
                 show black with fade
                 hide black with fade
                 him surprised "[kid_name], time to use the potty. Then you can have applesauce."
-                kid "I go sit on potty!"
+                kid happy "I go sit on potty!"
                 "I figured that once she got used to sitting on the potty, we could cut down the reward to every time she actually used it."
             scene stars with fade
             "I don't know if it was our new methods, or our heightened attention, or what, but she didn't have any other problems that day."
@@ -2186,14 +2187,14 @@ label family7:
                     "She hesitated. I think she could sense it was kind of a trick."
                     him normal "I wonder how many toys the crane can hold at one time?!"
                     "She grabbed a handful of toys, spreading her fingers wide to catch as many as she could."
-                    kid "This many!"
+                    kid happy "This many!"
                     him "Wow! That's so many! Now the crane drops them in the box!"
                     show him at quarterright
                     show kid at quarterright, up_and_down
                     with move
                     "I maneuvered her over the box and she let go of the toys and squealed with delight."
 
-                    kid "Again!"
+                    kid shifty "Again!"
                     show him at center
                     show kid at center, up_and_down
                     with move
@@ -2361,7 +2362,7 @@ label family7_angry_ending:
     him annoyed "Maybe she should be afraid enough to show some manners."
     her annoyed "Respect doesn't come from fear. It comes from trust. And you just destroyed hers."
     show kid cry at right with moveinright
-    kid "Mommy?"
+    kid cry "Mommy?"
     her concerned "What is it, dear?"
     show kid at midleft with move
     "[kid_name] ran in and hid her face in [her_name]'s lap. The she spoke, so quietly that I could barely hear."
@@ -2659,7 +2660,7 @@ label family8:
                     "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
                     her concerned "You're still worried."
                     him normal "So are you."
-                    her serious "Yes. But it'll be okay."
+                    her determined "Yes. But it'll be okay."
                     him determined "We'll figure it out."
             "We can do this!":
                 $ marriage_strength += 1
@@ -2668,7 +2669,7 @@ label family8:
                 him happy "This is awesome!"
                 her annoyed "I don't feel awesome, I'll tell you that much."
                 him surprised "Hey, is that why you've been so tired lately?"
-                her serious "Probably so."
+                her determined "Probably so."
                 him normal "Any morning sickness? I haven't noticed you eating differently."
                 her normal "Not yet. "
                 show her concerned with dissolve
@@ -2770,7 +2771,7 @@ label baby_delivery:
     show bro concerned with dissolve
     "I had [bro_name] balanced on my lap and was concentrating on holding the bottle just right and squeezing it at just the right rate."
     him concerned "Hold the book open for me... right there..."
-    kid "I can read the front! That word is \"moon\"!"
+    kid happy "I can read the front! That word is \"moon\"!"
     him normal "You're right! Now turn the page... \"In the great green room, there was a telephone...\""
     show bro annoyed with dissolve
     him surprised "Oh, sorry [bro_name], I squeezed that too fast. [kid_name], could you get a rag so I can wipe up this milk?"
@@ -3502,7 +3503,7 @@ label family12:
                 "What should I say?"
                 "You can't go.":
                     him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
-                    kid "What?! Dad, that's so mean."
+                    kid annoyed "What?! Dad, that's so mean."
                     $ authoritarian += 1
                     call family12_disobey
                 "Let me talk to her parents first.":
@@ -3854,7 +3855,7 @@ label family12_anya_come_over:
     show him normal at center
     show kid normal at midleft with moveinleft
     "[kid_name] was so excited to show Anya around our little house."
-    kid "Here's the kitchen, and this is [bro_name]'s room, and the outhouse is out there and here's my room! Want to come in!"
+    kid normal "Here's the kitchen, and this is [bro_name]'s room, and the outhouse is out there and here's my room! Want to come in!"
     hide kid with moveoutright
     "[kid_name] didn't wait for a response, pulling Anya into her room where they sat down to make something out of yarn."
     him annoyed "Welcome home."
@@ -4068,7 +4069,7 @@ label family13_end:
             "And if I felt that way, how did [her_name] feel?"
         "No, the baby died.":
             him sad "No, the baby died for some reason while it was inside Mom."
-            kid "You don't know why?"
+            kid sad "You don't know why?"
             him concerned "No. Sometimes these things just happen."
             "[kid_name] started crying."
             kid cry "I wanted a baby sister!"
@@ -4087,7 +4088,7 @@ label family13_end:
         "No. It's hard for mom.":
             $ marriage_strength += 1
             him determined "No, she's not. And Mom is pretty sad and hurting a lot right now so let's do what we can to help her, okay?"
-            kid "Okay..."
+            kid nervous "Okay..."
             him surprised "What can we do right now to help mom?"
             "She looked around. [her_name] was in our bedroom with the door closed. Hopefully she was taking a nap."
             kid sad "I can be quiet while she takes a nap."
@@ -4276,7 +4277,7 @@ label family14:
                     him angry "!"
                     her concerned "..."
                     him sad "..."
-                    kid "..."
+                    kid sad "..."
                     "I left. Maybe I shouldn't have said all those things. But [kid_name]'s rebellious attitude got to me every time."
                     "She made me so mad..."
                     "I guess, in that way, I understood a little bit of how [bro_name] made her mad."
@@ -6083,13 +6084,13 @@ label family22:
     her determined "I found an empty jar in [bro_name]'s room, behind his clothes."
     show him surprised with dissolve
     "I was shocked. It had never occured to me that obedient, quiet [bro_name] had stolen the applesauce."
-    her serious "[bro_name], please come here."
+    her determined "[bro_name], please come here."
     show bro concerned at left with moveinleft
     bro concerned "Yeah?"
     her concerned "Come closer; I need you to tell me about something."
     show bro at center with move
     bro shifty "What is it?"
-    her serious "I found this applesauce jar in your room."
+    her determined "I found this applesauce jar in your room."
     bro surprised "..."
     her determined "You know that you're not allowed to take applesauce from the pantry."
     bro nervous "..."
@@ -6328,7 +6329,7 @@ label family23:
     "Lately, [kid_name] was on there all the time..."
     scene farm_interior with fade
     show kid normal at midright with dissolve
-    show him normal at midleft with moveinleft
+    show him normal at midleft behind kid with moveinleft
     him surprised "Hey, [kid_name], I need to use the computer pad. Can you finish up, please?"
     kid determined "Dad, I'm doing my homework!"
     him annoyed "With headphones on?"
@@ -6337,6 +6338,7 @@ label family23:
     "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other."
     him annoyed "Does texting help you concentrate, too?"
     kid angry "Yes!"
+    show him at midleft with move
     him angry "You shouldn't text during homework! It's distracting!"
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):
@@ -6431,8 +6433,9 @@ label family23:
 
             "Just finish up and let me use the computer pad.":
                 him annoyed "Just finish up and let me use the computer pad."
-
+    show kid nervous with dissolve
     "Finally, [kid_name] was done with the computer pad. She handed it to me."
+    show kid annoyed at center with move
     menu:
         "What should I say?"
         "You should hang out with friends in person.":
@@ -6462,7 +6465,7 @@ label family23:
                     $ demanding += 1
                     $ confident += 1
                     him determined "Just make sure your homework and chores are done first."
-                    kid "I know, dad, I know!"
+                    kid annoyed "I know, dad, I know!"
                     $ authoritative += 1
                 "It'll be cool to get to know your friends.":
                     him happy "It'll be cool to get to know your friends more!"
@@ -6502,7 +6505,7 @@ label family23:
             "What do you like about this video?":
                 $ responsive += 1
                 him surprised "What do you like about this video?"
-                kid excited "It's a beautiful story! They're so different, but they learn from each other and work together."
+                kid laugh "It's a beautiful story! They're so different, but they learn from each other and work together."
                 him determined "Hmmm, that's a good message."
                 kid nervous "It's not a 'message', dad, it's a story!"
                 him normal "Oh yes, of course."
@@ -6517,7 +6520,7 @@ label family23:
                 kid angry "No! Dad, we're just friends!"
                 him determined "Okay, okay."
 
-        him normal "That reminds me of this other video your mom sent me when we were dating! I wonder if we brought it from Earth?"
+        him happy "That reminds me of this other video your mom sent me when we were dating! I wonder if we brought it from Earth?"
         kid surprised "Oh no, not one your weird old videos!"
         him surprised "It's not weird! It's romantic!"
         kid nervous "Okay, I'll watch it, but just one!"
@@ -7807,11 +7810,11 @@ label family29:
     "We hurried to catch up to [her_name], and all too soon we arrived at the graduation ceremony."
     scene community_center with fade
     if (kevin_elected):
-        show kevin at center
+        show kevin normal at center
         kevin "Welcome to the Talaam graduation ceremony."
         kevin "This year, we have five students graduating."
     else:
-        show julia at center
+        show julia normal at center
         julia "Welcome, parents, teachers, friends, and community, to the Talaam graduation ceremony!"
         julia "This year, we celebrate the graduation of five outstanding students."
 
@@ -8217,9 +8220,9 @@ label family30:
 
     him annoyed "What would you even do on Earth?"
     if (parenting_style == "authoritarian"):
-        kid "I want to study medicine and become a doctor, like Mom."
+        kid excited "I want to study medicine and become a doctor, like Mom."
     elif (parenting_style == "authoritative"):
-        kid "The best biologists are on Earth. How can I compare Talaam and Earth biology if I've never even been to Earth?"
+        kid concerned "The best biologists are on Earth. How can I compare Talaam and Earth biology if I've never even been to Earth?"
     else:
         kid happy "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
         if (boyfriend_name == ""):
@@ -8360,7 +8363,7 @@ label family30:
     hide her
     with moveoutleft
     $ random_crop = farm.crops.random_crop(include_animals = True)
-    kid "Don't forget, you were going to take a look at the [random_crop] today, dad."
+    kid surprised "Don't forget, you were going to take a look at the [random_crop] today, dad."
     him surprised "Oh. The [random_crop], yeah."
     hide kid with moveoutleft
     "[kid_name] left to go do her chores. I remember when I had to remind her twenty times to get her to do something, and now {b}she{/b} was reminding {b}me{/b}."

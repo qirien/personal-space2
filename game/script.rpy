@@ -226,20 +226,25 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
     menu:
-        "Test Farming Screen":
-            jump test_farming_screen
-        "Other Tests":
-            jump tests
-        "Jump to Year":
-            jump test_jump_year
         "Demo":
             jump demo
-        "Trailer":
-            jump trailer
-        "Continue":
+        "Beta":
             $ pass
+    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+    # menu:
+    #     "Test Farming Screen":
+    #         jump test_farming_screen
+    #     "Other Tests":
+    #         jump tests
+    #     "Jump to Year":
+    #         jump test_jump_year
+    #     "Demo":
+    #         jump demo
+    #     "Trailer":
+    #         jump trailer
+    #     "Continue":
+    #         $ pass
 
     show path
     show her flirting at midleft

@@ -216,6 +216,7 @@ style input:
 ## http://www.renpy.org/doc/html/screen_special.html#choice
 
 #TODO: Better menu interface for lots of choices, like in work20
+# TODO: bigger font for phone screens
 screen choice(items):
     style_prefix "choice"
     #
@@ -272,6 +273,7 @@ screen quick_menu():
     ## Setup our custom hotkeys
     key "q" action QuickSave()
     key "l"  action QuickLoad()
+    key "d" action Jump("demo")
 
     # Ensure this appears on top of other screens.
     zorder 100
@@ -1511,15 +1513,15 @@ screen quick_menu():
 
     hbox:
         style_prefix "quick"
+    #
+    #     xalign 0.5
+    #     yalign 1.0
+    #
+    #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+    #     textbutton _("Menu") action ShowMenu()
+    #     textbutton _("Auto") action Preference("auto-forward", "toggle")
 
-        xalign 0.5
-        yalign 1.0
-
-        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-        textbutton _("Menu") action ShowMenu()
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
-
-
+# TODO: make textbox use frame from regular game
 style window:
     variant "small"
     background "gui/phone/textbox.png"

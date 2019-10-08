@@ -95,30 +95,30 @@ init -100 python:
     def get_parenting_style():
 
         # If no stat is above year/3, return "inconsistent"
-        if ((authoritative <= year/3) and
-            (authoritarian <= year/3) and
-            (permissive <= year/3) and
-            (neglectful <= year/3)):
-                return "inconsistent"
-        else:
-           if ((authoritative >= authoritarian) and
-               (authoritative >= permissive) and
-               (authoritative >= neglectful)):
-                return "authoritative"
-           elif ((authoritarian >= authoritative) and
-                  (authoritarian >= permissive) and
-                  (authoritarian >= neglectful)):
-                return "authoritarian"
-           elif ((permissive >= authoritarian) and
-                  (permissive >= authoritative) and
-                  (permissive >= neglectful)):
-                return "permissive"
-           elif ((neglectful >= authoritarian) and
-                  (neglectful >= authoritative) and
-                  (neglectful >= permissive)):
-                return "neglectful"
+        # if ((authoritative <= year/3) and
+        #     (authoritarian <= year/3) and
+        #     (permissive <= year/3) and
+        #     (neglectful <= year/3)):
+        #         return "inconsistent"
+        # else:
+       if ((authoritative >= authoritarian) and
+           (authoritative >= permissive) and
+           (authoritative >= neglectful)):
+            return "authoritative"
+       elif ((authoritarian >= authoritative) and
+              (authoritarian >= permissive) and
+              (authoritarian >= neglectful)):
+            return "authoritarian"
+       elif ((permissive >= authoritarian) and
+              (permissive >= authoritative) and
+              (permissive >= neglectful)):
+            return "permissive"
+       elif ((neglectful >= authoritarian) and
+              (neglectful >= authoritative) and
+              (neglectful >= permissive)):
+            return "neglectful"
 
-        return "inconsistent"
+       return "inconsistent"
 
 
     # Returns whether kid is attached, competent, or indepedent for her age,
