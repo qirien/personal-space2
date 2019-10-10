@@ -9,7 +9,7 @@ init -10:
     image irrigation flip = im.Flip("images/bg/irrigation.jpg", horizontal = True)
     image bro_bedroom = im.Flip("images/bg/kid_bedroom.jpg", horizontal = True)
     image stars_animated:
-        "images/bg/stars.jpg"
+        "images/bg/stars.png"
         zoom 0.75
         linear 10.0 zoom 1.25
 
@@ -22,7 +22,7 @@ init -10:
     image computer_pad = "gui/computer pad.png"
     image computer_pad_with_screen = LiveComposite(
         (1280, 720),
-        (0,0), "images/bg/stars.jpg",
+        (0,0), "images/bg/stars.png",
         (0,0), "gui/computer pad.png"
         #(0,0), "gui/computer pad screen.png"
         )
@@ -35,7 +35,7 @@ init -10:
     image teen = "kid-sprites/teen normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
-    # Temporary Sprites
+    # Temporary Sprites: TODO delete these
     image oleg normal = im.MatrixColor("images/sprites/bro sad.png", im.matrix.brightness(-0.5))
     image travis normal = "images/sprites/bro normal.png"
 

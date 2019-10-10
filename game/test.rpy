@@ -4,27 +4,27 @@
 label test_farming_screen:
     $ testing_mode = True
     # randomly enable crops
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("strawberries")
-    if (renpy.random.random() > 0.7):
+    if (renpy.random.random()  > 0.7):
         $ enable_crop("garlic")
-    if (renpy.random.random() > 0.8):
+    if (renpy.random.random()  > 0.8):
         $ enable_crop("broccoli")
-    if (renpy.random.random() > 0.6):
+    if (renpy.random.random()  > 0.6):
         $ enable_crop("onions")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("plums")
-    if (renpy.random.random() > 0.2):
+    if (renpy.random.random()  > 0.2):
         $ enable_crop("honey")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("peppers")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("corn")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("wheat")
-    if (renpy.random.random() > 0.5):
+    if (renpy.random.random()  > 0.5):
         $ enable_crop("peanuts")
-    if (renpy.random.random() > 0.9):
+    if (renpy.random.random()  > 0.9):
         $ enable_crop("turnips")
     while (year <= MAX_YEARS):
         $ competence = year
@@ -33,7 +33,7 @@ label test_farming_screen:
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
                 $ modify_credits(farm.calculate_income(years_yield))
-                $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
+                $ modify_credits(-(get_expenses_required()  - KELLY_SALARY))
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)
@@ -41,34 +41,40 @@ label test_farming_screen:
         $ show_year = year
         call screen plan_farm
         label test_continue:
-            if (renpy.random.random() > 0.8):
+            if (renpy.random.random()  > 0.8):
                 $ farm_size += 1
             $ year += 1
             $ notifications = ""
     return
 
 label demo:
+    "\"Space to Grow\" is a farming and parenting game."
+    "Each year you choose your crops and then experience events (farming, family, and community) where your choices determine the outcome."
+    "The game takes place across 18 years, so here are a few types events from different years of the game."
     # setup variables
     $ demo_mode = True
     $ year6_have_baby = True
-    $ bro_birth_year = 8
-    $ demo_years = [3,7,12,17,27]
+    $ year = 4
+    $ earth_year = get_earth_years(year)
+    $ is_liaison = False
 
-    $ attachment = ATTACHMENT_HIGH
-    $ competence = COMPETENCE_HIGH/2
-    $ independence = INDEPENDENCE_HIGH/2
+    $ attachment = 2
+    $ competence = 5
+    $ independence = 3
     $ total_demanding = 5
     $ total_responsive = 5
     $ total_confident = 5
-    $ authoritarian = 2
-    $ authoritative = 3
-    $ permissive = 6
-    $ neglectful = 1
+    $ authoritarian = 0
+    $ authoritative = 0
+    $ permissive = 0
+    $ neglectful = 0
+    $ mavericks = 0
+    $ colonists = 0
+    $ miners = 0
 
 
     # FARMING CHOICES
-    $ computer_song = renpy.random.choice(audio.computer)
-    play music computer_song fadein 2.0
+    play music audio.computer fadein 2.0
     hide screen say
     scene stars with fade
     if (year > 1):
@@ -82,21 +88,84 @@ label demo:
 
 label demo_continue:
     $ year = 4
+    $ earth_year = get_earth_years(year)
     call interscene_text(year, "Family")
+    play music parenting
     call family4
-    $ year = 13
+
+    $ bro_birth_year = 8
+    $ year = 14
+    $ earth_year = get_earth_years(year)
     call interscene_text(year, "Community")
-    call community13
-label demo_after_cave:
+    play music community
+    call community14
+
     $ year = 18
+    $ earth_year = get_earth_years(year)
     $ kid_work_slider = 70
     call interscene_text(year, "Work")
+    play music farming
     call spinach2
-    $ year = 27
+    $ year = 23
+    $ earth_year = get_earth_years(year)
     call interscene_text(year, "Family")
-    call family27
+    play music parenting
+    call family23
     scene stars with fade
-    "End of demo for \"Space to Grow\""
+    $ parenting_style = get_parenting_style()
+    $ favorite_faction = strongest_faction()
+    "Based on your decisions, your parenting style was [parenting_style] and your favorite faction was the [favorite_faction]."
+    "That's it for the demo! Pickup a card if you're interested in playing the whole game of \"Space to Grow\" when it comes out next year!"
+    jump demo
+    return
+
+label screenshots:
+    $ year = 8
+    scene barn with fade
+    show him annoyed at quarterleft
+    show kid nervous at quarterright
+    show boy sad at right
+    menu:
+        "[kid_name] hurt her friend's feelings."
+        "A)  Make her apologize":
+            $ pass
+        "B)  Discuss how she can apologize":
+            $ pass
+        "C)  Apologize to his mom":
+            $ pass
+        "D)  Let it go":
+            $ pass
+
+    $ year = 9
+    scene kid_bedroom with fade
+    show him sad at quarterleft
+    show kid annoyed at quarterright
+    menu:
+        "[kid_name] won't clean up."
+        "A)  Take her toys away":
+            $ pass
+        "B)  Sympathize with her":
+            $ pass
+        "C)  Just clean them up":
+            $ pass
+        "D)  Do nothing":
+            $ pass
+
+    $ year = 17
+    scene farm_interior with fade
+    show him surprised at quarterleft
+    show kid concerned at quarterright
+    menu:
+        "[kid_name] wants help with a hard video game."
+        "A)  Remind her video games are a waste of time":
+            $ pass
+        "B)  Empathize with her, but let her figure it out":
+            $ pass
+        "C)  Help her beat the level":
+            $ pass
+        "D)  Ignore her":
+            $ pass
+
     return
 
 label trailer:

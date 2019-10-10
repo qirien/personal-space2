@@ -67,7 +67,7 @@ label start:
         year8_have_baby = False
         family12_shaved_head = False
         family27_no_work = False
-        plays_saxophone = False
+        plays_trombone = False
 
         marriage_strength = 0
 
@@ -226,20 +226,25 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
-    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
     menu:
-        "Test Farming Screen":
-            jump test_farming_screen
-        "Other Tests":
-            jump tests
-        "Jump to Year":
-            jump test_jump_year
         "Demo":
             jump demo
-        "Trailer":
-            jump trailer
-        "Continue":
+        "Beta":
             $ pass
+    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+    # menu:
+    #     "Test Farming Screen":
+    #         jump test_farming_screen
+    #     "Other Tests":
+    #         jump tests
+    #     "Jump to Year":
+    #         jump test_jump_year
+    #     "Demo":
+    #         jump demo
+    #     "Trailer":
+    #         jump trailer
+    #     "Continue":
+    #         $ pass
 
     show path
     show her flirting at midleft
@@ -247,6 +252,7 @@ label start:
     show child at center
     #show computer_pad
     show polaroid
+    with dissolve
 
     if (mp.jack_name):
         $ his_name = mp.jack_name

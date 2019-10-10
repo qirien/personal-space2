@@ -8,7 +8,7 @@ screen plugin_poetry(board):
         style_prefix "pp"
         xfill True
         yfill True
-        background "bg/stars.jpg"
+        background "bg/stars.png"
         frame:
             xpadding 50
             yfill True

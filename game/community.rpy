@@ -2649,31 +2649,35 @@ label community14:
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
     "Today they're sending it back to Earth so RET can sell it."
     "Everyone gathered to watch the shuttle go off."
+    scene plain with fade
+    show thuc normal at center
+    show brennan normal at midright
+    show him normal at midleft
     thuc "So Kevin here can control the shuttle remotely?"
     brennan "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, Kevin will make adjustments for it to leave orbit."
     thuc "When you flew back, your pilot was in the shuttle. Doesn't it make a difference?"
-    brennan "Yes, it does. The main advantage to piloting from inside the shuttle is that you can change things based on how it feels."
-    brennan "Since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
-    brennan "Their acceleration should be a good metric for that anyway."
+    brennan angry "There's a bit of a difference, yes. When the pilot's inside the shuttle, they can make adjustments based on feel."
+    brennan normal "But, since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
     "Kevin was broadcasting the launch on the radio."
     kevin "{i} Lift-off in 10{/i}"
     kevin "{i}9{/i}"
     kevin "{i}8{/i}"
-    kevin "{i}7{/i}"
-    kevin "{i}6{/i}"
-    kevin "{i}5{/i}"
-    kevin "{i}4{/i}"
-    kevin "{i}3{/i}"
-    kevin "{i}2{/i}"
-    kevin "{i}1{/i}"
+    kevin "{i}7,6,5,4{/i}"
+    kevin "{i}3,2,1{/i}"
     "We watched the shuttle as it started consuming fuel to power its flight."
     kevin "{i}Lift-off, we have lift-off{/i}"
     "Soon the shuttle was just a twinkle in the sky, and it disappeared."
     "Kevin continued his narration. About seven minutes later he said that we'd reached orbit."
+    scene plain with fade
+    show pavel normal at midleft
+    show pete normal at midright
+    show helen normal at center
+    with dissolve
     pete "Before y'all go, I have an announcement to make."
     pete "Helen and I are taking our family and moving away."
     pavel "Is there something wrong with your house?"
     pete happy "Nothing wrong with the ranch."
+    hide pavel with moveoutleft
     pete normal "We're tired of working for RET. We want to try to make it on our own."
     pete happy "Part of the reason I came here was to live off the land."
     pete normal "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people."
@@ -2684,26 +2688,27 @@ label community14:
         pete "They expect us to feed the miners, but we can barely feed ourselves."
         pete "They don't respect the natural beauty of Talaam. They've already polluted our water."
     if lily_mad_at_RET:
+        show lily angry at quarterright with moveinright
         lily angry "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
         lily normal "I'm going with Pete and his family."
         $ mavericks += 1
     else:
+        show lily normal at quarterright with moveinright
         lily "I plan to visit you often."
         lily "There is so much more to learn about this planet."
     if not (asked_only_medicine):
         pete "They don't even care about us enough to send the right medicines."
-        "Tomás Perón and Joanna Nguyen tell us their plans to go with Pete and his family."
+        "Tomás Perón and Joanna Nguyen also planned to go with Pete and his family."
         $ mavericks += 1
-    pete normal "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands."
-    pete "But that was before we had credits."
-    pete "We're leaving our house and everything in it. Maybe some newlywed couple will want to live there."
-    pete "I will be taking my radio and some metal foam sheeting, which I paid for with some of the credits I own."
-    pete "I'll leave the same amount of cattle the ranch started with, plus some, and take a herd with me."
-    pete "I'll still have my credits in case I can't trade for what I need."
-    "Everyone starts talking when Pete sits down."
-    "Some families are telling Pete and his family goodbye, while others leave awkwardly."
-    "I push through the crowd to tell Pete some parting words."
+    pete normal "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands. But I reckon credits don't count."
+    pete normal "We're leaving our house and everything in it. Put it to good use, why don't you. I'll be taking my radio and some metal foam sheeting, which I paid for with credits."
+    pete "We'll leave the same amount of cattle the ranch started with, plus some, and take a herd with me."
+    pete happy "We'll still have credits in case we can't trade for what we need."
+    "Everyone started talking when Pete sat down."
+    "Some families wanted to say goodbye, while others just left awkwardly."
+    "I pushed through the crowd to tell Pete some parting words."
+    show him concerned at quarterleft with moveinleft
     "What do I say?"
     menu:
         "Warn them of their impending doom.":
@@ -2724,11 +2729,16 @@ label community14:
             him flirting "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
             him concerned "Seriously though, take care of yourselves."
             $ mavericks += 1
-            $ pass
+    hide pete
+    hide helen
+    hide lily
+    with moveoutright
     if is_liaison:
-        "What do I do with Pete and Helen's remaining cattle?"
+        "There was still the question of what to do with Pete and Helen's remaining cattle."
         menu:
+            "What should I do?"
             "Ask Thuc if any of his kids can look after them.":
+                show thuc normal at midright with dissolve
                 him annoyed "Hey, Thuc, can someone in your family look after the rest of the cattle?"
                 thuc sad "It's not our specialty but I'm sure we can learn."
                 thuc normal "Some of the older kids would probably like living on the ranch."
@@ -2740,8 +2750,10 @@ label community14:
             # Maybe offer them to the miners?
             #   $ pass
             "Wait for a volunteer.":
-                him annoyed "Does anyone want to take the rest of the cattle?"
+                him surprised "Does anyone want to take the rest of the cattle?"
+                show ilian normal at midright with dissolve
                 ilian normal "I'll take them. I know how to butcher them at least."
+                show thuc normal at quarterright with dissolve
                 thuc sad "They'll be a fair bit of work. Want some of my kids to help you out?"
                 ilian happy "Sure."
                 $ miners += 1
@@ -3590,7 +3602,7 @@ label community17:
                         "I snorted a short laugh."
                         him happy "Well, she {b}is{/b} a really good kisser..."
                         "...and, just like that, my concentration was broken."
-                        label community_17_lose_to_ilian:
+                        label community17_lose_to_ilian:
                             "Ilian pushed my hand down, and the match was over."
                             show him determined with dissolve
                             julia "We have a winner! Ilian!"
@@ -4111,7 +4123,7 @@ label community19:
             him happy "Yeah. See you next time."
         else:
             him content "Have a good one!"
-    
+
     scene farm_interior with dissolve
     show him normal at midleft
     show her happy at midright
@@ -4346,7 +4358,7 @@ label community20:
             lily normal "I suspect that the jellystar creature you ate contains a parasite that affects human brains."
             him doubt "And you just let Pete serve it to everyone?"
             lily angry "I have a suspicion, but no proof. Your fondness for the jellystar seems harmless."
-            him pout "Huh. I just assumed everyone liked them." 
+            him pout "Huh. I just assumed everyone liked them."
             him excited "Come on, they're like the mascot of this planet!"
             lily happy "They are indeed beautiful. The way they can aggregate and form larger creatures is remarkable."
             him surprised "They... combine to form a bigger animal?"
@@ -4363,7 +4375,7 @@ label community20:
 
         else:
             pass
-            
+
         scene stars with fade
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "We never saw her again."
@@ -4391,11 +4403,11 @@ label community21:
     thuc sad "It's not like you're entrusting your farm to him! Just tolerate his presence."
     him determined "Okay, whatever."
     thuc normal "We're going to form a caravan up at the fork in the road near the miner's camp."
-    
+
     scene moons with fade
     "My family was really excited to see the ocean, even though it would take about a day of walking to get there."
     "We met at the appointed time and place, with rations and blankets in our backpacks."
-    
+
     scene community_center with fade
     show brennan happy with dissolve
     brennan happy "Thanks for coming out to this joint miner-colonist outing! I'll be laying down a few ground rules."
@@ -4438,12 +4450,12 @@ label community21:
     him pout "Do the miners need to work such long hours?"
     kevin "That's up to Brennan, I think. And the individual miners."
     hide her
-    hide him 
-    hide kevin 
+    hide him
+    hide kevin
     with moveoutright
-    
+
     scene plain with dissolve
-    show him normal at midright 
+    show him normal at midright
     show kid normal at center
     show brennan normal at midleft
     with moveinleft
@@ -4464,9 +4476,9 @@ label community21:
     "We kept walking the rest of the day, chatting with each other while we walked."
     hide him
     hide kid
-    hide brennan 
+    hide brennan
     with moveoutright
-    
+
     scene ocean_sunset with fade
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
@@ -4482,20 +4494,20 @@ label community21:
     show kid normal at quarterleft
     show bro normal at left
     with dissolve
-    "After a breakfast of mush the next morning, I smelled a smoke that reminded me of curry." 
+    "After a breakfast of mush the next morning, I smelled a smoke that reminded me of curry."
     "The smell came from the miners smoking firegrass in pipes."
     "We spent time playing on the beach, even though it wasn't especially warm."
     "Some people caught fish or jellystars and tried cooking them."
     "Someone stepped on a sharp rock and [her_name] helped clean and bandage it."
     hide her with moveoutright
-    
+
     scene ocean_sunset with fade
     show kid normal at quarterright
     show him normal at midright
     with dissolve
     show pete normal at midleft with moveinleft
 
-    
+
     "That evening, Pete and his family stopped by."
     if mavericks > 9: #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
         #TODO: maybe Travis should be in this event too?
@@ -4551,18 +4563,18 @@ label community21:
         "He chatted to a few people but I didn't get a chance to say hi."
         "The kids were playing with these weird transparent shells."
         hide pete with moveoutleft
-        
+
     if miners > 9: #maximum is 15
-        scene bonfire with fade 
+        scene bonfire with fade
         show kid normal at quarterright
         show him normal at midright
-        show her normal at right 
+        show her normal at right
         with moveinright
         show brennan normal at center
-        show zaina normal at midleft 
+        show zaina normal at midleft
         with moveinleft
         #TODO: put Chaco in here somewhere? we haven't seen him in a while
-        brennan normal "Zaina and some of the miners caught a bunch of fish." 
+        brennan normal "Zaina and some of the miners caught a bunch of fish."
         brennan happy "Want to join us for a little roasting party?"
         her pout "I saw that earlier. They caught the edible ones? I'm surprised the jellystars couldn't get them all."
         brennan normal "I think she found a little enclave where it was difficult for the jellies to reach them."
@@ -4611,10 +4623,10 @@ label community21:
         else:
             show pete normal at left with moveinleft
             hide pete
-            hide zina 
+            hide zaina
             with moveoutleft
             "Pete came and asked to talk to Zaina. I couldn't hear exactly what they were talking about, but Pete looked mad and Zaina looked defensive."
-            show zina normal at midleft with moveinleft
+            show zaina normal at midleft with moveinleft
             him surprised "What was that about?"
             zaina "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish."
             zaina "He said it was obvious they were being cultivated because there were so many in the pool."
@@ -4640,10 +4652,10 @@ label community21:
     else:
         scene bonfire with fade
         show him normal at midright
-        show her normal at right 
+        show her normal at right
         with moveinright
         show kid normal at left
-        show zaina normal at midleft 
+        show zaina normal at midleft
         with moveinleft
         "[kid_name] caught a fish with Zaina, and we cooked it over an open fire."
         "It looks like the miners had the same idea. They got a huge bonfire going."
