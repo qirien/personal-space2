@@ -6499,9 +6499,9 @@ label family23:
         "The music was repetitive and kind of grated on my ears, and the video was pretty cheesy, but [kid_name] obviously liked it."
         menu:
             "What should I say?"
-            "What do you like about this video?":
+            "Cool. What was your favorite part?":
                 $ responsive += 1
-                him surprised "What do you like about this video?"
+                him surprised "What was your favorite part?"
                 kid excited "It's a beautiful story! They're so different, but they learn from each other and work together."
                 him determined "Hmmm, that's a good message."
                 kid nervous "It's not a 'message', dad, it's a story!"
@@ -6530,7 +6530,9 @@ label family23:
         show kid at midright
         with move
         him flirting "Like you were made for me."
-        her flirting "And you were made for growing yummy food and kissing me."
+        her surprised "That's kind of self-absorbed - like I only exist for you?"
+        him doubt "No, I just meant that you're awesome."
+        her flirting "Oh, well in that case I guess you were made for me, too."
         kid annoyed "Ugh, get a room, guys!"
     return
 
