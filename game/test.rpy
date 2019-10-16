@@ -48,27 +48,32 @@ label test_farming_screen:
     return
 
 label demo:
+    scene title with fade
+    "\"Space to Grow\" has farming and parenting parts of the game. This demo has a small sample of both."
     # setup variables
     $ demo_mode = True
     $ year6_have_baby = True
-    $ bro_birth_year = 8
-    $ demo_years = [3,7,12,17,27]
+    $ year = 4
+    $ earth_year = get_earth_years(year)
+    $ is_liaison = False
 
-    $ attachment = ATTACHMENT_HIGH
-    $ competence = COMPETENCE_HIGH/2
-    $ independence = INDEPENDENCE_HIGH/2
+    $ attachment = 2
+    $ competence = 5
+    $ independence = 3
     $ total_demanding = 5
     $ total_responsive = 5
     $ total_confident = 5
-    $ authoritarian = 2
-    $ authoritative = 3
-    $ permissive = 6
-    $ neglectful = 1
+    $ authoritarian = 0
+    $ authoritative = 0
+    $ permissive = 0
+    $ neglectful = 0
+    $ mavericks = 0
+    $ colonists = 0
+    $ miners = 0
 
 
     # FARMING CHOICES
-    $ computer_song = renpy.random.choice(audio.computer)
-    play music computer_song fadein 2.0
+    play music audio.computer fadein 2.0
     hide screen say
     scene stars with fade
     if (year > 1):
@@ -82,21 +87,35 @@ label demo:
 
 label demo_continue:
     $ year = 4
+    $ earth_year = get_earth_years(year)
     call interscene_text(year, "Family")
+    play music parenting
     call family4
-    $ year = 13
-    call interscene_text(year, "Community")
-    call community13
-label demo_after_cave:
+
+    # $ bro_birth_year = 8
+    # $ year = 14
+    # $ earth_year = get_earth_years(year)
+    # call interscene_text(year, "Community")
+    # play music community
+    # call community14
+
     $ year = 18
+    $ earth_year = get_earth_years(year)
     $ kid_work_slider = 70
     call interscene_text(year, "Work")
+    play music farming
     call spinach2
-    $ year = 27
+    $ year = 23
+    $ earth_year = get_earth_years(year)
     call interscene_text(year, "Family")
-    call family27
+    play music parenting
+    call family23
     scene stars with fade
-    "End of demo for \"Space to Grow\""
+    $ parenting_style = get_parenting_style()
+    $ favorite_faction = strongest_faction()
+    "Based on your decisions, your parenting style was [parenting_style]."#" and your favorite faction was the [favorite_faction]."
+    "That's it for the demo! Signup on our email list if you're interested in hearing more about \"Space to Grow\""
+    jump demo
     return
 
 label screenshots:
