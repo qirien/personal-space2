@@ -48,9 +48,8 @@ label test_farming_screen:
     return
 
 label demo:
-    "\"Space to Grow\" is a farming and parenting game."
-    "Each year you choose your crops and then experience events (farming, family, and community) where your choices determine the outcome."
-    "The game takes place across 18 years, so here are a few types events from different years of the game."
+    scene title with fade
+    "\"Space to Grow\" has farming and parenting parts of the game. This demo has a small sample of both."
     # setup variables
     $ demo_mode = True
     $ year6_have_baby = True
@@ -93,12 +92,12 @@ label demo_continue:
     play music parenting
     call family4
 
-    $ bro_birth_year = 8
-    $ year = 14
-    $ earth_year = get_earth_years(year)
-    call interscene_text(year, "Community")
-    play music community
-    call community14
+    # $ bro_birth_year = 8
+    # $ year = 14
+    # $ earth_year = get_earth_years(year)
+    # call interscene_text(year, "Community")
+    # play music community
+    # call community14
 
     $ year = 18
     $ earth_year = get_earth_years(year)
@@ -114,8 +113,8 @@ label demo_continue:
     scene stars with fade
     $ parenting_style = get_parenting_style()
     $ favorite_faction = strongest_faction()
-    "Based on your decisions, your parenting style was [parenting_style] and your favorite faction was the [favorite_faction]."
-    "That's it for the demo! Pickup a card if you're interested in playing the whole game of \"Space to Grow\" when it comes out next year!"
+    "Based on your decisions, your parenting style was [parenting_style]."#" and your favorite faction was the [favorite_faction]."
+    "That's it for the demo! Signup on our email list if you're interested in hearing more about \"Space to Grow\""
     jump demo
     return
 
