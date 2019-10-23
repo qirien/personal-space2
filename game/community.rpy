@@ -5161,8 +5161,9 @@ label community23:
 
     scene farm_interior
     with dissolve
-    show her normal at midleft #she should be wearing her lab coat in this scene
-    show him normal at midright
+    show her normal at midright #she should be wearing her lab coat in this scene
+    show him normal at midleft
+    with dissolve
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
     if mavericks > 5:
         her surprised "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
@@ -5196,21 +5197,26 @@ label community23:
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
             $ mavericks += 1
-
+    
+    scene stars with dissolve
     "Later that month..."
-    kid "Can Anya and I go to the beach this weekend?"
-    him "By yourselves?"
-    kid "No, Anya's parents are going."
-    him "What's the occasion?"
-    kid "Brennan is paying lots of money for glass shells."
-    kid "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
-    him "How much money are we talking about here?"
+    scene farm_interior with dissolve
+    show kid laugh at midleft
+    show him normal at midright
+    with dissolve
+    kid laugh "Can Anya and I go to the beach this weekend?"
+    him annoyed "By yourselves?"
+    kid frustrated "No, Anya's parents are going."
+    him concerned "What's the occasion?"
+    kid explaining "Brennan is paying lots of money for glass shells."
+    kid happy "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
+    him determined "How much money are we talking about here?"
     if community_22_mining_stopped:
         # you are never the liaison in this option, since you lose liaisonship in community 22 if you choose to stop mining
-        kid "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
-        him "Really? That seems strange."
-        kid "That's what Anya told me."
-        him "Let me ask Brennan if that's right."
+        kid explaining "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
+        him doubt "Really? That seems strange."
+        kid shifty "That's what Anya told me."
+        him determined "Let me ask Brennan if that's right."
         nvl clear
         him_c "I heard that you're paying 50 credits for glass shells. Is that right?"
         brennan_c "Yes, you heard correctly."
@@ -5219,105 +5225,125 @@ label community23:
         brennan_c "All the minerals we need are concentrated in them."
         brennan_c "We're really behind quota because of suddenly stopping mining for two months, but with enough of these, we should be able to meet the latest deadline."
         him_c "Interesting."
-        him "Anya's absolutely right. Brennan's giving 50 credits each for those shells."
+        him normal "Anya's absolutely right. Brennan's giving 50 credits each for those shells."
     else:
-        kid "I don't know, like 5 credits a shell or something."
+        kid surprised "I don't know, like 5 credits a shell or something."
 
-    kid "So can I go?"
-    him "Let's discuss it when [her_name] gets home."
+    kid frustrated "So can I go?"
+    him pout "Let's discuss it when [her_name] gets home."
+    show her concerned at center with moveinleft
+    show bro normal at left with moveinleft
     "Over dinner, I told [her_name] about Brennan giving out credits for shells, and [kid_name] told her how she wanted to go to the beach with Anya's family."
-    her "I think it's good that you're trying to earn money on your own, [kid_name]. But I don't really want you to go without one of us."
+    her concerned "I think it's good that you're trying to earn money on your own, [kid_name]. But I don't really want you to go without one of us."
     "I knew we were both thinking the same thing -- Anya's parents were... uninvolved with their kids. [kid_name] going with Anya's parents was about the same as going with no adults."
-    her "[his_name], can you go with her?"
-    him "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
-    her "I think I could go. Someone will probably get hurt out there anyway."
-    him "I can get some quality time with [bro_name]."
+    her surprised "[his_name], can you go with her?"
+    him sad "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
+    her normal "I think I could go. Someone will probably get hurt out there anyway."
+    him smirk "I can get some quality time with [bro_name]."
     bro "I wanna go to the beach too!"
-    her "I need you to stay here and make sure [his_name] takes good care of the farm!"
-    her "And we'll bring you some fish."
+    her flirting "I need you to stay here and make sure [his_name] takes good care of the farm!"
+    her happy "And we'll bring you some fish."
     bro "Okay..."
     "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
-    "When they got back, they looked tired."
-    him "How was it?"
-    her "Well, the beach was totally picked over where we normally go, so we did a little exploring."
+    hide her with moveoutright
+    hide kid with moveoutright
+    scene black with fade
+    
+    scene farm_exterior with fade
+    show him surprised at midright with dissolve
+    show her nervous at midleft with moveinleft
+    show kid at left with moveinleft
+    "When they got back a few days later, they looked tired."
+    him surprised "Welcome back! How was it?"
+    her nervous "Well, the beach was totally picked over where we normally go, so we did a little exploring."
     if ate_jellyfish:
-        him "Did you see any jellystars while you were there?"
-        her "No, I didn't. Maybe they move with the currents?"
+        him normal "Did you see any jellystars while you were there?"
+        her concerned "No, I didn't. Maybe they move with the currents?"
     if community_22_mining_stopped:
-        kid "We only found five shells. Anya's parents didn't find that many either."
-        him "Huh. Were there lots of people there?"
-        kid "Yeah, tons! We were all looking for shells."
-        kid "People were even going out on boats to catch jellysquids just so we could get their shells."
-        her "We turned them in on the way home. So we're 250 credits richer!"
-        kid "Hey, that's my money you're talking about."
-        her "I helped. Some of that money is rightfully mine."
-        kid "You can have 100 credits of it. But the rest is mine."
+        kid excited "We only found five shells. Anya's parents didn't find that many either. But they're worth a lot!"
+        him pout "Huh. Were there lots of people there?"
+        kid happy "Yeah, tons! We were all looking for shells."
+        kid laugh "People were even going out on boats to catch jellysquids just so we could get their shells."
+        her laugh "We turned them in on the way home. So we're 250 credits richer!"
+        kid concerned "Hey, that's my money you're talking about."
+        her surprised "I helped. Some of that money is rightfully mine."
+        kid determined "You can have 100 credits of it. But the rest is mine."
         $ modify_credits(100)
-        him "Oh yeah, we need to get some rice to go with dinner tonight."
-        her "I know. We stopped by the storehouse on the way home."
+        him normal "Oh yeah, we need to get some rice to go with dinner tonight."
+        her normal "I know. We stopped by the storehouse on the way home."
         "She handed me a cup of rice."
-        him "Why didn't you just buy a whole bag?"
-        her "Ilian is keeping the prices for food the same, but it means he has to ration it."
-        her "I think he's currently going overboard! Hopefully he'll relax a little next week."
-        him "If he's fixing prices, then what's the point of all that money you just made?"
-        her "Buying things from Pete?"
+        him doubt "Why didn't you just buy a whole bag?"
+        her concerned "Ilian is keeping the prices for food the same, but it means he has to ration it."
+        her surprised "I think he's currently going overboard! Hopefully he'll relax a little next week."
+        him determined "If he's fixing prices, then what's the point of all that money you just made?"
+        her annoyed "Buying things from Pete?"
         scene black with fade
+        
+        scene path with dissolve
+        show thuc normal at midright with dissolve
+        show him normal at midleft with moveinleft
         "Next week, I was about to do a little buying and selling when I saw Thuc manning a vegetable stand outside the storehouse."
-        thuc "Hey, want some extra-creamy goat milk?"
-        him "I get plenty from my goats. What are you selling it for, though?"
-        thuc "Just 100 credits for a pint."
+        thuc normal "Hey, want some extra-creamy goat milk?"
+        him normal "I get plenty from my goats. What are you selling it for, though?"
+        thuc normal "Just 100 credits for a pint."
         menu:
             "That's crazy!":
-                him "You're nuts."
-                thuc "You'll be back."
-                him "Yeah, when you have your goat cheese reduced price for quick sale."
-                thuc "You should save some of your best crops and sell them on your own."
-                him "So I can buy your premium goat milk? I've got enough to worry about."
-                thuc "Suit yourself."
+                him doubt "You're nuts."
+                thuc sad "You'll be back."
+                him pout "Yeah, when you have your goat cheese reduced price for quick sale."
+                thuc normal "You should save some of your best crops and sell them on your own."
+                him determined "So I can buy your premium goat milk? I've got enough to worry about."
+                thuc sad "Suit yourself."
                 $ colonists += 1 #arguable
                 return
-            "How come I don't earn that much?":
-                him "I know how good the extra creamy stuff is...But I don't earn that kind of money selling my crops to Ilian."
-                thuc "Give me some of your best crops to sell. I bet I can make you a lot more money than you currently make."
-                him "Yeah, and how much of the profit are you going to pocket?"
-                thuc "I promise I'll only keep ten percent of the sale!"
+            "How can I make that kind of money?":
+                him doubt "I know how good the extra creamy stuff is... but I don't earn that kind of money selling my crops to Ilian."
+                thuc normal "Give me some of your best crops to sell. I bet I can make you a lot more money than you currently make."
+                him determined "Yeah, and how much of the profit are you going to pocket?"
+                thuc sad "I promise I'll only keep ten percent of the sale!"
                 $ random_crop = farm.crops.random_crop(include_animals = False)
-                him "Okay, I'll let you try selling some [random_crop]. Message me when they sell!"
-                thuc "Oh, I know someone will want them."
+                him content "Okay, I'll let you try selling some [random_crop]. Message me when they sell!"
+                thuc normal "Oh, I know someone will want them."
                 $ mavericks += 1
                 $ thuc_sells_food = True
                 return
 
     else:
         #(community_22_forced_mavericks_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
-        kid "We found ten shells!"
-        her "That's fifty credits for you!"
-        kid "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
-        her "Or you could save it for something you actually need." #could make this a choice if you want to do a parenting crossover
-        kid "Bo---ring."
-        her "We went pretty far out, and I found a lot of shellfish."
-        him "Oh, are they safe to eat?"
-        her "They should be... I didn't do a toxicity panel but we've eaten them before."
-        her "What should we do with them?"
+        kid excited "We found ten shells!"
+        her happy "That's fifty credits for you!"
+        kid explaining "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
+        her surprised "Or you could save it for something you actually need." #could make this a choice if you want to do a parenting crossover
+        kid determined "Bo---ring."
+        hide kid with moveoutright
+        her normal "We went pretty far out, and I found a lot of shellfish."
+        him concerned "Oh, are they safe to eat?"
+        her nervous "They should be... I didn't do a toxicity panel but we've eaten them before."
+        her annoyed "What should we do with them?"
         menu:
             "Preserve them and keep them.":
-                him "Let's keep them! I think we could dry them out in the oven overnight."
-                her "Okay, can you and [bro_name] take care of it? I'm super tired."
+                him content "Let's keep them! I think we could dry them out in the oven overnight."
+                her normal "Okay, can you and [bro_name] take care of it? I'm super tired."
+                hide her with moveoutright
                 "[bro_name] and I spent the next hour shelling and cleaning the shellfish."
                 "Well, [bro_name] mostly watched and played with the shells."
-                him "Now we'll be able to have clam chowder whenever we want!"
+                him excited "Now we'll be able to have clam chowder whenever we want!"
                 $ mavericks += 1 #also debateable
             "Eat some now and sell the rest.":
-                him "Let's have some with dinner and sell the rest tomorrow."
-                her "Okay, can you take care of it?"
-                him "Sure."
+                him content "Let's have some with dinner and sell the rest tomorrow."
+                her normal "Okay, can you take care of it?"
+                him normal "Sure."
                 "[bro_name] and I made a seafood-vegetable soup."
-                her "This really hits the spot. Thanks."
+                her laugh "This really hits the spot. Thanks."
                 $ colonists += 1
+                return
 
 
 label community24:
     #luxury goods
+    scene path with dissolve
+    show thuc normal at midright with dissolve
+    show him normal at midleft with moveinleft
     "I was walking into town to have lunch with [her_name] when I saw Thuc working in his yard."
     if community_22_mining_stopped: #this means there was inflation from community23 and Brennan paying a lot for shells
         if thuc_sells_food:
