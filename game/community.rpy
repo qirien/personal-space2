@@ -5058,8 +5058,8 @@ label community22:
                 pavel_c "Please come meet me in my office today."
                 him_c "Okay, what's is about?"
                 pavel_c "I think you know..."
-                "RET probably wasn't happy that the mining had stopped."
-                pavel "RET has asked me to designate a new liaison."
+                him_c "RET doesn't like that the mining stopped?"
+                pavel "That's right. They've asked me to designate a new liaison."
                 him "Okay. Fine with me."
                 pavel "What did you think would happen? You didn't even consult them."
                 him "I know what they would have said."
@@ -5084,12 +5084,11 @@ label community22:
                 sara_c "And the equipment is getting mysteriously vandalized..."
                 him_c "Right? It just isn't worth it."
                 sara_c "RET wants to authorize use of force against anyone caught making unauthorized modifications to mining equipment."
-                sara_c "There aren't any current plans do that."
-                sara_c "Brennan doesn't want to do that and they're getting ready to mine in a different location."
-                sara_c "RET isn't happy with us right now though."
-                sara_c "They want the miners to make up for the delay and aren't changing their quota."
+                sara_c "No one wants to kill the mavericks."
+                sara_c "The miners are already getting ready to mine in a different location, so they can stay where they are for now."
+                sara_c "RET isn't happy, and they want the miners to make up for the delay."
                 him_c "I don't think we can do anything about that."
-                sara_c "We can keep giving them food to eat, I guess."
+                sara_c "We can keep feeding the miners, I guess."
                 "Mining on Mount Maverick stopped."
                 $ community_22_mining_stopped = True
 
@@ -5115,7 +5114,8 @@ label community22:
 label mining_anyway:
     scene farm_interior
     show him normal at midleft
-    show her normal at midright 
+    show her normal at midright
+    show kid normal at center
     with dissolve
     "Brennan continued with the mining even though the mavericks were still living in the caves."
     "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
@@ -5131,11 +5131,14 @@ label mining_anyway:
     her determined "Don't try to move him until I have more information. I'll radio back to you in five minutes."
     "She turned the radio off."
     him sad "That did not sound good." #would Terra say something here too?
-    her angry "No, it didn't."
+    kid cry "Is Travis going to be okay?"
+    her angry "I don't know yet."
     her "I need an expert opinion..."
     "[her_name] radioed Kevin and explained the situation. He offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
     "She told Pete about their plan and he agreed to let them come help Travis."
     her determined "I'll take the necessary medical supplies with me. It looks like I'll be gone the next two days, but we'll stay in contact over the radio."
+    kid sad "You can fix Travis, can't you?"
+    her normal "I'll do my best."
     him determined "Good luck."
     hide her with moveoutright
     show night_overlay
@@ -5156,40 +5159,45 @@ label community23:
     # Terra is 14 here
     $ pete_knows_his_cows_have_cancer = False
 
+    scene farm_interior
+    with dissolve
+    show her normal at midleft #she should be wearing her lab coat in this scene
+    show him normal at midright
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
     if mavericks > 5:
-        her "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
-        her "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
-    her "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
-    her "He dries it in the sun, usually under a solar flare, so that's no surprise."
-    her "However, the cells in Pete's meat are often irregular and probably cancerous."
-    him "Okay... but eating cancer doesn't give you cancer, right?"
-    her "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
-    him "What about the cows from the colony?"
-    her "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
-    him "Pete's cows are outside more, but they have those UV blankets."
-    her "I don't think they don't work very well. I've seen the cows pull them off."
+        her surprised "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her  "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
+    her concerned "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her annoyed "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her nervous "However, the cells in Pete's meat are often irregular and probably cancerous."
+    him annoyed "Okay... but eating cancer doesn't give you cancer, right?"
+    her normal "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
+    him pout "What about the cows from the colony?"
+    her determined "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    him determined "Pete's cows are outside more, but they have those UV blankets."
+    her concerned "I don't think they don't work very well. I've seen the cows pull them off."
     her "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
     menu:
         "Yes, definitely.":
-            him "People should know the risks of what they're eating. You should definitely tell everyone."
-            him "Just be honest about how much we don't know."
-            her "Okay."
+            him blush "People should know the risks of what they're eating. You should definitely tell everyone."
+            him concerned "Just be honest about how much we don't know."
+            her normal "Okay."
             "[her_name] wrote up a brief paper summarizing her findings."
             "A few people read it and stopped buying meat from Pete."
             $ study_published_23 = True
             $ colonists += 1
         "No, don't publish the study.":
-            him "How many samples have you studied? I think it's too early to draw conclusions."
-            her "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
+            him concerned "How many samples have you studied? I think it's too early to draw conclusions."
+            her surprised "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
         "You should at least tell Pete." if mavericks >5:
-            him "Pete should know that his cows are developing cancer."
-            him "Maybe he can adjust his radiation-shielding measures."
-            her "That's a good idea. I'll make that suggestion."
+            him concerned "Pete should know that his cows are developing cancer."
+            him content "Maybe he can adjust his radiation-shielding measures."
+            her normal "That's a good idea. I'll make that suggestion."
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
             $ mavericks += 1
 
+    "Later that month..."
     kid "Can Anya and I go to the beach this weekend?"
     him "By yourselves?"
     kid "No, Anya's parents are going."
