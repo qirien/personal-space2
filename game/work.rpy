@@ -1044,8 +1044,9 @@ label work18:
     bro concerned "There could be aliens though, right?"
     him determined "I think if there were aliens on Talaam they would have said hi by now. We've been here for years."
     kid shifty "Unless they're just watching us. To see if we're worth enslaving. And any day now, they'll come and attack us in our sleep!"
+    show bro annoyed with dissolve
     "She tickled [bro_name] excitedly. He flinched and tried to push her hands away."
-    bro concerned "Stop!"
+    bro sad "Stop!"
     her annoyed "[kid_name]..."
     kid annoyed "What?! I'm just trying to play with him!"
     bro sad "I don't like that!"
@@ -1071,7 +1072,7 @@ label work18:
             kid annoyed "What are you going to do, just sit around?!"
             him annoyed "Of course not. I've got some other work to do. That's what I need you two to do."
             $ confident += 1
-            "She tried the whole time to convince me that her only work should be school work and it was unfair of me to make the kids do all the work, so I didn't get to concentrate much on my own work."
+            "[kid_name] tried the whole time to convince me that her only work should be school work and it was unfair of me to make the kids do all the work, so I didn't get to concentrate much on my own work."
             "But they did finally get the kitchen clean. Well, cleaner than it had been."
             jump work18_after_clean
         "Assign a kitchen-cleaning job to everyone.":

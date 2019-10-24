@@ -200,7 +200,7 @@ label potatoes2:
     menu:
         "Put them in a chowder":
             "There's nothing like a nice, hearty chowder. Goat's milk, onions, some grass crab meat, herbs, and, of course, lots of potatoes."
-            show her at midleft with moveinleft
+            show her surprised at midleft with moveinleft
             her surprised "Mmmm, that smells so good! Like clam chowder!"
             him concerned "If only I had some bacon..."
             her flirting "How about some smoked crabird?"

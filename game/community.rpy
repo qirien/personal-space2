@@ -2767,6 +2767,7 @@ label community14:
 
 # 15 - Naomi dies
 label community15:
+    play music sad
     scene bedroom with fade
     show night_overlay
     show her sleeping at midright, squatting
@@ -2782,19 +2783,19 @@ label community15:
     "I fell back asleep and woke up an hour later and started making breakfast"
     scene farm_interior with dissolve
     show him normal at midleft with dissolve
-    show her normal at midright with moveinright
-    her normal "Hi, I'm back."
+    show her concerned at midright with moveinright
+    her concerned "Hi, I'm back."
     him concerned "Is she...?"
-    her serious "It's... pretty bad."
+    her determined "It's... pretty bad."
     him pout "Oh. What's wrong with her?"
-    her serious "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
+    her concerned "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
     "I checked my tablet."
     him sad "He said that she has severe radiation sickness and that she is going to die in the next week or two."
     her concerned "We'll be doing palliative care."
     him determined "Just trying to make her suffer less?"
     her sad "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
     him concerned "We'll understand if she's, ah, indisposed. I'll bring the kids over this afternoon."
-    her serious "Just... check with Pavel first."
+    her concerned "Just... check with Pavel first."
     scene path with fade
     show him sad at midleft with moveinleft
     show kid nervous at center with moveinleft
@@ -2830,11 +2831,11 @@ label community15:
             hide sara with moveoutright
     scene kid_bedroom with dissolve
     "I entered the room with the kids."
-    show him sad at midleft with dissolve
-    show bro normal at left with dissolve
-    show kid nervous at center with dissolve
-    with moveinleft
     show naomi normal at midright with dissolve
+    show him sad at midleft
+    show bro concerned at quarterleft
+    show kid nervous at center
+    with moveinleft
     kid annoyed "It stinks in here."
     him pout "Sometimes that happens when you're sick."
     naomi normal "[his_name], did you come to say goodbye too?"
@@ -2870,8 +2871,8 @@ label community15:
     kid annoyed "Gross."
     naomi normal "And let [bro_name] help."
     naomi sad "Come give me a hug."
-    show kid pout at midright
-    show bro normal at midright
+    show kid shifty at midright
+    show bro sad at midright
     with move #TODO: better hug "animation"?
     "[kid_name] and [bro_name] gave her a hug."
     him normal "We'll be sure to plant that tree, Naomi. Thank you for letting us visit even though you're sick."
@@ -2879,7 +2880,7 @@ label community15:
     him determined "I'll tell him."
     scene path with fade
     show pavel sad at right with dissolve
-    show kid nervous at left with moveinright
+    show kid nervous at quarterleft with moveinright
     show bro normal at midleft with moveinright
     show him sad at center with moveinright
     "We left, and I told Pavel that Naomi wanted a break."
@@ -2895,8 +2896,8 @@ label community15:
     "She turned the radio off."
     "[her_name] started crying."
     her sad "It won't be the same without her."
-    her "Who will reassure us when we're feeling hopeless?"
-    her "Who will give me hope that there's something bigger out there?"
+    her cry "Who will reassure us when we're feeling hopeless?"
+    her sad "Who will give me hope that there's something bigger out there?"
     menu:
         "It'll be okay.":
             him content "I'm sure someone will fill the gap."
@@ -2919,8 +2920,8 @@ label community15:
     him surprised "Are you putting that together?"
     her concerned "Yeah... I told Pavel I would; he's in no state to do it himself."
     him doubt "Sara's pretty religious, and I know she's worked with Pavel. She probably knows Naomi pretty well. I mean knew."
-    her seriuos "Sounds good. Can you ask her for me?"
-    him pout "Has Naomi's death been announced?"
+    her sad "Yeah... can you ask her for me?"
+    him determined "Has Naomi's death been announced?"
     her concerned "Pavel just posted about it."
     him concerned "I'll ask Sara if she can speak at the funeral then."
     nvl clear
@@ -2949,6 +2950,8 @@ label community15:
             him pout "I really think you should speak instead."
             her concerned "I guess I don't have to say much..."
     scene church with fade
+    play music worried
+    # TODO: funeral music?
     "Almost everyone came to the funeral the next day."
     show her concerned at center with moveinleft
     her "I hope Naomi felt at peace when she died."
@@ -3041,7 +3044,7 @@ label community15:
             him content "I love you, [her_name]."
             her happy "I never get tired of hearing you say that."
             him happy "Don't you mean, 'I love you, too'?"
-            her laughing "I love you, too, [his_name]."
+            her laugh "I love you, too, [his_name]."
         "(Don't say anything)":
             "I didn't say anything, just sat and held [her_name], both of us lost in our own thoughts."
 
@@ -3068,7 +3071,7 @@ label community16:
     him content "No problem. I was outside weeding anyway; it wasn't much trouble to pick some vegetables."
     her nervous "I just got a call from Helen... Pete is really sick."
     him surprised "Are they going to bring him in?"
-    her pout "Yes. I told them that I would treat him like any other colonist."
+    her sad "Yes. I told them that I would treat him like any other colonist."
     her concerned "But I asked them to pay with some food, and they want to donate a calf."
     him concerned "But after they left us... is it really okay to act like nothing happened?"
     her annoyed "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
@@ -3110,7 +3113,7 @@ label community16:
             pete normal "Mostly the same ones. There are some bugs I hadn't seen before that look kind of like pill bugs."
             pete happy "I've been working on some other ways to deflect radiation though!"
             him doubt "Really? It seems like you wouldn't have the technology..."
-            pete normal "I'd started working on it before I left. I found out that the shells of all these animals are resistent to radiation."
+            pete normal "I'd started working on it before I left. I found out that the shells of all these animals are resistant to radiation."
             him normal "That makes sense. Why didn't I think of that?"
             pete normal "The main problem is that the shells are brittle, so I can't bend them into other shapes, but I've been experimenting with different treatments for them."
             him content "That's really interesting."
@@ -3371,20 +3374,21 @@ label community17:
                 julia "Our first contestant will be... Natalia. Huh. Spitting is something you might actually be good at."
                 show natalia normal at midleft with moveinleft
                 natalia "You bet I am!"
+                "She got a good seed in her mouth, backed up several feet, and then ran up to the line, spitting at the last possible second with an audible 'pbbt'."
                 show natalia at midright with move
-                "She got a good seed in mouth, backed up several feet, and then ran up to the line, spitting at the last possible second with an audible 'pbbt'."
                 "Natalia's seeds went at least ten meters."
                 hide natalia with moveoutright
                 "This was going to be a tough contest."
                 show sara normal at midleft with moveinleft
                 "Sara entered, but her first one ended up dribbling out of her mouth. She tried to spit the second one better, but it ended up hitting Julia on the chin."
-                julia angry "Out of bounds!"
+                julia mad "Out of bounds!"
                 hide sara with moveoutright
-                show kid pout at midleft with moveinleft
+                show kid shifty at midleft with moveinleft
                 show julia normal with dissolve
                 "[kid_name] gave it a try. She spat the first one high in the air, but it didn't go very far. The second she spat hard, down at the ground, and it bounced and made it just past Natalia's."
+                show kid happy
                 julia "Well done, [kid_name]! That was spectacular!"
-                show kid happy with moveoutright
+                hide kid with moveoutright
                 show him pout at midleft with moveinleft
                 "Then it was my turn. I was the last contestant."
                 "I stepped up to the line, got a big fat seed in my mouth, and got ready to spit."
@@ -4023,6 +4027,10 @@ label community18:
             $ mavericks += 1
             $ miners += 1
             him normal "Sure thing." #make this a choice as well?
+            scene plain with fade
+            show him normal at midright
+            show pete normal at midleft
+            with moveinright
             "We worked together to herd the cattle into a group."
             if c18_cows_in_ranch:
                 him  "I found three of your cows and herded them into the old ranch."
@@ -4681,7 +4689,7 @@ label community22:
     if (miners > 6) and (mavericks > 6) and (is_liaison):
         scene stars with fade
         nvl clear
-        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine Mount Maverick." 
+        brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine Mount Maverick."
         brennan_c "Without injuring anyone."
         brennan_c "Except I don't know how to get ahold of Pete."
         him_c "Oh, he has a radio now. I can sort of text him with it."
@@ -5125,7 +5133,7 @@ label mining_anyway:
     her annoyed "Is he breathing? Does he have a heartbeat?"
     pete "{i}He's alive and he called us for help. But he's completely stuck underneath a rock right now.{/i}"
     her normal "See if you can keep him warm."
-    her sleeping "The cave is probably unstable." 
+    her sleeping "The cave is probably unstable."
     her normal "If you try to get him out, you could make it worse or get stuck yourself."
     pete "{i}There must be something we can do. I can't sit and watch him die.{/i}"
     her determined "Don't try to move him until I have more information. I'll radio back to you in five minutes."

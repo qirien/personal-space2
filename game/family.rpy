@@ -6,7 +6,6 @@
 # "demanding" and "responsive" are just for the current year and affect how much the child's stats increase that month.  They may increase
 # (or in some cases, decrease) by 1-5 each month.
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month.
-# TODO: Add more "patient" options, such as "Listen", "Ask why", "Wait", "Think about it", etc.
 
 # Intro event
 label family_intro:
@@ -1827,7 +1826,7 @@ label family6:
             $ year6_have_baby = True
         "I'm not ready yet.":
             him concerned "I... I don't think I'm ready yet. I'm sorry, [her_name]. I just feel like one kid is already more than I can handle right now."
-            her concerned "It's okay. I'm the one that gets pregnant, but I can't have another baby by myself... I need you to be ready, too."
+            her concerned "It's okay. I'm the one that gets pregnant, but I can't raise a baby by myself... I need you to be ready, too."
             $ year6_have_baby = False
 
 
@@ -1845,9 +1844,9 @@ label family6_swimming:
     show kid normal at midright
     with dissolve
     "It was pretty fun to swim with [kid_name]; she tried to hard to swim but she kept doggy paddling instead."
-    him "Big arms! Big arms!"
+    him happy "Big arms! Big arms!"
     kid surprised "My arms are big! So big!"
-    him "Scoop the water! Come on!"
+    him excited "Scoop the water! Come on!"
     kid happy "I scooping, I scooping!"
     "After an hour or so we lay in the sun to warm up, and then we went home."
     return
@@ -3862,9 +3861,6 @@ label family12_anya_come_over:
     "I guess they didn't need me, which was probably for the best."
     return
 
-
-# TODO: blocking and music ended here
-
 #####################################################
 #
 # BIG KID
@@ -3896,7 +3892,7 @@ label family13:
     her happy "Yes! There's the baby - you can see the little mouth, and the hand."
     him "Wow, that really makes it seem real."
     her flirting "That's because it is real."
-    bro "That's in your tummy?"
+    bro surprised "That's in your tummy?"
     kid annoyed "It's not her tummy, it's her uterus. Only girls have them."
     "[bro_name] looked disappointed."
     bro concerned "Why?"
@@ -3918,13 +3914,13 @@ label family13:
     kid surprised "Dad, I have a question."
     him surprised "What is it?"
 
-    # TODO: Is this different based on earlier decisions?
     kid concerned "So, you need a man and a woman to make a baby, right?"
     him normal "Right..."
     kid nervous "Well, how, exactly, does that work? I mean, they come together, but... how?"
     him concerned "Let me think about the best way to explain that to you..."
     menu:
-        "She's not ready for this":
+        "What should I do?"
+        "Put off her questions until she's older":
             $ demanding += 1
             him blush "Maybe when you're older. That's not something you need to worry about right now."
             kid sad "But I am worried about it right now!"
@@ -4015,7 +4011,7 @@ label family13:
                         kid concerned "Forever?"
                         him concerned "Well, that's how I feel. Some people don't look at it as that special, I guess. But your mom and I only share it with each other, so it helps us feel closer together."
                     $ sex_ed_counter += 1
-                    $ sex_ed_goodfeeling
+                    $ sex_ed_goodfeeling = True
                     jump sex_ed
                 "Talk about birth control." if not sex_ed_birthcontrol:
                     him explaining "If the man and woman aren't ready for a baby, there's ways to have sex without making a baby."
@@ -4027,7 +4023,7 @@ label family13:
                         kid surprised "Like you and mom?"
                         him happy "Yeah! Like me and mom."
                     $ sex_ed_counter += 1
-                    $ sex_ed_birthcontrol
+                    $ sex_ed_birthcontrol = True
                     jump sex_ed
                 "That's enough details for now.":
                     him normal "Anyway, that's all you need to know for now."
@@ -4037,6 +4033,11 @@ label family13:
         "Tell her all the details":
             $ responsive += 1
             "I told her everything I knew about sex - biology, emotional effects, irresponsible sex, birth control, hormones..."
+            $ sex_ed_biology = True
+            $ sex_ed_commitment = True
+            $ sex_ed_babycreation = True
+            $ sex_ed_goodfeeling = True
+            $ sex_ed_birthcontrol = True
             kid happy "Ha ha, look, there's a crabird sitting on that goat's head."
             him annoyed ". . . have you been listening at all?"
             kid concerned "Not really. It was kind of boring."
@@ -4049,6 +4050,7 @@ label family13:
 
 label family13_end:
     scene stars with fade
+    play music worried
     "We were all excited for a new brother or sister in the family..."
     "...but [her_name] lost the baby."
     "I shouldn't put it that way; that makes it sound like she did it on purpose. Like she misplaced it, or left it outside too long."
@@ -4163,9 +4165,11 @@ label family13_end:
 # 8.7 Earth years old
 # Teacher Troubles
 label family14:
+    play music tense
     scene farm_interior with fade
     show kid angry at midleft
     show bro cry at quarterleft with dissolve
+    bro "Wahhhhhhhhhh!"
     show him normal at midright with moveinright
 
     him surprised "Whoa, what's going on?"
@@ -4182,7 +4186,7 @@ label family14:
     her determined "Good, I'll talk to [bro_name]."
     scene kid_bedroom with fade
     show kid sad at midright with dissolve
-    show him annoyed at midleft with moveinleft
+    show him annoyed at midleft behind kid with moveinleft
 
     menu:
         "What should I say?"
@@ -4234,7 +4238,7 @@ label family14:
             him surprised "Is there someone in particular?"
             kid angry "My teacher is so mean."
 
-    him surprised "Isn't telling you what to do kind of your teacher's job?"
+    him doubt "Isn't telling you what to do kind of your teacher's job?"
     kid yell "No! She's supposed to be teaching me useful things like math and reading, not making me do busy work all day!"
     menu:
         "What should I say?"
@@ -4243,7 +4247,7 @@ label family14:
             him determined "She's your teacher. She knows what she's doing, and you need to respect her and obey her."
             kid annoyed "Even if she's wrong?!"
             him angry "Yes! You're the kid; your job is to obey! She's the adult; her job is to teach."
-            kid angry "Why am I even talking to you about this?!"
+            kid angry "You don't understand!"
             him annoyed "I'm trying to help you."
             kid annoyed "No, you just want to make me do what you want!"
             him angry "The only things I want you to do are things that are good for you!"
@@ -4262,25 +4266,31 @@ label family14:
                     return
                 "(Make her understand)":
                     $ responsive -= 5
+                    show him yell at center with move
                     "I got right up in her face and gripped her arms, tightly so she couldn't wriggle away."
-                    him angry "We are not being mean! We are trying to teach you how to be a decent human being! But it's really hard when you keep hitting people and disobeying us!"
+                    him yell "We are not being mean! We are trying to teach you how to be a decent human being! But it's really hard when you keep hitting people and disobeying us!"
                     kid sad "Ow, dad, that hurts!"
                     him angry "Did you hear what I said?!"
                     kid cry "Yeah, just let go! Let go!"
+                    show her concerned at quarterleft with moveinleft
                     her concerned "Why don't you let me talk to her for awhile, [his_name]?"
                     him annoyed "Go for it. Not that it'll do any good."
                     her angry "[his_name]!"
                     him angry "She's so selfish! She never listens! She just thinks everything is about her all the time!"
-                    her angry "I wonder where she could have learned that?!"
+                    her annoyed "I wonder where she could have learned that?!"
                     him annoyed "Oh, so it's my fault [kid_name]'s a selfish brat? You had nothing to do with it?"
-                    her annoyed "Where is she going to learn how to be calm when she's angry if we don't show her how?"
+                    her angry "Where is she going to learn how to be calm when she's angry if we don't show her how?"
                     him angry "!"
                     her concerned "..."
                     him sad "..."
                     kid sad "..."
+                    hide him with moveoutleft
+                    scene farm_interior with fade
+                    show him annoyed at center with moveinright
                     "I left. Maybe I shouldn't have said all those things. But [kid_name]'s rebellious attitude got to me every time."
                     "She made me so mad..."
                     "I guess, in that way, I understood a little bit of how [bro_name] made her mad."
+                    show him sad with dissolve
                     "What a hypocrite... I expected her to be a paragon of calmness when someone was annoying her, but when she annoyed me, I flipped out just like she did."
                     "I almost... I could have hit her."
                     "Half of me wondered if it would have helped, while the other half was horrified I'd even considered it."
@@ -4290,7 +4300,7 @@ label family14:
 
         "Tell me about it.":
             $ responsive += 1
-            him concerned "Tell me about it."
+            him determined "Tell me about it."
             kid annoyed "We have to write our spelling words ten times each! Ten times! And I don't need to study them at all because I already know them!"
             him concerned "That does sound frustrating."
             kid nervous "Yeah, and when I asked her if I could do something else, she didn't even listen; she just said no!"
@@ -4430,9 +4440,9 @@ label family15:
             her determined "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
             him annoyed "She shouldn't get paid to help out her family."
             her surprised "Why not? You do."
-            him concerned "...Fine, whatever, as long as you handle it."
+            him concerned "If you want to pay her for doing what kids are supposed to do, go ahead."
             hide her with moveoutleft
-            show kid at center
+            show kid happy at center
             show her determined at midleft
             with moveinleft
             kid happy "Yay, mom's going to pay me five credits a week!"
@@ -4513,16 +4523,16 @@ label allowance_how:
 
     return
 
-
 # 10 Earth years old
 # Cleaning her room
 label family16:
+    play music tense
     scene stars with fade
     "The way my kids grew up was pretty different from how [her_name] and I grew up on Earth. They never experienced things like grocery stores, recess with two hundred kids, or being on a sports team."
     "But some things were pretty similar to my own childhood."
     scene kid_bedroom with fade
-    show him at midright
-    show kid at midleft
+    show him annoyed at midright
+    show kid determined at midleft
     with dissolve
     him annoyed "Yes, you need to clean your room today."
     kid annoyed "But I like it messy! It feels comfortable and I know where everything is!"
@@ -4620,7 +4630,7 @@ label family16:
             $ responsive += 1
             him determined "It sounds like you don't know where to start. I'll help you organize this stuff."
             kid nervous "I guess, if you really want to."
-            "I spent about two hours sorting through little bags and boxes and bins full of random items that I didn't even know we had."
+            "We spent about two hours sorting through little bags and boxes and bins full of random items that I didn't even know we had."
             "We used the old food containers to organize it into some kind of order."
             him normal "Now it's your job to make sure it stays organized."
             kid surprised "Why? It'll just get messy again."
@@ -4664,6 +4674,13 @@ label family16:
             kid annoyed "Yeah, exactly."
             $ neglectful += 1
 
+    play music worried
+    scene farm_interior with fade
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at quarterright
+    show bro sad at center
+    with dissolve
     "That night after dinner, [bro_name] was quiet."
     him surprised "What are you thinking about, [bro_name]?"
     bro concerned "I miss Sister Naomi."
@@ -5450,11 +5467,14 @@ label family18:
 
     return
 
+# TODO: blocking and music testing stopped here
+
 # 11.8 Earth years old
 # Pornography...
 label family19:
     $ family19_notlikethat = False
     $ family19_questions = False
+    $ family19_unacceptable = False
     scene farm_interior with fade
     show him normal at center with dissolve
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
@@ -5474,7 +5494,7 @@ label family19:
            him annoyed "No. You are grounded -- from using the computer pad, from hanging out with friends, everything!"
            kid annoyed "Dad, you won't even let me talk!"
            him angry "There's nothing to discuss! I don't ever want to find you doing something like that again!"
-           kid angry "Ugh, you don't even listen!"
+           kid sad "Dad..."
            $ authoritarian += 1
         "Watch the video.":
            $ demanding -= 1
@@ -5484,8 +5504,7 @@ label family19:
            "And the rough foreplay borders on rape -- not something you'd want [kid_name] to think was normal."
            show kid surprised at midleft with moveinleft
            show him determined at midright with move
-           kid surprised "Dad, what are you watching?"
-           him surprised "I found this video on here when I was looking at your history."
+           him surprised "He, [kid_name]. I found this video on here when I was looking at your history."
            kid shifty "Oh. That."
            jump family19_porn_chat
         "It's not a big deal. Do nothing.":
@@ -5502,7 +5521,7 @@ label family19:
             him determined "What can you tell me about this pornography on the computer pad?"
             kid annoyed "I don't know."
             him surprised "I know that it's from when you were using it."
-            kid shifty "Yeah..."
+            kid shifty "Oh..."
             "She falls silent. You sense that she wants to leave, but she might also have questions that she doesn't know how to ask."
 
             menu family19_porn_chat:
@@ -5514,29 +5533,53 @@ label family19:
                    kid sad "It was an accident."
                    him determined "I know sometimes pornography can come up when you're not even looking for it."
                    kid annoyed "Yeah, I wasn't! I was just looking up something about a book I was reading."
-                   him sad "I know. I probably should have talked to you about it before. But it's kind of hard for me to talk about sometimes, since sex is such a private thing."
+                   him sad "I know. I probably should have talked to you about pornography before. But it's kind of hard for me to talk about sometimes, since sex is such a private thing."
                    kid surprised "Then why do people make videos like that?"
-                   him concerned "That's a good question. I know a lot of them are trying to make money. Some are trying to express themselves."
+                   him concerned "That's a good question. Maybe they're trying to make money, or express themselves? It's hard for me to understand why, actually."
                    kid shifty "I just... I just couldn't stop watching it."
                    him determined "I know -- our brains are wired to respond to sex very strongly. And at your age, it's probably something you're curious about."
                    kid nervous "..."
-                   him normal "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
-                   kid surprised "A plan?"
-                   him determined "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you."
-                   kid concerned "..."
-                   him surprised "Will you do that?"
-                   kid determined "..."
-                   "She didn't say anything, just pulled at a strand of her hair and twisted it."
-                   him concerned "Can you please do that?"
-                   kid shifty "...okay."
-                   him normal "And if you have questions about sex, I hope you'll ask me or mom."
+                   menu:
+                       "That's why you need to have a plan.":
+                           him normal "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
+                           kid surprised "A plan?"
+                           him determined "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you."
+                           kid concerned "..."
+                           him surprised "Will you do that?"
+                           kid determined "..."
+                           "She didn't say anything, just pulled at a strand of her hair and twisted it."
+                           him concerned "Can you please do that?"
+                           kid shifty "...okay."
+                       "I'll find you some better learning materials.":
+                           him normal "If you learn about sex from pornography, you might learn some things that are wrong."
+                           kid surprised "Like what?"
+                           him determined "Like that it's normal to hit or choke someone during sex. That's not normal; it's abusive and dangerous."
+                           kid shifty "Oh."
+                           him normal "So I'll find you better learning materials, okay?"
+                       "Come to me if you have questions.":
+                           him normal "Instead of searching the internet, I hope you'll ask me questions you have about sex."
+                           kid shifty "Oh."
+                           "I could see that wasn't going to happen."
+                           him concerned "Or you could talk to Mom."
+                       "Parts of that video were false.":
+                           him concerned "I'm worried that you'll think the things you saw in that video were normal. That was not normal sex. That was abusive instead of loving."
+                           kid shifty "Oh."
+                           him determined "That's why pornography isn't good for you. It teaches you that sex is just doing whatever gets you aroused."
+                           kid concerned "..."
+                           him normal "But sex is showing love and commitment to the other person in ways that you both enjoy."
+
                    kid shifty "..."
                    him concerned "..."
                    $ parenting_style = get_parenting_style()
                    if ((parenting_style == "permissive") or
                        (parenting_style == "authoritative")):
-                       kid surprised "Does sex... hurt?"
+                       kid surprised "So sex doesn't hurt?"
                        him concerned "Not if you're doing it right. Good sex is when both people are trying to help the other person feel good and show their love for each other."
+                   elif sex_ed_goodfeeling:
+                       kid surprised "I thought you said sex feels good."
+                       him concerned "Well, yeah, if you're doing it right. The whole point is to show love to the other person. Do you think those people in the video loved each other?"
+                       "She shrugged."
+                       him determined "It didn't seem like it to me. I guess some people have sex like that, but in a healthy relationship it's a tender, gentle time to show love."
                    "She didn't look at me, and I could tell she had a lot on her mind. But it was hard for her to say what she was thinking."
                    "I reached over and hugged her."
                    him normal "I hope you know that I love you."
@@ -5545,15 +5588,27 @@ label family19:
                    "Hopefully I was doing okay."
                    $ confident += 1
                    $ authoritative += 1
-               "This is not acceptable computer use.":
+               "This is not acceptable computer use." if (not family19_unacceptable):
+                   $ family19_unacceptable = True
                    $ demanding += 1
                    him determined "Pornography is not acceptable computer use."
                    kid surprised "Oh. Uh, okay."
                    "I was kind of surprised she didn't argue with me. She probably just didn't want to talk about it."
                    him doubt "..."
                    kid concerned "...Can I go now?"
-                   him concerned "Uh, yeah."
-                   $ authoritarian += 1
+                   if (sex_ed_biology):
+                       menu:
+                           "What should I say?"
+                           "Yes.":
+                               him concerned "Uh, yeah."
+                               $ authoritarian += 1
+                           "I want to talk to you first.":
+                               him concerned "Wait a minute."
+                               jump family19_porn_chat
+                   else:
+                       him blush "Uh, yeah."
+                       $ authoritarian += 1
+
                "Never look at this kind of garbage again!":
                    him annoyed "You must never look at this kind of thing again."
                    kid annoyed "..."
@@ -5581,7 +5636,7 @@ label family19:
                    "I had to remember that [kid_name] had grown up much more sheltered than I had... This was a small town with a small school."
                    "All the analogies I thought of were things she had no experience with -- there were no drugs, no smoking, and even sugar was something she had very little knowledge of."
                    him concerned "Well...it tries to make you feel a certain way. Your body is programmed to want to do things that make it feel that way."
-                   kid surprised "So I'm a robot now?"
+                   kid surprised "Programmed...? Like a robot?"
                    him normal "Not at all. You also have a brain and free will, so you can decide if the things your body wants are good for you."
                    kid sad "How do you know?"
                    him doubt "Well, how did the video make you feel?"
@@ -5594,8 +5649,18 @@ label family19:
                    him normal "That's why you need to decide with your brain ahead of time what to do if you see something that's not good for you."
                    "She looked pensive, and I wished I could have read her thoughts to know what she was thinking."
                    kid annoyed "Can I go now?"
-                   him concerned "Um, yeah."
-                   $ authoritative += 1
+                   if (sex_ed_biology):
+                       menu:
+                          "What should I say?"
+                          "Yes.":
+                              him concerned "Uh, yeah."
+                              $ authoritative += 1
+                          "There's something else I wanted to say.":
+                              him concerned "Wait a minute."
+                              jump family19_porn_chat
+                   else:
+                       him concerned "Uh, yeah."
+                       $ authoritative += 1
                "Do you have any questions about sex?" if (not family19_questions):
                    $ responsive += 1
                    him doubt "Do you have any questions about sex?"
@@ -5603,6 +5668,8 @@ label family19:
                    if (not sex_ed_biology):
                        "She probably had a lot of questions; I certainly hadn't explained much to her."
                        "But if she wasn't willing to ask them..."
+                       "I didn't want to talk about this anymore."
+                       return
                    else:
                        "I could tell she did have questions; she just didn't know how to ask them. Or maybe she didn't know what to ask."
                    $ family19_questions = True
@@ -6497,7 +6564,7 @@ label family23:
         show him normal at midright with dissolve
         show kid normal at center with moveinleft
         kid "Hey dad, check out this music video I found."
-        # TODO: play weird music?
+        play music teenmusic
         "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a sculpture of a metal flowers together."
         "The music was repetitive and kind of grated on my ears, and the video was pretty cheesy, but [kid_name] obviously liked it."
         menu:
@@ -6524,7 +6591,7 @@ label family23:
         kid surprised "Oh no, not one your weird old videos!"
         him surprised "It's not weird! It's romantic!"
         kid nervous "Okay, I'll watch it, but just one!"
-        # TODO: play OPS1 music?
+        play music OPS1
         show her normal at midleft with moveinleft
         her surprised "Is that the video I think it is?"
         him happy "Yeah! I wanted to show [kid_name]."
@@ -6534,8 +6601,9 @@ label family23:
         with move
         him flirting "Like you were made for me."
         her surprised "That's kind of self-absorbed - like I only exist for you?"
-        him doubt "No, I just meant that you're awesome."
+        him doubt "No, I just meant you and I fit so well together."
         her flirting "Oh, well in that case I guess you were made for me, too."
+        show him happy with dissolve
         kid annoyed "Ugh, get a room, guys!"
     return
 

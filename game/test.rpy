@@ -335,6 +335,10 @@ label trailer_after_cleanup:
 label tests:
     menu:
         "Which test would you like to run?"
+        "Jump to Year":
+            jump test_jump_year
+        "Test Farming Screen":
+            jump test_farming_screen
         "Crop Events.":
             call test_crops
         "Family Events.":
@@ -350,6 +354,8 @@ label tests:
             call test_sprites
         "Message Board":
             call test_message_board
+        "Trailer":
+            jump trailer
         "Quit":
             return
 
@@ -393,6 +399,8 @@ label test_message_board:
 label test_jump_year:
     $ year_str = renpy.input("What year should we jump to?", default=1)
     $ year = int(year_str)
+    $ bro_birth_year = 8
+    $ year8_have_baby = True
     menu:
         "What type of parent are you?"
         "Authoritarian":
