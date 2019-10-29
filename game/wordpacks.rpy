@@ -7,7 +7,7 @@
 
 init python:
     # Basic words that you probably want on every board.
-    basic_nouns = ["word", "you", "she", "joy", "I", "we",  "scent", "sound", "me", "pain", "wonder", "dream", "moon", "sun"]
+    basic_nouns = ["word", "you", "she", "joy", "I", "we",  "scent", "sound", "me", "pain", "wonder", "dream", "moon", "sun", "us"]
     basic_adjectives = ["beautiful", "blue", "gray", "red", "soft", "feathery",  "pink", "your", "my", "our", "orange", "this", "brown", "dry", "her"]
     basic_verbs = ["jump", "know", "smile", "dance", "sing", "kick", "glow", "is", "are", "eat"]
     basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when", "to"]
@@ -47,7 +47,7 @@ init python:
     farm_words.add_words(farm_nouns, farm_adjectives, farm_verbs, farm_other)
 
     # Separation/death related words
-    separation_nouns = ["distance", "gulf", "chasm", "ocean", "river", "fence", "wall", "mist", "haze", "vision", "death", "loss", "soul", "heaven", "void"]
+    separation_nouns = ["distance", "gulf", "chasm", "ocean", "river", "fence", "wall", "mist", "haze", "vision", "death", "loss", "soul", "heaven", "void", "life"]
     separation_adjectives = ["dark", "alone", "far", "lonely", "empty", "sad", "melancholy", "hollow", "lost", "found", "vast", "unknown", "strange"]
     separation_verbs = ["miss", "exist", "travel", "depress", "find", "search", "lose", "shrink", "seek", "die", "live"]
     separation_other = ["oh", "without", "however", "but", "still", "with", "together"]

@@ -101,6 +101,10 @@ init -100:
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
     define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg"]
 
+    # Specialty one-off songs
+    define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
+    define audio.OPS1 = "music/LinesBuildWalls.ogg"
+
     # Emotional themes
     # Happy/excited
     define audio.exciting = "music/01-Colorado-Jeff Wahl_.ogg"
