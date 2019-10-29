@@ -5467,14 +5467,13 @@ label family18:
 
     return
 
-# TODO: blocking and music testing stopped here
-
 # 11.8 Earth years old
 # Pornography...
 label family19:
     $ family19_notlikethat = False
     $ family19_questions = False
     $ family19_unacceptable = False
+    $ family19_watched_video = False
     scene farm_interior with fade
     show him normal at center with dissolve
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
@@ -5498,6 +5497,7 @@ label family19:
            $ authoritarian += 1
         "Watch the video.":
            $ demanding -= 1
+           $ family19_watched_video = True
            "You start watching it and immediately cringe."
            show him concerned
            "There's nothing romantic or loving about it -- it's designed solely to ramp up hormones and get to a climax as fast as possible."
@@ -5519,9 +5519,9 @@ label family19:
             show him determined at midright with move
             kid surprised "What is it, dad?"
             him determined "What can you tell me about this pornography on the computer pad?"
-            kid annoyed "I don't know."
+            kid shifty "I don't know."
             him surprised "I know that it's from when you were using it."
-            kid shifty "Oh..."
+            kid nervous "Oh..."
             "She falls silent. You sense that she wants to leave, but she might also have questions that she doesn't know how to ask."
 
             menu family19_porn_chat:
@@ -5553,7 +5553,7 @@ label family19:
                        "I'll find you some better learning materials.":
                            him normal "If you learn about sex from pornography, you might learn some things that are wrong."
                            kid surprised "Like what?"
-                           him determined "Like that it's normal to hit or choke someone during sex. That's not normal; it's abusive and dangerous."
+                           him determined "Like that it's normal to hurt someone during sex. That's not normal; it's abusive and dangerous."
                            kid shifty "Oh."
                            him normal "So I'll find you better learning materials, okay?"
                        "Come to me if you have questions.":
@@ -5561,7 +5561,7 @@ label family19:
                            kid shifty "Oh."
                            "I could see that wasn't going to happen."
                            him concerned "Or you could talk to Mom."
-                       "Parts of that video were false.":
+                       "Parts of that video were false." if family19_watched_video:
                            him concerned "I'm worried that you'll think the things you saw in that video were normal. That was not normal sex. That was abusive instead of loving."
                            kid shifty "Oh."
                            him determined "That's why pornography isn't good for you. It teaches you that sex is just doing whatever gets you aroused."
@@ -5579,7 +5579,10 @@ label family19:
                        kid surprised "I thought you said sex feels good."
                        him concerned "Well, yeah, if you're doing it right. The whole point is to show love to the other person. Do you think those people in the video loved each other?"
                        "She shrugged."
-                       him determined "It didn't seem like it to me. I guess some people have sex like that, but in a healthy relationship it's a tender, gentle time to show love."
+                       if family19_watched_video:
+                           him determined "It didn't seem like it to me. I guess some people have sex like that, but in a healthy relationship it's a tender, gentle time to show love to a special person."
+                       else:
+                           "In a healthy relationship, sex is a tender, gentle time to show love to a special person."
                    "She didn't look at me, and I could tell she had a lot on her mind. But it was hard for her to say what she was thinking."
                    "I reached over and hugged her."
                    him normal "I hope you know that I love you."
@@ -5777,9 +5780,9 @@ label family20:
             scene stars with fade
             "Ilian agreed to help her make a trombone. He said it would be better to start with something simpler before trying a saxophone."
             "He wanted to make one for himself, too, so they worked on it together every afternoon for a few weeks. I was just happy he agreed to help at all."
-        "One way or another, I will find you a saxophone!":
+        "One way or another, I will find you an instrument!":
             $ responsive += 1
-            him determined "One way or another, I will find you a saxophone!"
+            him determined "I don't think a saxophone is possible right now. But one way or another, I will find you an instrument!"
             kid normal "Okay, cool."
             him annoyed "'Cool'? No, 'thank you' or anything?"
             kid nervous "Yeah, uh, thanks, dad."
@@ -5787,7 +5790,7 @@ label family20:
             kid annoyed "Yeah I do!"
             "She had no clue."
             scene stars with fade
-            "Ilian said he thought we should try a trombone first, as it was much simpler. Since he wanted one, too, it wasn't much extra work to make two at atime. We worked for weeks getting everything just right."
+            "Ilian said he thought we should try a trombone first, as it was much simpler. Since he wanted one, too, it wasn't much extra work to make two at a time. We worked for weeks getting everything just right."
             "I just hoped [kid_name] would appreciate all our hard work."
             $ permissive += 1
         "That's not something you can do right now.":
@@ -5862,7 +5865,7 @@ label family20:
     scene storeroom with fade
     show ilian normal at midright
     show oleg normal at quarterright
-    show kid normal at centers
+    show kid normal at center
     with dissolve
     show him normal at midleft with moveinleft
     "Finally they were finished. I came over to see what they had made."
@@ -5918,6 +5921,8 @@ label family20:
 # TEENAGER
 #
 #####################################################
+
+# TODO: blocking and music testing stopped here
 
 # 13 Earth years old
 # Sarcastic Humor

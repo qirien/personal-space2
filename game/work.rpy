@@ -196,7 +196,6 @@ label overwork:
     return
 
 
-
 # Malnutrition Event for if you don't have enough nutrition
 label bad_nutrition:
     $ bad_nutrition_count += 1
@@ -229,7 +228,7 @@ label bad_nutrition:
             her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to trade as much."
         return
 
-    if (bad_nutrition_count >= 3):
+    if (bad_nutrition_count >= 2):
         # All nutrients low
         if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium() and (not seen_low_cam)):
             $ seen_low_cam = True
@@ -416,6 +415,21 @@ label bad_nutrition:
             her normal "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
             him determined "Okay."
             $ modify_credits(-50)
+
+        else:
+            # seen all the events that would apply
+            "The crops I planted didn't provide the vitamins and minerals we needed."
+            if (year > 5):
+                "I had to spend money at the storehouse to buy some different foods."
+                $ modify_credits(-50)
+            else:
+                "I had to trade with other farmers to get a better variety of food."
+
+        if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+            scene fields with fade
+            "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
+            "I was able to add two more fields."
+            $ modify_farm_size(2)
         return
 
     # fall through for times without a special event.
@@ -426,6 +440,12 @@ label bad_nutrition:
         $ modify_credits(-50)
     else:
         "I had to trade with other farmers to get a better variety of food."
+
+    if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        scene fields with fade
+        "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
+        "I was able to add another field."
+        $ modify_farm_size(1)
 
     return
 
