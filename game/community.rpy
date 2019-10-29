@@ -5350,52 +5350,53 @@ label community24:
             him "Hi Thuc, thanks for selling those premium crops for me."
             thuc "It was no trouble. Miners have tons of credits right now and they're happy to pay more for better goods and services."
         else:
-            thuc "Hey, I've been worried about you since you've only been selling your crops to Ilian."
-            him "What do you mean?"
+            thuc sad "Hey, I've been worried about you since you've only been selling your crops to Ilian."
+            him determined "What do you mean?"
             thuc "Everyone else is selling their premium crops to the miners directly."
-        thuc "They've been paying so much that Miranda stopped working in the research lab and has been cooking and cleaning for miners instead."
-        him "Really? Wow."
-        thuc "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
-        him "Do people really drink that stuff?"
-        thuc "No, usually people make it into cheese or lotion or something."
+        thuc normal "They've been paying so much that Miranda stopped working in the research lab and has been cooking and cleaning for miners instead."
+        him surprised "Really? Wow."
+        thuc sad "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
+        him doubt "Do people really drink that stuff?"
+        thuc normal "No, usually people make it into cheese or lotion or something."
         thuc "Nice lotion sells for even more than goat milk."
-        him "I'm surprised Miranda hasn't tried that."
-        thuc "She still does some lab work, but she's gotten really into making soap and stuff. She says it's specially formulated to kill microflora on Talaam."
-        thuc "She and Julia are making a plum syrup together too. It tastes amazing."
+        him pout "I'm surprised Miranda hasn't tried that."
+        thuc sad "She still does some lab work, but she's gotten really into making soap and stuff. She says it's specially formulated to kill microflora on Talaam."
+        thuc normal "She and Julia are making a plum syrup together too. It tastes amazing."
         thuc "The price of Pete's firegrass has gone waaaay up, so I think some teenagers are trying to grow some on their own."
         thuc "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
-        him "Ugh, is that still a thing?"
-        thuc "Yes, it is."
-        thuc "Didn't you read Julia's latest {i}Talaam Times{/i} that did an economic analysis of our luxury goods and reviewed select products?"
-        him "I didn't want to pay 20 credits for it! That's like the price of beans for a month."
+        him sad "Ugh, is that still a thing?"
+        thuc sad "Yes, it is."
+        thuc normal "Didn't you read Julia's latest {i}Talaam Times{/i} that did an economic analysis of our luxury goods and reviewed select products?"
+        him blush "I didn't want to pay 20 credits for it! That's like the price of beans for a month."
         if not thuc_sells_food:
-            him "Hmm. Maybe I could make a little money on the side."
+            him pout "Hmm. Maybe I could make a little money on the side."
             him "My family might enjoy having some nicer things."
-            thuc "I'll take the best you have and sell it in my premium marketplace."
+            thuc normal "I'll take the best you have and sell it in my premium marketplace."
             thuc "I'll message you as soon as these sell."
-            him "Thanks."
+            him happy "Thanks."
         else:
             pass
-        thuc "For the miners though, 20 credits out of thousands is almost nothing."
-        thuc "If you can make something that's popular with them, you could stand to make a lot of money!"
+        thuc sad "For the miners though, 20 credits out of thousands is almost nothing."
+        thuc normal "If you can make something that's popular with them, you could stand to make a lot of money!"
         jump luxury_good
 
 
     else:
-        thuc "Hey [his_name], how's business?"
-        him "Same as ever. You?"
-        thuc "I'm glad you asked. Miranda decided that she wasn't making enough money from researching plants and she developed a special soap."
-        him "Is it that much different from Natalia's soap?"
-        thuc "Yes, she says it's formulated to kill Talaam microflora."
-        him "This sounds like something I don't actually need."
-        thuc "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
+        thuc sad "Hey [his_name], how's business?"
+        him annoyed "Same as ever. You?"
+        thuc normal "I'm glad you asked. Miranda decided that she wasn't making enough money from researching plants and she developed a special soap."
+        him surprised "Is it that much different from Natalia's soap?"
+        thuc sad "Yes, she says it's formulated to kill Talaam microflora."
+        him annoyed "This sounds like something I don't actually need."
+        thuc normal "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
         thuc "Julia gave it a flourescent review in {i}Talaam Times{/i}. The miners love that kind of stuff."
-        thuc "The price of firegrass has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
-        thuc "You should consider producing some kind of luxury good or service to make some extra money."
+        thuc sad "The price of firegrass has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
+        thuc normal "You should consider producing some kind of luxury good or service to make some extra money."
         jump luxury_good
 
 label luxury_good:
-    him "Hmm. I'll think about it."
+    him concerned "Hmm. I'll think about it."
+    scene farm_exterior with fade
     "I want to try selling something new."
     menu:
         "Write a guide for beginning farmers on Talaam.":
@@ -5405,12 +5406,16 @@ label luxury_good:
             "Finally I was ready to sell it for 100 credits!"
             "After a month it had sold just four copies." #+400/40 credits
             $ modify_credits(400)
-            kid "Hey dad, that farming guide you wrote is really popular."
-            him "Really?"
-            kid "Yeah, Oleg bought it and made an app version!"
-            him "Hey, he didn't have my permission to do that."
-            kid "He's not making that much money off of it."
-            him "Ugh."
+            scene farm_interior with dissolve
+            show him normal at midleft
+            show kid excited at midright
+            with dissolve
+            kid excited "Hey dad, that farming guide you wrote is really popular."
+            him surprised "Really?"
+            kid explaining "Yeah, Oleg bought it and made an app version!"
+            him angry "Hey, he didn't have my permission to do that."
+            kid happy "He's not making that much money off of it."
+            him annoyed "Ugh."
             "I guess I wasn't going to fight a kid over copyright law..."
         "Babysit small children and teach them farming.":
             "I offered to babysit a few small children and give them lots of individual attention for a few hours every morning over the summer."
@@ -5426,9 +5431,12 @@ label luxury_good:
             "I was surprised when Oleg was my first customer."
             "He had a lot of questions about a hypothetical plant that was a lot like firegrass."
             "I told him that I couldn't give him advice on how to grow imaginary crops and taught him some general farming principles."
+            scene farm_interior with dissolve
+            show him normal at midleft
+            show kid normal at midright
             kid "Oleg is telling everyone that you really know your farming stuff."
-            him "Sometimes I wasn't even sure he was listening..."
-            kid "He's been doing phosphorus measurements and everything."
+            him concerned "Sometimes I wasn't even sure he was listening..."
+            kid shifty "He's been doing phosphorus measurements and everything."
             "A few other people took me up on it, but I didn't make a lot of money off of it."
             "There were plenty of books and other farmers people could consult for free." #+400/40 credits
             $ modify_credits(400)
@@ -5446,9 +5454,11 @@ label community25:
     $ touch_25 = False
     $ touch2_25 = False
 
+    scene farm_interior
+    show him normal at midleft
     "I had seen some tasty-sounding jellystar recipes lately."
     if not ate_jellyfish:
-        him "Hmm. These jellystar recipes look kind of good."
+        him pout "Hmm. These jellystar recipes look kind of good."
         him "Maybe I should try them."
         menu:
             "Buy and eat them.":
@@ -5459,48 +5469,52 @@ label community25:
     else:
         "I ate them all the time, so it was fun to see even more ways to enjoy one of my favorite foods."
     "The jellystar farm made them quite an economical food."
+    
+    scene ocean with dissolve
+    show him normal at midleft with dissolve
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
     if (miners > 12):
+        show chaco normal at midright with dissolve
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."
         "Nets with a close weave enclosed a small area off a pier."
-        him "Is this the famous jellystar farm?"
+        him pout "Is this the famous jellystar farm?"
         chaco "Yep."
-        him "Are you in charge of it?"
+        him normal "Are you in charge of it?"
         chaco "I'm the one who checks on it every day and takes notes."
         label jelly_convo:
             menu:
                 "What's new?" if not new_25:
-                    him "Any new developments?"
+                    him determined "Any new developments?"
                     chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
                     chaco "Their pigments probably glow in UV light."
-                    him "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans?"
+                    him excited "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans to be out then?"
                     chaco "Probably not."
-                    him "How do they glow when it's cloudy then?"
+                    him pout "How do they glow when it's cloudy then?"
                     chaco "Luminescence."
                     $ new_25 = True
                     jump jelly_convo
                 "What do they eat?" if not eat_25:
-                    him "What do you feed them?"
+                    him pout "What do you feed them?"
                     chaco "Nothing. They probably eat plankton."
                     chaco "I've seen them eat tiny fish too."
                     $ eat_25 = True
                     jump jelly_convo
                 "Have you made any jellysquid?" if not jellysquid_25:
-                    him "Any luck getting them to aggregate into a jellysquid?"
+                    him determined "Any luck getting them to aggregate into a jellysquid?"
                     chaco "No. But we have a clue."
                     chaco "We found a baby jellysquid."
                     chaco "We put it in the farm. It died, and the jellystars ate its tiny shell."
-                    him "Weird."
+                    him doubt "Weird."
                     $ jellysquid_25 = True
                     jump jelly_convo
                 "Can I touch one?" if not touch_25:
                     "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
-                    him "Can I touch one?"
+                    him normal "Can I touch one?"
                     chaco "You can... sometimes it agitates them."
                     menu:
                         "Touch one.":
                             "I crouched down on the pier and reached out to touch one."
-                            "I felt a little spark like static and feel one of the spines poking me."
+                            "I felt a little spark like static and felt one of the spines poking me."
                             "The jellystars grasped each other and made a long chain to the edge of the net."
                             "I could see and think but it felt like I was in a trance."
                             "Chaco took my hand out of the water."
@@ -5511,21 +5525,22 @@ label community25:
                     $ touch_25 = True
                     jump jelly_convo
                 "Why is there so much extra jellystar meat?" if not meat_25:
-                    him "It doesn't look like there are that many jellystars right now."
+                    him pout "It doesn't look like there are that many jellystars right now."
                     him "Where did all the extra meat come from?"
                     chaco "They reproduce on their own and crowd each other."
                     chaco "Brennan thinks that they can't combine if there are too many of them."
-                    him "What do you think?"
+                    him doubt "What do you think?"
                     chaco "I'm not sure."
                     $ meat_25 = True
                     jump jelly_convo
                 "I'm done talking.":
-                    him "Good seeing you."
+                    him normal "Good seeing you."
                     chaco "You too."
                     jump after_convo_25
 
     elif (mavericks > 10):
         "I looked around the coast for the jellystar farm."
+        show pete normal at midright with dissolve
         "I saw Pete standing on a pier and walked down to say hi."
         "Out on the pier, I could see that the jellystars were enclosed by large net walls."
         him "How's it going?"
@@ -5533,21 +5548,21 @@ label community25:
         label jelly2_convo:
             menu:
                 "Is the farm effective?" if not effective_25:
-                    him "Is it working?"
-                    pete "It's making lots of jellystars, but no jellysquid that I've seen."
-                    him "Colonists have been eating lots of jellystar soup thanks to that."
+                    him concerned "Is it working?"
+                    pete normal "It's making lots of jellystars, but no jellysquid that I've seen."
+                    him normal "Colonists have been eating lots of jellystar soup thanks to that."
                     $ effective_25 = True
                     jump jelly2_convo
                 "What do they eat?" if not eat2_25:
-                    him "Do they feed them fish or something?"
-                    pete "They're like the goats of the ocean."
+                    him doubt "Do they feed them fish or something?"
+                    pete happy "They're like the goats of the ocean."
                     pete "They can live off of just about anything, including whatever plankton are floating around."
                     $ eat2_25 = True
                     jump jelly2_convo
                 "Can I touch one?" if not touch2_25:
                     "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
-                    him "Is it safe to touch them?"
-                    pete "It won't kill you. Go ahead and try it."
+                    him normal "Is it safe to touch them?"
+                    pete normal "It won't kill you. Go ahead and try it."
                     menu:
                         "Touch one.":
                             "I crouched down on the pier and reached out to touch one."
@@ -5555,7 +5570,7 @@ label community25:
                             "The jellystars grasped each other and made a long chain to the edge of the net."
                             "I could see and think but it felt like I was in a trance."
                             "Pete took my hand out of the water."
-                            pete "Sometimes they do that."
+                            pete happy "Sometimes they do that."
                             $ touched_jellystar_25 = True
                             $ touch2_25 = True
                             jump jelly2_convo
@@ -5564,20 +5579,20 @@ label community25:
                             $ touch2_25 = True
                             jump jelly2_convo
                 "What's new with you?" if not new2_25:
-                    him "How are you doing? Still selling firegrass?"
+                    him determined "How are you doing? Still selling firegrass?"
                     if (community_22_mining_stopped):
-                        pete "Yes, but the sudden inflation almost gave me a heart attack."
+                        pete normal "Yes, but the sudden inflation almost gave me a heart attack."
                         pete "My stock was completely wiped out for a few months, because people were stocking up before I figured out what happened."
                         $ new2_25 = True
                         jump jelly2_convo
                     elif (community_22_compromise):
-                        pete "Yep. From my secret firegrass fields."
+                        pete happy "Yep. From my secret firegrass fields."
                         pete "Travis and Helen made an interesting game together that they call Talaam chess."
-                        pete "You should try it out sometime!"
-                        him "That brings back memories. I thought you guys were too busy to play games."
-                        pete "Nope. I think I actually have more free time now than when I was the colony's librarian."
+                        pete normal "You should try it out sometime!"
+                        him happy "That brings back memories. I thought you guys were too busy to play games."
+                        pete happy "Nope. I think I actually have more free time now than when I was the colony's librarian."
                         pete "I was always trying to read everything so I could know how to help everyone."
-                        pete "I do miss reading sometimes."
+                        pete normal "I do miss reading sometimes."
                         $ new2_25 = True
                         jump jelly2_convo
                     elif (community_22_mined_anyway):
