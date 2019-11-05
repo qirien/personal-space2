@@ -8295,7 +8295,7 @@ label family30:
 
     him annoyed "What would you even do on Earth?"
     if (parenting_style == "authoritarian"):
-        kid excited "I want to study medicine and become a doctor, like Mom."
+        kid happy "I want to study medicine and become a doctor, like Mom."
     elif (parenting_style == "authoritative"):
         kid concerned "The best biologists are on Earth. How can I compare Talaam and Earth biology if I've never even been to Earth?"
     else:
