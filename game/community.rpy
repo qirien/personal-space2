@@ -4168,7 +4168,7 @@ label community19:
     him annoyed "I think we would have noticed a larger bird by now."
     her concerned "oh..."
     him content "Oh?"
-    her pout "I bet it's the wolf slugs."
+    her nervous "I bet it's the wolf slugs."
     him sad "That makes a lot of sense."
     ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
     if thuc_has_cattle:
