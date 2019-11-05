@@ -51,11 +51,14 @@ Polaroid <polaroid.png> from <a href="https://pixabay.com/vectors/polaroid-film-
 The following images are licensed CC-BY-3.0.
 
 EketorpsBorgHayBarn <barn.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:EketorpsBorgHayBarn.jpg>, by Marcus Budde.
+lab.jpg, "Wells International School - Science Lab 1.jpg" <https://commons.wikimedia.org/wiki/File:Wells_International_School_-_Science_Lab_1.jpg>, by Kuruzovich
 
 ==== CC-BY-2.0
 storehouse1 <storehouse1.jpg>, "Mr. Vernon Kitchen and Storeroom" by Mr. Gray <https://www.flickr.com/photos/socsci/18933614460/in/photostream/>
 community_center <community_center.jpg>, "South Broadway Cultural Center's Multi-Purpose Room" by Albuquerque South Broadway Cultural Center <https://www.flickr.com/photos/south-broadway-cultural-center/5555481119/>
 hospital <hospital.jpg>, "Inauguración del Hospital Municipal de Chiconcuac" by Presidencia de la República Mexicana <https://www.flickr.com/photos/presidenciamx/24152774186/>
+petri <petri.jpg>, "IMG_0163" by gavin rice <https://www.flickr.com/photos/gavin_rice/4552596551/>
+rowboat <rowboat.jpg> "Solitary Rowboat in Digby, NS" by William Klos <https://www.flickr.com/photos/wjklos/35925805/>
 
 === GUI
 
