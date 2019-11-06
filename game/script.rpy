@@ -226,6 +226,7 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
+    $ _quit_slot = "quitsave"
     menu:
         "Demo":
             jump demo
