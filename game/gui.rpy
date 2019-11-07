@@ -106,7 +106,7 @@ define gui.text_size = 20
 define gui.name_text_size = 26
 
 ## The size of text in the game's user interface.
-define gui.interface_text_size = 24
+define gui.interface_text_size = 28
 
 ## The size of labels in the game's user interface.
 define gui.label_text_size = 28
