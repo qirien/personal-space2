@@ -247,7 +247,6 @@ init -100 python:
         return get_calories_required()
 
     # Calculate the calories required for the family for this year.
-    # TODO: Kids use more calories if you make them do farm work?
     def get_calories_required():
         calories_kid = get_calories_kid(int(earth_year))
         calories_bro = 0
@@ -266,6 +265,7 @@ init -100 python:
             return 20
         if (14 <= age):
             return 25
+        return 0
 
     # Calculate the amount of work available.
     def get_work_available():
@@ -298,6 +298,10 @@ init -100 python:
     def has_strong_marriage():
         return (marriage_strength >= (year / 4))
 
+    # Return True if you have a good amount of trust
+    def has_trust():
+        return (trust > 0)
+
     # Return strength of relationships given current year
     # 1 or greater means strong, less than 1 means weak
     def mavericks_strength():
@@ -315,6 +319,8 @@ init -100 python:
             return "miners"
         elif (mavericks >= colonists >= miners):
             return "mavericks"
+        else:
+            return "colonists"
 
     # Returns a fuzzy description of the given percentage.
     # Used for nitrogen and pest levels.

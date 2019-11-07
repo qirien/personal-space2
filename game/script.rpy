@@ -53,6 +53,8 @@ label start:
         authoritative = 0
         permissive = 0
         neglectful = 0
+        trust = 0
+        
         # Default names
         his_name = "Jack"
         her_name = "Kelly"

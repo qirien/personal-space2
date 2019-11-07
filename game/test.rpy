@@ -398,7 +398,8 @@ label test_message_board:
 
 label test_jump_year:
     $ year_str = renpy.input("What year should we jump to?", default=1)
-    $ year = int(year_str)    
+    $ year = int(year_str)
+    $ earth_year = get_earth_years(year)
     $ bro_birth_year = 8
     $ year8_have_baby = True
     menu:

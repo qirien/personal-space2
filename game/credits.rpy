@@ -51,7 +51,7 @@ label credits:
         $ mp.kelly_name = her_name
         $ mp.baby_name = kid_name
         $ mp.save()
-    # TODO: unlock NG+
+    # TODO: unlock NG+?
 
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve
