@@ -826,7 +826,7 @@ define ret_c = Character("RET",
 #who_suffix = "  {image=images/icons/ret-icon.png} ",
         color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #gray
 
-define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled", what_font="fonts/FreeMono.ttf")
 
 # TODO: make this look like a EULA document
 define legalese = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")

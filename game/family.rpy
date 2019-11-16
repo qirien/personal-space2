@@ -7481,8 +7481,8 @@ label family27:
                 him normal "I'll hold you to that."
                 $ authoritarian += 1
             else:
-                kid angry "That's not fair!"
-                him normal "I'm the parent; those are the rules."
+                kid annoyed "I guess that's the best deal I'm going to get."
+                him determined "I'm the parent; those are the rules."
                 $ authoritarian += 1
             $ modify_credits(-bike_cost)
 
