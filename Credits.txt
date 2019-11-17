@@ -81,7 +81,8 @@ SP-Marker Font by SizzlePrint, <http://www.sizzleprint.com/fonts/>
 Roboto Slab by Christian Robertson, <https://www.fontsquirrel.com/license/roboto-slab>
 Fotograami Flower Font by Khaled Aldousari, <http://www.dafont.com/fotograami-flower.font>
 OpenSansEmoji by MorbZ, <https://github.com/MorbZ/OpenSansEmoji>
-
+FreeMono by GNU FreeFont, <https://www.gnu.org/software/freefont/>, licensed under the GPL
+KidZone by 538Fonts, <https://www.fontspace.com/538fonts/kidzone>, public domain
 
 === Character Sprites
 
