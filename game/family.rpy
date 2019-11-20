@@ -91,10 +91,12 @@ label family1:
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
             "I reminded myself that she wouldn't cry forever, that this was just one night, even as I felt like sobbing alongside her with exhaustion."
             "I hated feeling so helpless."
-            scene moons with fade             # TODO: add a zoom in on baby's face here instead?
+            scene moons with fade
+            show kid cry at center, baby_pos, closeup_baby
             "I wonder if [kid_name] felt the same way?"
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
             "We walked the fields for at least an hour; maybe more."
+            hide kid with dissolve
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
             scene farm_interior with fade
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
@@ -1588,7 +1590,7 @@ label family6:
     him happy "On the other hand, I think I prefer millicrabs over cockroaches. At least they don't form colonies."
     her concerned "Now I miss the sounds of birds singing in the morning..."
     him concerned "Yeah..."
-    kid normal "I can sing in the morning! {font=fonts/OpenSansEmoji.otf}🎶{/font}~ Oh, Mister Sun, Sun, Mister golden Sun... ~{font=fonts/OpenSansEmoji.otf}🎶{/font}"
+    kid normal "I can sing in the morning! {emoji=music}~ Oh, Mister Sun, Sun, Mister golden Sun... ~{emoji=music}"
     "[her_name] and I were quiet for a few minutes, just relaxing and listening to [kid_name] sing."
     him determined "I sure hope you have nothing planned for today."
     her surprised "Why, did you want to do something?"
@@ -1882,7 +1884,7 @@ label family7:
     show her normal at midleft
     show kid normal at center
     with dissolve
-    "[his_name] and [her_name]" "{font=fonts/OpenSansEmoji.otf}🎶{/font} ~ Happy Birthday to you! ~ {font=fonts/OpenSansEmoji.otf}🎶{/font}"
+    "[his_name] and [her_name]" "{emoji=music} ~ Happy Birthday to you! ~ {emoji=music}"
     him happy "Make a wish!"
     "We didn't have a traditional birthday cake, but [her_name] had made some sweetbread and spread some precious melted chocolate on the top."
     "[kid_name] blew out the candle and we settled down to eat our treat."
@@ -2512,7 +2514,7 @@ label family8:
             menu:
                 "Have her apologize to Oleg.":
                     $ demanding += 1
-                    him concerned "[kid_name], you hit Oleg in the face with a mudball and then ran away."
+                    him doubt "[kid_name], you hit Oleg in the face with a mudball and then ran away."
                     kid shifty "Oh. Sorry, Oleg!"
                     oleg "It's okay."
                 "Let it go.":
@@ -2603,14 +2605,14 @@ label family8:
             scene classroom with fade
             show kid normal at midright
             show oleg normal at midleft
-            with dissolve
             show frame_overlay
-            # TODO: is this frame ok?
+            with dissolve
             kid normal "Here's your cornmeal mush, Oleg. Isn't it delicious?"
             "She handed him a small empty bowl with a little spoon. He pretended to take a bite."
             oleg "That's delicious! I like the raisins."
             kid shifty "Travis grew them for me. He's the dad, and I'm the mom, and you can be the baby."
             oleg "Wahhh, wahhhh!"
+            show kid at center with move
             kid concerned "There, there, baby, have some more cornmeal mush."
             oleg "Ptooey!"
             "He pretended to spit it out. He did a pretty good impression of his baby sister."
@@ -2632,7 +2634,7 @@ label family8:
             show him normal at midright
             sara "Well?"
             him happy "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
-            show sara happy with dissolve
+            show sara normal with dissolve
             ilian "Good. Now I've got to run; I've had three people message me wondering why the storehouse isn't open yet."
 
     if (year6_have_baby):
@@ -2647,8 +2649,8 @@ label family8:
         "The next day, we walked [kid_name] to school again. After we dropped her off, [her_name] wanted to talk to me about something."
         $ year8_have_baby = True
         scene path with fade
-        show her normal at midleft
         show him normal at midright
+        show her normal at midleft
         with dissolve
         her concerned "It's a good thing [kid_name]'s in school... since I think I'm pregnant."
         him surprised "What, really? I thought we decided to wait!"
@@ -2671,11 +2673,11 @@ label family8:
                     her concerned "I need us to be on the same side.  "
                     show her sad with dissolve
                     extend "I can't do this alone."
-                    him determined "You're not alone. I'll always be on your side."
-                    him happy "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
+                    him surprised "You're not alone. I'll always be on your side."
+                    him normal "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
                     her normal "Then I don't have anything to worry about."
                     him normal "Nope."
-                    show him concerned at center with move
+                    show him content at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
                     "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
                     "How long had she known and worried by herself?"
@@ -2683,7 +2685,7 @@ label family8:
                     her concerned "You're still worried."
                     him normal "So are you."
                     her determined "Yes. But it'll be okay."
-                    him determined "We'll figure it out."
+                    him pout "We'll figure it out."
             "We can do this!":
                 $ marriage_strength += 1
                 him determined "This is...this is..."
@@ -3697,11 +3699,11 @@ label family12:
     julia_c "Well, that's... that's very nice of you, Lily. Thank you. Though I still blame RET for this."
     brennan_c "For what it's worth, so do I. Despite the official statement they made me post up there, I'm spitting mad. I've got a lot of hair to comb through,"
     pete_c "I'll take care of it."
-    sara_c "You're offering to comb through Brennan's hair?! 😳"
+    sara_c "You're offering to comb through Brennan's hair?! {emoji=blush}"
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
-    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. 🧑" # TODO: this emoji doesn't work
+    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. {emoji=hairman}" # TODO: this emoji doesn't work
     brennan_c "Don't worry; I'll never shave these luscious locks."
     nvl hide
 
@@ -5468,7 +5470,7 @@ label family18:
             him happy "Wow, this warm water feels so good!"
             him explaining "Why didn't I do this earlier?! This is so fun!"
             him normal "Mmmm, this soap smells nice!"
-            him excited "{font=fonts/OpenSansEmoji.otf}🎶{/font}~ I feel good, na-na na-na na-na na ~{font=fonts/OpenSansEmoji.otf}🎶{/font}"
+            him excited "{emoji=music}~ I feel good, na-na na-na na-na na ~{emoji=music}"
             scene farm_interior with fade
             show kid normal at midright with dissolve
             show him normal at midleft with moveinleft
@@ -5772,7 +5774,7 @@ label family20:
     nvl clear
     him_c "Anyone have a saxophone? [kid_name] wants to play..."
     ilian_c "Saxophone! Oh man, I haven't played in so long... wish I'd brought mine with me."
-    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit! 😬"
+    sara_c "There's no way your bari sax would've fit the weight {b}or{/b} size limit! {emoji=grimace}"
     kevin_c "There's a design you could print, but you'd need a bunch of tiny screws, springs, and pins for all the valves."
     ilian_c "You'd need to make pads out of fabric, and reeds out of wood. They'd have to be really precise."
     him_c "Okay, thanks. Do you think RET would send one from Earth?"
@@ -5906,11 +5908,11 @@ label family20:
             scene farm_interior with fade
             show him normal at midright
             show kid normal at midleft with dissolve
-            kid happy "{font=fonts/OpenSansEmoji.otf}🎶{/font}You are my sunshine, my only sunshine-{font=fonts/OpenSansEmoji.otf}🎶{/font}"
+            kid happy "{emoji=music}You are my sunshine, my only sunshine-{emoji=music}"
             "It amazed me how much her voice improved, and though I soon got tired of her practicing the same songs over and over, it was nice to hear music around the house."
             him happy "You sound good, [kid_name]. Keep practicing."
             "She didn't say anything, just blushed and kept singing."
-            kid nervous "{font=fonts/OpenSansEmoji.otf}🎶{/font}Please don't take my sunshine away.{font=fonts/OpenSansEmoji.otf}🎶{/font}"
+            kid nervous "{emoji=music}Please don't take my sunshine away.{emoji=music}"
             $ authoritarian += 1
             return
 
@@ -6892,7 +6894,7 @@ label lettie_dies:
     him_c "I hope everyone knows this plant is poisonous to livestock and humans."
     him_c "I don't know why anyone would even bring it to Talaam; it's deadly and doesn't provide food. I think I'm even allergic to it."
     him_c "I hope the owners will rip that plant out and destroy it so no one else gets hurt."
-    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it. 🙁"
+    sara_c "I'm sorry for your loss, [his_name]. I'm sure whoever planted it wasn't thinking anyone would eat it. {emoji=sad}"
     julia_c "Lettie was a good horse."
     brennan_c "Yew's a tough plant that can grow almost anywhere and is symbolic of death and rebirth."
     brennan_c "The Lewis' were thinking of these qualities and not how it's deadly to horses."
@@ -6900,7 +6902,7 @@ label lettie_dies:
     him_c "But why do we need it here, on Talaam?! We have a chance to start from scratch, to only bring the best things from Earth!"
     him_c "Instead we contaminate our planet with poisonous weeds and people that don't even give a damn."
     her_c "[his_name]!"
-    sara_c "😢"
+    sara_c "{emoji=cry}"
     him_c "If you don't pull out weeds, they'll suck the life out of all the good plants you're trying to grow."
     if (is_liaison):
         brennan_c "I'm going to pretend I didn't hear the RET liaison comparing our entire mining operation to poisonous weeds."
@@ -7668,11 +7670,11 @@ label family28:
 
                     if (colonists > 10):
                         him_c "Hey, Sara, any idea where [her_name] is? I'm looking for her..."
-                        sara_c "Oh, she was just here, buying some stuff from Ilian. 😃"
+                        sara_c "Oh, she was just here, buying some stuff from Ilian. {emoji=grin}"
                         him_c "What kind of stuff?"
                         sara_c "Ilian says... oil and salt? Like, a lot of it."
                         him_c "Really..."
-                        sara_c "I think she's running errands for Pete or something because she rode off in that direction."
+                        sara_c "I think she's running errands for Pete or something because she rode off in that direction. {emoji=grimace}"
                         if (family27_no_work):
                             "Sounds like she was still doing her delivery job."
                         else:

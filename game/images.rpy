@@ -37,7 +37,7 @@ init -10:
 
     # Temporary Sprites: TODO delete these
     image oleg normal = im.MatrixColor("images/sprites/boy sad.png", im.matrix.brightness(-0.5))
-    image travis normal = "images/sprites/bro normal.png"
+    image travis normal = "images/sprites/boy normal.png"
 
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)
@@ -81,3 +81,40 @@ init -10:
            linear 0.5 alpha 0.0
            pause 0.25
            repeat
+
+    python:
+        def emoji_tag(tag, argument):
+            if argument == "happy":
+                emoji = "😊"
+            elif argument == "grin":
+                emoji="😄"
+            elif argument == "blush":
+                emoji="😳"
+            elif argument == "happycry":
+                emoji="😂"
+            elif argument == "surprised":
+                emoji="😲"
+            elif argument == "hearteyes":
+                emoji="😍"
+            elif argument == "scream":
+                emoji="😱"
+            elif argument == "sad":
+                emoji="☹️"
+            elif argument == "cry":
+                emoji="😢"
+            elif argument == "shocked":
+                emoji="😧"
+            elif argument == "grimace":
+                emoji="😬"
+            elif argument == "heart":
+                emoji="❤"
+            elif argument == "celebrate":
+                emoji="🎉"
+            elif argument == "hairman":
+                emoji="🧑‍🦰"
+            elif argument == "music":
+                emoji="🎶"
+
+            return [ ( renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"), (renpy.TEXT_TEXT, emoji), (renpy.TEXT_TAG, "/font") ]
+
+        config.self_closing_custom_text_tags["emoji"] = emoji_tag

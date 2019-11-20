@@ -1,6 +1,15 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
+label test_emoji:
+    nvl clear
+    him_c "I don't usually use emoji...{emoji=blush}"
+    sara_c "But I do! {emoji=happy} All the time!"
+    him_c "Yes, yes, we know."
+    nvl clear
+
+return
+
 label test_farming_screen:
     $ testing_mode = True
     # randomly enable crops
@@ -364,13 +373,13 @@ label tests:
 
 label test_message_board:
     nvl clear
-    her_c "We are testing all the characters on the message board. 😃"
+    her_c "We are testing all the characters on the message board. {emoji=happy}"
     him_c "Just so see what they look like"
     kid_c "And make sure it looks good!"
     naomi_c "I'm sure it's fine."
     pavel_c "I agree."
     lily_c "But testing is important."
-    sara_c "Don't worry so much!!! :-D"
+    sara_c "Don't worry so much!!! {emoji=grin}"
     thuc_c "You got this, bro."
     ilian_c "Yes, keep saying it and maybe it will come true."
     brennan_c "Positive thinking, right?"

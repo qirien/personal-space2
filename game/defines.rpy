@@ -193,6 +193,13 @@ init -100:
     transform creepreset:
         linear 10.0 xoffset 0
 
+    transform closeup_baby:
+        parallel:
+            ease 10.0 zoom 2.0
+        parallel:
+            yalign 0.5
+            ease 10.0 yalign 0.8
+
 
     # Baby positions for being held
     define baby_ypos = 540
