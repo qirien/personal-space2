@@ -2326,7 +2326,7 @@ label community13:
         lily normal "As long as it doesn't take too long."
         nvl clear
         him_c "Hey Sara, Dr. Lily told me that there are signs of heavy metals in our water."
-        sara_c "That can't be good. How can I help?"
+        sara_c "Oh no! {emoji=shocked} How can I help?"
         him_c "Dr. Lily thinks it's from the miner's tailings dam. Can you ask RET what we should do?"
         sara_c "I can try... give me a minute."
         lily normal "What did she say?"
@@ -4221,7 +4221,7 @@ label community19:
     nvl clear
     natalia_c "The crabbirds are still around... what are we going to do about them?"
     julia_c "Maybe we could make nets or traps for them."
-    sara_c "Oooh, I love crabbird chowder!"
+    sara_c "Oooh, I love crabbird chowder! {emoji=yum}"
     ilian_c "I do have a yearly stipulation of credits from RET for helping with emergencies..."
     ilian_c "If you process your crabbirds in the cannery, I promise we'll pay a good price for them."
     natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
@@ -5087,7 +5087,7 @@ label community22:
                 label sara_RET_22:
                 scene stars with dissolve
                 nvl clear
-                sara_c "Hey, RET is giving me grief because the mining stopped."
+                sara_c "Hey, RET is giving me grief because the mining stopped. {emoji=grimace}"
                 sara_c "What's the big idea? Can we really not do anything?"
                 him_c "Well, Pete doesn't want to move, so yes, we really can't do anything to get him to leave."
                 sara_c "They're insisting that we resume mining."
@@ -5095,7 +5095,7 @@ label community22:
                 sara_c "And the equipment is getting mysteriously vandalized..."
                 him_c "Right? It just isn't worth it."
                 sara_c "RET wants to authorize use of force against anyone caught making unauthorized modifications to mining equipment."
-                sara_c "No one wants to kill the mavericks."
+                sara_c "No one wants to kill the mavericks. {emoji=sad}"
                 sara_c "The miners are already getting ready to mine in a different location, so they can stay where they are for now."
                 sara_c "RET isn't happy, and they want the miners to make up for the delay."
                 him_c "I don't think we can do anything about that."
@@ -6585,7 +6585,7 @@ label no_euthanasia:
     nvl clear
     sara_c "So, I told Pavel Grayson that we would all look after him."
     sara_c "He was deeply moved and expressed his gratitude."
-    sara_c "I told him we could start next week."
+    sara_c "I told him we could start next week. {emoji=happy}"
     "The next day, I stopped by his house to check on him. Just in case."
     "He seemed to be deeply asleep..."
     "No, he was out cold. Dead?"
@@ -7966,7 +7966,7 @@ label community30:
                                     nvl clear
                                     him_c "Hi, Sara. I'm wrapping up my investigation with Joel's death and I think Julia might be involved."
                                     him_c "Normally I'd report my findings back to her... but obviously I don't want to do that now."
-                                    sara_c "You think Julia had something to do with Joel's death? Wow, I was not expecting that."
+                                    sara_c "You think Julia had something to do with Joel's death? Wow, I was not expecting that. {emoji=shocked}"
                                     sara_c "You're right though, it's not appropriate to report to her. I can arrange for a jury at the next town meeting."
                                     sara_c "You can come to report your findings, accuse Julia of whatever, and then we'll have the jury right there."
                                     sara_c "But what are you accusing her of? I need to arrange for the defense as well."

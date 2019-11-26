@@ -20,6 +20,8 @@ Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://opencl
 
 ==== Pixabay License <https://pixabay.com/service/terms/#license>
 
+Classroom <classroom.jpg> by Andrea Landaker, derived from <https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=435227> </a> by <a href="https://pixabay.com/users/shannonmatthew-419837/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=435227">Shannon Anderson</a>
+
 Mongolian Yurt <farm_exterior.jpg> by Andrea Landaker, derived from  <https://pixabay.com/en/yurt-mongolia-steppe-altai-486866/>, by Jacqueline Macou
 
 Yurt Interior <farm_interior.jpg> by Andrea Landaker, derived from <https://pixabay.com/en/yurt-holiday-travel-camping-1441610/>, by Sabine van Erp
