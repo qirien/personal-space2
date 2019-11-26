@@ -7,7 +7,7 @@ label message1:
     nvl clear
     naomi_c "Congratulations to Sara and Ilian on the birth of their son Oleg!"
     him_c "I don't know whether to congratulate you or commiserate with you..."
-    sara_c "Maybe both? 😄"
+    sara_c "Maybe both? {emoji=grin}"
     # Natalia and Julia give great, conflicting baby advice
     natalia_c "I hope you can get some time to yourself once in a while still!"
     julia_c "Nonsense. Babies need their mothers' touch. I hope you are snuggling that baby close as often as possible. And breastfeeding. And swaddling. And cosleeping. And sleeping when the baby sleeps."
@@ -20,7 +20,7 @@ label message1:
     julia_c "Anyway, if you want to help Sara and Ilian, we have a signup to bring them a meal."
     natalia_c "And I made a signup for anyone that would like to volunteer to hold the baby for an hour or so to give them a break."
     naomi_c "Thank you, those are both wonderful ideas."
-    sara_c "Thank you everyone!! 😂"
+    sara_c "Thank you everyone!! {emoji=happycry}"
 
     nvl clear
     return
@@ -123,7 +123,7 @@ label message5:
     if (is_liaison):
         him_c "Thank you! I appreciate all the help and support I've received so far."
     else:
-        sara_c "Thank you everyone!!! You're so kind! 😊~❤"
+        sara_c "Thank you everyone!!! You're so kind! {emoji=happy}~{emoji=heart}"
 
     nvl clear
     return
@@ -137,7 +137,7 @@ label message6:
     if (is_liaison):
         him_c "Harvest festival coming up next week!"
     else:
-        sara_c "Hope you're all planning on coming to the harvest festival next week!!!"
+        sara_c "Hope you're all planning on coming to the harvest festival next week!!! {emoji=grin}"
     natalia_c "I just hope we can finish the harvest by then."
     julia_c "Having trouble, are you? I expect to be done tomorrow."
     martin_c "It'll work out. It helped having the school kids home for the week."
@@ -181,7 +181,7 @@ label message8:
     julia_c "Those early years are so precious... just cherish every moment while they're small!"
     natalia_c "Hey, grandma, maybe you could cherish your own grandson this week so Tomás can help us out with the harvest."
     julia_c "Of course. I would never turn down an opportunity to hold that precious baby!"
-    sara_c "I've seen you guys in town a lot... is Martin sick again?"
+    sara_c "I've seen you guys in town a lot... is Martin sick again? {emoji=surprised}"
     natalia_c "When is he not?"
     kevin_c "Does he have a chronic illness?"
     martin_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
@@ -207,7 +207,7 @@ label message9:
         thuc_c "Next time, then!"
     else:
         thuc_c "And [kid_name] did great impressions of everyone on the colony!"
-        sara_c "It was so cute when she pretended to be [her_name] with a baby inside her belly!"
+        sara_c "It was so cute when she pretended to be [her_name] with a baby inside her belly! {emoji=hearteyes}"
         her_c "Yeah, she's been really obsessed with my pregnancy."
         julia_c "Good, she will be a wonderful helper when the baby is born."
         him_c "I hope so..."
@@ -324,7 +324,7 @@ label message13:
     him_c "I hope you guys didn't bring bed bugs with you, too."
     brennan_c "If we did, we'll be sure to send them your way first."
     her_c "Anyway, I thought I'd let you all know that we're expecting another baby!"
-    sara_c "Really?! That's great! {font=fonts/OpenSansEmoji.otf}😃🎉{/font}"
+    sara_c "Really?! That's great! {emoji=grin}{emoji=celebrate}"
     natalia_c "Congratulations!"
     thuc_c "Wow, three kids... you'll be outnumbered."
     him_c "Tell me about it!"
@@ -367,7 +367,7 @@ label message15:
     nvl clear
     # jumpropes sold by Gardenia, Julia's daughter
     # meal signup for Naomi
-    sara_c "Wow, it's so quiet on here without Pete and Helen! :-O"
+    sara_c "Wow, it's so quiet on here without Pete and Helen! {emoji=surprised}"
     julia_c "Perhaps this will remind people to put down their devices and go talk to people in person!"
     ilian_c "Yes, let's talk ON COMPUTERS about HOW IMPORTANT it is to TALK IN PERSON!"
     sara_c "ORRRR, we could do something positive in real life, like sign up to take meals to Naomi and Pavel."
@@ -527,12 +527,12 @@ label message21:
     nvl clear
     # Naomi's gone, but Sara needs parenting advice. How to deal with teenagers?!
     # Natalia and Julia give conflicting good advice
-    sara_c "I can't believe I'm old enough to have a teenager!! 😱"
+    sara_c "I can't believe I'm old enough to have a teenager!! {emoji=scream}"
     her_c  "I know! I still feel like a teenager sometimes..."
     him_c "Like a teenager, except responsible?"
     sara_c "Ouch... speaking of which, every time I talk to Oleg it turns into an argument! I ask him to take out the trash and he blows up in my face!"
     ilian_c "You could just stop talking to him."
-    sara_c "I wish I could ask Naomi...😢"
+    sara_c "I wish I could ask Naomi...{emoji=cry}"
     natalia_c "He still needs you. Look at it from his perspective - strange chemicals are flooding his brain while he's dealing with new social issues, AND people are telling him what to do all the time."
     julia_c "Lay your expectations out clearly with consequences. You shouldn't have to ask him to do these things; he knows what his chores are. If he fails to do them, he faces the consequences. He'll learn soon enough."
     her_c "I think Naomi would remind you give him lots of love, but maybe in a different way than when he was little?"
@@ -572,7 +572,7 @@ label message23:
     julia_c "Money is a universal human invention. There's nothing wrong with rewarding hard work."
     him_c "It's not exactly like Earth, though -- no 401ks, stock markets, or taxes..."
     kevin_c "Perhaps the next shuttle should include some economic analysts to ensure the financial security of Talaam's future."
-    sara_c "Ugh, why all the focus on money? We should just help each other and enjoy what we have."
+    sara_c "Ugh, why all the focus on money? We should just help each other and enjoy what we have. {emoji=sad}"
     ilian_c "Sounds like a quick way to pecuniary failure. You have to know how much you have before you know how much you can spare!"
     natalia_c "There's plenty to go around, as long as we help each other!"
     julia_c "And as long as everyone does their fair share of work."
@@ -628,7 +628,7 @@ label message25:
     ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellystar to offload."
     him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
     brennan_c "I have been trying to farm jellysquid, which resulted in surplus jellystars."
-    sara_c "Are the jellysquid even the same species?"
+    sara_c "Are the jellysquid even the same species? {emoji=surprised}"
     julia_c "Dr. Lily reported that the jellysquid form is an aggregate of the jellystar one, but she never personally witnessed how it happens."
     julia_c "She wrote about it in a paper on them. You should probably read it if you're trying to raise them."
     brennan_c "Thanks, I'll look it up. I've made a few observations of my own."
@@ -677,11 +677,11 @@ label message27:
     pavel_c "I appreciate your good intentions, [kid_name], but I don't think eating jellystars is a problem."
     natalia_c "Yeah, we have way more important things to worry about."
     zaina_c "After learning more about them, I decided not to eat them anymore. Go read some of the research."
-    kid_c "good! thank you zaina you're stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
+    kid_c "good! thank you zaina your stellar!!! {font=fonts/OpenSansEmoji.otf}o(^v^)o{/font}"
     pavel_c "It's so important to eat well. Though I do love jelly with peanut butter... that's okay, isn't it?"
     kid_c "Um, yeah, I think so, I was talking about jellystars."
     pavel_c "Is that a new candy?"
-    kid_c "no, you know jellystars, the creatures that live in the sea?"
+    kid_c "no, you know jellystars the creatures that live in the sea?"
     pavel_c "We should ask Dr. Lily about that."
     kid_c "sorry but I think she died."
     pavel_c "Oh, dear. That is distressing news."
@@ -698,9 +698,9 @@ label message28:
     thuc_c "So the jellysquid are like, real live aliens?! That's so cool!"
     sara_c "Does this mean we shouldn't eat them anymore?"
     him_c "We shouldn't eat the jellysquids, but they don't mind if we eat jellystars."
-    sara_c "But... aren't the jellystars like their babies?! {font=fonts/OpenSansEmoji.otf}😧{/font}"
+    sara_c "But... aren't the jellystars like their babies?! {emoji=shocked}"
     zaina_c "Their life cycle is not analogous to humans'. The jellystars are not sentient and are more like eggs than babies."
-    sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! {font=fonts/OpenSansEmoji.otf}😍{/font}"
+    sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! {emoji=hearteyes}"
     if (ate_jellyfish):
         him_c "They are adorable!"
     kid_c "yay, sara! ur such a stellar mom! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
@@ -723,7 +723,7 @@ label message29:
         julia_c "It says, 'Thank you for taking care of Pavel when we could not. We apologize that he became a burden but appreciate the bonds you shared with him.'"
     natalia_c "He has a wonderful family..."
     if no_euthanasia_26:
-        sara_c "If only I hadn't left him that night... maybe he would still be alive."
+        sara_c "If only I hadn't left him that night... maybe he would still be alive. {emoji=cry}"
         julia_c "If you're going to blame anyone, blame me. I was late for my shift."
         her_c "You might as well blame the new baby you were delivering that was the cause of you being late. It was an accident; it wasn't anyone's fault."
         him_c "I know he didn't remember much at the end... but I do know that we helped him to feel loved and happy when we took care of him."
@@ -750,7 +750,7 @@ label message30:
     # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
     sara_c "Is it true there's going to be chocolate coming on the shuttle?!"
     him_c "They are including some coffee, sugar, and chocolate, yes."
-    sara_c "Yay! 😍"
+    sara_c "Yay! {emoji=hearteyes}"
 
     brennan_c "It's going to be busy these next few days, so if I don't get a chance, I wanted to say farewell to all of you."
     sara_c "Are you ever coming back?"
@@ -826,7 +826,7 @@ define ret_c = Character("RET",
 #who_suffix = "  {image=images/icons/ret-icon.png} ",
         color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #gray
 
-define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled", what_font="fonts/FreeMono.ttf")
 
 # TODO: make this look like a EULA document
 define legalese = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")

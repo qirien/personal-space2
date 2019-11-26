@@ -53,6 +53,8 @@ label start:
         authoritative = 0
         permissive = 0
         neglectful = 0
+        trust = 0
+        
         # Default names
         his_name = "Jack"
         her_name = "Kelly"
@@ -226,6 +228,7 @@ label start:
     #######################################################################
     $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
+    $ _quit_slot = "quitsave"
     menu:
         "Demo":
             jump demo

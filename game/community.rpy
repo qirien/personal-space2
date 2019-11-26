@@ -2326,7 +2326,7 @@ label community13:
         lily normal "As long as it doesn't take too long."
         nvl clear
         him_c "Hey Sara, Dr. Lily told me that there are signs of heavy metals in our water."
-        sara_c "That can't be good. How can I help?"
+        sara_c "Oh no! {emoji=shocked} How can I help?"
         him_c "Dr. Lily thinks it's from the miner's tailings dam. Can you ask RET what we should do?"
         sara_c "I can try... give me a minute."
         lily normal "What did she say?"
@@ -4221,7 +4221,7 @@ label community19:
     nvl clear
     natalia_c "The crabbirds are still around... what are we going to do about them?"
     julia_c "Maybe we could make nets or traps for them."
-    sara_c "Oooh, I love crabbird chowder!"
+    sara_c "Oooh, I love crabbird chowder! {emoji=yum}"
     ilian_c "I do have a yearly stipulation of credits from RET for helping with emergencies..."
     ilian_c "If you process your crabbirds in the cannery, I promise we'll pay a good price for them."
     natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
@@ -4540,8 +4540,11 @@ label community21:
         her normal "Don't go too far!"
         her pout "And I want a turn next!"
         hide her with moveoutright
-        #TODO: find a watery/boat background for this and community 27
         #TODO: put Travis in this scene?
+        scene ocean_open with fade
+        show pete normal at midright
+        show him normal at midleft
+        with dissolve
         "We went out on Pete's little fishing boat, past the place where the waves started crashing."
         pete normal "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows?
         "The lights grew bigger, and when we looked closely, we saw that the glowing animals had a different shape from the jellystars."
@@ -5084,7 +5087,7 @@ label community22:
                 label sara_RET_22:
                 scene stars with dissolve
                 nvl clear
-                sara_c "Hey, RET is giving me grief because the mining stopped."
+                sara_c "Hey, RET is giving me grief because the mining stopped. {emoji=grimace}"
                 sara_c "What's the big idea? Can we really not do anything?"
                 him_c "Well, Pete doesn't want to move, so yes, we really can't do anything to get him to leave."
                 sara_c "They're insisting that we resume mining."
@@ -5092,7 +5095,7 @@ label community22:
                 sara_c "And the equipment is getting mysteriously vandalized..."
                 him_c "Right? It just isn't worth it."
                 sara_c "RET wants to authorize use of force against anyone caught making unauthorized modifications to mining equipment."
-                sara_c "No one wants to kill the mavericks."
+                sara_c "No one wants to kill the mavericks. {emoji=sad}"
                 sara_c "The miners are already getting ready to mine in a different location, so they can stay where they are for now."
                 sara_c "RET isn't happy, and they want the miners to make up for the delay."
                 him_c "I don't think we can do anything about that."
@@ -6040,16 +6043,21 @@ label community27:
     $ wherewelive = False
     $ wherewefood = False
     $ wherewenotlive = False
-    
-    scene ocean with dissolve
-    show kid laugh at center with moveinleft
-    show him happy at midleft with moveinleft
+    scene ocean with fade
+    show him concerned at midright
+    show her surprised at midleft
+    show kid surprised at center
+    show bro concerned at quarterleft
+    with moveinleft
     "It was time for our now-annual trip to the ocean."
     show him surprised
     "When we got there, we were surprised to see more fish than usual."
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
     "I looked at one of the farms, and the nets had been cut."
-    him "I wonder if this is Pete's work?"
+    him surprised "I wonder if this is Pete's work?"
+    hide him
+    hide kid
+    with moveoutright
     
     scene rowboat with dissolve
     show him normal at midleft with moveinleft
@@ -6059,18 +6067,21 @@ label community27:
     "I thought I saw a live jellysquid and got out of the boat. The ocean was shallow here and I was able to stand up."
     "I caught the jellysquid in a bucket after some chasing."
     "It wasn't displaying the reading game on its tablet-like shell like it had years before. Instead it said:"
-    "Jellysquid" "Sad Sad Sad Sad Sad Sad"
+    jellysquid "Sad Sad Sad Sad Sad Sad"
     show kid nervous
     "[kid_name] touched the jellysquid's shell."
-    "Jellysquid" "We children are dying."
-    "Jellysquid" "We can't find shells."
+    jellysquid "We children are dying."
+    jellysquid "We can't find shells."
     him pout "What is it trying to say? I thought they made their own shells."
     kid sad "Maybe they need to see another shell to know how to make it?"
     him surprised "Hmm. They do seem to be intelligent animals, but isn't it part of their body?"
-    "Jellysquid" "Help me?"
+    jellysquid "Help me?"
     "Then the back of the jellysquid looked like the literacy game again."
-    "'Grown-ups only! Needs permission to access more content.'"
-    "'2+3 = ?'"
+    nvl clear
+    computer "'Grown-ups only! Needs permission to access more content.'"
+    computer "'2+3 = ?'"
+    nvl clear
+    # TODO: show this somehow??
     "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking a GPS, but it didn't adjust to my exact location."
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
@@ -6095,8 +6106,8 @@ label community27:
 
 label text_conversation:
     "It started displaying text."
-    "Jellysquid" "My babies can't grow."
-    "Jellysquid" "Where are the baby's shells?" #this should come after asking about the babies
+    jellysquid "My babies can't grow."
+    jellysquid "Where are the baby's shells?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
     "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
     menu:
@@ -6108,15 +6119,15 @@ label text_conversation:
                     kid "Well, Brennan did."
                     him "Didn't you help him?"
                     kid "Yeah. But I needed the money."
-                    "Jellysquid"  "Give them back to my children."
+                    jellysquid  "Give them back to my children."
                     jump call_to_squid
                 "ate them":
                     him "I ate them. Using the minerals inside for technology is like eating to an animal."
                     him "I am part of the animal that consumes technology."
                     kid "I guess I am too."
                     "After I put in this answer, the jellysquid grabbed my shirt and tried to eat it."
-                    "Jellysquid" "You say you ate the clothes but it is not in your clothes."
-                    "Jellysquid" "Are the clothes inside you?"
+                    jellysquid "You say you ate the clothes but it is not in your clothes."
+                    jellysquid "Are the clothes inside you?"
                     menu:
                         "Yes.":
                             him "The clothes of my consumerism are in my bones!"
@@ -6124,11 +6135,11 @@ label text_conversation:
                             jump boat_capsized
                         "No.":
                             him "I think it wants to know where the shells are physically."
-                            "Jellysquid" "Bring them for my babies to eat"
+                            jellysquid "Bring them for my babies to eat"
                             jump call_to_squid
                 "lost them":
                     him "We sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    "Jellysquid" "Find them for my babies to eat."
+                    jellysquid "Find them for my babies to eat."
                     jump call_to_squid
 
         "He":
@@ -6137,16 +6148,16 @@ label text_conversation:
                     him "Brennan took the shells without researching the ecosystem thoroughly or gaining a community consensus."
                     him "He basically stole them."
                     kid "We're the same way though. We've been using this planet without knowing how we would change things."
-                    "Jellysquid" "Take them from him. Give back to my children."
+                    jellysquid "Take them from him. Give back to my children."
                     jump call_to_squid
                 "ate them":
                     him "Brennan ate them, sort of. Using the minerals inside for technology is like eating to an animal."
-                    "Jellysquid" "Bring his clothes here so we can eat them after he's done."
+                    jellysquid "Bring his clothes here so we can eat them after he's done."
                     kid "Is it talking about the shells?"
                     jump call_to_squid
                 "lost them":
                     him "Brennan sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    "Jellysquid" "Find them for my babies to eat."
+                    jellysquid "Find them for my babies to eat."
                     jump call_to_squid
 
 label call_to_squid:
@@ -6154,7 +6165,7 @@ label call_to_squid:
         "Yes, I will bring them.":
             him blush "I have no idea what we're going to do but we're going to figure something out."
             kid frustrated "Maybe Brennan has some shells we could give back."
-            "Jellysquid" "Bring them tomorrow."
+            jellysquid "Bring them tomorrow."
             "The jellysquid jumped out of the bucket and into the water."
             "The net of jellystars pushed us back towards shore."
             hide him
@@ -6217,13 +6228,13 @@ label call_to_squid:
             show him normal at midleft with moveinleft
             "The jellystars seemed to sense my presence quickly in the boat, and took me to a different place, where I met with the jellysquid parent."
             "They communicated to me through a jellysquid, which I put in a bucket on my boat."
-            "Jellysquid" "Did you bring shells?"
+            jellysquid "Did you bring shells?"
             show him surprised #it looks like he's holding something sorta
             "I held up the bucket that had the shells in it, and a tentacle whipped up from the surface and grabbed it from me."
             if shell_count > 2:
-                "Jellysquid" "Good shells. Need more."
+                jellysquid "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
-                "Jellysquid" "More. Hundreds."
+                jellysquid "More. Hundreds."
                 "I kept tracing a question mark."
                 "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
                 him concerned "That's not a lot to work with. Hmmm."
@@ -6235,45 +6246,45 @@ label call_to_squid:
                                 "Why you..."
                                 menu:
                                     "live shell?" if (not uliveshell):
-                                        "Jellysquid" "Shell save us from enemy."
+                                        jellysquid "Shell save us from enemy."
                                         $ uliveshell = True
                                         jump question_menu
                                     "live not?" if (not ulivenot):
-                                        "Jellysquid" "You kill my children and keep their shells."
-                                        "Jellysquid" "Other fish eat us. You do not eat. Give back shells."
+                                        jellysquid "You kill my children and keep their shells."
+                                        jellysquid "Other fish eat us. You do not eat. Give back shells."
                                         $ ulivenot = True
                                         jump question_menu
                             "we..." if ((not weliveshell) and (not welivenot)):
                                 "Why we..."
                                 menu:
                                     "live shell?" if (not weliveshell):
-                                        "Jellysquid" "You don't live in a shell. Your shell is inside you."
+                                        jellysquid "You don't live in a shell. Your shell is inside you."
                                         $ weliveshell = True
                                         jump question_menu
                                     "live not?" if (not welivenot):
-                                        "Jellysquid" "Do you eat? You need to eat to live."
+                                        jellysquid "Do you eat? You need to eat to live."
                                         $welivenot = True
                                         jump question_menu
                     "What" if ((not whatu) and (not whatwe) and (not whatshell) and (not asked_shell_food)):
                         "What..."
                         menu:
                             "you?" if (not whatu):
-                                "Jellysquid" "I am an animal in the water."
-                                "Jellysquid" "What are you?"
+                                jellysquid "I am an animal in the water."
+                                jellysquid "What are you?"
                                 him determined "Hmm. My options are kind of limited."
                                 $ whatu = True
                                 menu:
                                     "We not food.":
-                                        "Jellysquid" "All animals are food."
+                                        jellysquid "All animals are food."
                                         jump question_menu
                                     "We not shell.":
-                                        "Jellysquid" "Then why do you need shell?"
+                                        jellysquid "Then why do you need shell?"
                                         jump question_menu
                                     "We live not.":
                                         "That is not possible. Dead things don't move."
                                         jump question_menu
                             "we?" if (not whatwe):
-                                "Jellysquid" "You are new animals. We do not know what you are."
+                                jellysquid "You are new animals. We do not know what you are."
                                 $ whatwe = True
                                 jump question_menu
                             "shell?" if (not whatshell):
@@ -6281,12 +6292,12 @@ label call_to_squid:
                                 $ whatshell = True
                                 jump question_menu
                             "shell food?" if (not asked_shell_food):
-                                "Jellysquid" "Other shells make shells."
-                                "Jellysquid" "Some rocks make shells."
-                                "Jellysquid" "Maybe mud fish? Mud fish tastes bad."
+                                jellysquid "Other shells make shells."
+                                jellysquid "Some rocks make shells."
+                                jellysquid "Maybe mud fish? Mud fish tastes bad."
                                 him pout "Hmmm. Good to know."
                                 him doubt "Why shell food is not?"
-                                "Jellysquid" "You took food."
+                                jellysquid "You took food."
                                 "The display changed and asked me to bring more shells back."
                                 "I knew that I probably couldn't find more shells, so instead I promised to look for shell food."
                                 $ asked_shell_food = True
@@ -6299,22 +6310,22 @@ label call_to_squid:
                                 "Where you..."
                                 menu:
                                     "live?" if (not whereulive):
-                                        "Jellysquid" "We live here, in the ocean."
+                                        jellysquid "We live here, in the ocean."
                                         $ whereulive = True
                                         jump question_menu
                                     "food?" if (not whereufood):
-                                        "Jellysquid" "Our food is fish, light, and plants."
+                                        jellysquid "Our food is fish, light, and plants."
                                         $ whereufood = True
                                         jump question_menu
                                     "not live?" if (not whereunotlive):
-                                        "Jellysquid" "We do not live on land."
+                                        jellysquid "We do not live on land."
                                         $ whereunotlive = True
                                         jump question_menu
                             "we..." if ((not wherewelive) and (not wherewefood) and (not wherewenotlive)):
                                 "Where we..."
                                 menu:
                                     "live?" if (not wherewelive):
-                                        "Jellysquid" "You live on land. You know it. Why do you ask?"
+                                        jellysquid "You live on land. You know it. Why do you ask?"
                                         $ wherewelive = True
                                         jump question_menu
                                     "food?" if (not wherewefood):
@@ -6443,7 +6454,7 @@ label call_to_squid:
                                     return
                    #this is getting long. put into next event?
             else: #if shell count is less than 2
-                "Jellysquid" "Did you bring more?"
+                jellysquid "Did you bring more?"
                 him blush "Uhhh"
                 "I traced 'no' on the jellysquid's back."
                 "Tentacles grasped my boat from below."
@@ -6452,7 +6463,7 @@ label call_to_squid:
                 show kid nervous at midleft with moveinright
                 "I heard a sound like a water pump and then my boat was jettisoned toward the shore. My boat skid across the surface like a skipping rock."
                 "The jellysquid was still in the boat with me."
-                "Jellysquid" "Mom sad."
+                jellysquid "Mom sad."
                 him sad "Well, that was a diplomatic failure."
                 "I put the jellysquid back in the ocean and went home."
                 "Over the next few months, there were fewer reports of jellysquid sightings."
@@ -6672,7 +6683,7 @@ label no_euthanasia:
     nvl clear
     sara_c "So, I told Pavel Grayson that we would all look after him."
     sara_c "He was deeply moved and expressed his gratitude."
-    sara_c "I told him we could start next week."
+    sara_c "I told him we could start next week. {emoji=happy}"
     "The next day, I stopped by his house to check on him. Just in case."
     "He seemed to be deeply asleep..."
     "No, he was out cold. Dead?"
@@ -8053,7 +8064,7 @@ label community30:
                                     nvl clear
                                     him_c "Hi, Sara. I'm wrapping up my investigation with Joel's death and I think Julia might be involved."
                                     him_c "Normally I'd report my findings back to her... but obviously I don't want to do that now."
-                                    sara_c "You think Julia had something to do with Joel's death? Wow, I was not expecting that."
+                                    sara_c "You think Julia had something to do with Joel's death? Wow, I was not expecting that. {emoji=shocked}"
                                     sara_c "You're right though, it's not appropriate to report to her. I can arrange for a jury at the next town meeting."
                                     sara_c "You can come to report your findings, accuse Julia of whatever, and then we'll have the jury right there."
                                     sara_c "But what are you accusing her of? I need to arrange for the defense as well."

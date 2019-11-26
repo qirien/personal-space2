@@ -151,11 +151,11 @@ init -100:
     define julia = Character("Julia Nguyen", color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
     define martin = Character("Martín Perón", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
 
-    define chaco = Character("Chaco", color="#ee670b", image="van", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
+    define chaco = Character("Chaco", color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
     define kevin = Character("Kevin", color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
     define zaina = Character("Zaina", color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow
     define bandile = Character("Bandile", color="#d35400", image="bandile", ctc="ctc_blink", ctc_position="nestled") #tan brown
-
+    define jellysquid = Character("", kind=nvl, color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
 
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
@@ -192,6 +192,13 @@ init -100:
         linear 10.0 xoffset 200
     transform creepreset:
         linear 10.0 xoffset 0
+
+    transform closeup_baby:
+        parallel:
+            ease 10.0 zoom 2.0
+        parallel:
+            yalign 0.5
+            ease 10.0 yalign 0.8
 
 
     # Baby positions for being held

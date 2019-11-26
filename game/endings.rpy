@@ -4,6 +4,7 @@
 
 # Determine which ending the user should receive, depending on Terra's stats.
 label ending:
+    scene stars with fade
     play music thoughtful
     "[kid_name]'s childhood was so different from my own. Instead of playgrounds and ready-made toys, she had alien creatures and mining conflicts."
     "I guess we both had parents, friends, and problems."
@@ -42,6 +43,7 @@ label ending:
                 call ending_cmima
 
     "For now, though, I was more concerned with [kid_name]."
+    # TODO: some of this community stuff doesn't work with these endings.
 
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
@@ -534,6 +536,9 @@ label ending_ACI:
     oleg "I don't know; it's kind of sweet to see old people that are still so in love."
     him surprised "Old people?!"
     her flirting "I don't see any old people in here..."
+    show him happy
+    show her happy
+    with dissolve
     "We laughed, and talked, and joked around while doing the dishes together. [bro_name] got out his source code to show Oleg, and [her_name] was asking [kid_name] about alien physiology, and I just felt happy to be in the middle of it all."
 
     "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found. Happiness in love, in family, in community."
