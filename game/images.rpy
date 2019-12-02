@@ -64,13 +64,16 @@ init -10:
                 "True", "kid-sprites/teen %s.png" % expression_name))
 
     # TODO: Add the family, with expressions depending on stats.
-    # TODO: Have a different background for each month
+    # TODO: Have a different background for each year
     # TODO: Improve layout
-    image family_photo = Crop((0,0,500,370), LiveComposite(
-        (500, 370),
-        (0,0), im.FactorScale("images/bg/pond.jpg", 0.4),
-        #(250, 50), im.FactorScale("images/sprites/him/him normal.png", 0.4),
-        (0,0), im.FactorScale("images/bg/polaroid.png", 0.4)
+    define photo_scale = 0.7
+    image family_photo = Crop((306*photo_scale,22*photo_scale,675*photo_scale, 680*photo_scale), LiveComposite(
+        (1280*photo_scale, 720*photo_scale),
+        (0,0), im.FactorScale("images/bg/pond.jpg", photo_scale),
+        (int(300*photo_scale), 80), im.FactorScale("images/sprites/her/her normal.png", photo_scale),
+        (int(710*photo_scale), 50), im.FactorScale("images/sprites/him/him normal.png", photo_scale),
+        (int(420*photo_scale), 150), im.FactorScale("kid-sprites/kid happy.png", photo_scale),
+        (0,0), im.FactorScale("images/bg/polaroid.png", photo_scale)
         )
         )
 

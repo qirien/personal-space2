@@ -601,10 +601,10 @@ label goats2:
     with dissolve
     "The next time I milked the goats, I smelled that same smell, but not from the milk..."
     show goat_flip at quarterright with moveinright
-    him "Hey!"
-    "One of the male goats was peeing on his face, and a bunch of it got on me."
+    him angry "Hey!"
+    "One of the male goats was peeing all over himself, and a bunch of it got on me."
     "That was where the bad smell was coming from."
-    "After some research I found out that the male goats got stinkier as they aged, and used that stinkiness to attract a mate."
+    "Apparently that was how he was trying to attract a mate."
     "I wasn't opposed to the goats mating -- that would mean more kids, and the does' milk production was decreasing since it had been a while since they had a kid."
     "But I didn't want the milk to taste like goat pee."
     "I decided to ask Thuc."
@@ -619,7 +619,8 @@ label goats2:
     thuc_c "They can mate after just a few months."
     him_c "Oh... we may end up with some surprise kids, then!"
     thuc_c "You, or your goats?"
-    him_c "Ha ha, you know what I mean."
+    him_c "..."
+    thuc_c "...sorry!"
     nvl clear
 
     "So it sounded like I needed to separate or neuter the bucks. Or butcher them."
@@ -1409,7 +1410,7 @@ label strawberries2:
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
 
-            $ enable_crop("strawberries")
+            $ enable_crop("strawberries", False)
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             # TODO: Test this...
@@ -1530,7 +1531,7 @@ label honey1:
     him annoyed "Don't change the subject. I caught you stealing my honey."
     travis "Oh, uh, what?"
     "I showed him the video. Standing here and comparing him to the video, it was easier to tell that it was him."
-    "He fidgeted and looked around as if wondering if there was an escape route."
+    "He fidgeted and looked around as if wondering if there was an escape route. Or if he could possibly lie his way out of it."
     him determined "I know it was you."
     travis "Oh. Uh. Yeah."
     menu:
@@ -1576,10 +1577,10 @@ label honey1:
             him sad "But if you're really hungry, come ask and I'll give you some food."
             travis "Oh. I mean, we don't need a handout or anything, we're doing just fine--"
             him normal "It's okay. I get it."
-    him surprised "Is your family doing okay out here by yourselves?"
+    him surprised "It's gotta be tough living out there by yourselves?"
     travis "My dad's always saying how we gotta live on our own, do everything ourselves, be independent."
     him concerned "Yeah..."
-    travis "I guess that was my way of trying to do something on my own."
+    travis "I guess I was just trying to do something on my own."
 
     menu:
         "What should I say?"

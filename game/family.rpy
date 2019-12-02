@@ -4704,12 +4704,21 @@ label family16:
             $ demanding += 1
             him surprised "Maybe you could give some of it away?"
             kid surprised "Give away my precious things?!"
-            # TODO: change depending on favorite faction?
-            him determined "Not all of them, but I know Travis and his family don't have access to all the stuff at the storehouse or the printers anymore."
-            kid angry "Give away my precious things to {b}Travis{/b}?!"
-            him normal "Maybe his little sister."
-            kid nervous "She does like animals..."
-            him concerned "She would probably play with it more than you do..."
+            $ fav_faction = strongest_faction()
+            if (fav_faction == "mavericks"):
+                him determined "Not all of them, but I know Travis and his family don't have access to all the stuff at the storehouse or the printers anymore."
+                kid angry "Give away my precious things to {b}Travis{/b}?!"
+                him normal "Maybe his little sister."
+                kid nervous "She does like animals..."
+                him concerned "She would probably play with it more than you do..."
+            elif (fav_faction == "miners"):
+                him determined "Not all of them, but I know a lot of the miners came here with nothing but the clothes on their backs. Their parents also might not have the time or materials to make toys for their kids."
+                kid nervous "Anya does really like animals..."
+                him concerned "She might get more use out of it than you do."
+            else:
+                him determined "Not all of them! But maybe some of the things that you used to enjoy, but now you're too big for."
+                kid angry "I'm not too big for any of them!"
+                him concerned "But maybe a little kid would really enjoy them."
             kid concerned "Well, maybe I can give a few things away, but not everything!"
             him normal "Okay, let's make some piles. We'll give some things away, and the stuff you want to keep we can organize so you can find things better."
             kid annoyed "I don't need to be able to find things better."
@@ -4733,7 +4742,7 @@ label family16:
     bro concerned "I miss Sister Naomi."
     him surprised "You do?"
     "The whole community was saddened by her death, though none of us were really surprised."
-    bro sad "Yeah...We used to always stop by her house after school and she'd have an apple or piece of bread for us. Sometimes she even had candy."
+    bro sad "Yeah...We used to always stop by her house after school and she'd have an apple or piece of bread for us. Sometimes she even had treats."
     kid sad "I miss her, too."
     bro surprised "Where'd she go?"
     menu:
@@ -5148,8 +5157,7 @@ label family17:
                 pavel normal "Oh yes, very much. I can almost feel her right next to me, though, sometimes..."
                 bro surprised "Like a ghost?"
                 pavel "Perhaps a bit like a ghost. Or a powerful memory."
-                bro sad "She made the best candy."
-                # TODO: does he though?
+                bro sad "She made the best treats."
                 pavel "She did, didn't she! I couldn't eat any of it, of course, with my diabetes, but when she'd make it I'd just inhale the scent and that was almost as good."
                 bro normal "She even smelled like candy."
                 pavel sad "Yes, now that you mention it, that's exactly what she smelled like. So sweet..."
@@ -5538,8 +5546,8 @@ label family19:
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
     show him surprised
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
-    "It wasn't romantic at all -- the two people were bordering on hurting each other. The video was obviously designed to elicit a physical response as fast as possible."
-    "We didn't have access to the entire Earth internet, but somehow their automated algorithms had chosen this for inclusion in our local copy."
+    "It wasn't romantic at all -- they were slapping each other around in a way that looked fairly painful. The video was obviously designed to elicit a physical response as fast as possible."
+    "We didn't have access to the entire Earth internet, but somehow this was included in our local copy."
     menu:
         "What should I do?"
         "Punish Terra.":
@@ -5561,6 +5569,7 @@ label family19:
             $ confident += 1
             $ demanding -= 1
             $ neglectful += 1
+            $ trust -= 1
         "Ask her about it.":
             $ responsive += 1
             $ trust += 1
@@ -5875,7 +5884,6 @@ label family20:
                     "She stormed off."
                     "A part of me felt guilty for quashing her dream, but it was probably for the best."
                     "This wasn't Earth; we didn't have time to waste on useless things."
-                    # TODO: trust variable
                     $ responsive -= 1
                     return
                 "It might be possible.":
@@ -5923,7 +5931,7 @@ label family20:
     with dissolve
     show him normal at midleft with moveinleft
     "Finally they were finished. I came over to see what they had made."
-    ilian "This plastic is really terrible; it doesn't even begin to compare to the sound of a cheap brass instrument. And it's so inefficient, and it leaks..."
+    ilian "This plastic is really terrible; it doesn't even begin to compare to the sound of a cheap brass instrument."
     kid normal "But they work!"
     him surprised "Yeah? Let's hear it!"
     kid shifty "I don't know much yet; just this one note."
@@ -5956,14 +5964,13 @@ label family20:
             him normal "You have a deal. It's not like you have any competition in the instrument teaching business."
             ilian happy "I'm glad you realize the value of the musical arts."
             $ modify_credits(-25*28)
-        "Isn't there something else we could exchange?":
+        "Isn't there something else we could exchange?" if get_extra_work():
             him concerned "Isn't there something else we could exchange?"
             ilian "You don't have anything I want."
             him doubt "Like, horseback riding lessons for Oleg, or something?"
             ilian "Oleg hates horses."
             him normal "I could come help you process food while she's in her lesson. Canning, dehydrating, whatever."
             ilian happy "That could work. Fine; you have a deal."
-        # TODO: make you now have less work available.
     "I was worried that music would just be a fad [kid_name] went through, but she really got into it."
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played her trombone, I could hear her expressing emotions even she didn't know she had."
@@ -8144,7 +8151,9 @@ label family29:
     kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
     him surprised "I guess it also depends on what they think the purpose of marriage is."
     kid concerned "Why'd you and mom get married?"
-    him normal "Well, there's a lot of reasons, obviously the first being that we loved each other, but I think it was also..."
+    him flirting "Well, obviously she was madly in love with me..."
+    kid annoyed "Dad..."
+    him happy "And I with her! But I think it was also..."
     menu:
         "To make it official.":
             him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
@@ -8152,8 +8161,11 @@ label family29:
             $ authoritarian += 1
         "To create a life together":
             him happy "We wanted to make something new together, a beautiful life here on this planet with some adorable children."
-            him normal "And we wanted to experience all the joys and struggles of life with the other person at our side."
-            kid normal "Wow, that's so cheesy!"
+            him normal "We promised to stick together, no matter what."
+            him content "Because we wanted to experience all the joys and struggles of life with the other person at our side."
+            kid concerned "That's so...so..."
+            him happy "Awesome?"
+            kid normal "That's so cheesy!"
             him happy "The best things in life are!"
             $ authoritative += 1
         "We felt like it.":
