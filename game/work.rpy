@@ -304,7 +304,7 @@ label bad_nutrition:
                             $ colonists -= 1
                             $ miners -= 1
                 else:
-                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly. 😥"
+                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly. {emoji=cry}"
                     pete_c "And at a high price."
             nvl clear
             "I was glad I was able to work out a trade this time. Next time, though, I might not be so lucky."
@@ -530,7 +530,7 @@ label work2:
 label work4:
     nvl clear
     pavel_c "The Fall Festival will be next weekend! Show off your best crops and animals. There will be games and music, too!"
-    sara_c "I hope everyone can come! 😊"
+    sara_c "I hope everyone can come! {emoji=happy}"
     nvl clear
     him "Hmmm... I was going to get a new field ready to expand the size of my farm, but I always like to go to the Fall Festival..."
     $ random_crop = farm.crops.random_crop(include_animals = False)
@@ -770,7 +770,7 @@ label work12:
     nvl clear
     brennan_c "I have a special offer for all you farmers out there."
     julia_c "Oh, this'll be good."
-    sara_c "😲"
+    sara_c "{emoji=surprised}"
     pete_c "Let the man talk."
     brennan_c "I have the newest pest-resistant, high-yield, nutrient-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
     thuc_c "That sounds good, but..."
@@ -948,7 +948,7 @@ label work14:
 # Seed exchange or increase size of farm
 label work16:
     nvl clear
-    sara_c "There will be a seed exchange this weekend! Bring some seeds to trade! 😋"
+    sara_c "There will be a seed exchange this weekend! Bring some seeds to trade! {emoji=yum}"
     natalia_c "I'm bringing chile seeds - they're a little bit sweet and a little bit spicy!"
     kevin_c "I plan on bringing some plum pits."
     pavel_c "Wonderful! I hope everyone will participate."
@@ -961,7 +961,7 @@ label work16:
         "What should I do?"
         "Go to the seed exchange.":
             him_c "I'll be there, too!  I'm bringing [random_crop]!"
-            sara_c "Oooh, great! 😃"
+            sara_c "Oooh, great! {emoji=happy}"
             nvl clear
             scene community_center with fade
             show pavel normal at quarterleft
@@ -1347,11 +1347,11 @@ label work20:
 
                 else:
                     "So I asked Sara to send RET a message about it."
-                    sara_c "No water for your crops?! That's awful! :-( I'll ask."
+                    sara_c "No water for your crops?! That's awful! {emoji=sad} I'll ask."
                     him_c "Did you hear back from RET yet?"
                     sara_c "They said you need to work out an alternative water source."
                     him_c "What?!"
-                    sara_c "I'm sorry, [his_name]; apparently Brennan is allowed to divert the river for mining."
+                    sara_c "I'm sorry, [his_name]; apparently Brennan is allowed to divert the river for mining. {emoji=grimace}"
 
             "Get more farmers involved":
                 "This wasn't just my problem. We needed all the farmers to be united in this."

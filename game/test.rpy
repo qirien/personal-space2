@@ -5,7 +5,14 @@ label test_emoji:
     nvl clear
     him_c "I don't usually use emoji...{emoji=blush}"
     sara_c "But I do! {emoji=happy} All the time!"
-    him_c "Yes, yes, we know."
+    him_c "Yes, yes, we know. {emoji=grimace}"
+    brennan_c "Were you talking about me? {emoji=grin}"
+    him_c "...no. {emoji=shocked}"
+    her_c "{emoji=hearteyes} {emoji=music} {emoji=celebrate}"
+    brennan_c "{emoji=sad}"
+    ilian_c "What are we going to do with all these turnips?! {emoji=worried}"
+    thuc_c "Turnips? .... {emoji=yuck}"
+    natalia_c "I love them! {emoji=yum}"
     nvl clear
 
 return

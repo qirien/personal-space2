@@ -3703,7 +3703,7 @@ label family12:
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
-    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. {emoji=hairman}" # TODO: this emoji doesn't work
+    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. {emoji=happycry}"
     brennan_c "Don't worry; I'll never shave these luscious locks."
     nvl hide
 
