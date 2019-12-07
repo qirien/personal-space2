@@ -50,11 +50,16 @@ screen yearly_summary():
                                 hbox:
                                     vbox:
                                         xsize 200
+                                        xalign 1.0
                                         label "Year [year] Summary"
                                         null height 10
                                         text notifications
                                         # TODO: include community stats here?
-                                    add "family_photo" yalign 0.5
+                                    $ parenting_style = get_parenting_style()
+                                    # TODO: add in expressions based on parenting style, attachment, competence, independence
+                                    add "family_photo" at bg_crop, photo_scale
+                                    #add "family_photo_small happy"
+
                             frame:
                                 xsize RIGHT_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT
@@ -68,11 +73,21 @@ screen yearly_summary():
                             style "plan_farm_subframe"
                             vbox:
                                 xfill True
-                                text "The year passed by like a dream..."
                                 textbutton "Continue":
                                      style "round_button"
                                      xalign 0.5
                                      action Return()
+
+transform bg_crop:
+    crop (306,22,675,680)
+
+transform photo_scale:
+    zoom photo_scale_factor
+
+transform photo_kid_pos:
+    anchor (0, 1.0)
+    xpos -200
+    ypos 680
 
 style interscene_window is default:
     xalign 0.0

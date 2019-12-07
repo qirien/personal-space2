@@ -4269,6 +4269,7 @@ label community20:
             "Later that day I checked to see if they responded."
             #TODO: letter style for their reply
             $ pstyle = get_parenting_style()
+            nvl clear
             if (pstyle== "authoritative"):
                 legalese "She may stay as a guest, and she must share her findings from her research."
                 him normal "Sounds fair to me."

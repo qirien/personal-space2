@@ -12,8 +12,10 @@ tmp/*
 errors.txt
 log.txt
 traceback.txt
+files.txt
 game/saves
 art/
 resources
 .android.json
+project.json
 *.ogg

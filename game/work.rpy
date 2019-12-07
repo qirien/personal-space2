@@ -1162,20 +1162,20 @@ label work20:
             thuc "No more than usual."
             him determined "Huh. Well, I'm going to go check it out."
 
-    "I headed farther upstream, past the town, and up into the hills. We passed the dam that Kevin had fixed a few years ago. It seemed to be holding up."
+    "I headed farther upstream, past the town, and up into the hills. While passing the dam that Kevin had fixed a few years ago, I saw it seemed to be holding up."
     scene canyon with fade
     show him determined at midleft
     if (work20_thuc_present):
         show thuc normal at left
     with moveinleft
-    "Further upstream we arrived at the diversion for farming water. There wasn't much water there, either. Finally, I reached the miner's camp."
+    "Further upstream I arrived at the diversion for farming water. There wasn't much water there, either. Finally, I reached the miner's camp."
     scene mine with fade
     show brennan normal at midright with dissolve
     show him determined at midleft
     if (work20_thuc_present):
         show thuc sad at quarterleft
     with moveinleft
-    "As soon as we got to the camp, it was obvious what had happened. Much of the river had been diverted to give water for the mining machinery."
+    "At the camp, it was obvious what had happened. Much of the river had been diverted to give water for the mining machinery."
 
     him annoyed "Hey, you're stealing all the water! There's none left for our crops downstream!"
     brennan "Sorry, our refining processes use a lot of water. The river flows over here now."
@@ -1252,7 +1252,7 @@ label work20:
                 "It sounded about as fun as giving myself a root canal with a backhoe."
                 "But if I could find some legal description of how the water was supposed to be shared, Brennan would probably honor it."
                 "And I knew just the person so ask for help."
-                scene storehouse with fade
+                scene storeroom with fade
                 show ilian normal at midright with dissolve
                 show him normal at midleft with moveinleft
                 him normal "Hey there, Ilian!"

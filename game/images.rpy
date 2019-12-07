@@ -46,36 +46,60 @@ init -10:
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
-                "year <= BABY_MAX", "kid-sprites/baby %s.png" % expression_name,
-                "year <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
-                "year <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
-                "year <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
-                "True", "kid-sprites/teen %s.png" % expression_name))
+                "year <= BABY_MAX", "kid-sprites/baby_%s.png" % expression_name,
+                "year <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
+                "year <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
+                "year <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
+                "True", "kid-sprites/teen_%s.png" % expression_name))
 
         # Define images for bro (baby, toddler, young, tween, teen)
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         # TODO: right now these are just kid's sprites. Change them to be unique.
         for expression_name in kid_expressions:
             renpy.image(("bro", expression_name), ConditionSwitch(
-                "(year-bro_birth_year) <= BABY_MAX", "kid-sprites/baby %s.png" % expression_name,
-                "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
-                "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
-                "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
-                "True", "kid-sprites/teen %s.png" % expression_name))
+                "(year-bro_birth_year) <= BABY_MAX", "kid-sprites/baby_%s.png" % expression_name,
+                "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
+                "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
+                "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
+                "True", "kid-sprites/teen_%s.png" % expression_name))
 
     # TODO: Add the family, with expressions depending on stats.
     # TODO: Have a different background for each year
-    # TODO: Improve layout
-    define photo_scale = 0.7
-    image family_photo = Crop((306*photo_scale,22*photo_scale,675*photo_scale, 680*photo_scale), LiveComposite(
-        (1280*photo_scale, 720*photo_scale),
-        (0,0), im.FactorScale("images/bg/pond.jpg", photo_scale),
-        (int(300*photo_scale), 80), im.FactorScale("images/sprites/her/her normal.png", photo_scale),
-        (int(710*photo_scale), 50), im.FactorScale("images/sprites/him/him normal.png", photo_scale),
-        (int(420*photo_scale), 150), im.FactorScale("kid-sprites/kid happy.png", photo_scale),
-        (0,0), im.FactorScale("images/bg/polaroid.png", photo_scale)
-        )
-        )
+    define photo_scale_factor = 0.7
+
+    # TODO: find a way to make relative positions work here
+    layeredimage family_photo:
+        if True:
+            "pond"
+        else:
+            "canyon"
+
+        if (neglectful < 50):
+            pos(300, 100)
+            #align(0.3, 1.0)
+            "him happy"
+        if True: #(has_strong_marriage()):
+            pos(650, 100)
+            #align(0.7, 1.0)
+            "her normal"
+        group kid:
+            pos(400, 250)
+            #align(0.45, 1.0)
+            attribute happy:
+                "kid happy"
+            attribute sad:
+                "kid sad"
+        if (bro_age > 0):
+            pos(550, 300)
+            #align(0.6, 1.0)
+            "bro sad"
+        if True:
+            "polaroid"
+
+    image family_photo_small = LayeredImageProxy("family_photo", Transform(crop=(306,22,675,680), zoom=photo_scale_factor))
+
+    # TODO: add more possibilities here
+    image family_photo_bg = "images/bg/pond.jpg"
 
     image ctc_blink:
            "gui/ctc.png"
