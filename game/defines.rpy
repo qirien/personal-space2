@@ -104,6 +104,7 @@ init -100:
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
+    define audio.saxophone = "<from 79>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
 
     # Emotional themes
     # Happy/excited

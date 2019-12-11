@@ -57,8 +57,8 @@ screen yearly_summary():
                                         # TODO: include community stats here?
                                     $ parenting_style = get_parenting_style()
                                     # TODO: add in expressions based on parenting style, attachment, competence, independence
-                                    add "family_photo" at bg_crop, photo_scale
-                                    #add "family_photo_small happy"
+                                    $ kid_type = get_kid_type()
+                                    add "family_photo_small " + kid_type
 
                             frame:
                                 xsize RIGHT_COLUMN_WIDTH

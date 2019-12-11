@@ -133,6 +133,30 @@ init -100 python:
     def is_independent():
         return (independence >= (year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
+    def get_kid_type():
+        if (is_attached()):
+            if (is_competent()):
+                if (is_independent()):
+                    return "ACI"
+                else:
+                    return "ACi"
+            else:
+                if (is_independent()):
+                    return "AcI"
+                else:
+                    return "Aci"
+        else:
+            if (is_competent()):
+                if (is_independent()):
+                    return "aCI"
+                else:
+                    return "aCi"
+            else:
+                if (is_independent()):
+                    return "acI"
+                else:
+                    return "aci"
+
     # Return the number of Earth years, given Talaam years.
     # There are 196 27-hour days per year on Talaam,
     #       (7 months in a year, 7 days in a week, 4 weeks in a month)

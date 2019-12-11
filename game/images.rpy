@@ -63,32 +63,70 @@ init -10:
                 "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
                 "True", "kid-sprites/teen_%s.png" % expression_name))
 
-    # TODO: Add the family, with expressions depending on stats.
     # TODO: Have a different background for each year
     define photo_scale_factor = 0.7
 
-    # TODO: find a way to make relative positions work here
+    # TODO: add more possibilities here
+    image family_photo_bg:
+        choice:
+            "images/bg/pond.jpg"
+        choice:
+            "images/bg/canyon.jpg"
+
+    # TODO: use relative positions when they are fixed
     layeredimage family_photo:
         if True:
-            "pond"
-        else:
-            "canyon"
+            "family_photo_bg"
 
-        if (neglectful < 50):
-            pos(300, 100)
+        if (get_parenting_style() == "authoritative"):
+            pos(300, 80)
             #align(0.3, 1.0)
-            "him happy"
-        if True: #(has_strong_marriage()):
-            pos(650, 100)
+            "him content"
+        elif (get_parenting_style() == "authoritarian"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him pout"
+        elif (get_parenting_style() == "permissive"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him normal"
+        elif (get_parenting_style() == "inconsistent"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him sleeping"
+        # if neglectful, he is not in the picture at all.
+
+        if has_strong_marriage():
+            pos(650, 150)
             #align(0.7, 1.0)
+            "her happy"
+        elif (marriage_strength > 0):
+            pos(650, 150)
             "her normal"
+        else:
+            pos(650, 150)
+            "her surprised"
+
         group kid:
             pos(400, 250)
             #align(0.45, 1.0)
-            attribute happy:
+            attribute ACI:
                 "kid happy"
-            attribute sad:
+            attribute ACi:
+                "kid normal"
+            attribute AcI:
+                "kid shifty"
+            attribute Aci:
+                "kid surprised"
+            attribute aCI:
+                "kid determined"
+            attribute aCi:
+                "kid concerned"
+            attribute acI:
+                "kid annoyed"
+            attribute aci:
                 "kid sad"
+
         if (bro_age > 0):
             pos(550, 300)
             #align(0.6, 1.0)
@@ -97,9 +135,6 @@ init -10:
             "polaroid"
 
     image family_photo_small = LayeredImageProxy("family_photo", Transform(crop=(306,22,675,680), zoom=photo_scale_factor))
-
-    # TODO: add more possibilities here
-    image family_photo_bg = "images/bg/pond.jpg"
 
     image ctc_blink:
            "gui/ctc.png"
@@ -159,6 +194,11 @@ init -10:
                 emoji="☣"
 
             font_size = int(gui.text_size * 1.5)
-            return [ (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji), (renpy.TEXT_TAG, "/size") ]
+            return [
+            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),
+            (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji),
+            (renpy.TEXT_TAG, "/size"),
+            (renpy.TEXT_TAG, "/font")
+            ]
 
         config.self_closing_custom_text_tags["emoji"] = emoji_tag

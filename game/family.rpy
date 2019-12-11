@@ -5741,13 +5741,13 @@ label family19:
 # 12.4 Earth years old
 # Musical Instrument
 label family20:
+    play music saxophone
     scene farm_interior with fade
     show him normal at midright
     show kid normal at midleft
     with dissolve
     kid happy "Dad, listen to this song."
     him doubt "Okay..."
-    # TODO: have saxophone song here?
     "She played me a song where a girl about her age was playing a soulful song on the saxophone."
     him normal "That's a good song."
     kid concerned "I wish I could do that."
@@ -5789,9 +5789,9 @@ label family20:
     ilian_c "You'd need to make pads out of fabric, and reeds out of wood. They'd have to be really precise."
     him_c "Okay, thanks. Do you think RET would send one from Earth?"
     brennan_c "Musical instruments aren't on the schedule."
-    ilian_c "Honestly, almost any other instrument would be easier to make. A recorder, or a trombone, or a xylophone..."
+    ilian_c "Almost any other instrument would be easier to make. A recorder, or a trombone, or a xylophone..."
     julia_c "Trombone would be ideal, as it has very few parts and you could make up for imprecision with playing technique."
-    ilian_c "Oh yeah, and it's pretty easy to play as long as you have a good ear for notes. Hmmm, I might have to print one up and give it a try!"
+    ilian_c "Hmm, yes. Trombone isn't as elegant or preciese as a saxophone, but as long as [kid_name] has a decent ear for notes it would be simpler. I supposed it would be better than nothing... I might print one up and give it a try."
 
     scene farm_interior with fade
     show kid surprised at midright

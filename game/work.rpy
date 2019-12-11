@@ -1133,6 +1133,7 @@ label work18_after_clean:
 # Year 20, 12 years old
 # Irrigation Trouble
 label work20:
+    play music problems
     # TODO: Add in reference to community13. Also have Brennan explain WHY this change occurred;
     # for example, they are moving the mining camp so they want it to be easier to access the water from camp?
     scene fields with fade
@@ -1385,6 +1386,7 @@ label work20:
                 show pete normal at quarterleft with moveinleft
                 "When Pete heard about what we were doing, he came by to lend a hand."
                 pete "See, that's why you should quit working for the Man and come live out on your own, like me!"
+            show him sleeping with dissolve
             "When the water came rushing out onto my fields again, my shoulders finally relaxed for the first time in days."
             "We managed to keep most of our crops from dying, but they probably wouldn't yield as much this year."
             # TODO: decrease yield?

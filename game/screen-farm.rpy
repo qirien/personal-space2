@@ -151,7 +151,7 @@ screen farm_details_screen:
                 hbox:
                     label "Layout" xfill False
                     null width 275
-                    label "Year " + str(year) xalign 1.0 text_color green_dark
+                    label "Year " + str(year) xalign 1.0
                 use crops_layout
 
         # Totals so far
