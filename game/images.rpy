@@ -57,7 +57,7 @@ init -10:
         # TODO: right now these are just kid's sprites. Change them to be unique.
         for expression_name in kid_expressions:
             renpy.image(("bro", expression_name), ConditionSwitch(
-                "(year-bro_birth_year) <= BABY_MAX", "kid-sprites/baby_%s.png" % expression_name,
+                "year <= 12", "kid-sprites/baby_%s.png" % expression_name,
                 "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
                 "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
                 "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,

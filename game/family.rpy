@@ -7,6 +7,8 @@
 # (or in some cases, decrease) by 1-5 each month.
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month.
 
+# TODO: Use the trust variable more.
+
 # Intro event
 label family_intro:
     "All [kid_name] needed at first was a clean diaper, milk, and some love. Simple, right?"
@@ -2812,7 +2814,7 @@ label baby_delivery:
     show bro concerned with dissolve
     him normal "Good thing we still have this rag here."
     show kid happy
-    show bro laugh
+    show bro normal
     "Sometimes I felt frustrated that [bro_name] needed so much from us."
     "But, when I forgot myself and just loved him... I think the experience helped our whole family grew closer together."
     "Those moments, snuggled up together, those two little lives so dependent on me... I wanted to remember those times forever."
@@ -3411,9 +3413,9 @@ label family11:
             her concerned "-high levels of certain amino acids."
             kid angry "Ugh! Fine! PLEASE pass the sauce!"
             if (year6_have_baby):
-                bro "Peas!"
+                bro surprised "Peas!"
             else:
-                bro "Wahhhhh!"
+                bro surprised "Wahhhhh!"
 
             him happy "Here you go, [kid_name]. Thanks for asking politely."
             kid annoyed "You're mean."
@@ -3903,7 +3905,7 @@ label family12_anya_come_over:
 #####################################################
 
 # 8 Earth years old
-# Sex Education
+# Pregnancy, Sex Education
 label family13:
     scene stars with fade
     "Several months ago, we found out [her_name] was expecting again. We hadn't really planned for another baby... but we hadn't actively prevented it, either."
@@ -4005,7 +4007,7 @@ label family13:
                 "What should I tell her about sex?"
                 "Tell her the physical mechanics." if not sex_ed_biology:
                     $ confident += 1
-                    him explaining "A man's penis can go inside the woman's vagina and the sperm comes out of it when they have sex."
+                    him explaining "A man's penis can go inside the woman's vagina and the sperm comes out of it when they have sex. That can make a baby."
                     kid concerned "Oh."
                     "She thought about it for a minute."
                     kid surprised "And that's how you and Mom made me?"
@@ -4213,7 +4215,7 @@ label family14:
 
     him surprised "Whoa, what's going on?"
     kid annoyed "He's annoying me!"
-    bro angry "She hit me!"
+    bro sad "She hit me!"
     kid angry "You wouldn't shut up! I asked you to quit humming but you're doing it just to annoy me!"
     him angry "Hey, hey, both of you go sit on your beds and cool off!"
     show her concerned at quarterright with moveinright
@@ -5540,13 +5542,13 @@ label family19:
     $ family19_notlikethat = False
     $ family19_questions = False
     $ family19_unacceptable = False
-    $ family19_watched_video = False
     scene farm_interior with fade
     show him normal at center with dissolve
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
     show him surprised
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
-    "It wasn't romantic at all -- they were slapping each other around in a way that looked fairly painful. The video was obviously designed to elicit a physical response as fast as possible."
+    "It wasn't romantic at all -- they were slapping each other around in a way that looked fairly painful. The video was obviously designed to try to turn people on as fast as possible."
+    $ family19_watched_video = True
     "We didn't have access to the entire Earth internet, but somehow this was included in our local copy."
     menu:
         "What should I do?"
@@ -6225,7 +6227,7 @@ label family22:
     bro concerned "Yeah?"
     her concerned "Come closer; I need you to tell me about something."
     show bro at center with move
-    bro shifty "What is it?"
+    bro nervous "What is it?"
     her determined "I found this applesauce jar in your room."
     bro surprised "..."
     her determined "You know that you're not allowed to take applesauce from the pantry."
@@ -8125,15 +8127,16 @@ label family29:
                     him determined "But that doesn't mean they were ready."
                 "Being independent.":
                     him determined "They should be ready to live on their own. It'd be kind of awkward to get married and then go live with your parents."
-                    kid determined "People do that in plenty of cultures... but that does sound kind of weird."
+                    kid determined "Some people do that... but it does sound kind of weird."
                 "Having emotional maturity.":
                     him concerned "You need a certain level of emotional maturity to be able to put the other person first and be unselfish."
-                    kid annoyed "Yeah, yeah, all teenagers are selfish brats."
+                    kid angry "Yeah, yeah, all teenagers are entitled brats who only think about themselves."
                     him normal "It's okay; it's not their fault. Their brains just haven't finished developing yet."
+                    kid annoyed "..."
                 "Being ready to have kids.":
-                    him determined "If you're not ready to have kids, you're not ready to get married."
-                    kid annoyed "But getting married doesn't mean you'll have kids right away."
-                    him concerned "No, but it's possible."
+                    him determined "If they're not ready to have kids, they're not ready to get married."
+                    kid annoyed "But getting married doesn't mean they'll have kids right away."
+                    him concerned "No, but they need to be ready for the possibility."
             $ family29_ready = True
             $ family29_question_count += 1
             if (family29_question_count < 3):
@@ -8142,89 +8145,92 @@ label family29:
             $ responsive += 1
             him determined "Why do they want to get married?"
             "She was quiet for a few minutes, thinking."
-            kid concerned "I guess.. they don't really know that they do want to get married. Not yet."
+            kid concerned "I guess.. they don't really know that they do want to get married. Not yet. But it's a question that comes up, you know."
             $ family29_why = True
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
 
-    "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
-    kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
-    him surprised "I guess it also depends on what they think the purpose of marriage is."
-    kid concerned "Why'd you and mom get married?"
-    him flirting "Well, obviously she was madly in love with me..."
-    kid annoyed "Dad..."
-    him happy "And I with her! But I think it was also..."
-    menu:
-        "To make it official.":
-            him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
-            kid determined "Huh. Okay."
-            $ authoritarian += 1
-        "To create a life together":
-            him happy "We wanted to make something new together, a beautiful life here on this planet with some adorable children."
-            him normal "We promised to stick together, no matter what."
-            him content "Because we wanted to experience all the joys and struggles of life with the other person at our side."
-            kid concerned "That's so...so..."
-            him happy "Awesome?"
-            kid normal "That's so cheesy!"
-            him happy "The best things in life are!"
-            $ authoritative += 1
-        "We felt like it.":
-            him concerned "It's hard to describe... I guess we both wanted to, so we did it?"
-            kid determined "Huh. Okay."
-            $ permissive += 1
-        "I don't know.":
-            him concerned "I don't know exactly why else... it kind of just felt like the thing to do."
-            kid determined "Huh. Okay."
-            $ neglectful += 1
+    if (has_trust):
+        "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
+        kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
+        him surprised "I guess it also depends on what they think the purpose of marriage is."
+        kid concerned "Why'd you and mom get married?"
+        him flirting "Well, obviously she was madly in love with me..."
+        kid annoyed "Dad..."
+        him happy "And I with her! But I think it was also..."
+        menu:
+            "To make it official.":
+                him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
+                kid determined "Huh. Okay."
+                $ authoritarian += 1
+            "To create a life together":
+                him happy "We wanted to make something new together, a beautiful life here on this planet with some adorable children."
+                him normal "We promised to stick together, no matter what."
+                him content "Because we wanted to experience all the joys and struggles of life with the other person at our side."
+                kid concerned "That's so...so..."
+                him happy "Awesome?"
+                kid normal "That's so cheesy!"
+                him happy "The best things in life are!"
+                $ authoritative += 1
+            "We felt like it.":
+                him concerned "It's hard to describe... I guess we both wanted to, so we did it?"
+                kid determined "Huh. Okay."
+                $ permissive += 1
+            "I don't know.":
+                him concerned "I don't know exactly why else... it kind of just felt like the thing to do."
+                kid determined "Huh. Okay."
+                $ neglectful += 1
 
-    him normal "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
-    kid concerned "Yeah, I'll... tell her what you said."
-    him surprised "And you should also tell her..."
-    "I thought I could slip in one more piece of advice, but I wanted it to be good."
+        him normal "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
+        kid concerned "Yeah, I'll... tell her what you said."
+        him surprised "And you should also tell her..."
+        "I thought I could slip in one more piece of advice, but I wanted it to be good."
 
-    menu:
-        "What's my advice?"
-        "Choose your love; love your choice.":
-            him happy "Choose your love; love your choice."
-            kid surprised "What does that mean?"
-            him determined "It means that you should choose carefully who you marry; but once you do, love them with your whole heart every day."
-            kid happy "Hmmm, okay. Thanks, dad."
-            $ confident += 1
-        "Follow your heart.":
-            him happy "Follow your heart!"
-            kid determined "Okay, dad."
-            him normal "No, really. Listen to what your heart wants and then go for it!"
-            kid concerned "What my heart wants...?"
-            $ responsive += 1
-        "Don't rush it.":
-            him normal "Don't rush it. You're young; you've got plenty of time."
-            kid annoyed "That's what old people always say..."
-            him flirting "And we're always right."
-            kid normal "Uh-huh."
-            $ demanding += 1
-        "Don't be stupid.":
-            him determined "Don't be stupid."
-            kid annoyed "Thanks. Wow. That sure was helpful."
-            $ trust -= 1
-            $ demanding += 1
-        "Parents will always be there for you.":
-            him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
-            kid normal "Thanks, dad."
-            $ trust += 1
-            $ responsive += 1
-        "They should try a relationship.":
-            him determined "They should try a relationship. I mean, it's great to think about marriage and all, but that's the whole point of dating and having serious relationships before marriage; to see what it would be like."
-            kid nervous "What if they're still not attracted to each other?"
-            him normal "There's different levels of attraction. You don't need a  raging inferno of lust for a good marriage, but you should probably have at least a small spark of 'I'd like to kiss this person'."
-            kid happy "Ha, ha."
-        "There's no point in a relationship without physical attraction.":
-            him "There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
-            kid concerned "Hmmm, okay."
+        menu:
+            "What's my advice?"
+            "Choose your love; love your choice.":
+                him happy "Choose your love; love your choice."
+                kid surprised "What does that mean?"
+                him determined "It means that you should choose carefully who you marry; but once you do, love them with your whole heart every day."
+                kid happy "Hmmm, okay. Thanks, dad."
+                $ confident += 1
+            "Follow your heart.":
+                him happy "Follow your heart!"
+                kid determined "Okay, dad."
+                him normal "No, really. Listen to what your heart wants and then go for it!"
+                kid concerned "What my heart wants...?"
+                $ responsive += 1
+            "Don't rush it.":
+                him normal "Don't rush it. You're young; you've got plenty of time."
+                kid annoyed "That's what old people always say..."
+                him flirting "And we're always right."
+                kid normal "Uh-huh."
+                $ demanding += 1
+            "Don't be stupid.":
+                him determined "Don't be stupid."
+                kid annoyed "Thanks. Wow. That sure was helpful."
+                $ trust -= 1
+                $ demanding += 1
+            "Parents will always be there for you.":
+                him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
+                kid normal "Thanks, dad."
+                $ trust += 1
+                $ responsive += 1
+            "They should try a relationship.":
+                him determined "They should try a relationship. I mean, it's great to think about marriage and all, but that's the whole point of dating and having serious relationships before marriage; to see what it would be like."
+                kid nervous "What if they're still not attracted to each other?"
+                him normal "There's different levels of attraction. You don't need a  raging inferno of lust for a good marriage, but you should probably have at least a small spark of 'I'd like to kiss this person'."
+                kid happy "Ha, ha."
+            "There's no point in a relationship without physical attraction.":
+                him "There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
+                kid concerned "Hmmm, okay."
+    else:
+        "We reached our farm, and I paused outside the front door, ready to talk some more. But [kid_name] shook her head."
     scene moons with fade
     show him determined at midleft, sitting
     with dissolve
-    "She went inside the house, but I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
+    "She went inside the house, and I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
     "[her_name] came out and joined me."
     show her surprised at midright with moveinright
     show her at sitting with move
@@ -8249,7 +8255,6 @@ label family29:
     "Was that too much to ask?"
     return
 
-# TODO: finish adding trust here
 # 18.6 Earth years old (ENDING)
 label family30:
     "Now that [kid_name] didn't have school every day, she had moved on to other things."
@@ -8491,7 +8496,7 @@ label family30:
             "Dad jokes."
             him surprised "Hey, hey. Wow. Do you know what I love about Talaam?"
             her concerned "What?"
-            him determined "Its rotation really makes my day."
+            him determined "Its 'rotation' really 'makes my day'."
             her surprised "..."
             kid annoyed "Was that supposed to be a joke?!"
             bro normal "Ha-ha!"
@@ -8506,7 +8511,7 @@ label family30:
             her concerned "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
             kid nervous "Armor on a scarecrow?"
             him surprised "That sounds a little extreme."
-            her flirting "Its suit is impeccable."
+            her flirting "Its suit is...impeccable."
             him concerned "..."
             bro happy "Get it? ImPECKable?!"
             kid annoyed "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
@@ -8514,10 +8519,10 @@ label family30:
 
         "Leave":
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."
-            return
+            jump family30_night
 
     her surprised "Is that really what time it is?! I'm late!"
-    bro "I'm late for school!"
+    bro surprised "I'm late for school!"
     him concerned "You two take the tractor; I won't need it today."
     hide bro
     hide her
@@ -8528,66 +8533,68 @@ label family30:
     hide kid with moveoutleft
     "[kid_name] left to go do her chores. I remember when I had to remind her twenty times to get her to do something, and now {b}she{/b} was reminding {b}me{/b}."
     him concerned "She really is almost all grown up..."
-    scene farm_interior with fade
-    show her normal at quarterright
-    show him normal at midright behind her
-    show kid normal at center
-    show bro normal at midleft
-    with dissolve
-    "That night, [kid_name] made us a nice dinner -- roasted vegetables, smoked crabird meat, and a creamy sauce to go on top."
-    "Did that mean she was saying goodbye?"
-    her happy "This is delicious, [kid_name]. It's so nice to come home from work to such a delicious meal."
-    him happy "Especially one you didn't have to make yourself!"
-    bro determined "It's okay."
-    kid happy "I'm glad the sauce turned out; it was kind of lumpy at first."
-    "We chewed thoughtfully for a few minutes, savoring the herbs and flavors."
-    bro concerned "Are you leaving or not?"
-    show him surprised
-    show her surprised
-    show kid concerned
-    with dissolve
-    "I stopped chewing. I stopped breathing. I couldn't do or think about anything else until I knew the answer to this question."
-    if (not is_attached()) and (is_competent()) and (is_independent()):
-        kid determined "I am."
-        her sad "Oh, sweetie..."
-        him normal "You're going to Earth to study hard and become the best, right?"
-        kid concerned "Yeah... I decided, if I want to study medicine, I should study from lots of different people. It'd be great to learn from mom, but..."
-        her normal "No, no, you're right, you'll learn so much on Earth! Not just about medicine, but about people and history and biology..."
-        him happy "And pop culture. We don't have fads in quite the same way Earth does."
-        bro sad "Do you have to go?"
-        kid determined "I don't have to. But I'm going to. I'll miss you, [bro_name]."
-        her sad "My baby girl, leaving forever..."
-        him determined "Don't be like that! We still have a few weeks; we can't spend them moping around."
-    else:
-        kid normal "No. I thought about it, but I'm staying."
-        him surprised "What made you decide that?"
-        if (is_attached()):
-            kid nervous "I mean... I'd miss you guys. You're my family, and that's something I'm not going to find anywhere else."
-        elif (is_competent() and is_independent()):
-            kid normal "How many kids get to grow up and study aliens?! I'm not going to find those anywhere else!"
+
+    label family30_night:
+        scene farm_interior with fade
+        show her normal at quarterright
+        show him normal at midright behind her
+        show kid normal at center
+        show bro normal at midleft
+        with dissolve
+        "That night, [kid_name] made us a nice dinner -- roasted vegetables, smoked crabird meat, and a creamy sauce to go on top."
+        "...Did that mean she was saying goodbye?"
+        her happy "This is delicious, [kid_name]. It's so nice to come home from work to such a delicious meal."
+        him happy "Especially one you didn't have to make yourself!"
+        bro determined "It's okay."
+        kid happy "I'm glad the sauce turned out; it was kind of lumpy at first."
+        "We chewed thoughtfully for a few minutes, savoring the herbs and flavors."
+        bro concerned "Are you leaving or not?"
+        show him surprised
+        show her surprised
+        show kid concerned
+        with dissolve
+        "I stopped chewing. I stopped breathing. I couldn't do or think about anything else until I knew the answer to this question."
+        if (not is_attached()) and (is_competent()) and (is_independent()):
+            kid determined "I am."
+            her sad "Oh, sweetie..."
+            him normal "You're going to Earth to study hard and become the best, right?"
+            kid concerned "Yeah... I decided, if I want to study medicine, I should study from lots of different people. It'd be great to learn from mom, but..."
+            her normal "No, no, you're right, you'll learn so much on Earth! Not just about medicine, but about people and history and biology..."
+            him happy "And pop culture. We don't have fads in quite the same way Earth does."
+            bro sad "Do you have to go?"
+            kid determined "I don't have to. But I'm going to. I'll miss you, [bro_name]."
+            her sad "My baby girl, leaving forever..."
+            him determined "Don't be like that! We still have a few weeks; we can't spend them moping around."
         else:
-            kid happy "There's nothing on Earth that could compare to what we have here. It's pretty amazing, once I got to thinking about it."
-            him "You're only saying that because you've never eaten funnel cakes or cotton candy."
-            her annoyed "[his_name]! Shhh!"
-            her happy "Go on, sweetie."
-            kid surprised "Oh. Um, that's it. That's all I wanted to say."
-        her happy "Oh, I'm so glad you're staying. I would have missed you so much!"
-        "[bro_name] didn't say anything, but he gave her a big hug."
-        kid surprised "Ow, not so tight! I love you too, [bro_name]."
-    him happy "Okay, group hug!"
-    show him normal at midleft with move
-    show her normal at midright with move
-    her annoyed "Watch the foot!"
-    show bro at midright with move
-    bro "Your hair is in my face!"
-    "Finally everyone was comfy and we had a minute just to hold one another."
-    show him sleeping
-    show her sleeping
-    show kid sleeping
-    show bro sleeping
-    with dissolve
-    "I closed my eyes and tried to remember every detail of this moment, from how my arm barely reached across [bro_name]'s growing shoulders, to how a few tears had streaked across [her_name]'s face."
-    "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong like her mother's and callused like mine."
-    "Their skin was warm under my touch, and I wanted to pull everyone in closer, closer, so that they could never leave."
-    him determined "Out of all the things we've grown over the years... this family is the best."
-    return
+            kid normal "No. I thought about it, but I'm staying."
+            him surprised "What made you decide that?"
+            if (is_attached()):
+                kid nervous "I mean... I'd miss you guys. You're my family, and that's something I'm not going to find anywhere else."
+            elif (is_competent() and is_independent()):
+                kid normal "How many kids get to grow up and study aliens?! I'm not going to find those anywhere else!"
+            else:
+                kid happy "There's nothing on Earth that could compare to what we have here. It's pretty amazing, once I got to thinking about it."
+                him "You're only saying that because you've never eaten churros or cotton candy."
+                her annoyed "[his_name]! Shhh!"
+                her happy "Go on, sweetie."
+                kid surprised "Oh. Um, that's it. That's all I wanted to say."
+            her happy "Oh, I'm so glad you're staying. I would have missed you so much!"
+            "[bro_name] didn't say anything, but he gave her a big hug."
+            kid surprised "Ow, not so tight! I love you too, [bro_name]."
+        him happy "Okay, group hug!"
+        show him normal at midleft with move
+        show her normal at midright with move
+        her annoyed "Watch the foot!"
+        show bro at midright with move
+        bro "Your hair is in my face!"
+        "Finally everyone was comfy and we had a minute just to hold one another."
+        show him sleeping
+        show her sleeping
+        show kid sleeping
+        show bro sleeping
+        with dissolve
+        "I closed my eyes and tried to remember every detail of this moment, from how my arm barely reached across [bro_name]'s growing shoulders, to how a few tears had streaked across [her_name]'s face."
+        "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong like her mother's and callused like mine."
+        "Their skin was warm under my touch, and I wanted to pull everyone in closer, closer, so that they could never leave."
+        him determined "Out of all the things we've grown over the years... this family is the best."
+        return

@@ -1291,7 +1291,7 @@ label spinach2_eat_snails:
     kid nervous "It's...not bad."
     him concerned "I suppose... I could eat this."
     if (bro_age > 4):
-        bro "I'm not eating it."
+        bro annoyed "I'm not eating it."
     "It was an interesting experiment, but ultimately we did not want to eat that many turtle-snails."
     "So I disposed of them."
     return

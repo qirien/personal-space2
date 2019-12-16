@@ -1317,7 +1317,7 @@ label community10:
     play music sad
     scene farm_interior with fade
     show him normal at midleft
-    show bro normal at quarterleft # TODO: is he a baby here?
+    show bro normal at midleft, baby_pos
     show her normal at midright
     show kid normal at quarterright
     with dissolve
@@ -1328,21 +1328,21 @@ label community10:
     him surprised "Maybe they're just being friendly?"
     scene farm_exterior flip with fade
     show natalia normal at midright
-    show martin normal at quarterright
-    show bro normal at center # TODO: show Perón's kids? use OPS1 kid sprites?
+    show martin normal at quarterright # TODO: show Perón's kids? use OPS1 kid sprites?
     with dissolve
     show him normal at midleft
     show her normal at quarterleft
     show kid normal at left
+    show bro normal at quarterleft, baby_pos
     with moveinleft
     natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Peróns had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
-    "After the meal, [kid_name] ran off to play with the other kids."
+    "After the meal, [kid_name] ran off to play with the other kids and Natalia brought out some toys for [bro_name]."
     hide kid
-    hide bro
     with moveoutright
+    show bro surprised at center with move
     martin "As you may have heard, I have skin cancer."
     her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     martin happy "I know! You are not the only one who knows, however."
@@ -1451,7 +1451,7 @@ label community11:
     show him normal at midright
     show her normal at midleft
     show kid normal at center
-    show bro normal at quarterleft
+    show bro normal at midleft, baby_pos
     her happy "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
     kid surprised "I wonder what the new people will look like?"
     him happy "They'll look like we do. We're all humans."
@@ -1462,6 +1462,7 @@ label community11:
     show oleg normal at quarterleft
     show her normal at midright
     show him normal at center
+    show bro normal at center, baby_pos
     show kid surprised at quarterright
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
@@ -5254,10 +5255,10 @@ label community23:
     him sad "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
     her normal "I think I could go. Someone will probably get hurt out there anyway."
     him smirk "I can get some quality time with [bro_name]."
-    bro "I wanna go to the beach too!"
+    bro concerned "I wanna go to the beach too!"
     her flirting "I need you to stay here and make sure [his_name] takes good care of the farm!"
     her happy "And we'll bring you some fish."
-    bro "Okay..."
+    bro nervous "Okay..."
     "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
     hide her with moveoutright
     hide kid with moveoutright

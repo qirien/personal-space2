@@ -16,8 +16,6 @@ label start:
     # Initialize dynamic variables that need to be saved with saved game state.
     # These have to be here instead of in an init block to tell Ren'Py that they will change and should be saved with the game state.
 
-    # TODO: Disable music if it doesn't exist.... maybe free version doesn't have music?
-
     # GAME ENGINE
     python:
         demo_mode = False
@@ -45,8 +43,6 @@ label start:
         confident = 0
         total_confident = 0
 
-        # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
-
         # The Four Parenting Styles
         # Only one of these should be increased each year, maximum value at the end of the game is 30
         authoritarian = 0
@@ -54,7 +50,7 @@ label start:
         permissive = 0
         neglectful = 0
         trust = 0
-        
+
         # Default names
         his_name = "Jack"
         her_name = "Kelly"
