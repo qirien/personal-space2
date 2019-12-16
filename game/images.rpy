@@ -28,11 +28,11 @@ init -10:
         )
 
     # Special Sprites
-    image baby = "kid-sprites/baby normal.png"
-    image toddler = "kid-sprites/toddler normal.png"
-    image child = "kid-sprites/kid normal.png"
-    image tween = "kid-sprites/tween normal.png"
-    image teen = "kid-sprites/teen normal.png"
+    image baby = "kid-sprites/baby_normal.png"
+    image toddler = "kid-sprites/toddler_normal.png"
+    image child = "kid-sprites/kid_normal.png"
+    image tween = "kid-sprites/tween_normal.png"
+    image teen = "kid-sprites/teen_normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
     # Temporary Sprites: TODO delete these

@@ -18,7 +18,7 @@ label credits:
     $ renpy.pause(2.0, hard=skippable)
     hide text with fade
 
-    show text "Testing by Wes Landaker\nSapphire Landaker" with fade
+    show text "Testing by\n\nWes Landaker\nSapphire Landaker" with fade
     $ renpy.pause(2.0, hard=skippable)
     hide text with fade
 

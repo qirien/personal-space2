@@ -8498,13 +8498,16 @@ label family30:
             her concerned "What?"
             him determined "Its 'rotation' really 'makes my day'."
             her surprised "..."
+            show him normal with dissolve
             kid annoyed "Was that supposed to be a joke?!"
             bro normal "Ha-ha!"
-            him normal "And, you know, even though it means a lot of work, I'm really looking forward to spring."
+            him content "And, you know, even though it means a lot of work, I'm really looking forward to spring."
             her surprised "You are?"
             him determined "Yup. I'm so excited I wet my plants."
+            show him laugh with dissolve
             bro happy "Ha ha ha!"
             her normal "Okay, that was pretty bad."
+            show him normal with dissolve
             kid normal "If you're trying to make me want to leave, you're doing a pretty good job."
             "I brought over some handkerchiefs and everyone composed themselves, except for [bro_name], who was still laughing and looked like he might actually wet his pants."
 
@@ -8590,8 +8593,8 @@ label family30:
         "Finally everyone was comfy and we had a minute just to hold one another."
         show him sleeping
         show her sleeping
-        show kid sleeping
-        show bro sleeping
+        show kid normal # TODO: sleeping sprites?
+        show bro normal
         with dissolve
         "I closed my eyes and tried to remember every detail of this moment, from how my arm barely reached across [bro_name]'s growing shoulders, to how a few tears had streaked across [her_name]'s face."
         "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong like her mother's and callused like mine."
