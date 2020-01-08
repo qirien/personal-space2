@@ -225,14 +225,16 @@ init -100 python:
                 return "default_crop_event"
 
     # Change amount of credits you have
-    # TODO: have a summary screen at the end of each year that shows all the notifications in a pretty way?
+    # TODO: show credits in a corner somewhere?
     def modify_credits(amount):
         global credits, notifications
         credits += amount
         if (amount >= 0):
             notifications += "Credits +" + str(amount) + "\n"
+            renpy.notify("Credits +" + str(amount))
         else:
             notifications += "Credits " + str(amount) + "\n"
+            renpy.notify("Credits " + str(amount))
 
     def modify_farm_size(amount):
         global farm_size, notifications

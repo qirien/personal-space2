@@ -6670,7 +6670,7 @@ label fill_gap:
     thuc "Don't vote for Julia! I need her to oversee my water treatment plant."
     show julia mad at quarterleft with moveinleft
     julia "Please vote for me! I don't want to oversee Thuc's sewage factory."
-    hide thuc 
+    hide thuc
     hide julia
     with moveoutleft
     show kevin normal at left with moveinleft
@@ -6730,7 +6730,7 @@ label no_euthanasia:
     scene kid_bedroom with fade
     show him normal at midleft with moveinleft
     show pavel normal at midright with dissolve #TODO: sprite of pavel with eyes closed?
-    show
+
     "The next day, I stopped by his house to check on him. Just in case."
     "He seemed to be deeply asleep..."
     "No, he was out cold. Dead?"

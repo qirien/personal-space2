@@ -79,7 +79,7 @@ label carrots2:
         else:
             "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
             "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
-            # TODO: less money?
+            $ modify_credits(-farm.crops.count("carrots") * get_credits_from_name("carrots"))
             menu:
                 "What should I do next year?"
                 "Treat the carrots with pesticide" if (get_extra_work() >= 0):
@@ -168,7 +168,7 @@ label potatoes1:
             "But even though they weren't good to eat, they would be fine for planting."
             # some kind of variable?  community_level?  farm_level? sustence?
             $ colonists += 1
-            # TODO: no money from them.
+            $ modify_credits(-0.2 * farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
         "Warn people about the risks of solanine.":
             nvl clear
             him_c "Just wanted to give everyone a heads up on potatoes."
@@ -184,8 +184,8 @@ label potatoes1:
             nvl clear
             "Wow, I didn't think that would be such a big deal."
 
-            # TODO: less money gained for them.
             $ colonists -= 1
+            $ modify_credits(-0.1 * farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
     return
 
 # POTATOES2 - what to do with them
@@ -225,7 +225,6 @@ label potatoes2:
             "With the amounts he told me, I did some quick calculations in my head."
             him "Give me 10 liters of oil."
             ilian "Very well. Just make sure you bring some of those chips by here first, all right?"
-            # TODO: money check: exact amounts?
             scene farm_interior with fade
             show him normal at midleft with moveinleft
             if (year >= 7):
@@ -252,7 +251,7 @@ label potatoes2:
             him "I could use some help..."
             her "I'll take care of everything else around the house; you just keep cooking potato chips!"
             "In the end we managed to make a little extra with the chips, though it was so much work I wasn't sure I'd do it all the time."
-            # TODO add some money.
+            $ modify_credits(200)
 
         "Make potato salad":
             "Potato salad was one of my favorite summer dishes back on Earth. I'd made it before and it wasn't too hard."
@@ -299,21 +298,21 @@ label potatoes3:
     show him concerned at center with dissolve
     him "They've all rotted."
     "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
-    "I had to dig them out anyway so they wouldn't contiminate the field."
+    "I had to dig them out anyway so they wouldn't contaminate the field."
     "They would make good compost for other plants."
     show him concerned at quarterleft with move
     "But every hour spent in the mud fishing them out felt oppresive and pointless."
     show him sad at center with move
     "I spent all season on them, and what did I have to show for it?"
     "Just foul-smelling mush."
-    # TODO: Can he be covered in mud?
-    show him determined at quarterright with move
+    show him concerned sweat at quarterright with move
     "I worked and worked all day, all afternoon, and into the evening."
     show night_overlay
     show him at midleft with move
     "I was so frustrated and mad that I just wanted to get it all done and forget about it."
     show him at midright with move
     "I couldn't see very well in the moonlight but I kept ripping up the plants and loading the rotten potatoes onto the trailer."
+    show him annoyed sweat with dissolve
     "I slipped and fell in the mud right as [her_name] came walking up."
     show her concerned at midleft behind night_overlay
     show kid normal at center behind night_overlay
@@ -324,7 +323,7 @@ label potatoes3:
     menu:
         "What should I say?"
         "Fine.":
-            him annoyed "Fine."
+            him pout "Fine."
             if (year >= 7):
                 kid sad "What's that smell?"
             else:
@@ -342,8 +341,7 @@ label potatoes3:
             him determined "Yeah, I'm just finishing up. I'll meet you at home in a few minutes, okay?"
             her concerned "Okay...Wait, are these the potatoes?!"
             kid sad "I'm not eating those!"
-            him concerned "I'm tossing them; they're all bad."
-
+            him annoyed "I'm tossing them; they're all bad."
 
     her concerned "Oh, honey, I'm sorry..."
     if (marriage_strength >= 2):
@@ -353,7 +351,7 @@ label potatoes3:
     him normal "Yeah, I should probably quit for today anyway."
     her normal "We saved you some dinner..."
     him determined "As long as it's not potatoes."
-    # TODO: lose money based on number of potato fields?
+    $ modify_credits(-farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
 
     if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
         "There was one good thing that came out of all this, though."
@@ -382,7 +380,7 @@ label squash1:
                 "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
                 "Since there were several flowers on each plant, and a whole field full of plants, it took quite a while."
                 "But it wasn't difficult, and it did increase our squash yield dramatically."
-                # TODO: increase yield/work?
+                $ modify_credits(0.5*get_credits_from_name("squash"))
             "Ask to borrow some bees" if (year > 10):
                 "I thought I remembered someone saying something about bees, but I couldn't remember who."
                 nvl clear
@@ -407,7 +405,7 @@ label squash1:
                         him surprised "Could we trade? Maybe for squash?"
                         kevin "Squash and goat's milk, in these quantities."
                         him normal "Looks reasonable. It's a deal."
-                        $ modify_credits(-50) # TODO: decrease crops instead?
+                        $ modify_credits(-50)
                     "Okay, how about for 50?":
                         him normal "Okay, how about 50?"
                         kevin "That is insufficient. I propose 80."
@@ -420,6 +418,9 @@ label squash1:
                         kevin "That is acceptable."
                         him "It's a deal."
                         $ modify_credits(-100)
+                    "Never mind, I don't need bees.":
+                        kevin "Very well, the choice is yours."
+                        jump squash1_forget_it
                 kevin "Good. I will write up a contract."
                 him annoyed "A contract, huh?"
                 kevin "Yes. That way the terms are clear and unarguable by both sides."
@@ -429,11 +430,13 @@ label squash1:
                 "They seemed to adjust pretty well, and went right for the squash blossoms."
                 "I was kind of sad to give them back."
                 "We harvested a lot of squash that season!"
+                $ modify_credits(0.3 * farm.crops.count("squash") * get_credits_from_name("squash"))
 
             "Forget the squash for this season":
-                "I didn't have time to baby the plants. They'd have to survive on their own."
-                "Some of them produced fruit, but most didn't. What a waste..."
-                $ modify_credits(-200)
+                label squash1_forget_it:
+                    "I didn't have time to baby the plants. They'd have to survive on their own."
+                    "Some of them produced fruit, but most didn't. What a waste..."
+                    $ modify_credits(-0.4 * farm.crops.count("squash") * get_credits_from_name("squash"))
     return
 
 # SQUASH2 - squash bugs
@@ -479,7 +482,7 @@ label squash2:
             "Ugh, I didn't want to deal with squash bugs. It was impossible to completely eradicate them, anyway."
             "Why start a battle I knew I couldn't win?"
             "But that meant I only havested one fourth of the squash I had planned on."
-            # TODO: currency check: lose money
+            $ modify_credits(-0.75 * farm.crops.count("squash") * get_credits_from_name("squash"))
         "Try and get the new folks to fix the problem. They started it, after all!":
             $ squash2_method = "passthebuck"
             nvl clear
@@ -533,7 +536,7 @@ label squash3:
         "I didn't think it was possible, but there were even more squash bugs this year. The plants didn't even have a chance to set any fruit at all before they were completely devoured."
         "I couldn't plant squash again until at least a year had passed. Maybe if they didn't have any squash to eat, they'd all die out."
         $ crop_temporarily_disabled = "squash"
-        # TODO: currency check, reduce income by squash amount
+        $ modify_credits(-farm.crops.count("squash") * get_credits_from_name("squash"))
     else:
         "I checked the seedlings every day for signs of squash bugs. Nothing."
         "Was it possible I had exterminated all the squash bugs on the planet??"
@@ -542,7 +545,7 @@ label squash3:
         "There were squash bugs on it!"
         "It was much easier to kill them all when they were all one plant. I scrutinized that section every day and got rid of all the bugs and eggs I saw."
         "The result was a bountiful squash harvest, even more than I had projected."
-        # TODO: currency check, add bonus
+        $ modify_credits(0.5 * farm.crops.count("squash") * get_credits_from_name("squash"))
         "Would it ever be possible to get rid of every single squash bug? I don't know. But the harvest made all the hard work worth it."
     return
 
@@ -921,7 +924,7 @@ label tomatoes2:
             "So adding more fertilizer just made it worse."
         "Most of my tomatoes were useless..."
         "...but at least I knew what to do next year."
-        # TODO: decreased yield/money
+        $ modify_credits(-0.6 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
     return
 
 # TOMATOES 3 - results of tomatoes 2
@@ -929,15 +932,17 @@ label tomatoes3:
     if (tomatoes2_action  == "early harvest"):
         "Because I made sure to always save seeds from the earliest tomatoes, the genetics of the tomato plants every year tended towards a fast harvest."
         "In fact, now I can squeeze in two plantings a year, effectively doubling my tomato harvest."
-        # TODO: increase yield/money of tomatoes.
+        $ modify_credits(farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
     elif (tomatoes2_action == "size"):
         "Since I only used seeds from the biggest tomatoes, the size of the tomatoes kept getting bigger and bigger."
         "Not only did they look impressive, but they were easier to process because I had less stems to cut off before canning them."
+        $ modify_credits(0.5 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
     elif (tomatoes2_action == "sweetness"):
         "As I selected for the sweetest tomatoes, my harvest got slowly sweeter and sweeter."
         "[her_name] will sometimes pack a lunch of just tomatoes and a little goat cheese."
         "And [kid_name] likes to eat them, too."
         "They were so sweet I used them like berries in dessert dishes."
+        $ modify_credits(0.25 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
     else:
         "Finally, I had a good tomato harvest. The tomatoes were firm all over and there were plenty of them."
         "Time for salsa, spaghetti sauce, and maybe even some pizza!"
@@ -1022,8 +1027,8 @@ label plums2:
             show him normal at midleft with moveinleft
             him "Hey there, Ilian."
             ilian "Oh. Hello."
-            him happy "How much can you give me for this plum jam?"
-            ilian "I can only give you 50 credits." # TODO: currency check.
+            him happy "How much can you give me for all this plum jam?"
+            ilian "I can only give you 50 credits."
             him surprised "What? Why is that?"
             ilian "I'm out of money. But if you'd like to exchange, I can give you seeds for onions or turnips."
             menu:
@@ -1034,29 +1039,36 @@ label plums2:
                 "Turnips":
                     him "How about the turnips?"
                     $ enable_crop("turnips")
+                "Credits":
+                    him "I'll just take the 50 credits"
+                    $ modify_credits(50)
             ilian "Fine. Here you go."
-            "My plum jam didn't make me rich, but at least I'd be able to plant something new now."
+            "My plum jam didn't make me rich, but at least I got something for it."
             return
 
         "Just bring the plums to the storehouse.":
             "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
-            "I earned 40 credits for them." # TODO: currency check
+            "I earned 40 credits for them."
+            $ modify_credits(40)
 
     if not (renpy.showing("storehouse")):
         scene storeroom with fade
         show ilian at midright
         show him normal at midleft with dissolve
 
-    "While I was at the storehouse, I saw that they had a ton of onions for a good price."
+    "While I was at the storehouse, I saw that they had a ton of onions for just 15 credits."
     "If I bought them, I could plant some and grow my own..."
-    menu:
-        "What should I do?"
-        "Buy onions.":
-            # TODO: currency check, subtract amount for onions.
-            "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
-            $ enable_crop("onions")
-        "Don't buy onions":
-            "I decided not to buy them. I had enough crops to deal with."
+    if (credits >= 15):
+        menu:
+            "What should I do?"
+            "Buy onions.":
+                "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
+                $ enable_crop("onions")
+                $ modify_credits(-15)
+            "Don't buy onions":
+                "I decided not to buy them. I had enough crops to deal with."
+    else:
+        "Too bad I didn't have enough credits for them."
     return
 
 # BEANS 1 - How to harvest beans
@@ -1124,7 +1136,7 @@ label beans2:
             "At least the top layers dried out okay."
             $ harvest_factor = 0.65
 
-    # TODO: currency check; subtract harvest_factor of the bean profit
+    $ modify_credits(-(1-harvest_factor) * farm.crops.count("beans") * get_credits_from_name("beans"))
     return
 
 # SPINACH 1 - heat wave kills spinach seeds
@@ -1405,7 +1417,8 @@ label strawberries2:
         "Rip out the mutated strawberries." if (get_extra_work() > 0):
             "It was a huge pain, but I decided to rip out all the mutated strawberries.  I destroyed every plant that didn't have any flowers on it."
             "And the few strawberries that I did get, I planted instead of eating."
-            # TODO: currency check, decrease profit
+            # TODO: does this work, or should it be strawberries+?
+            $ modify_credits(-farm.crops.count("strawberries") * get_credits_from_name("strawberries"))
         "Till over the whole field.":
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."

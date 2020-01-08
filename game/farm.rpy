@@ -42,16 +42,12 @@ init python:
             current_nitrogen = 0
             current_pests = 0
             for i in range(0, self.current_size):
-                nitrogen_factor = 0
                 crop_name = self.crops[i]
                 current_nitrogen = self.health[i][Field.NITROGEN_LEVEL_INDEX]
                 # Decrease yield if there's not enough nitrogen
                 # Set nitrogen level of the field after crops
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
                 # print "New Nitrogen: " + str(new_nitrogen)
-                # TODO: Delete this; it should never happen
-                if (new_nitrogen < 0):
-                    nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100
 
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
@@ -116,8 +112,8 @@ init python:
 
                 # TODO: still runaway pests on perennials...
                 # Subtract pests and nitrogen deficiency from final yield
-                print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor) + ", Pest Factor is " + str(pest_factor)
-                final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
+                print "Pest Factor is " + str(pest_factor)
+                final_yield[i] = final_yield[i] - pest_factor
 
             self.update_history()
             return final_yield

@@ -53,7 +53,7 @@ screen yearly_summary():
                                         xalign 1.0
                                         label "Year [year] Summary"
                                         null height 10
-                                        text notifications
+                                        text notifications 
                                         # TODO: include community stats here?
                                     $ parenting_style = get_parenting_style()
                                     # TODO: add in expressions based on parenting style, attachment, competence, independence
