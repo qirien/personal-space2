@@ -234,6 +234,7 @@ label start:
             call tests
 
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+    "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
 
     show path
     show her flirting at midleft
