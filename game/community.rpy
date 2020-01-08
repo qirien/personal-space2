@@ -1315,7 +1315,7 @@ label community10:
     play music sad
     scene farm_interior with fade
     show him normal at midleft
-    show bro normal at quarterleft # TODO: is he a baby here?
+    show bro normal at midleft, baby_pos
     show her normal at midright
     show kid normal at quarterright
     with dissolve
@@ -1326,21 +1326,21 @@ label community10:
     him surprised "Maybe they're just being friendly?"
     scene farm_exterior flip with fade
     show natalia normal at midright
-    show martin normal at quarterright
-    show bro normal at center # TODO: show Perón's kids? use OPS1 kid sprites?
+    show martin normal at quarterright # TODO: show Perón's kids? use OPS1 kid sprites?
     with dissolve
     show him normal at midleft
     show her normal at quarterleft
     show kid normal at left
+    show bro normal at quarterleft, baby_pos
     with moveinleft
     natalia "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Peróns had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
-    "After the meal, [kid_name] ran off to play with the other kids."
+    "After the meal, [kid_name] ran off to play with the other kids and Natalia brought out some toys for [bro_name]."
     hide kid
-    hide bro
     with moveoutright
+    show bro surprised at center with move
     martin "As you may have heard, I have skin cancer."
     her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     martin happy "I know! You are not the only one who knows, however."
@@ -1449,7 +1449,7 @@ label community11:
     show him normal at midright
     show her normal at midleft
     show kid normal at center
-    show bro normal at quarterleft
+    show bro normal at midleft, baby_pos
     her happy "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
     kid surprised "I wonder what the new people will look like?"
     him happy "They'll look like we do. We're all humans."
@@ -1460,6 +1460,7 @@ label community11:
     show oleg normal at quarterleft
     show her normal at midright
     show him normal at center
+    show bro normal at center, baby_pos
     show kid surprised at quarterright
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
@@ -4166,8 +4167,10 @@ label community19:
     him annoyed "I think we would have noticed a larger bird by now."
     her concerned "oh..."
     him content "Oh?"
-    her nervous "I bet it's the wolf slugs."
-    him sad "That makes a lot of sense."
+    her_c "It's probably the wolf slugs - Helen said there aren't very many around anymore."
+    sara_c "How could they even catch a crabbird?! {emoji=worried}"
+    lily_c "It is probable that the wolf slugs eat their eggs. They have been observed near crabbird nesting grounds."
+    him_c "That makes a lot of sense."
     ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
     if thuc_has_cattle:
         thuc_c "Ouch. That's going to impact our herd next year. Maybe I'll make a bunch of jerky."
@@ -4190,7 +4193,7 @@ label community19:
                     him_c "Jerky sounds good. But give me some of the fresh meat before you make it!"
                     thuc_c "Will do."
         else:
-            him_c "Jerky sounds good. But give me some of the fresh meat before you make it!"
+            him_c "Jerky sounds good. But give out some of the fresh meat before you make it!"
             thuc_c "Will do."
     else:
         ilian_c "What should we do with those four cows?"
@@ -4225,7 +4228,7 @@ label community19:
     natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
     scene stars with dissolve
     "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomas was able to trap a lot of them that week."
-    #no follow-up on wolf slug hunting? maybe in a later event?
+    #TODO: follow-up on wolf slug hunting? maybe in a later event?
     return
 
 
@@ -4265,6 +4268,7 @@ label community20:
             "Later that day I checked to see if they responded."
             #TODO: letter style for their reply
             $ pstyle = get_parenting_style()
+            nvl clear
             if (pstyle== "authoritative"):
                 legalese "She may stay as a guest, and she must share her findings from her research."
                 him normal "Sounds fair to me."
@@ -5206,7 +5210,7 @@ label community23:
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
             $ mavericks += 1
-    
+
     scene stars with dissolve
     "Later that month..."
     scene farm_interior with dissolve
@@ -5249,15 +5253,15 @@ label community23:
     him sad "It's not a good time for me to go. New weeds are coming up every day, and some of my plants are close to harvest time."
     her normal "I think I could go. Someone will probably get hurt out there anyway."
     him smirk "I can get some quality time with [bro_name]."
-    bro "I wanna go to the beach too!"
+    bro concerned "I wanna go to the beach too!"
     her flirting "I need you to stay here and make sure [his_name] takes good care of the farm!"
     her happy "And we'll bring you some fish."
-    bro "Okay..."
+    bro nervous "Okay..."
     "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
     hide her with moveoutright
     hide kid with moveoutright
     scene black with fade
-    
+
     scene farm_exterior with fade
     show him surprised at midright with dissolve
     show her nervous at midleft with moveinleft
@@ -5287,7 +5291,7 @@ label community23:
         him determined "If he's fixing prices, then what's the point of all that money you just made?"
         her annoyed "Buying things from Pete?"
         scene black with fade
-        
+
         scene path with dissolve
         show thuc normal at midright with dissolve
         show him normal at midleft with moveinleft
@@ -5478,7 +5482,7 @@ label community25:
     else:
         "I ate them all the time, so it was fun to see even more ways to enjoy one of my favorite foods."
     "The jellystar farm made them quite an economical food."
-    
+
     scene ocean with dissolve
     show him normal at midleft with dissolve
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
@@ -5688,7 +5692,7 @@ label community25:
             "Don't touch one.":
                 "I decided to just look at the jellystar."
                 jump after_convo_25
-    
+
 
 label community26:
     $ work_fewer_hours = False
@@ -6056,7 +6060,7 @@ label community27:
     hide him
     hide kid
     with moveoutright
-    
+
     scene rowboat with dissolve
     show him normal at midleft with moveinleft
     show kid frustrated at left with moveinleft
@@ -6487,8 +6491,8 @@ label boat_capsized:
     scene ocean with dissolve
     show her normal at midright with dissolve
     show kid happy at center
-    show him blush at midleft 
-    with moveinright 
+    show him blush at midleft
+    with moveinright
     "Her oars set some of the jellystars flying, and eventually we were close enough to shore for me to stand up."
     kid "That was unreal."
     her surprised "Are you guys okay? What on Earth happened?"
