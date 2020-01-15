@@ -50,6 +50,9 @@ init python:
 # PARENTING FUNCTIONS
 ##
 
+# TODO: These might need to be functions, not labels for the
+# notifications to go in the same place as those from functions
+#
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
     # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment
@@ -226,6 +229,7 @@ init -100 python:
 
     # Change amount of credits you have
     # TODO: show credits in a corner somewhere?
+    # TODO: this doesn't go in the global notifications variable
     def modify_credits(amount):
         global credits, notifications
         credits += amount
@@ -253,8 +257,8 @@ init -100 python:
             return True
 
     # Calculate expenses required for the family for this year
-    def get_expenses_required():
-        return (ANNUAL_EXPENSES_BASE + (get_calories_required() * CALORIES_TO_MONEY_MULTIPLIER))
+    def get_expenses_required(year):
+        return (ANNUAL_EXPENSES_BASE + (get_calories_required(year) * CALORIES_TO_MONEY_MULTIPLIER))
 
     # Calculate value in credits from crop value
     def get_credits_from_value(crop_value):
@@ -269,18 +273,20 @@ init -100 python:
 
     # Calculate nutrition required for the family for this year.
     # TODO: right now this is the same as calories? Is that true?
-    def get_nutrition_required():
-        return get_calories_required()
+    def get_nutrition_required(year):
+        return get_calories_required(year)
 
     # Calculate the calories required for the family for this year.
-    def get_calories_required():
-        calories_kid = get_calories_kid(int(earth_year))
+    def get_calories_required(year):
+        earth_year = get_earth_years(year)
+        calories_kid = get_calories_kid(earth_year)
         calories_bro = 0
-        if (bro_birth_year != 0):
-            calories_bro = get_calories_kid(bro_age)
+        if ((bro_birth_year != 0) and (bro_birth_year < year)):
+            bro_age = year - bro_birth_year
+            calories_bro = get_calories_kid(get_earth_years(bro_age))
         return (CALORIES_BASE + calories_kid + calories_bro)
 
-    def get_calories_kid(age = 0):
+    def get_calories_kid(age):
         if (0 <= age <= 1):
             return 5
         if (2 <= age <= 4):
@@ -316,7 +322,7 @@ init -100 python:
             crop_names = [row[NAME_INDEX] for row in crop_info]
             index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             total_nutrition += crop_info[index][NUTRITION_INDEX]
-        nutrition_required = get_nutrition_required()
+        nutrition_required = get_nutrition_required(year)
         return -(nutrition_required - total_nutrition)
 
     # Return True if marriage is strong for the current year

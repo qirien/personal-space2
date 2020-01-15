@@ -552,9 +552,9 @@ label work4:
             return
 
     scene community_center with fade
-    show natalia at quarterleft
-    show pete at center
-    show thuc at quarterright
+    show natalia normal at quarterleft
+    show pete normal at center
+    show thuc normal at quarterright
     show goat at right
     with dissolve
     show him normal at left with moveinleft
@@ -569,7 +569,7 @@ label work4:
 
     if (work4_showoff):
         thuc "Hey, are those your [random_crop] on display over there?"
-        him normal "Yes it is!"
+        him normal "Yeah!"
         thuc "They turned out really well. How often do you fertilize them?"
         "We talked about [random_crop] for a while, and then I had an idea."
         him surprised "Hey, do you want to grow your own [random_crop]?"
@@ -687,17 +687,17 @@ label work8:
     show her normal at midright
     show kid normal at center
     with dissolve
-    show him concerned at midleft with moveinleft
+    show him concerned sweat at midleft with moveinleft
     her concerned "You look beat. And you smell like..."
     kid surprised "Like poop!"
-    him determined "Yeah... the outhouse was full."
+    him determined sweat "Yeah... the outhouse was full."
     her surprised "Oh! I guess that would happen eventually..."
     if (work8_choice == "clean"):
-        him concerned "I mucked the whole thing out."
+        him concerned sweat "I mucked the whole thing out."
         kid angry "Gross!"
         her concerned "Wow... that sounds awful."
     else:
-        him concerned "I had to build a new one."
+        him concerned sweat "I had to build a new one."
         her normal "Okay, wow, that sounds like a lot of hard work."
 
         him normal "It's done now, anyway."

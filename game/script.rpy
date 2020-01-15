@@ -289,6 +289,7 @@ label life_loop:
         $ save_name = "Year %d" % year
         $ earth_year = get_earth_years(year)
 
+        # TODO: One time bro appeared in the transient and farm screens before he was born...?
         if (bro_birth_year != 0):
             $ bro_age = year - bro_birth_year
 
@@ -299,10 +300,11 @@ label life_loop:
         #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
+            # TODO: Right now, special events still modify credits, so you could start with a credit/debit. Is this what we want?
             if (year > MONEY_YEAR):
                 $ income = farm.calculate_income(years_yield)
                 $ modify_credits(income)
-                $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
+                $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)

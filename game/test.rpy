@@ -76,7 +76,7 @@ label test_farming_screen:
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
                 $ modify_credits(farm.calculate_income(years_yield))
-                $ modify_credits(-(get_expenses_required()  - KELLY_SALARY))
+                $ modify_credits(-(get_expenses_required(year-1)  - KELLY_SALARY))
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)

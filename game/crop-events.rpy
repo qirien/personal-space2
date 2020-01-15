@@ -467,7 +467,8 @@ label squash2:
             $ squash2_method = "exterminate"
             if ("bees" in farm.crops):
                 "I didn't want to hurt my plants or bees, so I decided to spray the bugs with soapy water."
-            "I didn't want to hurt my plants, so I decided to spray the bugs with soapy water."
+            else:
+                "I didn't want to hurt my plants, so I decided to spray the bugs with soapy water."
             if (year >= 10):
                 "[kid_name] and I got spray bottles and sprayed every bug we saw, from the tiny eggs and nymphs to the larger adults."
             else:

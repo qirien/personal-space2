@@ -34,7 +34,7 @@ screen plan_farm:
                                     label "Status" xsize 100
                                     # TODO: allow more than one status?
                                     if (not valid_layout):
-                                        if (farm.get_total_calories() < get_calories_required()):
+                                        if (farm.get_total_calories() < get_calories_required(year)):
                                             text "Need more calories!" style "plan_farm_status_text"
                                         elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
                                             text "Need to allocate all goats!" style "plan_farm_status_text"
@@ -271,6 +271,7 @@ screen stat_icons(stat_value, stat_index):
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
 
+# TODO: show bee boosting while laying out crops
 screen crops_layout:
     frame:
         yfill True
@@ -343,8 +344,8 @@ style crop_history_hbox is crop_details_hbox:
 
 screen crops_totals:
     vbox:
-        $ calories_needed = get_calories_required()
-        $ nutrition_needed = get_nutrition_required()
+        $ calories_needed = get_calories_required(year)
+        $ nutrition_needed = get_nutrition_required(year)
         $ total_max = farm_size * CROP_STATS_MAX
         $ total_calories = 0
         $ total_nutrition = 0
@@ -358,7 +359,8 @@ screen crops_totals:
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
             if (year >= MONEY_YEAR):
                 $ total_value += get_credits_from_value(crop_info[index][VALUE_INDEX])
-                # TODO: Need to take into account pests here, so the user is not surprised.
+                # TODO: Need to take into account pests if using, so the user is not surprised.
+
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
@@ -370,13 +372,14 @@ screen crops_totals:
         use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
 
         if (year >= MONEY_YEAR):
-            $ total_expenses = get_expenses_required() - KELLY_SALARY
+            text "Current Balance: [credits] credits"
+            $ total_expenses = get_expenses_required(year) - KELLY_SALARY
             if (total_expenses > total_value):
                 text "Value:    " + str(total_value) + " credits" color red_med
             else:
                 text "Value:    " + str(total_value) + " credits"
             text "Expenses: " + str(total_expenses) + " credits"
-            text "Current Balance: [credits] credits"
+            text "Expected Balance: " + str(credits + total_value - total_expenses) + " credits"
             # TODO: show this better, show savings, etc.
 
         text " "

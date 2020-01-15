@@ -2798,7 +2798,7 @@ label baby_delivery:
     "I had [bro_name] balanced on my lap and was concentrating on holding the bottle just right and squeezing it at just the right rate."
     him concerned "Hold the book open for me... right there..."
     kid happy "I can read the front! That word is \"moon\"!"
-    him normal "You're right! Now turn the page... \"In the great green room, there was a telephone...\""
+    him normal "You're right! Now turn the page... can you find the mouse?"
     show bro annoyed with dissolve
     him surprised "Oh, sorry [bro_name], I squeezed that too fast. [kid_name], could you get a rag so I can wipe up this milk?"
     kid annoyed "Fine..."
@@ -3309,6 +3309,7 @@ label family10:
 
     label family10_ending:
         if (year8_have_baby):
+            scene stars with fade
             "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
             "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
             "A few weeks after school started, [her_name] went into labor in the middle of the night."

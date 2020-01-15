@@ -772,7 +772,7 @@ label community6:
     pete normal "I'll make you eat your words."
     him surprised "Hey, if you're both here, where are your kids?"
     helen "They're sleeping. Sister Naomi's there, just in case."
-    him normal "Cool. I tried to convince [her_name] to use the radio as a baby monitor, but [her_name] sometimes takes a long time to get to sleep so we didn't think it would work."
+    him normal "Cool. I tried to convince [her_name] to use the radio as a baby monitor, but [kid_name] sometimes takes a long time to get to sleep so we didn't think it would work."
     pete normal "Hey, can we keep score on your tablet? Ours is out for repairs."
     him surprised "What do you mean? Don't you both have one?"
     helen "No, because SOMEONE left it out during a solar flare."
@@ -6843,7 +6843,7 @@ label community29:
         scene hospital with fade
         show helen normal at midright
         show pete normal at right
-        show him normal at center 
+        show him normal at center
         with moveinleft
         show her determined at midleft #with her lab coat
         show her determined at midright with move
@@ -6918,14 +6918,14 @@ label community29:
         her "{i}He got angry and told me it was my fault that Helen died.{/i}"
         him "{i}It sounds like he's still mourning her death.{/i}"
         her "{i}I'm going to ask him about it again in the morning, otherwise I might just call it a loss.{/i}"
-        scene bedroom with fade 
+        scene bedroom with fade
         "I went to bed hoping that [her_name] would figure something out."
         scene black with fade
         scene farm_exterior with fade
         show him normal at midright
         show her nervous at midleft
         "I didn't hear from [her_name] until she got back the next evening."
-        show her nervous with move at midright
+        show her nervous at midright with move
         "She gave me a big hug."
         show her nervous at center with move
         him content "Welcome back! How'd it go?"

@@ -130,7 +130,8 @@ init -10:
         if (bro_age > 0):
             pos(550, 300)
             #align(0.6, 1.0)
-            "bro sad"
+            # TODO: something different here, maybe based on parenting style?
+            "bro surprised"
         if True:
             "polaroid"
 
