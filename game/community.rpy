@@ -6786,24 +6786,27 @@ label euthanasia:
 label community29:
     #Helen pregnant
     if kevin_elected:
+        scene mine with fade
         "Kevin was a logical mayor, as we'd expect from him. Though he assured us of his objectivity, he helped the miners more often than anyone else."
         "He worked with them and talked with them more than he did to us, so it wasn't surprising."
         "He worked with Brennan to have a work rotation with some of the farmers. Farmers would work in the mines for a day each week while the miners worked in the fields."
         "At first there were a lot of mistakes on both sides, but eventually we farmers learned the basics of mining and got to know the other miners better."
 
     else:
+        scene farm_exterior with fade
         "Julia was a behind-the-scenes kind of mayor. Things went smoothly because she talked to everyone privately, and she was able to distribute important information through her newspaper."
         "Eventually interviews with each resident of Talaam were featured in the {i}Talaam Times{/i}, including the mavericks and the miners."
 
     if jellypeople_happy:
         "I kept communicating with the jellypeople through the jellysquids. We traded land meat for seafood."
 
+    scene storeroom with fade
     "I was working in the canning factory after a harvest when [her_name] messaged me."
     nvl clear
     her_c "Helen is pregnant!!!!"
     him_c "Oh, congratulations to her."
-    her_c "She's a little older than I am, and she's already in the second trimester."
-    him_c "Is that a bad thing?"
+    her_c "Yes, congratulations, and with the state of our technology, it is dangerous for her to be pregnant."
+    him_c "Really? Why?"
     her_c "She's in her mid-forties in Earth years. Even in regular hospitals, that's considered a high-risk pregnancy."
     him_c "Oh... do you think she'll want an abortion?"
     her_c "She didn't ask for one."
@@ -6817,150 +6820,217 @@ label community29:
         him_c "Where would she sleep?"
         her_c "She said she could bring her sleeping materials. Maybe we can fold them up when she's not using them?"
         him_c "If she's okay with that... maybe we can go camping to have a little privacy now and then *wink*."
+        scene farm_interior
+        show him normal at midright
+        show helen normal at midleft
+        with dissolve
         "Helen came to stay with us. She gave us a big wheel of cheese and a string of dried fish the day she arrived."
         jump helen_convo_29
     else:
         her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
         her_c "That way I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
+        scene path with fade
+        show pete normal at right
+        show helen normal at quarterright
+        show him surprised at midright
+        with dissolve
         "I saw Pete dragging her to the hospital on a stretcher. He accepted my help in a rushed frenzy."
-        "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would poke me with a needle accidentally."
-        her "I'm not sure if she'll make it! Get Julia and Van so they can help me."
+        show pete normal at midleft
+        show helen normal at quarterleft
+        show him concerned at left
+        with move
+        scene hospital with fade
+        show helen normal at midright
+        show pete normal at right
+        show him normal at center 
+        with moveinleft
+        show her determined at midleft #with her lab coat
+        show her determined at midright with move
+        "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would accidentally poke me with a needle."
+        her angry "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
         "I called them on the radio, but they were in the mining camp. The came as soon as they could, but it took over half an hour."
         scene hospital with fade
+        scene black with fade
+        scene hospital with fade
+        show helen normal at midright
+        show pete normal at right
+        show her annoyed at center
+        with dissolve
         "By the time they arrived, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
+        show her at midleft with move
         her "Go find Ilian!"
-        him "Why?"
-        her "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
-        him "Okay, okay!"
+        him normal "Why?"
+        her angry "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
+        him annoyed "Okay, okay!"
+        scene storeroom with fade
+        show ilian normal at center with dissolve
+        show him annoyed at midleft with moveinleft
         "The storehouse was close by, and luckily Ilian was still there."
         him "Ilian, come with me! We need you to give blood to Helen."
         ilian "Wait, I need to lock the storehouse."
-        him "Just hurry!"
+        him angry "Just hurry!"
+        scene hospital with fade
+        show helen normal at midright
+        show pete normal at right
+        show her annoyed at center
+        with dissolve
+        show him normal at left
+        show ilian normal at quarterleft
+        with moveinleft
         "As soon as we arrived, [her_name] got the tubes ready for the blood transfusion."
-        her "Helen, stay with us for a little longer!"
-        pete "Please save her!"
-        her "I'm working as quickly as I can!"
-        "We heard the heart rate monitor slowing, and then it stopped."
+        show her at midleft with move
+        her angry "Helen, stay with us for a little longer!"
+        pete normal "Please save her!"
+        her annoyed "I'm working as quickly as I can!"
+        "We heard the heart rate monitor slowing, and then it stopped." #TODO: heart monitor sound? for every time they're in the hospital in this event?
         "[her_name] tried to resucitate Helen for a long time, but was not successful."
-        her "We were too late. I'm so sorry Pete."
+        her cry "We were too late. I'm so sorry Pete."
         $ helen_dead = True
         "Tears streamed down his face. He stayed with her body until [her_name] locked the hospital for the day."
-        "Later Pete came back for the body, which he buried in a grave near the ocean."
+        scene ocean_sunset with dissolve
+        "We held a memorial for her, but Pete didn't attend."
+        "Later he came back for Helen's body and the baby's body, which he buried in a grave near the ocean."
         "A few weeks later there were still some loose ends from her hospital stay."
         nvl clear
         her_c "Does anyone know how to contact Pete? I need to talk to him."
         ilian_c "I thought [his_name] was pretty good friends with him?"
         her_c "That was a long time ago."
         kevin_c "I saw him drying fish by the ocean a few days ago."
+        scene farm_interior with fade
+        show him normal at midright
+        show her nervous at midleft
+        with dissolve
         her "[his_name], I'm going to take the wagon to find Pete. Want to come with me?"
-        him "Why? I doubt he wants to see us."
-        her "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
+        him doubt "Why? I doubt he wants to see us."
+        her annoyed "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
         her "I need to talk to him."
-        him "Okay. I don't think I can leave the farm this week, but take the radio and keep me updated."
-        her "Will do."
-        him "Do you need the wagon?"
-        her "If he wants to pay in food I want to be able to transport it."
-        him "Okay."
+        him content "Okay. I don't think I can leave the farm this week, but take the radio and keep me updated."
+        her normal "Will do."
+        him determined "Do you need the wagon?"
+        her nervous "If he wants to pay in food I want to be able to transport it."
+        him concerned "Okay."
+        show black with fade
         "She left early the next morning. That evening she radioed me."
         her "{i}I found Pete and told him the problem. He was really surprised that he didn't have any credits in his account.{/i}"
         her "{i}He got angry and told me it was my fault that Helen died.{/i}"
         him "{i}It sounds like he's still mourning her death.{/i}"
         her "{i}I'm going to ask him about it again in the morning, otherwise I might just call it a loss.{/i}"
+        scene bedroom with fade 
         "I went to bed hoping that [her_name] would figure something out."
+        scene black with fade
+        scene farm_exterior with fade
+        show him normal at midright
+        show her nervous at midleft
         "I didn't hear from [her_name] until she got back the next evening."
+        show her nervous with move at midright
         "She gave me a big hug."
-        him "Welcome back! How'd it go?"
-        her "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
-        him "Huh."
-        her "He followed me about halfway back... it was super awkward."
-        her "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
-        him "What are you going to do about him not paying?"
-        her "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
-        him "Yeah, it's not like you can actually buy more hospital supplies with the credits."
-        her "Exactly."
+        show her nervous at center with move
+        him content "Welcome back! How'd it go?"
+        her cry "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
+        him determined "Huh."
+        her nervous "He followed me about halfway back... it was super awkward."
+        her sad "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
+        him pout "What are you going to do about him not paying?"
+        her nervous "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
+        him sad "Yeah, it's not like you can actually buy more hospital supplies with the credits."
+        her sad "Exactly."
         jump credits29
 
     label helen_convo_29:
         him "How are you liking life back in the colony?"
         helen "Well, there are so many people to talk to. It's kind of overwhelming."
         helen "Some people are so busy that they don't have time to talk to me, but it's also a relief."
-        helen "It's funny because I used to read up on all the latest community forum posts when I lived here."
-        helen "It made me feel more isolated, because I never had any cool news to share."
+        helen happy "It's funny because I used to read up on all the latest community forum posts when I lived here."
+        helen normal "It made me feel more isolated, because I never had any cool news to share."
         helen "I haven't looked at a forum in ages and it's such a relief. If someone wants to tell me something, they can come find me."
-        helen "If someone else can take care of it, then no one bothers me!"
-        helen "I really miss my family though, and certain foods we like to make."
-        him "Really? What kind of food?"
+        helen happy "If someone else can take care of it, then no one bothers me!"
+        helen normal "I really miss my family though, and certain foods we like to make."
+        him content "Really? What kind of food?"
         helen "Well, when we butcher a cow certain cuts sell pretty quickly even at high prices. But other parts aren't as popular."
-        helen "I like to make a soup with the feet and tail and some of the innards."
+        helen happy "I like to make a soup with the feet and tail and some of the innards."
         helen "We even ate the brains a few times! It's not very healthy but it was something different."
-        helen "I wonder if that's why I have high blood pressure now..."
+        helen normal "I wonder if that's why I have high blood pressure now..."
         if keep_buying_pete_beef:
-            him "How is the herd doing? Pete hasn't come by to butcher or sell meat in a long time."
-            helen "The butchery in the colony is actually an artificial meat factory now!"
+            him normal "How is the herd doing? Pete hasn't come by to butcher or sell meat in a long time."
+            helen normal "The butchery in the colony is actually an artificial meat factory now!"
             helen "We have to do our own butchering, so we only sell raw cuts to people who are willing to come to us to get the food."
             helen "The rest, we dry out or slow-cure."
             helen "Beef definitely isn't as popular now, so our herd is a bit smaller."
-            helen "Our cheese and cream are pretty profitable, and our dried fish is the most popular."
+            helen happy "Our cheese and cream are pretty profitable, and our dried fish is the most popular."
         else:
-            him "Are you still raising cattle?"
-            helen "Oh yes. The herd is getting a little smaller, but we can sell it for more now that we're not competing with the colony's beef."
+            him normal "Are you still raising cattle?"
+            helen happy "Oh yes. The herd is getting a little smaller, but we can sell it for more now that we're not competing with the colony's beef."
             helen "Our dried fish is really popular, as is our cheese and cream."
-        him "So you have high blood pressure. I heard that's really common in late pregnancy."
-        helen "I know. I just keep thinking that I should have been more careful about eating animal fats."
-        helen "Or maybe I'm just too stressed out and it would be better if I could just calm down."
-        him "There isn't much you can do about it now besides follow [her_name]'s instructions."
-        helen "I wish there were something I could do. I feel so unhelpful."
-        him "Just try to stay healthy and grow that baby."
-        helen "Maybe if I concentrate hard enough, she'll grow an extra eye!"
-        him "Do you know what you want to name her?"
-        helen "Yes. Before we left, Pete and I agreed to name her Sage."
+        him pout "So you have high blood pressure. I heard that's really common in late pregnancy."
+        helen normal "I know. I just keep thinking that I should have been more careful about eating animal fats."
+        helen happy "Or maybe I'm just too stressed out and it would be better if I could just calm down."
+        him doubt "There isn't much you can do about it now besides follow [her_name]'s instructions."
+        helen normal "I wish there were something I could do. I feel so unhelpful."
+        him explaining "Just try to stay healthy and grow that baby."
+        helen happy "Maybe if I concentrate hard enough, she'll grow an extra eye!"
+        him determined "Do you know what you want to name her?"
+        helen normal "Yes. Before we left, Pete and I agreed to name her Sage."
         if community_22_compromise or community_22_mined_anyway:
-            helen "Oh, I brought a set of Talaam chess with me! Want to play?"
-            him "Sure, I'll play."
+            helen happy "Oh, I brought a set of Talaam chess with me! Want to play?"
+            him content "Sure, I'll play."
             "The game was very complex and involved a randomized play field made with elaborate wooden cubes."
             "Depending on the design on the cubes and the side they were facing, your pieces could move or interact in different ways and even change the orientation of the cubes themselves."
             "I didn't quite understand it the first time I played it, but after a few times I got really into it."
-            helen "I brought a few extra sets of this game if you want to buy a copy!"
-            him "With all the handmade components, I think it might be too expensive for me."
-            helen "Start saving now! You can't replicate craftsmanship like this with a 3D printer."
+            helen normal "I brought a few extra sets of this game if you want to buy a copy!"
+            him explaining "With all the handmade components, I think it might be too expensive for me."
+            helen happy "Start saving now! You can't replicate craftsmanship like this with a 3D printer."
+            him content "I'll just borrow your copy when I want to play it."
         else:
-            helen "I've really missed playing board games. Does the library still have 'Plunder, Trial, and Jailbreak'?"
-            him "Oh, that game! Some kid checked it out and lost half of the jury deck and all the inventory cards."
-            him "No one has bothered to print out replacements, but if you have time, you could probably figure it out."
-            helen "Thanks, I will!"
+            helen happy "I've really missed playing board games. Does the library still have 'Plunder, Trial, and Jailbreak'?"
+            him explaining "Oh, that game! Some kid checked it out and lost half of the jury deck and all the inventory cards."
+            him normal "No one has bothered to print out replacements, but if you have time, you could probably figure it out."
+            helen normal "Thanks, I will!"
+        scene hospital with fade
+        show helen normal at midright
+        with dissolve
         "For the last month of her pregnancy, Helen was on bedrest in the hospital."
+        show him normal at midleft with moveinleft
         "I stopped by often to see [her_name] and I played a game or two with Helen."
         "Helen had always been pretty shy, but as a community we completely doted on her as she survived her pregnancy."
         "Natalia made a beautiful quilt for the future baby, and Travis made a wicker cradle."
         "Joanna made a waterproof book with high-contast images, and the elementary school kids made a mobile out of felted plant fibers."
         "Two weeks after she went on bedrest, Helen stopped taking visitors."
+        scene farm_interior
+        show her sad at midright
+        show him normal at midleft with dissolve
         her "Helen wants to be alone right now... she told me to tell everyone that the fetus is dead and she'll be having a stillbirth."
-        him "That's so sad. We were all looking forward to meeting Sage."
-        her "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
+        him sad "That's so sad. We were all looking forward to meeting Sage."
+        her nervous "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
+        scene hospital with fade
         "Helen delivered her stillborn baby, but started hemmoraging and had to have a blood transfusion until [her_name] could stop the bleeding."
         "Ilian had her same blood type and gave blood to her."
+        show helen normal at midright
+        show her blush at center
+        show pete normal at right
+        show him normal at midleft
+        with dissolve
         her "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
-        helen "I'm glad I survived, too."
-        pete "Me three."
-        her "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
-        pete "I think I have enough credits to pay you."
-        her "Okay, can you approve the transaction?"
-        pete "Sure, just hand me your tablet."
-        pete "What gives? It's saying I have insufficient funds."
-        her "Let's try charging just one credit."
-        pete "What is going on? It still says insufficient funds."
+        helen normal "I'm glad I survived, too."
+        pete happy "Me three."
+        her concerned "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
+        pete normal "I think I have enough credits to pay you."
+        her annoyed "Okay, can you approve the transaction?"
+        pete happy "Sure, just hand me your tablet."
+        pete normal "What gives? It's saying I have insufficient funds."
+        her surprised "Let's try charging just one credit."
+        pete normal "What is going on? It still says insufficient funds."
         pete "[his_name], can you try drawing a credit from my account to verify that it's not just something on [her_name]'s tablet?"
-        him "Okay, here."
-        pete "Still the same problem."
+        him pout "Okay, here."
+        pete normal "Still the same problem."
         pete "I know I had over a thousand in there last week."
         pete "Someone stole from me."
         pete "But I guess that's my problem."
-        helen "Here, take Sage's things and sell them to the storehouse. That should pay for some of it."
+        helen normal "Here, take Sage's things and sell them to the storehouse. That should pay for some of it."
         helen "We can settle the rest later. When can I go home?"
-        her "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
+        her determined "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
         helen "We don't have any use for those things now... besides selling them."
         "After Helen was well enough, she and Pete left. They buried Sage's body near the base of the mountain."
         jump credits29
@@ -6970,11 +7040,11 @@ label community29:
             show him midright with dissolve
             show her center with dissolve
             show kid left with dissolve
-            kid "I heard a rumor that Pete's credits were stolen."
-            her "That's what Pete said."
-            kid "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
-            him "This is the first I've heard of it."
-            kid "..."
+            kid shifty "I heard a rumor that Pete's credits were stolen."
+            her determined "That's what Pete said."
+            kid determined "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
+            him surprised "This is the first I've heard of it."
+            kid concerned "..."
             return
 
         #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that.
