@@ -254,7 +254,7 @@ init python:
                 (crop_temporarily_disabled != crop_info[i][NAME_INDEX])):
                     available_crop_names.append(crop_info[i][NAME_INDEX])
 
-            for i in range(0, len(self)):
+            for i in range(0, self.len()):
                 # If it's a perennial, keep it.
                 # Otherwise, fill it randomly
                 if (self[i][-1] != "+"):

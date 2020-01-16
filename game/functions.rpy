@@ -232,13 +232,13 @@ init -100 python:
     # TODO: this doesn't go in the global notifications variable
     def modify_credits(amount):
         global credits, notifications
-        credits += amount
+        credits += int(amount)
         if (amount >= 0):
-            notifications += "Credits +" + str(amount) + "\n"
-            renpy.notify("Credits +" + str(amount))
+            notifications += "Credits +" + str(int(amount)) + "\n"
+            renpy.notify("Credits +" + str(int(amount)))
         else:
-            notifications += "Credits " + str(amount) + "\n"
-            renpy.notify("Credits " + str(amount))
+            notifications += "Credits " + str(int(amount)) + "\n"
+            renpy.notify("Credits " + str(int(amount)))
 
     def modify_farm_size(amount):
         global farm_size, notifications
@@ -287,13 +287,13 @@ init -100 python:
         return (CALORIES_BASE + calories_kid + calories_bro)
 
     def get_calories_kid(age):
-        if (0 <= age <= 1):
+        if (0 <= age < 2):
             return 5
-        if (2 <= age <= 4):
+        if (2 <= age < 5):
             return 10
-        if (5 <= age <= 10):
+        if (5 <= age < 11):
             return 15
-        if (11 <= age <= 13):
+        if (11 <= age < 14):
             return 20
         if (14 <= age):
             return 25

@@ -690,7 +690,7 @@ label work8:
     show him concerned sweat at midleft with moveinleft
     her concerned "You look beat. And you smell like..."
     kid surprised "Like poop!"
-    him determined sweat "Yeah... the outhouse was full."
+    him determined "Yeah... the outhouse was full."
     her surprised "Oh! I guess that would happen eventually..."
     if (work8_choice == "clean"):
         him concerned sweat "I mucked the whole thing out."
@@ -756,6 +756,7 @@ label work10:
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
+            # TODO: If you don't allocate space for them, you still have them.
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."
