@@ -176,7 +176,7 @@ init -10:
             elif argument == "yum":
                 emoji="😋"
             elif argument == "yuck":
-                emoji="🤮"
+                emoji="🤢"
             elif argument == "grimace":
                 emoji="😬"
             elif argument == "heart":

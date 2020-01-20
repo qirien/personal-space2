@@ -56,6 +56,7 @@ EketorpsBorgHayBarn <barn.jpg> by Andrea Landaker, derived from <http://commons.
 lab.jpg, "Wells International School - Science Lab 1.jpg" <https://commons.wikimedia.org/wiki/File:Wells_International_School_-_Science_Lab_1.jpg>, by Kuruzovich
 
 ==== CC-BY-2.0
+library <library.jpg>, "Maker Space Post-Finishing an Additive Manufacturing Part Made with a Formlabs Form 2 SLA 3D Printer" by Formlabs Inc. <https://www.flickr.com/photos/161389331@N04/47479323321/in/photostream/#>
 storehouse1 <storehouse1.jpg>, "Mr. Vernon Kitchen and Storeroom" by Mr. Gray <https://www.flickr.com/photos/socsci/18933614460/in/photostream/>
 community_center <community_center.jpg>, "South Broadway Cultural Center's Multi-Purpose Room" by Albuquerque South Broadway Cultural Center <https://www.flickr.com/photos/south-broadway-cultural-center/5555481119/>
 hospital <hospital.jpg>, "Inauguración del Hospital Municipal de Chiconcuac" by Presidencia de la República Mexicana <https://www.flickr.com/photos/presidenciamx/24152774186/>
