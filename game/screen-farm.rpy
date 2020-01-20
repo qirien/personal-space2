@@ -282,7 +282,7 @@ screen crops_layout:
             style_prefix "crop_layout"
 
             # number of columns is the square root of farm_size
-            cols int(farm_size**0.5)
+            cols round(farm_size**0.5)
             side_xalign 0.5
             for i in range(0, farm_size):
                 vbox:
@@ -374,13 +374,17 @@ screen crops_totals:
         if (year >= MONEY_YEAR):
             text "Current Balance: [credits] credits"
             $ total_expenses = get_expenses_required(year) - KELLY_SALARY
+            if (crop_enabled("wheat")):
+                $ total_expenses += WHEAT_COST # TODO: Change depending on how much wheat you plant?
             if (total_expenses > total_value):
                 text "Value:    " + str(total_value) + " credits" color red_med
             else:
                 text "Value:    " + str(total_value) + " credits"
             text "Expenses: " + str(total_expenses) + " credits"
             text "Expected Balance: " + str(credits + total_value - total_expenses) + " credits"
-            # TODO: show this better, show savings, etc.
+            # TODO: ability to click on "Expenses" or "Value" and see itemized list.
+            # TODO: make this look prettier
+            # TOdO: show bee boosting
 
         text " "
         if (year >= KID_WORK_YEAR):
@@ -395,6 +399,7 @@ screen crops_totals:
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current
 # value.
+# TODO: This gets wonky when the value is close to the max? Or maybe the maximum needs to be adjusted?
 screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
     # we have an increase; show it in a positive color
     if (new_value >= current_value):

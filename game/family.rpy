@@ -5126,7 +5126,10 @@ label family17:
                 ilian "Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
                 "I checked the time. It was getting late. We didn't have time to look anywhere else, especially since the farms were so spread out."
                 him determined "Then we shall craft our own bread."
-                "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
+                if (farm.crops.count("wheat") > 0):
+                    "It galled me to pay Ilian for the wheat I had just sold him, but I did it anyway. I didn't keep a lot of wheat around since it brought in a lot of money. I also bought some yeast."
+                else:
+                    "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
 
             "Pavel Grayson, the mayor":
                 "Mayor Grayson knew everyone. He would probably have some idea."
@@ -8165,7 +8168,7 @@ label family29:
                 him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
                 kid determined "Huh. Okay."
                 $ authoritarian += 1
-            "To create a life together":
+            "To create a family together":
                 him happy "We wanted to make something new together, a beautiful life here on this planet with some adorable children."
                 him normal "We promised to stick together, no matter what."
                 him content "Because we wanted to experience all the joys and struggles of life with the other person at our side."

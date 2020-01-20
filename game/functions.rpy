@@ -55,11 +55,12 @@ init python:
 #
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
-    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment
+    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment,
+    # as long as Terra's work slider is under 90%
     # TODO: is this balanced?
     $ inc_amount = 0
-    if (total_work < current_work):
-        $ inc_amount += 1
+    #if ((total_work < current_work) and (kid_work_slider < 90.0)):
+    #    $ inc_amount += 1
     $ inc_amount += responsive
     if (inc_amount > 0):
         $ notifications += "Attachment +" + str(inc_amount) + "\n"
@@ -72,7 +73,8 @@ label increase_competence:
     # If your kid spends more than half their time working, increase competence
     # TODO: Should we take out the int casting and allow more nuance?
     # Or have their work_slider affect how much demanding gets added?
-    $ inc_amount += int(kid_work_slider/50.0)
+    # TODO: try taking this and previous one out and see what happens.
+    # $ inc_amount += int(kid_work_slider/50.0)
     $ inc_amount += demanding
     if (inc_amount > 0):
         $  notifications += "Competence +" + str(inc_amount) + "\n"
@@ -181,6 +183,7 @@ init -100 python:
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events (we have 22)
 
+        # TODO: This hardly ever happens. Make nutrition harder.
         # IF nutrition is low, you don't get to do any of that. Instead
         # you have to take care of the nutrition problem.
         malnutrition_threshold = renpy.random.randint(-5, 0)
@@ -197,6 +200,9 @@ init -100 python:
             # Call the next set event
             event_name = "work" + str(year)
             return event_name
+
+        # TODO: If you make Terra work too much, she complains.
+        # TODO: If you have a lot of money, have an investment opportunity?
 
         # Otherwise, we get a random crop event
         else:

@@ -785,7 +785,7 @@ label work12:
         natalia_c "Hmm, I might have to try those, if they're really as easy to grow as you say..."
     brennan_c "Well, that's the thing. If you're going to grow them, you need to sign a 20 year contract. We have a set amount and we need reliable buyers."
     natalia_c "Twenty years? Some of us might not even be alive then."
-    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us a certain amount every year and we'll provide you with seeds." # TODO: currency check, how much?
+    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us [WHEAT_COST] credits every year and we'll provide you with seeds."
     julia_c "That's ridiculous. Who would want to rely on you for their seeds?"
     brennan_c "You're a tough customer, Julia; I love that about you! But let's let everyone decide for themselves. Come see me if you want in on this great deal."
     nvl clear
@@ -793,7 +793,7 @@ label work12:
         "What should I do?"
         "Sign a wheat contract.":
             $ miners += 1
-            scene miners_camp with fade
+            scene mine with fade
             show brennan normal at midright with dissolve
             show him at midleft with moveinleft
             him normal "I'm interested in the wheat."
@@ -803,7 +803,6 @@ label work12:
             him determined "..."
             brennan normal "...Right. Here's your wheat."
             $ enable_crop("wheat")
-            # TODO: implement annual fee, test
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
             $ mavericks += 1
@@ -873,7 +872,7 @@ label work14:
     "She was tentative at first, but she seemed to be figuring it out."
     scene fields with fade
     "I left for a minute to check on something, but I wasn't gone for more than five minutes when I heard a scream."
-    scene barn with faded
+    scene barn with fade
     show goat at center
     show kid cry at midright with dissolve
     show him concerned at midleft with moveinleft
@@ -1404,14 +1403,13 @@ label work22:
     him determined "Why did [her_name] want to meet me here? It makes no sense..."
     him annoyed "And the lights are off, which means she's not even here...?"
     hide night_overlay with dissolve
-    show her laughing at quarterleft
+    show her laugh at quarterleft
     show bro happy at quarterleft
     show kid happy at midleft
-    show thuc happy at center
+    show thuc normal at center
     show pete happy at midright
     show ilian happy at quarterright
     show sara happy at right
-    show oleg at right
     with dissolve
     "Everybody" "Happy Birthday, [his_name]!"
     him surprised "Whoa! What are you guys all doing here in the dark??"
@@ -1427,6 +1425,7 @@ label work22:
     "The kids ran off to the a table covered with a variety of foods -- looks like [her_name] organized a potluck. I made a mental note to visit it very soon."
     hide bro
     hide kid
+    hide oleg
     with moveoutleft
     show him at midleft with move
     him happy "Thanks for coming, Thuc!"
@@ -1888,7 +1887,7 @@ label work28:
     scene farm_interior with fade
     show her concerned at midright
     show kid normal at center
-    show bro normal at midleft
+    show bro normal at quarterright
     with dissolve
     show him normal at quarterleft with moveinleft
     him happy "Hey guys, who wants to go out to eat?"
@@ -1901,15 +1900,26 @@ label work28:
     her happy "I haven't been out to eat in... years!"
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
     scene restaurant with fade
-    show travis normal at center with dissolve
+    show travis normal at midright with dissolve
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
     "Plus, the place wasn't that big."
     "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
     "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
+    show him normal at center
+    show her normal at midleft
+    show kid normal at quarterleft
+    show bro normal at left
+    with moveinleft
     "We waited in line for thirty minutes while he and his sister cooked pancakes."
     if community_22_mined_anyway:
         "He had adapted quite well to his prosthetic leg; he didn't even limp anymore."
+    show travis at right
+    show him at midright
+    show her at center
+    show kid at midleft
+    show bro at quarterleft
+    with move
     travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
     kid determined "Are your parents okay with you running a restaurant?"
     travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
@@ -1922,18 +1932,24 @@ label work28:
             him annoyed "But that price is ridiculous!"
             her normal "Then I'm buying."
             "Before I could protest she paid for pancakes and cider for the whole family."
-            $ credits -= 60
+            $ modify_credits(-60)
         "Just pancakes.":
             him normal "Just pancakes for four."
             travis "Pancakes for four, got it!"
             her concerned "Oh, I wanted to try the cider..."
             travis "Plus one cider!"
-            $ credits -= 45
+            $ modify_credits(-45)
         "Pancakes and cider for the whole family!":
             him happy "Pancakes and cider for everyone!"
             kid laugh "Nice!"
-            $ credits -= 60
+            $ modify_credits(-60)
 
+    scene restaurant with fade
+    show him happy at midright
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
+    with dissolve
     "We smothered our pancakes in various toppings and sat down to eat."
     her sleeping "Oh yeah..."
     him sleeping "Mmmm, pancakes..."
@@ -1952,8 +1968,12 @@ label work28:
     her flirting "Oh, but I'm sure it'd be so much more fun to learn from Travis~"
     kid annoyed "Mom! He just makes good pancakes, that's all!"
 
+    scene restaurant with fade
+    show him normal at center with dissolve
     "We stayed for a while after we ate, talking to friends and neighbors and enjoying being together."
     "After Travis finished cooking, he came up to me."
+    show him at midleft with move
+    show travis normal at midright with moveinright
 
     travis "Hey, I wanted to talk to you."
     him surprised "To me?"
@@ -1971,11 +1991,13 @@ label work28:
         "I can't promise that.":
             him concerned "There's a lot of factors that come into play while planning my farm... I can't promise you that."
             travis "I see. Well, I'm sure someone else grows potatoes."
-    show pete at midleft with moveinleft
+    hide travis with moveoutright
+    show him at midright with move
+    show pete normal at quarterleft with moveinleft
     him normal "Hey, Pete. How do you feel about all this? It's not exactly independent living away from everyone else."
     pete "Well, Travis is old enough to decide for himself, I reckon. But he's not depending on RET for anything, so I'm proud of that."
     him determined "Yeah, but he's depending on everyone else -- you can't have a restaurant without any customers. You always said you wanted to be self-sufficient, not depend on anyone for anything."
-    pete "The main thing is, he decided to open a restaurant. Not a committee, not some pasty-faced government dandy, not even his dad. So I'm okay with that."
+    pete "The main thing is, {b}he{/b} decided to open a restaurant. Not a committee, not some pasty-faced government dandy, not even his dad. So I'm okay with that."
     him normal "Good! I gotta say, I'm okay with it, too -- especially if he keeps making those great pancakes."
     pete "And it's a great market for my cider."
 

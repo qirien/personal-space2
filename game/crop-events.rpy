@@ -660,7 +660,7 @@ label goats2:
             show her normal at midright
             show kid normal at center
             with dissolve
-            show him normal at midright with moveinright
+            show him normal at midleft with moveinleft
             him flirting "Too bad no one here likes applesauce. I guess I'll have to eat this all by myself."
             if (year >= 7):
                 kid happy "Applesauce!"
@@ -915,7 +915,7 @@ label tomatoes2:
                 $ tomatoes2_action = "sweetness"
                 "Sweet tomatoes were the best for eating. I can't stand mealy or bland tomatoes."
 
-        if ((get_available_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        if ((get_work_available() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             "After harvesting tomatoes and their seeds, I had enough extra time to get another field ready for planting crops on next year."
             $ modify_farm_size(1)
     else:
@@ -948,7 +948,7 @@ label tomatoes3:
         "Finally, I had a good tomato harvest. The tomatoes were firm all over and there were plenty of them."
         "Time for salsa, spaghetti sauce, and maybe even some pizza!"
 
-    if ((get_available_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+    if ((get_work_available() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
         "Now that the tomato harvest was finally over, I could start thinking about next year... I wanted another field for crops, so I cleared and fenced another field."
         $ modify_farm_size(1)
     return
@@ -1435,6 +1435,8 @@ label strawberries2:
 # Honey event
 # Can only happen year 11+
 label honey1:
+    scene farm with fade
+    show him normal at center with dissolve
     "Having bees wasn't just good for pollinating plants; I also really enjoyed when we got to harvest the honey."
     "But when I went to harvest the honey, I noticed something."
     him surprised "Some of the honey is missing!"
@@ -1518,7 +1520,7 @@ label honey1:
     show helen normal at center
     show travis normal at midright
     with dissolve
-    show him normal at midleft with moveinleft
+    show him normal at quarterleft with moveinleft
     helen "Oh. Hello, [his_name]."
     him normal "Hey there, Helen. How's it going?"
     helen "Okay, I guess. What brings you way out here?"
@@ -1536,11 +1538,13 @@ label honey1:
             show helen normal at quarterright with move
             helen "C'mere and talk with [his_name]. And"
             "She whispered something in his ear that I didn't hear."
-            show travis normal at midright with move
             hide helen with moveoutright
         "Talk to Travis directly.":
             him determined "Travis, I need to talk to you."
+            show helen at right with move
 
+    show him at center with move
+    show travis normal at midright with move
     travis "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
     him annoyed "Don't change the subject. I caught you stealing my honey."
     travis "Oh, uh, what?"

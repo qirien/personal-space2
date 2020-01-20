@@ -307,6 +307,8 @@ label life_loop:
                 $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
+        if (crop_enabled("wheat")):
+            $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ show_year = year
