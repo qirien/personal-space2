@@ -195,7 +195,6 @@ screen choose_crop(crop_index=0):
                         textbutton "X" xpos 120 ypos -2 action Hide("choose_crop", zoomout)
                     hbox:
                         style_prefix "crop_status"
-                    # TODO: The text here gets cut off on the left
                         vpgrid:
                             cols 2
                             text "   Calories: " #extra spaces are needed because vpgrid takes size for ALL children from size of first child
@@ -363,12 +362,21 @@ screen crops_totals:
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
-        text "Calories:     " + str(total_calories) + " / " + str(calories_needed)
-        use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Nutrition:    " + str(total_nutrition) + " / " + str(nutrition_needed)
-        use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Work:         " + str(total_work) + " / " + str(get_work_available())
-        use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Calories     "# + str(total_calories) + " / " + str(calories_needed)
+        hbox:
+            use stat_icons(2, CALORIES_INDEX)
+            text " "
+            use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Nutrition    "# + str(total_nutrition) + " / " + str(nutrition_needed)
+        hbox:
+            use stat_icons(2, NUTRITION_INDEX)
+            text " "
+            use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Work         "# + str(total_work) + " / " + str(get_work_available())
+        hbox:
+            use stat_icons(2, WORK_INDEX)
+            text " "
+            use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
         if (year >= KID_WORK_YEAR):
             hbox:
                 null width 50
@@ -379,13 +387,15 @@ screen crops_totals:
                         xfill True
                         text "Free Time" italic True
                         text "Work" italic True xalign 1.0
-        text " "
 
         if (year >= MONEY_YEAR):
             $ total_expenses = get_expenses_required(year) - KELLY_SALARY
             if (crop_enabled("wheat")):
                 $ total_expenses += WHEAT_COST # TODO: Change depending on how much wheat you plant?
+            text "Value"
+            use stat_icons(2, VALUE_INDEX)
             hbox:
+                style_prefix "plan_farm_total"
                 xfill True
                 vbox:
                     text "Current Balance"
@@ -487,6 +497,10 @@ style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
     idle_color green_dark
     hover_color green_med
+
+style plan_farm_total_text is text:
+    font "fonts/FreeMono.ttf"
+    color black
 
 style round_button is plan_farm_button:
     background "roundrect_medgreen"
@@ -654,8 +668,7 @@ style normal_bar_horizontal is crop_layout_bar:
 
 style crop_totals_bar is crop_layout_bar
 
-style work_slider is slider:
-    ysize CROP_LAYOUT_BAR_SIZE/2
+style work_slider is slider
 
 style crop_status_vpgrid:
     xsize CROP_STATUS_ICON_SIZE*5*2
