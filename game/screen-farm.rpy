@@ -120,8 +120,6 @@ screen farm_details_screen:
                         text " "
                     text " "
 
-                    text notifications italic True xoffset 20
-
             # Community info
             frame:
                 style "plan_farm_subframe"
@@ -344,6 +342,7 @@ style crop_history_hbox is crop_details_hbox:
 
 screen crops_totals:
     vbox:
+        yalign 0
         $ calories_needed = get_calories_required(year)
         $ nutrition_needed = get_nutrition_required(year)
         $ total_max = farm_size * CROP_STATS_MAX
@@ -364,37 +363,49 @@ screen crops_totals:
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
-        text "Calories:     " + str(total_calories)
+        text "Calories:     " + str(total_calories) + " / " + str(calories_needed)
         use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Nutrition:    " + str(total_nutrition)
+        text "Nutrition:    " + str(total_nutrition) + " / " + str(nutrition_needed)
         use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
         text "Work:         " + str(total_work) + " / " + str(get_work_available())
         use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
+        if (year >= KID_WORK_YEAR):
+            hbox:
+                null width 50
+                vbox:
+                    text "Kids' Assignment"
+                    bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
+                    hbox:
+                        xfill True
+                        text "Free Time" italic True
+                        text "Work" italic True xalign 1.0
+        text " "
 
         if (year >= MONEY_YEAR):
-            text "Current Balance: [credits] credits"
             $ total_expenses = get_expenses_required(year) - KELLY_SALARY
             if (crop_enabled("wheat")):
                 $ total_expenses += WHEAT_COST # TODO: Change depending on how much wheat you plant?
-            if (total_expenses > total_value):
-                text "Value:    " + str(total_value) + " credits" color red_med
-            else:
-                text "Value:    " + str(total_value) + " credits"
-            text "Expenses: " + str(total_expenses) + " credits"
-            text "Expected Balance: " + str(credits + total_value - total_expenses) + " credits"
-            # TODO: ability to click on "Expenses" or "Value" and see itemized list.
-            # TODO: make this look prettier
-            # TOdO: show bee boosting
-
-        text " "
-        if (year >= KID_WORK_YEAR):
-            label "Kids' Assignment"
-            bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
             hbox:
                 xfill True
-                text "Free Time"
-                text "Work" xalign 1.0
+                vbox:
+                    text "Current Balance"
+                    text "Value"
+                    text "Expenses"
+                    text "{font=fonts/OpenSansEmoji.otf}_____________________{/font}"
+                    text "Expected Balance"
+                vbox:
+                    xalign 1.0
+                    text str(credits) xalign 1.0
+                    if (total_expenses > total_value):
+                        text "+" + str(total_value) color red_med xalign 1.0
+                    else:
+                        text "+" + str(total_value) xalign 1.0
+                    text "-" + str(total_expenses) xalign 1.0
+                    text "{font=fonts/OpenSansEmoji.otf}_____{/font}" xalign 1.0
+                    text str(credits + total_value - total_expenses) xalign 1.0
 
+            # TODO: ability to click on "Expenses" or "Value" and see itemized list.
+            # TOdO: show bee boosting
 
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current
@@ -488,6 +499,7 @@ style round_button_text is plan_farm_button_text:
 
 style plan_farm_text is text:
     color black
+    font "fonts/RobotoSlab-Regular.ttf"
 
 style plan_farm_status_text is plan_farm_text:
     yalign 0.5
@@ -500,8 +512,8 @@ style plan_farm_vbox is vbox:
 
 style plan_farm_subframe is frame:
     background "roundrect_lightgray"
-    xpadding 8
-    ypadding 8
+    xpadding 10
+    ypadding 10
 
 # Custom styles for the crop details part of the screen
 
@@ -642,7 +654,8 @@ style normal_bar_horizontal is crop_layout_bar:
 
 style crop_totals_bar is crop_layout_bar
 
-style work_slider is slider
+style work_slider is slider:
+    ysize CROP_LAYOUT_BAR_SIZE/2
 
 style crop_status_vpgrid:
     xsize CROP_STATUS_ICON_SIZE*5*2
