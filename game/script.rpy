@@ -9,6 +9,7 @@
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
+# TODO: Autosave/resume does not work well right now.
 ##
 
 label start:
@@ -115,6 +116,11 @@ label start:
         ilian_has_cattle = False
         thuc_sells_food = False
         cave_explored = False
+        talked_to_Natalia = False
+        talked_to_Thuc = False
+        talked_to_Sara = False
+        talked_to_Kevin = False
+        talked_to_Pavel = False
         community_11_kidsonfarm = False
         community_17_planparty = False
         community_22_mining_stopped = False
@@ -321,6 +327,7 @@ label life_loop:
                 jump trailer_continue
             if testing_mode:
                 jump test_continue
+            $ notifications = ""
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
@@ -342,7 +349,6 @@ label life_loop:
             call expression "community" + str(year)
 
             # Increase child stats based on this year's parenting decisions
-            $ notifications = ""
             stop music fadeout 3.0
             call interscene_text(year, "End")
             call increase_attachment

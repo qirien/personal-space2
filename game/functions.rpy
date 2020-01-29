@@ -50,9 +50,6 @@ init python:
 # PARENTING FUNCTIONS
 ##
 
-# TODO: These might need to be functions, not labels for the
-# notifications to go in the same place as those from functions
-#
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
     # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment,
@@ -234,17 +231,17 @@ init -100 python:
                 return "default_crop_event"
 
     # Change amount of credits you have
-    # TODO: show credits in a corner somewhere?
-    # TODO: this doesn't go in the global notifications variable
+    # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
+        renpy.show_screen("show_credits", amount=amount)
         credits += int(amount)
+        message = "Credits "
         if (amount >= 0):
-            notifications += "Credits +" + str(int(amount)) + "\n"
-            renpy.notify("Credits +" + str(int(amount)))
-        else:
-            notifications += "Credits " + str(int(amount)) + "\n"
-            renpy.notify("Credits " + str(int(amount)))
+            message += "+"
+        message += str(int(amount)) + "\n"
+        notifications += message
+
 
     def modify_farm_size(amount):
         global farm_size, notifications
@@ -372,6 +369,15 @@ init -100 python:
         else:
             return "{color=#f00}Danger{/color}"
 
+    # Return any boosting overlays that apply to this square.
+    # Specifically, boosting related to bees
+    def get_boost_image(index):
+        if (index in farm.get_boosted_squares()):
+            return Image("gui/emoji/bee boost.png")
+        else:
+            return Null()
+
+    # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):
         if (pest_factor < 0.05):
             return Null(CROP_ICON_SIZE, CROP_ICON_SIZE)

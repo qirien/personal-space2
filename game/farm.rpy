@@ -85,26 +85,11 @@ init python:
                     # print "Pest Factor[" + str(i) + "] is " + str(pest_factor) + ", pest_growth= " + str(pest_growth)
 
                 # Bee Calculation
-                # Boost what is adjacent - -1 and +1 for horizontal,
-                # and -num_columns and +num_columns for vertical
+
                 if (crop_name == "honey"):
-                    num_columns = int(self.crops.len()**0.5)
-                    # left edge
-                    if ((i % num_columns) == 0):
-                        indices = [i-num_columns, i+1, i+num_columns]
-                    # right edge
-                    elif ((i % num_columns) == (num_columns - 1)):
-                        indices = [i-num_columns, i-1, i+num_columns]
-                    # middle column somewhere
-                    else:
-                        indices = [i-num_columns, i-1, i+1, i+num_columns]
-                    #print "Bee boosting: " + str(indices)
-                    for curr_index in indices:
-                        # if it's not out of bounds
-                        if ((curr_index >= 0) and (curr_index < len(final_yield))):
-                            # if it's a pollinated crop
-                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
-                                final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
+                    boosted_squares = self.get_boosted_squares()
+                    for curr_index in boosted_squares:
+                        final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
 
                 # TODO: still runaway pests on perennials...
                 # Subtract pests and nitrogen deficiency from final yield
@@ -224,6 +209,33 @@ init python:
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()
+
+        # Return a set of indexes that are currently boosted
+        def get_boosted_squares(self):
+            indices = set()
+            for i in range(0, self.crops.len()):
+                crop_name = self.crops[i]
+                if (crop_name == "honey"):
+                    # Boost what is adjacent - -1 and +1 for horizontal,
+                    # and -num_columns and +num_columns for vertical
+                    num_columns = int(self.crops.len()**0.5)
+                    # left edge
+                    if ((i % num_columns) == 0):
+                        potential_indices = [i-num_columns, i+1, i+num_columns]
+                    # right edge
+                    elif ((i % num_columns) == (num_columns - 1)):
+                        potential_indices = [i-num_columns, i-1, i+num_columns]
+                    # middle column somewhere
+                    else:
+                        potential_indices = [i-num_columns, i-1, i+1, i+num_columns]
+                    for curr_index in potential_indices:
+                        # if it's not out of bounds
+                        if ((curr_index >= 0) and (curr_index < self.crops.len())):
+                            # if it's a pollinated crop
+                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
+                                indices.add(curr_index)
+            return indices
+
 
     ##
     # CROPS OBJECT

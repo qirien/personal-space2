@@ -746,13 +746,14 @@ label work10:
     him surprised "What's that?"
     kevin "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
     him normal "Like bees?"
-    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm?"
+    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm for 100 credits?"
 
     menu:
         "What should I say?"
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin "Very well. I shall mark you down for bees."
+            $ modify_credits(-100)
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
@@ -760,7 +761,6 @@ label work10:
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."
-            "I didn't have room or time for bees."
     return
 
 # Year 12, 7.4 years old

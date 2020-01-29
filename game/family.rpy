@@ -2394,8 +2394,9 @@ label family7_angry_ending:
     show kid at midleft with move
     "[kid_name] ran in and hid her face in [her_name]'s lap. The she spoke, so quietly that I could barely hear."
     kid sad "I peed in my bed."
-    show her angry
+    show her annoyed with dissolve
     "[her_name] shot me a glare, as if [kid_name]'s bladder problems were my fault. She was probably peeing in the bed on purpose to try to get even with us!"
+    show him determined with dissolve
     "I started to stand up, but [her_name] beat me to it."
     her determined "I'll handle this. I don't trust you right now."
     hide her
@@ -2403,8 +2404,9 @@ label family7_angry_ending:
     with moveoutleft
     "A sour mix of resentment and anger bubbled through my thoughts. I wanted to lash out, get even, show everyone that I was in charge..."
     "But I didn't want to be that kind of dad."
+    show him sad with dissolve
     "The kind of dad whose own kids were afraid of him."
-    "I remember being afraid of my dad, sometimes. That's why whenever I had problems, I always went to my mom."
+    "I remember being afraid of my dad, sometimes. Whenever I had problems, I always went to my mom."
     "I didn't want [kid_name] to feel like that."
     $ marriage_strength -= 1
     $ trust -= 1

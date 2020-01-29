@@ -935,11 +935,6 @@ label community7:
 
 # 8 - What luxuries should RET send?
 label community8:
-    $ talked_to_Natalia = False
-    $ talked_to_Thuc = False
-    $ talked_to_Sara = False
-    $ talked_to_Kevin = False
-    $ talked_to_Pavel = False
     $ talked_about_luxuries_counter = 0
 
     if is_liaison:

@@ -135,11 +135,6 @@ screen farm_details_screen:
                     # TODO: how do I get the word_board variable here?
                     # textbutton "Poetry" action Show("poetry_display", args=word_board)
 
-                    # TODO: show these somewhere beside previous screen?
-                    # text notifications
-
-
-
         # Crop layout area
         frame:
             style "plan_farm_subframe"
@@ -172,18 +167,6 @@ screen choose_crop(crop_index=0):
         hbox:
             xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 20
             spacing 10
-            # vbox:
-            #     spacing 10
-            #     style_prefix "field_info"
-            #     xsize LEFT_COLUMN_WIDTH
-            #     label "Field Status"
-            #     label "History" style "crop_details_label" text_color white
-            #     use history_box(crop_index)
-            #     null height 20
-            #     label "Health" style "crop_details_label" text_color white
-            #     text "Nitrogen Level: " + get_level_fuzzy(1 - (farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX] / float(Field.NITROGEN_FULL)))
-            #     if USE_PESTS:
-            #         text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
 
             frame:
                 style "plan_farm_subframe"
@@ -216,7 +199,14 @@ screen choose_crop(crop_index=0):
                             else:
                                 null
                                 null
-                        text crop_descriptions[crop_name.rstrip("+")]
+                        vbox:
+                            if crop_enabled("honey"):
+                                if (crop_info[selected_crop_index][POLLINATED_INDEX]):
+                                    add "gui/emoji/bee boost.png"
+                                else:
+                                    null height CROP_STATUS_ICON_SIZE
+                            text crop_descriptions[crop_name.rstrip("+")]
+
                     null height 30
                     vpgrid:
                         # TODO: change this based on number of enabled crops?
@@ -268,7 +258,6 @@ screen stat_icons(stat_value, stat_index):
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
 
-# TODO: show bee boosting while laying out crops
 screen crops_layout:
     frame:
         yfill True
@@ -301,7 +290,7 @@ screen crops_layout:
                                 background red_dark
                             else:
                                 #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
-                                # make poor soils lighter and
+                                # make poor soils lighter,
                                 # (optionally) put the pests on top
                                 background Frame(Composite(
                                     (CROP_ICON_SIZE, CROP_ICON_SIZE),
@@ -314,8 +303,15 @@ screen crops_layout:
                             else:
                                 $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
-                                idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/idle.png")
-                                hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                # image file, then boosting, then any selection box
+                                idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
+                                (0,0), imagefile,
+                                (CROP_ICON_SIZE/2,0), get_boost_image(i),
+                                (0,0), "gui/crop icons/idle.png")
+                                hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
+                                (0,0), imagefile,
+                                (CROP_ICON_SIZE/2,0), get_boost_image(i),
+                                (0,0), "gui/crop icons/selected.png")
                                 xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                 anchor (0.5, 0.5)
                                 align  (0.5, 0.5)
@@ -349,6 +345,7 @@ screen crops_totals:
         $ total_nutrition = 0
         $ total_value = 0
         $ total_work = 0
+        $ boosted_squares = farm.get_boosted_squares()
         # Totaling crops attributes
         for i in range(0, farm.crops.len()):
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
@@ -356,7 +353,10 @@ screen crops_totals:
             $ total_calories += crop_info[index][CALORIES_INDEX]
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
             if (year >= MONEY_YEAR):
-                $ total_value += get_credits_from_value(crop_info[index][VALUE_INDEX])
+                $ multiplier = 100
+                if (i in boosted_squares):
+                    $ multiplier += farm.BEE_BOOST
+                $ total_value += int(multiplier/100.0 * get_credits_from_value(crop_info[index][VALUE_INDEX]))
                 # TODO: Need to take into account pests if using, so the user is not surprised.
 
             $ total_work += crop_info[index][WORK_INDEX]
@@ -414,8 +414,7 @@ screen crops_totals:
                     text "{font=fonts/OpenSansEmoji.otf}_____{/font}" xalign 1.0
                     text str(credits + total_value - total_expenses) xalign 1.0
 
-            # TODO: ability to click on "Expenses" or "Value" and see itemized list.
-            # TOdO: show bee boosting
+            # TODO: ability to click on "Expenses" or "Value" and see itemized list?
 
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current

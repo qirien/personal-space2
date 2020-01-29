@@ -13,11 +13,31 @@ screen interscene(year=0, event_type="Work"):
             label "Year [year] of [MAX_YEARS]"
             label "[event_type]"
 
-# TODO: Add a credits pop out and hide screen
-screen show_credits(expense=0):
-    window:
-        hbox:
-            label "Credits: [credits]"
+# Pop down and fadein (thanks PyTom!)
+transform credits_popdown():
+    xalign 0.98 ypos 30
+
+    # When it's shown, slide it down and fade it in.
+    on show:
+        yoffset -15.0  alpha 0.0
+        easein 0.5 yoffset 0.0 alpha 1.0
+
+    # When it's hidden, slide it down and fade it out.
+    on hide:
+        easeout 0.5 yoffset 15.0 alpha 0.0
+
+# Pop down a little screen that shows when your credits change
+screen show_credits(amount=0):
+    hbox:
+        at credits_popdown
+        $ credits_icon = STAT_ICON_BASE + "value.png"
+        frame:
+            xpadding 10
+            ypadding 10
+            background "roundrect_lightgray"
+            text "{image=" + credits_icon + "} [amount]" size 30
+
+    timer 3 action Hide("show_credits")
 
 # Show a summary of changes for the previous year
 # TODO: abstract out computer pad stuff somehow
@@ -53,7 +73,7 @@ screen yearly_summary():
                                         xalign 1.0
                                         label "Year [year] Summary"
                                         null height 10
-                                        text notifications 
+                                        text notifications
                                         # TODO: include community stats here?
                                     $ parenting_style = get_parenting_style()
                                     # TODO: add in expressions based on parenting style, attachment, competence, independence
