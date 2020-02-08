@@ -212,7 +212,7 @@ label bad_nutrition:
             her concerned "[his_name], I don't want to tell you how to do your job..."
             him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
             her annoyed "We can't live on just one or two foods! The human body needs more than 30 different vitamins, minerals, and nutrients."
-        him angry "There's a lot of factors here! Sometimes crops fail, I have a limited amount of seeds, and I have to balance everything right or crops won't grow at all!"
+        him angry "There's a lot of factors here! Sometimes crops fail, I limited types of seeds, and I have to balance everything right or crops won't grow at all!"
         her concerned "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
         him annoyed "They're not starving, right?"
         her annoyed "No. But I've made a list of deficiencies of our current diet and foods that could help meet them."
@@ -327,7 +327,7 @@ label bad_nutrition:
             him surprised "Oh, where did that bruise come from? I don't remember getting hurt..."
             her determined "You have scurvy."
             him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
-            her annoyed "Like, someone didn't plant enough fruits and vegetables scurvy."
+            her annoyed "Like, someone-didn't-plant-enough fruits-and-vegetables scurvy."
             him surprised "How come you and [kid_name] don't have it?"
             her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
             him annoyed "And you don't share it with me?!"
@@ -399,7 +399,10 @@ label bad_nutrition:
                 her "It'll take a few minutes for me analyze the spectrometer's results."
                 "I talked with kid_name while we waited for [her_name] to finish."
             else:
-                him concerned "I'll stay here with the kids while you do it."
+                if (bro_age > 0):
+                    him concerned "I'll stay here with the kids while you do it."
+                else:
+                    him concerned "I'll stay here with [kid_name] while you do it."
                 her sad "Okay..."
                 hide her with moveoutleft
                 "She was gone for about an hour."
@@ -1913,9 +1916,6 @@ label work28:
     with moveinleft
     "We waited in line for thirty minutes while he and his sister cooked pancakes."
     if community_22_mined_anyway:
-<<<<<<< HEAD
-        "He had adapted quite well to his prosthetic leg; other than a slight limp, you'd never know the difference."
-=======
         "He had adapted quite well to his prosthetic leg; he didn't even limp anymore."
     show travis at right
     show him at midright
@@ -1923,7 +1923,6 @@ label work28:
     show kid at midleft
     show bro at quarterleft
     with move
->>>>>>> 541be2fa98c9feac91a5715fe252e4a02de02eb0
     travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
     kid determined "Are your parents okay with you running a restaurant?"
     travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."

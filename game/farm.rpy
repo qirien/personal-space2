@@ -218,7 +218,7 @@ init python:
                 if (crop_name == "honey"):
                     # Boost what is adjacent - -1 and +1 for horizontal,
                     # and -num_columns and +num_columns for vertical
-                    num_columns = int(self.crops.len()**0.5)
+                    num_columns = int(round(self.crops.len()**0.5))
                     # left edge
                     if ((i % num_columns) == 0):
                         potential_indices = [i-num_columns, i+1, i+num_columns]

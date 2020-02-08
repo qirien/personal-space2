@@ -149,13 +149,12 @@ label start:
 
         # Dictionary containing the number of events seen for each crop
         number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
-        # TODO: add income
         credits = 0
-        crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
+        crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
-        crop_info =     (
+        crop_info =     (#Name          CAL NUT VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
-                        ["corn",         9, 4, 7, 7, 50, False, False, False, 100],    # Grains
+                        ["corn",         9, 4, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 5, 6, 6, 40, True, False, False, 100],
                         ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
                         ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
@@ -166,7 +165,7 @@ label start:
                         ["strawberries", 1, 2, 6, 4, 5, False, True, True, 1],
                         ["strawberries+",1, 2, 6, 2, 0, False, True, True, 0],
                         ["beans",        6, 8, 4, 7, -20, True, False, True, 100],   # Legumes
-                        ["peanuts",      7, 8, 5, 8, -50, False, False, False, 100],
+                        ["peanuts",      7, 8, 5, 8, -40, False, False, False, 100],
                         ["carrots",      3, 6, 3, 3, 10, True, False, False, 100],   # Root Vegetables
                         ["turnips",      3, 5, 1, 4, 10, False, False, False, 100],
                         ["onions",       4, 2, 5, 4, 5, False, False, False, 100],
