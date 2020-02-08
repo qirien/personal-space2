@@ -41,7 +41,6 @@ init -100 python:
             return
 
         def trim_to_size(self, size_tuple):
-            import random
             # Uniquify lists
             self.nouns      = list(set(self.nouns))
             self.adjectives = list(set(self.adjectives))
@@ -49,10 +48,10 @@ init -100 python:
             self.other      = list(set(self.other))
 
             # Take a sample of the proper size
-            self.nouns = random.sample(self.nouns, size_tuple[Wordpack.NOUN_INDEX])
-            self.adjectives = random.sample(self.adjectives, size_tuple[Wordpack.ADJECTIVE_INDEX])
-            self.verbs = random.sample(self.verbs, size_tuple[Wordpack.VERB_INDEX])
-            self.other = random.sample(self.other, size_tuple[Wordpack.OTHER_INDEX])
+            self.nouns = sample_if_larger(self.nouns, size_tuple[Wordpack.NOUN_INDEX])
+            self.adjectives = sample_if_larger(self.adjectives, size_tuple[Wordpack.ADJECTIVE_INDEX])
+            self.verbs = sample_if_larger(self.verbs, size_tuple[Wordpack.VERB_INDEX])
+            self.other = sample_if_larger(self.other, size_tuple[Wordpack.OTHER_INDEX])
 
             # Sort words
             self.nouns.sort()
@@ -73,3 +72,14 @@ init -100 python:
 
         def get_other(self):
             return self.other
+
+    # If the desired size is smaller than the size of the wordlist,
+    # take a random sample of that wordlist that is the desired size
+    # Return that random sample, or the entire list if the desired size
+    # is larger.
+    def sample_if_larger(wordlist, max_size):
+        import random
+        if (len(wordlist) > max_size):
+            return random.sample(wordlist, max_size)
+        else:
+            return wordlist

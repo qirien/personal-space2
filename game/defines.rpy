@@ -61,6 +61,7 @@ init -100:
     define CALORIES_BASE = 50
     define NUTRITION_BASE = 50
     define WORK_BASE = 60
+    define WHEAT_COST = 200
 
     # Money data
     define ANNUAL_EXPENSES_BASE = 2500
@@ -104,6 +105,7 @@ init -100:
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
+    define audio.saxophone = "<from 79>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
 
     # Emotional themes
     # Happy/excited
@@ -314,7 +316,7 @@ init -100:
 
     "tween": "I am starting to think more abstractly. I am learning not just about what the world is, but why it is the way it is. When I was little, I thought I was the best person ever, but now I'm starting to see that I'm not. Please help me to recognize my strengths and deal with my weaknesses. \n\nWhat my friends think is becoming more important, but I still want to hear what you have to say. I might argue with you, but please be patient and love me and I'll think about what you say. My body is changing a lot now, too, and I'm starting to wonder what kind of person I want to be.",
 
-    "yteen": "I might be rude to you and push you away when you try to show me affection like you did when I was a kid. I don't want you to tell me what to do. I will probably make some stupid choices and be hard on myself. Usually I don't need you to rescue me, but I need you to support and love me no matter what. \n\nI need to separate myself from you as I'm learning independence, so my words, appearance, music, and friends might seem really strange! \n\nPlease be interested in me and my world without trying to rule over it, and keep loving me and setting limits to protect me while I'm learning.",
+    "yteen": "I might be rude to you and push you away sometimes, and I don't want you to tell me what to do. I will probably make some stupid choices and be hard on myself. Try not to solve my problems for me, but support and love me no matter what. \n\nI need to separate myself from you as I'm learning independence, so my words, appearance, music, and friends might seem really strange! \n\nPlease be interested in me and my world without trying to rule over it, and keep loving me and setting limits to protect me while I'm learning.",
 
     "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please recognize my feelings and help me prepare to live on my own."
     }
@@ -347,7 +349,7 @@ define parenting_quotes = [
     "\"Excessive control usually involves punishment which is humiliating to children. Permissiveness is humiliating to adults. Positive discipline is based on mutual respect and cooperation. Positive discipline incorporates firmness with dignity and respect.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #23
     "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\n --Heraclitus", #24
     "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #25
-    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached. They accomplish this by creating a situation in which the caregiver separates from them (because of the \'hatred\'), but they themselves stay attached (by not directly expressing or even consciously feeling the hatred).\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
+    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached.\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
     "\"There is a cognitive bias that makes people overestimate their own importance and their own ability to influence how things turn out - not just in child-rearing but in everything they do.\"\n\n -- Judith R. Harris", #27
     "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
     "\"When the child internalizes a secure internal working model of self in relation to caregivers, a remarkable thing can occur— the child can dare to turn their back on caregivers and walk away from them\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #29

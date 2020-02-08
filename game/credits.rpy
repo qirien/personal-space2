@@ -18,7 +18,7 @@ label credits:
     $ renpy.pause(2.0, hard=skippable)
     hide text with fade
 
-    show text "Testing by Wes Landaker\nSapphire Landaker" with fade
+    show text "Testing by\n\nWes Landaker\nSapphire Landaker" with fade
     $ renpy.pause(2.0, hard=skippable)
     hide text with fade
 
@@ -26,7 +26,7 @@ label credits:
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
-    show text "Backgrounds based on images by\nLisa Horner\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nClker-Free-Vector-Images"
+    show text "Backgrounds based on images by\nLisa Horner\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nClker-Free-Vector-Images"
     $ renpy.pause(6.0, hard=skippable)
     hide text with fade
 

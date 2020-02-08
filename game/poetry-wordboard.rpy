@@ -4,15 +4,28 @@
 
 init -100 python:
     class Board(renpy.store.object):
-        MAX_LINES = 5
-        MAX_POEMS = 5
+        if renpy.mobile:
+            MAX_LINES = 3
+            MAX_POEMS = 3
+        else:
+            MAX_LINES = 5
+            MAX_POEMS = 5
 
-        NOUN_COLUMNS = 3
-        ADJECTIVE_COLUMNS = 3
-        VERB_COLUMNS = 2
-        OTHER_COLUMNS = 2
+        if renpy.mobile:
+            NOUN_COLUMNS = 2
+            ADJECTIVE_COLUMNS = 2
+            VERB_COLUMNS = 2
+            OTHER_COLUMNS = 1
+        else:
+            NOUN_COLUMNS = 3
+            ADJECTIVE_COLUMNS = 3
+            VERB_COLUMNS = 2
+            OTHER_COLUMNS = 2
 
-        MAX_ROWS = 10
+        if renpy.mobile:
+            MAX_ROWS = 7
+        else:
+            MAX_ROWS = 10
         MAX_NOUNS = NOUN_COLUMNS * MAX_ROWS
         MAX_VERBS = VERB_COLUMNS * MAX_ROWS
         MAX_ADJECTIVES = ADJECTIVE_COLUMNS * MAX_ROWS
@@ -69,8 +82,8 @@ init -100 python:
                 self.poem[self.current_line].append(word)
             return
 
-        def deleteword(self,index):
-            del self.poem[self.current_line][index]
+        def deleteword(self,line, index):
+            del self.poem[line][index]
             return
 
         def reset(self, fullReset):

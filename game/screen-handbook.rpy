@@ -27,8 +27,8 @@ screen parenting_handbook():
                     textbutton "Teenager (15-18)" selected (YTEEN_MAX < show_year) action SetVariable("show_year", MAX_YEARS)
                 null width 5
                 vbox:
-                    xsize MIDDLE_COLUMN_WIDTH
-                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-32 ypos -45 action Hide("parenting_handbook", zoomout)
+                    xsize MIDDLE_COLUMN_WIDTH-32
+                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-64 ypos -45 action Hide("parenting_handbook", zoomout)
                     use kid_info
 
 screen kid_info:
@@ -48,7 +48,7 @@ screen kid_info:
 
 screen baby_info:
     tag kid_info
-    text childs_mind["baby"]
+    text childs_mind["baby"] yalign 0.0
 
 screen toddler_info:
     tag kid_info

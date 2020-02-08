@@ -1,6 +1,33 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
+screen test_family_photo_screen():
+    frame:
+        xfill True
+        yfill True
+        hbox:
+            vbox:
+                label "Photo 1"
+                add "family_photo_small happy"
+            vbox:
+                label "Photo 2"
+                label "We'll move this down a little."
+                add "family_photo_small happy"
+            textbutton "Done" action Return()
+
+label test_family_photo:
+    $ year = 10
+    $ bro_age = 0
+    scene stars with fade
+    show family_photo happy with moveinleft
+    "Scrapbook time! Aren't we cute? We could use our smaller photo, too."
+    hide family_photo
+    show family_photo_small happy at center,kid_pos with moveinright
+    "But when we try to do this in a screen..."
+    call screen test_family_photo_screen
+    "Seems strange."
+    return
+
 label test_emoji:
     nvl clear
     him_c "I don't usually use emoji...{emoji=blush}"
@@ -49,7 +76,7 @@ label test_farming_screen:
             $ years_yield = farm.process_crops()
             if (year >= MONEY_YEAR):
                 $ modify_credits(farm.calculate_income(years_yield))
-                $ modify_credits(-(get_expenses_required()  - KELLY_SALARY))
+                $ modify_credits(-(get_expenses_required(year-1)  - KELLY_SALARY))
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
         $ farm.reset_crops(farm_size)
@@ -361,6 +388,10 @@ label tests:
             call test_family
         "Community Events":
             call test_community
+        "Test Family Photo":
+            call test_family_photo
+        "Emoji":
+            call test_emoji
         "Baby Positions":
             #call test_positions
             call baby_positions

@@ -9,14 +9,13 @@
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
+# TODO: Autosave/resume does not work well right now.
 ##
 
 label start:
 
     # Initialize dynamic variables that need to be saved with saved game state.
     # These have to be here instead of in an init block to tell Ren'Py that they will change and should be saved with the game state.
-
-    # TODO: Disable music if it doesn't exist.... maybe free version doesn't have music?
 
     # GAME ENGINE
     python:
@@ -45,8 +44,6 @@ label start:
         confident = 0
         total_confident = 0
 
-        # TODO: have a trust/honesty variable keeping track of how consistent/honest you are?
-
         # The Four Parenting Styles
         # Only one of these should be increased each year, maximum value at the end of the game is 30
         authoritarian = 0
@@ -54,7 +51,7 @@ label start:
         permissive = 0
         neglectful = 0
         trust = 0
-        
+
         # Default names
         his_name = "Jack"
         her_name = "Kelly"
@@ -119,6 +116,11 @@ label start:
         ilian_has_cattle = False
         thuc_sells_food = False
         cave_explored = False
+        talked_to_Natalia = False
+        talked_to_Thuc = False
+        talked_to_Sara = False
+        talked_to_Kevin = False
+        talked_to_Pavel = False
         community_11_kidsonfarm = False
         community_17_planparty = False
         community_22_mining_stopped = False
@@ -238,6 +240,7 @@ label start:
             call tests
 
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+    "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
 
     show path
     show her flirting at midleft
@@ -292,6 +295,7 @@ label life_loop:
         $ save_name = "Year %d" % year
         $ earth_year = get_earth_years(year)
 
+        # TODO: One time bro appeared in the transient and farm screens before he was born...?
         if (bro_birth_year != 0):
             $ bro_age = year - bro_birth_year
 
@@ -302,12 +306,15 @@ label life_loop:
         #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
+            # TODO: Right now, special events still modify credits, so you could start with a credit/debit. Is this what we want?
             if (year > MONEY_YEAR):
                 $ income = farm.calculate_income(years_yield)
                 $ modify_credits(income)
-                $ modify_credits(-(get_expenses_required() - KELLY_SALARY))
+                $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
+        if (crop_enabled("wheat")):
+            $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ show_year = year
@@ -320,6 +327,7 @@ label life_loop:
                 jump trailer_continue
             if testing_mode:
                 jump test_continue
+            $ notifications = ""
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
             # WORK EVENTS (farming)
@@ -341,7 +349,6 @@ label life_loop:
             call expression "community" + str(year)
 
             # Increase child stats based on this year's parenting decisions
-            $ notifications = ""
             stop music fadeout 3.0
             call interscene_text(year, "End")
             call increase_attachment

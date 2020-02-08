@@ -52,11 +52,12 @@ init python:
 
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
-    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment
+    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment,
+    # as long as Terra's work slider is under 90%
     # TODO: is this balanced?
     $ inc_amount = 0
-    if (total_work < current_work):
-        $ inc_amount += 1
+    #if ((total_work < current_work) and (kid_work_slider < 90.0)):
+    #    $ inc_amount += 1
     $ inc_amount += responsive
     if (inc_amount > 0):
         $ notifications += "Attachment +" + str(inc_amount) + "\n"
@@ -69,7 +70,8 @@ label increase_competence:
     # If your kid spends more than half their time working, increase competence
     # TODO: Should we take out the int casting and allow more nuance?
     # Or have their work_slider affect how much demanding gets added?
-    $ inc_amount += int(kid_work_slider/50.0)
+    # TODO: try taking this and previous one out and see what happens.
+    # $ inc_amount += int(kid_work_slider/50.0)
     $ inc_amount += demanding
     if (inc_amount > 0):
         $  notifications += "Competence +" + str(inc_amount) + "\n"
@@ -133,6 +135,30 @@ init -100 python:
     def is_independent():
         return (independence >= (year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
+    def get_kid_type():
+        if (is_attached()):
+            if (is_competent()):
+                if (is_independent()):
+                    return "ACI"
+                else:
+                    return "ACi"
+            else:
+                if (is_independent()):
+                    return "AcI"
+                else:
+                    return "Aci"
+        else:
+            if (is_competent()):
+                if (is_independent()):
+                    return "aCI"
+                else:
+                    return "aCi"
+            else:
+                if (is_independent()):
+                    return "acI"
+                else:
+                    return "aci"
+
     # Return the number of Earth years, given Talaam years.
     # There are 196 27-hour days per year on Talaam,
     #       (7 months in a year, 7 days in a week, 4 weeks in a month)
@@ -154,6 +180,7 @@ init -100 python:
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events (we have 22)
 
+        # TODO: This hardly ever happens. Make nutrition harder.
         # IF nutrition is low, you don't get to do any of that. Instead
         # you have to take care of the nutrition problem.
         malnutrition_threshold = renpy.random.randint(-5, 0)
@@ -170,6 +197,9 @@ init -100 python:
             # Call the next set event
             event_name = "work" + str(year)
             return event_name
+
+        # TODO: If you make Terra work too much, she complains.
+        # TODO: If you have a lot of money, have an investment opportunity?
 
         # Otherwise, we get a random crop event
         else:
@@ -201,14 +231,17 @@ init -100 python:
                 return "default_crop_event"
 
     # Change amount of credits you have
-    # TODO: have a summary screen at the end of each year that shows all the notifications in a pretty way?
+    # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
-        credits += amount
+        renpy.show_screen("show_credits", amount=amount)
+        credits += int(amount)
+        message = "Credits "
         if (amount >= 0):
-            notifications += "Credits +" + str(amount) + "\n"
-        else:
-            notifications += "Credits " + str(amount) + "\n"
+            message += "+"
+        message += str(int(amount)) + "\n"
+        notifications += message
+
 
     def modify_farm_size(amount):
         global farm_size, notifications
@@ -227,8 +260,8 @@ init -100 python:
             return True
 
     # Calculate expenses required for the family for this year
-    def get_expenses_required():
-        return (ANNUAL_EXPENSES_BASE + (get_calories_required() * CALORIES_TO_MONEY_MULTIPLIER))
+    def get_expenses_required(year):
+        return (ANNUAL_EXPENSES_BASE + (get_calories_required(year) * CALORIES_TO_MONEY_MULTIPLIER))
 
     # Calculate value in credits from crop value
     def get_credits_from_value(crop_value):
@@ -243,25 +276,27 @@ init -100 python:
 
     # Calculate nutrition required for the family for this year.
     # TODO: right now this is the same as calories? Is that true?
-    def get_nutrition_required():
-        return get_calories_required()
+    def get_nutrition_required(year):
+        return get_calories_required(year)
 
     # Calculate the calories required for the family for this year.
-    def get_calories_required():
-        calories_kid = get_calories_kid(int(earth_year))
+    def get_calories_required(year):
+        earth_year = get_earth_years(year)
+        calories_kid = get_calories_kid(earth_year)
         calories_bro = 0
-        if (bro_birth_year != 0):
-            calories_bro = get_calories_kid(bro_age)
+        if ((bro_birth_year != 0) and (bro_birth_year < year)):
+            bro_age = year - bro_birth_year
+            calories_bro = get_calories_kid(get_earth_years(bro_age))
         return (CALORIES_BASE + calories_kid + calories_bro)
 
-    def get_calories_kid(age = 0):
-        if (0 <= age <= 1):
+    def get_calories_kid(age):
+        if (0 <= age < 2):
             return 5
-        if (2 <= age <= 4):
+        if (2 <= age < 5):
             return 10
-        if (5 <= age <= 10):
+        if (5 <= age < 11):
             return 15
-        if (11 <= age <= 13):
+        if (11 <= age < 14):
             return 20
         if (14 <= age):
             return 25
@@ -290,7 +325,7 @@ init -100 python:
             crop_names = [row[NAME_INDEX] for row in crop_info]
             index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             total_nutrition += crop_info[index][NUTRITION_INDEX]
-        nutrition_required = get_nutrition_required()
+        nutrition_required = get_nutrition_required(year)
         return -(nutrition_required - total_nutrition)
 
     # Return True if marriage is strong for the current year
@@ -334,6 +369,15 @@ init -100 python:
         else:
             return "{color=#f00}Danger{/color}"
 
+    # Return any boosting overlays that apply to this square.
+    # Specifically, boosting related to bees
+    def get_boost_image(index):
+        if (index in farm.get_boosted_squares()):
+            return Image("gui/emoji/bee boost.png")
+        else:
+            return Null()
+
+    # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):
         if (pest_factor < 0.05):
             return Null(CROP_ICON_SIZE, CROP_ICON_SIZE)

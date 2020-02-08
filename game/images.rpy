@@ -28,11 +28,11 @@ init -10:
         )
 
     # Special Sprites
-    image baby = "kid-sprites/baby normal.png"
-    image toddler = "kid-sprites/toddler normal.png"
-    image child = "kid-sprites/kid normal.png"
-    image tween = "kid-sprites/tween normal.png"
-    image teen = "kid-sprites/teen normal.png"
+    image baby = "kid-sprites/baby_normal.png"
+    image toddler = "kid-sprites/toddler_normal.png"
+    image child = "kid-sprites/kid_normal.png"
+    image tween = "kid-sprites/tween_normal.png"
+    image teen = "kid-sprites/teen_normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
     # Temporary Sprites: TODO delete these
@@ -46,33 +46,96 @@ init -10:
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
-                "year <= BABY_MAX", "kid-sprites/baby %s.png" % expression_name,
-                "year <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
-                "year <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
-                "year <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
-                "True", "kid-sprites/teen %s.png" % expression_name))
+                "year <= BABY_MAX", "kid-sprites/baby_%s.png" % expression_name,
+                "year <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
+                "year <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
+                "year <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
+                "True", "kid-sprites/teen_%s.png" % expression_name))
 
         # Define images for bro (baby, toddler, young, tween, teen)
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         # TODO: right now these are just kid's sprites. Change them to be unique.
         for expression_name in kid_expressions:
             renpy.image(("bro", expression_name), ConditionSwitch(
-                "(year-bro_birth_year) <= BABY_MAX", "kid-sprites/baby %s.png" % expression_name,
-                "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler %s.png" % expression_name,
-                "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid %s.png" % expression_name,
-                "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween %s.png" % expression_name,
-                "True", "kid-sprites/teen %s.png" % expression_name))
+                "year <= 12", "kid-sprites/baby_%s.png" % expression_name,
+                "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
+                "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
+                "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
+                "True", "kid-sprites/teen_%s.png" % expression_name))
 
-    # TODO: Add the family, with expressions depending on stats.
-    # TODO: Have a different background for each month
-    # TODO: Improve layout
-    image family_photo = Crop((0,0,500,370), LiveComposite(
-        (500, 370),
-        (0,0), im.FactorScale("images/bg/pond.jpg", 0.4),
-        #(250, 50), im.FactorScale("images/sprites/him/him normal.png", 0.4),
-        (0,0), im.FactorScale("images/bg/polaroid.png", 0.4)
-        )
-        )
+    # TODO: Have a different background for each year
+    define photo_scale_factor = 0.7
+
+    # TODO: add more possibilities here
+    image family_photo_bg:
+        choice:
+            "images/bg/pond.jpg"
+        choice:
+            "images/bg/canyon.jpg"
+
+    # TODO: use relative positions when they are fixed
+    layeredimage family_photo:
+        if True:
+            "family_photo_bg"
+
+        if (get_parenting_style() == "authoritative"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him content"
+        elif (get_parenting_style() == "authoritarian"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him pout"
+        elif (get_parenting_style() == "permissive"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him normal"
+        elif (get_parenting_style() == "inconsistent"):
+            pos(300, 80)
+            #align(0.3, 1.0)
+            "him sleeping"
+        # if neglectful, he is not in the picture at all.
+
+        if has_strong_marriage():
+            pos(650, 150)
+            #align(0.7, 1.0)
+            "her happy"
+        elif (marriage_strength > 0):
+            pos(650, 150)
+            "her normal"
+        else:
+            pos(650, 150)
+            "her surprised"
+
+        group kid:
+            pos(400, 250)
+            #align(0.45, 1.0)
+            attribute ACI:
+                "kid happy"
+            attribute ACi:
+                "kid normal"
+            attribute AcI:
+                "kid shifty"
+            attribute Aci:
+                "kid surprised"
+            attribute aCI:
+                "kid determined"
+            attribute aCi:
+                "kid concerned"
+            attribute acI:
+                "kid annoyed"
+            attribute aci:
+                "kid sad"
+
+        if (bro_age > 0):
+            pos(550, 300)
+            #align(0.6, 1.0)
+            # TODO: something different here, maybe based on parenting style?
+            "bro surprised"
+        if True:
+            "polaroid"
+
+    image family_photo_small = LayeredImageProxy("family_photo", Transform(crop=(306,22,675,680), zoom=photo_scale_factor))
 
     image ctc_blink:
            "gui/ctc.png"
@@ -113,7 +176,7 @@ init -10:
             elif argument == "yum":
                 emoji="😋"
             elif argument == "yuck":
-                emoji="🤮"
+                emoji="😬"
             elif argument == "grimace":
                 emoji="😬"
             elif argument == "heart":
@@ -132,6 +195,11 @@ init -10:
                 emoji="☣"
 
             font_size = int(gui.text_size * 1.5)
-            return [ (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji), (renpy.TEXT_TAG, "/size") ]
+            return [
+            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),            
+            (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji),
+            (renpy.TEXT_TAG, "/size"),
+            (renpy.TEXT_TAG, "/font")
+            ]
 
         config.self_closing_custom_text_tags["emoji"] = emoji_tag

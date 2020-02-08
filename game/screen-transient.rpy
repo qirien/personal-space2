@@ -13,11 +13,31 @@ screen interscene(year=0, event_type="Work"):
             label "Year [year] of [MAX_YEARS]"
             label "[event_type]"
 
-# TODO: Add a credits pop out and hide screen
-screen show_credits(expense=0):
-    window:
-        hbox:
-            label "Credits: [credits]"
+# Pop down and fadein (thanks PyTom!)
+transform credits_popdown():
+    xalign 0.98 ypos 30
+
+    # When it's shown, slide it down and fade it in.
+    on show:
+        yoffset -15.0  alpha 0.0
+        easein 0.5 yoffset 0.0 alpha 1.0
+
+    # When it's hidden, slide it down and fade it out.
+    on hide:
+        easeout 0.5 yoffset 15.0 alpha 0.0
+
+# Pop down a little screen that shows when your credits change
+screen show_credits(amount=0):
+    hbox:
+        at credits_popdown
+        $ credits_icon = STAT_ICON_BASE + "value.png"
+        frame:
+            xpadding 10
+            ypadding 10
+            background "roundrect_lightgray"
+            text "{image=" + credits_icon + "} [amount]" size 30
+
+    timer 3 action Hide("show_credits")
 
 # Show a summary of changes for the previous year
 # TODO: abstract out computer pad stuff somehow
@@ -50,11 +70,16 @@ screen yearly_summary():
                                 hbox:
                                     vbox:
                                         xsize 200
+                                        xalign 1.0
                                         label "Year [year] Summary"
                                         null height 10
                                         text notifications
                                         # TODO: include community stats here?
-                                    add "family_photo" yalign 0.5
+                                    $ parenting_style = get_parenting_style()
+                                    # TODO: add in expressions based on parenting style, attachment, competence, independence
+                                    $ kid_type = get_kid_type()
+                                    add "family_photo_small " + kid_type
+
                             frame:
                                 xsize RIGHT_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT
@@ -68,11 +93,21 @@ screen yearly_summary():
                             style "plan_farm_subframe"
                             vbox:
                                 xfill True
-                                text "The year passed by like a dream..."
                                 textbutton "Continue":
                                      style "round_button"
                                      xalign 0.5
                                      action Return()
+
+transform bg_crop:
+    crop (306,22,675,680)
+
+transform photo_scale:
+    zoom photo_scale_factor
+
+transform photo_kid_pos:
+    anchor (0, 1.0)
+    xpos -200
+    ypos 680
 
 style interscene_window is default:
     xalign 0.0

@@ -1,16 +1,11 @@
-# Plugin Poetry by Andrea Landaker is licensed CC-BY 4.0
-# You can use this code as long as you credit Andrea Landaker.
-# See http://creativecommons.org/licenses/by/4.0/
-#
-#
-# To customize, create your own lists and tell the word_board to use them below.
+# This file contains possible wordpacks that Plugin Poetry can use.
 
 init python:
     # Basic words that you probably want on every board.
     basic_nouns = ["word", "you", "she", "joy", "I", "we",  "scent", "sound", "me", "pain", "wonder", "dream", "moon", "sun", "us"]
     basic_adjectives = ["beautiful", "blue", "gray", "red", "soft", "feathery",  "pink", "your", "my", "our", "orange", "this", "brown", "dry", "her"]
-    basic_verbs = ["jump", "know", "smile", "dance", "sing", "kick", "glow", "is", "are", "eat"]
-    basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when", "to"]
+    basic_verbs = ["jump", "know", "smile", "dance", "sing", "kick", "glow", "is", "are", "eat", "trust"]
+    basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when", "to", "-ness"]
     basic_words = Wordpack()
     basic_words.add_words(basic_nouns, basic_adjectives, basic_verbs, basic_other)
 
@@ -39,7 +34,7 @@ init python:
     romance_words.add_words(romance_nouns, romance_adjectives, romance_verbs, romance_other)
 
     # Farm-related words
-    farm_nouns = ["breakfast", "sunrise", "plant", "flower", "seed", "fire", "light", "water", "earth", "air", "planet", "space", "fruit", "harvest", "grass", "dirt", "sky", "sunset", "moon", "weed", "pest", "goat"]
+    farm_nouns = ["breakfast", "sunrise", "plant", "flower", "seed", "fire", "light", "water", "earth", "air", "planet", "space", "fruit", "harvest", "grass", "dirt", "sky", "sunset", "moon", "weed", "pest", "goat", "soil"]
     farm_adjectives = ["simple", "slow", "green", "sharp", "alive", "dead", "brittle"]
     farm_verbs = ["soar", "grow", "build", "help", "cut", "wrench", "dig", "glisten"]
     farm_other = ["yum", "ugh"]
@@ -55,7 +50,7 @@ init python:
     separation_words.add_words(separation_nouns, separation_adjectives, separation_verbs, separation_other)
 
     # Talaam-related words
-    talaam_nouns = ["star", "flare", "rock", "planet", "crabird", "wolf slug", "turtle snail", "colony", "RET", "liaison", "geyser", "jellystar", "jellysquid", "lightspeed", "nebula", "cave", "accident", "tentacle"]
+    talaam_nouns = ["star", "flare", "rock", "planet", "crabird", "wolf slug", "turtle snail", "colony", "RET", "liaison", "geyser", "jellystar", "jellysquid", "lightspeed", "nebula", "cave", "accident", "tentacle", "space"]
     talaam_adjectives = ["hot", "binary", "trinary", "alien", "solar", "terrestrial", "celestial", "distant", "rainy", "wet", "jiggly", "purple"]
     talaam_verbs = ["revolve", "blaze", "steam", "radiate", "work", "mine", "explode", "dig", "murder", "glow", "tingle"]
     talaam_other = ["huh", "but", "together"]

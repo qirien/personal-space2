@@ -34,7 +34,7 @@ screen plan_farm:
                                     label "Status" xsize 100
                                     # TODO: allow more than one status?
                                     if (not valid_layout):
-                                        if (farm.get_total_calories() < get_calories_required()):
+                                        if (farm.get_total_calories() < get_calories_required(year)):
                                             text "Need more calories!" style "plan_farm_status_text"
                                         elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
                                             text "Need to allocate all goats!" style "plan_farm_status_text"
@@ -120,8 +120,6 @@ screen farm_details_screen:
                         text " "
                     text " "
 
-                    text notifications italic True xoffset 20
-
             # Community info
             frame:
                 style "plan_farm_subframe"
@@ -137,11 +135,6 @@ screen farm_details_screen:
                     # TODO: how do I get the word_board variable here?
                     # textbutton "Poetry" action Show("poetry_display", args=word_board)
 
-                    # TODO: show these somewhere beside previous screen?
-                    # text notifications
-
-
-
         # Crop layout area
         frame:
             style "plan_farm_subframe"
@@ -151,7 +144,7 @@ screen farm_details_screen:
                 hbox:
                     label "Layout" xfill False
                     null width 275
-                    label "Year " + str(year) xalign 1.0 text_color green_dark
+                    label "Year " + str(year) xalign 1.0
                 use crops_layout
 
         # Totals so far
@@ -174,18 +167,6 @@ screen choose_crop(crop_index=0):
         hbox:
             xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 20
             spacing 10
-            # vbox:
-            #     spacing 10
-            #     style_prefix "field_info"
-            #     xsize LEFT_COLUMN_WIDTH
-            #     label "Field Status"
-            #     label "History" style "crop_details_label" text_color white
-            #     use history_box(crop_index)
-            #     null height 20
-            #     label "Health" style "crop_details_label" text_color white
-            #     text "Nitrogen Level: " + get_level_fuzzy(1 - (farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX] / float(Field.NITROGEN_FULL)))
-            #     if USE_PESTS:
-            #         text "Pest Level: " + get_level_fuzzy(farm.health[crop_index][Field.PEST_LEVEL_INDEX] / float(Field.PEST_MAX))
 
             frame:
                 style "plan_farm_subframe"
@@ -197,7 +178,6 @@ screen choose_crop(crop_index=0):
                         textbutton "X" xpos 120 ypos -2 action Hide("choose_crop", zoomout)
                     hbox:
                         style_prefix "crop_status"
-                    # TODO: The text here gets cut off on the left
                         vpgrid:
                             cols 2
                             text "   Calories: " #extra spaces are needed because vpgrid takes size for ALL children from size of first child
@@ -219,7 +199,14 @@ screen choose_crop(crop_index=0):
                             else:
                                 null
                                 null
-                        text crop_descriptions[crop_name.rstrip("+")]
+                        vbox:
+                            if crop_enabled("honey"):
+                                if (crop_info[selected_crop_index][POLLINATED_INDEX]):
+                                    add "gui/emoji/bee boost.png"
+                                else:
+                                    null height CROP_STATUS_ICON_SIZE
+                            text crop_descriptions[crop_name.rstrip("+")]
+
                     null height 30
                     vpgrid:
                         # TODO: change this based on number of enabled crops?
@@ -241,9 +228,9 @@ screen choose_crop(crop_index=0):
 
                                 imagebutton:
                                     idle imagefile
-                                    hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                                    selected_idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                                    insensitive LiveComposite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (0,0), Solid(gray_transparent))
+                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (0,0), Solid(gray_transparent))
                                     xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
@@ -281,7 +268,7 @@ screen crops_layout:
             style_prefix "crop_layout"
 
             # number of columns is the square root of farm_size
-            cols int(farm_size**0.5)
+            cols round(farm_size**0.5)
             side_xalign 0.5
             for i in range(0, farm_size):
                 vbox:
@@ -303,7 +290,7 @@ screen crops_layout:
                                 background red_dark
                             else:
                                 #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
-                                # make poor soils lighter and
+                                # make poor soils lighter,
                                 # (optionally) put the pests on top
                                 background Frame(Composite(
                                     (CROP_ICON_SIZE, CROP_ICON_SIZE),
@@ -316,8 +303,15 @@ screen crops_layout:
                             else:
                                 $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
-                                idle LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/idle.png")
-                                hover LiveComposite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
+                                # image file, then boosting, then any selection box
+                                idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
+                                (0,0), imagefile,
+                                (CROP_ICON_SIZE/2,0), get_boost_image(i),
+                                (0,0), "gui/crop icons/idle.png")
+                                hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
+                                (0,0), imagefile,
+                                (CROP_ICON_SIZE/2,0), get_boost_image(i),
+                                (0,0), "gui/crop icons/selected.png")
                                 xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                 anchor (0.5, 0.5)
                                 align  (0.5, 0.5)
@@ -343,13 +337,15 @@ style crop_history_hbox is crop_details_hbox:
 
 screen crops_totals:
     vbox:
-        $ calories_needed = get_calories_required()
-        $ nutrition_needed = get_nutrition_required()
+        yalign 0
+        $ calories_needed = get_calories_required(year)
+        $ nutrition_needed = get_nutrition_required(year)
         $ total_max = farm_size * CROP_STATS_MAX
         $ total_calories = 0
         $ total_nutrition = 0
         $ total_value = 0
         $ total_work = 0
+        $ boosted_squares = farm.get_boosted_squares()
         # Totaling crops attributes
         for i in range(0, farm.crops.len()):
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
@@ -357,41 +353,73 @@ screen crops_totals:
             $ total_calories += crop_info[index][CALORIES_INDEX]
             $ total_nutrition += crop_info[index][NUTRITION_INDEX]
             if (year >= MONEY_YEAR):
-                $ total_value += get_credits_from_value(crop_info[index][VALUE_INDEX])
-                # TODO: Need to take into account pests here, so the user is not surprised.
+                $ multiplier = 100
+                if (i in boosted_squares):
+                    $ multiplier += farm.BEE_BOOST
+                $ total_value += int(multiplier/100.0 * get_credits_from_value(crop_info[index][VALUE_INDEX]))
+                # TODO: Need to take into account pests if using, so the user is not surprised.
+
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
-        text "Calories:     " + str(total_calories)
-        use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Nutrition:    " + str(total_nutrition)
-        use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Work:         " + str(total_work) + " / " + str(get_work_available())
-        use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Calories     "# + str(total_calories) + " / " + str(calories_needed)
+        hbox:
+            use stat_icons(2, CALORIES_INDEX)
+            text " "
+            use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Nutrition    "# + str(total_nutrition) + " / " + str(nutrition_needed)
+        hbox:
+            use stat_icons(2, NUTRITION_INDEX)
+            text " "
+            use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
+        text "Work         "# + str(total_work) + " / " + str(get_work_available())
+        hbox:
+            use stat_icons(2, WORK_INDEX)
+            text " "
+            use tricolor_bar(total_work, get_work_available(), total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
+        if (year >= KID_WORK_YEAR):
+            hbox:
+                null width 50
+                vbox:
+                    text "Kids' Assignment"
+                    bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
+                    hbox:
+                        xfill True
+                        text "Free Time" italic True
+                        text "Work" italic True xalign 1.0
 
         if (year >= MONEY_YEAR):
-            $ total_expenses = get_expenses_required() - KELLY_SALARY
-            if (total_expenses > total_value):
-                text "Value:    " + str(total_value) + " credits" color red_med
-            else:
-                text "Value:    " + str(total_value) + " credits"
-            text "Expenses: " + str(total_expenses) + " credits"
-            text "Current Balance: [credits] credits"
-            # TODO: show this better, show savings, etc.
-
-        text " "
-        if (year >= KID_WORK_YEAR):
-            label "Kids' Assignment"
-            bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
+            $ total_expenses = get_expenses_required(year) - KELLY_SALARY
+            if (crop_enabled("wheat")):
+                $ total_expenses += WHEAT_COST # TODO: Change depending on how much wheat you plant?
+            text "Value"
+            use stat_icons(2, VALUE_INDEX)
             hbox:
+                style_prefix "plan_farm_total"
                 xfill True
-                text "Free Time"
-                text "Work" xalign 1.0
+                vbox:
+                    text "Current Balance"
+                    text "Value"
+                    text "Expenses"
+                    text "{font=fonts/OpenSansEmoji.otf}_____________________{/font}"
+                    text "Expected Balance"
+                vbox:
+                    xalign 1.0
+                    text str(credits) xalign 1.0
+                    if (total_expenses > total_value):
+                        text "+" + str(total_value) color red_med xalign 1.0
+                    else:
+                        text "+" + str(total_value) xalign 1.0
+                    text "-" + str(total_expenses) xalign 1.0
+                    text "{font=fonts/OpenSansEmoji.otf}_____{/font}" xalign 1.0
+                    text str(credits + total_value - total_expenses) xalign 1.0
 
+            # TODO: ability to click on "Expenses" or "Value" and see itemized list?
 
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current
 # value.
+# TODO: This gets wonky when the value is close to the max? Or maybe the maximum needs to be adjusted?
 screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
     # we have an increase; show it in a positive color
     if (new_value >= current_value):
@@ -469,6 +497,10 @@ style plan_farm_button_text is button_text:
     idle_color green_dark
     hover_color green_med
 
+style plan_farm_total_text is text:
+    font "fonts/FreeMono.ttf"
+    color black
+
 style round_button is plan_farm_button:
     background "roundrect_medgreen"
     xalign 1.0
@@ -480,6 +512,7 @@ style round_button_text is plan_farm_button_text:
 
 style plan_farm_text is text:
     color black
+    font "fonts/RobotoSlab-Regular.ttf"
 
 style plan_farm_status_text is plan_farm_text:
     yalign 0.5
@@ -492,8 +525,8 @@ style plan_farm_vbox is vbox:
 
 style plan_farm_subframe is frame:
     background "roundrect_lightgray"
-    xpadding 8
-    ypadding 8
+    xpadding 10
+    ypadding 10
 
 # Custom styles for the crop details part of the screen
 

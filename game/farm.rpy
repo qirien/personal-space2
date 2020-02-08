@@ -23,9 +23,6 @@ init python:
         NITROGEN_LEVEL_INDEX = 0
         PEST_LEVEL_INDEX = 1
         def __init__(self, current_size, max_size=FARM_SIZE_MAXIMUM):
-            self.current_size = current_size
-            self.max_size = max_size
-
             # Current health of the field, with Nitrogen levels and Pest levels
             # We *cannot* do health = [[100, 5] * max_size] because then all elements of the array point to the same memory location.
             self.health = [[Field.NITROGEN_FULL, Field.PEST_NONE] for i in range(max_size)]
@@ -35,23 +32,18 @@ init python:
             # Current crops planted in each space
             self.crops = Crops(current_size)
 
-
         # Calculate how many crops we harvested in each square and update the field_health
         def process_crops(self):
-            final_yield = [100] * self.current_size
+            final_yield = [100] * self.crops.len()
             current_nitrogen = 0
             current_pests = 0
-            for i in range(0, self.current_size):
-                nitrogen_factor = 0
+            for i in range(0, self.crops.len()):
                 crop_name = self.crops[i]
                 current_nitrogen = self.health[i][Field.NITROGEN_LEVEL_INDEX]
                 # Decrease yield if there's not enough nitrogen
                 # Set nitrogen level of the field after crops
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
                 # print "New Nitrogen: " + str(new_nitrogen)
-                # TODO: Delete this; it should never happen
-                if (new_nitrogen < 0):
-                    nitrogen_factor = new_nitrogen / Field.NITROGEN_FALLOW * -100
 
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
@@ -93,31 +85,16 @@ init python:
                     # print "Pest Factor[" + str(i) + "] is " + str(pest_factor) + ", pest_growth= " + str(pest_growth)
 
                 # Bee Calculation
-                # Boost what is adjacent - -1 and +1 for horizontal,
-                # and -num_columns and +num_columns for vertical
+
                 if (crop_name == "honey"):
-                    num_columns = int(farm_size**0.5)
-                    # left edge
-                    if ((i % num_columns) == 0):
-                        indices = [i-num_columns, i+1, i+num_columns]
-                    # right edge
-                    elif ((i % num_columns) == (num_columns - 1)):
-                        indices = [i-num_columns, i-1, i+num_columns]
-                    # middle column somewhere
-                    else:
-                        indices = [i-num_columns, i-1, i+1, i+num_columns]
-                    #print "Bee boosting: " + str(indices)
-                    for curr_index in indices:
-                        # if it's not out of bounds
-                        if ((curr_index >= 0) and (curr_index < len(final_yield))):
-                            # if it's a pollinated crop
-                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
-                                final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
+                    boosted_squares = self.get_boosted_squares()
+                    for curr_index in boosted_squares:
+                        final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
 
                 # TODO: still runaway pests on perennials...
                 # Subtract pests and nitrogen deficiency from final yield
-                print "Nitrogen Factor[" + str(i) + "] is " + str(nitrogen_factor) + ", Pest Factor is " + str(pest_factor)
-                final_yield[i] = final_yield[i] - pest_factor - nitrogen_factor
+                #print "Pest Factor is " + str(pest_factor)
+                final_yield[i] = final_yield[i] - pest_factor
 
             self.update_history()
             return final_yield
@@ -127,7 +104,7 @@ init python:
         # TODO: tweak this
         def calculate_income(self, crop_yield):
             income = 0
-            for i in range(0, self.current_size):
+            for i in range(0, self.crops.len()):
                 crop_name = self.crops[i]
                 crop_value = get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
                 final_value = (crop_yield[i]/100.0) * crop_value
@@ -204,7 +181,7 @@ init python:
 
             # Check calories
             total_cals = self.get_total_calories()
-            if (total_cals < get_calories_required()):
+            if (total_cals < get_calories_required(year)):
                 valid_layout = False
 
             return valid_layout
@@ -232,6 +209,33 @@ init python:
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()
+
+        # Return a set of indexes that are currently boosted
+        def get_boosted_squares(self):
+            indices = set()
+            for i in range(0, self.crops.len()):
+                crop_name = self.crops[i]
+                if (crop_name == "honey"):
+                    # Boost what is adjacent - -1 and +1 for horizontal,
+                    # and -num_columns and +num_columns for vertical
+                    num_columns = int(self.crops.len()**0.5)
+                    # left edge
+                    if ((i % num_columns) == 0):
+                        potential_indices = [i-num_columns, i+1, i+num_columns]
+                    # right edge
+                    elif ((i % num_columns) == (num_columns - 1)):
+                        potential_indices = [i-num_columns, i-1, i+num_columns]
+                    # middle column somewhere
+                    else:
+                        potential_indices = [i-num_columns, i-1, i+1, i+num_columns]
+                    for curr_index in potential_indices:
+                        # if it's not out of bounds
+                        if ((curr_index >= 0) and (curr_index < self.crops.len())):
+                            # if it's a pollinated crop
+                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
+                                indices.add(curr_index)
+            return indices
+
 
     ##
     # CROPS OBJECT
@@ -262,7 +266,7 @@ init python:
                 (crop_temporarily_disabled != crop_info[i][NAME_INDEX])):
                     available_crop_names.append(crop_info[i][NAME_INDEX])
 
-            for i in range(0, farm_size):
+            for i in range(0, self.len()):
                 # If it's a perennial, keep it.
                 # Otherwise, fill it randomly
                 if (self[i][-1] != "+"):
@@ -297,7 +301,7 @@ init python:
         def most_frequent_crop(self):
             most_frequent_crop = ""
             most_frequent_count = 0
-            for i in range(0, farm_size):
+            for i in range(0, len(self)):
                 current_crop_name = self.items[i]
                 current_crop_count = self.count(current_crop_name)
                 if ((current_crop_count >=  most_frequent_count) and (current_crop_name != "fallow")):
@@ -334,7 +338,7 @@ init python:
 
     # Delete all instances of crop_name in crops
     def delete_crop(crop_name):
-        for i in range(0, farm_size):
+        for i in range(0, crops.len()):
             current_crop_name = self.items[i]
             if (current_crop_name == crop_name):
                 self.items[i] = "fallow"
