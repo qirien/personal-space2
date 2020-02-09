@@ -155,7 +155,7 @@ label start:
         crop_info =     (#Name          CAL NUT VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
                         ["corn",         9, 4, 7, 7, 50, False, False, False, 100],    # Grains/Starches
-                        ["potatoes",     10, 5, 6, 6, 40, True, False, False, 100],
+                        ["potatoes",     10, 4, 6, 6, 40, True, False, False, 100],
                         ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
                         ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False, True, 100],
