@@ -203,15 +203,15 @@ label bad_nutrition:
         scene farm_interior with fade
         show her concerned at midright
         show him determined at midleft
+        $ common_food = farm.most_frequent_crop()
         if (has_strong_marriage()):
             her normal "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
             him surprised "Oh. I'm, uh, glad you appreciate it."
-            $ common_food = farm.most_frequent_crop()
             her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
         else:
             her concerned "[his_name], I don't want to tell you how to do your job..."
             him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
-            her annoyed "We can't live on just one or two foods! The human body needs more than 30 different vitamins, minerals, and nutrients."
+            her annoyed "We can't live on just [common_food]! The human body needs more than 30 different vitamins, minerals, and nutrients."
         him angry "There's a lot of factors here! Sometimes crops fail, I limited types of seeds, and I have to balance everything right or crops won't grow at all!"
         her concerned "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
         him annoyed "They're not starving, right?"
@@ -280,7 +280,7 @@ label bad_nutrition:
                 him_c "Not this year. Maybe next year, though."
             pete_c "Natalia, I'd like the same trade for cow's milk if you have enough."
             natalia_c "Sure; I'll bring tomatoes, too."
-            if (whole_harvest_required):
+            if (require_whole_harvest):
                 ilian_c "Shouldn't you be bringing all that to the storehouse?"
                 if is_liaison:
                     "He caught me there. I was being pretty hypocritical, going around the system I was telling everyone else to follow."
@@ -349,7 +349,7 @@ label bad_nutrition:
             him concerned "Do you know why? Is it a disease? Some kind of alien parasite?"
             her annoyed "No. I'm pretty sure we haven't been getting enough vitamin A."
             him surprised "Vitamin A?"
-            her determined "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables, like carrots, squash, and spinach."
+            her determined "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables like carrots, squash, and spinach."
             him concerned "Aw man, I hate pills."
             her annoyed "Which do you hate more: pills, or being able to see?"
             him surprised "It's that bad?"

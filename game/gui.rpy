@@ -42,6 +42,9 @@ define brown_med   = "#5a2400"
 define brown_light = "#a74300"
 define brown_dark  = "#2e1200"
 
+# Yellow
+define yellow = "#ffff00"
+
 # Shades of Gray
 define white = "#ffffff"
 define white_gray = "#e0e0e0"

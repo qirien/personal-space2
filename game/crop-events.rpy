@@ -5,6 +5,9 @@ label default_crop_event:
     "The year passed by in a blur: tilling, planting, weeding, harvesting; the endless cycle of life on the farm."
     return
 
+# TODO: add some corn events?
+#label corn1:
+
 # CARROTS1 - bent and twisted
 label carrots1:
     scene farm_interior with fade

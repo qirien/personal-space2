@@ -35,14 +35,13 @@ screen plan_farm:
                                     # TODO: allow more than one status?
                                     if (not valid_layout):
                                         if (farm.get_total_calories() < get_calories_required(year)):
-                                            text "Need more calories!" style "plan_farm_status_text"
+                                            text "Need more calories!" style "alert_text"
                                         elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
-                                            text "Need to allocate all goats!" style "plan_farm_status_text"
+                                            text "Need to allocate all goats!" style "alert_text"
                                         elif (crop_enabled("honey") and (farm.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
-                                            text "Need to allocate all bees!"
-                                            style "plan_farm_status_text"
+                                            text "Need to allocate all bees!" style "alert_text"
                                         else:
-                                            text "Cannot plant crops where there is insufficient nitrogen!" style "plan_farm_status_text"
+                                            text "Need to fix crops needing more nitrogen!" style "alert_text"
                                     else:
                                         text "OK!" style "plan_farm_status_text" color green_dark
                             hbox:
@@ -70,7 +69,7 @@ screen plan_farm:
 
 screen colony_messages_button(read_colony_messages):
     if (not read_colony_messages):
-        text "{color=#FF0}{b}NEW!{/b}{/color} " ypos 30 xalign 1.0 outlines [(1, "#000", 1, 1)]
+        text " {b}NEW!{/b} " ypos 30 xalign 1.0 yalign 0.0 style "alert_text"
     else:
         text "" ypos 30 xalign 0.0 # We have to have this here or it messes up all the positions
 
@@ -199,13 +198,7 @@ screen choose_crop(crop_index=0):
                             else:
                                 null
                                 null
-                        vbox:
-                            if crop_enabled("honey"):
-                                if (crop_info[selected_crop_index][POLLINATED_INDEX]):
-                                    add "gui/emoji/bee boost.png"
-                                else:
-                                    null height CROP_STATUS_ICON_SIZE
-                            text crop_descriptions[crop_name.rstrip("+")]
+                        text crop_descriptions[crop_name.rstrip("+")]
 
                     null height 30
                     vpgrid:
@@ -227,10 +220,10 @@ screen choose_crop(crop_index=0):
                                 $ is_selected = (selected_crop_index == j)
 
                                 imagebutton:
-                                    idle imagefile
-                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (0,0), "gui/crop icons/selected.png")
-                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (0,0), Solid(gray_transparent))
+                                    idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name))
+                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), "gui/crop icons/selected.png")
+                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), "gui/crop icons/selected.png")
+                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), Solid(gray_transparent))
                                     xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
@@ -362,17 +355,26 @@ screen crops_totals:
             $ total_work += crop_info[index][WORK_INDEX]
 
         #grid 2 4
-        text "Calories     "# + str(total_calories) + " / " + str(calories_needed)
+        hbox:
+            text "Calories    "# + str(total_calories) + " / " + str(calories_needed)
+            if (total_calories < calories_needed):
+                text "{b}!{/b}" style "alert_text"
         hbox:
             use stat_icons(2, CALORIES_INDEX)
             text " "
             use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Nutrition    "# + str(total_nutrition) + " / " + str(nutrition_needed)
+        hbox:
+            text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
+            if (total_nutrition < nutrition_needed):
+                text "{b}!{/b}" style "alert_text"
         hbox:
             use stat_icons(2, NUTRITION_INDEX)
             text " "
             use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
-        text "Work         "# + str(total_work) + " / " + str(get_work_available())
+        hbox:
+            text "Work          "# + str(total_work) + " / " + str(get_work_available())
+            if (total_work > get_work_available()):
+                text "{b}!{/b}" style "alert_text"
         hbox:
             use stat_icons(2, WORK_INDEX)
             text " "
@@ -513,6 +515,11 @@ style round_button_text is plan_farm_button_text:
 style plan_farm_text is text:
     color black
     font "fonts/RobotoSlab-Regular.ttf"
+
+style alert_text is plan_farm_text:
+    outlines [(1, "#000", 1, 1)]
+    color "#FF0"
+    yalign 0.5
 
 style plan_farm_status_text is plan_farm_text:
     yalign 0.5

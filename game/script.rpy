@@ -154,17 +154,17 @@ label start:
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
         crop_info =     (#Name          CAL NUT VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
-                        ["corn",         9, 4, 7, 7, 50, False, False, False, 100],    # Grains/Starches
+                        ["corn",         9, 3, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 4, 6, 6, 40, True, False, False, 100],
                         ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
                         ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False, True, 100],
                         ["plums",        3, 3, 7, 7, 5, False, True, True, 1],
                         ["plums+",       3, 3, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 7, 2, 4, 15, True, False, True, 100],
+                        ["squash",       4, 6, 2, 4, 15, True, False, True, 100],
                         ["strawberries", 1, 2, 6, 4, 5, False, True, True, 1],
                         ["strawberries+",1, 2, 6, 2, 0, False, True, True, 0],
-                        ["beans",        6, 8, 4, 7, -20, True, False, True, 100],   # Legumes
+                        ["beans",        6, 6, 4, 7, -20, True, False, True, 100],   # Legumes
                         ["peanuts",      7, 8, 5, 8, -40, False, False, False, 100],
                         ["carrots",      3, 6, 3, 3, 10, True, False, False, 100],   # Root Vegetables
                         ["turnips",      3, 5, 1, 4, 10, False, False, False, 100],
@@ -172,7 +172,7 @@ label start:
                         ["garlic",       1, 3, 5, 2, 4, False, False, False, 100],
                         ["spinach",      1, 6, 3, 2, 10, True, False, False, 100],   # Leafy greens
                         ["broccoli",     3, 7, 2, 3, 15, False, False, False, 100],
-                        ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
+                        ["goats",        8, 8, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
                         ["honey",         2,  2,  8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
@@ -213,7 +213,7 @@ label start:
 
         bad_nutrition_count = 0
         seen_low_cam = False
-        seen_low_ac = False
+        seen_low_ca = False
         seen_low_c = False
         seen_low_a = False
         seen_low_m = False
@@ -329,6 +329,15 @@ label life_loop:
             $ notifications = ""
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
+
+            # MALNUTRITION EVENT (optional)
+            # TODO: This hardly ever happens. Make nutrition harder.
+            # IF nutrition is low, you don't get to do any of that. Instead
+            # you have to take care of the nutrition problem.
+            $ malnutrition_threshold = renpy.random.randint(-5, 0)
+            if (get_extra_nutrition() <= 0): #malnutrition_threshold):
+                call bad_nutrition
+
             # WORK EVENTS (farming)
             play music farming fadeout 3.0 fadein 3.0
             call interscene_text(year, "Work")

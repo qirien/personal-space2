@@ -180,13 +180,6 @@ init -100 python:
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events (we have 22)
 
-        # TODO: This hardly ever happens. Make nutrition harder.
-        # IF nutrition is low, you don't get to do any of that. Instead
-        # you have to take care of the nutrition problem.
-        malnutrition_threshold = renpy.random.randint(-5, 0)
-        if (get_extra_nutrition() <= malnutrition_threshold):
-            return "bad_nutrition"
-
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
         if (get_extra_work() <= overwork_threshold):
@@ -376,6 +369,12 @@ init -100 python:
             return Image("gui/emoji/bee boost.png")
         else:
             return Null()
+
+    def get_boosted_image(crop_name):
+        if (crop_enabled("honey")):
+            if (crop_info[get_crop_index(crop_name)][POLLINATED_INDEX]):
+                return Image("gui/emoji/bee boost.png")
+        return Null()
 
     # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):

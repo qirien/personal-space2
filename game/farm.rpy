@@ -176,8 +176,8 @@ init python:
                 valid_layout = False
 
             # Check bees
-            if (crop_enabled("honey") and (self.crops.count("honey") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX])):
-                valid_layout = True
+            if (crop_enabled("honey") and (self.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
+                valid_layout = False
 
             # Check calories
             total_cals = self.get_total_calories()
@@ -301,7 +301,7 @@ init python:
         def most_frequent_crop(self):
             most_frequent_crop = ""
             most_frequent_count = 0
-            for i in range(0, len(self)):
+            for i in range(0, len(self.items)):
                 current_crop_name = self.items[i]
                 current_crop_count = self.count(current_crop_name)
                 if ((current_crop_count >=  most_frequent_count) and (current_crop_name != "fallow")):
