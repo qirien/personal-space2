@@ -49,13 +49,13 @@ init -100:
 
     # Nutritional data
     define VITAMINS_BASE = 20
-    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
+    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":8, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":6, "broccoli":2, "goats":1, "honey":0}
     define VITAMIN_A_LOW = 20
 
-    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
+    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":4, "plums":1, "squash":3, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":4, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20
 
-    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":4, "broccoli":1, "goats":1, "honey":0}
+    define MAGNESIUM_CROPS = {"fallow":0, "corn":2, "potatoes":2, "wheat":1, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":3, "broccoli":1, "goats":1, "honey":0}
     define MAGNESIUM_LOW = 10
 
     # Calorie data
@@ -70,6 +70,7 @@ init -100:
     define CALORIES_TO_MONEY_MULTIPLIER = 14
     define MONEY_YEAR = 6
     define KID_WORK_YEAR = 7
+    define NUTRITION_YEAR = 9
 
     # GUI display sizes
     define CROP_ICON_SIZE = 64

@@ -7263,6 +7263,10 @@ label family26:
     show him normal at midright
     show kid annoyed at midleft
     with dissolve
+    him surprised "How's it going, [kid_name]?"
+    kid nervous "Fine."
+    "She didn't meet my eyes, and her jaw was clenched in frustration. Clearly something was wrong."
+    him annoyed "What's bothering you?"
     kid annoyed "Dad, what you're doing to Talaam is wrong. We should not be here changing this planet!"
     him surprised "What are you talking about?"
     kid angry "We're contaminating this planet! Look at all our trash, all the non-native species we've introduced, and all the animals here that we've killed or enslaved! The cave we destroyed!"
@@ -7286,7 +7290,7 @@ label family26:
             him surprised "You're talking about the miners, right?"
             kid determined "Not just the miners! All of us! We're alien invaders here!"
     him angry "So what do you expect me to do? Just walk out into the wilderness and let the 'natural' creatures of Talaam have my body as payment for my sins against the planet?"
-    kid concerned "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by us, the alien invaders from Earth!"
+    kid concerned "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by alien invaders from Earth!"
     menu:
         "What should I do?"
         "Appeal to logic.":
@@ -7313,7 +7317,7 @@ label family26:
             $ permissive += 1
         "Walk away.":
             him annoyed "Your opinion is so ridiculous I won't even dignify it with a response. Talk to me when you have something sane to say."
-            kid angry "Wow. I guess you're too much of an planet-destroying, colonizing imperialist to even understand what I'm saying!"
+            kid angry "Wow. I guess you're too much of an entitled planet-destroying autocrat to even understand what I'm saying!"
             $ neglectful += 1
             return
     him surprised "So, is there something we can do? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
@@ -7504,8 +7508,6 @@ label family27:
                 $ authoritarian += 1
             $ modify_credits(-bike_cost)
 
-
-    # TODO: different job depending on personality/ending?
     scene farm_exterior with fade
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
     "She attached a little cart to the back and started delivering things for people all over the colony."

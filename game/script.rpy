@@ -331,7 +331,7 @@ label life_loop:
             $ total_work = farm.get_total_work()
 
             # MALNUTRITION EVENT (optional)
-            if farm.low_vitamins():
+            if (farm.low_vitamins() and (year >= NUTRITION_YEAR)):
                 call bad_nutrition
 
             # WORK EVENTS (farming)
