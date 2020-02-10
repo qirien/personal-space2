@@ -43,13 +43,14 @@ init -100:
     define POLLINATED_INDEX = 8
     define MAXIMUM_INDEX = 9
 
-    define CROP_STATS_MAX = 10
+    define CROP_STATS_MAX = 9
     define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Nutrition", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
     define STAT_ICON_BASE = "gui/emoji/"
 
     # Nutritional data
+    define VITAMINS_BASE = 20
     define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
-    define VITAMIN_A_LOW = 15
+    define VITAMIN_A_LOW = 20
 
     define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20

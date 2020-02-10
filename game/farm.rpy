@@ -186,26 +186,29 @@ init python:
 
             return valid_layout
 
+        def low_vitamins(self):
+            return (self.low_vitamin_a() or self.low_vitamin_c() or self.low_magnesium())
+
         def low_vitamin_a(self):
             vitA = 0
             for i in range(0, self.crops.len()):
                 current_crop_name = self.crops[i].rstrip("+")
                 vitA += VITAMIN_A_CROPS[current_crop_name]
-            return (vitA <= VITAMIN_A_LOW)
+            return (vitA <= get_vitamins_required(year))
 
         def low_vitamin_c(self):
             vitC = 0
             for i in range(0, self.crops.len()):
                 current_crop_name = self.crops[i].rstrip("+")
                 vitC += VITAMIN_C_CROPS[current_crop_name]
-            return (vitC <= VITAMIN_C_LOW)
+            return (vitC <= get_vitamins_required(year))
 
         def low_magnesium(self):
             magn = 0
             for i in range(0, self.crops.len()):
                 current_crop_name = self.crops[i].rstrip("+")
                 magn += MAGNESIUM_CROPS[current_crop_name]
-            return (magn <= MAGNESIUM_LOW)
+            return (magn <= get_vitamins_required(year))
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()

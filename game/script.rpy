@@ -331,11 +331,7 @@ label life_loop:
             $ total_work = farm.get_total_work()
 
             # MALNUTRITION EVENT (optional)
-            # TODO: This hardly ever happens. Make nutrition harder.
-            # IF nutrition is low, you don't get to do any of that. Instead
-            # you have to take care of the nutrition problem.
-            $ malnutrition_threshold = renpy.random.randint(-5, 0)
-            if (get_extra_nutrition() <= 0): #malnutrition_threshold):
+            if farm.low_vitamins():
                 call bad_nutrition
 
             # WORK EVENTS (farming)

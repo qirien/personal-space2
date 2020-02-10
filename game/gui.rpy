@@ -43,7 +43,7 @@ define brown_light = "#a74300"
 define brown_dark  = "#2e1200"
 
 # Yellow
-define yellow = "#ffff00"
+define yellow = "#f6ed3e"
 
 # Shades of Gray
 define white = "#ffffff"

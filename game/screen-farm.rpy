@@ -184,7 +184,7 @@ screen choose_crop(crop_index=0):
                                 use stat_icons(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX)
                             text "Nutrition: "
                             frame:
-                                use stat_icons(crop_info[selected_crop_index][NUTRITION_INDEX], NUTRITION_INDEX)
+                                use nutrition_icons(selected_crop_index)
                             text "Work: "
                             frame:
                                 use stat_icons(crop_info[selected_crop_index][WORK_INDEX], WORK_INDEX)
@@ -250,6 +250,19 @@ screen stat_icons(stat_value, stat_index):
             add STAT_ICON_BASE + stat_icon_name + ".png"
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
+
+# TODO: before malnutrition event (bad_nutrition_count == 0), don't display anything? Or just display plain hearts?
+screen nutrition_icons(crop_index):
+    hbox:
+        style "stat_icon_hbox"
+        $ crop_name = crop_info[crop_index][NAME_INDEX]
+        for i in range(0, VITAMIN_A_CROPS[crop_name]//2):
+            add STAT_ICON_BASE + "vitA.png"
+        for i in range(0, VITAMIN_C_CROPS[crop_name]//2):
+            add STAT_ICON_BASE + "vitC.png"
+        for i in range(0, MAGNESIUM_CROPS[crop_name]//2):
+            add STAT_ICON_BASE + "vitM.png"
+
 
 screen crops_layout:
     frame:
@@ -332,10 +345,13 @@ screen crops_totals:
     vbox:
         yalign 0
         $ calories_needed = get_calories_required(year)
-        $ nutrition_needed = get_nutrition_required(year)
-        $ total_max = farm_size * CROP_STATS_MAX
+        $ vitamins_needed = get_vitamins_required(year)
+        $ total_max = calories_needed * 2# absolute maximum: farm_size * CROP_STATS_MAX
+        $ vitMax = vitamins_needed * 2
         $ total_calories = 0
-        $ total_nutrition = 0
+        $ vitA = 0
+        $ vitC = 0
+        $ vitM = 0
         $ total_value = 0
         $ total_work = 0
         $ boosted_squares = farm.get_boosted_squares()
@@ -343,14 +359,16 @@ screen crops_totals:
         for i in range(0, farm.crops.len()):
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
+            $ crop_name = farm.crops[i].rstrip("+")
             $ total_calories += crop_info[index][CALORIES_INDEX]
-            $ total_nutrition += crop_info[index][NUTRITION_INDEX]
+            $ vitA += VITAMIN_A_CROPS[crop_name]
+            $ vitC += VITAMIN_C_CROPS[crop_name]
+            $ vitM += MAGNESIUM_CROPS[crop_name]
             if (year >= MONEY_YEAR):
                 $ multiplier = 100
                 if (i in boosted_squares):
                     $ multiplier += farm.BEE_BOOST
                 $ total_value += int(multiplier/100.0 * get_credits_from_value(crop_info[index][VALUE_INDEX]))
-                # TODO: Need to take into account pests if using, so the user is not surprised.
 
             $ total_work += crop_info[index][WORK_INDEX]
 
@@ -365,12 +383,17 @@ screen crops_totals:
             use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
         hbox:
             text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
-            if (total_nutrition < nutrition_needed):
+            if (farm.low_vitamins()):
                 text "{b}!{/b}" style "alert_text"
         hbox:
-            use stat_icons(2, NUTRITION_INDEX)
-            text " "
-            use tricolor_bar(nutrition_needed, total_nutrition, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
+            yalign 0.5
+            add "gui/emoji/vitA.png"
+            use tricolor_bar(vitamins_needed, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+            add "gui/emoji/vitC.png"
+            use tricolor_bar(vitamins_needed, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+            add "gui/emoji/vitM.png"
+            use tricolor_bar(vitamins_needed, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
             if (total_work > get_work_available()):
@@ -421,7 +444,6 @@ screen crops_totals:
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current
 # value.
-# TODO: This gets wonky when the value is close to the max? Or maybe the maximum needs to be adjusted?
 screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
     # we have an increase; show it in a positive color
     if (new_value >= current_value):
@@ -518,7 +540,7 @@ style plan_farm_text is text:
 
 style alert_text is plan_farm_text:
     outlines [(1, "#000", 1, 1)]
-    color "#FF0"
+    color yellow
     yalign 0.5
 
 style plan_farm_status_text is plan_farm_text:
@@ -655,7 +677,7 @@ style increased_bar is crop_layout_bar:
 
 style decreased_bar is crop_layout_bar:
     top_bar Frame(Solid(gray_light))
-    bottom_bar Frame(Solid(red_dark))
+    bottom_bar Frame(Solid(red_med))
 
 style increased_bar_horizontal is crop_layout_bar:
     right_bar Frame(Solid(gray_light))
@@ -663,7 +685,7 @@ style increased_bar_horizontal is crop_layout_bar:
     bar_vertical False
 
 style decreased_bar_horizontal is crop_layout_bar:
-    left_bar Frame(Solid(red_dark))
+    left_bar Frame(Solid(red_med))
     right_bar Frame(Solid(gray_light))
     bar_vertical False
 

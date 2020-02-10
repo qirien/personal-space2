@@ -374,6 +374,7 @@ label bad_nutrition:
             her sad "I don't know what's wrong with me... I just feel so crazy lately."
             him determined "You have been a bit more... volatile."
             her concerned "I can't stop worrying and I just feel so stressed out all the time but I don't even have that much to be stressed out about!"
+            him concerned "Is it PMS?"
             kid concerned "Are you sick?"
             her surprised "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
             him surprised "Are there some tests you can run?"
@@ -397,7 +398,7 @@ label bad_nutrition:
                 her annoyed "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
                 him surprised "Hopefully you don't need me to help with those."
                 her "It'll take a few minutes for me analyze the spectrometer's results."
-                "I talked with kid_name while we waited for [her_name] to finish."
+                "I talked with [kid_name] while we waited for [her_name] to finish."
             else:
                 if (bro_age > 0):
                     him concerned "I'll stay here with the kids while you do it."
@@ -431,8 +432,8 @@ label bad_nutrition:
         if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             scene fields with fade
             "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
-            "I was able to add two more fields."
-            $ modify_farm_size(2)
+            "I was able to add another field."
+            $ modify_farm_size(1)
         return
 
     # fall through for times without a special event.

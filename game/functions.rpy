@@ -268,19 +268,24 @@ init -100 python:
         return get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
 
     # Calculate nutrition required for the family for this year.
-    # TODO: right now this is the same as calories? Is that true?
-    def get_nutrition_required(year):
-        return get_calories_required(year)
+    # Returns the amount of a vitamin required each year. Scale
+    # is about half that of calories.
+    def get_vitamins_required(year):
+        earth_year = get_earth_years(year)
+        return (VITAMINS_BASE + 0.5 * get_calories_kids(earth_year))
 
     # Calculate the calories required for the family for this year.
     def get_calories_required(year):
         earth_year = get_earth_years(year)
+        return (CALORIES_BASE + get_calories_kids(earth_year))
+
+    def get_calories_kids(earth_year):
         calories_kid = get_calories_kid(earth_year)
         calories_bro = 0
         if ((bro_birth_year != 0) and (bro_birth_year < year)):
             bro_age = year - bro_birth_year
             calories_bro = get_calories_kid(get_earth_years(bro_age))
-        return (CALORIES_BASE + calories_kid + calories_bro)
+        return (calories_kid + calories_bro)
 
     def get_calories_kid(age):
         if (0 <= age < 2):
@@ -311,15 +316,6 @@ init -100 python:
 
         work_available = get_work_available()
         return (work_available - total_work)
-
-    def get_extra_nutrition():
-        total_nutrition = 0
-        for i in range(0, farm.crops.len()):
-            crop_names = [row[NAME_INDEX] for row in crop_info]
-            index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
-            total_nutrition += crop_info[index][NUTRITION_INDEX]
-        nutrition_required = get_nutrition_required(year)
-        return -(nutrition_required - total_nutrition)
 
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
