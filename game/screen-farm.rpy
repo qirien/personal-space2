@@ -182,9 +182,10 @@ screen choose_crop(crop_index=0):
                             text "   Calories: " #extra spaces are needed because vpgrid takes size for ALL children from size of first child
                             frame:
                                 use stat_icons(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX)
-                            text "Nutrition: "
-                            frame:
-                                use nutrition_icons(selected_crop_index)
+                            if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
+                                text "Nutrition: "
+                                frame:
+                                    use nutrition_icons(selected_crop_index)
                             text "Work: "
                             frame:
                                 use stat_icons(crop_info[selected_crop_index][WORK_INDEX], WORK_INDEX)
@@ -219,6 +220,7 @@ screen choose_crop(crop_index=0):
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == j)
 
+                                # TODO: only show boost image on squares that would be boosted by bees
                                 imagebutton:
                                     idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name))
                                     hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), "gui/crop icons/selected.png")
@@ -251,18 +253,24 @@ screen stat_icons(stat_value, stat_index):
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
 
-# TODO: before malnutrition event (bad_nutrition_count == 0), don't display anything? Or just display plain hearts?
+# TODO: Add red/gray hearts for generic nutrition so that each shows a total of 6 hearts
 screen nutrition_icons(crop_index):
     hbox:
         style "stat_icon_hbox"
+        $ heart_count = 0
         $ crop_name = crop_info[crop_index][NAME_INDEX]
         for i in range(0, VITAMIN_A_CROPS[crop_name]//2):
             add STAT_ICON_BASE + "vitA.png"
+            $ heart_count += 1
         for i in range(0, VITAMIN_C_CROPS[crop_name]//2):
             add STAT_ICON_BASE + "vitC.png"
+            $ heart_count += 1
         for i in range(0, MAGNESIUM_CROPS[crop_name]//2):
             add STAT_ICON_BASE + "vitM.png"
-
+            $ heart_count += 1
+        if (crop_name != "fallow"):
+            for i in range(heart_count, 6):
+                add STAT_ICON_BASE + "nutrition.png"
 
 screen crops_layout:
     frame:
@@ -343,7 +351,7 @@ style crop_history_hbox is crop_details_hbox:
 
 screen crops_totals:
     vbox:
-        yalign 0
+        yalign 0.0
         $ calories_needed = get_calories_required(year)
         $ vitamins_needed = get_vitamins_required(year)
         $ total_max = calories_needed * 2# absolute maximum: farm_size * CROP_STATS_MAX
@@ -364,6 +372,8 @@ screen crops_totals:
             $ vitA += VITAMIN_A_CROPS[crop_name]
             $ vitC += VITAMIN_C_CROPS[crop_name]
             $ vitM += MAGNESIUM_CROPS[crop_name]
+
+            # TODO: also boost nutrition and calories, not just money
             if (year >= MONEY_YEAR):
                 $ multiplier = 100
                 if (i in boosted_squares):
@@ -381,18 +391,19 @@ screen crops_totals:
             use stat_icons(2, CALORIES_INDEX)
             text " "
             use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
-        hbox:
-            text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
-            if (farm.low_vitamins()):
-                text "{b}!{/b}" style "alert_text"
-        hbox:
-            yalign 0.5
-            add "gui/emoji/vitA.png"
-            use tricolor_bar(vitamins_needed, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
-            add "gui/emoji/vitC.png"
-            use tricolor_bar(vitamins_needed, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
-            add "gui/emoji/vitM.png"
-            use tricolor_bar(vitamins_needed, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+        if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
+            hbox:
+                text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
+                if (farm.low_vitamins()):
+                    text "{b}!{/b}" style "alert_text"
+            hbox:
+                yalign 0.5
+                add "gui/emoji/vitA.png"
+                use tricolor_bar(vitamins_needed, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                add "gui/emoji/vitC.png"
+                use tricolor_bar(vitamins_needed, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                add "gui/emoji/vitM.png"
+                use tricolor_bar(vitamins_needed, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
 
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
@@ -535,6 +546,7 @@ style round_button_text is plan_farm_button_text:
     insensitive_color gray_dark
 
 style plan_farm_text is text:
+    yalign 0.5
     color black
     font "fonts/RobotoSlab-Regular.ttf"
 

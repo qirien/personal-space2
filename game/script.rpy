@@ -305,7 +305,6 @@ label life_loop:
         #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
-            # TODO: Right now, special events still modify credits, so you could start with a credit/debit. Is this what we want?
             if (year > MONEY_YEAR):
                 $ income = farm.calculate_income(years_yield)
                 $ modify_credits(income)

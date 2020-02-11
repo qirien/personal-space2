@@ -227,6 +227,7 @@ init -100 python:
     # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
+        amount = int(round(amount))
         renpy.show_screen("show_credits", amount=amount)
         credits += int(amount)
         message = "Credits "
