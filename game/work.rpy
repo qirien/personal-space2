@@ -1,5 +1,5 @@
 ## Work Events
-# INITIAL BLOCKING COMPLETE
+# TODO: Add an event where you try to grow some edible Talaam native plants?
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
