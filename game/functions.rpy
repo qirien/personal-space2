@@ -359,19 +359,30 @@ init -100 python:
         else:
             return "{color=#f00}Danger{/color}"
 
-    # Return any boosting overlays that apply to this square.
-    # Specifically, boosting related to bees
+    # Return bee boosting overlay if it applies to this square
+    # Otherwise return null image
     def get_boost_image(index):
         if (index in farm.get_boosted_squares()):
             return Image("gui/emoji/bee boost.png")
         else:
             return Null()
 
-    def get_boosted_image(crop_name):
+    # Return bee boosting overlay if it could boost this crop
+    # Otherwise return null image
+    def get_boosted_image(crop_name, crop_index):
         if (crop_enabled("honey")):
             if (crop_info[get_crop_index(crop_name)][POLLINATED_INDEX]):
-                return Image("gui/emoji/bee boost.png")
+                if bee_adjacent(crop_index, farm.crops.len()):
+                    return Image("gui/emoji/bee boost.png")
         return Null()
+
+    # Return whether there is honey next to this crop or not.
+    def bee_adjacent(crop_index, max_size):
+        adjacent = get_adjacent(crop_index, max_size)
+        for square_index in adjacent:
+            if (farm.crops[square_index] == "honey"):
+                return True
+        return False
 
     # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):

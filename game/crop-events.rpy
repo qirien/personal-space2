@@ -53,9 +53,14 @@ label corn2:
             "Treat the corn with lime.":
                 "I decided the extra nutrition was worth it. If I'm going to all the trouble of growing food, I want it to be as nutritious as possible."
                 "I soaked the kernels in an alkaline solution and then let them dry again."
-                "Now they could be used for some of my favorite foods - tortillas, tamales, and chips!"
+                "Now they could be used for some of my favorite foods - tortillas, pozole, and chips!"
                 if (farm.crops.contains("tomatoes") and farm.crops.contains("peppers")):
-                    "And with the peppers and tomatoes I grew, I could make salsa to go with them."
+                    if farm.crops.contains("onions"):
+                        "And with the peppers, onions, and tomatoes I grew, I could make salsa to go with them."
+                    else:
+                        "And with the peppers and tomatoes I grew, I could make salsa to go with them."
+                    if farm.crops.contains("garlic"):
+                        "I added some garlic, too, for a nice zing."
                     scene farm_interior with fade
                     show him normal at midleft
                     show her normal at midright
