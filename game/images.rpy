@@ -176,7 +176,7 @@ init -10:
             elif argument == "yum":
                 emoji="😋"
             elif argument == "yuck":
-                emoji="🤮"
+                emoji="😬"
             elif argument == "grimace":
                 emoji="😬"
             elif argument == "heart":
@@ -196,7 +196,7 @@ init -10:
 
             font_size = int(gui.text_size * 1.5)
             return [
-            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),
+            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),            
             (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji),
             (renpy.TEXT_TAG, "/size"),
             (renpy.TEXT_TAG, "/font")

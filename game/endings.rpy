@@ -19,6 +19,7 @@ label ending:
     # TODO: remove debug code
     "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
     # community ending
+    # TODO: 10 is kinda high?
     if (colonists >= 10):
         if (miners >= 10):
             if (mavericks >= 10):

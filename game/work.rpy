@@ -1,5 +1,5 @@
 ## Work Events
-# INITIAL BLOCKING COMPLETE
+# TODO: Add an event where you try to grow some edible Talaam native plants?
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
@@ -195,260 +195,6 @@ label overwork:
                 $ modify_credits(-300)
     return
 
-
-# Malnutrition Event for if you don't have enough nutrition
-label bad_nutrition:
-    $ bad_nutrition_count += 1
-    if (bad_nutrition_count == 1):
-        scene farm_interior with fade
-        show her concerned at midright
-        show him determined at midleft
-        if (has_strong_marriage()):
-            her normal "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
-            him surprised "Oh. I'm, uh, glad you appreciate it."
-            $ common_food = farm.most_frequent_crop()
-            her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
-        else:
-            her concerned "[his_name], I don't want to tell you how to do your job..."
-            him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
-            her annoyed "We can't live on just one or two foods! The human body needs more than 30 different vitamins, minerals, and nutrients."
-        him angry "There's a lot of factors here! Sometimes crops fail, I have a limited amount of seeds, and I have to balance everything right or crops won't grow at all!"
-        her concerned "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
-        him annoyed "They're not starving, right?"
-        her annoyed "No. But I've made a list of deficiencies of our current diet and foods that could help meet them."
-        him surprised "Don't we have vitamin supplements we could take?"
-        her concerned "Right now they're by prescription only, for serious nutrition problems. I don't want us to get to that point."
-        him determined "I guess I could get some of these foods at the storehouse..."
-
-        # are we using currency yet?
-        if (year > 5):
-            her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to spend our money on that."
-            $ modify_credits(-50)
-        else:
-            her determined "Or I could.  And maybe next year we can plant a better variety of vegetables and fruits so we don't need to trade as much."
-        return
-
-    if (bad_nutrition_count >= 2):
-        # All nutrients low
-        if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium() and (not seen_low_cam)):
-            $ seen_low_cam = True
-            "I felt like I was sick all the time. I had no energy, my gums were always bleeding, and I felt weak and cranky."
-            "Finally, I went to see [her_name]."
-            him determined "Help me, doc."
-            her concerned "What's wrong?"
-            him concerned "I don't know; maybe it's nothing. I just feel like I'm a little bit sick all the time."
-            her determined "Oh, really?"
-            him sad "Yeah. So if I'm just making it up, tell me and I'll get back to work. But if there is something wrong, maybe you can help me."
-            $ common_food = farm.most_frequent_crop()
-            her angry "I know exactly what's wrong with you!  You've been eating nothing but [common_food] and your body's sick!"
-            him surprised "This is all from my diet?"
-            her annoyed "Yes, I warned you about this!"
-            him sad "Oh."
-            her concerned "..."
-            him concerned "Are the kids okay?"
-            her annoyed "Yes, I've been supplementing their diet."
-            him annoyed "But not mine."
-            her angry "No! I wanted you to understand how serious this is!"
-            him surprised "Can't we just buy what we need from the storehouse?"
-            her annoyed "Yes, but it gets expensive. Here's a list."
-            "She had made a list of foods we needed to buy."
-            him concerned "Sorry, [her_name]. I feel like I failed you."
-            her determined "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
-            $ modify_credits(-50)
-
-        # Low Vitamin A & C
-        elif (farm.low_vitamin_c() and farm.low_vitamin_a() and (not seen_low_ca)):
-            $ seen_low_ca = True
-            # someone else has iodine deficiency. You trade them goat products for something with vitamin A and C
-            "I hadn't been feeling well lately. I had no energy and it was harder to see at night."
-            "I wondered if I should ask [her_name] about it, but I figured she'd probably just tell me to eat better."
-
-            nvl clear
-            her_c "I've seen several people lately with nutrient deficiencies. If you don't have much dairy, eggs, or seafood in your diet, you may be at risk for iodine deficiency."
-            "Hmmm, we eat plenty of goat's milk so that's probably not what's bothering me."
-            her_c "Here's a list of other deficiencies and foods you can eat to remedy them."
-            pete_c "I've got cow's milk, if anyone would like to trade."
-            him surprised "Trading would be more efficient than buying from Ilian..."
-            "Looking at the crops I was growing and my symptoms, I figured I was probably low on vitamins A and C."
-            "If I could trade with someone that needed iodine, it would be great."
-            him_c "Looking to trade goat's milk for vitamin A and C foods."
-            natalia_c "I'll trade you bell peppers and squash for those."
-            pete_c "I thought you grew squash and peppers, [his_name]?"
-            if ("squash" in farm.crops):
-                him_c "Not enough, apparently."
-            else:
-                him_c "Not this year. Maybe next year, though."
-            pete_c "Natalia, I'd like the same trade for cow's milk if you have enough."
-            natalia_c "Sure; I'll bring tomatoes, too."
-            if (whole_harvest_required):
-                ilian_c "Shouldn't you be bringing all that to the storehouse?"
-                if is_liaison:
-                    "He caught me there. I was being pretty hypocritical, going around the system I was telling everyone else to follow."
-                    menu:
-                        "What should I say?"
-                        "You're right.":
-                            him_c "You're right, Ilian. Sorry, guys, I'm going to have to back out. I'm taking the goat's milk to the storehouse where you can buy it from Ilian."
-                            $ modify_credits(-50)
-                            "I ended up paying a premium for peppers and squash for the family diet."
-                            return
-                        "We should only bring extra.":
-                            him_c "You know; I've changed my mind. We shouldn't have to do that. Everyone should just bring their extra to the storehouse."
-                            $ rationing = True
-                            $ require_whole_harvest = False
-                            ilian_c "Really? You're changing it, just like that?"
-                            him_c "Being the liaison has to be good for something."
-                            natalia_c "I'm not complaining."
-                        "(Don't say anything)":
-                            "I didn't say anything. Everyone knew that requirement was mostly for show, right?"
-                            $ mavericks += 1
-                            $ colonists -= 1
-                            $ miners -= 1
-                else:
-                    sara_c "He's right. If you have extra, bring it to the storehouse and we can distribute it fairly. {emoji=cry}"
-                    pete_c "And at a high price."
-            nvl clear
-            "I was glad I was able to work out a trade this time. Next time, though, I might not be so lucky."
-
-            # test for vitamin C
-        elif (farm.low_vitamin_c() and (not seen_low_c)):
-            $ seen_low_c = True
-            "I felt weak and sore, like I was coming down with the flu."
-            "It got bad enough that I decided to ask [her_name] about it."
-            scene hospital with fade
-            show her concerned at midright with dissolve
-            show him concerned at midleft with moveinleft
-            her concerned "You feel tired and sore, and have a low grade fever. On Earth I'd call this the flu, but..."
-            him annoyed "The flu is not supposed to exist here."
-            her surprised "Do you have any other symptoms? Sore throat, runny nose, cough, indigestion?"
-            him normal "No, none of those. Well, maybe a little stomachache, but I ache all over."
-            her determined "Here, let me check your gums..."
-            him annoyed "Ow!"
-            her concerned "Gums bleed easily... let me look at your skin..."
-            him surprised "Oh, where did that bruise come from? I don't remember getting hurt..."
-            her determined "You have scurvy."
-            him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
-            her annoyed "Like, someone didn't plant enough fruits and vegetables scurvy."
-            him surprised "How come you and [kid_name] don't have it?"
-            her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
-            him annoyed "And you don't share it with me?!"
-            her annoyed "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
-            him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
-            her flirting "Don't go bragging about it or everybody will want to get scurvy."
-            him flirting "I don't think that's something we need to worry about."
-
-        elif (farm.low_vitamin_a() and (not seen_low_a)):
-            $ seen_low_a = True
-            scene farm_interior with fade
-            show him determined at midright with dissolve
-            "My skin was always dry and for some reason I couldn't see well at night."
-            "I didn't think to ask [her_name] about it, though, until she came to me."
-            show her concerned at midleft with moveinleft
-            her concerned "[his_name]... have you been having trouble seeing at night?"
-            him surprised "Yeah, how did you know??"
-            her determined "I have the same problem, and I think [kid_name] does, too."
-            him concerned "Do you know why? Is it a disease? Some kind of alien parasite?"
-            her annoyed "No. I'm pretty sure we haven't been getting enough vitamin A."
-            him surprised "Vitamin A?"
-            her determined "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables, like carrots, squash, and spinach."
-            him concerned "Aw man, I hate pills."
-            her annoyed "Which do you hate more: pills, or being able to see?"
-            him surprised "It's that bad?"
-            her angry "Yes! Prolonged vitamin A deficiency can lead to blindness in kids!"
-            him angry "Okay, okay! I'll try and plant better crops next time."
-            her sad "Sorry, [his_name]. I know you're doing the best you can..."
-            him determined "If it's not good enough, I'll do better."
-
-        elif (farm.low_magnesium() and (not seen_low_m)):
-            $ seen_low_m = True
-            scene farm_interior with fade
-            show her concerned at midright
-            show kid concerned at center
-            if (bro_age > 0):
-                show bro at quarterleft
-            show him concerned at midleft with dissolve
-            her annoyed "I just can't take it anymore!!"
-            him surprised "Whoa, whoa, calm down."
-            her angry "I'm supposed to be calm?! This is insane! How did we ever think living here was going to work?!"
-            him concerned "I thought it was working pretty well..."
-            kid surprised "Mom, are you okay?"
-            her sad "I don't know what's wrong with me... I just feel so crazy lately."
-            him determined "You have been a bit more... volatile."
-            her concerned "I can't stop worrying and I just feel so stressed out all the time but I don't even have that much to be stressed out about!"
-            kid concerned "Are you sick?"
-            her surprised "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
-            him surprised "Are there some tests you can run?"
-            her concerned "Yeah... will you come with me?"
-            if (has_strong_marriage()):
-                him concerned "Of course."
-                scene hospital with fade
-                show her concerned at midright
-                show him concerned at center
-                show kid concerned at quarterleft
-                if (bro_age > 0):
-                    show bro at midleft
-                with moveinleft
-                her determined "I just need to swab under my tongue..."
-                kid surprised "Does it hurt?"
-                her annoyed "No, it's just...awkward... here, [his_name], you do it."
-                him surprised "Oh! Uh, okay..."
-                her determined "Just scrape it a little. Right here."
-                "She opened her mouth and held still. [kid_name] watched, fascinated."
-                him determined "Okay, done. Hopefully I did that right."
-                her annoyed "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
-                him surprised "Hopefully you don't need me to help with those."
-                her "It'll take a few minutes for me analyze the spectrometer's results."
-                "I talked with kid_name while we waited for [her_name] to finish."
-            else:
-                him concerned "I'll stay here with the kids while you do it."
-                her sad "Okay..."
-                hide her with moveoutleft
-                "She was gone for about an hour."
-                show her at midright with moveinleft
-            her concerned "This confirms it. I have a magnesium deficiency."
-            him surprised "Magnesium??"
-            her determined "Yes. Normally we get plenty from nuts, beans, and eggs. But we haven't been eating many of those lately."
-            him sad "Probably because I didn't plant enough..."
-            her concerned "Yes, well... you probably all have it, too, so you'll need to take this supplement."
-            him surprised "Why didn't we notice this earlier?"
-            her determined "The symptoms are so subtle that it's usually hard to detect until it starts to cause more severe problems, like diabetes or heart failure."
-            him normal "Well then, I'm glad you caught it."
-            her normal "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
-            him determined "Okay."
-            $ modify_credits(-50)
-
-        else:
-            # seen all the events that would apply
-            "The crops I planted didn't provide the vitamins and minerals we needed."
-            if (year > 5):
-                "I had to spend money at the storehouse to buy some different foods."
-                $ modify_credits(-50)
-            else:
-                "I had to trade with other farmers to get a better variety of food."
-
-        if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
-            scene fields with fade
-            "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
-            "I was able to add two more fields."
-            $ modify_farm_size(2)
-        return
-
-    # fall through for times without a special event.
-    "The crops I planted didn't provide the vitamins and minerals we needed."
-
-    if (year > 5):
-        "I had to spend money at the storehouse to buy some different foods."
-        $ modify_credits(-50)
-    else:
-        "I had to trade with other farmers to get a better variety of food."
-
-    if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
-        scene fields with fade
-        "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
-        "I was able to add another field."
-        $ modify_farm_size(1)
-
-    return
-
 # TODO: Have an event for not making enough money
 
 # Year 1, 3 mo. old
@@ -548,7 +294,7 @@ label work4:
         "Don't go. Expand fields instead." if (farm_size < FARM_SIZE_MAXIMUM):
             "The festival was fun, but my farm was more important. Maybe I'd go next year..."
             "I worked hard to rip out the native vegetation and plow the new fields."
-            $ modify_farm_size(4)
+            $ modify_farm_size(2)
             return
 
     scene community_center with fade
@@ -746,13 +492,14 @@ label work10:
     him surprised "What's that?"
     kevin "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
     him normal "Like bees?"
-    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm?"
+    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm for 100 credits?"
 
     menu:
         "What should I say?"
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin "Very well. I shall mark you down for bees."
+            $ modify_credits(-100)
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
@@ -760,7 +507,6 @@ label work10:
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."
-            "I didn't have room or time for bees."
     return
 
 # Year 12, 7.4 years old
@@ -785,7 +531,7 @@ label work12:
         natalia_c "Hmm, I might have to try those, if they're really as easy to grow as you say..."
     brennan_c "Well, that's the thing. If you're going to grow them, you need to sign a 20 year contract. We have a set amount and we need reliable buyers."
     natalia_c "Twenty years? Some of us might not even be alive then."
-    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us a certain amount every year and we'll provide you with seeds." # TODO: currency check, how much?
+    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us [WHEAT_COST] credits every year and we'll provide you with seeds."
     julia_c "That's ridiculous. Who would want to rely on you for their seeds?"
     brennan_c "You're a tough customer, Julia; I love that about you! But let's let everyone decide for themselves. Come see me if you want in on this great deal."
     nvl clear
@@ -793,7 +539,7 @@ label work12:
         "What should I do?"
         "Sign a wheat contract.":
             $ miners += 1
-            scene miners_camp with fade
+            scene mine with fade
             show brennan normal at midright with dissolve
             show him at midleft with moveinleft
             him normal "I'm interested in the wheat."
@@ -803,7 +549,6 @@ label work12:
             him determined "..."
             brennan normal "...Right. Here's your wheat."
             $ enable_crop("wheat")
-            # TODO: implement annual fee, test
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
             $ mavericks += 1
@@ -873,7 +618,7 @@ label work14:
     "She was tentative at first, but she seemed to be figuring it out."
     scene fields with fade
     "I left for a minute to check on something, but I wasn't gone for more than five minutes when I heard a scream."
-    scene barn with faded
+    scene barn with fade
     show goat at center
     show kid cry at midright with dissolve
     show him concerned at midleft with moveinleft
@@ -1404,14 +1149,13 @@ label work22:
     him determined "Why did [her_name] want to meet me here? It makes no sense..."
     him annoyed "And the lights are off, which means she's not even here...?"
     hide night_overlay with dissolve
-    show her laughing at quarterleft
+    show her laugh at quarterleft
     show bro happy at quarterleft
     show kid happy at midleft
-    show thuc happy at center
+    show thuc normal at center
     show pete happy at midright
     show ilian happy at quarterright
     show sara happy at right
-    show oleg at right
     with dissolve
     "Everybody" "Happy Birthday, [his_name]!"
     him surprised "Whoa! What are you guys all doing here in the dark??"
@@ -1427,6 +1171,7 @@ label work22:
     "The kids ran off to the a table covered with a variety of foods -- looks like [her_name] organized a potluck. I made a mental note to visit it very soon."
     hide bro
     hide kid
+    hide oleg
     with moveoutleft
     show him at midleft with move
     him happy "Thanks for coming, Thuc!"
@@ -1888,7 +1633,7 @@ label work28:
     scene farm_interior with fade
     show her concerned at midright
     show kid normal at center
-    show bro normal at midleft
+    show bro normal at quarterright
     with dissolve
     show him normal at quarterleft with moveinleft
     him happy "Hey guys, who wants to go out to eat?"
@@ -1901,15 +1646,26 @@ label work28:
     her happy "I haven't been out to eat in... years!"
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
     scene restaurant with fade
-    show travis normal at center with dissolve
+    show travis normal at midright with dissolve
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
     "Plus, the place wasn't that big."
     "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
     "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
+    show him normal at center
+    show her normal at midleft
+    show kid normal at quarterleft
+    show bro normal at left
+    with moveinleft
     "We waited in line for thirty minutes while he and his sister cooked pancakes."
     if community_22_mined_anyway:
         "He had adapted quite well to his prosthetic leg; he didn't even limp anymore."
+    show travis at right
+    show him at midright
+    show her at center
+    show kid at midleft
+    show bro at quarterleft
+    with move
     travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
     kid determined "Are your parents okay with you running a restaurant?"
     travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
@@ -1922,18 +1678,24 @@ label work28:
             him annoyed "But that price is ridiculous!"
             her normal "Then I'm buying."
             "Before I could protest she paid for pancakes and cider for the whole family."
-            $ credits -= 60
+            $ modify_credits(-60)
         "Just pancakes.":
             him normal "Just pancakes for four."
             travis "Pancakes for four, got it!"
             her concerned "Oh, I wanted to try the cider..."
             travis "Plus one cider!"
-            $ credits -= 45
+            $ modify_credits(-45)
         "Pancakes and cider for the whole family!":
             him happy "Pancakes and cider for everyone!"
             kid laugh "Nice!"
-            $ credits -= 60
+            $ modify_credits(-60)
 
+    scene restaurant with fade
+    show him happy at midright
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
+    with dissolve
     "We smothered our pancakes in various toppings and sat down to eat."
     her sleeping "Oh yeah..."
     him sleeping "Mmmm, pancakes..."
@@ -1952,8 +1714,12 @@ label work28:
     her flirting "Oh, but I'm sure it'd be so much more fun to learn from Travis~"
     kid annoyed "Mom! He just makes good pancakes, that's all!"
 
+    scene restaurant with fade
+    show him normal at center with dissolve
     "We stayed for a while after we ate, talking to friends and neighbors and enjoying being together."
     "After Travis finished cooking, he came up to me."
+    show him at midleft with move
+    show travis normal at midright with moveinright
 
     travis "Hey, I wanted to talk to you."
     him surprised "To me?"
@@ -1971,11 +1737,13 @@ label work28:
         "I can't promise that.":
             him concerned "There's a lot of factors that come into play while planning my farm... I can't promise you that."
             travis "I see. Well, I'm sure someone else grows potatoes."
-    show pete at midleft with moveinleft
+    hide travis with moveoutright
+    show him at midright with move
+    show pete normal at quarterleft with moveinleft
     him normal "Hey, Pete. How do you feel about all this? It's not exactly independent living away from everyone else."
     pete "Well, Travis is old enough to decide for himself, I reckon. But he's not depending on RET for anything, so I'm proud of that."
     him determined "Yeah, but he's depending on everyone else -- you can't have a restaurant without any customers. You always said you wanted to be self-sufficient, not depend on anyone for anything."
-    pete "The main thing is, he decided to open a restaurant. Not a committee, not some pasty-faced government dandy, not even his dad. So I'm okay with that."
+    pete "The main thing is, {b}he{/b} decided to open a restaurant. Not a committee, not some pasty-faced government dandy, not even his dad. So I'm okay with that."
     him normal "Good! I gotta say, I'm okay with it, too -- especially if he keeps making those great pancakes."
     pete "And it's a great market for my cider."
 

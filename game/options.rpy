@@ -22,11 +22,14 @@ define config.name = _("OPS2: Space to Grow")
 
 define gui.show_name = False
 
-
 ## The version of the game.
-
 define config.version = "0.4"
+define config.developer = True
+define config.console = True
 
+## Game Saving Behavior
+define config.autosave_on_choice = False
+define config.autosave_on_quit = True
 
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.

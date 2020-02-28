@@ -390,6 +390,8 @@ label tests:
             call test_community
         "Test Family Photo":
             call test_family_photo
+        "Emoji":
+            call test_emoji
         "Baby Positions":
             #call test_positions
             call baby_positions

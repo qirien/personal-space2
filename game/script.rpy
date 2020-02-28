@@ -9,6 +9,7 @@
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
+# TODO: Autosave/resume does not work well right now.
 ##
 
 label start:
@@ -115,6 +116,11 @@ label start:
         ilian_has_cattle = False
         thuc_sells_food = False
         cave_explored = False
+        talked_to_Natalia = False
+        talked_to_Thuc = False
+        talked_to_Sara = False
+        talked_to_Kevin = False
+        talked_to_Pavel = False
         community_11_kidsonfarm = False
         community_17_planparty = False
         community_22_mining_stopped = False
@@ -143,31 +149,30 @@ label start:
 
         # Dictionary containing the number of events seen for each crop
         number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
-        # TODO: add income
         credits = 0
-        crop_info_index = 1  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
+        crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
-        crop_info =     (
+        crop_info =     (#Name          CAL NUT VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
-                        ["corn",         9, 4, 7, 7, 50, False, False, False, 100],    # Grains
-                        ["potatoes",     10, 5, 6, 6, 40, True, False, False, 100],
+                        ["corn",         9, 3, 7, 7, 50, False, False, False, 100],    # Grains/Starches
+                        ["potatoes",     10, 4, 6, 6, 40, True, False, False, 100],
                         ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
                         ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False, True, 100],
                         ["plums",        3, 3, 7, 7, 5, False, True, True, 1],
                         ["plums+",       3, 3, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 7, 2, 4, 15, True, False, True, 100],
+                        ["squash",       4, 6, 2, 4, 15, True, False, True, 100],
                         ["strawberries", 1, 2, 6, 4, 5, False, True, True, 1],
                         ["strawberries+",1, 2, 6, 2, 0, False, True, True, 0],
-                        ["beans",        6, 8, 4, 7, -20, True, False, True, 100],   # Legumes
-                        ["peanuts",      7, 8, 5, 8, -50, False, False, False, 100],
+                        ["beans",        6, 6, 4, 7, -20, True, False, True, 100],   # Legumes
+                        ["peanuts",      7, 8, 5, 8, -40, False, False, False, 100],
                         ["carrots",      3, 6, 3, 3, 10, True, False, False, 100],   # Root Vegetables
                         ["turnips",      3, 5, 1, 4, 10, False, False, False, 100],
                         ["onions",       4, 2, 5, 4, 5, False, False, False, 100],
                         ["garlic",       1, 3, 5, 2, 4, False, False, False, 100],
                         ["spinach",      1, 6, 3, 2, 10, True, False, False, 100],   # Leafy greens
                         ["broccoli",     3, 7, 2, 3, 15, False, False, False, 100],
-                        ["goats",        8, 9, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
+                        ["goats",        8, 8, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
                         ["honey",         2,  2,  8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
@@ -208,7 +213,7 @@ label start:
 
         bad_nutrition_count = 0
         seen_low_cam = False
-        seen_low_ac = False
+        seen_low_ca = False
         seen_low_c = False
         seen_low_a = False
         seen_low_m = False
@@ -300,13 +305,14 @@ label life_loop:
         #scene stars with fade
         if (year > 1):
             $ years_yield = farm.process_crops()
-            # TODO: Right now, special events still modify credits, so you could start with a credit/debit. Is this what we want?
             if (year > MONEY_YEAR):
                 $ income = farm.calculate_income(years_yield)
                 $ modify_credits(income)
                 $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
                     $ modify_credits(allowance_amount * 7)
+        if (crop_enabled("wheat")):
+            $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ show_year = year
@@ -319,8 +325,14 @@ label life_loop:
                 jump trailer_continue
             if testing_mode:
                 jump test_continue
+            $ notifications = ""
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
+
+            # MALNUTRITION EVENT (optional)
+            if (farm.low_vitamins() and (year >= NUTRITION_YEAR)):
+                call bad_nutrition
+
             # WORK EVENTS (farming)
             play music farming fadeout 3.0 fadein 3.0
             call interscene_text(year, "Work")
@@ -340,7 +352,6 @@ label life_loop:
             call expression "community" + str(year)
 
             # Increase child stats based on this year's parenting decisions
-            $ notifications = ""
             stop music fadeout 3.0
             call interscene_text(year, "End")
             call increase_attachment

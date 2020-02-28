@@ -43,24 +43,26 @@ init -100:
     define POLLINATED_INDEX = 8
     define MAXIMUM_INDEX = 9
 
-    define CROP_STATS_MAX = 10
+    define CROP_STATS_MAX = 9
     define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Nutrition", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
     define STAT_ICON_BASE = "gui/emoji/"
 
     # Nutritional data
-    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":9, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":7, "broccoli":2, "goats":1, "honey":0}
-    define VITAMIN_A_LOW = 15
+    define VITAMINS_BASE = 20
+    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":8, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":6, "broccoli":2, "goats":1, "honey":0}
+    define VITAMIN_A_LOW = 20
 
-    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":3, "plums":1, "squash":4, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":3, "broccoli":9, "goats":0, "honey":0}
+    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":4, "plums":1, "squash":3, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":4, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20
 
-    define MAGNESIUM_CROPS = {"fallow":0, "corn":1, "potatoes":2, "wheat":0, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":4, "broccoli":1, "goats":1, "honey":0}
+    define MAGNESIUM_CROPS = {"fallow":0, "corn":2, "potatoes":2, "wheat":1, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":3, "broccoli":1, "goats":1, "honey":0}
     define MAGNESIUM_LOW = 10
 
     # Calorie data
     define CALORIES_BASE = 50
     define NUTRITION_BASE = 50
     define WORK_BASE = 60
+    define WHEAT_COST = 200
 
     # Money data
     define ANNUAL_EXPENSES_BASE = 2500
@@ -68,6 +70,7 @@ init -100:
     define CALORIES_TO_MONEY_MULTIPLIER = 14
     define MONEY_YEAR = 6
     define KID_WORK_YEAR = 7
+    define NUTRITION_YEAR = 9
 
     # GUI display sizes
     define CROP_ICON_SIZE = 64
@@ -348,7 +351,7 @@ define parenting_quotes = [
     "\"Excessive control usually involves punishment which is humiliating to children. Permissiveness is humiliating to adults. Positive discipline is based on mutual respect and cooperation. Positive discipline incorporates firmness with dignity and respect.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #23
     "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\n --Heraclitus", #24
     "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #25
-    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached. They accomplish this by creating a situation in which the caregiver separates from them (because of the \'hatred\'), but they themselves stay attached (by not directly expressing or even consciously feeling the hatred).\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
+    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached.\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
     "\"There is a cognitive bias that makes people overestimate their own importance and their own ability to influence how things turn out - not just in child-rearing but in everything they do.\"\n\n -- Judith R. Harris", #27
     "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
     "\"When the child internalizes a secure internal working model of self in relation to caregivers, a remarkable thing can occur— the child can dare to turn their back on caregivers and walk away from them\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #29

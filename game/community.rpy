@@ -935,11 +935,6 @@ label community7:
 
 # 8 - What luxuries should RET send?
 label community8:
-    $ talked_to_Natalia = False
-    $ talked_to_Thuc = False
-    $ talked_to_Sara = False
-    $ talked_to_Kevin = False
-    $ talked_to_Pavel = False
     $ talked_about_luxuries_counter = 0
 
     if is_liaison:
@@ -1515,11 +1510,13 @@ label community11:
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
     # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
+    define meet_chaco_questions = set()
     label chaco_coversation_loop:
         show him normal
         show her normal
         with dissolve
         menu:
+            set meet_chaco_questions
             "What should I ask him?"
             "How was the shuttle ride?":
                 him surprised "How was the trip over?"
@@ -3582,7 +3579,7 @@ label community17:
                                         jump community17_lose_to_ilian
 
                             "my marbles if I have to keep listening to your ranting.":
-                                him happy "The only thing i'll be losing is my marbles, if I have to listen to more of your ranting."
+                                him happy "The only thing I'll be losing is my marbles, if I have to listen to more of your ranting."
                                 ilian happy "If all it takes is a few rants to make you crazy, you must not be very far off!"
                                 ilian normal "In fact, you're so crazy that every time you go running, you take the psycho-path."
                                 jump community17_trash_talk
@@ -5350,7 +5347,7 @@ label community23:
                 her laugh "This really hits the spot. Thanks."
                 $ colonists += 1
                 return
-
+    return
 
 label community24:
     #luxury goods
@@ -7070,6 +7067,7 @@ label community30:
     $ checked_sara = False
     $ checked_oleg = False
     $ checked_terra = False
+    $ examined_body = False
     $ searched_bed = False
     $ searched_cupboard = False
     $ searched_sofa = False
@@ -7640,8 +7638,8 @@ label community30:
         him "On Joel's tablet, there were a few messages to you. Do you know anything about that?"
         julia "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying
         him "Okay, that makes sense."
-        "Should I ask about the ring?"
         menu:
+            "Should I ask about the ring?"
             "Yes.":
                 him "One more thing. I found this ring-like object at Noel's house. Do you know what it is?"
                 "It seemed like Julia recognized it."
@@ -7735,8 +7733,9 @@ label community30:
                 "[kid_name] didn't even look up from her tablet."
                 kid "Like I'd tell you."
                 him "You're no help."
-            "I still wanted to see if I could find out account information relating to the case. How should I approach that problem?"
+            "I still wanted to see if I could find out account information relating to the case."
             menu:
+                "How should I approach that problem?"
                 "Ask Brennan to help you.":
                     "I arranged to meet with Brennan in the community center to ask for his help."
                     brennan "What have you found so far with the investigation?"
@@ -7880,6 +7879,7 @@ label community30:
                 her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawal feature."
                 her_c "Why do you ask?"
                 menu:
+                    "What should I do?"
                     "Tell her about investigating accounts.":
                         him_c "It would be really useful to know how much money people have in their accounts for my investigation..."
                         her_c "I can totally see that."
@@ -7998,8 +7998,8 @@ label community30:
             "I decided to go back to Noel's place. This time, I brought my barrel-opening tools."
             "When I got there, Noel was there, along with her two young sons." #about ages 4 and 6
             "I asked her if I could talk to her about Joel's death, but she didn't want to talk about it, especially not with her children needing her."
-            "How should I approach the situation?"
             menu:
+                "How should I approach the situation?"
                 "Finish searching the premises.":
                     $ know_noel_had_firegrass = True #this variable name isn't great... you know she received deliveries if you talk to Pete and kid is attached; this is for when you find it at her house
                     "I told her I had been authorized to search her house and that I wanted to look inside her barrels."
@@ -8032,8 +8032,8 @@ label community30:
                     "She said that she didn't want to talk about it."
                     "I asked if I could come by next time Van was watching her kids."
                     "She said no."
-                    "Did I respect her wishes?"
                     menu:
+                        "Did I respect her wishes?"
                         "Yes.":
                             "I didn't return to her house."
                             jump noel_no_confession
@@ -8049,10 +8049,11 @@ label community30:
             "She explained that she knew that Joel's wheelchair brakes were wearing out, but that he wanted to fix them himself."
             "Tears streamed down her face as she told me that she kept meaning to fix them when he was asleep, but she never had the energy."
             him "I understand that you felt like you could have prevented his death."
-            "Do I have any more questions?"
             menu:
+                "Do I have any more questions?"
                 "Yes":
                     menu:
+                        "What should I ask?"
                         "Why did Joel have so much money in his account?" if checked_joel:
                             him "I found out that Joel has quite a bit of money in his account. Why is that?"
                             "Noel explained that she was simply saving money there in case of an emergency."
@@ -8091,6 +8092,7 @@ label community30:
             her "Do you think it was an accident or was there foul play?"
 
             menu:
+                "What should I say?"
                 # TODO: Add Joel wanting to commit suicide as an option?
                 "It was a tragic accident following neglect.":
                     him "Van and Noel definitely should have made fixing Joel's brakes a priority."
@@ -8200,6 +8202,7 @@ label community30:
                     him "I suspect foul play. Someone deliberately set this up to kill Joel."
                     her "Who do you think it was?"
                     menu:
+                        "What should I say?"
                         "Sara.":
                             him "Sara seems the most suspicious."
                             him "Sara said she didn't want to go back on the shuttle anymore, but I think she was lying."

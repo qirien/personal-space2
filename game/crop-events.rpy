@@ -2,7 +2,89 @@
 
 # Default crop event, if no other crop event can be found
 label default_crop_event:
-    "The year passed by in a blur: tilling, planting, weeding, harvesting; the endless cycle of life on the farm."
+    "The year passed by in a blur: -- tilling, planting, weeding, harvesting -- the endless cycle of life on the farm."
+    return
+
+# TODO: Write some wheat events.
+# WHEAT1: Wheat is yummy!
+
+# WHEAT2: Consequences of sterile GMO wheat.
+
+# CORN1: Corn was made sterile by solar flares
+label corn1:
+    scene fields with fade
+    show him normal at center with dissolve
+    "When I went to go check on the corn I planted, I noticed that only about a third of the stalks grew up."
+    him surprised "Why didn't the others germinate?"
+    "It was normal for a few seeds not to germinate, but not this many. I had to find out what the problem was."
+    "I gathered some of the seeds that hadn't germinated, and some that had, and looked at them closely."
+    him determined "The structure looks fine..."
+    "The weather had been fine, the soil tested fine, and the seeds looked fine... I was stumped."
+    "I decided to get a lab analysis."
+    scene lab with fade
+    show him normal at midleft with dissolve
+    if (year < LILY_DIES_YEAR):
+        show lily normal at midright with moveinright
+        lily "After close analysis, I can tell you that these seeds are sterile."
+        him annoyed "Obviously! But {b}why{/b} are they sterile?!"
+        lily "Their DNA has mutated. Mutations happen naturally even on Earth. But the radiation from solar flares causes mutations much more frequently."
+    else:
+        "Miranda ran some tests on them, and concluded that the DNA had mutated to the point that the seeds were sterile."
+        "We concluded it was probably the result of solar flares."
+
+    "There wasn't really anything I could do. I just would have to work with having less corn than I thought this year."
+    $ modify_credits(-0.6 * farm.crops.count("corn") * get_credits_from_name("corn"))
+
+# CORN2: How to process corn
+label corn2:
+    "There are tons of different types of corn, but on Talaam we mostly grew a variety of hard heirloom corn."
+    "It's not so good for eating fresh off the cob because it's not sweet at all."
+    "But it grinds up into a nice flour, and you can even pop it a little bit."
+    "It stores easily, too -- after harvesting the ears of corn, I pull the silk and the husks back to expose the colorful kernels."
+    "And then I hang them up to dry for a few months."
+    "When they were all dry, I ran them through the corn sheller. Then the kernels were ready to pop, grind, or store for later."
+    "It would take more work, but I could treat the corn with lime in a process called nixtamalization. This allows more B vitamins to be extracted from the corn, kills fungi, and makes it easier to grind."
+    "It would be vital if corn were our main staple, but we have such a variety of foods here we probably don't need to."
+    if (get_extra_work() <= 0):
+        "Too bad I didn't have time for that this round. Maybe next time I would treat it."
+    else:
+        menu:
+            "What should I do?"
+            "Treat the corn with lime.":
+                "I decided the extra nutrition was worth it. If I'm going to all the trouble of growing food, I want it to be as nutritious as possible."
+                "I soaked the kernels in an alkaline solution and then let them dry again."
+                "Now they could be used for some of my favorite foods - tortillas, pozole, and chips!"
+                if (farm.crops.contains("tomatoes") and farm.crops.contains("peppers")):
+                    if farm.crops.contains("onions"):
+                        "And with the peppers, onions, and tomatoes I grew, I could make salsa to go with them."
+                    else:
+                        "And with the peppers and tomatoes I grew, I could make salsa to go with them."
+                    if farm.crops.contains("garlic"):
+                        "I added some garlic, too, for a nice zing."
+                    scene farm_interior with fade
+                    show him normal at midleft
+                    show her normal at midright
+                    show kid normal at center
+                    if (bro_age > 0):
+                        show bro normal at quarterright
+                    her surprised "Chips and salsa?! Wonderful!"
+                    kid happy "I like chips, too!"
+                    him happy "Eat up!"
+
+            "Don't treat it.":
+                "I decided not to treat it. That meant there were some things I couldn't make very well, but it would make better popcorn."
+                scene farm_interior with fade
+                show him normal at midleft
+                show her normal at midright
+                show kid normal at center
+                if (bro_age > 0):
+                    show bro normal at quarterright
+                kid surprised "What is this?"
+                her happy "Popcorn!!"
+                "The kernels were small and less airy than normal Earth popcorn, but [kid_name] wouldn't know the difference."
+                him happy "Eat up!"
+                kid surprised "It's... puffy? And salty!"
+                her sleeping "Delicious..."
     return
 
 # CARROTS1 - bent and twisted
@@ -31,7 +113,6 @@ label carrots1:
             "It would take a while to see if it worked, though."
             $ carrots_fallow = True
             $ crop_temporarily_disabled = "carrots"
-            # TODO: this doesn't work
         "Who cares, they taste the same.":
             "I didn't have time to worry about oddly-shaped carrots."
             "I just chopped them up and cooked them and then nobody even noticed."
@@ -660,7 +741,7 @@ label goats2:
             show her normal at midright
             show kid normal at center
             with dissolve
-            show him normal at midright with moveinright
+            show him normal at midleft with moveinleft
             him flirting "Too bad no one here likes applesauce. I guess I'll have to eat this all by myself."
             if (year >= 7):
                 kid happy "Applesauce!"
@@ -915,7 +996,7 @@ label tomatoes2:
                 $ tomatoes2_action = "sweetness"
                 "Sweet tomatoes were the best for eating. I can't stand mealy or bland tomatoes."
 
-        if ((get_available_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        if ((get_work_available() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             "After harvesting tomatoes and their seeds, I had enough extra time to get another field ready for planting crops on next year."
             $ modify_farm_size(1)
     else:
@@ -948,7 +1029,7 @@ label tomatoes3:
         "Finally, I had a good tomato harvest. The tomatoes were firm all over and there were plenty of them."
         "Time for salsa, spaghetti sauce, and maybe even some pizza!"
 
-    if ((get_available_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+    if ((get_work_available() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
         "Now that the tomato harvest was finally over, I could start thinking about next year... I wanted another field for crops, so I cleared and fenced another field."
         $ modify_farm_size(1)
     return
@@ -1144,9 +1225,9 @@ label beans2:
 label spinach1:
     "Even with all our technology -- our hybrid tractors, our careful genetic modifications, our surveillance cameras and timed sprinkler systems -- we were still at Mother Nature's mercy."
     "It usually didn't get very warm on Talaam. Most of the time our proximity to the ocean kept the temperatures moderate."
-    "But one year we had a terrible heat wave..."
+    "But one year we had heat combined with terrible solar flares..."
     "...and the spinach seeds never came up."
-    "They needed cool temperatures to germinate. The weather was cool again -- for now."
+    "They needed cool temperatures to germinate. The weather was nice again -- for now."
     "I had enough seeds to plant one more batch of spinach. But if those also failed, then next year I wouldn't have any spinach seeds at all."
     $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 1
     menu:
@@ -1180,6 +1261,8 @@ label spinach1:
             him concerned "Sorry, no spinach this year. It got too hot."
             her concerned "Oh...that's too bad."
             him normal "Don't worry; we'll definitely have some next year."
+    $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
+    # TODO: make it so you can only plant 1 thing of spinach next year?
     return
 
 # SPINACH2 - turtle slugs
@@ -1396,7 +1479,7 @@ label strawberries2:
     sara_c "Mine, too!"
     zaina_c "We haven't experienced any problems."
     him_c "Really? It's just mine?"
-    if (year <= 20):
+    if (year <= LILY_DIES_YEAR):
         lily_c "It is possible the plants mutated."
         sara_c "Like, X-Men strawberries?! {emoji=biohazard}"
         lily_c "Our frequent solar flares bombard the plants with more radioactive particles than on Earth. With most plants, a mutation in one plant might just mean its seeds are sterile, or it doesn't grow fruit."
@@ -1418,8 +1501,9 @@ label strawberries2:
         "Rip out the mutated strawberries." if (get_extra_work() > 0):
             "It was a huge pain, but I decided to rip out all the mutated strawberries.  I destroyed every plant that didn't have any flowers on it."
             "And the few strawberries that I did get, I planted instead of eating."
-            # TODO: does this work, or should it be strawberries+?
-            $ modify_credits(-farm.crops.count("strawberries") * get_credits_from_name("strawberries"))
+            $ credits_lost = farm.crops.count("strawberries") * get_credits_from_name("strawberries")
+            $ credits_lost = farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")
+            $ modify_credits(-credits_lost)
         "Till over the whole field.":
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
@@ -1435,6 +1519,8 @@ label strawberries2:
 # Honey event
 # Can only happen year 11+
 label honey1:
+    scene farm with fade
+    show him normal at center with dissolve
     "Having bees wasn't just good for pollinating plants; I also really enjoyed when we got to harvest the honey."
     "But when I went to harvest the honey, I noticed something."
     him surprised "Some of the honey is missing!"
@@ -1518,7 +1604,7 @@ label honey1:
     show helen normal at center
     show travis normal at midright
     with dissolve
-    show him normal at midleft with moveinleft
+    show him normal at quarterleft with moveinleft
     helen "Oh. Hello, [his_name]."
     him normal "Hey there, Helen. How's it going?"
     helen "Okay, I guess. What brings you way out here?"
@@ -1536,11 +1622,13 @@ label honey1:
             show helen normal at quarterright with move
             helen "C'mere and talk with [his_name]. And"
             "She whispered something in his ear that I didn't hear."
-            show travis normal at midright with move
             hide helen with moveoutright
         "Talk to Travis directly.":
             him determined "Travis, I need to talk to you."
+            show helen at right with move
 
+    show him at center with move
+    show travis normal at midright with move
     travis "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
     him annoyed "Don't change the subject. I caught you stealing my honey."
     travis "Oh, uh, what?"

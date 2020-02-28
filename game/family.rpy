@@ -2394,8 +2394,9 @@ label family7_angry_ending:
     show kid at midleft with move
     "[kid_name] ran in and hid her face in [her_name]'s lap. The she spoke, so quietly that I could barely hear."
     kid sad "I peed in my bed."
-    show her angry
+    show her annoyed with dissolve
     "[her_name] shot me a glare, as if [kid_name]'s bladder problems were my fault. She was probably peeing in the bed on purpose to try to get even with us!"
+    show him determined with dissolve
     "I started to stand up, but [her_name] beat me to it."
     her determined "I'll handle this. I don't trust you right now."
     hide her
@@ -2403,8 +2404,9 @@ label family7_angry_ending:
     with moveoutleft
     "A sour mix of resentment and anger bubbled through my thoughts. I wanted to lash out, get even, show everyone that I was in charge..."
     "But I didn't want to be that kind of dad."
+    show him sad with dissolve
     "The kind of dad whose own kids were afraid of him."
-    "I remember being afraid of my dad, sometimes. That's why whenever I had problems, I always went to my mom."
+    "I remember being afraid of my dad, sometimes. Whenever I had problems, I always went to my mom."
     "I didn't want [kid_name] to feel like that."
     $ marriage_strength -= 1
     $ trust -= 1
@@ -5126,7 +5128,10 @@ label family17:
                 ilian "Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
                 "I checked the time. It was getting late. We didn't have time to look anywhere else, especially since the farms were so spread out."
                 him determined "Then we shall craft our own bread."
-                "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
+                if (farm.crops.count("wheat") > 0):
+                    "It galled me to pay Ilian for the wheat I had just sold him, but I did it anyway. I didn't keep a lot of wheat around since it brought in a lot of money. I also bought some yeast."
+                else:
+                    "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
 
             "Pavel Grayson, the mayor":
                 "Mayor Grayson knew everyone. He would probably have some idea."
@@ -7258,6 +7263,10 @@ label family26:
     show him normal at midright
     show kid annoyed at midleft
     with dissolve
+    him surprised "How's it going, [kid_name]?"
+    kid nervous "Fine."
+    "She didn't meet my eyes, and her jaw was clenched in frustration. Clearly something was wrong."
+    him annoyed "What's bothering you?"
     kid annoyed "Dad, what you're doing to Talaam is wrong. We should not be here changing this planet!"
     him surprised "What are you talking about?"
     kid angry "We're contaminating this planet! Look at all our trash, all the non-native species we've introduced, and all the animals here that we've killed or enslaved! The cave we destroyed!"
@@ -7281,7 +7290,7 @@ label family26:
             him surprised "You're talking about the miners, right?"
             kid determined "Not just the miners! All of us! We're alien invaders here!"
     him angry "So what do you expect me to do? Just walk out into the wilderness and let the 'natural' creatures of Talaam have my body as payment for my sins against the planet?"
-    kid concerned "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by us, the alien invaders from Earth!"
+    kid concerned "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by alien invaders from Earth!"
     menu:
         "What should I do?"
         "Appeal to logic.":
@@ -7308,7 +7317,7 @@ label family26:
             $ permissive += 1
         "Walk away.":
             him annoyed "Your opinion is so ridiculous I won't even dignify it with a response. Talk to me when you have something sane to say."
-            kid angry "Wow. I guess you're too much of an planet-destroying, colonizing imperialist to even understand what I'm saying!"
+            kid angry "Wow. I guess you're too much of an entitled planet-destroying autocrat to even understand what I'm saying!"
             $ neglectful += 1
             return
     him surprised "So, is there something we can do? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
@@ -7499,8 +7508,6 @@ label family27:
                 $ authoritarian += 1
             $ modify_credits(-bike_cost)
 
-
-    # TODO: different job depending on personality/ending?
     scene farm_exterior with fade
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
     "She attached a little cart to the back and started delivering things for people all over the colony."
@@ -8165,7 +8172,7 @@ label family29:
                 him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
                 kid determined "Huh. Okay."
                 $ authoritarian += 1
-            "To create a life together":
+            "To create a family together":
                 him happy "We wanted to make something new together, a beautiful life here on this planet with some adorable children."
                 him normal "We promised to stick together, no matter what."
                 him content "Because we wanted to experience all the joys and struggles of life with the other person at our side."

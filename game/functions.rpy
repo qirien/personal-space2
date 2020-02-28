@@ -50,16 +50,14 @@ init python:
 # PARENTING FUNCTIONS
 ##
 
-# TODO: These might need to be functions, not labels for the
-# notifications to go in the same place as those from functions
-#
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
-    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment
+    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment,
+    # as long as Terra's work slider is under 90%
     # TODO: is this balanced?
     $ inc_amount = 0
-    if (total_work < current_work):
-        $ inc_amount += 1
+    #if ((total_work < current_work) and (kid_work_slider < 90.0)):
+    #    $ inc_amount += 1
     $ inc_amount += responsive
     if (inc_amount > 0):
         $ notifications += "Attachment +" + str(inc_amount) + "\n"
@@ -72,7 +70,8 @@ label increase_competence:
     # If your kid spends more than half their time working, increase competence
     # TODO: Should we take out the int casting and allow more nuance?
     # Or have their work_slider affect how much demanding gets added?
-    $ inc_amount += int(kid_work_slider/50.0)
+    # TODO: try taking this and previous one out and see what happens.
+    # $ inc_amount += int(kid_work_slider/50.0)
     $ inc_amount += demanding
     if (inc_amount > 0):
         $  notifications += "Competence +" + str(inc_amount) + "\n"
@@ -181,12 +180,6 @@ init -100 python:
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events (we have 22)
 
-        # IF nutrition is low, you don't get to do any of that. Instead
-        # you have to take care of the nutrition problem.
-        malnutrition_threshold = renpy.random.randint(-5, 0)
-        if (get_extra_nutrition() <= malnutrition_threshold):
-            return "bad_nutrition"
-
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
         if (get_extra_work() <= overwork_threshold):
@@ -197,6 +190,9 @@ init -100 python:
             # Call the next set event
             event_name = "work" + str(year)
             return event_name
+
+        # TODO: If you make Terra work too much, she complains.
+        # TODO: If you have a lot of money, have an investment opportunity?
 
         # Otherwise, we get a random crop event
         else:
@@ -228,17 +224,18 @@ init -100 python:
                 return "default_crop_event"
 
     # Change amount of credits you have
-    # TODO: show credits in a corner somewhere?
-    # TODO: this doesn't go in the global notifications variable
+    # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
+        amount = int(round(amount))
+        renpy.show_screen("show_credits", amount=amount)
         credits += int(amount)
+        message = "Credits "
         if (amount >= 0):
-            notifications += "Credits +" + str(int(amount)) + "\n"
-            renpy.notify("Credits +" + str(int(amount)))
-        else:
-            notifications += "Credits " + str(int(amount)) + "\n"
-            renpy.notify("Credits " + str(int(amount)))
+            message += "+"
+        message += str(int(amount)) + "\n"
+        notifications += message
+
 
     def modify_farm_size(amount):
         global farm_size, notifications
@@ -272,19 +269,24 @@ init -100 python:
         return get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
 
     # Calculate nutrition required for the family for this year.
-    # TODO: right now this is the same as calories? Is that true?
-    def get_nutrition_required(year):
-        return get_calories_required(year)
+    # Returns the amount of a vitamin required each year. Scale
+    # is about half that of calories.
+    def get_vitamins_required(year):
+        earth_year = get_earth_years(year)
+        return (VITAMINS_BASE + 0.5 * get_calories_kids(earth_year))
 
     # Calculate the calories required for the family for this year.
     def get_calories_required(year):
         earth_year = get_earth_years(year)
+        return (CALORIES_BASE + get_calories_kids(earth_year))
+
+    def get_calories_kids(earth_year):
         calories_kid = get_calories_kid(earth_year)
         calories_bro = 0
         if ((bro_birth_year != 0) and (bro_birth_year < year)):
             bro_age = year - bro_birth_year
             calories_bro = get_calories_kid(get_earth_years(bro_age))
-        return (CALORIES_BASE + calories_kid + calories_bro)
+        return (calories_kid + calories_bro)
 
     def get_calories_kid(age):
         if (0 <= age < 2):
@@ -315,15 +317,6 @@ init -100 python:
 
         work_available = get_work_available()
         return (work_available - total_work)
-
-    def get_extra_nutrition():
-        total_nutrition = 0
-        for i in range(0, farm.crops.len()):
-            crop_names = [row[NAME_INDEX] for row in crop_info]
-            index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
-            total_nutrition += crop_info[index][NUTRITION_INDEX]
-        nutrition_required = get_nutrition_required(year)
-        return -(nutrition_required - total_nutrition)
 
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
@@ -366,6 +359,32 @@ init -100 python:
         else:
             return "{color=#f00}Danger{/color}"
 
+    # Return bee boosting overlay if it applies to this square
+    # Otherwise return null image
+    def get_boost_image(index):
+        if (index in farm.get_boosted_squares()):
+            return Image("gui/emoji/bee boost.png")
+        else:
+            return Null()
+
+    # Return bee boosting overlay if it could boost this crop
+    # Otherwise return null image
+    def get_boosted_image(crop_name, crop_index):
+        if (crop_enabled("honey")):
+            if (crop_info[get_crop_index(crop_name)][POLLINATED_INDEX]):
+                if bee_adjacent(crop_index, farm.crops.len()):
+                    return Image("gui/emoji/bee boost.png")
+        return Null()
+
+    # Return whether there is honey next to this crop or not.
+    def bee_adjacent(crop_index, max_size):
+        adjacent = get_adjacent(crop_index, max_size)
+        for square_index in adjacent:
+            if (farm.crops[square_index] == "honey"):
+                return True
+        return False
+
+    # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):
         if (pest_factor < 0.05):
             return Null(CROP_ICON_SIZE, CROP_ICON_SIZE)

@@ -85,26 +85,11 @@ init python:
                     # print "Pest Factor[" + str(i) + "] is " + str(pest_factor) + ", pest_growth= " + str(pest_growth)
 
                 # Bee Calculation
-                # Boost what is adjacent - -1 and +1 for horizontal,
-                # and -num_columns and +num_columns for vertical
+
                 if (crop_name == "honey"):
-                    num_columns = int(self.crops.len()**0.5)
-                    # left edge
-                    if ((i % num_columns) == 0):
-                        indices = [i-num_columns, i+1, i+num_columns]
-                    # right edge
-                    elif ((i % num_columns) == (num_columns - 1)):
-                        indices = [i-num_columns, i-1, i+num_columns]
-                    # middle column somewhere
-                    else:
-                        indices = [i-num_columns, i-1, i+1, i+num_columns]
-                    #print "Bee boosting: " + str(indices)
-                    for curr_index in indices:
-                        # if it's not out of bounds
-                        if ((curr_index >= 0) and (curr_index < len(final_yield))):
-                            # if it's a pollinated crop
-                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
-                                final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
+                    boosted_squares = self.get_boosted_squares()
+                    for curr_index in boosted_squares:
+                        final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
 
                 # TODO: still runaway pests on perennials...
                 # Subtract pests and nitrogen deficiency from final yield
@@ -127,6 +112,17 @@ init python:
                 income += int(final_value)
             return income
 
+        # Set all crops to fallow except for already-planted perennials
+        def clear_crops(self):
+            for i in range(0, self.crops.len()):
+                crop_index = get_crop_index(self.crops[i])
+                crop_name = self.crops[i]
+                if (crop_info[crop_index][PERENNIAL_INDEX]):
+                    if (crop_name[-1] != "+"):
+                        self.crops[i] = "fallow"
+                else:
+                    self.crops[i] = "fallow"
+
         # Reset the crops for a new year.
         def reset_crops(self, size=FARM_SIZE_MAXIMUM):
             new_crops = Crops(size)
@@ -146,6 +142,9 @@ init python:
                         crop_info[plus_index][MAXIMUM_INDEX] += 1
                     else:
                         new_crops[i] = crop_name
+                # keep crop names for next year?
+                else:
+                    new_crops[i] = crop_name
             self.crops = new_crops
 
         # Update the crop history in preparation for a new year.
@@ -191,8 +190,8 @@ init python:
                 valid_layout = False
 
             # Check bees
-            if (crop_enabled("honey") and (self.crops.count("honey") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX])):
-                valid_layout = True
+            if (crop_enabled("honey") and (self.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
+                valid_layout = False
 
             # Check calories
             total_cals = self.get_total_calories()
@@ -201,29 +200,46 @@ init python:
 
             return valid_layout
 
+        def low_vitamins(self):
+            return (self.low_vitamin_a() or self.low_vitamin_c() or self.low_magnesium())
+
         def low_vitamin_a(self):
             vitA = 0
             for i in range(0, self.crops.len()):
                 current_crop_name = self.crops[i].rstrip("+")
                 vitA += VITAMIN_A_CROPS[current_crop_name]
-            return (vitA <= VITAMIN_A_LOW)
+            return (vitA <= get_vitamins_required(year))
 
         def low_vitamin_c(self):
             vitC = 0
             for i in range(0, self.crops.len()):
                 current_crop_name = self.crops[i].rstrip("+")
                 vitC += VITAMIN_C_CROPS[current_crop_name]
-            return (vitC <= VITAMIN_C_LOW)
+            return (vitC <= get_vitamins_required(year))
 
         def low_magnesium(self):
             magn = 0
             for i in range(0, self.crops.len()):
                 current_crop_name = self.crops[i].rstrip("+")
                 magn += MAGNESIUM_CROPS[current_crop_name]
-            return (magn <= MAGNESIUM_LOW)
+            return (magn <= get_vitamins_required(year))
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()
+
+        # Return a set of indexes that are currently boosted
+        def get_boosted_squares(self):
+            indices = set()
+            for i in range(0, self.crops.len()):
+                crop_name = self.crops[i]
+                if (crop_name == "honey"):
+                    potential_indices = get_adjacent(i, self.crops.len())
+                    for curr_index in potential_indices:
+                        # if it's a pollinated crop
+                        if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
+                            indices.add(curr_index)
+            return indices
+
 
     ##
     # CROPS OBJECT
@@ -289,7 +305,7 @@ init python:
         def most_frequent_crop(self):
             most_frequent_crop = ""
             most_frequent_count = 0
-            for i in range(0, len(self)):
+            for i in range(0, len(self.items)):
                 current_crop_name = self.items[i]
                 current_crop_count = self.count(current_crop_name)
                 if ((current_crop_count >=  most_frequent_count) and (current_crop_name != "fallow")):
@@ -330,3 +346,24 @@ init python:
             current_crop_name = self.items[i]
             if (current_crop_name == crop_name):
                 self.items[i] = "fallow"
+
+    # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
+    # and -num_columns and +num_columns for vertical
+    def get_adjacent(crop_index, max_size):
+        num_columns = int(round(max_size**0.5))
+        # left edge
+        if ((crop_index % num_columns) == 0):
+            potential_indices = [crop_index-num_columns, crop_index+1, crop_index+num_columns]
+        # right edge
+        elif ((crop_index % num_columns) == (num_columns - 1)):
+            potential_indices = [crop_index-num_columns, crop_index-1, crop_index+num_columns]
+        # middle column somewhere
+        else:
+            potential_indices = [crop_index-num_columns, crop_index-1, crop_index+1, crop_index+num_columns]
+
+        for curr_index in potential_indices:
+            # if it's out of bounds, delete it
+            if ((curr_index < 0) or (curr_index >= max_size)):
+                potential_indices.remove(curr_index)
+
+        return potential_indices
