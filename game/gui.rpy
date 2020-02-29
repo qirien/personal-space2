@@ -122,7 +122,7 @@ define gui.title_text_size = 60
 
 
 ## Main and Game Menus #########################################################
-
+        
 ## The images used for the main and game menus.
 define gui.main_menu_background = "gui/title.png"
 define gui.game_menu_background = "bg/stars.png"

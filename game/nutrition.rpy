@@ -124,25 +124,25 @@ label bad_nutrition:
             "I felt weak and sore, like I was coming down with the flu."
             "It got bad enough that I decided to ask [her_name] about it."
             scene hospital with fade
-            show her concerned at midright with dissolve
+            show her concerned coat at midright with dissolve
             show him concerned at midleft with moveinleft
-            her concerned "You feel tired and sore, and have a low grade fever. On Earth I'd call this the flu, but..."
+            her "You feel tired and sore, and have a low grade fever. On Earth I'd call this the flu, but..."
             him annoyed "The flu is not supposed to exist here."
-            her surprised "Do you have any other symptoms? Sore throat, runny nose, cough, indigestion?"
+            her surprised coat "Do you have any other symptoms? Sore throat, runny nose, cough, indigestion?"
             him normal "No, none of those. Well, maybe a little stomachache, but I ache all over."
-            her determined "Here, let me check your gums..."
+            her determined coat "Here, let me check your gums..."
             him annoyed "Ow!"
-            her concerned "Gums bleed easily... let me look at your skin..."
+            her concerned coat "Gums bleed easily... let me look at your skin..."
             him surprised "Oh, where did that bruise come from? I don't remember getting hurt..."
-            her determined "You have scurvy."
+            her determined coat "Aha! You have scurvy."
             him normal "Scurvy? Like, scurvy-sea-dog scurvy?"
-            her annoyed "Like, someone-didn't-plant-enough fruits-and-vegetables scurvy."
+            her annoyed coat "Like, someone-didn't-plant-enough fruits-and-vegetables scurvy."
             him surprised "How come you and [kid_name] don't have it?"
-            her concerned "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
+            her concerned coat "I don't know... we eat a lot of the same foods... though I think we get more applesauce since sometimes Helen will bring some in."
             him annoyed "And you don't share it with me?!"
-            her annoyed "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
+            her annoyed coat "There's not very much... Anyway, here's some vitamins -- they should help you start feeling better in a few days. And next time, try planting more peppers, squash, or broccoli. Even potatoes have some vitamin C in them."
             him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
-            her flirting "Don't go bragging about it or everybody will want to get scurvy."
+            her flirting coat "Don't go bragging about it or everybody will want to get scurvy."
             him flirting "I don't think that's something we need to worry about."
 
         elif (farm.low_vitamin_a() and (not seen_low_a)):
@@ -151,62 +151,62 @@ label bad_nutrition:
             show him determined at midright with dissolve
             "My skin was always dry and for some reason I couldn't see well at night."
             "I didn't think to ask [her_name] about it, though, until she came to me."
-            show her concerned at midleft with moveinleft
+            show her concerned coat at midleft with moveinleft
             her concerned "[his_name]... have you been having trouble seeing at night?"
             him surprised "Yeah, how did you know??"
-            her determined "I have the same problem, and I think [kid_name] does, too."
+            her determined coat "I have the same problem, and I think [kid_name] does, too."
             him concerned "Do you know why? Is it a disease? Some kind of alien parasite?"
-            her annoyed "No. I'm pretty sure we haven't been getting enough vitamin A."
+            her annoyed coat "No. I'm pretty sure we haven't been getting enough vitamin A."
             him surprised "Vitamin A?"
-            her determined "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables like carrots, squash, and spinach."
+            her determined coat "Yes. I got us all a supplement from the clinic for now, but you need to plant more vegetables like carrots, squash, and spinach."
             him concerned "Aw man, I hate pills."
-            her annoyed "Which do you hate more: pills, or being able to see?"
+            her annoyed coat "Which do you hate more: pills, or being able to see?"
             him surprised "It's that bad?"
-            her angry "Yes! Prolonged vitamin A deficiency can lead to blindness in kids!"
+            her angry coat "Yes! Prolonged vitamin A deficiency can lead to blindness in kids!"
             him angry "Okay, okay! I'll try and plant better crops next time."
-            her sad "Sorry, [his_name]. I know you're doing the best you can..."
+            her sad coat "Sorry, [his_name]. I know you're doing the best you can..."
             him determined "If it's not good enough, I'll do better."
 
         elif (farm.low_magnesium() and (not seen_low_m)):
             $ seen_low_m = True
             scene farm_interior with fade
-            show her concerned at midright
+            show her concerned coat at midright
             show kid concerned at center
             if (bro_age > 0):
                 show bro at quarterleft
             show him concerned at midleft with dissolve
-            her annoyed "I just can't take it anymore!!"
+            her annoyed coat "I just can't take it anymore!!"
             him surprised "Whoa, whoa, calm down."
-            her angry "I'm supposed to be calm?! This is insane! How did we ever think living here was going to work?!"
+            her angry coat "I'm supposed to be calm?! This is insane! How did we ever think living here was going to work?!"
             him concerned "I thought it was working pretty well..."
             kid surprised "Mom, are you okay?"
-            her sad "I don't know what's wrong with me... I just feel so crazy lately."
+            her sad coat "I don't know what's wrong with me... I just feel so crazy lately."
             him determined "You have been a bit more... volatile."
-            her concerned "I can't stop worrying and I just feel so stressed out all the time but I don't even have that much to be stressed out about!"
+            her concerned coat "I can't stop worrying and I just feel so stressed out all the time but I don't even have that much to be stressed out about!"
             him concerned "Is it PMS?"
             kid concerned "Are you sick?"
-            her surprised "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
+            her surprised coat "I... I don't think so, but... now that you mention it, there are some conditions that can cause these symptoms..."
             him surprised "Are there some tests you can run?"
-            her concerned "Yeah... will you come with me?"
+            her concerned coat "Yeah... will you come with me?"
             if (has_strong_marriage()):
                 him concerned "Of course."
                 scene hospital with fade
-                show her concerned at midright
+                show her concerned coat at midright
                 show him concerned at center
                 show kid concerned at quarterleft
                 if (bro_age > 0):
                     show bro at midleft
                 with moveinleft
-                her determined "I just need to swab under my tongue..."
+                her determined coat "I just need to swab under my tongue..."
                 kid surprised "Does it hurt?"
-                her annoyed "No, it's just...awkward... here, [his_name], you do it."
+                her annoyed coat "No, it's just...awkward... here, [his_name], you do it."
                 him surprised "Oh! Uh, okay..."
-                her determined "Just scrape it a little. Right here."
+                her determined coat "Just scrape it a little. Right here."
                 "She opened her mouth and held still. [kid_name] watched, fascinated."
                 him determined "Okay, done. Hopefully I did that right."
-                her annoyed "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
+                her annoyed coat "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
                 him surprised "Hopefully you don't need me to help with those."
-                her "It'll take a few minutes for me analyze the spectrometer's results."
+                her determined coat "It'll take a few minutes for me analyze the spectrometer's results."
                 "I talked with [kid_name] while we waited for [her_name] to finish."
             else:
                 if (bro_age > 0):
@@ -216,16 +216,16 @@ label bad_nutrition:
                 her sad "Okay..."
                 hide her with moveoutleft
                 "She was gone for about an hour."
-                show her at midright with moveinleft
-            her concerned "This confirms it. I have a magnesium deficiency."
+                show her normal coat at midright with moveinleft
+            her concerned coat "This confirms it. I have a magnesium deficiency."
             him surprised "Magnesium??"
-            her determined "Yes. Normally we get plenty from nuts, beans, and eggs. But we haven't been eating many of those lately."
+            her determined coat "Yes. Normally we get plenty from nuts, beans, and eggs. But we haven't been eating many of those lately."
             him sad "Probably because I didn't plant enough..."
-            her concerned "Yes, well... you probably all have it, too, so you'll need to take this supplement."
+            her concerned coat "Yes, well... you probably all have it, too, so you'll need to take this supplement."
             him surprised "Why didn't we notice this earlier?"
-            her determined "The symptoms are so subtle that it's usually hard to detect until it starts to cause more severe problems, like diabetes or heart failure."
+            her determined coat "The symptoms are so subtle that it's usually hard to detect until it starts to cause more severe problems, like diabetes or heart failure."
             him normal "Well then, I'm glad you caught it."
-            her normal "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
+            her normal coat "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
             him determined "Okay."
             $ modify_credits(-50)
 

@@ -242,7 +242,7 @@ label start:
     "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
 
     show path
-    show her flirting at midleft
+    show her flirting coat at midleft
     show him happy at midright
     show child at center
     #show computer_pad
@@ -374,5 +374,7 @@ label life_loop:
             $ renpy.notify("Autosaving...")
 
             $ year += 1
+            if (persistent.max_year < year):
+                $ persistent.max_year = year
     jump ending
     return

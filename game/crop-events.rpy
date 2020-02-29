@@ -5,6 +5,8 @@ label default_crop_event:
     "The year passed by in a blur: -- tilling, planting, weeding, harvesting -- the endless cycle of life on the farm."
     return
 
+# TODO: write a garlic event. Terra has no clue about its anti-vampiric properties.
+
 # TODO: Write some wheat events.
 # WHEAT1: Wheat is yummy!
 
@@ -180,16 +182,16 @@ label carrots3:
         "What should I do?"
         "Ask [her_name].":
             scene hospital with fade
-            show her normal at midright with dissolve
+            show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
             him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
-            her "Are you talking about [kid_name]'s orange hands?"
+            her annoyed coat "Are you talking about [kid_name]'s orange hands?"
             him "Yeah... is that bad?"
-            her "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
+            her concerned coat "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
             him "Okay, good to know."
-            her "Don't you think I would have said something if there was something wrong?!"
+            her annoyed coat "Don't you think I would have said something if there was something wrong?!"
             him "Well, I wasn't sure you noticed."
-            her "Of course I noticed. And if you're not careful, the same thing will happen to you."
+            her determined coat "Of course I noticed. And if you're not careful, the same thing will happen to you."
             menu:
                 "What should I do?"
                 "Keep eating carrots":
@@ -1569,15 +1571,15 @@ label honey1:
             "I kept my eyes peeled in town, and even made an excuse to stop by the school, but I didn't see any kids that matched the video."
             "I finally asked [her_name] about it. She knows almost everyone because of her work, but I wasn't sure she'd want to tell me."
             scene hospital with fade
-            show her normal at midright with dissolve
+            show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
             him surprised "Hey do you recognize this kid?"
             "I showed her the footage."
-            her surprised "A honey thief, huh?"
+            her surprised coat "A honey thief, huh?"
             him determined "Looks like it."
-            her concerned "I can't say for sure... but it looks like Oleg or Travis."
+            her concerned coat "I can't say for sure... but it looks like Oleg or Travis."
             him concerned "That's what I thought..."
-            her determined "No, it's definitely Travis. I recognize those clothes."
+            her determined coat "No, it's definitely Travis. I recognize those clothes."
 
         "Ask [kid_name] if she recognizes him.":
             scene farm_interior with fade

@@ -237,17 +237,16 @@ label farm_tutorial:
 label work2:
     scene farm_interior with fade
     show him normal at midleft
-    show her normal at midright
-    show kid normal at midright, baby_pos
+    show her baby happy at midright
     with dissolve
-    her surprised "Are you going somewhere?"
+    her "Are you going somewhere?"
     him determined "Yeah, I said I'd help Kevin and Zaina with their garden."
-    her flirting "It wasn't as easy as the video games made it seem, huh?"
+    her "It wasn't as easy as the video games made it seem, huh?"
     him happy "Yeah, turns out there's actually a lot of things that you can't learn just from simulations!"
-    her normal "All right, good luck."
+    her "All right, good luck."
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
-    scene farm with fade
+    scene fields flip with fade
     show kevin at midright
     show zaina at center
     with dissolve
@@ -1412,11 +1411,11 @@ label work24:
             "My arms, already strained from lifting the tractor, felt heavy and numb, but I walked on."
             "Finally we arrived at the clinic."
             scene hospital with fade
-            show her surprised at midright with dissolve
+            show her surprised coat at midright with dissolve
             show him determined at midleft
             show kid determined at center
             with moveinleft
-            her surprised "[his_name]? What's wrong?"
+            her surprised coat "[his_name]? What's wrong?"
 
         "See if she can walk." if not (work24_stopped_bleeding or work24_walk):
             him surprised "Can you stand up?"
@@ -1448,75 +1447,75 @@ label work24:
             "Every bump made her leg hurt more. I tried to protect her from the worst bumps but it was a long, rough ride."
             "When we arrived, [her_name] was ready for us."
             scene hospital with fade
-            show her surprised at midright with dissolve
+            show her surprised coat at midright with dissolve
             show him determined at midleft
             show kid determined at center
             with moveinleft
 
     "[her_name] ran over, taking in [kid_name]'s injuries."
-    her concerned "Okay. It's probably not too bad. Set her on the bed here."
+    her concerned coat "Okay. Not life-threatening. Set her on the bed here."
     show kid cry with dissolve
     "I told her the whole story while she and the nurse cleaned and examined the wound. She felt [kid_name]'s leg carefully, noting every wince. She examined the rest of her, too."
     "[kid_name] was clearly in pain, but also fascinated by what [her_name] was doing."
-    her determined "Broken tibia. Transverse. Fibula seems to be okay. Concussion."
+    her determined coat "Broken tibia. Transverse. Fibula seems to be okay. Concussion."
     "She looked me in the eyes for the first time since I arrived."
-    her angry "We'll talk about why in the world she was the one driving the tractor later."
+    her angry coat "We'll talk about why in the world she was the one driving the tractor later."
     him sad "Is it bad?"
-    her concerned "She'll be okay, [his_name]. But I need to put her under to put in some pins, so why don't you head on home. [bro_name]'s probably wondering where you are."
+    her concerned coat "She'll be okay, [his_name]. But I need to put her under to put in some pins, so why don't you head on home. [bro_name]'s probably wondering where you are."
     show kid nervous with dissolve
     "He had been working on homework when I left, but that was hours ago..."
     him determined "Okay. Keep me posted."
-    her determined "I will."
+    her determined coat "I will."
     scene farm_interior with fade
     "The next day, when they came home, [her_name] wanted to talk."
-    show her annoyed at midright
+    show her annoyed coat at midright
     show him concerned at midleft
     with dissolve
-    her angry "Why was [kid_name] driving that tractor? She's just a kid!"
+    her angry coat "Why was [kid_name] driving that tractor? She's just a kid!"
     him annoyed "She's not just a kid! She's almost an adult and very capable!"
-    her annoyed "Not capable enough, apparently."
+    her annoyed coat "Not capable enough, apparently."
     him determined "Does she still have some things to learn? Of course she does. But she drives the tractor all the time just fine."
-    her concerned "I know, it's just... I want more for [kid_name]."
+    her concerned coat "I know, it's just... I want more for [kid_name]."
     him annoyed "Farming isn't good enough?"
-    her sad "It's not that!  Well... maybe it is."
+    her sad coat "It's not that!  Well... maybe it is."
     him angry "We've been through this before. People will always need to eat! Growing food is one of the most important jobs people do!"
-    her concerned "I know but... it's so dangerous. And she could do so much more."
+    her concerned coat "I know but... it's so dangerous. And she could do so much more."
     him annoyed "What could be more important than not starving to death??"
-    her annoyed "How about not bleeding to death?"
+    her annoyed coat "How about not bleeding to death?"
     him concerned "Look, I don't want to have a whose-job-is-more-important argument with you. We need both jobs. What's this really about?"
-    her concerned "I don't want her to spend the rest of her life digging in the dirt on this alien planet in the middle of nowhere."
+    her concerned coat "I don't want her to spend the rest of her life digging in the dirt on this alien planet in the middle of nowhere."
     him annoyed "Isn't that what {b}we{/b} are doing?"
-    her determined "Yes, but we chose this. She didn't."
+    her determined coat "Yes, but we chose this. She didn't."
     menu:
         "What should I say?"
         "You miss Earth.":
             $ marriage_strength += 1
             him concerned "You miss Earth still, don't you."
-            her sad "Sometimes..."
+            her sad coat "Sometimes..."
             him sad "Sorry I dragged you way out here."
-            her normal "No, no, it's good. I like the life we have here."
-            her concerned "I just like Earth, too, and I'd love for her to be able to experience that part of humanity."
+            her normal coat "No, no, it's good. I like the life we have here."
+            her concerned coat "I just like Earth, too, and I'd love for her to be able to experience that part of humanity."
             him determined "If she wants to."
         "She might not have a choice.":
             him determined "Well, she's here, and it's not like you can just buy a bus ticket back to Earth. She may be stuck here."
         "There's nothing good on Earth.":
             $ marriage_strength -= 1
             him annoyed "I don't see any reason why she would want to go back to Earth. Good riddance to that crowded, noisy, frivolous, self-absorbed planet!"
-            her annoyed "Some of us liked it."
+            her annoyed coat "Some of us liked it."
             him determined "I still can't see why."
 
-    her concerned "Look if she really wants to be a farmer here, and that's her passion, then great, teach her to be the best farmer ever."
+    her concerned coat "Look if she really wants to be a farmer here, and that's her passion, then great, teach her to be the best farmer ever."
     him annoyed "I'm trying to--"
-    her annoyed "I know, that's what you are trying to do already. Just, let me finish. But we shouldn't expect her to do what we do. She needs to decide for herself."
+    her annoyed coat "I know, that's what you are trying to do already. Just, let me finish. But we shouldn't expect her to do what we do. She needs to decide for herself."
     him determined "I know that."
-    her concerned "And she needs to stay alive and whole long enough to find that out."
+    her concerned coat "And she needs to stay alive and whole long enough to find that out."
     him sad "I'm sorry she got hurt, [her_name]."
-    her determined "It was an accident..."
+    her determined coat "It was an accident..."
     menu:
         "What should I say?"
         "I need to teach her better.":
             him sad "I should have taught her better. Then maybe she wouldn't have gotten hurt."
-            her sad "..."
+            her sad coat "..."
             "I heard a faint voice from the other room."
             kid "Dad, it's not your fault. I was driving too fast. You tried to warn me."
             him concerned "Thanks, [kid_name]."
@@ -1524,30 +1523,30 @@ label work24:
 
         "Sometimes you have to learn things the hard way.":
             him annoyed "You have to understand, this world is just dangerous. She needs to learn how to be careful; maybe this is the only way she could learn that."
-            her annoyed "Maybe you could help her learn in some way that preserves all her limbs."
+            her annoyed coat "Maybe you could help her learn in some way that preserves all her limbs."
             him determined "I wouldn't be doing her any favors if I made everything safe. Then she would never learn how to be careful and solve her own problems."
-            her angry "Well you won't be doing her any favors if she doesn't survive until adulthood, either!"
+            her angry coat "Well you won't be doing her any favors if she doesn't survive until adulthood, either!"
             him angry "She survived! She'll be just fine!"
-            her annoyed "Oh, so it's normal to just break your leg once in a while working on the farm?"
+            her annoyed coat "Oh, so it's normal to just break your leg once in a while working on the farm?"
             "I thought I heard [kid_name] trying to say something, but I wasn't sure."
             kid "Mom?"
             him annoyed "Yes. Yes, it's totally normal for stuff like this to happen when you're doing real work."
-            her angry "Real work?! You think you're the only one doing real work?"
+            her angry coat "Real work?! You think you're the only one doing real work?"
             kid "Mom!"
             "[kid_name] was calling from her room."
-            her concerned "Yes, [kid_name]?"
+            her concerned coat "Yes, [kid_name]?"
             kid "Can you guys keep it down? I'm trying to go to sleep."
-            her annoyed "Sorry, we will."
+            her annoyed coat "Sorry, [kid_name]."
             kid "Also, it's not dad's fault. I drove too fast around the corner."
-            her concerned "Don't worry about that."
+            her concerned coat "Don't worry about that."
             him determined "See? She learned something from this."
-            her annoyed "I just wish I could say the same thing about you."
+            her annoyed coat "I just wish I could say the same thing about you."
 
         "Maybe she shouldn't work on the farm.":
             him sad "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
-            her concerned "I think usually it's good for her. Just... can you just be a little more careful?"
+            her concerned coat "I think usually it's good for her. Just... can you just be a little more careful?"
             him concerned "Yeah..."
-            her determined "I know she looks like an adult, but inside she still has a lot of learning to do."
+            her determined coat "I know she looks like an adult, but inside she still has a lot of learning to do."
             him determined "Don't we all..."
 
     return

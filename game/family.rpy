@@ -625,29 +625,29 @@ label family2:
 
     scene farm_interior with fade
     show him determined at midright with dissolve
-    show her sad at midleft with moveinleft
+    show her sad coat at midleft with moveinleft
     "Late that night, after I fed [kid_name] dinner and she had fallen asleep, [her_name] finally came home."
     "She trudged into the house, looking at least as tired as I felt."
     show him normal at center with move
     "I caught her up in a big hug and kissed her twice."
     show him surprised at midright with move
     him surprised "Rough day?"
-    her determined "Yeah. We had to operate... it wasn't pretty, but she survived."
+    her determined coat "Yeah. We had to operate... it wasn't pretty, but she survived."
     him concerned "Operate?! Sounds serious... who was it?"
-    her sad "Helen. She had appendicitis."
+    her sad coat "Helen. She had appendicitis."
     him surprised "Have you ever fixed one of those before?"
-    her determined "No, but I did a surgical rotation where I helped perform one. But it's quite different to be the one in charge."
+    her determined coat "No, but I did a surgical rotation where I helped perform one. But it's quite different to be the one in charge."
     him determined "It's a good thing you have a real nurse helping you out now instead of Brennan."
     "[her_name] seemed to be thinking about something else, though."
-    her concerned "Yeah...I hope Helen will be okay."
+    her concerned coat "Yeah...I hope Helen will be okay."
     "I made her up a plate of beans while we talked."
     "From the way she devoured them, I guess she hadn't eaten all day."
     him concerned "How'd Pete take it?"
-    her normal "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
+    her normal coat "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
     him surprised "What about Travis? That kid is the cutest hurricane of destruction I've ever seen."
-    her surprised "I know. It's hard to believe he's just a year older than [kid_name]..."
+    her surprised coat "I know. It's hard to believe he's just a year older than [kid_name]..."
 
-    her concerned "How was [kid_name]? I guess she's asleep now?"
+    her concerned coat "How was [kid_name]? I guess she's asleep now?"
     him normal "Yeah, she's asleep. "
 
 
@@ -660,63 +660,64 @@ label family2:
 
     her determined "[his_name], we need help."
     him annoyed "With what?"
-    her annoyed "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Travis was?"
+    her annoyed coat "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Travis was?"
     him surprised "Terrorizing the clinic's cotton ball supplies?"
-    her determined "No! He was at Sister Naomi's."
+    her determined coat "No! He was at Sister Naomi's."
     him normal "Oh, well, that was nice of her."
-    her normal "She offered to let [kid_name] come, too."
+    her normal coat "She offered to let [kid_name] come, too."
     him happy "That sounds great!"
-    her determined "Good, I'm glad you agree. Fridays are our days, so all the little kids will come over to our house on Fridays."
+    her determined coat "Good, I'm glad you agree. Fridays are our days, so all the little kids will come over to our house on Fridays."
     him surprised "What? I thought you just said she'd be at Sister Naomi's!"
-    her normal "It's a childcare co-op. Each of the families takes one day a week to have the kids over to their house. Sister Naomi doesn't have any kids, but she volunteered to be in the rotation anyway to help us out."
+    her normal coat "It's a childcare co-op. Each of the families takes one day a week to have the kids over to their house. Sister Naomi doesn't have any kids, but she volunteered to be in the rotation anyway to help us out."
     him normal "So... [kid_name] will be at other houses four days a week, and we'll have all the kids over once a week?"
-    her normal "That's how it works."
+    her normal coat "That's how it works."
     him concerned "..."
-    her concerned "I...thought it would be a good thing, for everyone."
+    her concerned coat "I...thought it would be a good thing, for everyone."
     menu:
         "You should have asked me first.":
             $ marriage_strength -= 1
             him annoyed "You should have talked to me about it first. After all, I'll be watching them half the time."
-            her annoyed "It's obviously more efficient and better for everyone. I thought you would see that."
+            her annoyed coat "It's obviously more efficient and better for everyone. I thought you would see that."
             him angry "You can't just make these kinds of decisions without me! We're both her parents!"
-            her angry "I'm going to have to be at the clinic a lot more in the next few weeks, so you'll need to watch her."
+            her angry coat "I'm going to have to be at the clinic a lot more in the next few weeks, so you'll need to watch her."
             him annoyed "You're doing it again! We need to decide these things together!"
-            her annoyed "There's nothing to decide. There's only one real choice if both of us are going to continue to work full-time."
+            her annoyed coat "There's nothing to decide. There's only one real choice if both of us are going to continue to work full-time."
             him concerned "We both have to work; it's in our contract."
-            her concerned "..."
+            her concerned coat "..."
             him pout "..."
-            her surprised "So what do you think we should do?"
+            her surprised coat "So what do you think we should do?"
             him concerned "I think we should join the childcare co-op."
-            her annoyed "I agree."
+            her annoyed coat "I agree."
             him happy "Good! That wasn't so hard, was it?"
-            her determined "So, you just want to make all the decisions?"
+            her determined coat "So, you just want to make all the decisions?"
             him annoyed "I want us to make them together."
-            her annoyed "Yeah. Together."
+            her annoyed coat "Yeah. Together."
 
         "This'll be great!":
             $ marriage_strength += 1
             him happy "This will be great! I can concentrate on work during most of the week, and concentrate on [kid_name] on Fridays."
-            her normal "[kid_name] and three other toddlers. Including Travis."
+            her normal coat "[kid_name] and three other toddlers. Including Travis."
             him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
-            her happy "I'm glad you agree."
+            her happy coat "I'm glad you agree."
             him flirting "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
-            her flirting "I hope so."
+            her flirting coat "I hope so."
         "I've never watched four toddlers before.":
             $ marriage_strength += 1
             him surprised "Four toddlers at once?! I can barely handle one!"
-            her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
+            her concerned coat "That's what I thought, too, but Sister Naomi says it's not much harder..."
             him determined "I guess we'll find out. Hopefully they're not all like Travis."
-            her flirting "Well, I'm sure you'll do just fine, Mr. Superdad."
+            her flirting coat "Well, I'm sure you'll do just fine, Mr. Superdad."
             him happy "Superdad? Have I earned that title?"
-            her happy "I'm pretty sure you have."
+            her happy coat "I'm pretty sure you have."
             if (family2_work_done >= 5):
+                show him pout with dissolve
                 "I felt a twinge of guilt as she said that. I hadn't been a super dad today at all; super farmer, maybe, but I'd let Terra cry in order to get my work done..."
                 "[her_name] saw the look on my face and stroked my face."
-                her surprised "What is it?"
+                her surprised coat "What is it?"
                 him sad "Today was... it was a long day."
                 show her at center with move
                 "She leaned her head on my shoulder and sighed."
-                her sleeping "Me too, [his_nickname]. Me too."
+                her sleeping coat "Me too, [his_nickname]. Me too."
 
     return
 
@@ -2529,7 +2530,7 @@ label family8:
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
     scene path with fade
     show him normal at midleft
-    show her normal at midright
+    show her normal coat at midright
     show kid normal at center
     with dissolve
 
@@ -2537,9 +2538,9 @@ label family8:
     kid laugh "...and the letters of the alphabet and my numbers up to fifty except Travis says I always mess up around forty-seven and skip right to forty-nine but I don't, right, daddy?"
     him surprised "Um, what was the question?"
     kid normal "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
-    her concerned "[kid_name]."
+    her concerned coat "[kid_name]."
     kid concerned "What?"
-    her normal "We're almost there. Come get a goodbye hug."
+    her normal coat "We're almost there. Come get a goodbye hug."
     kid normal "Bye, mommy!"
     "She turned to me, and I felt like I should say something, but I wasn't sure what."
     menu:
@@ -2570,16 +2571,16 @@ label family8:
     hide kid with moveoutleft
     "[her_name] moved to follow her, but I held her hand."
     him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
-    her concerned "I guess so... Is she really going to be okay?"
+    her concerned coat "I guess so... Is she really going to be okay?"
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
     "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face. Their baby sensed the mood and started fussing also."
     him surprised "I guess we have it pretty easy, huh?"
-    her normal "For once. I'm going to help them out; want to come?"
+    her normal coat "For once. I'm going to help them out; want to come?"
     menu:
         "What should I do?"
         "Go to work":
             him concerned "Sorry, I have too much work to do."
-            her concerned "Okay, don't forget to pick up [kid_name] today. Eventually she can walk home on her own, but I told her you'd walk with her today."
+            her concerned coat "Okay, don't forget to pick up [kid_name] today. Eventually she can walk home on her own, but I told her you'd walk with her today."
             him determined "Okay."
             "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg. I turned away and jogged back to the farm. I had a lot of work to do."
         "Go with [her_name]" if (get_extra_work() > 0):
@@ -2591,7 +2592,7 @@ label family8:
             show him at midright
             show her at center
             with move
-            show her baby sad with dissolve
+            show her baby sad coat with dissolve
             "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg."
             "[her_name] cuddled the baby and I distracted her with peek-a-boo until Ilian and Sara finally got Oleg to go inside the school."
             sara sad "Thanks, guys. I really hope Oleg will be okay..."
@@ -2600,7 +2601,7 @@ label family8:
             her "Except as soon as you came to pick him up, he'd cry again."
             sara normal "You're probably right."
             sara sad "But maybe we should peek in him, just in case."
-            her baby happy "I'll admit, I'm a little curious about what they're doing..."
+            her baby happy coat "I'll admit, I'm a little curious about what they're doing..."
             "The four of us crept over to the schoolhouse."
             ilian "Sara, if he sees you or me, he'll start crying. Someone else had better look."
             her "I'm holding the baby; [his_name] should do it."
@@ -2634,7 +2635,7 @@ label family8:
             scene path with fade
             show ilian normal at quarterleft
             show sara sad at midleft
-            show her baby happy at center
+            show her baby happy coat at center
             show him normal at midright
             sara "Well?"
             him happy "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
@@ -2654,72 +2655,72 @@ label family8:
         $ year8_have_baby = True
         scene path with fade
         show him normal at midright
-        show her normal at midleft
+        show her normal coat at midleft
         with dissolve
         her concerned "It's a good thing [kid_name]'s in school... since I think I'm pregnant."
         him surprised "What, really? I thought we decided to wait!"
-        her annoyed "Well, sometimes these things happen anyway."
+        her annoyed coat "Well, sometimes these things happen anyway."
         him concerned "Are you sure?"
-        her surprised "Yes, I ran the test myself."
+        her surprised coat "Yes, I ran the test myself."
         menu:
             "What should I say?"
             "How are we going to do this?":
                 him annoyed "Well, this is just great."
-                her annoyed "What do you care? It's not like you have to be pregnant for nine months!"
+                her annoyed coat "What do you care? It's not like you have to be pregnant for nine months!"
                 him angry "We don't have enough food for another baby! Where will they sleep? We don't even know what we're doing with [kid_name]!"
-                her sad "I know it's hard, but..."
+                her sad coat "I know it's hard, but..."
                 him concerned "I'm sorry. Hey. Don't cry."
-                her angry "I'll cry if I want to! Especially if my husband is yelling at me!"
+                her angry coat "I'll cry if I want to! Especially if my husband is yelling at me!"
                 him angry "Fine, I'm sorry! I just..."
                 show him concerned with dissolve
                 extend "It's a lot to take in."
                 label pregnancy_alone:
-                    her concerned "I need us to be on the same side.  "
-                    show her sad with dissolve
+                    her concerned coat "I need us to be on the same side.  "
+                    show her sad coat with dissolve
                     extend "I can't do this alone."
                     him surprised "You're not alone. I'll always be on your side."
                     him normal "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
-                    her normal "Then I don't have anything to worry about."
+                    her normal coat "Then I don't have anything to worry about."
                     him normal "Nope."
                     show him content at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
                     "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
                     "How long had she known and worried by herself?"
                     "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
-                    her concerned "You're still worried."
+                    her concerned coat "You're still worried."
                     him normal "So are you."
-                    her determined "Yes. But it'll be okay."
+                    her determined coat "Yes. But I guess there's not much we can do about it right now."
                     him pout "We'll figure it out."
             "We can do this!":
                 $ marriage_strength += 1
                 him determined "This is...this is..."
-                her surprised "What?"
+                her surprised coat "What?"
                 him happy "This is awesome!"
-                her annoyed "I don't feel awesome, I'll tell you that much."
+                her annoyed coat "I don't feel awesome, I'll tell you that much."
                 him surprised "Hey, is that why you've been so tired lately?"
-                her determined "Probably so."
+                her determined coat "Probably so."
                 him normal "Any morning sickness? I haven't noticed you eating differently."
-                her normal "Not yet. "
-                show her concerned with dissolve
+                her normal coat "Not yet. "
+                show her concerned coat with dissolve
                 extend "I can't believe we're doing this again..."
                 him normal "We're pros, now! It'll be so much easier!"
-                her annoyed "What part of this is easy?!"
+                her annoyed coat "What part of this is easy?!"
                 him flirting "Well, conceiving the baby was pretty easy..."
-                her flirting "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
+                her flirting coat "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
                 him surprised "How would that even work? Like, the baby would start large and shrink as they got older?"
-                her normal "Yeah, that doesn't make much sense, I guess."
+                her normal coat "Yeah, that doesn't make much sense, I guess."
                 him happy "I love you even when you don't make sense."
-                her concerned "Oh, [his_name]. I love you too. I'm so glad you're with me."
+                her concerned coat "Oh, [his_name]. I love you too. I'm so glad you're with me."
                 him concerned "Hey, are you crying?"
-                her normal "Just a little. Stupid pregnancy hormones."
+                her normal coat "Just a little. Stupid pregnancy hormones."
                 him happy "Here, you can wipe your tears on my shirt."
-                her flirting "Now that's true love."
+                her flirting coat "Now that's true love."
             "How do you feel about it?":
                 $ marriage_strength += 1
                 him surprised "How do you feel about it?"
-                her concerned "I don't know. Worried, I guess."
+                her concerned coat "I don't know. Worried, I guess."
                 him concerned "Yeah, how will this even work?"
-                her sad "I don't know if I can do this..."
+                her sad coat "I don't know if I can do this..."
                 him determined "Hey, don't cry, it'll be okay."
                 jump pregnancy_alone
 
@@ -3917,32 +3918,32 @@ label family13:
     "We brought the kids to the clinic so that they could see their new sibling via ultrasound."
     scene hospital with fade
     show him normal at midright
-    show her normal at center
+    show her normal coat at center
     show kid normal at midleft
     show bro normal at quarterleft
     with dissolve
 
-    her normal "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
+    her "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
     # TODO: add ultrasound pic?
     him surprised "Was that it?"
-    her concerned "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
+    her concerned coat "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
     him normal "You could have asked the nurse to help, right?"
-    her normal "Yeah, but I wanted it to be just our family."
+    her normal coat "Yeah, but I wanted it to be just our family."
     kid surprised "Is that a hand?"
-    her happy "Yes! There's the baby - you can see the little mouth, and the hand."
+    her happy coat "Yes! There's the baby - you can see the little mouth, and the hand."
     him "Wow, that really makes it seem real."
-    her flirting "That's because it is real."
+    her flirting coat "That's because it is real."
     bro surprised "That's in your tummy?"
     kid annoyed "It's not her tummy, it's her uterus. Only girls have them."
     "[bro_name] looked disappointed."
     bro concerned "Why?"
     him explaining "Men and women have mostly the same parts, but a few different parts so they can come together and make babies."
-    her normal "We still have a long time before this baby is born, but that's good. We need time to get ready!"
+    her normal coat "We still have a long time before this baby is born, but that's good. We need time to get ready!"
     bro annoyed "Babies cry a lot."
     him normal "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
     kid surprised "So how come [bro_name] still cries all the time?"
     bro sad "I do not!"
-    her determined "I cry sometimes, too. Sometimes words just aren't enough."
+    her determined coat "I cry sometimes, too. Sometimes words just aren't enough."
     "I helped [her_name] put away the ultrasound machine, and we started to walk back home."
     scene path with fade
     "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and I on ahead."
@@ -4472,26 +4473,26 @@ label family15:
             hide kid with moveoutright
 
             # Kelly comes home and chides you for yelling.
-            show her concerned at midleft with moveinleft
-            her concerned "Hey, [his_name]."
+            show her concerned coat at midleft with moveinleft
+            her concerned coat "Hey, [his_name]."
             him determined "Welcome home."
-            her surprised "Where's [kid_name]?"
+            her surprised coat "Where's [kid_name]?"
             him annoyed "In her room. She wants an allowance."
-            her normal "Oh, that's a good idea."
+            her normal coat "Oh, that's a good idea."
             him pout "Not you too!"
-            her surprised "What, you never had an allowance?"
+            her surprised coat "What, you never had an allowance?"
             him determined "No. My parents handled the money. If I wanted money, I had to work for someone else."
-            her determined "So you don't want to pay her anything."
+            her determined coat "So you don't want to pay her anything."
             him annoyed "No! That's not how the world works."
-            her concerned "But she wants to earn some money."
+            her concerned coat "But she wants to earn some money."
             him pout "She wants to {b}have{/b} money, anyway."
-            her determined "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
+            her determined coat "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
             him annoyed "She shouldn't get paid to help out her family."
-            her surprised "Why not? You do."
+            her surprised coat "Why not? You do."
             him concerned "If you want to pay her for doing what kids are supposed to do, go ahead."
             hide her with moveoutleft
             show kid happy at center
-            show her determined at midleft
+            show her determined coat at midleft
             with moveinleft
             kid happy "Yay, mom's going to pay me five credits a week!"
             "I guess I did say [her_name] should handle it..."
@@ -4646,7 +4647,7 @@ label family16:
                     "She burst into tears and ran away."
                     "I stood watching the flames for a long time."
                     scene farm_interior with fade
-                    show her concerned at midright
+                    show her concerned coat at midright
                     show kid cry at center
                     show him pout at quarterleft
                     with dissolve
@@ -4654,19 +4655,19 @@ label family16:
                     hide kid with moveoutright
                     show him at midleft with move
                     "After [kid_name] cried herself to sleep, [her_name] turned to me."
-                    her annoyed "You burned all her stuff?!"
+                    her annoyed coat "You burned all her stuff?!"
                     him determined "She wouldn't clean her room. It was just a bunch of junk, anyway."
-                    her angry "It wasn't junk to her!"
+                    her angry coat "It wasn't junk to her!"
                     him angry "Well, she should've taken better care of it!"
-                    her annoyed "Well, it'll be hard for her to learn how now that she doesn't have anything to take care of."
+                    her annoyed coat "Well, it'll be hard for her to learn how now that she doesn't have anything to take care of."
                     him annoyed "I think she learned her lesson."
-                    her angry "She learned that she can't trust you! She learned that you don't care about her at all! Just about satisfying your own ego."
+                    her angry coat "She learned that she can't trust you! She learned that you don't care about her at all! Just about satisfying your own ego."
                     him angry "This isn't about me!"
-                    her concerned "You can't even see it, can you?"
+                    her concerned coat "You can't even see it, can you?"
                     him determined "All I see is a spoiled little girl who maybe finally learned a lesson."
-                    her nervous "I wish we could've talked about it together before you did that."
+                    her nervous coat "I wish we could've talked about it together before you did that."
                     him pout "Yeah, well, you weren't here."
-                    her sad "..."
+                    her sad coat "..."
                     him annoyed "..."
                     $ authoritarian += 1
 
@@ -6938,6 +6939,7 @@ label lettie_dies:
             "But I wished they'd just leave us alone. I wished they would leave [kid_name] alone."
             "It was a futile wish, though, and one I couldn't afford to indulge."
         "Strife and division threatened to destroy our community.":
+            $ mavericks += 1
             "We were always fighting. I thought that away from Earth's politics and territorial squabbles, we'd be able to find true peace."
             "Away from Earth's materialism and fads, I thought my kids and farm would be safe."
             "But we were still human. And apparently 'human' means 'conflict'."
@@ -6956,58 +6958,58 @@ label lettie_dies:
 
     scene farm_interior with fade
     show him sad at midright with dissolve
-    "[her_name] interrupted my musings."
-    show her nervous at midleft with moveinleft
+    "[her_name] came home and interrupted my musings."
+    show her nervous coat at midleft with moveinleft
     her nervous "Hey, sweetie."
     him concerned "Hey."
     "She sat next to me and held my hand."
-    her determined "You weren't just talking about yew plants."
+    her determined coat "You weren't just talking about yew plants."
     "I shook my head."
-    her concerned "You think Lorant is a bad friend for [kid_name]?"
+    her concerned coat "You think Lorant is a bad friend for [kid_name]?"
     "I shrugged. I felt like a fool. I shouldn't have posted about Lettie's death online, and I didn't know what to do about the creeping weeds of my life."
-    her annoyed "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
+    her annoyed coat "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
     him determined "You don't think I'm just crazy with grief?"
-    her nervous "I think posting on the message board like that was a stupid and tactless thing to do, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
+    her nervous coat "I think posting on the message board like that was a stupid and tactless thing to do, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
     him sad "She's not going to like it."
-    her determined "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV or whatever. But, like at the clinic, perhaps if we approach this the right way we can minimize her discomfort."
+    her determined coat "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV or whatever. But, like at the clinic, perhaps if we approach this the right way we can minimize her discomfort."
     menu:
         "What should we do?"
         "Forbid her from hanging out at Anya's house.":
             him annoyed "She just can't hang out at their house!"
-            her annoyed "I agree. They're unsupervised, far from any public areas, and there's too many creeps in that area."
+            her annoyed coat "I agree. They're unsupervised, far from any public areas, and there's too many creeps in that area."
             him determined "There's more than one?"
-            her determined "You know I don't reveal things about my patients. And there's no laws being broken. Doesn't mean I want [kid_name] getting involved in their problems, though."
+            her determined coat "You know I don't reveal things about my patients. And there's no laws being broken. Doesn't mean I want [kid_name] getting involved in their problems, though."
             him determined "So I'm probably not the only one that feels this way."
-            her annoyed "Definitely not."
+            her annoyed coat "Definitely not."
             him normal "Okay, good. [kid_name]'s not going to like it, though."
-            her determined "Too bad. It's what she needs."
+            her determined coat "Too bad. It's what she needs."
             $ authoritarian += 1
         "Encourage her to have her friends over to our house more.":
             him concerned "Maybe we could just encourage her to have friends over to our house more often?"
-            her concerned "That's a start..."
+            her concerned coat "That's a start..."
             him surprised "I mean, nothing's serious yet... right?"
-            her annoyed "She claims he's just a friend."
+            her annoyed coat "She claims he's just a friend."
             him determined "Then there's no need to get all dystopian on her. We'll just make our house a fun hangout place."
-            her determined "Okay, I hope that works."
+            her determined coat "Okay, I hope that works."
             $ permissive += 1
         "Get [kid_name] to help solve the problem.":
             $ confident += 1
             $ trust += 1
             him surprised "Why don't we ask [kid_name] to help us with this problem?"
-            her concerned "Won't she be a bit biased?"
+            her concerned coat "Won't she be a bit biased?"
             him determined "We don't have to do what she says, but if she's invested in the solution she'll be more likely to follow it without complaining."
-            her surprised "We could try..."
+            her surprised coat "We could try..."
             "We went to [kid_name]'s room."
             scene kid_bedroom with fade
             show kid determined at midright with dissolve
             show him determined at center
-            show her determined at midleft
+            show her determined coat at midleft
             with move
             him determined "[kid_name], we would like your help with a problem."
             kid surprised "What's that?"
             him concerned "We are a bit worried about you hanging out at Anya's house where it's so far and there's not a lot of adults around. We want you and Anya to still be able to hang out, though."
             kid annoyed "You could just get over it."
-            her annoyed "Look, we didn't have to ask your opinion--!"
+            her annoyed coat "Look, we didn't have to ask your opinion--!"
             him normal "Hey, calm down. [kid_name], we thought you might have an idea about where you and Anya could hang out that is in a safer place with more people around."
             kid nervous "There's nothing wrong with her house."
             him determined "As your parents, we're not comfortable with that. What other options are there?"
@@ -7015,7 +7017,7 @@ label lettie_dies:
             him normal "How about something a bit more centralized; closer to town. So if there's an emergency you'd have plenty of people close by."
             "[kid_name] thought about it for a minute. That was progress; she finally wasn't just trying to shut me down."
             kid normal "Actually, it'd be cool if we had our own hangout place. Like, in books I always read about teenagers hanging out at malls or cafes or parks or places like that. We don't really have that here."
-            her surprised "We haven't had that many teenagers before."
+            her surprised coat "We haven't had that many teenagers before."
             him happy "That's a great idea, [kid_name]!"
             kid annoyed "But you guys can't come there! That would defeat the whole purpose."
             him normal "Let's see what we can work out."
@@ -7023,24 +7025,24 @@ label lettie_dies:
             "We worked with the community, and some groups agreed to meet in the school instead of the community center so that the teenagers could have the community center to themselves several evenings a week."
             "[kid_name] worked with Anya and some other friends to make a ping pong table and some soft rugs. They talked about future plans, too, like a mini-kitchen and some big speakers for music."
             scene community_center with fade # TODO: get a cool teen hangout background?
-            show her normal at midright
+            show her normal coat at midright
             show him normal at midleft
             with dissolve
-            her normal "This is a great project for [kid_name] and her friends. And people are around the community center all the time, so it'll be easy for us all to keep an eye on them without being too intrusive."
-            him doubt "Like with the surveillance cameras you installed?"
-            her flirting "You noticed that, huh? Well, they don't need to know about those."
+            her "This is a great project for [kid_name] and her friends. And people are around the community center all the time, so it'll be easy for us all to keep an eye on them without being too intrusive."
+            him doubt "And the surveillance cameras you installed..."
+            her flirting coat "You noticed that, huh? Well, hopefully we won't need them."
             $ authoritative += 1
 
         "Let [kid_name] make her own decisions.":
             $ confident += 1
             him annoyed "It's her life; if she wants to ruin it why should we get in her way?"
-            her angry "Because she's our daughter! Because she doesn't even know what she's doing!"
+            her angry coat "Because she's our daughter! Because she doesn't even know what she's doing!"
             him surprised "Are you sure about that? Maybe she does know what she's doing!"
-            her angry "Are you serious? How much of life did you understand at fourteen years old?!"
+            her angry coat "Are you serious? How much of life did you understand at fourteen years old?!"
             him determined "Enough to know that I wanted to make my own mistakes and for my parents to leave me alone!"
-            her annoyed "That's what you wanted then, but looking back, aren't you glad they didn't?"
+            her annoyed coat "That's what you wanted then, but looking back, aren't you glad they didn't?"
             him concerned "..."
-            her determined "Fine. I guess this is something I'll handle on my own."
+            her determined coat "Fine. I guess this is something I'll handle on my own."
             him annoyed "Good."
             $ neglectful += 1
             $ marriage_strength -= 1
@@ -8359,14 +8361,14 @@ label family30:
     "[kid_name] and [her_name] were at breakfast. If [kid_name] really only had until tonight, we needed to talk about this now."
     "As I walked in, it appeared they had started without me."
     scene farm_interior with fade
-    show her concerned at midright
+    show her concerned coat at midright
     show kid nervous at center
     with dissolve
     show him normal at midleft behind kid with moveinleft
 
-    her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
+    her concerned coat "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
-    her determined "In some ways it's not...Oh, good morning, [his_name]. We saved you some hash browns."
+    her determined coat "In some ways it's not...Oh, good morning, [his_name]. We saved you some hash browns."
     "I was not in the mood for hash browns."
     him determined "So, you're thinking of going back to Earth?!"
     kid nervous "Maybe! I never even thought of it as a possibility, but then Anya said she wanted to stay here with Travis and asked if I wanted her spot!"
@@ -8374,20 +8376,20 @@ label family30:
         him concerned "I thought you were dating Travis."
         kid angry "Ugh! Dad, we broke up so long ago! He's been with Anya for like, three months, even though their relationship is totally toxic, but anyway..."
     him annoyed "You'd have to be an idiot to go back to Earth. Talaam is so much better; that's why we came here."
-    her annoyed "There are some great things about Earth."
+    her annoyed coat "There are some great things about Earth."
     him determined "Like what? Traffic? Urban sprawl? Corrupt governments? Terrorists?"
-    her angry "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
+    her angry coat "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
     him annoyed "Yeah, but all the people she loves will be here, on Talaam."
     kid concerned "Most of them..."
-    her surprised "Is there someone special to you that's headed back to Earth?"
+    her surprised coat "Is there someone special to you that's headed back to Earth?"
     him determined "Please don't tell me this is about following some boy. No boy is worth that!"
     kid sad "It's not like that! I mean, I have friends that will be going back on the shuttle, like Becca, and Lorant..."
     if (boyfriend_name == "Lorant"):
         him angry "It {b}is{/b} about a boy!"
-        her annoyed "I'm sure Lorant's not the only reason she wants to go back to Earth."
+        her annoyed coat "I'm sure Lorant's not the only reason she wants to go back to Earth."
         kid annoyed "Besides, that's what Mom did. Follow her crazy boyfriend to a different planet."
         him determined "That was different. We were married."
-        her determined "Just barely."
+        her determined coat "Just barely."
         kid concerned "Anyway, he's just one of the reasons I want to go."
 
     him annoyed "What would you even do on Earth?"
@@ -8399,7 +8401,7 @@ label family30:
         kid happy "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
         if (boyfriend_name == ""):
             kid shifty "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
-            her concerned "Well, there's definitely more guys there..."
+            her concerned coat "Well, there's definitely more guys there..."
             him annoyed "...but I don't know about better ones."
 
     kid annoyed "I'm not even sure if I'll go yet, so don't make it into this big deal, okay?"
@@ -8414,23 +8416,23 @@ label family30:
                 him normal "This is a rare opportunity. I love Talaam, but if you want to become a doctor you really should study there."
             else:
                 him normal "This is a rare opportunity. I love Talaam, but you can learn so much more about biology from experts there."
-            her surprised "Wow, I never thought I'd hear you say that."
+            her surprised coat "Wow, I never thought I'd hear you say that."
             him annoyed "It doesn't mean she has to stay there forever. Hopefully she'll learn everything she can and bring it back here to make Talaam even better."
-            her concerned "I'm not sure if that would be possible..."
+            her concerned coat "I'm not sure if that would be possible..."
             kid concerned "There's too many things I just don't know...I wish I had more time!"
             $ authoritarian += 1
         "We need you here.":
             $ demanding += 1
             $ confident -= 2
             him concerned "[kid_name], we still need you here."
-            her annoyed "We can't keep her with us forever."
+            her annoyed coat "We can't keep her with us forever."
             him annoyed "There's few enough people on Talaam as it is. We can't afford to lose a single one, especially not our own daughter!"
             kid annoyed "Well it's not up to you, is it?!  I'm an adult now and I get to make my own decisions!"
             him concerned "That's true, but you ought to listen to the people who have known you longer than anyone else and always have your best interests at heart."
             kid angry "You just want me to stay here because you want my help on the farm."
             him angry "That's not the only reason!  [her_name] and I moved here because we wanted to raise kids away from all the crap that goes on on Earth. Do you have any idea of all the things you don't have to worry about, living here?"
             kid annoyed "No! I don't! And that's one reason why I want to go!"
-            her concerned "You don't have to decide right now..."
+            her concerned coat "You don't have to decide right now..."
             kid determined "Yeah, I kind of do. I have to tell Anya by tonight."
             "We were all quiet for a few moments, thinking."
             $ authoritarian += 1
@@ -8440,16 +8442,16 @@ label family30:
             him normal "It's your choice, but please think carefully about the consequences either way."
             kid surprised "Like what?"
             him concerned "For example, if you went to Earth, it might be difficult to come back here. We might never see you again."
-            her concerned "On the other side, if you decide not to go, you might never get that chance again, either."
+            her concerned coat "On the other side, if you decide not to go, you might never get that chance again, either."
             him determined "If you went to Earth, you'd be completely alone. No family, no friends, no community supporting you."
-            her determined "But you'd have a chance to meet so many more new people and friends that you would never meet here."
+            her determined coat "But you'd have a chance to meet so many more new people and friends that you would never meet here."
             him normal "On Earth, you could get a traditional college degree in anything you wanted."
-            her concerned "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
+            her concerned coat "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
             him annoyed "If you go to college on Earth, they'll tell you all the classes you need to take and you'll have to write papers that say what your teachers want and do exactly what they say."
-            her normal "But here, you're in charge of your education, and while that gives you a lot of freedom to study what you want, it might be hard to stay motivated and learn efficiently without as much structure."
+            her normal coat "But here, you're in charge of your education, and while that gives you a lot of freedom to study what you want, it might be hard to stay motivated and learn efficiently without as much structure."
             kid surprised "That's... a lot to think about!"
             him normal "Good! If you're not thinking about it a lot, you'll probably make the wrong decision."
-            her concerned "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
+            her concerned coat "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
             kid concerned "Okay... yeah. I guess I have a lot to think about."
             "She was quiet for several moments. We waited."
             $ authoritative += 1
@@ -8457,11 +8459,11 @@ label family30:
             $ responsive += 1
             him normal "It's your choice. Just do whatever makes you happy."
             kid annoyed "I don't know if going to Earth will make me happy! I don't even know what it's like!"
-            her concerned "Going to Earth or not going to Earth is not going to make you happy."
+            her concerned coat "Going to Earth or not going to Earth is not going to make you happy."
             kid sad "Then what will?"
-            her normal "Loving people and doing good will make you happy. You can do that anywhere."
+            her normal coat "Loving people and doing good will make you happy. You can do that anywhere."
             kid annoyed "So you're saying it doesn't matter where I go?"
-            her concerned "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
+            her concerned coat "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
             him concerned "It's your choice, sweetie."
             $ permissive += 1
         "Don't ask me what to do.":
@@ -8469,11 +8471,11 @@ label family30:
             him annoyed "Why did you even bring it up? You're just going to do whatever you want anyway."
             kid annoyed "Well maybe I wanted some advice before I made up my mind! If I did, though, I definitely wouldn't ask you!"
             "She stormed away to her room."
-            her annoyed "That was a stupid thing to say."
+            her annoyed coat "That was a stupid thing to say."
             him angry "What? It's not like she listens to us."
             her angry "You don't know your own daughter at all, do you? She acts like she's not listening and she doesn't care what we think, but she thinks about everything we tell her."
             him determined "Well I've never seen that."
-            her determined "I have. Now if you'll excuse me, I need to try and undo all the damage you just did."
+            her determined coat "I have. Now if you'll excuse me, I need to try and undo all the damage you just did."
             "She joined [kid_name] in her room and I was left alone. They talked for hours."
             "That was fine with me. She'd decide what she wanted and tell me then."
             "In the meantime, somebody had to go and get the work done around here."
@@ -8486,7 +8488,7 @@ label family30:
     "[kid_name] burst into tears also."
     kid cry "I just don't know!"
     "...and soon [her_name] was crying, too."
-    her cry "My little girl..."
+    her cry coat "My little girl..."
     show him sad with dissolve
     menu:
         "What should I do?"
@@ -8503,26 +8505,26 @@ label family30:
             "This crying was getting us nowhere. There was only one remedy..."
             "Dad jokes."
             him surprised "Hey, hey. Wow. Do you know what I love about Talaam?"
-            her concerned "What?"
+            her concerned coat "What?"
             him determined "Its 'rotation' really 'makes my day'."
-            her surprised "..."
+            her surprised coat "..."
             show him normal with dissolve
             kid annoyed "Was that supposed to be a joke?!"
             bro normal "Ha-ha!"
             him content "And, you know, even though it means a lot of work, I'm really looking forward to spring."
-            her surprised "You are?"
+            her surprised coat "You are?"
             him determined "Yup. I'm so excited I wet my plants."
             show him laugh with dissolve
             bro happy "Ha ha ha!"
-            her normal "Okay, that was pretty bad."
+            her normal coat "Okay, that was pretty bad."
             show him normal with dissolve
             kid normal "If you're trying to make me want to leave, you're doing a pretty good job."
             "I brought over some handkerchiefs and everyone composed themselves, except for [bro_name], who was still laughing and looked like he might actually wet his pants."
 
-            her concerned "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
+            her concerned coat "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
             kid nervous "Armor on a scarecrow?"
             him surprised "That sounds a little extreme."
-            her flirting "Its suit is...impeccable."
+            her flirting coat "Its suit is...impeccable."
             him concerned "..."
             bro happy "Get it? ImPECKable?!"
             kid annoyed "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
@@ -8532,7 +8534,7 @@ label family30:
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."
             jump family30_night
 
-    her surprised "Is that really what time it is?! I'm late!"
+    her surprised coat "Is that really what time it is?! I'm late!"
     bro surprised "I'm late for school!"
     him concerned "You two take the tractor; I won't need it today."
     hide bro
