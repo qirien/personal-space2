@@ -6542,7 +6542,7 @@ label community28:
             her determined "I think I agree with you."
         "I'd want to live as long as possible":
             him annoyed "I think I'd want to live as long as possible and die a natural death."
-            her annoyed "Even if it meant you needed other people to watch you all day, bath you and help you go to the bathroom?"
+            her annoyed "Even if it meant you needed other people to watch you all day, bathe you and help you go to the bathroom?"
             her "Even if it meant that you wouldn't know who you were or what you were doing?"
             him doubt "You're basically describing the cognitive state and care needs of small babies, and we highly value their lives."
             him content "Is there something wrong with being cared for when you're old?"
@@ -6773,7 +6773,7 @@ label no_euthanasia:
     return
 
 label euthanasia:
-    scene black with fade
+    scene chapel with fade
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present."
     "After [her_name] performed the euthanasia, we held a simple funeral where we celebrated Pavel's lifetime of good-natured optimism."
@@ -6848,19 +6848,19 @@ label community29:
         her angry coat "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
         "I called them on the radio, but they were in the mining camp. The came as soon as they could, but it took over half an hour."
-        scene hospital with fade
         scene black with fade
         scene hospital with fade
         show helen normal at midright
         show pete normal at right
         show her annoyed coat at center
+        show him determined at quarterleft
         with dissolve
         "By the time they arrived, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
         show her determined coat at midleft with move
-        her determined "Go find Ilian!"
-        him normal "Why?"
-        her angry "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
+        her determined coat "Go find Ilian!"
+        him surprised "Why?"
+        her angry coat "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
         him annoyed "Okay, okay!"
         scene storeroom with fade
         show ilian normal at center with dissolve
@@ -6929,7 +6929,7 @@ label community29:
         her cry coat "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
         him determined "Huh."
         her nervous coat "He followed me about halfway back... just glaring at me."
-        her sad "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
+        her sad coat "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
         him pout "What are you going to do about him not paying?"
         her nervous coat "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
         him sad "Yeah, it's not like you can actually buy more hospital supplies with the credits."
@@ -7034,9 +7034,10 @@ label community29:
 
         label credits29:
             scene farm_interior
-            show him midright with dissolve
-            show her center coat with dissolve
-            show kid left with dissolve
+            show him determined at midright
+            show her normal coat at center
+            show kid normal at left
+            with dissolve
             kid shifty "I heard a rumor that Pete's credits were stolen."
             her determined coat "That's what Pete said."
             kid determined "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"

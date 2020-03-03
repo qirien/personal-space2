@@ -208,13 +208,13 @@ init -100 python:
     # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
-        amount = int(round(amount))
+        amount = roundint(amount)
         renpy.show_screen("show_credits", amount=amount)
-        credits += int(amount)
+        credits += amount
         message = "Credits "
         if (amount >= 0):
             message += "+"
-        message += str(int(amount)) + "\n"
+        message = message + str(amount) + "\n"
         notifications += message
 
 
@@ -253,12 +253,12 @@ init -100 python:
     # is about half that of calories.
     def get_vitamins_required(year):
         earth_year = get_earth_years(year)
-        return (VITAMINS_BASE + 0.5 * get_calories_kids(earth_year))
+        return int(VITAMINS_BASE + 0.5 * get_calories_kids(earth_year))
 
     # Calculate the calories required for the family for this year.
     def get_calories_required(year):
         earth_year = get_earth_years(year)
-        return (CALORIES_BASE + get_calories_kids(earth_year))
+        return int(CALORIES_BASE + get_calories_kids(earth_year))
 
     def get_calories_kids(earth_year):
         calories_kid = get_calories_kid(earth_year)
@@ -286,7 +286,7 @@ init -100 python:
         return WORK_BASE + get_work_kid()
 
     def get_work_kid():
-        return int(competence * (kid_work_slider / 100.0) - kid_other_work)
+        return roundint(competence * (kid_work_slider / 100.0) - kid_other_work)
 
     def get_extra_work():
         total_work = 0
@@ -376,6 +376,9 @@ init -100 python:
             return Image("gui/crop icons/pest-med.png")
         else:
             return Image("gui/crop icons/pest-high.png")
+
+    def roundint(number):
+        return int(round(number))
 
 
 ##

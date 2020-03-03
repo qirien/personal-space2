@@ -19,6 +19,7 @@ label overwork:
     else:
         "I should have known better, but I could tell that I was trying to take on too much (again)."
     # The first time you ask for help from a group, it's a bonding experience. After that, they get annoyed.
+    nvl clear
     menu:
         "What should I do?"
         "Ask other farmers for help." if (overwork_colonists < 2):
@@ -125,7 +126,7 @@ label overwork:
                 her concerned "I'll help you out this time. But this is the last time."
                 him concerned "Thank you, [her_name]."
 
-        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_mavericks < 2)):
+        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_mavericks < 2) and not helen_dead):
             $ overwork_mavericks += 1
             if (overwork_mavericks <= 1):
                 $ mavericks += 1
@@ -1155,13 +1156,13 @@ label work22:
     show thuc normal at center
     show pete happy at midright
     show ilian happy at quarterright
-    show sara happy at right
+    show sara normal at right
     with dissolve
     "Everybody" "Happy Birthday, [his_name]!"
     him surprised "Whoa! What are you guys all doing here in the dark??"
     her happy "Waiting for you, silly! You were supposed to be here fifteen minutes ago!"
     him normal "Sorry, I didn't know this was a time-limited event. Is it really my birthday?"
-    her flirting "It is on Earth. You'd be--"
+    her normal "It is on Earth. You'd be--"
     him flirting "--old enough that my age is boring. I can't believe you got all the awesome people in one place at the same time for my birthday."
     her concerned "Well, Brennan and Julia couldn't make it."
     him happy "Like I said, all the awesome people are here!"
@@ -1193,7 +1194,7 @@ label work22:
             him annoyed "Yeah, can we talk about something besides my age?"
             her surprised "Oleg, I heard you're getting to be quite the programmer! What's your latest project?"
             oleg "Uh, not much."
-            sara "It's okay; tell everyone about your game."
+            sara normal "It's okay; tell everyone about your game."
             thuc "You made a game?"
             oleg "Not really. I mean, kind of. It's not very good."
             sara "It's pretty fun! It's like a farming game, except that everything's underground and you have to protect crops from monsters and craft UV lights and sprinkler systems and stuff."
@@ -1205,9 +1206,9 @@ label work22:
             pete "You don't strike me as a flashy car kind of guy..."
             ilian "Anyway, those are currently in dismally short supply."
             if (is_liaison):
-                sara "You're already the RET liaison, so you don't need to seek a position of power."
+                sara normal "You're already the RET liaison, so you don't need to seek a position of power."
             else:
-                sara "Maybe he'll seek a position of power in the community? Run for mayor?"
+                sara normal "Maybe he'll seek a position of power in the community? Run for mayor?"
                 pete "Pavel'd better watch out."
             if (get_extra_work() <= 0):
                 thuc "He is kind of a workaholic..."
@@ -1216,20 +1217,20 @@ label work22:
                 ilian "We already don't see him around."
 
             pete "Maybe he'll run off and have a wild fling with a hot alien chick."
-            sara "Uh, wow, where did that come from?"
+            sara sad "Uh, wow, where did that come from?"
             him surprised "Wait, there's hot alien chicks here? Where?"
             if has_strong_marriage():
-                thuc "No way. Their marriage is rock solid."
+                thuc "No way. You're so obssessed with [her_name], even if there were I don't think you'd notice."
                 him flirting "I already have all the hot alien chicks I need."
                 her surprised "You do?"
                 him happy "Oh yeah. You're on a planet that's not Earth, so you're an alien. And all I need is you."
                 "I kissed her, right in front of everybody."
-                sara "Awwwww! Sweet cheese!"
+                sara normal "Awwwww! Sweet cheese!"
                 her flirting "It's not cheesy if it's true, right?"
                 pete "Nope. It's still cheesy."
             else:
                 her concerned "I guess I'm lucky we haven't encountered aliens yet."
-            sara "What about music? Maybe he'll start a punk metal band."
+            sara normal "What about music? Maybe he'll start a punk metal band."
             her normal "He does write some pretty hardcore poetry..."
             him happy "Nah, I'm a terrible singer."
             # TODO: add some foreshadowing for the ending here?
@@ -1249,15 +1250,16 @@ label work22:
     show her normal at midright
     with move
     him surprised "Did you plan all this?"
-    her normal "Well, I had the initial idea, but I had a lot of help from your friends."
+    her surprised "Well, I had the initial idea, but I had a lot of help from your friends."
     $ helping_faction = strongest_faction()
     show her at center with move
     if (helping_faction == "colonists"):
-        show thuc at midright with moveinleft
+        show thuc normal at midright with moveinleft
         her happy "Especially Thuc!"
         thuc "If I don't embarrass you for turning 40, who else will?"
         her flirting "I don't know; he's pretty good at embarrassing himself."
         him flirting "Hey, shouldn't you be a little nicer to me on my birthday?"
+        show her normal with dissolve
         thuc "Which reminds me... I brought you a little something."
         him surprised "You did?"
         if crop_enabled("onions"):
@@ -1269,9 +1271,9 @@ label work22:
         else:
             thuc "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
-            her annoyed "..."
+            her concerned "..."
             thuc "You can plant them if you want."
-            him normal "I will; thank you!"
+            him cry "I will; thank you! Thank you so much!"
             $ enable_crop("onions")
     elif (helping_faction == "mavericks"):
         show pete at midright with moveinleft
@@ -1494,8 +1496,8 @@ label work24:
             him concerned "You miss Earth still, don't you."
             her sad coat "Sometimes..."
             him sad "Sorry I dragged you way out here."
-            her normal coat "No, no, it's good. I like the life we have here."
-            her concerned coat "I just like Earth, too, and I'd love for her to be able to experience that part of humanity."
+            her concerned coat "No, no, it's good. I like the life we have here."
+            her surprised coat "I just like Earth, too, and I'd love for her to be able to experience that part of humanity."
             him determined "If she wants to."
         "She might not have a choice.":
             him determined "Well, she's here, and it's not like you can just buy a bus ticket back to Earth. She may be stuck here."
@@ -1515,7 +1517,7 @@ label work24:
     menu:
         "What should I say?"
         "I need to teach her better.":
-            him sad "I should have taught her better. Then maybe she wouldn't have gotten hurt."
+            him concerned "I should have taught her better. Then maybe she wouldn't have gotten hurt."
             her sad coat "..."
             "I heard a faint voice from the other room."
             kid "Dad, it's not your fault. I was driving too fast. You tried to warn me."
@@ -1544,7 +1546,7 @@ label work24:
             her annoyed coat "I just wish I could say the same thing about you."
 
         "Maybe she shouldn't work on the farm.":
-            him sad "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
+            him concerned "Maybe she shouldn't work on the farm. I don't want to mess up the rest of her life."
             her concerned coat "I think usually it's good for her. Just... can you just be a little more careful?"
             him concerned "Yeah..."
             her determined coat "I know she looks like an adult, but inside she still has a lot of learning to do."
@@ -1942,5 +1944,5 @@ label work30:
 
     $ modify_credits(work28_rent)
     # She and Bro only can help a little now.
-    $ kid_other_work = int(competence *.75)
+    $ kid_other_work = roundint(competence *.75)
     return

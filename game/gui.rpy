@@ -122,7 +122,7 @@ define gui.title_text_size = 60
 
 
 ## Main and Game Menus #########################################################
-        
+
 ## The images used for the main and game menus.
 define gui.main_menu_background = "gui/title.png"
 define gui.game_menu_background = "bg/stars.png"
@@ -437,6 +437,8 @@ define gui.nvl_font = "fonts/OpenSansEmoji.otf"
 # Mobile devices
 ################################################################################
 
+# TODO: Our custom text bg doesn't show up on mobile.
+# TODO: Button font size is too small for choices.
 init python:
 
     ## This increases the size of the quick buttons to make them easier to touch

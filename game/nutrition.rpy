@@ -152,7 +152,7 @@ label bad_nutrition:
             "My skin was always dry and for some reason I couldn't see well at night."
             "I didn't think to ask [her_name] about it, though, until she came to me."
             show her concerned coat at midleft with moveinleft
-            her concerned "[his_name]... have you been having trouble seeing at night?"
+            her concerned coat "[his_name]... have you been having trouble seeing at night?"
             him surprised "Yeah, how did you know??"
             her determined coat "I have the same problem, and I think [kid_name] does, too."
             him concerned "Do you know why? Is it a disease? Some kind of alien parasite?"

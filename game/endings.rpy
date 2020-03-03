@@ -104,7 +104,7 @@ label ending:
 #1 aci - Blames you for everything. Clingy. Follows (miner?) boyfriend back to Earth but you know the relationship won't last.
 label ending_aci:
     "Ending aci"
-    scene plains with fade
+    scene plain with fade
     show him determined at center
     show her normal at midright
     with dissolve
@@ -123,7 +123,7 @@ label ending_aci:
     brennan angry "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
     her determined "No. We did not."
     him surprised "There she is!"
-    show kid at midleft with moveinleft
+    show kid determined at midleft with moveinleft
     show brennan at left with move
     her concerned "[kid_name]! You-- you're leaving?!"
     kid annoyed "Yeah."
@@ -132,7 +132,7 @@ label ending_aci:
     her sad "Why would you do this?"
     kid angry "Lorant loves me. We're happy together. And I've always wanted to go to Earth."
     him determined "But we'll never see you again."
-    kid shifty "You hardly ever saw me when I lived with you, so I don't see what the big difference will be."
+    kid nervous "You hardly ever saw me when I lived with you, so I don't see what the big difference will be."
     her sad "Isn't there some way I can change your mind?"
     brennan angry "It's too late for that. The contract is signed."
     kid cry "Mom, I... I'm sorry. I love you, but I want to go."
@@ -160,7 +160,7 @@ label ending_aci:
     brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liaison, but you're a terrible father."
     him angry "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
     brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
-    her yell "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
+    her angry "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
     him annoyed "I'd be happy if he never thought of me again."
     brennan sad "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
     her concerned "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
@@ -184,6 +184,7 @@ label ending_aci:
     "Brennan nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."
     "I found her in our room, heaving great sobs."
+    call bedroom_scene(False, False)
     her cry "She's gone. My little girl. She's really gone."
     him concerned "We knew she would leave someday..."
     her annoyed "But not like this! She left because we failed her. And now we'll probably never see her again."
