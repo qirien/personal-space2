@@ -220,7 +220,6 @@ screen choose_crop(crop_index=0):
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == j)
 
-                                # TODO: only show boost image on squares that would be boosted by bees
                                 imagebutton:
                                     idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name))
                                     hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), "gui/crop icons/selected.png")
@@ -365,20 +364,19 @@ screen crops_totals:
         $ boosted_squares = farm.get_boosted_squares()
         # Totaling crops attributes
         for i in range(0, farm.crops.len()):
+            $ multiplier = 1
+            if (i in boosted_squares):
+                $ multiplier = (100 + farm.BEE_BOOST)/100.0
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ crop_name = farm.crops[i].rstrip("+")
-            $ total_calories += crop_info[index][CALORIES_INDEX]
-            $ vitA += VITAMIN_A_CROPS[crop_name]
-            $ vitC += VITAMIN_C_CROPS[crop_name]
-            $ vitM += MAGNESIUM_CROPS[crop_name]
+            $ total_calories += int(multiplier * crop_info[index][CALORIES_INDEX])
+            $ vitA += int(multiplier * VITAMIN_A_CROPS[crop_name])
+            $ vitC += int(multiplier * VITAMIN_C_CROPS[crop_name])
+            $ vitM += int(multiplier * MAGNESIUM_CROPS[crop_name])
 
-            # TODO: also boost nutrition and calories, not just money
             if (year >= MONEY_YEAR):
-                $ multiplier = 100
-                if (i in boosted_squares):
-                    $ multiplier += farm.BEE_BOOST
-                $ total_value += int(multiplier/100.0 * get_credits_from_value(crop_info[index][VALUE_INDEX]))
+                $ total_value += int(multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX]))
 
             $ total_work += crop_info[index][WORK_INDEX]
 
