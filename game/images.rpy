@@ -7,6 +7,7 @@ init -10:
     image farm_exterior flip = im.Flip("images/bg/farm_exterior.jpg", horizontal = True)
     image farm_interior flip = im.Flip("images/bg/farm_interior.jpg", horizontal = True)
     image irrigation flip = im.Flip("images/bg/irrigation.jpg", horizontal = True)
+    image fields flip = im.Flip("images/bg/fields.jpg", horizontal = True)
     image bro_bedroom = im.Flip("images/bg/kid_bedroom.jpg", horizontal = True)
     image stars_animated:
         "images/bg/stars.png"
@@ -20,11 +21,10 @@ init -10:
     image soil = Frame("gui/soil.png")
 
     image computer_pad = "gui/computer pad.png"
-    image computer_pad_with_screen = LiveComposite(
+    image computer_pad_with_screen = Composite(
         (1280, 720),
         (0,0), "images/bg/stars.png",
         (0,0), "gui/computer pad.png"
-        #(0,0), "gui/computer pad screen.png"
         )
 
     # Special Sprites
@@ -63,15 +63,32 @@ init -10:
                 "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
                 "True", "kid-sprites/teen_%s.png" % expression_name))
 
-    # TODO: Have a different background for each year
     define photo_scale_factor = 0.7
 
-    # TODO: add more possibilities here
+    # Background of the family photo
     image family_photo_bg:
         choice:
             "images/bg/pond.jpg"
         choice:
             "images/bg/canyon.jpg"
+        choice:
+            "images/bg/path.jpg"
+        choice:
+            "images/bg/irrigation.jpg"
+        choice:
+            "images/bg/cave.jpg"
+        choice:
+            "images/bg/fields.jpg"
+        choice:
+            "images/bg/ocean.jpg"
+        choice:
+            "images/bg/restaurant.jpg"
+        choice:
+            "images/bg/plain.jpg"
+        choice:
+            "images/bg/barn.jpg"
+        choice:
+            "images/bg/hospital.jpg"
 
     # TODO: use relative positions when they are fixed
     layeredimage family_photo:
@@ -94,7 +111,10 @@ init -10:
             pos(300, 80)
             #align(0.3, 1.0)
             "him sleeping"
-        # if neglectful, he is not in the picture at all.
+        elif (year <= BABY_MAX):
+            pos(300, 80)
+            "him determined"
+        # if neglectful, he is not in the picture at all, unless needed to hold a baby
 
         if has_strong_marriage():
             pos(650, 150)
@@ -105,7 +125,7 @@ init -10:
             "her normal"
         else:
             pos(650, 150)
-            "her surprised"
+            "her surprised coat"
 
         group kid:
             pos(400, 250)
@@ -196,7 +216,7 @@ init -10:
 
             font_size = int(gui.text_size * 1.5)
             return [
-            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),            
+            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),
             (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji),
             (renpy.TEXT_TAG, "/size"),
             (renpy.TEXT_TAG, "/font")

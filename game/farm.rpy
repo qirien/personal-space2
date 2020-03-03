@@ -111,6 +111,17 @@ init python:
                 income += int(final_value)
             return income
 
+        # Set all crops to fallow except for already-planted perennials
+        def clear_crops(self):
+            for i in range(0, self.crops.len()):
+                crop_index = get_crop_index(self.crops[i])
+                crop_name = self.crops[i]
+                if (crop_info[crop_index][PERENNIAL_INDEX]):
+                    if (crop_name[-1] != "+"):
+                        self.crops[i] = "fallow"
+                else:
+                    self.crops[i] = "fallow"
+
         # Reset the crops for a new year.
         def reset_crops(self, size=FARM_SIZE_MAXIMUM):
             new_crops = Crops(size)
@@ -130,6 +141,9 @@ init python:
                         crop_info[plus_index][MAXIMUM_INDEX] += 1
                     else:
                         new_crops[i] = crop_name
+                # keep crop names for next year?
+                else:
+                    new_crops[i] = crop_name
             self.crops = new_crops
 
         # Update the crop history in preparation for a new year.
@@ -219,24 +233,11 @@ init python:
             for i in range(0, self.crops.len()):
                 crop_name = self.crops[i]
                 if (crop_name == "honey"):
-                    # Boost what is adjacent - -1 and +1 for horizontal,
-                    # and -num_columns and +num_columns for vertical
-                    num_columns = int(round(self.crops.len()**0.5))
-                    # left edge
-                    if ((i % num_columns) == 0):
-                        potential_indices = [i-num_columns, i+1, i+num_columns]
-                    # right edge
-                    elif ((i % num_columns) == (num_columns - 1)):
-                        potential_indices = [i-num_columns, i-1, i+num_columns]
-                    # middle column somewhere
-                    else:
-                        potential_indices = [i-num_columns, i-1, i+1, i+num_columns]
+                    potential_indices = get_adjacent(i, self.crops.len())
                     for curr_index in potential_indices:
-                        # if it's not out of bounds
-                        if ((curr_index >= 0) and (curr_index < self.crops.len())):
-                            # if it's a pollinated crop
-                            if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
-                                indices.add(curr_index)
+                        # if it's a pollinated crop
+                        if crop_info[get_crop_index(self.crops[curr_index])][POLLINATED_INDEX]:
+                            indices.add(curr_index)
             return indices
 
 
@@ -345,3 +346,24 @@ init python:
             current_crop_name = self.items[i]
             if (current_crop_name == crop_name):
                 self.items[i] = "fallow"
+
+    # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
+    # and -num_columns and +num_columns for vertical
+    def get_adjacent(crop_index, max_size):
+        num_columns = int(round(max_size**0.5))
+        # left edge
+        if ((crop_index % num_columns) == 0):
+            potential_indices = [crop_index-num_columns, crop_index+1, crop_index+num_columns]
+        # right edge
+        elif ((crop_index % num_columns) == (num_columns - 1)):
+            potential_indices = [crop_index-num_columns, crop_index-1, crop_index+num_columns]
+        # middle column somewhere
+        else:
+            potential_indices = [crop_index-num_columns, crop_index-1, crop_index+1, crop_index+num_columns]
+
+        for curr_index in potential_indices[:]: #iterate over a copy of the list to avoid bugs
+            # if it's out of bounds, delete it
+            if ((curr_index < 0) or (curr_index >= max_size)):
+                potential_indices.remove(curr_index)
+
+        return potential_indices

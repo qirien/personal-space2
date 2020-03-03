@@ -156,7 +156,7 @@ label start:
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
                         ["corn",         9, 3, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 4, 6, 6, 40, True, False, False, 100],
-                        ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
+                        ["wheat",        9, 5, 9, 10, 20, False, False, False, 2],
                         ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 6, 6, 6, 15, True, False, True, 100],
                         ["plums",        3, 3, 7, 7, 5, False, True, True, 1],
@@ -227,7 +227,6 @@ label start:
     #######################################################################
     # Prologue
     #######################################################################
-    $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
     $ _quit_slot = "quitsave"
     menu:
@@ -242,7 +241,7 @@ label start:
     "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
 
     show path
-    show her flirting at midleft
+    show her flirting coat at midleft
     show him happy at midright
     show child at center
     #show computer_pad
@@ -374,5 +373,7 @@ label life_loop:
             $ renpy.notify("Autosaving...")
 
             $ year += 1
+            if (persistent.max_year < year):
+                $ persistent.max_year = year
     jump ending
     return

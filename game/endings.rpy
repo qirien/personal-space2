@@ -285,46 +285,46 @@ label ending_acI:
 label ending_aCi:
     "Ending aCi."
     scene hospital with fade
-    show her normal at midright
+    show her normal coat at midright
     show thuc normal at center
     show kid normal at midleft
     with dissolve
     kid surprised "Is this the right spot for the injection?"
-    her determined "Not quite. Feel the bone there? Now come about two finger's width down... into that muscle there."
+    her determined coat "Not quite. Feel the bone there? Now come about two finger's width down... into that muscle there."
     kid nervous "Right here?"
-    her concerned "Almost... a little lower. See, when you pinch it, it looks like this."
+    her concerned coat "Almost... a little lower. See, when you pinch it, it looks like this."
     kid sad "Maybe you should do it."
     thuc "Yeah, maybe you should do it, [her_name]. I'm starting to feel a little nervous!"
-    her annoyed "She needs the practice! I'll make sure she does it right. Try again, [kid_name]."
+    her annoyed coat "She needs the practice! I'll make sure she does it right. Try again, [kid_name]."
     kid concerned "Okay... right, um, here?"
-    her concerned "Remember, find the triangle."
+    her concerned coat "Remember, find the triangle."
     thuc "This is the most painful shot I've ever had, and you haven't even pierced the skin yet!"
     kid surprised "Here?"
-    her happy "Yes, that's right!"
+    her happy coat "Yes, that's right!"
     thuc "Ow!"
     kid concerned "Sorry!!"
-    her determined "Slow down! Slow and steady... there."
+    her determined coat "Slow down! Slow and steady... there."
     thuc "So, is that all I need?"
-    her normal "Yes, let me know if you don't start feeling better by tonight."
+    her normal coat "Yes, let me know if you don't start feeling better by tonight."
     hide thuc with moveoutleft
     show him normal at quarterleft with moveinright
     him happy "Hello, lovely ladies! I brought you some lunch!"
     kid annoyed "I'm not hungry."
     hide kid with moveoutright
     him surprised "What's with her?"
-    her concerned "I tried starting her with some basic hands-on nursing duties today but... she's having a hard time."
+    her concerned coat "I tried starting her with some basic hands-on nursing duties today but... she's having a hard time."
     him determined "Well, she's smart, so I'm sure she'll catch on quickly."
-    her annoyed "I hope so."
+    her annoyed coat "I hope so."
     him normal "I'm just glad she found something useful to do."
-    her concerned "Yeah, maybe..."
+    her concerned coat "Yeah, maybe..."
     him surprised "What's wrong?"
-    her determined "I'm not sure this is the right job for her."
+    her determined coat "I'm not sure this is the right job for her."
     him determined "Well, if she's not going to help grow food, then helping people not die is a pretty good use of her talents."
-    her concerned "She's not very good at it."
+    her concerned coat "She's not very good at it."
     him surprised "She's not?"
-    her annoyed "No. She feels awkward touching people, and she's always second-guessing herself, and she has a hard time remembering what to do."
+    her annoyed coat "No. She feels awkward touching people, and she's always second-guessing herself, and she has a hard time remembering what to do."
     him flirting "I'm sure she just needs more practice. I've heard from a {b}very{/b} reliable source that it takes a lot of time to become a competent medical professional."
-    her concerned "Yes... I suppose so."
+    her concerned coat "Yeah...maybe."
 
     "Before I left, I peeked in the other room to check on [kid_name]. She was studying her anatomy book with a ferocious energy, as though it were her opponent in deadly combat."
 

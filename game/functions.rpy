@@ -1,24 +1,5 @@
 # Library of functions we call that have to do with game variables, etc.
 
-##
-# DYNAMIC MOUSE CURSOR
-##
-#TODO: remove if we end up not using this
-init 1 python:
-    def change_cursor(type="default"):
-        persistent.mouse = type
-        if type == "default":
-            setattr(config, "mouse", None)
-        elif type == "punch":
-            setattr(config, "mouse", {"default": [("gui/punch.png", 6, 6)]})
-
-    if not hasattr(persistent, "mouse"):
-        change_cursor()
-    else:
-        change_cursor(persistent.mouse)
-
-    def random_float():
-        return renpy.random.random()
 
 ##
 # Menu Randomization
@@ -264,7 +245,6 @@ init -100 python:
             crop_credits = (crop_value * crop_value * 4 + 10)
         return crop_credits
 
-    # TODO: use this during lots of modify_credits that are based on crops
     def get_credits_from_name(crop_name):
         return get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
 
@@ -359,19 +339,32 @@ init -100 python:
         else:
             return "{color=#f00}Danger{/color}"
 
-    # Return any boosting overlays that apply to this square.
-    # Specifically, boosting related to bees
+    # Return bee boosting overlay if it applies to this square
+    # Otherwise return null image
     def get_boost_image(index):
         if (index in farm.get_boosted_squares()):
             return Image("gui/emoji/bee boost.png")
         else:
             return Null()
 
-    def get_boosted_image(crop_name):
+    # Return bee boosting overlay if it could boost this crop
+    # Otherwise return null image
+    def get_boosted_image(crop_name, crop_index):
         if (crop_enabled("honey")):
             if (crop_info[get_crop_index(crop_name)][POLLINATED_INDEX]):
-                return Image("gui/emoji/bee boost.png")
+                if bee_adjacent(crop_index, farm.crops.len()):
+                    return Image("gui/emoji/bee boost.png")
         return Null()
+
+    # Return whether there is honey next to this crop or not.
+    def bee_adjacent(crop_index, max_size):
+        adjacent = get_adjacent(crop_index, max_size)
+        for square_index in adjacent:
+            if (square_index > max_size):
+                print "OUT OF BOUNDS: " + str(square_index)
+            elif (farm.crops[square_index] == "honey"):
+                return True
+        return False
 
     # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):

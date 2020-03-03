@@ -393,6 +393,18 @@ screen main_menu():
 
     add gui.main_menu_background
 
+    if persistent.max_year:
+        if (persistent.max_year <= TODDLER_MAX):
+            add "gui/flower/flower2.png" xalign 1.0 yalign 1.0
+        elif (persistent.max_year <= CHILD_MAX):
+            add "gui/flower/flower3.png" xalign 1.0 yalign 1.0
+        elif (persistent.max_year <= TWEEN_MAX):
+            add "gui/flower/flower4.png" xalign 1.0 yalign 1.0
+        else:
+            add "gui/flower/flower5.png" xalign 1.0 yalign 1.0
+    else:
+        add "gui/flower/flower1.png" xalign 1.0 yalign 1.0
+
     # This empty frame darkens the main menu.
     frame:
         pass

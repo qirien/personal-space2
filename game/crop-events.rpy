@@ -5,10 +5,67 @@ label default_crop_event:
     "The year passed by in a blur: -- tilling, planting, weeding, harvesting -- the endless cycle of life on the farm."
     return
 
+# TODO: write a garlic event. Terra has no clue about its anti-vampiric properties.
+
 # TODO: Write some wheat events.
 # WHEAT1: Wheat is yummy!
+label wheat1:
+    scene farm_interior with fade
+    "Every time I paid for Brennan's wheat seeds it left a bad taste in my mouth."
+    "I tried to counteract it by making plenty of bread, biscuits, dumplings, pizza, and noodles."
+    "We didn't have a lot of sugar, so cakes and cookies were out, but whenever I got fresh fruit I would make a pie."
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
+    with dissolve
+    if ("strawberries+" in farm.crops):
+        her sleeping "Mmmmm. There's nothing better than strawberry pie!"
+        him happy "What do you think of this recipe? Do you like the strawberries better cooked in like this?"
+        her happy "I like them both!"
+        kid surprised "Are you putting cheese on your pie?! Weird!"
+        him determined "I'm pretending it's ice cream."
+        kid nervous "You put ice cream on pie?! I thought it went in cones or something."
+        her normal "There's no wrong way to eat ice cream."
+        him flirting "Except for that weird bacon-garlic ice cream we had that one time."
+        her annoyed "Ohhh, that was awful! I can't believe you tried that."
+        him concerned "It turns out there's some things even bacon can't improve."
+        kid annoyed "If bacon's so good, how come you never make it?"
+        him sad "We didn't bring pigs to Talaam... I think if I had to do it over again, that would be the thing I would bring."
+        her annoyed "We're probably healthier without it."
 
-# WHEAT2: Consequences of sterile GMO wheat.
+    elif ("plums+" in farm.crops):
+        her surprised "Wow, you made plum pie again? Isn't that a lot of work?"
+        him happy "Not really. I didn't peel the plums or anything; just took out the pits and tossed them in a crust."
+        bro nervous "Do I have to eat the crust?"
+        kid determined "If you don't eat it, I will!"
+
+    elif (("squash" in farm.crops) and ("honey" in farm.crops)):
+        "Since I didn't grow many fruits, I made a squash pie with some honey and whatever spices I could round up."
+        her surprised "Pumpkin pie?! How in the world..."
+        him happy "It's actually squash pie, but hopefully it tastes a little like pumpkin!"
+        kid surprised "Squash and pumpkin both sound like weird pies."
+        him normal "You can't decide if it's weird until you try it."
+        her determined "Where'd you find the spices?"
+        him concerned "Pavel's spice garden. He didn't have everything, but he at least had cinnamon and ginger."
+        "I took a bite. If I used my imagination, it almost tasted like pumpkin pie..."
+        bro concerned "This is weird."
+        kid concerned "It's not bad... could be sweeter, though."
+        her happy "If you don't want yours, I'll eat it! This is delicious!"
+        him normal "I'm glad someone likes it."
+    else:
+        "And when I couldn't get fresh fruit I would make a savory pie."
+        if ("tomatoes" in farm.crops):
+            "Tomatoes and goat cheese was my favorite so far."
+        else:
+            "A little meat, lots of vegetables, and a savory, creamy gravy all baked inside a flaky pie crust."
+        her sleeping "Mmmmm... great dinner, [his_name]."
+        bro concerned "Do we have any bread?"
+        him annoyed "No. Just this delicious pie."
+        kid surprised "It's not bad."
+    return
+
+# WHEAT2: Consequences of buying patented wheat - do you violate the patent and grow your own?
 
 # CORN1: Corn was made sterile by solar flares
 label corn1:
@@ -53,9 +110,14 @@ label corn2:
             "Treat the corn with lime.":
                 "I decided the extra nutrition was worth it. If I'm going to all the trouble of growing food, I want it to be as nutritious as possible."
                 "I soaked the kernels in an alkaline solution and then let them dry again."
-                "Now they could be used for some of my favorite foods - tortillas, tamales, and chips!"
+                "Now they could be used for some of my favorite foods - tortillas, pozole, and chips!"
                 if (farm.crops.contains("tomatoes") and farm.crops.contains("peppers")):
-                    "And with the peppers and tomatoes I grew, I could make salsa to go with them."
+                    if farm.crops.contains("onions"):
+                        "And with the peppers, onions, and tomatoes I grew, I could make salsa to go with them."
+                    else:
+                        "And with the peppers and tomatoes I grew, I could make salsa to go with them."
+                    if farm.crops.contains("garlic"):
+                        "I added some garlic, too, for a nice zing."
                     scene farm_interior with fade
                     show him normal at midleft
                     show her normal at midright
@@ -175,16 +237,16 @@ label carrots3:
         "What should I do?"
         "Ask [her_name].":
             scene hospital with fade
-            show her normal at midright with dissolve
+            show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
             him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
-            her "Are you talking about [kid_name]'s orange hands?"
+            her annoyed coat "Are you talking about [kid_name]'s orange hands?"
             him "Yeah... is that bad?"
-            her "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
+            her concerned coat "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
             him "Okay, good to know."
-            her "Don't you think I would have said something if there was something wrong?!"
+            her annoyed coat "Don't you think I would have said something if there was something wrong?!"
             him "Well, I wasn't sure you noticed."
-            her "Of course I noticed. And if you're not careful, the same thing will happen to you."
+            her determined coat "Of course I noticed. And if you're not careful, the same thing will happen to you."
             menu:
                 "What should I do?"
                 "Keep eating carrots":
@@ -1068,11 +1130,11 @@ label plums2:
             scene farm_interior with fade
             "I pitted them and put them on a rack to dry."
             "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
-            show her normal at midleft with moveinleft
-            show him at midright with move
-            her surprised "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
+            show her normal coat at midleft with moveinleft
+            show him normal at midright with move
+            her surprised coat "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
             him annoyed "You don't have to be constipated to enjoy some good prunes."
-            her normal "They'll be good for [kid_name], too. Thanks, [his_name]."
+            her normal coat "They'll be good for [kid_name], too. Thanks, [his_name]."
             "I dropped most of them off at the storehouse and didn't think much about it for several days, until I got a visitor."
             scene farm_exterior with fade
             show him normal at midright with dissolve
@@ -1085,7 +1147,7 @@ label plums2:
             "He handed me a basket full of heads of garlic."
             him surprised "Oh, thanks!"
             thuc "This is nice and fresh, so you can plant it or eat it."
-            him "Mmmm, this'll be good! Thank you!"
+            him happy "Mmmm, this'll be good! Thank you!"
             "I couldn't wait to eat some, but even better, now I could grow my own."
             $ enable_crop("garlic")
             return
@@ -1564,15 +1626,15 @@ label honey1:
             "I kept my eyes peeled in town, and even made an excuse to stop by the school, but I didn't see any kids that matched the video."
             "I finally asked [her_name] about it. She knows almost everyone because of her work, but I wasn't sure she'd want to tell me."
             scene hospital with fade
-            show her normal at midright with dissolve
+            show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
             him surprised "Hey do you recognize this kid?"
             "I showed her the footage."
-            her surprised "A honey thief, huh?"
+            her surprised coat "A honey thief, huh?"
             him determined "Looks like it."
-            her concerned "I can't say for sure... but it looks like Oleg or Travis."
+            her concerned coat "I can't say for sure... but it looks like Oleg or Travis."
             him concerned "That's what I thought..."
-            her determined "No, it's definitely Travis. I recognize those clothes."
+            her determined coat "No, it's definitely Travis. I recognize those clothes."
 
         "Ask [kid_name] if she recognizes him.":
             scene farm_interior with fade

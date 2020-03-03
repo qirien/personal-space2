@@ -221,10 +221,10 @@ screen choose_crop(crop_index=0):
                                 $ is_selected = (selected_crop_index == j)
 
                                 imagebutton:
-                                    idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name))
-                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), "gui/crop icons/selected.png")
-                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), "gui/crop icons/selected.png")
-                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name), (0,0), Solid(gray_transparent))
+                                    idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index))
+                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
+                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
+                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), Solid(gray_transparent))
                                     xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
@@ -252,7 +252,7 @@ screen stat_icons(stat_value, stat_index):
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
 
-# TODO: Add red/gray hearts for generic nutrition so that each shows a total of 6 hearts
+# TODO: should the red ones be gray since they are less useful?
 screen nutrition_icons(crop_index):
     hbox:
         style "stat_icon_hbox"
@@ -364,17 +364,17 @@ screen crops_totals:
         $ boosted_squares = farm.get_boosted_squares()
         # Totaling crops attributes
         for i in range(0, farm.crops.len()):
-            $ multiplier = 1
+            $ multiplier = 1.0
             if (i in boosted_squares):
-                $ multiplier = (100 + farm.BEE_BOOST)/100.0
+                $ multiplier += farm.BEE_BOOST/100.0
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ crop_name = farm.crops[i].rstrip("+")
-            $ total_calories += int(multiplier * crop_info[index][CALORIES_INDEX])
-            $ vitA += int(multiplier * VITAMIN_A_CROPS[crop_name])
-            $ vitC += int(multiplier * VITAMIN_C_CROPS[crop_name])
-            $ vitM += int(multiplier * MAGNESIUM_CROPS[crop_name])
-
+            $ total_calories += int(crop_info[index][CALORIES_INDEX] * multiplier)
+            $ vitA += int(VITAMIN_A_CROPS[crop_name] * multiplier)
+            $ vitC += int(VITAMIN_C_CROPS[crop_name] * multiplier)
+            $ vitM += int(MAGNESIUM_CROPS[crop_name] * multiplier)
+            # TODO: cast these as ints?
             if (year >= MONEY_YEAR):
                 $ total_value += int(multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX]))
 
@@ -393,6 +393,7 @@ screen crops_totals:
             hbox:
                 text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
                 if (farm.low_vitamins()):
+                    # TODO: Sometimes if you have just 1 less than needed, it looks like you have enough but the ! is still there.
                     text "{b}!{/b}" style "alert_text"
             hbox:
                 yalign 0.5
@@ -455,7 +456,7 @@ screen crops_totals:
 # value.
 screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
     # we have an increase; show it in a positive color
-    if (new_value >= current_value):
+    if (new_value > current_value):
         $ display_value = new_value - current_value
         $ display_range = max_value - current_value
         $ display_size = int((display_max_size/float(max_value)) * (max_value - current_value))
@@ -503,7 +504,8 @@ init python:
 
     def clear_crops():
         global farm
-        farm.reset_crops()
+
+        farm.clear_crops()
         return
 
     def set_kid_work(new_value):

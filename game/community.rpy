@@ -159,18 +159,18 @@ label community1:
             him surprised "Yes, I can."
             him normal "First let me tell you a little bit about my family."
             scene stars with fade
-            show her normal at center
-            show kid normal at center, baby_pos
+            show her happy baby coat at center
+            #show kid normal at center, baby_pos
             with dissolve
             him "I have a daughter, [kid_name] - she's about three Earth months old."
             him "[her_name] is my wife and she's also the doctor in our clinic."
             him "She tries to be objective, but she also feels passionate about her job."
             zaina "I think that describes most of us."
-            show her pout with dissolve
+            show her concerned coat with dissolve
             him "Some people have complained that her bedside manner is a little callous."
             him "So her objectivity is more relevant to customer satisfaction than, say, mine."
             kevin "Are you implying that your carrots cannot feel your love?"
-            him "Correct. Unless that love manifests itself in better care."
+            him "Probably not. Unless that love manifests itself in better care."
             hide her
             hide kid
             with dissolve
@@ -5171,39 +5171,39 @@ label community23:
 
     scene farm_interior
     with dissolve
-    show her normal at midright #she should be wearing her lab coat in this scene
+    show her normal coat at midright #she should be wearing her lab coat in this scene
     show him normal at midleft
     with dissolve
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
     if mavericks > 5:
-        her surprised "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
-        her  "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
-    her concerned "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
-    her annoyed "He dries it in the sun, usually under a solar flare, so that's no surprise."
-    her nervous "However, the cells in Pete's meat are often irregular and probably cancerous."
+        her determined coat "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her surprised coat "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
+    her concerned coat "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her annoyed coat "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her nervous coat "However, the cells in Pete's meat are often irregular and probably cancerous."
     him annoyed "Okay... but eating cancer doesn't give you cancer, right?"
-    her normal "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
+    her normal coat "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
     him pout "What about the cows from the colony?"
-    her determined "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    her determined coat "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
     him determined "Pete's cows are outside more, but they have those UV blankets."
-    her concerned "I don't think they don't work very well. I've seen the cows pull them off."
-    her "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
+    her concerned coat "I don't think they don't work very well. I've seen cows walking around without them; they might be able to take them off somehow."
+    her surprised coat "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
     menu:
         "Yes, definitely.":
             him blush "People should know the risks of what they're eating. You should definitely tell everyone."
             him concerned "Just be honest about how much we don't know."
-            her normal "Okay."
+            her normal coat "Okay."
             "[her_name] wrote up a brief paper summarizing her findings."
             "A few people read it and stopped buying meat from Pete."
             $ study_published_23 = True
             $ colonists += 1
         "No, don't publish the study.":
             him concerned "How many samples have you studied? I think it's too early to draw conclusions."
-            her surprised "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
-        "You should at least tell Pete." if mavericks >5:
+            her surprised coat "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
+        "You should at least tell Pete." if (mavericks >5):
             him concerned "Pete should know that his cows are developing cancer."
             him content "Maybe he can adjust his radiation-shielding measures."
-            her normal "That's a good idea. I'll make that suggestion."
+            her normal coat "That's a good idea. I'll make that suggestion."
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
             $ mavericks += 1
@@ -6842,10 +6842,10 @@ label community29:
         show pete normal at right
         show him normal at center
         with moveinleft
-        show her determined at midleft #with her lab coat
-        show her determined at midright with move
+        show her determined coat at midleft #with her lab coat
+        show her at midright with move
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would accidentally poke me with a needle."
-        her angry "I'm not sure if she'll make it! Get Julia and Van so they can help me."
+        her angry coat "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
         "I called them on the radio, but they were in the mining camp. The came as soon as they could, but it took over half an hour."
         scene hospital with fade
@@ -6853,12 +6853,12 @@ label community29:
         scene hospital with fade
         show helen normal at midright
         show pete normal at right
-        show her annoyed at center
+        show her annoyed coat at center
         with dissolve
         "By the time they arrived, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
-        show her at midleft with move
-        her "Go find Ilian!"
+        show her determined coat at midleft with move
+        her determined "Go find Ilian!"
         him normal "Why?"
         her angry "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
         him annoyed "Okay, okay!"
@@ -6872,21 +6872,21 @@ label community29:
         scene hospital with fade
         show helen normal at midright
         show pete normal at right
-        show her annoyed at center
+        show her annoyed coat at center
         with dissolve
         show him normal at left
         show ilian normal at quarterleft
         with moveinleft
         "As soon as we arrived, [her_name] got the tubes ready for the blood transfusion."
         show her at midleft with move
-        her angry "Helen, stay with us for a little longer!"
-        pete normal "Please save her!"
-        her annoyed "I'm working as quickly as I can!"
+        her angry coat "Helen, stay with us for a little longer!"
+        pete normal "Helen, baby, hang in there! You gotta save her, doc!"
+        her annoyed coat "I'm working as quickly as I can!"
         "We heard the heart rate monitor slowing, and then it stopped." #TODO: heart monitor sound? for every time they're in the hospital in this event?
         "[her_name] tried to resucitate Helen for a long time, but was not successful."
-        her cry "We were too late. I'm so sorry Pete."
+        her cry coat "We were too late. I'm so sorry Pete."
         $ helen_dead = True
-        "Tears streamed down his face. He stayed with her body until [her_name] locked the hospital for the day."
+        "He didn't say anything, just turned away from us and collapsed next to her bed. He stayed with her body until [her_name] locked the hospital for the day."
         scene ocean_sunset with dissolve
         "We held a memorial for her, but Pete didn't attend."
         "Later he came back for Helen's body and the baby's body, which he buried in a grave near the ocean."
@@ -6898,18 +6898,18 @@ label community29:
         kevin_c "I saw him drying fish by the ocean a few days ago."
         scene farm_interior with fade
         show him normal at midright
-        show her nervous at midleft
+        show her nervous coat at midleft
         with dissolve
         her "[his_name], I'm going to take the wagon to find Pete. Want to come with me?"
         him doubt "Why? I doubt he wants to see us."
-        her annoyed "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
+        her annoyed coat "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
         her "I need to talk to him."
         him content "Okay. I don't think I can leave the farm this week, but take the radio and keep me updated."
-        her normal "Will do."
+        her normal coat "Will do."
         him determined "Do you need the wagon?"
-        her nervous "If he wants to pay in food I want to be able to transport it."
+        her nervous coat "If he wants to pay in food I want to be able to transport it."
         him concerned "Okay."
-        show black with fade
+        scene black with fade
         "She left early the next morning. That evening she radioed me."
         her "{i}I found Pete and told him the problem. He was really surprised that he didn't have any credits in his account.{/i}"
         her "{i}He got angry and told me it was my fault that Helen died.{/i}"
@@ -6920,20 +6920,20 @@ label community29:
         scene black with fade
         scene farm_exterior with fade
         show him normal at midright
-        show her nervous at midleft
+        show her nervous coat at midleft
         "I didn't hear from [her_name] until she got back the next evening."
-        show her nervous at midright with move
+        show her nervous coat at midright with move
         "She gave me a big hug."
-        show her nervous at center with move
+        show her nervous coat at center with move
         him content "Welcome back! How'd it go?"
-        her cry "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
+        her cry coat "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
         him determined "Huh."
-        her nervous "He followed me about halfway back... it was super awkward."
+        her nervous coat "He followed me about halfway back... just glaring at me."
         her sad "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
         him pout "What are you going to do about him not paying?"
-        her nervous "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
+        her nervous coat "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
         him sad "Yeah, it's not like you can actually buy more hospital supplies with the credits."
-        her sad "Exactly."
+        her sad coat "Exactly."
         jump credits29
 
     label helen_convo_29:
@@ -6996,28 +6996,28 @@ label community29:
         "Joanna made a waterproof book with high-contast images, and the elementary school kids made a mobile out of felted plant fibers."
         "Two weeks after she went on bedrest, Helen stopped taking visitors."
         scene farm_interior
-        show her sad at midright
+        show her sad coat at midright
         show him normal at midleft with dissolve
         her "Helen wants to be alone right now... she told me to tell everyone that the fetus is dead and she'll be having a stillbirth."
         him sad "That's so sad. We were all looking forward to meeting Sage."
-        her nervous "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
+        her nervous coat "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
         scene hospital with fade
         "Helen delivered her stillborn baby, but started hemmoraging and had to have a blood transfusion until [her_name] could stop the bleeding."
         "Ilian had her same blood type and gave blood to her."
         show helen normal at midright
-        show her blush at center
+        show her blush coat at center
         show pete normal at right
         show him normal at midleft
         with dissolve
         her "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."
         pete happy "Me three."
-        her concerned "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
+        her concerned coat "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
         pete normal "I think I have enough credits to pay you."
-        her annoyed "Okay, can you approve the transaction?"
+        her annoyed coat "Okay, can you approve the transaction?"
         pete happy "Sure, just hand me your tablet."
         pete normal "What gives? It's saying I have insufficient funds."
-        her surprised "Let's try charging just one credit."
+        her surprised coat "Let's try charging just one credit."
         pete normal "What is going on? It still says insufficient funds."
         pete "[his_name], can you try drawing a credit from my account to verify that it's not just something on [her_name]'s tablet?"
         him pout "Okay, here."
@@ -7027,7 +7027,7 @@ label community29:
         pete "But I guess that's my problem."
         helen normal "Here, take Sage's things and sell them to the storehouse. That should pay for some of it."
         helen "We can settle the rest later. When can I go home?"
-        her determined "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
+        her determined coat "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
         helen "We don't have any use for those things now... besides selling them."
         "After Helen was well enough, she and Pete left. They buried Sage's body near the base of the mountain."
         jump credits29
@@ -7035,16 +7035,16 @@ label community29:
         label credits29:
             scene farm_interior
             show him midright with dissolve
-            show her center with dissolve
+            show her center coat with dissolve
             show kid left with dissolve
             kid shifty "I heard a rumor that Pete's credits were stolen."
-            her determined "That's what Pete said."
+            her determined coat "That's what Pete said."
             kid determined "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
             him surprised "This is the first I've heard of it."
             kid concerned "..."
             return
 
-        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that.
+        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that. Maybe it was Travis for his restaurant.
 
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
