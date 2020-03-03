@@ -3,33 +3,33 @@ label bad_nutrition:
     $ bad_nutrition_count += 1
     if (bad_nutrition_count == 1):
         scene farm_interior with fade
-        show her concerned at midright
+        show her concerned coat at midright
         show him determined at midleft
         $ common_food = farm.most_frequent_crop()
         if (has_strong_marriage()):
-            her normal "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
+            her normal coat "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
             him surprised "Oh. I'm, uh, glad you appreciate it."
-            her concerned "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
+            her concerned coat "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
         else:
-            her concerned "[his_name], I don't want to tell you how to do your job..."
+            her concerned coat "[his_name], I don't want to tell you how to do your job..."
             him annoyed "Why do I get the feeling you're about to tell me how to do my job?"
-            her annoyed "We can't live on just [common_food]! The human body needs more than 30 different vitamins, minerals, and nutrients."
+            her annoyed coat "We can't live on just [common_food]! The human body needs more than 30 different vitamins, minerals, and nutrients."
         him angry "There's a lot of factors here! Sometimes crops fail, I have limited types of seeds, and I have to balance everything right or crops won't grow at all!"
-        her concerned "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
+        her concerned coat "I know, I'm sure you're doing the best you can. But it's especially important for the kids."
         him annoyed "They're not starving, right?"
-        her annoyed "No. But we often don't get enough of vitamins A and C, and magnesium is sometimes low, too."
+        her annoyed coat "No. But we often don't get enough of vitamins A and C, and magnesium is sometimes low, too."
         him concerned "A, C, magnesium... is there anything we ARE getting enough of?!"
-        her determined "Actually, yes, we get plenty of the B vitamins, iodine, iron, calcium, vitamin D, potassium..."
+        her determined coat "Actually, yes, we get plenty of the B vitamins, iodine, iron, calcium, vitamin D, potassium..."
         him surprised "OK, I get the picture. But couldn't we just take vitamin supplements?"
-        her concerned "Right now they're by prescription only, for serious nutrition problems. I don't want us to get to that point."
+        her concerned coat "Right now they're by prescription only, for serious nutrition problems. I don't want us to get to that point."
         him determined "I guess I could plant a few different things next year..."
 
         # are we using currency yet?
         if (year >= MONEY_YEAR):
-            her determined "And for now let's get a few things at the storehouse."
+            her determined coat "And for now let's get a few things at the storehouse."
             $ modify_credits(-50)
         else:
-            her determined "And for now let's trade for a few different foods."
+            her determined coat "And for now let's trade for a few different foods."
 
         # TODO: add screenshot here
         "I added [her_name]'s nutrition information to my farm planning app so that I could keep track of that better."

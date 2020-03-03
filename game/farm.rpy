@@ -361,7 +361,7 @@ init python:
         else:
             potential_indices = [crop_index-num_columns, crop_index-1, crop_index+1, crop_index+num_columns]
 
-        for curr_index in potential_indices:
+        for curr_index in potential_indices[:]: #iterate over a copy of the list to avoid bugs
             # if it's out of bounds, delete it
             if ((curr_index < 0) or (curr_index >= max_size)):
                 potential_indices.remove(curr_index)

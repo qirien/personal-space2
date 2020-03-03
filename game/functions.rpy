@@ -245,7 +245,6 @@ init -100 python:
             crop_credits = (crop_value * crop_value * 4 + 10)
         return crop_credits
 
-    # TODO: use this during lots of modify_credits that are based on crops
     def get_credits_from_name(crop_name):
         return get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
 
@@ -361,7 +360,9 @@ init -100 python:
     def bee_adjacent(crop_index, max_size):
         adjacent = get_adjacent(crop_index, max_size)
         for square_index in adjacent:
-            if (farm.crops[square_index] == "honey"):
+            if (square_index > max_size):
+                print "OUT OF BOUNDS: " + str(square_index)
+            elif (farm.crops[square_index] == "honey"):
                 return True
         return False
 

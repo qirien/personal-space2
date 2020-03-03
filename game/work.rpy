@@ -476,10 +476,10 @@ label work10:
                 him concerned "I tried to plant them a couple weeks ago, but they didn't germinate. It had probably been too long."
                 kevin "Yes, that is possible."
             else:
-                him concerned "I, uh, I'm afraid I never planted them."
-                kevin "I see. They are most likely no longer viable."
+                him concerned "I, uh, I'm afraid it didn't work out."
+                kevin "I see."
             $ disable_crop("plums")
-            $ disable_crop("plums+", false)
+            $ disable_crop("plums+", False)
         else:
             him happy "Pretty good! We're even starting to get a few plums on them."
             kevin "That is good."
@@ -521,19 +521,20 @@ label work12:
     brennan_c "I have the newest pest-resistant, high-yield, nutrient-packed wheat seeds from Earth. They grow fast, they don't need much water, and they can thrive in almost any climate."
     thuc_c "That sounds good, but..."
     julia_c "What's the catch?"
-    brennan_c "Well, because they're a patented seed design, the wheat berries they produce are sterile."
+    brennan_c "Well, the seeds are patented. We put a lot of work into creating this variety and we can't have everyone distributing them."
     julia_c "Meaning we couldn't save seeds to plant next year."
     brennan_c "Right. You'd need to buy them from me. Well, from RET, really."
     if (community11_kidsonfarm):
         natalia_c "Hmm, I might get some for Joanna to try. If they're as good as you say..."
     else:
         natalia_c "Hmm, I might have to try those, if they're really as easy to grow as you say..."
-    brennan_c "Well, that's the thing. If you're going to grow them, you need to sign a 20 year contract. We have a set amount and we need reliable buyers."
+    brennan_c "They are! You'll need to sign a 20 year contract. We have a set amount and we need reliable buyers."
     natalia_c "Twenty years? Some of us might not even be alive then."
-    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us [WHEAT_COST] credits every year and we'll provide you with seeds."
+    brennan_c "Twenty Talaam years. More like 12 Earth years. You'd agree to pay us [WHEAT_COST] credits every year and we'll provide you with two fields' worth of seeds."
     julia_c "That's ridiculous. Who would want to rely on you for their seeds?"
     brennan_c "You're a tough customer, Julia; I love that about you! But let's let everyone decide for themselves. Come see me if you want in on this great deal."
     nvl clear
+    "I could almost smell fresh-baked bread. I knew the wheat would sell well... but I didn't like the idea of relying on Brennan for seeds."
     menu:
         "What should I do?"
         "Sign a wheat contract.":
@@ -571,7 +572,7 @@ label work12:
     if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
         "I had a little extra time on my hands and decided to prepare some more land for crops."
         "Both my family and the colony were growing larger and demanding more food than ever."
-        $ modify_farm_size(2)
+        $ modify_farm_size(1)
     return
 
 # Year 14, 8.7 years old

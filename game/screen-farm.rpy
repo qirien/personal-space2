@@ -393,6 +393,7 @@ screen crops_totals:
             hbox:
                 text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
                 if (farm.low_vitamins()):
+                    # TODO: Sometimes if you have just 1 less than needed, it looks like you have enough but the ! is still there.
                     text "{b}!{/b}" style "alert_text"
             hbox:
                 yalign 0.5

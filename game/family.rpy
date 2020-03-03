@@ -2657,70 +2657,54 @@ label family8:
         show him normal at midright
         show her normal coat at midleft
         with dissolve
-        her concerned "It's a good thing [kid_name]'s in school... since I think I'm pregnant."
-        him surprised "What, really? I thought we decided to wait!"
-        her annoyed coat "Well, sometimes these things happen anyway."
-        him concerned "Are you sure?"
-        her surprised coat "Yes, I ran the test myself."
+        her concerned "Now that [kid_name]'s in school... I want to try to have another baby."
+        him surprised "I thought we were going to wait?"
+        her annoyed coat "We can't wait forever, [his_name]. Plus... I've noticed a lot of families are having trouble having children here."
+        him concerned "Here? You mean on Talaam?"
+        her concerned coat "Yes... I don't know if it's the solar flares or stress or the gravity change or what, but I'm worried if we don't try now... it might be too late."
         menu:
             "What should I say?"
-            "How are we going to do this?":
-                him annoyed "Well, this is just great."
+            "How would that even work?!":
+                him annoyed "How do you think that would work?!"
                 her annoyed coat "What do you care? It's not like you have to be pregnant for nine months!"
                 him angry "We don't have enough food for another baby! Where will they sleep? We don't even know what we're doing with [kid_name]!"
                 her sad coat "I know it's hard, but..."
                 him concerned "I'm sorry. Hey. Don't cry."
                 her angry coat "I'll cry if I want to! Especially if my husband is yelling at me!"
                 him angry "Fine, I'm sorry! I just..."
-                show him concerned with dissolve
-                extend "It's a lot to take in."
                 label pregnancy_alone:
-                    her concerned coat "I need us to be on the same side.  "
-                    show her sad coat with dissolve
-                    extend "I can't do this alone."
-                    him surprised "You're not alone. I'll always be on your side."
-                    him normal "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
-                    her normal coat "Then I don't have anything to worry about."
-                    him normal "Nope."
+                    her concerned coat "I need us to be on the same side."
+                    her sad "I don't want to be alone."
+                    him surprised "Hey. You're not alone. I'll always be by your side."
+                    him normal "I'll be on your side, at your side, sideways, right-side-up and upside-down!"
                     show him content at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
-                    "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
-                    "How long had she known and worried by herself?"
+                    "Not the hunger of desire, or loneliness, but of needing someone to share her burdens."
+
                     "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
                     her concerned coat "You're still worried."
                     him normal "So are you."
-                    her determined coat "Yes. But I guess there's not much we can do about it right now."
-                    him pout "We'll figure it out."
+                    her determined coat "Yes. But I think we can do it."
+                    him determined "If you really want to... then we'll make it work."
             "We can do this!":
                 $ marriage_strength += 1
-                him determined "This is...this is..."
-                her surprised coat "What?"
-                him happy "This is awesome!"
-                her annoyed coat "I don't feel awesome, I'll tell you that much."
-                him surprised "Hey, is that why you've been so tired lately?"
-                her determined coat "Probably so."
-                him normal "Any morning sickness? I haven't noticed you eating differently."
-                her normal coat "Not yet. "
-                show her concerned coat with dissolve
-                extend "I can't believe we're doing this again..."
+                him happy "We can totally do this!"
+                her annoyed coat "That's not what you said last time we talked about this."
                 him normal "We're pros, now! It'll be so much easier!"
-                her annoyed coat "What part of this is easy?!"
-                him flirting "Well, conceiving the baby was pretty easy..."
+                her annoyed coat "What part of having a baby is easy?!"
+                him flirting "Well, conceiving the baby is pretty easy..."
                 her flirting coat "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
                 him surprised "How would that even work? Like, the baby would start large and shrink as they got older?"
                 her normal coat "Yeah, that doesn't make much sense, I guess."
                 him happy "I love you even when you don't make sense."
                 her concerned coat "Oh, [his_name]. I love you too. I'm so glad you're with me."
                 him concerned "Hey, are you crying?"
-                her normal coat "Just a little. Stupid pregnancy hormones."
+                her normal coat "Just a little. I was so worried you wouldn't understand."
                 him happy "Here, you can wipe your tears on my shirt."
                 her flirting coat "Now that's true love."
-            "How do you feel about it?":
-                $ marriage_strength += 1
-                him surprised "How do you feel about it?"
-                her concerned coat "I don't know. Worried, I guess."
-                him concerned "Yeah, how will this even work?"
-                her sad coat "I don't know if I can do this..."
+            "Maybe we could have another baby...":
+                him pout "I guess we could have another baby...?"
+                her sad coat "You don't really want to, do you?"
                 him determined "Hey, don't cry, it'll be okay."
                 jump pregnancy_alone
 
@@ -3315,7 +3299,7 @@ label family10:
             scene stars with fade
             "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
             "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
-            "A few weeks after school started, [her_name] went into labor in the middle of the night."
+            "A week before her due date, [her_name] went into labor in the middle of the night."
             "We didn't even have time to get to the clinic."
             call baby_delivery
     return
