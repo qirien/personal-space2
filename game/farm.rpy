@@ -51,7 +51,7 @@ init python:
                 pest_factor = 0 # how pests affect yield
                 pest_growth = 0 # how much pests increase/decrease this year
                 # If pest calculation is on
-                # TODO: Set difficulty level? Remove completely?
+                # TODO: Set difficulty level? Remove completely?  Add in New Game+?
                 if USE_PESTS:
                     current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
                     #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
@@ -101,7 +101,6 @@ init python:
 
         # Given the percentage yield of each crop square, calculate
         # how much money will be made
-        # TODO: tweak this
         def calculate_income(self, crop_yield):
             income = 0
             for i in range(0, self.crops.len()):
@@ -109,7 +108,7 @@ init python:
                 crop_value = get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
                 final_value = (crop_yield[i]/100.0) * crop_value
                 print "crop_yield " + str(crop_yield[i]) + " crop_value " + str(crop_value) + " final_value " + str(final_value)
-                income += int(final_value)
+                income += roundint(final_value)
             return income
 
         # Set all crops to fallow except for already-planted perennials
@@ -200,29 +199,42 @@ init python:
 
             return valid_layout
 
+        # TODO: Add a little randomness here?
         def low_vitamins(self):
             return (self.low_vitamin_a() or self.low_vitamin_c() or self.low_magnesium())
 
         def low_vitamin_a(self):
             vitA = 0
+            boosted_squares = self.get_boosted_squares()
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitA += VITAMIN_A_CROPS[current_crop_name]
-            return (vitA <= get_vitamins_required(year))
+                vitA += roundint(multiplier * VITAMIN_A_CROPS[current_crop_name])
+            return (vitA < get_vitamins_required(year))
 
         def low_vitamin_c(self):
             vitC = 0
+            boosted_squares = self.get_boosted_squares()
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitC += VITAMIN_C_CROPS[current_crop_name]
-            return (vitC <= get_vitamins_required(year))
+                vitC += roundint(multiplier * VITAMIN_C_CROPS[current_crop_name])
+            return (vitC < get_vitamins_required(year))
 
         def low_magnesium(self):
-            magn = 0
+            vitM = 0
+            boosted_squares = self.get_boosted_squares()
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                magn += MAGNESIUM_CROPS[current_crop_name]
-            return (magn <= get_vitamins_required(year))
+                vitM += roundint(multiplier * MAGNESIUM_CROPS[current_crop_name])
+            return (vitM < get_vitamins_required(year))
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()
@@ -350,7 +362,7 @@ init python:
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical
     def get_adjacent(crop_index, max_size):
-        num_columns = int(round(max_size**0.5))
+        num_columns = roundint(max_size**0.5)
         # left edge
         if ((crop_index % num_columns) == 0):
             potential_indices = [crop_index-num_columns, crop_index+1, crop_index+num_columns]

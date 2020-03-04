@@ -252,14 +252,17 @@ label family1:
             $ baby_poem = word_board.get_poem_as_string(-1)
 
             scene farm_interior with fade
-            show her normal at midright
-            show kid normal at midright, baby_pos
+            show her baby happy at midright
             with dissolve
             show him normal at midleft with moveinleft
             him happy "Want to hear my new poem?"
-            her flirting "I can tell you really want to share it with me."
+            her "I can tell you really want to share it with me."
             him normal "I think you'll like it. Okay, here it is."
             him determined "[baby_poem]"
+            show her at center with move
+            show her normal
+            show him baby happy with dissolve
+            show her normal at midright with move
             if (("fragile" in baby_poem) or
                 ("love" in baby_poem) or
                 ("milk" in baby_poem) or
@@ -267,17 +270,17 @@ label family1:
                 ("smile" in baby_poem) or
                 ("tender" in baby_poem)):
                 her happy "Awwww! Yeah, that's our little [kid_name]!"
-                him happy "I'm glad you agree!"
+                him "I'm glad you agree!"
             elif (("precious" in baby_poem) or
                 ("cute" in baby_poem) or
                 ("joy" in baby_poem) or
                 ("adore" in baby_poem)):
                 her concerned "Isn't that idealizing babies just a little?"
-                him concerned "Well, yeah. I don't need help remembering all the screaming and the mess!"
+                him baby sad "Well, yeah. I don't need help remembering all the screaming and the mess!"
                 her happy "That's true!"
             elif ("mother" in baby_poem):
                 her happy "You didn't tell me it was a poem about me!"
-                him happy "You two are my world; of course I put you in there!"
+                him "You two are my world; of course I put you in there!"
             elif (("stinky" in baby_poem) or
                 ("pain" in baby_poem) or
                 ("blood" in baby_poem)):
@@ -285,9 +288,9 @@ label family1:
             elif (len(baby_poem) <= 50):
                 her surprised "Wow, it's... very short!"
             else:
-                her normal "Hmmm. Okay."
-                him surprised "That's it? 'Okay'?"
-                her concerned "I...I'm not sure what else to say."
+                her concerned "Hmmm. Okay."
+                him baby sad "That's it? 'Okay'?"
+                her blush "I...I'm not sure what else to say."
 
         "No":
             $ pass
@@ -5985,7 +5988,7 @@ label family21:
     scene farm_interior with fade
     show him normal at midleft
     show kid normal at center
-    show bro at midright
+    show bro normal at midright
     with dissolve
 
     "Lately, [kid_name] and [bro_name] had been playing a video game together. I thought it would be good for them, to help them bond and learn to cooperate, but sometimes it just made them both frustrated..."
@@ -6944,7 +6947,7 @@ label lettie_dies:
     show him sad at midright with dissolve
     "[her_name] came home and interrupted my musings."
     show her nervous coat at midleft with moveinleft
-    her nervous "Hey, sweetie."
+    her nervous coat "Hey, sweetie."
     him concerned "Hey."
     "She sat next to me and held my hand."
     her determined coat "You weren't just talking about yew plants."
@@ -7410,7 +7413,7 @@ label family27:
             if (allowance_amount > 0):
                 # TODO: make sure this makes sense with the numbers
                 him annoyed "You have an allowance, you know. You could save up for it yourself."
-                $ saving_weeks = int(round(float(bike_cost) / float(allowance_amount)))
+                $ saving_weeks = roundint(float(bike_cost) / float(allowance_amount))
                 kid angry "What?! That would take me like..."
                 "She did some calculations in her head."
                 $ saving_months = saving_weeks / 4.0
@@ -7510,9 +7513,9 @@ label family27:
     her surprised "Maybe she should quit and concentrate on her schooling..."
     him determined "No way. It's good for her to do something real and useful. She'll use that way more in life than whatever random stuff they're teaching her in school."
     her annoyed "It's not 'random stuff', it's math, literature, science, social studies -- you know, the stuff that makes us human."
-    him annoyed "Yeah, but she's almost 18. She needs to start exploring what she's going to be doing here as a contributing adult."
+    him annoyed "Yeah, but she's almost an adult. She needs to start exploring what she's going to be doing here to contribute."
     her angry "What about college?"
-    him normal "All they have here is independent study. I think she'd be better off starting to work and then studying more what she actually needs."
+    him determined "All they have here is independent study. I think she'd be better off starting to work and then studying more what she actually needs."
     her annoyed "A college education is important."
     him surprised "When was the last time you used calculus? History? And you don't need a class to enjoy a good book or think about philosophy or whatever."
     her determined "I use math all the time at work."
@@ -7530,7 +7533,7 @@ label family27:
     $ parenting_style = get_parenting_style()
 
     # Reduce available work (even if you tell her not to work, she still does)
-    $ kid_other_work = int(competence * .35)
+    $ kid_other_work = roundint(competence * .35)
     menu:
         "What should I say?"
         "We should encourage her work.":
@@ -7623,6 +7626,7 @@ label family28:
 
     kid determined "I'm heading out. Bye."
     her concerned "Okay, be home for dinner."
+    hide kid with moveoutleft
     him determined "She sure has been gone a lot lately."
     her surprised "Do you think she's okay?"
     him concerned "I don't know..."
@@ -7727,7 +7731,7 @@ label family28:
     show him normal at midright with dissolve
     show her normal at center
     show kid normal at midleft
-    with move
+    with moveinleft
 
     her concerned "She was delivering firegrass and alcohol to Brennan, for the miners."
     kid determined "I wasn't using any of it! I just deliver it!"
@@ -7892,7 +7896,7 @@ label family28_runaway:
     "[her_name] gave [kid_name] a big hug. [kid_name] glared at me over [her_name]'s shoulder when I didn't join in."
 
     # She is even less willing to work for you now
-    $ kid_other_work = int(competence * .75)
+    $ kid_other_work = roundint(competence * .75)
     return
 
 # 18 Earth years old

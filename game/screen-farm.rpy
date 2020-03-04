@@ -9,7 +9,7 @@ screen plan_farm:
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
+        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
         textbutton "?" xpos 1077 ypos 18 action Jump("farm_tutorial")
         textbutton "             " xpos 1085 ypos 18 action ShowMenu("preferences")
         vbox:
@@ -102,17 +102,17 @@ screen farm_details_screen:
                     label "Family"
                     text "[his_name] & [her_name]" xoffset 20
                     if (earth_year < 2):
-                        $ kid_months = int(earth_year * 12)
+                        $ kid_months = roundint(earth_year * 12)
                         $ kid_age = str(kid_months) + " Earth months old"
                     else:
-                        $ kid_age = str(int(earth_year)) + " Earth years old"
+                        $ kid_age = str(roundint(earth_year)) + " Earth years old"
                     text "[kid_name], [kid_age]" xoffset 20
                     if (bro_birth_year != 0):
                         if (earth_year < 2):
-                            $ bro_months = int(get_earth_years(bro_age) * 12)
+                            $ bro_months = roundint(get_earth_years(bro_age) * 12)
                             $ bro_age = str(bro_months) + " Earth months old"
                         else:
-                            $ bro_age = str(int(get_earth_years(bro_age))) + " Earth years old"
+                            $ bro_age = str(roundint(get_earth_years(bro_age))) + " Earth years old"
                         text "[bro_name], [bro_age]" xoffset 20
                     else:
                         text " "
@@ -365,17 +365,16 @@ screen crops_totals:
         for i in range(0, farm.crops.len()):
             $ multiplier = 1.0
             if (i in boosted_squares):
-                $ multiplier += farm.BEE_BOOST/100.0
+                $ multiplier += (farm.BEE_BOOST/100.0)
             $ crop_names = [row[NAME_INDEX] for row in crop_info]
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ crop_name = farm.crops[i].rstrip("+")
-            $ total_calories += crop_info[index][CALORIES_INDEX] * multiplier
-            $ vitA += VITAMIN_A_CROPS[crop_name] * multiplier
-            $ vitC += VITAMIN_C_CROPS[crop_name] * multiplier
-            $ vitM += MAGNESIUM_CROPS[crop_name] * multiplier
-
+            $ total_calories += roundint(crop_info[index][CALORIES_INDEX] * multiplier)
+            $ vitA += roundint(VITAMIN_A_CROPS[crop_name] * multiplier)
+            $ vitC += roundint(VITAMIN_C_CROPS[crop_name] * multiplier)
+            $ vitM += roundint(MAGNESIUM_CROPS[crop_name] * multiplier)
             if (year >= MONEY_YEAR):
-                $ total_value += int(multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX]))
+                $ total_value += roundint(multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX]))
 
             $ total_work += crop_info[index][WORK_INDEX]
 
@@ -390,18 +389,18 @@ screen crops_totals:
             use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
         if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
             hbox:
-                text "Nutrition  "# + str(total_nutrition) + " / " + str(nutrition_needed)
-                if (farm.low_vitamins()):
+                text "Nutrition  " + str(vitA) + " | " + str(vitC) + " | " + str(vitM) + "/" + str(vitamins_needed)
+                if ((vitA < vitamins_needed) or (vitC < vitamins_needed) or (vitM < vitamins_needed)):
                     # TODO: Sometimes if you have just 1 less than needed, it looks like you have enough but the ! is still there.
                     text "{b}!{/b}" style "alert_text"
             hbox:
                 yalign 0.5
                 add "gui/emoji/vitA.png"
-                use tricolor_bar(vitamins_needed, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed+1, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
                 add "gui/emoji/vitC.png"
-                use tricolor_bar(vitamins_needed, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed+1, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
                 add "gui/emoji/vitM.png"
-                use tricolor_bar(vitamins_needed, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed+1, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
 
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
@@ -458,14 +457,14 @@ screen tricolor_bar(current_value, new_value, max_value, display_max_size, displ
     if (new_value > current_value):
         $ display_value = new_value - current_value
         $ display_range = max_value - current_value
-        $ display_size = int((display_max_size/float(max_value)) * (max_value - current_value))
+        $ display_size = roundint((display_max_size/float(max_value)) * (max_value - current_value))
         $ display_style = "increased_bar"
 
     # we have a decrease; show it in a negative color
     else:
         $ display_value = current_value - new_value
         $ display_range = max_value - new_value
-        $ display_size = int((display_max_size/float(max_value)) *  (max_value - new_value))
+        $ display_size = roundint((display_max_size/float(max_value)) *  (max_value - new_value))
         $ display_style = "decreased_bar"
 
     if (display_vertical):
