@@ -84,7 +84,6 @@ label yearly_messages:
     #computer "\n(End of messages)"
     nvl clear
     call screen plan_farm
-    # TODO: something weird is happening where reading the message board makes the game return to the main menu after picking crops.
     "You should never see this."
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
@@ -426,7 +425,7 @@ screen crops_totals:
         if (year >= MONEY_YEAR):
             $ total_expenses = get_expenses_required(year) - KELLY_SALARY
             if (crop_enabled("wheat")):
-                $ total_expenses += WHEAT_COST # TODO: Change depending on how much wheat you plant?
+                $ total_expenses += WHEAT_COST
             text "Value"
             use stat_icons(2, VALUE_INDEX)
             hbox:
