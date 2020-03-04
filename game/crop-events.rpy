@@ -1658,31 +1658,34 @@ label honey1:
     else:
         scene shack with fade
 
-    show helen normal at center
+    if (not helen_dead):
+        show helen normal at center
+
     show travis normal at midright
     with dissolve
     show him normal at quarterleft with moveinleft
-    helen "Oh. Hello, [his_name]."
-    him normal "Hey there, Helen. How's it going?"
-    helen "Okay, I guess. What brings you way out here?"
-    menu:
-        "What should I do?"
-        "Talk to Helen about Travis":
-            him determined "I'll get right to the point. Travis stole some of our honey."
-            show travis normal at quarterright with move
-            helen "Oh, really? Why do you think that?"
-            show travis normal at right with move
-            him concerned "I have video footage right here."
-            "I showed her the security video."
-            helen "Hmmm. Travis!"
-            travis "I was just going to go, uh, do my chores!"
-            show helen normal at quarterright with move
-            helen "C'mere and talk with [his_name]. And"
-            "She whispered something in his ear that I didn't hear."
-            hide helen with moveoutright
-        "Talk to Travis directly.":
-            him determined "Travis, I need to talk to you."
-            show helen at right with move
+    if (not helen_dead):
+        helen "Oh. Hello, [his_name]."
+        him normal "Hey there, Helen. How's it going?"
+        helen "Okay, I guess. What brings you way out here?"
+        menu:
+            "What should I do?"
+            "Talk to Helen about Travis":
+                him determined "I'll get right to the point. Travis stole some of our honey."
+                show travis normal at quarterright with move
+                helen "Oh, really? Why do you think that?"
+                show travis normal at right with move
+                him concerned "I have video footage right here."
+                "I showed her the security video."
+                helen "Hmmm. Travis!"
+                travis "I was just going to go, uh, do my chores!"
+                show helen normal at quarterright with move
+                helen "C'mere and talk with [his_name]. And"
+                "She whispered something in his ear that I didn't hear."
+                hide helen with moveoutright
+            "Talk to Travis directly.":
+                him determined "Travis, I need to talk to you."
+                show helen at right with move
 
     show him at center with move
     show travis normal at midright with move

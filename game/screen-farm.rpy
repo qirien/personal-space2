@@ -202,7 +202,6 @@ screen choose_crop(crop_index=0):
 
                     null height 30
                     vpgrid:
-                        # TODO: change this based on number of enabled crops?
                         cols 5
                         spacing 10
                         draggable True
@@ -215,7 +214,7 @@ screen choose_crop(crop_index=0):
                             if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0) and
                             (crop_temporarily_disabled != crop_info[j][NAME_INDEX])):
                                 $ crop_name = crop_info[j][NAME_INDEX]
-                                $ max_crops_reached = (farm.crops.count(crop_info[j][NAME_INDEX]) >= crop_info[j][MAXIMUM_INDEX])
+                                $ max_crops_reached = (farm.crops.count(crop_name) >= crop_info[j][MAXIMUM_INDEX]) # TODO: this doesn't work, probably a local/global thing with farm.crops (it seems to use old values)
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == j)
 
@@ -370,13 +369,18 @@ screen crops_totals:
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ crop_name = farm.crops[i].rstrip("+")
             $ total_calories += roundint(crop_info[index][CALORIES_INDEX] * multiplier)
-            $ vitA += roundint(VITAMIN_A_CROPS[crop_name] * multiplier)
-            $ vitC += roundint(VITAMIN_C_CROPS[crop_name] * multiplier)
-            $ vitM += roundint(MAGNESIUM_CROPS[crop_name] * multiplier)
+            $ vitA += VITAMIN_A_CROPS[crop_name] * multiplier
+            $ vitC += VITAMIN_C_CROPS[crop_name] * multiplier
+            $ vitM += MAGNESIUM_CROPS[crop_name] * multiplier
             if (year >= MONEY_YEAR):
-                $ total_value += roundint(multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX]))
+                $ total_value += multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX])
 
             $ total_work += crop_info[index][WORK_INDEX]
+        # Round after totalling, otherwise multiplier doesn't doo much.
+        $ vitA = roundint(vitA)
+        $ vitC = roundint(vitC)
+        $ vitM = roundint(vitM)
+        $ total_value = roundint(total_value)
 
         #grid 2 4
         hbox:
@@ -389,18 +393,17 @@ screen crops_totals:
             use tricolor_bar(calories_needed, total_calories, total_max, RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE, CROP_LAYOUT_BAR_WIDTH*5, False)
         if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
             hbox:
-                text "Nutrition  " + str(vitA) + " | " + str(vitC) + " | " + str(vitM) + "/" + str(vitamins_needed)
+                text "Nutrition  "# + str(vitA) + " | " + str(vitC) + " | " + str(vitM) + "/" + str(vitamins_needed)
                 if ((vitA < vitamins_needed) or (vitC < vitamins_needed) or (vitM < vitamins_needed)):
-                    # TODO: Sometimes if you have just 1 less than needed, it looks like you have enough but the ! is still there.
                     text "{b}!{/b}" style "alert_text"
             hbox:
                 yalign 0.5
                 add "gui/emoji/vitA.png"
-                use tricolor_bar(vitamins_needed+1, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
                 add "gui/emoji/vitC.png"
-                use tricolor_bar(vitamins_needed+1, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
                 add "gui/emoji/vitM.png"
-                use tricolor_bar(vitamins_needed+1, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
 
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
@@ -453,6 +456,7 @@ screen crops_totals:
 # depending on whether the new value is greater than or less than the current
 # value.
 screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
+    $ current_value += 1
     # we have an increase; show it in a positive color
     if (new_value > current_value):
         $ display_value = new_value - current_value

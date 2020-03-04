@@ -332,6 +332,10 @@ label life_loop:
             if (farm.low_vitamins() and (year >= NUTRITION_YEAR)):
                 call bad_nutrition
 
+            # TODO: Debt event(s) go here
+
+            # TODO: Need some consequence for how much work you give Terra.
+
             # WORK EVENTS (farming)
             play music farming fadeout 3.0 fadein 3.0
             call interscene_text(year, "Work")

@@ -199,7 +199,6 @@ init python:
 
             return valid_layout
 
-        # TODO: Add a little randomness here?
         def low_vitamins(self):
             return (self.low_vitamin_a() or self.low_vitamin_c() or self.low_magnesium())
 
@@ -211,7 +210,7 @@ init python:
                 if (i in boosted_squares):
                     multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitA += roundint(multiplier * VITAMIN_A_CROPS[current_crop_name])
+                vitA += multiplier * VITAMIN_A_CROPS[current_crop_name]
             return (vitA < get_vitamins_required(year))
 
         def low_vitamin_c(self):
@@ -222,7 +221,7 @@ init python:
                 if (i in boosted_squares):
                     multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitC += roundint(multiplier * VITAMIN_C_CROPS[current_crop_name])
+                vitC += multiplier * VITAMIN_C_CROPS[current_crop_name]
             return (vitC < get_vitamins_required(year))
 
         def low_magnesium(self):
@@ -233,7 +232,7 @@ init python:
                 if (i in boosted_squares):
                     multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitM += roundint(multiplier * MAGNESIUM_CROPS[current_crop_name])
+                vitM += multiplier * MAGNESIUM_CROPS[current_crop_name]
             return (vitM < get_vitamins_required(year))
 
         def most_frequent_crop(self):

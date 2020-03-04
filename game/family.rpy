@@ -2660,7 +2660,7 @@ label family8:
         show him normal at midright
         show her normal coat at midleft
         with dissolve
-        her concerned "Now that [kid_name]'s in school... I want to try to have another baby."
+        her concerned coat "Now that [kid_name]'s in school... I want to try to have another baby."
         him surprised "I thought we were going to wait?"
         her annoyed coat "We can't wait forever, [his_name]. Plus... I've noticed a lot of families are having trouble having children here."
         him concerned "Here? You mean on Talaam?"
@@ -2677,8 +2677,8 @@ label family8:
                 him angry "Fine, I'm sorry! I just..."
                 label pregnancy_alone:
                     her concerned coat "I need us to be on the same side."
-                    her sad "I don't want to be alone."
-                    him surprised "Hey. You're not alone. I'll always be by your side."
+                    her sad coat "I don't want to be alone."
+                    him determined "Hey. You're not alone. I'll always be by your side."
                     him normal "I'll be on your side, at your side, sideways, right-side-up and upside-down!"
                     show him content at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
@@ -2706,9 +2706,9 @@ label family8:
                 him happy "Here, you can wipe your tears on my shirt."
                 her flirting coat "Now that's true love."
             "Maybe we could have another baby...":
-                him pout "I guess we could have another baby...?"
-                her sad coat "You don't really want to, do you?"
-                him determined "Hey, don't cry, it'll be okay."
+                him doubt "I guess we could have another baby...?"
+                her cry coat "You don't really want to, do you?"
+                him surprised "Hey, don't cry, it'll be okay."
                 jump pregnancy_alone
 
     return
