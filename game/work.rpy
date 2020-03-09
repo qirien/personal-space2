@@ -130,7 +130,7 @@ label overwork:
             $ overwork_mavericks += 1
             if (overwork_mavericks <= 1):
                 $ mavericks += 1
-                if (year >= PETE_LEAVES_CAVE_YEAR):
+                if (year >= PETE_LEAVES_CAVES_YEAR):
                     scene shack with fade
                 else:
                     scene cave with fade
@@ -287,7 +287,7 @@ label work4:
             $ work4_showoff = True
             "It was fun to show off my hard work. And it was a good chance to hang out with the other farmers and see what they were doing."
 
-        "Go, but don't bring anything.":
+        "Prepare one field and then go without bringing anything.":
             "I didn't want to miss the Fall Festival. I worked hard to prepare and plow one new field, and then I headed over."
             $ modify_farm_size(1)
 
@@ -305,7 +305,7 @@ label work4:
     with dissolve
     show him normal at left with moveinleft
     "Everyone brought their best crops to display."
-    "Natalia had beautiful ears of corn, and free samples of corn on the cob."
+    "Natalia had beautiful ears of corn, and even some samples of popcorn."
     show him surprised at midleft with move
     "Pete brought several kinds of cheeses and cider."
     show him normal at midright with move
@@ -657,6 +657,7 @@ label work14:
             him normal "Yeah, you learned a lot! Of course the first few times are kind of rough, so don't worry too much about spilled milk or anything."
             kid surprised "So am I done?"
             him determined "Not quite. I'll show you how to filter the milk and wash the bucket."
+            "We lost a little milk, but it was worth it to have [kid_name] be able to help with milking the goats."
 
             $ authoritative += 1
             $ confident += 1
@@ -679,7 +680,7 @@ label work14:
                     "I left to finish up my work. Her sobs followed me around the farm everywhere I went."
                     "I wanted to teach her to be independent, to do things for herself. I guess I needed to push her a bit to get her to learn that..."
                     scene barn with fade
-                    show him at center with moveinright
+                    show him pout at center with moveinright
                     "When I came back after a half hour, the goat was put away and there was about a cup of milk in the pail. The goat looked happy, so she must have been milked enough."
                     "But [kid_name] was going to need a lot more practice..."
                     $ authoritarian += 1
@@ -740,6 +741,7 @@ label work16:
                         "What should I say?"
                         "They're too much work.":
                             him annoyed "They're too much work, especially for the yield you get."
+                            kevin "Nevertheless, I would like to try it."
                         "They don't really taste good.":
                             him concerned "Well, they don't really taste very good, so no one wants to eat them."
                             kevin "I like [random_crop]."
@@ -770,8 +772,8 @@ label work16:
             show pete normal at midright with moveinright
             pete "You ready to make this fence?"
             him determined "You bet!"
-            "It took us all day, but now I had four more fields for planting!"
-            $ modify_farm_size(4)
+            "It took us all day, but now I had several more fields for planting!"
+            $ modify_farm_size(3)
     return
 
 # Year 18, 11.1 years old
@@ -1944,5 +1946,5 @@ label work30:
 
     $ modify_credits(work28_rent)
     # She and Bro only can help a little now.
-    $ kid_other_work = roundint(competence *.75)
+    $ kid_other_work = roundint(competence *.5)
     return

@@ -251,6 +251,12 @@ init python:
                             indices.add(curr_index)
             return indices
 
+        # Delete all instances of crop_name in crops
+        def delete_crop(self, crop_name):
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i]
+                if (current_crop_name == crop_name):
+                    self.crops[i] = "fallow"
 
     ##
     # CROPS OBJECT
@@ -350,13 +356,6 @@ init python:
         crop_info[crop_index][ENABLED_INDEX] = False
         if (notify):
             renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
-
-    # Delete all instances of crop_name in crops
-    def delete_crop(crop_name):
-        for i in range(0, crops.len()):
-            current_crop_name = self.items[i]
-            if (current_crop_name == crop_name):
-                self.items[i] = "fallow"
 
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical

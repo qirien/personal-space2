@@ -202,7 +202,7 @@ screen choose_crop(crop_index=0):
 
                     null height 30
                     vpgrid:
-                        cols 5
+                        cols (count_enabled_crops()//4 + 2) #
                         spacing 10
                         draggable True
                         mousewheel True
@@ -399,11 +399,11 @@ screen crops_totals:
             hbox:
                 yalign 0.5
                 add "gui/emoji/vitA.png"
-                use tricolor_bar(vitamins_needed, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed+1, vitA, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
                 add "gui/emoji/vitC.png"
-                use tricolor_bar(vitamins_needed, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed+1, vitC, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
                 add "gui/emoji/vitM.png"
-                use tricolor_bar(vitamins_needed, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
+                use tricolor_bar(vitamins_needed+1, vitM, vitMax, (RIGHT_COLUMN_WIDTH-CROP_STATUS_ICON_SIZE*3)//3, CROP_STATUS_ICON_SIZE, False)
 
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
@@ -428,8 +428,9 @@ screen crops_totals:
             $ total_expenses = get_expenses_required(year) - KELLY_SALARY
             if (crop_enabled("wheat")):
                 $ total_expenses += WHEAT_COST
-            text "Value"
-            use stat_icons(2, VALUE_INDEX)
+            hbox:
+                text "Value  "
+                use stat_icons(2, VALUE_INDEX)
             hbox:
                 style_prefix "plan_farm_total"
                 xfill True
@@ -456,7 +457,6 @@ screen crops_totals:
 # depending on whether the new value is greater than or less than the current
 # value.
 screen tricolor_bar(current_value, new_value, max_value, display_max_size, display_min_size=CROP_LAYOUT_BAR_WIDTH, display_vertical=True):
-    $ current_value += 1
     # we have an increase; show it in a positive color
     if (new_value > current_value):
         $ display_value = new_value - current_value

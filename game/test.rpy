@@ -83,11 +83,11 @@ label test_farming_screen:
         $ read_messages = False
         $ show_year = year
         call screen plan_farm
-        label test_continue:
-            if (renpy.random.random()  > 0.8):
-                $ farm_size += 1
-            $ year += 1
-            $ notifications = ""
+        # label test_continue:
+        #     if (renpy.random.random()  > 0.8):
+        #         $ farm_size += 1
+        #     $ year += 1
+        #     $ notifications = ""
     return
 
 label demo:
@@ -546,17 +546,40 @@ label test_sprite(sprite_name="kid"):
     return
 
 label test_crops:
-
+    $ testing_mode = True
     $ year = 1
 
-    while (year <= 30):
+    while (year <= MAX_YEARS):
+        $ competence = year
+        $ earth_year = get_earth_years(year)
+        if (bro_birth_year != 0):
+            $ bro_age = year - bro_birth_year
+        if (year > 1):
+            $ years_yield = farm.process_crops()
+            if (year > MONEY_YEAR):
+                $ income = farm.calculate_income(years_yield)
+                $ modify_credits(income)
+                $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
+                if (allowance_amount != 0):
+                    $ modify_credits(allowance_amount * 7)
+        if (crop_enabled("wheat")):
+            $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
-        $ farm.crops.setDefault()
-        $ renpy.notify("Year [year]")
+        $ read_messages = False
+        $ show_year = year
+        call screen plan_farm
+        label test_continue:
+            $ notifications = ""
+            $ current_work = get_work_available()
+            $ total_work = farm.get_total_work()
 
-        $ work_event = get_next_work_event()
-        call expression work_event
-        $ year += 1
+            # MALNUTRITION EVENT (optional)
+            if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
+                call bad_nutrition
+            $ work_event = get_next_work_event()
+            call expression work_event
+            $ year += 1
+
 
     "The end"
     jump ending

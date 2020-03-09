@@ -1367,7 +1367,6 @@ label community10:
     show him concerned
     show her concerned
     with dissolve
-    $ community11_kidsonfarm = False
     menu:
         "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
             $ community11_kidsonfarm = True
@@ -3944,10 +3943,11 @@ label community18:
     natalia_c "come over and do it yourself then!"
     natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
+    nvl clear
     scene fields with fade
     show him angry at left with moveinleft
     "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
-    # TODO: there's a flicker back to the texting background here. not sure why.
+    # TODO: there's a flicker back to the texting background here. not sure why. A: I don't see this. Let me know if it's still a problem.
     him "GO HOME COWS! KEEP MOVING!"
     show him yell at center with move
     him yell "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."

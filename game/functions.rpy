@@ -193,6 +193,9 @@ init -100 python:
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
                         possible_events.add(event_label)
+            # Add in Terra work events
+            if (kid_work_slider >= 70):
+                possible_events.add("terra_overwork")
 
             num_possible_events = len(possible_events)
             if (num_possible_events > 0):
@@ -365,6 +368,14 @@ init -100 python:
             elif (farm.crops[square_index] == "honey"):
                 return True
         return False
+
+    # Return the number of currently enabled crops
+    def count_enabled_crops():
+        count = 0
+        for i in range(0, len(crop_info)):
+            if crop_info[i][ENABLED_INDEX]:
+                count += 1
+        return count
 
     # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):

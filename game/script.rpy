@@ -121,7 +121,7 @@ label start:
         talked_to_Sara = False
         talked_to_Kevin = False
         talked_to_Pavel = False
-        community_11_kidsonfarm = False
+        community11_kidsonfarm = False
         community_17_planparty = False
         community_22_mining_stopped = False
         community_22_forced_mavericks_leave = False
@@ -143,6 +143,7 @@ label start:
         farm_size = 12
         farm = Field(farm_size, FARM_SIZE_MAXIMUM);
         selected_crop_index = 0
+        terra_overwork_count = 0
 
         # Yield of most recent set of crops, in percentages
         years_yield = [100] * farm_size
@@ -329,7 +330,7 @@ label life_loop:
             $ total_work = farm.get_total_work()
 
             # MALNUTRITION EVENT (optional)
-            if (farm.low_vitamins() and (year >= NUTRITION_YEAR)):
+            if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
                 call bad_nutrition
 
             # TODO: Debt event(s) go here
