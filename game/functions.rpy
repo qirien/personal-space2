@@ -172,7 +172,6 @@ init -100 python:
             event_name = "work" + str(year)
             return event_name
 
-        # TODO: If you make Terra work too much, she complains.
         # TODO: If you have a lot of money, have an investment opportunity?
 
         # Otherwise, we get a random crop event
