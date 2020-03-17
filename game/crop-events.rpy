@@ -6,8 +6,9 @@ label default_crop_event:
     "The year passed by in a blur: -- tilling, planting, weeding, harvesting -- the endless cycle of life on the farm."
     return
 
-# Event that can happen if you have Terra work more than 70%
-label terra_overwork:
+# Events that can happen if you have Terra work more than 70%
+# Too much homework!
+label terra_overwork1:
     scene fields with fade
     show tractor at midleft
     show him determined at midleft
@@ -15,145 +16,220 @@ label terra_overwork:
     with dissolve
 
     $ random_crop = farm.crops.random_crop(include_animals = False)
-    # Too much homework!
-    if (terra_overwork_count <= 0):
-        him happy "Ready to get going on the [random_crop], [kid_name]?"
-        kid concerned "I guess..."
-        him surprised "What's wrong?"
-        kid angry "How am I supposed to do my homework if I'm always out here working with you?!"
-        him annoyed "What are you talking about? You have plenty of time to do your homework!"
-        kid sad "I've got a big project due tomorrow and I started it but it's going to take me hours and hours and I just don't know if I can do it!"
-        menu:
-            "What should I say?"
-            "You'll have plenty of time after we finish here.":
-                him determined "We're going to finish this and then you can work on your project."
-                kid annoyed "I doubt it. If I get a bad grade it will be your fault."
-                him angry "No, it will be your fault for not starting your project earlier when you had more time! It's not my fault you saved it all until the last minute!"
-                kid angry "I didn't think you'd ask me to work every single day after school this whole week!"
-                him annoyed "Well, there's a lot of work to do."
-                kid yell "Fine! Let's just get it over with!"
-                $ demanding += 1
-            "Work with me for half an hour and then go do homework.":
-                him determined "Work with me for thirty minutes, and then you can have the rest of the day to do your project."
-                kid angry "Thirty minutes?!"
-                him annoyed "There will be several hours left after that. That should be plenty of time."
-                kid annoyed "Fine..."
-            "Go do your project and then come help me.":
-                him concerned "Go work on your project. If you have time left, come out and help me."
-                kid normal "Okay, thanks, dad."
-                $ attachment += 1
-            "You sound pretty stressed out about it.":
-                him concerned "You sound really stressed out."
-                kid annoyed "Uh, yeah! It's worth so many points and I haven't had time to do much of anything on it!"
-                him normal "What do you think you should do?"
-                kid concerned "...work on my homework."
-                him explaining "Then go do that. As soon as you're done, though, I need your help out here."
-                kid sad "Okay..."
-                $ independence += 1
-    # TODO: Finish and test these.
-    # Muscles hurt!
-    elif (terra_overwork_count == 1):
-        him determined "Today we need to compost the goat droppings."
-        kid concerned "With the tractor, right?"
-        him concerned "Well, we'll till some in right where it is, but we need to spread it out and make sure there's plenty of straw mixed in to turn it into compost."
-        kid normal "Because otherwise it could burn the plants, right?"
-        him happy "Right!"
-        "Apparently she did listen to me, sometimes."
-        "We worked together for several hours, spreading out the droppings and straw over the field. But she started slowing down until finally she just plopped down on her back."
-        kid sad "Can I be done?"
-        "We still had at least another hour to go before we'd be done with this field."
-        him concerned "You okay?"
-        kid sad "I'm tired, and my back hurts..."
-        menu:
-            "What should I say?"
-            "Help with something else instead.":
-                him surprised "Why don't you work on something else and I'll finish this up?"
-                kid concerned "Like what?"
-                him normal "You can start making dinner."
-                kid annoyed "Is it potatoes and beans again?"
-                him annoyed "Yeah, but we can have pickles, too."
-                kid normal "Okay."
-                "She left to make dinner and I finished up the job."
-                "Hopefully she wouldn't burn anything."
-                $ kid_work_slider -= 2
-            "Go home and rest.":
-                him concerned "You go home and rest; I can finish up here."
-                kid concerned "Thanks, dad."
-                "My back was hurting, too, but I kept at it until the job was done."
-                $ kid_work_slider -= 5
-            "Let's take a little break.":
-                him happy "Me too! Let's take a break."
-                kid normal "Okay."
-                "We found a clear patch and lay down next to each other, gazing up at the sky."
-                "There was a cool breeze and the clouds skated and shifted across the sky."
-                kid happy "Ha ha... that cloud looks like a crabird doing ballet..."
-                him surprised "Which one?"
-                kid normal "That one!"
-                him explaining "I think it looks more like a dragon flying."
-                him concerned "Hmmm... maybe."
-                "After a few minutes, we got back to work and finished the job."
-            "We're going to keep at it until we're done.":
-                him determined "That's too bad. We're going to keep working here until we're done."
-                kid angry "Can't I at least take a little break?!"
-                him annoyed "Five minutes."
-                "After five minutes, she went back to work, but she moved as slowly as possible and raked with limp arms that reminded me of a jellyfish."
-                "Still, we finished the job."
-                $ kid_work_slider -= 2
+    him happy "Ready to get going on the [random_crop], [kid_name]?"
+    kid concerned "I guess..."
+    him surprised "What's wrong?"
+    kid angry "How am I supposed to do my homework if I'm always out here working with you?!"
+    him annoyed "What are you talking about? You have plenty of time to do your homework!"
+    kid sad "I've got a big project due tomorrow and I started it but it's going to take me hours and hours and I just don't know if I can do it!"
+    menu:
+        "What should I say?"
+        "You'll have plenty of time after we finish here.":
+            him determined "We're going to finish this and then you can work on your project."
+            kid annoyed "I doubt it. If I get a bad grade it will be your fault."
+            him angry "No, it will be your fault for not starting your project earlier when you had more time! It's not my fault you saved it all until the last minute!"
+            kid angry "I didn't think you'd ask me to work every single day after school this whole week!"
+            him annoyed "Well, there's a lot of work to do."
+            kid yell "Fine! Let's just get it over with!"
+            $ demanding += 1
+        "Work with me for half an hour and then go do homework.":
+            him determined "Work with me for thirty minutes, and then you can have the rest of the day to do your project."
+            kid angry "Thirty minutes?!"
+            him annoyed "There will be several hours left after that. That should be plenty of time."
+            kid annoyed "Fine..."
+        "Go do your project and then come help me.":
+            him concerned "Go work on your project. If you have time left, come out and help me."
+            kid normal "Okay, thanks, dad."
+            $ attachment += 1
+        "You sound pretty stressed out about it.":
+            him concerned "You sound really stressed out."
+            kid annoyed "Uh, yeah! It's worth so many points and I haven't had time to do much of anything on it!"
+            him normal "What do you think you should do?"
+            kid concerned "...work on my homework."
+            him explaining "Then go do that. As soon as you're done, though, I need your help out here."
+            kid sad "Okay..."
+            $ independence += 1
+    $ competence += 1
+    $ terra_overwork_count += 1
+    return
 
+label terra_overwork2:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    him determined "Today we need to compost the goat droppings."
+    kid concerned "With the tractor, right?"
+    him concerned "Well, we'll till some in right where it is, but we need to spread it out and make sure there's plenty of straw mixed in to turn it into compost."
+    kid normal "Because otherwise it could burn the plants, right?"
+    him happy "Right!"
+    "Apparently she did listen to me, sometimes."
+    "We worked together for several hours, spreading out the droppings and straw over the field. But she started slowing down until finally she just plopped down on her back."
+    kid sad "Can I be done?"
+    "We still had at least another hour to go before we'd be done with this field."
+    him concerned "You okay?"
+    kid sad "I'm tired, and my back hurts..."
+    menu:
+        "What should I say?"
+        "Help with something else instead.":
+            him surprised "Why don't you work on something else and I'll finish this up?"
+            kid concerned "Like what?"
+            him normal "You can start making dinner."
+            kid annoyed "Is it potatoes and beans again?"
+            him annoyed "Yeah, but we can have pickles, too."
+            kid normal "Okay."
+            "She left to make dinner and I finished up the job."
+            "Hopefully she wouldn't burn anything."
+            $ kid_work_slider -= 2
+        "Go home and rest.":
+            him concerned "You go home and rest; I can finish up here."
+            kid concerned "Thanks, dad."
+            "My back was hurting, too, but I kept at it until the job was done."
+            $ kid_work_slider -= 5
+        "Let's take a little break.":
+            him happy "Me too! Let's take a break."
+            kid normal "Okay."
+            "We found a clear patch and lay down next to each other, gazing up at the sky."
+            "There was a cool breeze and the clouds skated and shifted across the sky."
+            kid happy "Ha ha... that cloud looks like a crabird doing ballet..."
+            him surprised "Which one?"
+            kid normal "That one!"
+            him explaining "I think it looks more like a dragon flying."
+            him concerned "Hmmm... maybe."
+            "After a few minutes, we got back to work and finished the job."
+        "We're going to keep at it until we're done.":
+            him determined "That's too bad. We're going to keep working here until we're done."
+            kid angry "Can't I at least take a little break?!"
+            him annoyed "Five minutes."
+            "After five minutes, she went back to work, but she moved as slowly as possible and raked with limp arms that reminded me of a jellyfish."
+            "Still, we finished the job."
+            $ kid_work_slider -= 2
+    $ competence += 1
+    $ terra_overwork_count += 1
+    return
+
+label terra_overwork3:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
     # Never get to hang out with friends!
-    elif (terra_overwork_count == 2):
-        "[kid_name] and I worked hard harvesting the [random_crop]. On Earth, there were machines for harvesting them, but we prioritized variety and adaptability over efficiency."
-        "So we were gathering them all by hand and putting them in containers in the trailer of the tractor."
-        "Harvest was my favorite part of farming; the part that made all the hard work worth it."
-        "But it was still hard work..."
-        show him normal at quarterleft
-        show kid concerned at center
-        with move
-        him happy "Wow, look how big this one got!"
-        kid sad "..."
-        show him at left
-        show kid at midleft
-        with move
-        him surprised "[kid_name]?"
-        kid nervous "..."
-        him concerned "[kid_name], what's wrong?"
-        kid sad "Oh. Well, Oleg invited me to come over but I told him I had to come help you."
-        him surprised "Oh."
-        "On the one hand, I was proud of her work ethic. On the other hand, I knew she didn't get to hang out with friends as often as she liked..."
-        menu:
-            "What should I say?"
-            "Go hang out with him. I got this.":
-                him happy "You should go hang out with him! I can finish this."
-                kid surprised "Are you sure?"
-                him normal "Yeah! It's not often you both have your schedule free."
-                kid happy "Okay, thanks, dad!"
-                "She skipped away and I sighed. It was good to see her so happy, but... there were a lot of [random_crop] left to harvest."
-                $ attachment += 1
-                $ kid_work_slider -= 10
-            "Let's finish up quick and then you can hang out.":
-                him happy "Let's work really fast and then you'll have time to hang out!"
-                kid surprised "You think so?"
-                him normal "Yeah! Let's just do two more rows."
-                $ attachment += 1
-                $ competence += 1
-                $ kid_work_slider -= 2
-                "We finished up the two rows, working as fast as possible. By the time she got over there, it would be almost time to come home, but I still thought it was worth it."
-            "You made the right choice.":
-                him determined "You made the right choice, [kid_name]."
-                kid annoyed "Hmph."
-                $ competence += 1
-                "We worked in silence, trudging along and picking up every last one of the [random_crop]."
+    "[kid_name] and I worked hard harvesting the [random_crop]. On Earth, there were machines for harvesting them, but we prioritized variety and adaptability over efficiency."
+    "So we were gathering them all by hand and putting them in containers in the trailer of the tractor."
+    "Harvest was my favorite part of farming; the part that made all the hard work worth it."
+    "But it was still hard work..."
+    show him normal at quarterleft
+    show kid concerned at center
+    with move
+    him happy "Wow, look how big this one got!"
+    kid sad "..."
+    show him at left
+    show kid at midleft
+    with move
+    him surprised "[kid_name]?"
+    kid nervous "..."
+    him concerned "[kid_name], what's wrong?"
+    kid sad "Oh. Well, Oleg invited me to come over but I told him I had to come help you."
+    him surprised "Oh."
+    "On the one hand, I was proud of her work ethic. On the other hand, I knew she didn't get to hang out with friends as often as she liked..."
+    menu:
+        "What should I say?"
+        "Go hang out with him. I got this.":
+            him happy "You should go hang out with him! I can finish this."
+            kid surprised "Are you sure?"
+            him normal "Yeah! It's not often you both have your schedule free."
+            kid happy "Okay, thanks, dad!"
+            "She skipped away and I sighed. It was good to see her so happy, but... there were a lot of [random_crop] left to harvest."
+            $ attachment += 1
+            $ kid_work_slider -= 10
+        "Let's finish up quick and then you can hang out.":
+            him happy "Let's work really fast and then you'll have time to hang out!"
+            kid surprised "You think so?"
+            him normal "Yeah! Let's just do two more rows."
+            $ attachment += 1
+            $ competence += 1
+            $ kid_work_slider -= 2
+            "We finished up the two rows, working as fast as possible. By the time she got over there, it would be almost time to come home, but I still thought it was worth it."
+        "You made the right choice.":
+            him determined "You made the right choice, [kid_name]."
+            kid annoyed "Hmph."
+            $ competence += 1
+            "We worked in silence, trudging along and picking up every last one of the [random_crop]."
+    $ competence += 1
+    $ terra_overwork_count += 1
+    return
+
     # This is your job
-    elif (terra_overwork_count == 3):
-        kid angry "Why am I always doing your job?!"
+label terra_overwork4:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+
+    "You don't always hear much about the work on a field after the harvest is done."
+    "We had to till in the stubble, and then [kid_name] and I had a lot of maintenance to do on the equipment."
+    "Every farm machine had to be cleaned and oiled; and in order to that we had to take a lot of pieces apart."
+    "I was trying to teach [kid_name] about how to change the oil in the tiller."
+    him explaining "Then we put the old oil in this container for recycling."
+    kid angry "Why am I always doing your job?!"
+    him surprised "What?"
+    kid annoyed "Taking care of these vehicles is {b}your{/b} job, right? So why are you making {b}me{/b} do it?"
+    him annoyed "It's not 'my' job, it's just a job that needs to get done. That's what we do."
+    kid angry "I spend so much time helping with your work that I don't have any time to do my own!"
+    him angry "What work?! You're a kid!"
+    if ((year > 27) and (not family27_no_work)):
+        kid annoyed "I have my delivery job. People depend on me."
     else:
-        "[kid_name] was stressed out about working so much, but it couldn't be helped. I just couldn't run this farm without her."
+        kid annoyed "I have work for school, and for mom, and there's things I want to do!"
+    him annoyed "This is more important."
+    kid nervous "More important to you..."
+    "I felt like yelling, but I kept my mouth shut. It was true that I asked her to work a lot, but that's just part of being a farm kid."
+    kid sad "I just feel like I never have time for anything."
+    menu:
+        "What should I say?"
+        "That's how it is being a farm kid.":
+            him doubt "Sorry, that's just how it is when you're a farm kid."
+            kid angry "I didn't ask to be a farm kid!"
+            him determined "But you are."
+            $ demanding += 1
+        "I need your help." if (get_extra_work() <= 1):
+            him concerned "I'm sorry, [kid_name], but there's a lot of work that needs to be done and you're making it all possible."
+            kid surprised "What do you mean?"
+            him surprised "I couldn't do all this without you. We wouldn't have all this great food, all these credits, everything we enjoy... you make it all possible."
+            kid concerned "You mean... you need me?"
+            him normal "I sure do."
+            kid annoyed "Well... I'd rather you didn't need me so much."
+            him sad "I know... I know."
+            $ demanding += 1
+        "I'll try and let you have more time in the future.":
+            him concerned "I'll see if I can schedule a bit more free time for you in the future."
+            kid nervous "Yeah... sure."
+            $ attachment += 1
+        "Let's look at your schedule together and figure this out.":
+            him concerned "Hmmm. Why don't you write out the things that you want to do and how much time they take, and we can make a schedule together?"
+            kid nervous "I guess..."
+            $ attachment += 1
+    "I remember working really hard when I was a kid... but I also remember having time to ride my bike to the creek and splash around with friends or climb trees or work on our always in-progress treehouse..."
+    "Being a teenager was pretty busy, though, since I had farm work and school work."
+    if (get_extra_work() < 0):
+        "This farm took so much work, I couldn't imagine how I could do it all without [kid_name]'s help."
+    else:
+        "Maybe I didn't need to make [kid_name] work quite so much."
 
     $ competence += 1
     $ terra_overwork_count += 1
     return
 
-# TODO: write a garlic event. Terra has no clue about its anti-vampiric properties.
+# GARLIC1 Terra has no clue about its anti-vampiric properties.
 label garlic1:
     scene farm_interior with fade
     show him normal at midright with dissolve
@@ -1300,7 +1376,7 @@ label plums1:
     "But, unlike the plum tree, I didn't know for sure what kind of adult I would eventually get."
     return
 
-# Several years later
+# PLUMS 2 Several years later
 # Prunes or jam?
 label plums2:
     scene plum_blossoms with fade

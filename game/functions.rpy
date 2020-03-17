@@ -159,7 +159,7 @@ init -100 python:
             crop_temporarily_disabled = ""
 
         #Every even year there is a set event; other years are crop events.
-        # This means we need 15 set events and at least 15 crop events (we have 22)
+        # This means we need 15 set events and at least 15 crop events (we have 28)
 
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
@@ -192,9 +192,14 @@ init -100 python:
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
                         possible_events.add(event_label)
+
             # Add in Terra work events
+            # TODO: Do we want this to replace a crop event or be in addition to it?
             if (kid_work_slider >= 70):
-                possible_events.add("terra_overwork")
+                next_event = number_events_seen["terra_overwork"] + 1
+                event_label = "terra_overwork" + str(next_event)
+                if renpy.has_label(event_label):
+                    possible_events.add(event_label)
 
             num_possible_events = len(possible_events)
             if (num_possible_events > 0):

@@ -268,6 +268,7 @@ label work2:
 
     # TODO: Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.
     $ enable_crop("plums")
+    # TODO: if already enabled, increase # available in case of NG+
     return
 
 
@@ -690,6 +691,7 @@ label work14:
                     hide kid with moveoutleft
                     "I ended up just doing myself. It wasn't that hard; maybe she just wasn't old enough..."
                     $ neglectful += 1
+    "Maybe I'd wait awhile before teaching her how to trim the goats' hooves..."
     return
 
 # Year 16, 10 years old
