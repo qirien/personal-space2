@@ -201,6 +201,7 @@ screen choose_crop(crop_index=0):
                         text crop_descriptions[crop_name.rstrip("+")]
 
                     null height 30
+                    # TODO: Add Sorting by different things buttons here
                     vpgrid:
                         cols (count_enabled_crops()//4 + 2) #
                         spacing 10

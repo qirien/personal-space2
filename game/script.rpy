@@ -149,7 +149,7 @@ label start:
         years_yield = [100] * farm_size
 
         # Dictionary containing the number of events seen for each crop
-        number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0, "terra_overwork":0}
+        number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
         credits = 0
         crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
@@ -335,7 +335,14 @@ label life_loop:
 
             # TODO: Debt event(s) go here
 
-            # TODO: Need some consequence for how much work you give Terra.
+            # Terra work events (optional)
+            if ((year > KID_WORK_YEAR) and (kid_work_slider >= 70)):
+                $ probability = 4/3.0*kid_work_slider - 80
+                if (renpy.random.random() < probability/100):
+                    $ next_event = terra_overwork_count + 1
+                    $ event_label = "terra_overwork" + str(next_event)
+                    if renpy.has_label(event_label):
+                        call expression event_label
 
             # WORK EVENTS (farming)
             play music farming fadeout 3.0 fadein 3.0

@@ -173,7 +173,7 @@ label bad_nutrition:
             show her concerned coat at midright
             show kid concerned at center
             if (bro_age > 0):
-                show bro at quarterleft
+                show bro concerned at quarterleft
             show him concerned at midleft with dissolve
             her annoyed coat "I just can't take it anymore!!"
             him surprised "Whoa, whoa, calm down."

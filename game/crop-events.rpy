@@ -40,7 +40,7 @@ label terra_overwork1:
         "Go do your project and then come help me.":
             him concerned "Go work on your project. If you have time left, come out and help me."
             kid normal "Okay, thanks, dad."
-            $ attachment += 1
+            $ responsive += 1
         "You sound pretty stressed out about it.":
             him concerned "You sound really stressed out."
             kid annoyed "Uh, yeah! It's worth so many points and I haven't had time to do much of anything on it!"
@@ -48,8 +48,8 @@ label terra_overwork1:
             kid concerned "...work on my homework."
             him explaining "Then go do that. As soon as you're done, though, I need your help out here."
             kid sad "Okay..."
-            $ independence += 1
-    $ competence += 1
+            $ confident += 1
+    $ demanding += 1
     $ terra_overwork_count += 1
     return
 
@@ -68,10 +68,11 @@ label terra_overwork2:
     him happy "Right!"
     "Apparently she did listen to me, sometimes."
     "We worked together for several hours, spreading out the droppings and straw over the field. But she started slowing down until finally she just plopped down on her back."
+    show kid at sitting with move
     kid sad "Can I be done?"
     "We still had at least another hour to go before we'd be done with this field."
     him concerned "You okay?"
-    kid sad "I'm tired, and my back hurts..."
+    kid nervous "I'm tired, and my back hurts..."
     menu:
         "What should I say?"
         "Help with something else instead.":
@@ -83,31 +84,40 @@ label terra_overwork2:
             kid normal "Okay."
             "She left to make dinner and I finished up the job."
             "Hopefully she wouldn't burn anything."
+            $ confident += 1
             $ kid_work_slider -= 2
         "Go home and rest.":
             him concerned "You go home and rest; I can finish up here."
             kid concerned "Thanks, dad."
             "My back was hurting, too, but I kept at it until the job was done."
+            $ responsive += 1
             $ kid_work_slider -= 5
         "Let's take a little break.":
             him happy "Me too! Let's take a break."
             kid normal "Okay."
+            show him at sitting with move
             "We found a clear patch and lay down next to each other, gazing up at the sky."
             "There was a cool breeze and the clouds skated and shifted across the sky."
             kid happy "Ha ha... that cloud looks like a crabird doing ballet..."
             him surprised "Which one?"
             kid normal "That one!"
             him explaining "I think it looks more like a dragon flying."
-            him concerned "Hmmm... maybe."
+            kid concerned "Hmmm... maybe."
+            show him at standing
+            show kid at standing
+            with move
             "After a few minutes, we got back to work and finished the job."
+            $ responsive += 1
         "We're going to keep at it until we're done.":
             him determined "That's too bad. We're going to keep working here until we're done."
             kid angry "Can't I at least take a little break?!"
             him annoyed "Five minutes."
             "After five minutes, she went back to work, but she moved as slowly as possible and raked with limp arms that reminded me of a jellyfish."
             "Still, we finished the job."
+            $ demanding += 1
+            $ confident += 1
             $ kid_work_slider -= 2
-    $ competence += 1
+    $ demanding += 1
     $ terra_overwork_count += 1
     return
 
@@ -146,22 +156,22 @@ label terra_overwork3:
             him normal "Yeah! It's not often you both have your schedule free."
             kid happy "Okay, thanks, dad!"
             "She skipped away and I sighed. It was good to see her so happy, but... there were a lot of [random_crop] left to harvest."
-            $ attachment += 1
+            $ responsive += 1
             $ kid_work_slider -= 10
         "Let's finish up quick and then you can hang out.":
             him happy "Let's work really fast and then you'll have time to hang out!"
             kid surprised "You think so?"
             him normal "Yeah! Let's just do two more rows."
-            $ attachment += 1
-            $ competence += 1
+            $ responsive += 1
+            $ demanding += 1
             $ kid_work_slider -= 2
             "We finished up the two rows, working as fast as possible. By the time she got over there, it would be almost time to come home, but I still thought it was worth it."
         "You made the right choice.":
             him determined "You made the right choice, [kid_name]."
             kid annoyed "Hmph."
-            $ competence += 1
+            $ demanding += 1
             "We worked in silence, trudging along and picking up every last one of the [random_crop]."
-    $ competence += 1
+    $ demanding += 1
     $ terra_overwork_count += 1
     return
 
@@ -213,11 +223,11 @@ label terra_overwork4:
         "I'll try and let you have more time in the future.":
             him concerned "I'll see if I can schedule a bit more free time for you in the future."
             kid nervous "Yeah... sure."
-            $ attachment += 1
+            $ responsive += 1
         "Let's look at your schedule together and figure this out.":
             him concerned "Hmmm. Why don't you write out the things that you want to do and how much time they take, and we can make a schedule together?"
             kid nervous "I guess..."
-            $ attachment += 1
+            $ responsive += 1
     "I remember working really hard when I was a kid... but I also remember having time to ride my bike to the creek and splash around with friends or climb trees or work on our always in-progress treehouse..."
     "Being a teenager was pretty busy, though, since I had farm work and school work."
     if (get_extra_work() < 0):
@@ -225,7 +235,7 @@ label terra_overwork4:
     else:
         "Maybe I didn't need to make [kid_name] work quite so much."
 
-    $ competence += 1
+    $ demanding += 1
     $ terra_overwork_count += 1
     return
 
@@ -1597,6 +1607,7 @@ label spinach1:
             him normal "Don't worry; we'll definitely have some next year."
             $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 2
     $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
+    # TODO: These don't reset until spinach2, which may never happen....
     return
 
 # SPINACH2 - turtle slugs
@@ -1835,13 +1846,13 @@ label strawberries2:
             "It was a huge pain, but I decided to rip out all the mutated strawberries.  I destroyed every plant that didn't have any flowers on it."
             "And the few strawberries that I did get, I planted instead of eating."
             $ credits_lost = farm.crops.count("strawberries") * get_credits_from_name("strawberries")
-            $ credits_lost = farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")
+            $ credits_lost += farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")
             $ modify_credits(-credits_lost)
         "Till over the whole field.":
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
             $ credits_lost = farm.crops.count("strawberries") * get_credits_from_name("strawberries")/2
-            $ credits_lost = farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")/2
+            $ credits_lost += farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")/2
             $ modify_credits(-credits_lost)
             $ enable_crop("strawberries", False)
             $ strawberries_index = get_crop_index("strawberries")

@@ -140,15 +140,15 @@ label overwork:
                 pete happy "That's because you don't."
                 him normal "Well, yeah, but it's not like you live on a different planet or anything."
                 pete normal "Nope."
-                him concerned "Hey, want to come help harvest [crop_name]? You can take some home with you."
+                him concerned "Hey, want to come help harvest [random_crop]? You can take some home with you."
                 pete happy "I could probably find a few hours this week. Mind if I bring the whole family?"
                 him happy "Bring anyone you like! Honestly, I could really use your help."
                 scene fields with fade
-                show him at midleft
-                show pete at center
-                show helen at midright
-                show travis at quarterright
-                show lily at quarterleft
+                show him normal at midleft
+                show pete normal at center
+                show helen normal at midright
+                show travis normal at quarterright
+                show lily normal at quarterleft
                 "With so many people, it didn't take us very long to harvest all the [random_crop]."
                 him happy "Thanks, guys!"
             else:
@@ -194,6 +194,25 @@ label overwork:
             else:
                 "But there was a limit to how much I could physically do, and my harvest suffered."
                 $ modify_credits(-300)
+        "Hire some help." if ((year > MONEY_YEAR) and (credits >= 200)):
+            "I had plenty of money. I'd just hire someone to help me."
+            cycle work_hire:
+                block:
+                    "A few of the miners' kids were willing to help out on the farm -- but for a steep price. They didn't know much about farming, but they learned quickly!"
+                    $ modify_credits(-200)
+                block:
+                    "[kid_name] asked around, and some of her friends came and helped out. They didn't do the best job, but they didn't want much pay, either."
+                    $ modify_credits(-100)
+                block:
+                    "Sara and Oleg answered my job offer -- it sounded like Sara and Ilian were going through a rough patch and she wanted to be financially independent."
+                    $ modify_credits(-150)
+                block:
+                    "I looked and looked but no one had the time to help me for any price that I could afford."
+                    "So my crop yield was not what it could have been."
+                    $ high_yield = [100] * farm.crops.len()
+                    $ low_yield = [80] * farm.crops.len()
+                    $ difference = farm.calculate_income(low_yield) - farm.calculate_income(high_yield)
+                    $ modify_credits(difference)
     return
 
 # TODO: Have an event for not making enough money
@@ -1280,7 +1299,7 @@ label work22:
             him cry "I will; thank you! Thank you so much!"
             $ enable_crop("onions")
     elif (helping_faction == "mavericks"):
-        show pete at midright with moveinleft
+        show pete normal at midright with moveinleft
         her happy "Especially Pete!"
         pete "I thought you'd get a kick outta a surprise party."
         him happy "Yeah, it's awesome!!!"
@@ -1289,7 +1308,7 @@ label work22:
         pete "Broccoli."
         her surprised "Do you like broccoli a lot?"
         pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
-        her laughing "So true! And it's really healthy, too."
+        her laugh "So true! And it's really healthy, too."
         him happy "Great, thank you Pete! It's always good to have some more variety."
         $ enable_crop("broccoli")
     else:

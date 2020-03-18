@@ -2245,8 +2245,8 @@ label family7:
         "I had the feeling it would take more than the passage of time to make a better parent out of me."
     else:
         scene stars with fade
+        "I wanted to be a better parent."
 
-    "I wanted to be a better parent."
     "But I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
     "Did I really have time for one more thing?"
     menu:
@@ -2274,11 +2274,11 @@ label family7:
             her surprised "What?"
             him surprised "Do you think we should be doing something differently? As parents, I mean?"
             her concerned "Maybe...I don't have any experience here, so it's hard to know if we're doing the right thing."
-            him concerned "Yeah...  I wish I could talk to my parents about it."
+            him sad "Yeah...  I wish I could talk to my parents about it."
             her flirting "I have the feeling that 140 characters isn't going to be enough space for much useful parenting advice."
-            him "Well, there's some good parents here, right?"
+            him surprised "Well, there's some good parents here, right?"
             her determined "Yeah... maybe? I've never really thought about the other adults as parents, mostly just as people."
-            him "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
+            him normal "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
             her normal "Yeah, I'll ask her!"
             scene stars with fade
             "After [her_name] talked to her, Sister Naomi agreed to host a parenting workshop one night a week. Her husband, Mayor Grayson, offered to watch the kids so anyone who wanted to could attend."
@@ -5085,11 +5085,15 @@ label family17:
         scene barn with fade
         show horse at midright with dissolve
         show him normal at midleft
-        show bro at quarterleft
+        show bro concerned at quarterleft
         with moveinleft
         him determined "Come, noble steed! We embark on a quest to satiate the hunger of this innocent boy!"
         bro happy "With bread!"
         "We saddled her up with a pad behind the saddle for [bro_name] to sit on. He held on tight to my waist and we set off for town."
+        scene path with fade
+        show horse at midright with dissolve
+        show him normal at midright
+        show bro normal at center
         bro surprised "Where are we going to find bread?"
         him surprised "One of these fair townsfolk may have the item we need... but who?"
         bro concerned "I don't know..."
@@ -5187,7 +5191,7 @@ label family17:
                 him happy "I think not, my apprentice! And if he does, we shall withstand his blows with the power of jolly cooperation! Do not fear!"
                 "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]. He was so quiet that he didn't always get much attention, but his little arms held me tight as we rode and I got the feeling he was feeling better."
                 scene farm_exterior flip with fade
-                show pete at midright with dissolve
+                show pete normal at midright with dissolve
                 show him normal at midleft
                 show bro normal at quarterleft
                 with moveinleft
@@ -5541,7 +5545,7 @@ label family19:
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
     show him surprised
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
-    "It wasn't romantic at all -- they were slapping each other around in a way that looked fairly painful. The video was obviously designed to try to turn people on as fast as possible."
+    "It wasn't romantic at all -- they were shoving and groping each other around in a way that actually looked painful. The video was obviously designed to try to turn people on as fast as possible."
     $ family19_watched_video = True
     "We didn't have access to the entire Earth internet, but somehow this was included in our local copy."
     menu:
@@ -7266,15 +7270,18 @@ label family26:
         "I don't appreciate being called a rapist.":
             him annoyed "Hey, watch what you're calling me. And my friends. And pretty much everyone you know."
             kid angry "It's true! The plants and animals of Talaam don't want us here; they just want to be left alone! We're forcing our foreign organisms onto this natural paradise and polluting it!"
+            $ demanding += 1
         "Humans are living beings, too.":
             him annoyed "Humans are living things, too. They have just as much a right to survive as anything else."
             kid determined "But we don't have to live here to survive. There's still plenty of room on Earth."
         "Why do you say that?":
             him surprised "Why do you say that?"
             kid determined "It's true! Just look at everywhere humans have touched on this planet; the mines, the farms, the rubbish heap, the oceans - they are all worse than they were before we arrived!"
+            $ responsive += 1
         "Who is feeding you this nonsense?":
             him annoyed "Who is feeding you this nonsense?"
             kid determined "I can see it for myself! It's obvious if you just look around!"
+            $ demanding += 1
         "You're talking about the miners, right?":
             him surprised "You're talking about the miners, right?"
             kid determined "Not just the miners! All of us! We're alien invaders here!"
@@ -7332,6 +7339,7 @@ label family26:
             him normal "I know. But if you start too big, people can't get their heads around it. Start with something small and possible."
             kid surprised "Like, not farming jellystars?"
             him determined "Exactly."
+            $ confident += 1
         "I'll consider what you've said.":
             him surprised "You make some good points, [kid_name]. We definitely are affecting the ecology of this planet, and we should do what we can to take good care of it."
             kid concerned "I'm not sure that's possible. We're so destructive..."
@@ -7340,6 +7348,7 @@ label family26:
             him annoyed "Well, it's something good you can do right now that will help a lot more than calling people rapists."
             kid shifty "It got your attention, though, didn't it?"
             him determined "Yeah, but if I wasn't your dad I wouldn't have listened to you. It made you sound crazy."
+            $ confident += 1
         "You are wrong.":
             him annoyed "Look, this is our planet now, and we can use it however we want. The jellysquids live in the ocean, so they probably don't even care about all the stuff we're doing on land. If they're even smart enough to notice."
             kid angry "I guess there's no getting through your thick skull. You're a lost cause, dad."
@@ -7358,6 +7367,7 @@ label family26:
                 him normal "But you have some knowledge they don't. So share it in the most convincing, honest way you can and let people make their own decisions."
                 kid nervous "I don't know..."
                 him determined "If you believe in this as strongly as you make it sound, then you will."
+                $ confident += 1
     return
 
 # 16.7 Earth years old
@@ -7831,7 +7841,7 @@ label family28:
             him happy "Life's too short to worry so much about stuff like that! If you get the chance, enjoy yourself!"
             kid shifty "Yeah, that's what Brennan said..."
             her annoyed "Brennan said that, huh?"
-            kid determined "Yeah, and he handed me a cup to try."
+            kid determined "Yeah, when I tried a sip."
             him surprised "Brennan offered you alcohol?"
             $ neglectful += 1
         "A little bit's fine now and then.":

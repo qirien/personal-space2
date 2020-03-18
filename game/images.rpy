@@ -148,7 +148,7 @@ init -10:
                 "kid sad"
 
         if (bro_age > 0):
-            pos(550, 300)
+            pos(650, 300)
             #align(0.6, 1.0)
             # TODO: something different here, maybe based on parenting style?
             "bro surprised"

@@ -108,13 +108,13 @@ init -100 python:
     # based on whether she is on track to reach the _HIGH value for
     # that stat.
     def is_attached():
-        return (attachment >= (year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
+        return (attachment >= roundint(year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
 
     def is_competent():
-        return (competence >= (year * (COMPETENCE_HIGH/float(MAX_YEARS))))
+        return (competence >= roundint(year * (COMPETENCE_HIGH/float(MAX_YEARS))))
 
     def is_independent():
-        return (independence >= (year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
+        return (independence >= roundint(year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
     def get_kid_type():
         if (is_attached()):
@@ -192,14 +192,6 @@ init -100 python:
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
                         possible_events.add(event_label)
-
-            # Add in Terra work events
-            # TODO: Do we want this to replace a crop event or be in addition to it?
-            if (kid_work_slider >= 70):
-                next_event = number_events_seen["terra_overwork"] + 1
-                event_label = "terra_overwork" + str(next_event)
-                if renpy.has_label(event_label):
-                    possible_events.add(event_label)
 
             num_possible_events = len(possible_events)
             if (num_possible_events > 0):
@@ -308,7 +300,7 @@ init -100 python:
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
     def has_strong_marriage():
-        return (marriage_strength >= (year / 4))
+        return (marriage_strength >= roundint(year / 4.0))
 
     # Return True if you have a good amount of trust
     def has_trust():

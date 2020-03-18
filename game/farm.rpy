@@ -163,12 +163,19 @@ init python:
 
         # Return how many calories the current field gives
         def get_total_calories(self):
-            total_cals = 0
+            total_calories = 0
+            boosted_squares = self.get_boosted_squares()
+            # Totaling crops attributes
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (self.BEE_BOOST/100.0)
                 crop_names = [row[NAME_INDEX] for row in crop_info]
                 index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
-                total_cals += crop_info[index][CALORIES_INDEX]
-            return total_cals
+                crop_name = self.crops[i].rstrip("+")
+                total_calories += roundint(crop_info[index][CALORIES_INDEX] * multiplier)
+
+            return total_calories
 
         # Check if the current farm layout is valid.
         # To be valid, we need no crops that would use more nitrogen than is available
