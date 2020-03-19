@@ -84,8 +84,10 @@ init -100:
     define ATTACHMENT_MAX = 60
     define COMPETENCE_HIGH = 25 #Max is ~60
     define COMPETENCE_MAX = 60
-    define INDEPENDENCE_HIGH = 20 #Max is ~35
+    define INDEPENDENCE_HIGH = 17 #Max is ~35
     define INDEPENDENCE_MAX = 35
+    define FACTION_HIGH = 10
+    define FACTION_MAX = 20
 
     define MAX_YEARS = 30
 

@@ -11,40 +11,37 @@ label ending:
     "And we both grew up as farmers, too."
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
-    # TODO: community ending stuff
-    # Talk about miners, colonists, mavericks, and jellies
-
     # TODO: work/farm ending stuff?
-
     # TODO: remove debug code
     "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
     # community ending
     # TODO: 10 is kinda high?
-    if (colonists >= 10):
-        if (miners >= 10):
-            if (mavericks >= 10):
+    if (colonists >= FACTION_HIGH):
+        if (miners >= FACTION_HIGH):
+            if (mavericks >= FACTION_HIGH):
                 call ending_CMiMa
             else:
                 call ending_CMima
         else:
-            if (mavericks >= 10):
+            if (mavericks >= FACTION_HIGH):
                 call ending_CmiMa
             else:
                 call ending_Cmima
     else:
-        if (miners >= 10):
-            if (mavericks >= 10):
+        if (miners >= FACTION_HIGH):
+            if (mavericks >= FACTION_HIGH):
                 call ending_cMiMa
             else:
                 call ending_cMima
         else:
-            if (mavericks >= 10):
+            if (mavericks >= FACTION_HIGH):
                 call ending_cmiMa
             else:
                 call ending_cmima
 
     "For now, though, I was more concerned with [kid_name]."
     # TODO: some of this community stuff doesn't work with these endings.
+    # TODO: mention jellies in endings?
 
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
@@ -339,31 +336,41 @@ label ending_aCi:
 #4 aCI - Returns to Earth to study medicine, though you worry about her lack of friends/family
 label ending_aCI:
     "Ending aCI."
-    her "It's not too late to change your mind. You could complete your studies here..."
-    kid "I know, mom, but I want to be a real doctor, not just your apprentice. I want to become the best, so Earth is where I need to go."
-    him "Study hard, [kid_name]. Make us proud."
+    scene plain with fade
+    show kid normal at quarterright
+    show her concerned at center
+    show him concerned at midleft
+    show bro concerned at quarterleft
+    with dissolve
+    her sad "It's not too late to change your mind. You could complete your studies here..."
+    kid concerned "I know, mom, but I want to be a real doctor, not just your apprentice. I want to become the best, so Earth is where I need to go."
+    him determined "Study hard, [kid_name]. Make us proud."
     kid sad "I'm trying, dad."
     her determined "We are proud. And you'll always have a home here, no matter what happens."
-    him "Don't get caught up with stupid college stuff, all right? Stay away from the wild parties and the drugs and the cheating and all that."
-    her "Oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
-    kid "I'm excited to see a rain forest. Or any forest at all, actually."
-    bro "Send us pictures!"
-    him "Wow, my little daughter, on her way to med school..."
+    him annoyed "Don't get caught up with stupid college stuff, all right? Stay away from the wild parties and the drugs and the cheating and all that."
+    her normal "Oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
+    kid normal "I'm excited to see a rain forest. Or any forest at all, actually."
+    bro normal "Send us pictures!"
+    him excited "Wow, my little daughter, on her way to med school..."
     kid nervous "Oh no...What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school!"
     her normal "No backing out now! You'll be fine. I promise."
-    him "Don't forget us."
-    kid "I'll send you messages when I can."
+    him normal "Don't forget us."
+    kid concerned "I'll send you messages when I can."
+    show brennan normal at right with moveinright
     brennan "Careful, or you'll end up stuck here for another 12 years. The shuttle's leaving!"
 
-    kid "But... I don't know if I can do this!"
-    him "You can and you will! Now, get on that shuttle!"
-    her "Goodbye, [kid_name]! We love you!"
+    kid sad "But... I don't know if I can do this!"
+    him determined "You can and you will! Now, get on that shuttle!"
+    her surprised "Goodbye, [kid_name]! We love you!"
     "She hoisted her duffle bag onto her shoulder and boarded the shuttle. I couldn't believe it was really happening. Our baby was leaving."
-    bro "Goodbye!"
+    bro cry "Goodbye!"
     "I didn't know what to say. All I could think about were the things I didn't have a chance to teach her, to tell her."
     "What if she started failing her classes? What if she didn't cook herself good enough food? What if she made huge mistakes and didn't apologize? What if her heart was broken?"
     "It was too late for me to teach her those things. She'd have to learn from her own mistakes, now."
-    him "Goodbye!"
+    hide kid
+    hide brennan
+    with moveoutright
+    him surprised "Goodbye!"
 
     "Ending 4/8, Down to Earth."
     return

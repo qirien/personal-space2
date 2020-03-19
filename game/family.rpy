@@ -982,7 +982,7 @@ label family4:
     her surprised "Yeah, they're a little bland, too. Maybe it needs more salt?"
     him normal "Try the beans, [kid_name]. Yum!"
     "I put one on her plate and she pushed it right back at me."
-    kid shifty "Yucky."
+    kid nervous "Yucky."
     her normal "Ooh, I know just what this needs. I'll be right back."
     hide her with moveoutleft
     "I tried not to feel offended that she didn't like the beans I had cooked. It wasn't gourmet cuisine, but I had added some herbs and cooked it to just the right consistency."
@@ -2700,9 +2700,9 @@ label family8:
                 him surprised "How would that even work? Like, the baby would start large and shrink as they got older?"
                 her normal coat "Yeah, that doesn't make much sense, I guess."
                 him happy "I love you even when you don't make sense."
-                her concerned coat "Oh, [his_name]. I love you too. I'm so glad you're with me."
+                her cry coat "Oh, [his_name]. I love you too. I'm so glad you're with me."
                 him concerned "Hey, are you crying?"
-                her normal coat "Just a little. I was so worried you wouldn't understand."
+                her sad coat "Just a little. I was so worried you wouldn't understand."
                 him happy "Here, you can wipe your tears on my shirt."
                 her flirting coat "Now that's true love."
             "Maybe we could have another baby...":
@@ -4764,7 +4764,7 @@ label family16:
                 "What should I say?"
                 "I didn't mean it like that.":
                     him normal "I meant that our memories of her and the things she taught us live on."
-                    her annoyed "Oh. Well that's boring."
+                    kid annoyed "Oh. Well that's boring."
                 "True enough.":
                     him normal "I guess that's true, too."
                 "Good metaphor.":
@@ -5298,7 +5298,7 @@ label family18:
 
     menu:
         "What should I say?"
-        "(Say nothing)":
+        "(Walk away)":
             $ responsive += 1
             hide him with moveoutleft
             "I just walked away. It wasn't worth fighting over. If she really wanted to walk around stinky and dirty, I guess that was her problem."
@@ -5550,10 +5550,11 @@ label family19:
     "We didn't have access to the entire Earth internet, but somehow this was included in our local copy."
     menu:
         "What should I do?"
-        "Punish Terra.":
+        "Punish [kid_name].":
            $ demanding += 1
            him annoyed "[kid_name]!"
-           kid surprised "What?"
+           show kid surprised at midleft with moveinleft
+           kid "What?"
            him determined "I found your pornography on the computer pad."
            kid shifty "Dad, I can explain--"
            him sad "I don't want to hear it. I can't believe you would watch that filth."
@@ -6611,6 +6612,7 @@ label family23:
                     $ permissive += 1
         "You need to concentrate more on your schoolwork.":
             $ demanding += 1
+            $ responsive -= 1
             him concerned "You need to concentrate more on your schoolwork, and less on music and talking with friends."
             kid angry "I thought we went over this!"
             him determined "Your schoolwork is more important. Now, don't you have a test you need to study for?"
@@ -7464,7 +7466,7 @@ label family27:
                 "Figure it out yourself.":
                     $ demanding += 1
                     him normal "I'm sure you'll figure something out."
-                    kid shifty "Thanks for nothing."
+                    kid nervous "Thanks for nothing."
 
             "[kid_name] found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
@@ -7853,7 +7855,7 @@ label family28:
             $ permissive += 1
         "Listen to your mom.":
             him determined "Your mom's right. Stay away from that stuff!"
-            her conerned "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
+            her concerned "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
             kid nervous "Well it was just the one time, so it's not a big deal."
             her surprised "Just the one time...?  Wait, did Brennan give you alcohol?"
             $ authoritarian += 1
@@ -7869,19 +7871,15 @@ label family28:
     her determined "I'm going to have to talk to him about that."
     him determined "Or maybe I should."
     kid surprised "What? What's the big deal?"
-    him sad "A guy like Brennan giving alcohol to a teenage girl is like..."
-    her nervous "It's like..."
-    kid concerned "What? What is it like?"
-    him determined "Like giving firegrass to a two year old, just to watch them act all crazy."
     her concerned "Some people think it's fun to get other people drunk."
     him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
     kid surprised "You mean like... Brennan wouldn't do that!"
-    her sad "..."
+    her nervous "..."
     him sad "..."
-    kid concerned "...would he?"
     her concerned "Not on purpose, but..."
     him annoyed "But he doesn't always think about the consequences of his actions. Especially where women are concerned."
-    her normal "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
+    kid nervous "..."
+    her surprised "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
     him determined "And you can't trust Brennan."
     return
 
@@ -8159,7 +8157,7 @@ label family29:
             if (family29_question_count < 3):
                 jump family29_questions
 
-    if (has_trust):
+    if (has_trust()):
         "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
         kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
         him surprised "I guess it also depends on what they think the purpose of marriage is."
@@ -8190,7 +8188,7 @@ label family29:
                 kid determined "Huh. Okay."
                 $ neglectful += 1
 
-        him normal "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
+        him explaining "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
         kid concerned "Yeah, I'll... tell her what you said."
         him surprised "And you should also tell her..."
         "I thought I could slip in one more piece of advice, but I wanted it to be good."
@@ -8236,14 +8234,14 @@ label family29:
     else:
         "We reached our farm, and I paused outside the front door, ready to talk some more. But [kid_name] shook her head."
     scene moons with fade
-    show him determined at midleft, sitting
+    show him concerned at midleft, sitting
     with dissolve
     "She went inside the house, and I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
     "[her_name] came out and joined me."
     show her surprised at midright with moveinright
     show her at sitting with move
     her surprised "You guys talking about her 'friend'?"
-    him concerned "Yeah. Hopefully I said the right things."
+    him doubt "Yeah. Hopefully I said the right things."
     her normal "What did you say?"
     him content "A lot of things. It made me remember when we got married."
     her laugh "We didn't really know what we were getting into, did we?"

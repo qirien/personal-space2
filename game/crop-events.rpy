@@ -82,6 +82,8 @@ label terra_overwork2:
             kid annoyed "Is it potatoes and beans again?"
             him annoyed "Yeah, but we can have pickles, too."
             kid normal "Okay."
+            show kid at standing with move
+            hide kid with moveoutright
             "She left to make dinner and I finished up the job."
             "Hopefully she wouldn't burn anything."
             $ confident += 1

@@ -53,7 +53,7 @@ Polaroid <polaroid.png> from <a href="https://pixabay.com/vectors/polaroid-film-
 The following images are licensed CC-BY-3.0.
 
 EketorpsBorgHayBarn <barn.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:EketorpsBorgHayBarn.jpg>, by Marcus Budde.
-lab.jpg, "Wells International School - Science Lab 1.jpg" <https://commons.wikimedia.org/wiki/File:Wells_International_School_-_Science_Lab_1.jpg>, by Kuruzovich
+"Wells International School - Science Lab 1.jpg" <lab.jpg> by Andrea Landaker, derived from <https://commons.wikimedia.org/wiki/File:Wells_International_School_-_Science_Lab_1.jpg>, by Kuruzovich
 
 ==== CC-BY-2.0
 library <library.jpg>, "Maker Space Post-Finishing an Additive Manufacturing Part Made with a Formlabs Form 2 SLA 3D Printer" by Formlabs Inc. <https://www.flickr.com/photos/161389331@N04/47479323321/in/photostream/#>

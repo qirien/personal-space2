@@ -42,12 +42,13 @@ label overwork:
             else:
                 $ colonists -= 1
                 him_c "Hey, I have extra [random_crop] for anyone that wants to help with the harvest."
-                thuc_c "Now?? I could use a hand myself, actually."
+                thuc_c "Now?? Sorry, no time. I could use a hand myself, actually."
                 zaina_c "I could probably stop by in a few days..."
                 scene fields with fade
                 show him determined at midright
                 show zaina normal at midleft
-                "Not many people showed up, but we were able to harvest most of the tomatoes."
+                "Not many people showed up, but we were able to harvest most of the [random_crop]."
+                $ modify_credits(farm.income_loss(98))
 
         "Ask miners for help." if ((year > MINERS_ARRIVE_YEAR) and (overwork_miners < 2)):
             $ overwork_miners += 1
@@ -76,6 +77,7 @@ label overwork:
                 scene fields with fade
                 "A few miners sent some of their kids that were too young for the mines, so I kind of ended up babysitting them all trying to make sure they did it right and didn't trample everything."
                 "They picked a few [random_crop], but a lot of them just went to waste."
+                $ modify_credits(farm.income_loss(75))
         "Ask your family for help." if (overwork_family < 2) :
             $ overwork_family += 1
             if (overwork_family <= 1):
@@ -164,6 +166,8 @@ label overwork:
                 him concerned "I'll find some other way..."
                 pete normal "I'll send Travis over. That's all the help I can spare at the moment, though."
                 him normal "Thanks, I think that'll be good enough."
+                "Travis worked hard, but it wasn't nearly enough help."
+                $ modify_credits(farm.income_loss(90))
 
         "Don't ask for help.":
             $ overwork_self += 1
@@ -191,9 +195,10 @@ label overwork:
                 show him sad with dissolve
                 "I had to get some rest..."
                 "And my harvest suffered."
+                $ modify_credits(farm.income_loss(90))
             else:
                 "But there was a limit to how much I could physically do, and my harvest suffered."
-                $ modify_credits(-300)
+                $ modify_credits(farm.income_loss(80))
         "Hire some help." if ((year > MONEY_YEAR) and (credits >= 200)):
             "I had plenty of money. I'd just hire someone to help me."
             cycle work_hire:
@@ -209,10 +214,7 @@ label overwork:
                 block:
                     "I looked and looked but no one had the time to help me for any price that I could afford."
                     "So my crop yield was not what it could have been."
-                    $ high_yield = [100] * farm.crops.len()
-                    $ low_yield = [80] * farm.crops.len()
-                    $ difference = farm.calculate_income(low_yield) - farm.calculate_income(high_yield)
-                    $ modify_credits(difference)
+                    $ modify_credits(farm.income_loss(85))
     return
 
 # TODO: Have an event for not making enough money
@@ -1886,8 +1888,9 @@ label work30:
     him annoyed "What?!"
     her concerned "You don't have to..."
     kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
-    # TODO: Show him being more upset
-    "I thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
+    him angry "Well, we won't be okay! Without your help, there's no way we could grow enough food!"
+    her annoyed "[his_name], [kid_name] is almost an adult. She might choose a different job than you."
+    "I took a deep breath and thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
     "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
     "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
     $ work28_rent = 0
@@ -1943,8 +1946,8 @@ label work30:
             else:
                 kid concerned "Uh, yeah, we'll see."
 
-    show bro normal at quarterleft with moveinleft
-    bro "I don't want to work on the farm, either."
+    show bro nervous at quarterleft with moveinleft
+    bro nervous "I don't want to work on the farm, either."
     "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was gentle and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
     "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."
     menu:
@@ -1960,7 +1963,7 @@ label work30:
             $ work28_rent -= 100
         "Have [bro_name] help more.":
             him normal "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
-            bro "I don't want to..."
+            bro sad "I don't want to..."
             him concerned "I know. But sometimes we all gotta do things we don't want to do."
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."

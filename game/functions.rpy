@@ -252,7 +252,7 @@ init -100 python:
     # is about half that of calories.
     def get_vitamins_required(year):
         earth_year = get_earth_years(year)
-        return int(VITAMINS_BASE + 0.5 * get_calories_kids(earth_year))
+        return int(VITAMINS_BASE + 0.4 * get_calories_kids(earth_year))
 
     # Calculate the calories required for the family for this year.
     def get_calories_required(year):
@@ -386,7 +386,6 @@ init -100 python:
 
     def roundint(number):
         return int(round(number))
-
 
 ##
 # Set things up for a scene in the bedroom

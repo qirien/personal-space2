@@ -3061,30 +3061,30 @@ label community16:
     scene farm_interior with fade
     show him normal at midleft with dissolve
     "It's a beautiful day out. [her_name] is on her way home for a quick lunch."
-    show her normal at midright with moveinright
+    show her normal coat at midright with moveinright
     her "Thanks for making lunch for us."
     him content "No problem. I was outside weeding anyway; it wasn't much trouble to pick some vegetables."
-    her nervous "I just got a call from Helen... Pete is really sick."
+    her nervous coat "I just got a call from Helen... Pete is really sick."
     him surprised "Are they going to bring him in?"
-    her sad "Yes. I told them that I would treat him like any other colonist."
-    her concerned "But I asked them to pay with some food, and they want to donate a calf."
+    her sad coat "Yes. I told them that I would treat him like any other colonist."
+    her concerned coat "But I asked them to pay with some food, and they want to donate a calf."
     him concerned "But after they left us... is it really okay to act like nothing happened?"
-    her annoyed "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
+    her annoyed coat "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
     "How did I feel?"
     menu:
         "Do everything you can for Pete.":
             him annoyed "Do everything you can for Pete. He's an important part of our community."
             him concerned "We'll lose a lot of hands-on knowledge about cattle if he dies."
-            her concerned "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
+            her concerned coat "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
             $ mavericks += 1
         "Don't use important resources on him.":
             him annoyed "Try to see if you can treat him without using up our medical supplies."
-            her concerned "Um, they already tried that. He needs medicine."
+            her concerned coat "Um, they already tried that. He needs medicine."
             him concerned "I just don't want to use up medicine on someone who left the colony."
-            her annoyed "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
+            her annoyed coat "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
             $ miners += 1
-    her surprised "I'm sure Pete has learned a lot about survival on Talaam since he left."
-    her concerned "You should talk to him while he's in for treatment."
+    her surprised coat "I'm sure Pete has learned a lot about survival on Talaam since he left."
+    her concerned coat "You should talk to him while he's in for treatment."
     him normal "Okay, I can at least do that."
     "That evening I visited the hospital after [her_name] came home."
     scene hospital with fade
@@ -8203,7 +8203,7 @@ label community30:
                                     him "Sara says she can make it happen."
                                     him "In the meantime, can you really test if the tea has firegrass in it?"
                                     her "I have tools for measuring the amount of caffeine is in a given substance."
-                                    her "But don't you know plants well enough to identify firegrass in a course mixture like tea?"
+                                    her "But don't you know plants well enough to identify firegrass in a coarse mixture like tea?"
                                     him "It's not a typical tea blend. It's a syrup."
                                     her "I'll test it."
 
@@ -8221,7 +8221,7 @@ label community30:
                                             "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
                                         if talked_to_pete:
                                             "I had arranged for Pete to come and testify about how Noel had bought large quantities for firegrass from him."
-                                        if know_noel_has_firegrass:
+                                        if know_noel_had_firegrass:
                                             "I testified about how I had found hidden firegrass at Noel's house."
                                         "[her_name] testified to finding elevated caffeine levels in Julia's plum tea syrup, consistent with it containing firegrass."
                                         if not ban_firegrass:

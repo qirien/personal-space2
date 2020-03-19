@@ -107,7 +107,7 @@ init python:
                 crop_name = self.crops[i]
                 crop_value = get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
                 final_value = (crop_yield[i]/100.0) * crop_value
-                print "crop_yield " + str(crop_yield[i]) + " crop_value " + str(crop_value) + " final_value " + str(final_value)
+                # print "crop_yield " + str(crop_yield[i]) + " crop_value " + str(crop_value) + " final_value " + str(final_value)
                 income += roundint(final_value)
             return income
 
@@ -264,6 +264,14 @@ init python:
                 current_crop_name = self.crops[i]
                 if (current_crop_name == crop_name):
                     self.crops[i] = "fallow"
+
+        # Calculate how much income we lose if we only get
+        # a certain percentage of our crops.
+        def income_loss(self, percentage):
+            high_yield = [100] * self.crops.len()
+            low_yield = [percentage] * self.crops.len()
+            difference = self.calculate_income(low_yield) - self.calculate_income(high_yield)
+            return difference
 
     ##
     # CROPS OBJECT
