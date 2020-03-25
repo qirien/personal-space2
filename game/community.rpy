@@ -1373,7 +1373,7 @@ label community10:
             $ colonists += 1
             $ miners += 1
             him pout "Tomás is your son. It's his duty to help you out."
-            martin happy "That's what I keep telling her!"
+            martin happy "That's what I keep telling you, Natalia!"
             natalia "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
             martin normal "We've all had to sacrifice at one time or another... This is something worth sacrificing for."
             natalia "But how will you convince Tomás of that?"
@@ -1470,6 +1470,7 @@ label community11:
     with moveoutleft
     "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
     him annoyed "Wait a minute, I recognize him!"
+    show her surprised at quarterright with move
     #BRENNAN ON SCREEN. he looks the same
     show brennan normal at quarterleft with moveinleft
     # Jack definitely doesn't like him, but doesn't have a great reason.
@@ -1478,9 +1479,9 @@ label community11:
     him pout "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
     brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
-    her happy "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
+    her normal "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
     brennan happy "I'm really happy to be breathing fresh air, with my feet on solid ground again."
-    brennan normal "How is your daughter? How old is she now in Earth years?"
+    brennan normal "How is your daughter? How old is she now - in Earth years?"
     kid annoyed "I'm seven... well, almost seven. It's complicated. Anyway, I'm going to see if they'll let me look inside the shuttle!"
     hide kid with moveoutright
     her flirting "You still don't look a day over 30."
@@ -1496,6 +1497,7 @@ label community11:
     hide him
     hide her
     hide sara
+    hide bro
     with moveoutleft
     show brennan normal at center with move
     brennan happy "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
@@ -7130,6 +7132,12 @@ label community30:
         jump investigation_start
 
     else:
+        # You can use "show rain" to make it look like it's raining outside.
+        # BUT, when you show people you need to add "behind rain". For example:
+        # scene farm_exterior with fade
+        # show rain
+        # show him concerned at center behind rain with moveinleft
+        
         "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
         nvl clear
         julia_c "Hi [his_name]. Is there a time we could meet? I have an urgent matter to discuss with you."

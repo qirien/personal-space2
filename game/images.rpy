@@ -13,6 +13,14 @@ init -10:
         "images/bg/stars.png"
         zoom 0.75
         linear 10.0 zoom 1.25
+    image rain:
+        "images/bg/rain1.png"
+        0.1
+        "images/bg/rain2.png"
+        0.1
+        "images/bg/rain3.png"
+        0.1
+        repeat
 
     # GUI
     image roundrect_darkgray = Frame("gui/roundrect-darkgray.png", 16, 16)

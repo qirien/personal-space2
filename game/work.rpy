@@ -181,8 +181,9 @@ label overwork:
                 him concerned "I can do this... just one more week."
                 scene black with fade
                 scene fields with fade
-                show tractor at center
-                show him sad at center
+                show rain
+                show tractor behind rain at center
+                show him sad behind rain at center
                 with dissolve
 
                 him sad "Just one more day..."
@@ -217,7 +218,105 @@ label overwork:
                     $ modify_credits(farm.income_loss(85))
     return
 
-# TODO: Have an event for not making enough money
+# If you don't make enough money...
+label debt_event:
+    $ random_crop = farm.crops.random_crop(True, False)
+    scene farm_interior with fade
+    show her determined at midright
+    show him concerned at midleft
+    with dissolve
+
+    if (debt_event_count == 0):
+        her concerned "[his_name]... I went to buy some things at the storehouse, but Ilian said we were out of credits."
+        him sad "Oh. Yeah."
+        her annoyed "He let me have the things anyway, just giving me a warning and subtracting the credits further into the negative... But that has happened the last three times I was there."
+        menu:
+            "What should I say?"
+            "I'll try harder":
+                $ marriage_strength += 1
+                him concerned "I'm sorry, [her_name] -- it's hard to balance everything, but I can do better."
+                her sad "I know you're trying hard, but we can't be in debt."
+                him sad "I just don't know how I can do things any more cheaply."
+                her determined "Let's write it down. Maybe we'll see something."
+            "This is impossible!":
+                him angry "That's because it's impossible! They don't pay us enough for all the hard work we do on these crops!"
+                her surprised "Is that why we keep running out of credits?"
+                if (year > MINERS_ARRIVE_YEAR):
+                    him annoyed "Yes. The miners get paid like kings and us farmers barely have enough to scrape by."
+                else:
+                    him annoyed "Yes. This whole 'credits' thing was a stupid idea."
+                her determined "There's got to be some way we can make things work."
+                him determined "Maybe. Let's write down everything..."
+            "What are they going to do, kick us out?":
+                him doubt "I'm not worried. What are they going to do, kick us off the planet?"
+                her angry "No, but they might say we can't buy anything at the storehouse!"
+                him concerned "That wouldn't be good..."
+                her determined "Let's write some things down."
+            "Let's make a budget.":
+                $ marriage_strength += 1
+                him concerned "Let's make a budget together. Maybe if we write everything down we can figure something out."
+
+        "We analyzed our income and expenditures, searching for ways we could do things more cheaply."
+        "We cut out some luxuries and managed to reduce our annual expenses by 100 credits."
+        $ annual_expenses_base -= 100
+    else:
+        "Even after we tightened our belts and reduced unnecessary expenses, we were still in the red."
+        "Ilian stopped selling us everything except the barest necessities."
+        "I had to do something."
+        if (get_extra_work() > 0):
+            "I had some extra time after my farm chores were complete, so I asked around to see if there was another way to earn money."
+            cycle work_debt:
+                block:
+                    "I asked the miners, and they gave me a job hauling rocks with my tractor for a few days."
+                    $ modify_credits(300)
+                block:
+                    if (year < NAOMI_DIES_YEAR):
+                        "Sister Naomi had some odd jobs she needed help with around the house."
+                    elif (year < PAVEL_DIES_YEAR):
+                        "Pavel paid me for helping him move some furniture and carry some heavy things for him."
+                    else:
+                        "I knew Sara didn't have much, but she paid me to help fix up some things at her house."
+                    $ modify_credits(50)
+                block:
+                    "Ilian let me work in the storehouse organizing and preserving food."
+                    $ modify_credits(40)
+                block:
+                    if (year < LILY_DIES_YEAR):
+                        "Dr. Lily needed some help cataloguing samples of local plants and animals. It was monotonous work, but she paid well."
+                    else:
+                        "I helped Miranda classify some new plants that she found. It was pretty boring, but she paid well."
+                    $ modify_credits(100)
+        else:
+            "But I already had too much on my plate just with my own farm."
+            "Word must have gotten out about our financial plight..."
+            if ((miners_strength() >= 1) and (year > MINERS_ARRIVE_YEAR) and not seen_miner_debt):
+                "One of the miners paid me a little extra, saying that the [random_crop] were especially good."
+                $ modify_credits(20)
+                $ seen_miners_debt = True
+            elif ((mavericks_strength() >= 1) and (not seen_maverick_debt)):
+                "Pete dropped off some strange meat. He said it was from a recent hunting trip."
+                $ modify_credits(25)
+                $ seen_mavericks_debt = True
+            elif ((colonists_strength() >= 1) and (not seen_colonists_debt)):
+                "Thuc took pity on me and gave me some extra food."
+                $ modify_credits(30)
+                $ seen_colonists_debt = True
+            else:
+                "I came home from the fields to find a bunch of dried corn on our front doorstep."
+                "There was no note or anything..."
+                if (year < NAOMI_DIES_YEAR):
+                    "It was probably from Sister Naomi."
+                elif (year < PAVEL_DIES_YEAR):
+                    "Maybe it was from Pavel? He always tries to look out for people who need help."
+                else:
+                    "It must have been from Natalia -- she grew a lot of corn."
+                $ modify_credits(35)
+                "I was really fortunate to have such caring neighbors..."
+
+    $ debt_consecutive_years = 0
+    $ debt_event_count += 1
+    return
+
 
 # Year 1, 3 mo. old
 label work_intro:

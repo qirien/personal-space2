@@ -215,7 +215,7 @@ style input:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#choice
 
-#TODO: Better menu interface for lots of choices, like in work20
+#TODO: Better menu interface for lots of choices, like in work20 - move to two columns
 # TODO: bigger font for phone screens
 screen choice(items):
     style_prefix "choice"

@@ -152,11 +152,15 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
-        global crop_temporarily_disabled
+        global crop_temporarily_disabled, crop_info
         # Enable any crops that were temporarily disabled
         if (crop_temporarily_disabled != ""):
             enable_crop(crop_temporarily_disabled, False)
             crop_temporarily_disabled = ""
+
+        # Reset spinach if it was temporarily limited
+        if (crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] <= 2):
+            crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 100
 
         #Every even year there is a set event; other years are crop events.
         # This means we need 15 set events and at least 15 crop events (we have 28)
@@ -235,7 +239,7 @@ init -100 python:
 
     # Calculate expenses required for the family for this year
     def get_expenses_required(year):
-        return (ANNUAL_EXPENSES_BASE + (get_calories_required(year) * CALORIES_TO_MONEY_MULTIPLIER))
+        return (annual_expenses_base + (get_calories_required(year) * CALORIES_TO_MONEY_MULTIPLIER))
 
     # Calculate value in credits from crop value
     def get_credits_from_value(crop_value):

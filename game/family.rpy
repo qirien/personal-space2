@@ -2420,15 +2420,16 @@ label family7_angry_ending:
 # Play group, First Day of School
 label family8:
     scene fields with fade
+    show rain
     play music happy
     "It was my turn to host playgroup. It always felt a little frustrating not to be able to go out in the fields and get my work done, but I could also see that it was good for [kid_name]."
     "I'll admit I looked forward to school starting next week. We had just had a preview day where these kids got to see the school and meet the teacher."
     "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
     "But I wondered how the other kids in her playgroup would handle the transition to school..."
-    show him normal at quarterright
-    show kid normal at center
-    show travis normal at midleft
-    show oleg normal at quarterleft
+    show him normal behind rain at quarterright
+    show kid normal behind rain at center
+    show travis normal behind rain at midleft
+    show oleg normal behind rain at quarterleft
     travis "Mud fight!"
     him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
     kid laugh "I do!"
@@ -3557,25 +3558,25 @@ label family12:
     him surprised "Eggs?"
     kid surprised "Eggs?! From what?!"
     play music tense
-    show her normal at quarterleft with moveinleft
-    her concerned "Lice. We are currently experiencing an outbreak of lice."
+    show her normal coat at quarterleft with moveinleft
+    her concerned coat "Lice. We are currently experiencing an outbreak of lice."
     him annoyed "I thought we left all those horrible parasites back on Earth!"
-    her annoyed "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
+    her annoyed coat "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
     him angry "How could that even happen?!"
-    her concerned "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
+    her concerned coat "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
     show him concerned
     kid angry "I have lice?!"
-    her determined "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
+    her determined coat "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
     menu:
         "What should I say?"
         "I'm not doing that.":
             $ marriage_strength -= 1
             him angry "No way. I'm not doing that."
-            her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
+            her angry coat "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
             him annoyed "..."
-            her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
+            her flirting coat "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
             him surprised "That's low."
-            her determined "That's life."
+            her determined coat "That's life."
 
         "Sure, I'll get started.":
             $ marriage_strength += 1

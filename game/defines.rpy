@@ -65,7 +65,6 @@ init -100:
     define WHEAT_COST = 200
 
     # Money data
-    define ANNUAL_EXPENSES_BASE = 2500
     define KELLY_SALARY = 2000
     define CALORIES_TO_MONEY_MULTIPLIER = 14
     define MONEY_YEAR = 6

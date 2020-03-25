@@ -147,6 +147,12 @@ label start:
 
         # Yield of most recent set of crops, in percentages
         years_yield = [100] * farm_size
+        annual_expenses_base = 2500
+        debt_consecutive_years = 0
+        debt_event_count = 0
+        seen_miners_debt = False
+        seen_mavericks_debt = False
+        seen_colonists_debt = False
 
         # Dictionary containing the number of events seen for each crop
         number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
@@ -307,6 +313,8 @@ label life_loop:
             $ years_yield = farm.process_crops()
             if (year > MONEY_YEAR):
                 $ income = farm.calculate_income(years_yield)
+                if (income < get_expenses_required(year-1)):
+                    $ debt_consecutive_years += 1
                 $ modify_credits(income)
                 $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
@@ -333,7 +341,10 @@ label life_loop:
             if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
                 call bad_nutrition
 
-            # TODO: Debt event(s) go here
+            # Debt event if your credits have decreased for 3
+            # years in a row and your credits are < -100
+            if ((debt_consecutive_years >= 3) and (credits < -100)):
+                call debt_event
 
             # Terra work events (optional)
             if ((year > KID_WORK_YEAR) and (kid_work_slider >= 70)):

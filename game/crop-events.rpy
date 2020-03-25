@@ -455,6 +455,7 @@ label carrots1:
 # CARROTS2 - great carrots if fallow, otherwise find pests.
 label carrots2:
     scene fields with fade
+    show rain
     if (carrots_fallow):
         "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
         scene farm_interior with fade
@@ -707,14 +708,14 @@ label potatoes2:
 # POTATOES3 - Rotten potatoes
 label potatoes3:
     scene fields with fade
-    # TODO: Show raining animation?
+    show rain
     "I'll never forget the time it rained..."
     "And rained."
     "And rained."
     "It rained nonstop for two whole weeks."
     "Some rain is good from crops. It meant I didn't have to manually irrigate them."
     "But this much was terrible for my potatoes."
-    show him concerned at center with dissolve
+    show him concerned at center behind rain with dissolve
     him "They've all rotted."
     "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
     "I had to dig them out anyway so they wouldn't contaminate the field."
@@ -733,10 +734,10 @@ label potatoes3:
     "I couldn't see very well in the moonlight but I kept ripping up the plants and loading the rotten potatoes onto the trailer."
     show him annoyed sweat with dissolve
     "I slipped and fell in the mud right as [her_name] came walking up."
-    show her concerned at midleft behind night_overlay
-    show kid normal at center behind night_overlay
+    show her concerned at midleft behind rain
+    show kid normal at center behind rain
     if (bro_age > 0):
-        show bro normal at midleft behind night_overlay
+        show bro normal at midleft behind rain
     with moveinleft
     her "Hey, we missed you at dinner. Everything okay?"
     menu:
@@ -861,7 +862,8 @@ label squash1:
 # SQUASH2 - squash bugs
 label squash2:
     scene fields with fade
-    show him normal at center with dissolve
+    show rain
+    show him normal at center behind rain with dissolve
     "I went to weed the squash plants, but as I was weeding, I noticed something."
     him surprised "These plants are a bit smaller than they should be...and some of the leaves have yellow spots on them."
     him angry "What the- squash bugs! I thought we left all those behind on Earth!"
@@ -1528,7 +1530,8 @@ label beans1:
 # BEANS 2 - Wet beans
 label beans2:
     scene fields with fade
-    show him concerned at center with dissolve
+    show rain
+    show him concerned at center behind rain with dissolve
     him concerned "The beans are supposed to be drying so I can harvest them..."
     him annoyed "But it keeps raining."
     "I was worried that if the rain kept up, they might start to grow fungus or bacteria before they'd be dry enough to store."
@@ -1547,6 +1550,8 @@ label beans2:
             "I needed them to dry, so I decided to hang them up."
             "I strung clothesline zig-zagging around the house and in the barn."
             "I hung them upside down in bunches everywhere."
+            scene farm_interior with fade
+            show him concerned at midright with dissolve
             show her normal at midleft with moveinleft
             her flirting "Trying your hand at interior design?"
             him annoyed "I'm trying my hand at saving our beans."
@@ -1609,13 +1614,11 @@ label spinach1:
             him normal "Don't worry; we'll definitely have some next year."
             $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 2
     $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
-    # TODO: These don't reset until spinach2, which may never happen....
     return
 
 # SPINACH2 - turtle slugs
 label spinach2:
     play music problems
-    $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 100
     scene fields with fade
     "I've been planting my spinach a little earlier to avoid any heat problems."
     "But this year, something has been eating the plants. I haven't seen anything, but when I checked the leaves, I could see bites taken out."
@@ -1804,7 +1807,8 @@ label strawberries1:
 # Strawberries 2 - mutant cancerous strawberries from solar flare
 label strawberries2:
     scene fields with fade
-    show him normal at center with dissolve
+    show rain
+    show him normal at center behind rain with dissolve
     "There were two things I liked about strawberries."
     "Obviously, the first was the delicious sweet fruit."
     "The second was that they were pretty low maintenance. I fertilized them and weeded them a little and that was it."
