@@ -1310,12 +1310,13 @@ label community10:
     play music sad
     scene farm_interior with fade
     show him normal at midleft
-    show bro normal at midleft, baby_pos
+    show bro normal at quarterleft, baby_pos
     show her normal at midright
     show kid normal at quarterright
     with dissolve
     her normal "I'm leaving for work now. Goodbye honey!"
     him happy "Bye, [her_name]. Don't forget; we're having dinner with the Peróns tonight."
+    show bro happy with dissolve
     kid happy "Yay, I get to play with Mateo!"
     her surprised "I wonder what they wanted to talk about..."
     him surprised "Maybe they're just being friendly?"
@@ -1335,9 +1336,10 @@ label community10:
     "After the meal, [kid_name] ran off to play with the other kids and Natalia brought out some toys for [bro_name]."
     hide kid
     with moveoutright
-    show bro surprised at center with move
+    show bro surprised at center,baby_pos with move
     martin "As you may have heard, I have skin cancer."
     her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
+    show bro happy with dissolve
     martin happy "I know! You are not the only one who knows, however."
     natalia "The more people who know about your disease, the more people who can help us!"
     if (asked_only_medicine):
@@ -1346,26 +1348,34 @@ label community10:
         martin normal "I have a few more months to live, but I'm already slowing down."
     martin angry "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
     natalia "They aren't as passionate about the farm as you are."
+    show bro nervous with dissolve
     him surprised "But now that they're older, don't you have more time to work on the farm?"
     natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, mending and reworking clothes..."
     martin happy "Don't get her started!"
     show him happy
     show her happy
+    show bro happy
     with dissolve
     natalia "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
     show her surprised with dissolve
     him concerned "Isn't the corn really important for feeding everyone else's animals?"
     martin normal "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
-    show her pout with dissolve
+    show her determined
+    show bro concerned
+    with dissolve
     him surprised "What are your older kids interested in, if not farming?"
     natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
+    show her normal
+    show bro normal
+    with dissolve
     natalia "She can write {b}and{/b} help grow our food!"
     martin angry "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
     natalia "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin normal "What would you do in my position? Who do you think should take care of the farm?"
     show him concerned
     show her concerned
+    show bro nervous
     with dissolve
     menu:
         "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
@@ -7137,7 +7147,7 @@ label community30:
         # scene farm_exterior with fade
         # show rain
         # show him concerned at center behind rain with moveinleft
-        
+
         "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
         nvl clear
         julia_c "Hi [his_name]. Is there a time we could meet? I have an urgent matter to discuss with you."
