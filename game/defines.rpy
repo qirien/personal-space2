@@ -34,28 +34,25 @@ init -100:
     # Static indices that will never change
     define NAME_INDEX = 0
     define CALORIES_INDEX = 1
-    define NUTRITION_INDEX = 2
-    define VALUE_INDEX = 3
-    define WORK_INDEX = 4
-    define NITROGEN_INDEX = 5
-    define ENABLED_INDEX = 6
-    define PERENNIAL_INDEX = 7
-    define POLLINATED_INDEX = 8
-    define MAXIMUM_INDEX = 9
+    define VITA_INDEX = 2
+    define VITC_INDEX = 3
+    define VITM_INDEX = 4
+    define VALUE_INDEX = 5
+    define WORK_INDEX = 6
+    define NITROGEN_INDEX = 7
+    define ENABLED_INDEX = 8
+    define PERENNIAL_INDEX = 9
+    define POLLINATED_INDEX = 10
+    define MAXIMUM_INDEX = 11
 
-    define CROP_STATS_MAX = 9
-    define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Nutrition", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
+    define CROP_STATS_MAX = 10
+    define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Vitamin A", "Vitamin C", "Magnesium", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
     define STAT_ICON_BASE = "gui/emoji/"
 
     # Nutritional data
     define VITAMINS_BASE = 20
-    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":8, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":6, "broccoli":2, "goats":1, "honey":0}
     define VITAMIN_A_LOW = 20
-
-    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":4, "plums":1, "squash":3, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":4, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20
-
-    define MAGNESIUM_CROPS = {"fallow":0, "corn":2, "potatoes":2, "wheat":1, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":3, "broccoli":1, "goats":1, "honey":0}
     define MAGNESIUM_LOW = 10
 
     # Calorie data

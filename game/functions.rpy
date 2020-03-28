@@ -395,8 +395,12 @@ init -100 python:
     # For Python 3+, only return the value on which to sort.
     def sortby_calories(val1, val2):
         return val1[CALORIES_INDEX] - val2[CALORIES_INDEX]
-    # def sortby_vitA(val):
-    #     return val[VITAMINA_INDEX]
+    def sortby_vitA(val1, val2):
+        return val1[VITA_INDEX] - val2[VITA_INDEX]
+    def sortby_vitC(val1, val2):
+        return val1[VITC_INDEX] - val2[VITC_INDEX]
+    def sortby_vitM(val1, val2):
+        return val1[VITM_INDEX] - val2[VITM_INDEX]
     def sortby_work(val1, val2):
         return val1[WORK_INDEX] - val2[WORK_INDEX]
     def sortby_nitrogen(val1, val2):

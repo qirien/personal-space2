@@ -158,7 +158,6 @@ screen farm_details_screen:
 # TODO: mask the rest of the screen?
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
-    default sortby = "name"
     frame:
         style_prefix "crop_details"
         yalign 0.5
@@ -174,7 +173,7 @@ screen choose_crop(crop_index=0):
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                         label crop_name.capitalize()
-                        textbutton "X" xpos 120 ypos -2 action Hide("choose_crop", zoomout)
+                        textbutton "X" xpos 120 ypos -2 text_size 26 action Hide("choose_crop", zoomout)
                     hbox:
                         style_prefix "crop_status"
                         vpgrid:
@@ -201,20 +200,21 @@ screen choose_crop(crop_index=0):
                                 null
                         text crop_descriptions[crop_name.rstrip("+")]
 
-                    #null height 10
                     # Buttons to sort by different stats
+                    # TODO: use icons here?
                     hbox:
+                        xalign 0.25
                         text "Sort By:"
-                        textbutton "Name" action SetScreenVariable("sortby", "name")
-                        textbutton "Calories" action SetScreenVariable("sortby", "calories")
+                        textbutton "Name" action SetVariable("sortby", "name")
+                        textbutton "Calories" action SetVariable("sortby", "calories")
                         if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
-                            textbutton "Vit A" action SetScreenVariable("sortby", "vitA")
-                            textbutton "Vit C" action SetScreenVariable("sortby", "vitC")
-                            textbutton "Magnesium" action SetScreenVariable("sortby", "vitM")
-                        textbutton "Work" action SetScreenVariable("sortby", "work")
-                        textbutton "Nitrogen" action SetScreenVariable("sortby", "nitrogen")
+                            textbutton "Vit A" action SetVariable("sortby", "vitA")
+                            textbutton "Vit C" action SetVariable("sortby", "vitC")
+                            textbutton "Magnesium" action SetVariable("sortby", "vitM")
+                        textbutton "Work" action SetVariable("sortby", "work")
+                        textbutton "Nitrogen" action SetVariable("sortby", "nitrogen")
                         if (year >= MONEY_YEAR):
-                            textbutton "Value" action SetScreenVariable("sortby", "value")
+                            textbutton "Value" action SetVariable("sortby", "value")
                     vpgrid:
                         cols (count_enabled_crops()//4 + 2) #more columns with more enabled crops
                         spacing 10
@@ -228,7 +228,7 @@ screen choose_crop(crop_index=0):
                         if (sortby == "name"):
                             $ crops_to_show = sorted(crop_info)
                         else:
-                            $ crops_to_show = sorted(crop_info, eval(sortwith))
+                            $ crops_to_show = sorted(crop_info, eval(sortwith), reverse=True)
                         for j in range(0, len(crop_info)):
                             # only show currently enabled crops where we haven't planted the maximum yet
                             if (crops_to_show[j][ENABLED_INDEX] and (crops_to_show[j][MAXIMUM_INDEX] > 0) and
@@ -277,13 +277,13 @@ screen nutrition_icons(crop_index):
         style "stat_icon_hbox"
         $ heart_count = 0
         $ crop_name = crop_info[crop_index][NAME_INDEX]
-        for i in range(0, VITAMIN_A_CROPS[crop_name]//2):
+        for i in range(0, crop_info[crop_index][VITA_INDEX]//2):
             add STAT_ICON_BASE + "vitA.png"
             $ heart_count += 1
-        for i in range(0, VITAMIN_C_CROPS[crop_name]//2):
+        for i in range(0, crop_info[crop_index][VITC_INDEX]//2):
             add STAT_ICON_BASE + "vitC.png"
             $ heart_count += 1
-        for i in range(0, MAGNESIUM_CROPS[crop_name]//2):
+        for i in range(0, crop_info[crop_index][VITM_INDEX]//2):
             add STAT_ICON_BASE + "vitM.png"
             $ heart_count += 1
         if (crop_name != "fallow"):
@@ -390,9 +390,9 @@ screen crops_totals:
             $ index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             $ crop_name = farm.crops[i].rstrip("+")
             $ total_calories += roundint(crop_info[index][CALORIES_INDEX] * multiplier)
-            $ vitA += VITAMIN_A_CROPS[crop_name] * multiplier
-            $ vitC += VITAMIN_C_CROPS[crop_name] * multiplier
-            $ vitM += MAGNESIUM_CROPS[crop_name] * multiplier
+            $ vitA += crop_info[index][VITA_INDEX] * multiplier
+            $ vitC += crop_info[index][VITC_INDEX] * multiplier
+            $ vitM += crop_info[index][VITM_INDEX] * multiplier
             if (year >= MONEY_YEAR):
                 $ total_value += multiplier * get_credits_from_value(crop_info[index][VALUE_INDEX])
 
@@ -647,7 +647,8 @@ style crop_details_selected_label is crop_details_label:
 style crop_details_selected_label_text is crop_details_label_text:
     color white
 
-style crop_details_button_text is computer_sub_button_text
+style crop_details_button_text is computer_sub_button_text:
+    size 18
 
 style crop_details_text is computer_sub_text:
     yalign 0.5

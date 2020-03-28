@@ -217,7 +217,7 @@ init python:
                 if (i in boosted_squares):
                     multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitA += multiplier * VITAMIN_A_CROPS[current_crop_name]
+                vitA += multiplier * crop_info[get_crop_index(current_crop_name)][VITA_INDEX]
             return (vitA < get_vitamins_required(year))
 
         def low_vitamin_c(self):
@@ -228,7 +228,7 @@ init python:
                 if (i in boosted_squares):
                     multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitC += multiplier * VITAMIN_C_CROPS[current_crop_name]
+                vitC += multiplier * crop_info[get_crop_index(current_crop_name)][VITC_INDEX]
             return (vitC < get_vitamins_required(year))
 
         def low_magnesium(self):
@@ -239,7 +239,7 @@ init python:
                 if (i in boosted_squares):
                     multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitM += multiplier * MAGNESIUM_CROPS[current_crop_name]
+                vitM += multiplier * crop_info[get_crop_index(current_crop_name)][VITM_INDEX]
             return (vitM < get_vitamins_required(year))
 
         def most_frequent_crop(self):
