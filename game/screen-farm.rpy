@@ -201,8 +201,8 @@ screen choose_crop(crop_index=0):
                                 null
                         text crop_descriptions[crop_name.rstrip("+")]
 
-                    null height 30
-                    # Buttons to sorting by different stats
+                    #null height 10
+                    # Buttons to sort by different stats
                     hbox:
                         text "Sort By:"
                         textbutton "Name" action SetScreenVariable("sortby", "name")
@@ -252,9 +252,9 @@ screen choose_crop(crop_index=0):
                                     if (not renpy.variant("touch")):
                                         hovered SetLocalVariable("selected_crop_index", crop_info_index)
                                     if renpy.variant("touch"):
-                                        action If((selected_crop_index == crop_info_index), [ SetCrop(crop_index,    crops_to_show[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", crop_info_index))
+                                        action If((selected_crop_index == crop_info_index), [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", crop_info_index))
                                     else:
-                                        action [ SetCrop(crop_index,    crops_to_show[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
+                                        action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
 
 screen stat_icons(stat_value, stat_index):
     hbox:
