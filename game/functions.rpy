@@ -391,6 +391,20 @@ init -100 python:
     def roundint(number):
         return int(round(number))
 
+    # Sorting functions (Python 2.7)
+    # For Python 3+, only return the value on which to sort.
+    def sortby_calories(val1, val2):
+        return val1[CALORIES_INDEX] - val2[CALORIES_INDEX]
+    # def sortby_vitA(val):
+    #     return val[VITAMINA_INDEX]
+    def sortby_work(val1, val2):
+        return val1[WORK_INDEX] - val2[WORK_INDEX]
+    def sortby_nitrogen(val1, val2):
+        return val1[NITROGEN_INDEX] - val2[NITROGEN_INDEX]
+    def sortby_value(val1, val2):
+        return val1[VALUE_INDEX] - val2[VALUE_INDEX]
+
+
 ##
 # Set things up for a scene in the bedroom
 ##

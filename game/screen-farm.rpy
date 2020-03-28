@@ -158,6 +158,7 @@ screen farm_details_screen:
 # TODO: mask the rest of the screen?
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
+    default sortby = "name"
     frame:
         style_prefix "crop_details"
         yalign 0.5
@@ -201,23 +202,42 @@ screen choose_crop(crop_index=0):
                         text crop_descriptions[crop_name.rstrip("+")]
 
                     null height 30
-                    # TODO: Add Sorting by different things buttons here
+                    # Buttons to sorting by different stats
+                    hbox:
+                        text "Sort By:"
+                        textbutton "Name" action SetScreenVariable("sortby", "name")
+                        textbutton "Calories" action SetScreenVariable("sortby", "calories")
+                        if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
+                            textbutton "Vit A" action SetScreenVariable("sortby", "vitA")
+                            textbutton "Vit C" action SetScreenVariable("sortby", "vitC")
+                            textbutton "Magnesium" action SetScreenVariable("sortby", "vitM")
+                        textbutton "Work" action SetScreenVariable("sortby", "work")
+                        textbutton "Nitrogen" action SetScreenVariable("sortby", "nitrogen")
+                        if (year >= MONEY_YEAR):
+                            textbutton "Value" action SetScreenVariable("sortby", "value")
                     vpgrid:
-                        cols (count_enabled_crops()//4 + 2) #
+                        cols (count_enabled_crops()//4 + 2) #more columns with more enabled crops
                         spacing 10
                         draggable True
                         mousewheel True
                         #scrollbars "vertical"
                         side_xalign 0.5
 
+                        # Sort by proper key
+                        $ sortwith = "sortby_" + sortby
+                        if (sortby == "name"):
+                            $ crops_to_show = sorted(crop_info)
+                        else:
+                            $ crops_to_show = sorted(crop_info, eval(sortwith))
                         for j in range(0, len(crop_info)):
                             # only show currently enabled crops where we haven't planted the maximum yet
-                            if (crop_info[j][ENABLED_INDEX] and (crop_info[j][MAXIMUM_INDEX] > 0) and
-                            (crop_temporarily_disabled != crop_info[j][NAME_INDEX])):
-                                $ crop_name = crop_info[j][NAME_INDEX]
-                                $ max_crops_reached = (farm.crops.count(crop_name) >= crop_info[j][MAXIMUM_INDEX]) # TODO: this doesn't work, probably a local/global thing with farm.crops (it seems to use old values)
+                            if (crops_to_show[j][ENABLED_INDEX] and (crops_to_show[j][MAXIMUM_INDEX] > 0) and
+                            (crop_temporarily_disabled != crops_to_show[j][NAME_INDEX])):
+                                $ crop_name = crops_to_show[j][NAME_INDEX]
+                                $ crop_info_index = get_crop_index(crop_name)
+                                $ max_crops_reached = (farm.crops.count(crop_name) >= crops_to_show[j][MAXIMUM_INDEX])
                                 $ imagefile = get_crop_filename(crop_name)
-                                $ is_selected = (selected_crop_index == j)
+                                $ is_selected = (selected_crop_index == crop_info_index)
 
                                 imagebutton:
                                     idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index))
@@ -230,11 +250,11 @@ screen choose_crop(crop_index=0):
                                     selected is_selected
                                     sensitive (not max_crops_reached)
                                     if (not renpy.variant("touch")):
-                                        hovered SetLocalVariable("selected_crop_index", j)
+                                        hovered SetLocalVariable("selected_crop_index", crop_info_index)
                                     if renpy.variant("touch"):
-                                        action If((selected_crop_index == j), [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", j))
+                                        action If((selected_crop_index == crop_info_index), [ SetCrop(crop_index,    crops_to_show[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", crop_info_index))
                                     else:
-                                        action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
+                                        action [ SetCrop(crop_index,    crops_to_show[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
 
 screen stat_icons(stat_value, stat_index):
     hbox:

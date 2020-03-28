@@ -158,6 +158,7 @@ label start:
         number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
         credits = 0
         crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
+
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
         crop_info =     (#Name          CAL NUT VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
@@ -202,7 +203,6 @@ label start:
             "goats" : "Goats restore nitrogen, eat pests, and provide nutritious milk and meat.",
             "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
-        # Got rid of blueberries, snow peas, beets, garlic, cabbage
 
         total_calories = 0
         total_nutrition = 0
