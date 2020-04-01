@@ -14,7 +14,7 @@ screen interscene(year=0, event_type="Work"):
             label "[event_type]"
 
 # Pop down and fadein (thanks PyTom!)
-transform credits_popdown():
+transform popdown():
     xalign 0.98 ypos 30
 
     # When it's shown, slide it down and fade it in.
@@ -24,20 +24,19 @@ transform credits_popdown():
 
     # When it's hidden, slide it down and fade it out.
     on hide:
-        easeout 0.5 yoffset 15.0 alpha 0.0
+        easeout 0.5 yoffset -15.0 alpha 0.0
 
-# Pop down a little screen that shows when your credits change
-screen show_credits(amount=0):
+# Pop down a little screen that notifies the user about something interesting
+# ...such as credits changing, parenting style, etc.
+screen show_notification(message=""):
     hbox:
-        at credits_popdown
-        $ credits_icon = STAT_ICON_BASE + "value.png"
+        at popdown
         frame:
             xpadding 10
             ypadding 10
             background "roundrect_lightgray"
-            text "{image=" + credits_icon + "} [amount]" size 30
-
-    timer 3 action Hide("show_credits")
+            text message size 30
+    timer 3 action Hide("show_notification")
 
 # Show a summary of changes for the previous year
 # TODO: abstract out computer pad stuff somehow

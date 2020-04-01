@@ -1908,7 +1908,7 @@ label community12:
                 jump mining_village
             else:
                 scene path with fade
-                show him normal at moveinright
+                show him normal at midright
                 show pavel normal at midleft
                 with dissolve
                 "The next day, I met Pavel on the road to the miner's village."

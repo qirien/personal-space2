@@ -219,24 +219,26 @@ style input:
 # TODO: bigger font for phone screens
 screen choice(items):
     style_prefix "choice"
-    #
-    # if (len(items) > 6):
-    #     vpgrid:
-    #         cols 1
-    #         xalign 0.5
-    #         #yalign 0.25
-    #         for i in items:
-    #             if (i.chosen): #This allows ths user to see which choices they have made in the past
-    #                 textbutton i.caption action i.action style "choice_chosen"
-    #             else:
-    #                 textbutton i.caption action i.action
-    # else:
-    vbox:
-        for i in items:
-            if (i.chosen): #This allows ths user to see which choices they have made in the past
-                textbutton i.caption action i.action style "choice_chosen"
-            else:
-                textbutton i.caption action i.action
+
+    # If there's a lot of choices, display them in two columns
+    if (len(items) > 6):
+        vpgrid:
+            cols 2
+            xalign 0.5
+            spacing 5
+            yalign 0.25
+            for i in items:
+                if (i.chosen): #This allows ths user to see which choices they have made in the past
+                    textbutton i.caption action i.action style "choice_chosen" xsize 500 ysize 70
+                else:
+                    textbutton i.caption action i.action xsize 500 ysize 70
+    else:
+        vbox:
+            for i in items:
+                if (i.chosen): #This allows ths user to see which choices they have made in the past
+                    textbutton i.caption action i.action style "choice_chosen"
+                else:
+                    textbutton i.caption action i.action
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,

@@ -76,32 +76,27 @@ init -100 python:
     # or inconsistent if none are very high.
     # Return the highest.  If two are equal, return the better one.
     def get_parenting_style():
-
-        # If no stat is above year/3, return "inconsistent"
-        # if ((authoritative <= year/3) and
-        #     (authoritarian <= year/3) and
-        #     (permissive <= year/3) and
-        #     (neglectful <= year/3)):
-        #         return "inconsistent"
-        # else:
-       if ((authoritative >= authoritarian) and
+        parenting_style = "inconsistent"
+        if ((authoritative >= authoritarian) and
            (authoritative >= permissive) and
            (authoritative >= neglectful)):
-            return "authoritative"
-       elif ((authoritarian >= authoritative) and
+            parenting_style = "authoritative"
+        elif ((authoritarian >= authoritative) and
               (authoritarian >= permissive) and
               (authoritarian >= neglectful)):
-            return "authoritarian"
-       elif ((permissive >= authoritarian) and
+            parenting_style = "authoritarian"
+        elif ((permissive >= authoritarian) and
               (permissive >= authoritative) and
               (permissive >= neglectful)):
-            return "permissive"
-       elif ((neglectful >= authoritarian) and
+            parenting_style = "permissive"
+        elif ((neglectful >= authoritarian) and
               (neglectful >= authoritative) and
               (neglectful >= permissive)):
-            return "neglectful"
+            parenting_style = "neglectful"
 
-       return "inconsistent"
+        # TODO: Do this for other variables.
+        renpy.show_screen("show_notification", parenting_style.capitalize() + " parent")
+        return parenting_style
 
 
     # Returns whether kid is attached, competent, or indepedent for her age,
@@ -212,14 +207,15 @@ init -100 python:
     def modify_credits(amount):
         global credits, notifications
         amount = roundint(amount)
-        renpy.show_screen("show_credits", amount=amount)
+        credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
+        renpy.show_screen("show_notification", credit_msg)
         credits += amount
         message = "Credits "
         if (amount >= 0):
             message += "+"
         message = message + str(amount) + "\n"
         notifications += message
-
+        return
 
     def modify_farm_size(amount):
         global farm_size, notifications
@@ -407,11 +403,6 @@ init -100 python:
         return val2[NITROGEN_INDEX] - val1[NITROGEN_INDEX]
     def sortby_value(val1, val2):
         return val1[VALUE_INDEX] - val2[VALUE_INDEX]
-
-python:
-    def v(filename):
-        renpy.voice("voice_gender_" + filename + ".ogg")
-
 
 ##
 # Set things up for a scene in the bedroom
