@@ -144,7 +144,8 @@ label start:
         farm = Field(farm_size, FARM_SIZE_MAXIMUM);
         selected_crop_index = 0
         terra_overwork_count = 0
-        sortby = "name"
+        sortby = "calories"
+        show_sort = False
 
         # Yield of most recent set of crops, in percentages
         years_yield = [100] * farm_size

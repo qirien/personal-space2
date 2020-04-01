@@ -156,8 +156,11 @@ screen farm_details_screen:
                 use crops_totals
 
 # TODO: mask the rest of the screen?
+# OR... just make this take up the whole screen. That way we have more room for fat fingers on phones.
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
+    modal True
+    default show_sort = False
     frame:
         style_prefix "crop_details"
         yalign 0.5
@@ -173,7 +176,9 @@ screen choose_crop(crop_index=0):
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                         label crop_name.capitalize()
-                        textbutton "X" xpos 120 ypos -2 text_size 26 action Hide("choose_crop", zoomout)
+                        textbutton "X" xpos 120 ypos -2 text_size 26 text_color black action Hide("choose_crop", zoomout)
+
+                    # Display info about the selected crop
                     hbox:
                         style_prefix "crop_status"
                         vpgrid:
@@ -201,20 +206,14 @@ screen choose_crop(crop_index=0):
                         text crop_descriptions[crop_name.rstrip("+")]
 
                     # Buttons to sort by different stats
-                    # TODO: use icons here?
                     hbox:
-                        xalign 0.25
-                        text "Sort By:"
-                        textbutton "Name" action SetVariable("sortby", "name")
-                        textbutton "Calories" action SetVariable("sortby", "calories")
-                        if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
-                            textbutton "Vit A" action SetVariable("sortby", "vitA")
-                            textbutton "Vit C" action SetVariable("sortby", "vitC")
-                            textbutton "Magnesium" action SetVariable("sortby", "vitM")
-                        textbutton "Work" action SetVariable("sortby", "work")
-                        textbutton "Nitrogen" action SetVariable("sortby", "nitrogen")
-                        if (year >= MONEY_YEAR):
-                            textbutton "Value" action SetVariable("sortby", "value")
+                        spacing 15
+                        textbutton "Sort By" xalign 0.0 action ToggleScreenVariable("show_sort")
+
+                        if (show_sort):
+                            use sort_buttons # TODO: with transition popside? doesn't work...
+
+                    # Available crops to choose from
                     vpgrid:
                         cols (count_enabled_crops()//4 + 2) #more columns with more enabled crops
                         spacing 10
@@ -255,6 +254,31 @@ screen choose_crop(crop_index=0):
                                         action If((selected_crop_index == crop_info_index), [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", crop_info_index))
                                     else:
                                         action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
+
+screen sort_buttons():
+    $ show_buttons = ["calories"]
+    if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
+        $ show_buttons.append("vita")
+        $ show_buttons.append("vitc")
+        $ show_buttons.append("vitm")
+    $ show_buttons.append("work")
+    $ show_buttons.append("nitrogen")
+    if (year >= MONEY_YEAR):
+        $ show_buttons.append("value")
+
+    for this_button in show_buttons:
+        $ imagefile =  STAT_ICON_BASE + this_button + ".png"
+        imagebutton:
+            idle imagefile
+            hover Composite((CROP_STATUS_ICON_SIZE,CROP_STATUS_ICON_SIZE), (0,0), imagefile,
+            (0,0), im.FactorScale("gui/crop icons/selected.png", 0.5))
+            selected_idle Composite((CROP_STATUS_ICON_SIZE,CROP_STATUS_ICON_SIZE), (0,0), imagefile,
+            (0,0), im.FactorScale("gui/crop icons/selected.png", 0.5))
+            at highlight_imagebutton
+            xysize (CROP_STATUS_ICON_SIZE,CROP_STATUS_ICON_SIZE)
+            anchor (0.5, 0.5)
+            align  (0.5, 0.5)
+            action SetVariable("sortby", this_button)
 
 screen stat_icons(stat_value, stat_index):
     hbox:
@@ -647,8 +671,7 @@ style crop_details_selected_label is crop_details_label:
 style crop_details_selected_label_text is crop_details_label_text:
     color white
 
-style crop_details_button_text is computer_sub_button_text:
-    size 18
+style crop_details_button_text is plan_farm_button_text
 
 style crop_details_text is computer_sub_text:
     yalign 0.5
@@ -680,6 +703,8 @@ style crop_details_hbox is computer_sub_hbox:
 style crop_details_grid is computer_sub_grid:
     xsize MIDDLE_COLUMN_WIDTH
     spacing 0
+
+style crop_details_window is window
 
 # STYLE FIELD_INFO_ used for displaying the details of a field when you click on one
 style field_info_hbox is computer_sub_hbox

@@ -228,16 +228,23 @@ init -100:
 
     # Highlight when moused over
     transform highlight_imagebutton:
-        xanchor 0.5
-        yanchor 0.5
-        xalign 0.5
-        yalign 0.5
+        on show:
+            xoffset -10.0  alpha 0.0
+            easein 2.5 xoffset 0.0 alpha 1.0
         on hover:
-            zoom 1.0
             alpha 1.0
         on idle:
-            zoom 0.8
-            alpha 0.8
+            alpha 0.6
+
+    transform popside:
+        # When it's shown, slide it right and fade it in.
+        on show:
+            xoffset -105.0  alpha 0.0
+            easein 2.5 xoffset 0.0 alpha 1.0
+
+        # When it's hidden, slide it left and fade it out.
+        on hide:
+            easeout 2.5 xoffset 105.0 alpha 0.0
 
     # A Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:

@@ -41,7 +41,6 @@ screen show_credits(amount=0):
 
 # Show a summary of changes for the previous year
 # TODO: abstract out computer pad stuff somehow
-# TODO: Do we really  need a separate screen for this? Or can we put it on the computer pad screen somewhere? In the parenting manual?
 screen yearly_summary():
     key "K_RETURN" action Return()
     key "K_SPACE" action Return()
