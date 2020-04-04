@@ -10,8 +10,8 @@ screen plan_farm:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
         text "User [his_name] has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
-        textbutton "?" xpos 1077 ypos 18 action Jump("farm_tutorial")
-        textbutton "             " xpos 1085 ypos 18 action ShowMenu("preferences")
+        textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
+        textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -48,20 +48,17 @@ screen plan_farm:
                                 xfill True
                                 xsize RIGHT_COLUMN_WIDTH
                                 textbutton "Clear":
-                                    style "round_button"
                                     action [
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
                                 textbutton "Random":
-                                    style "round_button"
                                     action [
                                             set_default_crops,
                                             renpy.restart_interaction
                                             ]
                                 textbutton "Done":
                                 # TODO: What if no valid layout is possible? Have emergency help button?
-                                    style "round_button"
                                     sensitive valid_layout
                                     action Jump("yearly_events")
 
@@ -73,7 +70,7 @@ screen colony_messages_button(read_colony_messages):
     else:
         text "" ypos 30 xalign 0.0 # We have to have this here or it messes up all the positions
 
-    textbutton "Message Board" action Jump("yearly_messages") xoffset 20 #Call("yearly_messages")
+    textbutton "Message Board" action Jump("yearly_messages") #Call("yearly_messages")
 
 # To change appearance, see screens.rpy, screen nvl
 label yearly_messages:
@@ -126,7 +123,7 @@ screen farm_details_screen:
                     # TODO: have icons for how much each group likes you?
                     use colony_messages_button(read_messages)
                     # TODO: make this have a "NEW!" icon when there's new stuff?
-                    textbutton "Child Development" action Show("parenting_handbook", zoomin) xoffset 20
+                    textbutton "Child Development" action Show("parenting_handbook", zoomin)
                     # TODO: add parenting quote
 
                     # TODO: Display poetry written
@@ -176,7 +173,7 @@ screen choose_crop(crop_index=0):
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                         label crop_name.capitalize()
-                        textbutton "X" xpos 120 ypos -2 text_size 26 text_color black action Hide("choose_crop", zoomout)
+                        textbutton "X" xpos 120 ypos -2 text_size 26 action Hide("choose_crop", zoomout)
 
                     # Display info about the selected crop
                     hbox:
@@ -208,7 +205,7 @@ screen choose_crop(crop_index=0):
                     # Buttons to sort by different stats
                     hbox:
                         spacing 15
-                        textbutton "Sort By" xalign 0.0 action ToggleScreenVariable("show_sort")
+                        textbutton "Sort By" xalign 0.0 style "plan_farm_button" action ToggleScreenVariable("show_sort")
 
                         if (show_sort):
                             use sort_buttons # TODO: with transition popside? doesn't work...
@@ -572,8 +569,6 @@ style plan_farm_label_text is label_text:
     color black
     font "fonts/Questrial-Regular.otf"
 
-style plan_farm_button is button
-
 style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
     idle_color green_dark
@@ -583,11 +578,12 @@ style plan_farm_total_text is text:
     font "fonts/FreeMono.ttf"
     color black
 
-style round_button is plan_farm_button:
+style plan_farm_button is button:
     background "roundrect_medgreen"
-    xalign 1.0
+    xpadding 10
+    ypadding 10
 
-style round_button_text is plan_farm_button_text:
+style plan_farm_button_text is button_text:
     idle_color gray_light
     hover_color white
     insensitive_color gray_dark
@@ -618,6 +614,13 @@ style plan_farm_subframe is frame:
 
 # Custom styles for the crop details part of the screen
 
+style computer_button is button
+
+style computer_button_text is plan_farm_text:
+    idle_color white
+    hover_color gray_light
+    selected_idle_color gray_light
+
 # STYLE COMPUTER_SUB used for subwindows of the main computer screen
 style computer_sub_frame is frame:
     background "roundrect_darkgray"
@@ -642,12 +645,13 @@ style computer_sub_hbox is hbox:
 style computer_sub_vbox is vbox:
     spacing 10
 
-style computer_sub_button is plan_farm_button
+style computer_sub_button is computer_button
 
-style computer_sub_button_text is plan_farm_button_text:
+style computer_sub_button_text is computer_button_text:
+    size 20
     idle_color black
-    hover_color white
-    selected_idle_color white
+    hover_color gray_light
+    selected_idle_color gray_dark
 
 # STYLE CROP_DETAILS_ used for when you click on a space to choose a crop
 style crop_details_frame is computer_sub_frame
@@ -661,9 +665,9 @@ style crop_details_vpgrid is vpgrid:
 style crop_details_label is computer_sub_label
 
 style crop_details_label_text is computer_sub_label_text:
-    size 26
+    size 30
     xalign 0.0
-    color green_dark
+    color black
 
 style crop_details_selected_label is crop_details_label:
     background tan_dark
@@ -671,7 +675,8 @@ style crop_details_selected_label is crop_details_label:
 style crop_details_selected_label_text is crop_details_label_text:
     color white
 
-style crop_details_button_text is plan_farm_button_text
+style crop_details_button is computer_sub_button
+style crop_details_button_text is computer_sub_button_text
 
 style crop_details_text is computer_sub_text:
     yalign 0.5

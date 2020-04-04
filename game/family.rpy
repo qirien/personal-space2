@@ -3390,7 +3390,7 @@ label family11:
         "(Ignore her until she asks politely)" if (manners_patience_count >= 4):
             $ confident += 1
             him happy "So, [her_name], what did you work on today?"
-            her concerned "I've been researching--"
+            her surprised "I've been researching--"
             kid annoyed "Pass the sauce!"
             him normal "Go on."
             her concerned "I've been researching the nutritional properties of crabird eggs."
@@ -3399,7 +3399,7 @@ label family11:
             if (year6_have_baby):
                 bro nervous "Me, me me!"
             else:
-                bro nervous "Wahhhhh!"
+                bro nervous "Ahhhhh!"
             her normal "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
             kid annoyed "You're starving your child here!"
             her concerned "-high levels of certain amino acids."
@@ -3407,7 +3407,7 @@ label family11:
             if (year6_have_baby):
                 bro surprised "Peas!"
             else:
-                bro surprised "Wahhhhh!"
+                bro surprised "Aaaaah!"
 
             him happy "Here you go, [kid_name]. Thanks for asking politely."
             kid annoyed "You're mean."
@@ -3638,7 +3638,7 @@ label family12:
     him determined "I think that's it."
     show her normal at midleft with moveinleft
     her surprised "You got them all?"
-    him concerned "I went through her whole head... that's all I can do for today."
+    him sad "I went through her whole head... that's all I can do for today."
     hide kid with moveoutleft
     her determined "Good, now I'll take a look at your hair."
     show her at center with move
@@ -3661,11 +3661,13 @@ label family12:
             him happy "You know what, I need a change anyway!  Let's shave it all off!"
             "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
             $ family12_shaved_head = True
+            $ marriage_strength += 1
             # TODO: change his sprite for the rest of the year?
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
 
+    "[bro_name] didn't have a lot of hair, but we shaved it all off, too."
     scene stars with fade
     "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
     "[her_name] said we needed to keep looking out for them for a few months."

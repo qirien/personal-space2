@@ -663,8 +663,8 @@ label work12:
             $ miners += 1
             scene mine with fade
             show brennan normal at midright with dissolve
-            show him at midleft with moveinleft
-            him normal "I'm interested in the wheat."
+            show him determined at midleft with moveinleft
+            him determined "I'm interested in the wheat."
             brennan "Good, good. Seems like you're smarter than you look."
             him annoyed "Don't make me change my mind."
             brennan angry "Ah, can't you take a joke?"

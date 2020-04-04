@@ -449,6 +449,7 @@ label test_jump_year:
     $ earth_year = get_earth_years(year)
     $ bro_birth_year = 8
     $ year8_have_baby = True
+    $ credits = 1000
     menu:
         "What type of parent are you?"
         "Authoritarian":

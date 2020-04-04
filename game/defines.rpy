@@ -19,7 +19,7 @@ init -100:
     define PAVEL_DIES_YEAR = 28
 
     # Static layout variables
-    define LEFT_COLUMN_WIDTH = 310
+    define LEFT_COLUMN_WIDTH = 300
     define MIDDLE_COLUMN_WIDTH = 480
     define RIGHT_COLUMN_WIDTH = 310
     define TOP_SECTION_HEIGHT = 520

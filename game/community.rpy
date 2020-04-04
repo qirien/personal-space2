@@ -1453,7 +1453,7 @@ label community11:
     show him normal at midright
     show her normal at midleft
     show kid normal at center
-    show bro normal at midleft, baby_pos
+    show bro normal at midright, baby_pos
     her normal "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
     kid surprised "I wonder what the new people will look like?"
     him happy "They'll look like we do. We're all humans."
