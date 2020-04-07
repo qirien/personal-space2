@@ -398,7 +398,7 @@ label message16:
     if (lily_mad_at_RET):
         her_c "What about Dr. Lily? Isn't she getting kind of old?"
         sara_c "She lives near them. She's still getting around great and staying healthy."
-    if not (asked_only_medicines):
+    if not (asked_only_medicine):
         natalia_c "Tomás and Joanna like it out there. They've tunneled a house out of the ground and are doing farming and research."
 
     ilian_c "It's only a matter of time before they come back. They'll need civilization sooner or later."

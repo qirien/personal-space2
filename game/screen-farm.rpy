@@ -65,10 +65,10 @@ screen plan_farm:
 
 
 screen colony_messages_button(read_colony_messages):
-    if (not read_colony_messages):
-        text " {b}NEW!{/b} " ypos 30 xalign 1.0 yalign 0.0 style "alert_text"
+    showif (not read_colony_messages):
+        text " {b}NEW!{/b} " ypos 40 xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
     else:
-        text "" ypos 30 xalign 0.0 # We have to have this here or it messes up all the positions
+        text "" ypos 40 xalign 0.0 # We have to have this here or it messes up all the positions
 
     textbutton "Message Board" action Jump("yearly_messages") #Call("yearly_messages")
 
@@ -123,7 +123,12 @@ screen farm_details_screen:
                     # TODO: have icons for how much each group likes you?
                     use colony_messages_button(read_messages)
                     # TODO: make this have a "NEW!" icon when there's new stuff?
-                    textbutton "Child Development" action Show("parenting_handbook", zoomin)
+                    hbox:
+                        textbutton "Child Devel." action Show("parenting_handbook", transition=irisout)
+                        showif ((year in TRANSITION_YEARS) and (not read_handbook)):
+                            text " {b}NEW!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
+                        else:
+                            text "" xalign 0.0 # We have to have this here or it messes up all the positions
                     # TODO: add parenting quote
 
                     # TODO: Display poetry written
@@ -173,7 +178,7 @@ screen choose_crop(crop_index=0):
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                         label crop_name.capitalize()
-                        textbutton "X" xpos 120 ypos -2 text_size 26 action Hide("choose_crop", zoomout)
+                        textbutton "X" xpos 120 ypos -2 text_size 26 action Hide("choose_crop", irisin)
 
                     # Display info about the selected crop
                     hbox:
@@ -207,8 +212,10 @@ screen choose_crop(crop_index=0):
                         spacing 15
                         textbutton "Sort By" xalign 0.0 style "plan_farm_button" action ToggleScreenVariable("show_sort")
 
-                        if (show_sort):
-                            use sort_buttons # TODO: with transition popside? doesn't work...
+                        showif show_sort:
+                            hbox:
+                                at popside
+                                use sort_buttons
 
                     # Available crops to choose from
                     vpgrid:
@@ -248,9 +255,9 @@ screen choose_crop(crop_index=0):
                                     if (not renpy.variant("touch")):
                                         hovered SetLocalVariable("selected_crop_index", crop_info_index)
                                     if renpy.variant("touch"):
-                                        action If((selected_crop_index == crop_info_index), [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)], SetLocalVariable("selected_crop_index", crop_info_index))
+                                        action If((selected_crop_index == crop_info_index), [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", irisin)], SetLocalVariable("selected_crop_index", crop_info_index))
                                     else:
-                                        action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", zoomout)]
+                                        action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", irisin)]
 
 screen sort_buttons():
     $ show_buttons = ["calories"]
@@ -370,8 +377,8 @@ screen crops_layout:
                                 align  (0.5, 0.5)
                                 action [If(
                                 (current_crop_name[-1] == "+"),
-                                    Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("choose_crop", zoomin, i)),
-                                    ShowTransient("choose_crop", zoomin, i))
+                                    Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("choose_crop", irisout, i)),
+                                    ShowTransient("choose_crop", irisout, i))
                                     ]
 
 # Shows past three years of the crop at specified index.
@@ -427,8 +434,8 @@ screen crops_totals:
         #grid 2 4
         hbox:
             text "Calories    "# + str(total_calories) + " / " + str(calories_needed)
-            if (total_calories < calories_needed):
-                text "{b}!{/b}" style "alert_text"
+            showif (total_calories < calories_needed):
+                text "{b}!{/b}" style "alert_text" at tiny_bounce
         hbox:
             use stat_icons(2, CALORIES_INDEX)
             text " "
@@ -436,8 +443,8 @@ screen crops_totals:
         if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
             hbox:
                 text "Nutrition  "# + str(vitA) + " | " + str(vitC) + " | " + str(vitM) + "/" + str(vitamins_needed)
-                if ((vitA < vitamins_needed) or (vitC < vitamins_needed) or (vitM < vitamins_needed)):
-                    text "{b}!{/b}" style "alert_text"
+                showif ((vitA < vitamins_needed) or (vitC < vitamins_needed) or (vitM < vitamins_needed)):
+                    text "{b}!{/b}" style "alert_text" at tiny_bounce
             hbox:
                 yalign 0.5
                 add "gui/emoji/vitA.png"
@@ -449,8 +456,8 @@ screen crops_totals:
 
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
-            if (total_work > get_work_available()):
-                text "{b}!{/b}" style "alert_text"
+            showif (total_work > get_work_available()):
+                text "{b}!{/b}" style "alert_text" at tiny_bounce
         hbox:
             use stat_icons(2, WORK_INDEX)
             text " "
@@ -492,8 +499,6 @@ screen crops_totals:
                     text "-" + str(total_expenses) xalign 1.0
                     text "{font=fonts/OpenSansEmoji.otf}_____{/font}" xalign 1.0
                     text str(credits + total_value - total_expenses) xalign 1.0
-
-            # TODO: ability to click on "Expenses" or "Value" and see itemized list?
 
 # Screen to show a bar with three values. Show the values in a different color
 # depending on whether the new value is greater than or less than the current
@@ -651,7 +656,7 @@ style computer_sub_button_text is computer_button_text:
     size 20
     idle_color black
     hover_color gray_light
-    selected_idle_color gray_dark
+    selected_idle_color white
 
 # STYLE CROP_DETAILS_ used for when you click on a space to choose a crop
 style crop_details_frame is computer_sub_frame

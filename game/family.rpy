@@ -55,8 +55,8 @@ label family1:
     "I wanted to help, but I had spent the whole day cleaning out the barn and was spent.  All I could think about was sleeping."
     "Sleeping..."
     window hide
-    show black with irisin
-    hide black with irisout
+    show black with irisinslow
+    hide black with irisoutslow
     window show
     show him determined with dissolve
     "No, I couldn't sleep while they both needed me. But what should I do?"
@@ -3316,20 +3316,23 @@ label family11:
     show him normal at midleft
     show her normal at quarterright
     show kid normal at center
-    show bro normal at midright, baby_pos
+    show bro concerned at midright, baby_pos
     "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
+    show bro happy with dissolve
     "Even [bro_name] usually had something to say."
     "They weren't always peaceful, though..."
     kid annoyed "Beans again? Ugh."
+    bro nervous "Uh."
     him surprised "You can put Special Sauce on them if you want."
     "We called it \"Special Sauce\", but it was really just homemade ketchup. With fruit instead of sugar."
     kid shifty "Yeah, gimme the sauce."
     if (year6_have_baby):
-        bro concerned "Gimme sauce!"
+        bro happy "Gimme sauce!"
     else:
-        bro concerned "Ya ya ya ya."
+        bro happy "Ya ya ya ya."
     her concerned "Say \"please\" when you ask for something."
     "[kid_name] knew this; she used to say \"please\" and \"thank you\" all the time. But not today."
+    show bro concerned
     kid annoyed "Gimme the sauce."
     menu:
         "What should I say?"
@@ -3374,6 +3377,7 @@ label family11:
         "(Send her to her room with no dinner)" if (manners_grounded_days >= 2):
             him angry "Go to your room!"
             her surprised "[his_name], calm down. It's not that big of a deal."
+            show bro sad
             him annoyed "It is a big deal! I will not have a rude daughter like that in our house!"
             her annoyed "Well we sure aren't kicking her out just because she didn't say \"please\"!"
             him determined "She can come out whenever she's ready to say \"please\"."
@@ -3397,17 +3401,17 @@ label family11:
             him surprised "I didn't know you could eat the eggs!"
             kid angry "I JUST WANT SOME FOOD!"
             if (year6_have_baby):
-                bro nervous "Me, me me!"
+                bro sad "Me, me me!"
             else:
-                bro nervous "Ahhhhh!"
-            her normal "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
+                bro sad "Ahhhhh!"
+            her determined "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
             kid annoyed "You're starving your child here!"
             her concerned "-high levels of certain amino acids."
             kid angry "Ugh! Fine! PLEASE pass the sauce!"
             if (year6_have_baby):
-                bro surprised "Peas!"
+                bro nervous "Peas!"
             else:
-                bro surprised "Aaaaah!"
+                bro nervous "Aaaaah!"
 
             him happy "Here you go, [kid_name]. Thanks for asking politely."
             kid annoyed "You're mean."
@@ -3986,6 +3990,7 @@ label family13:
             $ sex_ed_counter = 0
             label sex_ed:
                 if (sex_ed_counter >= 2): #short attention span!
+                    him surprised "..."
                     kid normal "I like playing with babies. But I don't want to have to take care of one all the time."
                     him normal "Not now. Maybe someday. Then I can be a grandpa."
                     kid happy "Ha ha, then I'll call you Grandpa Dad."
