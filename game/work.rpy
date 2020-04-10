@@ -494,7 +494,7 @@ label work6:
     him happy "Good!"
     "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
     $ competence += 2
-
+    $ achievement.grant("Carbon Copy")
     tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
     tutorial "Her competence increases as she learns and helps."
     window hide

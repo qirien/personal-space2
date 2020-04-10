@@ -17,24 +17,31 @@ label ending:
     # community ending
     # TODO: 10 is kinda high?
     if (colonists >= FACTION_HIGH):
+        $ achievement.grant("It Takes This Village")
         if (miners >= FACTION_HIGH):
+            $ achievement.grant("Miner Details")
             if (mavericks >= FACTION_HIGH):
+                $ achievement.grant("Don't Tread on Me")
                 call ending_CMiMa
             else:
                 call ending_CMima
         else:
             if (mavericks >= FACTION_HIGH):
+                $ achievement.grant("Don't Tread on Me")
                 call ending_CmiMa
             else:
                 call ending_Cmima
     else:
         if (miners >= FACTION_HIGH):
+            $ achievement.grant("Miner Details")
             if (mavericks >= FACTION_HIGH):
+                $ achievement.grant("Don't Tread on Me")
                 call ending_cMiMa
             else:
                 call ending_cMima
         else:
             if (mavericks >= FACTION_HIGH):
+                $ achievement.grant("Don't Tread on Me")
                 call ending_cmiMa
             else:
                 call ending_cmima
@@ -45,6 +52,15 @@ label ending:
 
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
+    if (parenting_style == "authoritarian"):
+        $ achievement.grant("Big Boss")
+    elif (parenting_style == "authoritative"):
+        $ achievement.grant("Firm Yet Fair")
+    elif (parenting_style == "permissive"):
+        $ achievement.grant("Who Needs Rules?")
+    elif (parenting_style == "neglectful"):
+        $ achievement.grant("Hands-Off Approach")
+
     if (attachment < ATTACHMENT_HIGH):
         if (competence < COMPETENCE_HIGH):
             # aci and acI
@@ -274,6 +290,7 @@ label ending_acI:
     him normal "Anytime."
 
     "Ending 2/8 Mistakes to Call My Own."
+    $ achievement.grant("Mistakes to Call My Own")
     return
 
 #3 aCi - She stays on Talaam, working with Kelly as a nurse
@@ -331,6 +348,7 @@ label ending_aCi:
     "She was trying so hard. I was proud of her. I almost said something, but then I stopped myself. I didn't want her to get sloppy."
 
     "Ending 3/8, Proving Herself."
+    $ achievement.grant("Proving Herself")
     return
 
 #4 aCI - Returns to Earth to study medicine, though you worry about her lack of friends/family
@@ -372,7 +390,8 @@ label ending_aCI:
     with moveoutright
     him surprised "Goodbye!"
 
-    "Ending 4/8, Down to Earth."
+    "Ending 4/8, Down to Earth"
+    $ achievement.grant("Down to Earth")
     return
 
 #5 Aci - stays on your farm helping you, though she doesn't work hard enough to be of much help.
@@ -394,7 +413,7 @@ label ending_Aci:
 
     # TODO: add a scene here, not just narration?
     "Ending 5/8, Forever My Little Girl"
-
+    $ achievement.grant("Forever My Little Girl")
     return
 
 #6 AcI - like #5, but sets out on her own, but you worry she will not know enough or be able to work hard enough
@@ -440,6 +459,7 @@ label ending_AcI:
     # TODO: write something a bit better here.
 
     "Ending 6/8 Ordinary Extraterrestrial Life"
+    $ achievement.grant("Extraterrestrial Life")
     return
 
 #7 ACi - studies sociology/biology online but lives with you
@@ -489,6 +509,7 @@ label ending_ACi:
     "I was so proud of these kids... I didn't know exactly what they would accomplish, but for right now I was just enjoying being together."
 
     "Ending 7/8 The Stars are Right"
+    $ achievement.grant("The Stars are Right")
     return
 
 #8 ACI - becomes an expert in her field, starts to form her own happy family on Talaam
@@ -561,6 +582,7 @@ label ending_ACI:
     "And I'll get to see it all happen."
 
     "Ending 8/8, The Future is Bright"
+    $ achievement.grant("The Future is Bright")
     return
 
 # COMMUNITY ENDINGS

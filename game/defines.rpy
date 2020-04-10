@@ -282,18 +282,17 @@ init -100:
 
     # Setup ACHIEVEMENTS
     python:
-        # TODO: implement unlocking by calling achievement.grant(name)
         achievement_list = [
         # Achievements for each ending
         "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
         # Achievements for each parenting style
-        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Father Failure",
+        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
         # Achievements for each community favored
-        "Xenophiliac", "Don't Tread on Me", "Law & Order", "What's Yours is Mine",
+        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details",
         # Game Progression
         "Binary System", # became a father of two
         "Carbon Copy", # trained your daughter in farming
-        "Patience Grandmaster", # kept your cool around a toddler
+        "Patience Grandmaster", # kept your cool around a toddler # TODO: implement rest of these unlocking by calling achievement.grant(name)
         "Talked the Talk", # answered kid_name's sex ed questions
         "Over the Hill", # turned 40
         # Special weird things

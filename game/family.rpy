@@ -2744,6 +2744,7 @@ label baby_delivery:
     $ bro_birth_year = year
 
     julia "It's a boy!"
+    $ achievement.grant("Binary System")
     "...but he didn't look like [kid_name] did when she was born."
     him surprised "Is... is he missing some of his lip?"
     julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."

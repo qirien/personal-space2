@@ -6449,16 +6449,15 @@ label call_to_squid:
                                         "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
                                         "After about six months, the jellymother told us that our efforts at reparation were sufficient."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                        $ jellypeople_happy = True
-                                        return
                                     else:
                                         "Shills had a longer incubation period than I anticipated. The jellymother started feeding shills to emerging jellysquids."
                                         "Farming the shills took weekly maintence, which we shared. After the shills were big enough to fend for themselves, we released them into the wild."
                                         "A few of the jellysquid ate too much shill and ended up with large shells, but they seemed to adapt to it fairly well."
                                         "The jellymother seemed impressed that we followed up on our promise."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                        $ jellypeople_happy = True
-                                        return
+                                    $ achievement.grant("Xenophiliac")
+                                    $ jellypeople_happy = True
+                                    return
                                 else:
                                     "I didn't have enough help from the other colonists to finish digging the farm-pond."
                                     "The jellymother disappeared and we rarely saw any of the jelly creatures again."

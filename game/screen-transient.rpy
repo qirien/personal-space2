@@ -47,9 +47,9 @@ screen yearly_summary():
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
-        textbutton "?" xpos 1077 ypos 18 action Jump("farm_tutorial")
-        textbutton "             " xpos 1085 ypos 18 action ShowMenu("preferences")
+        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
+        textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
+        textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -92,7 +92,6 @@ screen yearly_summary():
                             vbox:
                                 xfill True
                                 textbutton "Continue":
-                                     style "round_button"
                                      xalign 0.5
                                      action Return()
 

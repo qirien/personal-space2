@@ -9,7 +9,7 @@ screen plan_farm:
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
+        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
         textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
         textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
         vbox:
@@ -52,6 +52,7 @@ screen plan_farm:
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
+                                # TODO: take this out?
                                 textbutton "Random":
                                     action [
                                             set_default_crops,
