@@ -5,9 +5,10 @@ init -100:
     # Variables giving max age of stage in Talaam years
     define BABY_MAX = 3
     define TODDLER_MAX = 8
-    define CHILD_MAX = 16
-    define TWEEN_MAX = 22
+    define CHILD_MAX = 15
+    define TWEEN_MAX = 21
     define YTEEN_MAX = 25
+    define TRANSITION_YEARS = [0, BABY_MAX+1, TODDLER_MAX+1, CHILD_MAX+1, TWEEN_MAX+1, YTEEN_MAX+1]
 
     # Talaam Events
     define MINERS_ARRIVE_YEAR = 11
@@ -166,8 +167,10 @@ init -100:
     # Custom transitions, positions, etc.
     ##
     define fade = Fade(0.2, 0.2, 0.2)
-    define irisout = CropMove(0.5, "irisout")
-    define irisin = CropMove(0.5, "irisin")
+    define irisout = CropMove(0.1, "irisout")
+    define irisin = CropMove(0.1, "irisin")
+    define irisoutslow = CropMove(0.5, "irisout")
+    define irisinslow = CropMove(0.5, "irisin")
     define slowmove = MoveTransition(1.25)
     transform midleft:
         xpos 0.35 xanchor 0.5 ypos 1.0 yanchor 1.0
@@ -228,23 +231,21 @@ init -100:
 
     # Highlight when moused over
     transform highlight_imagebutton:
-        on show:
-            xoffset -10.0  alpha 0.0
-            easein 2.5 xoffset 0.0 alpha 1.0
         on hover:
             alpha 1.0
         on idle:
             alpha 0.6
 
+    # Slide something in from the left, and slide it back to the left when it's hidden
     transform popside:
         # When it's shown, slide it right and fade it in.
         on show:
-            xoffset -105.0  alpha 0.0
-            easein 2.5 xoffset 0.0 alpha 1.0
+            xoffset -250.0  alpha 0.0 xzoom 0.1
+            linear 0.1 xoffset 0.0 alpha 1.0 xzoom 1.0
 
         # When it's hidden, slide it left and fade it out.
         on hide:
-            easeout 2.5 xoffset 105.0 alpha 0.0
+            linear 0.1 xoffset -250.0 alpha 0.0 xzoom 0.1
 
     # A Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:
@@ -269,6 +270,11 @@ init -100:
         linear 0.7 yoffset 100
         linear 0.7 yoffset -100
         linear 0.7 yoffset 0
+
+    transform tiny_bounce:
+        easeout 0.5 yoffset -4
+        easein 0.5 yoffset 2
+        repeat
 
 # TODO: remove this if we decide not to make people orange with Displayable Prefixes
 #     image him happy orange = "orange:him happy"

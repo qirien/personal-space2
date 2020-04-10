@@ -25,6 +25,7 @@ label start:
         save_name = "Intro"
         notifications = ""
         read_messages = False
+        read_handbook = False
         word_board = Board(basic_words, family_words, farm_words)
         year11_poem = ""
         year18_poem = ""
@@ -325,6 +326,7 @@ label life_loop:
             $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
         $ read_messages = False
+        $ read_handbook = False
         $ show_year = year
         call screen plan_farm with fade with fade
 

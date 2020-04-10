@@ -1478,9 +1478,10 @@ label community11:
     hide sara
     hide oleg
     with moveoutleft
+    show her normal at quarterright with move
     "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
     him annoyed "Wait a minute, I recognize him!"
-    show her surprised at quarterright with move
+    show her surprised with dissolve
     #BRENNAN ON SCREEN. he looks the same
     show brennan normal at quarterleft with moveinleft
     # Jack definitely doesn't like him, but doesn't have a great reason.
@@ -1496,11 +1497,13 @@ label community11:
     hide kid with moveoutright
     her flirting "You still don't look a day over 30."
     brennan normal "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
-    him annoyed "No wonder you didn't want to stay on Earth."
+    her laugh "Ha ha ha!"
+    him annoyed "Hmph. No wonder you didn't want to stay on Earth."
     brennan happy "You don't look like you've aged too badly, considering how much sun you must get."
-    him angry "Wow, really? Martin just died of skin cancer last year and you make a sun exposure joke?"
+    him angry "Wow, really? Martin's dying of skin cancer and you make a sun exposure joke?"
+    her concerned "[his_name]..."
     brennan angry "Sorry...I didn't know."
-    her concerned "Of course you didn't."
+    her annoyed "Of course you didn't. There's a lot that you've missed, just like I'm sure we've missed a lot of events on Earth."
     brennan normal "Anyway... Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I whistled long and loud."
     him surprised "Hey, listen up! Quiet down, everyone!"
@@ -1665,9 +1668,8 @@ label community11:
             hide sara
             hide thuc
             with dissolve
+            show pavel normal behind him at quarterleft with moveinleft
             show kevin normal at quarterright with moveinright
-            show pavel normal at quarterleft, behind him
-            with moveinleft
 
             if talked_to_Kevin:
                 kevin "Did they send the rest of Tulip House?"
