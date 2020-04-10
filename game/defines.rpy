@@ -240,12 +240,12 @@ init -100:
     transform popside:
         # When it's shown, slide it right and fade it in.
         on show:
-            xoffset -250.0  alpha 0.0 xzoom 0.1
+            xoffset -200.0  alpha 0.0 xzoom 0.1
             linear 0.1 xoffset 0.0 alpha 1.0 xzoom 1.0
 
         # When it's hidden, slide it left and fade it out.
         on hide:
-            linear 0.1 xoffset -250.0 alpha 0.0 xzoom 0.1
+            linear 0.1 xoffset -200.0 alpha 0.0 xzoom 0.1
 
     # A Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:
@@ -272,8 +272,8 @@ init -100:
         linear 0.7 yoffset 0
 
     transform tiny_bounce:
-        easeout 0.5 yoffset -4
-        easein 0.5 yoffset 2
+        easein 0.4 yoffset -3
+        easeout 0.4 yoffset 3
         repeat
 
 # TODO: remove this if we decide not to make people orange with Displayable Prefixes
