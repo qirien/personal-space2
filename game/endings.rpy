@@ -106,7 +106,6 @@ label ending:
     menu:
         "Would you like to see your poems?"
         "Yes":
-            # TODO: this doesn't show all poems because every time you make it a new Board, it deletes all the old poems. Might need to separate board from poems somehow or keep track of them with a separate global variable.
             # TODO: add 'Share my poems'! link here?
             call screen poetry_display(word_board)
         "No":

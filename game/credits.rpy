@@ -51,6 +51,8 @@ label credits:
         $ mp.kelly_name = her_name
         $ mp.baby_name = kid_name
         $ mp.save()
+    $ renpy.save_persistent()
+    
     # TODO: unlock NG+ - keep crop events seen (but reset if we run out), keep enabled crops, number of fields?, terra_overwork_count?
 
     scene stars with fade
@@ -58,7 +60,7 @@ label credits:
     stop music fadeout 3.0
     $ renpy.pause(3.0, hard=skippable)
 
-    "Thank you for playing Our Personal Space 2!"
+    "Thank you for playing Our Personal Space 2: Space to Grow!"
     # TODO: add link, survey, etc?
 
     $ renpy.full_restart()

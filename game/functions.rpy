@@ -147,7 +147,7 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
-        global crop_temporarily_disabled, crop_info
+        global crop_temporarily_disabled, crop_info, number_events_seen
         # Enable any crops that were temporarily disabled
         if (crop_temporarily_disabled != ""):
             enable_crop(crop_temporarily_disabled, False)
@@ -200,6 +200,8 @@ init -100 python:
                 #print "Picked event: " + random_event
                 return random_event
             else:
+                # Reset the number of events seen for each crop and give a default event.
+                number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
                 return "default_crop_event"
 
     # Change amount of credits you have
