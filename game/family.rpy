@@ -3667,7 +3667,7 @@ label family12:
             "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
             $ family12_shaved_head = True
             $ marriage_strength += 1
-            # TODO: change his sprite for the rest of the year?
+            # TODO: change his sprite for the rest of the year? bald? 
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
@@ -3708,6 +3708,11 @@ label family12:
     brennan_c "Don't worry; I'll never shave these luscious locks."
     nvl hide
 
+    if family12_shaved_head:
+        "It took two months for my hair to grow back and for us to get rid of the lice."
+        "Every once in a while, my head would itch and I would have to have [her_name] check and make sure we hadn't missed one."
+    else:
+        "Even after we thought we had gotten rid of them, we kept checking our hair for lice every few days to be absolutely sure."
     scene farm_interior with fade
     show him normal at midright
     show kid normal at midleft
@@ -3919,7 +3924,7 @@ label family13:
     with dissolve
 
     her "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
-    # TODO: add ultrasound pic?
+    show ultrasound at right, baby_pos with dissolve
     him surprised "Was that it?"
     her concerned coat "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
     him normal "You could have asked the nurse to help, right?"
@@ -3933,6 +3938,7 @@ label family13:
     "[bro_name] looked disappointed."
     bro concerned "Why?"
     him explaining "Men and women have mostly the same parts, but a few different parts so they can come together and make babies."
+    hide ultrasound with dissolve
     her normal coat "We still have a long time before this baby is born, but that's good. We need time to get ready!"
     bro annoyed "Babies cry a lot."
     him normal "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
@@ -5020,7 +5026,10 @@ label family17:
                 jump family17_sniffle_loop
 
     label family17_after_sniffle:
-        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out." # TODO: some way to ask about this in parenting class? or research it in a parenting manual (tantrums vs meltdowns)?  Some options only available if you've read the right database entry?
+        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out." 
+        "[her_name] said he had some sensory processing issues and experienced things very intensely."
+        "I tried to remember that he wasn't doing all this just to annoy me; he was feeling some intense emotions and having trouble dealing with them."
+
         him concerned "I'm glad you're calming down; now we can work on solving the problem."
         bro surprised "I can have some bread?"
         menu:
@@ -5994,11 +6003,10 @@ label family20:
 #
 #####################################################
 
-# TODO: blocking and music testing stopped here
-
 # 13 Earth years old
 # Sarcastic Humor
 label family21:
+    play music videogame
     scene farm_interior with fade
     show him normal at midleft
     show kid normal at center
@@ -6202,7 +6210,7 @@ label family21:
 # You falsely accused Terra! Apologize?
 # Also, do something together as a family
 label family22:
-
+    play music tense
     scene farm_interior with fade
     show him determined at midright
     show kid normal at center
@@ -6220,6 +6228,7 @@ label family22:
     kid annoyed "I'm not lying!!"
     him angry "Go to your room! You can come out when you're ready to tell the truth!"
     kid cry "I am telling the truth! Why won't you believe me?!"
+    hide kid with moveoutright
     "She stomped off to her room."
     "I was furious. It was bad enough to break a rule, but then to lie about it?"
     show her surprised at midleft with moveinleft
@@ -6227,7 +6236,7 @@ label family22:
     him annoyed "[kid_name] stole the applesauce and won't admit it."
     her concerned "Are you sure it was [kid_name]?"
     him concerned "She acted really guilty."
-    her determined "I found an empty jar in [bro_name]'s room, behind his clothes."
+    her annoyed "I found an empty jar in [bro_name]'s room, behind his clothes."
     show him surprised with dissolve
     "I was shocked. It had never occured to me that obedient, quiet [bro_name] had stolen the applesauce."
     her determined "[bro_name], please come here."
@@ -6249,7 +6258,7 @@ label family22:
     bro concerned "...I don't know."
     her determined "I'll let you think about it for a while. I'll ask you again at bedtime, okay?"
     bro sad "Okay."
-    him annoyed "..."
+    him determined "..."
     bro concerned "...can I go now?"
     her normal "Yes. I love you, [bro_name]."
     bro concerned "I love you too, mommy."
@@ -6323,8 +6332,8 @@ label family22:
             him annoyed "It doesn't matter; the appleasauce is not yours."
             bro sad "I know."
             him determined "Okay, well, you just remember that!"
+            show bro nervous with dissolve
             "He wouldn't meet my eyes, instead watching as he fingered the ties of his quilt."
-            bro nervous "Yes."
             menu:
                 "What should I do?"
                 "Leave him alone":
@@ -6337,11 +6346,13 @@ label family22:
                 "Demand that he look at you.":
                     $ demanding += 1
                     him angry "Look at me when I'm talking to you!"
+                    show bro sad with dissolve
                     "He turned his head slowly, focusing on my lips."
                     him determined "I don't want you stealing ever again. Do you understand?"
                     "He nodded."
                     him concerned "Good."
 
+    play music parenting
     scene farm_interior with fade
     show him normal at midright
     show her normal at quarterright
@@ -6469,6 +6480,8 @@ label family22:
 # are more depressed, get less sleep, and feel more lonely and left out.
 # Solutions include: screen-free time, a new hobby, helping her setup a hangout space/time
 # with friends, etc.
+
+# TODO: Finish testing blocking and music starting here.
 label family23:
     "It hadn't really been a big deal to share our computer pad with the kids when they were small."
     "On Earth we had been used to everyone having their own, but lots of things were different here on Talaam."

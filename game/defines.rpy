@@ -6,7 +6,7 @@ init -100:
     define BABY_MAX = 3
     define TODDLER_MAX = 8
     define CHILD_MAX = 15
-    define TWEEN_MAX = 21
+    define TWEEN_MAX = 22
     define YTEEN_MAX = 25
     define TRANSITION_YEARS = [0, BABY_MAX+1, TODDLER_MAX+1, CHILD_MAX+1, TWEEN_MAX+1, YTEEN_MAX+1]
 
@@ -106,7 +106,8 @@ init -100:
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
-    define audio.saxophone = "<from 79>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.saxophone = "music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.videogame = "music/08-Electrospective Skuz-Ambient Teknology.ogg"
 
     # Emotional themes
     # Happy/excited
@@ -180,6 +181,8 @@ init -100:
         xpos 0.22 xanchor 0.5 ypos 1.0 yanchor 1.0
     transform quarterright:
         xpos 0.78 xanchor 0.5 ypos 1.0 yanchor 1.0
+    transform centered:
+        xpos 0.5 ypos 0.5 xanchor 0.5 yanchor 0.5
 
     transform sitting:
         ypos 0.45 yanchor 0.0

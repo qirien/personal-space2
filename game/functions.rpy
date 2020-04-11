@@ -48,11 +48,9 @@ label increase_attachment:
 # Increase competence based on how demanding you were last year and how much Terra worked
 label increase_competence:
     $ inc_amount = 0
-    # If your kid spends more than half their time working, increase competence
-    # TODO: Should we take out the int casting and allow more nuance?
-    # Or have their work_slider affect how much demanding gets added?
-    # TODO: try taking this and previous one out and see what happens.
-    # $ inc_amount += int(kid_work_slider/50.0)
+    # Sometimes increase competence with a probability proportional to how much they work. If they work 100%, increase it a quarter of the time.
+    if (renpy.random.random() <= (kid_work_slider/400.0)):
+        $ inc_amount += 1
     $ inc_amount += demanding
     if (inc_amount > 0):
         $  notifications += "Competence +" + str(inc_amount) + "\n"

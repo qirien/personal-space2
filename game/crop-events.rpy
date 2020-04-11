@@ -32,6 +32,7 @@ label terra_overwork1:
             him annoyed "Well, there's a lot of work to do."
             kid yell "Fine! Let's just get it over with!"
             $ demanding += 1
+            $ confident += 1
         "Work with me for half an hour and then go do homework.":
             him determined "Work with me for thirty minutes, and then you can have the rest of the day to do your project."
             kid angry "Thirty minutes?!"
@@ -456,6 +457,7 @@ label carrots1:
 label carrots2:
     scene fields with fade
     show rain
+    # TODO: play rain sound whenever it rains
     if (carrots_fallow):
         "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
         scene farm_interior with fade
@@ -859,6 +861,7 @@ label squash1:
 
 # SQUASH2 - squash bugs
 label squash2:
+    play music problems
     scene fields with fade
     show rain
     show him normal at center behind rain with dissolve

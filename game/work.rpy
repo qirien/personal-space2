@@ -1267,6 +1267,7 @@ label work20:
 # Year 22, 13.6 years old
 # A surprise 40th birthday party
 label work22:
+    play music problems
     scene community_center with fade
     show night_overlay with dissolve
     show him determined at left behind night_overlay with moveinleft
@@ -1282,6 +1283,7 @@ label work22:
     show ilian happy at quarterright
     show sara normal at right
     with dissolve
+    play music exciting
     "Everybody" "Happy Birthday, [his_name]!"
     him surprised "Whoa! What are you guys all doing here in the dark??"
     her happy "Waiting for you, silly! You were supposed to be here fifteen minutes ago!"
@@ -1303,9 +1305,9 @@ label work22:
     thuc normal "I'll come to a party anytime. So is it true? Is this the big Four Oh?"
     him surprised "Um, maybe? I don't really keep track of my age, plus we spent that year on the shuttle that only felt like several months, so..."
     sara normal "Well, the colony database says you're 40, so I think it counts!"
-    thuc normal "Don't worry; being 40 isn't so bad."
+    thuc sad "Don't worry; being 40 isn't so bad."
     him normal "You would know, huh?"
-    thuc happy "It's 50 you have to worry about!"
+    thuc normal "It's 50 you have to worry about!"
     him happy "Yeah, well, at least I have the satisfaction of knowing I'll never be as old as you."
     pete normal "If it makes you feel better, you don't look a day over 39."
     him normal "Uhhh... thanks?"
@@ -1316,6 +1318,7 @@ label work22:
         "What should I say?"
         "A midlife crisis sounds depressing.":
             him annoyed "Yeah, can we talk about something besides my age?"
+            show oleg at right with moveinright
             her surprised "Oleg, I heard you're getting to be quite the programmer! What's your latest project?"
             oleg "Uh, not much."
             sara normal "It's okay; tell everyone about your game."
@@ -1361,15 +1364,16 @@ label work22:
             sara "You might not have a midlife crisis."
             him normal "I'm not planning on it!"
 
-    "I finally got to make my way over to the snacks. Pete had brought two kinds of cheeses, and Ilian had dug a few tiny pieces of chocolate out of the storehouse."
-    "There were fresh fruits and vegetables and even some soft, homemade, whole wheat bread with jam and butter."
-    "I savored every bite."
     hide thuc
     hide sara
     hide pete
     hide oleg
     hide ilian
     with dissolve
+    "I finally got to make my way over to the snacks. Pete had brought two kinds of cheeses, and Ilian had dug a few tiny pieces of chocolate out of the storehouse."
+    "There were fresh fruits and vegetables and even some soft, homemade, whole wheat bread with jam and butter."
+    "I savored every bite."
+
     show him normal at midleft
     show her normal at midright
     with move
@@ -1393,10 +1397,10 @@ label work22:
             him happy "No, this is great! I love more variety. Thanks, Thuc."
             $ enable_crop("turnips")
         else:
-            thuc "Try not to tear up... I brought you this bag of onions."
+            thuc sad "Try not to tear up... I brought you this bag of onions."
             him sad "Oh, Thuc. They're so beautiful. I just can't help crying!"
             her concerned "..."
-            thuc "You can plant them if you want."
+            thuc normal "You can plant them if you want."
             him cry "I will; thank you! Thank you so much!"
             $ enable_crop("onions")
     elif (helping_faction == "mavericks"):
