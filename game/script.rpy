@@ -9,7 +9,8 @@
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
-# TODO: Autosave/resume does not work well right now.
+# TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.
+# TODO: IF your kid is not competent, it's really hard to get enough calories/vitamins/money.
 ##
 
 label start:
@@ -303,7 +304,6 @@ label life_loop:
         $ save_name = "Year %d" % year
         $ earth_year = get_earth_years(year)
 
-        # TODO: One time bro appeared in the transient and farm screens before he was born...?
         if (bro_birth_year != 0):
             $ bro_age = year - bro_birth_year
 
@@ -328,7 +328,7 @@ label life_loop:
         $ read_messages = False
         $ read_handbook = False
         $ show_year = year
-        call screen plan_farm with fade with fade
+        call screen plan_farm() with fade
 
         label yearly_events:
             if demo_mode:

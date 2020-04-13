@@ -2896,6 +2896,8 @@ label community15:
     pavel sad "Seriously, thank you for coming by."
     him sad "Let us know if you need anything."
     pavel sad "I will."
+
+    play music worried
     scene farm_interior with dissolve
     show him sad at midleft
     show her concerned at midright
@@ -2959,8 +2961,7 @@ label community15:
             him pout "I really think you should speak instead."
             her concerned "I guess I don't have to say much..."
     scene church with fade
-    play music worried
-    # TODO: funeral music?
+    play music tender
     "Almost everyone came to the funeral the next day."
     show her concerned at center with moveinleft
     her "I hope Naomi felt at peace when she died."
@@ -3219,7 +3220,6 @@ label community16:
 label community17:
     $ community_17_activity = renpy.random.choice(["contests", "games", "performances"])
     scene stars with dissolve
-    show him normal at midleft
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
     if (is_liaison):
         "Someone needs to plan it... but who?"
@@ -3673,7 +3673,7 @@ label community17:
         if (invited_miners):
             show brennan normal at right
         with dissolve
-        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their ailment is."
+        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their 'ailment' is."
         him content "Oh, okay, I think I've played this before."
         "I looked around the circle ."
         if (invited_mavericks):
@@ -4405,6 +4405,7 @@ label community20:
 
 
 label community21:
+    play music upbeat
     scene farm_exterior with fade
     "It's predictably overcast this time of year. Lots of people go camping now since there isn't as much danger from solar flare radiation."
     show thuc normal at midright
@@ -4441,6 +4442,7 @@ label community21:
     show kevin normal at midright with moveinleft
     show him normal at left with moveinleft
     show her happy at midleft with moveinleft
+    # TODO: where are the kids?!
     "We started walking along."
     her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [her_name] was born."
     her surprised "There's a path here and everything."
@@ -4487,7 +4489,7 @@ label community21:
     kid shifty "Anya told me that you might act polite but that you don't let anyone take a break."
     brennan normal "I do let miners take breaks, as long as we planned them."
     brennan "What are you studying in school these days?"
-    kid pout "We're learning about Earth biology and how it's different from biology on Talaam."
+    kid nervous "We're learning about Earth biology and how it's different from biology on Talaam."
     kid excited "When you were on Earth, did you ever have a dog?"
     brennan "No, I didn't, but my friend did."
     brennan happy "It licked my face whenever I walked in the door, but otherwise I ignored her."
@@ -4501,6 +4503,7 @@ label community21:
     with moveoutright
 
     scene ocean_sunset with fade
+    play music sea
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
     "I'm used to pulling up weeds, so I ended up clearing out a spot for our tent."
@@ -4693,7 +4696,7 @@ label community21:
     with dissolve
     "The next day was more relaxing in the shade, playing with jellysquids, and catching fish."
     "I even taught [kid_name] how to swim. Kind of."
-    "We travelled back to the colony without incident."
+    "We traveled back to the colony without incident."
     hide him
     hide kid
     with moveoutright
@@ -6451,16 +6454,15 @@ label call_to_squid:
                                         "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
                                         "After about six months, the jellymother told us that our efforts at reparation were sufficient."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                        $ jellypeople_happy = True
-                                        return
                                     else:
                                         "Shills had a longer incubation period than I anticipated. The jellymother started feeding shills to emerging jellysquids."
                                         "Farming the shills took weekly maintence, which we shared. After the shills were big enough to fend for themselves, we released them into the wild."
                                         "A few of the jellysquid ate too much shill and ended up with large shells, but they seemed to adapt to it fairly well."
                                         "The jellymother seemed impressed that we followed up on our promise."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                        $ jellypeople_happy = True
-                                        return
+                                    $ achievement.grant("Xenophiliac")
+                                    $ jellypeople_happy = True
+                                    return
                                 else:
                                     "I didn't have enough help from the other colonists to finish digging the farm-pond."
                                     "The jellymother disappeared and we rarely saw any of the jelly creatures again."

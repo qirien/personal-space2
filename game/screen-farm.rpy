@@ -2,14 +2,14 @@
 # Farm Planning Screen
 #
 
-screen plan_farm:
+screen plan_farm():
     tag plan_farm
     style_prefix "plan_farm"
     $ valid_layout = farm.is_valid_layout()
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
+        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
         textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
         textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
         vbox:
@@ -52,6 +52,7 @@ screen plan_farm:
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
+                                # TODO: take this out?
                                 textbutton "Random":
                                     action [
                                             set_default_crops,
@@ -122,18 +123,18 @@ screen farm_details_screen:
                     label "Community" # TODO: have cute icons for these, like on a phone?
                     # TODO: have icons for how much each group likes you?
                     use colony_messages_button(read_messages)
-                    # TODO: make this have a "NEW!" icon when there's new stuff?
                     hbox:
                         textbutton "Child Devel." action Show("parenting_handbook", transition=irisout)
                         showif ((year in TRANSITION_YEARS) and (not read_handbook)):
                             text " {b}NEW!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
                         else:
                             text "" xalign 0.0 # We have to have this here or it messes up all the positions
-                    # TODO: add parenting quote
 
-                    # TODO: Display poetry written
-                    # TODO: how do I get the word_board variable here?
-                    # textbutton "Poetry" action Show("poetry_display", args=word_board)
+                    # TODO: Display poetry written.
+                    # Right now we can't do this because if we Return(), it exits out of everything. And if we HIde, eventually we come
+                    # back to the VN screen without returning and we're stuck. 
+                    # So for now, just access Poetry from VN mode, not from a screen.
+                    # textbutton "Poetry" action Show("poetry_display", board=word_board)
 
         # Crop layout area
         frame:

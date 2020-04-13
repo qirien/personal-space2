@@ -247,7 +247,7 @@ define config.narrator_menu = True
 
 style choice_button is button:
     properties gui.button_properties("choice_button")
-    background "roundrect_medgreen"
+    background "leaves_branches"#"roundrect_medgreen"
 
 style choice_button_text is button_text
 style choice_chosen is choice_button#:

@@ -6,7 +6,7 @@ init -100:
     define BABY_MAX = 3
     define TODDLER_MAX = 8
     define CHILD_MAX = 15
-    define TWEEN_MAX = 21
+    define TWEEN_MAX = 22
     define YTEEN_MAX = 25
     define TRANSITION_YEARS = [0, BABY_MAX+1, TODDLER_MAX+1, CHILD_MAX+1, TWEEN_MAX+1, YTEEN_MAX+1]
 
@@ -106,7 +106,8 @@ init -100:
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
-    define audio.saxophone = "<from 79>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.saxophone = "music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.videogame = "music/08-Electrospective Skuz-Ambient Teknology.ogg"
 
     # Emotional themes
     # Happy/excited
@@ -180,6 +181,8 @@ init -100:
         xpos 0.22 xanchor 0.5 ypos 1.0 yanchor 1.0
     transform quarterright:
         xpos 0.78 xanchor 0.5 ypos 1.0 yanchor 1.0
+    transform centered:
+        xpos 0.5 ypos 0.5 xanchor 0.5 yanchor 0.5
 
     transform sitting:
         ypos 0.45 yanchor 0.0
@@ -240,12 +243,12 @@ init -100:
     transform popside:
         # When it's shown, slide it right and fade it in.
         on show:
-            xoffset -250.0  alpha 0.0 xzoom 0.1
+            xoffset -200.0  alpha 0.0 xzoom 0.1
             linear 0.1 xoffset 0.0 alpha 1.0 xzoom 1.0
 
         # When it's hidden, slide it left and fade it out.
         on hide:
-            linear 0.1 xoffset -250.0 alpha 0.0 xzoom 0.1
+            linear 0.1 xoffset -200.0 alpha 0.0 xzoom 0.1
 
     # A Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:
@@ -272,34 +275,23 @@ init -100:
         linear 0.7 yoffset 0
 
     transform tiny_bounce:
-        easeout 0.5 yoffset -4
-        easein 0.5 yoffset 2
+        easein 0.4 yoffset -3
+        easeout 0.4 yoffset 3
         repeat
-
-# TODO: remove this if we decide not to make people orange with Displayable Prefixes
-#     image him happy orange = "orange:him happy"
-#    image kid happy orange = "orange:kid happy"
-
-# init -10 python:
-#     def orangify(img):
-#         return im.MatrixColor(img, im.matrix.desaturate() * im.matrix.tint(1.0, 1.0, 0.7))
-#
-#     config.displayable_prefix["orange"] = orangify
 
     # Setup ACHIEVEMENTS
     python:
-        # TODO: implement unlocking by calling achievement.grant(name)
         achievement_list = [
         # Achievements for each ending
         "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
         # Achievements for each parenting style
-        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Father Failure",
+        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
         # Achievements for each community favored
-        "Xenophiliac", "Don't Tread on Me", "Law & Order", "What's Yours is Mine",
+        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details",
         # Game Progression
         "Binary System", # became a father of two
         "Carbon Copy", # trained your daughter in farming
-        "Patience Grandmaster", # kept your cool around a toddler
+        "Patience Grandmaster", # kept your cool around a toddler # TODO: implement rest of these unlocking by calling achievement.grant(name)
         "Talked the Talk", # answered kid_name's sex ed questions
         "Over the Hill", # turned 40
         # Special weird things
