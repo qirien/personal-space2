@@ -133,7 +133,7 @@ init -10:
             "her normal"
         else:
             pos(650, 150)
-            "her surprised coat"
+            "her nervous coat"
 
         group kid:
             pos(400, 250)
@@ -155,11 +155,26 @@ init -10:
             attribute aci:
                 "kid sad"
 
-        if (bro_age > 0):
-            pos(650, 300)
+        #align(0.6, 1.0)
+        if ((bro_age > 0) and (get_parenting_style() == "authoritative")):
+            pos(670, 300)
             #align(0.6, 1.0)
-            # TODO: something different here, maybe based on parenting style?
+            "bro happy"
+        elif ((bro_age > 0) and (get_parenting_style() == "authoritarian")):
+            pos(670, 300)
+            #align(0.6, 1.0)
+            "him nervous"
+        elif ((bro_age > 0) and (get_parenting_style() == "permissive")):
+            pos(670, 300)
+            #align(0.6, 1.0)
+            "bro normal"
+        elif ((bro_age > 0) and (get_parenting_style() == "inconsistent")):
+            pos(670, 300)
+            #align(0.6, 1.0)
             "bro surprised"
+        elif (bro_age > 0):
+            pos(670, 300)
+            "bro concerned"
         if True:
             "polaroid"
 
