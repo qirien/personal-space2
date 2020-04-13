@@ -577,7 +577,7 @@ label family2:
                     $ family2_work_done += 5
                     him concerned "I'm sorry, [kid_name], but I just need to get this work done. I know it's boring for you, but you'll survive, okay?"
                     show kid angry
-                    $ authoritative += 1
+                    $ authoritarian += 1
 
                 "Give up and go home." if ((family2_activity_count >= 1) and (family2_activity_count < 4)):
                     $ responsive += 1
@@ -592,7 +592,8 @@ label family2:
                     kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
-                    $ authoritarian += 1
+                    $ achievement.grant("Patience Grandmaster")
+                    $ authoritative += 1
 
         "Leave her in her crib.":
             scene kid_bedroom with fade
@@ -2338,6 +2339,7 @@ label family7_bedtime:
 
 label family7_she_cleaned_up:
     $ confident += 1
+    $ achievement.grant("Patience Grandmaster")
     menu:
         "What should I say?"
         "I'm glad you decided to clean up.":
@@ -3414,6 +3416,8 @@ label family11:
             else:
                 bro nervous "Aaaaah!"
 
+            if (manners_grounded_days <= 1):
+                $ achievement.grant("Patience Grandmaster")
             him happy "Here you go, [kid_name]. Thanks for asking politely."
             kid annoyed "You're mean."
             her flirting "I think the word you're looking for is \"thank you\"."
@@ -3997,6 +4001,7 @@ label family13:
             $ sex_ed_counter = 0
             label sex_ed:
                 if (sex_ed_counter >= 2): #short attention span!
+                    $ achievement.grant("Talked the Talk")
                     him surprised "..."
                     kid normal "I like playing with babies. But I don't want to have to take care of one all the time."
                     him normal "Not now. Maybe someday. Then I can be a grandpa."

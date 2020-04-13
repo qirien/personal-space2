@@ -1745,6 +1745,7 @@ label spinach2_eat_snails:
         show bro surprised at quarterright
     show her surprised at midleft
     with dissolve
+    $ achievement.grant("Chez Dad")
     her concerned "It's...interesting."
     kid nervous "It's...not bad."
     him concerned "I suppose... I could eat this."
@@ -1820,11 +1821,11 @@ label strawberries1:
 label strawberries2:
     scene fields with fade
     show rain
-    show him normal at center behind rain with dissolve
     "There were two things I liked about strawberries."
     "Obviously, the first was the delicious sweet fruit."
     "The second was that they were pretty low maintenance. I fertilized them and weeded them a little and that was it."
     "So it wasn't unusual that I hadn't checked on them for a month or two."
+    show him normal at center behind rain with moveinleft
     "And when I finally did, I couldn't believe what I saw..."
     him surprised "What the-- where's all my strawberries?!"
     "The strawberry field was covered with strawberry plants, but where there should have been flowers, instead the strawberry plants had made thousands and thousands of runners."
@@ -1876,6 +1877,7 @@ label strawberries2:
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             $ farm.delete_crop("strawberries+")
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
+    $ achievement.grant("Mutant Ninja Berries")
     return
 
 # Honey event

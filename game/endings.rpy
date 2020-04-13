@@ -46,7 +46,19 @@ label ending:
             else:
                 call ending_cmima
 
-    "For now, though, I was more concerned with [kid_name]."
+    if (has_strong_marriage()):
+        "I don't know if I would have made it through it all without [her_name]."
+        "She listens to me, she helps me with kids and on the farm, and when she disagrees she tells me straight up but with love."
+        "After all that we've been through, our relationship is stronger than ever."
+        $ achievement.grant("Blackberry & Asparagus")
+    else:
+        "And after everything we've been through, [her_name] and I are still together."
+        "Is it because of love, or are we just so used to each other we can't imagine living any other way?"
+        "I'm glad she's with me, anyway."
+
+    "We didn't always agree on what [kid_name] should do, but in the end, [kid_name] made her own choices."
+    "I'm sure I played a part in those, but I can't put my finger on any one thing that made her turn out the way she did."
+    
     # TODO: some of this community stuff doesn't work with these endings.
     # TODO: mention jellies in endings?
 

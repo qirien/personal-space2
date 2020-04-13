@@ -321,7 +321,14 @@ label life_loop:
                 $ modify_credits(income)
                 $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
-                    $ modify_credits(allowance_amount * 7)
+                    $ modify_credits(-allowance_amount * 7)
+
+                # Check for credit Achievements
+                if (credits >= 2000):
+                    $ achievement.grant("Rich Dad")
+                elif (credits <= -2000):
+                    $ achievement.grant("Poor Dad")
+                    
         if (crop_enabled("wheat")):
             $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
@@ -340,6 +347,10 @@ label life_loop:
             $ notifications = ""
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
+
+            # Achievement for planting mostly potatoes
+            if (farm.crops.count("potatoes") >= (farm.crops.len() - 4)):
+                $ achievement.grant("Potato Papa")
 
             # MALNUTRITION EVENT (optional)
             if (farm.low_vitamins() and (year > NUTRITION_YEAR)):

@@ -291,15 +291,15 @@ init -100:
         # Game Progression
         "Binary System", # became a father of two
         "Carbon Copy", # trained your daughter in farming
-        "Patience Grandmaster", # kept your cool around a toddler # TODO: implement rest of these unlocking by calling achievement.grant(name)
+        "Patience Grandmaster", # kept your cool around a toddler
         "Talked the Talk", # answered kid_name's sex ed questions
         "Over the Hill", # turned 40
         # Special weird things
         "Scurvy Dog", # got scurvy
         "Rich Dad", # saved a lot of money
         "Poor Dad", # been in debt
-        "Better Half", # had a good relationship with her_name
-        "Potato Diet", # planted almost all potatoes
+        "Blackberry & Asparagus", # had a good relationship with her_name
+        "Potato Papa", # planted almost all potatoes
         "Mutant Ninja Berries", # had mutated strawberries
         "Chez Dad", # ate escargot
         "Family Beeswax" # got bees

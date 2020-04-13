@@ -624,6 +624,7 @@ label work10:
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
+            $ achievement.grant("Family Beeswax")
             # TODO: If you don't allocate space for them, you still have them.
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
@@ -1426,6 +1427,7 @@ label work22:
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."
         $ modify_credits(50)
+    $ achievement.grant("Over the Hill")
     return
 
 # Year 24, 14.8 years old
