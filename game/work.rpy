@@ -289,15 +289,15 @@ label debt_event:
         else:
             "But I already had too much on my plate just with my own farm."
             "Word must have gotten out about our financial plight..."
-            if ((miners_strength() >= 1) and (year > MINERS_ARRIVE_YEAR) and not seen_miner_debt):
+            if ((miners_strong()) and (year > MINERS_ARRIVE_YEAR) and not seen_miner_debt):
                 "One of the miners paid me a little extra, saying that the [random_crop] were especially good."
                 $ modify_credits(20)
                 $ seen_miners_debt = True
-            elif ((mavericks_strength() >= 1) and (not seen_maverick_debt)):
+            elif ((mavericks_strong()) and (not seen_maverick_debt)):
                 "Pete dropped off some strange meat. He said it was from a recent hunting trip."
                 $ modify_credits(25)
                 $ seen_mavericks_debt = True
-            elif ((colonists_strength() >= 1) and (not seen_colonists_debt)):
+            elif ((colonists_strong()) and (not seen_colonists_debt)):
                 "Thuc took pity on me and gave me some extra food."
                 $ modify_credits(30)
                 $ seen_colonists_debt = True
@@ -494,7 +494,7 @@ label work6:
     him happy "Good!"
     "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
     $ competence += 2
-    $ achievement.grant("Carbon Copy")
+    $ achieved("Carbon Copy")
     tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
     tutorial "Her competence increases as she learns and helps."
     window hide
@@ -624,7 +624,7 @@ label work10:
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
-            $ achievement.grant("Family Beeswax")
+            $ achieved("Family Beeswax")
             # TODO: If you don't allocate space for them, you still have them.
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
@@ -1104,7 +1104,7 @@ label work20:
         him determined "I'm not done yet."
     scene farm_interior with fade
 
-    if (miners_strength() >= 1):
+    if (miners_strong()):
         nvl clear
         him_c "Brennan, if we both explain to RET why the farmers need that water, I'm sure they'll understand."
         brennan_c "...If you can get them to authorize a deadline extension, then I can help you."
@@ -1252,9 +1252,9 @@ label work20:
             "It was tough work digging the well, even with the auger tractor attachment. The auger was only meant for post holes, but we made some extensions so it would be long enough to drill a well."
             "Our first windmill wasn't centered or level, so we ended up having to take it apart and put it back together again."
             "Digging the pond wasn't tricky, just a lot of hard work."
-            if (colonists_strength() >= 1):
+            if colonists_strong():
                 "When the other farmers heard about what we were doing, some of them came by to lend a hand."
-            elif (mavericks_strength() >= 1):
+            elif mavericks_strong():
                 show pete normal at quarterleft with moveinleft
                 "When Pete heard about what we were doing, he came by to lend a hand."
                 pete "See, that's why you should quit working for the Man and come live out on your own, like me!"
@@ -1272,7 +1272,6 @@ label work22:
     scene community_center with fade
     show night_overlay with dissolve
     show him determined at left behind night_overlay with moveinleft
-    # TODO: show silhouettes?
     him determined "Why did [her_name] want to meet me here? It makes no sense..."
     him annoyed "And the lights are off, which means she's not even here...?"
     hide night_overlay with dissolve
@@ -1427,7 +1426,7 @@ label work22:
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."
         $ modify_credits(50)
-    $ achievement.grant("Over the Hill")
+    $ achieved("Over the Hill")
     return
 
 # Year 24, 14.8 years old

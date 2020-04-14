@@ -28,9 +28,35 @@ label test_family_photo:
     "Seems strange."
     return
 
+label test_parenting_style:
+    # watch(authoritative, authoritarian, permissive, neglectful)
+    while True:
+        $ authoritative = renpy.random.randint(0,20)
+        $ authoritarian = renpy.random.randint(0,20)
+        $ permissive = renpy.random.randint(0,20)
+        $ neglectful = renpy.random.randint(0,20)
+        $ pstyle = get_parenting_style()
+        "Parenting style: [pstyle]"
+
 label test_emoji:
+    "First we'll test the parenting style emoji."
+    $ get_parenting_style()
+    $ authoritative = 10
+    "Authoritative"
+    $ get_parenting_style()
+    $ authoritarian = 20
+    "Authoritarian"
+    $ get_parenting_style()    
+    $ permissive = 30
+    "Permissive"
+    $ get_parenting_style()    
+    $ neglectful = 40
+    "Neglectful"
+    $ get_parenting_style()
+    "And next we'll test message board emoji."
+
     nvl clear
-    him_c "I don't usually use emoji...{emoji=blush}"
+    him_c "I don't usually use emoji...{emoji=blush}" 
     sara_c "But I do! {emoji=happy} All the time!"
     him_c "Yes, yes, we know. {emoji=grimace}"
     brennan_c "Were you talking about me? {emoji=grin}"

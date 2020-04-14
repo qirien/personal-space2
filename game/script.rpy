@@ -325,9 +325,9 @@ label life_loop:
 
                 # Check for credit Achievements
                 if (credits >= 2000):
-                    $ achievement.grant("Rich Dad")
+                    $ achieved("Rich Dad")
                 elif (credits <= -2000):
-                    $ achievement.grant("Poor Dad")
+                    $ achieved("Poor Dad")
                     
         if (crop_enabled("wheat")):
             $modify_credits(-WHEAT_COST)
@@ -350,7 +350,7 @@ label life_loop:
 
             # Achievement for planting mostly potatoes
             if (farm.crops.count("potatoes") >= (farm.crops.len() - 4)):
-                $ achievement.grant("Potato Papa")
+                $ achieved("Potato Papa")
 
             # MALNUTRITION EVENT (optional)
             if (farm.low_vitamins() and (year > NUTRITION_YEAR)):

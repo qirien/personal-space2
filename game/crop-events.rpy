@@ -1064,7 +1064,7 @@ label goats2:
                 scene cave with fade
             show pete at midright with dissolve
             show him normal at midleft with moveinleft
-            if (mavericks_strength() >= 1):
+            if mavericks_strong():
                 pete "Hey there, [his_name]. Good to see ya."
             else:
                 pete "What do {b}you{/b} want?"
@@ -1745,7 +1745,7 @@ label spinach2_eat_snails:
         show bro surprised at quarterright
     show her surprised at midleft
     with dissolve
-    $ achievement.grant("Chez Dad")
+    $ achieved("Chez Dad")
     her concerned "It's...interesting."
     kid nervous "It's...not bad."
     him concerned "I suppose... I could eat this."
@@ -1877,7 +1877,7 @@ label strawberries2:
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             $ farm.delete_crop("strawberries+")
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
-    $ achievement.grant("Mutant Ninja Berries")
+    $ achieved("Mutant Ninja Berries")
     return
 
 # Honey event

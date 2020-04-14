@@ -237,6 +237,17 @@ init -10:
                 emoji="🍓"
             elif argument == "biohazard":
                 emoji="☣"
+            elif argument == "inconsistent":
+                emoji = "👻"
+            elif argument == "authoritarian":
+                emoji = "🚫"
+            elif argument == "authoritative":
+                emoji = "⚖"
+            elif argument == "permissive":
+                emoji = "☮"
+            elif argument == "neglectful":
+                emoji = "😑"
+            # TODO: add icons for crop things in here for use in notifications, etc? But we modified them
 
             font_size = int(gui.text_size * 1.5)
             return [

@@ -6460,7 +6460,7 @@ label call_to_squid:
                                         "A few of the jellysquid ate too much shill and ended up with large shells, but they seemed to adapt to it fairly well."
                                         "The jellymother seemed impressed that we followed up on our promise."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                    $ achievement.grant("Xenophiliac")
+                                    $ achieved("Xenophiliac")
                                     $ jellypeople_happy = True
                                     return
                                 else:

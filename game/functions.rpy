@@ -66,6 +66,31 @@ label increase_independence:
     $ independence += inc_amount
     return
 
+##
+# Set things up for a scene in the bedroom
+##
+label bedroom_scene(show_baby=False, sleeping=True):
+    scene bedroom with fade
+    if (sleeping):
+        show him sleeping at midleft, squatting
+        show her sleeping at midright, squatting
+    else:
+        show him normal at midleft, squatting
+        show her normal at midright, squatting
+    if (show_baby):
+        show kid normal at centerbabybed
+    show bedroom_overlay
+    show night_overlay
+    with dissolve
+    return
+
+##
+# Poem making function
+##
+label make_poem:
+    $ word_board.generate_display_words()
+    call screen plugin_poetry(word_board)
+    return
 
 init -100 python:
 
@@ -93,7 +118,8 @@ init -100 python:
             parenting_style = "neglectful"
 
         # TODO: Do this for other variables.
-        renpy.show_screen("show_notification", parenting_style.capitalize() + " parent")
+        pstyle = "{emoji=" + parenting_style + "} " + parenting_style.capitalize() + " parent"
+        renpy.show_screen("show_notification", pstyle)
         return parenting_style
 
 
@@ -160,7 +186,7 @@ init -100 python:
 
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
-        if (get_extra_work() <= overwork_threshold):
+        if ((get_work_needed() - get_work_available) <= overwork_threshold):
             return "overwork"
 
         # Is this an even year? then we have a set work event
@@ -287,14 +313,19 @@ init -100 python:
     def get_work_kid():
         return roundint(competence * (kid_work_slider / 100.0) - kid_other_work)
 
-    def get_extra_work():
+    def get_work_needed():
         total_work = 0
         for i in range(0, farm.crops.len()):
             crop_names = [row[NAME_INDEX] for row in crop_info]
             index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             total_work += crop_info[index][WORK_INDEX]
+        return total_work
 
+    def get_extra_work():
+        total_work = get_work_needed()
         work_available = get_work_available()
+        if ((work_available - total_work) > 0):
+            renpy.show_screen("show_notification", "{image=gui/emoji/work.png} Extra Work Available")
         return (work_available - total_work)
 
     # Return True if marriage is strong for the current year
@@ -306,14 +337,14 @@ init -100 python:
     def has_trust():
         return (trust > 0)
 
-    # Return strength of relationships given current year
-    # 1 or greater means strong, less than 1 means weak
-    def mavericks_strength():
-        return (mavericks / (year / 3.0))
-    def miners_strength():
-        return (miners / (year / 3.0))
-    def colonists_strength():
-        return (colonists / (year / 3.0))
+    # Return whether the relationship with a faction is "strong" or not
+    # TODO: tweak this based on actual results
+    def mavericks_strong():
+        return ((mavericks / (year / 3.0)) >= 1)
+    def miners_strong():
+        return ((miners / (year / 3.0)) >= 1)
+    def colonists_strong():
+        return ((colonists / (year / 3.0)) >= 1)
 
     # Returns the strongest faction
     def strongest_faction():
@@ -404,28 +435,6 @@ init -100 python:
     def sortby_value(val1, val2):
         return val1[VALUE_INDEX] - val2[VALUE_INDEX]
 
-##
-# Set things up for a scene in the bedroom
-##
-label bedroom_scene(show_baby=False, sleeping=True):
-    scene bedroom with fade
-    if (sleeping):
-        show him sleeping at midleft, squatting
-        show her sleeping at midright, squatting
-    else:
-        show him normal at midleft, squatting
-        show her normal at midright, squatting
-    if (show_baby):
-        show kid normal at centerbabybed
-    show bedroom_overlay
-    show night_overlay
-    with dissolve
-    return
-
-##
-# Poem making function
-##
-label make_poem:
-    $ word_board.generate_display_words()
-    call screen plugin_poetry(word_board)
-    return
+    def achieved(a_name):
+        achievement.grant(a_name)
+        renpy.show_screen("show_notification", "Achievement Unlocked!\n" + a_name)

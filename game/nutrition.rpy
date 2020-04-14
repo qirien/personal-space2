@@ -144,7 +144,7 @@ label bad_nutrition:
             him happy "Yeah, I guess I should. Man, I'm totally a pirate now!"
             her flirting coat "Don't go bragging about it or everybody will want to get scurvy."
             him flirting "I don't think that's something we need to worry about."
-            $ achievement.grant("Scurvy Dog")
+            $ achieved("Scurvy Dog")
 
         elif (farm.low_vitamin_a() and (not seen_low_a)):
             $ seen_low_a = True

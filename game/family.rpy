@@ -592,7 +592,7 @@ label family2:
                     kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
-                    $ achievement.grant("Patience Grandmaster")
+                    $ achieved("Patience Grandmaster")
                     $ authoritative += 1
 
         "Leave her in her crib.":
@@ -2339,7 +2339,7 @@ label family7_bedtime:
 
 label family7_she_cleaned_up:
     $ confident += 1
-    $ achievement.grant("Patience Grandmaster")
+    $ achieved("Patience Grandmaster")
     menu:
         "What should I say?"
         "I'm glad you decided to clean up.":
@@ -2746,7 +2746,7 @@ label baby_delivery:
     $ bro_birth_year = year
 
     julia "It's a boy!"
-    $ achievement.grant("Binary System")
+    $ achieved("Binary System")
     "...but he didn't look like [kid_name] did when she was born."
     him surprised "Is... is he missing some of his lip?"
     julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."
@@ -3417,7 +3417,7 @@ label family11:
                 bro nervous "Aaaaah!"
 
             if (manners_grounded_days <= 1):
-                $ achievement.grant("Patience Grandmaster")
+                $ achieved("Patience Grandmaster")
             him happy "Here you go, [kid_name]. Thanks for asking politely."
             kid annoyed "You're mean."
             her flirting "I think the word you're looking for is \"thank you\"."
@@ -3668,15 +3668,25 @@ label family12:
         "What should I do?"
         "Shave your head.":
             him happy "You know what, I need a change anyway!  Let's shave it all off!"
+            scene stars with fade
             "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
             $ family12_shaved_head = True
             $ marriage_strength += 1
-            # TODO: change his sprite for the rest of the year? bald? 
+            scene farm_interior with fade
+            show her concerned at midleft
+            show him bald at midright
+            with dissolve
+            her "Well... that look is... different."
+            him bald "I could get used to this! Wow, feel how smooth my head is!"
+            show her annoyed at center with move
+            her "Ick. It feels like a rat's tail."
+            $ achieved("Lousy Haircut")            
+            "Yeah, it looked pretty weird, too. Oh well; my hair would grow back soon enough."
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
 
-    "[bro_name] didn't have a lot of hair, but we shaved it all off, too."
+    "[bro_name] didn't have a lot of hair, so we just gave him a trim."
     scene stars with fade
     "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
     "[her_name] said we needed to keep looking out for them for a few months."
@@ -4001,7 +4011,7 @@ label family13:
             $ sex_ed_counter = 0
             label sex_ed:
                 if (sex_ed_counter >= 2): #short attention span!
-                    $ achievement.grant("Talked the Talk")
+                    $ achieved("Talked the Talk")
                     him surprised "..."
                     kid normal "I like playing with babies. But I don't want to have to take care of one all the time."
                     him normal "Not now. Maybe someday. Then I can be a grandpa."
@@ -6185,30 +6195,28 @@ label family21:
             return
 
     "They went back to playing. Hopefully they'd get along better now."
-    menu:
-        "What should I do?"
-        "Stay and watch.":
-            # TODO: productivity penalty?
-            "I stayed and watched for a little while. [bro_name]'s avatar got killed, and [kid_name] grunted in frustration."
-            kid angry "[bro_name]!"
-            bro concerned "Sorry!"
-            "[kid_name] glanced over at me and sighed."
-            kid determined "It's okay."
-            bro determined "Watch out for the mines; that's what killed me."
-            kid concerned "Where is their flag?"
-            bro normal "I can climb the tower and find it!"
-            kid surprised "Try it."
-            bro determined "Ohhh! He got me! But I saw the flag; it's right behind you, under that bench!"
-            kid normal "Yeah! Got it!"
-            bro surprised "Now get back! Stay away from the tower!"
-            kid determined "Almost there..."
-            bro determined "He's chasing you... I can shoot a smoke bomb!"
-            kid happy "Yeah! We did it!"
-            bro happy "Yeah!"
-            "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
-            "I guess they could get along, when they wanted to."
-        "Get back to work.":
-            "Hopefully they would get along; I didn't have time to stick around and find out."
+    if (get_extra_work() > 0):
+        "I stayed and watched for a little while. [bro_name]'s avatar got killed, and [kid_name] grunted in frustration."
+        kid angry "[bro_name]!"
+        bro concerned "Sorry!"
+        "[kid_name] glanced over at me and sighed."
+        kid determined "It's okay."
+        bro determined "Watch out for the mines; that's what killed me."
+        kid concerned "Where is their flag?"
+        bro normal "I can climb the tower and find it!"
+        kid surprised "Try it."
+        bro determined "Ohhh! He got me! But I saw the flag; it's right behind you, under that bench!"
+        kid normal "Yeah! Got it!"
+        bro surprised "Now get back! Stay away from the tower!"
+        kid determined "Almost there..."
+        bro determined "He's chasing you... I can shoot a smoke bomb!"
+        kid happy "Yeah! We did it!"
+        bro happy "Yeah!"
+        "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
+        "I guess they could get along, when they wanted to."
+    else:
+        "Hopefully they would get along; I didn't have time to stick around and find out."
+
     return
 
 # 13.6 Earth years old
@@ -6784,7 +6792,6 @@ label family24:
     kid nervous "Just Anya and a few other friends."
     menu:
         "What should I say?"
-        # TODO: should her response depend on your parenting style?
         "Which friends?":
             him concerned "Other friends? Which other friends?"
             kid determined "No one you know! Just some people we hang out with."
@@ -7044,7 +7051,7 @@ label lettie_dies:
             scene stars with fade
             "We worked with the community, and some groups agreed to meet in the school instead of the community center so that the teenagers could have the community center to themselves several evenings a week."
             "[kid_name] worked with Anya and some other friends to make a ping pong table and some soft rugs. They talked about future plans, too, like a mini-kitchen and some big speakers for music."
-            scene community_center with fade # TODO: get a cool teen hangout background?
+            scene community_center with fade 
             show her normal coat at midright
             show him normal at midleft
             with dissolve
@@ -7467,31 +7474,32 @@ label family27:
 
             him determined "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
             kid annoyed "Maybe... But who would I even ask?"
-            # TODO: have these based on stats? or increase stats?
             menu:
                 "What should I tell her?"
-                "Ask in town.":
+                "Ask in town." if colonists_strong():
                     $ responsive += 1
                     him normal "You could ask around in town, see what people need."
                     kid concerned "Okay..."
                 "Find a need and offer to help.":
                     $ responsive += 1
+                    $ confident += 1
                     him normal "Look around and see what people need help with. Then find a way to help them and offer to help for a fair price."
                     kid surprised "How do I know what people need?"
                     him determined "Look on the message board, or ask someone who's connected to the community."
                     kid sad "Too bad Sister Naomi's not here anymore..."
                     him concerned "Yeah, she'd probably have some great ideas. But Ilian or Natalia might know something, too. Or you could ask mom."
                     kid nervous "Okay."
-                "Ask the miners.":
+                "Ask the miners." if miners_strong():
                     $ responsive += 1
                     him normal "Ask the miners. They work pretty hard all day, and they usually have a lot of credits, so maybe there's things you could do that they would pay for."
                     kid determined "Okay, I'll ask next time I go see Anya."
-                "Ask Pete.":
+                "Ask Pete." if mavericks_strong():
                     $ responsive += 1
                     him normal "Ask Pete. He might not be able to pay in credits, but he has stuff you can't get anywhere else that other people might pay well for."
                     kid annoyed "He lives so far away. If I had a bike, maybe that would work. I'm going to ask the miners."
                 "Figure it out yourself.":
                     $ demanding += 1
+                    $ confident += 1
                     him normal "I'm sure you'll figure something out."
                     kid nervous "Thanks for nothing."
 

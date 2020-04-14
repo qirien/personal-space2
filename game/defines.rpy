@@ -302,7 +302,8 @@ init -100:
         "Potato Papa", # planted almost all potatoes
         "Mutant Ninja Berries", # had mutated strawberries
         "Chez Dad", # ate escargot
-        "Family Beeswax" # got bees
+        "Family Beeswax", # got bees
+        "Lousy Haircut" # shaved your head to get rid of lice
         ]
 
         for title in achievement_list:
