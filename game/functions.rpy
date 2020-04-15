@@ -186,7 +186,7 @@ init -100 python:
 
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
-        if ((get_work_needed() - get_work_available) <= overwork_threshold):
+        if ((get_work_needed() - get_work_available()) <= overwork_threshold):
             return "overwork"
 
         # Is this an even year? then we have a set work event

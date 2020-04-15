@@ -5233,7 +5233,7 @@ label community23:
     with dissolve
     kid laugh "Can Anya and I go to the beach this weekend?"
     him annoyed "By yourselves?"
-    kid frustrated "No, Anya's parents are going."
+    kid angry "No, Anya's parents are going."
     him concerned "What's the occasion?"
     kid explaining "Brennan is paying lots of money for glass shells."
     kid happy "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
@@ -5256,7 +5256,7 @@ label community23:
     else:
         kid surprised "I don't know, like 5 credits a shell or something."
 
-    kid frustrated "So can I go?"
+    kid angry "So can I go?"
     him pout "Let's discuss it when [her_name] gets home."
     show her concerned at center with moveinleft
     show bro normal at left with moveinleft
@@ -5279,7 +5279,7 @@ label community23:
     scene farm_exterior with fade
     show him surprised at midright with dissolve
     show her nervous at midleft with moveinleft
-    show kid at left with moveinleft
+    show kid concerned at left with moveinleft
     "When they got back a few days later, they looked tired."
     him surprised "Welcome back! How was it?"
     her nervous "Well, the beach was totally picked over where we normally go, so we did a little exploring."
@@ -5709,6 +5709,7 @@ label community25:
 
 
 label community26:
+    play music worried
     $ work_fewer_hours = False
     $ brennan_refuses_fewer_hours = False
     $ grow_more_tea = False
@@ -6077,7 +6078,7 @@ label community27:
 
     scene rowboat with dissolve
     show him normal at midleft with moveinleft
-    show kid frustrated at left with moveinleft
+    show kid angry at left with moveinleft
     "We took a boat out to go fishing past the pier, especially since [kid_name] wanted to play with a jellysquid."
     "We spent a long time searching for a jellysquid. There were a lot of fish in the water eating bits of dead animals... was it dead jellysquid?"
     "I thought I saw a live jellysquid and got out of the boat. The ocean was shallow here and I was able to stand up."
@@ -6180,7 +6181,7 @@ label call_to_squid:
     menu:
         "Yes, I will bring them.":
             him blush "I have no idea what we're going to do but we're going to figure something out."
-            kid frustrated "Maybe Brennan has some shells we could give back."
+            kid angry "Maybe Brennan has some shells we could give back."
             jellysquid "Bring them tomorrow."
             "The jellysquid jumped out of the bucket and into the water."
             "The net of jellystars pushed us back towards shore."

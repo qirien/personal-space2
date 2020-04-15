@@ -101,7 +101,7 @@ init -100:
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
-    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg"]
+    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg", "music/08-One More Sleep-Ray Montford.ogg"]
 
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
@@ -121,11 +121,13 @@ init -100:
     define audio.thoughtful = "music/13-The Summer that Never Quite Ended-Jeff Wahl_.ogg"
 
     # Sad/Mad
-    define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg"
-    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg"
-    define audio.problems = "music/05-Providence-Ray Montford_.ogg"
-    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
-    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
+    define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg" #ambient, has ocean waves in it
+    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg" #slow, melancholy
+    define audio.problems = "music/05-Providence-Ray Montford_.ogg" #
+    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg" #plodding through desert carrying a heavy sack of burdens
+    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg" #something terrible is happening and I'm moving through molasses
+
+    #investigation? http://download.magnatune.com/artists/albums/justinstpierre-insulaire?song=6
 
 
     ##

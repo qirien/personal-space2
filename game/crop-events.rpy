@@ -1531,7 +1531,10 @@ label beans1:
         show kid normal at midleft with moveinleft
         kid "Can I turn the crank?"
         him happy "Of course!"
-        "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
+        if (year <= CHILD_MAX):
+            "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
+        else:
+            "She cranked and cranked... I wasn't sure she ever would have admitted she was tired, so I made her give me a turn."
         "When we got tired of turning the crank by hand I attached my drill to turn it for us. That went even faster."
         "We filled up barrels and barrels of dried beans."
     else:

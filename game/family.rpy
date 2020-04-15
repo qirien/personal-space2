@@ -6494,7 +6494,6 @@ label family22:
 # Solutions include: screen-free time, a new hobby, helping her setup a hangout space/time
 # with friends, etc.
 
-# TODO: Finish testing blocking and music starting here.
 label family23:
     "It hadn't really been a big deal to share our computer pad with the kids when they were small."
     "On Earth we had been used to everyone having their own, but lots of things were different here on Talaam."
@@ -6734,7 +6733,7 @@ label family24:
     scene path with fade
     show horse at center
     show him normal at center
-    with moveinleft
+    with moveinright
     "Lettie seemed to enjoy the walk. Even though she was getting older, it was good for her get out and exercise often."
     menu:
         "On the ride up to the miner's house, I told Lettie all about..."
@@ -6759,17 +6758,17 @@ label family24:
             him normal "I guess you probably know what I mean, since you're getting a bit older, too."
     hide horse
     hide him
-    with moveoutright
+    with moveoutleft
 
     scene cabins with fade
     show him normal at center
     show horse at center
-    with moveinleft
+    with moveinright
     "After we arrived at Anya's house, I secured Lettie's tether to the gate."
     "Lettie was breathing a little harder than usual, so I thought I'd let her take a break while I looked for [kid_name]."
     "She seemed happy to be resting, and started grazing on some small nearby shrubs."
     "Anya's father told me they had gone for a walk by the canyon."
-    hide him with moveoutright
+    hide him with moveoutleft
     scene canyon with fade
     show him normal at midleft with moveinleft
     "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
@@ -6857,7 +6856,7 @@ label family24:
 
     him angry "I'm worried that he's going to influence you to do stupid things! Stupid things that could ruin the rest of your life."
     kid annoyed "Like what?!"
-    him annoyed "A hundred things! Smoking too much fireweed, or having sex too early, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
+    him annoyed "A hundred things! Smoking too much firegrass, or having sex too early, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
     kid yell "We were JUST. HIKING."
     him angry "Yes, this time! What about next time?"
     kid annoyed "He doesn't do any of that stuff! You don't even know him!"
@@ -6873,6 +6872,7 @@ label family24:
         kid yell "Now you suddenly care about what I do?!"
 
 label lettie_dies:
+    play music sad
     scene cabins with fade
     show horse at left with dissolve
     show him normal at midright
@@ -6928,6 +6928,8 @@ label lettie_dies:
 
     "I missed her. But more than that, I felt like she shouldn't have died -- her death never would have happened if Anya's family hadn't put that yew bush right by their front gate."
     "Or if I had noticed it when I tethered her to it."
+
+    play music worried
 
     "I couldn't stop thinking about it when [her_name] invited Anya and her brother over to hang out."
     "Their family never even apologized to me for Lettie's death from their yew bush."
@@ -6991,8 +6993,10 @@ label lettie_dies:
     him concerned "Hey."
     "She sat next to me and held my hand."
     her determined coat "You weren't just talking about yew plants."
+    show him sad with dissolve
     "I shook my head."
     her concerned coat "You think Lorant is a bad friend for [kid_name]?"
+    show him doubt with dissolve
     "I shrugged. I felt like a fool. I shouldn't have posted about Lettie's death online, and I didn't know what to do about the creeping weeds of my life."
     her annoyed coat "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
     him determined "You don't think I'm just crazy with grief?"
@@ -7080,6 +7084,7 @@ label lettie_dies:
 # Thinking about the future
 # foreshadowing ending
 label family25:
+    play music upbeat
     scene stars with fade
     "[her_name] was busier than ever. Not only did she have to treat the miners from RET and deal with all their extra paperwork, but she also did routine checkups for the colony."
     "Her duties only increased as the number of babies increased and as people got older."
@@ -7152,7 +7157,7 @@ label family25:
             him normal "Thanks for cooking with me. Hard to believe you might be cooking for yourself in just a few years, huh?"
 
     kid concerned "Yeah... you and mom went to college after high school, right?"
-    him normal "Your mom did -- for years and years. I went part-time for a while, but I had to quit to help my parents on the farm."
+    him explaining "Your mom did -- for years and years. I went part-time for a while, but I had to quit to help my parents on the farm."
     kid surprised "Can I go to college?"
     "That was a good question. Teenagers on the colony usually ended up mostly doing what their parents did, though some like Miranda also earned degrees via independent study."
     him determined "Miranda earned a biology degree studying with Dr. Lily. I think anyone who wants to could do that, too."
@@ -7160,7 +7165,7 @@ label family25:
     him normal "No, but learning is always good. What do you want to study?"
     kid surprised "I don't know! I like a lot of things. Music, jellies, fossils, reading, the stars..."
     him happy "And farming?"
-    kid normal "Maybe. I like to eat, anyway!"
+    kid nervous "Maybe. I like to eat, anyway!"
     him normal "Hunger is a powerful motivator."
     kid determined "Anya says she's going to be a miner. Her brother just started and he already earns a lot of money."
     him surprised "But aren't they leaving in a few years?"
@@ -7288,6 +7293,7 @@ label family25:
 # She thinks eating jellies is wrong!
 # She calls you names. Do you argue, or discuss?
 label family26:
+    play music tense
     scene farm_interior with fade
     show him normal at midright
     show kid annoyed at midleft
@@ -7408,6 +7414,7 @@ label family26:
 
 # 16.7 Earth years old
 # Financial Responsibility & Bikes
+# TODO: Finish testing blocking and music starting here.
 label family27:
     play music working
     scene farm_interior with fade

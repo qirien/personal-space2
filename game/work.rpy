@@ -1462,6 +1462,7 @@ label work24:
     show kid annoyed at quarterleft with move
     kid annoyed "Of course, dad, it's only been there my whole life."
     "She got a load of manure into the bucket and headed down towards the field. The bucket was a lot higher than I usually put it."
+    play music tense
     show tractor at center
     show kid shifty at center
     with move
@@ -1495,13 +1496,13 @@ label work24:
     "She tried to get up, but could only sit. Good, at least her spine was okay."
     kid sad "Wha-what? I can't - I can't move my leg!"
     him concerned "I know. It'll be okay. Now, on the count of three, I'm going to lift the tractor, and you need to get out of there, okay?"
-    kid annoyed "It hurts!"
+    kid nervous "It hurts!"
     him sad "I know it hurts, but we gotta get you out of there. I don't know if your leg will move, so you might have to use your arms."
-    kid determined "Okay. Ow. Okay. I think I can do that."
+    kid nervous "Okay. Ow. Okay. I think I can do that."
     him angry "1...2...3!"
     "I heaved up and tilted the tractor. I couldn't tip it all the way back to standing, but hopefully it was enough..."
     him annoyed "Now, now, now! Out now!"
-    show kid determined at right, squatting with move
+    show kid nervous at right, squatting with move
     kid angry "Okay! I'm doing it...I'm clear!"
     "I set the tractor back down as gently as possible, my arms shaking and aching."
     show him concerned at midright, standing
@@ -1545,7 +1546,7 @@ label work24:
             scene hospital with fade
             show her surprised coat at midright with dissolve
             show him determined at midleft
-            show kid determined at center
+            show kid nervous at center
             with moveinleft
             her surprised coat "[his_name]? What's wrong?"
 
@@ -1581,7 +1582,7 @@ label work24:
             scene hospital with fade
             show her surprised coat at midright with dissolve
             show him determined at midleft
-            show kid determined at center
+            show kid nervous at center
             with moveinleft
 
     "[her_name] ran over, taking in [kid_name]'s injuries."
@@ -1597,8 +1598,9 @@ label work24:
     show kid nervous with dissolve
     "He had been working on homework when I left, but that was hours ago..."
     him determined "Okay. Keep me posted."
-    her determined coat "I will."
+    hide him with moveoutleft
     scene farm_interior with fade
+    play music problems
     "The next day, when they came home, [her_name] wanted to talk."
     show her annoyed coat at midright
     show him concerned at midleft

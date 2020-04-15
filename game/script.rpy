@@ -351,7 +351,8 @@ label life_loop:
             # Achievement for planting mostly potatoes
             if (farm.crops.count("potatoes") >= (farm.crops.len() - 4)):
                 $ achieved("Potato Papa")
-
+                
+            play music farming fadeout 3.0 fadein 3.0
             # MALNUTRITION EVENT (optional)
             if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
                 call bad_nutrition
@@ -371,7 +372,6 @@ label life_loop:
                         call expression event_label
 
             # WORK EVENTS (farming)
-            play music farming fadeout 3.0 fadein 3.0
             call interscene_text(year, "Work")
             #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
             # hide screen interscene #with dissolve
