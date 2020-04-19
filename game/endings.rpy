@@ -52,7 +52,7 @@ label ending:
         "After all that we've been through, our relationship is stronger than ever."
         $ achieved("Blackberry & Asparagus")
     else:
-        "And after everything we've been through, [her_name] and I are still together."
+        "But even after everything we've been through, [her_name] and I are still together."
         "Is it because of love, or are we just so used to each other we can't imagine living any other way?"
         "I'm glad she's with me, anyway."
 
@@ -128,6 +128,7 @@ label ending:
 #1 aci - Blames you for everything. Clingy. Follows (miner?) boyfriend back to Earth but you know the relationship won't last.
 label ending_aci:
     "Ending aci"
+    play music tense
     scene plain with fade
     show him determined at center
     show her normal at midright
@@ -160,6 +161,9 @@ label ending_aci:
     her sad "Isn't there some way I can change your mind?"
     brennan angry "It's too late for that. The contract is signed."
     kid cry "Mom, I... I'm sorry. I love you, but I want to go."
+    show her cry at center
+    show him pout at midright
+    with move
     "[her_name] embraced her tightly for several minutes, as if stamping in her mind every detail about our daughter."
     menu:
         "What should I say?"
@@ -167,11 +171,14 @@ label ending_aci:
             him concerned "Goodbye, sweetie."
         "You're making a mistake.":
             him annoyed "You're making a mistake! When things go wrong and you realize how horribly you've screwed up, remember that I told you so!"
-            kid "Wow, I really am going to miss you."
+            kid annoyed "Wow, I really am going to miss you."
         "We'll miss you.":
             him concerned "We'll miss you..."
 
     kid sad "Goodbye, dad."
+    show kid at center
+    show her at quarterright
+    with move
     "She hugged me briefly, and then turned around. She ran to catch up to Lorant, clinging to his arm as they boarded the shuttle."
     hide kid with moveoutright
     show brennan at midleft with move
@@ -186,7 +193,7 @@ label ending_aci:
     brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
     her angry "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
     him annoyed "I'd be happy if he never thought of me again."
-    brennan sad "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
+    brennan normal "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
     her concerned "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
     brennan normal "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
@@ -208,7 +215,15 @@ label ending_aci:
     "Brennan nodded and boarded the shuttle. I looked at all the windows for [kid_name] and her boyfriend, but I couldn't see them anywhere. She didn't even wave goodbye."
     "[her_name] and I watched the shuttle lift off in silence. We ate a quiet dinner with [bro_name], and then [her_name] went to bed early."
     "I found her in our room, heaving great sobs."
-    call bedroom_scene(False, False)
+
+    play music sad
+    scene bedroom with fade
+    show him surprised at midleft, squatting
+    show her cry at midright, squatting
+    show bedroom_overlay
+    show night_overlay
+    with dissolve
+
     her cry "She's gone. My little girl. She's really gone."
     him concerned "We knew she would leave someday..."
     her annoyed "But not like this! She left because we failed her. And now we'll probably never see her again."

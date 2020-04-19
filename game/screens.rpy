@@ -276,6 +276,8 @@ screen quick_menu():
     key "q" action QuickSave()
     key "l"  action QuickLoad()
     key "d" action Jump("demo")
+    key "p" action Call("photo")
+    key "g" action Call("show_photo_album")
 
     # Ensure this appears on top of other screens.
     zorder 100

@@ -22,7 +22,7 @@ label credits:
     $ renpy.pause(2.0, hard=skippable)
     hide text with fade
 
-    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\nAmfibia\nBlue Wave Theory\nEhren Starks\n\nUsed with permission from {a=http://www.magnatune.com}Magnatune{/a}" with fade
+    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nChristos Anestopoulos\nAmbient Teknology\n\nUsed with permission from {a=http://www.magnatune.com}Magnatune{/a}" with fade
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
@@ -53,7 +53,7 @@ label credits:
         $ mp.save()
     $ renpy.save_persistent()
     
-    # TODO: unlock NG+ - keep crop events seen (but reset if we run out), keep enabled crops, number of fields?, terra_overwork_count?
+    # TODO: unlock NG+ - keep crop events seen (but reset if we run out), keep enabled crops, number of fields, terra_overwork_count?
 
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve

@@ -1778,6 +1778,7 @@ label work28:
     kid normal "Of course. He was trying to get me to work there but I wanted to wait to see if he was actually going to make it happen first."
     her happy "I haven't been out to eat in... years!"
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
+    play music upbeat
     scene restaurant with fade
     show travis normal at midright with dissolve
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
@@ -1863,7 +1864,7 @@ label work28:
     menu:
         "What should I say?"
         "As long as your price is reasonable.":
-            travis "Oh, it'll be very reasonable. In fact, I'm willing to pay you a more than the storehouse for your very best potatoes."
+            travis "Oh, it'll be very reasonable. In fact, I'm willing to pay you a lot more than the storehouse for your very best potatoes."
             him happy "Then we have a deal!"
             $ year28_promised_potatoes = True
 
@@ -1878,8 +1879,9 @@ label work28:
     him determined "Yeah, but he's depending on everyone else -- you can't have a restaurant without any customers. You always said you wanted to be self-sufficient, not depend on anyone for anything."
     pete "The main thing is, {b}he{/b} decided to open a restaurant. Not a committee, not some pasty-faced government dandy, not even his dad. So I'm okay with that."
     him normal "Good! I gotta say, I'm okay with it, too -- especially if he keeps making those great pancakes."
-    pete "And it's a great market for my cider."
+    pete happy "And it's a great market for my cider."
 
+    play music thoughtful
     scene path with fade
     show him normal at midright
     show her normal at midleft
@@ -1888,7 +1890,7 @@ label work28:
     "We walked home with full bellies and high spirits."
     kid happy "Thanks for buying us pancakes!"
     bro happy "Yeah, they were really good."
-    show him concerned with dissolve
+    show him sad with dissolve
     "A melancholy feeling sprouted in my chest as we walked. My tiny remote town had grown large enough for a restaurant."
     "Was it really still the wild frontier if I could just go into town and get pancakes whenever I wanted?"
     hide kid
@@ -1896,7 +1898,7 @@ label work28:
     with dissolve
     show her at center with move
     her concerned "What is it, [his_name]?"
-    him sad "Our town sure is changing..."
+    him concerned "Our town sure is changing..."
     her determined "And it's about time."
     him surprised "You don't miss the days when there weren't so many people here? When you knew every single person on the planet?"
     her concerned "Not really..."
@@ -1984,7 +1986,9 @@ label work29_potatoes:
 
 # Year 30, 18 years old
 # Terra doesn't want to help! Pay rent?
+# TODO: This doesn't really have a consequence since this is the last year...
 label work30:
+    play music problems
     scene farm_interior with fade
     show kid normal at midright
     show him normal at center
@@ -1996,6 +2000,7 @@ label work30:
     kid concerned "I mean, I don't want the crops to fail or anything, but there's so many other things I want to do, too. And I need to know that you'll be okay without my help."
     him angry "Well, we won't be okay! Without your help, there's no way we could grow enough food!"
     her annoyed "[his_name], [kid_name] is almost an adult. She might choose a different job than you."
+    show him sad with dissolve
     "I took a deep breath and thought about that for a bit. I suppose I had started taking [kid_name] for granted, assuming she'd just always be there."
     "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
     "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
@@ -2007,11 +2012,11 @@ label work30:
             her annoyed "Really? You want to charge our own daughter {b}rent{/b}?"
             him annoyed "Like it or not, that's how the real world works. Everybody needs to do something useful."
             her surprised "What if she's taking classes?"
-            him determined "Everybody should work. Even people taking classes."
+            him pout "Everybody should work. Even people taking classes."
             her angry "So are you going to charge me rent, too?!"
             him annoyed "That's different! You get paid, and we use the money together. Is [kid_name] going to turn over everything she makes to us?"
             kid annoyed "No!"
-            him normal "Everyone in this family helps out. If you're not helping around the house or the farm, then you can help out with money."
+            him determined "Everyone in this family helps out. If you're not helping around the house or the farm, then you can help out with money."
             her annoyed "But--"
             kid determined "I can pay 150 per month."
             her concerned "No, [kid_name], you might need that money..."
@@ -2031,16 +2036,16 @@ label work30:
                     kid determined "I can pay 200, but not 250."
                     him determined "Then I guess that will have to do."
                     $ work28_rent = 200
-            her concerned "If you can't make it some month, come by the clinic and I can find some work for you."
+            her surprised "If you can't make it some month, come by the clinic and I can find some work for you."
             kid annoyed "I'll be fine, Mom."
 
         "If you want to live here, you'll need to help.":
             him determined "Everyone that lives here needs to help out in some way."
-            her "Maybe not on the farm, but in other ways?"
-            kid "Sure, I can do chores and stuff. I just don't want to be your fieldhand."
+            her surprised "Maybe not on the farm, but in other ways?"
+            kid annoyed "Sure, I can do chores and stuff. I just don't want to be your fieldhand."
             "We worked out some things that [kid_name] could do that weren't farming -- making meals and running errands for [her_name] and I."
             him concerned "Hopefully I can still count on your help during harvest time."
-            kid "Yeah, for now."
+            kid nervous "Yeah, for now."
         "We can cut back gradually.":
             him determined "I need you until the harvest. After that, we can slowly cut things down."
             kid concerned "Okay..."
@@ -2055,7 +2060,7 @@ label work30:
     show bro nervous at quarterleft with moveinleft
     bro nervous "I don't want to work on the farm, either."
     "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was gentle and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
-    "But the work needed to get done, somehow, and without [her_name] it would be too much just for me."
+    "But the work needed to get done, somehow, and without [kid_name] it would be too much just for me."
     menu:
         "What should I do?"
         "Reduce the size of my farm."  if (farm_size > FARM_SIZE_MINIMUM):
@@ -2068,9 +2073,9 @@ label work30:
                 "It would cost me, but I thought the cost of hiring another worker would be less than the cost of reducing the field."
             $ work28_rent -= 100
         "Have [bro_name] help more.":
-            him normal "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
+            him concerned "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
             bro sad "I don't want to..."
-            him concerned "I know. But sometimes we all gotta do things we don't want to do."
+            him explaining "I know. But sometimes we all gotta do things we don't want to do."
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."
 

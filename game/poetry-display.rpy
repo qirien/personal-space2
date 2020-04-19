@@ -51,6 +51,7 @@ screen p_display(board):
                 textbutton "Add New Poem" action Jump("make_poem") sensitive (len(board.poems) < board.MAX_POEMS) tooltip "Add another poem with the same set of words"
                 textbutton "Change Wordpacks" action Jump("change_wordpacks") tooltip "Choose different sets of words"
                 textbutton "Screenshot" action Screenshot() tooltip "Take a screenshot, saved in this game's directory"
+                # TODO: Add a 'share on twitter' button that just makes a tweet with the poem's text in it.
                 textbutton "Save" action ShowMenu("save") tooltip "Save Game"
                 textbutton "Done" action Confirm("Done with poems?", Return()) tooltip "Done with Poems"
                 null height 50

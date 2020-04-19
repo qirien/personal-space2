@@ -6060,6 +6060,7 @@ label community27:
     $ wherewelive = False
     $ wherewefood = False
     $ wherewenotlive = False
+    play music sea
     scene ocean with fade
     show him concerned at midright
     show her surprised at midleft
@@ -6521,6 +6522,7 @@ label boat_capsized:
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.
 # Pete has fewer credits to buy medicines with, including birth control. Helen is now pregnant and in her 40s?
 label community28:
+    play music tender
     $ against_euthanasia = False
     $ no_euthanasia_26 = False
     scene farm_exterior with fade
@@ -6648,8 +6650,8 @@ label community28:
 
     else:
         scene farm_interior with fade
-        show him normal at midright
-        show her normal at midleft
+        show him concerned at midright
+        show her concerned at midleft
         with dissolve
         "[her_name] told me a few days later that she and a few other colony leaders had agreed to allow Pavel Grayson to be euthanized according to his wishes when he reached a certain state of mental decay."
         if against_euthanasia:
@@ -6658,8 +6660,8 @@ label community28:
             him surprised "Okay..."
             jump fill_gap
         else:
-            him normal "[her_name], are you ready for this?"
-            her normal "Yes. I'll be helping Pavel avoid an irreversable, extended state of confusion and disability."
+            him surprised "[her_name], are you ready for this?"
+            her determined "Yes. I'll be helping Pavel avoid an irreversable, extended state of confusion and disability."
             him pout "I know, but you still have to give him a fatal injection right? Technically you'll be the one killing him."
             her sad "In a procedure he requested."
             jump fill_gap
@@ -6790,7 +6792,7 @@ label no_euthanasia:
     return
 
 label euthanasia:
-    scene chapel with fade
+    scene church with fade
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present."
     "After [her_name] performed the euthanasia, we held a simple funeral where we celebrated Pavel's lifetime of good-natured optimism."
@@ -6844,6 +6846,7 @@ label community29:
         her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
         her_c "That way I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
+        play music tense
         scene path with fade
         show pete normal at right
         show helen normal at quarterright
@@ -6898,6 +6901,7 @@ label community29:
         show her at midleft with move
         her angry coat "Helen, stay with us for a little longer!"
         pete normal "Helen, baby, hang in there! You gotta save her, doc!"
+        show her annoyed at center with move
         her annoyed coat "I'm working as quickly as I can!"
         "We heard the heart rate monitor slowing, and then it stopped." #TODO: heart monitor sound? for every time they're in the hospital in this event?
         "[her_name] tried to resucitate Helen for a long time, but was not successful."
@@ -7012,6 +7016,7 @@ label community29:
         "Natalia made a beautiful quilt for the future baby, and Travis made a wicker cradle."
         "Joanna made a waterproof book with high-contast images, and the elementary school kids made a mobile out of felted plant fibers."
         "Two weeks after she went on bedrest, Helen stopped taking visitors."
+        play music tense
         scene farm_interior
         show her sad coat at midright
         show him normal at midleft with dissolve
@@ -7050,9 +7055,9 @@ label community29:
         jump credits29
 
         label credits29:
-            scene farm_interior
+            scene farm_interior with fade
             show him determined at midright
-            show her normal coat at center
+            show her concerned coat at center
             show kid normal at left
             with dissolve
             kid shifty "I heard a rumor that Pete's credits were stolen."
@@ -7213,6 +7218,7 @@ label community30:
         jump investigation_start
 
     label investigation_start:
+        play music problems
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
         #TODO: a CG here would be great, but not required."

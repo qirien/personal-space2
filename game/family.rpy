@@ -7414,7 +7414,6 @@ label family26:
 
 # 16.7 Earth years old
 # Financial Responsibility & Bikes
-# TODO: Finish testing blocking and music starting here.
 label family27:
     play music working
     scene farm_interior with fade
@@ -7451,7 +7450,7 @@ label family27:
 
     menu:
         "What should I do?"
-        "Buy her a bike":
+        "Buy her a bike" if (credits >= 500):
             $ responsive += 1
             him surprised "I remember when I first got a bike with gears... it was red, and I attached a playing card to the spokes so it would sound like a motorcycle."
             kid surprised "A motorcycle is like a motorbike, right?"
@@ -7459,12 +7458,20 @@ label family27:
             kid laugh "Okay!"
             $ permissive += 1
             $ modify_credits(-bike_cost)
-
+        "Offer to pay half" if (credits >= 250):
+            $ responsive += 1
+            $ demanding += 1
+            him determined "I'm willing to pay half, if you'll pay the other half."
+            kid surprised "Where am I going to get 250 credits?!"
+            him happy "That's a great question!"
+            kid annoyed "I'm serious! That would be impossible!"
+            him normal "I know there's some people who are willing to pay credits for work."
+            kid surprised "Like who?"
+            jump family27_who_work
         "Have her use her own money.":
             $ demanding += 1
             $ confident += 1
             if (allowance_amount > 0):
-                # TODO: make sure this makes sense with the numbers
                 him annoyed "You have an allowance, you know. You could save up for it yourself."
                 $ saving_weeks = roundint(float(bike_cost) / float(allowance_amount))
                 kid angry "What?! That would take me like..."
@@ -7481,7 +7488,7 @@ label family27:
 
             him determined "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
             kid annoyed "Maybe... But who would I even ask?"
-            menu:
+            menu family27_who_work:
                 "What should I tell her?"
                 "Ask in town." if colonists_strong():
                     $ responsive += 1
@@ -7520,7 +7527,7 @@ label family27:
             him angry "I don't have time to discuss it! Go figure it out yourself if you want a bike so bad!"
             kid angry "Maybe I will!"
             $ neglectful += 1
-        "Offer to buy her one in exchange for more work.":
+        "Offer to buy her one in exchange for more work." if (credits >= 300):
             $ demanding += 1
             $ confident += 1
             him normal "I can understand why you'd want a bike. Now that Lettie's gone, I kind of want one, too."
@@ -7530,7 +7537,7 @@ label family27:
             him normal "If I'm going to be paying for your bike, then you'll need to do work for me on the bike."
             kid concerned "Okay, like what?"
             him happy "Anything I ask."
-            kid shifty "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
+            kid nervous "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
             him determined "Those are my terms. If I buy the bike, then I get a say in how the bike is used."
             kid angry "That's not fair! You're going to make me waste all my time doing your work!"
             him normal "C'mon, I'm not that mean. It'll probably just be a trip to the storehouse once in a while or something."
@@ -7549,7 +7556,14 @@ label family27:
                 kid annoyed "I guess that's the best deal I'm going to get."
                 him determined "I'm the parent; those are the rules."
                 $ authoritarian += 1
-            $ modify_credits(-bike_cost)
+            scene stars with fade
+            $ modify_credits(200)
+            "With [kid_name]'s help, I was able to make some extra money from the farm..."
+            $ modify_credits(-bike_cost)   
+            "...but not nearly enough to cover the cost of the bike."
+            $ kid_work_slider += 20
+            if (kid_work_slider > 100):
+                $ kid_work_slider = 100
 
     scene farm_exterior with fade
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
@@ -7584,7 +7598,6 @@ label family27:
     her concerned "Understanding the grievances of populists and revolutionaries throughout history helps me undestand why Pete left -- and to be wary of what RET could become."
     him concerned "Okay, but [kid_name] could still work and study at the same time."
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
-    $ parenting_style = get_parenting_style()
 
     # Reduce available work (even if you tell her not to work, she still does)
     $ kid_other_work = roundint(competence * .35)
@@ -7610,6 +7623,7 @@ label family27:
             with dissolve
             kid angry "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
             her concerned "There's still a lot you need to learn. Right now your schooling is more important."
+            $ parenting_style = get_parenting_style()
             if (parenting_style == "authoritative"):
                 kid sad "Maybe you're right..."
                 $ family27_no_work = True
@@ -7914,7 +7928,7 @@ label family28:
     him determined "Or maybe I should."
     kid surprised "What? What's the big deal?"
     her concerned "Some people think it's fun to get other people drunk."
-    him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
+    him annoyed "When people are drunk, their inhibitions are down. They are more willing to do...things... they might not otherwise do."
     kid surprised "You mean like... Brennan wouldn't do that!"
     her nervous "..."
     him sad "..."
@@ -7953,7 +7967,7 @@ label family28_runaway:
 # Graduation! Terra is stressed out about tests and a big social problem (Oleg? Travis? Anya?)
 # What kind of guy should she look for as a husband?
 label family29:
-    $ parenting_style = get_parenting_style()
+    play music tender
     scene farm_interior with fade
     show her concerned at midleft
     show bro determined at center
@@ -7964,7 +7978,12 @@ label family29:
     him surprised "Oh, I should tuck my shirt in!"
     her annoyed "You can do it on the way there. Let's just go!"
     scene path with fade
+    show her determined at center
+    show him sad at midleft
+    show bro surprised at left
+    with moveinleft
     "We walked to town like we had thousands of times before, but this time I trudged along as if my boots were covered in mud."
+    show her at right with move
     "[her_name] strode ahead, intent on arriving promptly, but [bro_name] stayed back with me."
     bro concerned "Dad? Are you okay?"
     him concerned "Yeah. I guess I just don't want to go for some reason."
@@ -7993,6 +8012,7 @@ label family29:
             him happy "Yeah! We've got lots of things to be happy about!"
         "Think about [kid_name].":
             him concerned "[kid_name] is pretty happy to be done with school."
+            $ parenting_style = get_parenting_style()
             if ((parenting_style == "authoritative") or (parenting_style == "authoritarian")):
                 bro normal "She even got pretty good grades."
             else:
@@ -8007,7 +8027,12 @@ label family29:
             him concerned "Come on, [bro_name], let's catch up to Mom."
             bro concerned "Okay. Not too fast, though!"
 
+    hide her
+    hide him
+    hide bro
+    with moveoutright
     "We hurried to catch up to [her_name], and all too soon we arrived at the graduation ceremony."
+    play music working
     scene community_center with fade
     if (kevin_elected):
         show kevin normal at center
@@ -8023,6 +8048,7 @@ label family29:
     "The whole community had gathered to celebrate."
     "Well, everyone except Pete's mavericks. They didn't participate in our schooling system."
     "[kid_name] and I walked home together."
+    play music thoughtful
     scene path with fade
     show him normal at midright
     show kid normal at midleft
@@ -8100,7 +8126,7 @@ label family29:
     him determined "It'll be hard for me to help you without knowing any more details. I'll keep everything in confidence unless someone's being hurt, okay?"
     kid nervous "I can't. Sorry, dad."
     him concerned "Okay, well whoever it is, it sounds like you have a good friend that you're thinking about entering a serious relationship with."
-    kid determined "I'm not saying anything about who it is. Just... assume it's a friend of mine."
+    kid determined "Dad, that's not-- Just... assume I have two friends who care about each other, but aren't that attracted to each other."
     him determined "Okay, okay! Can I ask some questions about these two mystery people, then?"
     kid annoyed "Maybe..."
     $ family29_question_count = 0
@@ -8124,7 +8150,7 @@ label family29:
         "Do they have similar life goals?" if not (family29_lifegoals):
             $ demanding += 1
             him surprised "Do they have similar life goals?"
-            kid normal "What does that even mean?"
+            kid surprised "What does that even mean?"
             him normal "Like, do they both value the same things? Education, hard work, family,  honesty -- things like that."
             kid concerned "Uh, I think so?"
             $ family29_lifegoals = True
@@ -8134,7 +8160,7 @@ label family29:
         "Have they been in other relationships?" if not (family29_otherrelationships):
             $ responsive += 1
             him determined "Have they ever been in a serious relationship with anyone else?"
-            kid concerned "I'm not answering that one."
+            kid annoyed "I'm not answering that one."
             $ family29_otherrelationships = True
             $ family29_question_count += 1
             if (family29_question_count < 3):
@@ -8192,6 +8218,7 @@ label family29:
         "Why do they want to get married?" if not (family29_why):
             $ responsive += 1
             him determined "Why do they want to get married?"
+            show kid sad with dissolve
             "She was quiet for a few minutes, thinking."
             kid concerned "I guess.. they don't really know that they do want to get married. Not yet. But it's a question that comes up, you know."
             $ family29_why = True
@@ -8288,13 +8315,14 @@ label family29:
     him content "A lot of things. It made me remember when we got married."
     her laugh "We didn't really know what we were getting into, did we?"
     him normal "There's some things you can't practice -- you just have to experience them for yourself."
-    her concerned "I know...I just want [kid_name] to be happy. Not just short-term happy; long-term, life satisfyingly happy."
-    him concerned "It feels like we have less and less control over that, doesn't it?"
+    her concerned "I know...I just want [kid_name] to be happy. Not just short-term happy; long-term, life-satisfyingly happy."
+    him sad "It feels like we have less and less control over that, doesn't it?"
     her nervous "Yeah..."
     show her normal at center, sitting with move
     "We sat outside right next to each other, leaning our heads together. Her hair tickled my neck and I breathed in its soft scent of hospital soap and antiseptic."
     show him content with dissolve
     "She massaged my hand in hers, knowing just the right places and just the right amount to push."
+    show him sleeping with dissolve
     "I carefully massaged her neck with my other hand, exactly the way she liked."
     her sleeping "Mmmmm."
     "We leaned into each other and gazed up at the moons."
@@ -8339,6 +8367,7 @@ label family30:
         return
 
     # A spot opens up on the shuttle, and [her_name] is considering taking it.
+    play music sad
     scene farm_interior with fade
     show him normal at center with dissolve
     "One night I opened up the computer pad after [kid_name] and [her_name] had gone to bed. There was a message from Anya on it for [kid_name]."

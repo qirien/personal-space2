@@ -241,6 +241,10 @@ init -100:
         on idle:
             alpha 0.6
 
+    # A thumbnail version of a full screen image
+    transform thumbnail:
+        zoom 0.2
+
     # Slide something in from the left, and slide it back to the left when it's hidden
     transform popside:
         # When it's shown, slide it right and fade it in.

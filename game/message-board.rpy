@@ -737,7 +737,7 @@ label message29:
     if kevin_elected:
         kevin_c "I will put it on the agenda for the next town council meeting."
     else:
-        julia_c "I'm sure it will be fine. I'll just run it by the town council."
+        julia_c "We'll have to run it by the town council, but I don't see why not."
     him_c "I'll make a memorial plaque to go in the garden... so we can always remember Pavel, and Naomi."
 
     nvl clear

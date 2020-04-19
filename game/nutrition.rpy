@@ -239,7 +239,7 @@ label bad_nutrition:
             else:
                 "I had to trade with other farmers to get a better variety of food."
 
-        if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        if ((get_extra_work() >= 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             scene fields with fade
             "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
             "I was able to add another field."

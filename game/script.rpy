@@ -30,6 +30,7 @@ label start:
         word_board = Board(basic_words, family_words, farm_words)
         year11_poem = ""
         year18_poem = ""
+        photos = []
 
     # PARENTS
     python:
@@ -335,6 +336,9 @@ label life_loop:
         $ read_messages = False
         $ read_handbook = False
         $ show_year = year
+
+        # TODO: Is there some way to detect if we have an impossible situation here? Like, even if you planted potatoes in every square with enough nitrogen, you still couldn't have enough calories?
+        # Should you lose, or your favorite faction/family rescue you?
         call screen plan_farm() with fade
 
         label yearly_events:

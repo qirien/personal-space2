@@ -1,6 +1,7 @@
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 # Farm Planning Screen
 #
+# TODO: Add a red highlight when choosing a crop if that crop would use too much nitrogen.
 
 screen plan_farm():
     tag plan_farm
