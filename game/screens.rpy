@@ -1195,7 +1195,6 @@ screen achievements():
             spacing 10
             for title in achievement_list:
                 vbox:
-                    # TODO: make this pretty
                     if (achievement.has(title)):
                         $ photo_file = persistent.achievements[title]["file"]
                         if (photo_file):
@@ -1219,8 +1218,6 @@ screen achievements():
                         text persistent.achievements[title]["desc"] xalign 0.5 italic True 
                     else:
                         text ""
-                        # TODO: use a graphic here
-
 
 
 ## Confirm screen ##############################################################

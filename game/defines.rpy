@@ -292,8 +292,8 @@ init -100:
         if (not persistent.achievements):
             persistent.achievements = {
             # Game Progression
-                "Binary System": {"desc":"Father of Two", "file":None},
                 "Carbon Copy": {"desc":"Trained Daughter in Farming", "file":None},
+                "Binary System": {"desc":"Father of Two", "file":None},
                 "Patience Grandmaster": {"desc":"Kept your Cool", "file":None},
                 "Talked the Talk": {"desc":"Answered Her Biology Questions", "file":None},
                 "Over the Hill": {"desc":"Turned 40", "file":None},

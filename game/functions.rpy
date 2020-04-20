@@ -92,6 +92,8 @@ label bedroom_scene(show_baby=False, sleeping=True):
 ##
 # Poem making function
 ##
+#
+# TODO: When you're done making a poem, take a screenshot of it for the gallery
 label make_poem:
     $ word_board.generate_display_words()
     call screen plugin_poetry(word_board)
