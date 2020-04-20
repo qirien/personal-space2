@@ -17,7 +17,7 @@ init python:
         return renpy_menu(items)
 
 ##
-#
+# Return the value bounded by min and max
 ##
 init python:
     def bounded_value(val, min=0, max=100):
@@ -27,6 +27,11 @@ init python:
             return min
         else:
             return val
+
+init python:
+    def random_float():
+        return renpy.random.random()
+
 ##
 # PARENTING FUNCTIONS
 ##
@@ -186,7 +191,7 @@ init -100 python:
 
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
-        if ((get_work_needed() - get_work_available()) <= overwork_threshold):
+        if ((get_work_available() - get_work_needed()) <= overwork_threshold):
             return "overwork"
 
         # Is this an even year? then we have a set work event
@@ -436,5 +441,11 @@ init -100 python:
         return val1[VALUE_INDEX] - val2[VALUE_INDEX]
 
     def achieved(a_name):
-        achievement.grant(a_name)
-        renpy.show_screen("show_notification", "Achievement Unlocked!\n" + a_name)
+        if (achievement.has(a_name)):
+            return
+        else:
+            achievement.grant(a_name)            
+            renpy.show_screen("show_notification", "Achievement Unlocked!\n" + a_name)                        
+            renpy.call("photo", a_name)
+
+        return

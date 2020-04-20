@@ -157,23 +157,23 @@ init -10:
                 "kid sad"
 
         #align(0.6, 1.0)
-        if ((bro_age > 0) and (get_parenting_style() == "authoritative")):
+        if ((bro_age >= 0) and (get_parenting_style() == "authoritative")):
             pos(670, 300)
             #align(0.6, 1.0)
             "bro happy"
-        elif ((bro_age > 0) and (get_parenting_style() == "authoritarian")):
+        elif ((bro_age >= 0) and (get_parenting_style() == "authoritarian")):
             pos(670, 300)
             #align(0.6, 1.0)
             "him nervous"
-        elif ((bro_age > 0) and (get_parenting_style() == "permissive")):
+        elif ((bro_age >= 0) and (get_parenting_style() == "permissive")):
             pos(670, 300)
             #align(0.6, 1.0)
             "bro normal"
-        elif ((bro_age > 0) and (get_parenting_style() == "inconsistent")):
+        elif ((bro_age >= 0) and (get_parenting_style() == "inconsistent")):
             pos(670, 300)
             #align(0.6, 1.0)
             "bro surprised"
-        elif (bro_age > 0):
+        elif (bro_age >= 0):
             pos(670, 300)
             "bro concerned"
         if True:

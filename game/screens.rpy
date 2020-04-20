@@ -1189,18 +1189,37 @@ screen achievements():
         $ cols = 3
 
     use game_menu(_("Achievements"), scroll="viewport"):
-
         vpgrid:
             xfill True
             cols cols
             spacing 10
             for title in achievement_list:
                 vbox:
+                    # TODO: make this pretty
                     if (achievement.has(title)):
-                        text "[title]"
+                        $ photo_file = persistent.achievements[title]["file"]
+                        if (photo_file):
+                            $ photo_file = "Photos/" + photo_file
+                            imagebutton:
+                                idle photo_file
+                                at thumbnail
+                                action Show("show_photo", irisout, photo_file)
+                                hovered SetVariable("show_which", title)
+                        else:
+                            text title
                     else:
-                        text "{font=fonts/OpenSansEmoji.otf}🔒{/font} [title]"
-                        # TODO: use font with unicode support
+                        imagebutton:
+                            idle "gui/locked.png"
+                            hover "gui/locked.png"
+                            action NullAction()
+                            hovered SetVariable("show_which", title)
+                            at highlight_imagebutton
+                    text title xalign 0.5
+                    showif (show_which == title):
+                        text persistent.achievements[title]["desc"] xalign 0.5 italic True 
+                    else:
+                        text ""
+                        # TODO: use a graphic here
 
 
 

@@ -74,7 +74,6 @@ screen yearly_summary():
                                         text notifications
                                         # TODO: include community stats here?
                                     $ parenting_style = get_parenting_style()
-                                    # TODO: add in expressions based on parenting style, attachment, competence, independence
                                     $ kid_type = get_kid_type()
                                     add "family_photo_small " + kid_type
 

@@ -14,39 +14,42 @@ init python:
 
         # Take the screenshot
         result = renpy.screenshot(PHOTO_DIRECTORY + filename)
-        renpy.transition(Fade(0,0,0.5,color=(255,255,255,255)))
+        renpy.transition(Fade(0,0,0.5,color=(255,255,255,255))) # TODO: this doesn't work
         if (result):
             photos.append(filename)
             renpy.notify("Screenshot Saved!  " + filename)
+            return filename
         else:
             renpy.notify("Could not take screenshot!  " + filename)
-        return                
+            return None                
 
     # Code to maybe open the photos in whatever the user's photo program is
-    import sys, subprocess
-
+    import sys, os, subprocess
     def open_file(filename):
+        #webbrowser.open("r.txt")
         if sys.platform == "win32":
             os.startfile(filename)
+            renpy.notify("windows opening")
         else:
             opener ="open" if sys.platform == "darwin" else "xdg-open"
             subprocess.call([opener, filename])
-        return
-
-    def open_picture(self, filename):
-        #os.system(get_filename(id))
-        open_file(filename)
+            renpy.notify("not windows opening")
         return
 
 #####################################################
 # END PYTHON
 #####################################################
 
-label photo:
+label open_photo(pic):
+    $ open_file(pic)
+    return
+
+label photo(a_name=None):
     window hide
     $renpy.pause(0.3)
-    $ take_picture()
-
+    $ pic = take_picture()
+    if (a_name):
+        $ persistent.achievements[a_name]["file"] = pic
     window auto
     return
 
@@ -56,17 +59,9 @@ label show_photo_album:
     window auto
     return
 
+# Display all the photos taken
+# TODO: Store metadata such as year taken, and group accordingly?
 screen photo_album():
-    # tag menu
-    # frame:
-    #     background "black"
-    #     hbox:
-    #         textbutton "Return" action Return()
-    #         $ photo_file = "Photos/" + photos[0]
-    #         imagebutton:                
-    #             idle photo_file
-    #             hover photo_file #at thumbnail
-
     style_prefix "plan_farm"
     frame:
         background  "computer_pad_with_screen"
@@ -79,7 +74,6 @@ screen photo_album():
             hbox:
                 xfill True
                 yfill True
-                # crop details here
                 frame:
                     yfill True
                     background "roundrect_lightgray"
@@ -87,7 +81,7 @@ screen photo_album():
                         label "Photo Album"
 
                         vpgrid:
-                            cols 4
+                            cols 3
                             spacing 5
                             mousewheel True
                             scrollbars "vertical"

@@ -159,7 +159,7 @@ init -100:
 
     define chaco = Character("Chaco", color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
     define kevin = Character("Kevin", color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
-    define zaina = Character("Zaina", color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow
+    define zaina = Character("Zaina", color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow #TODO same as Ilian
     define bandile = Character("Bandile", color="#d35400", image="bandile", ctc="ctc_blink", ctc_position="nestled") #tan brown
     define jellysquid = Character("", kind=nvl, color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
 
@@ -243,7 +243,7 @@ init -100:
 
     # A thumbnail version of a full screen image
     transform thumbnail:
-        zoom 0.2
+        zoom 0.22
 
     # Slide something in from the left, and slide it back to the left when it's hidden
     transform popside:
@@ -287,16 +287,52 @@ init -100:
 
     # Setup ACHIEVEMENTS
     python:
+        show_which = ""
+        # Has achievement name, description, and spot for screenshot/icon
+        if (not persistent.achievements):
+            persistent.achievements = {
+            # Game Progression
+                "Binary System": {"desc":"Father of Two", "file":None},
+                "Carbon Copy": {"desc":"Trained Daughter in Farming", "file":None},
+                "Patience Grandmaster": {"desc":"Kept your Cool", "file":None},
+                "Talked the Talk": {"desc":"Answered Her Biology Questions", "file":None},
+                "Over the Hill": {"desc":"Turned 40", "file":None},
+            # Special weird things
+                "Scurvy Dog": {"desc":"Got Scurvy", "file":None}, 
+                "Rich Dad": {"desc":"Saved a LOT of credits!", "file":None}, 
+                "Poor Dad": {"desc":"Deep in debt", "file":None}, 
+                "Blackberry & Asparagus": {"desc":"Good Marriage Relationship", "file":None}, 
+                "Potato Papa": {"desc":"Planted almost all Potatoes", "file":None}, 
+                "Mutant Ninja Berries": {"desc":"Had Mutated Strawberries", "file":None}, 
+                "Chez Dad": {"desc":"Ate Alien Escargot", "file":None}, 
+                "Family Beeswax": {"desc":"Got Bees", "file":None}, 
+                "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":None},
+            # Achievements for Endings
+                "Bring Back My Baby": {"desc":"Ending #1", "file":None},
+                "Mistakes to Call My Own": {"desc":"Ending #2", "file":None},
+                "Proving Herself": {"desc":"Ending #3", "file":None},
+                "Down to Earth": {"desc":"Ending #4", "file":None},
+                "Forever My Little Girl": {"desc":"Ending #5", "file":None},
+                "Extraterrestrial Life": {"desc":"Ending #6", "file":None},
+                "The Stars are Right": {"desc":"Ending #7", "file":None}, 
+                "The Future is Bright": {"desc":"Ending #8", "file":None},            
+            # Achievements for each parenting style
+                "Big Boss": {"desc":"Authoritarian Parent", "file":None},
+                "Firm Yet Fair": {"desc":"Authoritative Parent", "file":None},
+                "Who Needs Rules?": {"desc":"Permissive Parent", "file":None},
+                "Hands-Off Approach": {"desc":"Neglectful Parent", "file":None},
+            # Achievements for each community favored
+                "Xenophiliac": {"desc":"Friend to the Jellies", "file":None},
+                "Don't Tread on Me": {"desc":"Friend to the Mavericks", "file":None},
+                "It Takes This Village": {"desc":"Friend to the Colonists", "file":None},
+                "Miner Details": {"desc":"Friend to the Miners", "file":None},            
+            }
+
+        #Ordered list to show them in a specific order
         achievement_list = [
-        # Achievements for each ending
-        "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
-        # Achievements for each parenting style
-        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
-        # Achievements for each community favored
-        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details",
         # Game Progression
-        "Binary System", # became a father of two
         "Carbon Copy", # trained your daughter in farming
+        "Binary System", # became a father of two
         "Patience Grandmaster", # kept your cool around a toddler
         "Talked the Talk", # answered kid_name's sex ed questions
         "Over the Hill", # turned 40
@@ -309,7 +345,13 @@ init -100:
         "Mutant Ninja Berries", # had mutated strawberries
         "Chez Dad", # ate escargot
         "Family Beeswax", # got bees
-        "Lousy Haircut" # shaved your head to get rid of lice
+        "Lousy Haircut", # shaved your head to get rid of lice
+        # Achievements for each ending
+        "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
+        # Achievements for each parenting style
+        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
+        # Achievements for each community favored
+        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details",
         ]
 
         for title in achievement_list:
