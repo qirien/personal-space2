@@ -2744,6 +2744,7 @@ label baby_delivery:
     show julia normal at quarterright
     with dissolve
     $ bro_birth_year = year
+    $ bro_age = 0
 
     julia "It's a boy!"
     $ achieved("Binary System")

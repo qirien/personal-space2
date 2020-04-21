@@ -193,68 +193,9 @@ init -10:
         # TODO: replace these with color images?
         #   {image=happy.png}
         def emoji_tag(tag, argument):
-            if argument == "happy":
-                emoji="😊"
-            elif argument == "grin":
-                emoji="😄"
-            elif argument == "mad":
-                emoji="😡"
-            elif argument == "blush":
-                emoji="😳"
-            elif argument == "happycry":
-                emoji="😂"
-            elif argument == "surprised":
-                emoji="😲"
-            elif argument == "hearteyes":
-                emoji="😍"
-            elif argument == "scream":
-                emoji="😱"
-            elif argument == "sad":
-                emoji="😞"
-            elif argument == "cry":
-                emoji="😢"
-            elif argument == "worried":
-                emoji="😟"
-            elif argument == "shocked":
-                emoji="😧"
-            elif argument == "yum":
-                emoji="😋"
-            elif argument == "yuck":
-                emoji="😬"
-            elif argument == "grimace":
-                emoji="😬"
-            elif argument == "heart":
-                emoji="❤"
-            elif argument == "celebrate":
-                emoji="🎉"
-            elif argument == "music":
-                emoji="🎶"
-            elif argument == "bugs":
-                emoji="🐞"
-            elif argument == "death":
-                emoji="💀"
-            elif argument == "strawberries":
-                emoji="🍓"
-            elif argument == "biohazard":
-                emoji="☣"
-            elif argument == "inconsistent":
-                emoji = "👻"
-            elif argument == "authoritarian":
-                emoji = "🚫"
-            elif argument == "authoritative":
-                emoji = "⚖"
-            elif argument == "permissive":
-                emoji = "☮"
-            elif argument == "neglectful":
-                emoji = "😑"
-            # TODO: add icons for crop things in here for use in notifications, etc? But we modified them
 
-            font_size = int(gui.text_size * 1.5)
             return [
-            (renpy.TEXT_TAG, "font=fonts/OpenSansEmoji.otf"),
-            (renpy.TEXT_TAG, "size={}".format(font_size)), (renpy.TEXT_TEXT, emoji),
-            (renpy.TEXT_TAG, "/size"),
-            (renpy.TEXT_TAG, "/font")
-            ]
+                (renpy.TEXT_TAG, "image=gui/emoji/" + argument + ".png")
+                ]
 
         config.self_closing_custom_text_tags["emoji"] = emoji_tag

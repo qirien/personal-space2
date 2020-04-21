@@ -6524,7 +6524,6 @@ label boat_capsized:
 label community28:
     play music tender
     $ against_euthanasia = False
-    $ no_euthanasia_26 = False
     scene farm_exterior with fade
     show him normal at center
     show her normal at midright

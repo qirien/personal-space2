@@ -124,7 +124,6 @@ init -100 python:
               (neglectful >= permissive)):
             parenting_style = "neglectful"
 
-        # TODO: Do this for other variables.
         pstyle = "{emoji=" + parenting_style + "} " + parenting_style.capitalize() + " parent"
         renpy.show_screen("show_notification", pstyle)
         return parenting_style
@@ -332,13 +331,16 @@ init -100 python:
         total_work = get_work_needed()
         work_available = get_work_available()
         if ((work_available - total_work) > 0):
-            renpy.show_screen("show_notification", "{image=gui/emoji/work.png} Extra Work Available")
+            renpy.show_screen("show_notification", "{image=gui/emoji/work.png} Extra Work")
         return (work_available - total_work)
 
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
     def has_strong_marriage():
-        return (marriage_strength >= roundint(year / 4.0))
+        strong = (marriage_strength >= roundint(year / 4.0))
+        if strong:
+            renpy.show_screen("show_notification", "{emoji=heart} Strong Marriage")
+        return strong
 
     # Return True if you have a good amount of trust
     def has_trust():
@@ -347,19 +349,31 @@ init -100 python:
     # Return whether the relationship with a faction is "strong" or not
     # TODO: tweak this based on actual results
     def mavericks_strong():
-        return ((mavericks / (year / 3.0)) >= 1)
+        strong = ((mavericks / (year / 3.0)) >= 1)
+        if (strong):            
+            renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
+        return strong
     def miners_strong():
-        return ((miners / (year / 3.0)) >= 1)
+        strong = ((miners / (year / 3.0)) >= 1)
+        if (strong):
+            renpy.show_screen("show_notification", "{emoji=friends} Miners")
+        return strong
     def colonists_strong():
-        return ((colonists / (year / 3.0)) >= 1)
+        strong = ((colonists / (year / 3.0)) >= 1)
+        if (strong):
+            renpy.show_screen("show_notification", "{emoji=friends} Colonists")
+        return strong
 
     # Returns the strongest faction
     def strongest_faction():
         if (colonists >= miners >= mavericks):
+            renpy.show_screen("show_notification", "{emoji=friends} Colonists")
             return "colonists"
         elif (miners >= colonists >= mavericks):
+            renpy.show_screen("show_notification", "{emoji=friends} Miners")            
             return "miners"
         elif (mavericks >= colonists >= miners):
+            renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
             return "mavericks"
         else:
             return "colonists"

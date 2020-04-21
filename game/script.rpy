@@ -64,7 +64,7 @@ label start:
         bro_name = "Aeron"
 
         bro_birth_year = 0
-        bro_age = 0
+        bro_age = -1
         year6_have_baby = False
         year8_have_baby = False
         family12_shaved_head = False
@@ -131,6 +131,7 @@ label start:
         community_22_compromise = False
         community_22_mined_anyway = False
         touched_jellystar_25 = False
+        no_euthanasia_26 = False
         jellypeople_happy = False
         kevin_elected = False
         ban_firegrass = False
