@@ -3,6 +3,44 @@
 ##
 
 # Computer variant
+
+screen poem_display(poem):
+    variant "large"
+    frame:
+        style_prefix "pp"
+        xfill True
+        yfill True
+        use show_poem(poem)
+
+# mobile variant
+screen poem_display(poem):
+    frame:
+        style_prefix "pps"
+        xfill True
+        yfill True
+        xalign 0.5 
+        yalign 0.5
+        use show_poem(poem)
+
+# Show one poem in the middle, nice and large
+screen show_poem(poem):
+    key "mousedown_1" action [Function(take_picture), Hide("poem_display", whitefade)]
+    frame:
+        xalign 0.5 
+        yalign 0.5
+        vbox:
+            xalign 0.5
+            yalign 0.5
+            spacing 5
+            for i in range(0, len(poem)):
+                hbox:
+                    xalign 0.5
+                    spacing 5
+                    for j in range(0, len(poem[i])):
+                        textbutton poem[i][j] text_size 40
+            # TODO: Add something where you can click anywhere to proceed
+
+
 screen poetry_display(board):
     variant "large"
     frame:

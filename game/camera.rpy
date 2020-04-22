@@ -6,15 +6,14 @@ init python:
     def take_picture():
         # Make the directory if needed
         if(os.path.isdir(PHOTO_DIRECTORY) == False):
-            os.mkdir(self.directory)
+            os.mkdir(PHOTO_DIRECTORY)
 
         # Setup the filename
         now = datetime.now().strftime("%Y%m%d-%H%M%S")
-        filename =  "Screenshot-" + str(now) + ".png"
+        filename =  "Screenshot-" + str(now) + ".jpg"
 
         # Take the screenshot
         result = renpy.screenshot(PHOTO_DIRECTORY + filename)
-        renpy.transition(Fade(0,0,0.5,color=(255,255,255,255))) # TODO: this doesn't work
         if (result):
             photos.append(filename)
             renpy.notify("Screenshot Saved!  " + filename)
@@ -46,11 +45,11 @@ label open_photo(pic):
 
 label photo(a_name=None):
     window hide
-    $renpy.pause(0.3)
+    $ renpy.pause(0.3)
     $ pic = take_picture()
     if (a_name):
-        $ persistent.achievements[a_name]["file"] = pic
-    window auto
+        $ persistent.achievements[a_name]["file"] = pic    
+    window auto 
     return
 
 label show_photo_album:
@@ -106,3 +105,4 @@ screen show_photo(photo):
         idle photo
         hover photo
         action Hide("show_photo", irisin)
+        at full_screen

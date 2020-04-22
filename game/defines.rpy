@@ -170,6 +170,7 @@ init -100:
     # Custom transitions, positions, etc.
     ##
     define fade = Fade(0.2, 0.2, 0.2)
+    define whitefade = Fade(0,0,0.5,color=(255,255,255,255))
     define irisout = CropMove(0.1, "irisout")
     define irisin = CropMove(0.1, "irisin")
     define irisoutslow = CropMove(0.5, "irisout")
@@ -243,7 +244,12 @@ init -100:
 
     # A thumbnail version of a full screen image
     transform thumbnail:
-        zoom 0.22
+        #zoom 0.22 #doesn't work if full screen
+        size (282,159)
+
+    # Display something the size of our screen
+    transform full_screen:
+        size (1280,720)
 
     # Slide something in from the left, and slide it back to the left when it's hidden
     transform popside:
