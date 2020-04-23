@@ -45,6 +45,11 @@ init python:
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
                 # print "New Nitrogen: " + str(new_nitrogen)
 
+                # If we have a composting outhouse, and this square lost nitrogen,
+                # then we get a nitrogen bonus.
+                if (new_nitrogen < current_nitrogen):
+                    if (work8_choice == "improve"):
+                        new_nitrogen += 5
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
 

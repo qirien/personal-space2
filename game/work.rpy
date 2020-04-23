@@ -386,9 +386,8 @@ label work2:
     him surprised "Plums? That'll be delicious; thank you!"
     zaina "Thank you, [his_name]!"
 
-    # TODO: Have a little tutorial about how you can't move plums once they're planted, and how they take less work in future years.
     $ enable_crop("plums")
-    # TODO: if already enabled, increase # available in case of NG+
+    tutorial "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
     return
 
 
@@ -459,7 +458,6 @@ label work6:
     with dissolve
     $ random_crop = farm.crops.random_crop(include_animals = False)
     him normal "Well, I'm off to plant [random_crop] today."
-    # TODO: we might get a crop that doesn't work with seeds... fix this
     kid surprised "Is it fun?"
     him concerned "Kind of? Not as fun as harvesting, but you do get to dig in the dirt and drop in seeds..."
     kid nervous "Can I help?"
@@ -521,7 +519,6 @@ label work8:
     him surprised "Our outhouse is full!"
     "It was so full that it had started blocking the exhaust pipe."
     "I sat down and thought for a few minutes. I had a few choices..."
-    $ work8_choice = ""
     menu:
         "What should I do?"
         "Clean out the pit.":
@@ -548,7 +545,7 @@ label work8:
             "I ended up building a new outhouse on top of a small hill, with a container for the waste that could be rotated."
             "I built a couple of containers so that two could be decomposing into compost while the other was being actively used."
             "It took several days, and the new outhouse would be a bit more work to maintain, but I felt like it was worth it to solve the problem the right way."
-            # TODO: nitrogen doesn't go down as fast because more fertilizer?
+            "I'd spread this on my depleted fields so they would have more nitrogen each year." # this leads to +5 nitrogen in every square that lost it each year
 
     scene farm_interior with fade
     show her normal at midright
@@ -625,10 +622,17 @@ label work10:
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
             $ achieved("Family Beeswax")
-            # TODO: If you don't allocate space for them, you still have them.
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
             kevin "Very well. I shall ask someone else."
+    him surprised "Is that everything?"
+    kevin "What about other garden helpers? Worms, ladybugs, pill bugs..."
+    "I remembered George, the giant millipede thing that loved feeding on our compost pile, and how surprised [her_name] and I were to find him in the house."
+    him normal "Well, Talaam already has giant millipede creatures - if you have a compost pile eventually they'll find their way to it. Worms came with us from Earth in our compost -- we figured we'd need them and the bacteria."
+    kevin "I see."
+    him concerned "As for ladybugs -- that might be worth looking into. I wonder if they'd eat those corn pests we had a few years back. Though probably wasps would be better, since they had pretty tough armor."
+    kevin "It might be difficult to convince others to bring wasps here."
+    him happy "True; ladybugs have a much better reputation!"
     return
 
 # Year 12, 7.4 years old
@@ -1261,7 +1265,6 @@ label work20:
             show him sleeping with dissolve
             "When the water came rushing out onto my fields again, my shoulders finally relaxed for the first time in days."
             "We managed to keep most of our crops from dying, but they probably wouldn't yield as much this year."
-            # TODO: decrease yield?
             $ modify_credits(-100)
     return
 
@@ -1360,7 +1363,6 @@ label work22:
             sara normal "What about music? Maybe he'll start a punk metal band."
             her normal "He does write some pretty hardcore poetry..."
             him happy "Nah, I'm a terrible singer."
-            # TODO: add some foreshadowing for the ending here?
             sara "You might not have a midlife crisis."
             him normal "I'm not planning on it!"
 

@@ -30,6 +30,8 @@ label credits:
     $ renpy.pause(6.0, hard=skippable)
     hide text with fade
 
+    # TODO: add emoji credits
+
     # TODO: add more credits from Credits.txt
 
     show text "Space to Grow was made using the following tools:\n\nthe GIMP (gimp.org)\nAtom (atom.io)\njEdit (jedit.org)\nLunaPic (www.lunapic.com)\nAudacity (audacityteam.org)\nCelestia (celestia.space)\ngit (github.com)" with fade

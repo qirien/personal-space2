@@ -231,6 +231,7 @@ label start:
         seen_low_a = False
         seen_low_m = False
 
+        work8_choice = ""
         year28_promised_potatoes = False
 
         # Crop event variables

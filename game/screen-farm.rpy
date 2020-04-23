@@ -2,6 +2,7 @@
 # Farm Planning Screen
 #
 # TODO: Add a red highlight when choosing a crop if that crop would use too much nitrogen.
+# TODO: Add a P or something to denote perennials
 
 screen plan_farm():
     tag plan_farm

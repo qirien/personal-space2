@@ -306,7 +306,7 @@ label family2:
     show him normal at center
     with dissolve
     "Farming's hard work, no doubt about it. No sick days or vacations, either."
-    "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil"
+    "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil."
     "Even knowing the seeds are hiding there, it still feels like a miracle whenever they pop out of the ground into young seedlings."
     "I had only a few rows to go when I got a transmission from [her_name] on the radio."
 
@@ -1160,8 +1160,10 @@ label family4:
             "I just wanted to eat my dinner in peace. I ate quickly."
             "Just as [her_name] came back, I stood up."
             him determined "Gotta go check on something."
+            show her annoyed at midleft with moveinleft
             her annoyed "Right now? We were having family dinner together..."
             him normal "Sorry."
+            hide him with moveoutleft
             her surprised "[kid_name], why aren't you eating your beans?!"
             kid angry "Ap'sos!"
             "I just barely escaped in time."
