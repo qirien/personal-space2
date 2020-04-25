@@ -67,10 +67,9 @@ init -10:
         for expression_name in kid_expressions:
             renpy.image(("bro", expression_name), ConditionSwitch(
                 "year <= 12", "bro-sprites/baby_%s.png" % expression_name,
-                "(year-bro_birth_year) <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
-                "(year-bro_birth_year) <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
-                "(year-bro_birth_year) <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
-                "True", "kid-sprites/teen_%s.png" % expression_name))
+                "(year-bro_birth_year) <= TODDLER_MAX", "bro-sprites/toddler_%s.png" % expression_name,
+                "(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/kid_%s.png" % expression_name,
+                "True", "bro-sprites/tween_%s.png" % expression_name))
 
     define photo_scale_factor = 0.7
 

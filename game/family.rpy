@@ -3960,7 +3960,7 @@ label family13:
     bro annoyed "Babies cry a lot."
     him normal "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
     kid surprised "So how come [bro_name] still cries all the time?"
-    bro sad "I do not!"
+    bro cry "I do not!"
     her determined coat "I cry sometimes, too. Sometimes words just aren't enough."
     "I helped [her_name] put away the ultrasound machine, and we started to walk back home."
     scene path with fade
@@ -4143,12 +4143,15 @@ label family13_end:
             him sad "I know, sweetie. We all did."
             show kid at midright with move
             "She climbed up onto my lap. It was a tight fit now that she was getting bigger, but I held her close and we cried together."
-            show bro at midleft with moveinleft
+            show bro sad at midleft with moveinleft
             bro sad "I'm sad, too."
             him determined "Come here. It's okay to cry."
-            show bro sad at center with move
+            show kid sad
+            show him cry
+            with dissolve
+            show bro cry at center with move
             "I tried to be strong for them, but I ended up sniffling too. [her_name] came out of the bedroom and sat next to us."
-            show her sad at center behind bro,him with moveinleft
+            show her cry at center behind bro,him with moveinleft
             "I put my arm around her and we all cried together."
             "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't sad about losing a baby."
             "Maybe the best thing to do was just mourn together."
