@@ -4902,7 +4902,7 @@ label family17:
             "The wailing increased in volume and I decided I'd better go in."
 
     scene kid_bedroom with fade
-    show bro sad at midright, squatting
+    show bro sad at midright
     show kid angry at center
     with dissolve
     show him determined at midleft with moveinleft
@@ -4938,7 +4938,7 @@ label family17:
             him annoyed "What started all of this?"
             kid annoyed "We just came home from school and he saw the bread was all gone and he completely freaked out."
 
-    him determined "[her_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
+    him determined "[kid_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
     kid annoyed "How I'm supposed to get any homework done with all that whining?!"
     him annoyed "Then go to the library, or the clinic, or wherever you need to, okay?"
     "She sighed. I wasn't sure if she was just annoyed at the inconvenience, or if she was really worried about [bro_name], but she took the computer pad and left."
@@ -5126,13 +5126,16 @@ label family17:
         show him normal at midleft
         show bro concerned at quarterleft
         with moveinleft
-        him determined "Come, noble steed! We embark on a quest to satiate the hunger of this innocent boy!"
+        him determined "Come, noble steed! We embark on a quest to satiate the hunger of this brave warrior!"
         bro happy "With bread!"
         "We saddled her up with a pad behind the saddle for [bro_name] to sit on. He held on tight to my waist and we set off for town."
         scene path with fade
         show horse at midright with dissolve
         show him normal at midright
         show bro normal at center
+        bro concerned "Actually, I think I'd rather be a wizard than a warrior."
+        him determined "Then a wizard thou shalt be!"
+        "We continued in silence for a few moments."
         bro surprised "Where are we going to find bread?"
         him surprised "One of these fair townsfolk may have the item we need... but who?"
         bro concerned "I don't know..."
@@ -5163,6 +5166,7 @@ label family17:
                     "It galled me to pay Ilian for the wheat I had just sold him, but I did it anyway. I didn't keep a lot of wheat around since it brought in a lot of money. I also bought some yeast."
                 else:
                     "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
+                $ renpy.notify("Quest Updated: Got ingredients for bread!")
 
             "Pavel Grayson, the mayor":
                 "Mayor Grayson knew everyone. He would probably have some idea."
@@ -5219,6 +5223,7 @@ label family17:
                 pavel "Ha ha ha, no, I don't have candy. But I'll see if I can find something good for you. And we can remember Naomi, together."
                 bro normal "Okay."
                 "As we left, the sun was setting. It was too late to go anywhere else, so we headed home."
+                $ renpy.notify("Quest Failed: Find [bro_name] some bread!")
 
             "Pete, leader of the mavericks":
                 him determined "Let us ask Sir Pete!"
@@ -5263,6 +5268,7 @@ label family17:
                 "Maybe we could make some cornbread. It wasn't what [bro_name] had in mind, but we didn't have time to look anywhere else, and it was the best I could do."
                 him "Thanks, Pete. See you around."
                 pete "See you. Take it easy, kid."
+                $ renpy.notify("Quest Complete: Find [bro_name] some bread!")
 
         scene path with fade
         show horse at center
@@ -5274,7 +5280,7 @@ label family17:
         "But as we approached home, [bro_name] broke the silence."
         bro normal "I like riding with you, dad."
         him happy "I like riding with you, [bro_name]."
-        "We didn't find any bread, but [bro_name] seemed to be feeling better. Maybe hanging out with dad was what he really needed."
+        "We didn't find the bread [bro_name] wanted, but he seemed to be feeling better. Maybe hanging out with dad was what he really needed."
     return
 
 label family17_angry:

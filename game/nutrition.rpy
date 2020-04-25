@@ -31,8 +31,14 @@ label bad_nutrition:
         else:
             her determined coat "And for now let's trade for a few different foods."
 
-        # TODO: add screenshot here
+        # TODO: add screenshot/tutorial here
         "I added [her_name]'s nutrition information to my farm planning app so that I could keep track of that better."
+        if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+            scene fields with fade
+            "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
+            "I was able to add another field."
+            $ modify_farm_size(1)
+
         return
 
     # TODO: add in a random element here also?

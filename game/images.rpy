@@ -163,7 +163,7 @@ init -10:
         elif ((bro_age >= 0) and (get_parenting_style() == "authoritarian")):
             pos(670, 300)
             #align(0.6, 1.0)
-            "him nervous"
+            "bro concerned"
         elif ((bro_age >= 0) and (get_parenting_style() == "permissive")):
             pos(670, 300)
             #align(0.6, 1.0)
@@ -171,10 +171,10 @@ init -10:
         elif ((bro_age >= 0) and (get_parenting_style() == "inconsistent")):
             pos(670, 300)
             #align(0.6, 1.0)
-            "bro surprised"
+            "bro sad"
         elif (bro_age >= 0):
             pos(670, 300)
-            "bro concerned"
+            "bro determined"
         if True:
             "polaroid"
 

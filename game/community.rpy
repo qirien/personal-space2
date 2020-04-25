@@ -6062,14 +6062,18 @@ label community27:
     $ wherewenotlive = False
     play music sea
     scene ocean with fade
-    show him concerned at midright
-    show her surprised at midleft
-    show kid surprised at center
-    show bro concerned at quarterleft
+    show him normal at midrights
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
     with moveinleft
     "It was time for our now-annual trip to the ocean."
-    show him surprised
     "When we got there, we were surprised to see more fish than usual."
+    show him concerned
+    show her surprised
+    show kid surprised
+    show bro surprised
+    with dissolve    
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
     "I looked at one of the farms, and the nets had been cut."
     him surprised "I wonder if this is Pete's work?"
