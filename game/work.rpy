@@ -62,7 +62,7 @@ label overwork:
                 brennan_c "Hmmm. Not sure you'll get many takers, but if you send it to me, I'll post it."
                 scene fields with fade
                 show him normal at midright
-                show lorant at midleft
+                show miners at quarterleft
                 with dissolve
                 "It turned out a couple of miner families thought it would be fun to harvest food for a day."
                 "They only stayed for a few hours, but at least they made a dent in the plentiful [random_crop]."
@@ -1782,6 +1782,7 @@ label work28:
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
     play music upbeat
     scene restaurant with fade
+    show miners at right
     show travis normal at midright with dissolve
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."

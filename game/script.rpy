@@ -11,6 +11,7 @@
 #       A later version of Ren'Py should support this automatically...
 # TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.
 # TODO: IF your kid is not competent, it's really hard to get enough calories/vitamins/money.
+# TODO: If your kid is competent, getting money is easy!!  Maybe this is OK...
 ##
 
 label start:

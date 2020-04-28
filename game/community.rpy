@@ -1470,15 +1470,28 @@ label community11:
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
+    show him at quarterleft behind sara
+    show bro at quarterleft, baby_pos     
+    show sara at left
+    show oleg at left
+    show her at midleft
+    show kid at midleft
+    with move
+    show miners at right behind sara with moveinright
     sara normal "Wow, those guys are built. The women, too -- solid!"
     her concerned "Yeah, I'd expect that miners have to be in good physical condition."
     him surprised "They look pretty strong. Almost as strong as all the farmers we have here."
-    her flirting "Farmers have to be in good physical condition too!"
+    her laugh "Farmers have to be in good physical condition too!"
     sara normal "Pavel is already greeting everyone. Let's join him."
     hide sara
     hide oleg
+    hide miners
     with moveoutleft
-    show her normal at quarterright with move
+    show him at center
+    show bro at center, baby_pos
+    show her normal at quarterright
+    show kid at midright
+    with move
     "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
     him annoyed "Wait a minute, I recognize him!"
     show her surprised with dissolve
@@ -2245,6 +2258,7 @@ label community12:
                     scene cabins with dissolve
                     show him normal at left
                     show lily normal at midleft
+                    show miners at quarterright
                     with dissolve
                     "The next day, Dr. Lily started her instruction."
                     "Around fifteen people showed up for the class."
