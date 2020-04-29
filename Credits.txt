@@ -1,4 +1,23 @@
-﻿= Media used in "Our Personal Space 2"
+﻿= "Our Personal Space 2: Space to Grow" Licenses
+
+"Our Personal Space 2: Space to Grow" is an aggregate collection of various material using the following licenses:
+
+== Program, Text & Dialogue
+
+"Our Personal Space 2: Space to Grow" Program, Text & Dialogue are licensed under the GNU GPLv3.
+
+.License
+****
+"Our Personal Space 2: Space to Grow" Program, Text & Dialogue © 2020 Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program.
+If not, see <http://www.gnu.org/licenses/>.
+****
 
 == GRAPHICS
 
@@ -80,16 +99,6 @@ Camera Lens by RG1024, <https://openclipart.org/detail/20295/camera-lens>
 Textbox twig frame by Firkin from "Poems and Pictures", 1865
 Watering Can by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">OpenClipart-Vectors</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">Pixabay</a>
 
-
-=== Fonts
-Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>
-SP-Marker Font by SizzlePrint, <http://www.sizzleprint.com/fonts/>
-Roboto Slab by Christian Robertson, <https://www.fontsquirrel.com/license/roboto-slab>
-Fotograami Flower Font by Khaled Aldousari, <http://www.dafont.com/fotograami-flower.font>
-OpenSansEmoji by MorbZ, <https://github.com/MorbZ/OpenSansEmoji>
-FreeMono by GNU FreeFont, <https://www.gnu.org/software/freefont/>, licensed under the GPL
-KidZone by 538Fonts, <https://www.fontspace.com/538fonts/kidzone>, public domain
-
 === Character Sprites
 
 "Our Personal Space 2" Character Sprites are dual-licensed under the GNU GPLv3 and CC-BY-SA-4.0.
@@ -113,3 +122,94 @@ If not, see <http://www.gnu.org/licenses/>.
 
 This artwork is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License <http://creativecommons.org/licenses/by-sa/4.0/>.
 ****
+
+
+== Fonts
+Questrial by Admix Designs <http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL>
+SP-Marker Font by SizzlePrint, <http://www.sizzleprint.com/fonts/>
+Roboto Slab by Christian Robertson, <https://www.fontsquirrel.com/license/roboto-slab>
+Fotograami Flower Font by Khaled Aldousari, <http://www.dafont.com/fotograami-flower.font>
+OpenSansEmoji by MorbZ, <https://github.com/MorbZ/OpenSansEmoji>
+FreeMono by GNU FreeFont, <https://www.gnu.org/software/freefont/>, licensed under the GPL
+KidZone by 538Fonts, <https://www.fontspace.com/538fonts/kidzone>, public domain
+
+== Sounds
+
+==== CC-0/Public Domain
+
+Longbow Firing and Hitting Target <longbow.ogg> by Andrea Landaker, mix of Melon Impacts 3 by DaleT92, <https://freesound.org/people/DaleT92/sounds/207804/> and Longbow Release 1 by saturdaysoundguy, <https://freesound.org/people/saturdaysoundguy/sounds/394178/>
+Crossbow Firing and Hitting Target <crossbow.ogg> by Ali_6868, <https://freesound.org/people/Ali_6868/sounds/384919/>
+Knife Stab <stab.ogg> by neilsher, <https://freesound.org/people/neilsher/sounds/411743/>
+Splashes in a Bathtub by bbrocer, <https://freesound.org/people/bbrocer/sounds/382649/>
+
+==== Soundjay
+
+The following sounds are modified or unmodified versions licensed under the Soundjay license.
+All modifications are released under the same license as the original sound files.
+
+Fire <fire-2.mp3>, People <people.mp3>, Radio <radio.mp3>, Rain <rain-02.ogg>, Stream 2 <stream-2.mp3>, Stream 3 <stream-3.mp3>, Ocean <ocean-waves.mp3>.
+
+.License
+****
+Sound Effects
+
+You are allowed to use the sounds free of charge and royalty free in your projects (such as films, videos, games, presentations, animations, stage plays, radio plays, audio books, apps) be it for commercial or non-commercial purposes.
+
+But you are NOT allowed to
+- post the sounds (as sound effects or ringtones) on any website for others to download, copy or use
+- use them as a raw material to create sound effects or ringtones that you will sell, distribute or offer for downloading
+- sell or license the sounds (as sound effects or ringtones) to anyone else
+- claim the sounds as yours
+- link directly to individual sound files on our server
+- distribute the sounds in apps or computer programs that are clearly sound related in nature (such as sound machine, funny sounds app, sound therapy app, ringtone maker, etc.). If you are developing such programs, contact us for licensing options.
+- distribute the sounds in apps or computer programs that use the sounds as the program's sound resource library for other people's use (such as animation creator, video editing app, song maker software, ebook creator, etc.). If you are developing such programs, contact us for licensing options.
+- use the sounds to create so-called 'video sound effects'. An example would be a video titled 'dog sound effect' that simply plays a dog sound effect.
+
+If you use the sound effects, please consider giving us a credit but it's not required.
+If you are adding your movie to IMDb (the Internet Movie Database), contact us on how to credit us correctly.
+****
+
+== Game Engine
+
+The Ren'Py game engine is composed of software of various licenses.
+
+.License
+****
+License
+
+Most of Ren'Py is covered by the terms of the following (MIT) license:
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Portions of Ren'Py are derived from code that is licensed under the GNU Lesser General Public License, so Ren'Py games must be distributed in a manner that satisfies the LGPL.
+
+Please see each individual source file for a list of copyright holders. The artwork in the demo is released by various copyright holders, under the same terms.
+
+Ren'Py binaries include code from the following projects:
+
+    Python (Python License)
+    Pygame (LGPL)
+    SDL (LGPL)
+    SDL_image (LGPL)
+    SDL_ttf (LGPL)
+    Freetype (LGPL)
+    Fribidi (LGPL)
+    libav (LGPL)
+    libjpeg-turbo (LGPL)
+    libpng (PNG license)
+    zlib (Zlib License)
+    bzip2 (Bzip2 License)
+    pyobjc (MIT License)
+    py2exe (MIT License)
+    GLEW (Modified BSD, MIT)
+    zsync (Artistic License)
+
+For the purpose of LGPL compliance, the source code to all LGPL software we depend on is either in the Ren'Py package (available from http://www.renpy.org/), or in the renpy-deps package (http://www.renpy.org/dl/lgpl/). We believe compliance can be achieved by including a copy of this license with every copy of Ren'Py you distribute, and referring to it in your project's README file.
+
+Ren'Py may be distributed alongside the jEdit or Editra text editors. Editra is licensed under the wxWindows license, while jEdit is under the GNU General Public License.
+****
+

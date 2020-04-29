@@ -38,6 +38,7 @@ label community1:
     $ tell_Perons = False
     scene community_center with fade
     show him normal at center
+    play sound "sfx/people.mp3"
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, I got in line with my friend Thuc to have some soup."
     show him normal at midright with move
@@ -280,6 +281,7 @@ label community1:
 
     #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
     # Maybe something about building a park/playground for everyone?
+    stop sound fadeout 1.0
     return
 
 # 2 - bring whole harvest in to storehouse?
@@ -455,7 +457,8 @@ label community3:
 label community4:
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
-    show pavel normal at center
+    show pavel normal at center with dissolve
+    play sound "sfx/people.mp3"
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 250 characters, you know."
     pavel "They said:"
@@ -542,6 +545,7 @@ label community4:
     else:
         "Sara is elected as the new representative."
         #TODO: should a leader of the militia be elected here as well?
+    stop sound fadeout 1.0
     return
 
 # 5 - Set aside food for miners?
@@ -1082,6 +1086,8 @@ label community9:
     scene pond with fade
     show pete normal at midright
     show him normal at midleft
+    with dissolve
+    play sound "sfx/stream-2.mp3" loop
     pete happy "Hey, [his_name]!"
     him happy "Hi Pete."
     pete normal "Out to catch some fish?"
@@ -1111,6 +1117,7 @@ label community9:
             him annoyed "We'll see about that... though I haven't praticed shooting a bow and arrow since I was a kid..."
             pete happy "You can set up traps, then."
             him normal "Or maybe I'll do both. We'll see which is more effective."
+            stop sound fadeout 1.0
             scene storeroom with fade
             "I told Thuc about the campout and he decided to join us, bringing a crossbow from the storehouse. I picked up some wire and cord for snares, as well as a compound bow."
             scene path with fade
@@ -1136,15 +1143,20 @@ label community9:
             him pout "Isn't there supposed to be some place for the arrow to rest?"
             pete "Don't need it. It just rests on your hand."
             "I picked up the bow and nocked an arrow... but couldn't pull it back more than a few inches. The arrow plinked harmlessly off the tree."
+            play sound "sfx/longbow.ogg"            
             him normal "Ha ha, at least I hit the tree."
             thuc normal "You made this bow?"
             pete normal "Yup. Carved it from a single branch."
             "He drew an arrow, nocked it, and pulled the string back all the way to his jaw. The arrow flew into the dead tree and almost came out the other side."
+            play sound "sfx/longbow.ogg"
             him annoyed "I prefer a compound bow."
+            play sound "sfx/crossbow.ogg"            
             "I got out my own bow and shot an arrow at our target, and it sunk in with a satisfying {i}thunk{/i}."
+            play sound ["sfx/longbow.ogg", "sfx/crossbow.ogg", "sfx/crossbow.ogg", "sfx/longbow.ogg"] loop
             "Thuc got out his crossbow and we took turns trying it out, too."
+            stop sound fadeout 1.0
+            show night_overlay            
             "We recovered our arrows and bolts, and I noticed it was getting dark."
-            show night_overlay
             him normal "I'm going to go setup those snares."
             thuc normal "I saw some trails back there. Might be a good spot."
             pete "I'm going to get a fire going. We'll eat when you get back."
@@ -1159,6 +1171,7 @@ label community9:
             show him normal at midright
             show night_overlay
             with dissolve
+            play sound "sfx/fire-2.mp3" loop
 
             "When we returned, Pete had some beans cooking on a small fire and was making what looked like a cloak of branches and small pieces of yarn."
             him surprised "What are you making, Pete?"
@@ -1170,6 +1183,7 @@ label community9:
             show him pout with dissolve
             "I didn't go to quite as great of lengths as Pete, but I did tie some branches to my hat and smudge soot on my clothes."
             pete "They'll never see us coming!"
+            stop sound fadeout 1.0
             # TODO: can we show this?
 
             scene plain with fade
@@ -1205,6 +1219,7 @@ label community9:
             "It would have been faster to just scare the herd towards my snares, but honestly, I wasn't sure they would work. Grass crabs were pretty different from rabbits."
             "It seemed like we were maneuvering all morning. Finally, Pete gave a thumbs-up and drew his bow."
             "I guess he was going to shoot first. He probably had the best chance of piercing their armor. Still, Thuc and I didn't want to be left out. I aimed at the same crab."
+            play sound ["sfx/longbow.ogg", "sfx/crossbow.ogg", "sfx/crossbow.ogg"]
             "As soon as I saw him loose his arrow out of the corner of my eye, I let mine loose, too."
             "My arrow sailed over its shell, but Thuc's stuck out of the crab's leg."
             "Pete's hit the crab square in the front part of the shell, but it simply walked off with the arrow sticking out of it."
@@ -1230,6 +1245,7 @@ label community9:
                     show him annoyed at right with move
                     "I tackled the grass crab from behind, easily outweighing it."
                     "The crab tried to get at me with its other, smaller claw, but couldn't reach back that far."
+                    play sound "sfx/stab.ogg"
                     "The crab's wild swinging made Pete lose his balance, and he fell forward onto the crab, his knife slicing through my arm and into the top of the crab's shell."
                     show him angry with dissolve
                     "Finally, the crab quit moving and we were able to pry Pete's leg out of the claw."
@@ -1242,6 +1258,7 @@ label community9:
                     show thuc at right with move
                     "I froze. Thuc stepped forward onto the crab's claw, and it released its grip on Pete's leg."
                     "However, it brought up its smaller claw and scratched Thuc's cheek."
+                    play sound "sfx/stab.ogg"
                     "Pete thrust his knife into the crevice where the crab's shell plates met."
                     show pete at standing with move
                     pete happy "Got 'em!"
@@ -1281,6 +1298,7 @@ label community9:
             show thuc normal at midright
             show him normal at quarterright
             with dissolve
+            play sound "sfx/fire-2.mp3" loop
             "Finally, we were able to roast and eat the grass crab. The meat was surprisingly sweet."
             "We couldn't eat all of it, so we split it up between the three of us to bring home."
             pete "Here's some salt water to keep it fresh for the hike home."
@@ -1288,12 +1306,14 @@ label community9:
             pete "We oughta do this more often."
             thuc normal "Sure, except with less blood next time."
             him happy "Sounds good to me!"
+            stop sound fadeout 1.0
         "Sounds dangerous. I have to focus on farming right now anyway.":
             $ miners += 1 #not sure which side colonists +1 should go on for this one.
             him concerned "What happens if you get pinched by one of those things? It doesn't sound safe."
             pete "That's the whole point! Gets your blood moving."
             show him pout
             him pout "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
+            stop sound fadeout 1.0
             "Pete went hunting on his own. But he brought back some meat from the grass crab he killed, preserved in salt water."
             scene community_center with fade
             show him normal at midleft
@@ -2508,9 +2528,11 @@ label community13:
                 him pout "Okay everyone, let's get ready to go!"
                 kid happy "I hope Oleg is there!"
                 scene community_center with fade
+                play sound "sfx/people.mp3"
                 "Oleg was there, along with Sara, Ilian, Mayor Grayson, Dr. Lily, Brennan, and Kevin."
                 show sara normal at midright with dissolve
                 sara normal "Thank you everyone, for coming. We're here to discuss Dr. Lily's findings, which have implications for everyone on Talaam."
+                stop sound fadeout 1.0
                 hide sara
                 show lily normal at midleft with dissolve
                 lily angry "Heavy metals leaked from the tailings dam into the river we use for irrigation and drinking water."
@@ -3280,7 +3302,8 @@ label community17:
 
     scene community_center with fade
     show him normal at midleft
-    play music audio.upbeat
+    play music upbeat
+    play sound "sfx/people.mp3"
     if (invited_mavericks and invited_miners):
         show pete normal at left with moveinleft
         "Pete offered to slaughter a steer for the occasion."
@@ -3381,6 +3404,7 @@ label community17:
     julia mad "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
     thuc sad "They still sound pretty entitled to me!"
     him laugh "Some things never change."
+    stop sound fadeout 1.0
 
     scene community_center with fade
     play music audio.exciting
@@ -3918,8 +3942,10 @@ label community17:
 
 label c17_after_activities:
     scene bonfire with fade
+    play sound "sfx/fire-2.mp3" loop
     "We ended the night grouped around a blazing bonfire."
     "The flames' warmth warded off the damp chill growing in the night air."
+    stop sound fadeout 1.0
 
     scene black with fade
     if ate_jellyfish:
@@ -4518,6 +4544,7 @@ label community21:
 
     scene ocean_sunset with fade
     play music sea
+    play sound "sfx/ocean-waves.mp3" loop
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
     "I'm used to pulling up weeds, so I ended up clearing out a spot for our tent."
@@ -4604,6 +4631,7 @@ label community21:
         "He chatted to a few people but I didn't get a chance to say hi."
         "The kids were playing with these weird transparent shells."
         hide pete with moveoutleft
+    stop sound fadeout 1.0
 
     if miners > 9: #maximum is 15
         scene bonfire with fade
@@ -4614,6 +4642,7 @@ label community21:
         show brennan normal at center
         show zaina normal at midleft
         with moveinleft
+        play sound "sfx/fire-2.mp3" loop
         #TODO: put Chaco in here somewhere? we haven't seen him in a while
         brennan normal "Zaina and some of the miners caught a bunch of fish."
         brennan happy "Want to join us for a little roasting party?"
@@ -4698,22 +4727,26 @@ label community21:
         show kid normal at left
         show zaina normal at midleft
         with moveinleft
+        play sound "sfx/fire-2.mp3" loop
         "[kid_name] caught a fish with Zaina, and we cooked it over an open fire."
         "It looks like the miners had the same idea. They got a huge bonfire going."
         her excited "Wow, that bonfire is huge! Let's go check it out."
         him normal "You can go on ahead. I'll stay here."
         her flirting "I'll be right back."
         "[her_name] came back after a few hours. She smelled even more like smoke than I did."
+    stop sound fadeout 1.0
     scene ocean with fade
     show him normal at center
     show kid happy at midleft
     with dissolve
+    play sound "sfx/ocean-waves.mp3"
     "The next day was more relaxing in the shade, playing with jellysquids, and catching fish."
     "I even taught [kid_name] how to swim. Kind of."
     "We traveled back to the colony without incident."
     hide him
     hide kid
     with moveoutright
+    stop sound fadeout 1.0
     #TODO: Does this event need a choice?
     return
 
@@ -5513,6 +5546,7 @@ label community25:
 
     scene ocean with dissolve
     show him normal at midleft with dissolve
+    play sound "sfx/ocean-waves.mp3"
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
     if (miners > 12):
         show chaco normal at midright with dissolve
@@ -5701,8 +5735,6 @@ label community25:
             brennan_c "I'm still doing research to see if that's the case."
             brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
             brennan_c "I do have some jellysquid meat, but since it isn't in high demand I was planning to sell it to Pete for fertilizer or fish food."
-            return
-
 
     else: #if neither miners or mavericks is high enough
         "I looked around the coast for the jellystar farm."
@@ -5716,10 +5748,12 @@ label community25:
                 "I could see and think but it felt like I was in a trance."
                 "After a few minutes or an hour, it let me go."
                 $ touched_jellystar_25 = True
-                return
             "Don't touch one.":
                 "I decided to just look at the jellystar."
                 jump after_convo_25
+
+    stop sound fadeout 1.0
+    return
 
 
 label community26:
@@ -6081,6 +6115,7 @@ label community27:
     show kid normal at center
     show bro normal at quarterleft
     with moveinleft
+    play sound "sfx/ocean-waves.mp3"
     "It was time for our now-annual trip to the ocean."
     "When we got there, we were surprised to see more fish than usual."
     show him concerned
@@ -6214,6 +6249,7 @@ label call_to_squid:
             with moveinleft
             her "What on Earth happened to you?"
             kid shifty "I think you mean 'What on Talaam' happened to us."
+            stop sound fadeout 1.0
             if (mavericks > 8):
                 scene shack with dissolve
                 show pete normal at midright with dissolve
@@ -6534,6 +6570,7 @@ label boat_capsized:
     "Over the next few months, there were fewer reports of jellysquid sightings."
     "We rarely saw any of them after that year."
 
+    stop sound fadeout 1.0
     return
 
 
@@ -6691,7 +6728,9 @@ label fill_gap:
     show sara normal at center
     show ilian normal at midright
     with dissolve
+    play sound "sfx/people.mp3"
     "In the meantime, we held a meeting to decide who would be the new mayor."
+    stop sound fadeout 2.0
     sara sad "I received your nominations."
     sara normal "The top nominations for mayor are Julia, Kevin, and myself."
     ilian normal "Kevin isn't eligible. He's not a colonist."
@@ -6926,6 +6965,7 @@ label community29:
         $ helen_dead = True
         "He didn't say anything, just turned away from us and collapsed next to her bed. He stayed with her body until [her_name] locked the hospital for the day."
         scene ocean_sunset with dissolve
+        play music sea
         "We held a memorial for her, but Pete didn't attend."
         "Later he came back for Helen's body and the baby's body, which he buried in a grave near the ocean."
         "A few weeks later there were still some loose ends from her hospital stay."

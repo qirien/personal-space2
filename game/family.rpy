@@ -935,12 +935,14 @@ label family3:
             $ neglectful += 1
 
     scene bonfire with fade
+    play sound "sfx/fire-2.mp3" loop
     "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
     scene moons with fade
     show him sleeping at midright
     show her sleeping at center
     show kid normal at center, baby_pos
     show night_overlay
+    stop sound fadeout 1.0
     "When it started to get dark, we were both exhausted."
     him flirting "I was going to suggest some romantic star gazing, but..."
     her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
@@ -4662,6 +4664,7 @@ label family16:
                     "Some of it could probably be recycled, but why should that be my job?"
                     "Then I lit it on fire."
                     scene bonfire with fade
+                    play sound "sfx/fire-2.mp3" loop
                     "[kid_name] came running out screaming when she saw the blaze."
                     kid cry "No! Stop! I'll clean it up!"
                     him determined "If you won't take care of your things, then you don't get to have things."
@@ -4669,6 +4672,7 @@ label family16:
                     him annoyed "Also, you're grounded. You didn't do what I asked and you spoke to me rudely."
                     "She burst into tears and ran away."
                     "I stood watching the flames for a long time."
+                    stop sound fadeout 1.0
                     scene farm_interior with fade
                     show her concerned coat at midright
                     show kid cry at center
@@ -5313,6 +5317,7 @@ label family17_angry:
 # 11.1 Earth years old
 # Bathing is still a necessity
 label family18:
+    play music tense
     scene kid_bedroom with fade
     "Though [kid_name] still acted like a kid, sometimes she smelled more like a teenager..."
     show him annoyed at midleft
@@ -5360,10 +5365,10 @@ label family18:
                 "What should I say?"
                 "I'll throw you in the river!":
                     him annoyed "I'll throw you in the river."
-                    kid determined "I'm eleven years old. You can't just carry me around like a baby."
+                    kid annoyed "I'm eleven years old. You can't just carry me around like a baby."
                     him angry "You don't think I could?!"
                     show him at midright with move
-                    show kid at squatting with move
+                    show kid surprised with dissolve
                     "I lifted her up. It had been a long time since I carried her anywhere. Her arms and legs were so long, now. And she was much heavier."
                     kid angry "Stop it! Dad, put me down! I'll take a bath, I will, just put me down!"
                     "I could probably make it all the way to the river. But maybe I shouldn't. I felt suddenly guilty. How would I like it if someone threw me in the river? Then again, I didn't want to let her think she could get away with this kind of disobedience."
@@ -5396,10 +5401,12 @@ label family18:
                             show him determined at midleft
                             show kid cry at midleft, squatting
                             with moveinleft
+                            play sound "sfx/stream-2.mp3" loop
                             "The air was cool, but not cold. It would be an uncomfortable bath for her, but she wasn't in any danger. The leeches all lived in the warm ponds, not the cold river, so she couldn't even complain about those."
                             show him at center
                             show kid at center, squatting
                             with move
+                            play audio "sfx/splash.ogg"
                             "When we arrived, I didn't pause at all. I walked right into the water, boots and all, and dropped her in the middle of it with her clothes still on."
                             show kid surprised at sitting
                             show him determined at quarterleft
@@ -5408,21 +5415,28 @@ label family18:
                             show kid angry at squatting
                             show him doubt
                             with dissolve
+                            play audio "sfx/splash.ogg"
                             "A huge wave of water splashed my back. [kid_name], drenched and furious as a cat, was using all her might to send water my direction."
                             "I felt kind of mad, but I couldn't blame her. I had humiliated her and made her feel like a little kid again. I thought that was what she needed. But what did she need now?"
                             menu:
                                 "What should I do?"
-                                "Try to cheer her up with a water fight.":
+                                "Try to cheer her up with a water fight.":                                
                                     $ responsive += 1
+                                    play music exciting
                                     show him normal at midleft with move
+                                    play audio "sfx/splash.ogg"
                                     "I send a wave of water back, and soon we were splashing and yelling and hollering."
+                                    play audio "sfx/splash.ogg"
                                     "Our anger turned into laughter as we aimed water splashes at each other."
+                                    play audio "sfx/splash.ogg"
                                     him happy "Dodge this!"
                                     show kid at quarterright with move
                                     kid annoyed "Ha ha, you missed! Besides, I'm already soaked so I don't even notice any more water!"
+                                    play audio "sfx/splash.ogg"
                                     him normal "You couldn't hit me if I was the-- blruggleegrlgle."
                                     kid normal "What's that? I couldn't hear you; seems like your mouth's full of water!"
                                     him surprised "Here, come closer so you can hear better."
+                                    play audio "sfx/splash.ogg"
                                     show kid at center with move
                                     kid surprised "What? What were you going to say?"
                                     him excited "I don't know; WATER {b}you{/b} going to say?!"
@@ -5430,6 +5444,7 @@ label family18:
                                     "Finally, both of us sopping wet and shivering, we headed for home."
                                     hide him
                                     hide kid
+                                    stop sound fadeout 1.0
                                     with moveoutleft
                                     scene farm_interior with fade
                                     show her normal at midright with dissolve
@@ -5449,6 +5464,7 @@ label family18:
                                     $ demanding += 1
                                     hide him with moveoutleft
                                     show kid sad with dissolve
+                                    stop sound fadeout 1.0
                                     "What she needed was a serious dad who would make sure she did what she needed to do, and never backed down."
                                     "I would be that dad, even if she hated me for it."
                                     $ authoritarian += 1
@@ -6443,12 +6459,20 @@ label family22:
             "We should go for a walk.":
                 him happy "The weather's nice; let's go for a walk."
                 kid determined "But I'm tired!"
-                bro determined "I'm not swimming!"
+                bro annoyed "I'm not swimming!"
                 her normal "The river's not that far. And you don't have to swim. Bring a book if you're worried you'll get bored, [bro_name]."
                 him excited "I'll bring my net; maybe I can catch something!"
                 her laugh "We just had dinner..."
                 him flirting "Then this'll be dessert!"
+                scene pond with fade
+                show him normal at midleft
+                show her normal at quarterleft
+                show bro normal at center
+                show kid normal at midright
+                with moveinleft
+                play sound "sfx/stream-2.mp3" loop
                 "We walked down to the river. I caught a tiny lobster-looking creature, but it was so small, I just threw it back."
+                play audio "sfx/splash.ogg"
                 bro sad "Stop splashing me!"
                 kid happy "Ha ha ha, it looks like you peed your pants."
                 bro concerned "Moooom!"
@@ -6464,6 +6488,7 @@ label family22:
                 kid annoyed "You'd probably throw me in the river."
                 him excited "Yeah... doesn't that sound fun?"
                 kid yell "No!"
+                stop sound fadeout 1.0
             "We should watch a movie.":
                 him happy "We should watch a movie."
                 kid surprised "Can we please watch 'Catacombs'? I love that show!"
