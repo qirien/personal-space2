@@ -16,6 +16,7 @@ label family_intro:
     play music sad
     call bedroom_scene(True)
     show kid sad with dissolve
+    play sound "sfx/newborn-cry.ogg" fadein 10.0
     her sleeping "[his_name]."
     him sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
@@ -23,6 +24,7 @@ label family_intro:
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
     him concerned "Okay..."
+    stop sound fadeout 2.0
     show her sleeping
     show kid concerned
     with dissolve
@@ -49,6 +51,7 @@ label family1:
     show him concerned at midright
     show her baby sad at midleft
 
+    play sound "sfx/newborn-cry.ogg" fadein 20.0 loop
     her "I just wish I knew why she was still crying! We've tried everything -- food, diaper, snuggles, a warm bath, lying on her back, lying on her tummy...I don't know what else we can do."
     him sad "I know. It's been hours..."
     "I knew [her_name] was exhausted. She had been carrying [kid_name] around all day and feeding her every few hours."
@@ -97,6 +100,7 @@ label family1:
             show kid cry at center, baby_pos, closeup_baby
             "I wonder if [kid_name] felt the same way?"
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
+            stop sound fadeout 5.0
             "We walked the fields for at least an hour; maybe more."
             hide kid with dissolve
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
@@ -124,6 +128,7 @@ label family1:
             "[her_name] went outside to do some reading while I held [kid_name]. I paced restlessly, holding the baby in different positions until [her_name] returned."
             show him at center
             with move
+            stop sound fadeout 5.0
             "She had a big list of things to try, and we tried them all.  I don't know if the white noise and the bath worked, or if she finally just wore herself out, but eventually she stopped crying and fell asleep."
             $ authoritative += 1
 
@@ -138,6 +143,7 @@ label family1:
             her "You can't just leave me here with a screaming baby!"
             "[kid_name] and [her_name] wailed in unison, and their tears wrenched at my heart, but I just couldn't take it anymore."
             hide him with moveoutleft
+            stop sound fadeout 10.0
             scene farm_exterior with fade
             "I stepped out into the night, closing the door gently with what little control I had left. I started to run."
             scene fields with fade
@@ -217,16 +223,19 @@ label family1:
             with move
             him happy "Now I'm going to try to be as awesome a parent as you've been all day. You just get some sleep or read a book or whatever you want to do! I got this!"
             hide kid with dissolve
-            show him sad baby at center, squatting
+            show him sad baby at pace_back_and_forth
             with move
             show her surprised with dissolve
+            # show him squatting with move
+            stop sound fadeout 10.0
             "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
-            show him sad baby at right, standing
-            with move
+            # show him sad baby at left, standing
+            # with move
             her normal "[his_name]... You don't have to try to impress me."
-            show him at midright, squatting
-            with move
+            # show him at midright, squatting
+            # with move
             him happy baby "What's that? [kid_name] and I can't hear you; we're having too much fun."
+            play music videogame
             "[her_name] laughed, just for a second, and it was the most beautiful sound I'd heard all day. She put on some music with a good beat, and then came over and joined our dancing."
             show her happy at center
             show him happy baby at midleft, standing
@@ -236,6 +245,7 @@ label family1:
             $ authoritative += 1
             $ authoritarian += 1
 
+    stop sound fadeout 2.0
     call bedroom_scene(show_baby=True)
     show kid normal with dissolve
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
@@ -310,6 +320,7 @@ label family2:
     "Even knowing the seeds are hiding there, it still feels like a miracle whenever they pop out of the ground into young seedlings."
     "I had only a few rows to go when I got a transmission from [her_name] on the radio."
 
+    play sound "sfx/radio.mp3"
     her "{i}[his_name]! I'm leaving right now! There's an emergency at the clinic.{/i}"
     him determined "{i}Okay, I'll take care of things here.{/i}"
     her "{i}[kid_name]'s in her crib. Bye!{/i}"
@@ -318,12 +329,14 @@ label family2:
     "Then I'd come home at lunchtime and [her_name] would head over to the clinic for appointments and drop-ins."
     "But this sounded like something that couldn't wait."
     "[her_name] didn't say if [kid_name] was asleep or not..."
+    # TODO: add older baby sound here?
     menu:
         "What should I do?"
         "Go straight home.":
             $ responsive += 1
             "I didn't want to leave [kid_name] alone. If she was asleep, I could setup the baby monitor and go back out to work."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
+            play sound "sfx/newborn-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Ask [her_name] for more information.":
@@ -331,6 +344,7 @@ label family2:
             him determined "Hey, is [kid_name] asleep? Did you setup the baby monitor?"
             "I waited for a few minutes, but [her_name] didn't respond. She was probably on the other channel talking to whoever had the emergency."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
+            play sound "sfx/newborn-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Finish up the last few rows and then go home.":
@@ -339,6 +353,7 @@ label family2:
             "[kid_name] could wait a few minutes while I finished this up. I hated leaving things half-done."
             "It ended up taking almost an hour, but I sure felt satisfied to have finished the entire field."
             "But as I headed for home, I could hear [kid_name] crying urgently."
+            play sound "sfx/newborn-cry.ogg" fadein 5.0
             scene kid_bedroom with fade
             show kid angry at center,squatting with dissolve
             show him surprised at quarterleft with moveinleft
@@ -349,6 +364,7 @@ label family2:
     scene farm_interior with fade
     show him normal at center
     show kid surprised at midright, baby_pos
+    stop sound fadeout 5.0
     "I managed to calm [kid_name] down with some snuggles and a snack."
     "I built a house out of blocks with her, but then my mind started to wander."
     show kid happy
@@ -2428,6 +2444,7 @@ label family8:
     scene fields with fade
     show rain
     play music happy
+    play sound "sfx/rain.ogg" loop
     "It was my turn to host playgroup. It always felt a little frustrating not to be able to go out in the fields and get my work done, but I could also see that it was good for [kid_name]."
     "I'll admit I looked forward to school starting next week. We had just had a preview day where these kids got to see the school and meet the teacher."
     "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
@@ -2535,6 +2552,7 @@ label family8:
                 "Let it go.":
                     "Oleg was fine; no need to bring that up again."
 
+    stop sound fadeout 2.0
     scene stars with fade
     play music thoughtful
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
@@ -2775,8 +2793,10 @@ label baby_delivery:
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."
     her normal "We can't call him 'little guy'. What's his name?"
+    play sound "sfx/newborn-cry.ogg" fadein 2.0
     him baby sad "We talked about lots of names..."
     her determined "You let me choose [kid_name]'s name. Now you pick this baby's name."
+    stop sound fadeout 5.0
     him "Really? You trust me to name him?"
     her flirting "As long as it's one of the names we both agreed on."
     him baby happy "Okay! Let's see... you look like a..."
@@ -3798,6 +3818,7 @@ label family12_disobey:
     "After an hour, I started to get worried. Then I remembered what she had asked yesterday, and I started to get mad."
     show him annoyed
     "I called up Mr. Lewis on the radio."
+    play sound "sfx/radio.mp3"
     him "{i}Mr. Lewis? Is [kid_name] there?{/i}"
     "Mr. Lewis" "{i}I just got home, but no, she's not here.{/i}"
     him "{i}Are you sure? She hasn't come home yet...{/i}"
@@ -4033,7 +4054,7 @@ label family13:
                 "What should I tell her about sex?"
                 "Tell her the physical mechanics." if not sex_ed_biology:
                     $ confident += 1
-                    him explaining "A man's penis can go inside the woman's vagina and the sperm comes out of it when they have sex. That can make a baby."
+                    him explaining "A man's penis can go inside the woman's vagina when they have sex. His sperm come out and can combine with on of her eggs to make a baby."
                     kid concerned "Oh."
                     "She thought about it for a minute."
                     kid surprised "And that's how you and Mom made me?"
@@ -4041,6 +4062,9 @@ label family13:
                     "She looked away for a minute, and I could almost see her brain processing this new information."
                     kid concerned "Are you sure?"
                     him happy "Sure as you're sitting here asking me if I'm sure."
+                    kid surprised "Not like a chicken egg, right?"
+                    him laugh "No, no, it's really really tiny. You can't even see it without a microscope."
+                    kid concerned "Okay, good, because that would be weird."
                     $ sex_ed_biology = True
                     $ sex_ed_counter += 1
                     $ trust += 1
@@ -4333,7 +4357,6 @@ label family14:
                     "Or maybe we did, but we outgrew it? Was this just a phase?"
                     "I felt like I was trying to harvest tomatoes in the dark."
                     $ authoritarian += 1
-                    return
                 "(Make her understand)":
                     $ responsive -= 5
                     show him yell at center with move
@@ -4367,7 +4390,6 @@ label family14:
                     "What kind of father am I?"
                     $ authoritarian += 1
                     $ trust -= 1
-                    return
 
         "Tell me about it.":
             $ responsive += 1
@@ -4387,7 +4409,6 @@ label family14:
                     "I talked to the teacher and managed to cajole her into letting [kid_name] write her words only five times each."
                     "[kid_name] seemed pretty happy about it, so I guess I did the right thing?"
                     $ permissive += 1
-                    return
                 "You need to listen to your teacher.":
                     $ demanding += 1
                     him determined "You need to listen to your teacher."
@@ -4399,7 +4420,6 @@ label family14:
                     $ authoritarian += 1
                     "She didn't like it, but she did what her teacher asked. She still had problems with hitting her brother, so she wasn't able to play with friends or use the computer pad for a long time."
                     "How long would it take for her to get the message?!"
-                    return
                 "What did you want to do instead?":
                     him surprised "What did you want to do instead?"
                     kid annoyed "Read my book."
@@ -4428,7 +4448,7 @@ label family14:
                     "At least we worked things out with her teacher."
                     $ confident += 1
                     $ authoritative += 1
-                    return
+                    
         "You're just whining.":
             him explaining "Quit whining and don't hit your brother."
             kid annoyed "But...!"
@@ -4436,8 +4456,34 @@ label family14:
             $ neglectful += 1
             $ confident += 1
             $ trust -= 1
-            return
-
+    
+    scene farm_interior with fade
+    show her concerned at midright
+    show him determined at midleft
+    with dissolve
+    her concerned "Sister Naomi is holding another parenting class...do you want to go?"    
+    show him annoyed with dissolve
+    "Part of me felt defensive -- did [her_name] think I needed parenting lessons?!"
+    $ pstyle = get_parenting_style()
+    if (pstyle == "authoritarian"):
+        "I thought I was doing just fine. I knew what I wanted, the kids knew I was boss, everything was fine."
+    elif (pstyle == "authoritative"):
+        "I thought I was doing okay. Though sometimes it was hard to know when to listen and when to lay down the law."
+    elif (pstyle == "permissive"):
+        "I admitted that I didn't really know what I was doing. I mostly just let the kids do what they wanted. And it was going okay, I guess?"
+    else:
+        "I wasn't really interested in parenting."
+    her determined "Well, I'm going to go. Are you coming with me?"
+    menu:
+        "Should I go?"
+        "Go to parenting class.":
+            him normal "Sure, I'll come, too."
+            call parenting_class2
+        "Don't go.":
+            him determined "I'm staying here."
+            her concerned "Okay. See you later."
+            hide her with moveoutleft
+    
     return
 
 # 9.4 Earth years old
@@ -6930,6 +6976,7 @@ label lettie_dies:
     him concerned "No, a yew tree. Or bush, looks like. Who plants yew where there's horses around?!"
     "My mind raced. Yew poisoning was well-known, but there was no antidote. There were some treatments we could try...if we could get them in time."
     "I pulled out my radio. My hand was trembling and I was a lot less coherent than I wanted to be."
+    play sound "sfx/radio.mp3"
     him angry "{i}[her_name]! At the miner's village... Lettie's sick. I need your help!{/i}"
     show kid sad with dissolve
     her "{i}What's wrong with her?{/i}"

@@ -455,6 +455,7 @@ label carrots1:
 
 # CARROTS2 - great carrots if fallow, otherwise find pests.
 label carrots2:
+    play sound "sfx/rain.ogg" loop
     scene fields with fade
     show rain
     # TODO: play rain sound whenever it rains
@@ -506,6 +507,7 @@ label carrots2:
             "Don't plant carrots next year and let the pests die off.":
                 "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
                 $ crop_temporarily_disabled = "carrots"
+    stop sound fadeout 2.0
     return
 
 # CARROTS3 - is there such a thing as too many carrots?
@@ -707,6 +709,7 @@ label potatoes2:
 
 # POTATOES3 - Rotten potatoes
 label potatoes3:
+    play sound "sfx/rain.ogg" loop
     scene fields with fade
     show rain
     "I'll never forget the time it rained..."
@@ -773,6 +776,7 @@ label potatoes3:
     $ modify_credits(-farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
     him determined "As long as it's not potatoes."
 
+    stop sound fadeout 2.0
     if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
         "There was one good thing that came out of all this, though."
         "Since I didn't have to harvest potatoes, I did have some time to prepare new fields for crops."
@@ -862,6 +866,7 @@ label squash1:
 # SQUASH2 - squash bugs
 label squash2:
     play music problems
+    play sound "sfx/rain.ogg"
     scene fields with fade
     show rain
     show him normal at center behind rain with dissolve
@@ -949,7 +954,7 @@ label squash2:
             him_c "...Thank you, everyone."
             nvl clear
             $ colonists += 1
-
+    stop sound fadeout 2.0
     return
 
 # SQUASH 3 - consequences of squash bug method.
@@ -1544,6 +1549,7 @@ label beans1:
 
 # BEANS 2 - Wet beans
 label beans2:
+    play sound "sfx/rain.ogg"
     scene fields with fade
     show rain
     show him concerned at center behind rain with dissolve
@@ -1558,13 +1564,14 @@ label beans2:
             "It couldn't rain forever...I decided just to wait."
             "But it rained for over a week."
             "When it was finally dry, I checked on the beans..."
-            "...and most of them were moldy."
+            "...and most of them were soggy and rotten."
             him annoyed "That was a lot of work for nothing."
             $ harvest_factor = 0.25
         "Hang them up somewhere dry.":
             "I needed them to dry, so I decided to hang them up."
             "I strung clothesline zig-zagging around the house and in the barn."
             "I hung them upside down in bunches everywhere."
+            stop sound fadeout 2.0
             scene farm_interior with fade
             show him concerned at midright with dissolve
             show her normal at midleft with moveinleft
@@ -1579,10 +1586,11 @@ label beans2:
             $ harvest_factor = 1.0
         "Cover them with a tarp.":
             "I decided to just throw some tarps over them. That should keep them dry enough."
-            "But it rained for over a week, and the rain seeped in under the tarp. The whole bottom layer was moldy."
+            "But it rained for over a week, and the rain seeped in under the tarp. The whole bottom layer was soggy and rotten."
             "At least the top layers dried out okay."
             $ harvest_factor = 0.65
 
+    stop sound fadeout 2.0
     $ modify_credits(-(1-harvest_factor) * farm.crops.count("beans") * get_credits_from_name("beans"))
     return
 
@@ -1822,6 +1830,7 @@ label strawberries1:
 
 # Strawberries 2 - mutant cancerous strawberries from solar flare
 label strawberries2:
+    play sound "sfx/rain.ogg"
     scene fields with fade
     show rain
     "There were two things I liked about strawberries."
@@ -1880,6 +1889,7 @@ label strawberries2:
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
             $ farm.delete_crop("strawberries+")
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
+    stop sound fadeout 2.0
     $ achieved("Mutant Ninja Berries")
     return
 

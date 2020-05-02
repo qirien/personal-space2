@@ -174,6 +174,7 @@ label overwork:
             "Everyone else had their own problems. I got myself into this mess; now I would get myself out of it."
             if (overwork_self <= 1):
                 "I stayed up late; I woke up early. I didn't do anything else for weeks except take care of the farm."
+                play sound "sfx/rain.ogg" loop
                 scene fields with fade
                 show tractor at center
                 show him concerned at center
@@ -196,6 +197,7 @@ label overwork:
                 show him sad with dissolve
                 "I had to get some rest..."
                 "And my harvest suffered."
+                stop sound fadeout 2.0
                 $ modify_credits(farm.income_loss(90))
             else:
                 "But there was a limit to how much I could physically do, and my harvest suffered."
@@ -325,6 +327,9 @@ label work_intro:
     "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
     "Over the past two years, with a lot of trial and error, I'd found crops and varieties that worked well."
     "I still had a lot of decisions to make, though, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
+    "The area of Talaam we had settled on was cool and dry. It didn't have seasons like temperate zones on Earth; the temperature stayed mild year round, though there was still a warm season and a cool season."
+    "This meant that we could grow crops year round, but some crops didn't grow as well because they expected more sun or frost."
+    "Talaam's frequent solar flares hadn't bothered our plants too much, but it meant that we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
     call farm_tutorial
     return
 
@@ -801,7 +806,7 @@ label work14:
                 "You will finish the job!":
                     him annoyed "You will stay here until the job is done!"
                     kid sad "Fine, then I guess I'll stay in here all night because this goat is never going to listen to me!"
-                    him determined "It's your job to milk this cow. Now do it."
+                    him determined "It's your job to milk this goat."
                     hide him with moveoutright
                     "I left to finish up my work. Her sobs followed me around the farm everywhere I went."
                     "I wanted to teach her to be independent, to do things for herself. I guess I needed to push her a bit to get her to learn that..."
@@ -1564,6 +1569,7 @@ label work24:
             him determined "I'm going to see if I can get some help, okay?"
             kid sad "Okay..."
             "I switched on my radio."
+            play sound "sfx/radio.mp3"
             him concerned "{i}Attention, this is [his_name]. [kid_name] is injured and needs transport to the clinic.{/i}"
             "No one answered. I tried again."
             him determined "{i}I need transport into town for [kid_name] who is injured. She might have broken her leg. Can anyone help?{/i}"

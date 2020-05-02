@@ -1281,11 +1281,13 @@ label community9:
             him happy "This is going to be delicious."
             pete happy "Let's cook some up before we head home."
             "Just as we got our fire started, a solar flare warning came up on the radio."
+            play sound "sfx/radio.mp3"
             pete normal "Fantastic. I can test my homemade tent."
             him surprised "How did you make it?"
             pete normal "The fabric is leather. That doesn't do anything for radiation."
             pete happy "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
             "Pete poured the water in, and it gradually filled the tent's lining. He put a radiation monitor inside the tent and we gathered in the other tent for the duration of the solar flare."
+            play sound "sfx/radio.mp3"
             "After about twenty minutes, the radio came on again to say that the flare has abated."
             "Pete checked his monitor to see the results of the test."
             pete happy "And it appears to reduce solar radiation! Too bad it's completely dark in there."
@@ -2704,6 +2706,7 @@ label community14:
     brennan angry "There's a bit of a difference, yes. When the pilot's inside the shuttle, they can make adjustments based on feel."
     brennan normal "But, since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
     "Kevin was broadcasting the launch on the radio."
+    play sound "sfx/radio.mp3"
     kevin "{i} Lift-off in 10{/i}"
     kevin "{i}9{/i}"
     kevin "{i}8{/i}"
@@ -2819,6 +2822,7 @@ label community15:
     show him sleeping at midleft, squatting
     show bedroom_overlay
     "In the early morning, [her_name]'s radio went off."
+    play sound "sfx/radio.mp3"
     pavel "{i}[her_name], I think you should come over here.{/i}"
     show her surprised
     pavel "{i}Naomi is really sick.{/i}"
@@ -2938,6 +2942,7 @@ label community15:
     show him sad at midleft
     show her concerned at midright
     with dissolve
+    play sound "sfx/radio.mp3"
     "About a week later, Pavel called [her_name] to tell her that Naomi was dead."
     her concerned "I'll take her body today and do a few tests, and we can hold the funeral tomorrow."
     "She turned the radio off."
@@ -5043,6 +5048,7 @@ label community22:
         scene farm_interior
         show him normal at midleft
         "Pete called me on the radio one evening."
+        play sound "sfx/radio.mp3"
         pete "{i}We've been hearing and feeling explosions in the mountain a lot lately.{/i}"
         pete "{i}What do those damn miners think they're doing?!{/i}"
         him pout "That's possible. I know they finished mining in the mountain closest to us."
@@ -5070,6 +5076,7 @@ label community22:
         brennan_c "There are, but Zaina has been exploring and taking samples over the last few years. That mountain has the best chance of having the most rare metals for a 50-mile radius."
         brennan_c "I suppose if Pete let Zaina in the cave, we could see if the mining will actually endanger them or not... but I doubt he'd let her."
         him_c "Okay, okay. I'll talk to Pete, but no promises."
+        play sound "sfx/radio.mp3"
         "I tried paging Pete on the radio, but there was no answer."
         "I left him a sort of text message telling him to call me later."
         pete "{i}So, what's going on?{/i}"
@@ -5193,6 +5200,7 @@ label mining_anyway:
     with dissolve
     "Brennan continued with the mining even though the mavericks were still living in the caves."
     "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
+    play sound "sfx/radio.mp3"
     pete "{i}[her_name], do you copy? Please, are you there? We have a medical emergency.{/i}"
     her surprised "I'm here. What's wrong?"
     pete "{i}Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking.{/i}"
@@ -5208,6 +5216,7 @@ label mining_anyway:
     kid cry "Is Travis going to be okay?"
     her angry "I don't know yet."
     her "I need an expert opinion..."
+    play sound "sfx/radio.mp3"
     "[her_name] radioed Kevin and explained the situation. He offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
     "She told Pete about their plan and he agreed to let them come help Travis."
     her determined "I'll take the necessary medical supplies with me. It looks like I'll be gone the next two days, but we'll stay in contact over the radio."
@@ -6923,6 +6932,7 @@ label community29:
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would accidentally poke me with a needle."
         her angry coat "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
+        play sound "sfx/radio.mp3"
         "I called them on the radio, but they were in the mining camp. The came as soon as they could, but it took over half an hour."
         scene black with fade
         scene hospital with fade
@@ -6989,6 +6999,7 @@ label community29:
         him concerned "Okay."
         scene black with fade
         "She left early the next morning. That evening she radioed me."
+        play sound "sfx/radio.mp3"
         her "{i}I found Pete and told him the problem. He was really surprised that he didn't have any credits in his account.{/i}"
         her "{i}He got angry and told me it was my fault that Helen died.{/i}"
         him "{i}It sounds like he's still mourning her death.{/i}"
@@ -7214,6 +7225,10 @@ label community30:
         # scene farm_exterior with fade
         # show rain
         # show him concerned at center behind rain with moveinleft
+        # We also have sfx for rain:
+        # play sound "sfx/rain.ogg" loop
+        # Just don't forget to stop it when it's not raining:
+        # stop sound
 
         "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
         nvl clear
@@ -7687,6 +7702,7 @@ label community30:
 
         if (mavericks > 8): #check values
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
+            play sound "sfx/radio.mp3"
             pete "{i}What can I help you with?{/i}"
             him "Hey, I'm in kind of a complicated situation."
             him "One of the miners died in what appears to be an accident."
@@ -7707,6 +7723,7 @@ label community30:
             pete "{i}Oh. I've delt with Noel before.{/i}"
             pete "{i}You can't trust anything she says.{/i}"
             him "What do you mean?"
+            play sound "sfx/radio.mp3"
             if not ban_firegrass:
                 pete "{i}She keeps trying to get me to lower the price of firegrass for her.{/i}"
                 him "She buys firegrass from you?"
