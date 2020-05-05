@@ -248,6 +248,7 @@ label family1:
     stop sound fadeout 2.0
     call bedroom_scene(show_baby=True)
     show kid normal with dissolve
+    play sound "sfx/baby-gurgle.ogg"
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
     him annoyed "She really needs us, doesn't she?"
@@ -367,6 +368,7 @@ label family2:
     stop sound fadeout 5.0
     "I managed to calm [kid_name] down with some snuggles and a snack."
     "I built a house out of blocks with her, but then my mind started to wander."
+    play sound "sfx/baby-gurgle.ogg"
     show kid happy
     show him annoyed
     with dissolve
@@ -379,6 +381,7 @@ label family2:
     show kid laugh
     show him surprised
     with dissolve
+    play sound "sfx/baby-laugh.ogg"
     "She brought me a picture book and I read it to her, but my mind was still racing for how I could get my work done."
 
     menu:
@@ -440,6 +443,7 @@ label family2:
                     "She might have more fun outside. I dragged a chair out there where I could sit and work."
                     show kid normal at right, baby_pos with move
                     "She crawled around for a few minutes, but then she crawled back and pulled herself up to stand using my leg."
+                    play sound "sfx/baby-fussy.ogg"
                     show kid annoyed at center, baby_pos with move
                     "She grabbed at my screen again. This was one stubborn child!"
                     menu:
@@ -478,6 +482,7 @@ label family2:
             him normal "Yeah! Let me just put you in the backpack..."
             him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
             him happy "There we go! We're going to go make plants grow!"
+            play sound "sfx/baby-gurgle.ogg"
             kid happy "Daa!"
             scene fields with fade
             show tractor at midleft
@@ -488,6 +493,7 @@ label family2:
             "I had to kind of sit on the edge of the seat so that there was room behind me for the backpack. It wasn't the comfiest seat, but it worked."
             "Terra cooed and kicked and played with my hair and seemed to enjoy the ride..."
             "...for about ten minutes."
+            play sound "sfx/baby-fussy.ogg"
             kid determined "Aaaa!"
             him happy "I know! Isn't this fun?!"
             kid angry "Aaa! Aaaaaah!"
@@ -510,8 +516,10 @@ label family2:
                     $ responsive += 1
                     "I tried to remember some songs she might like."
                     him surprised "Do you know 'Head, shoulders, knees, and toes?"
+                    show kid concerned with dissolve
                     "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that my abuelita used to sing to me, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
                     him normal "You like that?"
+                    play sound "sfx/baby-gurgle.ogg"
                     kid normal "Aaa, baaa baa baa, daa."
                     him happy "Yeah!"
                     kid annoyed "..."
@@ -525,11 +533,15 @@ label family2:
                     $ responsive += 1
                     him surprised "Are you hungry, [kid_name]? I didn't bring any food..."
                     him happy "What am I saying? I live on a farm; I'm surrounded by food!"
+                    show kid concerned with dissolve
                     "I jumped down and ran over to a field I had planted several weeks earlier."
                     him normal "Looks like it's time to thin these out, anyway. Want some sprouts?"
+                    show kid normal with dissolve
                     "I started thinning the little sprouts, handing some up to her to munch on."
                     "She spit some of them out on the back of my neck, but she wasn't crying, so that was good."
+                    show kid determined with dissolve
                     "I thinned the whole row and turned back to sit down at the tractor."
+                    play sound "sfx/baby-fussy.ogg"
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
@@ -540,16 +552,18 @@ label family2:
                     $ responsive += 1
                     him surprised "You probably want something to play with, huh? I didn't bring any toys..."
                     him happy "But kids have been growing up since before toys were invented, so I think we'll be okay! Here, have a stick."
-                    show kid concerned
+                    show kid concerned with dissolve
                     "She took the stick and stuck it in her mouth. Then she whacked my head with it."
-                    show kid normal
+                    show kid normal with dissolve
                     him sad "Ouch."
-                    show kid laugh
+                    play sound "sfx/baby-laugh.ogg"
+                    show kid laugh with dissolve
                     "Then she dropped it."
                     him annoyed "I'm not going to get much done if I have to keep picking up your stick. Don't drop it, okay?"
-                    show kid concerned
+                    show kid concerned with dissolve
                     "She held onto it for several minutes, whacking my head or chewing on it, or whatever she was doing. It was hard to see her while she was in the backpack."
                     "And then she dropped it."
+                    play sound "sfx/baby-fussy.ogg"
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
@@ -558,8 +572,9 @@ label family2:
                     $ family2_talk = True
                     $ family2_work_done += 1
                     $ responsive += 1
+                    play sound "sfx/baby-gurgle.ogg"
                     him surprised "You feeling lonely back there? Don't worry, we're together, [kid_name]!"
-                    kid angry "Baa, baaaaaa!"
+                    kid annoyed "Baa, baaaaaa!"
                     him normal "Ooh, are you turning into a sheep? Your arm is so soft, it's like a little lamb. Baa, baa!"
                     kid laugh "Baa, baa!"
                     him happy "Yeah, you're a little sheep! Or maybe you're a baby cow?"
@@ -575,6 +590,7 @@ label family2:
                     him normal "Plants need water, sunlight, and nutrients from the soil to survive. But if you want them to grow big and strong, you have to make sure they have the right amounts of all of these."
                     kid normal "Pa pa?"
                     him happy "Yeah, you gotta rotate your plants! That's why I'm always moving the goats around and stuff."
+                    play sound "sfx/baby-fussy.ogg"
                     kid annoyed "Aaah! Aaa! Aaaaaaaa!"
                     him annoyed "Okay, you don't have to scream, we don't have to talk about plants if you don't want to."
                     jump family2_baby_activities
@@ -616,6 +632,7 @@ label family2:
             show him normal at center
             show kid concerned at center, baby_pos
             with moveinleft
+            play sound "sfx/newborn-cry.ogg" # TODO: replace with older baby cry?
             "I put her in her crib. She wouldn't like it, but she'd be safe enough there for a few hours while I finished the planting."
             show him at midleft with move
             show kid cry with dissolve
@@ -628,6 +645,7 @@ label family2:
             "I closed the door, hopped on the tractor and sped away from the house."
             "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
             "After about an hour she finally stopped crying; maybe she had fallen asleep."
+            stop sound fadeout 2.0
             "Or maybe she finally realized that I wasn't going to come back until I was done."
             scene kid_bedroom with fade
             show kid concerned at center, baby_pos with dissolve
@@ -643,6 +661,7 @@ label family2:
             $ neglectful += 1
             $ trust -= 1
 
+    stop sound
     scene farm_interior with fade
     show him determined at midright with dissolve
     show her sad coat at midleft with moveinleft
@@ -782,6 +801,7 @@ label family3:
     show him at center with move
     show kid normal at jumpinghigh with move
     "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug."
+    play sound "sfx/baby-laugh.ogg"
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
     kid laugh "Ow sai!"
     show kid normal at midright, baby_pos with move

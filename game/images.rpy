@@ -59,7 +59,7 @@ init -10:
                 "year <= TODDLER_MAX", "kid-sprites/toddler_%s.png" % expression_name,
                 "year <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
                 "year <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
-                "True", "kid-sprites/teen_%s.png" % expression_name))
+                "True", "kid-sprites/teen_%s.png" % expression_name)) 
 
         # Define images for bro (baby, toddler, young, tween, teen)
         # For each expression, add a baby, toddler, young, tween, teen depending on current year

@@ -3,13 +3,11 @@
 
 ## The game starts here.
 #
-# TODO: Add another parenting class before Naomi dies?
-# TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
-# TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.
+# TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.  Add in a yearly (?) autosave
 # TODO: IF your kid is not competent, it's really hard to get enough calories/vitamins/money.
 # TODO: If your kid is competent, getting money is easy!!  Maybe this is OK...
 ##

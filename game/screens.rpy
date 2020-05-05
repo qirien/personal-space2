@@ -116,16 +116,13 @@ screen say(who, what):
                 style "namebox"
                 text who id "who"
 
-    # here's our watering can MENU button
-    # TODO: This doesn't hide with 'window' because it is not inside of 'window'...
-    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
-
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+    #if not renpy.variant("small"):
+    add SideImage() xalign 0.0 yalign 1.0
 
-
+    # here's our watering can MENU button
+    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
 
 
 style window is default
@@ -1412,7 +1409,7 @@ screen nvl(dialogue, items=None):
                 action i.action
                 style "nvl_button"
 
-    add SideImage() xalign 0.0 yalign 1.0
+    # add SideImage() xalign 0.0 yalign 1.0
 
 
 screen nvl_dialogue(dialogue):
