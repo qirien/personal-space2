@@ -62,8 +62,9 @@ label family1:
     hide black with irisoutslow
     window show
     show him determined with dissolve
-    "No, I couldn't sleep while they both needed me. But what should I do?"
+    "No, I couldn't sleep while they both needed me."
     menu:
+        "But what should I do?"
         "Take [kid_name] for a walk.":
             $ responsive += 1
             $ marriage_strength += 1
@@ -306,6 +307,7 @@ label family1:
         "No":
             $ pass
 
+    stop sound
     return
 
 # 10 Earth mos. old
@@ -330,14 +332,13 @@ label family2:
     "Then I'd come home at lunchtime and [her_name] would head over to the clinic for appointments and drop-ins."
     "But this sounded like something that couldn't wait."
     "[her_name] didn't say if [kid_name] was asleep or not..."
-    # TODO: add older baby sound here?
     menu:
         "What should I do?"
         "Go straight home.":
             $ responsive += 1
             "I didn't want to leave [kid_name] alone. If she was asleep, I could setup the baby monitor and go back out to work."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
-            play sound "sfx/newborn-cry.ogg" fadein 5.0
+            play sound "sfx/baby-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Ask [her_name] for more information.":
@@ -345,7 +346,7 @@ label family2:
             him determined "Hey, is [kid_name] asleep? Did you setup the baby monitor?"
             "I waited for a few minutes, but [her_name] didn't respond. She was probably on the other channel talking to whoever had the emergency."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
-            play sound "sfx/newborn-cry.ogg" fadein 5.0
+            play sound "sfx/baby-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Finish up the last few rows and then go home.":
@@ -354,7 +355,7 @@ label family2:
             "[kid_name] could wait a few minutes while I finished this up. I hated leaving things half-done."
             "It ended up taking almost an hour, but I sure felt satisfied to have finished the entire field."
             "But as I headed for home, I could hear [kid_name] crying urgently."
-            play sound "sfx/newborn-cry.ogg" fadein 5.0
+            play sound "sfx/baby-cry.ogg" fadein 5.0
             scene kid_bedroom with fade
             show kid angry at center,squatting with dissolve
             show him surprised at quarterleft with moveinleft
@@ -368,7 +369,7 @@ label family2:
     stop sound fadeout 5.0
     "I managed to calm [kid_name] down with some snuggles and a snack."
     "I built a house out of blocks with her, but then my mind started to wander."
-    play sound "sfx/baby-gurgle.ogg"
+    play sound ["sfx/baby-coo.ogg", "sfx/baby-gurgle.ogg"]
     show kid happy
     show him annoyed
     with dissolve
@@ -467,6 +468,7 @@ label family2:
                             $ family2_work_done += 1
                             him angry "[kid_name], stop it! I'm working! You go play."
                             "This just seemed to make her mad."
+                            play sound ["sfx/baby-shortcry.ogg", "sfx/baby-hey.ogg"]
                             kid nervous "Aaa! Aaaa! Aaaaaaa!"
                             "I ignored her. I stood up and worked on my computer pad that way, trying to ignore her shouts and tugs on my pants."
                             show him annoyed
@@ -478,11 +480,12 @@ label family2:
         "Put her in the backpack and go back to work.":
             $ confident += 1
             him happy "Alright, [kid_name], want to go ride the tractor? Huh? Do you?"
+            play sound "sfx/baby-gurgle.ogg"
             "I don't know how much of my words she understood, but she sensed my excitement and smiled up at me."
             him normal "Yeah! Let me just put you in the backpack..."
             him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
             him happy "There we go! We're going to go make plants grow!"
-            play sound "sfx/baby-gurgle.ogg"
+            play sound "sfx/baby-coo.ogg"
             kid happy "Daa!"
             scene fields with fade
             show tractor at midleft
@@ -563,7 +566,7 @@ label family2:
                     show kid concerned with dissolve
                     "She held onto it for several minutes, whacking my head or chewing on it, or whatever she was doing. It was hard to see her while she was in the backpack."
                     "And then she dropped it."
-                    play sound "sfx/baby-fussy.ogg"
+                    play sound "sfx/baby-shortcry.ogg"
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
@@ -590,7 +593,7 @@ label family2:
                     him normal "Plants need water, sunlight, and nutrients from the soil to survive. But if you want them to grow big and strong, you have to make sure they have the right amounts of all of these."
                     kid normal "Pa pa?"
                     him happy "Yeah, you gotta rotate your plants! That's why I'm always moving the goats around and stuff."
-                    play sound "sfx/baby-fussy.ogg"
+                    play sound "sfx/baby-hey.ogg"
                     kid annoyed "Aaah! Aaa! Aaaaaaaa!"
                     him annoyed "Okay, you don't have to scream, we don't have to talk about plants if you don't want to."
                     jump family2_baby_activities
@@ -600,6 +603,7 @@ label family2:
                     $ responsive -= 2
                     $ family2_work_done += 5
                     him angry "Be quiet and let me work!"
+                    play sound "sfx/baby-hey.ogg"
                     kid angry "Waaah!"
                     him determined "Sorry, [kid_name], but the work has to be done. And I'm going to keep you safe while I do it."
                     $ authoritarian += 1
@@ -608,6 +612,7 @@ label family2:
                     $ demanding += 1
                     $ family2_work_done += 5
                     him concerned "I'm sorry, [kid_name], but I just need to get this work done. I know it's boring for you, but you'll survive, okay?"
+                    play sound "sfx/baby-hey.ogg"
                     show kid angry
                     $ authoritarian += 1
 
@@ -621,6 +626,7 @@ label family2:
                     $ demanding += 1
                     $ confident += 1
                     him happy "Guess what, [kid_name]?? We're all done!"
+                    play sound "sfx/baby-shortcry.ogg"
                     kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
@@ -632,7 +638,7 @@ label family2:
             show him normal at center
             show kid concerned at center, baby_pos
             with moveinleft
-            play sound "sfx/newborn-cry.ogg" # TODO: replace with older baby cry?
+            play sound "sfx/baby-cry.ogg" # TODO: replace with older baby cry?
             "I put her in her crib. She wouldn't like it, but she'd be safe enough there for a few hours while I finished the planting."
             show him at midleft with move
             show kid cry with dissolve
@@ -642,19 +648,21 @@ label family2:
             show tractor at midleft
             show him determined at midleft
             with moveinleft
+            stop sound fadeout 10.0
             "I closed the door, hopped on the tractor and sped away from the house."
             "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
             "After about an hour she finally stopped crying; maybe she had fallen asleep."
-            stop sound fadeout 2.0
             "Or maybe she finally realized that I wasn't going to come back until I was done."
             scene kid_bedroom with fade
             show kid concerned at center, baby_pos with dissolve
             "After I finished planting, I went back to the house and peeked in at [kid_name]."
             show him concerned at left with moveinleft
             show kid angry with dissolve
+            play sound "sfx/baby-hey.ogg"
             "As soon as I opened the door, she started screaming again. She stood up in her crib and glared at me with a heartbroken look of betrayal that I'll never forget."
             show kid sad with dissolve
             "I tried to make it up to her with cuddles and food, but every time when she started to cheer up, she'd start crying again for no reason."
+            play sound "sfx/baby-shortcry.ogg"
             "Well, I guess being stuck alone in her crib for a few hours was a pretty good reason."
             "She sure let me know what she thought of that."
             $ family2_work_done += 5

@@ -365,11 +365,13 @@ label work2:
     show him normal at midleft
     show her baby happy at midright
     with dissolve
+    play sound "sfx/baby-gurgle.ogg" fadein 5.0
     her "Are you going somewhere?"
     him determined "Yeah, I said I'd help Kevin and Zaina with their garden."
     her "It wasn't as easy as the video games made it seem, huh?"
     him happy "Yeah, turns out there's actually a lot of things that you can't learn just from simulations!"
     her "All right, good luck."
+    stop sound fadeout 2.0
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
     scene fields flip with fade
