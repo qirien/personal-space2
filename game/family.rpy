@@ -503,6 +503,7 @@ label family2:
             him surprised "I guess it's probably pretty boring for you, huh?"
             kid concerned "..."
             him concerned "Sorry, baby, but we have to get this work done, or we won't have food to eat."
+            play sound "sfx/baby-shortcry.ogg"            
             kid angry "Aaaa!"
             "She kicked her legs more, in frustration now. She pushed against me, trying to worm her way out of the backpack, but she was strapped in tight."
             "I tried to think about what would help her be happy while I worked on these fields for the next hour or two."
@@ -522,7 +523,7 @@ label family2:
                     show kid concerned with dissolve
                     "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that my abuelita used to sing to me, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
                     him normal "You like that?"
-                    play sound "sfx/baby-gurgle.ogg"
+                    play sound "sfx/baby-coo.ogg"
                     kid normal "Aaa, baaa baa baa, daa."
                     him happy "Yeah!"
                     kid annoyed "..."
