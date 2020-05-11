@@ -28,6 +28,21 @@ label test_family_photo:
     "Seems strange."
     return
 
+label test_endings:
+    $ year = 30
+    $ bro_birth_year = 8
+
+    call ending_aci
+    call ending_acI
+    call ending_aCi
+    call ending_aCI
+    call ending_Aci
+    call ending_AcI
+    call ending_ACi
+    call ending_ACI
+    
+    return
+
 label test_parenting_style:
     # watch(authoritative, authoritarian, permissive, neglectful)
     while True:
@@ -429,6 +444,8 @@ label tests:
             call test_message_board
         "Trailer":
             jump trailer
+        "Test Endings":
+            call test_endings
         "Quit":
             return
 

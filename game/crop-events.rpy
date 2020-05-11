@@ -1203,7 +1203,7 @@ label goats3:
     julia "Well, they've been here all morning. I'm not sure my poor sweet potatoes will recover."
     him "I-"
     julia "I tried to reach you on the radio, but you didn't answer."
-    "She looked pointedly at my radio on my belt -- it was turned off. I often 'forgot' to turn on my radio -- the truth is, I liked the peace and quiet."
+    "She looked pointedly at my radio on my belt -- it was turned off. I sometimes 'forgot' to turn on my radio -- the truth is, I liked the peace and quiet."
     him "Must have forgotten to turn it on. Well, I'll just get these goats out of your way."
     hide him
     hide kid

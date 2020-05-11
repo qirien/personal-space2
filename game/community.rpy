@@ -6119,7 +6119,7 @@ label community27:
     $ wherewenotlive = False
     play music sea
     scene ocean with fade
-    show him normal at midrights
+    show him normal at midright
     show her normal at midleft
     show kid normal at center
     show bro normal at quarterleft
