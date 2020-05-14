@@ -119,7 +119,7 @@ screen say(who, what):
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     #if not renpy.variant("small"):
-    add SideImage() xalign 0.0 yalign 1.0
+    add SideImage() xalign 0.00 yalign 1.0
 
     # here's our watering can MENU button
     imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"

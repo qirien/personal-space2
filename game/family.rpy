@@ -2798,7 +2798,6 @@ label baby_delivery:
     $ bro_age = 0
 
     julia "It's a boy!"
-    $ achieved("Binary System")
     "...but he didn't look like [kid_name] did when she was born."
     him surprised "Is... is he missing some of his lip?"
     julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."
@@ -2818,6 +2817,7 @@ label baby_delivery:
             her concerned "[his_name]..."
             "I bundled him up and held him close."
     show him happy baby with dissolve
+    $ achieved("Binary System")
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."

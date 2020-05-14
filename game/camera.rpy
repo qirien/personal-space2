@@ -76,26 +76,29 @@ screen photo_album():
                 frame:
                     yfill True
                     background "roundrect_lightgray"
-                    vbox:
-                        label "Photo Album"
+                    use photo_album_grid
 
-                        vpgrid:
-                            cols 3
-                            spacing 5
-                            mousewheel True
-                            scrollbars "vertical"
-                            side_xalign 0.5
-                            ysize 510
+screen photo_album_grid():
+    vbox:
+        label "Photo Album"
 
-                            for photo in photos:
-                                $ photo_file = "Photos/" + photo
-                                imagebutton:
-                                    idle photo_file
-                                    hover photo_file
-                                    at thumbnail#, highlight_imagebutton
-                                    action Show("show_photo", irisout, photo_file)
+        vpgrid:
+            cols 3
+            spacing 5
+            mousewheel True
+            scrollbars "vertical"
+            side_xalign 0.5
+            ysize 510
 
-                        textbutton "Return" action Return() xalign 0.5 yalign 0.5
+            for photo in photos:
+                $ photo_file = "Photos/" + photo
+                imagebutton:
+                    idle photo_file
+                    hover photo_file
+                    at thumbnail#, highlight_imagebutton
+                    action Show("show_photo", irisout, photo_file)
+
+        textbutton "Return" action Return() xalign 0.5 yalign 0.5
 
 # Show one photo, full screen. 
 # When you click, hide it.

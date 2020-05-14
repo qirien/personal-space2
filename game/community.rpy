@@ -3678,6 +3678,7 @@ label community17:
         scene community_center with fade
         if (invited_mavericks):
             show pete normal at left
+            show travis normal at left
             # show travis if we have a good sprite for this age?
         show thuc normal at quarterleft
         show her normal at midleft

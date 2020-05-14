@@ -321,7 +321,7 @@ define gui.slot_spacing = 10
 define gui.frame_borders = Borders(4, 4, 4, 4)
 
 ## The frame that is used as part of the confirm screen.
-define gui.confirm_frame_borders = Borders(40, 40, 40, 40)
+define gui.confirm_frame_borders = Borders(60, 60, 60, 60)
 
 ## The frame that is used as part of the skip screen.
 define gui.skip_frame_borders = Borders(16, 5, 50, 5)

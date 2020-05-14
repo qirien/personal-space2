@@ -582,7 +582,7 @@ label ending_ACI:
     scene stars with fade
     "[kid_name] moved out. We all pitched in to build a dorm-style apartment building for the growing number of non-farmers that didn't need a lot of space."
     "She seemed to like it; it was closer to town, where she spent most of her time in the library and at the science lab studying biology and sociology."
-    # TODO: should your convo about marriage affect this?
+    # TODO: should your convo about marriage affect this? YES (chooses whether they are best friends or boyfriend/girlfriend)
     "And she was closer to her boyfriend, Oleg."
     "We invited them over for dinner about once a week, where she'd catch us up on all the latest developments."
     scene farm_interior with fade
