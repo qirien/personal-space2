@@ -1212,7 +1212,7 @@ screen achievements():
                             at highlight_imagebutton
                     text title xalign 0.5
                     showif (show_which == title):
-                        text persistent.achievements[title]["desc"] xalign 0.5 italic True 
+                        text persistent.achievements[title]["desc"] xalign 0.5 italic True size gui.quick_button_text_size
                     else:
                         text ""
 

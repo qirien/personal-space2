@@ -125,7 +125,7 @@ define gui.title_text_size = 60
 
 ## The images used for the main and game menus.
 define gui.main_menu_background = "gui/title.png"
-define gui.game_menu_background = "bg/stars.png"
+define gui.game_menu_background = "bg/leaves.jpg"
 
 ## Should we show the name and version of the game?
 define gui.show_name = False
