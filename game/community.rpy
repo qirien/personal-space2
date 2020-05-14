@@ -1386,13 +1386,13 @@ label community10:
     show bro concerned
     with dissolve
     him surprised "What are your older kids interested in, if not farming?"
-    natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
+    natalia "Tomás is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
     show her normal
     show bro normal
     with dissolve
     natalia "She can write {b}and{/b} help grow our food!"
-    martin angry "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
+    martin angry "Raúl is a good helper on the farm, but he isn't responsible enough to be in charge."
     natalia "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin normal "What would you do in my position? Who do you think should take care of the farm?"
     show him concerned
@@ -1400,7 +1400,7 @@ label community10:
     show bro nervous
     with dissolve
     menu:
-        "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
+        "Tomás and Joanna should be in charge of the farm and get the other siblings to help.":
             $ community11_kidsonfarm = True
             $ colonists += 1
             $ miners += 1
@@ -1434,7 +1434,7 @@ label community10:
             nvl clear
             natalia_c "Thanks for helping us with Tomás. We talked to him, and he's decided he will help out at the farm, at least for a little while."
             him_c "Glad to hear it! He's a good kid."
-            #more investment in older farms; Tomas and Joanna are less likely to join the mavericks this way
+            #more investment in older farms; Tomás and Joanna are less likely to join the mavericks this way
         "Let Natalia scale back the farm.":
             $ community11_kidsonfarm = False
             $ mavericks += 1
@@ -4195,7 +4195,7 @@ label community19:
     "A few weeks later, we were all gearing up for the fall harvest."
     her happy "I love this time of year. Harvesting food together makes me feel like we'll live another year."
     her normal "It does seem easier to stagger the crops though."
-    him concerned "Yeah, Tomas Perón likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest."
+    him concerned "Yeah, Tomás Perón likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest."
     him content "He said that the corn should be ready in five days. Can you get work off to help harvest it?"
     her concerned "Yeah, I don't have any appointments since everyone else is going to be there!"
     her normal "And if someone gets injured I'll be on the scene!"
@@ -4284,7 +4284,7 @@ label community19:
     ilian_c "If you process your crabbirds in the cannery, I promise we'll pay a good price for them."
     natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
     scene stars with dissolve
-    "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomas was able to trap a lot of them that week."
+    "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomás was able to trap a lot of them that week."
     #TODO: follow-up on wolf slug hunting? maybe in a later event?
     return
 

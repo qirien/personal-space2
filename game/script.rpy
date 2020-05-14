@@ -63,6 +63,8 @@ label start:
         bro_name = "Aeron"
 
         bro_birth_year = 0
+        # YEARS is Talaam time; AGE is Earth time
+        bro_years = -1
         bro_age = -1
         year6_have_baby = False
         year8_have_baby = False
@@ -307,7 +309,8 @@ label life_loop:
         $ earth_year = get_earth_years(year)
 
         if (bro_birth_year != 0):
-            $ bro_age = year - bro_birth_year
+            $ bro_years = year - bro_birth_year
+            $ bro_age = get_earth_years(year - bro_birth_year)
 
         # FARMING CHOICES
         $ renpy.random.shuffle(audio.computer)

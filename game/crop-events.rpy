@@ -400,7 +400,7 @@ label corn2:
                     show him normal at midleft
                     show her normal at midright
                     show kid normal at center
-                    if (bro_age > 0):
+                    if (bro_years > 0):
                         show bro normal at quarterright
                     her surprised "Chips and salsa?! Wonderful!"
                     kid happy "I like chips, too!"
@@ -412,7 +412,7 @@ label corn2:
                 show him normal at midleft
                 show her normal at midright
                 show kid normal at center
-                if (bro_age > 0):
+                if (bro_years > 0):
                     show bro normal at quarterright
                 kid surprised "What is this?"
                 her happy "Popcorn!!"
@@ -739,7 +739,7 @@ label potatoes3:
     "I slipped and fell in the mud right as [her_name] came walking up."
     show her concerned at midleft behind rain
     show kid normal at center behind rain
-    if (bro_age > 0):
+    if (bro_years > 0):
         show bro normal at midleft behind rain
     with moveinleft
     her "Hey, we missed you at dinner. Everything okay?"
@@ -1752,7 +1752,7 @@ label spinach2_eat_snails:
     scene farm_interior with fade
     show him surprised at midright
     show kid surprised at center
-    if (bro_age > 0):
+    if (bro_years > 0):
         show bro surprised at quarterright
     show her surprised at midleft
     with dissolve
@@ -1760,7 +1760,7 @@ label spinach2_eat_snails:
     her concerned "It's...interesting."
     kid nervous "It's...not bad."
     him concerned "I suppose... I could eat this."
-    if (bro_age > 4):
+    if (bro_years > 4):
         bro annoyed "I'm not eating it."
     "It was an interesting experiment, but ultimately we did not want to eat that many turtle-snails."
     "So I disposed of them."

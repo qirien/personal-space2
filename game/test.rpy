@@ -18,6 +18,7 @@ screen test_family_photo_screen():
 label test_family_photo:
     $ year = 10
     $ bro_age = 0
+    $ bro_years = 0
     scene stars with fade
     show family_photo happy with moveinleft
     "Scrapbook time! Aren't we cute? We could use our smaller photo, too."
@@ -597,7 +598,8 @@ label test_crops:
         $ competence = year
         $ earth_year = get_earth_years(year)
         if (bro_birth_year != 0):
-            $ bro_age = year - bro_birth_year
+            $ bro_years = year - bro_birth_year
+            $ bro_age = get_earth_years(bro_years)
         if (year > 1):
             $ years_yield = farm.process_crops()
             if (year > MONEY_YEAR):

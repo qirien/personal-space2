@@ -2796,6 +2796,7 @@ label baby_delivery:
     with dissolve
     $ bro_birth_year = year
     $ bro_age = 0
+    $ bro_years = 0
 
     julia "It's a boy!"
     "...but he didn't look like [kid_name] did when she was born."
