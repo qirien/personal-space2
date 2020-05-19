@@ -99,6 +99,8 @@ Camera Lens by RG1024, <https://openclipart.org/detail/20295/camera-lens>
 Textbox twig frame by Firkin from "Poems and Pictures", 1865
 Watering Can by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">OpenClipart-Vectors</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=575442">Pixabay</a>
 Signpost by <a href="https://pixabay.com/users/OpenClipart-Vectors-30363/">OpenClipart-Vectors-27407</a> from <a href="https://pixabay.com/vectors/sign-signpost-label-brown-wood-151771/">Sign Signpost Label Brown Wood</a>
+Hourglass by <a href="https://pixabay.com/users/clker-free-vector-images-3736/">Clker-Free-Vector-Images</a> from <a href="https://pixabay.com/vectors/hourglass-timer-sand-clock-23654/">Hourglass Timer Sand Clock</a>
+Seed bag by <a href="https://pixabay.com/users/openclipart-vectors-30363/">OpenClipart-Vectors</a> from <a href="https://pixabay.com/vectors/bag-seeds-food-natural-organic-576716/">Bag Seeds Food</a>
 
 === Character Sprites
 
