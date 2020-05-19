@@ -418,9 +418,9 @@ label tests:
             call test_family_photo
         "Emoji":
             call test_emoji
-        "Baby Positions":
+        "Dialogue Test":
             #call test_positions
-            call baby_positions
+            call test_dialogue
         "Omake":
             call omake
         "Sprites":
@@ -433,6 +433,22 @@ label tests:
             return
 
     jump tests
+    return
+
+label test_dialogue:
+    $ year = 25
+    scene farm_interior with fade
+    show him normal at midright
+    show her happy at midleft
+    with dissolve
+    her happy "Thanks so much for taking my turn tonight! I had a crazy day."
+    him flirting "I'll cook for you any time!"
+    show kid normal at center with moveinleft
+    kid surprised "WHAT is THAT?!"
+    him pout "It's dinner."
+    kid annoyed "Yeah, but what is it?!"
+    her concerned "Is it... crabird?"
+    him annoyed "No!"
     return
 
 label test_message_board:

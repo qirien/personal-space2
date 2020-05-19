@@ -188,23 +188,23 @@ label start:
                         ["goats",        8, 1, 0, 1, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
                         ["honey",        2, 0, 0, 0, 8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
         crop_descriptions = {
-            "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
+            "fallow" : "Let this field rest to restore nitrogen.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
             "potatoes" : "A starchy root vegetable with a lot of calories that doesn't take too much work.",
             "wheat" : "A nutritious grain, usually made into bread.",
             "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
-            "tomatoes" : "A popular, versatile fruit useful raw or cooked.",
+            "tomatoes" : "A juicy, versatile fruit; can be eaten raw or cooked.",
             "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
             "squash" : "This hearty vegetable keeps well and is easy to grow.",
-            "strawberries" : "Small, sweet, and delicious! They come back every year.",
-            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious. They also fix nitrogen in the soil.",
-            "peanuts" : "This legume takes hard work to harvest, shell, and boil, but keeps well and makes peanut butter.",
-            "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
+            "strawberries" : "Small, sweet, and tangy! They come back every year.",
+            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious. They fix nitrogen in the soil.",
+            "peanuts" : "This legume takes hard work to harvest, shell, and boil. Fixes nitrogen in the soil.",
+            "carrots" : "These crunchy root vegetables are full of vitamin A and easy to grow.",
             "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
             "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
             "garlic" : "Their pungent flavor is versatile and sought after.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
-            "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
+            "broccoli" : "This vegetable is easy to grow and nutritious. Eat the flower buds and the stems!",
             "goats" : "Goats restore nitrogen, eat pests, and provide nutritious milk and meat.",
             "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
