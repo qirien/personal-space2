@@ -119,7 +119,7 @@ screen say(who, what):
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     #if not renpy.variant("small"):
-    add SideImage() xalign 0.0 yalign 1.0
+    add SideImage() xalign 0.00 yalign 1.0
 
     # here's our watering can MENU button
     imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
@@ -1212,7 +1212,7 @@ screen achievements():
                             at highlight_imagebutton
                     text title xalign 0.5
                     showif (show_which == title):
-                        text persistent.achievements[title]["desc"] xalign 0.5 italic True 
+                        text persistent.achievements[title]["desc"] xalign 0.5 italic True size gui.quick_button_text_size
                     else:
                         text ""
 

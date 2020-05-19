@@ -325,7 +325,7 @@ label family2:
 
     play sound "sfx/radio.mp3"
     her "{i}[his_name]! I'm leaving right now! There's an emergency at the clinic.{/i}"
-    him determined "{i}Okay, I'll take care of things here.{/i}"
+    him determined "Okay, I'll take care of things here."
     her "{i}[kid_name]'s in her crib. Bye!{/i}"
 
     "We had worked out a pretty good schedule, where I would get up early and try to get my most intensive farm work done in the mornings."
@@ -2796,9 +2796,9 @@ label baby_delivery:
     with dissolve
     $ bro_birth_year = year
     $ bro_age = 0
+    $ bro_years = 0
 
     julia "It's a boy!"
-    $ achieved("Binary System")
     "...but he didn't look like [kid_name] did when she was born."
     him surprised "Is... is he missing some of his lip?"
     julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."
@@ -2818,6 +2818,7 @@ label baby_delivery:
             her concerned "[his_name]..."
             "I bundled him up and held him close."
     show him happy baby with dissolve
+    $ achieved("Binary System")
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."
@@ -2847,6 +2848,7 @@ label baby_delivery:
     him concerned "Hold the book open for me... right there..."
     kid happy "I can read the front! That word is \"moon\"!"
     him normal "You're right! Now turn the page... can you find the mouse?"
+    play sound "sfx/baby-shortcry.ogg"
     show bro annoyed with dissolve
     him surprised "Oh, sorry [bro_name], I squeezed that too fast. [kid_name], could you get a rag so I can wipe up this milk?"
     kid annoyed "Fine..."
@@ -2863,6 +2865,7 @@ label baby_delivery:
     him normal "Good thing we still have this rag here."
     show kid happy
     show bro normal
+    play sound "sfx/baby-coo.ogg"
     "Sometimes I felt frustrated that [bro_name] needed so much from us."
     "But, when I forgot myself and just loved him... I think the experience helped our whole family grew closer together."
     "Those moments, snuggled up together, those two little lives so dependent on me... I wanted to remember those times forever."
@@ -3558,8 +3561,8 @@ label family12:
             kid concerned "Um, yeah, I guess, probably?"
             him determined "You don't know."
             kid annoyed "We don't talk about our parents!"
-            him surprised "Why don't I message her parents and get some more information?"
-            kid determined "Okay. Her last name's Lewis."
+            him surprised "Why don't I message her parents and get some more information? What's her last name?"
+            kid determined "Uh... Anya, um, Lewis? I think?"
             call family12_contact_parents
         "I don't want you going over to some random miner's house.":
             $ demanding += 1
@@ -3659,9 +3662,9 @@ label family12:
 
     pete "Hey there, [his_name]. Hey, Travis, wanna say hi? [kid_name]'s here."
     travis "No!"
-    pete "Think he's embarrassed about his new haircut."
+    pete happy "Think he's embarrassed about his new haircut."
     travis "Dad!"
-    pete "Anyway, here's your comb."
+    pete normal "Anyway, here's your comb."
     him concerned "Thanks for printing it for us."
     pete happy "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
 
@@ -3848,12 +3851,12 @@ label family12_disobey:
     show him annoyed
     "I called up Mr. Lewis on the radio."
     play sound "sfx/radio.mp3"
-    him "{i}Mr. Lewis? Is [kid_name] there?{/i}"
+    him "Mr. Lewis? Is [kid_name] there?"
     "Mr. Lewis" "{i}I just got home, but no, she's not here.{/i}"
-    him "{i}Are you sure? She hasn't come home yet...{/i}"
+    him concerned "Are you sure? She hasn't come home yet..."
     "Anya" "{i}She just left to go home, dad!{/i}"
     "Mr. Lewis" "{i}Oh. Apparently she just left.{/i}"
-    him "{i}Thank you; that's good to know.{/i}"
+    him determined "Thank you; that's good to know."
     "The sun was starting to go down, but by my calculations, [kid_name] still had at about an hour's walk ahead of her."
     "As long as she could find her way from the miner's camp to the town, she'd be able to find her way home pretty easily. It's not like there were a ton of other places to go or confusing roads."
     "But it was getting dark, and I kept picturing [kid_name] as a corpse..."
@@ -7006,10 +7009,10 @@ label lettie_dies:
     "My mind raced. Yew poisoning was well-known, but there was no antidote. There were some treatments we could try...if we could get them in time."
     "I pulled out my radio. My hand was trembling and I was a lot less coherent than I wanted to be."
     play sound "sfx/radio.mp3"
-    him angry "{i}[her_name]! At the miner's village... Lettie's sick. I need your help!{/i}"
+    him angry "[her_name]! At the miner's village... Lettie's sick. I need your help!"
     show kid sad with dissolve
     her "{i}What's wrong with her?{/i}"
-    him concerned "{i}Yew. There was a yew bush, and she ate it... maybe a lot of it.{/i}"
+    him concerned "Yew. There was a yew bush, and she ate it... maybe a lot of it."
     "I knew I should give her more information, but my brain felt stuck, as if mired in glue."
     her "{i}I'll bring activated charcoal and the stomach pump right away.{/i}"
     "Lettie convulsed, and I patted her on the side of her neck."

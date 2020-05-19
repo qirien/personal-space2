@@ -166,6 +166,37 @@ init -100:
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 
+    ####
+    # Character Descriptions
+    ####
+    # TODO: show character icon
+    # TODO: Add hyperlinks to mentioned people
+    # TODO: Make a screen that actually uses these.
+    define character_bios = {
+        "her":"My wife, [her_name]. She's the colony doctor and the love of my life. She had a hard time adjusting to life away from Earth, but we've stuck together even when I forgot our anniversary, and when she got really homesick, and when she got pregnant and had to make her own maternity clothes.... She's an amazing woman.",
+        "him": "Who me? I'm just [his_name], a farmer on an alien planet... I like my family, my horse Lettie, growing things, and playing games. Sometimes I write bad poetry!",
+        "kid": "[kid_name] was one of the first babies born here. She's stubborn, smart, sassy, and completely adorable. She's [earth_year] Earth years old.",
+        "bro": "[bro_name] is my son. He feels things very strongly and has a lot going on inside his head, even though he doesn't say much. He's [bro_age] Earth years old.",
+        "Naomi": "Sister Naomi Grayson is the colony's spiritual and psychological expert. She leads religious services and gives therapy and stuff. Somehow she always seems to know who is in need and who could help and manages to arrange it in a kind way. She's married to Pavel, the mayor.",
+        "Pavel": "Pavel Grayson has been our mayor for... years, now. He's a good listener and tries to keep us all organized and deal fairly with each other. He's married to Naomi.",
+        "Lily": "Dr. Lily Kealoha has been here, researching this planet's geology and biology, for way longer than the rest of us. She keeps to herself unless you get her talking about rocks or plants, and then she's got a lot to say!",
+        "Sara": "Sara Hill-Andrevski is sort of like the mayor's administrative assistant? She keeps a lot of records and helps him stay organized. She's good friends with [her_name], and has a son Oleg. She's married to Ilian but they don't always live together.",
+        "Ilian": "Ilian Andrevski manages the storehouse where we keep all the food and supplies. He's a stickler for accuracy and rule-following and kind cranky. I think he needs more fresh air or something. He's married to Sara and he's Oleg's dad but sometimes she lives somewhere else. I don't blame them.",
+        "Thuc": "Thuc Nguyen has a great sense of humor and is a dedicated farmer. He met his wife Julia when they were both working for the Peace Corps in Cambodia, and now they have like ten kids, including Joanna, Miranda, Gardenia, and Van.",
+        "Oleg": "Oleg Hill-Andrevski is about [kid_name]'s age. Everyone kind of dotes on him, but somehow he's not spoiled, just sweet.",
+        "Julia": "Julia Nguyen is a midwife, farmer, and busybody. How she has time to keep a strictly organized household and know everyone's business is beyond me. She has a lot of kids; Joanna and Miranda are the oldest, and Gardenia and Van are the youngest.",
+        "Brennan": "Brennan Callahan is the only person to have left Talaam and come back so far. He was [her_name]'s nurse for a while when we first arrived, but he was also scouting out the planet for RET. And now he's the mining manager. His favorite things are wine, women, and being smug and condescending.",
+        "Pete": "Pete Jennings is a solid, reliable guy. He loves to read and a great researcher so in addition to managing a cattle herd and farm with his wife Helen he's also a librarian. Their son Travis is about [kid_name]'s age.",
+        "Helen": "Helen Jennings used to be so shy, she'd barely say more than two words to me. I don't know if she changed or just feels more comfortable around me now, but she's actually a real tough cowgirl. And she's the best painter we have. Maybe also the only painter? She and Pete have a son Travis who's about [kid_name]'s age.",
+        "Travis": "Travis Jennings is Helen and Pete's oldest son. He was born on the shuttle ride over. He's a fearless terror about a year older than [kid_name].",
+        "Natalia": "Natalia Perón is our closest neighbor. I'm kinda jealous of her horde of chickens and their delicious eggs. She's pretty good at making clothes and stuff. She and Martín have five kids: Tomás, Isabella, Raúl, Josephina (passed away), and Mateo.",
+        "Martín": "Martín Perón is dependable and honest. He doesn't deserve to be dying of cancer, though he's still fighting it. He and Natalia have four kids still alive (Tomás, Isabella, Raúl, and Mateo), and one who passed away shortly after we arrived (Josephina)",
+        "Chaco": "Chaco is the miner we were assigned to befriend. I still don't know much about him, except that he doesn't like to talk about himself.",
+        "Kevin": "Kevin is a no-nonsense, studious mining engineer who works for RET mapping out good places to mine. His wife is Zaina.",
+        "Zaina": "Zaina is a knowledgeable geologist with a great sense of humor. She laughs at my jokes, anyway. Her husband is Kevin."
+    }
+    
+
     ##
     # Custom transitions, positions, etc.
     ##

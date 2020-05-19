@@ -18,6 +18,7 @@ screen test_family_photo_screen():
 label test_family_photo:
     $ year = 10
     $ bro_age = 0
+    $ bro_years = 0
     scene stars with fade
     show family_photo happy with moveinleft
     "Scrapbook time! Aren't we cute? We could use our smaller photo, too."
@@ -26,6 +27,21 @@ label test_family_photo:
     "But when we try to do this in a screen..."
     call screen test_family_photo_screen
     "Seems strange."
+    return
+
+label test_endings:
+    $ year = 30
+    $ bro_birth_year = 8
+
+    call ending_aci
+    call ending_acI
+    call ending_aCi
+    call ending_aCI
+    call ending_Aci
+    call ending_AcI
+    call ending_ACi
+    call ending_ACI
+    
     return
 
 label test_parenting_style:
@@ -429,6 +445,8 @@ label tests:
             call test_message_board
         "Trailer":
             jump trailer
+        "Test Endings":
+            call test_endings
         "Quit":
             return
 
@@ -596,7 +614,8 @@ label test_crops:
         $ competence = year
         $ earth_year = get_earth_years(year)
         if (bro_birth_year != 0):
-            $ bro_age = year - bro_birth_year
+            $ bro_years = year - bro_birth_year
+            $ bro_age = get_earth_years(bro_years)
         if (year > 1):
             $ years_yield = farm.process_crops()
             if (year > MONEY_YEAR):

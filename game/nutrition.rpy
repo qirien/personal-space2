@@ -179,7 +179,7 @@ label bad_nutrition:
             scene farm_interior with fade
             show her concerned coat at midright
             show kid concerned at center
-            if (bro_age > 0):
+            if (bro_years > 0):
                 show bro concerned at quarterleft
             show him concerned at midleft with dissolve
             her annoyed coat "I just can't take it anymore!!"
@@ -201,7 +201,7 @@ label bad_nutrition:
                 show her concerned coat at midright
                 show him concerned at center
                 show kid concerned at quarterleft
-                if (bro_age > 0):
+                if (bro_years > 0):
                     show bro at midleft
                 with moveinleft
                 her determined coat "I just need to swab under my tongue..."
@@ -216,7 +216,7 @@ label bad_nutrition:
                 her determined coat "It'll take a few minutes for me analyze the spectrometer's results."
                 "I talked with [kid_name] while we waited for [her_name] to finish."
             else:
-                if (bro_age > 0):
+                if (bro_years > 0):
                     him concerned "I'll stay here with the kids while you do it."
                 else:
                     him concerned "I'll stay here with [kid_name] while you do it."
