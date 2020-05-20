@@ -97,7 +97,6 @@ init -100:
 
     # Activity themes
     define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
-    #define audio.maintheme = ""
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
@@ -107,6 +106,7 @@ init -100:
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
     define audio.saxophone = "music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.saxophone_solo = "<from 289>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
     define audio.videogame = "music/08-Electrospective Skuz-Ambient Teknology.ogg"
 
     # Emotional themes
@@ -128,6 +128,7 @@ init -100:
     define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg" #something terrible is happening and I'm moving through molasses
 
     #investigation? http://download.magnatune.com/artists/albums/justinstpierre-insulaire?song=6
+    # BUT we pay $89/month and can choose 10 songs per month, so we might not want to go over 20.
 
 
     ##

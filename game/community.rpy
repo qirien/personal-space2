@@ -3310,6 +3310,7 @@ label community17:
     play music upbeat
     play sound "sfx/people.mp3"
     if (invited_mavericks and invited_miners):
+        show miners at quarterright
         show pete normal at left with moveinleft
         "Pete offered to slaughter a steer for the occasion."
         show brennan normal at midright with moveinright
@@ -3352,9 +3353,11 @@ label community17:
         pete normal "I could, if you can help me out with a knife and some twine."
         him happy "I think we can arrange for that."
 
-    elif invited_miners:
+    elif invited_miners: # but not mavericks
         "The miners joined us for our harvest festival. After all, their success is what enables us to continue to live here."
-        show brennan normal at midright with moveinright
+        show miners at right
+        show brennan normal at midright
+        with moveinright
         brennan normal "We didn't have time to go hunting, but we DO have time to soak beans."
         him doubt "Is this a soup or a dip? It smells... different."
         brennan happy "Neither. Either. Both! Try some."
@@ -3369,7 +3372,17 @@ label community17:
                 him normal "I'll pass."
                 brennan normal "You don't like beans?"
                 him determined "I'll stick to what I know."
-                brennan normal "How very... predictable of you."
+                brennan happy "How very... predictable of you."
+    else:
+        "Almost everyone had submitted a different type of jam for the jam tasting. We each got a bowl of chips to dip in the jams, and then voted for our favorite."
+        "Kevin brought plum jam, Ilian had made a spicy tomato chutney, and Julia had a Mystery Jam that tasted like sweet mint tea."
+        if (crop_enabled("strawberries")):
+            "[her_name] brought a jar of strawberry jam that I was pretty sure I was voting for."
+        elif (crop_enabled("plums")):
+            "[her_name] brought a jar of plum jam that tasted kind of like prunes, but it was still sweet at least."
+        elif (crop_enabled("honey")):
+            "[her_name] brought a jar of honey that tasted like plum blossoms."           
+        "I had made something else to bring."
 
     scene community_center with fade
     show thuc normal at quarterleft
@@ -3412,7 +3425,7 @@ label community17:
     stop sound fadeout 1.0
 
     scene community_center with fade
-    play music audio.exciting
+    play music audio.exciting fadein 5.0
     if (community_17_activity == "contests"):
         show julia normal at center with dissolve
         "After everything was cleaned up, it was time for some contests."
@@ -3901,12 +3914,14 @@ label community17:
         show bro normal at left
         with dissolve
         "Ilian had arranged for some people to perform for us."
-        # TODO: play a bari solo song?
+        play music saxophone_solo fadein 3.0
         show ilian normal at quarterright with dissolve
         "He started us off with a solo on his enormous saxophone."
         "Well, he didn't actually have a saxophone; it wouldn't have fit on the shuttle."
         "So he played a video of himself playing on Earth. At first I thought it was kind of cheating to play a video, but he was pretty good."
         hide ilian with moveoutright
+        stop music fadeout 2.0
+        play music audio.exciting fadein 5.0
         show julia mad at quarterright with moveinleft
         "Next, Julia sang a song about how she was the best at everything. It was supposed to be funny, but it was a little too true. She did have a good voice, though."
         her surprised "Did she used to sing opera?"
@@ -3921,41 +3936,55 @@ label community17:
         him content "I'm not sure; you'll have to ask him."
         hide oleg with moveoutright
         if (invited_mavericks):
-            show helen at quarterright with moveinright
+            show helen at quarterright with moveinleft
             "Helen drew a quick caricature of Mayor Grayson."
             kid surprised "She can draw so fast!"
             him happy "And it looks just like him!"
             her concerned "I don't know; his nose looks a little clownish, if you ask me."
             hide helen with moveoutright
-        "Thuc and Julia's kids performed a skit about throwing pebbles in the river. Then Gardenia came in all wet, and when asked what was wrong, she yelled, 'My name is Pebbles!'"
+        show thuc normal at quarterright with moveinleft
+        # TODO: Do we have any other kids? Van?
+        "Thuc and his kids performed a skit. Each kid talked about how they loved to throw pebbles in the river."
+        "Then Gardenia came in all wet, and when asked what was wrong, she yelled, 'My name is Pebbles!'"
         kid laugh "That was the best one so far!"
+        hide thuc with moveoutright
         "Last, Kevin came on and told some jokes."
-        show kevin at quarterright with moveinright
+        show kevin normal at quarterright with moveinright
         show him normal
         show her normal
         show kid normal
         with dissolve
-        kevin "Three statisticians are out deer hunting. The first one shoots and hits a tree five meters to the left."
+        kevin "Three statisticians are out deer hunting. The first one shoots and hits a tree five meters to the left of the deer."
         kevin "The second shoots and hits a tree five meters to the right."
         kevin "The third jumps up and down shouting, 'We got him! We got him!'"
-        her laughing "That is so true."
+        her laugh "That is so true."
         kid annoyed "Huh? I don't get it."
         him happy "Because if you average the first two, you get a hit, right?"
         kid surprised "Oh... right."
         her concerned "Because in statistics you do a lot of averages...?"
         kid happy "Ohhh, I get it!  Ha ha ha!"
-        bro concerned "What's an average?"
+        bro concerned "I don't get it."
 
 label c17_after_activities:
+    stop music fadeout 5.0
     scene bonfire with fade
     play sound "sfx/fire-2.mp3" loop
     "We ended the night grouped around a blazing bonfire."
     "The flames' warmth warded off the damp chill growing in the night air."
+    "The kids scampered through the night, looking for more sticks to add to the flames, but I just watched the fire flickering."
+    "The flames devoured everything, turning it to warmth and light."
+    her concerned "It's just like us."
+    him surprised "What is?"
+    her surprised "We are like the fire, consuming food constantly, turning it into babies and laughter and farms and... everything!"
+    him flirting "We couldn't do it without food. Good thing some of us are farmers, huh?"
+    her determined "Well, we also can't do any of this if we're dead, so I'm happy doing the job I'm doing."
+    him happy "I'm happy with the job you're doing, too."
+
     stop sound fadeout 1.0
 
-    scene black with fade
     if ate_jellyfish:
         #move to a later, more sparse event?
+        scene ocean with fade
         "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
         "I wonder what they look like."
         nvl clear
@@ -3974,13 +4003,11 @@ label c17_after_activities:
         lily_c "I find your interest in them highly unusual."
         him_c "Why? Aren't they beautiful creatures?"
         lily_c "Yes. They are."
-        return
-    else:
-        return
 
     #more likely to take a later risk if you have the parasite? doesn't have to be just like toxoplasmosis.
     # also if you meet with the mavericks, Pete can answer questions about cattle health.
     # if BOTH mavericks and miners are there, they start trade negotiations? affects the firegrass event later.
+    return
 
 
 label community18:
@@ -6811,13 +6838,12 @@ label no_euthanasia:
     sara_c "I told him we could start next week. {emoji=happy}"
     scene kid_bedroom with fade
     show him normal at midleft with moveinleft
-    show pavel normal at midright with dissolve #TODO: sprite of pavel with eyes closed?
+    show pavel sad at midright with dissolve #TODO: sprite of pavel with eyes closed?
 
     "The next day, I stopped by his house to check on him. Just in case."
     "He seemed to be deeply asleep..."
     "No, he was out cold. Dead?"
-    "He left a note."
-    "We didn't have a lot of paper, so it was written on a chalkboard."
+    "He left a note on his computer pad."
     legalese "I'm so grateful that you were willing to look after me. When I think of all the care I will likely need, I find it unbearable to think of the burden I would place on you."
     legalese "Do try to survive, but if you can't survive, please keep your spirit of self-sacrifice and compassion."
     legalese "Don't think of my suicide as a failure on your part. This was my own rational decision in the face of a known future I preferred not to live."
