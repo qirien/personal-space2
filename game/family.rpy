@@ -4988,7 +4988,7 @@ label family17:
             "The wailing increased in volume and I decided I'd better go in."
 
     scene kid_bedroom with fade
-    show bro sad at midright
+    show bro cry at midright
     show kid angry at center
     with dissolve
     show him determined at midleft with moveinleft
@@ -5097,7 +5097,7 @@ label family17:
             "Apologize for eating it." if (not family17_apologize):
                 $ responsive += 1
                 $ trust += 1
-                him sad "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
+                him surprised "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
                 bro sad "I want bread!"
                 $ family17_apologize = True
                 $ sniffle_duration += 1
@@ -5230,24 +5230,27 @@ label family17:
             "Ilian, the storehouse manager":
                 "I cringed, but I thought grumpy old Ilian would probably be the most likely to have bread."
                 scene storeroom with fade
-                show ilian at midright with dissolve
-                show him normal at midleft
-                show bro at quarterleft
+                show ilian normal at midright with dissolve
+                show him determined at midleft
+                show bro concerned at quarterleft
                 with moveinleft
-                him normal "Sir Ilian! I would speak with you!"
+                him determined "Sir Ilian! I would speak with thee!"
                 "He sighed, got up from the cans he was organizing, and came over to the counter."
                 ilian "What do you want?"
-                him excited "This young adventurer here is in dire need of bread!"
+                him excited "This young wizard is in dire need of grainy sustenance!"
                 ilian "I'm not in the mood for games. Just tell me what you want so I can get back to work."
                 him determined "We have need of bread!"
+                show bro surprised with dissolve
                 "I patted [bro_name] on the head, but he clung to my leg timidly. I could see why; Ilian was scowling at us like we were a couple of weevils."
                 ilian "Bread, huh? Not wheat?"
                 him normal "No, indeed! Only bread will suffice!"
                 ilian "Don't have any."
+                show bro sad with dissolve
                 him surprised "Alas! How could this be?"
                 ilian "Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
                 "I checked the time. It was getting late. We didn't have time to look anywhere else, especially since the farms were so spread out."
                 him determined "Then we shall craft our own bread."
+                show bro normal with dissolve
                 if (farm.crops.count("wheat") > 0):
                     "It galled me to pay Ilian for the wheat I had just sold him, but I did it anyway. I didn't keep a lot of wheat around since it brought in a lot of money. I also bought some yeast."
                 else:
@@ -5309,7 +5312,7 @@ label family17:
                 pavel "Ha ha ha, no, I don't have candy. But I'll see if I can find something good for you. And we can remember Naomi, together."
                 bro normal "Okay."
                 "As we left, the sun was setting. It was too late to go anywhere else, so we headed home."
-                $ renpy.notify("Quest Failed: Find [bro_name] some bread!")
+                $ renpy.notify("Quest Updated: Find [bro_name] some bread!")
 
             "Pete, leader of the mavericks":
                 him determined "Let us ask Sir Pete!"
@@ -5354,7 +5357,7 @@ label family17:
                 "Maybe we could make some cornbread. It wasn't what [bro_name] had in mind, but we didn't have time to look anywhere else, and it was the best I could do."
                 him "Thanks, Pete. See you around."
                 pete "See you. Take it easy, kid."
-                $ renpy.notify("Quest Complete: Find [bro_name] some bread!")
+                $ renpy.notify("Quest Updated: Find [bro_name] some bread!")
 
         scene path with fade
         show horse at center
@@ -5366,6 +5369,7 @@ label family17:
         "But as we approached home, [bro_name] broke the silence."
         bro normal "I like riding with you, dad."
         him happy "I like riding with you, [bro_name]."
+        $ renpy.notify("Quest Complete!")        
         "We didn't find the bread [bro_name] wanted, but he seemed to be feeling better. Maybe hanging out with dad was what he really needed."
     return
 

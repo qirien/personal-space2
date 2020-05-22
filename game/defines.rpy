@@ -97,7 +97,6 @@ init -100:
 
     # Activity themes
     define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
-    #define audio.maintheme = ""
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
@@ -107,6 +106,7 @@ init -100:
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
     define audio.saxophone = "music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.saxophone_solo = "<from 289>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
     define audio.videogame = "music/08-Electrospective Skuz-Ambient Teknology.ogg"
 
     # Emotional themes
@@ -128,6 +128,7 @@ init -100:
     define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg" #something terrible is happening and I'm moving through molasses
 
     #investigation? http://download.magnatune.com/artists/albums/justinstpierre-insulaire?song=6
+    # BUT we pay $89/month and can choose 10 songs per month, so we might not want to go over 20.
 
 
     ##
@@ -137,9 +138,9 @@ init -100:
     # TODO: Remove unused
     define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
 
-    define her = DynamicCharacter("her_name", color="#84b766", image="her", ctc="ctc_blink", ctc_position="nestled") #light mint green
+    define her = DynamicCharacter("her_name", color="#d1a2b8", image="her", ctc="ctc_blink", ctc_position="nestled") #light fuschia
     define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
-    define kid = DynamicCharacter("kid_name", color="#ca67ac", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
+    define kid = DynamicCharacter("kid_name", color="#5f2b4f", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
     define bro = DynamicCharacter("bro_name", color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
 
     define naomi = Character("Sister Naomi", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
@@ -434,12 +435,12 @@ define parenting_quotes = [
     "\"All research indicates that the most significant influence on the life of a teenager comes from his or her parents.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #21
     "\"Where did we ever get the crazy idea that in order to make children do better, first we have to make them feel worse? Think of the last time you felt humiliated or treated unfairly. Did you feel like cooperating or doing better?\"\n\nJane Nelson, {i}Positive Discipline{/i}", #22
     "\"Excessive control usually involves punishment which is humiliating to children. Permissiveness is humiliating to adults. Positive discipline is based on mutual respect and cooperation. Positive discipline incorporates firmness with dignity and respect.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #23
-    "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\n --Heraclitus", #24
+    "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\nHeraclitus", #24
     "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #25
     "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached.\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
     "\"There is a cognitive bias that makes people overestimate their own importance and their own ability to influence how things turn out - not just in child-rearing but in everything they do.\"\n\n -- Judith R. Harris", #27
     "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
-    "\"When the child internalizes a secure internal working model of self in relation to caregivers, a remarkable thing can occur— the child can dare to turn their back on caregivers and walk away from them\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #29
+    "\"The visions we offer our children shape the future. It matters what those visions are. Often they become self-fulfilling prophecies. Dreams are maps.\"\n\nCarl Sagan", #29
     "\"Raising a child is in many ways is a long process of saying goodbye.\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #30
 
 ]

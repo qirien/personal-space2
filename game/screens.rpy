@@ -105,24 +105,27 @@ style frame:
 screen say(who, what):
     style_prefix "say"
 
-    window:
-        id "window"
-
-        text what id "what"
-
-        if who is not None:
-
-            window:
-                style "namebox"
-                text who id "who"
-
     # If there's a side image, display it above the text. Do not display
     # on the phone variant - there's no room.
     #if not renpy.variant("small"):
-    add SideImage() xalign 0.00 yalign 1.0
 
-    # here's our watering can MENU button
-    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
+    window:
+        id "window"
+
+        text what id "what"     
+
+        if who is not None:    
+            window:
+                style "namebox"
+                text who id "who"
+    
+    add SideImage() xpos 120 ypos 560                
+
+
+    # here's our side quick MENU buttons
+    imagebutton xpos 1070 ypos 550 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
+    imagebutton xpos 1085 ypos 590 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
+    imagebutton xpos 1015 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
 
 
 style window is default
