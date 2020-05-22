@@ -380,12 +380,12 @@ init -100 python:
 
     # Return who has the highest relationship, or "" if none are greater than 0
     def get_boyfriend_name():
-        if ((oleg <= 0) and (travis <=0) and (lorant <= 0)):
+        if ((oleg_points <= 0) and (travis_points <=0) and (lorant_points <= 0)):
             return ""
 
         # If they are all equal, base it on the strongest faction
-        if (oleg == travis):
-            if (oleg == lorant):
+        if (oleg_points == travis_points):
+            if (oleg_points == lorant_points):
                 if (strongest_faction() == "miners"):
                     return "Lorant"
                 elif (strongest_faction() == "mavericks"):
@@ -394,12 +394,12 @@ init -100 python:
                     return "Oleg"            
 
         # Otherwise, whichever is greatest, giving priority to Oleg and Travis
-        if (oleg >= lorant):
-            if (oleg >= travis):
+        if (oleg_points >= lorant_points):
+            if (oleg_points >= travis_points):
                 return "Oleg"
             else:
                 return "Travis"
-        elif (travis >= oleg):
+        elif (travis_points >= oleg_points):
             return "Travis"        
         else:
             return "Lorant"

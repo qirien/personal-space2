@@ -5261,7 +5261,7 @@ label mining_anyway:
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
 
-    $ travis -= 1
+    $ travis_points -= 1
     $ community_22_mined_anyway = True
     return
 

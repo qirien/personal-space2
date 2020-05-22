@@ -96,9 +96,9 @@ label start:
         allowance_amount = 0
 
         # variables for boy relationships for Terra
-        travis = 0
-        lorant = 0
-        oleg = 0
+        travis_points = 0
+        lorant_points = 0
+        oleg_points = 0
 
 
     # COMMUNITY
