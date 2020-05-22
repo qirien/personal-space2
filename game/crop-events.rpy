@@ -2004,6 +2004,7 @@ label honey1:
                 "She whispered something in his ear that I didn't hear."
                 hide helen with moveoutright
             "Talk to Travis directly.":
+                $ travis += 1
                 him determined "Travis, I need to talk to you."
                 show helen at right with move
 
@@ -2026,6 +2027,7 @@ label honey1:
             him annoyed "That's the only reason?"
             travis "Pretty much."
         "I expect full compensation.":
+            $ travis -= 1
             him determined "I expect you to compensate me for that honey. It's about 50 credits worth."
             travis "50 credits?!"
             him concerned "If you don't have the credits, you can work for me instead."
@@ -2067,11 +2069,13 @@ label honey1:
     menu:
         "What should I say?"
         "Quit stealing.":
+            $ travis -= 1
             him determined "I understand what you're saying, but you can't steal from people."
             travis "Yeah."
         "Want to learn beekeeping?":
+            $ travis += 2
             him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
-            travis "I don't know if I like bees..."
+            travis "I don't like bees..."
             him normal "You probably got stung a lot during your heist, huh?"
             travis "Yeah... but I wasn't going to walk away empty-handed!"
             him happy "Well, learning how to handle bees without getting stung is part of beekeeping!"

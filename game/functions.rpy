@@ -378,6 +378,33 @@ init -100 python:
         else:
             return "colonists"
 
+    # Return who has the highest relationship, or "" if none are greater than 0
+    def get_boyfriend_name():
+        if ((oleg <= 0) and (travis <=0) and (lorant <= 0)):
+            return ""
+
+        # If they are all equal, base it on the strongest faction
+        if (oleg == travis):
+            if (oleg == lorant):
+                if (strongest_faction() == "miners"):
+                    return "Lorant"
+                elif (strongest_faction() == "mavericks"):
+                    return "Travis"
+                else:
+                    return "Oleg"            
+
+        # Otherwise, whichever is greatest, giving priority to Oleg and Travis
+        if (oleg >= lorant):
+            if (oleg >= travis):
+                return "Oleg"
+            else:
+                return "Travis"
+        elif (travis >= oleg):
+            return "Travis"        
+        else:
+            return "Lorant"
+        return ""
+
     # Returns a fuzzy description of the given percentage.
     # Used for nitrogen and pest levels.
     def get_level_fuzzy(percentage):

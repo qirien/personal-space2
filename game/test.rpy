@@ -33,14 +33,10 @@ label test_endings:
     $ year = 30
     $ bro_birth_year = 8
 
-    call ending_aci
-    call ending_acI
-    call ending_aCi
-    call ending_aCI
-    call ending_Aci
-    call ending_AcI
-    call ending_ACi
-    call ending_ACI
+    call ending_ac
+    call ending_aC
+    call ending_Ac
+    call ending_AC
     
     return
 
