@@ -3276,14 +3276,14 @@ label community17:
         "Sara asked me who we should invite to the festival this year."
 
     menu:
-        "The miners and Pete's group." if ((mavericks >= 6) and (miners >=6)): #TODO: make sure it's possible to get this option
+        "The miners and Pete's group." if (mavericks_strong() and miners_strong()): #6
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_mavericks = True
             $ invited_miners = True
-        "Pete's group." if (mavericks >= 6):
+        "Pete's group." if (mavericks_strong()): #6
             "I'd like to invite Pete's group."
             $ invited_mavericks = True
-        "The miners." if (miners >= 6):
+        "The miners." if (miners_strong()): #6
             "We should invite the miners."
             $ invited_miners = True
         "The usual-- just all the other colonists.":
@@ -4148,7 +4148,7 @@ label community18:
             pete "You're not gonna help one bit?"
             him annoyed "No, I'm not."
             pete "I won't forget this."
-            if (mavericks <= 5):
+            if (not mavericks_strong("moderate")): #5
                 him determined "You need to compensate the miners and colonists for the losses they incurred."
                 pete normal "You need to stop being a jerk."
             scene stars with dissolve
@@ -4329,7 +4329,7 @@ label community20:
         pavel "She wants to move back to the colony."
         pavel normal "We don't have a precedent for this situation. What do you think RET would want?"
         him concerned "Hmm. I haven't heard much from RET so I assume they're happy."
-        if mavericks > 9: #maxiumum is 16 at this point
+        if mavericks_strong(): #9 #maxiumum is 16 at this point, so to get this you have to side with mavericks more than half the time
             him pout "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
             pavel normal "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him determined "That doesn't sound like a problem."
@@ -4607,7 +4607,7 @@ label community21:
 
 
     "That evening, Pete and his family stopped by."
-    if mavericks > 9: #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
+    if mavericks_strong(): #9 #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
         #TODO: maybe Travis should be in this event too?
         pete happy "Hey it's good to see you guys!"
         pete normal "I have a two-way radio now. It turns out communication is good for business."
@@ -4666,7 +4666,7 @@ label community21:
         hide pete with moveoutleft
     stop sound fadeout 1.0
 
-    if miners > 9: #maximum is 15
+    if miners_strong(): #9 #maximum is 15
         scene bonfire with fade
         show kid normal at quarterright
         show him normal at midright
@@ -4706,7 +4706,7 @@ label community21:
         her nervous "Too true. A few of the miners have mentioned it to me. I can give out recommended doses and warn about side effects, but we don't really know what the long-term side effects are right now."
         brennan "Ultimately it's their responsibility."
         her surprised "But we need to make sure they have enough information to make good decisions."
-        if mavericks > 7:
+        if mavericks_strong("moderate"): #7
             show pete normal at left with moveinleft
             pete "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
             brennan angry "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
@@ -4785,7 +4785,7 @@ label community21:
 
 
 label community22:
-    if (miners > 6) and (mavericks > 6) and (is_liaison):
+    if (miners_strong("moderate") and mavericks_strong("moderate") and is_liaison): #6
         scene stars with fade
         nvl clear
         brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine Mount Maverick."
@@ -4847,7 +4847,7 @@ label community22:
         # does this need a stat +=?
         return
 
-    elif (miners > 6) and (mavericks > 6) and not (is_liaison):
+    elif (miners_strong("moderate") and mavericks_strong("moderate") and (not is_liaison)): #6
         scene stars with fade
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in Mount Maverick. Do you know where he is right now?"
@@ -4866,7 +4866,8 @@ label community22:
         #stat +=?
         return
 
-    elif (miners > 3):
+    # TODO: have a "has medium strength with faction funtion"? or a "not hated by faction" function?
+    elif (miners_strong("low")): #3
         nvl clear
         if is_liaison:
             scene stars with fade
@@ -5072,7 +5073,7 @@ label community22:
                 "I left the conversation."
                 jump mining_anyway
 
-    elif (mavericks > 3):
+    elif (mavericks > 3): #3
         scene farm_interior
         show him normal at midleft
         "Pete called me on the radio one evening."
@@ -5277,7 +5278,7 @@ label community23:
     show him normal at midleft
     with dissolve
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
-    if mavericks > 5:
+    if mavericks_strong("moderate"): #5
         her determined coat "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
         her surprised coat "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
     her concerned coat "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
@@ -5302,7 +5303,7 @@ label community23:
         "No, don't publish the study.":
             him concerned "How many samples have you studied? I think it's too early to draw conclusions."
             her surprised coat "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
-        "You should at least tell Pete." if (mavericks >5):
+        "You should at least tell Pete." if (mavericks_strong("moderate")): #5
             him concerned "Pete should know that his cows are developing cancer."
             him content "Maybe he can adjust his radiation-shielding measures."
             her normal coat "That's a good idea. I'll make that suggestion."
@@ -5586,7 +5587,7 @@ label community25:
     show him normal at midleft with dissolve
     play sound "sfx/ocean-waves.mp3"
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
-    if (miners > 12):
+    if (miners_strong()): #12
         show chaco normal at midright with dissolve
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."
         "Nets with a close weave enclosed a small area off a pier."
@@ -5651,7 +5652,7 @@ label community25:
                     chaco "You too."
                     jump after_convo_25
 
-    elif (mavericks > 10):
+    elif (mavericks_strong()): #10
         "I looked around the coast for the jellystar farm."
         show pete normal at midright with dissolve
         "I saw Pete standing on a pier and walked down to say hi."
@@ -5851,7 +5852,7 @@ label community26:
         her surprised "The long-term side effects are similar too."
         brennan angry "I've never heard of someone suffering from a caffeine overdose."
         her annoyed "Well, it can happen. Usually with heavy users of energy drinks."
-        if miners > 10: #from community21, if you talked about it with Brennan
+        if miners_strong(): #10 #from community21, if you talked about it with Brennan
             her concerned "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
             her concerned "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
@@ -5904,13 +5905,14 @@ label community26:
                         him pout "Is it really necessary for the miners to work through the night?"
                         brennan normal "We have a quota from RET we're supposed to meet each year. Sometimes it's necessary and sometimes it isn't."
                         pavel normal "What if you cut down their hours? It could actually increase productivity."
-                        if (miners > 8): #is it mean to make this an option where it won't work?
+                        if (miners_strong("moderate")): #8 #is it mean to make this an option where it won't work?
                             brennan normal "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
                             $ miners += 1
                             $ work_fewer_hours = True
                             jump wrap_up_council_26
                         else:
                             brennan normal "Send me an e-mail after the meeting and we can talk about it."
+                            "That's what he said, but I could tell he meant 'no way'."
                             $ brennan_refuses_fewer_hours = True
                             jump wrap_up_council_26
 
@@ -5922,7 +5924,7 @@ label community26:
                 sara normal "I know an enterprising young person who could make an app about how to use firegrass."
                 him explaining "Is it Oleg?"
                 sara "Yes! He is really interested in educational technology."
-                if (miners > 8):
+                if (miners_strong("moderate")): #8
                     sara normal "You could have them access their own health stats from the database and it could tell them their recommended dosage."
                     her concerned "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
                     her annoyed "Also, there is no way I'm giving Oleg access to the health database."
@@ -5958,7 +5960,7 @@ label community26:
                         him concerned "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
                         her annoyed "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
                         him annoyed "Reducing their work hours should discourage them from using it more."
-                        if (miners > 8): #is it mean to make this an option where it won't work?
+                        if (miners_strong("moderate")): #8 #is it mean to make this an option where it won't work?
                             brennan normal "I think it will help with productivity."
                             $ miners += 1
                             $ work_fewer_hours = True
@@ -6005,7 +6007,7 @@ label community26:
                 "I e-mailed Brennan about changing the shift schedule but he never replied."
                 "When I brought it up with him in-person, he said something about not wanting to upset the miners by changing how much money they could earn."
                 jump after_firegrass_26
-            elif grow_more_tea and (colonists > 7):
+            elif grow_more_tea and (colonists_strong("moderate")): #7
                 "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
                 "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
                 "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
@@ -6082,7 +6084,7 @@ label community26:
                 "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
                 $ stop_buying_beef = True
                 $ colonists += 1
-        if (mavericks > 8): #maxiumum is 18
+        if (mavericks_strong()): #8 #maxiumum is 18
             scene farm_exterior
             show him normal at midleft with dissolve
             show pete happy at midright with moveinright
@@ -6288,7 +6290,7 @@ label call_to_squid:
             her "What on Earth happened to you?"
             kid shifty "I think you mean 'What on Talaam' happened to us."
             stop sound fadeout 1.0
-            if (mavericks > 8):
+            if (mavericks_strong("moderate")): #8
                 scene shack with dissolve
                 show pete normal at midright with dissolve
                 show him pout at midleft with moveinleft
@@ -6313,7 +6315,7 @@ label call_to_squid:
             him determined "Well... recently I met with a squid... mother? intelligent entity? They seemed really upset about the shells being gone."
             brennan normal "Really? Did you get a picture? What did it look like and how did it communicate with you?"
             "I told him about what had happened."
-            if (miners > 8):
+            if (miners_strong("moderate")): #8
                 brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him sad "I have my own farm to run!"
                 brennan happy "I can give you some credits for someone else to take care of your farm."
@@ -6326,7 +6328,7 @@ label call_to_squid:
             scene farm_exterior with dissolve
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
             "I had Julia print it in that week's {i}Talaam Times{/i}"
-            if (colonists > 8):
+            if colonists_strong("moderate"): #8
                 "Four families gave me one shell each."
                 $ shell_count += 4
             else:
@@ -6541,7 +6543,7 @@ label call_to_squid:
                                 "I started making plans for a fish farm off the coast."
                                 "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
                                 "After I explained my plans to the jellymother, she said that she could help trap a few of the first fish to start the farm."
-                                if colonists > 10:
+                                if colonists_strong(): #10
                                     "The other colonists helped me dig the farm-pond and line it with rocks."
                                     if serve_mudfish:
                                         "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
@@ -6809,7 +6811,7 @@ label fill_gap:
         show ilian normal at midright
         show kevin normal at midleft
         with dissolve
-        if miners > 9:
+        if miners_strong(): #9
             sara normal "The votes are in, and the majority voted to allow miners to vote."
             sara "I'll be coordinating with Brennan to set up the voting program with the miners. We should be able to vote next week though."
             ilian normal "You guys are going to regret this. Hope you like Kevin as your mayor."
@@ -6921,7 +6923,7 @@ label community29:
     her_c "She didn't ask for one."
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    if (mavericks > 5): #should this number be higher?
+    if (mavericks_strong("weak")): #5 #TODO: should this be harder to get? "moderate"?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "She doesn't want to stay with Travis at his restaurant?"
         her_c "It's noisy in the evenings and there isn't really room for her there."
@@ -7615,9 +7617,8 @@ label community30:
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
 
-            if (mavericks > 8):
-                pass #you find out about the below strategy if you talk to Pete
-            else:
+            if (not mavericks_strong("moderate")): #8:
+                $ oleg_points += 1
                 oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
                 oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
                 him "That sounds like it would work. I don't have admin status though..."
@@ -7635,11 +7636,10 @@ label community30:
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
         "I also wanted to go back to the scene of the crime to look in the barrel."
-        if (mavericks > 8):
+        if mavericks_strong("moderate"): #8
             "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
-        else:
-            pass
-        if colonists > 8:
+        
+        if colonists_strong("moderate"): #8
             nvl clear
             oleg_c "i actually did recognize that ring"
             him_c "What is it?"
@@ -7651,8 +7651,6 @@ label community30:
             him_c "How?"
             "He stopped answering me."
             $ know_rings_purpose = True
-        else:
-            pass
 
         "The next morning, I sent Noel a message first thing."
         nvl clear
@@ -7728,7 +7726,7 @@ label community30:
         else:
             him "I'll update you at the end of the investigation."
 
-        if (mavericks > 8): #check values
+        if (mavericks_strong("moderate")): #8 #check values
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
             play sound "sfx/radio.mp3"
             pete "{i}What can I help you with?{/i}"
@@ -7821,7 +7819,7 @@ label community30:
                     him "Yes. You can withdraw money until the account is empty, record the number, and then deposit it back."
                     brennan "Kind of a roundabout way of doing it. Is it the only way?"
                     him "As far as I know."
-                    if miners > 10:
+                    if miners_strong(): #10
                         brennan "I'll help you. But I don't have all day, so let's do this quickly."
                         label account_check:
                             if account_checked_counter > 3:
@@ -7888,7 +7886,7 @@ label community30:
                         brennan "No, don't take a photo of my tablet. I don't want the miners to know that I'm helping you too much."
                         brennan "Oh, it's already time for our evening briefing."
                         brennan "Take a screenshot and sent it to yourself."
-                        if miners > 10:
+                        if miners_strong(): #10
                             "Brennan left the tablet with me while he went to the briefing."
                             "I hurriedly opened the payments program. Whose account should I check first?"
                             label account_check_sneak:

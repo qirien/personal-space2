@@ -347,32 +347,46 @@ init -100 python:
         return (trust > 0)
 
     # Return whether the relationship with a faction is "strong" or not
+    # Optional parameter "strength" controls how strong the relationship has
+    # to be to return TRUE.  Default is "strong", while "moderate" and 
+    # "weak" have less stringent requirements.
     # TODO: tweak this based on actual results
-    def mavericks_strong():
-        strong = ((mavericks / (year / 3.0)) >= 1)
+    def mavericks_strong(strength="strong"):
+        strong = faction_strong(mavericks, strength)
         if (strong):            
             renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
         return strong
     def miners_strong():
-        strong = ((miners / (year / 3.0)) >= 1)
+        strong = faction_strong(miners, strength)
         if (strong):
             renpy.show_screen("show_notification", "{emoji=friends} Miners")
         return strong
     def colonists_strong():
-        strong = ((colonists / (year / 3.0)) >= 1)
+        strong = faction_strong(colonists, strength)
         if (strong):
             renpy.show_screen("show_notification", "{emoji=friends} Colonists")
         return strong
 
+    # Helper function for each faction to calculate whether they are "strong" or not.
+    def faction_strong(faction_value, strength="strong"):
+        strong = False
+        if (strength == "weak"):
+            strong = ((faction_value / (year / 7.0)) >= 1)
+        elif (strength == "moderate"):
+            strong = ((faction_value / (year / 5.0)) >= 1)
+        else:
+            strong = ((faction_value / (year / 3.0)) >= 1)
+        return strong
+
     # Returns the strongest faction
     def strongest_faction():
-        if (colonists >= miners >= mavericks):
+        if ((colonists >= miners) and (colonists >= mavericks)):
             renpy.show_screen("show_notification", "{emoji=friends} Colonists")
             return "colonists"
-        elif (miners >= colonists >= mavericks):
+        elif ((miners >= colonists) and (miners >= mavericks)):
             renpy.show_screen("show_notification", "{emoji=friends} Miners")            
             return "miners"
-        elif (mavericks >= colonists >= miners):
+        elif ((mavericks >= colonists) and (mavericks >= miners)):
             renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
             return "mavericks"
         else:

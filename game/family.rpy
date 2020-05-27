@@ -103,10 +103,13 @@ label family1:
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
             stop sound fadeout 5.0
             "We walked the fields for at least an hour; maybe more."
-            hide kid with dissolve
+            show kid normal at center, baby_pos with dissolve
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
             scene farm_interior with fade
+            show him baby normal at center with moveinleft
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
+            hide him with moveoutright
+            call bedroom_scene(show_baby=True) 
             "Finally, she was sleeping in bed, and I fell into bed next to her and [her_name]."
             $ authoritative += 1
             $ permissive += 1
