@@ -38,24 +38,19 @@ init python:
 
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
-    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment,
-    # as long as Terra's work slider is under 90%
-    # TODO: is this balanced?
     $ inc_amount = 0
-    #if ((total_work < current_work) and (kid_work_slider < 90.0)):
-    #    $ inc_amount += 1
     $ inc_amount += responsive
     if (inc_amount > 0):
         $ notifications += "Attachment +" + str(inc_amount) + "\n"
     $ attachment += inc_amount
     return
 
-# Increase competence based on how demanding you were last year and how much Terra worked
+# Increase competence based on how demanding you were last year #and how much Terra worked
 label increase_competence:
     $ inc_amount = 0
     # Sometimes increase competence with a probability proportional to how much they work. If they work 100%, increase it a quarter of the time.
-    if (renpy.random.random() <= (kid_work_slider/400.0)):
-        $ inc_amount += 1
+    # if (renpy.random.random() <= (kid_work_slider/400.0)):
+    #     $ inc_amount += 1
     $ inc_amount += demanding
     if (inc_amount > 0):
         $  notifications += "Competence +" + str(inc_amount) + "\n"
@@ -347,7 +342,7 @@ init -100 python:
         return (trust > 0)
 
     # Return whether the relationship with a faction is "strong" or not
-    # TODO: tweak this based on actual results
+    # TODO: tweak this based on actual results, use this
     def mavericks_strong():
         strong = ((mavericks / (year / 3.0)) >= 1)
         if (strong):            

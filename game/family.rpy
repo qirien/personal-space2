@@ -1730,7 +1730,7 @@ label family6:
             her concerned "Yes, you should. Maybe tonight?"
             him surprised "I thought you were making...wait, are we talking about actual cooking, or, you know, 'cooking'?"
             her flirting "Both!"
-            him flirting "Then let's cook together tonight, [her_nickname]!"
+            him flirting "Then let's cook together tonight, honey!"
 
             $ marriage_strength += 1
             $ permissive += 1
