@@ -103,10 +103,13 @@ label family1:
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
             stop sound fadeout 5.0
             "We walked the fields for at least an hour; maybe more."
-            hide kid with dissolve
+            show kid normal at center, baby_pos with dissolve
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
             scene farm_interior with fade
+            show him baby normal at center with moveinleft
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
+            hide him with moveoutright
+            call bedroom_scene(show_baby=True) 
             "Finally, she was sleeping in bed, and I fell into bed next to her and [her_name]."
             $ authoritative += 1
             $ permissive += 1
@@ -2517,6 +2520,7 @@ label family8:
             menu:
                 "What should I do?"
                 "Insist on a better apology.":
+                    $ oleg_points += 1
                     $ demanding += 1
                     him determined "What kind of apology was that? You need to walk over to him and tell him sincerely to his face."
                     kid annoyed "I already said sorry!"
@@ -2574,6 +2578,7 @@ label family8:
             "She wasn't an easy kid -- but I loved her vibrant energy and insatiable curiosity...even when it sometimes exhausted me."
             menu:
                 "Have her apologize to Oleg.":
+                    $ oleg_points += 1
                     $ demanding += 1
                     him doubt "[kid_name], you hit Oleg in the face with a mudball and then ran away."
                     kid shifty "Oh. Sorry, Oleg!"
@@ -2998,6 +3003,7 @@ label family9:
     oleg "Umm, I don't know..."
     kid yell "See? If we don't do what I want to do, then we just end up doing nothing!"
     him normal "Figure out something to do together. Maybe that game where you pretend to be on a spaceship visiting different planets?"
+    $ oleg_points += 1
     oleg "Yeah! We can go to pillow planet that's full of pillows!"
     kid happy "And applesauce planet!"
     label family9_sara:
@@ -4822,6 +4828,7 @@ label family16:
                 him normal "Maybe his little sister."
                 kid nervous "She does like animals..."
                 him concerned "She would probably play with it more than you do..."
+                $ travis_points += 1
             elif (fav_faction == "miners"):
                 him determined "Not all of them, but I know a lot of the miners came here with nothing but the clothes on their backs. Their parents also might not have the time or materials to make toys for their kids."
                 kid nervous "Anya does really like animals..."
@@ -6120,6 +6127,7 @@ label family20:
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played her trombone, I could hear her expressing emotions even she didn't know she had."
     $ plays_trombone = True
+    $ oleg_points += 1
     return
 
 #####################################################
@@ -6674,10 +6682,12 @@ label family23:
                         kid nervous "Okay, fine."
                     "I trust you to use your own judgment.":
                         $ responsive += 1
+                        $ oleg_points += 1
                         him normal "I'm glad you're being a good friend. And so far you've been a good student, too. As long as you are completing your schoolwork with high quality, I'll let you decide when you need to text and when you need to concentrate."
                         kid determined "Thanks, dad. I can do this."
             "Yes, that sounds reasonable.":
                 $ responsive += 1
+                $ oleg_points += 1
                 him determined "Yes... that sounds pretty reasonable."
                 kid determined "Thanks, dad. I know what I'm doing."
     elif (parenting_style == "permissive"):
@@ -6715,6 +6725,7 @@ label family23:
                 kid angry "You think I'm just another stupid teenager, but that's just because you don't know me."
             "You're right; tell me what I should know.":
                 $ responsive += 1
+                $ oleg_points += 1
                 him concerned "You're right. I don't know much about what's going on in your life. What should I know about?"
                 kid angry "There's- it's- you can't just ask that now!"
                 him annoyed "So you won't tell me anything."
@@ -6731,6 +6742,7 @@ label family23:
         "What should I say?"
         "You should hang out with friends in person.":
             $ responsive += 1
+            $ oleg_points += 1
             him determined "You should hang out with your friends in person. It'll mean more that way."
             if (kid_work_slider >= 50):
                 kid annoyed "We don't have time! We have so much homework, and Oleg has to work in the storehouse, and I help you on the farm..."
@@ -6923,14 +6935,17 @@ label family24:
         "I never said you could do this!":
             him annoyed "I said you could hang out with Anya; I didn't say you could go off in the canyon with boys."
             kid determined "We didn't plan it like that! Anya's brother and his friend just kind of showed up and so we hiked around together."
+            $ lorant_points -= 1
         "How'd it go?":
             him surprised "How'd it go?"
             kid determined "Fine. Anya's brother is pretty funny. He had some great snacks, too. We hiked around, took some funny pictures."
+            $ lorant_points += 1
         "(Don't say anything.)":
             "I didn't say anything. She was allowed to hang out with friends without getting grilled by her dad, right?"
             "Though I wasn't sure how much I trusted Lorant, I didn't know what to say."
             "We walked in silence for several minutes."
             $ neglectful += 1
+            $ lorant_points += 1            
             jump lettie_dies
 
     "Anya's brother Lorant was about twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
@@ -6951,6 +6966,7 @@ label family24:
             kid surprised "What are you so worried about?"
         "Sometimes older teenagers get younger teenagers into trouble.":
             $ responsive += 1
+            $ lorant_points -= 1
             him concerned "[kid_name], I don't know if it's the case here, but sometimes older teenagers or young adults can get younger teenagers into trouble."
             kid surprised "What are you talking about? We were just hiking around."
             him sad "I'm not worried about what happened today; I'm worried about what might happen next time."
@@ -6961,6 +6977,7 @@ label family24:
             kid nervous "You're not making any sense."
         "I don't want you hanging out with Anya's brother.":
             $ demanding += 1
+            $ lorant_points -= 1
             him annoyed "I don't want you hanging around with Anya's brother."
             kid determined "What?! Why not?"
             him determined "He's bad news. I can feel it."
@@ -6982,7 +6999,7 @@ label family24:
     him determined "I know what guys that age are like."
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):
-        kid nervous "They're not like...like... whatever is you're thinking they're like."
+        kid nervous "He's-- they're not like...like... whatever is you're thinking they're like."
     elif (parenting_style == "authoritative"):
         kid determined "I get what you're saying, but that's just not what's going on here."
     elif (parenting_style == "permissive"):
@@ -7083,23 +7100,27 @@ label lettie_dies:
         "That problem was..."
         "The miners and RET were ruining our planet.":
             $ miners -= 1
+            $ lorant_points -= 1
             "The miners and RET were ruining our planet."
             "I mean, I guess it was only because of RET that we had the funding to come here in the first place."
             "But I wished they'd just leave us alone. I wished they would leave [kid_name] alone."
             "It was a futile wish, though, and one I couldn't afford to indulge."
         "Strife and division threatened to destroy our community.":
             $ mavericks += 1
+            $ travis_points += 1
             "We were always fighting. I thought that away from Earth's politics and territorial squabbles, we'd be able to find true peace."
             "Away from Earth's materialism and fads, I thought my kids and farm would be safe."
             "But we were still human. And apparently 'human' means 'conflict'."
         "All these problems were distracting me from my farming.":
             $ colonists += 1
+            $ oleg_points += 1
             "I didn't have time for all this crap. All I wanted to do was grow my crops and herds and raise my family in peace."
             "But even when I was light years from home, there were still other people to deal with."
             "People harming me, my horse, [kid_name]."
             "And I had to deal with that."
         "I was a jerk.":
             $ miners += 1
+            $ lorant_points += 1
             "I was the problem."
             "I was a selfish, whiny jerk who just wanted someone to blame."
             "I knew I needed to forgive, but I couldn't just yet."
@@ -7126,6 +7147,7 @@ label lettie_dies:
     menu:
         "What should we do?"
         "Forbid her from hanging out at Anya's house.":
+            $ lorant_points -= 1
             him annoyed "She just can't hang out at their house!"
             her annoyed coat "I agree. They're unsupervised, far from any public areas, and there's too many creeps in that area."
             him determined "There's more than one?"
@@ -7136,6 +7158,7 @@ label lettie_dies:
             her determined coat "Too bad. It's what she needs."
             $ authoritarian += 1
         "Encourage her to have her friends over to our house more.":
+            $ lorant_points += 1
             him concerned "Maybe we could just encourage her to have friends over to our house more often?"
             her concerned coat "That's a start..."
             him surprised "I mean, nothing's serious yet... right?"
@@ -7146,6 +7169,7 @@ label lettie_dies:
         "Get [kid_name] to help solve the problem.":
             $ confident += 1
             $ trust += 1
+            $ lorant_points += 1
             him surprised "Why don't we ask [kid_name] to help us with this problem?"
             her concerned coat "Won't she be a bit biased?"
             him determined "We don't have to do what she says, but if she's invested in the solution she'll be more likely to follow it without complaining."
@@ -7186,6 +7210,7 @@ label lettie_dies:
 
         "Let [kid_name] make her own decisions.":
             $ confident += 1
+            $ lorant_points += 1
             him annoyed "It's her life; if she wants to ruin it why should we get in her way?"
             her angry coat "Because she's our daughter! Because she doesn't even know what she's doing!"
             him surprised "Are you sure about that? Maybe she does know what she's doing!"
@@ -7854,6 +7879,7 @@ label family28:
                             "So she usually rode all the way to Pete's house, but not to hang out with Travis..."
                         else:
                             him_c "Yeah, I do. Just checking up on her."
+                            # TODO: better metaphor than hippo
                             pete_c "Ha! You're about as sly as a hippo, you know that?"
                             him_c "Yeah, yeah."
 
@@ -8216,6 +8242,7 @@ label family29:
             kid nervous "Well, you and mom are... I mean you're always...it's obvious that you..."
             him flirting "Yup, your mom and I, we still got it."
             kid normal "ANYWAY!"
+            $ oleg_points += 1
         "It's somewhat important.":
             him determined "Well, generally you have sex with the person you're married to, so it helps if you're at least a little bit attracted to them..."
             kid concerned "Yeah..."
@@ -8223,6 +8250,7 @@ label family29:
             kid normal "Huh... that's just what Mom said."
             him surprised "Oh! Glad we're, uh, on the same page."
             kid nervous "So... Do you think just being good friends is enough?"
+            $ lorant_points += 1
         "It's really important.":
             him determined "It's pretty important. I mean... you want to enjoy having sex with your spouse, right?"
             kid surprised "So you wouldn't enjoy it if you weren't attracted to Mom?"
@@ -8232,16 +8260,23 @@ label family29:
             kid normal "Huh... I can see why Mom said to ask you about it."
             him surprised "You talked to Mom about this?"
             kid annoyed "Yeah, of course. But she said I should get a guy's perspective."
+            $ travis_points += 1
 
     him surprised "Wait, is this about you? You and..."
     menu:
         "...and Oleg?":
+            $ oleg_points += 1
             kid determined "I can't talk about who it is. He would be... This is just really personal stuff, okay?"
-        "...and Trevor?":
-            kid normal "Ha ha, yeah right! Trevor's attracted to everybody. He's got the opposite problem."
+        "...and Travis?":
+            $ travis_points += 1
+            kid normal "Ha ha, yeah right! Travis's attracted to everybody. He's got the opposite problem."
         "...and Lorant?":
+            $ lorant_points += 1
             kid surprised "Lorant? I don't think he-- look, I'm not telling you who it is, it's too personal!"
         "...and Anya?":
+            $ lorant_points -= 1
+            $ travis_points -= 1
+            $ oleg_points -= 1
             kid surprised "Anya?! No, we're not like that. You really don't know anything, do you?"
     him determined "It'll be hard for me to help you without knowing any more details. I'll keep everything in confidence unless someone's being hurt, okay?"
     kid nervous "I can't. Sorry, dad."
@@ -8407,6 +8442,7 @@ label family29:
                 kid annoyed "Thanks. Wow. That sure was helpful."
                 $ trust -= 1
                 $ demanding += 1
+                $ lorant_points += 1
             "Parents will always be there for you.":
                 him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
                 kid normal "Thanks, dad."
@@ -8417,9 +8453,11 @@ label family29:
                 kid nervous "What if they're still not attracted to each other?"
                 him normal "There's different levels of attraction. You don't need a  raging inferno of lust for a good marriage, but you should probably have at least a small spark of 'I'd like to kiss this person'."
                 kid happy "Ha, ha."
+                $ oleg_points += 1
             "There's no point in a relationship without physical attraction.":
                 him "There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
                 kid concerned "Hmmm, okay."
+                $ travis_points += 1
     else:
         "We reached our farm, and I paused outside the front door, ready to talk some more. But [kid_name] shook her head."
     scene moons with fade
@@ -8460,26 +8498,28 @@ label family30:
         # Medicine, either at home or on Earth, trying to make her parents happy
         "She had been spending all her time at the clinic with [her_name], learning and assisting."
         "[her_name] found some online classes for her to take in anatomy and physiology and said [kid_name] was a diligent student."
+        $ boyfriend_name = get_boyfriend_name()
     elif (parenting_style == "authoritative"):  # ACi or ACI
         # Studies jellypeople and sociology-biology, living with you or married
         "Ever since that trip to the ocean where we communicated with the jelly people, [kid_name] had been obssessed with them."
         "Miranda had been meeting with them and studying them, and so [kid_name] joined her. She was also taking online classes in biology and sociology."
-        # TODO: does she have a boyfriend here? Oleg?
+        $ boyfriend_name = get_boyfriend_name()
 
     elif (parenting_style == "permissive"):     # Aci or AcI
         # Farming, either living in her parents' basement or on her own
         "[kid_name] didn't seem to have a specific passion -- she split her time between helping me farm and running her delivery service."
+        $ boyfriend_name = get_boyfriend_name()
 
-    else: #neglectful or inconsistent,          # aci or acI
+    else: #neglectful                             # aci or acI
         # She's still running her delivery service and dating Travis/Lorant
         "I hardly ever saw her -- it seemed like she was always out delivering things."
-        if is_independent():
-            $ boyfriend_name = "Travis"
-        else:
-            $ boyfriend_name = "Lorant"
-        "Or hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
+        $ boyfriend_name = "Lorant"
+        # TODO: modify these, or use these to help determine boyfriend instead of independence
+    
+    if (boyfriend_name != ""):
+        "Sometimes she was hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
-    if (attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH) and (independence < INDEPENDENCE_HIGH):
+    if ((attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH)):
         # If she is leaving with Lorant, you don't even find out about it until later
         "Some nights she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
         "If I'd known, would I have tried to stop her? Would it have made a difference?"
@@ -8524,16 +8564,49 @@ label family30:
     "Finally, I went and sat outside under the moons and stars."
     scene moons with fade
     "Every inch of ground was saturated with memories."
-    # TODO: show these
+    # TODO: use CGs here? Test these...
+    scene fields with fade
+    show tractor at center
+    show baby_laugh at center, babybackpack_pos
+    show him surprised at center
+    with dissolve # TODO: different transition here? photo style?
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
+    scene farm_exterior with fade
+    show him happy at midright
+    show toddler_happy at center
+    with dissolve
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
+    scene barn with fade
+    show him happy at quarterleft
+    show toddler_shifty at center
+    show oleg normal at midleft
+    show travis normal at midright #TODO: show the right age for these guys. Or just make the image in GIMP and show it (screenshot if needed)
+    with dissolve
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
+    scene fields with fade
+    show him explaining at midright
+    show kid_happy at midleft
+    with dissolve
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
+    scene path with fade
+    show tween_normal at midleft
+    show bro_normal at midright
+    with dissolve
     "I remember her coming up that hill coming home from school with [bro_name]."
+    scene barn with fade
+    show goat at center
+    show tween_annoyed at midright
+    show him normal at quarterleft
+    with dissolve
     "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
+    scene plain with fade
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
+    scene barn with fade
+    show oleg at midleft
+    show teen_flirting at center
     "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though she had only ever seen it in videos."
 
+    scene moons with fade
     "Could she really leave all this behind?"
     "...could she really leave {b}me{/b} behind?"
     "The grief weighed on me like I was a horse with an unwelcome rider in the saddle."
@@ -8551,7 +8624,7 @@ label family30:
     show her concerned coat at midright
     show kid nervous at center
     with dissolve
-    show him normal at midleft behind kid with moveinleft
+    show him pout at midleft behind kid with moveinleft
 
     her concerned coat "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"

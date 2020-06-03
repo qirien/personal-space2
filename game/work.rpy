@@ -155,6 +155,7 @@ label overwork:
                 him happy "Thanks, guys!"
             else:
                 $ mavericks -= 1
+                $ travis_points += 1
                 scene shack with fade
                 show pete normal at midright
                 show him normal at midleft
@@ -207,12 +208,14 @@ label overwork:
             cycle work_hire:
                 block:
                     "A few of the miners' kids were willing to help out on the farm -- but for a steep price. They didn't know much about farming, but they learned quickly!"
+                    $ lorant_points += 1
                     $ modify_credits(-200)
                 block:
                     "[kid_name] asked around, and some of her friends came and helped out. They didn't do the best job, but they didn't want much pay, either."
                     $ modify_credits(-100)
                 block:
                     "Sara and Oleg answered my job offer -- it sounded like Sara and Ilian were going through a rough patch and she wanted to be financially independent."
+                    $ oleg_points += 1
                     $ modify_credits(-150)
                 block:
                     "I looked and looked but no one had the time to help me for any price that I could afford."
@@ -1338,6 +1341,7 @@ label work22:
             oleg "It's not finished yet..."
             him happy "That sounds awesome. I'd like to play it when you're done."
             oleg "O-okay."
+            $ oleg_points += 1
         "A midlife crisis sounds funny.":
             him happy "No, it's funny! Go ahead, tell me what you think I'll do."
             pete "You don't strike me as a flashy car kind of guy..."
@@ -1831,9 +1835,11 @@ label work28:
             her concerned "Oh, I wanted to try the cider..."
             travis "Plus one cider!"
             $ modify_credits(-45)
+            $ travis_points += 1
         "Pancakes and cider for the whole family!":
             him happy "Pancakes and cider for everyone!"
             kid laugh "Nice!"
+            $ travis_points += 2
             $ modify_credits(-60)
 
     scene restaurant with fade
@@ -1937,6 +1943,7 @@ label work29_potatoes:
     if (farm.crops.count("potatoes") >= 3):
         travis "Hey, thanks for growing all those potatoes like I asked. The fries are one of my most popular items."
         $ modify_credits(1000)
+        $ travis_points += 1
         "He had paid me 1000 credits more than the storehouse would have, so I was pretty happy with the arrangement."
         him happy "No problem. You need anything else?"
         travis "Yeah, actually. I was hoping to buy some honey from you so I can sell ice cream."
@@ -1955,6 +1962,7 @@ label work29_potatoes:
                     "We worked out the specifics, and he paid me 500 credits."
                     $ modify_credits(500)
                     $ mavericks += 1
+                    $ travis_points += 1
                 "I don't want to do that.":
                     him concerned "Sorry, I don't want to sell all my honey to you. You can buy it from the storehouse like everyone else."
                     travis "If that's what you want."
@@ -1970,6 +1978,7 @@ label work29_potatoes:
         menu:
             "What should I say?"
             "Sorry.":
+                $ travis_points -= 1
                 "I shrugged."
                 him determined "Sorry."
                 travis "'Sorry'? That's it? I thought I could trust you."
@@ -2069,8 +2078,8 @@ label work30:
             else:
                 kid concerned "Uh, yeah, we'll see."
 
-    show bro nervous at quarterleft with moveinleft
-    bro nervous "I don't want to work on the farm, either."
+    show bro concerned at quarterleft with moveinleft
+    bro concerned "I don't want to work on the farm, either."
     "I already didn't have [bro_name] doing much on the farm. He was a good kid, but he was gentle and sensitive and I could tell he would never be the kind that enjoyed the rough hard work of farm life."
     "But the work needed to get done, somehow, and without [kid_name] it would be too much just for me."
     menu:

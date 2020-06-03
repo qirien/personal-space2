@@ -143,20 +143,20 @@ init -100:
     define kid = DynamicCharacter("kid_name", color="#5f2b4f", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
     define bro = DynamicCharacter("bro_name", color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
 
-    define naomi = Character("Sister Naomi Grayson", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
-    define pavel = Character("Mayor Pavel Grayson", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
-    define lily = Character("Dr. Lily Kealoha", color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
-    define sara = Character("Sara Hill-Andrevski", color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
-    define thuc = Character("Thuc Nguyen", color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
-    define ilian = Character("Ilian Andrevski", color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
-    define oleg = Character("Oleg Hill-Andrevski", color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
-    define brennan = Character("Brennan Callahan", color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
-    define pete = Character("Pete Jennings", color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define natalia = Character("Natalia Perón", color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
-    define helen = Character("Helen Jennings", color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
-    define travis = Character("Travis Jennings", color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define julia = Character("Julia Nguyen", color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
-    define martin = Character("Martín Perón", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
+    define naomi = Character("Sister Naomi", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
+    define pavel = Character("Mayor Pavel", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
+    define lily = Character("Dr. Lily", color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
+    define sara = Character("Sara", color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
+    define thuc = Character("Thuc", color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
+    define ilian = Character("Ilian", color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
+    define oleg = Character("Oleg", color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
+    define brennan = Character("Brennan", color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
+    define pete = Character("Pete", color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    define natalia = Character("Natalia", color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
+    define helen = Character("Helen", color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
+    define travis = Character("Travis", color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    define julia = Character("Julia", color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
+    define martin = Character("Martín", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
 
     define chaco = Character("Chaco", color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
     define kevin = Character("Kevin", color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
@@ -347,13 +347,9 @@ init -100:
                 "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":None},
             # Achievements for Endings
                 "Bring Back My Baby": {"desc":"Ending #1", "file":None},
-                "Mistakes to Call My Own": {"desc":"Ending #2", "file":None},
-                "Proving Herself": {"desc":"Ending #3", "file":None},
-                "Down to Earth": {"desc":"Ending #4", "file":None},
-                "Forever My Little Girl": {"desc":"Ending #5", "file":None},
-                "Extraterrestrial Life": {"desc":"Ending #6", "file":None},
-                "The Stars are Right": {"desc":"Ending #7", "file":None}, 
-                "The Future is Bright": {"desc":"Ending #8", "file":None},            
+                "Proving Herself": {"desc":"Ending #2", "file":None},
+                "Forever My Little Girl": {"desc":"Ending #3", "file":None},
+                "The Stars are Bright": {"desc":"Ending #4", "file":None},            
             # Achievements for each parenting style
                 "Big Boss": {"desc":"Authoritarian Parent", "file":None},
                 "Firm Yet Fair": {"desc":"Authoritative Parent", "file":None},
@@ -385,7 +381,7 @@ init -100:
         "Family Beeswax", # got bees
         "Lousy Haircut", # shaved your head to get rid of lice
         # Achievements for each ending
-        "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
+        "Bring Back My Baby", "Proving Herself", "Forever My Little Girl",  "The Stars are Bright", 
         # Achievements for each parenting style
         "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
         # Achievements for each community favored

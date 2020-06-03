@@ -342,36 +342,77 @@ init -100 python:
         return (trust > 0)
 
     # Return whether the relationship with a faction is "strong" or not
-    # TODO: tweak this based on actual results, use this
-    def mavericks_strong():
-        strong = ((mavericks / (year / 3.0)) >= 1)
+    # Optional parameter "strength" controls how strong the relationship has
+    # to be to return TRUE.  Default is "strong", while "moderate" and 
+    # "weak" have less stringent requirements.
+    # TODO: tweak this based on actual results
+    def mavericks_strong(strength="strong"):
+        strong = faction_strong(mavericks, strength)
         if (strong):            
             renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
         return strong
     def miners_strong():
-        strong = ((miners / (year / 3.0)) >= 1)
+        strong = faction_strong(miners, strength)
         if (strong):
             renpy.show_screen("show_notification", "{emoji=friends} Miners")
         return strong
     def colonists_strong():
-        strong = ((colonists / (year / 3.0)) >= 1)
+        strong = faction_strong(colonists, strength)
         if (strong):
             renpy.show_screen("show_notification", "{emoji=friends} Colonists")
         return strong
 
+    # Helper function for each faction to calculate whether they are "strong" or not.
+    def faction_strong(faction_value, strength="strong"):
+        strong = False
+        if (strength == "weak"):
+            strong = ((faction_value / (year / 7.0)) >= 1)
+        elif (strength == "moderate"):
+            strong = ((faction_value / (year / 5.0)) >= 1)
+        else:
+            strong = ((faction_value / (year / 3.0)) >= 1)
+        return strong
+
     # Returns the strongest faction
     def strongest_faction():
-        if (colonists >= miners >= mavericks):
+        if ((colonists >= miners) and (colonists >= mavericks)):
             renpy.show_screen("show_notification", "{emoji=friends} Colonists")
             return "colonists"
-        elif (miners >= colonists >= mavericks):
+        elif ((miners >= colonists) and (miners >= mavericks)):
             renpy.show_screen("show_notification", "{emoji=friends} Miners")            
             return "miners"
-        elif (mavericks >= colonists >= miners):
+        elif ((mavericks >= colonists) and (mavericks >= miners)):
             renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
             return "mavericks"
         else:
             return "colonists"
+
+    # Return who has the highest relationship, or "" if none are greater than 0
+    def get_boyfriend_name():
+        if ((oleg_points <= 0) and (travis_points <=0) and (lorant_points <= 0)):
+            return ""
+
+        # If they are all equal, base it on the strongest faction
+        if (oleg_points == travis_points):
+            if (oleg_points == lorant_points):
+                if (strongest_faction() == "miners"):
+                    return "Lorant"
+                elif (strongest_faction() == "mavericks"):
+                    return "Travis"
+                else:
+                    return "Oleg"            
+
+        # Otherwise, whichever is greatest, giving priority to Oleg and Travis
+        if (oleg_points >= lorant_points):
+            if (oleg_points >= travis_points):
+                return "Oleg"
+            else:
+                return "Travis"
+        elif (travis_points >= oleg_points):
+            return "Travis"        
+        else:
+            return "Lorant"
+        return ""
 
     # Returns a fuzzy description of the given percentage.
     # Used for nitrogen and pest levels.
