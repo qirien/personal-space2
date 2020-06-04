@@ -451,7 +451,7 @@ label tests:
 
 label test_dialogue:
     $ year = 25
-    scene farm_interior with fade
+    scene aurora_animated with fade
     show him normal at midright
     show her happy at midleft
     with dissolve

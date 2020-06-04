@@ -9,6 +9,11 @@ init -10:
     image irrigation flip = im.Flip("images/bg/irrigation.jpg", horizontal = True)
     image fields flip = im.Flip("images/bg/fields.jpg", horizontal = True)
     image bro_bedroom = im.Flip("images/bg/kid_bedroom.jpg", horizontal = True)
+    image aurora_animated:
+        "images/bg/aurora.jpg"
+        xalign 1.0 yalign 1.0
+        linear 10.0 xalign 0.0 yalign 0.0
+        linear 10.0 zoom 0.67
     image stars_animated:
         "images/bg/stars.png"
         zoom 0.75
