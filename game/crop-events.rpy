@@ -256,7 +256,9 @@ label garlic1:
     kid concerned "It smells like... rotten eggs or something! What are you cooking?!"
     him normal "Just some garlic mashed potatoes."
     her happy "Garlic mashed potatoes?! Wow!"
-    kid angry "I'm not eating any!"
+    if (bro_age > TODDLER_MAX):
+        bro sad "Mashed potatoes are my favorite! But those smell bad..."
+    kid angry "I'm not eating any!"        
     him angry "Hey, you haven't even tried it yet."
     kid annoyed "I don't need to try it! It smells disgusting!"
     menu:
@@ -282,7 +284,8 @@ label garlic1:
     kid determined "That makes absolutely no sense."
     her normal "Well, the legends might be based on a real disease, porphyria, that causes paleness, light sensitivity, erosion of lips and gums... and a sensitivity to garlic."
     kid normal "Earth sure has some weird ideas."
-    him happy "You got that right!"
+    him happy "You have some weird ideas, like 'garlic is yucky'."
+    kid annoyed "Hmph."
     return
 
 
@@ -721,8 +724,9 @@ label potatoes3:
     show him concerned at center behind rain with dissolve
     him "They've all rotted."
     "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
-    "I had to dig them out anyway so they wouldn't contaminate the field."
-    "They would make good compost for other plants."
+    "There was nothing I could do to save them."
+    "But I had to dig them out so they wouldn't contaminate the field."
+    "At least I could use them for compost for other plants."
     show him concerned at quarterleft with move
     "But every hour spent in the mud fishing them out felt oppresive and pointless."
     show him pout at center with move
@@ -764,7 +768,7 @@ label potatoes3:
             him determined "Yeah, I'm just finishing up. I'll meet you at home in a few minutes, okay?"
             her concerned "Okay...Wait, are these the potatoes?!"
             kid sad "I'm not eating those!"
-            him annoyed "I'm tossing them; they're all bad."
+            him annoyed "Nobody's eating them; they're all bad."
 
     her sad "Oh, honey, I'm sorry..."
     if (marriage_strength >= 2):

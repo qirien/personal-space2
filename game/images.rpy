@@ -14,6 +14,9 @@ init -10:
         xalign 1.0 yalign 1.0
         linear 10.0 xalign 0.0 yalign 0.0
         linear 10.0 zoom 0.67
+    image aurora_static:
+        "image/bg/aurora.jpg"
+        zoom 0.67
     image stars_animated:
         "images/bg/stars.png"
         zoom 0.75

@@ -1288,7 +1288,9 @@ label community9:
             pete happy "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
             "Pete poured the water in, and it gradually filled the tent's lining. He put a radiation monitor inside the tent and we gathered in the other tent for the duration of the solar flare."
             play sound "sfx/radio.mp3"
+            scene aurora_static with fade
             "After about twenty minutes, the radio came on again to say that the flare has abated."
+            scene moons with fade
             "Pete checked his monitor to see the results of the test."
             pete happy "And it appears to reduce solar radiation! Too bad it's completely dark in there."
             him annoyed "And there's some water on the floor -- looks like a leak."

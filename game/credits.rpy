@@ -55,7 +55,7 @@ label credits:
         $ mp.save()
     $ renpy.save_persistent()
     
-    # TODO: unlock NG+ - keep crop events seen (but reset if we run out), keep enabled crops, number of fields, terra_overwork_count?
+    # TODO: unlock NG+ - keep enabled crops, number of fields
 
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve

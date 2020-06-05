@@ -1,5 +1,4 @@
 ## Work Events
-# TODO: Add an event where you try to grow some edible Talaam native plants?
 
 label work_default:
     "I worked hard all year, preparing fields and planting and weeding and harvesting."
@@ -332,7 +331,10 @@ label work_intro:
     "I still had a lot of decisions to make, though, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
     "The area of Talaam we had settled on was cool and dry. It didn't have seasons like temperate zones on Earth; the temperature stayed mild year round, though there was still a warm season and a cool season."
     "This meant that we could grow crops year round, but some crops didn't grow as well because they expected more sun or frost."
-    "Talaam's frequent solar flares hadn't bothered our plants too much, but it meant that we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
+    scene aurora_animated with fade
+    "Talaam's frequent solar flares meant that we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
+    "The flares' radiation was dangerous to humans, but so far hadn't had much affect on plants."
+    "On this new planet, though, everything was an experiment."
     call farm_tutorial
     return
 
@@ -942,8 +944,9 @@ label work18:
     bro sad "I like school."
     him surprised "Do you think I have time to run and get some rope from the barn?"
     her concerned "I don't know; it sounds like they weren't sure of the exact time."
-    him annoyed "I really wish you could see the solar flares somehow..."
-    kid normal "Yeah, it looks so nice outside. Hey, what if there's not actually any solar flares, but they're actually doing top secret stuff and don't want anyone messing with it?"
+    him annoyed "I really wish you could see the solar flares during the day..."
+    her normal "They're beautiful at night..."
+    kid normal "Hey, what if there's not actually any solar flares, but they're actually doing top secret stuff and don't want anyone messing with it?"
     him surprised "What kind of top secret stuff would that be?"
     kid happy "I don't know; maybe aliens?? Or maybe they found some super valuable ore right under the school and they're blasting it away with dynamite right now!"
     her flirting "I don't think that is going to happen."
