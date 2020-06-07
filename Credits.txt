@@ -33,7 +33,9 @@ RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, deriv
 
 Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Kid Bedroom <kid_bedroom.jpg>, Canyon <canyon.jpg>, Sunset <sunset.jpg> by Andrea Landaker
 
-Moons <moons.jpg>, Ocean <ocean.jpg>, and Ocean Sunset <ocean-sunset.jpg> by Andrea Landaker and Lisa Horner
+Ocean <ocean.jpg>, and Ocean Sunset <ocean-sunset.jpg> by Andrea Landaker and Lisa Horner
+
+Moons <moons.jpg> by Andrea Landaker and Mike Soprano
 
 Boxing glove cursor <punch.png> by Andrea Landaker, derived from <https://openclipart.org/detail/171268/boxing-glove> by netalloy
 
