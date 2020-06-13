@@ -1275,8 +1275,22 @@ label work20:
                 show pete normal at quarterleft with moveinleft
                 "When Pete heard about what we were doing, he came by to lend a hand."
                 pete "See, that's why you should quit working for the Man and come live out on your own, like me!"
+                hide pete with moveoutleft
             show him sleeping with dissolve
             "When the water came rushing out onto my fields again, my shoulders finally relaxed for the first time in days."
+            him happy "Yeah!"
+            thuc happy "Nice!"
+            him normal "This would have been ten times harder to do on my own... thanks for working with me, Thuc."
+            thuc normal "Anytime. I think we work pretty... WELL together."
+            him happy "Yeah, once we got started, things really FLOWED smoothly."
+            thuc sad "Without all this, our crops would have suffered a lot of DAMage."
+            him determined "I could sit here and PONDer this all day..."
+            thuc normal "So WATER you going to do now?"
+            him normal "WATER get back to work, I guess."
+            thuc sad "That one's a bit of a stretch."
+            him surprised "WATER, as in 'We oughtta'? W'otta? You don't think it works?"
+            thuc normal "Nope, sorry. It... SINKS."
+            show him laugh with dissolve
             "We managed to keep most of our crops from dying, but they probably wouldn't yield as much this year."
             $ modify_credits(-100)
     return

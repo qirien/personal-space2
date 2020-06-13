@@ -1303,6 +1303,11 @@ label community9:
             with dissolve
             play sound "sfx/fire-2.mp3" loop
             "Finally, we were able to roast and eat the grass crab. The meat was surprisingly sweet."
+            pete happy "Ahhh, this is the life! Nobody telling us we gotta fill out ten forms and follow safety protocols and all that crap."
+            thuc happy "Wait, you mean you didn't test that this was cooked to the RET Safe Temperature for Native Talaam Fauna?"
+            pete normal "Hell no!"
+            him laugh "Maybe that's why it tastes so good!"
+
             "We couldn't eat all of it, so we split it up between the three of us to bring home."
             pete "Here's some salt water to keep it fresh for the hike home."
             him normal "Thanks, Pete."
@@ -1360,7 +1365,7 @@ label community10:
     hide kid
     with moveoutright
     show bro surprised at center,baby_pos with move
-    martin "As you may have heard, I have skin cancer."
+    martin "You both know about my skin cancer, right?"
     her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     show bro happy with dissolve
     martin happy "I know! You are not the only one who knows, however."
@@ -3597,8 +3602,8 @@ label community17:
                 "We squared off on either side of the table."
                 julia "Go!"
                 "We both pushed against each other, not too hard, just testing the other guy."
-                ilian happy "When we're finished, you're going to be kissing the floor."
-                him annoyed "I'd take that over kissing your ugly mug."
+                ilian happy "When we're finished, you're going to be drooling on the floor."
+                him annoyed "At least I have the decency to aim for the floor. You're drooling all over the table."
                 "My hand inched forward. He was a tough opponent, but I could do this. Especially if I could make him lose his cool."
                 ilian normal "I hope you're ready to lose."
                 menu:
@@ -3642,9 +3647,10 @@ label community17:
                                         jump community17_lose_to_ilian
                                     "At least my wife wants to kiss me.":
                                         him angry "Hey, at least my wife actually wants to kiss me."
-                                        "The room was suddenly very quiet. Ilian and Sara's marital problems were common knowledge, but I felt that I had overstepped myself."
+                                        "The room was suddenly very quiet. Ilian and Sara's marital problems were common knowledge, but to bring it up like that..."
                                         him concerned "Sorry... that was out of line."
                                         ilian normal "Yes, it was."
+                                        "The look on his face made me feel so bad, it took away all my desire to win."
                                         $ colonists -= 1
                                         jump community17_lose_to_ilian
 
@@ -4867,7 +4873,6 @@ label community22:
         #stat +=?
         return
 
-    # TODO: have a "has medium strength with faction funtion"? or a "not hated by faction" function?
     elif (miners_strong("low")): #3
         nvl clear
         if is_liaison:
@@ -5796,6 +5801,7 @@ label community25:
     return
 
 
+#TODO: Have some part of this event be different depending on your parenting style?
 label community26:
     play music worried
     $ work_fewer_hours = False
@@ -5824,40 +5830,40 @@ label community26:
 
     if is_liaison:
         scene community_center with dissolve
-        show her normal at center
+        show her normal coat at center
         show him normal at midleft
         show pavel normal at right
         show brennan normal at left
         show sara normal at midright
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
         her "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol although that is not her real name."
-        her determined "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
-        her normal "At night, she used firegrass to stay alert for her mining shift. During this time of heavy usage, she got 2-4 hours of sleep every two days or so."
-        her surprised "I'd like to discuss how we can help her family and also how we can discourage heavy usage of firegrass."
-        her determined "Right now, Carol is probably lying in bed trying to avoid talking to anyone."
+        her determined coat "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
+        her normal coat "At night, she used firegrass to stay alert for her mining shift. During this time of heavy usage, she got 2-4 hours of sleep every two days or so."
+        her surprised coat "I'd like to discuss how we can help her family and also how we can discourage heavy usage of firegrass."
+        her determined coat "Right now, Carol is probably lying in bed trying to avoid talking to anyone."
         her "Her biggest accomplishment this week was washing her hair and getting her rations delivered."
         sara sad "I've been visiting her at home to start her therapy. I think her husband feels like it's his fault that she's depressed."
         brennan "I remember his accident. The perfect storm of several miscommunications." #tie it to an earlier event?
         brennan "He can't walk anymore, but he can still talk and do things with his hands."
         brennan "He did have some brain damage though, so he sometimes makes unpredictable mistakes."
-        her surprised "Their family needs intensive care right now. I don't think Van Nguyen is too busy right now, and he did an apprenticeship with me a few years ago."
+        her surprised coat "Their family needs intensive care right now. I don't think Van Nguyen is too busy right now, and he did an apprenticeship with me a few years ago."
         brennan "I assume he's one of Thuc and Julia's kids?"
-        her normal "Yes. He's their youngest and has a great sense of humor. He should be able to babysit the kids for a few hours a day."
+        her normal coat "Yes. He's their youngest and has a great sense of humor. He should be able to babysit the kids for a few hours a day."
         brennan "So, they'll have a babysitter/nurse and a psychotherapist visiting them..."
-        her determined "I would like you to keep paying Carol enough to live off of while she recovers."
+        her determined coat "I would like you to keep paying Carol enough to live off of while she recovers."
         brennan angry "Her husband is already on disability... and what if she never recovers?"
-        her normal "Then we still want to take care of them!"
+        her normal coat "Then we still want to take care of them!"
         brennan normal "I'm willing to give her a month of paid disability."
-        her concerned "Well, that's a start anyway. Let's discuss firegrass and how we can manage it."
+        her concerned coat "Well, that's a start anyway. Let's discuss firegrass and how we can manage it."
         her "It appears that the active compound from firegrass stays in the blood for about as long as caffeine."
-        her surprised "The long-term side effects are similar too."
+        her surprised coat "The long-term side effects are similar too."
         brennan angry "I've never heard of someone suffering from a caffeine overdose."
-        her annoyed "Well, it can happen. Usually with heavy users of energy drinks."
+        her annoyed coat "Well, it can happen. Usually with heavy users of energy drinks."
         if miners_strong(): #10 #from community21, if you talked about it with Brennan
-            her concerned "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
+            her concerned coat "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
-            her concerned "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
-        her surprised "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
+            her concerned coat "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
+        her surprised coat "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
         brennan normal "I also don't want to see that. But I don't think outlawing firegrass will stop people from using it."
         brennan angry "Pete is going to sell firegrass no matter what we decide."
         "How do I feel about the issue?"
@@ -7541,11 +7547,14 @@ label community30:
             ilian "UGHHHH I HATE HER SO MUCH THAT WITCH!"
             him_c "He's freaking out! What the heck?"
             oleg_c "ghgh i knew it"
-            "I went home and made cabbage and potato soup for everyone."
+            "I tried to calm down Ilian, but it was no use. I went home and made cabbage and potato soup for dinner."
             him "Hey [kid_name], do you know where Oleg is staying right now?"
-            kid "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
-            him "That old cabin where we used to leave deliveries in?"
-            kid "That's the one."
+            if (has_trust()):
+                kid "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
+                him "That old cabin where we used to leave deliveries in?"
+                kid "That's the one."
+            else:
+                kid concerned "Why do you want to know?"
             him "I need to go talk to Sara and Oleg for my investigation."
             kid "Are you investigating the murder?"
             him "No one said it was a murder!"
