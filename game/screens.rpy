@@ -332,10 +332,10 @@ screen navigation():
         yalign 0.5
 
         spacing gui.navigation_spacing
-
+        $ has_saves = renpy.newest_slot()
         if main_menu:
-
-            textbutton _("Resume") action FileLoad("quitsave", slot=True)
+            if has_saves:
+                textbutton _("Resume") action FileLoad("quitsave", slot=True)
             textbutton _("New Game") action Start()
 
         else:
@@ -344,11 +344,13 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        if has_saves:
+            textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
 
-        textbutton _("Achievements") action ShowMenu("achievements")
+        if has_saves:
+            textbutton _("Achievements") action ShowMenu("achievements")
 
         if _in_replay:
 

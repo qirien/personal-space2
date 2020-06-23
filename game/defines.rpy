@@ -219,6 +219,16 @@ init -100:
     transform centered:
         xpos 0.5 ypos 0.5 xanchor 0.5 yanchor 0.5
 
+    transform smallphoto:
+        size (370,350)
+    transform tilted:
+        choice:
+            rotate 0
+        choice:
+            rotate -10
+        choice:
+            rotate 10
+
     transform sitting:
         ypos 0.45 yanchor 0.0
     transform squatting:

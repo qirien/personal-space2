@@ -1,32 +1,33 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
-screen test_family_photo_screen():
-    frame:
-        xfill True
-        yfill True
-        hbox:
-            vbox:
-                label "Photo 1"
-                add "family_photo_small happy"
-            vbox:
-                label "Photo 2"
-                label "We'll move this down a little."
-                add "family_photo_small happy"
-            textbutton "Done" action Return()
-
 label test_family_photo:
     $ year = 10
-    $ bro_age = 0
+    $ bro_age = -1
     $ bro_years = 0
     scene stars with fade
-    show family_photo happy with moveinleft
-    "Scrapbook time! Aren't we cute? We could use our smaller photo, too."
-    hide family_photo
-    show family_photo_small happy at center,kid_pos with moveinright
-    "But when we try to do this in a screen..."
-    call screen test_family_photo_screen
-    "Seems strange."
+    "Scrapbook time! Aren't we cute?"
+    $ authoritarian = 10
+    $ marriage_strength = 10
+    show family_photo_small Aci at center,kid_pos with moveinright
+
+    "We weren't ready..."
+
+    $ authoritarian = 0
+    $ permissive = 10
+    $ marriage_strength = 0
+    show family_photo_small acI at center,kid_pos with moveinright
+
+    "She has her eyes closed..."
+
+    $ permissive= 0
+    $ neglectful = 10
+    $ marriage_strength = 1
+    show family_photo_small aCI at center,kid_pos with moveinright
+
+    "We weren't ready..."
+
+
     return
 
 label test_endings:

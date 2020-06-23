@@ -33,6 +33,7 @@ label bad_nutrition:
 
         # TODO: add screenshot/tutorial here
         "I added [her_name]'s nutrition information to my farm planning app so that I could keep track of that better."
+        "I need to make sure I plant enough of each of the main 3 nutritions: Vitamin A, Vitamin C, and Magnesium."
         if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             scene fields with fade
             "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."

@@ -109,23 +109,19 @@ init -10:
             "family_photo_bg"
 
         if (get_parenting_style() == "authoritative"):
-            pos(300, 80)
+            pos(320, 80)
             #align(0.3, 1.0)
             "him content"
         elif (get_parenting_style() == "authoritarian"):
-            pos(300, 80)
+            pos(320, 80)
             #align(0.3, 1.0)
             "him pout"
         elif (get_parenting_style() == "permissive"):
-            pos(300, 80)
+            pos(350, 80)
             #align(0.3, 1.0)
             "him normal"
-        elif (get_parenting_style() == "inconsistent"):
-            pos(300, 80)
-            #align(0.3, 1.0)
-            "him sleeping"
         elif (year <= BABY_MAX):
-            pos(300, 80)
+            pos(320, 80)
             "him determined"
         # if neglectful, he is not in the picture at all, unless needed to hold a baby
 

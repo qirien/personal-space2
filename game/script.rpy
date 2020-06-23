@@ -260,13 +260,8 @@ label start:
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
     "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
 
-    show path
-    show her flirting coat at midleft
-    show him happy at midright
-    show child at center
-    #show computer_pad
-    show polaroid
-    with dissolve
+    scene stars with fade
+    show familyphoto0 at center, baby_pos with dissolve
 
     if (mp.jack_name):
         $ his_name = mp.jack_name
@@ -274,9 +269,15 @@ label start:
         $ her_name = mp.kelly_name
     if (mp.baby_name):
         $ kid_name = mp.baby_name
-    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
-    "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
-    "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
+    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
+    "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
+    scene stars with fade
+    show familyphoto1 at smallphoto,left,tilted,baby_pos with moveinright
+    $ renpy.pause(1.0)
+    show familyphoto2 at smallphoto, center, tilted, baby_pos with moveinright
+    $ renpy.pause(1.0)
+    show familyphoto3 at smallphoto, right, tilted, baby_pos with moveinright
+    "Last, there's me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
     menu name_change_loop:
         "[his_name], [her_name], and [kid_name]... Are those names correct?"
         "Yes, continue.":
@@ -304,6 +305,8 @@ label start:
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
     "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
     "I suppose I changed, too."
+    "Now that [kid_name]'s grown, I can't help thinking about the choices I made."
+    "At the time I didn't even feel like I was making choices, but looking back, I can see that all those small actions are a part of how our lives are today."
 
     #####################################################################
     # The Loop of Life                                                  #
@@ -341,6 +344,16 @@ label life_loop:
                     
         if (crop_enabled("wheat")):
             $modify_credits(-WHEAT_COST)
+
+        if (year == MONEY_YEAR):
+            "I now earn credits for the crops I choose, after deductions for expenses."
+            # TODO: Add a screenshot with the credits section highlighted
+            "This part of the screen shows how much I'll earn and how much my expenses are."
+            "Hopefully I can stay out of debt..."
+        if (year == KID_WORK_YEAR):
+            "[kid_name] is old enough to start helping on the farm."
+            # TODO: Add a screenshot with her work area highlighted
+            "I can choose how much she should work on the farm, which will give more Work to grow crops."
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ read_handbook = False

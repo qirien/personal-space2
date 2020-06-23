@@ -360,7 +360,7 @@ label farm_tutorial:
                 "That's it for the farming tutorial."
         "No.":
             $ pass
-
+    "The game will end after 30 Talaam years."
     return
 
 # Year 2, 9 months old
@@ -399,7 +399,7 @@ label work2:
     zaina "Thank you, [his_name]!"
 
     $ enable_crop("plums")
-    tutorial "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
+    "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
     return
 
 
@@ -505,8 +505,8 @@ label work6:
     "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
     $ competence += 2
     $ achieved("Carbon Copy")
-    tutorial "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
-    tutorial "Her competence increases as she learns and helps."
+    "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
+    "Her competence increases as she learns and helps."
     window hide
     scene black with fade
     return
@@ -631,8 +631,8 @@ label work10:
             kevin "Very well. I shall mark you down for bees."
             $ modify_credits(-100)
             $ enable_crop("honey")
-            tutorial "Bees will boost production of neighboring squares and require just a little work."
-            tutorial "However, you have to allocate a space for them every year."
+            "Bees will boost production of neighboring squares and require just a little work."
+            "However, you have to allocate a space for them every year."
             $ achieved("Family Beeswax")
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
