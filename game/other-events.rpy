@@ -86,6 +86,7 @@ label parenting_class_questions:
 
     naomi normal "That's all we have time for today."
     naomi happy "Thank you all for raising the next generation of humans! They need you and your love."
+    $ parenting_classes += 1
     return
 
 

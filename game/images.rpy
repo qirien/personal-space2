@@ -190,8 +190,7 @@ init -10:
            repeat
 
     python:
-        # TODO: replace these with color images?
-        #   {image=happy.png}
+        # Here is our custom text tag for emoji.  It converts {emoji=happy} into {image=happy.png}
         def emoji_tag(tag, argument):
 
             return [

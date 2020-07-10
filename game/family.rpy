@@ -4511,6 +4511,7 @@ label family14:
         "I admitted that I didn't really know what I was doing. I mostly just let the kids do what they wanted. And it was going okay, I guess?"
     else:
         "I wasn't really interested in parenting."
+    him sad "..."
     her determined "Well, I'm going to go. Are you coming with me?"
     menu:
         "Should I go?"

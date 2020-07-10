@@ -71,6 +71,7 @@ label start:
         family12_shaved_head = False
         family27_no_work = False
         plays_trombone = False
+        parenting_classes = 0
 
         marriage_strength = 0
 
