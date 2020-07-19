@@ -361,6 +361,7 @@ init -100:
                 "Forever My Little Girl": {"desc":"Ending #3", "file":None},
                 "The Stars are Bright": {"desc":"Ending #4", "file":None},            
             # Achievements for each parenting style
+            # TODO: change this to be the first time you choose one of these??
                 "Big Boss": {"desc":"Authoritarian Parent", "file":None},
                 "Firm Yet Fair": {"desc":"Authoritative Parent", "file":None},
                 "Who Needs Rules?": {"desc":"Permissive Parent", "file":None},
