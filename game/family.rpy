@@ -2634,6 +2634,7 @@ label family8:
     "[her_name] moved to follow her, but I held her hand."
     him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
     her concerned coat "I guess so... Is she really going to be okay?"
+    # TODO: Delete second child
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
     "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face. Their baby sensed the mood and started fussing also."
     him surprised "I guess we have it pretty easy, huh?"
