@@ -365,6 +365,7 @@ init python:
         crop_index = get_crop_index(crop_name)
         return crop_info[crop_index][ENABLED_INDEX]
 
+    # TODO: put this in a popdown notification with +crop icon and name instead
     def enable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True

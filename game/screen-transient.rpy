@@ -1,3 +1,10 @@
+###############################################################################
+# Code for screens that go inbetween scenes.
+# This includes the "interscene" screen that shows the year and current phase,
+# the "notification" popdown screen,
+# as well as the "yearly_summary" screen at the end of each year.
+###############################################################################
+
 label interscene_text(year=0, event_type="Work"):
     window hide
     scene stars with fade
@@ -9,6 +16,7 @@ label interscene_text(year=0, event_type="Work"):
 screen interscene(year=0, event_type="Work"):
     style_prefix "interscene"
     window:
+        at slideinpausefade
         vbox:
             label "Year [year] of [MAX_YEARS]"
             label "[event_type]"
@@ -58,6 +66,7 @@ screen yearly_summary():
                 yfill True
                 frame:
                     yfill True
+                    xfill True
                     background "roundrect_darkgray"
                     vbox:
                         hbox:
@@ -78,15 +87,16 @@ screen yearly_summary():
                                     add "family_photo_small " + kid_type
 
                             frame:
-                                xsize RIGHT_COLUMN_WIDTH
+                                #xsize RIGHT_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT
+                                xalign 1.0
                                 style "plan_farm_subframe"
                                 vbox:
                                      label "Quote"
                                      null height 10
                                      text parenting_quotes[year]
                         frame:
-                            xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
+                            #xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
                             style "plan_farm_subframe"
                             vbox:
                                 xfill True
@@ -109,8 +119,9 @@ style interscene_window is default:
     xalign 0.0
     yalign 0.0
     padding (45,45)
-    background Frame("gui/textbox.png", left=35, right=35, top=35, bottom=35)
 
 style interscene_label is label
 style interscene_label_text is label_text:
     color "#fff"
+    font gui.interface_font
+    outlines [(1, black, 1, 1)]

@@ -202,6 +202,7 @@ init -100:
     # Custom transitions, positions, etc.
     ##
     define fade = Fade(0.2, 0.2, 0.2)
+    define slowfade = Fade(0.5, 0.5, 0.5)
     define whitefade = Fade(0,0,0.5,color=(255,255,255,255))
     define irisout = CropMove(0.1, "irisout")
     define irisin = CropMove(0.1, "irisin")
@@ -273,8 +274,8 @@ init -100:
     transform slideinpausefade:
         xalign 1.25
         yalign 0.05
-        easein 1.5 xalign 0.05
-        pause 2.0
+        easein 1.0 xalign 0.1
+        pause 1.5
         linear 1.0 alpha 0.0
 
     # Highlight when moused over

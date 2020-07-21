@@ -1812,7 +1812,7 @@ label strawberries1:
             kid "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
-            $ enable_crop("strawberries")
+            $ enable_crop("strawberries", False)
         "Sell the extra plants.":
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear

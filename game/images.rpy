@@ -79,6 +79,7 @@ init -10:
     define photo_scale_factor = 0.7
 
     # Background of the family photo
+    # TODO: This changes every time the screen refreshes. Have it based on the year instead (maybe with a hash or something)
     image family_photo_bg:
         choice:
             "images/bg/pond.jpg"

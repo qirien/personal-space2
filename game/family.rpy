@@ -709,7 +709,7 @@ label family2:
 
     "[her_name] nodded, and ate another spoonful of beans. She seemed to be thinking about something."
 
-    her determined "[his_name], we need help."
+    her determined coat "[his_name], we need help."
     him annoyed "With what?"
     her annoyed coat "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Travis was?"
     him surprised "Terrorizing the clinic's cotton ball supplies?"
@@ -888,7 +888,7 @@ label family3:
     with move
     him normal "Looks like that plant's harmless."
     show him concerned at center with move
-    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field equipped with a homing beacon to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
+    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
     her concerned "I'm sorry, [his_name]. I should have been watching her closer."
     him surprised "That's just what I was going to say!"
     play music thoughtful
@@ -984,7 +984,8 @@ label family3:
 
     scene bonfire with fade
     play sound "sfx/fire-2.mp3" loop
-    "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
+    "Camping was ten times harder with little [kid_name]. When we cooked our dinner, one of us had their hands full making sure she didn't fall into the fire."
+    "After dinner, she kept trying to run away and explore. I put her on my back for awhile but she yelled and complained and was pretty heavy anyway."
     scene moons with fade
     show him sleeping at midright
     show her sleeping at center
@@ -1589,8 +1590,9 @@ label family5:
     him flirting "There's no one else I'd rather potty-train a two-year-old with!"
     her flirting "There better not be!"
     him normal "Just you. Always you."
-    her sleeping "Mmmm...I love you, [his_name]."
-    him sleeping "I love you..."
+    show her sleeping
+    show him sleeping
+    with dissolve
 
     if ((family5_punishment == "not use the computer pad") or (family5_punishment == "go to timeout") or (family5_punishment == "be spanked")):
         $ authoritarian += 1

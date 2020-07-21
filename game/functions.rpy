@@ -41,7 +41,7 @@ label increase_attachment:
     $ inc_amount = 0
     $ inc_amount += responsive
     if (inc_amount > 0):
-        $ notifications += "Attachment +" + str(inc_amount) + "\n"
+        $ notifications += "{color=" + green_dark + "}Attachment +" + str(inc_amount) + "{/color}\n"
     $ attachment += inc_amount
     return
 
@@ -53,7 +53,7 @@ label increase_competence:
     #     $ inc_amount += 1
     $ inc_amount += demanding
     if (inc_amount > 0):
-        $  notifications += "Competence +" + str(inc_amount) + "\n"
+        $  notifications += "{color=" + green_dark + "}Competence +" + str(inc_amount) + "{/color}\n"
     $ competence += inc_amount
     return
 
@@ -62,7 +62,7 @@ label increase_independence:
     $ inc_amount = 0
     $ inc_amount += confident
     if (inc_amount > 0):
-        $  notifications += "Independence +" + str(inc_amount) + "\n"
+        $  notifications += "{color=" + green_dark + "}Independence +" + str(inc_amount) + "{/color}\n"
     $ independence += inc_amount
     return
 
@@ -239,10 +239,11 @@ init -100 python:
         credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
         renpy.show_screen("show_notification", credit_msg)
         credits += amount
-        message = "Credits "
         if (amount >= 0):
-            message += "+"
-        message = message + str(amount) + "\n"
+            message += "{color=" + green_dark + "}Credits +"
+        else:
+            message += "{color=" + red_dark + "} Credits"
+        message = message + str(amount) + "{/color}\n"
         notifications += message
         return
 
@@ -256,9 +257,9 @@ init -100 python:
             return False
         else:
             if (amount >= 0):
-                notifications += "Farm size +" + str(amount) + "\n"
+                notifications += "{color=" + green_dark + "}Farm size +" + str(amount) + "{/color}\n"
             else:
-                notifications += "Farm size " + str(amount) + "\n"
+                notifications += "{color=" + red_dark + "}Farm size " + str(amount) + "{/color}\n"
             farm_size += amount
             return True
 

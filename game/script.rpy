@@ -366,6 +366,7 @@ label life_loop:
         call screen plan_farm() with fade
 
         label yearly_events:
+            window auto
             if demo_mode:
                 jump demo_continue
             if trailer_mode:
@@ -401,8 +402,6 @@ label life_loop:
 
             # WORK EVENTS (farming)
             call interscene_text(year, "Work")
-            #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
-            # hide screen interscene #with dissolve
             $ work_event = get_next_work_event()
             call expression work_event
 
@@ -413,18 +412,19 @@ label life_loop:
 
             # COMMUNITY EVENTS (building community, helping factions)
             play music community fadeout 3.0 fadein 3.0
+            #show screen interscene(year, "Community")
             call interscene_text(year, "Community")
             call expression "community" + str(year)
 
             # Increase child stats based on this year's parenting decisions
             stop music fadeout 3.0
-            call interscene_text(year, "End")
+            scene stars
+            window hide
             call increase_attachment
             call increase_competence
             call increase_independence
-            #$ renpy.notify(notifications)
-            scene black with fade
-            call screen yearly_summary with fade with fade
+            #$ renpy.notify(notifications)           
+            call screen yearly_summary with slowfade 
 
             # Reset our variables while keeping a running total
             $ total_demanding += demanding

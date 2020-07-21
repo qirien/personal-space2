@@ -371,9 +371,9 @@ label work2:
     play sound "sfx/baby-gurgle.ogg" fadein 5.0
     her "Are you going somewhere?"
     him determined "Yeah, I said I'd help Kevin and Zaina with their garden."
-    her "It wasn't as easy as the video games made it seem, huh?"
+    her baby sad "It wasn't as easy as the video games made it seem, huh?"
     him happy "Yeah, turns out there's actually a lot of things that you can't learn just from simulations!"
-    her "All right, good luck."
+    her baby happy "All right, good luck."
     stop sound fadeout 2.0
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
@@ -397,7 +397,7 @@ label work2:
     zaina "Thank you, [his_name]!"
 
     $ enable_crop("plums")
-    "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
+    tutorial "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
     return
 
 
@@ -415,7 +415,7 @@ label work4:
         "What should I do?"
         "Show off my [random_crop] at the festival.":
             $ work4_showoff = True
-            "It was fun to show off my hard work. And it was a good chance to hang out with the other farmers and see what they were doing."
+            "It would be fun to show off my hard work. And it was a good chance to hang out with the other farmers and see what they were doing."
 
         "Prepare one field and then go without bringing anything.":
             "I didn't want to miss the Fall Festival. I worked hard to prepare and plow one new field, and then I headed over."
