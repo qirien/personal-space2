@@ -273,7 +273,7 @@ init -100:
     transform slideinpausefade:
         xalign 1.25
         yalign 0.05
-        linear 1.5 xalign 0.05
+        easein 1.5 xalign 0.05
         pause 2.0
         linear 1.0 alpha 0.0
 
@@ -416,7 +416,7 @@ init -100:
 
     "yteen": "I might be rude to you and push you away sometimes, and I don't want you to tell me what to do. I will probably make some stupid choices and be hard on myself. Try not to solve my problems for me, but support and love me no matter what. \n\nI need to separate myself from you as I'm learning independence, so my words, appearance, music, and friends might seem really strange! \n\nPlease be interested in me and my world without trying to rule over it, and keep loving me and setting limits to protect me while I'm learning.",
 
-    "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please recognize my feelings and help me prepare to live on my own."
+    "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please acknowledge my point of view and help me prepare to live on my own."
     }
 
 # Quotes to show at the end of each year.

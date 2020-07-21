@@ -59,7 +59,7 @@ label family1:
     "Sleeping..."
     window hide
     show black with irisinslow
-    hide black with irisoutslow
+    hide black with irisout
     window show
     show him determined with dissolve
     "No, I couldn't sleep while they both needed me."

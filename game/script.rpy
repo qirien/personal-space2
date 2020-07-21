@@ -273,7 +273,7 @@ label start:
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
     "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
     scene stars with fade
-    show familyphoto1 at smallphoto,left,tilted,baby_pos with moveinright
+    show familyphoto1 at smallphoto, left, tilted, baby_pos with moveinright
     $ renpy.pause(1.0)
     show familyphoto2 at smallphoto, center, tilted, baby_pos with moveinright
     $ renpy.pause(1.0)
@@ -304,10 +304,11 @@ label start:
 
     scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
-    "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
-    "I suppose I changed, too."
-    "Now that [kid_name]'s grown, I can't help thinking about the choices I made."
-    "At the time I didn't even feel like I was making choices, but looking back, I can see that all those small actions are a part of how our lives are today."
+    "But [kid_name] grew from baby to woman, and our community evolved as new settlers arrived, along with new problems."
+    "I suppose I changed, too, over the last thirty years."
+    "Thirty years... wow, that makes me seem really old. But it's the same as eighteen Earth years."
+    "Eighteen years . . . is still a long time!"
+    "At the time I didn't even feel like I was making choices, but looking back, I can see that many small actions led to how our lives are today."
 
     #####################################################################
     # The Loop of Life                                                  #

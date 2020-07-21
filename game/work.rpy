@@ -327,13 +327,13 @@ label work_intro:
     play music farming
     scene fields with fade
     "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
-    "Over the past two years, with a lot of trial and error, I'd found crops and varieties that worked well."
+    "Over the past two years, with a lot of trial and error, I'd found some crops and varieties that worked well."
     "I still had a lot of decisions to make, though, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
     "The area of Talaam we had settled on was cool and dry. It didn't have seasons like temperate zones on Earth; the temperature stayed mild year round, though there was still a warm season and a cool season."
     "This meant that we could grow crops year round, but some crops didn't grow as well because they expected more sun or frost."
     scene aurora_animated with fade
     "Talaam's frequent solar flares meant that we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
-    "The flares' radiation was dangerous to humans, but so far hadn't had much affect on plants."
+    "The flares' radiation was dangerous to humans, but so far hadn't had much effect on plants."
     "On this new planet, though, everything was an experiment."
     call farm_tutorial
     return
@@ -357,10 +357,8 @@ label farm_tutorial:
                 "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
-                "That's it for the farming tutorial."
         "No.":
             $ pass
-    "The game will end after 30 Talaam years."
     return
 
 # Year 2, 9 months old

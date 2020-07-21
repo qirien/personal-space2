@@ -54,7 +54,7 @@ screen plan_farm():
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
-                                # TODO: take this out?
+                                # TODO: take this out unless NG+?
                                 textbutton "Random":
                                     action [
                                             set_default_crops,
@@ -69,7 +69,7 @@ screen plan_farm():
 
 screen colony_messages_button(read_colony_messages):
     showif (not read_colony_messages):
-        text " {b}NEW!{/b} " ypos 40 xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
+        text " {b}!{/b} " ypos 40 xalign 0.9 yalign 0.0 style "alert_text" at tiny_bounce
     else:
         text "" ypos 40 xalign 0.0 # We have to have this here or it messes up all the positions
 
@@ -126,9 +126,9 @@ screen farm_details_screen:
                     # TODO: have icons for how much each group likes you?
                     use colony_messages_button(read_messages)
                     hbox:
-                        textbutton "Child Devel." action Show("parenting_handbook", transition=irisout)
+                        textbutton "Child Development" action Show("parenting_handbook", transition=irisout)
                         showif ((year in TRANSITION_YEARS) and (not read_handbook)):
-                            text " {b}NEW!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
+                            text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
                         else:
                             text "" xalign 0.0 # We have to have this here or it messes up all the positions
 
@@ -145,9 +145,7 @@ screen farm_details_screen:
                 xsize MIDDLE_COLUMN_WIDTH
                 ysize TOP_SECTION_HEIGHT
                 hbox:
-                    label "Layout" xfill False
-                    null width 275
-                    label "Year " + str(year) xalign 1.0
+                    label "Year " + str(year) + " of " + str(MAX_YEARS) text_xalign 0.5
                 use crops_layout
 
         # Totals so far

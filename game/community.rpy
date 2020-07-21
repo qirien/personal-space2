@@ -6,7 +6,7 @@
 label community_intro:
     play music community
     scene fields with fade
-    "Luckily, we weren't alone on Talaam. There were several hundred other colonists here, now. Enough to feel like a real community, and not just  a few struggling pioneers."
+    "The three of us were just some of the several hundred other colonists on the planet of Talaam. Enough to feel like a real community, but few enough that we all knew each other."
     show pete normal at midleft
     show thuc normal at midright
     show natalia normal at center
@@ -20,7 +20,7 @@ label community_intro:
     show ilian normal at midright
     with dissolve
     "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
-    "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but we learned to get along."
+    "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but somehow we figured out how to get along."
     return
 
 #######################################################################################
