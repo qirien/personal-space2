@@ -32,6 +32,19 @@ init python:
     def random_float():
         return renpy.random.random()
 
+    def notification_add(var_name, amount):
+        global notifications
+        message = ""
+        if (amount == 0):
+            return
+        elif (amount > 0):
+            message += var_name + "{color=" + green_dark + "} +"
+        else:
+            message += var_name + "{color=" + red_dark + "} "
+        message += str(amount) + "{/color}\n"
+
+        notifications += message
+        return
 ##
 # PARENTING FUNCTIONS
 ##
@@ -40,8 +53,7 @@ init python:
 label increase_attachment:
     $ inc_amount = 0
     $ inc_amount += responsive
-    if (inc_amount > 0):
-        $ notifications += "{color=" + green_dark + "}Attachment +" + str(inc_amount) + "{/color}\n"
+    $ notification_add("Attachment", inc_amount)    
     $ attachment += inc_amount
     return
 
@@ -52,8 +64,7 @@ label increase_competence:
     # if (renpy.random.random() <= (kid_work_slider/400.0)):
     #     $ inc_amount += 1
     $ inc_amount += demanding
-    if (inc_amount > 0):
-        $  notifications += "{color=" + green_dark + "}Competence +" + str(inc_amount) + "{/color}\n"
+    $ notification_add("Competence", inc_amount)
     $ competence += inc_amount
     return
 
@@ -61,8 +72,7 @@ label increase_competence:
 label increase_independence:
     $ inc_amount = 0
     $ inc_amount += confident
-    if (inc_amount > 0):
-        $  notifications += "{color=" + green_dark + "}Independence +" + str(inc_amount) + "{/color}\n"
+    $ notification_add("Independence", inc_amount)    
     $ independence += inc_amount
     return
 
@@ -239,12 +249,7 @@ init -100 python:
         credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
         renpy.show_screen("show_notification", credit_msg)
         credits += amount
-        if (amount >= 0):
-            message += "{color=" + green_dark + "}Credits +"
-        else:
-            message += "{color=" + red_dark + "} Credits"
-        message = message + str(amount) + "{/color}\n"
-        notifications += message
+        notification_add("Credits", amount)    
         return
 
     def modify_farm_size(amount):
@@ -256,11 +261,7 @@ init -100 python:
             farm_size = FARM_SIZE_MAXIMUM
             return False
         else:
-            if (amount >= 0):
-                notifications += "{color=" + green_dark + "}Farm size +" + str(amount) + "{/color}\n"
-            else:
-                notifications += "{color=" + red_dark + "}Farm size " + str(amount) + "{/color}\n"
-            farm_size += amount
+            notification_add("Farm Size", amount)    
             return True
 
     # Calculate expenses required for the family for this year
@@ -344,11 +345,29 @@ init -100 python:
     def has_trust():
         return (trust > 0)
 
+    # Modify relationship with a faction, adding a notification along the way.    
+    def mavericks_mod(amount=1):
+        global mavericks
+        mavericks += amount
+        notification_add("Mavericks", amount)
+        return
+
+    def colonists_mod(amount=1):
+        global colonists
+        colonists += amount
+        notification_add("Colonists", amount)
+        return
+
+    def miners_mod(amount=1):
+        global miners
+        miners += amount
+        notification_add("Miners", amount)
+        return
+
     # Return whether the relationship with a faction is "strong" or not
     # Optional parameter "strength" controls how strong the relationship has
     # to be to return TRUE.  Default is "strong", while "moderate" and 
     # "weak" have less stringent requirements.
-    # TODO: tweak this based on actual results
     def mavericks_strong(strength="strong"):
         strong = faction_strong(mavericks, strength)
         if (strong):            
@@ -366,6 +385,7 @@ init -100 python:
         return strong
 
     # Helper function for each faction to calculate whether they are "strong" or not.
+    # TODO: tweak this based on actual results
     def faction_strong(faction_value, strength="strong"):
         strong = False
         if (strength == "weak"):

@@ -2296,7 +2296,7 @@ label family7:
         "The next day, we found out [her_name] was pregnant."
         "I felt overwhelmed. I could barely function as a dad of one kid, much less two!"
         "Sometimes, I was amazed that humanity had ever managed to survive past childhood."
-        "There was no choice but to keep trying. Maybe in nine months I'd be a better dad than I was now?"
+        "There was no choice but to keep going. Maybe in nine months I'd be a better dad than I was now?"
         "I had the feeling it would take more than the passage of time to make a better parent out of me."
     else:
         scene stars with fade

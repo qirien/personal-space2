@@ -134,7 +134,6 @@ label parenting_class1:
     naomi normal "As parents, part of your job is protect kids from making terrible, life-altering mistakes. But without making small mistakes, they will not learn for themselves."
     helen "I guess Travis could have never learned to walk without falling so many times."
     natalia "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings."
-    naomi happy "Yes, exactly."
 
     "We talked for a while about being patient with kids' mistakes, and common mistakes for different ages. It was reassuring to learn things like wetting the bed and talking back were completely normal."
 

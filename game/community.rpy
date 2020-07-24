@@ -79,7 +79,7 @@ label community1:
     menu:
         "What kind of life was I planning on?"
         "I'm going to focus on fulfilling my job to RET.":
-            $ miners += 1
+            $ miners_mod(1)
             him pout "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
             him happy "Plus, growing food is essential for our survival!"
             kevin "That sounds like a good plan."
@@ -89,7 +89,7 @@ label community1:
             him normal "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
             him pout "Nothing on Earth compares."
             kevin "I agree. There's so much to document and try, it's overwhelming."
-            $ mavericks += 1
+            $ mavericks_mod(1)
         "At the end of the day, working together is what keeps me going.":
             him pout "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
             him normal "At the same time, it's my relationship with my neighbors that I really cherish."
@@ -101,7 +101,7 @@ label community1:
             him normal "It's more like we're all united by a common goal."
             kevin "So it's like you're always at work."
             him surprised "Kind of, yeah."
-            $ colonists += 1
+            $ colonists_mod(1)
     him happy "You guys are staying here for the rest of your lives, right?"
     zaina "That's right!"
     label ask_zaina_and_kevin:
@@ -338,8 +338,8 @@ label community2:
     menu:
         "Should I bring my whole harvest in to the storehouse?"
         "I can bring in the whole harvest.":
-            $ colonists += 1
-            $ miners += 1
+            $ colonists_mod(1)
+            $ miners_mod(1)
             $ whole_harvest_to_storehouse = True
             him annoyed "How about I can write down the amount I harvest and I'll bring in the surplus?"
             ilian "I'm pretty sure I could trust you, but it's better if I can measure it all so we can be consistent."
@@ -348,7 +348,7 @@ label community2:
             him normal "Great, I'll do that."
             #TODO: make this add to the future stress variable
         "I will keep storing most of my own crops.":
-            $ mavericks += 1
+            $ mavericks_mod(1)
             him annoyed "I'm not changing how I do things because of what some lawyer at RET said. I'll do what's efficient and good for everyone."
             ilian "Hmph. We'll see how that works out."
     return
@@ -427,13 +427,13 @@ label community3:
     menu:
         "Sure, invite them all!":
             him normal "Yes, let's invite them. I can reserve the community center."
-            $ colonists += 1
+            $ colonists_mod(1)
             $ town_hall_games = True
             jump invite_all
         "Don't invite them.":
             him pout "They can make their own game night if they want."
             him normal "I want to enjoy myself, not be teaching other people how to play games the whole time."
-            $ mavericks += 1 #rationale: the mavericks are a product of the colonists becoming more fractured
+            $ mavericks_mod(1) #rationale: the mavericks are a product of the colonists becoming more fractured
             jump no_invite
         "Ask Pavel to encourage meetups":
             him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
@@ -543,11 +543,11 @@ label community4:
         "Who should I nominate? I can't nominate myself."
 
         "Sister Naomi. She'll do what's best for everyone.":
-            $ colonists += 1
+            $ colonists_mod(1)
         "Sara. She's familiar with colony politics since she assists the mayor.":
-            $ miners += 1
+            $ miners_mod(1)
         "Pete. He'll make sure RET doesn't get too much control.":
-            $ mavericks += 1
+            $ mavericks_mod(1)
     "After the nominations, we voted for our favorite candidate."
     $ pstyle = get_parenting_style()
     if (pstyle== "authoritative"):
@@ -613,17 +613,17 @@ label community5:
         "How should we prepare?"
         menu:
             "Have the farmers bring their whole harvest instead of storing it individually, and encourage them to grow extra food.":
-                $ miners += 2
+                $ miners_mod(2)
                 $ require_whole_harvest = True
                 jump whole_harvest_required
             "Have farmers bring in a certain amount of surplus each harvest, and encourage them to grow more food.":
                 him "Let's have the farmers bring their surplus to the storehouse, and I'll ask them to grow extra beans and wheat."
-                $ miners += 1
+                $ miners_mod(1)
                 $ rationing = True
                 jump ration_harvest
             "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
                 $ pass #rationale: this has pros and cons for mavericks, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
-                $ miners -= 1
+                $ miners_mod(-1)
                 jump no_formal_rationing
     else:
         scene community_center with fade
@@ -738,7 +738,7 @@ label community5:
     if talked_canning_dairy:
         pete happy "I'll take a look at canning milk and butter."
         him happy "Great!"
-        $ colonists += 1
+        $ colonists_mod(1)
     scene path with fade
     "Next I had to try to convince Martín..."
     scene fields with fade
@@ -820,7 +820,7 @@ label community6:
     menu:
         "What do you think?"
         "We need each other to survive.":
-            $ colonists += 1
+            $ colonists_mod(1)
             him pout "We need each other to survive. There's no way one person could survive on their own out here."
             pete happy "Is that really true? I've been out there on my own before--there's good foraging and hunting."
             him surprised "Maybe you could survive on your own, but what about your family?"
@@ -828,7 +828,7 @@ label community6:
             pete "The most dangerous thing is the solar radiation. Without a radio, we wouldn't know when a solar flare was coming."
             pete happy "And it's handy to have some folks around. Otherwise, who would I crush in Maximal Conquest?"
         "I understand wanting to be away from it all.":
-            $ mavericks += 1
+            $ mavericks_mod(1)
             him pout "I understand wanting to be away from it all. It's part of the reason I came here."
             pete happy "We don't have to deal with inane government interference or rules made just for the sake of havin' 'em."
             him concerned "Although some of RETs demands have felt that way..."
@@ -836,7 +836,7 @@ label community6:
             pete happy "And they're not in our face about it. I could go set out on my own tonight and they'd be none the wiser."
             helen "You could, as long as you planned it out with your wife first."
         "We have an obligation to help RET feed their miners now.":
-            $ miners += 1
+            $ miners_mod(1)
             him pout "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
             him concerned "If we all went rogue, those miners would starve to death. And we wouldn't be holding up our end of the bargain. It was expensive to send us out here."
             pete happy "I do feel bound by my word. But if RET starts askin' more than was in our contracts, I might have to change things, too."
@@ -920,7 +920,7 @@ label community7:
         menu:
             "What will you do for Thuc?"
             "Ask RET in my next e-mail.":
-                $ miners += 1
+                $ miners_mod(1)
                 him normal "I can ask them in my next e-mail."
                 thuc sad "E-mail? Not an insta-com?"
                 him happy "I only get so many instant communication slots."
@@ -928,7 +928,7 @@ label community7:
                 him pout "I think RET has bigger things to worry about."
                 thuc sad "An e-mail is fine."
             "From a business standpoint, you're stuck here.":
-                $ mavericks += 1
+                $ mavericks_mod(1)
                 him annoyed "You don't have any leverage over them. It's not like you can quit now."
                 thuc sad "I sure do have leverage! I could decide to leave the colony!"
                 him concerned "You wouldn't seriously consider that."
@@ -937,7 +937,7 @@ label community7:
                 thuc sad "I just don't like the idea that I have no power over my life."
                 him sad "I'll send the message, but don't get your hopes up."
             "I hear you, but let's focus on the here and now.":
-                $ colonists += 1
+                $ colonists_mod(1)
                 him pout "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
                 him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
                 thuc normal "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
@@ -950,7 +950,7 @@ label community7:
         menu:
             "What do you think RET will do for Thuc?"
             "They should make a big donation.":
-                $ miners += 1
+                $ miners_mod(1)
                 him pout "They should make a big donation in your name."
                 thuc normal "Right?"
                 him surprised "What charity would you choose?"
@@ -958,7 +958,7 @@ label community7:
                 him flirting "I think the biggest contribution you can make to our developing nation is to keep your goats out of my spinach."
                 thuc normal "Burn!"
             "They won't do anything.":
-                $ mavericks += 1
+                $ mavericks_mod(1)
                 him concerned "You're stuck here. You have no choice but to be an employee of RET."
                 thuc sad "I could decide to leave the colony!"
                 show him surprised
@@ -967,7 +967,7 @@ label community7:
                 thuc normal "I'm joking. Rice cultivation is kind of pointless for just twelve people."
                 thuc sad "I just don't like the idea that I have no power over my life."
             "They probably won't do anything, but we have more important things to worry about.":
-                $ colonists += 1
+                $ colonists_mod(1)
                 him pout "Life isn't fair, but if we work hard, maybe we can eat well while we live it."
                 show him happy
                 him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
@@ -1173,8 +1173,8 @@ label community9:
     "What do I tell Pete?"
     menu:
         "Sounds fun! Go with him and invite Thuc.": #you learn the particulars of how to camp safe from radiation.
-            $ mavericks += 1
-            $ colonists += 1
+            $ mavericks_mod(1)
+            $ colonists_mod(1)
             him normal "That sounds fun. We should invite Thuc, too. Do you have the right equipment?"
             pete normal "We've got two radiation-proof tents from RET. I don't like relying on them for so many things though, so I'm going to try out my own."
             him surprised "And you're testing it on us?"
@@ -1309,7 +1309,7 @@ label community9:
             # TODO: Should this be a timed menu?
             menu:
                 "Tackle the crab.":
-                    $ mavericks += 1
+                    $ mavericks_mod(1)
                     #TODO: I want the injured-hand option to result in making less money that month, if we do the currency thing.
                     show him annoyed at right with move
                     "I tackled the grass crab from behind, easily outweighing it."
@@ -1385,7 +1385,7 @@ label community9:
             him happy "Sounds good to me!"
             stop sound fadeout 1.0
         "Sounds dangerous. I have to focus on farming right now anyway.":
-            $ miners += 1 #not sure which side colonists +1 should go on for this one.
+            $ miners_mod(1) #not sure which side colonists +1 should go on for this one.
             him concerned "What happens if you get pinched by one of those things? It doesn't sound safe."
             pete "That's the whole point! Gets your blood moving."
             show him pout
@@ -1482,8 +1482,8 @@ label community10:
     menu:
         "Tomás and Joanna should be in charge of the farm and get the other siblings to help.":
             $ community11_kidsonfarm = True
-            $ colonists += 1
-            $ miners += 1
+            $ colonists_mod(1)
+            $ miners_mod(1)
             him pout "Tomás is your son. It's his duty to help you out."
             martin happy "That's what I keep telling you, Natalia!"
             natalia "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
@@ -1517,7 +1517,7 @@ label community10:
             #more investment in older farms; Tomás and Joanna are less likely to join the mavericks this way
         "Let Natalia scale back the farm.":
             $ community11_kidsonfarm = False
-            $ mavericks += 1
+            $ mavericks_mod(1)
             him pout "If nobody wants to do it, you shouldn't force them to."
             natalia "See? It's important for kids to follow their dreams!"
             martin angry "Tomás is perfectly capable of running a farm; he's just lazy!"
@@ -1878,11 +1878,11 @@ label community11:
             "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
             "They promised to help with the corn and turkeys."
-            $ miners += 1
-            $ colonists += 1
+            $ miners_mod(1)
+            $ colonists_mod(1)
         else:
             jump Martin_dead_sooner
-            $ mavericks += 1
+            $ mavericks_mod(1)
         return
 
     label no_luxuries:
@@ -1898,7 +1898,7 @@ label community11:
         brennan normal "No, sorry, I think they just sent some new batteries and stuff."
         natalia "They don't care what happens to us!"
         martin angry "I would have liked to live a little longer, but in the end, we can only do so much."
-        $ mavericks += 1
+        $ mavericks_mod(1)
 
         label Martin_dead_sooner:
             scene church with fade
@@ -1986,7 +1986,7 @@ label community12:
                     chaco "Exceed. That's the word. When we exceed our quota."
                     him content "That sounds fun."
                     chaco "It is."
-                    $ miners += 1
+                    $ miners_mod(1)
                     $ know_BBQ = True
                 "Did the miners steal the cow?":
                     him pout "Do you know if the miners stole the cow that went missing?"
@@ -2014,7 +2014,7 @@ label community12:
             menu:
                 "Let's ask Sara if she wants to come too.":
                     him_c "I'll invite Sara to come with us."
-                    $ colonists += 1
+                    $ colonists_mod(1)
                     $ sara_investigates = True
                     "You messaged Sara about meeting Brennan tomorrow morning, and she agreed to come with you."
                 "Let's go by ourselves.":
@@ -2165,7 +2165,7 @@ label community12:
                     jump tell_Pete
 
             label message_Bandile:
-                # $ mavericks += 1 not sure if this makes sense
+                # $ mavericks_mod(1) not sure if this makes sense
                 scene farm_exterior with fade
                 "I sent Bandile a message asking about the cow."
                 nvl clear
@@ -2212,7 +2212,7 @@ label community12:
         #rationing is the default for the non-liaison option, so non-liaisons should not see this event.
         #should there be an option to switch to rationing again before this?
         #in your fields
-        $ miners -=1
+        $ miners_mod(-1)
         scene fields with dissolve
         show him normal at midleft
         "I'm working out in the fields when I see a redheaded figure approaching."
@@ -2341,7 +2341,7 @@ label community12:
                     return
 
                 label community12_choose_foraging:
-                    $ miners -=1
+                    $ miners_mod(-1)
                     brennan angry "Fine. I'll go door-to-door tonight to see if I can buy off some food until you can send over your teachers."
                     him normal "They'll be there tomorrow morning."
                     nvl clear
@@ -2840,7 +2840,7 @@ label community14:
         lily angry "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
         lily normal "I'm going with Pete and his family."
-        $ mavericks += 1
+        $ mavericks_mod(1)
     else:
         show lily normal at quarterright with moveinright
         lily "I plan to visit you often."
@@ -2848,7 +2848,7 @@ label community14:
     if not (asked_only_medicine):
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen also planned to go with Pete and his family."
-        $ mavericks += 1
+        $ mavericks_mod(1)
     $ pstyle = get_parenting_style()
     if (pstyle == "authoritarian"):
         pete "In the end, their bigheaded attitude just makes me downright ornery."
@@ -2881,12 +2881,12 @@ label community14:
             pete "I'm sure we'll see each other every now and then."
             him flirting "I'd tell you to take pictures, but I guess you won't have your tablet with you."
             pete happy "I'll see if I can train crabirds to send messages."
-            $ colonists += 1
+            $ colonists_mod(1)
         "Joke that I wish I could join them.":
             him flirting "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
             him concerned "Seriously though, take care of yourselves."
             pete happy "Thanks. And there's plenty of room out there if you ever change your mind."            
-            $ mavericks += 1
+            $ mavericks_mod(1)
     hide pete
     hide helen
     hide lily
@@ -2900,7 +2900,7 @@ label community14:
                 him annoyed "Hey, Thuc, can someone in your family look after the rest of the cattle?"
                 thuc sad "It's not our specialty but I'm sure we can learn."
                 thuc normal "Some of the older kids would probably like living on the ranch."
-                $ colonists += 1
+                $ colonists_mod(1)
                 $ thuc_has_cattle = True
             #Thuc doesn't feel as loyal to Rare Earth Tech because they didn't compensate him fairly.
             # "Take them for my own farm!":
@@ -2914,7 +2914,7 @@ label community14:
                 show thuc normal at quarterright with dissolve
                 thuc sad "They'll be a fair bit of work. Want some of my kids to help you out?"
                 ilian happy "Sure."
-                $ miners += 1
+                $ miners_mod(1)
                 $ ilian_has_cattle = True
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
     else:
@@ -2985,12 +2985,12 @@ label community15:
             "I put my arm around her shoulder."
             sara sad "It's hard to see her like this. But I'm glad I said goodbye."
             hide sara with moveoutright
-            $ colonists += 2
+            $ colonists_mod(2)
         "Say you're sorry.":
             him concerned "I'm sorry for your loss."
             sara sad "It's our loss, not just mine."
             hide sara with moveoutright
-            $ colonists += 1
+            $ colonists_mod(1)
         "Say nothing.":
             "Sara walked away quietly sniffing."
             hide sara with moveoutright
@@ -3256,13 +3256,13 @@ label community16:
             him annoyed "Do everything you can for Pete. He's an important part of our community."
             him concerned "We'll lose a lot of hands-on knowledge about cattle if he dies."
             her concerned coat "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
-            $ mavericks += 1
+            $ mavericks_mod(1)
         "Don't use important resources on him.":
             him annoyed "Try to see if you can treat him without using up our medical supplies."
             her concerned coat "Um, they already tried that. He needs medicine."
             him concerned "I just don't want to use up medicine on someone who left the colony."
             her annoyed coat "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
-            $ miners += 1
+            $ miners_mod(1)
     her surprised coat "I'm sure Pete has learned a lot about survival on Talaam since he left."
     her concerned coat "You should talk to him while he's in for treatment."
     him normal "Okay, I can at least do that."
@@ -3281,7 +3281,7 @@ label community16:
         "How will you be paying for your treatment?" if not talked_paid_c16:
             him determined "I hope you're giving us something in return for that medicine."
             pete "Don't worry! I brought a calf with me. We dropped her off with the herd on our way in."
-            $ mavericks -= 1
+            $ mavericks_mod(-1)
             $ talked_paid_c16 = True
             jump c16_convo
         "Have you made any discoveries?" if not talked_discoveries_c16:
@@ -3334,7 +3334,7 @@ label community16:
                 pete "She'd bring little things for us to feel more at home."
                 menu:
                     "So it's kind of your fault that she died.":
-                        $ mavericks -= 1
+                        $ mavericks_mod(-1)
                         him annoyed "If she was visiting you that much, that explains why she died of radiation poisoning."
                         pete normal "We warned her to be cautious. It's not like we wanted her to die."
                         him angry "But if you hadn't left she wouldn't have gone to see you."
@@ -3367,7 +3367,7 @@ label community16:
                              "Sure.":
                                  him excited "That sounds amazing. I'll be over right away."
                                  pete happy "See you soon."
-                                 $ mavericks += 1
+                                 $ mavericks_mod(1)
                              "I'm busy.":
                                  him happy "As tempting as that is, I can't spare any time away from the farm."
                                  pete normal "Come on."
@@ -3814,7 +3814,7 @@ label community17:
                                         him concerned "Sorry... that was out of line."
                                         ilian normal "Yes, it was."
                                         "The look on his face made me feel so bad, it took away all my desire to win."
-                                        $ colonists -= 1
+                                        $ mavericks_mod(-1)
                                         jump community17_lose_to_ilian
 
                             "my marbles if I have to keep listening to your ranting.":
@@ -4282,8 +4282,8 @@ label community18:
     "Should I help herd the cows?"
     menu:
         "I can help.":
-            $ mavericks += 1
-            $ miners += 1
+            $ mavericks_mod(1)
+            $ miners_mod(1)
             him normal "Sure thing." #make this a choice as well?
             scene plain with fade
             show him normal at midright
@@ -4442,18 +4442,18 @@ label community19:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
-                    $ mavericks += 1
+                    $ mavericks_mod(1)
                     him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
                     thuc_c "Are you sure? Cows are worth a lot of money. I'd rather sell them."
                     him_c "You could try that. If you have a bunch of meat all at once, we're not all going to be able to buy it, so keep that in mind."
                     thuc_c "Good point."
                 "Let's butcher them, but give a lot of the meat to the miners.":
-                    $ miners += 1
+                    $ miners_mod(1)
                     him_c "We don't need to make it all into jerky. Let's give a bunch of it to the miners."
                     thuc_c "These are my cows you're giving away! And the miners are rich!"
                     thuc_c "I'll offer them a special deal though."
                 "Let's keep the meat.":
-                    $ colonists += 1
+                    $ colonists_mod(1)
                     him_c "Jerky sounds good. But give me some of the fresh meat before you make it!"
                     thuc_c "Will do."
         else:
@@ -4465,18 +4465,18 @@ label community19:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
                 "Let's give them to Pete.":
-                    $ mavericks += 1
+                    $ mavericks_mod(1)
                     him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
                     ilian_c "I've been investing quite a bit of credits into these cows. I'll see if Pete wants to buy them though."
                     him_c "Okay. I know that you think you could make jerky out of all of them, but we only want to consume a certain amount of jerky..."
                     ilian_c "Right. I know the basic principles of supply and demand. I'll offer them at a steep discount."
                 "Let's butcher them, but give a lot of the meat to the miners.":
-                    $ miners += 1
+                    $ miners_mod(1)
                     him_c "We don't need to make it all into jerky. Let's give a bunch of it to the miners."
                     ilian_c "From the miners' standpoint, we're the ones who are the poor credit-grubbers."
                     ilian_c "I'll offer them a one-time special discount on bulk purchases."
                 "Let's keep the meat.":
-                    $ colonists += 1
+                    $ colonists_mod(1)
                     him_c "Let's butcher the cows. But give me some of the fresh meat before you make it all into jerky!"
                     ilian_c "Don't worry, I will!"
 
@@ -4918,7 +4918,7 @@ label community21:
             "That sounds..."
             menu:
                 "fair.":
-                    $ mavericks += 1
+                    $ mavericks_mod(1)
                     him pout "If you came to my farm and picked my tomatoes I would say the same thing."
                     him "It's only fair for us to compensate him for his work."
                     zaina "Okay, how much do you want to pay for the fish your family ate?"
@@ -5193,8 +5193,8 @@ label community22:
                         scene black with fade
                         "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
-                        $ mavericks = 0 #or a large minus to the relationship
-                        $ miners += 1
+                        $ mavericks_mod(-mavericks) #or a large minus to the relationship
+                        $ miners_mod(1)
                         $ community_22_forced_mavericks_leave = True #this variable isn't used again
                         return
                     # "No, this isn't right. "
@@ -5211,7 +5211,7 @@ label community22:
 #                        brennan_c "I don't want to create an army of potential saboteurs by displacing the mavericks."
 #                        brennan_c "Let's find the next-best place and mine there."
 #                        zaina_c "Alright. I'll send you the details."
-#                        $ mavericks += 1
+#                        $ mavericks_mod(1)
 #                        jump stopped_mining
 
 #                        if mavericks > 5:
@@ -5248,7 +5248,7 @@ label community22:
 #                        him_c "If RET gives you grief you can blame me."
 #                        brennan_c "Will do. Let's find the next-best place and mine there."
 #                        zaina_c "Alright. I'll send you the details."
-#                        $ mavericks += 1
+#                        $ mavericks_mod(1)
 #                        jump stopped_mining
 #                        #does this seem too easy? maybe each stopped mining branch should also have the mavericks vandalizing the equipment?
 
@@ -5499,7 +5499,7 @@ label community23:
             "[her_name] wrote up a brief paper summarizing her findings."
             "A few people read it and stopped buying meat from Pete."
             $ study_published_23 = True
-            $ colonists += 1
+            $ colonists_mod(1)
         "No, don't publish the study.":
             him concerned "How many samples have you studied? I think it's too early to draw conclusions."
             her surprised coat "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
@@ -5509,7 +5509,7 @@ label community23:
             her normal coat "That's a good idea. I'll make that suggestion."
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
-            $ mavericks += 1
+            $ mavericks_mod(1)
 
     scene stars with dissolve
     "Later that month..."
@@ -5607,7 +5607,7 @@ label community23:
                 thuc normal "You should save some of your best crops and sell them on your own."
                 him determined "So I can buy your premium goat milk? I've got enough to worry about."
                 thuc sad "Suit yourself."
-                $ colonists += 1 #arguable
+                $ colonists_mod(1) #arguable
                 return
             "How can I make that kind of money?":
                 him doubt "I know how good the extra creamy stuff is... but I don't earn that kind of money selling my crops to Ilian."
@@ -5617,7 +5617,7 @@ label community23:
                 $ random_crop = farm.crops.random_crop(include_animals = False)
                 him content "Okay, I'll let you try selling some [random_crop]. Message me when they sell!"
                 thuc normal "Oh, I know someone will want them."
-                $ mavericks += 1
+                $ mavericks_mod(1)
                 $ thuc_sells_food = True
                 return
 
@@ -5641,14 +5641,14 @@ label community23:
                 "[bro_name] and I spent the next hour shelling and cleaning the shellfish."
                 "Well, [bro_name] mostly watched and played with the shells."
                 him excited "Now we'll be able to have clam chowder whenever we want!"
-                $ mavericks += 1 #also debateable
+                $ mavericks_mod(1) #also debateable
             "Eat some now and sell the rest.":
                 him content "Let's have some with dinner and sell the rest tomorrow."
                 her normal "Okay, can you take care of it?"
                 him normal "Sure."
                 "[bro_name] and I made a seafood-vegetable soup."
                 her laugh "This really hits the spot. Thanks."
-                $ colonists += 1
+                $ colonists_mod(1)
                 return
     return
 
@@ -6125,7 +6125,7 @@ label community26:
                         pavel normal "What if you cut down their hours? It could actually increase productivity."
                         if (miners_strong("moderate")): #8 #is it mean to make this an option where it won't work?
                             brennan normal "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
-                            $ miners += 1
+                            $ miners_mod(1)
                             $ work_fewer_hours = True
                             jump wrap_up_council_26
                         else:
@@ -6180,7 +6180,7 @@ label community26:
                         him annoyed "Reducing their work hours should discourage them from using it more."
                         if (miners_strong("moderate")): #8 #is it mean to make this an option where it won't work?
                             brennan normal "I think it will help with productivity."
-                            $ miners += 1
+                            $ miners_mod(1)
                             $ work_fewer_hours = True
                             jump educational_app
                         else:
@@ -6199,7 +6199,7 @@ label community26:
                         him "Let them use firegrass if they want to."
                         her concerned "Part of my job is telling people the correct dosage for drugs to take and taking care of people who use too much."
                         her annoyed "I'd much prefer to prevent people from using too much firegrass to begin with."
-                        $ mavericks += 1
+                        $ mavericks_mod(1)
                         jump educational_app
         label educational_app:
             her determined "I'd like to work with Oleg on making that app. Pavel, can you provide us some credits so I can pay him?"
@@ -6229,7 +6229,7 @@ label community26:
                 "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
                 "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
                 "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
-                $ colonists += 1
+                $ colonists_mod(1)
                 jump after_firegrass_26
             elif grow_more_tea:
                 "I wanted to plant a new field of tea plants, but I couldn't get anyone to help me."
@@ -6296,12 +6296,12 @@ label community26:
                 "I decided to keep buying previously-live beef when I could from Pete. It tasted better."
                 "[her_name] didn't eat it."
                 $ keep_buying_pete_beef = True
-                $ mavericks += 1
+                $ mavericks_mod(1)
                 return
             "Eat as much synthetic meat as possible.":
                 "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
                 $ stop_buying_beef = True
-                $ colonists += 1
+                $ colonists_mod(1)
         if (mavericks_strong()): #8 #maxiumum is 18
             scene farm_exterior
             show him normal at midleft with dissolve
@@ -7028,10 +7028,10 @@ label fill_gap:
     "Which way will I vote?"
     menu:
         "Allow miners to vote for the mayor now and in future elections.":
-            $ miners += 1
+            $ miners_mod(1)
             jump after_vote
         "Don't allow miners to vote for the mayor now and in future elections.":
-            $ colonists += 1
+            $ colonists_mod(1)
             jump after_vote
 
     label after_vote:
