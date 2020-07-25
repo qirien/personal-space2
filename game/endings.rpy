@@ -13,7 +13,7 @@ label ending:
 
     # TODO: work/farm ending stuff?
     # TODO: remove debug code
-    "Reached ending. Attachment: [attachment], Competence: [competence], Independence: [independence]"
+    "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]"
     # community ending
     # TODO: 10 is kinda high?
     if (colonists >= FACTION_HIGH):
@@ -74,13 +74,13 @@ label ending:
     elif (parenting_style == "neglectful"):
         $ achieved("Hands-Off Approach")
 
-    if (attachment < ATTACHMENT_HIGH):
-        if (competence < COMPETENCE_HIGH):
+    if (total_attachment < ATTACHMENT_HIGH):
+        if (total_competence < COMPETENCE_HIGH):
             call ending_ac
         else:
             call ending_aC
     else:
-        if (competence < COMPETENCE_HIGH):
+        if (total_competence < COMPETENCE_HIGH):
             call ending_Ac
         else:
             call ending_AC
@@ -282,7 +282,7 @@ label ending_aC:
     him determined "Well, if she's not going to help grow food, then helping people not die is a pretty good use of her talents."
     her annoyed coat "She feels awkward touching people, and she's always second-guessing herself, and she needs my reassurance even about easy little things."
     him flirting "I'm sure she just needs more practice. I've heard from a {b}very{/b} reliable source that it takes a lot of time to become a competent medical professional."
-    if (independence >= INDEPENDENCE_HIGH):
+    if (total_independence >= INDEPENDENCE_HIGH):
         her concerned coat "She's thinking about going back to Earth to study."
         him surprised "Why would she do that? She can learn everything she needs right here!"
         show kid determined at quarterleft with moveinleft

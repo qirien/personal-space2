@@ -45,15 +45,41 @@ init python:
 
         notifications += message
         return
+
+label reset_variables:
+    $ total_attachment += attachment
+    $ total_competence += competence    
+    $ total_independence += independence  
+    $ demanding = 0
+    $ responsive = 0
+    $ confident = 0
+    $ attachment = 0
+    $ competence = 0
+    $ independence = 0
+
+    # Community stats
+    $ total_colonists += colonists
+    $ total_mavericks += mavericks
+    $ total_miners += miners
+    $ colonists = 0
+    $ mavericks = 0
+    $ miners = 0
+    return
+
 ##
 # PARENTING FUNCTIONS
 ##
+label increase_stats:
+    # Child stats
+    call increase_attachment
+    call increase_competence
+    call increase_independence 
+    return
 
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
     $ inc_amount = 0
     $ inc_amount += responsive
-    $ notification_add("Attachment", inc_amount)    
     $ attachment += inc_amount
     return
 
@@ -64,7 +90,6 @@ label increase_competence:
     # if (renpy.random.random() <= (kid_work_slider/400.0)):
     #     $ inc_amount += 1
     $ inc_amount += demanding
-    $ notification_add("Competence", inc_amount)
     $ competence += inc_amount
     return
 
@@ -72,7 +97,6 @@ label increase_competence:
 label increase_independence:
     $ inc_amount = 0
     $ inc_amount += confident
-    $ notification_add("Independence", inc_amount)    
     $ independence += inc_amount
     return
 
@@ -138,13 +162,13 @@ init -100 python:
     # based on whether she is on track to reach the _HIGH value for
     # that stat.
     def is_attached():
-        return (attachment >= roundint(year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
+        return (total_attachment >= roundint(year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
 
     def is_competent():
-        return (competence >= roundint(year * (COMPETENCE_HIGH/float(MAX_YEARS))))
+        return (total_competence >= roundint(year * (COMPETENCE_HIGH/float(MAX_YEARS))))
 
     def is_independent():
-        return (independence >= roundint(year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
+        return (total_independence >= roundint(year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
     def get_kid_type():
         if (is_attached()):
@@ -345,41 +369,22 @@ init -100 python:
     def has_trust():
         return (trust > 0)
 
-    # Modify relationship with a faction, adding a notification along the way.    
-    def mavericks_mod(amount=1):
-        global mavericks
-        mavericks += amount
-        notification_add("Mavericks", amount)
-        return
-
-    def colonists_mod(amount=1):
-        global colonists
-        colonists += amount
-        notification_add("Colonists", amount)
-        return
-
-    def miners_mod(amount=1):
-        global miners
-        miners += amount
-        notification_add("Miners", amount)
-        return
-
     # Return whether the relationship with a faction is "strong" or not
     # Optional parameter "strength" controls how strong the relationship has
     # to be to return TRUE.  Default is "strong", while "moderate" and 
     # "weak" have less stringent requirements.
     def mavericks_strong(strength="strong"):
-        strong = faction_strong(mavericks, strength)
+        strong = faction_strong(total_mavericks, strength)
         if (strong):            
             renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
         return strong
-    def miners_strong():
-        strong = faction_strong(miners, strength)
+    def miners_strong(strength="strong"):
+        strong = faction_strong(total_miners, strength)
         if (strong):
             renpy.show_screen("show_notification", "{emoji=friends} Miners")
         return strong
-    def colonists_strong():
-        strong = faction_strong(colonists, strength)
+    def colonists_strong(strength="strong"):
+        strong = faction_strong(total_colonists, strength)
         if (strong):
             renpy.show_screen("show_notification", "{emoji=friends} Colonists")
         return strong
@@ -398,13 +403,13 @@ init -100 python:
 
     # Returns the strongest faction
     def strongest_faction():
-        if ((colonists >= miners) and (colonists >= mavericks)):
+        if ((total_colonists >= total_miners) and (total_colonists >= total_mavericks)):
             renpy.show_screen("show_notification", "{emoji=friends} Colonists")
             return "colonists"
-        elif ((miners >= colonists) and (miners >= mavericks)):
+        elif ((total_miners >= total_colonists) and (total_miners >= total_mavericks)):
             renpy.show_screen("show_notification", "{emoji=friends} Miners")            
             return "miners"
-        elif ((mavericks >= colonists) and (mavericks >= miners)):
+        elif ((total_mavericks >= total_colonists) and (total_mavericks >= total_miners)):
             renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
             return "mavericks"
         else:

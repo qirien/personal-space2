@@ -109,7 +109,7 @@ label test_farming_screen:
     if (renpy.random.random()  > 0.9):
         $ enable_crop("turnips")
     while (year <= MAX_YEARS):
-        $ competence = year
+        $ total_competence = year
         $ earth_year = get_earth_years(year)
         if (year > 1):
             $ years_yield = farm.process_crops()
@@ -139,12 +139,9 @@ label demo:
     $ earth_year = get_earth_years(year)
     $ is_liaison = False
 
-    $ attachment = 2
-    $ competence = 5
-    $ independence = 3
-    $ total_demanding = 5
-    $ total_responsive = 5
-    $ total_confident = 5
+    $ total_attachment = 2
+    $ total_competence = 5
+    $ total_independence = 3
     $ authoritarian = 0
     $ authoritative = 0
     $ permissive = 0
@@ -152,7 +149,9 @@ label demo:
     $ mavericks = 0
     $ colonists = 0
     $ miners = 0
-
+    $ total_mavericks = 0
+    $ total_colonists = 0
+    $ total_miners = 0 
 
     # FARMING CHOICES
     play music audio.computer fadein 2.0
@@ -510,56 +509,41 @@ label test_jump_year:
     menu:
         "What type of parent are you?"
         "Authoritarian":
-            $ attachment = 0
-            $ competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
-            $ independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
-            $ total_demanding = year
-            $ total_responsive = 0
-            $ total_confident = year/4
+            $ total_attachment = 0
+            $ total_competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
+            $ total_independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
             $ authoritarian = year
             $ authoritative = 0
             $ permissive = 0
             $ neglectful = 0
         "Authoritative":
-            $ attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
-            $ competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
-            $ independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
-            $ total_demanding = year
-            $ total_responsive = year
-            $ total_confident = year
+            $ total_attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
+            $ total_competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
+            $ total_independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
             $ authoritarian = 0
             $ authoritative = year
             $ permissive = 0
             $ neglectful = 0
         "Permissive":
-            $ attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
-            $ competence = 0
-            $ independence = 0
-            $ total_demanding = 0
-            $ total_responsive = year
-            $ total_confident = year/4
+            $ total_attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
+            $ total_competence = 0
+            $ total_independence = 0
             $ authoritarian = 0
             $ authoritative = 0
             $ permissive = year
             $ neglectful = 0
         "Neglectful":
-            $ attachment = 0
-            $ competence = 0
-            $ independence = 0
-            $ total_demanding = 0
-            $ total_responsive = 0
-            $ total_confident = 0
+            $ total_attachment = 0
+            $ total_competence = 0
+            $ total_independence = 0
             $ authoritarian = 0
             $ authoritative = 0
             $ permissive = 0
             $ neglectful = year
         "Random":
-            $ attachment = renpy.random.randint(0,ATTACHMENT_MAX)
-            $ competence = renpy.random.randint(0,COMPETENCE_MAX)
-            $ independence = renpy.random.randint(0,INDEPENDENCE_MAX)
-            $ total_demanding = renpy.random.randint(0,COMPETENCE_MAX)
-            $ total_responsive = renpy.random.randint(0,ATTACHMENT_MAX)
-            $ total_confident = renpy.random.randint(0,INDEPENDENCE_MAX)
+            $ total_attachment = renpy.random.randint(0,ATTACHMENT_MAX)
+            $ total_competence = renpy.random.randint(0,COMPETENCE_MAX)
+            $ total_independence = renpy.random.randint(0,INDEPENDENCE_MAX)
             $ authoritarian = renpy.random.randint(0,year)
             $ authoritative = renpy.random.randint(0,year-authoritarian)
             $ permissive = renpy.random.randint(0,year-authoritarian-authoritative)
@@ -608,7 +592,7 @@ label test_crops:
     $ year = 1
 
     while (year <= MAX_YEARS):
-        $ competence = year
+        $ total_competence = year
         $ earth_year = get_earth_years(year)
         if (bro_birth_year != 0):
             $ bro_years = year - bro_birth_year
@@ -652,8 +636,6 @@ label test_family:
     $ attachment = 0
     $ competence = 0
     $ independence = 0
-    $ total_demanding = 0
-    $ total_responsive = 0
     $ authoritative = 0
     $ authoritarian = 0
     $ permissive = 0
@@ -665,15 +647,10 @@ label test_family:
         $ renpy.notify("Year [year]")
         call expression "family" + str(year)
         # Increase child stats based on this year's parenting decisions
-        call increase_attachment
-        call increase_competence
-        call increase_independence
+        call increase_stats
 
         # Reset our variables while keeping a running total
-        $ total_demanding += demanding
-        $ total_demanding = 0
-        $ total_responsive += responsive
-        $ total_responsive = 0
+        call reset_variables
 
         $ year += 1
 

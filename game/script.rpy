@@ -37,15 +37,10 @@ label start:
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
         # Max for each is about 30
         demanding = 0
-        total_demanding = 0
         # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
         responsive = 0
-        total_responsive = 0
-
         # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
         confident = 0
-        total_confident = 0
-
         # The Four Parenting Styles
         # Only one of these should be increased each year, maximum value at the end of the game is 30
         authoritarian = 0
@@ -80,10 +75,13 @@ label start:
         # CHILD STATS.
         # Amount of emotional intelligence, how loved and secure child feels
         attachment = 0
+        total_attachment = 0
         # Reponsibility and ability to work hard, practical knowledge
         competence = 0
+        total_competence = 0
         # Confidence, autonomy
         independence = 0
+        total_independence = 0
 
         kid_work_slider = 0
         kid_other_work = 0
@@ -113,10 +111,13 @@ label start:
         town_hall_games = False
         no_luxuries = False #used in community 8 and community 11
         # Community groups. The higher the variable, the better your relationship with that group is.
+        total_colonists = 0
         colonists = 0
+        total_miners = 0
         miners = 0
+        total_mavericks = 0
         mavericks = 0
-        jellies = 0
+        jellies = 0 # TODO: we don't actually use this variable
         require_whole_harvest = False
         rationing = False
         lily_mad_at_RET = False
@@ -274,9 +275,9 @@ label start:
     "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
     scene stars with fade
     show familyphoto1 at smallphoto, left, tilted, baby_pos with moveinright
-    $ renpy.pause(1.0)
+    $ renpy.pause(0.2)
     show familyphoto2 at smallphoto, center, tilted, baby_pos with moveinright
-    $ renpy.pause(1.0)
+    $ renpy.pause(0.2)
     show familyphoto3 at smallphoto, right, tilted, baby_pos with moveinright
     "Last, there's me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
     menu name_change_loop:
@@ -420,19 +421,12 @@ label life_loop:
             stop music fadeout 3.0
             scene stars
             window hide
-            call increase_attachment
-            call increase_competence
-            call increase_independence
-            #$ renpy.notify(notifications)           
+            call increase_stats
+            
             call screen yearly_summary with slowfade 
 
-            # Reset our variables while keeping a running total
-            $ total_demanding += demanding
-            $ demanding = 0
-            $ total_responsive += responsive
-            $ responsive = 0
-            $ total_confident += confident
-            $ confident = 0
+            # Reset our variables for a new year while keeping a running total
+            call reset_variables
 
             # Autosave
             $ renpy.force_autosave(take_screenshot=True)

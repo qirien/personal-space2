@@ -75,16 +75,39 @@ screen yearly_summary():
                                 ysize TOP_SECTION_HEIGHT
                                 style "plan_farm_subframe"
                                 hbox:
+                                    spacing 10
+                                    xfill True
                                     vbox:
+                                        # TODO: format this better. Show Terra's head and a heart/work symbol? have a heading/label for the two sections?                                        
+                                        # TODO: hide mavericks until they exist
                                         xsize 200
                                         xalign 1.0
                                         label "Year [year] Summary"
-                                        null height 10
+                                        null height 10                                        
                                         text notifications
-                                        # TODO: include community stats here?
+                                        for var in ["attachment", "competence", "", "miners", "colonists", "mavericks"]:
+                                            vbox:
+                                                spacing 5
+                                                if (var != ""):
+                                                    $ old_value = eval("total_" + var)
+                                                    $ delta = eval(var)
+                                                    $ max = eval(var.upper() + "_HIGH")
+                                                    hbox:
+                                                        spacing 5
+                                                        text var.capitalize()
+                                                        if (delta != 0):
+                                                            if (delta < 0):
+                                                                text str(delta) at delay_fadein color red_dark
+                                                            else:
+                                                                text "+" + str(delta) at delay_fadein color green_dark
+                                                    bar value AnimatedValue(old_value+delta, ATTACHMENT_MAX, 1.0, old_value)
+                                                else:
+                                                    text " "
+                                                    
+                                        
                                     $ parenting_style = get_parenting_style()
                                     $ kid_type = get_kid_type()
-                                    add "family_photo_small " + kid_type
+                                    add "family_photo_small " + kid_type xalign 1.0
 
                             frame:
                                 #xsize RIGHT_COLUMN_WIDTH
@@ -125,3 +148,6 @@ style interscene_label_text is label_text:
     color "#fff"
     font gui.interface_font
     outlines [(1, black, 1, 1)]
+
+style plan_farm_bar:
+    ysize 10

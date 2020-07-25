@@ -85,6 +85,9 @@ init -100:
     define INDEPENDENCE_MAX = 35
     define FACTION_HIGH = 10
     define FACTION_MAX = 20
+    define MINERS_HIGH = 12
+    define COLONISTS_HIGH = 12
+    define MAVERICKS_HIGH = 12
 
     define MAX_YEARS = 30
 
@@ -284,6 +287,11 @@ init -100:
             alpha 1.0
         on idle:
             alpha 0.6
+
+    transform delay_fadein:
+        alpha 0.0
+        pause 0.5
+        easein 0.5 alpha 1.0
 
     # A thumbnail version of a full screen image
     transform thumbnail:
