@@ -1,4 +1,44 @@
-    
+# Omake, unlocked after beating the game
+# What do Terra and Aeron do when no one else is home...?
+# TODO: write this
+label omake:
+    $ year = 15
+    scene farm_interior with fade
+    show kid normal at midright
+    show bro normal at midleft
+    with dissolve
+    kid determined "And that's why you can't tell mom and dad, no matter what, okay?"
+    bro concerned ""
+
+    return
+
+####################################################
+# Code for a minigame to punch people.
+# Not very sophisticated.
+####################################################
+#TODO: remove if we end up not using this
+
+
+##
+# DYNAMIC MOUSE CURSOR
+##
+init 1 python:
+    def change_cursor(type="default"):
+        persistent.mouse = type
+        if type == "default":
+            setattr(config, "mouse", None)
+        elif type == "punch":
+            setattr(config, "mouse", {"default": [("gui/punch.png", 6, 6)]})
+
+    if not hasattr(persistent, "mouse"):
+        change_cursor()
+    else:
+        change_cursor(persistent.mouse)
+
+    def random_float():
+        return renpy.random.random()
+
+
 init python:
     class Punchable(renpy.store.object):
         def __init__(self, name, hitpoints=10):
@@ -14,7 +54,7 @@ init python:
             return self.currentHP
             
         def getImage(self):
-            return Image("images/sprites/" + self.name.lower() + ".png")
+            return Image("images/sprites/" + self.name.lower() + " normal.png")
             
         def getMadImage(self):
             return Image("images/sprites/" + self.name.lower() + " angry.png")
@@ -28,10 +68,10 @@ init -1 python:
         punchBrennan.punch()            
 
 
-label omake:
+label fight_brennan:
     scene path with fade
     show him angry at midright
-    show brennan at midleft
+    show brennan normal at midleft
     $ punchBrennan = Punchable("Brennan", 7)
     "Ready? Fight!"
     $ change_cursor("punch")
@@ -39,6 +79,7 @@ label omake:
     show brennan mad
     $ change_cursor("default")
     "That was some serious fighting."  
+    return
 
 
 screen punch(whom_to_punch):

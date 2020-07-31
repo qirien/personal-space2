@@ -16,6 +16,7 @@ label family_intro:
     play music sad
     call bedroom_scene(True)
     show kid sad with dissolve
+    play sound "sfx/newborn-cry.ogg" fadein 10.0
     her sleeping "[his_name]."
     him sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
@@ -23,6 +24,7 @@ label family_intro:
     "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
     him concerned "Okay..."
+    stop sound fadeout 2.0
     show her sleeping
     show kid concerned
     with dissolve
@@ -49,18 +51,20 @@ label family1:
     show him concerned at midright
     show her baby sad at midleft
 
+    play sound "sfx/newborn-cry.ogg" fadein 20.0 loop
     her "I just wish I knew why she was still crying! We've tried everything -- food, diaper, snuggles, a warm bath, lying on her back, lying on her tummy...I don't know what else we can do."
     him sad "I know. It's been hours..."
     "I knew [her_name] was exhausted. She had been carrying [kid_name] around all day and feeding her every few hours."
     "I wanted to help, but I had spent the whole day cleaning out the barn and was spent.  All I could think about was sleeping."
     "Sleeping..."
     window hide
-    show black with irisin
+    show black with irisinslow
     hide black with irisout
     window show
     show him determined with dissolve
-    "No, I couldn't sleep while they both needed me. But what should I do?"
+    "No, I couldn't sleep while they both needed me."
     menu:
+        "But what should I do?"
         "Take [kid_name] for a walk.":
             $ responsive += 1
             $ marriage_strength += 1
@@ -97,11 +101,15 @@ label family1:
             show kid cry at center, baby_pos, closeup_baby
             "I wonder if [kid_name] felt the same way?"
             "I looked down at her tiny squalling face and stroked her cheek. She was so upset, and had no other way to tell us about it. She certainly couldn't do anything to help herself."
+            stop sound fadeout 5.0
             "We walked the fields for at least an hour; maybe more."
-            hide kid with dissolve
+            show kid normal at center, baby_pos with dissolve
             "I don't know if she wore herself out or started feeling better, but she finally stopped crying and fell asleep. I was too tired to even be happy about it."
             scene farm_interior with fade
+            show him baby normal at center with moveinleft
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
+            hide him with moveoutright
+            call bedroom_scene(show_baby=True) 
             "Finally, she was sleeping in bed, and I fell into bed next to her and [her_name]."
             $ authoritative += 1
             $ permissive += 1
@@ -124,6 +132,7 @@ label family1:
             "[her_name] went outside to do some reading while I held [kid_name]. I paced restlessly, holding the baby in different positions until [her_name] returned."
             show him at center
             with move
+            stop sound fadeout 5.0
             "She had a big list of things to try, and we tried them all.  I don't know if the white noise and the bath worked, or if she finally just wore herself out, but eventually she stopped crying and fell asleep."
             $ authoritative += 1
 
@@ -138,6 +147,7 @@ label family1:
             her "You can't just leave me here with a screaming baby!"
             "[kid_name] and [her_name] wailed in unison, and their tears wrenched at my heart, but I just couldn't take it anymore."
             hide him with moveoutleft
+            stop sound fadeout 10.0
             scene farm_exterior with fade
             "I stepped out into the night, closing the door gently with what little control I had left. I started to run."
             scene fields with fade
@@ -217,16 +227,19 @@ label family1:
             with move
             him happy "Now I'm going to try to be as awesome a parent as you've been all day. You just get some sleep or read a book or whatever you want to do! I got this!"
             hide kid with dissolve
-            show him sad baby at center, squatting
+            show him sad baby at pace_back_and_forth
             with move
             show her surprised with dissolve
+            # show him squatting with move
+            stop sound fadeout 10.0
             "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
-            show him sad baby at right, standing
-            with move
+            # show him sad baby at left, standing
+            # with move
             her normal "[his_name]... You don't have to try to impress me."
-            show him at midright, squatting
-            with move
+            # show him at midright, squatting
+            # with move
             him happy baby "What's that? [kid_name] and I can't hear you; we're having too much fun."
+            play music videogame
             "[her_name] laughed, just for a second, and it was the most beautiful sound I'd heard all day. She put on some music with a good beat, and then came over and joined our dancing."
             show her happy at center
             show him happy baby at midleft, standing
@@ -236,8 +249,10 @@ label family1:
             $ authoritative += 1
             $ authoritarian += 1
 
+    stop sound fadeout 2.0
     call bedroom_scene(show_baby=True)
     show kid normal with dissolve
+    play sound "sfx/baby-gurgle.ogg"
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
     "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
     him annoyed "She really needs us, doesn't she?"
@@ -252,14 +267,17 @@ label family1:
             $ baby_poem = word_board.get_poem_as_string(-1)
 
             scene farm_interior with fade
-            show her normal at midright
-            show kid normal at midright, baby_pos
+            show her baby happy at midright
             with dissolve
             show him normal at midleft with moveinleft
             him happy "Want to hear my new poem?"
-            her flirting "I can tell you really want to share it with me."
+            her "I can tell you really want to share it with me."
             him normal "I think you'll like it. Okay, here it is."
             him determined "[baby_poem]"
+            show her at center with move
+            show her normal
+            show him baby happy with dissolve
+            show her normal at midright with move
             if (("fragile" in baby_poem) or
                 ("love" in baby_poem) or
                 ("milk" in baby_poem) or
@@ -267,17 +285,17 @@ label family1:
                 ("smile" in baby_poem) or
                 ("tender" in baby_poem)):
                 her happy "Awwww! Yeah, that's our little [kid_name]!"
-                him happy "I'm glad you agree!"
+                him "I'm glad you agree!"
             elif (("precious" in baby_poem) or
                 ("cute" in baby_poem) or
                 ("joy" in baby_poem) or
                 ("adore" in baby_poem)):
                 her concerned "Isn't that idealizing babies just a little?"
-                him concerned "Well, yeah. I don't need help remembering all the screaming and the mess!"
+                him baby sad "Well, yeah. I don't need help remembering all the screaming and the mess!"
                 her happy "That's true!"
             elif ("mother" in baby_poem):
                 her happy "You didn't tell me it was a poem about me!"
-                him happy "You two are my world; of course I put you in there!"
+                him "You two are my world; of course I put you in there!"
             elif (("stinky" in baby_poem) or
                 ("pain" in baby_poem) or
                 ("blood" in baby_poem)):
@@ -285,13 +303,14 @@ label family1:
             elif (len(baby_poem) <= 50):
                 her surprised "Wow, it's... very short!"
             else:
-                her normal "Hmmm. Okay."
-                him surprised "That's it? 'Okay'?"
-                her concerned "I...I'm not sure what else to say."
+                her concerned "Hmmm. Okay."
+                him baby sad "That's it? 'Okay'?"
+                her blush "I...I'm not sure what else to say."
 
         "No":
             $ pass
 
+    stop sound
     return
 
 # 10 Earth mos. old
@@ -303,12 +322,13 @@ label family2:
     show him normal at center
     with dissolve
     "Farming's hard work, no doubt about it. No sick days or vacations, either."
-    "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil"
+    "But I don't mind it, most of the time. Planting season is my favorite, seeing the possibilities in huge swathes of empty soil."
     "Even knowing the seeds are hiding there, it still feels like a miracle whenever they pop out of the ground into young seedlings."
     "I had only a few rows to go when I got a transmission from [her_name] on the radio."
 
+    play sound "sfx/radio.mp3"
     her "{i}[his_name]! I'm leaving right now! There's an emergency at the clinic.{/i}"
-    him determined "{i}Okay, I'll take care of things here.{/i}"
+    him determined "Okay, I'll take care of things here."
     her "{i}[kid_name]'s in her crib. Bye!{/i}"
 
     "We had worked out a pretty good schedule, where I would get up early and try to get my most intensive farm work done in the mornings."
@@ -321,6 +341,7 @@ label family2:
             $ responsive += 1
             "I didn't want to leave [kid_name] alone. If she was asleep, I could setup the baby monitor and go back out to work."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
+            play sound "sfx/baby-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Ask [her_name] for more information.":
@@ -328,6 +349,7 @@ label family2:
             him determined "Hey, is [kid_name] asleep? Did you setup the baby monitor?"
             "I waited for a few minutes, but [her_name] didn't respond. She was probably on the other channel talking to whoever had the emergency."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
+            play sound "sfx/baby-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Finish up the last few rows and then go home.":
@@ -336,6 +358,7 @@ label family2:
             "[kid_name] could wait a few minutes while I finished this up. I hated leaving things half-done."
             "It ended up taking almost an hour, but I sure felt satisfied to have finished the entire field."
             "But as I headed for home, I could hear [kid_name] crying urgently."
+            play sound "sfx/baby-cry.ogg" fadein 5.0
             scene kid_bedroom with fade
             show kid angry at center,squatting with dissolve
             show him surprised at quarterleft with moveinleft
@@ -346,8 +369,10 @@ label family2:
     scene farm_interior with fade
     show him normal at center
     show kid surprised at midright, baby_pos
+    stop sound fadeout 5.0
     "I managed to calm [kid_name] down with some snuggles and a snack."
     "I built a house out of blocks with her, but then my mind started to wander."
+    play sound ["sfx/baby-coo.ogg", "sfx/baby-gurgle.ogg"]
     show kid happy
     show him annoyed
     with dissolve
@@ -360,6 +385,7 @@ label family2:
     show kid laugh
     show him surprised
     with dissolve
+    play sound "sfx/baby-laugh.ogg"
     "She brought me a picture book and I read it to her, but my mind was still racing for how I could get my work done."
 
     menu:
@@ -421,6 +447,7 @@ label family2:
                     "She might have more fun outside. I dragged a chair out there where I could sit and work."
                     show kid normal at right, baby_pos with move
                     "She crawled around for a few minutes, but then she crawled back and pulled herself up to stand using my leg."
+                    play sound "sfx/baby-fussy.ogg"
                     show kid annoyed at center, baby_pos with move
                     "She grabbed at my screen again. This was one stubborn child!"
                     menu:
@@ -444,6 +471,7 @@ label family2:
                             $ family2_work_done += 1
                             him angry "[kid_name], stop it! I'm working! You go play."
                             "This just seemed to make her mad."
+                            play sound ["sfx/baby-shortcry.ogg", "sfx/baby-hey.ogg"]
                             kid nervous "Aaa! Aaaa! Aaaaaaa!"
                             "I ignored her. I stood up and worked on my computer pad that way, trying to ignore her shouts and tugs on my pants."
                             show him annoyed
@@ -455,10 +483,12 @@ label family2:
         "Put her in the backpack and go back to work.":
             $ confident += 1
             him happy "Alright, [kid_name], want to go ride the tractor? Huh? Do you?"
+            play sound "sfx/baby-gurgle.ogg"
             "I don't know how much of my words she understood, but she sensed my excitement and smiled up at me."
             him normal "Yeah! Let me just put you in the backpack..."
             him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
             him happy "There we go! We're going to go make plants grow!"
+            play sound "sfx/baby-coo.ogg"
             kid happy "Daa!"
             scene fields with fade
             show tractor at midleft
@@ -469,12 +499,14 @@ label family2:
             "I had to kind of sit on the edge of the seat so that there was room behind me for the backpack. It wasn't the comfiest seat, but it worked."
             "Terra cooed and kicked and played with my hair and seemed to enjoy the ride..."
             "...for about ten minutes."
+            play sound "sfx/baby-fussy.ogg"
             kid determined "Aaaa!"
             him happy "I know! Isn't this fun?!"
             kid angry "Aaa! Aaaaaah!"
             him surprised "I guess it's probably pretty boring for you, huh?"
             kid concerned "..."
             him concerned "Sorry, baby, but we have to get this work done, or we won't have food to eat."
+            play sound "sfx/baby-shortcry.ogg"            
             kid angry "Aaaa!"
             "She kicked her legs more, in frustration now. She pushed against me, trying to worm her way out of the backpack, but she was strapped in tight."
             "I tried to think about what would help her be happy while I worked on these fields for the next hour or two."
@@ -491,8 +523,10 @@ label family2:
                     $ responsive += 1
                     "I tried to remember some songs she might like."
                     him surprised "Do you know 'Head, shoulders, knees, and toes?"
+                    show kid concerned with dissolve
                     "She seemed to like that one.  I sang all the songs I knew, from 'Arroz con Leche' that my abuelita used to sing to me, to the pop hit 'Eclipsed by Your Love', to humming 'Beethoven's Fifth'."
                     him normal "You like that?"
+                    play sound "sfx/baby-coo.ogg"
                     kid normal "Aaa, baaa baa baa, daa."
                     him happy "Yeah!"
                     kid annoyed "..."
@@ -506,11 +540,15 @@ label family2:
                     $ responsive += 1
                     him surprised "Are you hungry, [kid_name]? I didn't bring any food..."
                     him happy "What am I saying? I live on a farm; I'm surrounded by food!"
+                    show kid concerned with dissolve
                     "I jumped down and ran over to a field I had planted several weeks earlier."
                     him normal "Looks like it's time to thin these out, anyway. Want some sprouts?"
+                    show kid normal with dissolve
                     "I started thinning the little sprouts, handing some up to her to munch on."
                     "She spit some of them out on the back of my neck, but she wasn't crying, so that was good."
+                    show kid determined with dissolve
                     "I thinned the whole row and turned back to sit down at the tractor."
+                    play sound "sfx/baby-fussy.ogg"
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
@@ -521,16 +559,18 @@ label family2:
                     $ responsive += 1
                     him surprised "You probably want something to play with, huh? I didn't bring any toys..."
                     him happy "But kids have been growing up since before toys were invented, so I think we'll be okay! Here, have a stick."
-                    show kid concerned
+                    show kid concerned with dissolve
                     "She took the stick and stuck it in her mouth. Then she whacked my head with it."
-                    show kid normal
+                    show kid normal with dissolve
                     him sad "Ouch."
-                    show kid laugh
+                    play sound "sfx/baby-laugh.ogg"
+                    show kid laugh with dissolve
                     "Then she dropped it."
                     him annoyed "I'm not going to get much done if I have to keep picking up your stick. Don't drop it, okay?"
-                    show kid concerned
+                    show kid concerned with dissolve
                     "She held onto it for several minutes, whacking my head or chewing on it, or whatever she was doing. It was hard to see her while she was in the backpack."
                     "And then she dropped it."
+                    play sound "sfx/baby-shortcry.ogg"
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
@@ -539,8 +579,9 @@ label family2:
                     $ family2_talk = True
                     $ family2_work_done += 1
                     $ responsive += 1
+                    play sound "sfx/baby-gurgle.ogg"
                     him surprised "You feeling lonely back there? Don't worry, we're together, [kid_name]!"
-                    kid angry "Baa, baaaaaa!"
+                    kid annoyed "Baa, baaaaaa!"
                     him normal "Ooh, are you turning into a sheep? Your arm is so soft, it's like a little lamb. Baa, baa!"
                     kid laugh "Baa, baa!"
                     him happy "Yeah, you're a little sheep! Or maybe you're a baby cow?"
@@ -556,6 +597,7 @@ label family2:
                     him normal "Plants need water, sunlight, and nutrients from the soil to survive. But if you want them to grow big and strong, you have to make sure they have the right amounts of all of these."
                     kid normal "Pa pa?"
                     him happy "Yeah, you gotta rotate your plants! That's why I'm always moving the goats around and stuff."
+                    play sound "sfx/baby-hey.ogg"
                     kid annoyed "Aaah! Aaa! Aaaaaaaa!"
                     him annoyed "Okay, you don't have to scream, we don't have to talk about plants if you don't want to."
                     jump family2_baby_activities
@@ -565,6 +607,7 @@ label family2:
                     $ responsive -= 2
                     $ family2_work_done += 5
                     him angry "Be quiet and let me work!"
+                    play sound "sfx/baby-hey.ogg"
                     kid angry "Waaah!"
                     him determined "Sorry, [kid_name], but the work has to be done. And I'm going to keep you safe while I do it."
                     $ authoritarian += 1
@@ -573,8 +616,9 @@ label family2:
                     $ demanding += 1
                     $ family2_work_done += 5
                     him concerned "I'm sorry, [kid_name], but I just need to get this work done. I know it's boring for you, but you'll survive, okay?"
+                    play sound "sfx/baby-hey.ogg"
                     show kid angry
-                    $ authoritative += 1
+                    $ authoritarian += 1
 
                 "Give up and go home." if ((family2_activity_count >= 1) and (family2_activity_count < 4)):
                     $ responsive += 1
@@ -586,16 +630,19 @@ label family2:
                     $ demanding += 1
                     $ confident += 1
                     him happy "Guess what, [kid_name]?? We're all done!"
+                    play sound "sfx/baby-shortcry.ogg"
                     kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
-                    $ authoritarian += 1
+                    $ achieved("Patience Grandmaster")
+                    $ authoritative += 1
 
         "Leave her in her crib.":
             scene kid_bedroom with fade
             show him normal at center
             show kid concerned at center, baby_pos
             with moveinleft
+            play sound "sfx/baby-cry.ogg" # TODO: replace with older baby cry?
             "I put her in her crib. She wouldn't like it, but she'd be safe enough there for a few hours while I finished the planting."
             show him at midleft with move
             show kid cry with dissolve
@@ -605,6 +652,7 @@ label family2:
             show tractor at midleft
             show him determined at midleft
             with moveinleft
+            stop sound fadeout 10.0
             "I closed the door, hopped on the tractor and sped away from the house."
             "Every once in awhile, I turned on the baby monitor. Sure enough, she was still screaming. At least that meant she was okay, right?"
             "After about an hour she finally stopped crying; maybe she had fallen asleep."
@@ -614,40 +662,43 @@ label family2:
             "After I finished planting, I went back to the house and peeked in at [kid_name]."
             show him concerned at left with moveinleft
             show kid angry with dissolve
+            play sound "sfx/baby-hey.ogg"
             "As soon as I opened the door, she started screaming again. She stood up in her crib and glared at me with a heartbroken look of betrayal that I'll never forget."
             show kid sad with dissolve
             "I tried to make it up to her with cuddles and food, but every time when she started to cheer up, she'd start crying again for no reason."
+            play sound "sfx/baby-shortcry.ogg"
             "Well, I guess being stuck alone in her crib for a few hours was a pretty good reason."
             "She sure let me know what she thought of that."
             $ family2_work_done += 5
             $ neglectful += 1
             $ trust -= 1
 
+    stop sound
     scene farm_interior with fade
     show him determined at midright with dissolve
-    show her sad at midleft with moveinleft
+    show her sad coat at midleft with moveinleft
     "Late that night, after I fed [kid_name] dinner and she had fallen asleep, [her_name] finally came home."
     "She trudged into the house, looking at least as tired as I felt."
     show him normal at center with move
     "I caught her up in a big hug and kissed her twice."
     show him surprised at midright with move
     him surprised "Rough day?"
-    her determined "Yeah. We had to operate... it wasn't pretty, but she survived."
+    her determined coat "Yeah. We had to operate... it wasn't pretty, but she survived."
     him concerned "Operate?! Sounds serious... who was it?"
-    her sad "Helen. She had appendicitis."
+    her sad coat "Helen. She had appendicitis."
     him surprised "Have you ever fixed one of those before?"
-    her determined "No, but I did a surgical rotation where I helped perform one. But it's quite different to be the one in charge."
+    her determined coat "No, but I did a surgical rotation where I helped perform one. But it's quite different to be the one in charge."
     him determined "It's a good thing you have a real nurse helping you out now instead of Brennan."
     "[her_name] seemed to be thinking about something else, though."
-    her concerned "Yeah...I hope Helen will be okay."
+    her concerned coat "Yeah...I hope Helen will be okay."
     "I made her up a plate of beans while we talked."
     "From the way she devoured them, I guess she hadn't eaten all day."
     him concerned "How'd Pete take it?"
-    her normal "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
+    her normal coat "He was kind of a wreck. I tried to keep him busy, so he didn't have time to get drunk or anything."
     him surprised "What about Travis? That kid is the cutest hurricane of destruction I've ever seen."
-    her surprised "I know. It's hard to believe he's just a year older than [kid_name]..."
+    her surprised coat "I know. It's hard to believe he's just a year older than [kid_name]..."
 
-    her concerned "How was [kid_name]? I guess she's asleep now?"
+    her concerned coat "How was [kid_name]? I guess she's asleep now?"
     him normal "Yeah, she's asleep. "
 
 
@@ -658,65 +709,66 @@ label family2:
 
     "[her_name] nodded, and ate another spoonful of beans. She seemed to be thinking about something."
 
-    her determined "[his_name], we need help."
+    her determined coat "[his_name], we need help."
     him annoyed "With what?"
-    her annoyed "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Travis was?"
+    her annoyed coat "With [kid_name]! I saw Pete and Helen at the clinic today, and you know where their son Travis was?"
     him surprised "Terrorizing the clinic's cotton ball supplies?"
-    her determined "No! He was at Sister Naomi's."
+    her determined coat "No! He was at Sister Naomi's."
     him normal "Oh, well, that was nice of her."
-    her normal "She offered to let [kid_name] come, too."
+    her normal coat "She offered to let [kid_name] come, too."
     him happy "That sounds great!"
-    her determined "Good, I'm glad you agree. Fridays are our days, so all the little kids will come over to our house on Fridays."
+    her determined coat "Good, I'm glad you agree. Fridays are our days, so all the little kids will come over to our house on Fridays."
     him surprised "What? I thought you just said she'd be at Sister Naomi's!"
-    her normal "It's a childcare co-op. Each of the families takes one day a week to have the kids over to their house. Sister Naomi doesn't have any kids, but she volunteered to be in the rotation anyway to help us out."
+    her normal coat "It's a childcare co-op. Each of the families takes one day a week to have the kids over to their house. Sister Naomi doesn't have any kids, but she volunteered to be in the rotation anyway to help us out."
     him normal "So... [kid_name] will be at other houses four days a week, and we'll have all the kids over once a week?"
-    her normal "That's how it works."
+    her normal coat "That's how it works."
     him concerned "..."
-    her concerned "I...thought it would be a good thing, for everyone."
+    her concerned coat "I...thought it would be a good thing, for everyone."
     menu:
         "You should have asked me first.":
             $ marriage_strength -= 1
             him annoyed "You should have talked to me about it first. After all, I'll be watching them half the time."
-            her annoyed "It's obviously more efficient and better for everyone. I thought you would see that."
+            her annoyed coat "It's obviously more efficient and better for everyone. I thought you would see that."
             him angry "You can't just make these kinds of decisions without me! We're both her parents!"
-            her angry "I'm going to have to be at the clinic a lot more in the next few weeks, so you'll need to watch her."
+            her angry coat "I'm going to have to be at the clinic a lot more in the next few weeks, so you'll need to watch her."
             him annoyed "You're doing it again! We need to decide these things together!"
-            her annoyed "There's nothing to decide. There's only one real choice if both of us are going to continue to work full-time."
+            her annoyed coat "There's nothing to decide. There's only one real choice if both of us are going to continue to work full-time."
             him concerned "We both have to work; it's in our contract."
-            her concerned "..."
+            her concerned coat "..."
             him pout "..."
-            her surprised "So what do you think we should do?"
+            her surprised coat "So what do you think we should do?"
             him concerned "I think we should join the childcare co-op."
-            her annoyed "I agree."
+            her annoyed coat "I agree."
             him happy "Good! That wasn't so hard, was it?"
-            her determined "So, you just want to make all the decisions?"
+            her determined coat "So, you just want to make all the decisions?"
             him annoyed "I want us to make them together."
-            her annoyed "Yeah. Together."
+            her annoyed coat "Yeah. Together."
 
         "This'll be great!":
             $ marriage_strength += 1
             him happy "This will be great! I can concentrate on work during most of the week, and concentrate on [kid_name] on Fridays."
-            her normal "[kid_name] and three other toddlers. Including Travis."
+            her normal coat "[kid_name] and three other toddlers. Including Travis."
             him happy "Still, it'll be so much better than trying to work and keep her happy at the same time."
-            her happy "I'm glad you agree."
+            her happy coat "I'm glad you agree."
             him flirting "And maybe we'll even have time to fit in a little you-and-me time on some of those days..."
-            her flirting "I hope so."
+            her flirting coat "I hope so."
         "I've never watched four toddlers before.":
             $ marriage_strength += 1
             him surprised "Four toddlers at once?! I can barely handle one!"
-            her concerned "That's what I thought, too, but Sister Naomi says it's not much harder..."
+            her concerned coat "That's what I thought, too, but Sister Naomi says it's not much harder..."
             him determined "I guess we'll find out. Hopefully they're not all like Travis."
-            her flirting "Well, I'm sure you'll do just fine, Mr. Superdad."
+            her flirting coat "Well, I'm sure you'll do just fine, Mr. Superdad."
             him happy "Superdad? Have I earned that title?"
-            her happy "I'm pretty sure you have."
+            her happy coat "I'm pretty sure you have."
             if (family2_work_done >= 5):
+                show him pout with dissolve
                 "I felt a twinge of guilt as she said that. I hadn't been a super dad today at all; super farmer, maybe, but I'd let Terra cry in order to get my work done..."
                 "[her_name] saw the look on my face and stroked my face."
-                her surprised "What is it?"
+                her surprised coat "What is it?"
                 him sad "Today was... it was a long day."
                 show her at center with move
                 "She leaned her head on my shoulder and sighed."
-                her sleeping "Me too, [his_nickname]. Me too."
+                her sleeping coat "Me too, [his_nickname]. Me too."
 
     return
 
@@ -761,6 +813,7 @@ label family3:
     show him at center with move
     show kid normal at jumpinghigh with move
     "Our excitement was contagious. [kid_name] stood up and clapped her hands. I picked her up and tossed her up into the air, catching her into a big hug."
+    play sound "sfx/baby-laugh.ogg"
     him "You want to go camping too, huh, [kid_name]? Sleep outside?"
     kid laugh "Ow sai!"
     show kid normal at midright, baby_pos with move
@@ -835,7 +888,7 @@ label family3:
     with move
     him normal "Looks like that plant's harmless."
     show him concerned at center with move
-    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field equipped with a homing beacon to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
+    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
     her concerned "I'm sorry, [his_name]. I should have been watching her closer."
     him surprised "That's just what I was going to say!"
     play music thoughtful
@@ -930,12 +983,15 @@ label family3:
             $ neglectful += 1
 
     scene bonfire with fade
-    "Camping was ten times harder with little [kid_name]. We had to make sure she didn't fall in the fire when we cooked our dinner, if we put her on our backs she got heavy fast, and it was tricky trying to keep an eye on her when we set her down."
+    play sound "sfx/fire-2.mp3" loop
+    "Camping was ten times harder with little [kid_name]. When we cooked our dinner, one of us had their hands full making sure she didn't fall into the fire."
+    "After dinner, she kept trying to run away and explore. I put her on my back for awhile but she yelled and complained and was pretty heavy anyway."
     scene moons with fade
     show him sleeping at midright
     show her sleeping at center
     show kid normal at center, baby_pos
     show night_overlay
+    stop sound fadeout 1.0
     "When it started to get dark, we were both exhausted."
     him flirting "I was going to suggest some romantic star gazing, but..."
     her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
@@ -978,7 +1034,7 @@ label family4:
     her surprised "Yeah, they're a little bland, too. Maybe it needs more salt?"
     him normal "Try the beans, [kid_name]. Yum!"
     "I put one on her plate and she pushed it right back at me."
-    kid shifty "Yucky."
+    kid nervous "Yucky."
     her normal "Ooh, I know just what this needs. I'll be right back."
     hide her with moveoutleft
     "I tried not to feel offended that she didn't like the beans I had cooked. It wasn't gourmet cuisine, but I had added some herbs and cooked it to just the right consistency."
@@ -1155,8 +1211,10 @@ label family4:
             "I just wanted to eat my dinner in peace. I ate quickly."
             "Just as [her_name] came back, I stood up."
             him determined "Gotta go check on something."
+            show her annoyed at midleft with moveinleft
             her annoyed "Right now? We were having family dinner together..."
             him normal "Sorry."
+            hide him with moveoutleft
             her surprised "[kid_name], why aren't you eating your beans?!"
             kid angry "Ap'sos!"
             "I just barely escaped in time."
@@ -1532,8 +1590,9 @@ label family5:
     him flirting "There's no one else I'd rather potty-train a two-year-old with!"
     her flirting "There better not be!"
     him normal "Just you. Always you."
-    her sleeping "Mmmm...I love you, [his_name]."
-    him sleeping "I love you..."
+    show her sleeping
+    show him sleeping
+    with dissolve
 
     if ((family5_punishment == "not use the computer pad") or (family5_punishment == "go to timeout") or (family5_punishment == "be spanked")):
         $ authoritarian += 1
@@ -1676,7 +1735,7 @@ label family6:
             her concerned "Yes, you should. Maybe tonight?"
             him surprised "I thought you were making...wait, are we talking about actual cooking, or, you know, 'cooking'?"
             her flirting "Both!"
-            him flirting "Then let's cook together tonight, [her_nickname]!"
+            him flirting "Then let's cook together tonight, honey!"
 
             $ marriage_strength += 1
             $ permissive += 1
@@ -2237,12 +2296,12 @@ label family7:
         "The next day, we found out [her_name] was pregnant."
         "I felt overwhelmed. I could barely function as a dad of one kid, much less two!"
         "Sometimes, I was amazed that humanity had ever managed to survive past childhood."
-        "There was no choice but to keep trying. Maybe in nine months I'd be a better dad than I was now?"
+        "There was no choice but to keep going. Maybe in nine months I'd be a better dad than I was now?"
         "I had the feeling it would take more than the passage of time to make a better parent out of me."
     else:
         scene stars with fade
+        "I wanted to be a better parent."
 
-    "I wanted to be a better parent."
     "But I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
     "Did I really have time for one more thing?"
     menu:
@@ -2270,11 +2329,11 @@ label family7:
             her surprised "What?"
             him surprised "Do you think we should be doing something differently? As parents, I mean?"
             her concerned "Maybe...I don't have any experience here, so it's hard to know if we're doing the right thing."
-            him concerned "Yeah...  I wish I could talk to my parents about it."
+            him sad "Yeah...  I wish I could talk to my parents about it."
             her flirting "I have the feeling that 140 characters isn't going to be enough space for much useful parenting advice."
-            him "Well, there's some good parents here, right?"
+            him surprised "Well, there's some good parents here, right?"
             her determined "Yeah... maybe? I've never really thought about the other adults as parents, mostly just as people."
-            him "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
+            him normal "Sister Naomi seems like she would be a good mom. I mean, I guess she was. Or is. Well, now she's a grandma or maybe even a great-grandma but everyone's back on Earth."
             her normal "Yeah, I'll ask her!"
             scene stars with fade
             "After [her_name] talked to her, Sister Naomi agreed to host a parenting workshop one night a week. Her husband, Mayor Grayson, offered to watch the kids so anyone who wanted to could attend."
@@ -2334,6 +2393,7 @@ label family7_bedtime:
 
 label family7_she_cleaned_up:
     $ confident += 1
+    $ achieved("Patience Grandmaster")
     menu:
         "What should I say?"
         "I'm glad you decided to clean up.":
@@ -2416,15 +2476,17 @@ label family7_angry_ending:
 # Play group, First Day of School
 label family8:
     scene fields with fade
+    show rain
     play music happy
+    play sound "sfx/rain.ogg" loop
     "It was my turn to host playgroup. It always felt a little frustrating not to be able to go out in the fields and get my work done, but I could also see that it was good for [kid_name]."
     "I'll admit I looked forward to school starting next week. We had just had a preview day where these kids got to see the school and meet the teacher."
     "[kid_name] was really excited -- she loved new things, and the school had some pretty fun learning toys. I wasn't worried about her at all."
     "But I wondered how the other kids in her playgroup would handle the transition to school..."
-    show him normal at quarterright
-    show kid normal at center
-    show travis normal at midleft
-    show oleg normal at quarterleft
+    show him normal behind rain at quarterright
+    show kid normal behind rain at center
+    show travis normal behind rain at midleft
+    show oleg normal behind rain at quarterleft
     travis "Mud fight!"
     him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
     kid laugh "I do!"
@@ -2460,6 +2522,7 @@ label family8:
             menu:
                 "What should I do?"
                 "Insist on a better apology.":
+                    $ oleg_points += 1
                     $ demanding += 1
                     him determined "What kind of apology was that? You need to walk over to him and tell him sincerely to his face."
                     kid annoyed "I already said sorry!"
@@ -2517,6 +2580,7 @@ label family8:
             "She wasn't an easy kid -- but I loved her vibrant energy and insatiable curiosity...even when it sometimes exhausted me."
             menu:
                 "Have her apologize to Oleg.":
+                    $ oleg_points += 1
                     $ demanding += 1
                     him doubt "[kid_name], you hit Oleg in the face with a mudball and then ran away."
                     kid shifty "Oh. Sorry, Oleg!"
@@ -2524,12 +2588,13 @@ label family8:
                 "Let it go.":
                     "Oleg was fine; no need to bring that up again."
 
+    stop sound fadeout 2.0
     scene stars with fade
     play music thoughtful
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
     scene path with fade
     show him normal at midleft
-    show her normal at midright
+    show her normal coat at midright
     show kid normal at center
     with dissolve
 
@@ -2537,9 +2602,9 @@ label family8:
     kid laugh "...and the letters of the alphabet and my numbers up to fifty except Travis says I always mess up around forty-seven and skip right to forty-nine but I don't, right, daddy?"
     him surprised "Um, what was the question?"
     kid normal "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
-    her concerned "[kid_name]."
+    her concerned coat "[kid_name]."
     kid concerned "What?"
-    her normal "We're almost there. Come get a goodbye hug."
+    her normal coat "We're almost there. Come get a goodbye hug."
     kid normal "Bye, mommy!"
     "She turned to me, and I felt like I should say something, but I wasn't sure what."
     menu:
@@ -2570,16 +2635,17 @@ label family8:
     hide kid with moveoutleft
     "[her_name] moved to follow her, but I held her hand."
     him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
-    her concerned "I guess so... Is she really going to be okay?"
+    her concerned coat "I guess so... Is she really going to be okay?"
+    # TODO: Delete second child
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
     "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face. Their baby sensed the mood and started fussing also."
     him surprised "I guess we have it pretty easy, huh?"
-    her normal "For once. I'm going to help them out; want to come?"
+    her normal coat "For once. I'm going to help them out; want to come?"
     menu:
         "What should I do?"
         "Go to work":
             him concerned "Sorry, I have too much work to do."
-            her concerned "Okay, don't forget to pick up [kid_name] today. Eventually she can walk home on her own, but I told her you'd walk with her today."
+            her concerned coat "Okay, don't forget to pick up [kid_name] today. Eventually she can walk home on her own, but I told her you'd walk with her today."
             him determined "Okay."
             "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg. I turned away and jogged back to the farm. I had a lot of work to do."
         "Go with [her_name]" if (get_extra_work() > 0):
@@ -2591,7 +2657,7 @@ label family8:
             show him at midright
             show her at center
             with move
-            show her baby sad with dissolve
+            show her baby sad coat with dissolve
             "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg."
             "[her_name] cuddled the baby and I distracted her with peek-a-boo until Ilian and Sara finally got Oleg to go inside the school."
             sara sad "Thanks, guys. I really hope Oleg will be okay..."
@@ -2600,7 +2666,7 @@ label family8:
             her "Except as soon as you came to pick him up, he'd cry again."
             sara normal "You're probably right."
             sara sad "But maybe we should peek in him, just in case."
-            her baby happy "I'll admit, I'm a little curious about what they're doing..."
+            her baby happy coat "I'll admit, I'm a little curious about what they're doing..."
             "The four of us crept over to the schoolhouse."
             ilian "Sara, if he sees you or me, he'll start crying. Someone else had better look."
             her "I'm holding the baby; [his_name] should do it."
@@ -2634,7 +2700,7 @@ label family8:
             scene path with fade
             show ilian normal at quarterleft
             show sara sad at midleft
-            show her baby happy at center
+            show her baby happy coat at center
             show him normal at midright
             sara "Well?"
             him happy "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
@@ -2654,73 +2720,57 @@ label family8:
         $ year8_have_baby = True
         scene path with fade
         show him normal at midright
-        show her normal at midleft
+        show her normal coat at midleft
         with dissolve
-        her concerned "It's a good thing [kid_name]'s in school... since I think I'm pregnant."
-        him surprised "What, really? I thought we decided to wait!"
-        her annoyed "Well, sometimes these things happen anyway."
-        him concerned "Are you sure?"
-        her surprised "Yes, I ran the test myself."
+        her concerned coat "Now that [kid_name]'s in school... I want to try to have another baby."
+        him surprised "I thought we were going to wait?"
+        her annoyed coat "We can't wait forever, [his_name]. Plus... I've noticed a lot of families are having trouble having children here."
+        him concerned "Here? You mean on Talaam?"
+        her concerned coat "Yes... I don't know if it's the solar flares or stress or the gravity change or what, but I'm worried if we don't try now... it might be too late."
         menu:
             "What should I say?"
-            "How are we going to do this?":
-                him annoyed "Well, this is just great."
-                her annoyed "What do you care? It's not like you have to be pregnant for nine months!"
+            "How would that even work?!":
+                him annoyed "How do you think that would work?!"
+                her annoyed coat "What do you care? It's not like you have to be pregnant for nine months!"
                 him angry "We don't have enough food for another baby! Where will they sleep? We don't even know what we're doing with [kid_name]!"
-                her sad "I know it's hard, but..."
+                her sad coat "I know it's hard, but..."
                 him concerned "I'm sorry. Hey. Don't cry."
-                her angry "I'll cry if I want to! Especially if my husband is yelling at me!"
+                her angry coat "I'll cry if I want to! Especially if my husband is yelling at me!"
                 him angry "Fine, I'm sorry! I just..."
-                show him concerned with dissolve
-                extend "It's a lot to take in."
                 label pregnancy_alone:
-                    her concerned "I need us to be on the same side.  "
-                    show her sad with dissolve
-                    extend "I can't do this alone."
-                    him surprised "You're not alone. I'll always be on your side."
-                    him normal "I'll be by your side, at your side, sideways, right-side-up and upside-down!"
-                    her normal "Then I don't have anything to worry about."
-                    him normal "Nope."
+                    her concerned coat "I need us to be on the same side."
+                    her sad coat "I don't want to be alone."
+                    him determined "Hey. You're not alone. I'll always be by your side."
+                    him normal "I'll be on your side, at your side, sideways, right-side-up and upside-down!"
                     show him content at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
-                    "Not the hunger of desire, or companionship, but of needing someone to share her burdens."
-                    "How long had she known and worried by herself?"
+                    "Not the hunger of desire, or loneliness, but of needing someone to share her burdens."
+
                     "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
-                    her concerned "You're still worried."
+                    her concerned coat "You're still worried."
                     him normal "So are you."
-                    her determined "Yes. But it'll be okay."
-                    him pout "We'll figure it out."
+                    her determined coat "Yes. But I think we can do it."
+                    him determined "If you really want to... then we'll make it work."
             "We can do this!":
                 $ marriage_strength += 1
-                him determined "This is...this is..."
-                her surprised "What?"
-                him happy "This is awesome!"
-                her annoyed "I don't feel awesome, I'll tell you that much."
-                him surprised "Hey, is that why you've been so tired lately?"
-                her determined "Probably so."
-                him normal "Any morning sickness? I haven't noticed you eating differently."
-                her normal "Not yet. "
-                show her concerned with dissolve
-                extend "I can't believe we're doing this again..."
+                him happy "We can totally do this!"
+                her annoyed coat "That's not what you said last time we talked about this."
                 him normal "We're pros, now! It'll be so much easier!"
-                her annoyed "What part of this is easy?!"
-                him flirting "Well, conceiving the baby was pretty easy..."
-                her flirting "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
+                her annoyed coat "What part of having a baby is easy?!"
+                him flirting "Well, conceiving the baby is pretty easy..."
+                her flirting coat "If it was as hard to conceive a baby as it is to give birth, there'd be a lot less people in the world."
                 him surprised "How would that even work? Like, the baby would start large and shrink as they got older?"
-                her normal "Yeah, that doesn't make much sense, I guess."
+                her normal coat "Yeah, that doesn't make much sense, I guess."
                 him happy "I love you even when you don't make sense."
-                her concerned "Oh, [his_name]. I love you too. I'm so glad you're with me."
+                her cry coat "Oh, [his_name]. I love you too. I'm so glad you're with me."
                 him concerned "Hey, are you crying?"
-                her normal "Just a little. Stupid pregnancy hormones."
+                her sad coat "Just a little. I was so worried you wouldn't understand."
                 him happy "Here, you can wipe your tears on my shirt."
-                her flirting "Now that's true love."
-            "How do you feel about it?":
-                $ marriage_strength += 1
-                him surprised "How do you feel about it?"
-                her concerned "I don't know. Worried, I guess."
-                him concerned "Yeah, how will this even work?"
-                her sad "I don't know if I can do this..."
-                him determined "Hey, don't cry, it'll be okay."
+                her flirting coat "Now that's true love."
+            "Maybe we could have another baby...":
+                him doubt "I guess we could have another baby...?"
+                her cry coat "You don't really want to, do you?"
+                him surprised "Hey, don't cry, it'll be okay."
                 jump pregnancy_alone
 
     return
@@ -2753,6 +2803,8 @@ label baby_delivery:
     show julia normal at quarterright
     with dissolve
     $ bro_birth_year = year
+    $ bro_age = 0
+    $ bro_years = 0
 
     julia "It's a boy!"
     "...but he didn't look like [kid_name] did when she was born."
@@ -2774,12 +2826,15 @@ label baby_delivery:
             her concerned "[his_name]..."
             "I bundled him up and held him close."
     show him happy baby with dissolve
+    $ achieved("Binary System")
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."
     her normal "We can't call him 'little guy'. What's his name?"
+    play sound "sfx/newborn-cry.ogg" fadein 2.0
     him baby sad "We talked about lots of names..."
     her determined "You let me choose [kid_name]'s name. Now you pick this baby's name."
+    stop sound fadeout 5.0
     him "Really? You trust me to name him?"
     her flirting "As long as it's one of the names we both agreed on."
     him baby happy "Okay! Let's see... you look like a..."
@@ -2801,6 +2856,7 @@ label baby_delivery:
     him concerned "Hold the book open for me... right there..."
     kid happy "I can read the front! That word is \"moon\"!"
     him normal "You're right! Now turn the page... can you find the mouse?"
+    play sound "sfx/baby-shortcry.ogg"
     show bro annoyed with dissolve
     him surprised "Oh, sorry [bro_name], I squeezed that too fast. [kid_name], could you get a rag so I can wipe up this milk?"
     kid annoyed "Fine..."
@@ -2817,6 +2873,7 @@ label baby_delivery:
     him normal "Good thing we still have this rag here."
     show kid happy
     show bro normal
+    play sound "sfx/baby-coo.ogg"
     "Sometimes I felt frustrated that [bro_name] needed so much from us."
     "But, when I forgot myself and just loved him... I think the experience helped our whole family grew closer together."
     "Those moments, snuggled up together, those two little lives so dependent on me... I wanted to remember those times forever."
@@ -2949,6 +3006,7 @@ label family9:
     oleg "Umm, I don't know..."
     kid yell "See? If we don't do what I want to do, then we just end up doing nothing!"
     him normal "Figure out something to do together. Maybe that game where you pretend to be on a spaceship visiting different planets?"
+    $ oleg_points += 1
     oleg "Yeah! We can go to pillow planet that's full of pillows!"
     kid happy "And applesauce planet!"
     label family9_sara:
@@ -3314,7 +3372,7 @@ label family10:
             scene stars with fade
             "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
             "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
-            "A few weeks after school started, [her_name] went into labor in the middle of the night."
+            "A week before her due date, [her_name] went into labor in the middle of the night."
             "We didn't even have time to get to the clinic."
             call baby_delivery
     return
@@ -3327,20 +3385,23 @@ label family11:
     show him normal at midleft
     show her normal at quarterright
     show kid normal at center
-    show bro normal at midright, baby_pos
+    show bro concerned at midright, baby_pos
     "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
+    show bro happy with dissolve
     "Even [bro_name] usually had something to say."
     "They weren't always peaceful, though..."
     kid annoyed "Beans again? Ugh."
+    bro nervous "Uh."
     him surprised "You can put Special Sauce on them if you want."
     "We called it \"Special Sauce\", but it was really just homemade ketchup. With fruit instead of sugar."
     kid shifty "Yeah, gimme the sauce."
     if (year6_have_baby):
-        bro concerned "Gimme sauce!"
+        bro happy "Gimme sauce!"
     else:
-        bro concerned "Ya ya ya ya."
+        bro happy "Ya ya ya ya."
     her concerned "Say \"please\" when you ask for something."
     "[kid_name] knew this; she used to say \"please\" and \"thank you\" all the time. But not today."
+    show bro concerned
     kid annoyed "Gimme the sauce."
     menu:
         "What should I say?"
@@ -3385,6 +3446,7 @@ label family11:
         "(Send her to her room with no dinner)" if (manners_grounded_days >= 2):
             him angry "Go to your room!"
             her surprised "[his_name], calm down. It's not that big of a deal."
+            show bro sad
             him annoyed "It is a big deal! I will not have a rude daughter like that in our house!"
             her annoyed "Well we sure aren't kicking her out just because she didn't say \"please\"!"
             him determined "She can come out whenever she's ready to say \"please\"."
@@ -3401,25 +3463,27 @@ label family11:
         "(Ignore her until she asks politely)" if (manners_patience_count >= 4):
             $ confident += 1
             him happy "So, [her_name], what did you work on today?"
-            her concerned "I've been researching--"
+            her surprised "I've been researching--"
             kid annoyed "Pass the sauce!"
             him normal "Go on."
             her concerned "I've been researching the nutritional properties of crabird eggs."
             him surprised "I didn't know you could eat the eggs!"
             kid angry "I JUST WANT SOME FOOD!"
             if (year6_have_baby):
-                bro nervous "Me, me me!"
+                bro sad "Me, me me!"
             else:
-                bro nervous "Wahhhhh!"
-            her normal "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
+                bro sad "Ahhhhh!"
+            her determined "They're hard to find, as crabirds tend to bury them in the mud near a stream, but they have high levels of-"
             kid annoyed "You're starving your child here!"
             her concerned "-high levels of certain amino acids."
             kid angry "Ugh! Fine! PLEASE pass the sauce!"
             if (year6_have_baby):
-                bro surprised "Peas!"
+                bro nervous "Peas!"
             else:
-                bro surprised "Wahhhhh!"
+                bro nervous "Aaaaah!"
 
+            if (manners_grounded_days <= 1):
+                $ achieved("Patience Grandmaster")
             him happy "Here you go, [kid_name]. Thanks for asking politely."
             kid annoyed "You're mean."
             her flirting "I think the word you're looking for is \"thank you\"."
@@ -3506,8 +3570,8 @@ label family12:
             kid concerned "Um, yeah, I guess, probably?"
             him determined "You don't know."
             kid annoyed "We don't talk about our parents!"
-            him surprised "Why don't I message her parents and get some more information?"
-            kid determined "Okay. Her last name's Lewis."
+            him surprised "Why don't I message her parents and get some more information? What's her last name?"
+            kid determined "Uh... Anya, um, Lewis? I think?"
             call family12_contact_parents
         "I don't want you going over to some random miner's house.":
             $ demanding += 1
@@ -3569,25 +3633,25 @@ label family12:
     him surprised "Eggs?"
     kid surprised "Eggs?! From what?!"
     play music tense
-    show her normal at quarterleft with moveinleft
-    her concerned "Lice. We are currently experiencing an outbreak of lice."
+    show her normal coat at quarterleft with moveinleft
+    her concerned coat "Lice. We are currently experiencing an outbreak of lice."
     him annoyed "I thought we left all those horrible parasites back on Earth!"
-    her annoyed "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
+    her annoyed coat "Yes, {b}we{/b} did. The miners, however, did not observe quite as strict decontamination protocols, and a few lice eggs made it through."
     him angry "How could that even happen?!"
-    her concerned "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
+    her concerned coat "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
     show him concerned
     kid angry "I have lice?!"
-    her determined "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
+    her determined coat "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
     menu:
         "What should I say?"
         "I'm not doing that.":
             $ marriage_strength -= 1
             him angry "No way. I'm not doing that."
-            her angry "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
+            her angry coat "[his_name], I really need your cooperation. I need to concentrate on educating the community so we can kill all the lice on the entire planet."
             him annoyed "..."
-            her flirting "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
+            her flirting coat "Besides, you probably have them, too, and you'll need my help to get rid of them. I'm not sleeping in the same bed with you until you've been treated, too."
             him surprised "That's low."
-            her determined "That's life."
+            her determined coat "That's life."
 
         "Sure, I'll get started.":
             $ marriage_strength += 1
@@ -3607,9 +3671,9 @@ label family12:
 
     pete "Hey there, [his_name]. Hey, Travis, wanna say hi? [kid_name]'s here."
     travis "No!"
-    pete "Think he's embarrassed about his new haircut."
+    pete happy "Think he's embarrassed about his new haircut."
     travis "Dad!"
-    pete "Anyway, here's your comb."
+    pete normal "Anyway, here's your comb."
     him concerned "Thanks for printing it for us."
     pete happy "Not a problem, I've got a batch of six more going right now. Got a feeling they'll be a hot item."
 
@@ -3649,7 +3713,7 @@ label family12:
     him determined "I think that's it."
     show her normal at midleft with moveinleft
     her surprised "You got them all?"
-    him concerned "I went through her whole head... that's all I can do for today."
+    him sad "I went through her whole head... that's all I can do for today."
     hide kid with moveoutleft
     her determined "Good, now I'll take a look at your hair."
     show her at center with move
@@ -3670,13 +3734,25 @@ label family12:
         "What should I do?"
         "Shave your head.":
             him happy "You know what, I need a change anyway!  Let's shave it all off!"
+            scene stars with fade
             "I wasn't the only one -- at least half the men and boys shaved their heads. A few women did, too; can't say I blamed them."
             $ family12_shaved_head = True
-            # TODO: change his sprite for the rest of the year?
+            $ marriage_strength += 1
+            scene farm_interior with fade
+            show her concerned at midleft
+            show him bald at midright
+            with dissolve
+            her "Well... that look is... different."
+            him bald "I could get used to this! Wow, feel how smooth my head is!"
+            show her annoyed at center with move
+            her "Ick. It feels like a rat's tail."
+            $ achieved("Lousy Haircut")            
+            "Yeah, it looked pretty weird, too. Oh well; my hair would grow back soon enough."
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
             her concerned "It's okay; I'll comb it for you. It'll still be easier to go through than mine."
 
+    "[bro_name] didn't have a lot of hair, so we just gave him a trim."
     scene stars with fade
     "We repeated the combing process every day for a week. Even after that, we still combed each other's hair looking for any survivors every few days."
     "[her_name] said we needed to keep looking out for them for a few months."
@@ -3712,6 +3788,11 @@ label family12:
     brennan_c "Don't worry; I'll never shave these luscious locks."
     nvl hide
 
+    if family12_shaved_head:
+        "It took two months for my hair to grow back and for us to get rid of the lice."
+        "Every once in a while, my head would itch and I would have to have [her_name] check and make sure we hadn't missed one."
+    else:
+        "Even after we thought we had gotten rid of them, we kept checking our hair for lice every few days to be absolutely sure."
     scene farm_interior with fade
     show him normal at midright
     show kid normal at midleft
@@ -3778,12 +3859,13 @@ label family12_disobey:
     "After an hour, I started to get worried. Then I remembered what she had asked yesterday, and I started to get mad."
     show him annoyed
     "I called up Mr. Lewis on the radio."
-    him "{i}Mr. Lewis? Is [kid_name] there?{/i}"
+    play sound "sfx/radio.mp3"
+    him "Mr. Lewis? Is [kid_name] there?"
     "Mr. Lewis" "{i}I just got home, but no, she's not here.{/i}"
-    him "{i}Are you sure? She hasn't come home yet...{/i}"
+    him concerned "Are you sure? She hasn't come home yet..."
     "Anya" "{i}She just left to go home, dad!{/i}"
     "Mr. Lewis" "{i}Oh. Apparently she just left.{/i}"
-    him "{i}Thank you; that's good to know.{/i}"
+    him determined "Thank you; that's good to know."
     "The sun was starting to go down, but by my calculations, [kid_name] still had at about an hour's walk ahead of her."
     "As long as she could find her way from the miner's camp to the town, she'd be able to find her way home pretty easily. It's not like there were a ton of other places to go or confusing roads."
     "But it was getting dark, and I kept picturing [kid_name] as a corpse..."
@@ -3917,32 +3999,33 @@ label family13:
     "We brought the kids to the clinic so that they could see their new sibling via ultrasound."
     scene hospital with fade
     show him normal at midright
-    show her normal at center
+    show her normal coat at center
     show kid normal at midleft
     show bro normal at quarterleft
     with dissolve
 
-    her normal "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
-    # TODO: add ultrasound pic?
+    her "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
+    show ultrasound at right, baby_pos with dissolve
     him surprised "Was that it?"
-    her concerned "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
+    her concerned coat "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
     him normal "You could have asked the nurse to help, right?"
-    her normal "Yeah, but I wanted it to be just our family."
+    her normal coat "Yeah, but I wanted it to be just our family."
     kid surprised "Is that a hand?"
-    her happy "Yes! There's the baby - you can see the little mouth, and the hand."
+    her happy coat "Yes! There's the baby - you can see the little mouth, and the hand."
     him "Wow, that really makes it seem real."
-    her flirting "That's because it is real."
+    her flirting coat "That's because it is real."
     bro surprised "That's in your tummy?"
     kid annoyed "It's not her tummy, it's her uterus. Only girls have them."
     "[bro_name] looked disappointed."
     bro concerned "Why?"
     him explaining "Men and women have mostly the same parts, but a few different parts so they can come together and make babies."
-    her normal "We still have a long time before this baby is born, but that's good. We need time to get ready!"
+    hide ultrasound with dissolve
+    her normal coat "We still have a long time before this baby is born, but that's good. We need time to get ready!"
     bro annoyed "Babies cry a lot."
     him normal "Yeah, they don't know all sorts of awesome words like you do. But babies grow and learn, and when they know words they don't cry as much."
     kid surprised "So how come [bro_name] still cries all the time?"
-    bro sad "I do not!"
-    her determined "I cry sometimes, too. Sometimes words just aren't enough."
+    bro cry "I do not!"
+    her determined coat "I cry sometimes, too. Sometimes words just aren't enough."
     "I helped [her_name] put away the ultrasound machine, and we started to walk back home."
     scene path with fade
     "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and I on ahead."
@@ -3995,6 +4078,8 @@ label family13:
             $ sex_ed_counter = 0
             label sex_ed:
                 if (sex_ed_counter >= 2): #short attention span!
+                    $ achieved("Talked the Talk")
+                    him surprised "..."
                     kid normal "I like playing with babies. But I don't want to have to take care of one all the time."
                     him normal "Not now. Maybe someday. Then I can be a grandpa."
                     kid happy "Ha ha, then I'll call you Grandpa Dad."
@@ -4010,7 +4095,7 @@ label family13:
                 "What should I tell her about sex?"
                 "Tell her the physical mechanics." if not sex_ed_biology:
                     $ confident += 1
-                    him explaining "A man's penis can go inside the woman's vagina and the sperm comes out of it when they have sex. That can make a baby."
+                    him explaining "A man's penis can go inside the woman's vagina when they have sex. His sperm come out and can combine with on of her eggs to make a baby."
                     kid concerned "Oh."
                     "She thought about it for a minute."
                     kid surprised "And that's how you and Mom made me?"
@@ -4018,6 +4103,9 @@ label family13:
                     "She looked away for a minute, and I could almost see her brain processing this new information."
                     kid concerned "Are you sure?"
                     him happy "Sure as you're sitting here asking me if I'm sure."
+                    kid surprised "Not like a chicken egg, right?"
+                    him laugh "No, no, it's really really tiny. You can't even see it without a microscope."
+                    kid concerned "Okay, good, because that would be weird."
                     $ sex_ed_biology = True
                     $ sex_ed_counter += 1
                     $ trust += 1
@@ -4122,12 +4210,15 @@ label family13_end:
             him sad "I know, sweetie. We all did."
             show kid at midright with move
             "She climbed up onto my lap. It was a tight fit now that she was getting bigger, but I held her close and we cried together."
-            show bro at midleft with moveinleft
+            show bro sad at midleft with moveinleft
             bro sad "I'm sad, too."
             him determined "Come here. It's okay to cry."
-            show bro sad at center with move
+            show kid sad
+            show him cry
+            with dissolve
+            show bro cry at center with move
             "I tried to be strong for them, but I ended up sniffling too. [her_name] came out of the bedroom and sat next to us."
-            show her sad at center behind bro,him with moveinleft
+            show her cry at center behind bro,him with moveinleft
             "I put my arm around her and we all cried together."
             "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't sad about losing a baby."
             "Maybe the best thing to do was just mourn together."
@@ -4307,7 +4398,6 @@ label family14:
                     "Or maybe we did, but we outgrew it? Was this just a phase?"
                     "I felt like I was trying to harvest tomatoes in the dark."
                     $ authoritarian += 1
-                    return
                 "(Make her understand)":
                     $ responsive -= 5
                     show him yell at center with move
@@ -4341,7 +4431,6 @@ label family14:
                     "What kind of father am I?"
                     $ authoritarian += 1
                     $ trust -= 1
-                    return
 
         "Tell me about it.":
             $ responsive += 1
@@ -4361,7 +4450,6 @@ label family14:
                     "I talked to the teacher and managed to cajole her into letting [kid_name] write her words only five times each."
                     "[kid_name] seemed pretty happy about it, so I guess I did the right thing?"
                     $ permissive += 1
-                    return
                 "You need to listen to your teacher.":
                     $ demanding += 1
                     him determined "You need to listen to your teacher."
@@ -4373,7 +4461,6 @@ label family14:
                     $ authoritarian += 1
                     "She didn't like it, but she did what her teacher asked. She still had problems with hitting her brother, so she wasn't able to play with friends or use the computer pad for a long time."
                     "How long would it take for her to get the message?!"
-                    return
                 "What did you want to do instead?":
                     him surprised "What did you want to do instead?"
                     kid annoyed "Read my book."
@@ -4402,7 +4489,7 @@ label family14:
                     "At least we worked things out with her teacher."
                     $ confident += 1
                     $ authoritative += 1
-                    return
+                    
         "You're just whining.":
             him explaining "Quit whining and don't hit your brother."
             kid annoyed "But...!"
@@ -4410,8 +4497,35 @@ label family14:
             $ neglectful += 1
             $ confident += 1
             $ trust -= 1
-            return
-
+    
+    scene farm_interior with fade
+    show her concerned at midright
+    show him determined at midleft
+    with dissolve
+    her concerned "Sister Naomi is holding another parenting class...do you want to go?"    
+    show him annoyed with dissolve
+    "Part of me felt defensive -- did [her_name] think I needed parenting lessons?!"
+    $ pstyle = get_parenting_style()
+    if (pstyle == "authoritarian"):
+        "I thought I was doing just fine. I knew what I wanted, the kids knew I was boss, everything was fine."
+    elif (pstyle == "authoritative"):
+        "I thought I was doing okay. Though sometimes it was hard to know when to listen and when to lay down the law."
+    elif (pstyle == "permissive"):
+        "I admitted that I didn't really know what I was doing. I mostly just let the kids do what they wanted. And it was going okay, I guess?"
+    else:
+        "I wasn't really interested in parenting."
+    him sad "..."
+    her determined "Well, I'm going to go. Are you coming with me?"
+    menu:
+        "Should I go?"
+        "Go to parenting class.":
+            him normal "Sure, I'll come, too."
+            call parenting_class2
+        "Don't go.":
+            him determined "I'm staying here."
+            her concerned "Okay. See you later."
+            hide her with moveoutleft
+    
     return
 
 # 9.4 Earth years old
@@ -4472,26 +4586,26 @@ label family15:
             hide kid with moveoutright
 
             # Kelly comes home and chides you for yelling.
-            show her concerned at midleft with moveinleft
-            her concerned "Hey, [his_name]."
+            show her concerned coat at midleft with moveinleft
+            her concerned coat "Hey, [his_name]."
             him determined "Welcome home."
-            her surprised "Where's [kid_name]?"
+            her surprised coat "Where's [kid_name]?"
             him annoyed "In her room. She wants an allowance."
-            her normal "Oh, that's a good idea."
+            her normal coat "Oh, that's a good idea."
             him pout "Not you too!"
-            her surprised "What, you never had an allowance?"
+            her surprised coat "What, you never had an allowance?"
             him determined "No. My parents handled the money. If I wanted money, I had to work for someone else."
-            her determined "So you don't want to pay her anything."
+            her determined coat "So you don't want to pay her anything."
             him annoyed "No! That's not how the world works."
-            her concerned "But she wants to earn some money."
+            her concerned coat "But she wants to earn some money."
             him pout "She wants to {b}have{/b} money, anyway."
-            her determined "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
+            her determined coat "I'm sure there's some way she can make money. Maybe she could do some work for me at the clinic."
             him annoyed "She shouldn't get paid to help out her family."
-            her surprised "Why not? You do."
+            her surprised coat "Why not? You do."
             him concerned "If you want to pay her for doing what kids are supposed to do, go ahead."
             hide her with moveoutleft
             show kid happy at center
-            show her determined at midleft
+            show her determined coat at midleft
             with moveinleft
             kid happy "Yay, mom's going to pay me five credits a week!"
             "I guess I did say [her_name] should handle it..."
@@ -4638,6 +4752,7 @@ label family16:
                     "Some of it could probably be recycled, but why should that be my job?"
                     "Then I lit it on fire."
                     scene bonfire with fade
+                    play sound "sfx/fire-2.mp3" loop
                     "[kid_name] came running out screaming when she saw the blaze."
                     kid cry "No! Stop! I'll clean it up!"
                     him determined "If you won't take care of your things, then you don't get to have things."
@@ -4645,8 +4760,9 @@ label family16:
                     him annoyed "Also, you're grounded. You didn't do what I asked and you spoke to me rudely."
                     "She burst into tears and ran away."
                     "I stood watching the flames for a long time."
+                    stop sound fadeout 1.0
                     scene farm_interior with fade
-                    show her concerned at midright
+                    show her concerned coat at midright
                     show kid cry at center
                     show him pout at quarterleft
                     with dissolve
@@ -4654,19 +4770,19 @@ label family16:
                     hide kid with moveoutright
                     show him at midleft with move
                     "After [kid_name] cried herself to sleep, [her_name] turned to me."
-                    her annoyed "You burned all her stuff?!"
+                    her annoyed coat "You burned all her stuff?!"
                     him determined "She wouldn't clean her room. It was just a bunch of junk, anyway."
-                    her angry "It wasn't junk to her!"
+                    her angry coat "It wasn't junk to her!"
                     him angry "Well, she should've taken better care of it!"
-                    her annoyed "Well, it'll be hard for her to learn how now that she doesn't have anything to take care of."
+                    her annoyed coat "Well, it'll be hard for her to learn how now that she doesn't have anything to take care of."
                     him annoyed "I think she learned her lesson."
-                    her angry "She learned that she can't trust you! She learned that you don't care about her at all! Just about satisfying your own ego."
+                    her angry coat "She learned that she can't trust you! She learned that you don't care about her at all! Just about satisfying your own ego."
                     him angry "This isn't about me!"
-                    her concerned "You can't even see it, can you?"
+                    her concerned coat "You can't even see it, can you?"
                     him determined "All I see is a spoiled little girl who maybe finally learned a lesson."
-                    her nervous "I wish we could've talked about it together before you did that."
+                    her nervous coat "I wish we could've talked about it together before you did that."
                     him pout "Yeah, well, you weren't here."
-                    her sad "..."
+                    her sad coat "..."
                     him annoyed "..."
                     $ authoritarian += 1
 
@@ -4716,6 +4832,7 @@ label family16:
                 him normal "Maybe his little sister."
                 kid nervous "She does like animals..."
                 him concerned "She would probably play with it more than you do..."
+                $ travis_points += 1
             elif (fav_faction == "miners"):
                 him determined "Not all of them, but I know a lot of the miners came here with nothing but the clothes on their backs. Their parents also might not have the time or materials to make toys for their kids."
                 kid nervous "Anya does really like animals..."
@@ -4776,7 +4893,7 @@ label family16:
                 "What should I say?"
                 "I didn't mean it like that.":
                     him normal "I meant that our memories of her and the things she taught us live on."
-                    her annoyed "Oh. Well that's boring."
+                    kid annoyed "Oh. Well that's boring."
                 "True enough.":
                     him normal "I guess that's true, too."
                 "Good metaphor.":
@@ -4878,7 +4995,7 @@ label family17:
             "The wailing increased in volume and I decided I'd better go in."
 
     scene kid_bedroom with fade
-    show bro sad at midright, squatting
+    show bro cry at midright
     show kid angry at center
     with dissolve
     show him determined at midleft with moveinleft
@@ -4914,7 +5031,7 @@ label family17:
             him annoyed "What started all of this?"
             kid annoyed "We just came home from school and he saw the bread was all gone and he completely freaked out."
 
-    him determined "[her_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
+    him determined "[kid_name], let me help [bro_name] on my own. You just go and do your homework. He'll be okay."
     kid annoyed "How I'm supposed to get any homework done with all that whining?!"
     him annoyed "Then go to the library, or the clinic, or wherever you need to, okay?"
     "She sighed. I wasn't sure if she was just annoyed at the inconvenience, or if she was really worried about [bro_name], but she took the computer pad and left."
@@ -4987,7 +5104,7 @@ label family17:
             "Apologize for eating it." if (not family17_apologize):
                 $ responsive += 1
                 $ trust += 1
-                him sad "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
+                him surprised "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
                 bro sad "I want bread!"
                 $ family17_apologize = True
                 $ sniffle_duration += 1
@@ -5023,7 +5140,10 @@ label family17:
                 jump family17_sniffle_loop
 
     label family17_after_sniffle:
-        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out." # TODO: some way to ask about this in parenting class? or research it in a parenting manual (tantrums vs meltdowns)?  Some options only available if you've read the right database entry?
+        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out." 
+        "[her_name] said he had some sensory processing issues and experienced things very intensely."
+        "I tried to remember that he wasn't doing all this just to annoy me; he was feeling some intense emotions and having trouble dealing with them."
+
         him concerned "I'm glad you're calming down; now we can work on solving the problem."
         bro surprised "I can have some bread?"
         menu:
@@ -5097,11 +5217,18 @@ label family17:
         scene barn with fade
         show horse at midright with dissolve
         show him normal at midleft
-        show bro at quarterleft
+        show bro concerned at quarterleft
         with moveinleft
-        him determined "Come, noble steed! We embark on a quest to satiate the hunger of this innocent boy!"
+        him determined "Come, noble steed! We embark on a quest to satiate the hunger of this brave warrior!"
         bro happy "With bread!"
         "We saddled her up with a pad behind the saddle for [bro_name] to sit on. He held on tight to my waist and we set off for town."
+        scene path with fade
+        show horse at midright with dissolve
+        show him normal at midright
+        show bro normal at center
+        bro concerned "Actually, I think I'd rather be a wizard than a warrior."
+        him determined "Then a wizard thou shalt be!"
+        "We continued in silence for a few moments."
         bro surprised "Where are we going to find bread?"
         him surprised "One of these fair townsfolk may have the item we need... but who?"
         bro concerned "I don't know..."
@@ -5110,28 +5237,32 @@ label family17:
             "Ilian, the storehouse manager":
                 "I cringed, but I thought grumpy old Ilian would probably be the most likely to have bread."
                 scene storeroom with fade
-                show ilian at midright with dissolve
-                show him normal at midleft
-                show bro at quarterleft
+                show ilian normal at midright with dissolve
+                show him determined at midleft
+                show bro concerned at quarterleft
                 with moveinleft
-                him normal "Sir Ilian! I would speak with you!"
+                him determined "Sir Ilian! I would speak with thee!"
                 "He sighed, got up from the cans he was organizing, and came over to the counter."
                 ilian "What do you want?"
-                him excited "This young adventurer here is in dire need of bread!"
+                him excited "This young wizard is in dire need of grainy sustenance!"
                 ilian "I'm not in the mood for games. Just tell me what you want so I can get back to work."
                 him determined "We have need of bread!"
+                show bro surprised with dissolve
                 "I patted [bro_name] on the head, but he clung to my leg timidly. I could see why; Ilian was scowling at us like we were a couple of weevils."
                 ilian "Bread, huh? Not wheat?"
                 him normal "No, indeed! Only bread will suffice!"
                 ilian "Don't have any."
+                show bro sad with dissolve
                 him surprised "Alas! How could this be?"
                 ilian "Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
                 "I checked the time. It was getting late. We didn't have time to look anywhere else, especially since the farms were so spread out."
                 him determined "Then we shall craft our own bread."
+                show bro normal with dissolve
                 if (farm.crops.count("wheat") > 0):
                     "It galled me to pay Ilian for the wheat I had just sold him, but I did it anyway. I didn't keep a lot of wheat around since it brought in a lot of money. I also bought some yeast."
                 else:
                     "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
+                $ renpy.notify("Quest Updated: Got ingredients for bread!")
 
             "Pavel Grayson, the mayor":
                 "Mayor Grayson knew everyone. He would probably have some idea."
@@ -5188,6 +5319,7 @@ label family17:
                 pavel "Ha ha ha, no, I don't have candy. But I'll see if I can find something good for you. And we can remember Naomi, together."
                 bro normal "Okay."
                 "As we left, the sun was setting. It was too late to go anywhere else, so we headed home."
+                $ renpy.notify("Quest Updated: Find [bro_name] some bread!")
 
             "Pete, leader of the mavericks":
                 him determined "Let us ask Sir Pete!"
@@ -5199,7 +5331,7 @@ label family17:
                 him happy "I think not, my apprentice! And if he does, we shall withstand his blows with the power of jolly cooperation! Do not fear!"
                 "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]. He was so quiet that he didn't always get much attention, but his little arms held me tight as we rode and I got the feeling he was feeling better."
                 scene farm_exterior flip with fade
-                show pete at midright with dissolve
+                show pete normal at midright with dissolve
                 show him normal at midleft
                 show bro normal at quarterleft
                 with moveinleft
@@ -5232,6 +5364,7 @@ label family17:
                 "Maybe we could make some cornbread. It wasn't what [bro_name] had in mind, but we didn't have time to look anywhere else, and it was the best I could do."
                 him "Thanks, Pete. See you around."
                 pete "See you. Take it easy, kid."
+                $ renpy.notify("Quest Updated: Find [bro_name] some bread!")
 
         scene path with fade
         show horse at center
@@ -5243,7 +5376,8 @@ label family17:
         "But as we approached home, [bro_name] broke the silence."
         bro normal "I like riding with you, dad."
         him happy "I like riding with you, [bro_name]."
-        "We didn't find any bread, but [bro_name] seemed to be feeling better. Maybe hanging out with dad was what he really needed."
+        $ renpy.notify("Quest Complete!")        
+        "We didn't find the bread [bro_name] wanted, but he seemed to be feeling better. Maybe hanging out with dad was what he really needed."
     return
 
 label family17_angry:
@@ -5276,6 +5410,7 @@ label family17_angry:
 # 11.1 Earth years old
 # Bathing is still a necessity
 label family18:
+    play music tense
     scene kid_bedroom with fade
     "Though [kid_name] still acted like a kid, sometimes she smelled more like a teenager..."
     show him annoyed at midleft
@@ -5306,7 +5441,7 @@ label family18:
 
     menu:
         "What should I say?"
-        "(Say nothing)":
+        "(Walk away)":
             $ responsive += 1
             hide him with moveoutleft
             "I just walked away. It wasn't worth fighting over. If she really wanted to walk around stinky and dirty, I guess that was her problem."
@@ -5323,10 +5458,10 @@ label family18:
                 "What should I say?"
                 "I'll throw you in the river!":
                     him annoyed "I'll throw you in the river."
-                    kid determined "I'm eleven years old. You can't just carry me around like a baby."
+                    kid annoyed "I'm eleven years old. You can't just carry me around like a baby."
                     him angry "You don't think I could?!"
                     show him at midright with move
-                    show kid at squatting with move
+                    show kid surprised with dissolve
                     "I lifted her up. It had been a long time since I carried her anywhere. Her arms and legs were so long, now. And she was much heavier."
                     kid angry "Stop it! Dad, put me down! I'll take a bath, I will, just put me down!"
                     "I could probably make it all the way to the river. But maybe I shouldn't. I felt suddenly guilty. How would I like it if someone threw me in the river? Then again, I didn't want to let her think she could get away with this kind of disobedience."
@@ -5359,10 +5494,12 @@ label family18:
                             show him determined at midleft
                             show kid cry at midleft, squatting
                             with moveinleft
+                            play sound "sfx/stream-2.mp3" loop
                             "The air was cool, but not cold. It would be an uncomfortable bath for her, but she wasn't in any danger. The leeches all lived in the warm ponds, not the cold river, so she couldn't even complain about those."
                             show him at center
                             show kid at center, squatting
                             with move
+                            play audio "sfx/splash.ogg"
                             "When we arrived, I didn't pause at all. I walked right into the water, boots and all, and dropped her in the middle of it with her clothes still on."
                             show kid surprised at sitting
                             show him determined at quarterleft
@@ -5371,21 +5508,28 @@ label family18:
                             show kid angry at squatting
                             show him doubt
                             with dissolve
+                            play audio "sfx/splash.ogg"
                             "A huge wave of water splashed my back. [kid_name], drenched and furious as a cat, was using all her might to send water my direction."
                             "I felt kind of mad, but I couldn't blame her. I had humiliated her and made her feel like a little kid again. I thought that was what she needed. But what did she need now?"
                             menu:
                                 "What should I do?"
-                                "Try to cheer her up with a water fight.":
+                                "Try to cheer her up with a water fight.":                                
                                     $ responsive += 1
+                                    play music exciting
                                     show him normal at midleft with move
+                                    play audio "sfx/splash.ogg"
                                     "I send a wave of water back, and soon we were splashing and yelling and hollering."
+                                    play audio "sfx/splash.ogg"
                                     "Our anger turned into laughter as we aimed water splashes at each other."
+                                    play audio "sfx/splash.ogg"
                                     him happy "Dodge this!"
                                     show kid at quarterright with move
                                     kid annoyed "Ha ha, you missed! Besides, I'm already soaked so I don't even notice any more water!"
+                                    play audio "sfx/splash.ogg"
                                     him normal "You couldn't hit me if I was the-- blruggleegrlgle."
                                     kid normal "What's that? I couldn't hear you; seems like your mouth's full of water!"
                                     him surprised "Here, come closer so you can hear better."
+                                    play audio "sfx/splash.ogg"
                                     show kid at center with move
                                     kid surprised "What? What were you going to say?"
                                     him excited "I don't know; WATER {b}you{/b} going to say?!"
@@ -5393,6 +5537,7 @@ label family18:
                                     "Finally, both of us sopping wet and shivering, we headed for home."
                                     hide him
                                     hide kid
+                                    stop sound fadeout 1.0
                                     with moveoutleft
                                     scene farm_interior with fade
                                     show her normal at midright with dissolve
@@ -5412,6 +5557,7 @@ label family18:
                                     $ demanding += 1
                                     hide him with moveoutleft
                                     show kid sad with dissolve
+                                    stop sound fadeout 1.0
                                     "What she needed was a serious dad who would make sure she did what she needed to do, and never backed down."
                                     "I would be that dad, even if she hated me for it."
                                     $ authoritarian += 1
@@ -5553,15 +5699,16 @@ label family19:
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
     show him surprised
     "Looking at the time and date, it must be from when [kid_name] was using the tablet yesterday..."
-    "It wasn't romantic at all -- they were slapping each other around in a way that looked fairly painful. The video was obviously designed to try to turn people on as fast as possible."
+    "It wasn't romantic at all -- they were shoving and groping each other around in a way that actually looked painful. The video was obviously designed to try to turn people on as fast as possible."
     $ family19_watched_video = True
     "We didn't have access to the entire Earth internet, but somehow this was included in our local copy."
     menu:
         "What should I do?"
-        "Punish Terra.":
+        "Punish [kid_name].":
            $ demanding += 1
            him annoyed "[kid_name]!"
-           kid surprised "What?"
+           show kid surprised at midleft with moveinleft
+           kid "What?"
            him determined "I found your pornography on the computer pad."
            kid shifty "Dad, I can explain--"
            him sad "I don't want to hear it. I can't believe you would watch that filth."
@@ -5984,6 +6131,7 @@ label family20:
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played her trombone, I could hear her expressing emotions even she didn't know she had."
     $ plays_trombone = True
+    $ oleg_points += 1
     return
 
 #####################################################
@@ -5992,15 +6140,14 @@ label family20:
 #
 #####################################################
 
-# TODO: blocking and music testing stopped here
-
 # 13 Earth years old
 # Sarcastic Humor
 label family21:
+    play music videogame
     scene farm_interior with fade
     show him normal at midleft
     show kid normal at center
-    show bro at midright
+    show bro normal at midright
     with dissolve
 
     "Lately, [kid_name] and [bro_name] had been playing a video game together. I thought it would be good for them, to help them bond and learn to cooperate, but sometimes it just made them both frustrated..."
@@ -6170,37 +6317,35 @@ label family21:
             return
 
     "They went back to playing. Hopefully they'd get along better now."
-    menu:
-        "What should I do?"
-        "Stay and watch.":
-            # TODO: productivity penalty?
-            "I stayed and watched for a little while. [bro_name]'s avatar got killed, and [kid_name] grunted in frustration."
-            kid angry "[bro_name]!"
-            bro concerned "Sorry!"
-            "[kid_name] glanced over at me and sighed."
-            kid determined "It's okay."
-            bro determined "Watch out for the mines; that's what killed me."
-            kid concerned "Where is their flag?"
-            bro normal "I can climb the tower and find it!"
-            kid surprised "Try it."
-            bro determined "Ohhh! He got me! But I saw the flag; it's right behind you, under that bench!"
-            kid normal "Yeah! Got it!"
-            bro surprised "Now get back! Stay away from the tower!"
-            kid determined "Almost there..."
-            bro determined "He's chasing you... I can shoot a smoke bomb!"
-            kid happy "Yeah! We did it!"
-            bro happy "Yeah!"
-            "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
-            "I guess they could get along, when they wanted to."
-        "Get back to work.":
-            "Hopefully they would get along; I didn't have time to stick around and find out."
+    if (get_extra_work() > 0):
+        "I stayed and watched for a little while. [bro_name]'s avatar got killed, and [kid_name] grunted in frustration."
+        kid angry "[bro_name]!"
+        bro concerned "Sorry!"
+        "[kid_name] glanced over at me and sighed."
+        kid determined "It's okay."
+        bro determined "Watch out for the mines; that's what killed me."
+        kid concerned "Where is their flag?"
+        bro normal "I can climb the tower and find it!"
+        kid surprised "Try it."
+        bro determined "Ohhh! He got me! But I saw the flag; it's right behind you, under that bench!"
+        kid normal "Yeah! Got it!"
+        bro surprised "Now get back! Stay away from the tower!"
+        kid determined "Almost there..."
+        bro determined "He's chasing you... I can shoot a smoke bomb!"
+        kid happy "Yeah! We did it!"
+        bro happy "Yeah!"
+        "[bro_name]'s avatar lifted [kid_name]'s up to stand on his hands, and she somersaulted off and they gave synchronized thumbs-ups."
+        "I guess they could get along, when they wanted to."
+    else:
+        "Hopefully they would get along; I didn't have time to stick around and find out."
+
     return
 
 # 13.6 Earth years old
 # You falsely accused Terra! Apologize?
 # Also, do something together as a family
 label family22:
-
+    play music tense
     scene farm_interior with fade
     show him determined at midright
     show kid normal at center
@@ -6218,6 +6363,7 @@ label family22:
     kid annoyed "I'm not lying!!"
     him angry "Go to your room! You can come out when you're ready to tell the truth!"
     kid cry "I am telling the truth! Why won't you believe me?!"
+    hide kid with moveoutright
     "She stomped off to her room."
     "I was furious. It was bad enough to break a rule, but then to lie about it?"
     show her surprised at midleft with moveinleft
@@ -6225,7 +6371,7 @@ label family22:
     him annoyed "[kid_name] stole the applesauce and won't admit it."
     her concerned "Are you sure it was [kid_name]?"
     him concerned "She acted really guilty."
-    her determined "I found an empty jar in [bro_name]'s room, behind his clothes."
+    her annoyed "I found an empty jar in [bro_name]'s room, behind his clothes."
     show him surprised with dissolve
     "I was shocked. It had never occured to me that obedient, quiet [bro_name] had stolen the applesauce."
     her determined "[bro_name], please come here."
@@ -6247,7 +6393,7 @@ label family22:
     bro concerned "...I don't know."
     her determined "I'll let you think about it for a while. I'll ask you again at bedtime, okay?"
     bro sad "Okay."
-    him annoyed "..."
+    him determined "..."
     bro concerned "...can I go now?"
     her normal "Yes. I love you, [bro_name]."
     bro concerned "I love you too, mommy."
@@ -6321,8 +6467,8 @@ label family22:
             him annoyed "It doesn't matter; the appleasauce is not yours."
             bro sad "I know."
             him determined "Okay, well, you just remember that!"
+            show bro nervous with dissolve
             "He wouldn't meet my eyes, instead watching as he fingered the ties of his quilt."
-            bro nervous "Yes."
             menu:
                 "What should I do?"
                 "Leave him alone":
@@ -6335,11 +6481,13 @@ label family22:
                 "Demand that he look at you.":
                     $ demanding += 1
                     him angry "Look at me when I'm talking to you!"
+                    show bro sad with dissolve
                     "He turned his head slowly, focusing on my lips."
                     him determined "I don't want you stealing ever again. Do you understand?"
                     "He nodded."
                     him concerned "Good."
 
+    play music parenting
     scene farm_interior with fade
     show him normal at midright
     show her normal at quarterright
@@ -6405,12 +6553,20 @@ label family22:
             "We should go for a walk.":
                 him happy "The weather's nice; let's go for a walk."
                 kid determined "But I'm tired!"
-                bro determined "I'm not swimming!"
+                bro annoyed "I'm not swimming!"
                 her normal "The river's not that far. And you don't have to swim. Bring a book if you're worried you'll get bored, [bro_name]."
                 him excited "I'll bring my net; maybe I can catch something!"
                 her laugh "We just had dinner..."
                 him flirting "Then this'll be dessert!"
+                scene pond with fade
+                show him normal at midleft
+                show her normal at quarterleft
+                show bro normal at center
+                show kid normal at midright
+                with moveinleft
+                play sound "sfx/stream-2.mp3" loop
                 "We walked down to the river. I caught a tiny lobster-looking creature, but it was so small, I just threw it back."
+                play audio "sfx/splash.ogg"
                 bro sad "Stop splashing me!"
                 kid happy "Ha ha ha, it looks like you peed your pants."
                 bro concerned "Moooom!"
@@ -6426,6 +6582,7 @@ label family22:
                 kid annoyed "You'd probably throw me in the river."
                 him excited "Yeah... doesn't that sound fun?"
                 kid yell "No!"
+                stop sound fadeout 1.0
             "We should watch a movie.":
                 him happy "We should watch a movie."
                 kid surprised "Can we please watch 'Catacombs'? I love that show!"
@@ -6467,6 +6624,7 @@ label family22:
 # are more depressed, get less sleep, and feel more lonely and left out.
 # Solutions include: screen-free time, a new hobby, helping her setup a hangout space/time
 # with friends, etc.
+
 label family23:
     "It hadn't really been a big deal to share our computer pad with the kids when they were small."
     "On Earth we had been used to everyone having their own, but lots of things were different here on Talaam."
@@ -6528,10 +6686,12 @@ label family23:
                         kid nervous "Okay, fine."
                     "I trust you to use your own judgment.":
                         $ responsive += 1
+                        $ oleg_points += 1
                         him normal "I'm glad you're being a good friend. And so far you've been a good student, too. As long as you are completing your schoolwork with high quality, I'll let you decide when you need to text and when you need to concentrate."
                         kid determined "Thanks, dad. I can do this."
             "Yes, that sounds reasonable.":
                 $ responsive += 1
+                $ oleg_points += 1
                 him determined "Yes... that sounds pretty reasonable."
                 kid determined "Thanks, dad. I know what I'm doing."
     elif (parenting_style == "permissive"):
@@ -6569,6 +6729,7 @@ label family23:
                 kid angry "You think I'm just another stupid teenager, but that's just because you don't know me."
             "You're right; tell me what I should know.":
                 $ responsive += 1
+                $ oleg_points += 1
                 him concerned "You're right. I don't know much about what's going on in your life. What should I know about?"
                 kid angry "There's- it's- you can't just ask that now!"
                 him annoyed "So you won't tell me anything."
@@ -6585,6 +6746,7 @@ label family23:
         "What should I say?"
         "You should hang out with friends in person.":
             $ responsive += 1
+            $ oleg_points += 1
             him determined "You should hang out with your friends in person. It'll mean more that way."
             if (kid_work_slider >= 50):
                 kid annoyed "We don't have time! We have so much homework, and Oleg has to work in the storehouse, and I help you on the farm..."
@@ -6619,6 +6781,7 @@ label family23:
                     $ permissive += 1
         "You need to concentrate more on your schoolwork.":
             $ demanding += 1
+            $ responsive -= 1
             him concerned "You need to concentrate more on your schoolwork, and less on music and talking with friends."
             kid angry "I thought we went over this!"
             him determined "Your schoolwork is more important. Now, don't you have a test you need to study for?"
@@ -6705,7 +6868,7 @@ label family24:
     scene path with fade
     show horse at center
     show him normal at center
-    with moveinleft
+    with moveinright
     "Lettie seemed to enjoy the walk. Even though she was getting older, it was good for her get out and exercise often."
     menu:
         "On the ride up to the miner's house, I told Lettie all about..."
@@ -6730,17 +6893,17 @@ label family24:
             him normal "I guess you probably know what I mean, since you're getting a bit older, too."
     hide horse
     hide him
-    with moveoutright
+    with moveoutleft
 
     scene cabins with fade
     show him normal at center
     show horse at center
-    with moveinleft
+    with moveinright
     "After we arrived at Anya's house, I secured Lettie's tether to the gate."
     "Lettie was breathing a little harder than usual, so I thought I'd let her take a break while I looked for [kid_name]."
     "She seemed happy to be resting, and started grazing on some small nearby shrubs."
     "Anya's father told me they had gone for a walk by the canyon."
-    hide him with moveoutright
+    hide him with moveoutleft
     scene canyon with fade
     show him normal at midleft with moveinleft
     "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
@@ -6763,7 +6926,6 @@ label family24:
     kid nervous "Just Anya and a few other friends."
     menu:
         "What should I say?"
-        # TODO: should her response depend on your parenting style?
         "Which friends?":
             him concerned "Other friends? Which other friends?"
             kid determined "No one you know! Just some people we hang out with."
@@ -6777,14 +6939,17 @@ label family24:
         "I never said you could do this!":
             him annoyed "I said you could hang out with Anya; I didn't say you could go off in the canyon with boys."
             kid determined "We didn't plan it like that! Anya's brother and his friend just kind of showed up and so we hiked around together."
+            $ lorant_points -= 1
         "How'd it go?":
             him surprised "How'd it go?"
             kid determined "Fine. Anya's brother is pretty funny. He had some great snacks, too. We hiked around, took some funny pictures."
+            $ lorant_points += 1
         "(Don't say anything.)":
             "I didn't say anything. She was allowed to hang out with friends without getting grilled by her dad, right?"
             "Though I wasn't sure how much I trusted Lorant, I didn't know what to say."
             "We walked in silence for several minutes."
             $ neglectful += 1
+            $ lorant_points += 1            
             jump lettie_dies
 
     "Anya's brother Lorant was about twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
@@ -6805,6 +6970,7 @@ label family24:
             kid surprised "What are you so worried about?"
         "Sometimes older teenagers get younger teenagers into trouble.":
             $ responsive += 1
+            $ lorant_points -= 1
             him concerned "[kid_name], I don't know if it's the case here, but sometimes older teenagers or young adults can get younger teenagers into trouble."
             kid surprised "What are you talking about? We were just hiking around."
             him sad "I'm not worried about what happened today; I'm worried about what might happen next time."
@@ -6815,6 +6981,7 @@ label family24:
             kid nervous "You're not making any sense."
         "I don't want you hanging out with Anya's brother.":
             $ demanding += 1
+            $ lorant_points -= 1
             him annoyed "I don't want you hanging around with Anya's brother."
             kid determined "What?! Why not?"
             him determined "He's bad news. I can feel it."
@@ -6829,14 +6996,14 @@ label family24:
 
     him angry "I'm worried that he's going to influence you to do stupid things! Stupid things that could ruin the rest of your life."
     kid annoyed "Like what?!"
-    him annoyed "A hundred things! Smoking too much fireweed, or having sex too early, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
+    him annoyed "A hundred things! Smoking too much firegrass, or having sex too early, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
     kid yell "We were JUST. HIKING."
     him angry "Yes, this time! What about next time?"
     kid annoyed "He doesn't do any of that stuff! You don't even know him!"
     him determined "I know what guys that age are like."
     $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):
-        kid nervous "They're not like...like... whatever is you're thinking they're like."
+        kid nervous "He's-- they're not like...like... whatever is you're thinking they're like."
     elif (parenting_style == "authoritative"):
         kid determined "I get what you're saying, but that's just not what's going on here."
     elif (parenting_style == "permissive"):
@@ -6845,6 +7012,7 @@ label family24:
         kid yell "Now you suddenly care about what I do?!"
 
 label lettie_dies:
+    play music sad
     scene cabins with fade
     show horse at left with dissolve
     show him normal at midright
@@ -6865,10 +7033,11 @@ label lettie_dies:
     him concerned "No, a yew tree. Or bush, looks like. Who plants yew where there's horses around?!"
     "My mind raced. Yew poisoning was well-known, but there was no antidote. There were some treatments we could try...if we could get them in time."
     "I pulled out my radio. My hand was trembling and I was a lot less coherent than I wanted to be."
-    him angry "{i}[her_name]! At the miner's village... Lettie's sick. I need your help!{/i}"
+    play sound "sfx/radio.mp3"
+    him angry "[her_name]! At the miner's village... Lettie's sick. I need your help!"
     show kid sad with dissolve
     her "{i}What's wrong with her?{/i}"
-    him concerned "{i}Yew. There was a yew bush, and she ate it... maybe a lot of it.{/i}"
+    him concerned "Yew. There was a yew bush, and she ate it... maybe a lot of it."
     "I knew I should give her more information, but my brain felt stuck, as if mired in glue."
     her "{i}I'll bring activated charcoal and the stomach pump right away.{/i}"
     "Lettie convulsed, and I patted her on the side of her neck."
@@ -6900,6 +7069,8 @@ label lettie_dies:
 
     "I missed her. But more than that, I felt like she shouldn't have died -- her death never would have happened if Anya's family hadn't put that yew bush right by their front gate."
     "Or if I had noticed it when I tethered her to it."
+
+    play music worried
 
     "I couldn't stop thinking about it when [her_name] invited Anya and her brother over to hang out."
     "Their family never even apologized to me for Lettie's death from their yew bush."
@@ -6933,22 +7104,27 @@ label lettie_dies:
         "That problem was..."
         "The miners and RET were ruining our planet.":
             $ miners -= 1
+            $ lorant_points -= 1
             "The miners and RET were ruining our planet."
             "I mean, I guess it was only because of RET that we had the funding to come here in the first place."
             "But I wished they'd just leave us alone. I wished they would leave [kid_name] alone."
             "It was a futile wish, though, and one I couldn't afford to indulge."
         "Strife and division threatened to destroy our community.":
+            $ mavericks += 1
+            $ travis_points += 1
             "We were always fighting. I thought that away from Earth's politics and territorial squabbles, we'd be able to find true peace."
             "Away from Earth's materialism and fads, I thought my kids and farm would be safe."
             "But we were still human. And apparently 'human' means 'conflict'."
         "All these problems were distracting me from my farming.":
             $ colonists += 1
+            $ oleg_points += 1
             "I didn't have time for all this crap. All I wanted to do was grow my crops and herds and raise my family in peace."
             "But even when I was light years from home, there were still other people to deal with."
             "People harming me, my horse, [kid_name]."
             "And I had to deal with that."
         "I was a jerk.":
             $ miners += 1
+            $ lorant_points += 1
             "I was the problem."
             "I was a selfish, whiny jerk who just wanted someone to blame."
             "I knew I needed to forgive, but I couldn't just yet."
@@ -6956,58 +7132,63 @@ label lettie_dies:
 
     scene farm_interior with fade
     show him sad at midright with dissolve
-    "[her_name] interrupted my musings."
-    show her nervous at midleft with moveinleft
-    her nervous "Hey, sweetie."
+    "[her_name] came home and interrupted my musings."
+    show her nervous coat at midleft with moveinleft
+    her nervous coat "Hey, sweetie."
     him concerned "Hey."
     "She sat next to me and held my hand."
-    her determined "You weren't just talking about yew plants."
+    her determined coat "You weren't just talking about yew plants."
+    show him sad with dissolve
     "I shook my head."
-    her concerned "You think Lorant is a bad friend for [kid_name]?"
+    her concerned coat "You think Lorant is a bad friend for [kid_name]?"
+    show him doubt with dissolve
     "I shrugged. I felt like a fool. I shouldn't have posted about Lettie's death online, and I didn't know what to do about the creeping weeds of my life."
-    her annoyed "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
+    her annoyed coat "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
     him determined "You don't think I'm just crazy with grief?"
-    her nervous "I think posting on the message board like that was a stupid and tactless thing to do, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
+    her nervous coat "I think posting on the message board like that was a stupid and tactless thing to do, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
     him sad "She's not going to like it."
-    her determined "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV or whatever. But, like at the clinic, perhaps if we approach this the right way we can minimize her discomfort."
+    her determined coat "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV or whatever. But, like at the clinic, perhaps if we approach this the right way we can minimize her discomfort."
     menu:
         "What should we do?"
         "Forbid her from hanging out at Anya's house.":
+            $ lorant_points -= 1
             him annoyed "She just can't hang out at their house!"
-            her annoyed "I agree. They're unsupervised, far from any public areas, and there's too many creeps in that area."
+            her annoyed coat "I agree. They're unsupervised, far from any public areas, and there's too many creeps in that area."
             him determined "There's more than one?"
-            her determined "You know I don't reveal things about my patients. And there's no laws being broken. Doesn't mean I want [kid_name] getting involved in their problems, though."
+            her determined coat "You know I don't reveal things about my patients. And there's no laws being broken. Doesn't mean I want [kid_name] getting involved in their problems, though."
             him determined "So I'm probably not the only one that feels this way."
-            her annoyed "Definitely not."
+            her annoyed coat "Definitely not."
             him normal "Okay, good. [kid_name]'s not going to like it, though."
-            her determined "Too bad. It's what she needs."
+            her determined coat "Too bad. It's what she needs."
             $ authoritarian += 1
         "Encourage her to have her friends over to our house more.":
+            $ lorant_points += 1
             him concerned "Maybe we could just encourage her to have friends over to our house more often?"
-            her concerned "That's a start..."
+            her concerned coat "That's a start..."
             him surprised "I mean, nothing's serious yet... right?"
-            her annoyed "She claims he's just a friend."
+            her annoyed coat "She claims he's just a friend."
             him determined "Then there's no need to get all dystopian on her. We'll just make our house a fun hangout place."
-            her determined "Okay, I hope that works."
+            her determined coat "Okay, I hope that works."
             $ permissive += 1
         "Get [kid_name] to help solve the problem.":
             $ confident += 1
             $ trust += 1
+            $ lorant_points += 1
             him surprised "Why don't we ask [kid_name] to help us with this problem?"
-            her concerned "Won't she be a bit biased?"
+            her concerned coat "Won't she be a bit biased?"
             him determined "We don't have to do what she says, but if she's invested in the solution she'll be more likely to follow it without complaining."
-            her surprised "We could try..."
+            her surprised coat "We could try..."
             "We went to [kid_name]'s room."
             scene kid_bedroom with fade
             show kid determined at midright with dissolve
             show him determined at center
-            show her determined at midleft
+            show her determined coat at midleft
             with move
             him determined "[kid_name], we would like your help with a problem."
             kid surprised "What's that?"
             him concerned "We are a bit worried about you hanging out at Anya's house where it's so far and there's not a lot of adults around. We want you and Anya to still be able to hang out, though."
             kid annoyed "You could just get over it."
-            her annoyed "Look, we didn't have to ask your opinion--!"
+            her annoyed coat "Look, we didn't have to ask your opinion--!"
             him normal "Hey, calm down. [kid_name], we thought you might have an idea about where you and Anya could hang out that is in a safer place with more people around."
             kid nervous "There's nothing wrong with her house."
             him determined "As your parents, we're not comfortable with that. What other options are there?"
@@ -7015,32 +7196,33 @@ label lettie_dies:
             him normal "How about something a bit more centralized; closer to town. So if there's an emergency you'd have plenty of people close by."
             "[kid_name] thought about it for a minute. That was progress; she finally wasn't just trying to shut me down."
             kid normal "Actually, it'd be cool if we had our own hangout place. Like, in books I always read about teenagers hanging out at malls or cafes or parks or places like that. We don't really have that here."
-            her surprised "We haven't had that many teenagers before."
+            her surprised coat "We haven't had that many teenagers before."
             him happy "That's a great idea, [kid_name]!"
             kid annoyed "But you guys can't come there! That would defeat the whole purpose."
             him normal "Let's see what we can work out."
             scene stars with fade
             "We worked with the community, and some groups agreed to meet in the school instead of the community center so that the teenagers could have the community center to themselves several evenings a week."
             "[kid_name] worked with Anya and some other friends to make a ping pong table and some soft rugs. They talked about future plans, too, like a mini-kitchen and some big speakers for music."
-            scene community_center with fade # TODO: get a cool teen hangout background?
-            show her normal at midright
+            scene community_center with fade 
+            show her normal coat at midright
             show him normal at midleft
             with dissolve
-            her normal "This is a great project for [kid_name] and her friends. And people are around the community center all the time, so it'll be easy for us all to keep an eye on them without being too intrusive."
-            him doubt "Like with the surveillance cameras you installed?"
-            her flirting "You noticed that, huh? Well, they don't need to know about those."
+            her "This is a great project for [kid_name] and her friends. And people are around the community center all the time, so it'll be easy for us all to keep an eye on them without being too intrusive."
+            him doubt "And the surveillance cameras you installed..."
+            her flirting coat "You noticed that, huh? Well, hopefully we won't need them."
             $ authoritative += 1
 
         "Let [kid_name] make her own decisions.":
             $ confident += 1
+            $ lorant_points += 1
             him annoyed "It's her life; if she wants to ruin it why should we get in her way?"
-            her angry "Because she's our daughter! Because she doesn't even know what she's doing!"
+            her angry coat "Because she's our daughter! Because she doesn't even know what she's doing!"
             him surprised "Are you sure about that? Maybe she does know what she's doing!"
-            her angry "Are you serious? How much of life did you understand at fourteen years old?!"
+            her angry coat "Are you serious? How much of life did you understand at fourteen years old?!"
             him determined "Enough to know that I wanted to make my own mistakes and for my parents to leave me alone!"
-            her annoyed "That's what you wanted then, but looking back, aren't you glad they didn't?"
+            her annoyed coat "That's what you wanted then, but looking back, aren't you glad they didn't?"
             him concerned "..."
-            her determined "Fine. I guess this is something I'll handle on my own."
+            her determined coat "Fine. I guess this is something I'll handle on my own."
             him annoyed "Good."
             $ neglectful += 1
             $ marriage_strength -= 1
@@ -7051,6 +7233,7 @@ label lettie_dies:
 # Thinking about the future
 # foreshadowing ending
 label family25:
+    play music upbeat
     scene stars with fade
     "[her_name] was busier than ever. Not only did she have to treat the miners from RET and deal with all their extra paperwork, but she also did routine checkups for the colony."
     "Her duties only increased as the number of babies increased and as people got older."
@@ -7123,7 +7306,7 @@ label family25:
             him normal "Thanks for cooking with me. Hard to believe you might be cooking for yourself in just a few years, huh?"
 
     kid concerned "Yeah... you and mom went to college after high school, right?"
-    him normal "Your mom did -- for years and years. I went part-time for a while, but I had to quit to help my parents on the farm."
+    him explaining "Your mom did -- for years and years. I went part-time for a while, but I had to quit to help my parents on the farm."
     kid surprised "Can I go to college?"
     "That was a good question. Teenagers on the colony usually ended up mostly doing what their parents did, though some like Miranda also earned degrees via independent study."
     him determined "Miranda earned a biology degree studying with Dr. Lily. I think anyone who wants to could do that, too."
@@ -7131,7 +7314,7 @@ label family25:
     him normal "No, but learning is always good. What do you want to study?"
     kid surprised "I don't know! I like a lot of things. Music, jellies, fossils, reading, the stars..."
     him happy "And farming?"
-    kid normal "Maybe. I like to eat, anyway!"
+    kid nervous "Maybe. I like to eat, anyway!"
     him normal "Hunger is a powerful motivator."
     kid determined "Anya says she's going to be a miner. Her brother just started and he already earns a lot of money."
     him surprised "But aren't they leaving in a few years?"
@@ -7259,6 +7442,7 @@ label family25:
 # She thinks eating jellies is wrong!
 # She calls you names. Do you argue, or discuss?
 label family26:
+    play music tense
     scene farm_interior with fade
     show him normal at midright
     show kid annoyed at midleft
@@ -7277,15 +7461,18 @@ label family26:
         "I don't appreciate being called a rapist.":
             him annoyed "Hey, watch what you're calling me. And my friends. And pretty much everyone you know."
             kid angry "It's true! The plants and animals of Talaam don't want us here; they just want to be left alone! We're forcing our foreign organisms onto this natural paradise and polluting it!"
+            $ demanding += 1
         "Humans are living beings, too.":
             him annoyed "Humans are living things, too. They have just as much a right to survive as anything else."
             kid determined "But we don't have to live here to survive. There's still plenty of room on Earth."
         "Why do you say that?":
             him surprised "Why do you say that?"
             kid determined "It's true! Just look at everywhere humans have touched on this planet; the mines, the farms, the rubbish heap, the oceans - they are all worse than they were before we arrived!"
+            $ responsive += 1
         "Who is feeding you this nonsense?":
             him annoyed "Who is feeding you this nonsense?"
             kid determined "I can see it for myself! It's obvious if you just look around!"
+            $ demanding += 1
         "You're talking about the miners, right?":
             him surprised "You're talking about the miners, right?"
             kid determined "Not just the miners! All of us! We're alien invaders here!"
@@ -7343,6 +7530,7 @@ label family26:
             him normal "I know. But if you start too big, people can't get their heads around it. Start with something small and possible."
             kid surprised "Like, not farming jellystars?"
             him determined "Exactly."
+            $ confident += 1
         "I'll consider what you've said.":
             him surprised "You make some good points, [kid_name]. We definitely are affecting the ecology of this planet, and we should do what we can to take good care of it."
             kid concerned "I'm not sure that's possible. We're so destructive..."
@@ -7351,6 +7539,7 @@ label family26:
             him annoyed "Well, it's something good you can do right now that will help a lot more than calling people rapists."
             kid shifty "It got your attention, though, didn't it?"
             him determined "Yeah, but if I wasn't your dad I wouldn't have listened to you. It made you sound crazy."
+            $ confident += 1
         "You are wrong.":
             him annoyed "Look, this is our planet now, and we can use it however we want. The jellysquids live in the ocean, so they probably don't even care about all the stuff we're doing on land. If they're even smart enough to notice."
             kid angry "I guess there's no getting through your thick skull. You're a lost cause, dad."
@@ -7369,6 +7558,7 @@ label family26:
                 him normal "But you have some knowledge they don't. So share it in the most convincing, honest way you can and let people make their own decisions."
                 kid nervous "I don't know..."
                 him determined "If you believe in this as strongly as you make it sound, then you will."
+                $ confident += 1
     return
 
 # 16.7 Earth years old
@@ -7409,7 +7599,7 @@ label family27:
 
     menu:
         "What should I do?"
-        "Buy her a bike":
+        "Buy her a bike" if (credits >= 500):
             $ responsive += 1
             him surprised "I remember when I first got a bike with gears... it was red, and I attached a playing card to the spokes so it would sound like a motorcycle."
             kid surprised "A motorcycle is like a motorbike, right?"
@@ -7417,14 +7607,22 @@ label family27:
             kid laugh "Okay!"
             $ permissive += 1
             $ modify_credits(-bike_cost)
-
+        "Offer to pay half" if (credits >= 250):
+            $ responsive += 1
+            $ demanding += 1
+            him determined "I'm willing to pay half, if you'll pay the other half."
+            kid surprised "Where am I going to get 250 credits?!"
+            him happy "That's a great question!"
+            kid annoyed "I'm serious! That would be impossible!"
+            him normal "I know there's some people who are willing to pay credits for work."
+            kid surprised "Like who?"
+            jump family27_who_work
         "Have her use her own money.":
             $ demanding += 1
             $ confident += 1
             if (allowance_amount > 0):
-                # TODO: make sure this makes sense with the numbers
                 him annoyed "You have an allowance, you know. You could save up for it yourself."
-                $ saving_weeks = int(round(float(bike_cost) / float(allowance_amount)))
+                $ saving_weeks = roundint(float(bike_cost) / float(allowance_amount))
                 kid angry "What?! That would take me like..."
                 "She did some calculations in her head."
                 $ saving_months = saving_weeks / 4.0
@@ -7439,33 +7637,34 @@ label family27:
 
             him determined "Well, if you want a bike that badly, I bet you'll be able to find something you can do to earn money. Remember when you sold those jellyfish shells?"
             kid annoyed "Maybe... But who would I even ask?"
-            # TODO: have these based on stats? or increase stats?
-            menu:
+            menu family27_who_work:
                 "What should I tell her?"
-                "Ask in town.":
+                "Ask in town." if colonists_strong():
                     $ responsive += 1
                     him normal "You could ask around in town, see what people need."
                     kid concerned "Okay..."
                 "Find a need and offer to help.":
                     $ responsive += 1
+                    $ confident += 1
                     him normal "Look around and see what people need help with. Then find a way to help them and offer to help for a fair price."
                     kid surprised "How do I know what people need?"
                     him determined "Look on the message board, or ask someone who's connected to the community."
                     kid sad "Too bad Sister Naomi's not here anymore..."
                     him concerned "Yeah, she'd probably have some great ideas. But Ilian or Natalia might know something, too. Or you could ask mom."
                     kid nervous "Okay."
-                "Ask the miners.":
+                "Ask the miners." if miners_strong():
                     $ responsive += 1
                     him normal "Ask the miners. They work pretty hard all day, and they usually have a lot of credits, so maybe there's things you could do that they would pay for."
                     kid determined "Okay, I'll ask next time I go see Anya."
-                "Ask Pete.":
+                "Ask Pete." if mavericks_strong():
                     $ responsive += 1
                     him normal "Ask Pete. He might not be able to pay in credits, but he has stuff you can't get anywhere else that other people might pay well for."
                     kid annoyed "He lives so far away. If I had a bike, maybe that would work. I'm going to ask the miners."
                 "Figure it out yourself.":
                     $ demanding += 1
+                    $ confident += 1
                     him normal "I'm sure you'll figure something out."
-                    kid shifty "Thanks for nothing."
+                    kid nervous "Thanks for nothing."
 
             "[kid_name] found a job tutoring some kids in one of the miner families."
             "It paid pretty well, but she often didn't get home until after dark."
@@ -7477,7 +7676,7 @@ label family27:
             him angry "I don't have time to discuss it! Go figure it out yourself if you want a bike so bad!"
             kid angry "Maybe I will!"
             $ neglectful += 1
-        "Offer to buy her one in exchange for more work.":
+        "Offer to buy her one in exchange for more work." if (credits >= 300):
             $ demanding += 1
             $ confident += 1
             him normal "I can understand why you'd want a bike. Now that Lettie's gone, I kind of want one, too."
@@ -7487,7 +7686,7 @@ label family27:
             him normal "If I'm going to be paying for your bike, then you'll need to do work for me on the bike."
             kid concerned "Okay, like what?"
             him happy "Anything I ask."
-            kid shifty "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
+            kid nervous "But... what if I have homework, or I'm tired, or I don't want to do it right then?"
             him determined "Those are my terms. If I buy the bike, then I get a say in how the bike is used."
             kid angry "That's not fair! You're going to make me waste all my time doing your work!"
             him normal "C'mon, I'm not that mean. It'll probably just be a trip to the storehouse once in a while or something."
@@ -7506,7 +7705,14 @@ label family27:
                 kid annoyed "I guess that's the best deal I'm going to get."
                 him determined "I'm the parent; those are the rules."
                 $ authoritarian += 1
-            $ modify_credits(-bike_cost)
+            scene stars with fade
+            $ modify_credits(200)
+            "With [kid_name]'s help, I was able to make some extra money from the farm..."
+            $ modify_credits(-bike_cost)   
+            "...but not nearly enough to cover the cost of the bike."
+            $ kid_work_slider += 20
+            if (kid_work_slider > 100):
+                $ kid_work_slider = 100
 
     scene farm_exterior with fade
     "[kid_name] finally got her bike, which was good, but it also meant we didn't see her as much."
@@ -7524,9 +7730,9 @@ label family27:
     her surprised "Maybe she should quit and concentrate on her schooling..."
     him determined "No way. It's good for her to do something real and useful. She'll use that way more in life than whatever random stuff they're teaching her in school."
     her annoyed "It's not 'random stuff', it's math, literature, science, social studies -- you know, the stuff that makes us human."
-    him annoyed "Yeah, but she's almost 18. She needs to start exploring what she's going to be doing here as a contributing adult."
+    him annoyed "Yeah, but she's almost an adult. She needs to start exploring what she's going to be doing here to contribute."
     her angry "What about college?"
-    him normal "All they have here is independent study. I think she'd be better off starting to work and then studying more what she actually needs."
+    him determined "All they have here is independent study. I think she'd be better off starting to work and then studying more what she actually needs."
     her annoyed "A college education is important."
     him surprised "When was the last time you used calculus? History? And you don't need a class to enjoy a good book or think about philosophy or whatever."
     her determined "I use math all the time at work."
@@ -7541,10 +7747,9 @@ label family27:
     her concerned "Understanding the grievances of populists and revolutionaries throughout history helps me undestand why Pete left -- and to be wary of what RET could become."
     him concerned "Okay, but [kid_name] could still work and study at the same time."
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
-    $ parenting_style = get_parenting_style()
 
     # Reduce available work (even if you tell her not to work, she still does)
-    $ kid_other_work = int(competence * .35)
+    $ kid_other_work = roundint(competence * .35)
     menu:
         "What should I say?"
         "We should encourage her work.":
@@ -7567,6 +7772,7 @@ label family27:
             with dissolve
             kid angry "What do you mean, I can't work? Aren't you always the ones telling me I should work hard, be responsible, figure out what I'm going to do when I grow up??"
             her concerned "There's still a lot you need to learn. Right now your schooling is more important."
+            $ parenting_style = get_parenting_style()
             if (parenting_style == "authoritative"):
                 kid sad "Maybe you're right..."
                 $ family27_no_work = True
@@ -7637,6 +7843,7 @@ label family28:
 
     kid determined "I'm heading out. Bye."
     her concerned "Okay, be home for dinner."
+    hide kid with moveoutleft
     him determined "She sure has been gone a lot lately."
     her surprised "Do you think she's okay?"
     him concerned "I don't know..."
@@ -7676,6 +7883,7 @@ label family28:
                             "So she usually rode all the way to Pete's house, but not to hang out with Travis..."
                         else:
                             him_c "Yeah, I do. Just checking up on her."
+                            # TODO: better metaphor than hippo
                             pete_c "Ha! You're about as sly as a hippo, you know that?"
                             him_c "Yeah, yeah."
 
@@ -7741,7 +7949,7 @@ label family28:
     show him normal at midright with dissolve
     show her normal at center
     show kid normal at midleft
-    with move
+    with moveinleft
 
     her concerned "She was delivering firegrass and alcohol to Brennan, for the miners."
     kid determined "I wasn't using any of it! I just deliver it!"
@@ -7841,7 +8049,7 @@ label family28:
             him happy "Life's too short to worry so much about stuff like that! If you get the chance, enjoy yourself!"
             kid shifty "Yeah, that's what Brennan said..."
             her annoyed "Brennan said that, huh?"
-            kid determined "Yeah, and he handed me a cup to try."
+            kid determined "Yeah, when I tried a sip."
             him surprised "Brennan offered you alcohol?"
             $ neglectful += 1
         "A little bit's fine now and then.":
@@ -7853,7 +8061,7 @@ label family28:
             $ permissive += 1
         "Listen to your mom.":
             him determined "Your mom's right. Stay away from that stuff!"
-            her conerned "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
+            her concerned "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
             kid nervous "Well it was just the one time, so it's not a big deal."
             her surprised "Just the one time...?  Wait, did Brennan give you alcohol?"
             $ authoritarian += 1
@@ -7869,19 +8077,15 @@ label family28:
     her determined "I'm going to have to talk to him about that."
     him determined "Or maybe I should."
     kid surprised "What? What's the big deal?"
-    him sad "A guy like Brennan giving alcohol to a teenage girl is like..."
-    her nervous "It's like..."
-    kid concerned "What? What is it like?"
-    him determined "Like giving firegrass to a two year old, just to watch them act all crazy."
     her concerned "Some people think it's fun to get other people drunk."
-    him annoyed "When people are drunk, their inhibitions are down. They are more willing to do things they might not otherwise do."
+    him annoyed "When people are drunk, their inhibitions are down. They are more willing to do...things... they might not otherwise do."
     kid surprised "You mean like... Brennan wouldn't do that!"
-    her sad "..."
+    her nervous "..."
     him sad "..."
-    kid concerned "...would he?"
     her concerned "Not on purpose, but..."
     him annoyed "But he doesn't always think about the consequences of his actions. Especially where women are concerned."
-    her normal "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
+    kid nervous "..."
+    her surprised "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
     him determined "And you can't trust Brennan."
     return
 
@@ -7906,14 +8110,14 @@ label family28_runaway:
     "[her_name] gave [kid_name] a big hug. [kid_name] glared at me over [her_name]'s shoulder when I didn't join in."
 
     # She is even less willing to work for you now
-    $ kid_other_work = int(competence * .75)
+    $ kid_other_work = roundint(competence * .75)
     return
 
 # 18 Earth years old
 # Graduation! Terra is stressed out about tests and a big social problem (Oleg? Travis? Anya?)
 # What kind of guy should she look for as a husband?
 label family29:
-    $ parenting_style = get_parenting_style()
+    play music tender
     scene farm_interior with fade
     show her concerned at midleft
     show bro determined at center
@@ -7924,7 +8128,12 @@ label family29:
     him surprised "Oh, I should tuck my shirt in!"
     her annoyed "You can do it on the way there. Let's just go!"
     scene path with fade
+    show her determined at center
+    show him sad at midleft
+    show bro surprised at left
+    with moveinleft
     "We walked to town like we had thousands of times before, but this time I trudged along as if my boots were covered in mud."
+    show her at right with move
     "[her_name] strode ahead, intent on arriving promptly, but [bro_name] stayed back with me."
     bro concerned "Dad? Are you okay?"
     him concerned "Yeah. I guess I just don't want to go for some reason."
@@ -7953,6 +8162,7 @@ label family29:
             him happy "Yeah! We've got lots of things to be happy about!"
         "Think about [kid_name].":
             him concerned "[kid_name] is pretty happy to be done with school."
+            $ parenting_style = get_parenting_style()
             if ((parenting_style == "authoritative") or (parenting_style == "authoritarian")):
                 bro normal "She even got pretty good grades."
             else:
@@ -7967,7 +8177,12 @@ label family29:
             him concerned "Come on, [bro_name], let's catch up to Mom."
             bro concerned "Okay. Not too fast, though!"
 
+    hide her
+    hide him
+    hide bro
+    with moveoutright
     "We hurried to catch up to [her_name], and all too soon we arrived at the graduation ceremony."
+    play music working
     scene community_center with fade
     if (kevin_elected):
         show kevin normal at center
@@ -7983,6 +8198,7 @@ label family29:
     "The whole community had gathered to celebrate."
     "Well, everyone except Pete's mavericks. They didn't participate in our schooling system."
     "[kid_name] and I walked home together."
+    play music thoughtful
     scene path with fade
     show him normal at midright
     show kid normal at midleft
@@ -8030,6 +8246,7 @@ label family29:
             kid nervous "Well, you and mom are... I mean you're always...it's obvious that you..."
             him flirting "Yup, your mom and I, we still got it."
             kid normal "ANYWAY!"
+            $ oleg_points += 1
         "It's somewhat important.":
             him determined "Well, generally you have sex with the person you're married to, so it helps if you're at least a little bit attracted to them..."
             kid concerned "Yeah..."
@@ -8037,6 +8254,7 @@ label family29:
             kid normal "Huh... that's just what Mom said."
             him surprised "Oh! Glad we're, uh, on the same page."
             kid nervous "So... Do you think just being good friends is enough?"
+            $ lorant_points += 1
         "It's really important.":
             him determined "It's pretty important. I mean... you want to enjoy having sex with your spouse, right?"
             kid surprised "So you wouldn't enjoy it if you weren't attracted to Mom?"
@@ -8046,21 +8264,28 @@ label family29:
             kid normal "Huh... I can see why Mom said to ask you about it."
             him surprised "You talked to Mom about this?"
             kid annoyed "Yeah, of course. But she said I should get a guy's perspective."
+            $ travis_points += 1
 
     him surprised "Wait, is this about you? You and..."
     menu:
         "...and Oleg?":
+            $ oleg_points += 1
             kid determined "I can't talk about who it is. He would be... This is just really personal stuff, okay?"
-        "...and Trevor?":
-            kid normal "Ha ha, yeah right! Trevor's attracted to everybody. He's got the opposite problem."
+        "...and Travis?":
+            $ travis_points += 1
+            kid normal "Ha ha, yeah right! Travis's attracted to everybody. He's got the opposite problem."
         "...and Lorant?":
+            $ lorant_points += 1
             kid surprised "Lorant? I don't think he-- look, I'm not telling you who it is, it's too personal!"
         "...and Anya?":
+            $ lorant_points -= 1
+            $ travis_points -= 1
+            $ oleg_points -= 1
             kid surprised "Anya?! No, we're not like that. You really don't know anything, do you?"
     him determined "It'll be hard for me to help you without knowing any more details. I'll keep everything in confidence unless someone's being hurt, okay?"
     kid nervous "I can't. Sorry, dad."
     him concerned "Okay, well whoever it is, it sounds like you have a good friend that you're thinking about entering a serious relationship with."
-    kid determined "I'm not saying anything about who it is. Just... assume it's a friend of mine."
+    kid determined "Dad, that's not-- Just... assume I have two friends who care about each other, but aren't that attracted to each other."
     him determined "Okay, okay! Can I ask some questions about these two mystery people, then?"
     kid annoyed "Maybe..."
     $ family29_question_count = 0
@@ -8084,7 +8309,7 @@ label family29:
         "Do they have similar life goals?" if not (family29_lifegoals):
             $ demanding += 1
             him surprised "Do they have similar life goals?"
-            kid normal "What does that even mean?"
+            kid surprised "What does that even mean?"
             him normal "Like, do they both value the same things? Education, hard work, family,  honesty -- things like that."
             kid concerned "Uh, I think so?"
             $ family29_lifegoals = True
@@ -8094,7 +8319,7 @@ label family29:
         "Have they been in other relationships?" if not (family29_otherrelationships):
             $ responsive += 1
             him determined "Have they ever been in a serious relationship with anyone else?"
-            kid concerned "I'm not answering that one."
+            kid annoyed "I'm not answering that one."
             $ family29_otherrelationships = True
             $ family29_question_count += 1
             if (family29_question_count < 3):
@@ -8152,6 +8377,7 @@ label family29:
         "Why do they want to get married?" if not (family29_why):
             $ responsive += 1
             him determined "Why do they want to get married?"
+            show kid sad with dissolve
             "She was quiet for a few minutes, thinking."
             kid concerned "I guess.. they don't really know that they do want to get married. Not yet. But it's a question that comes up, you know."
             $ family29_why = True
@@ -8159,7 +8385,7 @@ label family29:
             if (family29_question_count < 3):
                 jump family29_questions
 
-    if (has_trust):
+    if (has_trust()):
         "We reached our farm, but instead of going in, she stopped at the edge of one of the fields. I stopped next to her and waited."
         kid nervous "I guess I... uh, my friend, is wondering if it's worth even trying a relationship with someone if a marriage wouldn't work out."
         him surprised "I guess it also depends on what they think the purpose of marriage is."
@@ -8190,7 +8416,7 @@ label family29:
                 kid determined "Huh. Okay."
                 $ neglectful += 1
 
-        him normal "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
+        him explaining "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
         kid concerned "Yeah, I'll... tell her what you said."
         him surprised "And you should also tell her..."
         "I thought I could slip in one more piece of advice, but I wanted it to be good."
@@ -8220,6 +8446,7 @@ label family29:
                 kid annoyed "Thanks. Wow. That sure was helpful."
                 $ trust -= 1
                 $ demanding += 1
+                $ lorant_points += 1
             "Parents will always be there for you.":
                 him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
                 kid normal "Thanks, dad."
@@ -8230,31 +8457,34 @@ label family29:
                 kid nervous "What if they're still not attracted to each other?"
                 him normal "There's different levels of attraction. You don't need a  raging inferno of lust for a good marriage, but you should probably have at least a small spark of 'I'd like to kiss this person'."
                 kid happy "Ha, ha."
+                $ oleg_points += 1
             "There's no point in a relationship without physical attraction.":
                 him "There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
                 kid concerned "Hmmm, okay."
+                $ travis_points += 1
     else:
         "We reached our farm, and I paused outside the front door, ready to talk some more. But [kid_name] shook her head."
     scene moons with fade
-    show him determined at midleft, sitting
+    show him concerned at midleft, sitting
     with dissolve
     "She went inside the house, and I stayed outside for a few minutes, watching the stars and thinking about how my daughter was growing up."
     "[her_name] came out and joined me."
     show her surprised at midright with moveinright
     show her at sitting with move
     her surprised "You guys talking about her 'friend'?"
-    him concerned "Yeah. Hopefully I said the right things."
+    him doubt "Yeah. Hopefully I said the right things."
     her normal "What did you say?"
     him content "A lot of things. It made me remember when we got married."
     her laugh "We didn't really know what we were getting into, did we?"
     him normal "There's some things you can't practice -- you just have to experience them for yourself."
-    her concerned "I know...I just want [kid_name] to be happy. Not just short-term happy; long-term, life satisfyingly happy."
-    him concerned "It feels like we have less and less control over that, doesn't it?"
+    her concerned "I know...I just want [kid_name] to be happy. Not just short-term happy; long-term, life-satisfyingly happy."
+    him sad "It feels like we have less and less control over that, doesn't it?"
     her nervous "Yeah..."
     show her normal at center, sitting with move
     "We sat outside right next to each other, leaning our heads together. Her hair tickled my neck and I breathed in its soft scent of hospital soap and antiseptic."
     show him content with dissolve
     "She massaged my hand in hers, knowing just the right places and just the right amount to push."
+    show him sleeping with dissolve
     "I carefully massaged her neck with my other hand, exactly the way she liked."
     her sleeping "Mmmmm."
     "We leaned into each other and gazed up at the moons."
@@ -8272,26 +8502,28 @@ label family30:
         # Medicine, either at home or on Earth, trying to make her parents happy
         "She had been spending all her time at the clinic with [her_name], learning and assisting."
         "[her_name] found some online classes for her to take in anatomy and physiology and said [kid_name] was a diligent student."
+        $ boyfriend_name = get_boyfriend_name()
     elif (parenting_style == "authoritative"):  # ACi or ACI
         # Studies jellypeople and sociology-biology, living with you or married
         "Ever since that trip to the ocean where we communicated with the jelly people, [kid_name] had been obssessed with them."
         "Miranda had been meeting with them and studying them, and so [kid_name] joined her. She was also taking online classes in biology and sociology."
-        # TODO: does she have a boyfriend here? Oleg?
+        $ boyfriend_name = get_boyfriend_name()
 
     elif (parenting_style == "permissive"):     # Aci or AcI
         # Farming, either living in her parents' basement or on her own
         "[kid_name] didn't seem to have a specific passion -- she split her time between helping me farm and running her delivery service."
+        $ boyfriend_name = get_boyfriend_name()
 
-    else: #neglectful or inconsistent,          # aci or acI
+    else: #neglectful                             # aci or acI
         # She's still running her delivery service and dating Travis/Lorant
         "I hardly ever saw her -- it seemed like she was always out delivering things."
-        if is_independent():
-            $ boyfriend_name = "Travis"
-        else:
-            $ boyfriend_name = "Lorant"
-        "Or hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
+        $ boyfriend_name = "Lorant"
+        # TODO: modify these, or use these to help determine boyfriend instead of independence
+    
+    if (boyfriend_name != ""):
+        "Sometimes she was hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
-    if (attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH) and (independence < INDEPENDENCE_HIGH):
+    if ((attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH)):
         # If she is leaving with Lorant, you don't even find out about it until later
         "Some nights she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
         "If I'd known, would I have tried to stop her? Would it have made a difference?"
@@ -8299,6 +8531,7 @@ label family30:
         return
 
     # A spot opens up on the shuttle, and [her_name] is considering taking it.
+    play music sad
     scene farm_interior with fade
     show him normal at center with dissolve
     "One night I opened up the computer pad after [kid_name] and [her_name] had gone to bed. There was a message from Anya on it for [kid_name]."
@@ -8335,16 +8568,49 @@ label family30:
     "Finally, I went and sat outside under the moons and stars."
     scene moons with fade
     "Every inch of ground was saturated with memories."
-    # TODO: show these
+    # TODO: use CGs here? Test these...
+    scene fields with fade
+    show tractor at center
+    show baby_laugh at center, babybackpack_pos
+    show him surprised at center
+    with dissolve # TODO: different transition here? photo style?
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
+    scene farm_exterior with fade
+    show him happy at midright
+    show toddler_happy at center
+    with dissolve
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
+    scene barn with fade
+    show him happy at quarterleft
+    show toddler_shifty at center
+    show oleg normal at midleft
+    show travis normal at midright #TODO: show the right age for these guys. Or just make the image in GIMP and show it (screenshot if needed)
+    with dissolve
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
+    scene fields with fade
+    show him explaining at midright
+    show kid_happy at midleft
+    with dissolve
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
+    scene path with fade
+    show tween_normal at midleft
+    show bro_normal at midright
+    with dissolve
     "I remember her coming up that hill coming home from school with [bro_name]."
+    scene barn with fade
+    show goat at center
+    show tween_annoyed at midright
+    show him normal at quarterleft
+    with dissolve
     "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
+    scene plain with fade
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
+    scene barn with fade
+    show oleg at midleft
+    show teen_flirting at center
     "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though she had only ever seen it in videos."
 
+    scene moons with fade
     "Could she really leave all this behind?"
     "...could she really leave {b}me{/b} behind?"
     "The grief weighed on me like I was a horse with an unwelcome rider in the saddle."
@@ -8359,14 +8625,14 @@ label family30:
     "[kid_name] and [her_name] were at breakfast. If [kid_name] really only had until tonight, we needed to talk about this now."
     "As I walked in, it appeared they had started without me."
     scene farm_interior with fade
-    show her concerned at midright
+    show her concerned coat at midright
     show kid nervous at center
     with dissolve
-    show him normal at midleft behind kid with moveinleft
+    show him pout at midleft behind kid with moveinleft
 
-    her concerned "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
+    her concerned coat "I love Earth, but it's not a decision to make lightly. You might not ever be able to come back."
     kid annoyed "Well, you and dad left your parents to come here. How would this be any different?"
-    her determined "In some ways it's not...Oh, good morning, [his_name]. We saved you some hash browns."
+    her determined coat "In some ways it's not...Oh, good morning, [his_name]. We saved you some hash browns."
     "I was not in the mood for hash browns."
     him determined "So, you're thinking of going back to Earth?!"
     kid nervous "Maybe! I never even thought of it as a possibility, but then Anya said she wanted to stay here with Travis and asked if I wanted her spot!"
@@ -8374,20 +8640,20 @@ label family30:
         him concerned "I thought you were dating Travis."
         kid angry "Ugh! Dad, we broke up so long ago! He's been with Anya for like, three months, even though their relationship is totally toxic, but anyway..."
     him annoyed "You'd have to be an idiot to go back to Earth. Talaam is so much better; that's why we came here."
-    her annoyed "There are some great things about Earth."
+    her annoyed coat "There are some great things about Earth."
     him determined "Like what? Traffic? Urban sprawl? Corrupt governments? Terrorists?"
-    her angry "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
+    her angry coat "How about universities, live music, rain forests, grocery stores, and indoor plumbing?"
     him annoyed "Yeah, but all the people she loves will be here, on Talaam."
     kid concerned "Most of them..."
-    her surprised "Is there someone special to you that's headed back to Earth?"
+    her surprised coat "Is there someone special to you that's headed back to Earth?"
     him determined "Please don't tell me this is about following some boy. No boy is worth that!"
     kid sad "It's not like that! I mean, I have friends that will be going back on the shuttle, like Becca, and Lorant..."
     if (boyfriend_name == "Lorant"):
         him angry "It {b}is{/b} about a boy!"
-        her annoyed "I'm sure Lorant's not the only reason she wants to go back to Earth."
+        her annoyed coat "I'm sure Lorant's not the only reason she wants to go back to Earth."
         kid annoyed "Besides, that's what Mom did. Follow her crazy boyfriend to a different planet."
         him determined "That was different. We were married."
-        her determined "Just barely."
+        her determined coat "Just barely."
         kid concerned "Anyway, he's just one of the reasons I want to go."
 
     him annoyed "What would you even do on Earth?"
@@ -8399,7 +8665,7 @@ label family30:
         kid happy "Earth is this incredible, amazing place that almost every book or movie or game is based on, and I've never even been there. If I did, maybe things would make more sense to me."
         if (boyfriend_name == ""):
             kid shifty "Plus there's probably better guys there. My dating pool is so small it's more like a wading pool."
-            her concerned "Well, there's definitely more guys there..."
+            her concerned coat "Well, there's definitely more guys there..."
             him annoyed "...but I don't know about better ones."
 
     kid annoyed "I'm not even sure if I'll go yet, so don't make it into this big deal, okay?"
@@ -8414,23 +8680,23 @@ label family30:
                 him normal "This is a rare opportunity. I love Talaam, but if you want to become a doctor you really should study there."
             else:
                 him normal "This is a rare opportunity. I love Talaam, but you can learn so much more about biology from experts there."
-            her surprised "Wow, I never thought I'd hear you say that."
+            her surprised coat "Wow, I never thought I'd hear you say that."
             him annoyed "It doesn't mean she has to stay there forever. Hopefully she'll learn everything she can and bring it back here to make Talaam even better."
-            her concerned "I'm not sure if that would be possible..."
+            her concerned coat "I'm not sure if that would be possible..."
             kid concerned "There's too many things I just don't know...I wish I had more time!"
             $ authoritarian += 1
         "We need you here.":
             $ demanding += 1
             $ confident -= 2
             him concerned "[kid_name], we still need you here."
-            her annoyed "We can't keep her with us forever."
+            her annoyed coat "We can't keep her with us forever."
             him annoyed "There's few enough people on Talaam as it is. We can't afford to lose a single one, especially not our own daughter!"
             kid annoyed "Well it's not up to you, is it?!  I'm an adult now and I get to make my own decisions!"
             him concerned "That's true, but you ought to listen to the people who have known you longer than anyone else and always have your best interests at heart."
             kid angry "You just want me to stay here because you want my help on the farm."
             him angry "That's not the only reason!  [her_name] and I moved here because we wanted to raise kids away from all the crap that goes on on Earth. Do you have any idea of all the things you don't have to worry about, living here?"
             kid annoyed "No! I don't! And that's one reason why I want to go!"
-            her concerned "You don't have to decide right now..."
+            her concerned coat "You don't have to decide right now..."
             kid determined "Yeah, I kind of do. I have to tell Anya by tonight."
             "We were all quiet for a few moments, thinking."
             $ authoritarian += 1
@@ -8440,16 +8706,16 @@ label family30:
             him normal "It's your choice, but please think carefully about the consequences either way."
             kid surprised "Like what?"
             him concerned "For example, if you went to Earth, it might be difficult to come back here. We might never see you again."
-            her concerned "On the other side, if you decide not to go, you might never get that chance again, either."
+            her concerned coat "On the other side, if you decide not to go, you might never get that chance again, either."
             him determined "If you went to Earth, you'd be completely alone. No family, no friends, no community supporting you."
-            her determined "But you'd have a chance to meet so many more new people and friends that you would never meet here."
+            her determined coat "But you'd have a chance to meet so many more new people and friends that you would never meet here."
             him normal "On Earth, you could get a traditional college degree in anything you wanted."
-            her concerned "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
+            her concerned coat "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
             him annoyed "If you go to college on Earth, they'll tell you all the classes you need to take and you'll have to write papers that say what your teachers want and do exactly what they say."
-            her normal "But here, you're in charge of your education, and while that gives you a lot of freedom to study what you want, it might be hard to stay motivated and learn efficiently without as much structure."
+            her normal coat "But here, you're in charge of your education, and while that gives you a lot of freedom to study what you want, it might be hard to stay motivated and learn efficiently without as much structure."
             kid surprised "That's... a lot to think about!"
             him normal "Good! If you're not thinking about it a lot, you'll probably make the wrong decision."
-            her concerned "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
+            her concerned coat "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."
             kid concerned "Okay... yeah. I guess I have a lot to think about."
             "She was quiet for several moments. We waited."
             $ authoritative += 1
@@ -8457,11 +8723,11 @@ label family30:
             $ responsive += 1
             him normal "It's your choice. Just do whatever makes you happy."
             kid annoyed "I don't know if going to Earth will make me happy! I don't even know what it's like!"
-            her concerned "Going to Earth or not going to Earth is not going to make you happy."
+            her concerned coat "Going to Earth or not going to Earth is not going to make you happy."
             kid sad "Then what will?"
-            her normal "Loving people and doing good will make you happy. You can do that anywhere."
+            her normal coat "Loving people and doing good will make you happy. You can do that anywhere."
             kid annoyed "So you're saying it doesn't matter where I go?"
-            her concerned "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
+            her concerned coat "You can be happy anywhere. But if you really want to go to Earth, then maybe you should."
             him concerned "It's your choice, sweetie."
             $ permissive += 1
         "Don't ask me what to do.":
@@ -8469,11 +8735,11 @@ label family30:
             him annoyed "Why did you even bring it up? You're just going to do whatever you want anyway."
             kid annoyed "Well maybe I wanted some advice before I made up my mind! If I did, though, I definitely wouldn't ask you!"
             "She stormed away to her room."
-            her annoyed "That was a stupid thing to say."
+            her annoyed coat "That was a stupid thing to say."
             him angry "What? It's not like she listens to us."
             her angry "You don't know your own daughter at all, do you? She acts like she's not listening and she doesn't care what we think, but she thinks about everything we tell her."
             him determined "Well I've never seen that."
-            her determined "I have. Now if you'll excuse me, I need to try and undo all the damage you just did."
+            her determined coat "I have. Now if you'll excuse me, I need to try and undo all the damage you just did."
             "She joined [kid_name] in her room and I was left alone. They talked for hours."
             "That was fine with me. She'd decide what she wanted and tell me then."
             "In the meantime, somebody had to go and get the work done around here."
@@ -8486,7 +8752,7 @@ label family30:
     "[kid_name] burst into tears also."
     kid cry "I just don't know!"
     "...and soon [her_name] was crying, too."
-    her cry "My little girl..."
+    her cry coat "My little girl..."
     show him sad with dissolve
     menu:
         "What should I do?"
@@ -8503,26 +8769,26 @@ label family30:
             "This crying was getting us nowhere. There was only one remedy..."
             "Dad jokes."
             him surprised "Hey, hey. Wow. Do you know what I love about Talaam?"
-            her concerned "What?"
+            her concerned coat "What?"
             him determined "Its 'rotation' really 'makes my day'."
-            her surprised "..."
+            her surprised coat "..."
             show him normal with dissolve
             kid annoyed "Was that supposed to be a joke?!"
             bro normal "Ha-ha!"
             him content "And, you know, even though it means a lot of work, I'm really looking forward to spring."
-            her surprised "You are?"
+            her surprised coat "You are?"
             him determined "Yup. I'm so excited I wet my plants."
             show him laugh with dissolve
             bro happy "Ha ha ha!"
-            her normal "Okay, that was pretty bad."
+            her normal coat "Okay, that was pretty bad."
             show him normal with dissolve
             kid normal "If you're trying to make me want to leave, you're doing a pretty good job."
             "I brought over some handkerchiefs and everyone composed themselves, except for [bro_name], who was still laughing and looked like he might actually wet his pants."
 
-            her concerned "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
+            her concerned coat "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
             kid nervous "Armor on a scarecrow?"
             him surprised "That sounds a little extreme."
-            her flirting "Its suit is...impeccable."
+            her flirting coat "Its suit is...impeccable."
             him concerned "..."
             bro happy "Get it? ImPECKable?!"
             kid annoyed "Okay, okay, I'll quit crying, just PLEASE stop the puns!!"
@@ -8532,7 +8798,7 @@ label family30:
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."
             jump family30_night
 
-    her surprised "Is that really what time it is?! I'm late!"
+    her surprised coat "Is that really what time it is?! I'm late!"
     bro surprised "I'm late for school!"
     him concerned "You two take the tractor; I won't need it today."
     hide bro

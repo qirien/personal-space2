@@ -5,9 +5,10 @@ init -100:
     # Variables giving max age of stage in Talaam years
     define BABY_MAX = 3
     define TODDLER_MAX = 8
-    define CHILD_MAX = 16
+    define CHILD_MAX = 15
     define TWEEN_MAX = 22
     define YTEEN_MAX = 25
+    define TRANSITION_YEARS = [0, BABY_MAX+1, TODDLER_MAX+1, CHILD_MAX+1, TWEEN_MAX+1, YTEEN_MAX+1]
 
     # Talaam Events
     define MINERS_ARRIVE_YEAR = 11
@@ -19,7 +20,7 @@ init -100:
     define PAVEL_DIES_YEAR = 28
 
     # Static layout variables
-    define LEFT_COLUMN_WIDTH = 310
+    define LEFT_COLUMN_WIDTH = 300
     define MIDDLE_COLUMN_WIDTH = 480
     define RIGHT_COLUMN_WIDTH = 310
     define TOP_SECTION_HEIGHT = 520
@@ -34,28 +35,25 @@ init -100:
     # Static indices that will never change
     define NAME_INDEX = 0
     define CALORIES_INDEX = 1
-    define NUTRITION_INDEX = 2
-    define VALUE_INDEX = 3
-    define WORK_INDEX = 4
-    define NITROGEN_INDEX = 5
-    define ENABLED_INDEX = 6
-    define PERENNIAL_INDEX = 7
-    define POLLINATED_INDEX = 8
-    define MAXIMUM_INDEX = 9
+    define VITA_INDEX = 2
+    define VITC_INDEX = 3
+    define VITM_INDEX = 4
+    define VALUE_INDEX = 5
+    define WORK_INDEX = 6
+    define NITROGEN_INDEX = 7
+    define ENABLED_INDEX = 8
+    define PERENNIAL_INDEX = 9
+    define POLLINATED_INDEX = 10
+    define MAXIMUM_INDEX = 11
 
-    define CROP_STATS_MAX = 9
-    define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Nutrition", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
+    define CROP_STATS_MAX = 10
+    define CROP_INFO_INDEX_NAMES = ["Name", "Calories", "Vitamin A", "Vitamin C", "Magnesium", "Value", "Work", "Nitrogen", "Enabled", "Perennial", "Pollinated", "Maximum"]
     define STAT_ICON_BASE = "gui/emoji/"
 
     # Nutritional data
     define VITAMINS_BASE = 20
-    define VITAMIN_A_CROPS = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":2, "tomatoes":1, "plums":1, "squash":8, "strawberries":0, "beans":0, "peanuts":0, "carrots":9, "turnips":0, "onions":0, "garlic":0, "spinach":6, "broccoli":2, "goats":1, "honey":0}
     define VITAMIN_A_LOW = 20
-
-    define VITAMIN_C_CROPS = {"fallow":0, "corn":1, "potatoes":6, "wheat":0, "peppers":9, "tomatoes":4, "plums":1, "squash":3, "strawberries":1, "beans":0, "peanuts":0, "carrots":1, "turnips":4, "onions":1, "garlic":1, "spinach":4, "broccoli":9, "goats":0, "honey":0}
     define VITAMIN_C_LOW = 20
-
-    define MAGNESIUM_CROPS = {"fallow":0, "corn":2, "potatoes":2, "wheat":1, "peppers":1, "tomatoes":1, "plums":1, "squash":2, "strawberries":0, "beans":6, "peanuts":5, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":3, "broccoli":1, "goats":1, "honey":0}
     define MAGNESIUM_LOW = 10
 
     # Calorie data
@@ -65,7 +63,6 @@ init -100:
     define WHEAT_COST = 200
 
     # Money data
-    define ANNUAL_EXPENSES_BASE = 2500
     define KELLY_SALARY = 2000
     define CALORIES_TO_MONEY_MULTIPLIER = 14
     define MONEY_YEAR = 6
@@ -80,12 +77,17 @@ init -100:
 
     # Static variables used for endings
     # TODO: Tweak these so all endings are possible.
-    define ATTACHMENT_HIGH = 45 #Max is ~60
+    define ATTACHMENT_HIGH = 25 #Max is ~60
     define ATTACHMENT_MAX = 60
-    define COMPETENCE_HIGH = 45 #Max is ~60
+    define COMPETENCE_HIGH = 25 #Max is ~60
     define COMPETENCE_MAX = 60
-    define INDEPENDENCE_HIGH = 20 #Max is ~32
-    define INDEPENDENCE_MAX = 32
+    define INDEPENDENCE_HIGH = 17 #Max is ~35
+    define INDEPENDENCE_MAX = 35
+    define FACTION_HIGH = 10
+    define FACTION_MAX = 20
+    define MINERS_HIGH = 12
+    define COLONISTS_HIGH = 12
+    define MAVERICKS_HIGH = 12
 
     define MAX_YEARS = 30
 
@@ -98,16 +100,17 @@ init -100:
 
     # Activity themes
     define audio.maintheme = "music/12-Found-Jeff Wahl_.ogg"
-    #define audio.maintheme = ""
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
-    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg"]
+    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg", "music/08-One More Sleep-Ray Montford.ogg"]
 
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
-    define audio.saxophone = "<from 79>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.saxophone = "music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.saxophone_solo = "<from 289>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
+    define audio.videogame = "music/08-Electrospective Skuz-Ambient Teknology.ogg"
 
     # Emotional themes
     # Happy/excited
@@ -121,11 +124,14 @@ init -100:
     define audio.thoughtful = "music/13-The Summer that Never Quite Ended-Jeff Wahl_.ogg"
 
     # Sad/Mad
-    define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg"
-    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg"
-    define audio.problems = "music/05-Providence-Ray Montford_.ogg"
-    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg"
-    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg"
+    define audio.sea = "music/17-The Sea-Jeff Wahl_.ogg" #ambient, has ocean waves in it
+    define audio.worried = "music/06-Nightfall-Ken Bonfield_.ogg" #slow, melancholy
+    define audio.problems = "music/05-Providence-Ray Montford_.ogg" #
+    define audio.sad = "music/01-May It Begin-Ray Montford_.ogg" #plodding through desert carrying a heavy sack of burdens
+    define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg" #something terrible is happening and I'm moving through molasses
+
+    #investigation? http://download.magnatune.com/artists/albums/justinstpierre-insulaire?song=6
+    # BUT we pay $89/month and can choose 10 songs per month, so we might not want to go over 20.
 
 
     ##
@@ -135,41 +141,76 @@ init -100:
     # TODO: Remove unused
     define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
 
-    define her = DynamicCharacter("her_name", color="#84b766", image="her", ctc="ctc_blink", ctc_position="nestled") #light mint green
+    define her = DynamicCharacter("her_name", color="#d1a2b8", image="her", ctc="ctc_blink", ctc_position="nestled") #light fuschia
     define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
-    define kid = DynamicCharacter("kid_name", color="#ca67ac", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
+    define kid = DynamicCharacter("kid_name", color="#5f2b4f", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
     define bro = DynamicCharacter("bro_name", color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
 
-    define naomi = Character("Sister Naomi Grayson", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
-    define pavel = Character("Mayor Pavel Grayson", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
-    define lily = Character("Dr. Lily Kealoha", color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
-    define sara = Character("Sara Hill-Andrevski", color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
-    define thuc = Character("Thuc Nguyen", color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
-    define ilian = Character("Ilian Andrevski", color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
-    define oleg = Character("Oleg Hill-Andrevski", color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
-    define brennan = Character("Brennan Callahan", color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
-    define pete = Character("Pete Jennings", color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define natalia = Character("Natalia Perón", color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
-    define helen = Character("Helen Jennings", color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
-    define travis = Character("Travis Jennings", color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define julia = Character("Julia Nguyen", color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
-    define martin = Character("Martín Perón", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
+    define naomi = Character("Sister Naomi", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
+    define pavel = Character("Mayor Pavel", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
+    define lily = Character("Dr. Lily", color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
+    define sara = Character("Sara", color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
+    define thuc = Character("Thuc", color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
+    define ilian = Character("Ilian", color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
+    define oleg = Character("Oleg", color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
+    define brennan = Character("Brennan", color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
+    define pete = Character("Pete", color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    define natalia = Character("Natalia", color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
+    define helen = Character("Helen", color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
+    define travis = Character("Travis", color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    define julia = Character("Julia", color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
+    define martin = Character("Martín", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
 
     define chaco = Character("Chaco", color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
     define kevin = Character("Kevin", color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
-    define zaina = Character("Zaina", color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow
+    define zaina = Character("Zaina", color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow #TODO same as Ilian
     define bandile = Character("Bandile", color="#d35400", image="bandile", ctc="ctc_blink", ctc_position="nestled") #tan brown
     define jellysquid = Character("", kind=nvl, color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
 
     define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 
+    ####
+    # Character Descriptions
+    ####
+    # TODO: show character icon
+    # TODO: Add hyperlinks to mentioned people
+    # TODO: Make a screen that actually uses these.
+    define character_bios = {
+        "her":"My wife, [her_name]. She's the colony doctor and the love of my life. She had a hard time adjusting to life away from Earth, but we've stuck together even when I forgot our anniversary, and when she got really homesick, and when she got pregnant and had to make her own maternity clothes.... She's an amazing woman.",
+        "him": "Who me? I'm just [his_name], a farmer on an alien planet... I like my family, my horse Lettie, growing things, and playing games. Sometimes I write bad poetry!",
+        "kid": "[kid_name] was one of the first babies born here. She's stubborn, smart, sassy, and completely adorable. She's [earth_year] Earth years old.",
+        "bro": "[bro_name] is my son. He feels things very strongly and has a lot going on inside his head, even though he doesn't say much. He's [bro_age] Earth years old.",
+        "Naomi": "Sister Naomi Grayson is the colony's spiritual and psychological expert. She leads religious services and gives therapy and stuff. Somehow she always seems to know who is in need and who could help and manages to arrange it in a kind way. She's married to Pavel, the mayor.",
+        "Pavel": "Pavel Grayson has been our mayor for... years, now. He's a good listener and tries to keep us all organized and deal fairly with each other. He's married to Naomi.",
+        "Lily": "Dr. Lily Kealoha has been here, researching this planet's geology and biology, for way longer than the rest of us. She keeps to herself unless you get her talking about rocks or plants, and then she's got a lot to say!",
+        "Sara": "Sara Hill-Andrevski is sort of like the mayor's administrative assistant? She keeps a lot of records and helps him stay organized. She's good friends with [her_name], and has a son Oleg. She's married to Ilian but they don't always live together.",
+        "Ilian": "Ilian Andrevski manages the storehouse where we keep all the food and supplies. He's a stickler for accuracy and rule-following and kind cranky. I think he needs more fresh air or something. He's married to Sara and he's Oleg's dad but sometimes she lives somewhere else. I don't blame them.",
+        "Thuc": "Thuc Nguyen has a great sense of humor and is a dedicated farmer. He met his wife Julia when they were both working for the Peace Corps in Cambodia, and now they have like ten kids, including Joanna, Miranda, Gardenia, and Van.",
+        "Oleg": "Oleg Hill-Andrevski is about [kid_name]'s age. Everyone kind of dotes on him, but somehow he's not spoiled, just sweet.",
+        "Julia": "Julia Nguyen is a midwife, farmer, and busybody. How she has time to keep a strictly organized household and know everyone's business is beyond me. She has a lot of kids; Joanna and Miranda are the oldest, and Gardenia and Van are the youngest.",
+        "Brennan": "Brennan Callahan is the only person to have left Talaam and come back so far. He was [her_name]'s nurse for a while when we first arrived, but he was also scouting out the planet for RET. And now he's the mining manager. His favorite things are wine, women, and being smug and condescending.",
+        "Pete": "Pete Jennings is a solid, reliable guy. He loves to read and a great researcher so in addition to managing a cattle herd and farm with his wife Helen he's also a librarian. Their son Travis is about [kid_name]'s age.",
+        "Helen": "Helen Jennings used to be so shy, she'd barely say more than two words to me. I don't know if she changed or just feels more comfortable around me now, but she's actually a real tough cowgirl. And she's the best painter we have. Maybe also the only painter? She and Pete have a son Travis who's about [kid_name]'s age.",
+        "Travis": "Travis Jennings is Helen and Pete's oldest son. He was born on the shuttle ride over. He's a fearless terror about a year older than [kid_name].",
+        "Natalia": "Natalia Perón is our closest neighbor. I'm kinda jealous of her horde of chickens and their delicious eggs. She's pretty good at making clothes and stuff. She and Martín have five kids: Tomás, Isabella, Raúl, Josephina (passed away), and Mateo.",
+        "Martín": "Martín Perón is dependable and honest. He doesn't deserve to be dying of cancer, though he's still fighting it. He and Natalia have four kids still alive (Tomás, Isabella, Raúl, and Mateo), and one who passed away shortly after we arrived (Josephina)",
+        "Chaco": "Chaco is the miner we were assigned to befriend. I still don't know much about him, except that he doesn't like to talk about himself.",
+        "Kevin": "Kevin is a no-nonsense, studious mining engineer who works for RET mapping out good places to mine. His wife is Zaina.",
+        "Zaina": "Zaina is a knowledgeable geologist with a great sense of humor. She laughs at my jokes, anyway. Her husband is Kevin."
+    }
+    
+
     ##
     # Custom transitions, positions, etc.
     ##
     define fade = Fade(0.2, 0.2, 0.2)
-    define irisout = CropMove(0.5, "irisout")
-    define irisin = CropMove(0.5, "irisin")
+    define slowfade = Fade(0.5, 0.5, 0.5)
+    define whitefade = Fade(0,0,0.5,color=(255,255,255,255))
+    define irisout = CropMove(0.1, "irisout")
+    define irisin = CropMove(0.1, "irisin")
+    define irisoutslow = CropMove(0.5, "irisout")
+    define irisinslow = CropMove(0.5, "irisin")
     define slowmove = MoveTransition(1.25)
     transform midleft:
         xpos 0.35 xanchor 0.5 ypos 1.0 yanchor 1.0
@@ -179,6 +220,18 @@ init -100:
         xpos 0.22 xanchor 0.5 ypos 1.0 yanchor 1.0
     transform quarterright:
         xpos 0.78 xanchor 0.5 ypos 1.0 yanchor 1.0
+    transform centered:
+        xpos 0.5 ypos 0.5 xanchor 0.5 yanchor 0.5
+
+    transform smallphoto:
+        size (370,350)
+    transform tilted:
+        choice:
+            rotate 0
+        choice:
+            rotate -10
+        choice:
+            rotate 10
 
     transform sitting:
         ypos 0.45 yanchor 0.0
@@ -224,22 +277,41 @@ init -100:
     transform slideinpausefade:
         xalign 1.25
         yalign 0.05
-        linear 1.5 xalign 0.05
-        pause 2.0
+        easein 1.0 xalign 0.1
+        pause 1.5
         linear 1.0 alpha 0.0
 
     # Highlight when moused over
     transform highlight_imagebutton:
-        xanchor 0.5
-        yanchor 0.5
-        xalign 0.5
-        yalign 0.5
         on hover:
-            zoom 1.0
             alpha 1.0
         on idle:
-            zoom 0.8
-            alpha 0.8
+            alpha 0.6
+
+    transform delay_fadein:
+        alpha 0.0
+        pause 0.5
+        easein 0.5 alpha 1.0
+
+    # A thumbnail version of a full screen image
+    transform thumbnail:
+        #zoom 0.22 #doesn't work if full screen
+        size (282,159)
+
+    # Display something the size of our screen
+    transform full_screen:
+        size (1280,720)
+
+    # Slide something in from the left, and slide it back to the left when it's hidden
+    transform popside:
+        # When it's shown, slide it right and fade it in.
+        on show:
+            xoffset -200.0  alpha 0.0 xzoom 0.1
+            linear 0.1 xoffset 0.0 alpha 1.0 xzoom 1.0
+
+        # When it's hidden, slide it left and fade it out.
+        on hide:
+            linear 0.1 xoffset -200.0 alpha 0.0 xzoom 0.1
 
     # A Transform to randomly pace quickly back and forth
     transform pace_back_and_forth:
@@ -265,29 +337,56 @@ init -100:
         linear 0.7 yoffset -100
         linear 0.7 yoffset 0
 
-# TODO: remove this if we decide not to make people orange with Displayable Prefixes
-#     image him happy orange = "orange:him happy"
-#    image kid happy orange = "orange:kid happy"
-
-# init -10 python:
-#     def orangify(img):
-#         return im.MatrixColor(img, im.matrix.desaturate() * im.matrix.tint(1.0, 1.0, 0.7))
-#
-#     config.displayable_prefix["orange"] = orangify
+    transform tiny_bounce:
+        easein 0.4 yoffset -3
+        easeout 0.4 yoffset 3
+        repeat
 
     # Setup ACHIEVEMENTS
     python:
-        # TODO: implement unlocking by calling achievement.grant(name)
+        show_which = ""
+        # Has achievement name, description, and spot for screenshot/icon
+        if (not persistent.achievements):
+            persistent.achievements = {
+            # Game Progression
+                "Carbon Copy": {"desc":"Trained Daughter in Farming", "file":None},
+                "Binary System": {"desc":"Father of Two", "file":None},
+                "Patience Grandmaster": {"desc":"Kept your Cool", "file":None},
+                "Talked the Talk": {"desc":"Answered Her Biology Questions", "file":None},
+                "Over the Hill": {"desc":"Turned 40", "file":None},
+            # Special weird things
+                "Scurvy Dog": {"desc":"Got Scurvy", "file":None}, 
+                "Rich Dad": {"desc":"Saved a LOT of credits!", "file":None}, 
+                "Poor Dad": {"desc":"Deep in debt", "file":None}, 
+                "Blackberry & Asparagus": {"desc":"Good Marriage Relationship", "file":None}, 
+                "Potato Papa": {"desc":"Planted almost all Potatoes", "file":None}, 
+                "Mutant Ninja Berries": {"desc":"Had Mutated Strawberries", "file":None}, 
+                "Chez Dad": {"desc":"Ate Alien Escargot", "file":None}, 
+                "Family Beeswax": {"desc":"Got Bees", "file":None}, 
+                "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":None},
+            # Achievements for Endings
+                "Bring Back My Baby": {"desc":"Ending #1", "file":None},
+                "Proving Herself": {"desc":"Ending #2", "file":None},
+                "Forever My Little Girl": {"desc":"Ending #3", "file":None},
+                "The Stars are Bright": {"desc":"Ending #4", "file":None},            
+            # Achievements for each parenting style
+            # TODO: change this to be the first time you choose one of these??
+                "Big Boss": {"desc":"Authoritarian Parent", "file":None},
+                "Firm Yet Fair": {"desc":"Authoritative Parent", "file":None},
+                "Who Needs Rules?": {"desc":"Permissive Parent", "file":None},
+                "Hands-Off Approach": {"desc":"Neglectful Parent", "file":None},
+            # Achievements for each community favored
+                "Xenophiliac": {"desc":"Friend to the Jellies", "file":None},
+                "Don't Tread on Me": {"desc":"Friend to the Mavericks", "file":None},
+                "It Takes This Village": {"desc":"Friend to the Colonists", "file":None},
+                "Miner Details": {"desc":"Friend to the Miners", "file":None},            
+            }
+
+        #Ordered list to show them in a specific order
         achievement_list = [
-        # Achievements for each ending
-        "Bring Back My Baby", "Mistakes to Call My Own", "Proving Herself", "Down to Earth", "Forever My Little Girl", "Extraterrestrial Life", "The Stars are Right", "The Future is Bright",
-        # Achievements for each parenting style
-        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Father Failure",
-        # Achievements for each community favored
-        "Xenophiliac", "Don't Tread on Me", "Law & Order", "What's Yours is Mine",
         # Game Progression
-        "Binary System", # became a father of two
         "Carbon Copy", # trained your daughter in farming
+        "Binary System", # became a father of two
         "Patience Grandmaster", # kept your cool around a toddler
         "Talked the Talk", # answered kid_name's sex ed questions
         "Over the Hill", # turned 40
@@ -295,11 +394,18 @@ init -100:
         "Scurvy Dog", # got scurvy
         "Rich Dad", # saved a lot of money
         "Poor Dad", # been in debt
-        "Better Half", # had a good relationship with her_name
-        "Potato Diet", # planted almost all potatoes
+        "Blackberry & Asparagus", # had a good relationship with her_name
+        "Potato Papa", # planted almost all potatoes
         "Mutant Ninja Berries", # had mutated strawberries
         "Chez Dad", # ate escargot
-        "Family Beeswax" # got bees
+        "Family Beeswax", # got bees
+        "Lousy Haircut", # shaved your head to get rid of lice
+        # Achievements for each ending
+        "Bring Back My Baby", "Proving Herself", "Forever My Little Girl",  "The Stars are Bright", 
+        # Achievements for each parenting style
+        "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
+        # Achievements for each community favored
+        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details",
         ]
 
         for title in achievement_list:
@@ -320,7 +426,7 @@ init -100:
 
     "yteen": "I might be rude to you and push you away sometimes, and I don't want you to tell me what to do. I will probably make some stupid choices and be hard on myself. Try not to solve my problems for me, but support and love me no matter what. \n\nI need to separate myself from you as I'm learning independence, so my words, appearance, music, and friends might seem really strange! \n\nPlease be interested in me and my world without trying to rule over it, and keep loving me and setting limits to protect me while I'm learning.",
 
-    "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please recognize my feelings and help me prepare to live on my own."
+    "teen": "I often have difficult questions, and I don't want easy answers. I am really thinking about these things and looking at a lot of different perspectives. If you listen to me, I will show you the same respect and hear what you have to say. If you are rude or try to tell me what to do, I will go somewhere else for answers. I want to find things out for myself. \n\nI'm learning about how to love and be a good friend and be on my own, and a lot of my emotions are still very strong. Please acknowledge my point of view and help me prepare to live on my own."
     }
 
 # Quotes to show at the end of each year.
@@ -349,12 +455,12 @@ define parenting_quotes = [
     "\"All research indicates that the most significant influence on the life of a teenager comes from his or her parents.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #21
     "\"Where did we ever get the crazy idea that in order to make children do better, first we have to make them feel worse? Think of the last time you felt humiliated or treated unfairly. Did you feel like cooperating or doing better?\"\n\nJane Nelson, {i}Positive Discipline{/i}", #22
     "\"Excessive control usually involves punishment which is humiliating to children. Permissiveness is humiliating to adults. Positive discipline is based on mutual respect and cooperation. Positive discipline incorporates firmness with dignity and respect.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #23
-    "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\n --Heraclitus", #24
+    "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\nHeraclitus", #24
     "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #25
     "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached.\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
     "\"There is a cognitive bias that makes people overestimate their own importance and their own ability to influence how things turn out - not just in child-rearing but in everything they do.\"\n\n -- Judith R. Harris", #27
     "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
-    "\"When the child internalizes a secure internal working model of self in relation to caregivers, a remarkable thing can occur— the child can dare to turn their back on caregivers and walk away from them\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #29
+    "\"The visions we offer our children shape the future. It matters what those visions are. Often they become self-fulfilling prophecies. Dreams are maps.\"\n\nCarl Sagan", #29
     "\"Raising a child is in many ways is a long process of saying goodbye.\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #30
 
 ]

@@ -1,36 +1,75 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
 
-screen test_family_photo_screen():
-    frame:
-        xfill True
-        yfill True
-        hbox:
-            vbox:
-                label "Photo 1"
-                add "family_photo_small happy"
-            vbox:
-                label "Photo 2"
-                label "We'll move this down a little."
-                add "family_photo_small happy"
-            textbutton "Done" action Return()
-
 label test_family_photo:
     $ year = 10
-    $ bro_age = 0
+    $ bro_age = -1
+    $ bro_years = 0
     scene stars with fade
-    show family_photo happy with moveinleft
-    "Scrapbook time! Aren't we cute? We could use our smaller photo, too."
-    hide family_photo
-    show family_photo_small happy at center,kid_pos with moveinright
-    "But when we try to do this in a screen..."
-    call screen test_family_photo_screen
-    "Seems strange."
+    "Scrapbook time! Aren't we cute?"
+    $ authoritarian = 10
+    $ marriage_strength = 10
+    show family_photo_small Aci at center,kid_pos with moveinright
+
+    "We weren't ready..."
+
+    $ authoritarian = 0
+    $ permissive = 10
+    $ marriage_strength = 0
+    show family_photo_small acI at center,kid_pos with moveinright
+
+    "She has her eyes closed..."
+
+    $ permissive= 0
+    $ neglectful = 10
+    $ marriage_strength = 1
+    show family_photo_small aCI at center,kid_pos with moveinright
+
+    "We weren't ready..."
+
+
     return
 
+label test_endings:
+    $ year = 30
+    $ bro_birth_year = 8
+
+    call ending_ac
+    call ending_aC
+    call ending_Ac
+    call ending_AC
+    
+    return
+
+label test_parenting_style:
+    # watch(authoritative, authoritarian, permissive, neglectful)
+    while True:
+        $ authoritative = renpy.random.randint(0,20)
+        $ authoritarian = renpy.random.randint(0,20)
+        $ permissive = renpy.random.randint(0,20)
+        $ neglectful = renpy.random.randint(0,20)
+        $ pstyle = get_parenting_style()
+        "Parenting style: [pstyle]"
+
 label test_emoji:
+    "First we'll test the parenting style emoji."
+    $ get_parenting_style()
+    $ authoritative = 10
+    "Authoritative"
+    $ get_parenting_style()
+    $ authoritarian = 20
+    "Authoritarian"
+    $ get_parenting_style()    
+    $ permissive = 30
+    "Permissive"
+    $ get_parenting_style()    
+    $ neglectful = 40
+    "Neglectful"
+    $ get_parenting_style()
+    "And next we'll test message board emoji."
+
     nvl clear
-    him_c "I don't usually use emoji...{emoji=blush}"
+    him_c "I don't usually use emoji...{emoji=blush}" 
     sara_c "But I do! {emoji=happy} All the time!"
     him_c "Yes, yes, we know. {emoji=grimace}"
     brennan_c "Were you talking about me? {emoji=grin}"
@@ -70,7 +109,7 @@ label test_farming_screen:
     if (renpy.random.random()  > 0.9):
         $ enable_crop("turnips")
     while (year <= MAX_YEARS):
-        $ competence = year
+        $ total_competence = year
         $ earth_year = get_earth_years(year)
         if (year > 1):
             $ years_yield = farm.process_crops()
@@ -83,11 +122,11 @@ label test_farming_screen:
         $ read_messages = False
         $ show_year = year
         call screen plan_farm
-        label test_continue:
-            if (renpy.random.random()  > 0.8):
-                $ farm_size += 1
-            $ year += 1
-            $ notifications = ""
+        # label test_continue:
+        #     if (renpy.random.random()  > 0.8):
+        #         $ farm_size += 1
+        #     $ year += 1
+        #     $ notifications = ""
     return
 
 label demo:
@@ -100,12 +139,9 @@ label demo:
     $ earth_year = get_earth_years(year)
     $ is_liaison = False
 
-    $ attachment = 2
-    $ competence = 5
-    $ independence = 3
-    $ total_demanding = 5
-    $ total_responsive = 5
-    $ total_confident = 5
+    $ total_attachment = 2
+    $ total_competence = 5
+    $ total_independence = 3
     $ authoritarian = 0
     $ authoritative = 0
     $ permissive = 0
@@ -113,7 +149,9 @@ label demo:
     $ mavericks = 0
     $ colonists = 0
     $ miners = 0
-
+    $ total_mavericks = 0
+    $ total_colonists = 0
+    $ total_miners = 0 
 
     # FARMING CHOICES
     play music audio.computer fadein 2.0
@@ -392,9 +430,9 @@ label tests:
             call test_family_photo
         "Emoji":
             call test_emoji
-        "Baby Positions":
+        "Dialogue Test":
             #call test_positions
-            call baby_positions
+            call test_dialogue
         "Omake":
             call omake
         "Sprites":
@@ -403,10 +441,28 @@ label tests:
             call test_message_board
         "Trailer":
             jump trailer
+        "Test Endings":
+            call test_endings
         "Quit":
             return
 
     jump tests
+    return
+
+label test_dialogue:
+    $ year = 25
+    scene aurora_animated with fade
+    show him normal at midright
+    show her happy at midleft
+    with dissolve
+    her happy "Thanks so much for taking my turn tonight! I had a crazy day."
+    him flirting "I'll cook for you any time!"
+    show kid normal at center with moveinleft
+    kid surprised "WHAT is THAT?!"
+    him pout "It's dinner."
+    kid annoyed "Yeah, but what is it?!"
+    her concerned "Is it... crabird?"
+    him annoyed "No!"
     return
 
 label test_message_board:
@@ -449,59 +505,45 @@ label test_jump_year:
     $ earth_year = get_earth_years(year)
     $ bro_birth_year = 8
     $ year8_have_baby = True
+    $ credits = 1000
     menu:
         "What type of parent are you?"
         "Authoritarian":
-            $ attachment = 0
-            $ competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
-            $ independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
-            $ total_demanding = year
-            $ total_responsive = 0
-            $ total_confident = year/4
+            $ total_attachment = 0
+            $ total_competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
+            $ total_independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
             $ authoritarian = year
             $ authoritative = 0
             $ permissive = 0
             $ neglectful = 0
         "Authoritative":
-            $ attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
-            $ competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
-            $ independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
-            $ total_demanding = year
-            $ total_responsive = year
-            $ total_confident = year
+            $ total_attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
+            $ total_competence = year * (COMPETENCE_HIGH/float(MAX_YEARS))
+            $ total_independence = year * (INDEPENDENCE_HIGH/float(MAX_YEARS))
             $ authoritarian = 0
             $ authoritative = year
             $ permissive = 0
             $ neglectful = 0
         "Permissive":
-            $ attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
-            $ competence = 0
-            $ independence = 0
-            $ total_demanding = 0
-            $ total_responsive = year
-            $ total_confident = year/4
+            $ total_attachment = year * (ATTACHMENT_HIGH/float(MAX_YEARS))
+            $ total_competence = 0
+            $ total_independence = 0
             $ authoritarian = 0
             $ authoritative = 0
             $ permissive = year
             $ neglectful = 0
         "Neglectful":
-            $ attachment = 0
-            $ competence = 0
-            $ independence = 0
-            $ total_demanding = 0
-            $ total_responsive = 0
-            $ total_confident = 0
+            $ total_attachment = 0
+            $ total_competence = 0
+            $ total_independence = 0
             $ authoritarian = 0
             $ authoritative = 0
             $ permissive = 0
             $ neglectful = year
         "Random":
-            $ attachment = renpy.random.randint(0,ATTACHMENT_MAX)
-            $ competence = renpy.random.randint(0,COMPETENCE_MAX)
-            $ independence = renpy.random.randint(0,INDEPENDENCE_MAX)
-            $ total_demanding = renpy.random.randint(0,COMPETENCE_MAX)
-            $ total_responsive = renpy.random.randint(0,ATTACHMENT_MAX)
-            $ total_confident = renpy.random.randint(0,INDEPENDENCE_MAX)
+            $ total_attachment = renpy.random.randint(0,ATTACHMENT_MAX)
+            $ total_competence = renpy.random.randint(0,COMPETENCE_MAX)
+            $ total_independence = renpy.random.randint(0,INDEPENDENCE_MAX)
             $ authoritarian = renpy.random.randint(0,year)
             $ authoritative = renpy.random.randint(0,year-authoritarian)
             $ permissive = renpy.random.randint(0,year-authoritarian-authoritative)
@@ -546,17 +588,41 @@ label test_sprite(sprite_name="kid"):
     return
 
 label test_crops:
-
+    $ testing_mode = True
     $ year = 1
 
-    while (year <= 30):
+    while (year <= MAX_YEARS):
+        $ total_competence = year
+        $ earth_year = get_earth_years(year)
+        if (bro_birth_year != 0):
+            $ bro_years = year - bro_birth_year
+            $ bro_age = get_earth_years(bro_years)
+        if (year > 1):
+            $ years_yield = farm.process_crops()
+            if (year > MONEY_YEAR):
+                $ income = farm.calculate_income(years_yield)
+                $ modify_credits(income)
+                $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
+                if (allowance_amount != 0):
+                    $ modify_credits(allowance_amount * 7)
+        if (crop_enabled("wheat")):
+            $modify_credits(-WHEAT_COST)
         $ farm.reset_crops(farm_size)
-        $ farm.crops.setDefault()
-        $ renpy.notify("Year [year]")
+        $ read_messages = False
+        $ show_year = year
+        call screen plan_farm
+        label test_continue:
+            $ notifications = ""
+            $ current_work = get_work_available()
+            $ total_work = farm.get_total_work()
 
-        $ work_event = get_next_work_event()
-        call expression work_event
-        $ year += 1
+            # MALNUTRITION EVENT (optional)
+            if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
+                call bad_nutrition
+            $ work_event = get_next_work_event()
+            call expression work_event
+            $ year += 1
+
 
     "The end"
     jump ending
@@ -570,8 +636,6 @@ label test_family:
     $ attachment = 0
     $ competence = 0
     $ independence = 0
-    $ total_demanding = 0
-    $ total_responsive = 0
     $ authoritative = 0
     $ authoritarian = 0
     $ permissive = 0
@@ -583,15 +647,10 @@ label test_family:
         $ renpy.notify("Year [year]")
         call expression "family" + str(year)
         # Increase child stats based on this year's parenting decisions
-        call increase_attachment
-        call increase_competence
-        call increase_independence
+        call increase_stats
 
         # Reset our variables while keeping a running total
-        $ total_demanding += demanding
-        $ total_demanding = 0
-        $ total_responsive += responsive
-        $ total_responsive = 0
+        call reset_variables
 
         $ year += 1
 

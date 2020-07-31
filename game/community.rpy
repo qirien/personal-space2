@@ -6,7 +6,7 @@
 label community_intro:
     play music community
     scene fields with fade
-    "Luckily, we weren't alone on Talaam. There were several hundred other colonists here, now. Enough to feel like a real community, and not just  a few struggling pioneers."
+    "The three of us were just some of the several hundred other colonists on the planet of Talaam. Enough to feel like a real community, but few enough that we all knew each other."
     show pete normal at midleft
     show thuc normal at midright
     show natalia normal at center
@@ -20,10 +20,15 @@ label community_intro:
     show ilian normal at midright
     with dissolve
     "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
-    "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but we learned to get along."
+    "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but somehow we figured out how to get along."
     return
 
-# New colonists arrive
+#######################################################################################
+#
+# COMMUNITY 1: New colonists arrive
+#
+#######################################################################################
+
 label community1:
     play music happy
     $ asked_kids = False
@@ -38,6 +43,7 @@ label community1:
     $ tell_Perons = False
     scene community_center with fade
     show him normal at center
+    play sound "sfx/people.mp3"
     "Some new colonists arrived from Earth, sent by Rare Earth Tech."
     "After the introductions, I got in line with my friend Thuc to have some soup."
     show him normal at midright with move
@@ -159,18 +165,18 @@ label community1:
             him surprised "Yes, I can."
             him normal "First let me tell you a little bit about my family."
             scene stars with fade
-            show her normal at center
-            show kid normal at center, baby_pos
+            show her happy baby coat at center
+            #show kid normal at center, baby_pos
             with dissolve
             him "I have a daughter, [kid_name] - she's about three Earth months old."
             him "[her_name] is my wife and she's also the doctor in our clinic."
             him "She tries to be objective, but she also feels passionate about her job."
             zaina "I think that describes most of us."
-            show her pout with dissolve
+            show her concerned coat with dissolve
             him "Some people have complained that her bedside manner is a little callous."
             him "So her objectivity is more relevant to customer satisfaction than, say, mine."
             kevin "Are you implying that your carrots cannot feel your love?"
-            him "Correct. Unless that love manifests itself in better care."
+            him "Probably not. Unless that love manifests itself in better care."
             hide her
             hide kid
             with dissolve
@@ -233,7 +239,6 @@ label community1:
                             him "No, one of my friends was driving it."
                             zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
                             him "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
-                            # TODO: give bonus to mavericks here?
                     him "Anyway, their kids are old enough to help around the colony a lot. Their oldest son just got married."
                     hide martin
                     hide natalia
@@ -280,9 +285,15 @@ label community1:
 
     #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
     # Maybe something about building a park/playground for everyone?
+    stop sound fadeout 1.0
     return
 
-# 2 - bring whole harvest in to storehouse?
+#######################################################################################
+#
+# COMMUNITY 2: Bring whole harvest to storehouse?
+#
+#######################################################################################
+
 label community2:
     "I started running out of storage space in my cellar, so I took the extras over to the storehouse."
     scene storeroom
@@ -356,7 +367,12 @@ label community2:
         nvl clear
         return
 
-# 3 - Game Night!
+#######################################################################################
+#
+# COMMUNITY 3: Game Night
+#
+#######################################################################################
+
 label community3:
     play music exciting
     scene farm_interior with fade
@@ -451,11 +467,17 @@ label community3:
         "I don't know if anyone actually did anything about it, but the thought was there."
         return
 
-# 4 - Community Liaison
+#######################################################################################
+#
+# COMMUNITY 4: Liaison
+#
+#######################################################################################
+
 label community4:
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
-    show pavel normal at center
+    show pavel normal at center with dissolve
+    play sound "sfx/people.mp3"
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 250 characters, you know."
     pavel "They said:"
@@ -542,9 +564,15 @@ label community4:
     else:
         "Sara is elected as the new representative."
         #TODO: should a leader of the militia be elected here as well?
+    stop sound fadeout 1.0
     return
 
-# 5 - Set aside food for miners?
+#######################################################################################
+#
+# COMMUNITY 5: Set aside food for miners?
+#
+#######################################################################################
+
 label community5:
     $ talked_cans = False
     $ talked_credits = False
@@ -559,6 +587,7 @@ label community5:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
         $ pstyle = get_parenting_style()
+        # TODO: should this be more telegram style and less texting style?
         if (pstyle== "authoritative"):
             "50 new miner neighbors are coming in 4 Earth years. Plz feed them when they come."
         elif(pstyle == "authoritarian"):
@@ -751,7 +780,12 @@ label community5:
     return
 
 
-# 6 - discussion of choice from 5 at game night
+#######################################################################################
+#
+# COMMUNITY 6: game night, maverick foreshadowing
+#
+#######################################################################################
+
 label community6:
     play music exciting
     if town_hall_games:
@@ -823,9 +857,15 @@ label community6:
         pete happy "Nope."
         him happy "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
         thuc normal "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
+        
     return
 
-# 7 - Comparing compensation
+#######################################################################################
+#
+# COMMUNITY 7: Unfair compensation
+#
+#######################################################################################
+
 label community7:
     play music thoughtful
     show community_center with fade
@@ -895,6 +935,7 @@ label community7:
                 helen happy "I don't know, he looks pretty serious."
                 thuc normal "I'm joking. Rice cultivation is kind of pointless for just twelve people."
                 thuc sad "I just don't like the idea that I have no power over my life."
+                him sad "I'll send the message, but don't get your hopes up."
             "I hear you, but let's focus on the here and now.":
                 $ colonists += 1
                 him pout "I could ask them in an e-mail. But what about all the rest of the new colonists who didn't receive compensation either?"
@@ -931,9 +972,36 @@ label community7:
                 show him happy
                 him happy "Get stinking rich off your enormous farm and have a feast to make us all jealous."
                 thuc happy "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
+
+    scene stars with fade
+    $ pstyle = get_parenting_style()
+    if (pstyle == "neglectful"):
+        "Thuc never heard back from them."
+    else:
+        "Later, Thuc showed me RET's response."
+        nvl clear
+        if (pstyle == "authoritarian"):
+            thuc_c "Can you believe this crap?"
+            ret_c "Compensation contracts were negotiated previously and are binding and immutable."
+            him_c "Yeah, I figured."
+        elif (pstyle == "authoritative"):
+            thuc_c "Well, at least they got back to me."
+            ret_c "Because each colonists has different needs and skills, their compensation is also different. Unfortunately, we are not able to modify these contracts once they are signed."
+            him_c "Yeah, I figured."
+        elif (pstyle == "permissive"):
+            thuc_c "I guess sometimes it pays to be the squeaky wheel!"
+            ret_c "We appreciate the Nguyen's consistent, reliable results. We have made a donation of equipment to agricultural teams in Cambodia in their honor." 
+            him_c "They were probably going to do that anyway."        
+            thuc_c "Maybe, maybe not."        
+        nvl clear
     return
 
-# 8 - What luxuries should RET send?
+#######################################################################################
+#
+# COMMUNITY 8: RET sending luxuries, which ones?
+#
+#######################################################################################
+
 label community8:
     $ talked_about_luxuries_counter = 0
 
@@ -1077,11 +1145,18 @@ label community8:
 
     return
 
-# 9 - camping with Pete
+#######################################################################################
+#
+# COMMUNITY 9: Guys' camping/hunting trip
+#
+#######################################################################################
+
 label community9:
     scene pond with fade
     show pete normal at midright
     show him normal at midleft
+    with dissolve
+    play sound "sfx/stream-2.mp3" loop
     pete happy "Hey, [his_name]!"
     him happy "Hi Pete."
     pete normal "Out to catch some fish?"
@@ -1111,6 +1186,7 @@ label community9:
             him annoyed "We'll see about that... though I haven't praticed shooting a bow and arrow since I was a kid..."
             pete happy "You can set up traps, then."
             him normal "Or maybe I'll do both. We'll see which is more effective."
+            stop sound fadeout 1.0
             scene storeroom with fade
             "I told Thuc about the campout and he decided to join us, bringing a crossbow from the storehouse. I picked up some wire and cord for snares, as well as a compound bow."
             scene path with fade
@@ -1136,15 +1212,20 @@ label community9:
             him pout "Isn't there supposed to be some place for the arrow to rest?"
             pete "Don't need it. It just rests on your hand."
             "I picked up the bow and nocked an arrow... but couldn't pull it back more than a few inches. The arrow plinked harmlessly off the tree."
+            play sound "sfx/longbow.ogg"            
             him normal "Ha ha, at least I hit the tree."
             thuc normal "You made this bow?"
             pete normal "Yup. Carved it from a single branch."
             "He drew an arrow, nocked it, and pulled the string back all the way to his jaw. The arrow flew into the dead tree and almost came out the other side."
+            play sound "sfx/longbow.ogg"
             him annoyed "I prefer a compound bow."
+            play sound "sfx/crossbow.ogg"            
             "I got out my own bow and shot an arrow at our target, and it sunk in with a satisfying {i}thunk{/i}."
+            play sound ["sfx/longbow.ogg", "sfx/crossbow.ogg", "sfx/crossbow.ogg", "sfx/longbow.ogg"] loop
             "Thuc got out his crossbow and we took turns trying it out, too."
+            stop sound fadeout 1.0
+            show night_overlay            
             "We recovered our arrows and bolts, and I noticed it was getting dark."
-            show night_overlay
             him normal "I'm going to go setup those snares."
             thuc normal "I saw some trails back there. Might be a good spot."
             pete "I'm going to get a fire going. We'll eat when you get back."
@@ -1159,6 +1240,7 @@ label community9:
             show him normal at midright
             show night_overlay
             with dissolve
+            play sound "sfx/fire-2.mp3" loop
 
             "When we returned, Pete had some beans cooking on a small fire and was making what looked like a cloak of branches and small pieces of yarn."
             him surprised "What are you making, Pete?"
@@ -1170,6 +1252,7 @@ label community9:
             show him pout with dissolve
             "I didn't go to quite as great of lengths as Pete, but I did tie some branches to my hat and smudge soot on my clothes."
             pete "They'll never see us coming!"
+            stop sound fadeout 1.0
             # TODO: can we show this?
 
             scene plain with fade
@@ -1205,6 +1288,7 @@ label community9:
             "It would have been faster to just scare the herd towards my snares, but honestly, I wasn't sure they would work. Grass crabs were pretty different from rabbits."
             "It seemed like we were maneuvering all morning. Finally, Pete gave a thumbs-up and drew his bow."
             "I guess he was going to shoot first. He probably had the best chance of piercing their armor. Still, Thuc and I didn't want to be left out. I aimed at the same crab."
+            play sound ["sfx/longbow.ogg", "sfx/crossbow.ogg", "sfx/crossbow.ogg"]
             "As soon as I saw him loose his arrow out of the corner of my eye, I let mine loose, too."
             "My arrow sailed over its shell, but Thuc's stuck out of the crab's leg."
             "Pete's hit the crab square in the front part of the shell, but it simply walked off with the arrow sticking out of it."
@@ -1230,6 +1314,7 @@ label community9:
                     show him annoyed at right with move
                     "I tackled the grass crab from behind, easily outweighing it."
                     "The crab tried to get at me with its other, smaller claw, but couldn't reach back that far."
+                    play sound "sfx/stab.ogg"
                     "The crab's wild swinging made Pete lose his balance, and he fell forward onto the crab, his knife slicing through my arm and into the top of the crab's shell."
                     show him angry with dissolve
                     "Finally, the crab quit moving and we were able to pry Pete's leg out of the claw."
@@ -1242,6 +1327,7 @@ label community9:
                     show thuc at right with move
                     "I froze. Thuc stepped forward onto the crab's claw, and it released its grip on Pete's leg."
                     "However, it brought up its smaller claw and scratched Thuc's cheek."
+                    play sound "sfx/stab.ogg"
                     "Pete thrust his knife into the crevice where the crab's shell plates met."
                     show pete at standing with move
                     pete happy "Got 'em!"
@@ -1264,12 +1350,15 @@ label community9:
             him happy "This is going to be delicious."
             pete happy "Let's cook some up before we head home."
             "Just as we got our fire started, a solar flare warning came up on the radio."
+            play sound "sfx/radio.mp3"
             pete normal "Fantastic. I can test my homemade tent."
             him surprised "How did you make it?"
             pete normal "The fabric is leather. That doesn't do anything for radiation."
             pete happy "But after you set it up just so, you pour water into the top and the water insulates from the radiation."
             "Pete poured the water in, and it gradually filled the tent's lining. He put a radiation monitor inside the tent and we gathered in the other tent for the duration of the solar flare."
-            "After about twenty minutes, the radio came on again to say that the flare has abated."
+            play sound "sfx/radio.mp3"
+            scene moons with fade
+            "After about twenty minutes, the radio came on again to say that the flare has abated. The auroras continued; we couldn't rely on them to tell us when the flares were dangerous or not."
             "Pete checked his monitor to see the results of the test."
             pete happy "And it appears to reduce solar radiation! Too bad it's completely dark in there."
             him annoyed "And there's some water on the floor -- looks like a leak."
@@ -1281,19 +1370,27 @@ label community9:
             show thuc normal at midright
             show him normal at quarterright
             with dissolve
+            play sound "sfx/fire-2.mp3" loop
             "Finally, we were able to roast and eat the grass crab. The meat was surprisingly sweet."
+            pete happy "Ahhh, this is the life! Nobody telling us we gotta fill out ten forms and follow safety protocols and all that crap."
+            thuc happy "Wait, you mean you didn't test that this was cooked to the RET Safe Temperature for Native Talaam Fauna?"
+            pete normal "Hell no!"
+            him laugh "Maybe that's why it tastes so good!"
+
             "We couldn't eat all of it, so we split it up between the three of us to bring home."
             pete "Here's some salt water to keep it fresh for the hike home."
             him normal "Thanks, Pete."
             pete "We oughta do this more often."
             thuc normal "Sure, except with less blood next time."
             him happy "Sounds good to me!"
+            stop sound fadeout 1.0
         "Sounds dangerous. I have to focus on farming right now anyway.":
             $ miners += 1 #not sure which side colonists +1 should go on for this one.
             him concerned "What happens if you get pinched by one of those things? It doesn't sound safe."
             pete "That's the whole point! Gets your blood moving."
             show him pout
             him pout "Just seeing if I'll have enough food for the next month is risky enough for my tastes."
+            stop sound fadeout 1.0
             "Pete went hunting on his own. But he brought back some meat from the grass crab he killed, preserved in salt water."
             scene community_center with fade
             show him normal at midleft
@@ -1305,17 +1402,23 @@ label community9:
             pete "Hell yes! Herding cattle is fine for everyday, but every once in a while a man needs some excitement in his life."
     return
 
-# 10 - Perón's over for dinner, who should take care of their farm?
+#######################################################################################
+#
+# COMMUNITY 10: Perón's over for dinner, who should take care of their farm?
+#
+#######################################################################################
+
 label community10:
     play music sad
     scene farm_interior with fade
     show him normal at midleft
-    show bro normal at midleft, baby_pos
+    show bro normal at quarterleft, baby_pos
     show her normal at midright
     show kid normal at quarterright
     with dissolve
     her normal "I'm leaving for work now. Goodbye honey!"
     him happy "Bye, [her_name]. Don't forget; we're having dinner with the Peróns tonight."
+    show bro happy with dissolve
     kid happy "Yay, I get to play with Mateo!"
     her surprised "I wonder what they wanted to talk about..."
     him surprised "Maybe they're just being friendly?"
@@ -1335,9 +1438,10 @@ label community10:
     "After the meal, [kid_name] ran off to play with the other kids and Natalia brought out some toys for [bro_name]."
     hide kid
     with moveoutright
-    show bro surprised at center with move
-    martin "As you may have heard, I have skin cancer."
+    show bro surprised at center,baby_pos with move
+    martin "You both know about my skin cancer, right?"
     her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
+    show bro happy with dissolve
     martin happy "I know! You are not the only one who knows, however."
     natalia "The more people who know about your disease, the more people who can help us!"
     if (asked_only_medicine):
@@ -1346,35 +1450,42 @@ label community10:
         martin normal "I have a few more months to live, but I'm already slowing down."
     martin angry "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
     natalia "They aren't as passionate about the farm as you are."
+    show bro nervous with dissolve
     him surprised "But now that they're older, don't you have more time to work on the farm?"
     natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, mending and reworking clothes..."
     martin happy "Don't get her started!"
     show him happy
     show her happy
+    show bro happy
     with dissolve
     natalia "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
     show her surprised with dissolve
     him concerned "Isn't the corn really important for feeding everyone else's animals?"
     martin normal "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
-    show her pout with dissolve
+    show her determined
+    show bro concerned
+    with dissolve
     him surprised "What are your older kids interested in, if not farming?"
-    natalia "Tomas is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
+    natalia "Tomás is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
+    show her normal
+    show bro normal
+    with dissolve
     natalia "She can write {b}and{/b} help grow our food!"
-    martin angry "Raul is a good helper on the farm, but he isn't responsible enough to be in charge."
+    martin angry "Raúl is a good helper on the farm, but he isn't responsible enough to be in charge."
     natalia "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin normal "What would you do in my position? Who do you think should take care of the farm?"
     show him concerned
     show her concerned
+    show bro nervous
     with dissolve
-    $ community11_kidsonfarm = False
     menu:
-        "Tomás and Joanna Nguyen should be in charge of the farm and get the other siblings to help.":
+        "Tomás and Joanna should be in charge of the farm and get the other siblings to help.":
             $ community11_kidsonfarm = True
             $ colonists += 1
             $ miners += 1
             him pout "Tomás is your son. It's his duty to help you out."
-            martin happy "That's what I keep telling her!"
+            martin happy "That's what I keep telling you, Natalia!"
             natalia "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
             martin normal "We've all had to sacrifice at one time or another... This is something worth sacrificing for."
             natalia "But how will you convince Tomás of that?"
@@ -1403,7 +1514,7 @@ label community10:
             nvl clear
             natalia_c "Thanks for helping us with Tomás. We talked to him, and he's decided he will help out at the farm, at least for a little while."
             him_c "Glad to hear it! He's a good kid."
-            #more investment in older farms; Tomas and Joanna are less likely to join the mavericks this way
+            #more investment in older farms; Tomás and Joanna are less likely to join the mavericks this way
         "Let Natalia scale back the farm.":
             $ community11_kidsonfarm = False
             $ mavericks += 1
@@ -1436,7 +1547,12 @@ label community10:
     nvl clear
     return
 
-# 11 - shuttle arrives with miners & Brennan
+#######################################################################################
+#
+# COMMUNITY 11: Shuttle arrives with miners and Brennan
+#
+#######################################################################################
+
 label community11:
     $ chaco_questions = 0
     #The shuttle should return to Earth with the mined material as soon as it is full.
@@ -1444,8 +1560,8 @@ label community11:
     show him normal at midright
     show her normal at midleft
     show kid normal at center
-    show bro normal at midleft, baby_pos
-    her happy "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
+    show bro normal at midright, baby_pos
+    her normal "Kevin says the shuttle is on course to arrive today!" #make this a family conversation?
     kid surprised "I wonder what the new people will look like?"
     him happy "They'll look like we do. We're all humans."
     her flirting "Unless aliens have secretly taken over Earth while we were gone!"
@@ -1461,16 +1577,31 @@ label community11:
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
+    show him at quarterleft behind sara
+    show bro at quarterleft, baby_pos     
+    show sara at left
+    show oleg at left
+    show her at midleft
+    show kid at midleft
+    with move
+    show miners at right behind sara with moveinright
     sara normal "Wow, those guys are built. The women, too -- solid!"
     her concerned "Yeah, I'd expect that miners have to be in good physical condition."
     him surprised "They look pretty strong. Almost as strong as all the farmers we have here."
-    her flirting "Farmers have to be in good physical condition too!"
+    her laugh "Farmers have to be in good physical condition too!"
     sara normal "Pavel is already greeting everyone. Let's join him."
     hide sara
     hide oleg
+    hide miners
     with moveoutleft
+    show him at center
+    show bro at center, baby_pos
+    show her normal at quarterright
+    show kid at midright
+    with move
     "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
     him annoyed "Wait a minute, I recognize him!"
+    show her surprised with dissolve
     #BRENNAN ON SCREEN. he looks the same
     show brennan normal at quarterleft with moveinleft
     # Jack definitely doesn't like him, but doesn't have a great reason.
@@ -1479,24 +1610,27 @@ label community11:
     him pout "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
     brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
-    her happy "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
+    her normal "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
     brennan happy "I'm really happy to be breathing fresh air, with my feet on solid ground again."
-    brennan normal "How is your daughter? How old is she now in Earth years?"
+    brennan normal "How is your daughter? How old is she now - in Earth years?"
     kid annoyed "I'm seven... well, almost seven. It's complicated. Anyway, I'm going to see if they'll let me look inside the shuttle!"
     hide kid with moveoutright
     her flirting "You still don't look a day over 30."
     brennan normal "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
-    him annoyed "No wonder you didn't want to stay on Earth."
+    her laugh "Ha ha ha!"
+    him annoyed "Hmph. No wonder you didn't want to stay on Earth."
     brennan happy "You don't look like you've aged too badly, considering how much sun you must get."
-    him angry "Wow, really? Martin just died of skin cancer last year and you make a sun exposure joke?"
+    him angry "Wow, really? Martin's dying of skin cancer and you make a sun exposure joke?"
+    her concerned "[his_name]..."
     brennan angry "Sorry...I didn't know."
-    her concerned "Of course you didn't."
+    her annoyed "Of course you didn't. There's a lot that you've missed, just like I'm sure we've missed a lot of events on Earth."
     brennan normal "Anyway... Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I whistled long and loud."
     him surprised "Hey, listen up! Quiet down, everyone!"
     hide him
     hide her
     hide sara
+    hide bro
     with moveoutleft
     show brennan normal at center with move
     brennan happy "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
@@ -1654,9 +1788,8 @@ label community11:
             hide sara
             hide thuc
             with dissolve
+            show pavel normal behind him at quarterleft with moveinleft
             show kevin normal at quarterright with moveinright
-            show pavel normal at quarterleft, behind him
-            with moveinleft
 
             if talked_to_Kevin:
                 kevin "Did they send the rest of Tulip House?"
@@ -1776,7 +1909,12 @@ label community11:
     return
 
 # TODO: community editing ends here
-# 12 - missing cow
+#######################################################################################
+#
+# COMMUNITY 12: missing cow
+#
+#######################################################################################
+
 label community12:
     $ sara_investigates = False
     $ know_BBQ = False
@@ -1897,7 +2035,7 @@ label community12:
                 jump mining_village
             else:
                 scene path with fade
-                show him normal at moveinright
+                show him normal at midright
                 show pavel normal at midleft
                 with dissolve
                 "The next day, I met Pavel on the road to the miner's village."
@@ -2074,7 +2212,7 @@ label community12:
         #rationing is the default for the non-liaison option, so non-liaisons should not see this event.
         #should there be an option to switch to rationing again before this?
         #in your fields
-        $ miners -=1
+        $ miners -= 1
         scene fields with dissolve
         show him normal at midleft
         "I'm working out in the fields when I see a redheaded figure approaching."
@@ -2095,10 +2233,10 @@ label community12:
         him explaining "There is so much wildlife here and a lot of it is edible. You already have a few people who work in support capacities, like cooking and cleaning, right?"
         brennan "That's just four people."
         him doubt "Maybe they can do some of the foraging too."
-        brennan angry "Okay. Who's going to teach them what they can eat?"
+        brennan angry "Ha! Who's going to teach them what they can eat?"
         him explaining "Dr. Lily can. It's half the reason she's here."
         him "As for hunting, I think that your workers will enjoy a change of pace. It might even make them more productive."
-        brennan normal"I've tasted crabbird though. It's not as good as chicken."
+        brennan normal "I've tasted crabbird though. It's not as good as chicken."
         him normal "We have some really good recipes. Put enough spices on it and you can hardly tell the difference."
         him explaining "You can start growing some spices and potatoes. We'll start you off and then soon you'll be enjoying the joys of farming!"
         him "Pete can teach you how to hunt."
@@ -2203,7 +2341,7 @@ label community12:
                     return
 
                 label community12_choose_foraging:
-                    $ miners -=1
+                    $ miners -= 1
                     brennan angry "Fine. I'll go door-to-door tonight to see if I can buy off some food until you can send over your teachers."
                     him normal "They'll be there tomorrow morning."
                     nvl clear
@@ -2217,21 +2355,21 @@ label community12:
                     lily_c "However, I am available the day after tomorrow."
                     scene cabins with dissolve
                     show pete normal at midleft with dissolve
-                    pete normal "I know on Earth that hunting is this thing rich people do."
-                    pete "Here it's a matter of survival. There's no caddy who's going to show you where to stand and when to shoot."
+                    pete normal "I know on Earth that hunting is like a game for some folks."
+                    pete "Here it's a matter of survival. It's not just point-and-shoot, either. You have to know your prey so you know where they'll be and how to get 'em."
                     pete happy "I'll start by describing some of the nearby game."
                     pete happy "We'll set up some of our big traps and make some snares."
-                    pete happy "Then I'll show you some of my favorite hunting spots, and we'll do basic target practice."
-                    pete "I hope you spent some time on the hunting sims because they do teach you how to aim quickly."
-                    pete "You guys won't be hunting with guns, since we want to save ammo."
-                    pete happy "But if we can't shoot anything with crossbows today, I'll shoot something so you guys can eat."
+                    pete happy "Then I'll show you some of my favorite hunting spots."
+                    pete "You guys won't be hunting with guns, since we want to save ammo. So I'll teach you how to use these crossbows."
+                    pete happy "But if you don't bag anything today, I'll get you something so you guys can eat."
                     "There were cheers at the mention of meat."
-                    pete normal "I'll come back next week and we can talk about fishing, too."
+                    pete normal "I'll come back next week and we can talk about nets and fishing."
                     "I checked back in with them that evening, and they were roasting a whole grass crab."
                     "They were processing a few crabirds too."
                     scene cabins with dissolve
                     show him normal at left
                     show lily normal at midleft
+                    show miners at quarterright
                     with dissolve
                     "The next day, Dr. Lily started her instruction."
                     "Around fifteen people showed up for the class."
@@ -2283,9 +2421,14 @@ label community12:
                     "They miners seemed pretty happy to eat their carrots and potatoes, and soon the prices of crops started to stabilize."
                     return
 
-# 13 - Save your water purity!
+#######################################################################################
+#
+# COMMUNITY 13: Water purity
+#
+#######################################################################################
+
 label community13:
-    "I awoke one morning to knocking on my door, and [kid_name] asking me to answer the door."
+    "I awoke one morning to someone knocking on my door. I wanted to ignore and keep sleeping, but [kid_name] asked me to answer the door."
     scene farm_exterior with fade
     show lily normal at midright with dissolve
     show him surprised at midleft with moveinleft
@@ -2444,7 +2587,8 @@ label community13:
     lily_c "Heavy metals have been detected in our water supply."
     lily_c "Distill all irrigation and culinary water until further notice."
     lily_c "Please tell your neighbors if they do not typically see these messages."
-    thuc_c "I don't have a way to distill any water right now."
+    natalia_c "How in the world are we supposed to distill all our irrigation water?!"
+    thuc_c "I don't have a way to distill {b}any{/b} water right now."
     ilian_c "We have a few emergency distillers that I'll put out right away, but they'll only make enough for drinking."
     thuc_c "How long has the contamination been going on?"
     lily_c "Sometime in the last week."
@@ -2481,9 +2625,11 @@ label community13:
                 him pout "Okay everyone, let's get ready to go!"
                 kid happy "I hope Oleg is there!"
                 scene community_center with fade
+                play sound "sfx/people.mp3"
                 "Oleg was there, along with Sara, Ilian, Mayor Grayson, Dr. Lily, Brennan, and Kevin."
                 show sara normal at midright with dissolve
                 sara normal "Thank you everyone, for coming. We're here to discuss Dr. Lily's findings, which have implications for everyone on Talaam."
+                stop sound fadeout 1.0
                 hide sara
                 show lily normal at midleft with dissolve
                 lily angry "Heavy metals leaked from the tailings dam into the river we use for irrigation and drinking water."
@@ -2630,7 +2776,12 @@ label community13:
     return
 # TODO: a decision to trigger lily_mad_at_RET. look up cave_explored as well? in community20
 
-# 14 - Pete leaves
+#######################################################################################
+#
+# COMMUNITY 14: Pete leaves
+#
+#######################################################################################
+
 label community14:
     scene plain with fade
     show brennan normal at quarterright
@@ -2649,12 +2800,13 @@ label community14:
     show thuc normal at center
     show brennan normal at midright
     show him normal at midleft
-    thuc "So Kevin here can control the shuttle remotely?"
+    thuc "So Kevin controls the shuttle remotely?"
     brennan "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, Kevin will make adjustments for it to leave orbit."
     thuc "When you flew back, your pilot was in the shuttle. Doesn't it make a difference?"
     brennan angry "There's a bit of a difference, yes. When the pilot's inside the shuttle, they can make adjustments based on feel."
     brennan normal "But, since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
     "Kevin was broadcasting the launch on the radio."
+    play sound "sfx/radio.mp3"
     kevin "{i} Lift-off in 10{/i}"
     kevin "{i}9{/i}"
     kevin "{i}8{/i}"
@@ -2697,9 +2849,18 @@ label community14:
         pete "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen also planned to go with Pete and his family."
         $ mavericks += 1
+    $ pstyle = get_parenting_style()
+    if (pstyle == "authoritarian"):
+        pete "In the end, their bigheaded attitude just makes me downright ornery."
+    elif (pstyle == "authoritative"):
+        pete "They coulda been worse, that's for sure. But they still just make me ornery."
+    elif (pstyle == "permissive"):
+        pete "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that their tearin' down the house."
+    elif (pstyle == "neglectful"):
+        pete "In the end, all they care about is that stuff they're diggin' out of the ground, and that's not what I'm about at all."
     pete normal "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands. But I reckon credits don't count."
     pete normal "We're leaving our house and everything in it. Put it to good use, why don't you. I'll be taking my radio and some metal foam sheeting, which I paid for with credits."
-    pete "We'll leave the same amount of cattle the ranch started with, plus some, and take a herd with me."
+    pete "We'll leave the same amount of cattle the ranch started with, plus some, and take the rest with us."
     pete happy "We'll still have credits in case we can't trade for what we need."
     "Everyone started talking when Pete sat down."
     "Some families wanted to say goodbye, while others just left awkwardly."
@@ -2724,6 +2885,7 @@ label community14:
         "Joke that I wish I could join them.":
             him flirting "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
             him concerned "Seriously though, take care of yourselves."
+            pete happy "Thanks. And there's plenty of room out there if you ever change your mind."            
             $ mavericks += 1
     hide pete
     hide helen
@@ -2761,7 +2923,12 @@ label community14:
     return
 
 
-# 15 - Naomi dies
+#######################################################################################
+#
+# COMMUNITY 15: Naomi dies
+#
+#######################################################################################
+
 label community15:
     play music sad
     scene bedroom with fade
@@ -2770,6 +2937,7 @@ label community15:
     show him sleeping at midleft, squatting
     show bedroom_overlay
     "In the early morning, [her_name]'s radio went off."
+    play sound "sfx/radio.mp3"
     pavel "{i}[her_name], I think you should come over here.{/i}"
     show her surprised
     pavel "{i}Naomi is really sick.{/i}"
@@ -2811,6 +2979,7 @@ label community15:
     "Should I do or say something?"
     menu:
         #this menu might give players a false sense that you have a relationship meter with Sara
+        # TODO: Maybe Helen is here too and you have to decide whom to comfort?
         "Pur your arm around her shoulder.":
             show him concerned at center
             "I put my arm around her shoulder."
@@ -2835,7 +3004,10 @@ label community15:
     kid annoyed "It stinks in here."
     him pout "Sometimes that happens when you're sick."
     naomi normal "[his_name], did you come to say goodbye too?"
-    him normal "Yeah. Thanks for everything you've done for us." #TODO: more detail? work Naomi into earlier scenes?
+    if (parenting_classes >= 1):
+        him normal "I appreciate all your help with the kids, and with parenting classes, and everything else, too..."
+    else:
+        him normal "Yeah. Thanks for starting the parenting co-op, and everything you've done for us..."
     kid concerned "Are you dying?"
     naomi sad "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other, okay?"
     naomi normal "[his_name], I've been watching how you parent your children."
@@ -2852,8 +3024,8 @@ label community15:
     else:
         naomi sad "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
         naomi normal "If you don't like being with your children, what was the point of having them?"
-        naomi happy "You might as well make a lifelong friend who might take care of you when you're old like me."
-    him surprised "Oh, uh, thanks for the advice."
+        naomi happy "Instead you might as well make a lifelong friend who might take care of you when you're old like me."
+    him surprised "Oh, uh, okay, thanks."
     kid nervous "What happens after you die?"
     naomi normal "Some people believe that we go to a different world. Some people believe that we come back in another life."
     naomi sad "Some people believe that our existence ends with death."
@@ -2883,10 +3055,13 @@ label community15:
     pavel sad "Seriously, thank you for coming by."
     him sad "Let us know if you need anything."
     pavel sad "I will."
+
+    play music worried
     scene farm_interior with dissolve
     show him sad at midleft
     show her concerned at midright
     with dissolve
+    play sound "sfx/radio.mp3"
     "About a week later, Pavel called [her_name] to tell her that Naomi was dead."
     her concerned "I'll take her body today and do a few tests, and we can hold the funeral tomorrow."
     "She turned the radio off."
@@ -2946,8 +3121,7 @@ label community15:
             him pout "I really think you should speak instead."
             her concerned "I guess I don't have to say much..."
     scene church with fade
-    play music worried
-    # TODO: funeral music?
+    play music tender
     "Almost everyone came to the funeral the next day."
     show her concerned at center with moveinleft
     her "I hope Naomi felt at peace when she died."
@@ -3001,7 +3175,7 @@ label community15:
                 him annoyed "We could die at any time; we need to make the most of whatever time we still have."
         hide him with moveoutright
     else:
-        "[her_name] said a prayer of gratitude for Sister Naomi and asking for comfort and the inspiration to know how to help each other."
+        "[her_name] said a prayer of gratitude for Sister Naomi and asked for comfort and the inspiration to know how to help each other."
 
     "We all helped to bury her body. Ilian provided a laser-engraved headstone, and the Nguyen children put wildflowers on her grave."
     "[kid_name] and [bro_name] planted the saplings we brought."
@@ -3052,6 +3226,11 @@ label community15:
     # Miranda Perón (now about age 26) steps up to take Dr. Lily's spot. She had been studying with Dr. Lily before."
     return
 
+#######################################################################################
+#
+# COMMUNITY 16: Checking on Pete
+#
+#######################################################################################
 
 label community16:
     $ talked_paid_c16 = False
@@ -3062,30 +3241,30 @@ label community16:
     scene farm_interior with fade
     show him normal at midleft with dissolve
     "It's a beautiful day out. [her_name] is on her way home for a quick lunch."
-    show her normal at midright with moveinright
+    show her normal coat at midright with moveinright
     her "Thanks for making lunch for us."
     him content "No problem. I was outside weeding anyway; it wasn't much trouble to pick some vegetables."
-    her nervous "I just got a call from Helen... Pete is really sick."
+    her nervous coat "I just got a call from Helen... Pete is really sick."
     him surprised "Are they going to bring him in?"
-    her sad "Yes. I told them that I would treat him like any other colonist."
-    her concerned "But I asked them to pay with some food, and they want to donate a calf."
+    her sad coat "Yes. I told them that I would treat him like any other colonist."
+    her concerned coat "But I asked them to pay with some food, and they want to donate a calf."
     him concerned "But after they left us... is it really okay to act like nothing happened?"
-    her annoyed "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
+    her annoyed coat "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
     "How did I feel?"
     menu:
         "Do everything you can for Pete.":
             him annoyed "Do everything you can for Pete. He's an important part of our community."
             him concerned "We'll lose a lot of hands-on knowledge about cattle if he dies."
-            her concerned "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
+            her concerned coat "I wasn't asking your permission, but I'm glad to know you agree with what I'm doing."
             $ mavericks += 1
         "Don't use important resources on him.":
             him annoyed "Try to see if you can treat him without using up our medical supplies."
-            her concerned "Um, they already tried that. He needs medicine."
+            her concerned coat "Um, they already tried that. He needs medicine."
             him concerned "I just don't want to use up medicine on someone who left the colony."
-            her annoyed "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
+            her annoyed coat "I don't care where someone's from or what they've done; I'm going to give everyone the treatment they need."
             $ miners += 1
-    her surprised "I'm sure Pete has learned a lot about survival on Talaam since he left."
-    her concerned "You should talk to him while he's in for treatment."
+    her surprised coat "I'm sure Pete has learned a lot about survival on Talaam since he left."
+    her concerned coat "You should talk to him while he's in for treatment."
     him normal "Okay, I can at least do that."
     "That evening I visited the hospital after [her_name] came home."
     scene hospital with fade
@@ -3102,6 +3281,7 @@ label community16:
         "How will you be paying for your treatment?" if not talked_paid_c16:
             him determined "I hope you're giving us something in return for that medicine."
             pete "Don't worry! I brought a calf with me. We dropped her off with the herd on our way in."
+            $ mavericks -= 1
             $ talked_paid_c16 = True
             jump c16_convo
         "Have you made any discoveries?" if not talked_discoveries_c16:
@@ -3154,6 +3334,7 @@ label community16:
                 pete "She'd bring little things for us to feel more at home."
                 menu:
                     "So it's kind of your fault that she died.":
+                        $ mavericks -= 1
                         him annoyed "If she was visiting you that much, that explains why she died of radiation poisoning."
                         pete normal "We warned her to be cautious. It's not like we wanted her to die."
                         him angry "But if you hadn't left she wouldn't have gone to see you."
@@ -3201,12 +3382,15 @@ label community16:
 
     return
 
-# COMMUNITY 17
-# Harvest festival; whom do you invite? chance to eat jellyfish...
+#######################################################################################
+#
+# COMMUNITY 17: Harvest Festival!
+#
+#######################################################################################
+
 label community17:
     $ community_17_activity = renpy.random.choice(["contests", "games", "performances"])
     scene stars with dissolve
-    show him normal at midleft
     "It's time for the harvest festival! Usually we eat a big meal and the kids go around begging desserts off everyone."
     if (is_liaison):
         "Someone needs to plan it... but who?"
@@ -3222,14 +3406,14 @@ label community17:
         "Sara asked me who we should invite to the festival this year."
 
     menu:
-        "The miners and Pete's group." if ((mavericks >= 6) and (miners >=6)): #TODO: make sure it's possible to get this option
+        "The miners and Pete's group." if (mavericks_strong() and miners_strong()): #6
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_mavericks = True
             $ invited_miners = True
-        "Pete's group." if (mavericks >= 6):
+        "Pete's group." if (mavericks_strong()): #6
             "I'd like to invite Pete's group."
             $ invited_mavericks = True
-        "The miners." if (miners >= 6):
+        "The miners." if (miners_strong()): #6
             "We should invite the miners."
             $ invited_miners = True
         "The usual-- just all the other colonists.":
@@ -3251,10 +3435,51 @@ label community17:
                 "I asked Ilian to be in charge of that. He loved music, and he's such a critic that he'll only ask people with real talent."
         "Last was the food. I figured I'd just have everyone bring something."
 
+    nvl clear
+    if (is_liaison):
+        him_c "I hope you can all come to the harvest festival tomorrow night. It's a potluck, so bring food. There will also be [community_17_activity]."
+    else:
+        sara_c "Don't forget the harvest festival tomorrow night! Potluck! There will be [community_17_activity]!"
+    $ pstyle = get_parenting_style()
+    if (pstyle == "authoritarian"):
+        if (is_liaison):
+            him_c "Also, RET sends a reminder to make sure you take care of your farm first before going to the party."
+        else:
+            sara_c "Also, RET sends a reminder to make sure you take care of your farm first before going to the party."
+        thuc_c "Oh darn, I was planning on not feeding or milking the goats, but I guess I better do that even though there's a party..."
+        him_c "Yeah, we wouldn't want you to think you're on vacation or something!"
+        ilian_c "Next they'll be reminding us to brush our teeth before bed."
+    elif (pstyle == "authoritative"):
+        if (is_liaison):
+            him_c "Also, RET alloted some sugar for treats, so let me know if you want to make something with it for the party."
+        else:
+            sara_c "Also, RET alloted some sugar for treats, so let me know if you want to make something with it for the party! {emoji=yum}"
+        natalia_c "I'll make leche asada if I can get some milk!"
+        julia_c "Isn't that just flan?"
+        natalia_c "It's completely different!"
+        sara_c "Either way, it sounds delicious!!! {emoji=hearteyes}"
+    elif (pstyle == "permissive"):
+        if (is_liaison):
+            him_c "Also, RET set aside some sugar for treats and says everyone can take the day off..."
+        else:
+            sara_c "Also, RET set aside some sugar for treats and is giving everyone the day off!"
+        julia_c "Farmers don't get 'days off'. But I'll take some sugar to make pumpkin custard."
+        him_c "Sounds... good!"
+    him_c "Oh, and Thuc and I are making rice-corn cookies again for the kids."
+    natalia_c "They sure loved those last year!"
+    thuc_c "I think we need a better name, though."
+    him_c "Sweet Treats? Rookie Cookies? Sprite Bites?"
+    julia_c "Ummm... no. You should call them 'harvest cookies', since you only make them for the harvest festival."
+    thuc_c "Huh. Okay, that works."
+
+    nvl clear
+
     scene community_center with fade
     show him normal at midleft
-    play music audio.upbeat
+    play music upbeat
+    play sound "sfx/people.mp3"
     if (invited_mavericks and invited_miners):
+        show miners at quarterright
         show pete normal at left with moveinleft
         "Pete offered to slaughter a steer for the occasion."
         show brennan normal at midright with moveinright
@@ -3297,9 +3522,11 @@ label community17:
         pete normal "I could, if you can help me out with a knife and some twine."
         him happy "I think we can arrange for that."
 
-    elif invited_miners:
+    elif invited_miners: # but not mavericks
         "The miners joined us for our harvest festival. After all, their success is what enables us to continue to live here."
-        show brennan normal at midright with moveinright
+        show miners at right
+        show brennan normal at midright
+        with moveinright
         brennan normal "We didn't have time to go hunting, but we DO have time to soak beans."
         him doubt "Is this a soup or a dip? It smells... different."
         brennan happy "Neither. Either. Both! Try some."
@@ -3314,7 +3541,17 @@ label community17:
                 him normal "I'll pass."
                 brennan normal "You don't like beans?"
                 him determined "I'll stick to what I know."
-                brennan normal "How very... predictable of you."
+                brennan happy "How very... predictable of you."
+    else:
+        "Almost everyone had submitted a different type of jam for the jam tasting. We each got a bowl of chips to dip in the jams, and then voted for our favorite."
+        "Kevin brought plum jam, Ilian had made a spicy tomato chutney, and Julia had a Mystery Jam that tasted like sweet mint tea."
+        if (crop_enabled("strawberries")):
+            "[her_name] brought a jar of strawberry jam that I was pretty sure I was voting for."
+        elif (crop_enabled("plums")):
+            "[her_name] brought a jar of plum jam that tasted kind of like prunes, but it was still sweet at least."
+        elif (crop_enabled("honey")):
+            "[her_name] brought a jar of honey that tasted like plum blossoms."           
+        "I had made something else to bring."
 
     scene community_center with fade
     show thuc normal at quarterleft
@@ -3346,17 +3583,18 @@ label community17:
     julia normal "She brought it out today to dress up for the begging."
     "After the children finished eating, they ran around with pails of water."
     "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
-    "Thuc and I brought out the special treat we made together. It's made with rice and corn and the kids noticed it eagerly."
-    "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the rice-corn treat."
+    "Thuc and I brought out the Harvest Cookies we made together. They're made with rice and corn and the kids noticed them eagerly."
+    "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the cookies."
     "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
     pavel sad "It's a shame we don't have any chocolate to give them."
     natalia "I miss it too."
     julia mad "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
     thuc sad "They still sound pretty entitled to me!"
     him laugh "Some things never change."
+    stop sound fadeout 1.0
 
     scene community_center with fade
-    play music audio.exciting
+    play music audio.exciting fadein 5.0
     if (community_17_activity == "contests"):
         show julia normal at center with dissolve
         "After everything was cleaned up, it was time for some contests."
@@ -3527,8 +3765,8 @@ label community17:
                 "We squared off on either side of the table."
                 julia "Go!"
                 "We both pushed against each other, not too hard, just testing the other guy."
-                ilian happy "When we're finished, you're going to be kissing the floor."
-                him annoyed "I'd take that over kissing your ugly mug."
+                ilian happy "When we're finished, you're going to be drooling on the floor."
+                him annoyed "At least I have the decency to aim for the floor. You're drooling all over the table."
                 "My hand inched forward. He was a tough opponent, but I could do this. Especially if I could make him lose his cool."
                 ilian normal "I hope you're ready to lose."
                 menu:
@@ -3572,10 +3810,11 @@ label community17:
                                         jump community17_lose_to_ilian
                                     "At least my wife wants to kiss me.":
                                         him angry "Hey, at least my wife actually wants to kiss me."
-                                        "The room was suddenly very quiet. Ilian and Sara's marital problems were common knowledge, but I felt that I had overstepped myself."
+                                        "The room was suddenly very quiet. Ilian and Sara's marital problems were common knowledge, but to bring it up like that..."
                                         him concerned "Sorry... that was out of line."
                                         ilian normal "Yes, it was."
-                                        $ colonists -= 1
+                                        "The look on his face made me feel so bad, it took away all my desire to win."
+                                        $ mavericks -= 1
                                         jump community17_lose_to_ilian
 
                             "my marbles if I have to keep listening to your ranting.":
@@ -3622,6 +3861,7 @@ label community17:
         scene community_center with fade
         if (invited_mavericks):
             show pete normal at left
+            show travis normal at left
             # show travis if we have a good sprite for this age?
         show thuc normal at quarterleft
         show her normal at midleft
@@ -3660,7 +3900,7 @@ label community17:
         if (invited_miners):
             show brennan normal at right
         with dissolve
-        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their ailment is."
+        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their 'ailment' is."
         him content "Oh, okay, I think I've played this before."
         "I looked around the circle ."
         if (invited_mavericks):
@@ -3844,12 +4084,14 @@ label community17:
         show bro normal at left
         with dissolve
         "Ilian had arranged for some people to perform for us."
-        # TODO: play a bari solo song?
+        play music saxophone_solo fadein 3.0
         show ilian normal at quarterright with dissolve
         "He started us off with a solo on his enormous saxophone."
         "Well, he didn't actually have a saxophone; it wouldn't have fit on the shuttle."
         "So he played a video of himself playing on Earth. At first I thought it was kind of cheating to play a video, but he was pretty good."
         hide ilian with moveoutright
+        stop music fadeout 2.0
+        play music audio.exciting fadein 5.0
         show julia mad at quarterright with moveinleft
         "Next, Julia sang a song about how she was the best at everything. It was supposed to be funny, but it was a little too true. She did have a good voice, though."
         her surprised "Did she used to sing opera?"
@@ -3864,39 +4106,55 @@ label community17:
         him content "I'm not sure; you'll have to ask him."
         hide oleg with moveoutright
         if (invited_mavericks):
-            show helen at quarterright with moveinright
+            show helen at quarterright with moveinleft
             "Helen drew a quick caricature of Mayor Grayson."
             kid surprised "She can draw so fast!"
             him happy "And it looks just like him!"
             her concerned "I don't know; his nose looks a little clownish, if you ask me."
             hide helen with moveoutright
-        "Thuc and Julia's kids performed a skit about throwing pebbles in the river. Then Gardenia came in all wet, and when asked what was wrong, she yelled, 'My name is Pebbles!'"
+        show thuc normal at quarterright with moveinleft
+        # TODO: Do we have any other kids? Van?
+        "Thuc and his kids performed a skit. Each kid talked about how they loved to throw pebbles in the river."
+        "Then Gardenia came in all wet, and when asked what was wrong, she yelled, 'My name is Pebbles!'"
         kid laugh "That was the best one so far!"
+        hide thuc with moveoutright
         "Last, Kevin came on and told some jokes."
-        show kevin at quarterright with moveinright
+        show kevin normal at quarterright with moveinright
         show him normal
         show her normal
         show kid normal
         with dissolve
-        kevin "Three statisticians are out deer hunting. The first one shoots and hits a tree five meters to the left."
+        kevin "Three statisticians are out deer hunting. The first one shoots and hits a tree five meters to the left of the deer."
         kevin "The second shoots and hits a tree five meters to the right."
         kevin "The third jumps up and down shouting, 'We got him! We got him!'"
-        her laughing "That is so true."
+        her laugh "That is so true."
         kid annoyed "Huh? I don't get it."
         him happy "Because if you average the first two, you get a hit, right?"
         kid surprised "Oh... right."
         her concerned "Because in statistics you do a lot of averages...?"
         kid happy "Ohhh, I get it!  Ha ha ha!"
-        bro concerned "What's an average?"
+        bro concerned "I don't get it."
 
 label c17_after_activities:
+    stop music fadeout 5.0
     scene bonfire with fade
+    play sound "sfx/fire-2.mp3" loop
     "We ended the night grouped around a blazing bonfire."
     "The flames' warmth warded off the damp chill growing in the night air."
+    "The kids scampered through the night, looking for more sticks to add to the flames, but I just watched the fire flickering."
+    "The flames devoured everything, turning it to warmth and light."
+    her concerned "It's just like us."
+    him surprised "What is?"
+    her surprised "We are like the fire, consuming food constantly, turning it into babies and laughter and farms and... everything!"
+    him flirting "We couldn't do it without food. Good thing some of us are farmers, huh?"
+    her determined "Well, we also can't do any of this if we're dead, so I'm happy doing the job I'm doing."
+    him happy "I'm happy with the job you're doing, too."
 
-    scene black with fade
+    stop sound fadeout 1.0
+
     if ate_jellyfish:
         #move to a later, more sparse event?
+        scene ocean with fade
         "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
         "I wonder what they look like."
         nvl clear
@@ -3915,14 +4173,17 @@ label c17_after_activities:
         lily_c "I find your interest in them highly unusual."
         him_c "Why? Aren't they beautiful creatures?"
         lily_c "Yes. They are."
-        return
-    else:
-        return
 
     #more likely to take a later risk if you have the parasite? doesn't have to be just like toxoplasmosis.
     # also if you meet with the mavericks, Pete can answer questions about cattle health.
     # if BOTH mavericks and miners are there, they start trade negotiations? affects the firegrass event later.
+    return
 
+#######################################################################################
+#
+# COMMUNITY 18: Stray cows
+#
+#######################################################################################
 
 label community18:
     $ c18_waited = False
@@ -3944,10 +4205,11 @@ label community18:
     natalia_c "come over and do it yourself then!"
     natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
+    nvl clear
     scene fields with fade
     show him angry at left with moveinleft
     "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
-    # TODO: there's a flicker back to the texting background here. not sure why.
+    # TODO: there's a flicker back to the texting background here. not sure why. A: I don't see this. Let me know if it's still a problem.
     him "GO HOME COWS! KEEP MOVING!"
     show him yell at center with move
     him yell "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
@@ -4061,13 +4323,18 @@ label community18:
             pete "You're not gonna help one bit?"
             him annoyed "No, I'm not."
             pete "I won't forget this."
-            if (mavericks <= 5):
+            if (not mavericks_strong("moderate")): #5
                 him determined "You need to compensate the miners and colonists for the losses they incurred."
                 pete normal "You need to stop being a jerk."
             scene stars with dissolve
             "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
     return
 
+#######################################################################################
+#
+# COMMUNITY 19: Too many cows; hunting wild game
+#
+#######################################################################################
 
 label community19:
     #you could substitute Pete for Helen in this scene; I just wanted to give Helen some more screen time.
@@ -4135,7 +4402,7 @@ label community19:
     "A few weeks later, we were all gearing up for the fall harvest."
     her happy "I love this time of year. Harvesting food together makes me feel like we'll live another year."
     her normal "It does seem easier to stagger the crops though."
-    him concerned "Yeah, Tomas Perón likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest."
+    him concerned "Yeah, Tomás Perón likes to get his whole family to help plant, which makes it easier to manage, but also harder to harvest."
     him content "He said that the corn should be ready in five days. Can you get work off to help harvest it?"
     her concerned "Yeah, I don't have any appointments since everyone else is going to be there!"
     her normal "And if someone gets injured I'll be on the scene!"
@@ -4224,14 +4491,17 @@ label community19:
     ilian_c "If you process your crabbirds in the cannery, I promise we'll pay a good price for them."
     natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
     scene stars with dissolve
-    "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomas was able to trap a lot of them that week."
+    "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomás was able to trap a lot of them that week."
     #TODO: follow-up on wolf slug hunting? maybe in a later event?
     return
 
+#######################################################################################
+#
+# COMMUNITY 20: Lily wants to return to the colony
+#
+#######################################################################################
 
 label community20:
-    #Lily wants to return to the colony in her old age
-
     if lily_mad_at_RET:
         scene yurt_interior with fade
         show pavel normal at midright with dissolve
@@ -4242,13 +4512,13 @@ label community20:
         pavel "She wants to move back to the colony."
         pavel normal "We don't have a precedent for this situation. What do you think RET would want?"
         him concerned "Hmm. I haven't heard much from RET so I assume they're happy."
-        if mavericks > 9: #maxiumum is 16 at this point
+        if mavericks_strong(): #9 #maxiumum is 16 at this point, so to get this you have to side with mavericks more than half the time
             him pout "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
             pavel normal "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him determined "That doesn't sound like a problem."
             pavel "Well, it's like RET is rehiring them, since we grow food for the miners and for ourselves."
             him doubt "They could live near us and not work for RET."
-            pavel sad "But what about treating their illnesses and letting their kids in our school?"
+            pavel sad "But what about treating their illnesses and letting their kids in our school? Using our roads? Borrowing from the tool library?"
             pavel normal "RET isn't sending enough materials to support additional people."
             him concerned "I think we should let Dr. Lily move back. That way she'll share more information with us."
             him content "If a similar situation comes up later, we can change our minds."
@@ -4263,18 +4533,17 @@ label community20:
             "I wrote a quick insta-comm from my tablet and headed over to the transmitter to send it."
             # "Dr. Lily wants to return to colony. OK?"
             "Later that day I checked to see if they responded."
-            #TODO: letter style for their reply
             $ pstyle = get_parenting_style()
             nvl clear
             if (pstyle== "authoritative"):
-                legalese "She may stay as a guest, and she must share her findings from her research."
+                ret_c "She may stay as a guest, and she must share her findings from her research."
                 him normal "Sounds fair to me."
                 nvl clear
                 him_c "RET said that Lily can stay 'as a guest' as long as she shares her research."
                 pavel_c "I'll pass this on. It sounds like calling her a guest is their way of acknowledging that she left."
                 jump lily_return
             elif (pstyle == "authoritarian"):
-                legalese "Don't allow her to return."
+                ret_c "Dr. Lily is not authorized to rejoin the colony."
                 nvl clear
                 him_c "RET said they didn't want Lily to come back."
                 pavel_c "I was afraid of that. Well, do you want to let her back or not?"
@@ -4290,7 +4559,7 @@ label community20:
                         pavel_c "Okay. I'll send her a message telling her as much."
                         jump lily_not_return
             elif(pstyle == "permissive"):
-                legalese "Yes, of course let her back!"
+                ret_c "Yes, of course she can return!"
                 nvl clear
                 him_c "RET said that she can come back."
                 pavel_c "I'll tell her what you've decided."
@@ -4314,14 +4583,13 @@ label community20:
                         jump lily_not_return
 
         label lily_return:
-            scene yurt_interior with dissolve
-            #TODO: change this and ELSE scene to a laboratory background
+            scene lab with dissolve
             show lily normal at midright with moveinright
             "Lily moved in with her former lab assistant, Miranda Perón."
             show him normal at midleft with moveinleft
             "One day she called me in to the lab."
             him "Hello Dr. Lily. Welcome back!"
-            lily angry "Thank you. I still do not approve of RET's practices, but I do not believe they felt the gravity of my protest."
+            lily angry "Thank you. I still do not approve of RET's practices, and I do not believe they felt the gravity of my protest."
             lily happy "However, since I have spent more time in the field, I have made many more observations about the flora and fauna of this planet."
             him surprised "Are you going to publish them?"
             lily normal "Some of my observations have led to theories, but I have not yet tested them."
@@ -4331,19 +4599,18 @@ label community20:
         label lily_not_return:
             scene stars with dissolve
             "A few months later I heard from Pete that Dr. Lily had disappeared."
-            "They found her clothes on the seashore, but no body."
-
+            "They found her clothes on the seashore, but no body. Strange..."
             return
 
     else:
-        scene yurt_interior with fade
+        scene lab with fade
         show lily normal at midright with moveinright
         show him normal at midleft with moveinleft
         "Dr. Lily called me in to meet with her."
         him "Hello Dr. Lily. How can I help you?"
         lily "As you might know, I've had some health problems in the past ten years."
         him surprised "Actually I didn't know that. I'm sorry to hear it."
-        lily angry "Oh. Well, several years ago, I had a heart attack, but I was able to recover fairly quickly, thanks to the many people who came to my aid."
+        lily angry "Oh. Several years ago, I had a heart attack, but I was able to recover fairly quickly, thanks to the many people who came to my aid."
         lily normal "I had to relearn how to speak. And I've had some paralysis on my right side."
         him concerned "Yeah, I guess it just didn't come up! There were times where [her_name] was really busy and I was really busy and I didn't even check the message board."
         lily "In any case, I feel that I am not going to be around much longer."
@@ -4359,7 +4626,6 @@ label community20:
         him pout "That does sound like a useful plant."
         lily normal "Here are some seeds. It's fairly common in higher elevations."
         #TODO: make this a variable that affects a future event
-        #TODO: let player plant it?
 
         if ate_jellyfish:
             lily normal "I suspect that the jellystar creature you ate contains a parasite that affects human brains."
@@ -4380,17 +4646,20 @@ label community20:
             lily angry "That's one of the symptoms of having the parasite!"
             lily normal "And I agree. I still have much to study."
 
-        else:
-            pass
-
         scene stars with fade
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "We never saw her again."
 
     return
 
+#######################################################################################
+#
+# COMMUNITY21: Camping at the beach
+#
+#######################################################################################
 
 label community21:
+    play music upbeat
     scene farm_exterior with fade
     "It's predictably overcast this time of year. Lots of people go camping now since there isn't as much danger from solar flare radiation."
     show thuc normal at midright
@@ -4417,16 +4686,17 @@ label community21:
 
     scene community_center with fade
     show brennan happy with dissolve
-    brennan happy "Thanks for coming out to this joint miner-colonist outing! I'll be laying down a few ground rules."
-    brennan normal "First, always stick with a buddy while we're traveling to the ocean."
+    brennan happy "Glad you could make it to our joint miner-colonist outing! I'll be laying down a few ground rules."
+    brennan normal "First, always stick with a buddy."
     brennan "Don't eat anything unless you are certain it's edible."
-    brennan "When you pee, make sure you're far from the river or food."
+    brennan "Make sure you're far from the river or food when you take a piss."
     brennan angry "And no smoking in tents!"
     hide brennan with moveoutright
     scene path with fade
     show kevin normal at midright with moveinleft
     show him normal at left with moveinleft
     show her happy at midleft with moveinleft
+    # TODO: where are the kids?!
     "We started walking along."
     her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [her_name] was born."
     her surprised "There's a path here and everything."
@@ -4473,7 +4743,7 @@ label community21:
     kid shifty "Anya told me that you might act polite but that you don't let anyone take a break."
     brennan normal "I do let miners take breaks, as long as we planned them."
     brennan "What are you studying in school these days?"
-    kid pout "We're learning about Earth biology and how it's different from biology on Talaam."
+    kid nervous "We're learning about Earth biology and how it's different from biology on Talaam."
     kid excited "When you were on Earth, did you ever have a dog?"
     brennan "No, I didn't, but my friend did."
     brennan happy "It licked my face whenever I walked in the door, but otherwise I ignored her."
@@ -4487,6 +4757,8 @@ label community21:
     with moveoutright
 
     scene ocean_sunset with fade
+    play music sea
+    play sound "sfx/ocean-waves.mp3" loop
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
     "I'm used to pulling up weeds, so I ended up clearing out a spot for our tent."
@@ -4516,7 +4788,7 @@ label community21:
 
 
     "That evening, Pete and his family stopped by."
-    if mavericks > 9: #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
+    if mavericks_strong(): #9 #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
         #TODO: maybe Travis should be in this event too?
         pete happy "Hey it's good to see you guys!"
         pete normal "I have a two-way radio now. It turns out communication is good for business."
@@ -4573,8 +4845,9 @@ label community21:
         "He chatted to a few people but I didn't get a chance to say hi."
         "The kids were playing with these weird transparent shells."
         hide pete with moveoutleft
+    stop sound fadeout 1.0
 
-    if miners > 9: #maximum is 15
+    if miners_strong(): #9 #maximum is 15
         scene bonfire with fade
         show kid normal at quarterright
         show him normal at midright
@@ -4583,6 +4856,7 @@ label community21:
         show brennan normal at center
         show zaina normal at midleft
         with moveinleft
+        play sound "sfx/fire-2.mp3" loop
         #TODO: put Chaco in here somewhere? we haven't seen him in a while
         brennan normal "Zaina and some of the miners caught a bunch of fish."
         brennan happy "Want to join us for a little roasting party?"
@@ -4613,7 +4887,7 @@ label community21:
         her nervous "Too true. A few of the miners have mentioned it to me. I can give out recommended doses and warn about side effects, but we don't really know what the long-term side effects are right now."
         brennan "Ultimately it's their responsibility."
         her surprised "But we need to make sure they have enough information to make good decisions."
-        if mavericks > 7:
+        if mavericks_strong("moderate"): #7
             show pete normal at left with moveinleft
             pete "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
             brennan angry "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
@@ -4667,28 +4941,36 @@ label community21:
         show kid normal at left
         show zaina normal at midleft
         with moveinleft
+        play sound "sfx/fire-2.mp3" loop
         "[kid_name] caught a fish with Zaina, and we cooked it over an open fire."
         "It looks like the miners had the same idea. They got a huge bonfire going."
         her excited "Wow, that bonfire is huge! Let's go check it out."
         him normal "You can go on ahead. I'll stay here."
         her flirting "I'll be right back."
         "[her_name] came back after a few hours. She smelled even more like smoke than I did."
+    stop sound fadeout 1.0
     scene ocean with fade
     show him normal at center
     show kid happy at midleft
     with dissolve
+    play sound "sfx/ocean-waves.mp3"
     "The next day was more relaxing in the shade, playing with jellysquids, and catching fish."
     "I even taught [kid_name] how to swim. Kind of."
-    "We travelled back to the colony without incident."
+    "We traveled back to the colony without incident."
     hide him
     hide kid
     with moveoutright
+    stop sound fadeout 1.0
     #TODO: Does this event need a choice?
     return
 
-
+#######################################################################################
+#
+# COMMUNITY 22: Mining Mount Maverick
+#
+#######################################################################################
 label community22:
-    if (miners > 6) and (mavericks > 6) and (is_liaison):
+    if (miners_strong("moderate") and mavericks_strong("moderate") and is_liaison): #6
         scene stars with fade
         nvl clear
         brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine Mount Maverick."
@@ -4740,9 +5022,20 @@ label community22:
         zaina_c "The whole mountain is scattered with silicon rock, whereas most other mountains only have a small percentage."
         brennan_c "It's tempting to ask him to leave. Let's see what RET thinks. [his_name], can you ask them if it's okay to only mine part of the mountain?"
         him_c "Yes, I can. I'll send the message at lunch."
-        "That evening RET replied that our solution was fine and reminded us not to kill anyone." #could have parenting style affect this outcome, like with Dr. Lily's death
-                   #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
-        him_c "RET says it's okay to only  mine a portion of the mountain as long as we make sure it's safe for everyone."
+        nvl clear
+        "They got back to me later that evening."
+        $ pstyle = get_parenting_style()
+        if (pstyle == "authoritarian"):
+            ret_c "We cannot guarantee the safety of anyone remaining in the caves. We will start with mining the uninhabited portion."
+        elif (pstyle == "authoritative"):
+            ret_c "Good compromise! Please ensure everyone's safety while mining the uninhabited portion of the caves."
+        elif (pstyle == "permissive"):
+            ret_c "If Pete won't move, we won't make him. Mine as safely as you can."
+        else:
+            ret_c "OK."
+
+        #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
+        him_c "RET says it's okay to only  mine a portion of the mountain. We should make sure it's safe for everyone."
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
         brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
         "The mining continued without incident."
@@ -4750,7 +5043,7 @@ label community22:
         # does this need a stat +=?
         return
 
-    elif (miners > 6) and (mavericks > 6) and not (is_liaison):
+    elif (miners_strong("moderate") and mavericks_strong("moderate") and (not is_liaison)): #6
         scene stars with fade
         nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in Mount Maverick. Do you know where he is right now?"
@@ -4769,7 +5062,7 @@ label community22:
         #stat +=?
         return
 
-    elif (miners > 3):
+    elif (miners_strong("low")): #3
         nvl clear
         if is_liaison:
             scene stars with fade
@@ -4900,7 +5193,7 @@ label community22:
                         scene black with fade
                         "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
-                        $ mavericks = 0 #or a large minus to the relationship
+                        $ mavericks -= mavericks #or a large minus to the relationship
                         $ miners += 1
                         $ community_22_forced_mavericks_leave = True #this variable isn't used again
                         return
@@ -4975,10 +5268,11 @@ label community22:
                 "I left the conversation."
                 jump mining_anyway
 
-    elif (mavericks > 3):
+    elif (mavericks_strong(3)): #3
         scene farm_interior
         show him normal at midleft
         "Pete called me on the radio one evening."
+        play sound "sfx/radio.mp3"
         pete "{i}We've been hearing and feeling explosions in the mountain a lot lately.{/i}"
         pete "{i}What do those damn miners think they're doing?!{/i}"
         him pout "That's possible. I know they finished mining in the mountain closest to us."
@@ -5006,6 +5300,7 @@ label community22:
         brennan_c "There are, but Zaina has been exploring and taking samples over the last few years. That mountain has the best chance of having the most rare metals for a 50-mile radius."
         brennan_c "I suppose if Pete let Zaina in the cave, we could see if the mining will actually endanger them or not... but I doubt he'd let her."
         him_c "Okay, okay. I'll talk to Pete, but no promises."
+        play sound "sfx/radio.mp3"
         "I tried paging Pete on the radio, but there was no answer."
         "I left him a sort of text message telling him to call me later."
         pete "{i}So, what's going on?{/i}"
@@ -5129,6 +5424,7 @@ label mining_anyway:
     with dissolve
     "Brennan continued with the mining even though the mavericks were still living in the caves."
     "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
+    play sound "sfx/radio.mp3"
     pete "{i}[her_name], do you copy? Please, are you there? We have a medical emergency.{/i}"
     her surprised "I'm here. What's wrong?"
     pete "{i}Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking.{/i}"
@@ -5144,6 +5440,7 @@ label mining_anyway:
     kid cry "Is Travis going to be okay?"
     her angry "I don't know yet."
     her "I need an expert opinion..."
+    play sound "sfx/radio.mp3"
     "[her_name] radioed Kevin and explained the situation. He offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
     "She told Pete about their plan and he agreed to let them come help Travis."
     her determined "I'll take the necessary medical supplies with me. It looks like I'll be gone the next two days, but we'll stay in contact over the radio."
@@ -5160,9 +5457,15 @@ label mining_anyway:
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
 
+    $ travis_points -= 1
     $ community_22_mined_anyway = True
     return
 
+#######################################################################################
+#
+# COMMUNITY 23: Pete's cancerous cows and earning money with jellysquid shells
+#
+#######################################################################################
 label community23:
     # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
     # Pete's cows have cancer
@@ -5171,39 +5474,39 @@ label community23:
 
     scene farm_interior
     with dissolve
-    show her normal at midright #she should be wearing her lab coat in this scene
+    show her normal coat at midright #she should be wearing her lab coat in this scene
     show him normal at midleft
     with dissolve
     her "So, I was having a slow day and I decided to do some research in the lab on our diet."
-    if mavericks > 5:
-        her surprised "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
-        her  "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
-    her concerned "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
-    her annoyed "He dries it in the sun, usually under a solar flare, so that's no surprise."
-    her nervous "However, the cells in Pete's meat are often irregular and probably cancerous."
+    if mavericks_strong("moderate"): #5
+        her determined coat "Pete asked me to check on his cows. Some of them are getting cataracts but otherwise they are pretty healthy."
+        her surprised coat "They do have frequent bloating and digestion problems, but that's pretty good considering that they are eating a mixture of alfalfa and foreign plants all day."
+    her concerned coat "I've tested some of the meat that Pete sells. It's remarkably low in bacteria."
+    her annoyed coat "He dries it in the sun, usually under a solar flare, so that's no surprise."
+    her nervous coat "However, the cells in Pete's meat are often irregular and probably cancerous."
     him annoyed "Okay... but eating cancer doesn't give you cancer, right?"
-    her normal "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
+    her normal coat "They probably don't, but it hasn't been studied in detail. So it's probably safer not to eat it."
     him pout "What about the cows from the colony?"
-    her determined "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
+    her determined coat "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
     him determined "Pete's cows are outside more, but they have those UV blankets."
-    her concerned "I don't think they don't work very well. I've seen the cows pull them off."
-    her "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
+    her concerned coat "I don't think they don't work very well. I've seen cows walking around without them; they might be able to take them off somehow."
+    her surprised coat "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
     menu:
         "Yes, definitely.":
             him blush "People should know the risks of what they're eating. You should definitely tell everyone."
             him concerned "Just be honest about how much we don't know."
-            her normal "Okay."
+            her normal coat "Okay."
             "[her_name] wrote up a brief paper summarizing her findings."
             "A few people read it and stopped buying meat from Pete."
             $ study_published_23 = True
             $ colonists += 1
         "No, don't publish the study.":
             him concerned "How many samples have you studied? I think it's too early to draw conclusions."
-            her surprised "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
-        "You should at least tell Pete." if mavericks >5:
+            her surprised coat "True, my sample size is pretty small, and we don't have any proof that eating cancerous meat is dangerous... I'll keep studying it."
+        "You should at least tell Pete." if (mavericks_strong("moderate")): #5
             him concerned "Pete should know that his cows are developing cancer."
             him content "Maybe he can adjust his radiation-shielding measures."
-            her normal "That's a good idea. I'll make that suggestion."
+            her normal coat "That's a good idea. I'll make that suggestion."
             "Pete started experimenting with different ways to shield his cows from radiation."
             $ pete_knows_his_cows_have_cancer = True
             $ mavericks += 1
@@ -5216,7 +5519,7 @@ label community23:
     with dissolve
     kid laugh "Can Anya and I go to the beach this weekend?"
     him annoyed "By yourselves?"
-    kid frustrated "No, Anya's parents are going."
+    kid angry "No, Anya's parents are going."
     him concerned "What's the occasion?"
     kid explaining "Brennan is paying lots of money for glass shells."
     kid happy "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
@@ -5239,7 +5542,7 @@ label community23:
     else:
         kid surprised "I don't know, like 5 credits a shell or something."
 
-    kid frustrated "So can I go?"
+    kid angry "So can I go?"
     him pout "Let's discuss it when [her_name] gets home."
     show her concerned at center with moveinleft
     show bro normal at left with moveinleft
@@ -5262,7 +5565,7 @@ label community23:
     scene farm_exterior with fade
     show him surprised at midright with dissolve
     show her nervous at midleft with moveinleft
-    show kid at left with moveinleft
+    show kid concerned at left with moveinleft
     "When they got back a few days later, they looked tired."
     him surprised "Welcome back! How was it?"
     her nervous "Well, the beach was totally picked over where we normally go, so we did a little exploring."
@@ -5348,6 +5651,12 @@ label community23:
                 $ colonists += 1
                 return
     return
+
+#######################################################################################
+#
+# COMMUNITY 24: Luxury Goods
+#
+#######################################################################################
 
 label community24:
     #luxury goods
@@ -5452,6 +5761,12 @@ label luxury_good:
             $ modify_credits(400)
     return
 
+#######################################################################################
+#
+# COMMUNITY 25: jellystar farm
+#
+#######################################################################################
+
 label community25:
     #Brennan's Jellysquid farm
     $ new_25 = False
@@ -5482,8 +5797,9 @@ label community25:
 
     scene ocean with dissolve
     show him normal at midleft with dissolve
+    play sound "sfx/ocean-waves.mp3"
     "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
-    if (miners > 12):
+    if (miners_strong()): #12
         show chaco normal at midright with dissolve
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."
         "Nets with a close weave enclosed a small area off a pier."
@@ -5548,7 +5864,7 @@ label community25:
                     chaco "You too."
                     jump after_convo_25
 
-    elif (mavericks > 10):
+    elif (mavericks_strong()): #10
         "I looked around the coast for the jellystar farm."
         show pete normal at midright with dissolve
         "I saw Pete standing on a pier and walked down to say hi."
@@ -5670,8 +5986,6 @@ label community25:
             brennan_c "I'm still doing research to see if that's the case."
             brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
             brennan_c "I do have some jellysquid meat, but since it isn't in high demand I was planning to sell it to Pete for fertilizer or fish food."
-            return
-
 
     else: #if neither miners or mavericks is high enough
         "I looked around the coast for the jellystar farm."
@@ -5685,13 +5999,22 @@ label community25:
                 "I could see and think but it felt like I was in a trance."
                 "After a few minutes or an hour, it let me go."
                 $ touched_jellystar_25 = True
-                return
             "Don't touch one.":
                 "I decided to just look at the jellystar."
                 jump after_convo_25
 
+    stop sound fadeout 1.0
+    return
 
+
+#######################################################################################
+#
+# COMMUNITY 26: Firegrass and beef banning?
+#
+#######################################################################################
+#TODO: Have some part of this event be different depending on your parenting style?
 label community26:
+    play music worried
     $ work_fewer_hours = False
     $ brennan_refuses_fewer_hours = False
     $ grow_more_tea = False
@@ -5718,40 +6041,40 @@ label community26:
 
     if is_liaison:
         scene community_center with dissolve
-        show her normal at center
+        show her normal coat at center
         show him normal at midleft
         show pavel normal at right
         show brennan normal at left
         show sara normal at midright
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
         her "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol although that is not her real name."
-        her determined "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
-        her normal "At night, she used firegrass to stay alert for her mining shift. During this time of heavy usage, she got 2-4 hours of sleep every two days or so."
-        her surprised "I'd like to discuss how we can help her family and also how we can discourage heavy usage of firegrass."
-        her determined "Right now, Carol is probably lying in bed trying to avoid talking to anyone."
+        her determined coat "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
+        her normal coat "At night, she used firegrass to stay alert for her mining shift. During this time of heavy usage, she got 2-4 hours of sleep every two days or so."
+        her surprised coat "I'd like to discuss how we can help her family and also how we can discourage heavy usage of firegrass."
+        her determined coat "Right now, Carol is probably lying in bed trying to avoid talking to anyone."
         her "Her biggest accomplishment this week was washing her hair and getting her rations delivered."
         sara sad "I've been visiting her at home to start her therapy. I think her husband feels like it's his fault that she's depressed."
         brennan "I remember his accident. The perfect storm of several miscommunications." #tie it to an earlier event?
         brennan "He can't walk anymore, but he can still talk and do things with his hands."
         brennan "He did have some brain damage though, so he sometimes makes unpredictable mistakes."
-        her surprised "Their family needs intensive care right now. I don't think Van Nguyen is too busy right now, and he did an apprenticeship with me a few years ago."
+        her surprised coat "Their family needs intensive care right now. I don't think Van Nguyen is too busy right now, and he did an apprenticeship with me a few years ago."
         brennan "I assume he's one of Thuc and Julia's kids?"
-        her normal "Yes. He's their youngest and has a great sense of humor. He should be able to babysit the kids for a few hours a day."
+        her normal coat "Yes. He's their youngest and has a great sense of humor. He should be able to babysit the kids for a few hours a day."
         brennan "So, they'll have a babysitter/nurse and a psychotherapist visiting them..."
-        her determined "I would like you to keep paying Carol enough to live off of while she recovers."
+        her determined coat "I would like you to keep paying Carol enough to live off of while she recovers."
         brennan angry "Her husband is already on disability... and what if she never recovers?"
-        her normal "Then we still want to take care of them!"
+        her normal coat "Then we still want to take care of them!"
         brennan normal "I'm willing to give her a month of paid disability."
-        her concerned "Well, that's a start anyway. Let's discuss firegrass and how we can manage it."
+        her concerned coat "Well, that's a start anyway. Let's discuss firegrass and how we can manage it."
         her "It appears that the active compound from firegrass stays in the blood for about as long as caffeine."
-        her surprised "The long-term side effects are similar too."
+        her surprised coat "The long-term side effects are similar too."
         brennan angry "I've never heard of someone suffering from a caffeine overdose."
-        her annoyed "Well, it can happen. Usually with heavy users of energy drinks."
-        if miners > 10: #from community21, if you talked about it with Brennan
-            her concerned "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
+        her annoyed coat "Well, it can happen. Usually with heavy users of energy drinks."
+        if miners_strong(): #10 #from community21, if you talked about it with Brennan
+            her concerned coat "A few years ago, I gave miners recommended doses of firegrass, but even with those doses, miners have experienced insomnia and reduced appetite."
         else:
-            her concerned "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
-        her surprised "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
+            her concerned coat "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
+        her surprised coat "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
         brennan normal "I also don't want to see that. But I don't think outlawing firegrass will stop people from using it."
         brennan angry "Pete is going to sell firegrass no matter what we decide."
         "How do I feel about the issue?"
@@ -5800,13 +6123,14 @@ label community26:
                         him pout "Is it really necessary for the miners to work through the night?"
                         brennan normal "We have a quota from RET we're supposed to meet each year. Sometimes it's necessary and sometimes it isn't."
                         pavel normal "What if you cut down their hours? It could actually increase productivity."
-                        if (miners > 8): #is it mean to make this an option where it won't work?
+                        if (miners_strong("moderate")): #8 #is it mean to make this an option where it won't work?
                             brennan normal "I think it will help with productivity." #he only agrees with you if your relationship with miners is good enough?
                             $ miners += 1
                             $ work_fewer_hours = True
                             jump wrap_up_council_26
                         else:
                             brennan normal "Send me an e-mail after the meeting and we can talk about it."
+                            "That's what he said, but I could tell he meant 'no way'."
                             $ brennan_refuses_fewer_hours = True
                             jump wrap_up_council_26
 
@@ -5818,7 +6142,7 @@ label community26:
                 sara normal "I know an enterprising young person who could make an app about how to use firegrass."
                 him explaining "Is it Oleg?"
                 sara "Yes! He is really interested in educational technology."
-                if (miners > 8):
+                if (miners_strong("moderate")): #8
                     sara normal "You could have them access their own health stats from the database and it could tell them their recommended dosage."
                     her concerned "But my recommended dosage levels were incorrect before. Soon my recommended dose is not going to give users any noticable alertness."
                     her annoyed "Also, there is no way I'm giving Oleg access to the health database."
@@ -5854,7 +6178,7 @@ label community26:
                         him concerned "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
                         her annoyed "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
                         him annoyed "Reducing their work hours should discourage them from using it more."
-                        if (miners > 8): #is it mean to make this an option where it won't work?
+                        if (miners_strong("moderate")): #8 #is it mean to make this an option where it won't work?
                             brennan normal "I think it will help with productivity."
                             $ miners += 1
                             $ work_fewer_hours = True
@@ -5901,7 +6225,7 @@ label community26:
                 "I e-mailed Brennan about changing the shift schedule but he never replied."
                 "When I brought it up with him in-person, he said something about not wanting to upset the miners by changing how much money they could earn."
                 jump after_firegrass_26
-            elif grow_more_tea and (colonists > 7):
+            elif grow_more_tea and (colonists_strong("moderate")): #7
                 "I got Thuc and Zaina to help me plant a new field of tea plants in return for part of the profits."
                 "Julia started an advertising campaign in her colony newspaper right before our first harvest, which helped with sales."
                 "Pavel started experimenting with the most efficient way to make black tea, and developed a loyal following."
@@ -5978,7 +6302,7 @@ label community26:
                 "We stopped buying beef from Pete, although occasionally we ate some previously-live beef when Thuc cut down the herd."
                 $ stop_buying_beef = True
                 $ colonists += 1
-        if (mavericks > 8): #maxiumum is 18
+        if (mavericks_strong()): #8 #maxiumum is 18
             scene farm_exterior
             show him normal at midleft with dissolve
             show pete happy at midright with moveinright
@@ -6020,6 +6344,11 @@ label community26:
                 him normal "Well, I hope your fish are lucrative."
     return
 
+#######################################################################################
+#
+# COMMUNITY 27: Jellypeople Reckoning
+#
+#######################################################################################
 
 label community27:
     #JELLYPEOPLE RECKONING
@@ -6042,15 +6371,21 @@ label community27:
     $ wherewelive = False
     $ wherewefood = False
     $ wherewenotlive = False
+    play music sea
     scene ocean with fade
-    show him concerned at midright
-    show her surprised at midleft
-    show kid surprised at center
-    show bro concerned at quarterleft
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
     with moveinleft
+    play sound "sfx/ocean-waves.mp3"
     "It was time for our now-annual trip to the ocean."
-    show him surprised
     "When we got there, we were surprised to see more fish than usual."
+    show him concerned
+    show her surprised
+    show kid surprised
+    show bro surprised
+    with dissolve    
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
     "I looked at one of the farms, and the nets had been cut."
     him surprised "I wonder if this is Pete's work?"
@@ -6060,7 +6395,7 @@ label community27:
 
     scene rowboat with dissolve
     show him normal at midleft with moveinleft
-    show kid frustrated at left with moveinleft
+    show kid angry at left with moveinleft
     "We took a boat out to go fishing past the pier, especially since [kid_name] wanted to play with a jellysquid."
     "We spent a long time searching for a jellysquid. There were a lot of fish in the water eating bits of dead animals... was it dead jellysquid?"
     "I thought I saw a live jellysquid and got out of the boat. The ocean was shallow here and I was able to stand up."
@@ -6163,7 +6498,7 @@ label call_to_squid:
     menu:
         "Yes, I will bring them.":
             him blush "I have no idea what we're going to do but we're going to figure something out."
-            kid frustrated "Maybe Brennan has some shells we could give back."
+            kid angry "Maybe Brennan has some shells we could give back."
             jellysquid "Bring them tomorrow."
             "The jellysquid jumped out of the bucket and into the water."
             "The net of jellystars pushed us back towards shore."
@@ -6177,7 +6512,8 @@ label call_to_squid:
             with moveinleft
             her "What on Earth happened to you?"
             kid shifty "I think you mean 'What on Talaam' happened to us."
-            if (mavericks > 8):
+            stop sound fadeout 1.0
+            if (mavericks_strong("moderate")): #8
                 scene shack with dissolve
                 show pete normal at midright with dissolve
                 show him pout at midleft with moveinleft
@@ -6202,7 +6538,7 @@ label call_to_squid:
             him determined "Well... recently I met with a squid... mother? intelligent entity? They seemed really upset about the shells being gone."
             brennan normal "Really? Did you get a picture? What did it look like and how did it communicate with you?"
             "I told him about what had happened."
-            if (miners > 8):
+            if (miners_strong("moderate")): #8
                 brennan "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him sad "I have my own farm to run!"
                 brennan happy "I can give you some credits for someone else to take care of your farm."
@@ -6215,7 +6551,7 @@ label call_to_squid:
             scene farm_exterior with dissolve
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
             "I had Julia print it in that week's {i}Talaam Times{/i}"
-            if (colonists > 8):
+            if colonists_strong("moderate"): #8
                 "Four families gave me one shell each."
                 $ shell_count += 4
             else:
@@ -6430,23 +6766,22 @@ label call_to_squid:
                                 "I started making plans for a fish farm off the coast."
                                 "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
                                 "After I explained my plans to the jellymother, she said that she could help trap a few of the first fish to start the farm."
-                                if colonists > 10:
+                                if colonists_strong(): #10
                                     "The other colonists helped me dig the farm-pond and line it with rocks."
                                     if serve_mudfish:
                                         "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
                                         "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
                                         "After about six months, the jellymother told us that our efforts at reparation were sufficient."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                        $ jellypeople_happy = True
-                                        return
                                     else:
                                         "Shills had a longer incubation period than I anticipated. The jellymother started feeding shills to emerging jellysquids."
                                         "Farming the shills took weekly maintence, which we shared. After the shills were big enough to fend for themselves, we released them into the wild."
                                         "A few of the jellysquid ate too much shill and ended up with large shells, but they seemed to adapt to it fairly well."
                                         "The jellymother seemed impressed that we followed up on our promise."
                                         "She presented us with some of the fish we could eat as a token of good will."
-                                        $ jellypeople_happy = True
-                                        return
+                                    $ achieved("Xenophiliac")
+                                    $ jellypeople_happy = True
+                                    return
                                 else:
                                     "I didn't have enough help from the other colonists to finish digging the farm-pond."
                                     "The jellymother disappeared and we rarely saw any of the jelly creatures again."
@@ -6498,14 +6833,21 @@ label boat_capsized:
     "Over the next few months, there were fewer reports of jellysquid sightings."
     "We rarely saw any of them after that year."
 
+    stop sound fadeout 1.0
     return
 
+
+#######################################################################################
+#
+# COMMUNITY 28: Euthanasia for Pavel, allow miners to vote
+#
+#######################################################################################
 
 # Perhaps Mayor Grayson dies somewhere in here, leading to a power vaccuum and increased internal tensions as well.
 # Pete has fewer credits to buy medicines with, including birth control. Helen is now pregnant and in her 40s?
 label community28:
+    play music tender
     $ against_euthanasia = False
-    $ no_euthanasia_26 = False
     scene farm_exterior with fade
     show him normal at center
     show her normal at midright
@@ -6542,7 +6884,7 @@ label community28:
             her determined "I think I agree with you."
         "I'd want to live as long as possible":
             him annoyed "I think I'd want to live as long as possible and die a natural death."
-            her annoyed "Even if it meant you needed other people to watch you all day, bath you and help you go to the bathroom?"
+            her annoyed "Even if it meant you needed other people to watch you all day, bathe you and help you go to the bathroom?"
             her "Even if it meant that you wouldn't know who you were or what you were doing?"
             him doubt "You're basically describing the cognitive state and care needs of small babies, and we highly value their lives."
             him content "Is there something wrong with being cared for when you're old?"
@@ -6631,8 +6973,8 @@ label community28:
 
     else:
         scene farm_interior with fade
-        show him normal at midright
-        show her normal at midleft
+        show him concerned at midright
+        show her concerned at midleft
         with dissolve
         "[her_name] told me a few days later that she and a few other colony leaders had agreed to allow Pavel Grayson to be euthanized according to his wishes when he reached a certain state of mental decay."
         if against_euthanasia:
@@ -6641,8 +6983,8 @@ label community28:
             him surprised "Okay..."
             jump fill_gap
         else:
-            him normal "[her_name], are you ready for this?"
-            her normal "Yes. I'll be helping Pavel avoid an irreversable, extended state of confusion and disability."
+            him surprised "[her_name], are you ready for this?"
+            her determined "Yes. I'll be helping Pavel avoid an irreversable, extended state of confusion and disability."
             him pout "I know, but you still have to give him a fatal injection right? Technically you'll be the one killing him."
             her sad "In a procedure he requested."
             jump fill_gap
@@ -6655,7 +6997,9 @@ label fill_gap:
     show sara normal at center
     show ilian normal at midright
     with dissolve
+    play sound "sfx/people.mp3"
     "In the meantime, we held a meeting to decide who would be the new mayor."
+    stop sound fadeout 2.0
     sara sad "I received your nominations."
     sara normal "The top nominations for mayor are Julia, Kevin, and myself."
     ilian normal "Kevin isn't eligible. He's not a colonist."
@@ -6696,7 +7040,7 @@ label fill_gap:
         show ilian normal at midright
         show kevin normal at midleft
         with dissolve
-        if miners > 9:
+        if miners_strong(): #9
             sara normal "The votes are in, and the majority voted to allow miners to vote."
             sara "I'll be coordinating with Brennan to set up the voting program with the miners. We should be able to vote next week though."
             ilian normal "You guys are going to regret this. Hope you like Kevin as your mayor."
@@ -6726,13 +7070,12 @@ label no_euthanasia:
     sara_c "I told him we could start next week. {emoji=happy}"
     scene kid_bedroom with fade
     show him normal at midleft with moveinleft
-    show pavel normal at midright with dissolve #TODO: sprite of pavel with eyes closed?
+    show pavel sad at midright with dissolve #TODO: sprite of pavel with eyes closed?
 
     "The next day, I stopped by his house to check on him. Just in case."
     "He seemed to be deeply asleep..."
     "No, he was out cold. Dead?"
-    "He left a note."
-    "We didn't have a lot of paper, so it was written on a chalkboard."
+    "He left a note on his computer pad."
     legalese "I'm so grateful that you were willing to look after me. When I think of all the care I will likely need, I find it unbearable to think of the burden I would place on you."
     legalese "Do try to survive, but if you can't survive, please keep your spirit of self-sacrifice and compassion."
     legalese "Don't think of my suicide as a failure on your part. This was my own rational decision in the face of a known future I preferred not to live."
@@ -6773,12 +7116,18 @@ label no_euthanasia:
     return
 
 label euthanasia:
-    scene black with fade
+    scene church with fade
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present."
     "After [her_name] performed the euthanasia, we held a simple funeral where we celebrated Pavel's lifetime of good-natured optimism."
     return
 
+
+#######################################################################################
+#
+# COMMUNITY 29: Helen's difficult delivery
+#
+#######################################################################################
 
 label community29:
     #Helen pregnant
@@ -6809,7 +7158,7 @@ label community29:
     her_c "She didn't ask for one."
     her_c "Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    if (mavericks > 5): #should this number be higher?
+    if (mavericks_strong("weak")): #5 #TODO: should this be harder to get? "moderate"?
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "She doesn't want to stay with Travis at his restaurant?"
         her_c "It's noisy in the evenings and there isn't really room for her there."
@@ -6827,6 +7176,7 @@ label community29:
         her_c "She's didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
         her_c "That way I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
+        play music tense
         scene path with fade
         show pete normal at right
         show helen normal at quarterright
@@ -6842,25 +7192,26 @@ label community29:
         show pete normal at right
         show him normal at center
         with moveinleft
-        show her determined at midleft #with her lab coat
-        show her determined at midright with move
+        show her determined coat at midleft #with her lab coat
+        show her at midright with move
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would accidentally poke me with a needle."
-        her angry "I'm not sure if she'll make it! Get Julia and Van so they can help me."
+        her angry coat "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
+        play sound "sfx/radio.mp3"
         "I called them on the radio, but they were in the mining camp. The came as soon as they could, but it took over half an hour."
-        scene hospital with fade
         scene black with fade
         scene hospital with fade
         show helen normal at midright
         show pete normal at right
-        show her annoyed at center
+        show her annoyed coat at center
+        show him determined at quarterleft
         with dissolve
         "By the time they arrived, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
-        show her at midleft with move
-        her "Go find Ilian!"
-        him normal "Why?"
-        her angry "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
+        show her determined coat at midleft with move
+        her determined coat "Go find Ilian!"
+        him surprised "Why?"
+        her angry coat "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
         him annoyed "Okay, okay!"
         scene storeroom with fade
         show ilian normal at center with dissolve
@@ -6872,22 +7223,24 @@ label community29:
         scene hospital with fade
         show helen normal at midright
         show pete normal at right
-        show her annoyed at center
+        show her annoyed coat at center
         with dissolve
         show him normal at left
         show ilian normal at quarterleft
         with moveinleft
         "As soon as we arrived, [her_name] got the tubes ready for the blood transfusion."
         show her at midleft with move
-        her angry "Helen, stay with us for a little longer!"
-        pete normal "Please save her!"
-        her annoyed "I'm working as quickly as I can!"
+        her angry coat "Helen, stay with us for a little longer!"
+        pete normal "Helen, baby, hang in there! You gotta save her, doc!"
+        show her annoyed at center with move
+        her annoyed coat "I'm working as quickly as I can!"
         "We heard the heart rate monitor slowing, and then it stopped." #TODO: heart monitor sound? for every time they're in the hospital in this event?
         "[her_name] tried to resucitate Helen for a long time, but was not successful."
-        her cry "We were too late. I'm so sorry Pete."
+        her cry coat "We were too late. I'm so sorry Pete."
         $ helen_dead = True
-        "Tears streamed down his face. He stayed with her body until [her_name] locked the hospital for the day."
+        "He didn't say anything, just turned away from us and collapsed next to her bed. He stayed with her body until [her_name] locked the hospital for the day."
         scene ocean_sunset with dissolve
+        play music sea
         "We held a memorial for her, but Pete didn't attend."
         "Later he came back for Helen's body and the baby's body, which he buried in a grave near the ocean."
         "A few weeks later there were still some loose ends from her hospital stay."
@@ -6898,19 +7251,20 @@ label community29:
         kevin_c "I saw him drying fish by the ocean a few days ago."
         scene farm_interior with fade
         show him normal at midright
-        show her nervous at midleft
+        show her nervous coat at midleft
         with dissolve
         her "[his_name], I'm going to take the wagon to find Pete. Want to come with me?"
         him doubt "Why? I doubt he wants to see us."
-        her annoyed "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
+        her annoyed coat "I tried to withdraw the credits I needed from Pete's account, but it was completely empty."
         her "I need to talk to him."
         him content "Okay. I don't think I can leave the farm this week, but take the radio and keep me updated."
-        her normal "Will do."
+        her normal coat "Will do."
         him determined "Do you need the wagon?"
-        her nervous "If he wants to pay in food I want to be able to transport it."
+        her nervous coat "If he wants to pay in food I want to be able to transport it."
         him concerned "Okay."
-        show black with fade
+        scene black with fade
         "She left early the next morning. That evening she radioed me."
+        play sound "sfx/radio.mp3"
         her "{i}I found Pete and told him the problem. He was really surprised that he didn't have any credits in his account.{/i}"
         her "{i}He got angry and told me it was my fault that Helen died.{/i}"
         him "{i}It sounds like he's still mourning her death.{/i}"
@@ -6920,20 +7274,20 @@ label community29:
         scene black with fade
         scene farm_exterior with fade
         show him normal at midright
-        show her nervous at midleft
+        show her nervous coat at midleft
         "I didn't hear from [her_name] until she got back the next evening."
-        show her nervous at midright with move
+        show her nervous coat at midright with move
         "She gave me a big hug."
-        show her nervous at center with move
+        show her nervous coat at center with move
         him content "Welcome back! How'd it go?"
-        her cry "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
+        her cry coat "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
         him determined "Huh."
-        her nervous "He followed me about halfway back... it was super awkward."
-        her sad "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
+        her nervous coat "He followed me about halfway back... just glaring at me."
+        her sad coat "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
         him pout "What are you going to do about him not paying?"
-        her nervous "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
+        her nervous coat "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
         him sad "Yeah, it's not like you can actually buy more hospital supplies with the credits."
-        her sad "Exactly."
+        her sad coat "Exactly."
         jump credits29
 
     label helen_convo_29:
@@ -6995,29 +7349,30 @@ label community29:
         "Natalia made a beautiful quilt for the future baby, and Travis made a wicker cradle."
         "Joanna made a waterproof book with high-contast images, and the elementary school kids made a mobile out of felted plant fibers."
         "Two weeks after she went on bedrest, Helen stopped taking visitors."
+        play music tense
         scene farm_interior
-        show her sad at midright
+        show her sad coat at midright
         show him normal at midleft with dissolve
         her "Helen wants to be alone right now... she told me to tell everyone that the fetus is dead and she'll be having a stillbirth."
         him sad "That's so sad. We were all looking forward to meeting Sage."
-        her nervous "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
+        her nervous coat "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
         scene hospital with fade
         "Helen delivered her stillborn baby, but started hemmoraging and had to have a blood transfusion until [her_name] could stop the bleeding."
         "Ilian had her same blood type and gave blood to her."
         show helen normal at midright
-        show her blush at center
+        show her blush coat at center
         show pete normal at right
         show him normal at midleft
         with dissolve
         her "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."
         pete happy "Me three."
-        her concerned "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
+        her concerned coat "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
         pete normal "I think I have enough credits to pay you."
-        her annoyed "Okay, can you approve the transaction?"
+        her annoyed coat "Okay, can you approve the transaction?"
         pete happy "Sure, just hand me your tablet."
         pete normal "What gives? It's saying I have insufficient funds."
-        her surprised "Let's try charging just one credit."
+        her surprised coat "Let's try charging just one credit."
         pete normal "What is going on? It still says insufficient funds."
         pete "[his_name], can you try drawing a credit from my account to verify that it's not just something on [her_name]'s tablet?"
         him pout "Okay, here."
@@ -7027,24 +7382,25 @@ label community29:
         pete "But I guess that's my problem."
         helen normal "Here, take Sage's things and sell them to the storehouse. That should pay for some of it."
         helen "We can settle the rest later. When can I go home?"
-        her determined "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
+        her determined coat "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
         helen "We don't have any use for those things now... besides selling them."
         "After Helen was well enough, she and Pete left. They buried Sage's body near the base of the mountain."
         jump credits29
 
         label credits29:
-            scene farm_interior
-            show him midright with dissolve
-            show her center with dissolve
-            show kid left with dissolve
+            scene farm_interior with fade
+            show him determined at midright
+            show her concerned coat at center
+            show kid normal at left
+            with dissolve
             kid shifty "I heard a rumor that Pete's credits were stolen."
-            her determined "That's what Pete said."
+            her determined coat "That's what Pete said."
             kid determined "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
             him surprised "This is the first I've heard of it."
             kid concerned "..."
             return
 
-        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that.
+        #TODO: Follow-up. Who stole Pete's credits? I don't even remember where I was going with that. Maybe it was Travis for his restaurant.
 
 # many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
 # I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
@@ -7055,6 +7411,12 @@ label community29:
 #Oleg's app is there! It has been modified and her dosage is pretty high.
 #JULIA DEALING FIREWEED (transported by your daughter?) bum bum bum
 # WHO STOLE PETE'S CREDITS???
+
+#######################################################################################
+#
+# COMMUNITY 30: Investigation: Murder or neglect?
+#
+#######################################################################################
 
 label community30:
     #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not
@@ -7136,6 +7498,17 @@ label community30:
 
     else:
         scene farm_exterior with fade
+        # You can use "show rain" to make it look like it's raining outside.
+        # BUT, when you show people you need to add "behind rain". For example:
+        # scene farm_exterior with fade
+        # show rain
+        # show him concerned at center behind rain with moveinleft
+        # We also have sfx for rain:
+        # play sound "sfx/rain.ogg" loop
+        # Just don't forget to stop it when it's not raining:
+        # stop sound
+
+
         "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
         nvl clear
         julia_c "Hi [his_name]. Is there a time we could meet? I have an urgent matter to discuss with you."
@@ -7200,6 +7573,7 @@ label community30:
 
     label investigation_start:
         scene farm_exterior with fade
+        play music problems
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
         nvl_clear
@@ -7449,20 +7823,18 @@ label community30:
             ilian "UGHHHH I HATE HER SO MUCH THAT WITCH!"
             him_c "He's freaking out! What the heck?"
             oleg_c "ghgh i knew it"
-            scene farm_interior with fade
-            "I went home and made cabbage and potato soup for everyone."
-            show him normal at midleft
-            show kid normal at center
-            show her normal at midright
-            with dissolve
-            him determined "Hey [kid_name], do you know where Oleg is staying right now?"
-            kid shifty "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
-            him doubt "That old cabin where we used to leave deliveries in?"
-            kid explaining "That's the one."
-            him normal "I need to go talk to Sara and Oleg for my investigation."
-            kid laugh "Are you investigating the murder?"
-            him annoyed "No one said it was a murder!"
-            her annoyed "So you're saying it wasn't a murder?"
+            "I tried to calm down Ilian, but it was no use. I went home and made cabbage and potato soup for dinner."
+            him "Hey [kid_name], do you know where Oleg is staying right now?"
+            if (has_trust()):
+                kid "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
+                him "That old cabin where we used to leave deliveries in?"
+                kid "That's the one."
+            else:
+                kid concerned "Why do you want to know?"
+            him "I need to go talk to Sara and Oleg for my investigation."
+            kid "Are you investigating the murder?"
+            him "No one said it was a murder!"
+            her "So you're saying it wasn't a murder?"
             menu:
                 "Do I think Joel died on accident?"
                 "Yes.":
@@ -7542,9 +7914,8 @@ label community30:
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
             him "Hmmm. You might be right."
 
-            if (mavericks > 8):
-                pass #you find out about the below strategy if you talk to Pete
-            else:
+            if (not mavericks_strong("moderate")): #8:
+                $ oleg_points += 1
                 oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
                 oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
                 him "That sounds like it would work. I don't have admin status though..."
@@ -7562,11 +7933,10 @@ label community30:
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
         "I also wanted to go back to the scene of the crime to look in the barrel."
-        if (mavericks > 8):
+        if mavericks_strong("moderate"): #8
             "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
-        else:
-            pass
-        if colonists > 8:
+        
+        if colonists_strong("moderate"): #8
             nvl clear
             oleg_c "i actually did recognize that ring"
             him_c "What is it?"
@@ -7578,8 +7948,6 @@ label community30:
             him_c "How?"
             "He stopped answering me."
             $ know_rings_purpose = True
-        else:
-            pass
 
         "The next morning, I sent Noel a message first thing."
         nvl clear
@@ -7655,8 +8023,9 @@ label community30:
         else:
             him "I'll update you at the end of the investigation."
 
-        if (mavericks > 8): #check values
+        if (mavericks_strong("moderate")): #8 #check values
             "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
+            play sound "sfx/radio.mp3"
             pete "{i}What can I help you with?{/i}"
             him "Hey, I'm in kind of a complicated situation."
             him "One of the miners died in what appears to be an accident."
@@ -7677,6 +8046,7 @@ label community30:
             pete "{i}Oh. I've delt with Noel before.{/i}"
             pete "{i}You can't trust anything she says.{/i}"
             him "What do you mean?"
+            play sound "sfx/radio.mp3"
             if not ban_firegrass:
                 pete "{i}She keeps trying to get me to lower the price of firegrass for her.{/i}"
                 him "She buys firegrass from you?"
@@ -7746,7 +8116,7 @@ label community30:
                     him "Yes. You can withdraw money until the account is empty, record the number, and then deposit it back."
                     brennan "Kind of a roundabout way of doing it. Is it the only way?"
                     him "As far as I know."
-                    if miners > 10:
+                    if miners_strong(): #10
                         brennan "I'll help you. But I don't have all day, so let's do this quickly."
                         label account_check:
                             if account_checked_counter > 3:
@@ -7813,7 +8183,7 @@ label community30:
                         brennan "No, don't take a photo of my tablet. I don't want the miners to know that I'm helping you too much."
                         brennan "Oh, it's already time for our evening briefing."
                         brennan "Take a screenshot and sent it to yourself."
-                        if miners > 10:
+                        if miners_strong(): #10
                             "Brennan left the tablet with me while he went to the briefing."
                             "I hurriedly opened the payments program. Whose account should I check first?"
                             label account_check_sneak:
@@ -8259,7 +8629,7 @@ label community30:
                                     him "Sara says she can make it happen."
                                     him "In the meantime, can you really test if the tea has firegrass in it?"
                                     her "I have tools for measuring the amount of caffeine is in a given substance."
-                                    her "But don't you know plants well enough to identify firegrass in a course mixture like tea?"
+                                    her "But don't you know plants well enough to identify firegrass in a coarse mixture like tea?"
                                     him "It's not a typical tea blend. It's a syrup."
                                     her "I'll test it."
 
@@ -8277,7 +8647,7 @@ label community30:
                                             "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
                                         if talked_to_pete:
                                             "I had arranged for Pete to come and testify about how Noel had bought large quantities for firegrass from him."
-                                        if know_noel_has_firegrass:
+                                        if know_noel_had_firegrass:
                                             "I testified about how I had found hidden firegrass at Noel's house."
                                         "[her_name] testified to finding elevated caffeine levels in Julia's plum tea syrup, consistent with it containing firegrass."
                                         if not ban_firegrass:

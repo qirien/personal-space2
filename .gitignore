@@ -15,6 +15,8 @@ traceback.txt
 files.txt
 game/saves
 art/
+game/music
+game/Photos
 resources
 .android.json
 project.json

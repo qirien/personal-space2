@@ -125,7 +125,7 @@ define gui.title_text_size = 60
 
 ## The images used for the main and game menus.
 define gui.main_menu_background = "gui/title.png"
-define gui.game_menu_background = "bg/stars.png"
+define gui.game_menu_background = "bg/leaves.jpg"
 
 ## Should we show the name and version of the game?
 define gui.show_name = False
@@ -146,7 +146,7 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 170
+define gui.name_xpos = 265
 define gui.name_ypos = 15
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
@@ -243,10 +243,11 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ##
 ## Choice buttons are used in the in-game menus.
 
-define gui.choice_button_width = 690
+# TODO: Customize these buttons? Use the same frame as the Confim screen?
+define gui.choice_button_width = 500
 define gui.choice_button_height = None
 define gui.choice_button_tile = False
-define gui.choice_button_borders = Borders(50, 5, 50, 5)
+define gui.choice_button_borders = Borders(10, 10, 10, 10)
 define gui.choice_button_text_font = gui.default_font
 define gui.choice_button_text_size = gui.text_size
 define gui.choice_button_text_xalign = 0.5
@@ -320,7 +321,7 @@ define gui.slot_spacing = 10
 define gui.frame_borders = Borders(4, 4, 4, 4)
 
 ## The frame that is used as part of the confirm screen.
-define gui.confirm_frame_borders = Borders(40, 40, 40, 40)
+define gui.confirm_frame_borders = Borders(60, 60, 60, 60)
 
 ## The frame that is used as part of the skip screen.
 define gui.skip_frame_borders = Borders(16, 5, 50, 5)
@@ -437,6 +438,8 @@ define gui.nvl_font = "fonts/OpenSansEmoji.otf"
 # Mobile devices
 ################################################################################
 
+# TODO: Our custom text bg doesn't show up on mobile.
+# TODO: Button font size is too small for choices.
 init python:
 
     ## This increases the size of the quick buttons to make them easier to touch

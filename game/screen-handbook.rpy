@@ -7,7 +7,7 @@ screen parenting_handbook():
     modal True
     zorder 1
     style_prefix "parenting"
-    on "show" action SetVariable("show_year", year)
+    on "show" action [SetVariable("show_year", year), SetVariable("read_handbook", True)]
 
     frame:
         xalign 0.5
@@ -20,15 +20,15 @@ screen parenting_handbook():
                 vbox:
                     xsize LEFT_COLUMN_WIDTH
                     textbutton "Baby (0-1)" selected (show_year <= BABY_MAX) action SetVariable("show_year", BABY_MAX)
-                    textbutton "Toddler (2-4)" selected (BABY_MAX < show_year <= TODDLER_MAX) action SetVariable("show_year", TODDLER_MAX)
-                    textbutton "Child (5-8)" selected (TODDLER_MAX < show_year <= CHILD_MAX) action SetVariable("show_year", CHILD_MAX)
-                    textbutton "Tween (9-11)" selected (CHILD_MAX < show_year <= TWEEN_MAX) action SetVariable("show_year", TWEEN_MAX)
-                    textbutton "Young Teen (12-14)" selected (TWEEN_MAX < show_year <= YTEEN_MAX) action SetVariable("show_year", YTEEN_MAX)
-                    textbutton "Teenager (15-18)" selected (YTEEN_MAX < show_year) action SetVariable("show_year", MAX_YEARS)
+                    textbutton "Toddler (2-5)" selected (BABY_MAX < show_year <= TODDLER_MAX) action SetVariable("show_year", TODDLER_MAX)
+                    textbutton "Child (6-9)" selected (TODDLER_MAX < show_year <= CHILD_MAX) action SetVariable("show_year", CHILD_MAX)
+                    textbutton "Tween (10-12)" selected (CHILD_MAX < show_year <= TWEEN_MAX) action SetVariable("show_year", TWEEN_MAX)
+                    textbutton "Young Teen (13-15)" selected (TWEEN_MAX < show_year <= YTEEN_MAX) action SetVariable("show_year", YTEEN_MAX)
+                    textbutton "Older Teen (16-18)" selected (YTEEN_MAX < show_year) action SetVariable("show_year", MAX_YEARS)
                 null width 5
                 vbox:
                     xsize MIDDLE_COLUMN_WIDTH-32
-                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-64 ypos -45 action Hide("parenting_handbook", zoomout)
+                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-64 ypos -45 action Hide("parenting_handbook", irisin)
                     use kid_info
 
 screen kid_info:

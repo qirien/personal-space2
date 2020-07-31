@@ -12,11 +12,13 @@ style pp_button:
     padding (5,5,8,8)
     idle_background Frame("gui/poetry/pp_idle.png", 5, 5)
     hover_background Frame("gui/poetry/pp_hover.png", 5, 5)
+    insensitive_background Frame("gui/poetry/pp_idle.png", 5, 5)
 
 style pp_button_text:
     size 18
     xalign 0.5
     idle_color "#000000"
+    insensitive_color "#000000"
     hover_color green_dark
     font "fonts/LiberationSerif.ttf"
 

@@ -3,13 +3,13 @@
 
 ## The game starts here.
 #
-# TODO: Add another parenting class before Naomi dies?
-# TODO: Warn halfway for bad/inconsistent parenting?
 # TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
-# TODO: Autosave/resume does not work well right now.
+# TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.  Add in a yearly (?) autosave
+# TODO: IF your kid is not competent, it's really hard to get enough calories/vitamins/money.
+# TODO: If your kid is competent, getting money is easy!!  Maybe this is OK...
 ##
 
 label start:
@@ -25,9 +25,11 @@ label start:
         save_name = "Intro"
         notifications = ""
         read_messages = False
+        read_handbook = False
         word_board = Board(basic_words, family_words, farm_words)
         year11_poem = ""
         year18_poem = ""
+        photos = []
 
     # PARENTS
     python:
@@ -35,15 +37,10 @@ label start:
         # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
         # Max for each is about 30
         demanding = 0
-        total_demanding = 0
         # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
         responsive = 0
-        total_responsive = 0
-
         # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
         confident = 0
-        total_confident = 0
-
         # The Four Parenting Styles
         # Only one of these should be increased each year, maximum value at the end of the game is 30
         authoritarian = 0
@@ -61,12 +58,15 @@ label start:
         bro_name = "Aeron"
 
         bro_birth_year = 0
-        bro_age = 0
+        # YEARS is Talaam time; AGE is Earth time
+        bro_years = -1
+        bro_age = -1
         year6_have_baby = False
         year8_have_baby = False
         family12_shaved_head = False
         family27_no_work = False
         plays_trombone = False
+        parenting_classes = 0
 
         marriage_strength = 0
 
@@ -75,10 +75,13 @@ label start:
         # CHILD STATS.
         # Amount of emotional intelligence, how loved and secure child feels
         attachment = 0
+        total_attachment = 0
         # Reponsibility and ability to work hard, practical knowledge
         competence = 0
+        total_competence = 0
         # Confidence, autonomy
         independence = 0
+        total_independence = 0
 
         kid_work_slider = 0
         kid_other_work = 0
@@ -90,6 +93,11 @@ label start:
         sex_ed_birthcontrol = False
 
         allowance_amount = 0
+
+        # variables for boy relationships for Terra
+        travis_points = 0
+        lorant_points = 0
+        oleg_points = 0
 
 
     # COMMUNITY
@@ -103,10 +111,13 @@ label start:
         town_hall_games = False
         no_luxuries = False #used in community 8 and community 11
         # Community groups. The higher the variable, the better your relationship with that group is.
+        total_colonists = 0
         colonists = 0
+        total_miners = 0
         miners = 0
+        total_mavericks = 0
         mavericks = 0
-        jellies = 0
+        jellies = 0 # TODO: we don't actually use this variable
         require_whole_harvest = False
         rationing = False
         lily_mad_at_RET = False
@@ -121,13 +132,14 @@ label start:
         talked_to_Sara = False
         talked_to_Kevin = False
         talked_to_Pavel = False
-        community_11_kidsonfarm = False
+        community11_kidsonfarm = False
         community_17_planparty = False
         community_22_mining_stopped = False
         community_22_forced_mavericks_leave = False
         community_22_compromise = False
         community_22_mined_anyway = False
         touched_jellystar_25 = False
+        no_euthanasia_26 = False
         jellypeople_happy = False
         kevin_elected = False
         ban_firegrass = False
@@ -143,59 +155,68 @@ label start:
         farm_size = 12
         farm = Field(farm_size, FARM_SIZE_MAXIMUM);
         selected_crop_index = 0
+        terra_overwork_count = 0
+        sortby = "calories"
+        show_sort = False
 
         # Yield of most recent set of crops, in percentages
         years_yield = [100] * farm_size
+        annual_expenses_base = 2500
+        debt_consecutive_years = 0
+        debt_event_count = 0
+        seen_miners_debt = False
+        seen_mavericks_debt = False
+        seen_colonists_debt = False
 
         # Dictionary containing the number of events seen for each crop
-        number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
+        persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
         credits = 0
         crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
+
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
-        crop_info =     (#Name          CAL NUT VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
-                        ["fallow",       0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
-                        ["corn",         9, 3, 7, 7, 50, False, False, False, 100],    # Grains/Starches
-                        ["potatoes",     10, 4, 6, 6, 40, True, False, False, 100],
-                        ["wheat",        9, 5, 8, 10, 20, False, False, False, 100],
-                        ["peppers",      2, 7, 5, 5, 25, False, False, True, 100],    # "Fruits"
-                        ["tomatoes",     3, 6, 6, 6, 15, True, False, True, 100],
-                        ["plums",        3, 3, 7, 7, 5, False, True, True, 1],
-                        ["plums+",       3, 3, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
-                        ["squash",       4, 6, 2, 4, 15, True, False, True, 100],
-                        ["strawberries", 1, 2, 6, 4, 5, False, True, True, 1],
-                        ["strawberries+",1, 2, 6, 2, 0, False, True, True, 0],
-                        ["beans",        6, 6, 4, 7, -20, True, False, True, 100],   # Legumes
-                        ["peanuts",      7, 8, 5, 8, -40, False, False, False, 100],
-                        ["carrots",      3, 6, 3, 3, 10, True, False, False, 100],   # Root Vegetables
-                        ["turnips",      3, 5, 1, 4, 10, False, False, False, 100],
-                        ["onions",       4, 2, 5, 4, 5, False, False, False, 100],
-                        ["garlic",       1, 3, 5, 2, 4, False, False, False, 100],
-                        ["spinach",      1, 6, 3, 2, 10, True, False, False, 100],   # Leafy greens
-                        ["broccoli",     3, 7, 2, 3, 15, False, False, False, 100],
-                        ["goats",        8, 8, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
-                        ["honey",         2,  2,  8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
+        crop_info =     (#Name          CAL VA VC VM VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
+                        ["fallow",       0, 0, 0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
+                        ["corn",         9, 0, 1, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
+                        ["potatoes",     10, 0, 6, 2, 6, 6, 40, True, False, False, 100],
+                        ["wheat",        9, 0, 0, 1, 9, 10, 20, False, False, False, 2],
+                        ["peppers",      2, 2, 9, 1, 5, 5, 25, False, False, True, 100],    # "Fruits"
+                        ["tomatoes",     3, 3, 4, 1, 6, 6, 15, True, False, True, 100],
+                        ["plums",        3, 1, 1, 1, 7, 7, 5, False, True, True, 1],
+                        ["plums+",       3, 1, 1, 1, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
+                        ["squash",       4, 8, 3, 2, 2, 4, 15, True, False, True, 100],
+                        ["strawberries", 1, 0, 2, 0, 6, 4, 5, False, True, True, 1],
+                        ["strawberries+",1, 0, 2, 0, 6, 2, 0, False, True, True, 0],
+                        ["beans",        6, 0, 0, 6, 4, 7, -20, True, False, True, 100],   # Legumes
+                        ["peanuts",      7, 0, 0, 6, 5, 8, -40, False, False, False, 100],
+                        ["carrots",      3, 9, 1, 0, 3, 3, 10, True, False, False, 100],   # Root Vegetables
+                        ["turnips",      3, 0, 6, 1, 1, 4, 10, False, False, False, 100],
+                        ["onions",       4, 0, 3, 1, 5, 4, 5, False, False, False, 100],
+                        ["garlic",       1, 0, 7, 2, 5, 2, 4, False, False, False, 100],
+                        ["spinach",      1, 6, 3, 2, 3, 2, 10, True, False, False, 100],   # Leafy greens
+                        ["broccoli",     3, 2, 10, 1, 2, 3, 15, False, False, False, 100],
+                        ["goats",        8, 1, 0, 1, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
+                        ["honey",        2, 0, 0, 0, 8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
         crop_descriptions = {
-            "fallow" : "Let this field rest to restore nitrogen and get rid of pests.",
+            "fallow" : "Let this field rest to restore nitrogen.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
             "potatoes" : "A starchy root vegetable with a lot of calories that doesn't take too much work.",
             "wheat" : "A nutritious grain, usually made into bread.",
             "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
-            "tomatoes" : "A popular, versatile fruit useful raw or cooked.",
+            "tomatoes" : "A juicy, versatile fruit; can be eaten raw or cooked.",
             "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
             "squash" : "This hearty vegetable keeps well and is easy to grow.",
-            "strawberries" : "Small, sweet, and delicious! They come back every year.",
-            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious. They also fix nitrogen in the soil.",
-            "peanuts" : "This legume takes hard work to harvest, shell, and boil, but keeps well and makes peanut butter.",
-            "carrots" : "These crunchy root vegetables are healthy and easy to grow.",
+            "strawberries" : "Small, sweet, and tangy! They come back every year.",
+            "beans" : "These legumes are tough to harvest, but keep well and are very nutritious. They fix nitrogen in the soil.",
+            "peanuts" : "This legume takes hard work to harvest, shell, and boil. Fixes nitrogen in the soil.",
+            "carrots" : "These crunchy root vegetables are full of vitamin A and easy to grow.",
             "turnips" : "These nutritious root vegetables are healthy, but not everyone likes them.",
             "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
             "garlic" : "Their pungent flavor is versatile and sought after.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
-            "broccoli" : "This vegetable is easy to grow and nutritious. You eat the flower buds and the stems!",
+            "broccoli" : "This vegetable is easy to grow and nutritious. Eat the flower buds and the stems!",
             "goats" : "Goats restore nitrogen, eat pests, and provide nutritious milk and meat.",
             "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
-        # Got rid of blueberries, snow peas, beets, garlic, cabbage
 
         total_calories = 0
         total_nutrition = 0
@@ -218,6 +239,7 @@ label start:
         seen_low_a = False
         seen_low_m = False
 
+        work8_choice = ""
         year28_promised_potatoes = False
 
         # Crop event variables
@@ -227,7 +249,6 @@ label start:
     #######################################################################
     # Prologue
     #######################################################################
-    $ change_cursor("default") # Reset to default cursor, just in case
     scene stars with fade
     $ _quit_slot = "quitsave"
     menu:
@@ -241,13 +262,8 @@ label start:
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
     "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
 
-    show path
-    show her flirting at midleft
-    show him happy at midright
-    show child at center
-    #show computer_pad
-    show polaroid
-    with dissolve
+    scene stars with fade
+    show familyphoto0 at center, baby_pos with dissolve
 
     if (mp.jack_name):
         $ his_name = mp.jack_name
@@ -255,9 +271,15 @@ label start:
         $ her_name = mp.kelly_name
     if (mp.baby_name):
         $ kid_name = mp.baby_name
-    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]."
-    "She's actually smiling in this picture, though we had to take thirty or so to get one good one." # TODO: show some of the outtakes
-    "And me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
+    "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
+    "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
+    scene stars with fade
+    show familyphoto1 at smallphoto, left, tilted, baby_pos with moveinright
+    $ renpy.pause(0.2)
+    show familyphoto2 at smallphoto, center, tilted, baby_pos with moveinright
+    $ renpy.pause(0.2)
+    show familyphoto3 at smallphoto, right, tilted, baby_pos with moveinright
+    "Last, there's me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
     menu name_change_loop:
         "[his_name], [her_name], and [kid_name]... Are those names correct?"
         "Yes, continue.":
@@ -283,8 +305,11 @@ label start:
 
     scene stars with fade
     "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
-    "But [kid_name] changed, and our community changed as new settlers arrived and situations changed."
-    "I suppose I changed, too."
+    "But [kid_name] grew from baby to woman, and our community evolved as new settlers arrived, along with new problems."
+    "I suppose I changed, too, over the last thirty years."
+    "Thirty years... wow, that makes me seem really old. But it's the same as eighteen Earth years."
+    "Eighteen years . . . is still a long time!"
+    "At the time I didn't even feel like I was making choices, but looking back, I can see that many small actions led to how our lives are today."
 
     #####################################################################
     # The Loop of Life                                                  #
@@ -294,9 +319,9 @@ label life_loop:
         $ save_name = "Year %d" % year
         $ earth_year = get_earth_years(year)
 
-        # TODO: One time bro appeared in the transient and farm screens before he was born...?
         if (bro_birth_year != 0):
-            $ bro_age = year - bro_birth_year
+            $ bro_years = year - bro_birth_year
+            $ bro_age = get_earth_years(year - bro_birth_year)
 
         # FARMING CHOICES
         $ renpy.random.shuffle(audio.computer)
@@ -307,18 +332,42 @@ label life_loop:
             $ years_yield = farm.process_crops()
             if (year > MONEY_YEAR):
                 $ income = farm.calculate_income(years_yield)
+                if (income < get_expenses_required(year-1)):
+                    $ debt_consecutive_years += 1
                 $ modify_credits(income)
                 $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
-                    $ modify_credits(allowance_amount * 7)
+                    $ modify_credits(-allowance_amount * 7)
+
+                # Check for credit Achievements
+                if (credits >= 2000):
+                    $ achieved("Rich Dad")
+                elif (credits <= -2000):
+                    $ achieved("Poor Dad")
+                    
         if (crop_enabled("wheat")):
             $modify_credits(-WHEAT_COST)
+
+        if (year == MONEY_YEAR):
+            "I now earn credits for the crops I choose, after deductions for expenses."
+            # TODO: Add a screenshot with the credits section highlighted
+            "This part of the screen shows how much I'll earn and how much my expenses are."
+            "Hopefully I can stay out of debt..."
+        if (year == KID_WORK_YEAR):
+            "[kid_name] is old enough to start helping on the farm."
+            # TODO: Add a screenshot with her work area highlighted
+            "I can choose how much she should work on the farm, which will give more Work to grow crops."
         $ farm.reset_crops(farm_size)
         $ read_messages = False
+        $ read_handbook = False
         $ show_year = year
-        call screen plan_farm with fade with fade
+
+        # TODO: Is there some way to detect if we have an impossible situation here? Like, even if you planted potatoes in every square with enough nitrogen, you still couldn't have enough calories?
+        # Should you lose, or your favorite faction/family rescue you?
+        call screen plan_farm() with fade
 
         label yearly_events:
+            window auto
             if demo_mode:
                 jump demo_continue
             if trailer_mode:
@@ -329,15 +378,31 @@ label life_loop:
             $ current_work = get_work_available()
             $ total_work = farm.get_total_work()
 
+            # Achievement for planting mostly potatoes
+            if (farm.crops.count("potatoes") >= (farm.crops.len() - 4)):
+                $ achieved("Potato Papa")
+                
+            play music farming fadeout 3.0 fadein 3.0
             # MALNUTRITION EVENT (optional)
-            if (farm.low_vitamins() and (year >= NUTRITION_YEAR)):
+            if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
                 call bad_nutrition
 
+            # Debt event if your credits have decreased for 3
+            # years in a row and your credits are < -100
+            if ((debt_consecutive_years >= 3) and (credits < -100)):
+                call debt_event
+
+            # Terra work events (optional)
+            if ((year > TODDLER_MAX) and (kid_work_slider >= 70)):
+                $ probability = 4/3.0*kid_work_slider - 80
+                if (renpy.random.random() < probability/100):
+                    $ next_event = terra_overwork_count + 1
+                    $ event_label = "terra_overwork" + str(next_event)
+                    if renpy.has_label(event_label):
+                        call expression event_label
+
             # WORK EVENTS (farming)
-            play music farming fadeout 3.0 fadein 3.0
             call interscene_text(year, "Work")
-            #show screen interscene(year, "Work") # with moveinleft #TODO: uncomment this with new version of Ren'Py
-            # hide screen interscene #with dissolve
             $ work_event = get_next_work_event()
             call expression work_event
 
@@ -348,31 +413,27 @@ label life_loop:
 
             # COMMUNITY EVENTS (building community, helping factions)
             play music community fadeout 3.0 fadein 3.0
+            #show screen interscene(year, "Community")
             call interscene_text(year, "Community")
             call expression "community" + str(year)
 
             # Increase child stats based on this year's parenting decisions
             stop music fadeout 3.0
-            call interscene_text(year, "End")
-            call increase_attachment
-            call increase_competence
-            call increase_independence
-            #$ renpy.notify(notifications)
-            scene black with fade
-            call screen yearly_summary with fade with fade
+            scene stars
+            window hide
+            call increase_stats
+            
+            call screen yearly_summary with slowfade 
 
-            # Reset our variables while keeping a running total
-            $ total_demanding += demanding
-            $ demanding = 0
-            $ total_responsive += responsive
-            $ responsive = 0
-            $ total_confident += confident
-            $ confident = 0
+            # Reset our variables for a new year while keeping a running total
+            call reset_variables
 
             # Autosave
             $ renpy.force_autosave(take_screenshot=True)
             $ renpy.notify("Autosaving...")
 
             $ year += 1
+            if (persistent.max_year < year):
+                $ persistent.max_year = year
     jump ending
     return

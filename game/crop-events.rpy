@@ -2,13 +2,350 @@
 
 # Default crop event, if no other crop event can be found
 label default_crop_event:
+    scene fields with fade
     "The year passed by in a blur: -- tilling, planting, weeding, harvesting -- the endless cycle of life on the farm."
     return
 
-# TODO: Write some wheat events.
-# WHEAT1: Wheat is yummy!
+# Events that can happen if you have Terra work more than 70%
+# Too much homework!
+label terra_overwork1:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
 
-# WHEAT2: Consequences of sterile GMO wheat.
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    him happy "Ready to get going on the [random_crop], [kid_name]?"
+    kid concerned "I guess..."
+    him surprised "What's wrong?"
+    kid angry "How am I supposed to do my homework if I'm always out here working with you?!"
+    him annoyed "What are you talking about? You have plenty of time to do your homework!"
+    kid sad "I've got a big project due tomorrow and I started it but it's going to take me hours and hours and I just don't know if I can do it!"
+    menu:
+        "What should I say?"
+        "You'll have plenty of time after we finish here.":
+            him determined "We're going to finish this and then you can work on your project."
+            kid annoyed "I doubt it. If I get a bad grade it will be your fault."
+            him angry "No, it will be your fault for not starting your project earlier when you had more time! It's not my fault you saved it all until the last minute!"
+            kid angry "I didn't think you'd ask me to work every single day after school this whole week!"
+            him annoyed "Well, there's a lot of work to do."
+            kid yell "Fine! Let's just get it over with!"
+            $ demanding += 1
+            $ confident += 1
+        "Work with me for half an hour and then go do homework.":
+            him determined "Work with me for thirty minutes, and then you can have the rest of the day to do your project."
+            kid angry "Thirty minutes?!"
+            him annoyed "There will be several hours left after that. That should be plenty of time."
+            kid annoyed "Fine..."
+        "Go do your project and then come help me.":
+            him concerned "Go work on your project. If you have time left, come out and help me."
+            kid normal "Okay, thanks, dad."
+            $ responsive += 1
+        "You sound pretty stressed out about it.":
+            him concerned "You sound really stressed out."
+            kid annoyed "Uh, yeah! It's worth so many points and I haven't had time to do much of anything on it!"
+            him normal "What do you think you should do?"
+            kid concerned "...work on my homework."
+            him explaining "Then go do that. As soon as you're done, though, I need your help out here."
+            kid sad "Okay..."
+            $ confident += 1
+    $ demanding += 1
+    $ terra_overwork_count += 1
+    return
+
+label terra_overwork2:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    him determined "Today we need to compost the goat droppings."
+    kid concerned "With the tractor, right?"
+    him concerned "Well, we'll till some in right where it is, but we need to spread it out and make sure there's plenty of straw mixed in to turn it into compost."
+    kid normal "Because otherwise it could burn the plants, right?"
+    him happy "Right!"
+    "Apparently she did listen to me, sometimes."
+    "We worked together for several hours, spreading out the droppings and straw over the field. But she started slowing down until finally she just plopped down on her back."
+    show kid at sitting with move
+    kid sad "Can I be done?"
+    "We still had at least another hour to go before we'd be done with this field."
+    him concerned "You okay?"
+    kid nervous "I'm tired, and my back hurts..."
+    menu:
+        "What should I say?"
+        "Help with something else instead.":
+            him surprised "Why don't you work on something else and I'll finish this up?"
+            kid concerned "Like what?"
+            him normal "You can start making dinner."
+            kid annoyed "Is it potatoes and beans again?"
+            him annoyed "Yeah, but we can have pickles, too."
+            kid normal "Okay."
+            show kid at standing with move
+            hide kid with moveoutright
+            "She left to make dinner and I finished up the job."
+            "Hopefully she wouldn't burn anything."
+            $ confident += 1
+            $ kid_work_slider -= 2
+        "Go home and rest.":
+            him concerned "You go home and rest; I can finish up here."
+            kid concerned "Thanks, dad."
+            "My back was hurting, too, but I kept at it until the job was done."
+            $ responsive += 1
+            $ kid_work_slider -= 5
+        "Let's take a little break.":
+            him happy "Me too! Let's take a break."
+            kid normal "Okay."
+            show him at sitting with move
+            "We found a clear patch and lay down next to each other, gazing up at the sky."
+            "There was a cool breeze and the clouds skated and shifted across the sky."
+            kid happy "Ha ha... that cloud looks like a crabird doing ballet..."
+            him surprised "Which one?"
+            kid normal "That one!"
+            him explaining "I think it looks more like a dragon flying."
+            kid concerned "Hmmm... maybe."
+            show him at standing
+            show kid at standing
+            with move
+            "After a few minutes, we got back to work and finished the job."
+            $ responsive += 1
+        "We're going to keep at it until we're done.":
+            him determined "That's too bad. We're going to keep working here until we're done."
+            kid angry "Can't I at least take a little break?!"
+            him annoyed "Five minutes."
+            "After five minutes, she went back to work, but she moved as slowly as possible and raked with limp arms that reminded me of a jellyfish."
+            "Still, we finished the job."
+            $ demanding += 1
+            $ confident += 1
+            $ kid_work_slider -= 2
+    $ demanding += 1
+    $ terra_overwork_count += 1
+    return
+
+label terra_overwork3:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+    # Never get to hang out with friends!
+    "[kid_name] and I worked hard harvesting the [random_crop]. On Earth, there were machines for harvesting them, but we prioritized variety and adaptability over efficiency."
+    "So we were gathering them all by hand and putting them in containers in the trailer of the tractor."
+    "Harvest was my favorite part of farming; the part that made all the hard work worth it."
+    "But it was still hard work..."
+    show him normal at quarterleft
+    show kid concerned at center
+    with move
+    him happy "Wow, look how big this one got!"
+    kid sad "..."
+    show him at left
+    show kid at midleft
+    with move
+    him surprised "[kid_name]?"
+    kid nervous "..."
+    him concerned "[kid_name], what's wrong?"
+    kid sad "Oh. Well, Oleg invited me to come over but I told him I had to come help you."
+    him surprised "Oh."
+    "On the one hand, I was proud of her work ethic. On the other hand, I knew she didn't get to hang out with friends as often as she liked..."
+    menu:
+        "What should I say?"
+        "Go hang out with him. I got this.":
+            him happy "You should go hang out with him! I can finish this."
+            kid surprised "Are you sure?"
+            him normal "Yeah! It's not often you both have your schedule free."
+            kid happy "Okay, thanks, dad!"
+            "She skipped away and I sighed. It was good to see her so happy, but... there were a lot of [random_crop] left to harvest."
+            $ responsive += 1
+            $ kid_work_slider -= 10
+        "Let's finish up quick and then you can hang out.":
+            him happy "Let's work really fast and then you'll have time to hang out!"
+            kid surprised "You think so?"
+            him normal "Yeah! Let's just do two more rows."
+            $ responsive += 1
+            $ demanding += 1
+            $ kid_work_slider -= 2
+            "We finished up the two rows, working as fast as possible. By the time she got over there, it would be almost time to come home, but I still thought it was worth it."
+        "You made the right choice.":
+            him determined "You made the right choice, [kid_name]."
+            kid annoyed "Hmph."
+            $ demanding += 1
+            "We worked in silence, trudging along and picking up every last one of the [random_crop]."
+    $ demanding += 1
+    $ terra_overwork_count += 1
+    return
+
+    # This is your job
+label terra_overwork4:
+    scene fields with fade
+    show tractor at midleft
+    show him determined at midleft
+    show kid determined at midright
+    with dissolve
+
+    $ random_crop = farm.crops.random_crop(include_animals = False)
+
+    "You don't always hear much about the work on a field after the harvest is done."
+    "We had to till in the stubble, and then [kid_name] and I had a lot of maintenance to do on the equipment."
+    "Every farm machine had to be cleaned and oiled; and in order to that we had to take a lot of pieces apart."
+    "I was trying to teach [kid_name] about how to change the oil in the tiller."
+    him explaining "Then we put the old oil in this container for recycling."
+    kid angry "Why am I always doing your job?!"
+    him surprised "What?"
+    kid annoyed "Taking care of these vehicles is {b}your{/b} job, right? So why are you making {b}me{/b} do it?"
+    him annoyed "It's not 'my' job, it's just a job that needs to get done. That's what we do."
+    kid angry "I spend so much time helping with your work that I don't have any time to do my own!"
+    him angry "What work?! You're a kid!"
+    if ((year > 27) and (not family27_no_work)):
+        kid annoyed "I have my delivery job. People depend on me."
+    else:
+        kid annoyed "I have work for school, and for mom, and there's things I want to do!"
+    him annoyed "This is more important."
+    kid nervous "More important to you..."
+    "I felt like yelling, but I kept my mouth shut. It was true that I asked her to work a lot, but that's just part of being a farm kid."
+    kid sad "I just feel like I never have time for anything."
+    menu:
+        "What should I say?"
+        "That's how it is being a farm kid.":
+            him doubt "Sorry, that's just how it is when you're a farm kid."
+            kid angry "I didn't ask to be a farm kid!"
+            him determined "But you are."
+            $ demanding += 1
+        "I need your help." if (get_extra_work() <= 1):
+            him concerned "I'm sorry, [kid_name], but there's a lot of work that needs to be done and you're making it all possible."
+            kid surprised "What do you mean?"
+            him surprised "I couldn't do all this without you. We wouldn't have all this great food, all these credits, everything we enjoy... you make it all possible."
+            kid concerned "You mean... you need me?"
+            him normal "I sure do."
+            kid annoyed "Well... I'd rather you didn't need me so much."
+            him sad "I know... I know."
+            $ demanding += 1
+        "I'll try and let you have more time in the future.":
+            him concerned "I'll see if I can schedule a bit more free time for you in the future."
+            kid nervous "Yeah... sure."
+            $ responsive += 1
+        "Let's look at your schedule together and figure this out.":
+            him concerned "Hmmm. Why don't you write out the things that you want to do and how much time they take, and we can make a schedule together?"
+            kid nervous "I guess..."
+            $ responsive += 1
+    "I remember working really hard when I was a kid... but I also remember having time to ride my bike to the creek and splash around with friends or climb trees or work on our always in-progress treehouse..."
+    "Being a teenager was pretty busy, though, since I had farm work and school work."
+    if (get_extra_work() < 0):
+        "This farm took so much work, I couldn't imagine how I could do it all without [kid_name]'s help."
+    else:
+        "Maybe I didn't need to make [kid_name] work quite so much."
+
+    $ demanding += 1
+    $ terra_overwork_count += 1
+    return
+
+# GARLIC1 Terra has no clue about its anti-vampiric properties.
+label garlic1:
+    scene farm_interior with fade
+    show him normal at midright with dissolve
+    him happy "Dinner's ready!"
+    show her normal at center
+    show kid normal at midleft
+    show bro normal at quarterleft
+    with moveinleft
+    kid annoyed "Yuck, what is that smell?!"
+    him surprised "Smell? I don't smell anything weird... I'm just making dinner."
+    kid concerned "It smells like... rotten eggs or something! What are you cooking?!"
+    him normal "Just some garlic mashed potatoes."
+    her happy "Garlic mashed potatoes?! Wow!"
+    if (bro_age > TODDLER_MAX):
+        bro sad "Mashed potatoes are my favorite! But those smell bad..."
+    kid angry "I'm not eating any!"        
+    him angry "Hey, you haven't even tried it yet."
+    kid annoyed "I don't need to try it! It smells disgusting!"
+    menu:
+        "What should I do?"
+        "Make her try a bite.":
+            him annoyed "You need to try at least one bite. Then you can decide if you like it or not."
+            kid determined "I already know I'll hate it."
+            her concerned "At least try to have a good attitude!"
+            "She wrinkled her nose and lifted a tiny spoonful to her mouth."
+            "She gulped it down and followed it with a huge glass of water."
+            kid annoyed "I don't like it."
+            him determined "Surprise, surprise."
+        "Don't make her.":
+            him determined "You don't have to eat it. All the more for me."
+            her determined "And me! Garlic mashed potatoes are my favorite!"
+            bro surprised "Can I have some more?"
+            him happy "You like them? Sure! I made lots!"
+    kid surprised "Why would someone eat something that smells like that?"
+    her concerned "Garlic actually tastes really good, and it's has a lot of health benefits."
+    him normal "And it keeps vampires away."
+    kid annoyed "Vampires?"
+    him happy "That's what legends say, anyway!"
+    kid determined "That makes absolutely no sense."
+    her normal "Well, the legends might be based on a real disease, porphyria, that causes paleness, light sensitivity, erosion of lips and gums... and a sensitivity to garlic."
+    kid normal "Earth sure has some weird ideas."
+    him happy "You have some weird ideas, like 'garlic is yucky'."
+    kid annoyed "Hmph."
+    return
+
+
+# WHEAT1: Wheat is yummy!
+label wheat1:
+    scene farm_interior with fade
+    "Every time I paid for Brennan's wheat seeds it left a bad taste in my mouth."
+    "I tried to counteract it by making plenty of bread, biscuits, dumplings, pizza, and noodles."
+    "We didn't have a lot of sugar, so cakes and cookies were out, but whenever I got fresh fruit I would make a pie."
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
+    show bro normal at quarterleft
+    with dissolve
+    if ("strawberries+" in farm.crops):
+        her sleeping "Mmmmm. There's nothing better than strawberry pie!"
+        him happy "What do you think of this recipe? Do you like the strawberries better cooked in like this?"
+        her happy "I like them both!"
+        kid surprised "Are you putting cheese on your pie?! Weird!"
+        him determined "I'm pretending it's ice cream."
+        kid nervous "You put ice cream on pie?! I thought it went in cones or something."
+        her normal "There's no wrong way to eat ice cream."
+        him flirting "Except for that weird bacon-garlic ice cream we had that one time."
+        her annoyed "Ohhh, that was awful! I can't believe you tried that."
+        him concerned "It turns out there's some things even bacon can't improve."
+        kid annoyed "If bacon's so good, how come you never make it?"
+        him sad "We didn't bring pigs to Talaam... I think if I had to do it over again, that would be the thing I would bring."
+        her annoyed "We're probably healthier without it."
+
+    elif ("plums+" in farm.crops):
+        her surprised "Wow, you made plum pie again? Isn't that a lot of work?"
+        him happy "Not really. I didn't peel the plums or anything; just took out the pits and tossed them in a crust."
+        bro nervous "Do I have to eat the crust?"
+        kid determined "If you don't eat it, I will!"
+
+    elif (("squash" in farm.crops) and ("honey" in farm.crops)):
+        "Since I didn't grow many fruits, I made a squash pie with some honey and whatever spices I could round up."
+        her surprised "Pumpkin pie?! How in the world..."
+        him happy "It's actually squash pie, but hopefully it tastes a little like pumpkin!"
+        kid surprised "Squash and pumpkin both sound like weird pies."
+        him normal "You can't decide if it's weird until you try it."
+        her determined "Where'd you find the spices?"
+        him concerned "Pavel's spice garden. He didn't have everything, but he at least had cinnamon and ginger."
+        "I took a bite. If I used my imagination, it almost tasted like pumpkin pie..."
+        bro concerned "This is weird."
+        kid concerned "It's not bad... could be sweeter, though."
+        her happy "If you don't want yours, I'll eat it! This is delicious!"
+        him normal "I'm glad someone likes it."
+    else:
+        "And when I couldn't get fresh fruit I would make a savory pie."
+        if ("tomatoes" in farm.crops):
+            "Tomatoes and goat cheese was my favorite so far."
+        else:
+            "A little meat, lots of vegetables, and a savory, creamy gravy all baked inside a flaky pie crust."
+        her sleeping "Mmmmm... great dinner, [his_name]."
+        bro concerned "Do we have any bread?"
+        him annoyed "No. Just this delicious pie."
+        kid surprised "It's not bad."
+    return
+
 
 # CORN1: Corn was made sterile by solar flares
 label corn1:
@@ -32,11 +369,12 @@ label corn1:
         "Miranda ran some tests on them, and concluded that the DNA had mutated to the point that the seeds were sterile."
         "We concluded it was probably the result of solar flares."
 
-    "There wasn't really anything I could do. I just would have to work with having less corn than I thought this year."
     $ modify_credits(-0.6 * farm.crops.count("corn") * get_credits_from_name("corn"))
+    "There wasn't really anything I could do. I just would have to work with having less corn than I thought this year."
 
 # CORN2: How to process corn
 label corn2:
+    scene fields with fade
     "There are tons of different types of corn, but on Talaam we mostly grew a variety of hard heirloom corn."
     "It's not so good for eating fresh off the cob because it's not sweet at all."
     "But it grinds up into a nice flour, and you can even pop it a little bit."
@@ -65,7 +403,7 @@ label corn2:
                     show him normal at midleft
                     show her normal at midright
                     show kid normal at center
-                    if (bro_age > 0):
+                    if (bro_years > 0):
                         show bro normal at quarterright
                     her surprised "Chips and salsa?! Wonderful!"
                     kid happy "I like chips, too!"
@@ -77,7 +415,7 @@ label corn2:
                 show him normal at midleft
                 show her normal at midright
                 show kid normal at center
-                if (bro_age > 0):
+                if (bro_years > 0):
                     show bro normal at quarterright
                 kid surprised "What is this?"
                 her happy "Popcorn!!"
@@ -120,55 +458,60 @@ label carrots1:
 
 # CARROTS2 - great carrots if fallow, otherwise find pests.
 label carrots2:
-        if (carrots_fallow):
-            "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
+    play sound "sfx/rain.ogg" loop
+    scene fields with fade
+    show rain
+    # TODO: play rain sound whenever it rains
+    if (carrots_fallow):
+        "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
+        scene farm_interior with fade
+        show her normal at midright with dissolve
+        show him normal at midleft with moveinleft
+        him surprised "Aren't these carrots beautiful?"
+        her surprised "Um... I guess so?"
+        him happy "Look how straight and strong they are!"
+        her concerned "Do they taste different."
+        him concerned "Not really. But somehow beautiful straight carrots are more satisfying than gnarled twisted ones."
+        her surprised "I suppose they might also be easier to work with."
+        him happy "Exactly! I wonder if I can make sushi..."
+        her normal "We have some smoked crabird meat... and you could get some rice and vinegar from the storehouse."
+        him determined "Now all I need is some seaweed."
+        her surprised "You're going to make nori?"
+        him concerned "...maybe not this time. It'll be something kind of like sushi, anyway."
+        her happy "Sounds delicious!"
+        if (year >= 7):
+            scene black with fade
             scene farm_interior with fade
-            show her normal at midright with dissolve
-            show him normal at midleft with moveinleft
-            him surprised "Aren't these carrots beautiful?"
-            her surprised "Um... I guess so?"
-            him happy "Look how straight and strong they are!"
-            her concerned "Do they taste different."
-            him concerned "Not really. But somehow beautiful straight carrots are more satisfying than gnarled twisted ones."
-            her surprised "I suppose they might also be easier to work with."
-            him happy "Exactly! I wonder if I can make sushi..."
-            her normal "We have some smoked crabird meat... and you could get some rice and vinegar from the storehouse."
-            him determined "Now all I need is some seaweed."
-            her surprised "You're going to make nori?"
-            him concerned "...maybe not this time. It'll be something kind of like sushi, anyway."
-            her happy "Sounds delicious!"
-            if (year >= 7):
-                scene black with fade
-                scene farm_interior with fade
-                show her normal at midright
-                show kid normal at center
-                show him normal at midleft
-                with dissolve
-                kid surprised "What are those?"
-                him happy "It's sushi! Well, it's kind of like sushi."
-                kid nervous "It looks like eyeballs."
-                her normal "It's just rice wrapped around some meat and vegetables. Try it; it's good!"
-                kid shifty "Okay..."
-                him concerned "..."
-                her concerned "..."
-                kid nervous "It's kind of plain..."
-                him surprised "Yeah, I didn't get around to making spicy mayonaisse or soy sauce or anything. But... we have salt and pepper?"
-                her concerned "That's totally not authentic."
-                him determined "We're already making it with alien crustaceans and no seaweed... I think we can season it however we like."
-                kid happy "At least it doesn't taste like eyeballs!"
+            show her normal at midright
+            show kid normal at center
+            show him normal at midleft
+            with dissolve
+            kid surprised "What are those?"
+            him happy "It's sushi! Well, it's kind of like sushi."
+            kid nervous "It looks like eyeballs."
+            her normal "It's just rice wrapped around some meat and vegetables. Try it; it's good!"
+            kid shifty "Okay..."
+            him concerned "..."
+            her concerned "..."
+            kid nervous "It's kind of plain..."
+            him surprised "Yeah, I didn't get around to making spicy mayonaisse or soy sauce or anything. But... we have salt and pepper?"
+            her concerned "That's totally not authentic."
+            him determined "We're already making it with alien crustaceans and no seaweed... I think we can season it however we like."
+            kid happy "At least it doesn't taste like eyeballs!"
 
-        else:
-            "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
-            "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
-            $ modify_credits(-farm.crops.count("carrots") * get_credits_from_name("carrots"))
-            menu:
-                "What should I do next year?"
-                "Treat the carrots with pesticide" if (get_extra_work() >= 0):
-                    "I decided to treat next year's carrots with pesticide. It'd be more work, but I didn't want to give up carrots."
-                "Don't plant carrots next year and let the pests die off.":
-                    "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
-                    $ crop_temporarily_disabled = "carrots"
-        return
+    else:
+        "My carrots were growing, but they've stopped early, and now the leaves are turning yellow. Looks like the plants are dying."
+        $ modify_credits(-farm.crops.count("carrots") * get_credits_from_name("carrots"))
+        "I finally figured out there were some pests eating them. By that time, it was too late to fix the problem. So we wouldn't have any carrots this year."
+        menu:
+            "What should I do next year?"
+            "Treat the carrots with pesticide" if (get_extra_work() >= 0):
+                "I decided to treat next year's carrots with pesticide. It'd be more work, but I didn't want to give up carrots."
+            "Don't plant carrots next year and let the pests die off.":
+                "The easiest thing to do was just not plant carrots for a year. Then the pests would die."
+                $ crop_temporarily_disabled = "carrots"
+    stop sound fadeout 2.0
+    return
 
 # CARROTS3 - is there such a thing as too many carrots?
 label carrots3:
@@ -180,16 +523,16 @@ label carrots3:
         "What should I do?"
         "Ask [her_name].":
             scene hospital with fade
-            show her normal at midright with dissolve
+            show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
             him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
-            her "Are you talking about [kid_name]'s orange hands?"
+            her annoyed coat "Are you talking about [kid_name]'s orange hands?"
             him "Yeah... is that bad?"
-            her "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
+            her concerned coat "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
             him "Okay, good to know."
-            her "Don't you think I would have said something if there was something wrong?!"
+            her annoyed coat "Don't you think I would have said something if there was something wrong?!"
             him "Well, I wasn't sure you noticed."
-            her "Of course I noticed. And if you're not careful, the same thing will happen to you."
+            her determined coat "Of course I noticed. And if you're not careful, the same thing will happen to you."
             menu:
                 "What should I do?"
                 "Keep eating carrots":
@@ -216,19 +559,19 @@ label carrots3:
             return
         "Don't worry about it.":
             "There was probably nothing to worry about. In fact, my hands were looking a little orange, too..."
-    # TODO: color them orange
+
     scene farm_interior with fade
-    show him normal at midleft
-    show kid normal at midright
+    image him orange = im.MatrixColor("images/sprites/him/him happy.png",  im.matrix.tint(0.9, 0.7, 0.3))
+    show him orange at center
     with dissolve
 
-    him happy "Best carrots ever."
-    kid happy "Yum!"
+    him "I'm never going to stop eating these delicious carrots!!!"
 
     return
 
 # POTATOES 1 - Solanine
 label potatoes1:
+    scene fields with fade
     "I dug up a whole row of potatoes, but got interrupted before I could put them away. When I finally got back to them, they had a greenish tinge to them."
     "The green color is just chlorophyll, but sometimes it indicates increased solanine."
     "Solanine is poisonous; deadly so in large amounts. Usually if they're poisonous, the potatoes will also taste bad so it's easy to not eat them."
@@ -246,10 +589,10 @@ label potatoes1:
             nvl clear
         "Don't use any that have any green.":
             "I decided not to risk poisoning myself or others."
+            $ modify_credits(-0.2 * farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
             "But even though they weren't good to eat, they would be fine for planting."
             # some kind of variable?  community_level?  farm_level? sustence?
             $ colonists += 1
-            $ modify_credits(-0.2 * farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
         "Warn people about the risks of solanine.":
             nvl clear
             him_c "Just wanted to give everyone a heads up on potatoes."
@@ -263,14 +606,14 @@ label potatoes1:
             natalia_c "Well, I'll eat them if you won't."
             ilian_c "I'll discount them, but anyone taking them from the storehouse does so at their own risk."
             nvl clear
-            "Wow, I didn't think that would be such a big deal."
-
-            $ colonists -= 1
             $ modify_credits(-0.1 * farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
+            "Wow, I didn't think that would be such a big deal."
+            $ colonists -= 1
     return
 
 # POTATOES2 - what to do with them
 label potatoes2:
+    scene fields with fade
     "I grew a lot of potatoes. In some ways, they were the perfect crop. They were protected from a lot of pests and weather since they were undeground."
     "They gave a high yield, and were a calorie- and nutrient-dense food."
     "But that also meant we ate them a lot."
@@ -331,8 +674,8 @@ label potatoes2:
             her flirting "You're going to be in the kitchen for a long time."
             him "I could use some help..."
             her "I'll take care of everything else around the house; you just keep cooking potato chips!"
-            "In the end we managed to make a little extra with the chips, though it was so much work I wasn't sure I'd do it all the time."
             $ modify_credits(200)
+            "In the end we managed to make a little extra with the chips, though it was so much work I wasn't sure I'd do it all the time."
 
         "Make potato salad":
             "Potato salad was one of my favorite summer dishes back on Earth. I'd made it before and it wasn't too hard."
@@ -369,36 +712,39 @@ label potatoes2:
 
 # POTATOES3 - Rotten potatoes
 label potatoes3:
+    play sound "sfx/rain.ogg" loop
+    scene fields with fade
+    show rain
     "I'll never forget the time it rained..."
     "And rained."
     "And rained."
     "It rained nonstop for two whole weeks."
     "Some rain is good from crops. It meant I didn't have to manually irrigate them."
     "But this much was terrible for my potatoes."
-    scene fields with fade
-    show him concerned at center with dissolve
+    show him concerned at center behind rain with dissolve
     him "They've all rotted."
     "Instead of beautiful, firm, starchy potatoes, all I had were mushy brown foul-smelling lumps."
-    "I had to dig them out anyway so they wouldn't contaminate the field."
-    "They would make good compost for other plants."
+    "There was nothing I could do to save them."
+    "But I had to dig them out so they wouldn't contaminate the field."
+    "At least I could use them for compost for other plants."
     show him concerned at quarterleft with move
     "But every hour spent in the mud fishing them out felt oppresive and pointless."
-    show him sad at center with move
+    show him pout at center with move
     "I spent all season on them, and what did I have to show for it?"
     "Just foul-smelling mush."
-    show him concerned sweat at quarterright with move
+    show him sad sweat at quarterright with move
     "I worked and worked all day, all afternoon, and into the evening."
     show night_overlay
-    show him at midleft with move
+    show him pout at midleft with move
     "I was so frustrated and mad that I just wanted to get it all done and forget about it."
-    show him at midright with move
+    show him sad at midright with move
     "I couldn't see very well in the moonlight but I kept ripping up the plants and loading the rotten potatoes onto the trailer."
     show him annoyed sweat with dissolve
     "I slipped and fell in the mud right as [her_name] came walking up."
-    show her concerned at midleft behind night_overlay
-    show kid normal at center behind night_overlay
-    if (bro_age > 0):
-        show bro normal at midleft behind night_overlay
+    show her concerned at midleft behind rain
+    show kid normal at center behind rain
+    if (bro_years > 0):
+        show bro normal at midleft behind rain
     with moveinleft
     her "Hey, we missed you at dinner. Everything okay?"
     menu:
@@ -422,18 +768,19 @@ label potatoes3:
             him determined "Yeah, I'm just finishing up. I'll meet you at home in a few minutes, okay?"
             her concerned "Okay...Wait, are these the potatoes?!"
             kid sad "I'm not eating those!"
-            him annoyed "I'm tossing them; they're all bad."
+            him annoyed "Nobody's eating them; they're all bad."
 
-    her concerned "Oh, honey, I'm sorry..."
+    her sad "Oh, honey, I'm sorry..."
     if (marriage_strength >= 2):
         her surprised "Want some help?"
         him concerned "No, no, you've been working all day, too, I can't ask you to do that."
         her sad "Are you sure?"
-    him normal "Yeah, I should probably quit for today anyway."
+    him sad "Yeah, I should probably quit for today anyway."
     her normal "We saved you some dinner..."
-    him determined "As long as it's not potatoes."
     $ modify_credits(-farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
+    him determined "As long as it's not potatoes."
 
+    stop sound fadeout 2.0
     if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
         "There was one good thing that came out of all this, though."
         "Since I didn't have to harvest potatoes, I did have some time to prepare new fields for crops."
@@ -460,8 +807,8 @@ label squash1:
                 him determined "I guess I'm Cupid's little helper today..."
                 "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
                 "Since there were several flowers on each plant, and a whole field full of plants, it took quite a while."
-                "But it wasn't difficult, and it did increase our squash yield dramatically."
                 $ modify_credits(0.5*get_credits_from_name("squash"))
+                "But it wasn't difficult, and it did increase our squash yield dramatically."
             "Ask to borrow some bees" if (year > 10):
                 "I thought I remembered someone saying something about bees, but I couldn't remember who."
                 nvl clear
@@ -485,20 +832,20 @@ label squash1:
                     "Could we trade?":
                         him surprised "Could we trade? Maybe for squash?"
                         kevin "Squash and goat's milk, in these quantities."
-                        him normal "Looks reasonable. It's a deal."
                         $ modify_credits(-50)
+                        him normal "Looks reasonable. It's a deal."
                     "Okay, how about for 50?":
                         him normal "Okay, how about 50?"
                         kevin "That is insufficient. I propose 80."
                         him surprised "Maybe 60?"
                         kevin "75 is the lowest I will consider."
-                        him normal "All right, 75 it is."
                         $ modify_credits(-75)
+                        him normal "All right, 75 it is."
                     "I'll pay you 100.":
                         him normal "I'll pay you 100 for them."
                         kevin "That is acceptable."
-                        him "It's a deal."
                         $ modify_credits(-100)
+                        him "It's a deal."
                     "Never mind, I don't need bees.":
                         kevin "Very well, the choice is yours."
                         jump squash1_forget_it
@@ -510,20 +857,23 @@ label squash1:
                 "I transported his hive of bees at night, when most of them were sleeping, and in the morning they woke up to a new home."
                 "They seemed to adjust pretty well, and went right for the squash blossoms."
                 "I was kind of sad to give them back."
-                "We harvested a lot of squash that season!"
                 $ modify_credits(0.3 * farm.crops.count("squash") * get_credits_from_name("squash"))
+                "We harvested a lot of squash that season!"
 
             "Forget the squash for this season":
                 label squash1_forget_it:
                     "I didn't have time to baby the plants. They'd have to survive on their own."
-                    "Some of them produced fruit, but most didn't. What a waste..."
                     $ modify_credits(-0.4 * farm.crops.count("squash") * get_credits_from_name("squash"))
+                    "Some of them produced fruit, but most didn't. What a waste..."
     return
 
 # SQUASH2 - squash bugs
 label squash2:
+    play music problems
+    play sound "sfx/rain.ogg"
     scene fields with fade
-    show him normal at center with dissolve
+    show rain
+    show him normal at center behind rain with dissolve
     "I went to weed the squash plants, but as I was weeding, I noticed something."
     him surprised "These plants are a bit smaller than they should be...and some of the leaves have yellow spots on them."
     him angry "What the- squash bugs! I thought we left all those behind on Earth!"
@@ -563,8 +913,8 @@ label squash2:
             $ squash2_method = "ignore"
             "Ugh, I didn't want to deal with squash bugs. It was impossible to completely eradicate them, anyway."
             "Why start a battle I knew I couldn't win?"
-            "But that meant I only havested one fourth of the squash I had planned on."
             $ modify_credits(-0.75 * farm.crops.count("squash") * get_credits_from_name("squash"))
+            "But that meant I only havested one fourth of the squash I had planned on."
         "Try and get the new folks to fix the problem. They started it, after all!":
             $ squash2_method = "passthebuck"
             nvl clear
@@ -608,17 +958,18 @@ label squash2:
             him_c "...Thank you, everyone."
             nvl clear
             $ colonists += 1
-
+    stop sound fadeout 2.0
     return
 
 # SQUASH 3 - consequences of squash bug method.
 label squash3:
+    scene fields with fade
     "I was curious to see how this next batch of squash would fare; given the trouble I had with squash bugs last time."
     if (squash2_method == "ignore"):
+        $ modify_credits(-farm.crops.count("squash") * get_credits_from_name("squash"))
         "I didn't think it was possible, but there were even more squash bugs this year. The plants didn't even have a chance to set any fruit at all before they were completely devoured."
         "I couldn't plant squash again until at least a year had passed. Maybe if they didn't have any squash to eat, they'd all die out."
         $ crop_temporarily_disabled = "squash"
-        $ modify_credits(-farm.crops.count("squash") * get_credits_from_name("squash"))
     else:
         "I checked the seedlings every day for signs of squash bugs. Nothing."
         "Was it possible I had exterminated all the squash bugs on the planet??"
@@ -626,8 +977,8 @@ label squash3:
         "Sure enough, as the flowers bloomed and squash started to grow, I noticed one plant looking a little less healthy than the rest."
         "There were squash bugs on it!"
         "It was much easier to kill them all when they were all one plant. I scrutinized that section every day and got rid of all the bugs and eggs I saw."
-        "The result was a bountiful squash harvest, even more than I had projected."
         $ modify_credits(0.5 * farm.crops.count("squash") * get_credits_from_name("squash"))
+        "The result was a bountiful squash harvest, even more than I had projected."
         "Would it ever be possible to get rid of every single squash bug? I don't know. But the harvest made all the hard work worth it."
     return
 
@@ -670,6 +1021,7 @@ label goats1:
 
 # GOATS 2 - male goats contaminating milk
 label goats2:
+    scene barn with fade
     "Having goats was pretty great. They mostly took care of themselves, and they also took care of my weeds and gave milk."
     "But lately..."
     scene farm_interior with fade
@@ -721,14 +1073,14 @@ label goats2:
                 scene cave with fade
             show pete at midright with dissolve
             show him normal at midleft with moveinleft
-            if (mavericks_strength() >= 1):
+            if mavericks_strong():
                 pete "Hey there, [his_name]. Good to see ya."
             else:
                 pete "What do {b}you{/b} want?"
             him normal "Hey, Pete! I just wondered if you wanted some goats. The bucks are getting ornery and I really don't want to have two herds."
             pete "I got plenty of cows to take care of."
             him surprised "Really? Goats aren't much trouble. They just need a fence and a place to sleep. Or you could just eat them."
-            pete "Well... actually, it might be good project for Trevor. But I'd need a doe, too."
+            pete "Well... actually, it might be good project for Travis. But I'd need a doe, too."
             him "Sure, I can spare one. She's almost full grown."
             pete "Alrighty then. I'll have some beef to trade you for, alright?"
             him "Sounds good. Later, Pete."
@@ -807,6 +1159,7 @@ label goats2:
 
 # GOATS 3 - escaping goats
 label goats3:
+    scene barn with fade
     "Our little goats were quite the escape artists. One time I left a barrel in their pen too close to the fence, and soon they had all jumped the fence and were terrorizing my garden."
     "Another time they dug one of my fence posts out and all snuck under the fence."
     "Luckily, each of these times I caught them pretty quick."
@@ -854,7 +1207,7 @@ label goats3:
     julia "Well, they've been here all morning. I'm not sure my poor sweet potatoes will recover."
     him "I-"
     julia "I tried to reach you on the radio, but you didn't answer."
-    "She looked pointedly at my radio on my belt -- it was turned off. I often 'forgot' to turn on my radio -- the truth is, I liked the peace and quiet."
+    "She looked pointedly at my radio on my belt -- it was turned off. I sometimes 'forgot' to turn on my radio -- the truth is, I liked the peace and quiet."
     him "Must have forgotten to turn it on. Well, I'll just get these goats out of your way."
     hide him
     hide kid
@@ -958,6 +1311,7 @@ label goats3:
 
 # TOMATOES 1 - blossom end rot
 label tomatoes1:
+    scene fields with fade
     $ tomatoes1_action = "none"
     "There's nothing like fresh, juicy tomatoes straight from the vine. The sweet juice, the way the seeds squirt all over when you bite into them, their perfect roundness..."
     "But the best thing about growing tomatoes on Talaam was that there were no hornworms!"
@@ -980,6 +1334,7 @@ label tomatoes1:
 
 # TOMATOES 2 - results of tomatoes 1
 label tomatoes2:
+    scene fields with fade
     $ tomatoes2_action = "none"
     if (tomatoes1_action == "research"):
         "The tomatoes looked much better this year!"
@@ -1004,27 +1359,39 @@ label tomatoes2:
         "I did some research and found out that usually means there's too much nitrogen in the soil and not enough calcium."
         if (tomatoes1_action == "fertilize"):
             "So adding more fertilizer just made it worse."
+        $ modify_credits(-0.6 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
         "Most of my tomatoes were useless..."
         "...but at least I knew what to do next year."
-        $ modify_credits(-0.6 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
     return
 
 # TOMATOES 3 - results of tomatoes 2
 label tomatoes3:
+    scene fields with fade
+    $ idx = get_crop_index("tomatoes")
     if (tomatoes2_action  == "early harvest"):
         "Because I made sure to always save seeds from the earliest tomatoes, the genetics of the tomato plants every year tended towards a fast harvest."
-        "In fact, now I can squeeze in two plantings a year, effectively doubling my tomato harvest."
         $ modify_credits(farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
+        "In fact, now I can squeeze in two plantings a year, effectively doubling my tomato harvest."
+        $ crop_info[idx][CALORIES_INDEX] = roundint(crop_info[idx][CALORIES_INDEX] * 1.5)
+        $ crop_info[idx][VITA_INDEX] = roundint(crop_info[idx][VITA_INDEX] * 1.5)
+        $ crop_info[idx][VITC_INDEX] = roundint(crop_info[idx][VITC_INDEX] * 1.5)
+        $ crop_info[idx][VITM_INDEX] = roundint(crop_info[idx][VITM_INDEX] * 1.5)
+        $ crop_info[idx][VALUE_INDEX] = roundint(crop_info[idx][VALUE_INDEX] * 1.5)
+        $ crop_info[idx][NITROGEN_INDEX] = roundint(crop_info[idx][NITROGEN_INDEX] * 1.5)
     elif (tomatoes2_action == "size"):
         "Since I only used seeds from the biggest tomatoes, the size of the tomatoes kept getting bigger and bigger."
-        "Not only did they look impressive, but they were easier to process because I had less stems to cut off before canning them."
         $ modify_credits(0.5 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
+        "Not only did they look impressive, but they were easier to process because I had less stems to cut off before canning them."
+        $ crop_info[idx][WORK_INDEX] = roundint(crop_info[idx][WORK_INDEX] / 2)
+        $ crop_info[idx][VALUE_INDEX] = roundint(crop_info[idx][VALUE_INDEX] * 1.25)
+
     elif (tomatoes2_action == "sweetness"):
         "As I selected for the sweetest tomatoes, my harvest got slowly sweeter and sweeter."
         "[her_name] will sometimes pack a lunch of just tomatoes and a little goat cheese."
         "And [kid_name] likes to eat them, too."
-        "They were so sweet I used them like berries in dessert dishes."
         $ modify_credits(0.25 * farm.crops.count("tomatoes") * get_credits_from_name("tomatoes"))
+        "They were so sweet I used them like berries in dessert dishes."
+        $ crop_info[idx][VALUE_INDEX] = roundint(crop_info[idx][VALUE_INDEX] * 1.75)
     else:
         "Finally, I had a good tomato harvest. The tomatoes were firm all over and there were plenty of them."
         "Time for salsa, spaghetti sauce, and maybe even some pizza!"
@@ -1036,6 +1403,7 @@ label tomatoes3:
 
 # PLUMS 1 - trees growing
 label plums1:
+    scene fields with fade
     "I was happy to see the plum trees getting larger and larger."
     "They didn't have any fruit now, so it felt like a lot of work for nothing."
     "But I knew if I kept taking care of them and fertilizing them, eventually they would bear fruit."
@@ -1043,7 +1411,7 @@ label plums1:
     "But, unlike the plum tree, I didn't know for sure what kind of adult I would eventually get."
     return
 
-# Several years later
+# PLUMS 2 Several years later
 # Prunes or jam?
 label plums2:
     scene plum_blossoms with fade
@@ -1073,11 +1441,11 @@ label plums2:
             scene farm_interior with fade
             "I pitted them and put them on a rack to dry."
             "I had to put a screen over them to keep pests away, but after several days I had some delicious prunes."
-            show her normal at midleft with moveinleft
-            show him at midright with move
-            her surprised "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
+            show her normal coat at midleft with moveinleft
+            show him normal at midright with move
+            her surprised coat "Prunes? That's wonderful! I don't have much constipation medicine so it'll be great to have a natural remedy instead."
             him annoyed "You don't have to be constipated to enjoy some good prunes."
-            her normal "They'll be good for [kid_name], too. Thanks, [his_name]."
+            her normal coat "They'll be good for [kid_name], too. Thanks, [his_name]."
             "I dropped most of them off at the storehouse and didn't think much about it for several days, until I got a visitor."
             scene farm_exterior with fade
             show him normal at midright with dissolve
@@ -1090,7 +1458,7 @@ label plums2:
             "He handed me a basket full of heads of garlic."
             him surprised "Oh, thanks!"
             thuc "This is nice and fresh, so you can plant it or eat it."
-            him "Mmmm, this'll be good! Thank you!"
+            him happy "Mmmm, this'll be good! Thank you!"
             "I couldn't wait to eat some, but even better, now I could grow my own."
             $ enable_crop("garlic")
             return
@@ -1122,16 +1490,16 @@ label plums2:
                     him "How about the turnips?"
                     $ enable_crop("turnips")
                 "Credits":
-                    him "I'll just take the 50 credits"
                     $ modify_credits(50)
+                    him "I'll just take the 50 credits"
             ilian "Fine. Here you go."
             "My plum jam didn't make me rich, but at least I got something for it."
             return
 
         "Just bring the plums to the storehouse.":
             "I decided to just bring the plums to the storehouse. I didn't have time for anything else."
-            "I earned 40 credits for them."
             $ modify_credits(40)
+            "I earned 40 credits for them."
 
     if not (renpy.showing("storehouse")):
         scene storeroom with fade
@@ -1144,9 +1512,9 @@ label plums2:
         menu:
             "What should I do?"
             "Buy onions.":
+                $ modify_credits(-15)
                 "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
                 $ enable_crop("onions")
-                $ modify_credits(-15)
             "Don't buy onions":
                 "I decided not to buy them. I had enough crops to deal with."
     else:
@@ -1172,7 +1540,10 @@ label beans1:
         show kid normal at midleft with moveinleft
         kid "Can I turn the crank?"
         him happy "Of course!"
-        "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
+        if (year <= CHILD_MAX):
+            "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
+        else:
+            "She cranked and cranked... I wasn't sure she ever would have admitted she was tired, so I made her give me a turn."
         "When we got tired of turning the crank by hand I attached my drill to turn it for us. That went even faster."
         "We filled up barrels and barrels of dried beans."
     else:
@@ -1182,8 +1553,10 @@ label beans1:
 
 # BEANS 2 - Wet beans
 label beans2:
+    play sound "sfx/rain.ogg"
     scene fields with fade
-    show him concerned at center with dissolve
+    show rain
+    show him concerned at center behind rain with dissolve
     him concerned "The beans are supposed to be drying so I can harvest them..."
     him annoyed "But it keeps raining."
     "I was worried that if the rain kept up, they might start to grow fungus or bacteria before they'd be dry enough to store."
@@ -1195,13 +1568,16 @@ label beans2:
             "It couldn't rain forever...I decided just to wait."
             "But it rained for over a week."
             "When it was finally dry, I checked on the beans..."
-            "...and most of them were moldy."
+            "...and most of them were soggy and rotten."
             him annoyed "That was a lot of work for nothing."
             $ harvest_factor = 0.25
         "Hang them up somewhere dry.":
             "I needed them to dry, so I decided to hang them up."
             "I strung clothesline zig-zagging around the house and in the barn."
             "I hung them upside down in bunches everywhere."
+            stop sound fadeout 2.0
+            scene farm_interior with fade
+            show him concerned at midright with dissolve
             show her normal at midleft with moveinleft
             her flirting "Trying your hand at interior design?"
             him annoyed "I'm trying my hand at saving our beans."
@@ -1214,22 +1590,23 @@ label beans2:
             $ harvest_factor = 1.0
         "Cover them with a tarp.":
             "I decided to just throw some tarps over them. That should keep them dry enough."
-            "But it rained for over a week, and the rain seeped in under the tarp. The whole bottom layer was moldy."
+            "But it rained for over a week, and the rain seeped in under the tarp. The whole bottom layer was soggy and rotten."
             "At least the top layers dried out okay."
             $ harvest_factor = 0.65
 
+    stop sound fadeout 2.0
     $ modify_credits(-(1-harvest_factor) * farm.crops.count("beans") * get_credits_from_name("beans"))
     return
 
 # SPINACH 1 - heat wave kills spinach seeds
 label spinach1:
+    scene fields with fade
     "Even with all our technology -- our hybrid tractors, our careful genetic modifications, our surveillance cameras and timed sprinkler systems -- we were still at Mother Nature's mercy."
     "It usually didn't get very warm on Talaam. Most of the time our proximity to the ocean kept the temperatures moderate."
     "But one year we had heat combined with terrible solar flares..."
     "...and the spinach seeds never came up."
     "They needed cool temperatures to germinate. The weather was nice again -- for now."
     "I had enough seeds to plant one more batch of spinach. But if those also failed, then next year I wouldn't have any spinach seeds at all."
-    $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 1
     menu:
         "Plant them again now.":
             "I carefully looked at the weather, and when it looked like it would be nice and cool I planted them again."
@@ -1250,7 +1627,9 @@ label spinach1:
             show him determined at midright
             show goat at midleft
             with dissolve
+            $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
             him annoyed "Enjoy your spinach, goats."
+            $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 1
         "Save the seeds.":
             "If we had one heat wave, we could have another. The safest bet was to just save the seeds for next year."
             scene farm_interior with fade
@@ -1260,19 +1639,17 @@ label spinach1:
             her surprised "Is the spinach ready yet? I wanted to make a salad to go with dinner."
             him concerned "Sorry, no spinach this year. It got too hot."
             her concerned "Oh...that's too bad."
+            $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))            
             him normal "Don't worry; we'll definitely have some next year."
-    $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
-    # TODO: make it so you can only plant 1 thing of spinach next year?
+            $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 2
     return
 
 # SPINACH2 - turtle slugs
 label spinach2:
     play music problems
-    $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] += 1
     scene fields with fade
-    "This year, I planted my spinach a little earlier to avoid any heat problems."
-    "Now it's almost to full size."
-    "But something has been eating the plants. I haven't seen anything, but when I checked the leaves, I could see bites taken out."
+    "I've been planting my spinach a little earlier to avoid any heat problems."
+    "But this year, something has been eating the plants. I haven't seen anything, but when I checked the leaves, I could see bites taken out."
     show him determined at center with dissolve
     him "What could be eating the spinach?"
     $ spinach2_cameras = False
@@ -1379,14 +1756,15 @@ label spinach2_eat_snails:
     scene farm_interior with fade
     show him surprised at midright
     show kid surprised at center
-    if (bro_age > 0):
+    if (bro_years > 0):
         show bro surprised at quarterright
     show her surprised at midleft
     with dissolve
+    $ achieved("Chez Dad")
     her concerned "It's...interesting."
     kid nervous "It's...not bad."
     him concerned "I suppose... I could eat this."
-    if (bro_age > 4):
+    if (bro_years > 4):
         bro annoyed "I'm not eating it."
     "It was an interesting experiment, but ultimately we did not want to eat that many turtle-snails."
     "So I disposed of them."
@@ -1418,13 +1796,12 @@ label spinach2_pick_early:
     return
 
 # Strawberries 1 - grow more?
-# TODO: Test this to see if it works with strawberries+
 label strawberries1:
     scene fields with fade
     show him normal at midright
-    show kid at midleft with dissolve
+    show kid normal at midleft with dissolve
     him normal "These strawberries are the best!"
-    kid "Mmmm!"
+    kid happy "Mmmm!"
     "We didn't have a lot of extra strawberries for jam or anything, but they tasted so sweet and delicious."
     "There's nothing like a fresh, warmed-in-the-sun, juicy, sweet, home-grown strawberry."
     "The other nice thing about strawberry plants is that they made lots of runners. If I wanted to, I could pull them up and start another strawberry field."
@@ -1435,7 +1812,7 @@ label strawberries1:
             kid "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
-            $ enable_crop("strawberries")
+            $ enable_crop("strawberries", False)
         "Sell the extra plants.":
             "I didn't really need more strawberry plants.  But maybe someone else did."
             nvl clear
@@ -1448,8 +1825,8 @@ label strawberries1:
             him_c "Okay, I should have enough to everyone to have a few."
             thuc_c "I have strawberry plants, too. I'll sell them for the same price as [his_name]."
             nvl clear
-            "I was able to make a little extra money selling strawberry plants."
             $ modify_credits(100)
+            "I was able to make a little extra money selling strawberry plants."
         "Leave them alone.":
             "I was too busy this year. I decided to just leave them there and deal with them later."
 
@@ -1457,12 +1834,14 @@ label strawberries1:
 
 # Strawberries 2 - mutant cancerous strawberries from solar flare
 label strawberries2:
+    play sound "sfx/rain.ogg"
     scene fields with fade
-    show him normal at center with dissolve
+    show rain
     "There were two things I liked about strawberries."
     "Obviously, the first was the delicious sweet fruit."
     "The second was that they were pretty low maintenance. I fertilized them and weeded them a little and that was it."
     "So it wasn't unusual that I hadn't checked on them for a month or two."
+    show him normal at center behind rain with moveinleft
     "And when I finally did, I couldn't believe what I saw..."
     him surprised "What the-- where's all my strawberries?!"
     "The strawberry field was covered with strawberry plants, but where there should have been flowers, instead the strawberry plants had made thousands and thousands of runners."
@@ -1498,28 +1877,30 @@ label strawberries2:
     nvl clear
     menu:
         "What should I do?"
-        "Rip out the mutated strawberries." if (get_extra_work() > 0):
+        "Rip out only the mutated strawberries." if (get_extra_work() > 0):
             "It was a huge pain, but I decided to rip out all the mutated strawberries.  I destroyed every plant that didn't have any flowers on it."
-            "And the few strawberries that I did get, I planted instead of eating."
             $ credits_lost = farm.crops.count("strawberries") * get_credits_from_name("strawberries")
-            $ credits_lost = farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")
+            $ credits_lost += farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")
             $ modify_credits(-credits_lost)
+            "And the few strawberries that I did get, I planted instead of eating."
         "Till over the whole field.":
             "It would take forever to figure out which strawberry plants had mutated and which hadn't. I picked the strawberries that were there, ran over the whole thing with the tiller, and I was done."
-            "Maybe next year I could plant strawberries from the seeds that I salvaged."
-
+            $ credits_lost = farm.crops.count("strawberries") * get_credits_from_name("strawberries")/2
+            $ credits_lost += farm.crops.count("strawberries+") * get_credits_from_name("strawberries+")/2
+            $ modify_credits(-credits_lost)
             $ enable_crop("strawberries", False)
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] = 1
-            # TODO: Test this...
-            $ farm.crops.delete_crop("strawberries+")
-
+            $ farm.delete_crop("strawberries+")
+            "Maybe next year I could plant strawberries from the seeds that I salvaged."
+    stop sound fadeout 2.0
+    $ achieved("Mutant Ninja Berries")
     return
 
 # Honey event
 # Can only happen year 11+
 label honey1:
-    scene farm with fade
+    scene fields with fade
     show him normal at center with dissolve
     "Having bees wasn't just good for pollinating plants; I also really enjoyed when we got to harvest the honey."
     "But when I went to harvest the honey, I noticed something."
@@ -1569,15 +1950,15 @@ label honey1:
             "I kept my eyes peeled in town, and even made an excuse to stop by the school, but I didn't see any kids that matched the video."
             "I finally asked [her_name] about it. She knows almost everyone because of her work, but I wasn't sure she'd want to tell me."
             scene hospital with fade
-            show her normal at midright with dissolve
+            show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
             him surprised "Hey do you recognize this kid?"
             "I showed her the footage."
-            her surprised "A honey thief, huh?"
+            her surprised coat "A honey thief, huh?"
             him determined "Looks like it."
-            her concerned "I can't say for sure... but it looks like Oleg or Travis."
+            her concerned coat "I can't say for sure... but it looks like Oleg or Travis."
             him concerned "That's what I thought..."
-            her determined "No, it's definitely Travis. I recognize those clothes."
+            her determined coat "No, it's definitely Travis. I recognize those clothes."
 
         "Ask [kid_name] if she recognizes him.":
             scene farm_interior with fade
@@ -1601,31 +1982,35 @@ label honey1:
     else:
         scene shack with fade
 
-    show helen normal at center
+    if (not helen_dead):
+        show helen normal at center
+
     show travis normal at midright
     with dissolve
     show him normal at quarterleft with moveinleft
-    helen "Oh. Hello, [his_name]."
-    him normal "Hey there, Helen. How's it going?"
-    helen "Okay, I guess. What brings you way out here?"
-    menu:
-        "What should I do?"
-        "Talk to Helen about Travis":
-            him determined "I'll get right to the point. Travis stole some of our honey."
-            show travis normal at quarterright with move
-            helen "Oh, really? Why do you think that?"
-            show travis normal at right with move
-            him concerned "I have video footage right here."
-            "I showed her the security video."
-            helen "Hmmm. Travis!"
-            travis "I was just going to go, uh, do my chores!"
-            show helen normal at quarterright with move
-            helen "C'mere and talk with [his_name]. And"
-            "She whispered something in his ear that I didn't hear."
-            hide helen with moveoutright
-        "Talk to Travis directly.":
-            him determined "Travis, I need to talk to you."
-            show helen at right with move
+    if (not helen_dead):
+        helen "Oh. Hello, [his_name]."
+        him normal "Hey there, Helen. How's it going?"
+        helen "Okay, I guess. What brings you way out here?"
+        menu:
+            "What should I do?"
+            "Talk to Helen about Travis":
+                him determined "I'll get right to the point. Travis stole some of our honey."
+                show travis normal at quarterright with move
+                helen "Oh, really? Why do you think that?"
+                show travis normal at right with move
+                him concerned "I have video footage right here."
+                "I showed her the security video."
+                helen "Hmmm. Travis!"
+                travis "I was just going to go, uh, do my chores!"
+                show helen normal at quarterright with move
+                helen "C'mere and talk with [his_name]. And"
+                "She whispered something in his ear that I didn't hear."
+                hide helen with moveoutright
+            "Talk to Travis directly.":
+                $ travis_points += 1
+                him determined "Travis, I need to talk to you."
+                show helen at right with move
 
     show him at center with move
     show travis normal at midright with move
@@ -1646,6 +2031,7 @@ label honey1:
             him annoyed "That's the only reason?"
             travis "Pretty much."
         "I expect full compensation.":
+            $ travis_points -= 1
             him determined "I expect you to compensate me for that honey. It's about 50 credits worth."
             travis "50 credits?!"
             him concerned "If you don't have the credits, you can work for me instead."
@@ -1687,11 +2073,13 @@ label honey1:
     menu:
         "What should I say?"
         "Quit stealing.":
+            $ travis_points -= 1
             him determined "I understand what you're saying, but you can't steal from people."
             travis "Yeah."
         "Want to learn beekeeping?":
+            $ travis_points += 2
             him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
-            travis "I don't know if I like bees..."
+            travis "I don't like bees..."
             him normal "You probably got stung a lot during your heist, huh?"
             travis "Yeah... but I wasn't going to walk away empty-handed!"
             him happy "Well, learning how to handle bees without getting stung is part of beekeeping!"

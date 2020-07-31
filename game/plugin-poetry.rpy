@@ -51,7 +51,7 @@ screen pp_screen(board):
                     spacing 20
                     xalign 0.5
                     textbutton "Reset" action Confirm("Delete this poem?", Reset(board, True)) tooltip "Reset the poem"
-                    textbutton "Done" action [FinishPoem(board), Return()] tooltip "Done with poem"
+                    textbutton "Done" action [FinishPoem(board), Show("poem_display", irisout, board.poem)] tooltip "Done with poem"
                 hbox: # Poem lines
                     spacing 2
                     vbox:
@@ -77,7 +77,7 @@ screen pp_screen(board):
                     yalign 0.5
                     spacing 10
 
-                    # TODO: this doesn't work anymore.
+                    # adding a new word doesn't work anymore...
                     #textbutton "+" action renpy.curried_invoke_in_new_context(textinput) size_group "nav_buttons"
                     textbutton "↔" action ShuffleWordLists(board) size_group "nav_buttons" tooltip "Get different words"
                 vbox:
@@ -121,6 +121,8 @@ init python:
 
     def addword(board, word):
         board.addword(word)
+        if board.line_full():
+            board.nextline()
         renpy.restart_interaction()
     AddWord = renpy.curry(addword)
 

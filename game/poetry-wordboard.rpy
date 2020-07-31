@@ -5,9 +5,11 @@
 init -100 python:
     class Board(renpy.store.object):
         if renpy.mobile:
+            MAX_LINE_SIZE = 6
             MAX_LINES = 3
             MAX_POEMS = 3
         else:
+            MAX_LINE_SIZE = 8
             MAX_LINES = 5
             MAX_POEMS = 5
 
@@ -69,6 +71,12 @@ init -100 python:
             if (self.current_line < 0):
                 self.current_line = 0
             return
+
+        def line_full(self):
+            if (len(self.poem[self.current_line]) >= self.MAX_LINE_SIZE):
+                return True
+            else:
+                return False
 
         def addword(self,word):
             if (word[0] == "-"): # if we have a suffix, add on to last word

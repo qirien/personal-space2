@@ -105,27 +105,27 @@ style frame:
 screen say(who, what):
     style_prefix "say"
 
+    # If there's a side image, display it above the text. Do not display
+    # on the phone variant - there's no room.
+    #if not renpy.variant("small"):
+
     window:
         id "window"
 
-        text what id "what"
+        text what id "what"     
 
-        if who is not None:
-
+        if who is not None:    
             window:
                 style "namebox"
                 text who id "who"
-
-    # here's our watering can MENU button
-    # TODO: This doesn't hide with 'window' because it is not inside of 'window'...
-    imagebutton xpos 1040 ypos 606 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
-
-    # If there's a side image, display it above the text. Do not display
-    # on the phone variant - there's no room.
-    if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+    
+    add SideImage() xpos 120 ypos 560                
 
 
+    # here's our side quick MENU buttons
+    imagebutton xpos 1070 ypos 550 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
+    imagebutton xpos 1085 ypos 590 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
+    imagebutton xpos 1015 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
 
 
 style window is default
@@ -215,38 +215,42 @@ style input:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#choice
 
-#TODO: Better menu interface for lots of choices, like in work20
 # TODO: bigger font for phone screens
 screen choice(items):
     style_prefix "choice"
-    #
-    # if (len(items) > 6):
-    #     vpgrid:
-    #         cols 1
-    #         xalign 0.5
-    #         #yalign 0.25
-    #         for i in items:
-    #             if (i.chosen): #This allows ths user to see which choices they have made in the past
-    #                 textbutton i.caption action i.action style "choice_chosen"
-    #             else:
-    #                 textbutton i.caption action i.action
-    # else:
-    vbox:
-        for i in items:
-            if (i.chosen): #This allows ths user to see which choices they have made in the past
-                textbutton i.caption action i.action style "choice_chosen"
-            else:
-                textbutton i.caption action i.action
+
+    # If there's a lot of choices, display them in two columns
+    if (len(items) > 6):
+        vpgrid:
+            cols 2
+            xalign 0.5
+            spacing 5
+            yalign 0.25
+            for i in items:
+                if (i.chosen): #This allows ths user to see which choices they have made in the past
+                    textbutton i.caption action i.action style "choice_chosen" xsize 500 ysize 70
+                else:
+                    textbutton i.caption action i.action xsize 500 ysize 70
+    else:
+        vbox:
+            for i in items:
+                if (i.chosen): #This allows ths user to see which choices they have made in the past
+                    textbutton i.caption action i.action style "choice_chosen"
+                else:
+                    textbutton i.caption action i.action
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
 
-style choice_button is button
+style choice_button is button:
+    properties gui.button_properties("choice_button")
+    background "leaves_branches"#"roundrect_medgreen"
+
 style choice_button_text is button_text
-style choice_chosen is choice_button:
-    background "#333a"
+style choice_chosen is choice_button#:
+    #background "#333a"
 
 style choice_chosen_text is choice_button_text:
     italic True
@@ -256,9 +260,6 @@ style choice_vbox is vbox:
     ypos 270
     yanchor 0.5
     spacing gui.choice_spacing
-
-style choice_button is default:
-    properties gui.button_properties("choice_button")
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
@@ -274,6 +275,8 @@ screen quick_menu():
     key "q" action QuickSave()
     key "l"  action QuickLoad()
     key "d" action Jump("demo")
+    key "p" action Call("photo")
+    key "g" action Call("show_photo_album")
 
     # Ensure this appears on top of other screens.
     zorder 100
@@ -329,10 +332,10 @@ screen navigation():
         yalign 0.5
 
         spacing gui.navigation_spacing
-
+        $ has_saves = renpy.newest_slot()
         if main_menu:
-
-            textbutton _("Resume") action FileLoad("quitsave", slot=True)
+            if has_saves:
+                textbutton _("Resume") action FileLoad("quitsave", slot=True)
             textbutton _("New Game") action Start()
 
         else:
@@ -341,11 +344,13 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
 
-        textbutton _("Load") action ShowMenu("load")
+        if has_saves:
+            textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
 
-        textbutton _("Achievements") action ShowMenu("achievements")
+        if has_saves:
+            textbutton _("Achievements") action ShowMenu("achievements")
 
         if _in_replay:
 
@@ -392,6 +397,18 @@ screen main_menu():
     style_prefix "main_menu"
 
     add gui.main_menu_background
+
+    if persistent.max_year:
+        if (persistent.max_year <= TODDLER_MAX):
+            add "gui/flower/flower2.png" xalign 1.0 yalign 1.0
+        elif (persistent.max_year <= CHILD_MAX):
+            add "gui/flower/flower3.png" xalign 1.0 yalign 1.0
+        elif (persistent.max_year <= TWEEN_MAX):
+            add "gui/flower/flower4.png" xalign 1.0 yalign 1.0
+        else:
+            add "gui/flower/flower5.png" xalign 1.0 yalign 1.0
+    else:
+        add "gui/flower/flower1.png" xalign 1.0 yalign 1.0
 
     # This empty frame darkens the main menu.
     frame:
@@ -1173,7 +1190,6 @@ screen achievements():
         $ cols = 3
 
     use game_menu(_("Achievements"), scroll="viewport"):
-
         vpgrid:
             xfill True
             cols cols
@@ -1181,11 +1197,28 @@ screen achievements():
             for title in achievement_list:
                 vbox:
                     if (achievement.has(title)):
-                        text "[title]"
+                        $ photo_file = persistent.achievements[title]["file"]
+                        if (photo_file):
+                            $ photo_file = "Photos/" + photo_file
+                            imagebutton:
+                                idle photo_file
+                                at thumbnail
+                                action Show("show_photo", irisout, photo_file)
+                                hovered SetVariable("show_which", title)
+                        else:
+                            text title
                     else:
-                        text "{font=fonts/OpenSansEmoji.otf}🔒{/font} [title]"
-                        # TODO: use font with unicode support
-
+                        imagebutton:
+                            idle "gui/locked.png"
+                            hover "gui/locked.png"
+                            action NullAction()
+                            hovered SetVariable("show_which", title)
+                            at highlight_imagebutton
+                    text title xalign 0.5
+                    showif (show_which == title):
+                        text persistent.achievements[title]["desc"] xalign 0.5 italic True size gui.quick_button_text_size
+                    else:
+                        text ""
 
 
 ## Confirm screen ##############################################################
@@ -1380,7 +1413,7 @@ screen nvl(dialogue, items=None):
                 action i.action
                 style "nvl_button"
 
-    add SideImage() xalign 0.0 yalign 1.0
+    # add SideImage() xalign 0.0 yalign 1.0
 
 
 screen nvl_dialogue(dialogue):

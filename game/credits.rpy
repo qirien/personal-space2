@@ -22,13 +22,15 @@ label credits:
     $ renpy.pause(2.0, hard=skippable)
     hide text with fade
 
-    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\nAmfibia\nBlue Wave Theory\nEhren Starks\n\nUsed with permission from {a=http://www.magnatune.com}Magnatune{/a}" with fade
+    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nChristos Anestopoulos\nAmbient Teknology\n\nUsed with permission from {a=http://www.magnatune.com}Magnatune{/a}" with fade
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
-    show text "Backgrounds based on images by\nLisa Horner\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nClker-Free-Vector-Images"
+    show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nClker-Free-Vector-Images"
     $ renpy.pause(6.0, hard=skippable)
     hide text with fade
+
+    # TODO: add emoji credits
 
     # TODO: add more credits from Credits.txt
 
@@ -51,14 +53,16 @@ label credits:
         $ mp.kelly_name = her_name
         $ mp.baby_name = kid_name
         $ mp.save()
-    # TODO: unlock NG+?
+    $ renpy.save_persistent()
+    
+    # TODO: unlock NG+ - keep enabled crops, number of fields
 
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve
     stop music fadeout 3.0
     $ renpy.pause(3.0, hard=skippable)
 
-    "Thank you for playing Our Personal Space 2!"
+    "Thank you for playing Our Personal Space 2: Space to Grow!"
     # TODO: add link, survey, etc?
 
     $ renpy.full_restart()

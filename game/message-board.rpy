@@ -398,7 +398,7 @@ label message16:
     if (lily_mad_at_RET):
         her_c "What about Dr. Lily? Isn't she getting kind of old?"
         sara_c "She lives near them. She's still getting around great and staying healthy."
-    if not (asked_only_medicines):
+    if not (asked_only_medicine):
         natalia_c "Tomás and Joanna like it out there. They've tunneled a house out of the ground and are doing farming and research."
 
     ilian_c "It's only a matter of time before they come back. They'll need civilization sooner or later."
@@ -737,7 +737,7 @@ label message29:
     if kevin_elected:
         kevin_c "I will put it on the agenda for the next town council meeting."
     else:
-        julia_c "I'm sure it will be fine. I'll just run it by the town council."
+        julia_c "We'll have to run it by the town council, but I don't see why not."
     him_c "I'll make a memorial plaque to go in the garden... so we can always remember Pavel, and Naomi."
 
     nvl clear
@@ -771,7 +771,7 @@ label message30:
 # TODO: redo these with new colors, make icons, etc.
 # NVL mode characters for chat rooms, etc
 define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images/icons/her-icon.png} ",
-    color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # mint green
+    color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # mint green # TODO: should this match something in her clothes?
 define him_c = Character("his_name", dynamic=True, who_suffix = "  {image=images/icons/him-icon.png} ",
     color="#bc1e0e", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # red of his eyes
 define kid_c = Character("kid_name", dynamic=True,
@@ -790,7 +790,7 @@ define thuc_c = Character("Thuc", who_suffix = "  {image=images/icons/thuc-icon.
 define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-icon.png} ",
     color="d2d099", image="ilian", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #khaki
 define brennan_c = Character("Brennan", who_suffix = "  {image=images/icons/brennan-icon.png} ",
-    color="33b533", image="brennan", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #irish green
+    color="119811", image="brennan", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #irish green
 define pete_c = Character("Pete", who_suffix = "  {image=images/icons/pete-icon.png} ",
     color="ee7755", image="pete", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #rusty brown
 define natalia_c = Character("Natalia", who_suffix = "  {image=images/icons/natalia-icon.png} ",

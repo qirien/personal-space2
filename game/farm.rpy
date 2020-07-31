@@ -45,13 +45,18 @@ init python:
                 new_nitrogen = current_nitrogen - crop_info[get_crop_index(crop_name)][NITROGEN_INDEX]
                 # print "New Nitrogen: " + str(new_nitrogen)
 
+                # If we have a composting outhouse, and this square lost nitrogen,
+                # then we get a nitrogen bonus.
+                if (new_nitrogen < current_nitrogen):
+                    if (work8_choice == "improve"):
+                        new_nitrogen += 5
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
 
                 pest_factor = 0 # how pests affect yield
                 pest_growth = 0 # how much pests increase/decrease this year
                 # If pest calculation is on
-                # TODO: Set difficulty level? Remove completely?
+                # TODO: Set difficulty level? Remove completely?  Add in New Game+?
                 if USE_PESTS:
                     current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
                     #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
@@ -101,15 +106,14 @@ init python:
 
         # Given the percentage yield of each crop square, calculate
         # how much money will be made
-        # TODO: tweak this
         def calculate_income(self, crop_yield):
             income = 0
             for i in range(0, self.crops.len()):
                 crop_name = self.crops[i]
                 crop_value = get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
                 final_value = (crop_yield[i]/100.0) * crop_value
-                print "crop_yield " + str(crop_yield[i]) + " crop_value " + str(crop_value) + " final_value " + str(final_value)
-                income += int(final_value)
+                # print "crop_yield " + str(crop_yield[i]) + " crop_value " + str(crop_value) + " final_value " + str(final_value)
+                income += roundint(final_value)
             return income
 
         # Set all crops to fallow except for already-planted perennials
@@ -164,12 +168,19 @@ init python:
 
         # Return how many calories the current field gives
         def get_total_calories(self):
-            total_cals = 0
+            total_calories = 0
+            boosted_squares = self.get_boosted_squares()
+            # Totaling crops attributes
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (self.BEE_BOOST/100.0)
                 crop_names = [row[NAME_INDEX] for row in crop_info]
                 index = crop_names.index(self.crops[i]) # find the crop's index in crop_info
-                total_cals += crop_info[index][CALORIES_INDEX]
-            return total_cals
+                crop_name = self.crops[i].rstrip("+")
+                total_calories += roundint(crop_info[index][CALORIES_INDEX] * multiplier)
+
+            return total_calories
 
         # Check if the current farm layout is valid.
         # To be valid, we need no crops that would use more nitrogen than is available
@@ -205,24 +216,36 @@ init python:
 
         def low_vitamin_a(self):
             vitA = 0
+            boosted_squares = self.get_boosted_squares()
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitA += VITAMIN_A_CROPS[current_crop_name]
-            return (vitA <= get_vitamins_required(year))
+                vitA += multiplier * crop_info[get_crop_index(current_crop_name)][VITA_INDEX]
+            return (vitA < get_vitamins_required(year))
 
         def low_vitamin_c(self):
             vitC = 0
+            boosted_squares = self.get_boosted_squares()
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                vitC += VITAMIN_C_CROPS[current_crop_name]
-            return (vitC <= get_vitamins_required(year))
+                vitC += multiplier * crop_info[get_crop_index(current_crop_name)][VITC_INDEX]
+            return (vitC < get_vitamins_required(year))
 
         def low_magnesium(self):
-            magn = 0
+            vitM = 0
+            boosted_squares = self.get_boosted_squares()
             for i in range(0, self.crops.len()):
+                multiplier = 1.0
+                if (i in boosted_squares):
+                    multiplier += (farm.BEE_BOOST/100.0)
                 current_crop_name = self.crops[i].rstrip("+")
-                magn += MAGNESIUM_CROPS[current_crop_name]
-            return (magn <= get_vitamins_required(year))
+                vitM += multiplier * crop_info[get_crop_index(current_crop_name)][VITM_INDEX]
+            return (vitM < get_vitamins_required(year))
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()
@@ -240,6 +263,20 @@ init python:
                             indices.add(curr_index)
             return indices
 
+        # Delete all instances of crop_name in crops
+        def delete_crop(self, crop_name):
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i]
+                if (current_crop_name == crop_name):
+                    self.crops[i] = "fallow"
+
+        # Calculate how much income we lose if we only get
+        # a certain percentage of our crops.
+        def income_loss(self, percentage):
+            high_yield = [100] * self.crops.len()
+            low_yield = [percentage] * self.crops.len()
+            difference = self.calculate_income(low_yield) - self.calculate_income(high_yield)
+            return difference
 
     ##
     # CROPS OBJECT
@@ -328,6 +365,7 @@ init python:
         crop_index = get_crop_index(crop_name)
         return crop_info[crop_index][ENABLED_INDEX]
 
+    # TODO: put this in a popdown notification with +crop icon and name instead
     def enable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
@@ -340,17 +378,10 @@ init python:
         if (notify):
             renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
 
-    # Delete all instances of crop_name in crops
-    def delete_crop(crop_name):
-        for i in range(0, crops.len()):
-            current_crop_name = self.items[i]
-            if (current_crop_name == crop_name):
-                self.items[i] = "fallow"
-
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical
     def get_adjacent(crop_index, max_size):
-        num_columns = int(round(max_size**0.5))
+        num_columns = roundint(max_size**0.5)
         # left edge
         if ((crop_index % num_columns) == 0):
             potential_indices = [crop_index-num_columns, crop_index+1, crop_index+num_columns]
@@ -361,7 +392,7 @@ init python:
         else:
             potential_indices = [crop_index-num_columns, crop_index-1, crop_index+1, crop_index+num_columns]
 
-        for curr_index in potential_indices:
+        for curr_index in potential_indices[:]: #iterate over a copy of the list to avoid bugs
             # if it's out of bounds, delete it
             if ((curr_index < 0) or (curr_index >= max_size)):
                 potential_indices.remove(curr_index)

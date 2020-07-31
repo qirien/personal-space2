@@ -1,3 +1,10 @@
+###############################################################################
+# Code for screens that go inbetween scenes.
+# This includes the "interscene" screen that shows the year and current phase,
+# the "notification" popdown screen,
+# as well as the "yearly_summary" screen at the end of each year.
+###############################################################################
+
 label interscene_text(year=0, event_type="Work"):
     window hide
     scene stars with fade
@@ -9,12 +16,13 @@ label interscene_text(year=0, event_type="Work"):
 screen interscene(year=0, event_type="Work"):
     style_prefix "interscene"
     window:
+        at slideinpausefade
         vbox:
             label "Year [year] of [MAX_YEARS]"
             label "[event_type]"
 
 # Pop down and fadein (thanks PyTom!)
-transform credits_popdown():
+transform popdown():
     xalign 0.98 ypos 30
 
     # When it's shown, slide it down and fade it in.
@@ -24,24 +32,22 @@ transform credits_popdown():
 
     # When it's hidden, slide it down and fade it out.
     on hide:
-        easeout 0.5 yoffset 15.0 alpha 0.0
+        easeout 0.5 yoffset -15.0 alpha 0.0
 
-# Pop down a little screen that shows when your credits change
-screen show_credits(amount=0):
+# Pop down a little screen that notifies the user about something interesting
+# ...such as credits changing, parenting style, etc.
+screen show_notification(message=""):
     hbox:
-        at credits_popdown
-        $ credits_icon = STAT_ICON_BASE + "value.png"
+        at popdown
         frame:
             xpadding 10
             ypadding 10
             background "roundrect_lightgray"
-            text "{image=" + credits_icon + "} [amount]" size 30
-
-    timer 3 action Hide("show_credits")
+            text message size 30
+    timer 3 action Hide("show_notification")
 
 # Show a summary of changes for the previous year
 # TODO: abstract out computer pad stuff somehow
-# TODO: Do we really  need a separate screen for this? Or can we put it on the computer pad screen somewhere? In the parenting manual?
 screen yearly_summary():
     key "K_RETURN" action Return()
     key "K_SPACE" action Return()
@@ -49,9 +55,9 @@ screen yearly_summary():
     frame:
         background  "computer_pad_with_screen"
         # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
-        text "User [his_name] has logged on." size 12 xalign 0.1 ypos 22 color "#fff"
-        textbutton "?" xpos 1077 ypos 18 action Jump("farm_tutorial")
-        textbutton "             " xpos 1085 ypos 18 action ShowMenu("preferences")
+        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
+        textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
+        textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -60,6 +66,7 @@ screen yearly_summary():
                 yfill True
                 frame:
                     yfill True
+                    xfill True
                     background "roundrect_darkgray"
                     vbox:
                         hbox:
@@ -68,33 +75,55 @@ screen yearly_summary():
                                 ysize TOP_SECTION_HEIGHT
                                 style "plan_farm_subframe"
                                 hbox:
+                                    spacing 10
+                                    xfill True
                                     vbox:
+                                        # TODO: format this better. Show Terra's head and a heart/work symbol? have a heading/label for the two sections?                                        
+                                        # TODO: hide mavericks until they exist
                                         xsize 200
                                         xalign 1.0
                                         label "Year [year] Summary"
-                                        null height 10
+                                        null height 10                                        
                                         text notifications
-                                        # TODO: include community stats here?
+                                        for var in ["attachment", "competence", "", "miners", "colonists", "mavericks"]:
+                                            vbox:
+                                                spacing 5
+                                                if (var != ""):
+                                                    $ old_value = eval("total_" + var)
+                                                    $ delta = eval(var)
+                                                    $ max = eval(var.upper() + "_HIGH")
+                                                    hbox:
+                                                        spacing 5
+                                                        text var.capitalize()
+                                                        if (delta != 0):
+                                                            if (delta < 0):
+                                                                text str(delta) at delay_fadein color red_dark
+                                                            else:
+                                                                text "+" + str(delta) at delay_fadein color green_dark
+                                                    bar value AnimatedValue(old_value+delta, ATTACHMENT_MAX, 1.0, old_value)
+                                                else:
+                                                    text " "
+                                                    
+                                        
                                     $ parenting_style = get_parenting_style()
-                                    # TODO: add in expressions based on parenting style, attachment, competence, independence
                                     $ kid_type = get_kid_type()
-                                    add "family_photo_small " + kid_type
+                                    add "family_photo_small " + kid_type xalign 1.0
 
                             frame:
-                                xsize RIGHT_COLUMN_WIDTH
+                                #xsize RIGHT_COLUMN_WIDTH
                                 ysize TOP_SECTION_HEIGHT
+                                xalign 1.0
                                 style "plan_farm_subframe"
                                 vbox:
                                      label "Quote"
                                      null height 10
                                      text parenting_quotes[year]
                         frame:
-                            xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
+                            #xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
                             style "plan_farm_subframe"
                             vbox:
                                 xfill True
                                 textbutton "Continue":
-                                     style "round_button"
                                      xalign 0.5
                                      action Return()
 
@@ -113,8 +142,12 @@ style interscene_window is default:
     xalign 0.0
     yalign 0.0
     padding (45,45)
-    background Frame("gui/textbox.png", left=35, right=35, top=35, bottom=35)
 
 style interscene_label is label
 style interscene_label_text is label_text:
     color "#fff"
+    font gui.interface_font
+    outlines [(1, black, 1, 1)]
+
+style plan_farm_bar:
+    ysize 10

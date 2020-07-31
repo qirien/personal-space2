@@ -1,24 +1,5 @@
 # Library of functions we call that have to do with game variables, etc.
 
-##
-# DYNAMIC MOUSE CURSOR
-##
-#TODO: remove if we end up not using this
-init 1 python:
-    def change_cursor(type="default"):
-        persistent.mouse = type
-        if type == "default":
-            setattr(config, "mouse", None)
-        elif type == "punch":
-            setattr(config, "mouse", {"default": [("gui/punch.png", 6, 6)]})
-
-    if not hasattr(persistent, "mouse"):
-        change_cursor()
-    else:
-        change_cursor(persistent.mouse)
-
-    def random_float():
-        return renpy.random.random()
 
 ##
 # Menu Randomization
@@ -36,7 +17,7 @@ init python:
         return renpy_menu(items)
 
 ##
-#
+# Return the value bounded by min and max
 ##
 init python:
     def bounded_value(val, min=0, max=100):
@@ -46,35 +27,69 @@ init python:
             return min
         else:
             return val
+
+init python:
+    def random_float():
+        return renpy.random.random()
+
+    def notification_add(var_name, amount):
+        global notifications
+        message = ""
+        if (amount == 0):
+            return
+        elif (amount > 0):
+            message += var_name + "{color=" + green_dark + "} +"
+        else:
+            message += var_name + "{color=" + red_dark + "} "
+        message += str(amount) + "{/color}\n"
+
+        notifications += message
+        return
+
+label reset_variables:
+    $ total_attachment += attachment
+    $ total_competence += competence    
+    $ total_independence += independence  
+    $ demanding = 0
+    $ responsive = 0
+    $ confident = 0
+    $ attachment = 0
+    $ competence = 0
+    $ independence = 0
+
+    # Community stats
+    $ total_colonists += colonists
+    $ total_mavericks += mavericks
+    $ total_miners += miners
+    $ colonists = 0
+    $ mavericks = 0
+    $ miners = 0
+    return
+
 ##
 # PARENTING FUNCTIONS
 ##
+label increase_stats:
+    # Child stats
+    call increase_attachment
+    call increase_competence
+    call increase_independence 
+    return
 
 # Increase attachment based on how responsive you were last year
 label increase_attachment:
-    # If we have extra time after taking care of farm, we assume some of it is spent playing with Terra and increasing attachment,
-    # as long as Terra's work slider is under 90%
-    # TODO: is this balanced?
     $ inc_amount = 0
-    #if ((total_work < current_work) and (kid_work_slider < 90.0)):
-    #    $ inc_amount += 1
     $ inc_amount += responsive
-    if (inc_amount > 0):
-        $ notifications += "Attachment +" + str(inc_amount) + "\n"
     $ attachment += inc_amount
     return
 
-# Increase competence based on how demanding you were last year and how much Terra worked
+# Increase competence based on how demanding you were last year #and how much Terra worked
 label increase_competence:
     $ inc_amount = 0
-    # If your kid spends more than half their time working, increase competence
-    # TODO: Should we take out the int casting and allow more nuance?
-    # Or have their work_slider affect how much demanding gets added?
-    # TODO: try taking this and previous one out and see what happens.
-    # $ inc_amount += int(kid_work_slider/50.0)
+    # Sometimes increase competence with a probability proportional to how much they work. If they work 100%, increase it a quarter of the time.
+    # if (renpy.random.random() <= (kid_work_slider/400.0)):
+    #     $ inc_amount += 1
     $ inc_amount += demanding
-    if (inc_amount > 0):
-        $  notifications += "Competence +" + str(inc_amount) + "\n"
     $ competence += inc_amount
     return
 
@@ -82,11 +97,36 @@ label increase_competence:
 label increase_independence:
     $ inc_amount = 0
     $ inc_amount += confident
-    if (inc_amount > 0):
-        $  notifications += "Independence +" + str(inc_amount) + "\n"
     $ independence += inc_amount
     return
 
+##
+# Set things up for a scene in the bedroom
+##
+label bedroom_scene(show_baby=False, sleeping=True):
+    scene bedroom with fade
+    if (sleeping):
+        show him sleeping at midleft, squatting
+        show her sleeping at midright, squatting
+    else:
+        show him normal at midleft, squatting
+        show her normal at midright, squatting
+    if (show_baby):
+        show kid normal at centerbabybed
+    show bedroom_overlay
+    show night_overlay
+    with dissolve
+    return
+
+##
+# Poem making function
+##
+#
+# TODO: When you're done making a poem, take a screenshot of it for the gallery
+label make_poem:
+    $ word_board.generate_display_words()
+    call screen plugin_poetry(word_board)
+    return
 
 init -100 python:
 
@@ -95,45 +135,40 @@ init -100 python:
     # or inconsistent if none are very high.
     # Return the highest.  If two are equal, return the better one.
     def get_parenting_style():
-
-        # If no stat is above year/3, return "inconsistent"
-        # if ((authoritative <= year/3) and
-        #     (authoritarian <= year/3) and
-        #     (permissive <= year/3) and
-        #     (neglectful <= year/3)):
-        #         return "inconsistent"
-        # else:
-       if ((authoritative >= authoritarian) and
+        parenting_style = "inconsistent"
+        if ((authoritative >= authoritarian) and
            (authoritative >= permissive) and
            (authoritative >= neglectful)):
-            return "authoritative"
-       elif ((authoritarian >= authoritative) and
+            parenting_style = "authoritative"
+        elif ((authoritarian >= authoritative) and
               (authoritarian >= permissive) and
               (authoritarian >= neglectful)):
-            return "authoritarian"
-       elif ((permissive >= authoritarian) and
+            parenting_style = "authoritarian"
+        elif ((permissive >= authoritarian) and
               (permissive >= authoritative) and
               (permissive >= neglectful)):
-            return "permissive"
-       elif ((neglectful >= authoritarian) and
+            parenting_style = "permissive"
+        elif ((neglectful >= authoritarian) and
               (neglectful >= authoritative) and
               (neglectful >= permissive)):
-            return "neglectful"
+            parenting_style = "neglectful"
 
-       return "inconsistent"
+        pstyle = "{emoji=" + parenting_style + "} " + parenting_style.capitalize() + " parent"
+        renpy.show_screen("show_notification", pstyle)
+        return parenting_style
 
 
     # Returns whether kid is attached, competent, or indepedent for her age,
     # based on whether she is on track to reach the _HIGH value for
     # that stat.
     def is_attached():
-        return (attachment >= (year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
+        return (total_attachment >= roundint(year * (ATTACHMENT_HIGH/float(MAX_YEARS))))
 
     def is_competent():
-        return (competence >= (year * (COMPETENCE_HIGH/float(MAX_YEARS))))
+        return (total_competence >= roundint(year * (COMPETENCE_HIGH/float(MAX_YEARS))))
 
     def is_independent():
-        return (independence >= (year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
+        return (total_independence >= roundint(year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
     def get_kid_type():
         if (is_attached()):
@@ -171,18 +206,22 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
-        global crop_temporarily_disabled
+        global crop_temporarily_disabled, crop_info
         # Enable any crops that were temporarily disabled
         if (crop_temporarily_disabled != ""):
             enable_crop(crop_temporarily_disabled, False)
             crop_temporarily_disabled = ""
 
+        # Reset spinach if it was temporarily limited
+        if (crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] <= 2):
+            crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 100
+
         #Every even year there is a set event; other years are crop events.
-        # This means we need 15 set events and at least 15 crop events (we have 22)
+        # This means we need 15 set events and at least 15 crop events (we have 28)
 
         # If you overworked yourself too much, you get an overwork event
         overwork_threshold = renpy.random.randint(-5, -1)
-        if (get_extra_work() <= overwork_threshold):
+        if ((get_work_available() - get_work_needed()) <= overwork_threshold):
             return "overwork"
 
         # Is this an even year? then we have a set work event
@@ -191,7 +230,6 @@ init -100 python:
             event_name = "work" + str(year)
             return event_name
 
-        # TODO: If you make Terra work too much, she complains.
         # TODO: If you have a lot of money, have an investment opportunity?
 
         # Otherwise, we get a random crop event
@@ -208,7 +246,7 @@ init -100 python:
                     #get the number of the next event for this crop
                     #print "Crop: " + crop_name
                     crop_name = crop_name.rstrip("+")
-                    next_event = number_events_seen[crop_name] + 1
+                    next_event = persistent.number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
                         possible_events.add(event_label)
@@ -217,25 +255,26 @@ init -100 python:
             if (num_possible_events > 0):
                 random_event = renpy.random.choice(list(possible_events))
                 crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
-                number_events_seen[crop_name] += 1
+                persistent.number_events_seen[crop_name] += 1
                 #print "Picked event: " + random_event
+                renpy.save_persistent()
                 return random_event
             else:
+                # Reset the number of events seen for each crop and give a default event.
+                persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
+                renpy.save_persistent()
                 return "default_crop_event"
 
     # Change amount of credits you have
     # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
-        amount = int(round(amount))
-        renpy.show_screen("show_credits", amount=amount)
-        credits += int(amount)
-        message = "Credits "
-        if (amount >= 0):
-            message += "+"
-        message += str(int(amount)) + "\n"
-        notifications += message
-
+        amount = roundint(amount)
+        credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
+        renpy.show_screen("show_notification", credit_msg)
+        credits += amount
+        notification_add("Credits", amount)    
+        return
 
     def modify_farm_size(amount):
         global farm_size, notifications
@@ -246,16 +285,12 @@ init -100 python:
             farm_size = FARM_SIZE_MAXIMUM
             return False
         else:
-            if (amount >= 0):
-                notifications += "Farm size +" + str(amount) + "\n"
-            else:
-                notifications += "Farm size " + str(amount) + "\n"
-            farm_size += amount
+            notification_add("Farm Size", amount)    
             return True
 
     # Calculate expenses required for the family for this year
     def get_expenses_required(year):
-        return (ANNUAL_EXPENSES_BASE + (get_calories_required(year) * CALORIES_TO_MONEY_MULTIPLIER))
+        return (annual_expenses_base + (get_calories_required(year) * CALORIES_TO_MONEY_MULTIPLIER))
 
     # Calculate value in credits from crop value
     def get_credits_from_value(crop_value):
@@ -264,7 +299,6 @@ init -100 python:
             crop_credits = (crop_value * crop_value * 4 + 10)
         return crop_credits
 
-    # TODO: use this during lots of modify_credits that are based on crops
     def get_credits_from_name(crop_name):
         return get_credits_from_value(crop_info[get_crop_index(crop_name)][VALUE_INDEX])
 
@@ -273,12 +307,12 @@ init -100 python:
     # is about half that of calories.
     def get_vitamins_required(year):
         earth_year = get_earth_years(year)
-        return (VITAMINS_BASE + 0.5 * get_calories_kids(earth_year))
+        return int(VITAMINS_BASE + 0.4 * get_calories_kids(earth_year))
 
     # Calculate the calories required for the family for this year.
     def get_calories_required(year):
         earth_year = get_earth_years(year)
-        return (CALORIES_BASE + get_calories_kids(earth_year))
+        return int(CALORIES_BASE + get_calories_kids(earth_year))
 
     def get_calories_kids(earth_year):
         calories_kid = get_calories_kid(earth_year)
@@ -306,46 +340,107 @@ init -100 python:
         return WORK_BASE + get_work_kid()
 
     def get_work_kid():
-        return int(competence * (kid_work_slider / 100.0) - kid_other_work)
+        return roundint(competence * (kid_work_slider / 100.0) - kid_other_work)
 
-    def get_extra_work():
+    def get_work_needed():
         total_work = 0
         for i in range(0, farm.crops.len()):
             crop_names = [row[NAME_INDEX] for row in crop_info]
             index = crop_names.index(farm.crops[i]) # find the crop's index in crop_info
             total_work += crop_info[index][WORK_INDEX]
+        return total_work
 
+    def get_extra_work():
+        total_work = get_work_needed()
         work_available = get_work_available()
+        if ((work_available - total_work) > 0):
+            renpy.show_screen("show_notification", "{image=gui/emoji/work.png} Extra Work")
         return (work_available - total_work)
 
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
     def has_strong_marriage():
-        return (marriage_strength >= (year / 4))
+        strong = (marriage_strength >= roundint(year / 4.0))
+        if strong:
+            renpy.show_screen("show_notification", "{emoji=heart} Strong Marriage")
+        return strong
 
     # Return True if you have a good amount of trust
     def has_trust():
         return (trust > 0)
 
-    # Return strength of relationships given current year
-    # 1 or greater means strong, less than 1 means weak
-    def mavericks_strength():
-        return (mavericks / (year / 3.0))
-    def miners_strength():
-        return (miners / (year / 3.0))
-    def colonists_strength():
-        return (colonists / (year / 3.0))
+    # Return whether the relationship with a faction is "strong" or not
+    # Optional parameter "strength" controls how strong the relationship has
+    # to be to return TRUE.  Default is "strong", while "moderate" and 
+    # "weak" have less stringent requirements.
+    def mavericks_strong(strength="strong"):
+        strong = faction_strong(total_mavericks, strength)
+        if (strong):            
+            renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
+        return strong
+    def miners_strong(strength="strong"):
+        strong = faction_strong(total_miners, strength)
+        if (strong):
+            renpy.show_screen("show_notification", "{emoji=friends} Miners")
+        return strong
+    def colonists_strong(strength="strong"):
+        strong = faction_strong(total_colonists, strength)
+        if (strong):
+            renpy.show_screen("show_notification", "{emoji=friends} Colonists")
+        return strong
+
+    # Helper function for each faction to calculate whether they are "strong" or not.
+    # TODO: tweak this based on actual results
+    def faction_strong(faction_value, strength="strong"):
+        strong = False
+        if (strength == "weak"):
+            strong = ((faction_value / (year / 7.0)) >= 1)
+        elif (strength == "moderate"):
+            strong = ((faction_value / (year / 5.0)) >= 1)
+        else:
+            strong = ((faction_value / (year / 3.0)) >= 1)
+        return strong
 
     # Returns the strongest faction
     def strongest_faction():
-        if (colonists >= miners >= mavericks):
+        if ((total_colonists >= total_miners) and (total_colonists >= total_mavericks)):
+            renpy.show_screen("show_notification", "{emoji=friends} Colonists")
             return "colonists"
-        elif (miners >= colonists >= mavericks):
+        elif ((total_miners >= total_colonists) and (total_miners >= total_mavericks)):
+            renpy.show_screen("show_notification", "{emoji=friends} Miners")            
             return "miners"
-        elif (mavericks >= colonists >= miners):
+        elif ((total_mavericks >= total_colonists) and (total_mavericks >= total_miners)):
+            renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
             return "mavericks"
         else:
             return "colonists"
+
+    # Return who has the highest relationship, or "" if none are greater than 0
+    def get_boyfriend_name():
+        if ((oleg_points <= 0) and (travis_points <=0) and (lorant_points <= 0)):
+            return ""
+
+        # If they are all equal, base it on the strongest faction
+        if (oleg_points == travis_points):
+            if (oleg_points == lorant_points):
+                if (strongest_faction() == "miners"):
+                    return "Lorant"
+                elif (strongest_faction() == "mavericks"):
+                    return "Travis"
+                else:
+                    return "Oleg"            
+
+        # Otherwise, whichever is greatest, giving priority to Oleg and Travis
+        if (oleg_points >= lorant_points):
+            if (oleg_points >= travis_points):
+                return "Oleg"
+            else:
+                return "Travis"
+        elif (travis_points >= oleg_points):
+            return "Travis"        
+        else:
+            return "Lorant"
+        return ""
 
     # Returns a fuzzy description of the given percentage.
     # Used for nitrogen and pest levels.
@@ -380,9 +475,19 @@ init -100 python:
     def bee_adjacent(crop_index, max_size):
         adjacent = get_adjacent(crop_index, max_size)
         for square_index in adjacent:
-            if (farm.crops[square_index] == "honey"):
+            if (square_index > max_size):
+                print "OUT OF BOUNDS: " + str(square_index)
+            elif (farm.crops[square_index] == "honey"):
                 return True
         return False
+
+    # Return the number of currently enabled crops
+    def count_enabled_crops():
+        count = 0
+        for i in range(0, len(crop_info)):
+            if crop_info[i][ENABLED_INDEX]:
+                count += 1
+        return count
 
     # Return the pest overlay image correlated to the pest_factor
     def get_pest_image(pest_factor):
@@ -395,29 +500,32 @@ init -100 python:
         else:
             return Image("gui/crop icons/pest-high.png")
 
+    def roundint(number):
+        return int(round(number))
 
-##
-# Set things up for a scene in the bedroom
-##
-label bedroom_scene(show_baby=False, sleeping=True):
-    scene bedroom with fade
-    if (sleeping):
-        show him sleeping at midleft, squatting
-        show her sleeping at midright, squatting
-    else:
-        show him normal at midleft, squatting
-        show her normal at midright, squatting
-    if (show_baby):
-        show kid normal at centerbabybed
-    show bedroom_overlay
-    show night_overlay
-    with dissolve
-    return
+    # Sorting functions (Python 2.7)
+    # For Python 3+, only return the value on which to sort.
+    def sortby_calories(val1, val2):
+        return val1[CALORIES_INDEX] - val2[CALORIES_INDEX]
+    def sortby_vita(val1, val2):
+        return val1[VITA_INDEX] - val2[VITA_INDEX]
+    def sortby_vitc(val1, val2):
+        return val1[VITC_INDEX] - val2[VITC_INDEX]
+    def sortby_vitm(val1, val2):
+        return val1[VITM_INDEX] - val2[VITM_INDEX]
+    def sortby_work(val2, val1):
+        return val1[WORK_INDEX] - val2[WORK_INDEX]
+    def sortby_nitrogen(val1, val2):
+        return val2[NITROGEN_INDEX] - val1[NITROGEN_INDEX]
+    def sortby_value(val1, val2):
+        return val1[VALUE_INDEX] - val2[VALUE_INDEX]
 
-##
-# Poem making function
-##
-label make_poem:
-    $ word_board.generate_display_words()
-    call screen plugin_poetry(word_board)
-    return
+    def achieved(a_name):
+        if (achievement.has(a_name)):
+            return
+        else:
+            achievement.grant(a_name)            
+            renpy.show_screen("show_notification", "Achievement Unlocked!\n" + a_name)                        
+            renpy.call("photo", a_name)
+
+        return
