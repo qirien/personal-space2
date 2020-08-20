@@ -621,6 +621,8 @@ label work10:
     kevin "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
     him normal "Like bees?"
     kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm for 100 credits?"
+    him surprised "Why wouldn't I want bees?"
+    kevin "They do take a certain amount of upkeep and space every year."
 
     menu:
         "What should I say?"

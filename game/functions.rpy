@@ -266,14 +266,12 @@ init -100 python:
                 return "default_crop_event"
 
     # Change amount of credits you have
-    # TODO: We have a popout screen; do we also need this in notifications?
     def modify_credits(amount):
         global credits, notifications
         amount = roundint(amount)
         credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
         renpy.show_screen("show_notification", credit_msg)
         credits += amount
-        notification_add("Credits", amount)    
         return
 
     def modify_farm_size(amount):
@@ -285,6 +283,7 @@ init -100 python:
             farm_size = FARM_SIZE_MAXIMUM
             return False
         else:
+            farm_size += amount
             notification_add("Farm Size", amount)    
             return True
 
@@ -340,7 +339,7 @@ init -100 python:
         return WORK_BASE + get_work_kid()
 
     def get_work_kid():
-        return roundint(competence * (kid_work_slider / 100.0) - kid_other_work)
+        return roundint(total_competence * (kid_work_slider / 100.0) - kid_other_work)
 
     def get_work_needed():
         total_work = 0

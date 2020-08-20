@@ -1810,7 +1810,6 @@ label community11:
                 pavel sad "I'm so happy right now!"
 
         else:
-            show her normal at left
             show sara normal at midleft
             with moveinleft
             show natalia normal at right
@@ -1826,6 +1825,7 @@ label community11:
                 natalia "Sara, why didn't you tell them the exact kind of medicine Martín needed?"
                 sara sad "I'm sorry, I thought they knew what he needed! I just put medicine."
 
+            show her normal at left with moveinleft
             her happy "Oooh, Gouda cheese culture!"
 
             hide her
@@ -1838,7 +1838,6 @@ label community11:
 
             if talked_to_Thuc:
                 thuc normal "I can start growing these peanuts right away!"
-                # TODO: test this
                 $ enable_crop("peanuts")
             else:
                 thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."

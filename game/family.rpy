@@ -3460,8 +3460,9 @@ label family11:
             $ trust -= 1
             $ authoritarian += 1
 
-        "(Ignore her until she asks politely)" if (manners_patience_count >= 4):
+        "(Ignore her until she asks politely)" if (manners_patience_count >= 3):
             $ confident += 1
+            $ manners_patience_count += 1
             him happy "So, [her_name], what did you work on today?"
             her surprised "I've been researching--"
             kid annoyed "Pass the sauce!"
