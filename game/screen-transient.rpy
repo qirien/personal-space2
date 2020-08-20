@@ -77,33 +77,27 @@ screen yearly_summary():
                                 hbox:
                                     spacing 10
                                     xfill True
-                                    vbox:
-                                        # TODO: format this better. Show Terra's head and a heart/work symbol? have a heading/label for the two sections?                                        
-                                        # TODO: hide mavericks until they exist
+                                    vbox:                                        
                                         xsize 200
                                         xalign 1.0
-                                        label "Year [year] Summary"
-                                        null height 10                                        
+                                        label "Year [year] Summary"                    
                                         text notifications
-                                        for var in ["attachment", "competence", "", "miners", "colonists", "mavericks"]:
+                                        label "[kid_name]"
+                                        hbox:
+                                            null width 40
                                             vbox:
-                                                spacing 5
-                                                if (var != ""):
-                                                    $ old_value = eval("total_" + var)
-                                                    $ delta = eval(var)
-                                                    $ max = eval(var.upper() + "_HIGH")
-                                                    hbox:
-                                                        spacing 5
-                                                        text var.capitalize()
-                                                        if (delta != 0):
-                                                            if (delta < 0):
-                                                                text str(delta) at delay_fadein color red_dark
-                                                            else:
-                                                                text "+" + str(delta) at delay_fadein color green_dark
-                                                    bar value AnimatedValue(old_value+delta, ATTACHMENT_MAX, 1.0, old_value)
+                                                for var in ["attachment", "competence"]:
+                                                    use show_stat(var)
+                                        label "Factions"
+                                        hbox:
+                                            null width 40
+                                            vbox:
+                                                if (year > PETE_LEAVES_YEAR):
+                                                    for var in ["miners", "colonists", "mavericks"]:
+                                                        use show_stat(var) 
                                                 else:
-                                                    text " "
-                                                    
+                                                    for var in ["miners", "colonists"]:  
+                                                        use show_stat(var) 
                                         
                                     $ parenting_style = get_parenting_style()
                                     $ kid_type = get_kid_type()
@@ -114,10 +108,12 @@ screen yearly_summary():
                                 ysize TOP_SECTION_HEIGHT
                                 xalign 1.0
                                 style "plan_farm_subframe"
+
                                 vbox:
-                                     label "Quote"
-                                     null height 10
-                                     text parenting_quotes[year]
+                                    label "Quote"
+                                    hbox:
+                                        null width 40
+                                        text parenting_quotes[year]
                         frame:
                             #xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
                             style "plan_farm_subframe"
@@ -126,6 +122,28 @@ screen yearly_summary():
                                 textbutton "Continue":
                                      xalign 0.5
                                      action Return()
+
+screen show_stat(var):
+    vbox:
+        spacing 0
+        $ old_value = eval("total_" + var)
+        $ delta = eval(var)
+        $ max = eval(var.upper() + "_HIGH") # TODO: or should we use _MAX? What about if 
+        text var.capitalize()
+        hbox:
+            spacing 5
+            #textbutton "{emoji=" + var + "}" tooltip var.capitalize()
+            bar value AnimatedValue(old_value+delta, max, 0.7, old_value)
+            if (delta != 0):
+                if (delta < 0):
+                    text str(delta) at delay_fadein color red_dark
+                else:
+                    text "+" + str(delta) at delay_fadein color green_dark
+
+
+###############################################################################################################
+# Transforms and styles used for these screens
+###############################################################################################################
 
 transform bg_crop:
     crop (306,22,675,680)
@@ -150,4 +168,8 @@ style interscene_label_text is label_text:
     outlines [(1, black, 1, 1)]
 
 style plan_farm_bar:
-    ysize 10
+    ysize 16
+    yalign 0.5
+    left_bar Frame(Solid(green_med))
+    right_bar Frame(Solid(gray_light))
+

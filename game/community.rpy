@@ -7576,7 +7576,7 @@ label community30:
         play music problems
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
-        nvl_clear
+        nvl clear
         if kevin_elected:
             kevin_c "Here is the photo of the crime scene."
         else:
@@ -7610,7 +7610,7 @@ label community30:
                     "I asked where I could find Noel, and an old woman pointed me in the right direction."
                     #knock sound?
                     scene yurt_interior with fade
-                    show him determined at midright dissolve
+                    show him determined at midright with dissolve
                     him determined "Hi, Noel? Hello? Are you here?"
                     show thuc normal at midleft with moveinleft
                     thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
