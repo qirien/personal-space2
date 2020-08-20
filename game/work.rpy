@@ -2119,5 +2119,5 @@ label work30:
 
     $ modify_credits(work28_rent)
     # She and Bro only can help a little now.
-    $ kid_other_work = roundint(competence *.5)
+    $ kid_other_work = roundint(total_competence *.5)
     return

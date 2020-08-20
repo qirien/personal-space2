@@ -7750,7 +7750,7 @@ label family27:
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
 
     # Reduce available work (even if you tell her not to work, she still does)
-    $ kid_other_work = roundint(competence * .35)
+    $ kid_other_work = roundint(total_competence * .35)
     menu:
         "What should I say?"
         "We should encourage her work.":
@@ -8111,7 +8111,7 @@ label family28_runaway:
     "[her_name] gave [kid_name] a big hug. [kid_name] glared at me over [her_name]'s shoulder when I didn't join in."
 
     # She is even less willing to work for you now
-    $ kid_other_work = roundint(competence * .75)
+    $ kid_other_work = roundint(total_competence * .75)
     return
 
 # 18 Earth years old
@@ -8524,7 +8524,7 @@ label family30:
     if (boyfriend_name != ""):
         "Sometimes she was hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
-    if ((attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH)):
+    if ((total_attachment < ATTACHMENT_HIGH) and (total_competence < COMPETENCE_HIGH)):
         # If she is leaving with Lorant, you don't even find out about it until later
         "Some nights she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
         "If I'd known, would I have tried to stop her? Would it have made a difference?"
