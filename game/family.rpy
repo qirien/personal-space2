@@ -2956,7 +2956,7 @@ label family9:
     with dissolve
     "I found them in the barn, where [kid_name] had put one of Lettie's saddle blankets on Oleg and a rope loosely around his neck."
     kid happy "Giddyup, horsie!"
-    show him normal at midleft behind oleg
+    show him surprised at midleft behind oleg
     if (year6_have_baby):
         show bro normal at midleft, baby_pos
     with moveinleft
@@ -2990,7 +2990,7 @@ label family9:
             him determined "Come here, [kid_name]. I have something to tell you."
             show kid normal at center with move
             kid concerned "What?"
-            "I leaned down a whispered into her ear."
+            "I leaned down and whispered into her ear."
             him concerned "Oleg's been trying to tell you that he wants to play something else. He's our guest, so can you make sure he's having fun, too?"
             kid annoyed "He is having fun!"
             him determined "I don't think so. Ask him what he would like to do, and then do that."
