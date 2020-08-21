@@ -85,6 +85,9 @@ init -100:
     define INDEPENDENCE_MAX = 35
     define FACTION_HIGH = 10
     define FACTION_MAX = 20
+    define MINERS_MAX = 20
+    define COLONISTS_MAX = 20
+    define MAVERICKS_MAX = 20
     define MINERS_HIGH = 12
     define COLONISTS_HIGH = 12
     define MAVERICKS_HIGH = 12

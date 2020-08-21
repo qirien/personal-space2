@@ -128,12 +128,18 @@ screen show_stat(var):
         spacing 0
         $ old_value = eval("total_" + var)
         $ delta = eval(var)
-        $ max = eval(var.upper() + "_HIGH") # TODO: or should we use _MAX? What about if 
+        $ max = eval(var.upper() + "_MAX") # TODO: or should we use _MAX? What about if 
+        $ new_value = old_value + delta
+        $ high_value = roundint(year * (eval(var.upper() + "_HIGH")/float(MAX_YEARS)))
         text var.capitalize()
         hbox:
             spacing 5
             #textbutton "{emoji=" + var + "}" tooltip var.capitalize()
-            bar value AnimatedValue(old_value+delta, max, 0.7, old_value)
+            if (new_value >= high_value):
+                bar value AnimatedValue(new_value, max, 0.7, old_value) style "summary_bar"
+            else:
+                bar value AnimatedValue(new_value, max, 0.7, old_value) style "summary_bar_low"
+            #use tricolor_bar(high_value, old_value+delta, max, 200, CROP_LAYOUT_BAR_WIDTH*3, False)
             if (delta != 0):
                 if (delta < 0):
                     text str(delta) at delay_fadein color red_dark
@@ -167,9 +173,15 @@ style interscene_label_text is label_text:
     font gui.interface_font
     outlines [(1, black, 1, 1)]
 
-style plan_farm_bar:
+style summary_bar:
     ysize 16
     yalign 0.5
     left_bar Frame(Solid(green_med))
+    right_bar Frame(Solid(gray_light))
+
+style summary_bar_low:
+    ysize 16
+    yalign 0.5
+    left_bar Frame(Solid(red_med))
     right_bar Frame(Solid(gray_light))
 
