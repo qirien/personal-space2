@@ -153,10 +153,17 @@ init -100 python:
               (neglectful >= permissive)):
             parenting_style = "neglectful"
 
+        
         pstyle = "{emoji=" + parenting_style + "} " + parenting_style.capitalize() + " parent"
-        renpy.show_screen("show_notification", pstyle)
+        notify_change(pstyle)
         return parenting_style
-
+        
+    def notify_change(msg):
+        if (renpy.get_screen("yearly_summary") or renpy.get_screen("save") or renpy.get_screen("plan_farm")):
+            return
+        else:
+            renpy.show_screen("show_notification", msg)
+        return
 
     # Returns whether kid is attached, competent, or indepedent for her age,
     # based on whether she is on track to reach the _HIGH value for
@@ -270,7 +277,7 @@ init -100 python:
         global credits, notifications
         amount = roundint(amount)
         credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
-        renpy.show_screen("show_notification", credit_msg)
+        notify_change(credit_msg)
         credits += amount
         return
 
@@ -353,7 +360,7 @@ init -100 python:
         total_work = get_work_needed()
         work_available = get_work_available()
         if ((work_available - total_work) > 0):
-            renpy.show_screen("show_notification", "{image=gui/emoji/work.png} Extra Work")
+            notify_change("{image=gui/emoji/work.png} Extra Work")
         return (work_available - total_work)
 
     # Return True if marriage is strong for the current year
@@ -361,7 +368,7 @@ init -100 python:
     def has_strong_marriage():
         strong = (marriage_strength >= roundint(year / 4.0))
         if strong:
-            renpy.show_screen("show_notification", "{emoji=heart} Strong Marriage")
+            notify_change("{emoji=heart} Strong Marriage")
         return strong
 
     # Return True if you have a good amount of trust
@@ -375,17 +382,17 @@ init -100 python:
     def mavericks_strong(strength="strong"):
         strong = faction_strong(total_mavericks, strength)
         if (strong):            
-            renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
+            notify_change("{emoji=friends} Mavericks")
         return strong
     def miners_strong(strength="strong"):
         strong = faction_strong(total_miners, strength)
         if (strong):
-            renpy.show_screen("show_notification", "{emoji=friends} Miners")
+            notify_change("{emoji=friends} Miners")
         return strong
     def colonists_strong(strength="strong"):
         strong = faction_strong(total_colonists, strength)
         if (strong):
-            renpy.show_screen("show_notification", "{emoji=friends} Colonists")
+            notify_change("{emoji=friends} Colonists")
         return strong
 
     # Helper function for each faction to calculate whether they are "strong" or not.
@@ -403,13 +410,13 @@ init -100 python:
     # Returns the strongest faction
     def strongest_faction():
         if ((total_colonists >= total_miners) and (total_colonists >= total_mavericks)):
-            renpy.show_screen("show_notification", "{emoji=friends} Colonists")
+            notify_change("{emoji=friends} Colonists")
             return "colonists"
         elif ((total_miners >= total_colonists) and (total_miners >= total_mavericks)):
-            renpy.show_screen("show_notification", "{emoji=friends} Miners")            
+            notify_change("{emoji=friends} Miners")
             return "miners"
         elif ((total_mavericks >= total_colonists) and (total_mavericks >= total_miners)):
-            renpy.show_screen("show_notification", "{emoji=friends} Mavericks")
+            notify_change("{emoji=friends} Mavericks")
             return "mavericks"
         else:
             return "colonists"
@@ -524,7 +531,7 @@ init -100 python:
             return
         else:
             achievement.grant(a_name)            
-            renpy.show_screen("show_notification", "Achievement Unlocked!\n" + a_name)                        
+            notify_change("Achievement Unlocked!\n" + a_name)
             renpy.call("photo", a_name)
 
         return

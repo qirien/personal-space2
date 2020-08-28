@@ -67,7 +67,7 @@ init -100:
     define CALORIES_TO_MONEY_MULTIPLIER = 14
     define MONEY_YEAR = 6
     define KID_WORK_YEAR = 7
-    define NUTRITION_YEAR = 9
+    define NUTRITION_YEAR = 10
 
     # GUI display sizes
     define CROP_ICON_SIZE = 64

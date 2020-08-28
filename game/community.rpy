@@ -2427,15 +2427,17 @@ label community12:
 #######################################################################################
 
 label community13:
-    "I awoke one morning to someone knocking on my door. I wanted to ignore and keep sleeping, but [kid_name] asked me to answer the door."
+    play music problems
+    play sound "sfx/knock.ogg"
+    "I awoke one morning to someone knocking on my door. I wanted to ignore it and keep sleeping, but [kid_name] said someone wanted to talk to me."
     scene farm_exterior with fade
     show lily normal at midright with dissolve
     show him surprised at midleft with moveinleft
     lily "[his_name], we must act at once. In my weekly testing, I found that our water is showing trace amounts of heavy metals!"
     lily angry "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
     lily angry "It will probably poison some local wildlife! As well as us!"
-    him normal "I certainly don't want heavy metals in my irrigation water."
-    him concerned "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
+    him concerned "I certainly don't want heavy metals in my irrigation water."
+    him sad "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
     if is_liaison:
         lily angry "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
         him pout "Alright. What do you need me to ask?"
@@ -2460,7 +2462,7 @@ label community13:
     else: # not the liaison
         lily angry "No, this is urgent and important business. Depending on their schedule, they may already be processing more ore!"
         lily normal "I need you to ask Brennan if he can delay ore processing until they fix the breach."
-        him normal "Let's at least ask Sara to ask RET what they want."
+        him determined "Let's at least ask Sara to ask RET what they want."
         lily normal "As long as it doesn't take too long."
         nvl clear
         him_c "Hey Sara, Dr. Lily told me that there are signs of heavy metals in our water."
@@ -2488,6 +2490,7 @@ label community13:
     him surprised "Look, we tried, but he's not here. Let's just send him a message."
     lily angry "I don't want to risk them poisoning any more wildlife, or people. Do you know where Brennan sleeps?"
     him pout "I have no idea."
+    play sound "sfx/knock.ogg"
     "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
     lily normal "He said Brennan lives over here."
     hide him
@@ -2497,6 +2500,7 @@ label community13:
     show him pout at midleft
     show lily normal at midright
     with moveinleft
+    play sound "sfx/knock.ogg"
     "She knocked on his door. A voice came from behind the door."
     brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
     lily normal "We're not here to ask for a personal day."
@@ -2607,7 +2611,7 @@ label community13:
     "[kid_name] came back from school with her little brother and I explained that we needed to be careful with our water for now."
     show her normal at center with dissolve
     "[her_name] came back from work early. We started preparing dinner together."
-    her pout "There's an emergency town meeting tonight to discuss the water contamination."
+    her determined "There's an emergency town meeting tonight to discuss the water contamination."
     if is_liaison:
         him pout "I know, I saw the message."
         her surprised "Should we just bring the kids along?"
@@ -2790,6 +2794,7 @@ label community14:
     show pete normal at center
     show him normal at midleft
     show lily normal at quarterleft
+    show miners at midright
     with dissolve
 
     "Brennan and the miners had mined enough rare metal to fill the shuttle they arrived in."
@@ -7607,7 +7612,7 @@ label community30:
                     show him normal at center with move
                     "The camp itself was in a flat area of the mountain."
                     "I asked where I could find Noel, and an old woman pointed me in the right direction."
-                    #knock sound?
+                    play sound "sfx/knock.ogg"
                     scene yurt_interior with fade
                     show him determined at midright with dissolve
                     him determined "Hi, Noel? Hello? Are you here?"
@@ -7864,6 +7869,7 @@ label community30:
             show him normal at midleft with dissolve
             "The empty cabin was still used sometimes as a dropoff for equipment or a teen hangout."
             "It had been a while since I went there, so it was hard to find in the rain, but the smoke coming from the chimney clued me in."
+            play sound "sfx/knock.ogg"
             "Sara answered the door when I knocked."
             show sara sad at midright with dissolve
             sara "Yes? Can I help you?"

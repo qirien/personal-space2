@@ -826,7 +826,7 @@ label work14:
                     him annoyed "If you're not going to help, then get out of my way."
                     kid cry "Fine, I will!"
                     hide kid with moveoutleft
-                    "I ended up just doing myself. It wasn't that hard; maybe she just wasn't old enough..."
+                    "I ended up just doing it myself. It wasn't that hard; maybe [kid_name] just wasn't old enough..."
                     $ neglectful += 1
     "Maybe I'd wait awhile before teaching her how to trim the goats' hooves..."
     return

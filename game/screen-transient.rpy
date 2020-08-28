@@ -12,15 +12,6 @@ label interscene_text(year=0, event_type="Work"):
     $ renpy.pause(2.0)
     return
 
-# TODO: Delete this if we end up not using it.
-screen interscene(year=0, event_type="Work"):
-    style_prefix "interscene"
-    window:
-        at slideinpausefade
-        vbox:
-            label "Year [year] of [MAX_YEARS]"
-            label "[event_type]"
-
 # Pop down and fadein (thanks PyTom!)
 transform popdown():
     xalign 0.98 ypos 30
@@ -99,7 +90,6 @@ screen yearly_summary():
                                                     for var in ["miners", "colonists"]:  
                                                         use show_stat(var) 
                                         
-                                    $ parenting_style = get_parenting_style()
                                     $ kid_type = get_kid_type()
                                     add "family_photo_small " + kid_type xalign 1.0
 

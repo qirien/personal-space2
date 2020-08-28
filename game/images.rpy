@@ -79,30 +79,26 @@ init -10:
     define photo_scale_factor = 0.7
 
     # Background of the family photo
-    # TODO: This changes every time the screen refreshes. Have it based on the year instead (maybe with a hash or something)
-    image family_photo_bg:
-        choice:
-            "images/bg/pond.jpg"
-        choice:
-            "images/bg/canyon.jpg"
-        choice:
-            "images/bg/path.jpg"
-        choice:
-            "images/bg/irrigation.jpg"
-        choice:
-            "images/bg/cave.jpg"
-        choice:
-            "images/bg/fields.jpg"
-        choice:
-            "images/bg/ocean.jpg"
-        choice:
-            "images/bg/restaurant.jpg"
-        choice:
-            "images/bg/plain.jpg"
-        choice:
-            "images/bg/barn.jpg"
-        choice:
-            "images/bg/hospital.jpg"
+    image family_photo_bg = ConditionSwitch(
+        "(year // 2) == 0", "images/bg/path.jpg",
+        "(year // 2) == 1", "images/bg/fields.jpg",        
+        "(year // 2) == 2", "images/bg/barn.jpg", 
+        "(year // 2) == 3", "images/bg/pond.jpg", 
+        "(year // 2) == 4", "images/bg/hospital.jpg",
+        "(year // 2) == 5", "images/bg/farm_exterior.jpg",
+        "(year // 2) == 6", "images/bg/plain.jpg",       
+        "(year // 2) == 7", "images/bg/canyon.jpg",
+        "(year // 2) == 8", "images/bg/community_center.jpg",
+        "(year // 2) == 9", "images/bg/irrigation.jpg",
+        "(year // 2) == 10", "images/bg/ocean.jpg",        
+        "(year // 2) == 11", "images/bg/cave.jpg",
+        "(year // 2) == 12", "images/bg/library.jpg",
+        "(year // 2) == 13", "images/bg/ocean_sunset.jpg",
+        "((year // 2) == 14) and miners_strong()", "images/bg/mine.jpg",
+        "((year // 2) == 14) and mavericks_strong()", "images/bg/cave.jpg",
+        "(year // 2) == 14", "images/bg/community_center.jpg",
+        "True", "images/bg/restaurant.jpg"
+    )
 
     # TODO: use relative positions when they are fixed
     layeredimage family_photo:

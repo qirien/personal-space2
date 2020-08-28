@@ -8,8 +8,6 @@
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
 # TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.  Add in a yearly (?) autosave
-# TODO: IF your kid is not competent, it's really hard to get enough calories/vitamins/money.
-# TODO: If your kid is competent, getting money is easy!!  Maybe this is OK...
 ##
 
 label start:
@@ -144,7 +142,8 @@ label start:
         kevin_elected = False
         ban_firegrass = False
         study_published_23 = False
-        helen_dead = False
+        helen_dead = False      
+        bios = Bios()  
 
     # FARM
     python:
@@ -153,7 +152,7 @@ label start:
 
         # Work/crops
         farm_size = 12
-        farm = Field(farm_size, FARM_SIZE_MAXIMUM);
+        farm = Field(farm_size, FARM_SIZE_MAXIMUM)
         selected_crop_index = 0
         terra_overwork_count = 0
         sortby = "calories"
@@ -361,6 +360,7 @@ label life_loop:
         $ read_messages = False
         $ read_handbook = False
         $ show_year = year
+        $ show_person = "Thuc"
 
         # TODO: Is there some way to detect if we have an impossible situation here? Like, even if you planted potatoes in every square with enough nitrogen, you still couldn't have enough calories?
         # Should you lose, or your favorite faction/family rescue you?
