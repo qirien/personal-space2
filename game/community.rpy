@@ -553,17 +553,18 @@ label community4:
     if (pstyle== "authoritative"):
         "My fellow colonists elected me to be the new representative."
         $ is_liaison = True
-        return
     elif(pstyle == "authoritarian"):
         "Sara, and Sister Naomi and I were nominated. I had the most votes, but not by much."
         $ is_liaison = True
-        return
     elif(pstyle == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
-        return
     else:
         "Sara is elected as the new representative."
         #TODO: should a leader of the militia be elected here as well?
+    if (is_liaison):
+        $ bios.addToBio("[his_name]", "I'm also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
+    else:
+        $ bios.addToBio("Sara", "She's also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
     stop sound fadeout 1.0
     return
 
@@ -1873,6 +1874,7 @@ label community11:
         scene black with fade
         if asked_only_medicine:
             "Thanks to the cancer medicine, Martín was able to work on the farm for six more months before dying a peaceful death."
+            $ bios.addToBio("Martín", "He passed away from skin cancer not that long ago.")
             scene church with fade
             "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
@@ -1900,6 +1902,7 @@ label community11:
         $ mavericks += 1
 
         label Martin_dead_sooner:
+            $ bios.addToBio("Martín", "He passed away from skin cancer not that long ago.")
             scene church with fade
             "Without the medication, Martín's condition swiftly deteriorated, and he died the next week."
             "The family had a small funeral and buried him in the colony graveyard next to Josephina."

@@ -2827,6 +2827,7 @@ label baby_delivery:
             "I bundled him up and held him close."
     show him happy baby with dissolve
     $ achieved("Binary System")
+    $ bios.addPerson("[bro_name]", "[bro_name] Ventura", "[bro_name] is our second child. He was born with a cleft lip, which made it difficult to feed him for the first few months.", "[kid_name]")
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."
@@ -2838,7 +2839,7 @@ label baby_delivery:
     him "Really? You trust me to name him?"
     her flirting "As long as it's one of the names we both agreed on."
     him baby happy "Okay! Let's see... you look like a..."
-    $bro_name = renpy.input("Baby's Name", default=bro_name)
+    $ bro_name = renpy.input("Baby's Name", default=bro_name)
 
     her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."
     scene farm_interior with fade
@@ -3032,6 +3033,7 @@ label family9:
 # 6.2 Earth years old
 # Fighting with brother OR playing games when she's not supposed to
 label family10:
+    $ bios.addToBio("[bro_name]", "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
     scene stars with fade
     "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
     "[kid_name] came home from school and I gave her a snack."
