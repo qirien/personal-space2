@@ -87,4 +87,8 @@ style parenting_hbox is computer_sub_hbox
 style parenting_button is computer_sub_button:
     xfill True
     selected_background green_dark
-style parenting_button_text is computer_sub_button_text
+
+style parenting_button_text is computer_sub_button_text:
+    hover_color green_med
+    selected_color white
+    idle_color gray_light

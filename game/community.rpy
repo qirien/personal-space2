@@ -65,6 +65,9 @@ label community1:
     show kevin normal at midright
     with dissolve
     him "Hi, I'm [his_name]. Welcome to Talaam!"
+    # TODO: Do Zaina and Kevin have last names?
+    $ bios.addPerson("Zaina", "Zaina", "Zaina arrived from Earth around the time [kid_name] was born. She's a geologist helping to scout out the planet for RET so that they know where the best mining sites will be. She and Kevin got married right before they came here. They also have their own garden.")
+    $ bios.addPerson("Kevin", "Kevin", "As a mining engineer, Kevin is making plans for future mining by RET. He has a real head for numbers, but he sometimes takes things too literally and wants everything to be quantifiable like math is. In that way he and his wife Zaina are kind of opposites, but they are both curious and fast learners.")
     zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
     him pout "Nice to meet you, Zaina and Kevin. Where will you be living?"
     zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working. Geological studies, mostly."
@@ -1606,9 +1609,10 @@ label community11:
     #BRENNAN ON SCREEN. he looks the same
     show brennan normal at quarterleft with moveinleft
     # Jack definitely doesn't like him, but doesn't have a great reason.
+    $ bios.addPerson("Brennan", "Brennan Callahan", "When we first arrived on Talaam, Brennan was assigned to assist [her_name] at the clinic. But the real reason he was here was to report back to RET about our planet's value for mining. Something about him always bugged me... actually, lots of things about him bug me -- his arrogance, his total lack of practical skills, and his winks and smiles towards every woman on the planet between 15 and 50. Now he's back as the manager for RET's mining operation.")
     him surprised "Brennan!"
     brennan happy "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him pout "No, no one mentioned it. I hope you're not here to help [her_name]; she has a real nurse assisting her now."
+    him pout "No, no one mentioned it. I hope you're not looking to get your old job in the clinc back; [her_name] has a real nurse assisting her now."
     brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
     her normal "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
@@ -1644,6 +1648,8 @@ label community11:
     with dissolve
     "After asking around, I found our miner."
     him "Nice to meet you, Chaco."
+    # TODO: does Chaco have a last name?
+    $ bios.addPerson("Chaco", "Chaco", "Chaco is one of the miners. We were assigned to help him feel welcome. He's not very expressive, so it's hard to know what he's feeling, but he seems like a solid guy.")
     # TODO: There are too many of these to show all at once. We can delete some or change how we show menus.
     define meet_chaco_questions = set()
     label chaco_coversation_loop:

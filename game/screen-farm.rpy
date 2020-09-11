@@ -130,7 +130,13 @@ screen farm_details_screen:
                             text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
                         else:
                             text "" xalign 0.0 # We have to have this here or it messes up all the positions
-                    textbutton "Bios" action Show("biographies")
+
+                    hbox:
+                        textbutton "Bios" action Show("biographies", irisout, bios.getFirstPersonName())
+                        showif (bios.hasUnread()):
+                            text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
+                        else:
+                            text "" xalign 0.0
 
                     # TODO: Display poetry written.
                     # Right now we can't do this because if we Return(), it exits out of everything. And if we HIde, eventually we come
