@@ -1,5 +1,32 @@
 # Library of functions we call that have to do with game variables, etc.
 
+# Add arguments to hyperlinks by overloading the hyperlink_clicked function
+init python:
+
+    def hyperlink_clicked(*args):
+
+        if args[0]:
+            if args[0].startswith("show:"):
+                screen, arg = args[0][5:].split("#")
+                renpy.show_screen(screen, arg)
+
+            # adapted from common/00defaults.rpy
+            elif args[0].startswith("http:") or args[0].startswith("https:"):
+                try:
+                    import webbrowser
+                    webbrowser.open(args[0])
+                except:
+                    renpy.notify("Failed to open browser")
+
+            elif args[0].startswith("jump:"):
+                renpy.jump( args[0][5:] )
+
+            else:
+                renpy.call_in_new_context(args[0][args[0].index(':')+1:])
+    
+    # TODO: I might also have to overload these other functions
+    #style.default.hyperlink_functions = ( hyperlink_styler,                                           hyperlink_clicked,                                          hyperlink_hovered )
+
 
 ##
 # Menu Randomization
