@@ -41,12 +41,19 @@ label community1:
     $ tell_Lily = False
     $ tell_Ngyuens = False
     $ tell_Perons = False
+    $ bios.addPerson("Thuc", "Thuc Nguyen", "Thuc Nguyen is my neighbor, a farmer, and best friend (aside from [her_name] of course). We have the same sense of humor and the same lack of patience with incompetence. He raises goats and grows rice, onions, and other vegetables. He and his wife {a=action:SetVariable('show_person', 'Julia')}Julia{/a} have 10 kids, including Joanna (married to Tomás Perón), Miranda, Gardenia, and Van.")
+    $ bios.addPerson("Julia", "Julia Nguyen", "Julia is very particular about her farm, her kids, and... pretty much everything. She's an amazing farmer and homesteader -- you name it, she can make it five different ways. I still try to avoid her, though. She and her husband {a=action:SetVariable('show_person', 'Thuc')}Thuc{/a} have 9 really polite kids (including Joanna, Miranda, and Van) and 1 little stinker (Gardenia).")            
+    $ bios.addPerson("Oleg", "Oleg Andrevski", "He's {a=action:SetVariable('show_person', 'Sara')}Sara{/a} and {a=action:SetVariable('show_person', 'Ilian')}Ilian{/a}'s son, about the same age as {a=action:SetVariable('show_person', '[[kid_name]')}[kid_name]{/a}. He doesn't talk much but I get the feeling he's really smart.")    
+    $ bios.addPerson("Sara", "Sara Andrevski", "Sara helps {a=action:SetVariable('show_person', 'Pavel')}Mayor Grayson{/a} stay organized and get things done around the colony. She's friendly and has a good sense of humor and is also good friends with [her_name]. She and {a=action:SetVariable('show_person', 'Ilian')}Ilian{/a} have a son named {a=action:SetVariable('show_person', 'Oleg')}Oleg{/a}.")
+    $ bios.addPerson("Ilian", "Ilian Andrevski", "I'm guessing Ilian wasn't always the grumpy control freak he is now... but it's hard to imagine. He runs the storehouse with an iron fist, which is probably good for increasing our food stores, but doesn't make him well-liked. He and {a=action:SetVariable('show_person', 'Sara')}Sara{/a} have a son named {a=action:SetVariable('show_person', 'Oleg')}Oleg{/a}.")
+
     scene community_center with fade
-    show him normal at center
     play sound "sfx/people.mp3"
-    "Some new colonists arrived from Earth, sent by Rare Earth Tech."
-    "After the introductions, I got in line with my friend Thuc to have some soup."
-    show him normal at midright with move
+    show pavel at center with dissolve
+    pavel "I hope you will all welcome our newest colonists! While some of them will farm like you, others are specialists sent by Rare Earth Tech to scout out areas for other uses."
+    hide pavel with dissolve
+    "After he finished his speech, I got in line with my friend Thuc to have some soup."
+    show him normal at midright
     show thuc normal at center
     show ilian happy at midleft
     with moveinleft
@@ -54,7 +61,7 @@ label community1:
     him surprised "Yeah, I hadn't realized how much I'd gotten used to all you guys until these new folks showed up. I'm surprised Julia's not here."
     thuc sad "She was... feeling pretty worn out."
     thuc normal "Is [her_name] still at work?"
-    him concerned "Yeah, she wants to give the new colonists their first physical as soon as possible."
+    him concerned "Yeah, she wants to give the new colonists their first physical as soon as possible. Plus, [kid_name] fell asleep at the clinic and we didn't want to wake her."
     ilian normal "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
     him happy "At least there's free soup."
     ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
@@ -164,127 +171,81 @@ label community1:
             $ asked_shuttle = True
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
-            zaina "You've been here for a year, right? Can you tell me about some of the other colonists?" #not sure if this is necessary... too much exposition?
-            him surprised "Yes, I can."
-            him normal "First let me tell you a little bit about my family."
-            scene stars with fade
-            show her happy baby coat at center
-            #show kid normal at center, baby_pos
+            zaina "What about you? What's your deal?" 
+            him happy "Farming, family, and food! That's what I'm all about."
+
+    scene stars with fade
+    show her happy baby coat at center
+    with dissolve
+    him "I have a daughter, [kid_name] - she's about three Earth months old."
+    him "[her_name] is my wife and she's also the doctor in our clinic."
+    him "She tries to be objective, but she also feels passionate about her job."
+    zaina "I think that describes most of us."
+    show her concerned coat with dissolve
+    him "Some people have complained that her bedside manner is a little callous."
+    him "So her objectivity is more relevant to customer satisfaction than, say, mine."
+    kevin "Are you implying that your carrots cannot feel your love?"
+    him "Probably not. Unless that love manifests itself in better care."
+    hide her
+    hide kid
+    with dissolve
+
+    scene community_center with fade
+    show him normal at midleft
+    show zaina normal at center
+    show kevin normal at midright
+
+    # TODO: Finish this
+    him happy "Hey, I should show you around, introduce you to some other people!"
+    menu:
+        "Whom should I introduce them to?"
+        "Pavel and Naomi":
+            "scene here."
+            $ bios.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
+            $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
+            show naomi normal at midright
+            show pavel normal at midleft
+
+            him "Naomi's husband, Pavel, is the mayor. I think you know him already."
+            $ met_grayson = True
+        "Thuc and Ilian":
+            "Ilian ate as fast as possible and left. Thuc talks a bit about Julia and jokes with Zaina."
+            show thuc normal at midleft
             with dissolve
-            him "I have a daughter, [kid_name] - she's about three Earth months old."
-            him "[her_name] is my wife and she's also the doctor in our clinic."
-            him "She tries to be objective, but she also feels passionate about her job."
-            zaina "I think that describes most of us."
-            show her concerned coat with dissolve
-            him "Some people have complained that her bedside manner is a little callous."
-            him "So her objectivity is more relevant to customer satisfaction than, say, mine."
-            kevin "Are you implying that your carrots cannot feel your love?"
-            him "Probably not. Unless that love manifests itself in better care."
-            hide her
-            hide kid
-            with dissolve
-            label colony_gossip:
-            menu:
-                "Who else should I tell them about?"
-                "Naomi and Pavel" if not tell_Graysons:
-                    show naomi normal at midright
-                    show pavel normal at midleft
-                    him "If over the course of your lifetime you ever feel hopeless or depressed, go talk to Naomi Grayson."
-                    him "She can't prescribe medicine for you, but she's very reassuring and can encourage you to get more help."
-                    zaina "Reassuring? So she basically tells you to 'hang in there.'"
-                    him "Somehow when she says it, it feels like she understands what you're going through. She has some training in cognitive behavioral techniques, too, as a therapist."
-                    him "She also holds religious services every Sunday."
-                    zaina "Do you go to those?"
-                    him "No, but [her_name] does."
-                    him "Naomi's husband, Pavel, is the mayor. I think you know him already."
-                    hide naomi
-                    hide pavel
-                    with dissolve
-                    $ tell_Graysons = True
-                    jump colony_gossip
-                "Dr. Lily" if not tell_Lily:
-                    show lily normal at center
-                    him "Dr. Lily is our resident scientist. She was here before most of the other colonists."
-                    him "She tests plants to see if they're edible, and helps think of solutions to problems."
-                    zaina "You said scientist, but what kind of scientist is she?"
-                    him "Hmm. I guess she's a xenonaturalist? She looks at plants and animals, and does some chemistry on the side."
-                    kevin "RET does prefer people who have multiple talents."
-                    kevin "I'm also a shuttle pilot, for example."
-                    him "Oh, really? When did you have time to learn that?"
-                    kevin "My father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
-                    kevin "After I obtained my pilot's license, I worked as a pilot for several years."
-                    him "But at some point you decided to study engineering."
-                    kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
-                    him "Flying is pretty incredible."
-                    hide lily with dissolve
-                    $ tell_Lily = True
-                    jump colony_gossip
-                "Martín and Natalia" if not tell_Perons:
-                    show martin normal at midleft
-                    show natalia normal at midright
-                    with dissolve
-                    him "Martín and Natalia Perón grow beans and have chickens, and maybe turkeys, too? They have five kids. Or, four now, I guess."
-                    zaina "Now?"
-                    him "There was an accident... and their daughter died when she was four years old."
-                    zaina "What a shame. What happened?"
-                    menu:
-                        "What should I tell them?"
-                        "Pete ran over her with his tractor.":
-                            him "Pete was driving his tractor and didn't see her in time..."
-                            zaina "How awful. I bet he still feels bad about it."
-                            him "The Peróns have a vigil every year to remember her."
-                            zaina "Are accidents like that common?"
-                            him "No, I mean, usually accidents aren't so bad that someone dies."
-                            him "I'm not sure if Natalia will ever forgive Pete."
-                        "She got run over by a tractor.":
-                            him "She wasn't looking where she was going, and a tractor ran over her."
-                            zaina "Was it a self-driving tractor or something?"
-                            him "No, one of my friends was driving it."
-                            zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
-                            him "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
-                    him "Anyway, their kids are old enough to help around the colony a lot. Their oldest son just got married."
-                    hide martin
-                    hide natalia
-                    with dissolve
-                    $ tell_Perons = True
-                    jump colony_gossip
-                "Pete and Helen." if not tell_Pete:
-                    show pete normal at midleft
-                    show helen normal at midright
-                    with dissolve
-                    him "If you ever need to look something up or make something, our library is the place to go."
-                    him "Pete is our librarian and also our cattle rancher."
-                    him "He has a wife and a son about [kid_name]'s age. Travis, that's his name."
-                    hide pete
-                    hide helen
-                    with dissolve
-                    $ tell_Pete = True
-                    jump colony_gossip
-                "Thuc and Julia." if not tell_Ngyuens:
-                    show thuc normal at midleft
-                    show julia normal at midright
-                    with dissolve
-                    him "Thuc and Julia are my neighbors and some of our best friends."
-                    him "They grow a lot of crops and are experts on, ah, human waste treatment?"
-                    kevin "It is an efficient way to procure more fertilizer."
-                    him "Also they have ten kids and Julia is a midwife."
-                    zaina "Ten kids? That is a lot."
-                    him "They fill our schoolroom nicely. It must have been a real pain on the shuttle though!"
-                    zaina "Yeah, there's not exactly a playground on the shuttle."
-                    hide thuc
-                    hide julia
-                    with dissolve
-                    $ tell_Ngyuens = True
-                    jump colony_gossip
-                "I'm done talking about other people.":
-                    scene community_center with fade
-                    show him normal at midleft
-                    show zaina normal at center
-                    show kevin normal at midright
-                    with dissolve
-                    him happy "It was nice to meet you both."
-                    kevin "Undoubtedly we shall meet again."
-                    zaina "We'll have to have you over for dinner sometime."
+            him "Thuc and Julia are my neighbors and some of our best friends."
+            him "They grow a lot of crops and are experts on, ah, human waste treatment?"
+            kevin "It is an efficient way to procure more fertilizer."
+            him "Also they have ten kids and Julia is a midwife."
+            zaina "Ten kids? That is a lot."
+            him "They fill our schoolroom nicely. It must have been a real pain on the shuttle though!"
+            zaina "Yeah, there's not exactly a playground on the shuttle."
+            $ met_nguyen = True
+        "Dr. Lily":
+            "They want to grill Dr. Lily about everything about Talaam"
+            $ bios.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily has lived on Talaam longer than anyone else. She was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her level-headed problem-solving skills to Talaam's biology and geology, like with her edible plant guide.")            
+            show lily normal at center
+            him "Dr. Lily is our resident scientist. She was here before most of the other colonists."
+            him "She tests plants to see if they're edible, and helps think of solutions to problems."
+            zaina "You said scientist, but what kind of scientist is she?"
+            him "Hmm. I guess she's a xenonaturalist? She looks at plants and animals, and does some chemistry on the side."
+            kevin "RET does prefer people who have multiple talents."
+            kevin "I'm also a shuttle pilot, for example."
+            him "Oh, really? When did you have time to learn that?"
+            kevin "My father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
+            kevin "After I obtained my pilot's license, I worked as a pilot for several years."
+            him "But at some point you decided to study engineering."
+            kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
+            him "Flying is pretty incredible."
+            $ met_kealoha = True
+
+    scene community_center with fade
+    show him normal at midleft
+    show zaina normal at center
+    show kevin normal at midright
+    with dissolve
+    him happy "It was nice to meet you both."
+    kevin "Undoubtedly we shall meet again."
+    zaina "We'll have to have you over for dinner sometime."
 
     #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
     # Maybe something about building a park/playground for everyone?
@@ -319,7 +280,7 @@ label community2:
         kevin "Yes, a variety of foodstuffs is beneficial to anyone's diet."
     ilian "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we're supposed to have been doing it all along."
     him surprised "Huh, really? How in the world do you have time to farm?"
-    kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pastime."
+    kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pasttime."
     him annoyed "It might be an amusing pasttime for you, but it's our survival you're talking about here."
     kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
     ilian normal "That's what I'm here for."
@@ -377,98 +338,139 @@ label community2:
 #######################################################################################
 
 label community3:
-    play music exciting
+    # TODO: Add two other options here to meet other people    
+    # Each option should have some way of increasing the faction variables.
+    # We need a Pete/Helen event (games)
+    # a Natalia/Martin event
+    # and maybe a babysitting event (naomi/pavel)
+
     scene farm_interior with fade
-    show thuc normal at midleft
-    show him normal at center
-    show helen normal at midright
-    show pete normal at right
-    with dissolve
-    thuc "Your honor, as the defense attorney, I would like to conclude that while my client, Pete, may have exercised poor judgement, he had a legal right to be on the road."
-    him pout "The defense may rest. What does the prosecution say?"
-    helen "On the day that Pete ran over three chickens in his car, he was attempting to use his phone."
-    helen "He circumvented the security to allow voice commands while the car was on, and while he was looking for something to listen to, the innocent chickens tried to cross the road."
-    thuc sad "A road that had no clear chicken crossing signage."
-    helen happy "Does the absence of a chicken crossing sign mean that we disregard chicken life?"
-    helen normal "We must charge Pete to the fullest extent the law will allow."
-    him determined "Thank you. I have calculated the point totals and will uncover the jury cards to determine the verdict."
-    him normal "Jurors C, D, and F turn out to be farmers! They side with the chickens."
-    him pout "Juror B is pro-car and sides with Pete."
-    him explaining "Jurors A and E don't have any attributes that indicate whose side they are on, so we have to pit Juror B against C, D, and F."
-    him happy "His persuasiveness stat combined with my scoring of Thuc's argument is only big enough to convince one juror. The jury finds Pete guilty!"
-    pete happy "And my sentence?"
-    him explaining "A fine of $100, 40 hours of community service, and two days in jail."
-    helen happy "Yes! Take that you chicken-killer!"
-    thuc sad "The jury deck is rigged against violent crime."
-    pete happy "Excellent trial. We'll do the jailbreak part next time."
-    him normal "Same time next month?"
-    pete happy "I reckon so. Can you put it in the community bulletin?"
-    him concerned "Yes, but I don't want to call it a game night... all the new colonists will think we're a bunch of nerds."
-    pete normal "That's what we are. You don't get to farm in space without bein' a little bit of a nerd."
-    helen normal "Yeah, enjoying trivial entertainment is cool here."
-    him concerned "No, I especially don't want to look like I'm wasting my time."
-    him pout "I'm going to put it down as an 'intensive research session.'"
-    pete happy "Ha! You ashamed to be playing games? As long as we all call it that they'll be none the wiser."
-    scene fields with fade
-    show him normal at midright
-    show kevin at midleft
-    "A few months later, Kevin asked me about it after I assessed his first batch of crops."
-    kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
-    him concerned "Oh, those. It's just people talking to Pete about stuff."
-    kevin "Talking to Pete? About fieldwork?"
-    him normal "I happen to have some research interests outside of fieldwork."
-    kevin "He's a librarian, right? Is your hobby art history or something similar?"
-    him happy "No, it's far more mundane. That's just what we call our monthly game night."
-    kevin "I would love to play games with others. Why was this information hidden?"
-    him concerned "I guess... I didn't want the new colonists to think I was being frivolous with my time."
-    kevin "Face-to-face socialization is highly recommended by RET's psychologists."
-    kevin "It may feel frivolous, but it can actually increase your productivity."
-    him normal "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
-    kevin "That's simply what they told their grandchildren. Let me come to your game night!"
-    him happy "Yeah, you should! We need someone to shake things up."
-    kevin "Shall I invite the other new colonists as well?"
+    show him determined at midright
+    show her determined at midleft
+    with dissolve    
+   
+    him surprised "Hey, are you going to Dr. Lily's thing tomorrow night?"
+    her concerned "I wanted to... did you want to go instead? Someone needs to watch [kid_name]..."
+    him concerned "Well, Pete's having another game night."
+    her determined "Maybe we should both go to the lecture and find someone else to watch [kid_name]. I mean, I know you like game night, but she doesn't do these lectures very often."
     menu:
-        "Sure, invite them all!":
-            him normal "Yes, let's invite them. I can reserve the community center."
-            $ colonists += 1
-            $ town_hall_games = True
-            jump invite_all
-        "Don't invite them.":
-            him pout "They can make their own game night if they want."
-            him normal "I want to enjoy myself, not be teaching other people how to play games the whole time."
-            $ mavericks += 1 #rationale: the mavericks are a product of the colonists becoming more fractured
-            jump no_invite
-        "Ask Pavel to encourage meetups":
-            him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
-            jump ask_pavel
+        "What should I do?"
+        "Go to game night":
+            him concerned "I really want to go to game night."
+            her normal "Okay, Sister Naomi just sent out a message saying that she and Isabella are going to watch any little kids that night, so that should work."
+            him normal "Tell me all about the lecture, okay?"
+            her flirting "Maybe if you're lucky."
 
-    label invite_all:
-        scene community_center with fade
-        show kevin normal at left
-        show thuc normal at midleft
-        show him normal at center
-        show sara normal at midright
+            play music exciting
+            scene farm_interior with fade
+            show thuc normal at midleft
+            show him normal at center
+            show helen normal at midright
+            show pete normal at right
+            with dissolve
+            $ bios.addPerson("Travis", "Travis Jennings", "Travis is a wild, mischievous kid that never seems to stay still or stay quiet. {a=action:SetVariable('show_person', 'Pete')}Pete{/a} and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} sure have their hands full with him!")            
+            $ bios.addPerson("Pete", "Pete Jennings", "Pete loves the extremes. He's a tough, independent cowboy with a soft spot for history books and classic novels. He and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} have a farm that makes the best butter on the planet! He has a {a=action:SetVariable('show_person', 'Travis')}son{/a} about the same age as our daughter.")
+            $ bios.addPerson("Helen", "Helen Jennings", "I mostly know Helen from game night. She seems quiet and sweet, but then she'll pull the deadliest moves out of nowhere! She and {a=action:SetVariable('show_person', 'Pete')}Pete{/a} have a couple kids; the oldest, {a=action:SetVariable('show_person', 'Travis')}Travis{/a}, is the same age as our daughter.")
+            thuc "Your honor, as the defense attorney, I would like to conclude that while my client, Pete, may have exercised poor judgement, he had a legal right to be on the road."
+            him pout "The defense may rest. What does the prosecution say?"
+            helen "On the day that Pete ran over three chickens in his car, he was attempting to use his computer pad."
+            helen "He circumvented the security to allow voice commands while the car was on, and while he was looking for something to listen to, the innocent chickens tried to cross the road."
+            thuc sad "A road that had no clear chicken crossing signage."
+            helen happy "Does the absence of a chicken crossing sign mean that we disregard chicken life?"
+            helen normal "We must charge Pete to the fullest extent the law will allow."
+            him determined "Thank you. I have calculated the point totals and will uncover the jury cards to determine the verdict."
+            him normal "Jurors C, D, and F turn out to be farmers! They side with the chickens."
+            him pout "Juror B is pro-car and sides with Pete."
+            him explaining "Jurors A and E don't have any attributes that indicate whose side they are on, so we have to pit Juror B against C, D, and F."
+            him happy "His persuasiveness stat combined with my scoring of Thuc's argument is only big enough to convince one juror. The jury finds Pete guilty!"
+            pete happy "And my sentence?"
+            him explaining "A fine of $100, 40 hours of community service, and two days in jail."
+            helen happy "Yes! Take that you chicken-killer!"
+            thuc sad "The jury deck is rigged against violent crime."
+            pete happy "Excellent trial. We'll do the jailbreak part next time."
+            him normal "Same time next month?"
+            pete happy "I reckon so. Can you put it in the community bulletin? That way, maybe they won't schedule Dr. Lily's lectures at the same time."
+            him concerned "Yes, but I don't want to call it a game night... all the new colonists will think we're a bunch of nerds."
+            pete normal "That's what we are. You don't get to farm in space without bein' a little bit of a nerd."
+            helen normal "Yeah, enjoying trivial entertainment is cool here."
+            him concerned "No, I especially don't want to look like I'm wasting my time."
+            him pout "I'm going to put it down as an 'intensive research session.'"
+            pete happy "Ha! You ashamed to be playing games? As long as we all call it that they'll be none the wiser."
+            scene fields with fade
+            show him normal at midright
+            show kevin at midleft
+            "A few months later, Kevin asked me about it after I assessed his first batch of crops."
+            kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
+            him concerned "Oh, those. It's just people talking to Pete about stuff."
+            kevin "Talking to Pete? About fieldwork?"
+            him normal "I happen to have some research interests outside of fieldwork."
+            kevin "He's a librarian, right? Is your hobby art history or something similar?"
+            him happy "No, it's far more mundane. That's just what we call our monthly game night."
+            kevin "I would love to play games with others. Why was this information hidden?"
+            him concerned "I guess... I didn't want the new colonists to think I was being frivolous with my time."
+            kevin "Face-to-face socialization is highly recommended by RET's psychologists."
+            kevin "It may feel frivolous, but it can actually increase your productivity."
+            him normal "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
+            kevin "That's simply what they told their grandchildren. Let me come to your game night!"
+            him happy "Yeah, you should! We need someone to shake things up."
+            kevin "Shall I invite the other new colonists as well?"
+            menu:
+                "Sure, invite them all!":
+                    him normal "Yes, let's invite them. I can reserve the community center."
+                    $ colonists += 1
+                    $ town_hall_games = True
+                    scene community_center with fade
+                    show kevin normal at left
+                    show thuc normal at midleft
+                    show him normal at center
+                    show sara normal at midright
 
-        "Next month, we invited everyone to town hall to game night."
-        "A handful started a poker game at another table, but Kevin wanted to join our game instead."
-        return
+                    "Next month, we invited everyone to town hall to game night."
+                    "A handful started a poker game at another table, but Kevin wanted to join our game instead."
+                "Don't invite them.":
+                    him pout "They can make their own game night if they want."
+                    him normal "I want to enjoy myself, not be teaching other people how to play games the whole time."
+                    $ mavericks += 1 #rationale: the mavericks are a product of the colonists becoming more fractured
+                    scene farm_interior with fade
+                    show kevin normal at left
+                    show thuc normal at midleft
+                    show him normal at center
+                    show pete normal at midright
+                    "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
+                    "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
 
-    label no_invite:
-        scene farm_interior with fade
-        show kevin normal at left
-        show thuc normal at midleft
-        show him normal at center
-        show pete normal at midright
-        "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
-        "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
-        return
+                "Ask Pavel to encourage meetups":
+                    him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
+                    scene stars with fade #not sure what scene to show for this ending.
+                    "I asked Pavel to remind everyone to remember to get to know the new colonists."
+                    "He sent an annoucement to the community bulletin."
+                    "I don't know if anyone actually did anything about it, but the thought was there."
 
-    label ask_pavel:
-        scene stars with fade #not sure what scene to show for this ending.
-        "I asked Pavel to remind everyone to remember to get to know the new colonists."
-        "He sent an annoucement to the community bulletin."
-        "I don't know if anyone actually did anything about it, but the thought was there."
-        return
+            return
+
+        "Go to the lecture with [her_name]":  # TODO: FINISH THESE EVENTS
+            $ marriage_strength += 1
+            him normal "We should go on a date together!"
+            her flirting "It's not quite 'dinner-and-a-movie' but it'll be fun to go together. I bet Sister Naomi would watch [kid_name]"
+
+            $ bios.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily has lived on Talaam longer than anyone else. She was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her level-headed problem-solving skills to Talaam's biology and geology, like with her edible plant guide.")                        
+            $ bios.addPerson("Natalia", "Natalia Perón", "Natalia is laid-back and friendly, so we get along pretty well. She farms nearby, raising chickens and growing beans, corn, squash, and other crops. She's married to {a=action:SetVariable('show_person', 'Martín')}Martín{/a} and they have five kids: Tomás (married to Joanna Nguyen), Isabella, Raúl, Josephina (who passed away as a child), and Mateo.")
+            $ bios.addPerson("Martín", "Martín Perón", "Martín is one of those quiet guys that you just kind of forget about most of the time. He doesn't talk much, but he's nice enough when we get a chance to hang out with him and his wife {a=action:SetVariable('show_person', 'Natalia')}Natalia{/a}. He's really good with kids, too, though his kids are all older than mine. His son Tomás is married to Joanna Nguyen, and then there's Isabella, Raúl, and Mateo. Josephina was hit by a tractor when she was little and died.")
+
+            scene community_center with fade
+            "We got there a few minutes late, and her lecture had already started."
+            lily ""
+        "Watch [kid_name]":
+            him normal "You go; I'll take care of [kid_name]."
+            her surprised "You sure?"
+            him happy "Yeah, you need to get out more!"
+            her normal "Okay, I just got a message that Sister Naomi is watching all the little kids at her house. I bet she'd appreciate your help if you and [kid_name] want to get out of the house."
+            $ bios.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
+            $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
+
+            scene yurt_interior with fade
+    return
+
 
 #######################################################################################
 #
@@ -477,6 +479,7 @@ label community3:
 #######################################################################################
 
 label community4:
+    call activate_bios
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
     show pavel normal at center with dissolve
@@ -886,6 +889,11 @@ label community7:
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
     pavel "I know you're all very busy, so we've provided some delicious snacks to encourage you to stay!"
     hide pavel with moveoutright
+
+
+    # HANGOUT_EVENT
+    # TODO: Add a choice about whom you sit with
+
     show kevin at midright with moveinright
     show him normal at midleft with moveinleft
     kevin "I'm surprised that they're offering incentives. The excitement of living on a new planet was sufficient payment for Zaina and I to come to Talaam and socialize."

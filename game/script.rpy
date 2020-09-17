@@ -100,6 +100,13 @@ label start:
 
     # COMMUNITY
     python:
+        met_jennings = False
+        met_grayson = False
+        met_kealoha = False
+        met_nguyen = False
+        met_andrevski = False
+        met_peron = False
+        
         is_liaison = False
         asked_only_medicine = False
         trade_with_mavericks = False
@@ -144,6 +151,11 @@ label start:
         study_published_23 = False
         helen_dead = False      
         bios = Bios()  
+        # Initial bios from the beginning of the game.
+        bios.addPerson("[his_name]", "[his_name] Ventura", "All right, finally someone I actually know something about! I'm a farmer and husband to {a=action:SetVariable('show_person', '[[her_name]')}[her_name]{/a}. I love my horse Lettie, the outdoors, games, and writing poetry. I'm also {a=action:SetVariable('show_person', '[[kid_name]')}[kid_name]{/a}'s father.")
+        bios.addPerson("[her_name]", "[her_name] Ventura", "My wife, lover, and best friend forever, [her_name]. We got married right before coming to Talaam as colonists. Our first year was kind of rough, living on our own on a new planet, but we made it work. She is a capable doctor and a caring mother, and there's no one I'd rather live in the middle of nowhere with!")
+        bios.addPerson("[kid_name]", "[kid_name] Ventura", "We made a person! She definitely has her own ideas about who she wants to become.")
+
 
     # FARM
     python:

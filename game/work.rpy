@@ -398,6 +398,79 @@ label work2:
 
     $ enable_crop("plums")
     tutorial "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
+
+    kevin "I do not want to pester you continually with farming questions. Is there someone else whom I could also ask for assistance?"
+    menu:
+        "What should I say?"
+        "Natalia" if (not met_peron):
+            $ bios.addPerson("Natalia", "Natalia Perón", "Natalia is laid-back and friendly, so we get along pretty well. She farms nearby, raising chickens and growing beans, corn, squash, and other crops. She's married to {a=action:SetVariable('show_person', 'Martín')}Martín{/a} and they have five kids: Tomás (married to Joanna Nguyen), Isabella, Raúl, Josephina (who passed away as a child), and Mateo.")
+            $ bios.addPerson("Martín", "Martín Perón", "Martín is one of those quiet guys that you just kind of forget about most of the time. He doesn't talk much, but he's nice enough when we get a chance to hang out with him and his wife {a=action:SetVariable('show_person', 'Natalia')}Natalia{/a}. He's really good with kids, too, though his kids are all older than mine. His son Tomás is married to Joanna Nguyen, and then there's Isabella, Raúl, and Mateo. Josephina was hit by a tractor when she was little and died.")
+            him determined "Natalia is a really good farmer."
+            zaina "I don't think we've met her yet... is she the one with all the chickens?"
+            him happy "Yeah! They also grow beans and a few different types of corn."
+            kevin "Corn is a versatile plant. Culinarily, it can be a vegetable or a grain."
+            zaina "Does she have popcorn?"
+            him surprised "Yeah, I think some popcorn seeds came on the shuttle with you guys and she's been trying them out. I bet her kids love that."
+            kevin "Does she have many children?"
+            him determined "She and Martín have five kids. Or, four now, I guess."
+            zaina "Now?"
+            him "There was an accident... and their daughter Josephina died when she was four years old."
+            zaina "What a shame. What happened?"
+            menu:
+                "What should I tell them?"
+                "Pete ran over her with his tractor.":
+                    him "Pete was driving his tractor and didn't see her in time..."
+                    zaina "How awful. I bet he still feels bad about it."
+                    him "The Peróns have a vigil every year to remember her."
+                    zaina "Are accidents like that common?"
+                    him "No, I mean, usually accidents aren't so bad that someone dies."
+                    him "But Natalia still has a hard time talking to Pete."
+                "She got run over by a tractor.":
+                    him "She wasn't looking where she was going, and a tractor ran over her."
+                    zaina "Was it a self-driving tractor or something?"
+                    him "No, one of my friends was driving it."
+                    zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
+                    him "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
+            him "Anyway, their other kids are old enough to help around the colony. Well, maybe not Mateo. But their oldest son Tomás just got married."
+            $ met_peron = True
+
+        "Mayor Grayson" if (not met_grayson):
+            $ bios.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
+            $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")   
+            him determined "Honestly, I'd ask Mayor Grayson."
+            kevin "Is the mayor a farmer, too?"
+            him normal "No, but he knows everyone and how they're doing and who's an expert on what. So he could direct you to the right person. Or if he can't, Naomi could."
+            zaina "That's his wife, right? What is her job exactly?"
+            him concerned "She helps people who are having a hard time. She can't prescribe medicine, but she's very reassuring and can encourage you to get more help."
+            zaina "Reassuring? So she basically tells you to 'hang in there.'"
+            him pout "Somehow when she says it, it feels like she understands what you're going through. She has some training in cognitive behavioral techniques, too, as a therapist, so it's not just random talk."
+            zaina "Oh, she's the one who sent out the announcement about church! Do you go to her services?"
+            him normal "No, but [her_name] does."
+            $ met_grayson = True
+
+        "Julia" if (not met_nguyen):
+            him normal "Julia's probably the best person to ask if you want an expert opinion."
+            zaina "That's Thuc's wife, right? Wasn't she sick last time?"
+            him concerned "Yeah, she has some kind of chronic pain issue. Whenever she's stuck inside, she reads up on research instead. Lately she's been reading a lot."
+            kevin "So her knowledge is mostly theoretical?"
+            him normal "Not at all; she and Thuc have a thriving farm. They are experts in fertilizer and waste reclamation, which is more interesting than you might think once you get past the 'yuck' factor."
+            zaina "Okay, good to know."
+            $ met_nguyen = True
+        "Pete" if (not met_jennings):
+            $ bios.addPerson("Travis", "Travis Jennings", "Travis is a wild, mischievous kid that never seems to stay still or stay quiet. {a=action:SetVariable('show_person', 'Pete')}Pete{/a} and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} sure have their hands full with him!")            
+            $ bios.addPerson("Pete", "Pete Jennings", "Pete loves the extremes. He's a tough, independent cowboy with a soft spot for history books and classic novels. He and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} have a farm that makes the best butter on the planet! He has a {a=action:SetVariable('show_person', 'Travis')}son{/a} about the same age as our daughter.")
+            $ bios.addPerson("Helen", "Helen Jennings", "I mostly know Helen from game night. She seems quiet and sweet, but then she'll pull the deadliest moves out of nowhere! She and {a=action:SetVariable('show_person', 'Pete')}Pete{/a} have a couple kids; the oldest, {a=action:SetVariable('show_person', 'Travis')}Travis{/a}, is the same age as our daughter.")
+            him normal "You should ask Pete! He and Helen are always trying new things with their cattle herds."
+            kevin "Has he published his research?"
+            him surprised "Uh, no, not really, but he'll tell you all about it if you let him."
+            kevin "If knowledge is not written and catalogued, it will be lost."
+            him normal "Yeah, that's kinda true, but who has time for that? Speaking of writing, though, he also runs the library, so if you're looking for a tool or research or need to fabricate something, he can help you out there."
+            zaina "That would be great! I've been trying to fix this oven door handle but I really think I just need a new hinge."
+            $ met_jennings = True
+
+    him normal "If you want, I'll introduce you next time we get together."
+    zaina "You know, I would really appreciate that. Everyone's so spread out, and we don't get together very often -- I feel like it's taking forever to get to know everyone."
+    kevin "Thank you, [his_name]."
     return
 
 

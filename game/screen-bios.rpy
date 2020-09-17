@@ -2,7 +2,7 @@
 # Screen to show short bios of all the characters.
 # TODO: Make it so you can get to this screen by clicking on someone's portrait,
 #       their mini-portrait in NVL mode, or the main computer screen
-# TODO: Make it so a little ! appears when there's bios you haven't read or updates
+# TODO: Have all bios from the beginning, but only activate them when you meet someone OR when you click on someone's portrait
 #
 screen biographies(name):
     modal True
@@ -18,7 +18,7 @@ screen biographies(name):
                 label "Community Bios"
                 textbutton "X" xalign 0.97 action Hide("biographies", irisin) xfill False
             hbox:
-                null width 30
+                null width 20
 
                 vpgrid:
                     cols 1
@@ -97,25 +97,7 @@ init python:
     class Bios(renpy.store.object):
         def __init__(self):
             self.people = []
-            self.index = 0
-
-            # Initial bios from the beginning of the game.
-            self.addPerson("Thuc", "Thuc Nguyen", "Thuc Nguyen is my neighbor, a farmer, and best friend (aside from [her_name] of course). We have the same sense of humor and the same lack of patience with incompetence. He raises goats and grows rice, onions, and other vegetables. He and his wife {a=show:biographies(\"Julia\")}Julia{/a} have 10 kids, including Joanna (married to Tomás Perón), Miranda, Gardenia, and Van.")
-            self.addPerson("Julia", "Julia Nguyen", "Julia is very particular about her farm, her kids, and... pretty much everything. She's an amazing farmer and homesteader -- you name it, she can make it five different ways. I still try to avoid her, though. She and her husband {a=show:biographies#\"Thuc\"}Thuc{/a} have 9 really polite kids (including Joanna, Miranda, and Van) and 1 little stinker (Gardenia).")            
-            self.addPerson("Natalia", "Natalia Perón", "Natalia is laid-back and friendly, so we get along pretty well. She farms nearby, raising chickens and growing beans, corn, squash, and other crops. She's married to Martín and they have five kids: Tomás (married to Joanna Nguyen), Isabella, Raúl, Josephina (who passed away as a child), and Mateo.")
-            self.addPerson("Martín", "Martín Perón", "Martín is one of those quiet guys that you just kind of forget about most of the time. He doesn't talk much, but he's nice enough when we get a chance to hang out. He's really good with kids, too, though his kids are all older than mine. His son Tomás is married to Joanna Nguyen, and then there's Isabella, Raúl, and Mateo. Josephina was hit by a tractor when she was little and died.")
-            self.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is Sister Naomi, but their kids and grandkids all live on Earth.")
-            self.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and Pavel have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")
-            self.addPerson("[his_name]", "[his_name] Ventura", "All right, finally someone I actually know something about! I'm a farmer and husband to [her_name]. I love my horse Lettie, the outdoors, games, and writing poetry. I'm also [kid_name]'s father.")
-            self.addPerson("[her_name]", "[her_name] Ventura", "My wife, lover, and best friend forever, [her_name]. We got married right before coming to Talaam as colonists. Our first year was kind of rough, living on our own on a new planet, but we made it work. She is a capable doctor and a caring mother, and there's no one I'd rather live in the middle of nowhere with!")
-            self.addPerson("[kid_name]", "[kid_name] Ventura", "We made a person! She definitely has her own ideas about who she wants to become.")
-            self.addPerson("Pete", "Pete Jennings", "Pete loves the extremes. He's a tough, independent cowboy with a soft spot for history books and classic novels. His farm makes the best butter on the planet! He has a son about the same age as our daughter.")
-            self.addPerson("Helen", "Helen Jennings", "I mostly know Helen from game night. She seems quiet and sweet, but then she'll pull the deadliest moves out of nowhere! She and Pete have a couple kids; the oldest, Travis, is the same age as our daughter.")
-            self.addPerson("Travis", "Travis Jennings", "Travis is a wild, mischievous kid that never seems to stay still or stay quiet. Pete and Helen sure have their hands full with him!")
-            self.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily has lived on Talaam longer than anyone else. She was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her level-headed problem-solving skills to Talaam's biology and geology, like with her edible plant guide.")
-            self.addPerson("Sara", "Sara Andrevski", "Sara helps Mayor Grayson stay organized and get things done around the colony. She's friendly and has a good sense of humor and is also good friends with [her_name]. She and Ilian have a son named Oleg.")
-            self.addPerson("Ilian", "Ilian Andrevski", "I'm guessing Ilian wasn't always the grumpy control freak he is now... but it's hard to imagine. He runs the storehouse with an iron fist, which is probably good for increasing our food stores, but doesn't make him well-liked. He and Sara have a son named Oleg.")
-            self.addPerson("Oleg", "Oleg Andrevski", "He's Sara and Ilian's son, about the same age as [kid_name]. He doesn't talk much but I get the feeling he's really smart.")
+            self.index = 0           
             return
 
         def __iter__(self):
@@ -135,13 +117,16 @@ init python:
                     return True
             return False
 
+        # Add a person to the list of people. Optionally, give the name of a person to insert them after.        
+        # If they already exist, do nothing.
         def addPerson(self, nickname, full_name, bio, afterName=None):
-            if (afterName is not None):
-                afterIndex = self.people.index(afterName)
-            else:
-                afterIndex = 0
-            newPerson = Person(nickname, full_name, bio)
-            self.people.insert(afterIndex, newPerson)
+            if (self.getPerson(nickname) is None):
+                if (afterName is not None):
+                    afterIndex = self.people.index(afterName)
+                else:
+                    afterIndex = 0
+                newPerson = Person(nickname, full_name, bio)
+                self.people.insert(afterIndex, newPerson)
             return
 
         def getPerson(self, name):
@@ -153,7 +138,6 @@ init python:
         def getFirstPersonName(self):
             return self.people[0].getName()
 
-        # TODO: put this person on top?
         def addToBio(self, name, addition):
             person = self.people.remove(name)
             if (person is None):
@@ -165,13 +149,29 @@ init python:
         def getBio(self, name):
             person = self.getPerson(name)
             if (person is None):
-                return None
+                return ""
             else:
                 return person.getBio()
 
         def getFullName(self, name):
             person = self.getPerson(name)
             if (person is None):
-                return None
+                return ""
             else:
                 return person.getFullName()
+
+# Activate all bios after a certain point
+label activate_bios:
+    $ bios.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
+    $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
+
+    $ bios.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily has lived on Talaam longer than anyone else. She was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her level-headed problem-solving skills to Talaam's biology and geology, like with her edible plant guide.")            
+
+    $ bios.addPerson("Natalia", "Natalia Perón", "Natalia is laid-back and friendly, so we get along pretty well. She farms nearby, raising chickens and growing beans, corn, squash, and other crops. She's married to {a=action:SetVariable('show_person', 'Martín')}Martín{/a} and they have five kids: Tomás (married to Joanna Nguyen), Isabella, Raúl, Josephina (who passed away as a child), and Mateo.")
+    $ bios.addPerson("Martín", "Martín Perón", "Martín is one of those quiet guys that you just kind of forget about most of the time. He doesn't talk much, but he's nice enough when we get a chance to hang out with him and his wife {a=action:SetVariable('show_person', 'Natalia')}Natalia{/a}. He's really good with kids, too, though his kids are all older than mine. His son Tomás is married to Joanna Nguyen, and then there's Isabella, Raúl, and Mateo. Josephina was hit by a tractor when she was little and died.")
+
+    $ bios.addPerson("Travis", "Travis Jennings", "Travis is a wild, mischievous kid that never seems to stay still or stay quiet. {a=action:SetVariable('show_person', 'Pete')}Pete{/a} and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} sure have their hands full with him!")            
+    $ bios.addPerson("Pete", "Pete Jennings", "Pete loves the extremes. He's a tough, independent cowboy with a soft spot for history books and classic novels. He and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} have a farm that makes the best butter on the planet! He has a {a=action:SetVariable('show_person', 'Travis')}son{/a} about the same age as our daughter.")
+    $ bios.addPerson("Helen", "Helen Jennings", "I mostly know Helen from game night. She seems quiet and sweet, but then she'll pull the deadliest moves out of nowhere! She and {a=action:SetVariable('show_person', 'Pete')}Pete{/a} have a couple kids; the oldest, {a=action:SetVariable('show_person', 'Travis')}Travis{/a}, is the same age as our daughter.")
+
+return
