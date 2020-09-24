@@ -459,7 +459,7 @@ define parenting_quotes = [
     "\"Excessive control usually involves punishment which is humiliating to children. Permissiveness is humiliating to adults. Positive discipline is based on mutual respect and cooperation. Positive discipline incorporates firmness with dignity and respect.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #23
     "\"Good character is not formed in a week or a month. It is created little by little, day by day. Protracted and patient effort is needed.\"\n\nHeraclitus", #24
     "\"Parents’ efforts to verbally argue the teenager into submission are in reality pushing the teenager toward rebellion.\"\n\nGary Chapman, {i}The Five Love Languages of Teenagers{/i}", #25
-    "\"When children and adolescents who are in need of differentiating themselves from their caregivers engender hate in those caregivers, it is because they simultaneously need to be separate and need to stay attached.\" \n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #26
+    "\"When our partner or child is upset, that is our opportunity to build a deep relationship\" \n\n-- Dr. John Gottman", #26
     "\"There is a cognitive bias that makes people overestimate their own importance and their own ability to influence how things turn out - not just in child-rearing but in everything they do.\"\n\n -- Judith R. Harris", #27
     "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
     "\"The visions we offer our children shape the future. It matters what those visions are. Often they become self-fulfilling prophecies. Dreams are maps.\"\n\nCarl Sagan", #29

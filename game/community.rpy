@@ -72,9 +72,8 @@ label community1:
     show kevin normal at midright
     with dissolve
     him "Hi, I'm [his_name]. Welcome to Talaam!"
-    # TODO: Do Zaina and Kevin have last names?
-    $ bios.addPerson("Zaina", "Zaina", "Zaina arrived from Earth around the time [kid_name] was born. She's a geologist helping to scout out the planet for RET so that they know where the best mining sites will be. She and Kevin got married right before they came here. They also have their own garden.")
-    $ bios.addPerson("Kevin", "Kevin", "As a mining engineer, Kevin is making plans for future mining by RET. He has a real head for numbers, but he sometimes takes things too literally and wants everything to be quantifiable like math is. In that way he and his wife Zaina are kind of opposites, but they are both curious and fast learners.")
+    $ bios.addPerson("Zaina", "Zaina Shirazi", "Zaina arrived from Earth around the time [kid_name] was born. She's a geologist helping to scout out the planet for RET so that they know where the best mining sites will be. She and Kevin got married right before they came here. They also have their own garden.")
+    $ bios.addPerson("Kevin", "Kevin Washington", "As a mining engineer, Kevin is making plans for future mining by RET. He has a real head for numbers, but he sometimes takes things too literally and wants everything to be quantifiable like math is. In that way he and his wife Zaina are kind of opposites, but they are both curious and fast learners.")
     zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
     him pout "Nice to meet you, Zaina and Kevin. Where will you be living?"
     zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working. Geological studies, mostly."
@@ -191,61 +190,86 @@ label community1:
     with dissolve
 
     scene community_center with fade
-    show him normal at midleft
-    show zaina normal at center
-    show kevin normal at midright
+    show him normal at left
+    show zaina normal at midleft
+    show kevin normal at center
+    with dissolve
 
-    # TODO: Finish this
     him happy "Hey, I should show you around, introduce you to some other people!"
     menu:
         "Whom should I introduce them to?"
         "Pavel and Naomi":
-            "scene here."
             $ bios.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
-            $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
+            $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")
             show naomi normal at midright
-            show pavel normal at midleft
+            show pavel normal at right
+            with moveinright
 
-            him "Naomi's husband, Pavel, is the mayor. I think you know him already."
+            him surprised "I think you know Pavel already, right?."
+            kevin "It is a pleasure to officially meet you, sir."
+            pavel "And you! But no need to call me 'sir' or anything; Pavel or Mayor will do just fine. We're looking forward to learning more about the rocks here."
+            kevin "Yes, xenomining is a new but fascinating field."
+            him normal "And this is Sister Naomi, his wife."
+            zaina "So is Naomi your last name and Sister your first name?"
+            naomi happy "Naomi is my first name. 'Sister' is more of a title."
+            kevin "Are you a nun?"
+            naomi "No, I'm not with any specific religion. I just try to be like a sister to everyone."
+            him happy "Don't be fooled; she's indispensible! She organizes religious services and is also a therapist."
+            zaina "It's always good to know where to get help when insanity starts to kick in."
+            naomi "My door is always open, whether you are sane or not."
+            kevin "Have you developed any new techniques for the maladies unique to exoplanet colonization?"
+            naomi "People are people, no matter where they live... but, yes, there are some unique challenges to living away from Earth."
+            "We talked about homesickness and therapy techniques until it was time to go."
             $ met_grayson = True
         "Thuc and Ilian":
-            "Ilian ate as fast as possible and left. Thuc talks a bit about Julia and jokes with Zaina."
-            show thuc normal at midleft
-            with dissolve
+            show thuc normal at right
+            with moveinright
             him "Thuc and Julia are my neighbors and some of our best friends."
-            him "They grow a lot of crops and are experts on, ah, human waste treatment?"
-            kevin "It is an efficient way to procure more fertilizer."
+            thuc "Well, that's half true."
+            zaina "Oh, you're not best friends?"
+            thuc "No, we're best friends. Not so much Julia, though."
+            him "They grow a lot of crops and are experts on, ah, how do you put it, Thuc?"
+            thuc "Doo-doo dumping? Poo crew? Team Number Two?"
+            kevin "Human waste treatment is an efficient way to procure more fertilizer."
             him "Also they have ten kids and Julia is a midwife."
-            zaina "Ten kids? That is a lot."
-            him "They fill our schoolroom nicely. It must have been a real pain on the shuttle though!"
-            zaina "Yeah, there's not exactly a playground on the shuttle."
+            zaina "Ten kids? You must be planning to take over the planet by sheer force of genes!"
+            thuc "Yes! When the time is right, our children and goats will descend like a swarm of adorable yet destructive locusts!"
+            him "That would be a real KIDtastrophe."
+            zaina "We should neGOATiate while we still have the chance!"
+            thuc "Maybe it's a good thing Julia's not here; she's already HERD all these goat puns before."
+            kevin "Is Julia your wife?"
+            thuc "Yeah, she loves bossing people around, so she's a great mom."
+            zaina "Oh, is that why you had so many kids?"
+            thuc "Huh. You might be onto something there!"
+            "The four of us joked and talked until Mayor Grayson asked us to help clean up."
             $ met_nguyen = True
         "Dr. Lily":
-            "They want to grill Dr. Lily about everything about Talaam"
             $ bios.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily has lived on Talaam longer than anyone else. She was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her level-headed problem-solving skills to Talaam's biology and geology, like with her edible plant guide.")            
-            show lily normal at center
+            show lily normal at right with moveinright
             him "Dr. Lily is our resident scientist. She was here before most of the other colonists."
-            him "She tests plants to see if they're edible, and helps think of solutions to problems."
-            zaina "You said scientist, but what kind of scientist is she?"
-            him "Hmm. I guess she's a xenonaturalist? She looks at plants and animals, and does some chemistry on the side."
-            kevin "RET does prefer people who have multiple talents."
-            kevin "I'm also a shuttle pilot, for example."
-            him "Oh, really? When did you have time to learn that?"
+            lily "You're the new geotech crew, correct?"
+            zaina "Yeah, I'm the geo; he's the tech."
+            lily "I see. Is your research for scientifc purposes, or only for divesting Talaam of its rare metals?"
+            zaina "Both. I plan to study many areas and write lots of papers, but RET's the one who paid our way."
+            kevin "And they are interested only in rare earth metals."
+            lily "Is your research over the entire planet, or is it limited to the colony area?"
+            zaina "We're going to survey as much as we can... but this is the landing site, so it's more efficient if we find something near here."
+            kevin "We have a long-range drone that we can use, as well as the new satellites in orbit."
+            lily "I was hoping to have access to the satellites' data; is that possible?"
+            kevin "Yes, I will share the protocol details with you in an email."
+            lily "Excellent. I hear you are an accomplished pilot as well; it's a pity we don't have any flying vehicles here."
+            him happy "I would love a hover tractor!"
             kevin "My father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
+            show him normal with dissolve
             kevin "After I obtained my pilot's license, I worked as a pilot for several years."
-            him "But at some point you decided to study engineering."
+            lily "Yet eventually you decided to study engineering?"
             kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
-            him "Flying is pretty incredible."
+            zaina "He's always learning about something!"
+            kevin "I plan to study gardening next."
+            him happy "Hey, that's something I actually know a thing or two about!"
+            lily "You'll be fascinated to know that the soil here has naturally high levels of phosphorus."
+            "We talked about volcanic activity and fertilizer and native plants until the activity was over."
             $ met_kealoha = True
-
-    scene community_center with fade
-    show him normal at midleft
-    show zaina normal at center
-    show kevin normal at midright
-    with dissolve
-    him happy "It was nice to meet you both."
-    kevin "Undoubtedly we shall meet again."
-    zaina "We'll have to have you over for dinner sometime."
 
     #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
     # Maybe something about building a park/playground for everyone?
