@@ -146,6 +146,7 @@ Longbow Firing and Hitting Target <longbow.ogg> by Andrea Landaker, mix of Melon
 Crossbow Firing and Hitting Target <crossbow.ogg> by Ali_6868, <https://freesound.org/people/Ali_6868/sounds/384919/>
 Knife Stab <stab.ogg> by neilsher, <https://freesound.org/people/neilsher/sounds/411743/>
 Splashes in a Bathtub by bbrocer, <https://freesound.org/people/bbrocer/sounds/382649/>
+Door knocking (Angry) <knock.ogg> by Macif, <https://freesound.org/people/Macif/sounds/194365/>
 
 ==== Soundjay
 

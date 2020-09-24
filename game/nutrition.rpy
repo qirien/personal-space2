@@ -203,7 +203,7 @@ label bad_nutrition:
                 show him concerned at center
                 show kid concerned at quarterleft
                 if (bro_years > 0):
-                    show bro at midleft
+                    show bro concerned at left
                 with moveinleft
                 her determined coat "I just need to swab under my tongue..."
                 kid surprised "Does it hurt?"
@@ -215,7 +215,9 @@ label bad_nutrition:
                 her annoyed coat "It'll do. If this doesn't turn up anything we'll need blood and urine samples."
                 him surprised "Hopefully you don't need me to help with those."
                 her determined coat "It'll take a few minutes for me analyze the spectrometer's results."
-                "I talked with [kid_name] while we waited for [her_name] to finish."
+                hide her with moveoutright
+                "I talked with [kid_name] while we waited for [her_name] to finish."                
+                show her normal coat at midright with moveinright
             else:
                 if (bro_years > 0):
                     him concerned "I'll stay here with the kids while you do it."

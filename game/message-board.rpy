@@ -37,7 +37,7 @@ label message2:
     him_c "Sure, I've got potatoes."
     julia_c "I was hoping for something more... flavorful."
     him_c "Potatoes have plenty of flavor!"
-    martin_c "I have artichokes."
+    martín_c "I have artichokes."
     julia_c "That sounds perfect!"
     natalia_c "But we don't need any rice. I was hoping to get some potatoes."
     pete_c "This is starting to sound like a riddle."
@@ -140,7 +140,7 @@ label message6:
         sara_c "Hope you're all planning on coming to the harvest festival next week!!! {emoji=grin}"
     natalia_c "I just hope we can finish the harvest by then."
     julia_c "Having trouble, are you? I expect to be done tomorrow."
-    martin_c "It'll work out. It helped having the school kids home for the week."
+    martín_c "It'll work out. It helped having the school kids home for the week."
     kevin_c "Is it your colony's tradition to eat crabird every year at the harvest festival?"
     him_c "We have done that a lot... I guess it's becoming a tradition?"
     julia_c "It's not set in stone."
@@ -171,7 +171,7 @@ label message7:
 # Family: Play group and first day of school. Baby bro born, else pregnant
 label message8:
     nvl clear
-    # Natalia asking for harvest help as Martin is sick
+    # Natalia asking for harvest help as Martín is sick
     if (year6_have_baby):
         sara_c "[her_name], I know your due date is coming up...are you doing okay?"
         her_c "I'm okay. I wish I wasn't having the baby during harvest time, though!"
@@ -181,10 +181,10 @@ label message8:
     julia_c "Those early years are so precious... just cherish every moment while they're small!"
     natalia_c "Hey, grandma, maybe you could cherish your own grandson this week so Tomás can help us out with the harvest."
     julia_c "Of course. I would never turn down an opportunity to hold that precious baby!"
-    sara_c "I've seen you guys in town a lot... is Martin sick again? {emoji=surprised}"
+    sara_c "I've seen you guys in town a lot... is Martín sick again? {emoji=surprised}"
     natalia_c "When is he not?"
     kevin_c "Does he have a chronic illness?"
-    martin_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
+    martín_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
     naomi_c "Can I come over to help you around the house? I'm afraid these old bones aren't much good for harvesting, but I'm sure there's something I can help you with."
     natalia_c "Thank you, Naomi, I'll let you know."
 
@@ -247,7 +247,7 @@ label message10:
     nvl clear
     return
 
-# Community: Miners and Brennan arrive on shuttle; Martin dies
+# Community: Miners and Brennan arrive on shuttle; Martín dies
 # Family: Dinner Table Manners
 label message11:
     nvl clear
@@ -653,8 +653,8 @@ label message26:
     thuc_c "Heh. Yeah, he keeps sneaking off to juggle when he's supposed to be pulling weeds."
     sara_c "Speaking of kids, have you heard from Raúl lately, Natalia?"
     natalia_c "He comes over every weekend or so. Whenever he can get a break from mining."
-    her_c "I always thought he'd become a farmer, like you and Martin. He always loved digging in the dirt."
-    natalia_c "Since Martin died, he's been trying to help out the family. He can earn so much more as a miner that he feels it's the best way to help out."
+    her_c "I always thought he'd become a farmer, like you and Martín. He always loved digging in the dirt."
+    natalia_c "Since Martín died, he's been trying to help out the family. He can earn so much more as a miner that he feels it's the best way to help out."
     pavel_c "Oh! I have good news! I'm a great-grandfather now!"
     thuc_c "You've always been a great grandfather."
     pavel_c "Yes, but now everybody has to call me that."
@@ -799,8 +799,8 @@ define helen_c = Character("Helen", who_suffix = "  {image=images/icons/helen-ic
     color="77b8ef", image="helen", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #sky blue
 define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-icon.png} ",
     color="#e7b1cb", image="julia", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #icy pink
-define martin_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
-    color="#9b5b1d", image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
+define martín_c = Character("Martín", who_suffix = "  {image=images/icons/Martín-icon.png} ",
+    color="#9b5b1d", image="Martín", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
 define anya_c = Character("Anya",
     #who_suffix = "  {image=images/icons/miranda-icon.png} ",
     color="#53b5ab", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #cyan

@@ -8,8 +8,6 @@
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
 # TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.  Add in a yearly (?) autosave
-# TODO: IF your kid is not competent, it's really hard to get enough calories/vitamins/money.
-# TODO: If your kid is competent, getting money is easy!!  Maybe this is OK...
 ##
 
 label start:
@@ -102,6 +100,13 @@ label start:
 
     # COMMUNITY
     python:
+        met_jennings = False
+        met_grayson = False
+        met_kealoha = False
+        met_nguyen = False
+        met_andrevski = False
+        met_peron = False
+        
         is_liaison = False
         asked_only_medicine = False
         trade_with_mavericks = False
@@ -144,7 +149,13 @@ label start:
         kevin_elected = False
         ban_firegrass = False
         study_published_23 = False
-        helen_dead = False
+        helen_dead = False      
+        bios = Bios()  
+        # Initial bios from the beginning of the game.
+        bios.addPerson("[his_name]", "[his_name] Ventura", "All right, finally someone I actually know something about! I'm a farmer and husband to {a=action:SetVariable('show_person', '[[her_name]')}[her_name]{/a}. I love my horse Lettie, the outdoors, games, and writing poetry. I'm also {a=action:SetVariable('show_person', '[[kid_name]')}[kid_name]{/a}'s father.")
+        bios.addPerson("[her_name]", "[her_name] Ventura", "My wife, lover, and best friend forever, [her_name]. We got married right before coming to Talaam as colonists. Our first year was kind of rough, living on our own on a new planet, but we made it work. She is a capable doctor and a caring mother, and there's no one I'd rather live in the middle of nowhere with!")
+        bios.addPerson("[kid_name]", "[kid_name] Ventura", "We made a person! She definitely has her own ideas about who she wants to become.")
+
 
     # FARM
     python:
@@ -153,7 +164,7 @@ label start:
 
         # Work/crops
         farm_size = 12
-        farm = Field(farm_size, FARM_SIZE_MAXIMUM);
+        farm = Field(farm_size, FARM_SIZE_MAXIMUM)
         selected_crop_index = 0
         terra_overwork_count = 0
         sortby = "calories"
@@ -361,6 +372,7 @@ label life_loop:
         $ read_messages = False
         $ read_handbook = False
         $ show_year = year
+        $ show_person = "Thuc"
 
         # TODO: Is there some way to detect if we have an impossible situation here? Like, even if you planted potatoes in every square with enough nitrogen, you still couldn't have enough calories?
         # Should you lose, or your favorite faction/family rescue you?

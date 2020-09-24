@@ -2827,6 +2827,7 @@ label baby_delivery:
             "I bundled him up and held him close."
     show him happy baby with dissolve
     $ achieved("Binary System")
+    $ bios.addPerson("[bro_name]", "[bro_name] Ventura", "[bro_name] is our second child. He was born with a cleft lip, which made it difficult to feed him for the first few months.", "[kid_name]")
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."
@@ -2838,7 +2839,7 @@ label baby_delivery:
     him "Really? You trust me to name him?"
     her flirting "As long as it's one of the names we both agreed on."
     him baby happy "Okay! Let's see... you look like a..."
-    $bro_name = renpy.input("Baby's Name", default=bro_name)
+    $ bro_name = renpy.input("Baby's Name", default=bro_name)
 
     her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."
     scene farm_interior with fade
@@ -2956,7 +2957,7 @@ label family9:
     with dissolve
     "I found them in the barn, where [kid_name] had put one of Lettie's saddle blankets on Oleg and a rope loosely around his neck."
     kid happy "Giddyup, horsie!"
-    show him normal at midleft behind oleg
+    show him surprised at midleft behind oleg
     if (year6_have_baby):
         show bro normal at midleft, baby_pos
     with moveinleft
@@ -2990,7 +2991,7 @@ label family9:
             him determined "Come here, [kid_name]. I have something to tell you."
             show kid normal at center with move
             kid concerned "What?"
-            "I leaned down a whispered into her ear."
+            "I leaned down and whispered into her ear."
             him concerned "Oleg's been trying to tell you that he wants to play something else. He's our guest, so can you make sure he's having fun, too?"
             kid annoyed "He is having fun!"
             him determined "I don't think so. Ask him what he would like to do, and then do that."
@@ -3032,6 +3033,7 @@ label family9:
 # 6.2 Earth years old
 # Fighting with brother OR playing games when she's not supposed to
 label family10:
+    $ bios.addToBio("[bro_name]", "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
     scene stars with fade
     "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
     "[kid_name] came home from school and I gave her a snack."
@@ -3460,8 +3462,9 @@ label family11:
             $ trust -= 1
             $ authoritarian += 1
 
-        "(Ignore her until she asks politely)" if (manners_patience_count >= 4):
+        "(Ignore her until she asks politely)" if (manners_patience_count >= 3):
             $ confident += 1
+            $ manners_patience_count += 1
             him happy "So, [her_name], what did you work on today?"
             her surprised "I've been researching--"
             kid annoyed "Pass the sauce!"
@@ -3834,6 +3837,7 @@ label family12_contact_parents:
 label family12_anyas_house:
     scene cabins with fade
     "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
+    play sound "sfx/knock.ogg"
     "But when I got there and knocked on the door, a teenager answered the door."
     "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."
     "Besides, maybe [kid_name] was getting old enough that she didn't need adult supervision all the time?"
@@ -4220,7 +4224,7 @@ label family13_end:
             "I tried to be strong for them, but I ended up sniffling too. [her_name] came out of the bedroom and sat next to us."
             show her cry at center behind bro,him with moveinleft
             "I put my arm around her and we all cried together."
-            "I didn't know how to comfort them, or if I even should. There would be something wrong with us if we weren't sad about losing a baby."
+            "I didn't know how to comfort them, or if I even should. Losing a baby was a sad thing."
             "Maybe the best thing to do was just mourn together."
         "No. It's hard for mom.":
             $ marriage_strength += 1
@@ -4229,9 +4233,11 @@ label family13_end:
             him surprised "What can we do right now to help mom?"
             "She looked around. [her_name] was in our bedroom with the door closed. Hopefully she was taking a nap."
             kid sad "I can be quiet while she takes a nap."
+            show bro normal at left with moveinleft
             him normal "That's good. Do you think we can make dinner so quietly that we can surprise her when she wakes up?"
-            show bro normal at midleft with moveinleft
-            show kid normal at center with move
+            show bro concerned at midleft
+            show kid normal at center 
+            with move
             kid normal "Yeah! Let's make something she likes!"
             bro normal "I can help!"
             him happy "Okay, but we gotta be real quiet, okay? Like ninja chefs!"
@@ -4515,7 +4521,7 @@ label family14:
     else:
         "I wasn't really interested in parenting."
     him sad "..."
-    her determined "Well, I'm going to go. Are you coming with me?"
+    her determined "Well, I'm going to go. If you want to come, Mayor Grayson offered to watch the kids."
     menu:
         "Should I go?"
         "Go to parenting class.":
@@ -6638,7 +6644,7 @@ label family23:
     him annoyed "With headphones on?"
     kid annoyed "Listening to music helps me concentrate!"
     show him surprised at center with move
-    "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other."
+    "I looked over her shoulder to see what she was doing. She did have her homework up on one part of the screen... and a long conversation with Oleg on the other. She tilted the screen away and glared at me."
     him annoyed "Does texting help you concentrate, too?"
     kid angry "Yes!"
     show him at midleft with move
@@ -6652,7 +6658,7 @@ label family23:
         $ authoritarian += 1
 
     elif (parenting_style == "authoritative"):
-        kid determined "That's really unfair, dad. Can you please just trust me to get my homework done in my own way?"
+        kid determined "Can you please just trust me to get my homework done in my own way?"
         him surprised "What are you suggesting?"
         kid nervous "Can you give me thirty minutes? If I'm not done by then, I'll let you use the computer pad, and I won't text until my homework is done."
         him determined "You think you can be done in thirty minutes."
@@ -6670,8 +6676,8 @@ label family23:
                 him surprised "Are your lives that difficult?"
                 kid nervous "Sometimes! We help each other through stuff."
                 him determined "Like what?"
-                kid concerned "Well... Oleg's parents aren't getting along right now, and I'm the only one he can talk to about it."
-                "I believed that. They complained about each other all the time..."
+                kid concerned "I'm not telling you my friends personal problems! Just... you know, feeling depressed, parents being annoying, school... that kind of stuff."
+                "Oleg's parents complained about each other all the time. It couldn't be easy for him."
                 menu:
                     "What should I say?"
                     "Those conversations can wait.":
@@ -6721,9 +6727,7 @@ label family23:
                 him determined "I know you're talking with Oleg."
                 kid determined "Yeah? About what?"
                 him concerned "Probably stupid stuff!"
-                kid yell "No! We're talking about how he can help his parents save their marriage!"
-                him surprised "Really?"
-                kid annoyed "Yes. Not that you care."
+                kid yell "No! We're talking about how he can deal with his parents and all their fighting! Not that you care."
                 "It was no secret that Ilian and Sara were often fighting. I didn't realize it was that serious, though."
                 him sad "..."
                 kid angry "You think I'm just another stupid teenager, but that's just because you don't know me."
@@ -6748,7 +6752,7 @@ label family23:
             $ responsive += 1
             $ oleg_points += 1
             him determined "You should hang out with your friends in person. It'll mean more that way."
-            if (kid_work_slider >= 50):
+            if (kid_work_slider >= 70):
                 kid annoyed "We don't have time! We have so much homework, and Oleg has to work in the storehouse, and I help you on the farm..."
             else:
                 kid annoyed "We don't have time!  Oleg's always working in the storehouse, and we both have a ton of homework."
@@ -6806,7 +6810,7 @@ label family23:
         show kid normal at center with moveinleft
         kid "Hey dad, check out this music video I found."
         play music teenmusic
-        "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a sculpture of a metal flowers together."
+        "It was a surreal video about a boy from a world of robots encountering a girl from a world of vines and flowers. They struggled to understand each other, but eventually they made a cabin of metal flowers together."
         "The music was repetitive and kind of grated on my ears, and the video was pretty cheesy, but [kid_name] obviously liked it."
         menu:
             "What should I say?"
@@ -6827,6 +6831,12 @@ label family23:
                 him normal "Oh, I see. So the boy's not Oleg?"
                 kid angry "No! Dad, we're just friends!"
                 him determined "Okay, okay."
+            "Nature and technology?":
+                $ responsive += 1
+                him surprised "It's like how nature and technology can work together?"
+                kid surprised "Oh! Maybe... I just like it."
+                him normal "I can kind of relate because I love plants and I appreciate all the technology we have."
+                kid nervous "I guess that's one way to look at it."
 
         him happy "That reminds me of this other video your mom sent me when we were dating! I wonder if we brought it from Earth?"
         kid surprised "Oh no, not one your weird old videos!"
@@ -7749,7 +7759,7 @@ label family27:
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
 
     # Reduce available work (even if you tell her not to work, she still does)
-    $ kid_other_work = roundint(competence * .35)
+    $ kid_other_work = roundint(total_competence * .35)
     menu:
         "What should I say?"
         "We should encourage her work.":
@@ -8110,7 +8120,7 @@ label family28_runaway:
     "[her_name] gave [kid_name] a big hug. [kid_name] glared at me over [her_name]'s shoulder when I didn't join in."
 
     # She is even less willing to work for you now
-    $ kid_other_work = roundint(competence * .75)
+    $ kid_other_work = roundint(total_competence * .75)
     return
 
 # 18 Earth years old
@@ -8523,7 +8533,7 @@ label family30:
     if (boyfriend_name != ""):
         "Sometimes she was hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
-    if ((attachment < ATTACHMENT_HIGH) and (competence < COMPETENCE_HIGH)):
+    if ((total_attachment < ATTACHMENT_HIGH) and (total_competence < COMPETENCE_HIGH)):
         # If she is leaving with Lorant, you don't even find out about it until later
         "Some nights she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
         "If I'd known, would I have tried to stop her? Would it have made a difference?"

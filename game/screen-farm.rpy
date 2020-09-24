@@ -1,8 +1,8 @@
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 # Farm Planning Screen
 #
-# TODO: Add a red highlight when choosing a crop if that crop would use too much nitrogen.
-# TODO: Add a P or something to denote perennials
+# TODO: Add icons for Message Board ("Chat"), Child Development ("My Child"), and Contacts/bios
+# TODO: Round edges of crop squares
 
 screen plan_farm():
     tag plan_farm
@@ -10,7 +10,6 @@ screen plan_farm():
     $ valid_layout = farm.is_valid_layout()
     frame:
         background  "computer_pad_with_screen"
-        # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
         text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
         textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
         textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
@@ -132,6 +131,13 @@ screen farm_details_screen:
                         else:
                             text "" xalign 0.0 # We have to have this here or it messes up all the positions
 
+                    hbox:
+                        textbutton "Bios" action Show("biographies", irisout, bios.getFirstPersonName())
+                        showif (bios.hasUnread()):
+                            text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
+                        else:
+                            text "" xalign 0.0
+
                     # TODO: Display poetry written.
                     # Right now we can't do this because if we Return(), it exits out of everything. And if we HIde, eventually we come
                     # back to the VN screen without returning and we're stuck. 
@@ -241,8 +247,7 @@ screen choose_crop(crop_index=0):
                                 $ crop_info_index = get_crop_index(crop_name)
                                 $ max_crops_reached = (farm.crops.count(crop_name) >= crops_to_show[j][MAXIMUM_INDEX])
                                 $ imagefile = get_crop_filename(crop_name)
-                                $ is_selected = (selected_crop_index == crop_info_index)
-
+                                $ is_selected = (selected_crop_index == crop_info_index)                            
                                 imagebutton:
                                     idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index))
                                     hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
@@ -252,7 +257,7 @@ screen choose_crop(crop_index=0):
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
                                     selected is_selected
-                                    sensitive (not max_crops_reached)
+                                    sensitive ((not max_crops_reached) and (crop_info[crop_info_index][NITROGEN_INDEX] < farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX]))
                                     if (not renpy.variant("touch")):
                                         hovered SetLocalVariable("selected_crop_index", crop_info_index)
                                     if renpy.variant("touch"):
@@ -350,7 +355,6 @@ screen crops_layout:
                             if (nitrogen_usage > current_nitrogen_level):
                                 background red_dark
                             else:
-                                #background Frame(im.MatrixColor("gui/crop icons/background.png", im.matrix.tint(tint_factor, tint_factor, tint_factor))) #make poor soils darker
                                 # make poor soils lighter,
                                 # (optionally) put the pests on top
                                 background Frame(Composite(
@@ -564,8 +568,13 @@ init python:
         renpy.restart_interaction()
         return
 
-
+#############################################################################
+#
+# STYLES
 # Custom styles for the farm planning screen
+# 
+#############################################################################
+
 style plan_farm_label is label:
     xpadding 5
     ypadding 5
