@@ -7430,9 +7430,6 @@ label community30:
     $ checked_oleg = False
     $ checked_terra = False
     $ examined_body = False
-    $ searched_bed = False
-    $ searched_cupboard = False
-    $ searched_sofa = False
     $ visited_joel_house = False
     $ knows_previous_head_injuries = False
     $ know_noel_received_firegrass_deliveries = False
@@ -7441,9 +7438,11 @@ label community30:
     $ know_rings_purpose = False
     if kevin_elected:
         scene path with fade
+        show rain
+        play sound "sfx/rain.ogg" loop
         #TODO: Rain overlay for this and other scenes in this event
-        show him normal at midright
-        show kevin normal at midleft
+        show him normal behind rain at midright
+        show kevin normal behind rain at midleft
         with dissolve
         #TODO: block Kevin sprites when they are done
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
@@ -7453,6 +7452,9 @@ label community30:
         kevin "It is a sensitive matter, and I would not like to be overheard..."
         him doubt "No one's in there, it's fine."
         scene library with fade
+        show kevin normal at midright
+        show him normal at midleft
+        #stop sound
         him determined "What's this all about?"
         kevin "There has been a death in the mining camp. We are not certain if it was an accident or a murder."
         kevin "I would like your assistance in the investigation, as a neutral party."
@@ -7498,6 +7500,9 @@ label community30:
 
     else:
         scene farm_exterior with fade
+        show rain
+        play sound "sfx/rain.ogg" loop
+        
         # You can use "show rain" to make it look like it's raining outside.
         # BUT, when you show people you need to add "behind rain". For example:
         # scene farm_exterior with fade
@@ -7507,7 +7512,6 @@ label community30:
         # play sound "sfx/rain.ogg" loop
         # Just don't forget to stop it when it's not raining:
         # stop sound
-
 
         "It's the rainy season. I don't have to worry about irrigation, but weeds grow like they're going out of style."
         nvl clear
@@ -7573,10 +7577,13 @@ label community30:
 
     label investigation_start:
         scene farm_exterior with fade
+        show rain
+        play sound "sfx/rain.ogg" loop
+        show him normal at midleft behind rain
         play music problems
         "I put my rain gear back on and prepared to set out."
         "I opened the image of the crime scene."
-        nvl_clear
+        nvl clear
         if kevin_elected:
             kevin_c "Here is the photo of the crime scene."
         else:
@@ -7593,7 +7600,9 @@ label community30:
                 label joel_house:
                     $ visited_joel_house = True
                     scene path with fade
-                    show him normal at midelft with dissolve
+                    show rain
+                    play sound "sfx/rain.ogg" loop
+                    show him normal at midleft with dissolve
                     "I made the long walk to the miner's camp. It was rainy, and the path up the mountain was slick."
                     "Over the years, this main path to the mining camps had been fortified with a primitive cement made from mining by-products."
                     show him normal at center with move
@@ -7610,7 +7619,8 @@ label community30:
                     "I asked where I could find Noel, and an old woman pointed me in the right direction."
                     #knock sound?
                     scene yurt_interior with fade
-                    show him determined at midright dissolve
+                    show him determined at midright 
+                    with dissolve
                     him determined "Hi, Noel? Hello? Are you here?"
                     show thuc normal at midleft with moveinleft
                     thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
@@ -7648,42 +7658,18 @@ label community30:
                     "I went back inside and looked around."
                     scene yurt_interior with fade
                     show him pout at midleft
-                    show thuc at midright 
+                    show thuc normal at midright 
                     with dissolve
                     "The young children were following me and I told them I was just making sure that everything was where it should be."
                     "Van tried to distract them while I looked under chairs and in the cabinets for anything suspicious."
-                label where_next_30:
-                    menu:
-                        "Where should I look next?"
-                        "Around the bed." if not searched_bed:
-                            show him pout at center with move
-                            "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were boxes of food and a bunch of dust bunnies."
-                            $ searched_bed = True
-                            if searched_bed and searched_cupboard and searched_sofa:
-                                jump say_goodbye_30
-                            else:
-                                jump where_next_30
-                        "In the storage cupboard." if not searched_cupboard:
-                            show him pout at midleft with move
-                            "One shelf had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old smoking pipe."
-                            "The pipe looked like it hadn't been used for years."
-                            $ searched_cupboard = True
-                            if searched_bed and searched_cupboard and searched_sofa:
-                                jump say_goodbye_30
-                            else:
-                                jump where_next_30
-                        "On the kids' sofa bed." if not searched_sofa:
-                            show him pout at midright with move
-                            "There were all kinds of things lodged into the crevices of the sofa bed, which looked like it hadn't been packed away for a long time."
-                            "I found a plastic ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
-                            "The kids were pretty excited to see what I unearthed."
-                            "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
-                            $ searched_sofa = True
-                            if searched_bed and searched_cupboard and searched_sofa:
-                                jump say_goodbye_30
-                            else:
-                                jump where_next_30
-                label say_goodbye_30:
+                    # TODO: add more blocking here to show moving around the room
+                    "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were boxes of food and a bunch of dust bunnies."
+                    "The storage cupboard had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old smoking pipe."
+                    "The pipe looked like it hadn't been used for years."
+                    "The sofa bed looked like it hadn't been packed away for a long time. There were all kinds of things lodged into the crevices."
+                    "I found a plastic ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
+                    "The kids were pretty excited to see what I unearthed."
+                    "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
                     "As I prepared to head out, I noticed a big backpack near the door. It was the kind used for lengthy hiking trips."
                     him determined "Whose backpack is this?"
                     thuc sad "Oh, that's Van's. Sometimes he stays overnight with the kids, so he brings his sleeping stuff."
@@ -7788,6 +7774,8 @@ label community30:
             him determined "The colony definitely depends on you doing your job."
             him "I'll just send Oleg a message with my question."
             ilian normal "While you're asking him that, ask him if he's ever coming back, or if he's just going to stay with his mother the whole rainy season."
+            him doubt "What do you mean? They're not living with you right now?"
+            ilian normal "No, they're squatting in that storage shed on the way to the miners' camp."
             him doubt "Why don't you just ask him yourself?"
             ilian happy "He's not talking to me right now."
             ilian normal "Don't just stand there staring at me!"
@@ -7823,40 +7811,46 @@ label community30:
             ilian "UGHHHH I HATE HER SO MUCH THAT WITCH!"
             him_c "He's freaking out! What the heck?"
             oleg_c "ghgh i knew it"
+            scene yurt_interior with fade
+            play sound "sfx/rain.ogg" loop
+            show him normal at midleft
             "I tried to calm down Ilian, but it was no use. I went home and made cabbage and potato soup for dinner."
-            him "Hey [kid_name], do you know where Oleg is staying right now?"
-            if (has_trust()):
-                kid "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
-                him "That old cabin where we used to leave deliveries in?"
-                kid "That's the one."
-            else:
-                kid concerned "Why do you want to know?"
-            him "I need to go talk to Sara and Oleg for my investigation."
-            kid "Are you investigating the murder?"
-            him "No one said it was a murder!"
-            her "So you're saying it wasn't a murder?"
-            menu:
-                "Do I think Joel died on accident?"
-                "Yes.":
-                    him sad "It looks like the brakes on his wheelchair were worn out and so his chair tipped over."
-                    him "Accidents happen."
-                "It could have been a murder.":
-                    him sad "It could have been an accident, or it could have been a murder made to look like an accident."
-                    him "I'm still gathering all the information."
-            kid determined "Okay, but how is Oleg involved? I don't think he even knew Noel."
-            #maybe you can only involve Terra if you have a good relationship
-            him concerned "Right now I'm trying to figue out who is on the waiting list to go back on the shuttle."
-            him "Do you know anything about that?"
-            kid explaining "No, everyone I know who is going back was always planning on it."
-            kid nervous "Wouldn't Brennan have like a list or something?"
-            him determined "Yes, he would. Thanks."
-            kid shifty "Happy to help."
+            "Meanwhile, I messaged Brennan."
+#            him "Hey [kid_name], do you know where Oleg is staying right now?"
+#            if (has_trust()):
+#                kid "Yeah I think he's with his mom. There's an outpost halfway up the mountain where he's hanging out." #maybe she only tells you based on relationship variables
+#                him "That old cabin where we used to leave deliveries in?"
+#                kid "That's the one."
+#            else:
+#                kid concerned "Why do you want to know?"
+#            him "I need to go talk to Sara and Oleg for my investigation."
+#            kid "Are you investigating the murder?"
+#            him "No one said it was a murder!"
+#            her "So you're saying it wasn't a murder?"
+#            menu:
+#                "Do I think Joel died on accident?"
+#                "Yes.":
+#                    him sad "It looks like the brakes on his wheelchair were worn out and so his chair tipped over."
+#                    him "Accidents happen."
+#                "It could have been a murder.":
+#                    him sad "It could have been an accident, or it could have been a murder made to look like an accident."
+#                    him "I'm still gathering all the information."
+#            kid determined "Okay, but how is Oleg involved? I don't think he even knew Noel."
+#            #maybe you can only involve Terra if you have a good relationship
+#            him concerned "Right now I'm trying to figue out who is on the waiting list to go back on the shuttle."
+#            him "Do you know anything about that?"
+#            kid explaining "No, everyone I know who is going back was always planning on it."
+#            kid nervous "Wouldn't Brennan have like a list or something?"
+#            him determined "Yes, he would. Thanks."
+#            kid shifty "Happy to help."
             nvl clear
             him_c "Hey Brennan, I'm investigating Joel's death for the mayor."
             him_c "Can you tell me who is on the waiting list to go on the shuttle back to Earth?"
             brennan_c "Sure. Sara is first. Then it's Pavel, but he's dead. The rest are all miners you probably don't know. I'll message you the contact info for them."
             him_c "That would be really helpful. Thank you."
             scene yurt_exterior with fade
+            show rain
+            play sound "sfx/rain.ogg" loop
             show him normal at midleft with dissolve
             "I got on my rain gear and went to find Sara."
             "Before we had a delivery system, we used to leave deliveries in this small cabin for the miners, so they wouldn't have to walk into town but we wouldn't have to hike all the way to their camp."
@@ -7927,12 +7921,19 @@ label community30:
             him "I found it while investigating Noel's home. Do you know what it is?"
             oleg "Nevermind, I thought it looked like one of the videogame controllers we printed."
             "I headed back home in the rain."
-
+        play sound "sfx/rain.ogg" loop
+        scene bedroom with fade
+        show her sleeping at midright, squatting
+        show him sleeping at midleft, squatting
+        show bedroom_overlay
+        show night_overlay
+        with dissolve
+        
         "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
         "I still wanted to talk to Noel herself, about what happened."
         "I also wanted to ask Van about what Noel and Joel's home life was like."
         "And I wanted to talk to Julia about what those cryptic messages on Joel's tablet meant."
-        "I also wanted to go back to the scene of the crime to look in the barrel."
+  #      "I also wanted to go back to the scene of the crime to look in the barrel."
         if mavericks_strong("moderate"): #8
             "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
         
@@ -7949,6 +7950,9 @@ label community30:
             "He stopped answering me."
             $ know_rings_purpose = True
 
+        scene yurt_interior with fade
+        show him normal at midleft
+        
         "The next morning, I sent Noel a message first thing."
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
@@ -7986,6 +7990,7 @@ label community30:
         him_c "Julia, can I come over and ask you some things related to my investigation?"
         julia_c "Of course! Come right over."
         if not kevin_elected:
+            #TODO: put in sprites/bg
             him "I wanted to give you an update."
             him "I examined the wheelchair, and it looks like the breaks were worn and dysfunctional."
             julia "Sounds like an explanation for an accident."
@@ -7998,75 +8003,71 @@ label community30:
                 julia "So it could have been an accident?"
             him "Yes. There are still a few things I want to investigate."
         else:
+            #TODO: put in sprites/bg
             julia "So tell me more about this investigation. It's about Joel's death I assume?"
             him "Yes."
             julia "What have you found so far?"
             him "I have some ideas, but I still have a few leads I want to pursue. You can read my final report when I finish it."
             julia "I see."
         him "On Joel's tablet, there were a few messages to you. Do you know anything about that?"
-        julia "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying
+        julia "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying; she used the tablet to communicate with Noel
         him "Okay, that makes sense."
-        menu:
-            "Should I ask about the ring?"
-            "Yes.":
-                him "One more thing. I found this ring-like object at Noel's house. Do you know what it is?"
-                "It seemed like Julia recognized it."
-                julia "Maybe some kind of toy?"
-                him "I had Ilian look in the printing history and he said that you printed it."
-                julia "Is that right? I've printed a lot of things..."
-                julia "Maybe this was an experimental canning lid."
-            "No.":
-                "I didn't ask her about the ring."
+        him "One more thing. I found this ring-like object at Noel's house. Do you know what it is?"
+        "It seemed like Julia recognized it."
+        julia "Maybe some kind of toy?"
+        him "I had Ilian look in the printing history and he said that you printed it."
+        julia "Is that right? I've printed a lot of things..."
+        julia "Maybe this was an experimental canning lid."
         julia "Do keep me updated about the status of the case."
         if not kevin_elected:
             him "Will do."
         else:
             him "I'll update you at the end of the investigation."
 
-        if (mavericks_strong("moderate")): #8 #check values
-            "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
-            play sound "sfx/radio.mp3"
-            pete "{i}What can I help you with?{/i}"
-            him "Hey, I'm in kind of a complicated situation."
-            him "One of the miners died in what appears to be an accident."
-            him "I'm investigating if that's the case and it would be helpful to access their financial records."
-            pete "{i}Well normally that kind of information is completely confidential.{/i}"
-            pete "{i}RET keeps records of it because they want to see if people are savin' money and whatnot.{/i}"
-            pete "{i}I'd sure like to see them so I could figure out where all my credits went.{/i}"
-            pete "{i}Normally none of us can access it, but there is a way you can tell how much money is in an account.{/i}"
-            pete "{i}Most vendor accounts require the user's permission to withdraw funds.{/i}"
-            pete "{i}But Brennan can withdraw funds without the user's permission, at least for the miners.{/i}" #if you want to make this into a puzzle later, you can limit the number of withdrawals. Another possible explanation is making a hold on the money but not charging it.
-            pete "{i}Gives him some authority I guess.{/i}"
-            pete "{i}If you were Brennan, you could withdraw credits until you can't withdraw no more.{/i}"
-            pete "{i}That'll tell you how much is in the account.{/i}"
-            pete "{i}Then just pay 'em back the amount you took out and they won't notice unless they dig real deep into the transaction history.{/i}"
-            him "Interesting."
-            pete "{i}I'm curious. Who was the miner who died?{/i}"
-            him "It was a man named Joel, who was married to Noel."
-            pete "{i}Oh. I've delt with Noel before.{/i}"
-            pete "{i}You can't trust anything she says.{/i}"
-            him "What do you mean?"
-            play sound "sfx/radio.mp3"
-            if not ban_firegrass:
-                pete "{i}She keeps trying to get me to lower the price of firegrass for her.{/i}"
-                him "She buys firegrass from you?"
-                pete "{i}She insists that she doesn't use it anymore and that it's for a friend.{/i}"
-                pete "{i}I give her a discount because she buys in bulk and does more of the processing.{/i}" #bundling up the firegrass in amounts pout by the little plastic ring
-                pete "{i}I don't really care who it's for as long as she has the money.{/i}"
-                pete "{i}She treats me like her personal therapist.{/i}"
-                pete "{i}I feel like I have to listen to her or she might stop buying from me.{/i}"
-                him "Who else would she buy firegrass from?"
-                pete "{i}[his_name], if you don't know the answer to that question I seriously doubt you're going to figure out what happened to Joel.{/i}"
-                him "{i}Come on, give me a hint?{/i}"
-                pete "{i}Your daughter might know...{/i}" #In family27, Tera makes deliveries. She doesn't quit even if you ask her to stop.
-            else:
-                 pete "{i}I can't say exactly what she buys from me but she buys a lot of it, if you catch my drift{/i}"
-                 pete "{i}She always has some sob story about why I should give her a better price, but I don't give in!{/i}"
-                 pete "{i}Good luck finding out what happened.{/i}"
-                 him "About that... do you have any leads?"
-                 pete "{i}You seriously don't know? Maybe you should ask [kid_name].{/i}"
-            "I said goodbye to Pete and pondered what to do with this information."
-            $ talked_to_pete = True
+#        if (mavericks_strong("moderate")): #8 #check values #only if you don't talk to Oleg?
+#            "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
+#            play sound "sfx/radio.mp3"
+#            pete "{i}What can I help you with?{/i}"
+#            him "Hey, I'm in kind of a complicated situation."
+#            him "One of the miners died in what appears to be an accident."
+#            him "I'm investigating if that's the case and it would be helpful to access their financial records."
+#            pete "{i}Well normally that kind of information is completely confidential.{/i}"
+#            pete "{i}RET keeps records of it because they want to see if people are savin' money and whatnot.{/i}" 
+#            pete "{i}I'd sure like to see them so I could figure out where all my credits went.{/i}" #wasn't this resolved earlier? he lent them to Travis
+#            pete "{i}Normally none of us can access it, but there is a way you can tell how much money is in an account.{/i}"
+#            pete "{i}Most vendor accounts require the user's permission to withdraw funds.{/i}"
+#            pete "{i}But Brennan can withdraw funds without the user's permission, at least for the miners.{/i}" #if you want to make this into a puzzle later, you can limit the number of withdrawals. Another possible explanation is making a hold on the money but not charging it.
+#            pete "{i}Gives him some authority I guess.{/i}"
+#            pete "{i}If you were Brennan, you could withdraw credits until you can't withdraw no more.{/i}"
+#            pete "{i}That'll tell you how much is in the account.{/i}"
+#            pete "{i}Then just pay 'em back the amount you took out and they won't notice unless they dig real deep into the transaction history.{/i}"
+#            him "Interesting."
+#            pete "{i}I'm curious. Who was the miner who died?{/i}"
+#            him "It was a man named Joel, who was married to Noel."
+#            pete "{i}Oh. I've delt with Noel before.{/i}"
+#            pete "{i}You can't trust anything she says.{/i}"
+#            him "What do you mean?"
+#            play sound "sfx/radio.mp3"
+#            if not ban_firegrass:
+#                pete "{i}She keeps trying to get me to lower the price of firegrass for her.{/i}"
+#                him "She buys firegrass from you?"
+#                pete "{i}She insists that she doesn't use it anymore and that it's for a friend.{/i}"
+#                pete "{i}I give her a discount because she buys in bulk and does more of the processing.{/i}" #bundling up the firegrass in amounts measured by the little plastic ring
+#                pete "{i}I don't really care who it's for as long as she has the money.{/i}"
+#                pete "{i}She treats me like her personal therapist.{/i}"
+#                pete "{i}I feel like I have to listen to her or she might stop buying from me.{/i}"
+#                him "Who else would she buy firegrass from?"
+#                pete "{i}[his_name], if you don't know the answer to that question I seriously doubt you're going to figure out what happened to Joel.{/i}"
+#                him "{i}Come on, give me a hint?{/i}"
+#                pete "{i}Your daughter might know...{/i}" #In family27, Tera makes deliveries. She doesn't quit even if you ask her to stop.
+#            else:
+#                 pete "{i}I can't say exactly what she buys from me but she buys a lot of it, if you catch my drift{/i}"
+#                 pete "{i}She always has some sob story about why I should give her a better price, but I don't give in!{/i}"
+#                 pete "{i}Good luck finding out what happened.{/i}"
+#                 him "About that... do you have any leads?"
+#                 pete "{i}You seriously don't know? Maybe you should ask [kid_name].{/i}"
+#            "I said goodbye to Pete and pondered what to do with this information."
+#            $ talked_to_pete = True
             kid "How's that investigation going?"
             him "Oh, you were being so quiet that I didn't realize you were here. You heard what Pete and I were talking about."
             kid "Yep."
@@ -8080,8 +8081,13 @@ label community30:
                     him "From Pete?"
                     kid "Yeah, from Pete and some other people."
                     him "Which other people?"
-                    kid "..." # Miners who took over Oleg's firegrass farm
-                    him "Okay, thanks for your help."
+                    kid "From the other firegrass farm." # Miners who took over Oleg's firegrass farm
+                    him "What other firegrass farm?"
+                    kid "..."
+                    kid "Oleg started a firegrass farm a while back, but he sold it to some miners."
+                    him "Wow. I didn't know that. Thanks for your help."
+                    kid "Just don't get him in trouble. He's not involved anymore."
+                    him "I won't. I'm investigating a murder, not a firegrass farm."
                     $ know_noel_received_firegrass_deliveries = True
                 else:
                     kid "You want to know about Noel, right?"
@@ -8095,8 +8101,11 @@ label community30:
                     him "Other than Pete?"
                     kid "Yeah, there are some other people who grow it too."
                     him "Really? Who?"
-                    kid "I don't know their names. It's a bunch of miners who don't know what they're doing."
-                    him "Is that everyone?"
+                    kid "..."
+                    kid "So a few years ago Oleg started a firegrass farm, but it was a lot of work."
+                    kid "He sold it to a bunch of miners who don't know what they're doing."
+                    him "Wow, really? I had no idea. That does explain his sudden interest in farming a few years ago..."
+                    him "Is that all the people who grow firegrass?"
                     kid "Yeah, everyone currently in the business. The ones I know about, anyway."
                     $ know_noel_received_firegrass_deliveries = True
             else:
@@ -8171,7 +8180,6 @@ label community30:
                                     $ checked_terra = True
                                     $ account_checked_counter + 1
                                     jump account_check
-
                     else:
                         brennan "I can't do that for you."
                         brennan "If someone finds out I was poking in their accounts, I'll never hear the end of it."
@@ -8238,71 +8246,71 @@ label community30:
                 "Explore other options.":
                     jump doctors_privilege
 
-        else: #in this branch, you don't talk to pete or kid, so you don't know that Noel was receiving shipments of firegrass. you have talked to Oleg though, which so far isn't dependent on another variable.
-            "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
-            label doctors_privilege:
-                "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
-                "But maybe [her_name] would also have this right?"
-                "I asked [her_name] if she could make deposits and withdrawals automatically."
-                nvl clear
-                her_c "Yes, I can. I use it to pay people who work in the hospital."
-                her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawal feature."
-                her_c "Why do you ask?"
-                menu:
-                    "What should I do?"
-                    "Tell her about investigating accounts.":
-                        him_c "It would be really useful to know how much money people have in their accounts for my investigation..."
-                        her_c "I can totally see that."
-                        her_c "How does that involve me?"
-                        him_c "You can withdraw money from their account in different increments to test how much money is in the account."
-                        him_c "Then you can deposit it all right back and no one would know."
-                        if (has_strong_marriage()):
-                            her_c "That's clever. Also highly unethical, but I think in a real investigation you'd have a way to see this kind of thing."
-                            her_c "You want to check on Noel and Joel, right? It looks like Noel only has about 100 credits."
-                            her_c "Joel on the other hand..."
-                            if ban_firegrass:
-                                her_c "Joel has over 10,000 credits. Wowza."
-                            else:
-                                her_c "Joel has over 5,000 credits. Huh."
-                            label account_check_her:
-                                if account_checked_counter > 4:
-                                    her "I think that just about covers everyone."
-                                    jump back_to_noel
+#            else: #in this branch, you don't talk to pete or kid, so you don't know that Noel was receiving shipments of firegrass. you have talked to Oleg though, which so far isn't dependent on another variable.
+#                "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
+                label doctors_privilege:
+                    "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
+                    "But maybe [her_name] would also have this right?"
+                    "I asked [her_name] if she could make deposits and withdrawals automatically."
+                    nvl clear
+                    her_c "Yes, I can. I use it to pay people who work in the hospital."
+                    her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawal feature."
+                    her_c "Why do you ask?"
+                    menu:
+                        "What should I do?"
+                        "Tell her about investigating accounts.":
+                            him_c "It would be really useful to know how much money people have in their accounts for my investigation..."
+                            her_c "I can totally see that."
+                            her_c "How does that involve me?"
+                            him_c "You can withdraw money from their account in different increments to test how much money is in the account."
+                            him_c "Then you can deposit it all right back and no one would know."
+                            if (has_strong_marriage()):
+                                her_c "That's clever. Also highly unethical, but I think in a real investigation you'd have a way to see this kind of thing."
+                                her_c "You want to check on Noel and Joel, right? It looks like Noel only has about 100 credits."
+                                her_c "Joel on the other hand..."
+                                if ban_firegrass:
+                                    her_c "Joel has over 10,000 credits. Wowza."
                                 else:
-                                    her_c "Did you want to check anyone else's account?"
+                                    her_c "Joel has over 5,000 credits. Huh."
+                                label account_check_her:
+                                    if account_checked_counter > 4:
+                                        her "I think that just about covers everyone."
+                                        jump back_to_noel
+                                    else:
+                                        her_c "Did you want to check anyone else's account?"
 
-                                menu:
-                                    "Julia's" if not checked_julia:
-                                        if ban_firegrass:
-                                            her_c "Julia has around 7,000 credits."
-                                        else:
-                                            her_c "Julia has around 4,000 credits."
-                                        $ checked_julia = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_her
-                                    "Van's" if not checked_van:
-                                        her_c "Van has around 200 credits."
-                                        $ checked_van = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_her
-                                    "Sara's" if not checked_sara:
-                                        her_c "Sara has around 2,000 credits."
-                                        $ checked_sara = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_her
-                                    "Oleg's" if not checked_oleg:
-                                        her_c "Oleg has around 1,000 credits." #decide Oleg's level of involvement
-                                        $ checked_oleg = True
-                                        $ account_checked_counter + 1
-                                        jump account_check_her
-                                    "[kid_name]'s" if not checked_terra:
-                                        $ checked_terra = True
-                                        $ account_checked_counter + 1
-                                        her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
-                                        jump account_check_her
-                                    "I'm done.":
-                                        $ account_checked_counter + 4
-                                        jump account_check_her
+                                    menu:
+                                        "Julia's" if not checked_julia:
+                                            if ban_firegrass:
+                                                her_c "Julia has around 7,000 credits."
+                                            else:
+                                                her_c "Julia has around 4,000 credits."
+                                            $ checked_julia = True
+                                            $ account_checked_counter + 1
+                                            jump account_check_her
+                                        "Van's" if not checked_van:
+                                            her_c "Van has around 200 credits."
+                                            $ checked_van = True
+                                            $ account_checked_counter + 1
+                                            jump account_check_her
+                                        "Sara's" if not checked_sara:
+                                            her_c "Sara has around 2,000 credits."
+                                            $ checked_sara = True
+                                            $ account_checked_counter + 1
+                                            jump account_check_her
+                                        "Oleg's" if not checked_oleg:
+                                            her_c "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                            $ checked_oleg = True
+                                            $ account_checked_counter + 1
+                                            jump account_check_her
+                                        "[kid_name]'s" if not checked_terra:
+                                            $ checked_terra = True
+                                            $ account_checked_counter + 1
+                                            her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
+                                            jump account_check_her
+                                        "I'm done.":
+                                            $ account_checked_counter + 4
+                                            jump account_check_her
 
                         else:
                             her_c "That's clever. Also highly unethical..."
@@ -8367,77 +8375,78 @@ label community30:
         label back_to_noel:
             "I decided to go back to Noel's place. This time, I brought my barrel-opening tools."
             "When I got there, Noel was there, along with her two young sons." #about ages 4 and 6
-            "I asked her if I could talk to her about Joel's death, but she didn't want to talk about it, especially not with her children needing her."
-            menu:
-                "How should I approach the situation?"
-                "Finish searching the premises.":
-                    $ know_noel_had_firegrass = True #this variable name isn't great... you know she received deliveries if you talk to Pete and kid is attached; this is for when you find it at her house
-                    "I told her I had been authorized to search her house and that I wanted to look inside her barrels."
-                    "She strongly protested, saying that she would lose water, but I reassured her that the rainy season would last another two weeks."
-                    "She offered to open the plugs on the sides of them, so I could see that it was just water, but that made me all the more suspicious."
-                    "Two of the barrels apeared to be normal, but the third actually had another barrel inside of it."
-                    "The inner barrel was full of firegrass."
-                    "Noel told me that she didn't smoke it anymore but was just holding it for a friend."
-                    "I asked her which friend, but she refused to say."
-                    if ban_firegrass:
-                        "I told her I would have to report her for possessing firegrass."
-                        "She asked me to leave, so I did."
-                    jump noel_no_confession
-                "Offer to help entertain her children.":
-                    "I could tell that she was exhausted. Her kids looked wired."
-                    "I offered to take her kids down to the storehouse to see if I could get them some dried fruit."
-                    "She started crying and nodded. Her sons refused to go with me intially, but relented after I promised to buy them something."
-                    "On the way there, they ran ahead and hid in bushes so they could ambush me as I passed by."
-                    "I pretended to be surprised and chased them there."
-                    "One of the colonists was selling hot cornbread at the storehouse and I bought some for the boys and some to take back to Noel."
-                    "When we got back, Noel was asleep. I read a few stories to her children on my tablet and stayed until they fell asleep."
-                    "The next day, Noel sent me an e-mail." #e-mail display for following?
-                    "Dear [his_name]. Thank you for taking Jam and Neal to get cornbread yesterday."
-                    "Joel's death has been difficult for me to come to terms with."
-                    "I know it's difficult for my kids too."
-                    "I think I'm ready to talk about what happened. Can I meet you in the community center?"
-                    jump noel_confession
-                "Come back later.":
-                    "I told Noel I would come back later."
-                    "She said that she didn't want to talk about it."
-                    "I asked if I could come by next time Van was watching her kids."
-                    "She said no."
-                    menu:
-                        "Did I respect her wishes?"
-                        "Yes.":
-                            "I didn't return to her house."
-                            jump noel_no_confession
-                        "No.":
-                            "I came back to the house when I thought she would be gone."
-                            "I opened the water barrels. They were all full of water."
-                            jump noel_no_confession
+            #if you keep the cut, make a better transition? jump noel_no_confession
+#            "I asked her if I could talk to her about Joel's death, but she didn't want to talk about it, especially not with her children needing her."
+#            menu:
+#                "How should I approach the situation?"
+#                "Finish searching the premises.":
+#                    $ know_noel_had_firegrass = True #this variable name isn't great... you know she received deliveries if you talk to Pete and kid is attached; this is for when you find it at her house
+#                    "I told her I had been authorized to search her house and that I wanted to look inside her barrels."
+#                    "She strongly protested, saying that she would lose water, but I reassured her that the rainy season would last another two weeks."
+#                    "She offered to open the plugs on the sides of them, so I could see that it was just water, but that made me all the more suspicious."
+#                    "Two of the barrels apeared to be normal, but the third actually had another barrel inside of it."
+#                    "The inner barrel was full of firegrass."
+#                    "Noel told me that she didn't smoke it anymore but was just holding it for a friend."
+#                    "I asked her which friend, but she refused to say."
+#                    if ban_firegrass:
+#                        "I told her I would have to report her for possessing firegrass."
+#                        "She asked me to leave, so I did."
+#                    jump noel_no_confession
+#                "Offer to help entertain her children.":
+#                    "I could tell that she was exhausted. Her kids looked wired."
+#                    "I offered to take her kids down to the storehouse to see if I could get them some dried fruit."
+#                    "She started crying and nodded. Her sons refused to go with me intially, but relented after I promised to buy them something."
+#                    "On the way there, they ran ahead and hid in bushes so they could ambush me as I passed by."
+#                    "I pretended to be surprised and chased them there."
+#                    "One of the colonists was selling hot cornbread at the storehouse and I bought some for the boys and some to take back to Noel."
+#                    "When we got back, Noel was asleep. I read a few stories to her children on my tablet and stayed until they fell asleep."
+#                    "The next day, Noel sent me an e-mail." #e-mail display for following?
+#                    "Dear [his_name]. Thank you for taking Jam and Neal to get cornbread yesterday."
+#                    "Joel's death has been difficult for me to come to terms with."
+#                    "I know it's difficult for my kids too."
+#                    "I think I'm ready to talk about what happened. Can I meet you in the community center?"
+#                    jump noel_confession
+#                "Come back later.":
+#                    "I told Noel I would come back later."
+#                    "She said that she didn't want to talk about it."
+#                    "I asked if I could come by next time Van was watching her kids."
+#                    "She said no."
+#                    menu:
+#                        "Did I respect her wishes?"
+#                        "Yes.":
+#                            "I didn't return to her house."
+#                            jump noel_no_confession
+#                        "No.":
+#                            "I came back to the house when I thought she would be gone."
+#                            "I opened the water barrels. They were all full of water."
+#                            jump noel_no_confession
 
-        #TODO: if ban_firegrass
-        label noel_confession:
-            scene community_center
-            "I met Noel in the community center. She thanked me for helping her."
-            "She explained that she knew that Joel's wheelchair brakes were wearing out, but that he wanted to fix them himself."
-            "Tears streamed down her face as she told me that she kept meaning to fix them when he was asleep, but she never had the energy."
-            him "I understand that you felt like you could have prevented his death."
-            menu:
-                "Do I have any more questions?"
-                "Yes":
-                    menu:
-                        "What should I ask?"
-                        "Why did Joel have so much money in his account?" if checked_joel:
-                            him "I found out that Joel has quite a bit of money in his account. Why is that?"
-                            "Noel explained that she was simply saving money there in case of an emergency."
-                        "What is this plastic ring for?": #for portioning bundles of firegrass
-                            "Noel stared at it for a minute."
-                            "She said it must be a children's toy."
-                        "Van told me that Joel had previous head injuries. Why is that?" if knows_previous_head_injuries:
-                            "Noel explained that Joel often vehemently refused help when it was necessary."
-                            "Because of this, he often fell out of his wheelchair and hit his head."
-                            "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
-                "No":
-                    pass
-            "Before she left, I gave her a half-hug. I didn't completely understand her but I still could see that she was suffering."
-            "Afterwards, I met [her_name] in the community center for lunch."
+#        #TODO: if ban_firegrass
+#        label noel_confession:
+#            scene community_center
+#            "I met Noel in the community center. She thanked me for helping her."
+#            "She explained that she knew that Joel's wheelchair brakes were wearing out, but that he wanted to fix them himself."
+#            "Tears streamed down her face as she told me that she kept meaning to fix them when he was asleep, but she never had the energy."
+#            him "I understand that you felt like you could have prevented his death."
+#            menu:
+#                "Do I have any more questions?"
+#                "Yes":
+#                    menu:
+#                        "What should I ask?"
+#                        "Why did Joel have so much money in his account?" if checked_joel:
+#                            him "I found out that Joel has quite a bit of money in his account. Why is that?"
+#                            "Noel explained that she was simply saving money there in case of an emergency."
+#                        "What is this plastic ring for?": #for portioning bundles of firegrass
+#                            "Noel stared at it for a minute."
+#                            "She said it must be a children's toy."
+#                        "Van told me that Joel had previous head injuries. Why is that?" if knows_previous_head_injuries:
+#                            "Noel explained that Joel often vehemently refused help when it was necessary."
+#                            "Because of this, he often fell out of his wheelchair and hit his head."
+#                            "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
+#                "No":
+#                    pass
+#            "Before she left, I gave her a half-hug. I didn't completely understand her but I still could see that she was suffering."
+#            "Afterwards, I met [her_name] in the community center for lunch."
             jump who_suspect
 
         label noel_no_confession:
@@ -8645,8 +8654,8 @@ label community30:
                                         "I had [her_name] testify that Joel's head injury was consistent with his fall."
                                         if knows_previous_head_injuries:
                                             "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
-                                        if talked_to_pete:
-                                            "I had arranged for Pete to come and testify about how Noel had bought large quantities for firegrass from him."
+#                                        if talked_to_pete:
+#                                            "I had arranged for Pete to come and testify about how Noel had bought large quantities for firegrass from him."
                                         if know_noel_had_firegrass:
                                             "I testified about how I had found hidden firegrass at Noel's house."
                                         "[her_name] testified to finding elevated caffeine levels in Julia's plum tea syrup, consistent with it containing firegrass."
