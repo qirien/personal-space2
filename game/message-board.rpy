@@ -799,8 +799,8 @@ define helen_c = Character("Helen", who_suffix = "  {image=images/icons/helen-ic
     color="77b8ef", image="helen", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #sky blue
 define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-icon.png} ",
     color="#e7b1cb", image="julia", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #icy pink
-define martín_c = Character("Martín", who_suffix = "  {image=images/icons/Martín-icon.png} ",
-    color="#9b5b1d", image="Martín", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
+define martín_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
+    color="#9b5b1d", image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
 define anya_c = Character("Anya",
     #who_suffix = "  {image=images/icons/miranda-icon.png} ",
     color="#53b5ab", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #cyan

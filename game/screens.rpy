@@ -1438,12 +1438,15 @@ screen nvl_dialogue(dialogue):
                 xfill True
                 yfit gui.nvl_height is None
                 if d.who is not None:
+                    $ nickname = d.who.split()[0]
                     $ is_jack = d.who.startswith(his_name)
                     if (d.who_args["color"] is not None):
                         $ new_color = Color(d.who_args["color"]).shade(0.65)
                     if (not is_jack):
-                        text d.who:
-                            id d.who_id
+                        button:
+                            action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
+                            text d.who:
+                                id d.who_id
                     else:
                         text " " id d.who_id
                 else:
@@ -1463,11 +1466,13 @@ screen nvl_dialogue(dialogue):
                             xalign 1.0
                             text_align 1.0
                 if (is_jack):
-                    text d.who:
-                        id d.who_id
-                        xalign 0.0
-                        xpos 15
-                        text_align 0.0
+                    button:
+                        action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
+                        text d.who:
+                            id d.who_id
+                            xalign 0.0
+                            xpos 15
+                            text_align 0.0
                 else:
                     text " " id d.who_id
 
