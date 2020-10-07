@@ -8305,69 +8305,69 @@ label community30:
 
 #            else: #in this branch, you don't talk to pete or kid, so you don't know that Noel was receiving shipments of firegrass. you have talked to Oleg though, which so far isn't dependent on another variable.
 #                "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
-                label doctors_privilege:
-                    "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
-                    "But maybe [her_name] would also have this right?"
-                    "I asked [her_name] if she could make deposits and withdrawals automatically."
-                    nvl clear
-                    her_c "Yes, I can. I use it to pay people who work in the hospital."
-                    her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawal feature."
-                    her_c "Why do you ask?"
-                    menu:
-                        "What should I do?"
-                        "Tell her about investigating accounts.":
-                            him_c "It would be really useful to know how much money people have in their accounts for my investigation..."
-                            her_c "I can totally see that."
-                            her_c "How does that involve me?"
-                            him_c "You can withdraw money from their account in different increments to test how much money is in the account."
-                            him_c "Then you can deposit it all right back and no one would know."
-                            if (has_strong_marriage()):
-                                her_c "That's clever. Also highly unethical, but I think in a real investigation you'd have a way to see this kind of thing."
-                                her_c "You want to check on Noel and Joel, right? It looks like Noel only has about 100 credits."
-                                her_c "Joel on the other hand..."
-                                if ban_firegrass:
-                                    her_c "Joel has over 10,000 credits. Wowza."
+            label doctors_privilege:
+                "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
+                "But maybe [her_name] would also have this right?"
+                "I asked [her_name] if she could make deposits and withdrawals automatically."
+                nvl clear
+                her_c "Yes, I can. I use it to pay people who work in the hospital."
+                her_c "I always get verbal permission before charging accounts, but on rare occasions I do use the force-withdrawal feature."
+                her_c "Why do you ask?"
+                menu:
+                    "What should I do?"
+                    "Tell her about investigating accounts.":
+                        him_c "It would be really useful to know how much money people have in their accounts for my investigation..."
+                        her_c "I can totally see that."
+                        her_c "How does that involve me?"
+                        him_c "You can withdraw money from their account in different increments to test how much money is in the account."
+                        him_c "Then you can deposit it all right back and no one would know."
+                        if (has_strong_marriage()):
+                            her_c "That's clever. Also highly unethical, but I think in a real investigation you'd have a way to see this kind of thing."
+                            her_c "You want to check on Noel and Joel, right? It looks like Noel only has about 100 credits."
+                            her_c "Joel on the other hand..."
+                            if ban_firegrass:
+                                her_c "Joel has over 10,000 credits. Wowza."
+                            else:
+                                her_c "Joel has over 5,000 credits. Huh."
+                            label account_check_her:
+                                if account_checked_counter > 4:
+                                    her "I think that just about covers everyone."
+                                    jump back_to_noel
                                 else:
-                                    her_c "Joel has over 5,000 credits. Huh."
-                                label account_check_her:
-                                    if account_checked_counter > 4:
-                                        her "I think that just about covers everyone."
-                                        jump back_to_noel
-                                    else:
-                                        her_c "Did you want to check anyone else's account?"
+                                    her_c "Did you want to check anyone else's account?"
 
-                                    menu:
-                                        "Julia's" if not checked_julia:
-                                            if ban_firegrass:
-                                                her_c "Julia has around 7,000 credits."
-                                            else:
-                                                her_c "Julia has around 4,000 credits."
-                                            $ checked_julia = True
-                                            $ account_checked_counter + 1
-                                            jump account_check_her
-                                        "Van's" if not checked_van:
-                                            her_c "Van has around 200 credits."
-                                            $ checked_van = True
-                                            $ account_checked_counter + 1
-                                            jump account_check_her
-                                        "Sara's" if not checked_sara:
-                                            her_c "Sara has around 2,000 credits."
-                                            $ checked_sara = True
-                                            $ account_checked_counter + 1
-                                            jump account_check_her
-                                        "Oleg's" if not checked_oleg:
-                                            her_c "Oleg has around 1,000 credits." #decide Oleg's level of involvement
-                                            $ checked_oleg = True
-                                            $ account_checked_counter + 1
-                                            jump account_check_her
-                                        "[kid_name]'s" if not checked_terra:
-                                            $ checked_terra = True
-                                            $ account_checked_counter + 1
-                                            her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
-                                            jump account_check_her
-                                        "I'm done.":
-                                            $ account_checked_counter + 4
-                                            jump account_check_her
+                                menu:
+                                    "Julia's" if not checked_julia:
+                                        if ban_firegrass:
+                                            her_c "Julia has around 7,000 credits."
+                                        else:
+                                            her_c "Julia has around 4,000 credits."
+                                        $ checked_julia = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_her
+                                    "Van's" if not checked_van:
+                                        her_c "Van has around 200 credits."
+                                        $ checked_van = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_her
+                                    "Sara's" if not checked_sara:
+                                        her_c "Sara has around 2,000 credits."
+                                        $ checked_sara = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_her
+                                    "Oleg's" if not checked_oleg:
+                                        her_c "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                        $ checked_oleg = True
+                                        $ account_checked_counter + 1
+                                        jump account_check_her
+                                    "[kid_name]'s" if not checked_terra:
+                                        $ checked_terra = True
+                                        $ account_checked_counter + 1
+                                        her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
+                                        jump account_check_her
+                                    "I'm done.":
+                                        $ account_checked_counter + 4
+                                        jump account_check_her
 
                         else:
                             her_c "That's clever. Also highly unethical..."
