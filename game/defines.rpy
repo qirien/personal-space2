@@ -144,32 +144,32 @@ init -100:
     # TODO: Remove unused
     define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
 
-    define her = DynamicCharacter("her_name", color="#d1a2b8", image="her", ctc="ctc_blink", ctc_position="nestled") #light fuschia
-    define him = DynamicCharacter("his_name", color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
-    define kid = DynamicCharacter("kid_name", color="#5f2b4f", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
-    define bro = DynamicCharacter("bro_name", color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
+    define her = Character("[her_name]", who_color="#d1a2b8", image="her", ctc="ctc_blink", ctc_position="nestled") #light fuschia
+    define him = Character("[his_name]", who_color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
+    define kid = Character("[kid_name]", who_color="#5f2b4f", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
+    define bro = Character("[bro_name]", who_color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
 
-    define naomi = Character("Sister Naomi", color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
-    define pavel = Character("Mayor Pavel", color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
-    define lily = Character("Dr. Lily", color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
-    define sara = Character("Sara", color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
-    define thuc = Character("Thuc", color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
-    define ilian = Character("Ilian", color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
-    define oleg = Character("Oleg", color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
-    define brennan = Character("Brennan", color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
-    define pete = Character("Pete", color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define natalia = Character("Natalia", color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
-    define helen = Character("Helen", color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
-    define travis = Character("Travis", color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define julia = Character("Julia", color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
-    define martin = Character("Martín", color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
+    define naomi = Character("Sister Naomi", who_color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
+    define pavel = Character("Mayor Pavel", who_color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
+    define lily = Character("Dr. Lily", who_color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
+    define sara = Character("Sara", who_color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
+    define thuc = Character("Thuc", who_color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
+    define ilian = Character("Ilian", who_color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
+    define oleg = Character("Oleg", who_color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
+    define brennan = Character("Brennan", who_color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
+    define pete = Character("Pete", who_color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    define natalia = Character("Natalia", who_color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
+    define helen = Character("Helen", who_color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
+    define travis = Character("Travis", who_color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    define julia = Character("Julia", who_color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
+    define martin = Character("Martín", who_color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
 
-    define chaco = Character("Chaco", color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
-    define kevin = Character("Kevin", color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
-    define zaina = Character("Zaina", color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow #TODO same as Ilian
-    define jellysquid = Character("", kind=nvl, color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
+    define chaco = Character("Chaco", who_color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
+    define kevin = Character("Kevin", who_color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
+    define zaina = Character("Zaina", who_color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow #TODO same as Ilian
+    define jellysquid = Character("", kind=nvl, who_color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
 
-    define tutorial = Character("Tutorial", color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
+    define tutorial = Character("Tutorial", who_color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 
     ####
@@ -284,11 +284,11 @@ init -100:
         linear 1.0 alpha 0.0
 
     # Highlight when moused over
-    transform highlight_imagebutton:
+    transform highlight_imagebutton():
         on hover:
             alpha 1.0
         on idle:
-            alpha 0.6
+            alpha 0.6    
 
     transform delay_fadein:
         alpha 0.0

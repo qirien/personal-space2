@@ -117,15 +117,24 @@ screen say(who, what):
         if who is not None:    
             window:
                 style "namebox"
-                text who id "who"
+                button:                
+                    action [ActivateBio(who), Show("biographies", irisout, who)] 
+                    text who:
+                        id "who"
     
-    add SideImage() xpos 120 ypos 560                
-
+    imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, who)]
 
     # here's our side quick MENU buttons
     imagebutton xpos 1070 ypos 550 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
     imagebutton xpos 1085 ypos 590 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
     imagebutton xpos 1015 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
+
+init python:
+    def activate_bio(name):
+        global bios
+        bios.activate(name)
+
+    ActivateBio = renpy.curry(activate_bio)
 
 
 style window is default
@@ -153,12 +162,12 @@ style namebox:
     background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
-style say_label:
-    color gui.accent_color
-    font gui.name_font
-    size gui.name_text_size
+style say_label is default:
     xalign gui.name_xalign
     yalign 0.5
+    hover_underline True
+    font gui.name_font
+    size gui.name_text_size
 
 style say_dialogue:
     xpos gui.text_xpos

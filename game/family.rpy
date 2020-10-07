@@ -2827,7 +2827,8 @@ label baby_delivery:
             "I bundled him up and held him close."
     show him happy baby with dissolve
     $ achieved("Binary System")
-    $ bios.addPerson("[bro_name]", "[bro_name] Ventura", "[bro_name] is our second child. He was born with a cleft lip, which made it difficult to feed him for the first few months.", "[kid_name]")
+    $ bios.activate("[bro_name]")
+    $ bios.changeName("[bro_name]", bro_name)
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him "Awww, don't worry little guy! We'll take care of you, no matter what."

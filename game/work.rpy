@@ -403,8 +403,8 @@ label work2:
     menu:
         "What should I say?"
         "Natalia" if (not met_peron):
-            $ bios.addPerson("Natalia", "Natalia Perón", "Natalia is laid-back and friendly, so we get along pretty well. She farms nearby, raising chickens and growing beans, corn, squash, and other crops. She's married to {a=action:SetVariable('show_person', 'Martín')}Martín{/a} and they have five kids: Tomás (married to Joanna Nguyen), Isabella, Raúl, Josephina (who passed away as a child), and Mateo.")
-            $ bios.addPerson("Martín", "Martín Perón", "Martín is one of those quiet guys that you just kind of forget about most of the time. He doesn't talk much, but he's nice enough when we get a chance to hang out with him and his wife {a=action:SetVariable('show_person', 'Natalia')}Natalia{/a}. He's really good with kids, too, though his kids are all older than mine. His son Tomás is married to Joanna Nguyen, and then there's Isabella, Raúl, and Mateo. Josephina was hit by a tractor when she was little and died.")
+            $ bios.activate("Natalia")
+            $ bios.activate("Martín")
             him determined "Natalia is a really good farmer."
             zaina "I don't think we've met her yet... is she the one with all the chickens?"
             him happy "Yeah! They also grow beans and a few different types of corn."
@@ -435,8 +435,8 @@ label work2:
             $ met_peron = True
 
         "Mayor Grayson" if (not met_grayson):
-            $ bios.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
-            $ bios.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")   
+            $ bios.activate("Pavel")
+            $ bios.activate("Naomi")
             him determined "Honestly, I'd ask Mayor Grayson."
             kevin "Is the mayor a farmer, too?"
             him normal "No, but he knows everyone and how they're doing and who's an expert on what. So he could direct you to the right person. Or if he can't, Naomi could."
@@ -457,9 +457,9 @@ label work2:
             zaina "Okay, good to know."
             $ met_nguyen = True
         "Pete" if (not met_jennings):
-            $ bios.addPerson("Travis", "Travis Jennings", "Travis is a wild, mischievous kid that never seems to stay still or stay quiet. {a=action:SetVariable('show_person', 'Pete')}Pete{/a} and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} sure have their hands full with him!")            
-            $ bios.addPerson("Pete", "Pete Jennings", "Pete loves the extremes. He's a tough, independent cowboy with a soft spot for history books and classic novels. He and {a=action:SetVariable('show_person', 'Helen')}Helen{/a} have a farm that makes the best butter on the planet! He has a {a=action:SetVariable('show_person', 'Travis')}son{/a} about the same age as our daughter.")
-            $ bios.addPerson("Helen", "Helen Jennings", "I mostly know Helen from game night. She seems quiet and sweet, but then she'll pull the deadliest moves out of nowhere! She and {a=action:SetVariable('show_person', 'Pete')}Pete{/a} have a couple kids; the oldest, {a=action:SetVariable('show_person', 'Travis')}Travis{/a}, is the same age as our daughter.")
+            $ bios.activate("Travis")
+            $ bios.activate("Pete")
+            $ bios.activate("Helen")
             him normal "You should ask Pete! He and Helen are always trying new things with their cattle herds."
             kevin "Has he published his research?"
             him surprised "Uh, no, not really, but he'll tell you all about it if you let him."
