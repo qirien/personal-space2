@@ -137,6 +137,11 @@ screen farm_details_screen:
                             text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
                         else:
                             text "" xalign 0.0
+                    hbox:
+                        showif(len(word_board.poems) > 0):
+                            textbutton "Poems" action Show("poetry_display", irisout, word_board)
+                        else:
+                            text "" xalign 0.0
 
                     # TODO: Display poetry written.
                     # Right now we can't do this because if we Return(), it exits out of everything. And if we HIde, eventually we come

@@ -233,21 +233,22 @@ label community1:
             "We talked about homesickness and therapy techniques until it was time to go."
             $ met_grayson = True
         "Thuc and Ilian":
+            "I found Thuc, but Ilian had already gone home."
             show thuc normal at right
             with moveinright
-            him "Thuc and Julia are my neighbors and some of our best friends."
+            him explaining "Thuc and his wife Julia are my neighbors and some of our best friends."
             thuc "Well, that's half true."
             zaina "Oh, you're not best friends?"
             thuc "No, we're best friends. Not so much Julia, though."
             kevin "Is she here?"
             thuc "No, she wasn't feeling well today."
-            him "They grow a lot of crops and are experts on, ah, how do you put it, Thuc?"
+            him pout "They grow a lot of crops and are experts on, ah, how do you put it, Thuc?"
             thuc "Doo-doo dumping? Poo crew? Team Number Two?"
             kevin "Human waste treatment is an efficient way to procure more fertilizer."
-            him "Also they have ten kids and Julia is a midwife."
+            him normal "Also they have ten kids and Julia is a midwife."
             zaina "Ten kids? You must be planning to take over the planet by sheer force of genes!"
             thuc "Yes! When the time is right, our children and goats will descend like a swarm of adorable yet destructive locusts!"
-            him "That would be a real KIDtastrophe."
+            him concerned "That would be a real KIDtastrophe."
             zaina "We should neGOATiate while we still have the chance!"
             thuc "Maybe it's a good thing Julia's not here; she's already HERD all these goat puns before."
             kevin "Is Julia your wife?"
@@ -259,9 +260,10 @@ label community1:
         "Dr. Lily":
             $ bios.activate("Lily")
             show lily normal at right with moveinright
-            him "Dr. Lily is our resident scientist. She was here before most of the other colonists."
+            him explaining "Dr. Lily is our resident scientist. She was here before most of the other colonists."
             lily "You're the new geotech crew, correct?"
             zaina "Yeah, I'm the geo; he's the tech."
+            show him normal with dissolve
             lily "I see. Is your research for scientifc purposes, or only for divesting Talaam of its rare metals?"
             zaina "Both. I plan to study many areas and write lots of papers, but RET's the one who paid our way."
             kevin "And they are interested only in rare earth metals."

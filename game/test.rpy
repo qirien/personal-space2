@@ -30,6 +30,26 @@ label test_family_photo:
 
     return
 
+label test_poems:
+    "Time for a poetry fest! Make 3 poems!"
+    "ready... set... GO!"
+    $ word_board.set_wordpack(basic_words, family_words, baby_words)
+    call make_poem
+    "OK, that one was pretty good. Time for another!"
+    $ word_board.set_wordpack(basic_words, family_words, talaam_words)
+    call make_poem
+    "Not bad, not bad. Last one will be the best though!"
+    $ word_board.set_wordpack(basic_words, family_words, talaam_words, separation_words)
+    call make_poem
+    "OK, now that you've made three poems, let's look at them."
+    call screen poetry_display(word_board, True)
+    "You looked at your poems. Now save your game, load it, and see if they are still there."
+    "Saving... Displaying poems"
+    call screen poetry_display(word_board, True)
+    "Testing complete!"
+
+    return
+
 label test_endings:
     $ year = 30
     $ bro_birth_year = 8
@@ -443,6 +463,8 @@ label tests:
             jump trailer
         "Test Endings":
             call test_endings
+        "Test Poetry":
+            call test_poems
         "Quit":
             return
 

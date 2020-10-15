@@ -7,11 +7,11 @@ init -100 python:
         if renpy.mobile:
             MAX_LINE_SIZE = 6
             MAX_LINES = 3
-            MAX_POEMS = 3
+            MAX_POEMS = 30
         else:
             MAX_LINE_SIZE = 8
             MAX_LINES = 5
-            MAX_POEMS = 5
+            MAX_POEMS = 50
 
         if renpy.mobile:
             NOUN_COLUMNS = 2

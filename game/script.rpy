@@ -178,6 +178,7 @@ label start:
         seen_colonists_debt = False
 
         # Dictionary containing the number of events seen for each crop
+        # TODO: The fact that this is persistent means that on a second playthrough, we might get weird things like Terra milking goats as a baby or bro doing stuff before he's born...
         persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
         credits = 0
         crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.

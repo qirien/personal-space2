@@ -1,3 +1,10 @@
+#####################################################
+# Python code to take screenshots, place them in the
+# "Photos" directory with a unique timestamp-based
+# filename.
+# TODO: opening and sharing screenshots
+#####################################################
+
 init python:
     import os
     from datetime import datetime

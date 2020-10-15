@@ -103,8 +103,7 @@ label ending:
     menu:
         "Would you like to see your poems?"
         "Yes":
-            # TODO: add 'Share my poems'! link here?
-            call screen poetry_display(word_board)
+            call screen poetry_display(word_board, True)
         "No":
             $ pass
     call credits

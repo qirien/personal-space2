@@ -525,13 +525,13 @@ label carrots3:
             scene hospital with fade
             show her normal coat at midright with dissolve
             show him normal at midleft with moveinleft
-            him "Hey, Dr. [her_name], is it possible to eat too many carrots?"
+            him surprised "Hey, Dr. [her_name], is it possible to eat too many carrots?"
             her annoyed coat "Are you talking about [kid_name]'s orange hands?"
-            him "Yeah... is that bad?"
+            him concerned "Yeah... is that bad?"
             her concerned coat "No, not on its own. It's only bad if she's not getting other nutrients she needs because she's just eating carrots."
-            him "Okay, good to know."
+            him normal "Okay, good to know."
             her annoyed coat "Don't you think I would have said something if there was something wrong?!"
-            him "Well, I wasn't sure you noticed."
+            him surprised "Well, I wasn't sure you noticed."
             her determined coat "Of course I noticed. And if you're not careful, the same thing will happen to you."
             menu:
                 "What should I do?"

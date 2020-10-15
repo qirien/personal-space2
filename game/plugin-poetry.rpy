@@ -3,25 +3,25 @@
 ##
 
 # Computer variant
-screen plugin_poetry(board):
+screen plugin_poetry(board, call_return=False):
     variant "large"
     frame:
         style_prefix "pp"
         xfill True
         yfill True
         background "#000"
-        use pp_screen(board)
+        use pp_screen(board, call_return)
 
 # phone/tablet variant
-screen plugin_poetry(board):
+screen plugin_poetry(board, call_return=False):
     frame:
         style_prefix "pps"
         xfill True
         yfill True
         background "#000"
-        use pp_screen(board)
+        use pp_screen(board, call_return)
 
-screen pp_screen(board):
+screen pp_screen(board, call_return=False):
     $ display_words = board.get_display_words()
     $ nouns = display_words.get_nouns()
     $ adjectives = display_words.get_adjectives()
@@ -51,9 +51,12 @@ screen pp_screen(board):
                     spacing 20
                     xalign 0.5
                     textbutton "Reset" action Confirm("Delete this poem?", Reset(board, True)) tooltip "Reset the poem"
-                    textbutton "Done" action [FinishPoem(board), Show("poem_display", irisout, board.poem)] tooltip "Done with poem"
+                    showif call_return:
+                        textbutton "Done" action [FinishPoem(board), Show("poem_display", irisout, board.poem)] tooltip "Done with poem"                        
+                    else:
+                        textbutton "Done" action [FinishPoem(board), Hide("plugin_poetry")] tooltip "Done with poem"
                 hbox: # Poem lines
-                    spacing 2
+                    spacing 20
                     vbox:
                         yalign 0.5
                         spacing 10
@@ -85,28 +88,28 @@ screen pp_screen(board):
                     vpgrid:
                         cols board.NOUN_COLUMNS
                         for i in range(0, len(nouns)):
-                            textbutton nouns[i] action AddWord(board, nouns[i]) size_group "word"
+                            textbutton nouns[i] action AddWord(board, nouns[i]) size_group "noun_grp"
 
                 vbox:
                     label "Adjectives"
                     vpgrid:
                         cols board.ADJECTIVE_COLUMNS
                         for i in range(0, len(adjectives)):
-                            textbutton adjectives[i] action AddWord(board, adjectives[i]) size_group "word"
+                            textbutton adjectives[i] action AddWord(board, adjectives[i]) size_group "adj_grp"
 
                 vbox:
                     label "Verbs"
                     vpgrid:
                         cols board.VERB_COLUMNS
                         for i in range(0, len(verbs)):
-                            textbutton verbs[i] action AddWord(board, verbs[i]) size_group "word"
+                            textbutton verbs[i] action AddWord(board, verbs[i]) size_group "verb_grp"
 
                 vbox:
                     label "Other"
                     vpgrid:
                         cols board.OTHER_COLUMNS
                         for i in range(0, len(other)):
-                            textbutton other[i] action AddWord(board, other[i]) size_group "word"
+                            textbutton other[i] action AddWord(board, other[i]) size_group "other_grp"
 
 init python:
     def nextline(board):
@@ -156,3 +159,4 @@ init python:
         board.finish_poem()
         return
     FinishPoem = renpy.curry(finishpoem)
+

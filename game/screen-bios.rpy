@@ -126,7 +126,7 @@ init python:
 
         def hasUnread(self):
             for person in self.people:
-                if (person.getRead() == False):
+                if (person.getActive() and (person.getRead() == False)):
                     return True
             return False
 
@@ -214,4 +214,4 @@ init python:
             self.addPerson("[bro_name]", "[bro_name] Ventura", "[bro_name] is our second child. He was born with a cleft lip, which made it difficult to feed him for the first few months.")
             self.addPerson("[kid_name]", "[kid_name] Ventura", "We made a person! She definitely has her own ideas about who she wants to become.")            
             self.addPerson("[her_name]", "[her_name] Ventura", "My wife, lover, and best friend forever, [her_name]. We got married right before coming to Talaam as colonists. Our first year was kind of rough, living on our own on a new planet, but we made it work. She is a capable doctor and a caring mother, and there's no one I'd rather live in the middle of nowhere with!")            
-            self.addPerson("[his_name]", "[his_name] Ventura", "All right, finally someone I actually know something about! I'm a farmer and husband to {a=action:SetVariable('show_person', '[[her_name]')}[her_name]{/a}. I love my horse Lettie, the outdoors, games, and writing poetry. I'm also {a=action:SetVariable('show_person', '[[kid_name]')}[kid_name]{/a}'s father.")
+            self.addPerson("[his_name]", "[his_name] Ventura", "All right, finally someone I actually know something about! I'm a farmer and husband to {a=action:SetVariable('show_person', '[her_name]')}[her_name]{/a}. I love my horse Lettie, the outdoors, games, and writing poetry. I'm also {a=action:SetVariable('show_person', '[kid_name]')}[kid_name]{/a}'s father.")
