@@ -518,7 +518,6 @@ label community3:
 ################################################################################
 
 label community4:
-    call activate_bios
     play music community fadeout 3.0 fadein 3.0
     scene community_center with fade
     show pavel normal at center with dissolve
@@ -606,8 +605,9 @@ label community4:
     else:
         "Sara is elected as the new representative."
         #TODO: should a leader of the militia be elected here as well?
+
     if (is_liaison):
-        $ bios.addToBio("[his_name]", "I'm also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
+        $ bios.addToBio(his_name, "I'm also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
     else:
         $ bios.addToBio("Sara", "She's also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
     stop sound fadeout 1.0

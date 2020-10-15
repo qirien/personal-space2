@@ -102,7 +102,7 @@ init python:
             self.nickname = newName            
         def addToBio(self, addition):
             self.activated = True
-            self.bio = self.bio + "\n-----------------------------------\n" + addition
+            self.bio = self.bio + "\n\n" + addition
             self.read = False
             return
 
@@ -163,12 +163,13 @@ init python:
             return self.people[0].getName()
 
         def addToBio(self, name, addition):
-            person = self.people.remove(name)
-            if (person is None):
+            for person in self.people:
+                if (person.getName() == name):
+                    changePerson = person
+            if (changePerson is None):
                 return
             else:
-                person.addToBio(addition)
-            self.people.insert(len(self.people), person)
+                changePerson.addToBio(addition)
 
         def getBio(self, name):
             person = self.getPerson(name)
