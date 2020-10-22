@@ -68,15 +68,6 @@ screen plan_farm():
                                     action Jump("yearly_events")
 
 
-
-screen colony_messages_button(read_colony_messages):
-    showif (not read_colony_messages):
-        text " {b}!{/b} " ypos 40 xalign 0.9 yalign 0.0 style "alert_text" at tiny_bounce
-    else:
-        text "" ypos 40 xalign 0.0 # We have to have this here or it messes up all the positions
-
-    textbutton "Message Board" action Jump("yearly_messages") #Call("yearly_messages")
-
 # To change appearance, see screens.rpy, screen nvl
 label yearly_messages:
     $ message = "message" + `year`
@@ -123,34 +114,42 @@ screen farm_details_screen:
             # Community info
             frame:
                 style "plan_farm_subframe"
-                vbox:
-                    label "Community" # TODO: have cute icons for these, like on a phone?
-                    # TODO: have icons for how much each group likes you?
-                    use colony_messages_button(read_messages)
-                    hbox:
-                        textbutton "Child Development" action Show("parenting_handbook", transition=irisout)
-                        showif ((year in TRANSITION_YEARS) and (not read_handbook)):
-                            text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
-                        else:
-                            text "" xalign 0.0 # We have to have this here or it messes up all the positions
+                #background None
+                xfill True
+                vbox: 
+                    label " "
+                    grid 2 2:
+                        spacing 30
+                        xalign 0.5
+                        vbox:
+                            imagebutton auto "gui/messages_%s.png" action Jump("yearly_messages")
+                            text "Messages" style "tiny_text"
 
-                    hbox:
-                        textbutton "Bios" action Show("biographies", irisout, bios.getFirstPersonName())
-                        showif (bios.hasUnread()):
-                            text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
-                        else:
-                            text "" xalign 0.0
-                    hbox:
-                        showif(len(word_board.poems) > 0):
-                            textbutton "Poems" action Show("poetry_display", irisout, word_board)
-                        else:
-                            text "" xalign 0.0
+                            showif (not read_messages):
+                                text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
+                            else:
+                                text " " ypos -40 style "alert_text" xalign 0.0 # We have to have this here or it messes up all the positions
+                        vbox:
+                            imagebutton auto "gui/parenting_%s.png" action Show("parenting_handbook", transition=irisout)
+                            text "Parenting" style "tiny_text"
+                            showif ((year in TRANSITION_YEARS) and (not read_handbook)):
+                                text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
+                            else:
+                                text " " ypos -40 style "alert_text" # We have to have this here or it messes up all the positions
 
-                    # TODO: Display poetry written.
-                    # Right now we can't do this because if we Return(), it exits out of everything. And if we HIde, eventually we come
-                    # back to the VN screen without returning and we're stuck. 
-                    # So for now, just access Poetry from VN mode, not from a screen.
-                    # textbutton "Poetry" action Show("poetry_display", board=word_board)
+                        vbox:
+                            imagebutton auto "gui/bios_%s.png" action Show("biographies", irisout, bios.getFirstPersonName())
+                            text "Bios" style "tiny_text"
+                            showif (bios.hasUnread()):
+                                text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
+                            else:
+                                text " " ypos -40 style "alert_text"
+                        vbox:
+                            showif(len(word_board.poems) > 0):
+                                imagebutton auto "gui/poetry_%s.png" action Show("poetry_display", irisout, word_board)
+                                text "Poetry" style "tiny_text"
+                            else:
+                                text "" xalign 0.0
 
         # Crop layout area
         frame:
@@ -802,3 +801,7 @@ style crop_status_hbox is hbox:
 style crop_status_text is text:
     xfill True
     xalign 1.0
+
+style tiny_text is plan_farm_label_text:
+    size 16
+    xalign 0.5

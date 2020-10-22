@@ -2128,11 +2128,10 @@ label family7:
                             "I put the pieces in the box and hid them away."
                             kid angry "Give me my toys!"
                             him annoyed "No!"
-                            show him determined with dissolve
-                            extend " I mean, you decided not to clean them up, so now you may not play with them."
+                            him determined "I mean, you decided not to clean them up, so now you may not play with them."
                             kid annoyed "You're mean!"
                             him annoyed "You decided not to clean up; that's what happens."
-                            her normal "Anyway, now it's bedtime! As soon as you brush your teeth, I'll read you a story."
+                            her normal "Anyway, now it's bedtime! As soon as you brush your teeth, we'll read you a story."
                             $ authoritative += 1
                             call family7_bedtime
                         "...or you'll get a spanking!":
@@ -2293,7 +2292,7 @@ label family7:
 
     if (year6_have_baby):
         scene stars with fade
-        "The next day, we found out [her_name] was pregnant."
+        "Not long after that, we found out [her_name] was pregnant."
         "I felt overwhelmed. I could barely function as a dad of one kid, much less two!"
         "Sometimes, I was amazed that humanity had ever managed to survive past childhood."
         "There was no choice but to keep going. Maybe in nine months I'd be a better dad than I was now?"
@@ -2352,7 +2351,7 @@ label family7_bedtime:
     "I turned out the light and stepped out of the room."
     show night_overlay with dissolve
     kid sad "Wait, wait!"
-    him normal "What is it?"
+    him determined "What is it?"
     kid concerned "I need a drink of water."
     him annoyed "Okay, go get some water if you want."
     kid sad "I want you to bring it to me."
@@ -2639,7 +2638,7 @@ label family8:
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian left after patting Oleg on the head, hurrying off to the storehouse, probably."
     "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face."
     him surprised "I guess we have it pretty easy, huh?"
-    her normal coat "For once. I'm going to help them out; want to come?"
+    her normal coat "For once. I'm going to help out; want to come?"
     menu:
         "What should I do?"
         "Go to work":
@@ -2650,16 +2649,20 @@ label family8:
         "Go with [her_name]" if (get_extra_work() > 0):
             $ marriage_strength += 1
             him normal "Sure, I have a few minutes."
+            hide him
+            hide her
+            with moveoutleft
+            scene path with fade
             show sara normal at midleft
             show oleg normal at quarterleft            
             with dissolve
-            show him at midright
-            show her at center
-            with move
+            show him concerned at midright
+            show her concerned coat at center
+            with moveinright
             show her concerned coat with dissolve
             "We walked over and [her_name] pointed to [kid_name] and told Oleg about some of the things she said she wanted to do with Oleg at school."
             "We walked over to the door together, and finally Oleg peeked inside."
-            hide oleg with moveoutright
+            hide oleg with moveoutleft
             kid "Oleg! You're here! Come on!"
             sara sad "Thanks, guys. I really hope Oleg will be okay..."
             her happy coat "Now that he's away from us, he'll be fine. He was the same way when we first started playgroup, remember?"
@@ -2685,7 +2688,7 @@ label family8:
             kid concerned "There, there, baby, have some more cornmeal mush."
             oleg "Ptooey!"
             "He pretended to spit it out. He did a pretty good impression of a little baby."
-            show travis normal at center with moveinright
+            show travis normal at midright with moveinright
             travis "Dinosaurs with bazookas are coming! Fight them off!"
             show kid angry at pace_back_and_forth
             show oleg at pace_back_and_forth
@@ -2697,7 +2700,6 @@ label family8:
             hide oleg
             with moveoutleft
             scene path with fade
-            show ilian normal at quarterleft
             show sara sad at midleft
             show her baby happy coat at center
             show him normal at midright
@@ -2797,7 +2799,7 @@ label baby_delivery:
     scene bedroom with fade
     show her concerned at center, squatting
     show bedroom_overlay
-    show him normal at midleft
+    show him sad baby at midleft
     show julia normal at quarterright
     with dissolve
     $ bro_birth_year = year
@@ -2806,36 +2808,36 @@ label baby_delivery:
 
     julia "It's a boy!"
     "...but he didn't look like [kid_name] did when she was born."
-    him surprised "Is... is he missing some of his lip?"
+    him "Is... is he missing some of his lip?"
     julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."
     her surprised "Oh my..."
     menu:
         "What should I say?"
         "We'll get through this.":
-            him concerned "[her_name]... it's okay. We'll get through this."
+            him "[her_name]... it's okay. We'll get through this."
             her sad "I know, it's just... he looks so different than I was expecting..."
+            show him happy baby with dissolve
         "What an ugly child.":
-            him determined "That is the ugliest child I have ever seen."
+            him "That is the ugliest child I have ever seen."
             julia "[his_name]!"
             her sad "[his_name]..."
-            him surprised "Don't mind me; I'm just saying whatever pops into my head."
+            him happy baby "Don't mind me; I'm just saying whatever pops into my head. He's still our kid!"
         "He's my son!":
-            him happy "Wow, this kid looks so goofy, he's definitely my son."
+            him happy baby "Wow, this kid looks so goofy, he's definitely my son."
             her concerned "[his_name]..."
             "I bundled him up and held him close."
-    show him happy baby with dissolve
     $ achieved("Binary System")
     $ bios.activate("[bro_name]")
     $ bios.changeName("[bro_name]", bro_name)
     julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
-    him "Awww, don't worry little guy! We'll take care of you, no matter what."
+    him sad baby "Awww, don't worry little guy! We'll take care of you, no matter what."
     her normal "We can't call him 'little guy'. What's his name?"
     play sound "sfx/newborn-cry.ogg" fadein 2.0
-    him baby sad "We talked about lots of names..."
+    him baby happy "We talked about lots of names..."
     her determined "You let me choose [kid_name]'s name. Now you pick this baby's name."
     stop sound fadeout 5.0
-    him "Really? You trust me to name him?"
+    him sad baby "Really? You trust me to name him?"
     her flirting "As long as it's one of the names we both agreed on."
     him baby happy "Okay! Let's see... you look like a..."
     $ bro_name = renpy.input("Baby's Name", default=bro_name)
@@ -2851,7 +2853,7 @@ label baby_delivery:
     with dissolve
     kid surprised "Daddy, can you read to me?"
     him surprised "Ummm... maybe?"
-    show bro concerned with dissolve
+    show bro surprised with dissolve
     "I had [bro_name] balanced on my lap and was concentrating on holding the bottle just right and squeezing it at just the right rate."
     him concerned "Hold the book open for me... right there..."
     kid happy "I can read the front! That word is \"moon\"!"
@@ -2869,13 +2871,14 @@ label baby_delivery:
     kid normal "I can do it. Just a little at a time."
     him happy "Yeah, just like that!"
     kid surprised "Whoops!"
-    show bro concerned with dissolve
+    show bro cry with dissolve
     him normal "Good thing we still have this rag here."
     show kid happy
     show bro normal
+    with dissolve
     play sound "sfx/baby-coo.ogg"
     "Sometimes I felt frustrated that [bro_name] needed so much from us."
-    "But, when I forgot myself and just loved him... I think the experience helped our whole family grew closer together."
+    "But, when I forgot myself and just loved him... He helped our whole family grew closer together."
     "Those moments, snuggled up together, those two little lives so dependent on me... I wanted to remember those times forever."
     menu:
         "Write a poem?"
@@ -3032,7 +3035,8 @@ label family9:
 # 6.2 Earth years old
 # Fighting with brother OR playing games when she's not supposed to
 label family10:
-    $ bios.addToBio("[bro_name]", "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
+    $ bios.addToBio("bro_name", "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
+    $ bios.addToBio("kid_name", "[kid_name] is talkative, stubborn, and likes to try new things. She is friendly but sometimes thoughtless of other people's feelings.")
     scene stars with fade
     "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
     "[kid_name] came home from school and I gave her a snack."

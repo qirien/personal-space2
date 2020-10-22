@@ -102,7 +102,7 @@ init python:
             self.nickname = newName            
         def addToBio(self, addition):
             self.activated = True
-            self.bio = self.bio + "\n\n" + addition
+            self.bio = self.bio + "\n_____________________________________________\n\n" + addition
             self.read = False
             return
 

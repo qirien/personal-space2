@@ -7,7 +7,6 @@
 #       the first time through, and second time through show what you'd need
 #       to get that choice.
 #       A later version of Ren'Py should support this automatically...
-# TODO: Autosave/resume does not work well right now...? or maybe it just doesn't work if you crash.  Add in a yearly (?) autosave
 ##
 
 label start:
@@ -362,6 +361,7 @@ label life_loop:
         if (crop_enabled("wheat")):
             $modify_credits(-WHEAT_COST)
 
+        # TUTORIALS FOR NEW STUFF
         if (year == MONEY_YEAR):
             "I now earn credits for the crops I choose, after deductions for expenses."
             # TODO: Add a screenshot with the credits section highlighted
@@ -376,6 +376,11 @@ label life_loop:
         $ read_handbook = False
         $ show_year = year
         $ show_person = "Thuc"
+
+        # Autosave
+        $ renpy.force_autosave(take_screenshot=True)
+        $ renpy.notify("Autosaving...")
+
 
         # TODO: Is there some way to detect if we have an impossible situation here? Like, even if you planted potatoes in every square with enough nitrogen, you still couldn't have enough calories?
         # Should you lose, or your favorite faction/family rescue you?
@@ -442,10 +447,6 @@ label life_loop:
 
             # Reset our variables for a new year while keeping a running total
             call reset_variables
-
-            # Autosave
-            $ renpy.force_autosave(take_screenshot=True)
-            $ renpy.notify("Autosaving...")
 
             $ year += 1
             if (persistent.max_year < year):

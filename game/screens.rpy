@@ -125,7 +125,8 @@ screen say(who, what):
     imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, who)]
 
     # here's our side quick MENU buttons
-    imagebutton xpos 1070 ypos 550 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
+    showif persistent.times_beaten:
+        imagebutton xpos 1070 ypos 550 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
     imagebutton xpos 1085 ypos 590 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
     imagebutton xpos 1015 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
 
@@ -1402,7 +1403,7 @@ screen nvl(dialogue, items=None):
         has vbox:
             spacing gui.nvl_spacing
 
-        label "Messages"
+        #label "Messages"
         ## Displays dialogue in either a vpgrid or the vbox.
         if gui.nvl_height:
 
@@ -1480,7 +1481,7 @@ screen nvl_dialogue(dialogue):
 
 ## This controls the maximum number of NVL-mode entries that can be displayed at
 ## once.
-define config.nvl_list_length = 5
+define config.nvl_list_length = 6
 
 style nvl_window is default
 style nvl_entry is default
