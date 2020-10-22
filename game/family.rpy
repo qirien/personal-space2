@@ -2636,9 +2636,8 @@ label family8:
     "[her_name] moved to follow her, but I held her hand."
     him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
     her concerned coat "I guess so... Is she really going to be okay?"
-    # TODO: Delete second child
-    "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian was carrying their second child on his shoulders. The whole family looked stressed out."
-    "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face. Their baby sensed the mood and started fussing also."
+    "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian left after patting Oleg on the head, hurrying off to the storehouse, probably."
+    "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face."
     him surprised "I guess we have it pretty easy, huh?"
     her normal coat "For once. I'm going to help them out; want to come?"
     menu:
@@ -2647,30 +2646,30 @@ label family8:
             him concerned "Sorry, I have too much work to do."
             her concerned coat "Okay, don't forget to pick up [kid_name] today. Eventually she can walk home on her own, but I told her you'd walk with her today."
             him determined "Okay."
-            "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg. I turned away and jogged back to the farm. I had a lot of work to do."
+            "[her_name] went over and started talking to Sara and Oleg. I turned away and jogged back to the farm. I had a lot of work to do."
         "Go with [her_name]" if (get_extra_work() > 0):
             $ marriage_strength += 1
             him normal "Sure, I have a few minutes."
-            show ilian normal at quarterleft
             show sara normal at midleft
+            show oleg normal at quarterleft            
             with dissolve
             show him at midright
             show her at center
             with move
-            show her baby sad coat with dissolve
-            "[her_name] went and took the baby from Ilian so they could both concentrate on helping Oleg."
-            "[her_name] cuddled the baby and I distracted her with peek-a-boo until Ilian and Sara finally got Oleg to go inside the school."
+            show her concerned coat with dissolve
+            "We walked over and [her_name] pointed to [kid_name] and told Oleg about some of the things she said she wanted to do with Oleg at school."
+            "We walked over to the door together, and finally Oleg peeked inside."
+            hide oleg with moveoutright
+            kid "Oleg! You're here! Come on!"
             sara sad "Thanks, guys. I really hope Oleg will be okay..."
-            ilian "Now that he's away from us, he'll be fine. He was the same way when we first started playgroup, remember?"
+            her happy coat "Now that he's away from us, he'll be fine. He was the same way when we first started playgroup, remember?"
             him happy "He'd cry and cry until you left, and then he'd be completely happy the whole time."
-            her "Except as soon as you came to pick him up, he'd cry again."
-            sara normal "You're probably right."
-            sara sad "But maybe we should peek in him, just in case."
-            her baby happy coat "I'll admit, I'm a little curious about what they're doing..."
-            "The four of us crept over to the schoolhouse."
-            ilian "Sara, if he sees you or me, he'll start crying. Someone else had better look."
-            her "I'm holding the baby; [his_name] should do it."
-            him happy "Okay! I got this!"
+            her concerned coat "Except as soon as you came to pick him up, he'd cry again."
+            sara normal "You're probably right... But maybe we should take a peek, just to make sure."
+            her surprised coat "I'll admit, I'm a little curious about what they're doing..."
+            "The three of us crept closer to the schoolhouse."
+            her determined coat "Sara, if he sees you or me, he'll start crying. Someone else had better look."
+            him happy "I got this!"
             "I sidled up to the side of the window and slowly peered inside."
             scene classroom with fade
             show kid normal at midright
@@ -2685,14 +2684,14 @@ label family8:
             show kid at center with move
             kid concerned "There, there, baby, have some more cornmeal mush."
             oleg "Ptooey!"
-            "He pretended to spit it out. He did a pretty good impression of his baby sister."
+            "He pretended to spit it out. He did a pretty good impression of a little baby."
             show travis normal at center with moveinright
             travis "Dinosaurs with bazookas are coming! Fight them off!"
             show kid angry at pace_back_and_forth
             show oleg at pace_back_and_forth
             show travis at pace_back_and_forth
             "[kid_name] swatted the air with her frying pan while Travis used a rolling pin as a gun and Oleg made some swatting motions in the air."
-            "Teacher" "Come over here, it's circle time!"
+            "Teacher" "It's circle time! Everyone sit on the rug!"
             hide travis
             hide kid
             hide oleg
@@ -2704,8 +2703,7 @@ label family8:
             show him normal at midright
             sara "Well?"
             him happy "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
-            show sara normal with dissolve
-            ilian "Good. Now I've got to run; I've had three people message me wondering why the storehouse isn't open yet."
+            sara normal "Oh, good. Maybe this school thing is going to work out."
 
     if (year6_have_baby):
         scene stars with fade

@@ -22,14 +22,16 @@ screen plan_farm():
                 # crop details here
                 frame:
                     yfill True
+                    #background None
                     background "roundrect_darkgray"
 
                     vbox:
                         use farm_details_screen
 
                         hbox:
+                            spacing 10
                             frame:
-                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + 25
+                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + 30
                                 style "plan_farm_subframe"
                                 hbox:
                                     label "Status" xsize 100
@@ -46,14 +48,15 @@ screen plan_farm():
                                     else:
                                         text "OK!" style "plan_farm_status_text" color green_dark
                             hbox:
-                                xfill True
-                                xsize RIGHT_COLUMN_WIDTH
+                                yalign 0.5
+                                xsize RIGHT_COLUMN_WIDTH + 20
                                 textbutton "Clear":
                                     action [
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
                                 # TODO: take this out unless NG+?
+                                #showif persistent.times_beaten:
                                 textbutton "Random":
                                     action [
                                             set_default_crops,
