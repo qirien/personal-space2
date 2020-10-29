@@ -1856,6 +1856,7 @@ label work28:
     "Talaam changed a lot while [kid_name] was growing up. When we started, it was just a bunch of farms and a community center."
     "Now we had two doctors, a dedicated fabricator shop, a dentist, a butcher, and a baker."
     "And, soon, our very first restaurant."
+    $ bios.addToBio("Travis", "He doesn't seem to have the same issues with our community that Pete does. He hangs out here a lot and even opened up our colony's first restaurant.")
 
     nvl clear
     travis_c "You are all invited to the Grand Opening of Jelly Laugh, Talaam's first restaurant, next weekend! The first 10 customers get free pancakes!"

@@ -2888,6 +2888,8 @@ label community14:
     pete happy "Part of the reason I came here was to live off the land."
     pete normal "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people."
     pete "They haven't treated us fairly."
+    $ bios.addToBio("Pete", "Pete got tired of RET telling him what to do and moved his family out to live on their own.")
+    $ bios.addToBio("Helen", "Helen and Pete live away from the rest of the colony on their own, trying to be self-sufficient.")
     if require_whole_harvest or rationing:
         pete "The miners don't respect my property. They stole one of my cows and never returned her."
     else:
@@ -2898,6 +2900,7 @@ label community14:
         lily angry "They don't respect the needs of researchers either."
         lily "I came here to study this planet, not destroy it."
         lily normal "I'm going with Pete and his family."
+        $ bios.addToBio("Lily", "Lily used to live in the colony, but she left in protest of their destructive methods. Now she lives off with Pete and his family.")
         $ mavericks += 1
     else:
         show lily normal at quarterright with moveinright
@@ -3237,6 +3240,7 @@ label community15:
 
     "We all helped to bury her body. Ilian provided a laser-engraved headstone, and the Nguyen children put wildflowers on her grave."
     "[kid_name] and [bro_name] planted the saplings we brought."
+    $ bios.addToBio("Naomi", "Sister Naomi passed away from radiation sickness. She was like a grandma to our family...")
 
     scene farm_interior with fade
     show him doubt at midleft
@@ -4658,6 +4662,7 @@ label community20:
             scene stars with dissolve
             "A few months later I heard from Pete that Dr. Lily had disappeared."
             "They found her clothes on the seashore, but no body. Strange..."
+            $ bios.addToBio("Lily", "She become obsessed with the jellyquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
             return
 
     else:
@@ -4707,7 +4712,7 @@ label community20:
         scene stars with fade
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "We never saw her again."
-
+        $ bios.addToBio("Lily", "She become obsessed with the jellyquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
     return
 
 ################################################################################
@@ -5028,6 +5033,7 @@ label community21:
 #
 ################################################################################
 label community22:
+    $ bios.addToBio("Oleg", "He loves any kind of tech. He writes his own apps and is the one people turn to if they can't figure out their computer pad.")
     if (miners_strong("moderate") and mavericks_strong("moderate") and is_liaison): #6
         scene stars with fade
         nvl clear
@@ -5514,6 +5520,7 @@ label mining_anyway:
     "She said that his tibia was completely shattered."
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
+    $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he hasn't let that stop him. He's still as obnoxious and hyper as ever.")
 
     $ travis_points -= 1
     $ community_22_mined_anyway = True
@@ -7044,7 +7051,7 @@ label community28:
             him surprised "[her_name], are you ready for this?"
             her determined "Yes. I'll be helping Pavel avoid an irreversable, extended state of confusion and disability."
             him pout "I know, but you still have to give him a fatal injection right? Technically you'll be the one killing him."
-            her sad "In a procedure he requested."
+            her sad "In a procedure he requested..."
             jump fill_gap
     # if is not liaison
 
@@ -7161,16 +7168,30 @@ label no_euthanasia:
     him pout "Now wash your hands."
     pavel "I did."
     him sad "No, you didn't. Put your hands in the water."
+    scene stars with fade
     "He would wander through the house fiddling with anything that he happened upon."
+    scene farm_interior with fade
+    show him normal at midleft
+    show pavel normal at midright
+    with dissolve
+    him surprised "Why don't you let me help you with that knife?"
+    pavel "No! I need it! For the vegetables..."
+    scene stars with fade
+    "He had a stroke that left him unable to speak coherently or to move without prompting."
+    scene farm_interior with fade
+    show him concerned at midleft
+    show her determined at midright
+    with dissolve
     her concerned "He needs adult-sized diapers... and someone to spoon-feed him. We should probably move him to the hospital."
     him determined "We can do it."
-    scene black with fade
+    scene stars with fade
     "One day Julia was late coming to watch him, and Sara left him alone."
     "Julia couldn't find him that night and we all started searching for him."
     scene pond with dissolve
     "In the morning, we found his body drowned in the river."
     scene church with fade
     "His funeral was well-attended, and we reminisced about his optimistic spirit."
+    $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and became less and less attached to reality. He became bed-ridden and couldn't feed himself, but we cared for him until the very end.")
     return
 
 label euthanasia:
@@ -7178,6 +7199,7 @@ label euthanasia:
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present."
     "After [her_name] performed the euthanasia, we held a simple funeral where we celebrated Pavel's lifetime of good-natured optimism."
+    $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and started to become confused and forgetful. He asked for euthanasia and we allowed him to do that.")
     return
 
 
@@ -7301,6 +7323,8 @@ label community29:
         play music sea
         "We held a memorial for her, but Pete didn't attend."
         "Later he came back for Helen's body and the baby's body, which he buried in a grave near the ocean."
+        $ bios.addToBio("Helen", "She passed away during a difficult childbirth of a stillborn baby.")
+        $ bios.addToBio("Pete", "He's changed since his wife passed away. His stubborn independence has turned into a bitter contempt for all of humanity.")
         "A few weeks later there were still some loose ends from her hospital stay."
         nvl clear
         her_c "Does anyone know how to contact Pete? I need to talk to him."
@@ -7415,13 +7439,14 @@ label community29:
         him sad "That's so sad. We were all looking forward to meeting Sage."
         her nervous coat "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
         scene hospital with fade
-        "Helen delivered her stillborn baby, but started hemmoraging and had to have a blood transfusion until [her_name] could stop the bleeding."
+        "Helen delivered her stillborn baby, but started hemorrhaging and had to have a blood transfusion until [her_name] could stop the bleeding."
         "Ilian had her same blood type and gave blood to her."
         show helen normal at midright
         show her blush coat at center
         show pete normal at right
         show him normal at midleft
         with dissolve
+        $ bios.addToBio("Helen", "She survived a difficult delivery of her stillborn baby, Sage.")
         her "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."
         pete happy "Me three."

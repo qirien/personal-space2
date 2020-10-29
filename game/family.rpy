@@ -6086,6 +6086,7 @@ label family20:
             him happy "You sound good, [kid_name]. Keep practicing."
             "She didn't say anything, just blushed and kept singing."
             kid nervous "{emoji=music}Please don't take my sunshine away.{emoji=music}"
+            $ bios.addToBio("kid_name", "[kid_name] likes to sing and has been taking voice lessons from Julia.")
             $ authoritarian += 1
             return
 
@@ -6139,6 +6140,8 @@ label family20:
     "I was worried that music would just be a fad [kid_name] went through, but she really got into it."
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played her trombone, I could hear her expressing emotions even she didn't know she had."
+    $ bios.addToBio("kid_name", "[kid_name] has been learning to play the trombone from Ilian.")
+    $ bios.addToBio("Ilian", "He's also been giving trombone lessons to [kid_name], though is instrument of choice is the bari saxophone.")
     $ plays_trombone = True
     $ oleg_points += 1
     return
@@ -6152,6 +6155,7 @@ label family20:
 # 13 Earth years old
 # Sarcastic Humor
 label family21:
+    $ bios.addToBio("Oleg", "He's a good friend to [kid_name]. They hang out and talk to each other and sometimes play video games together.")
     play music videogame
     scene farm_interior with fade
     show him normal at midleft
@@ -7473,7 +7477,7 @@ label family26:
         "What should I say?"
         "I don't appreciate being called a rapist.":
             him annoyed "Hey, watch what you're calling me. And my friends. And pretty much everyone you know."
-            kid angry "It's true! The plants and animals of Talaam don't want us here; they just want to be left alone! We're forcing our foreign organisms onto this natural paradise and polluting it!"
+            kid angry "It's true! The plants and animals of Talaam don't want us here; they just want to be left alone! We're forcing our foreign bodies onto this natural paradise and polluting it!"
             $ demanding += 1
         "Humans are living beings, too.":
             him annoyed "Humans are living things, too. They have just as much a right to survive as anything else."
@@ -7489,12 +7493,13 @@ label family26:
         "You're talking about the miners, right?":
             him surprised "You're talking about the miners, right?"
             kid determined "Not just the miners! All of us! We're alien invaders here!"
+            $ miners -= 1
     him angry "So what do you expect me to do? Just walk out into the wilderness and let the 'natural' creatures of Talaam have my body as payment for my sins against the planet?"
     kid concerned "Well... no. But we have to do something! Otherwise, it won't be long before the whole planet is taken over by alien invaders from Earth!"
     menu:
         "What should I do?"
         "Appeal to logic.":
-            him determined "All living creatures must consume other living creatures to survive. That, too, is a part of nature."
+            him determined "All living creatures must consume other living creatures to survive. That's a part of nature."
             $ authoritative += 1
         "Point out her hypocrisy.":
             him annoyed "Well, you're just as much an alien invader as the rest of us! You eat the food from Talaam; you throw your trash in the rubbish heap. You literally, {b}crap{/b} on this planet just like everyone else!"
@@ -7520,7 +7525,7 @@ label family26:
             kid angry "Wow. I guess you're too much of an entitled planet-destroying autocrat to even understand what I'm saying!"
             $ neglectful += 1
             return
-    him surprised "So, is there something we can do? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
+    him surprised "So, is there something you can do about it? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
     kid nervous "I guess... they probably wouldn't. But they don't need to farm the jellystars!"
     him surprised "Is that what this is about?"
     kid determined "Yes! We already know that the jellysquids can talk, so why are we eating the jellystars?!"
@@ -7896,8 +7901,7 @@ label family28:
                             "So she usually rode all the way to Pete's house, but not to hang out with Travis..."
                         else:
                             him_c "Yeah, I do. Just checking up on her."
-                            # TODO: better metaphor than hippo
-                            pete_c "Ha! You're about as sly as a hippo, you know that?"
+                            pete_c "Ha! You're about as sly as a newborn calf, you know that?"
                             him_c "Yeah, yeah."
 
                     if (miners > 10):
