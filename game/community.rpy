@@ -377,12 +377,6 @@ label community2:
 ################################################################################
 
 label community3:
-    # TODO: Add two other options here to meet other people    
-    # Each option should have some way of increasing the faction variables.
-    # We need a Pete/Helen event (games)
-    # a Natalia/Martin event
-    # and maybe a babysitting event (naomi/pavel)
-
     scene farm_interior with fade
     show him determined at midright
     show her determined at midleft
@@ -487,7 +481,7 @@ label community3:
 
             return
 
-        "Go to the lecture with [her_name]":  # TODO: FINISH THESE EVENTS
+        "Go to the lecture with [her_name]":  
             $ marriage_strength += 1
             him normal "We should go on a date together!"
             her flirting "It's not quite 'dinner-and-a-movie' but it'll be fun to go together. I bet Sister Naomi would watch [kid_name]"
@@ -497,8 +491,51 @@ label community3:
             $ bios.activate("Martín")
 
             scene community_center with fade
+            show lily at center with dissolve
             "We got there a few minutes late, and her lecture had already started."
-            lily ""
+            lily "...which is why it is impossible to predict solar flares with one hundred percent accuracy, even with these improvements to the automated alert system."
+            natalia "So you mean some of the times the solar flare warning goes off, there's not actually a solar flare?"
+            lily "Yes. We can tune our algorithms, but ultimately we must make a decision between whether we would rather have false positives or false negatives."
+            lily "A false positive would be when the program says there is a solar flare, but there is not. A false negative would be when the computer says there is not a solar flare, but there actually is."
+            lily "We have tried to achieve the best possible results, but no computer program can be perfect because no data in the real world is perfect."
+            martin "So it's also possible that there have been solar flares that we were not warned about."
+            lily "Yes. Radiation from the sun of varying degrees occurs constantly. We prioritize predicting solar flares that could injure people."
+            lily "I believe that our accuracy, while acceptable, could be improved with better data. That is why I am asking you to install the solar radiation reporting app on your computer pads."
+            lily "This app will allow for a much broader spread of radiation measuring here on the planet. Most of our sensors are in space in order to have a better view of the sun."
+            lily "This would allow us to try using planetside data as well."
+            "She talked for a little while longer about the different ways to measure and predict solar flares, and after answering some questions, the lecture was over."
+            scene community_center with fade
+            show him normal at midright
+            show her normal at midleft
+            with dissolve
+            him surprised "I never realized so much went into the solar flare detectors!"
+            her determined "I'm not sure it was a good idea to reveal the limitations of the process."
+            him pout "Why not?"
+            her concerned "What if people start ignoring solar flares, thinking that it's a false positive?"
+            him determined "Then they're idiots. The false positive rate was like eight percent."
+            her annoyed "People don't always think about things like that rationally. If you're in the middle of something and it's a beautiful day and you get a solar flare warning, it will be tempting to think that this is one of those eight out of a hundred times."
+            him annoyed "She just said that the weather has nothing to do with solar flares."
+            her concerned "But that's not the way people think."
+            him determined "That doesn't mean you can keep people in ignorance. People are better off the more knowledge they have, even if some people will use it poorly."
+            show natalia at right
+            show martin at quarterright
+            with moveinright
+            natalia "I agree. The more knowledge, the better."
+            martin "I think there is a certain amount of knowledge that can be dangerous to have."
+            him surprised "What do you mean?"
+            martin "If all you know is fire makes heat, and matches make fire, you don't know enough to use fire safely. So if you're going to learn about fire, you can't stop there -- you have to include knowledge about what fire can burn and how to contain it. So if you're not going to learn enough to be safe, you'd be better off not knowing anything about fire."
+            her normal "Yes, exactly! I see this at the clinic all the time -- people know about some rare disorder that sort of matches their symptoms and they think they have it. They're missing knowledge about how the disorder works and is transmitted and its frequency. They'd be better off if they didn't know about that rare disorder because then they wouldn't jump to conclusions as easily."
+            him annoyed "Well then the lesson is to do more research and stop jumping to conclusions, not keep people in ignorance!"
+            martin "People have a limited amount of time to learn. They should spend it on learning relevant things in more depth, instead of wasting it on half-learning things they don't even use."
+            show lily at quarterleft with moveinleft
+            lily "I had some of these same reservations. However, I am also concerned that right now, I am the only one who carries this knowledge. Should something happen to me, it will help my successor if others have at least a rudimentary understanding of the big picture."
+            natalia "Yeah, as I'm getting older I feel that pressure, too - a drive to make sure my kids learned everything they needed to."
+            lily "Miranda is learning quickly, but this burden should not be hers alone."
+            "The conversation paused for a moment as if Death had showed up and made a rude remark."
+            "I thought about what knowledge would be lost if I died. What did I need to pass on?"
+            natalia "Well, I for one am glad you shared your knowledge with us. I feel like I understand the solar flare system better and can make more well-informed decisions."
+            lily "I hope so."
+
         "Watch [kid_name]":
             him normal "You go; I'll take care of [kid_name]."
             her surprised "You sure?"
@@ -506,8 +543,39 @@ label community3:
             her normal "Okay, I just got a message that Sister Naomi is watching all the little kids at her house. I bet she'd appreciate your help if you and [kid_name] want to get out of the house."
             $ bios.activate("Pavel")
             $ bios.activate("Naomi")
+            menu:
+                "What should I do?"
+                "Watch [kid_name] at home.":
+                    "I just wanted a quiet evening at home with [kid_name]. Well, it probably wouldn't be quiet until she went to bed, but it was nice to spend some time, just the two of us."
+                    "We snuggled up and read some books and I gave her a bath and then it was time for bed."
+                    "I had a nice quiet house all to myself for an hour until [her_name] came home."
+                "Go to Sister Naomi's and help her with all the kids.":
+                    "If I was going to be watching [kid_name] all evening, it would be nice to hang out with someone else. Maybe I'd even learn a few things."
+                    scene yurt_interior with fade
+                    show naomi normal at midright
+                    show pavel normal at right
+                    with dissolve
+                    show him normal at midleft
+                    show kid normal at left
+                    with moveinleft
+                    naomi "[kid_name]! I'm so glad you came!"
+                    "[kid_name] squirmed down from my arms and ran over to Naomi, allowing her a short hug before she ran over to play."
+                    "There weren't a lot of toys on Talaam, but Sister Naomi's house was like a kid's paradise. She had a blanket fort and inside were lots of things for kids to play with."
+                    "They weren't technically toys, but there were kitchen utensils and pots and pans and a tower of old cans that Travis was building with and some paper animals that Oleg was arranging carefully by size."
+                    pavel "[his_name]! Good to see you! Well, now the playgroup is complete!"
+                    him concerned "I came to help watch the kids, if you want..."
+                    pavel "Very good! We can't let Naomi have all the fun, now, can we?"
+                    naomi "Thank you, [his_name]; that was very thoughtful of you."
+                    pavel "I'd join you, but unfortunately I need to go to the lecture."
+                    hide pavel with moveoutleft
+                    "Travis' can tower fell over and crushed Oleg's paper horse, and Oleg started to cry."
+                    "Naomi and I helped straighten out the paper animals and moved Oleg a bit farther away from the falling cans."
+                    naomi "Have you written any poems lately, [his_name]? I do enjoy them."
+                    him surprised "Oh! No, not really."
+                    # TODO: FINISH THIS EVENT
 
-            scene yurt_interior with fade
+
+
     return
 
 
