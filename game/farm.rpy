@@ -57,6 +57,7 @@ init python:
                 pest_growth = 0 # how much pests increase/decrease this year
                 # If pest calculation is on
                 # TODO: Set difficulty level? Remove completely?  Add in New Game+?
+                # still runaway pests on perennials...
                 if USE_PESTS:
                     current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
                     #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
@@ -96,7 +97,6 @@ init python:
                     for curr_index in boosted_squares:
                         final_yield[curr_index] = final_yield[curr_index] + Field.BEE_BOOST
 
-                # TODO: still runaway pests on perennials...
                 # Subtract pests and nitrogen deficiency from final yield
                 #print "Pest Factor is " + str(pest_factor)
                 final_yield[i] = final_yield[i] - pest_factor
@@ -365,18 +365,18 @@ init python:
         crop_index = get_crop_index(crop_name)
         return crop_info[crop_index][ENABLED_INDEX]
 
-    # TODO: put this in a popdown notification with +crop icon and name instead
+    # TODO: test this
     def enable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
         if (notify):
-            renpy.say(tutorial,"You can now grow " + crop_name + " on your farm.")
+            notify_change("{image=gui/crop\ icons/" + crop_name + ".png} " + crop_name + " unlocked!")
 
     def disable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = False
         if (notify):
-            renpy.say(tutorial,"You can no longer grow " + crop_name + " on your farm.")
+            notify_change("{image=gui/crop\ icons/" + crop_name + ".png} " + crop_name + " disabled")
 
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical

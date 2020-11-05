@@ -62,17 +62,8 @@ label ending:
     # TODO: some of this community stuff doesn't work with these endings. Make them more personal and less far-seeing.
     # TODO: mention jellies in endings?
 
-    # TODO: Are these redundant with the ending achievements now?
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
-    if (parenting_style == "authoritarian"):
-        $ achieved("Big Boss")
-    elif (parenting_style == "authoritative"):
-        $ achieved("Firm Yet Fair")
-    elif (parenting_style == "permissive"):
-        $ achieved("Who Needs Rules?")
-    elif (parenting_style == "neglectful"):
-        $ achieved("Hands-Off Approach")
 
     if (total_attachment < ATTACHMENT_HIGH):
         if (total_competence < COMPETENCE_HIGH):

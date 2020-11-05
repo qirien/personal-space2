@@ -1457,7 +1457,7 @@ screen nvl_dialogue(dialogue):
                     style "nvl_dialogue_frame"
                     background RoundRect(new_color)
                     # TODO: RoundRect is deprecated...
-                    # Apply a color transform to a gray roundrect?
+                    # Apply a color transform to a gray/white roundrect?
                     if (is_jack):
                         xalign 1.0
                         xoffset 10

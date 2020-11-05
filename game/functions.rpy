@@ -147,18 +147,22 @@ init -100 python:
            (authoritative >= permissive) and
            (authoritative >= neglectful)):
             parenting_style = "authoritative"
+            achieved("Firm Yet Fair")
         elif ((authoritarian >= authoritative) and
               (authoritarian >= permissive) and
               (authoritarian >= neglectful)):
             parenting_style = "authoritarian"
+            achieved("Big Boss")
         elif ((permissive >= authoritarian) and
               (permissive >= authoritative) and
               (permissive >= neglectful)):
             parenting_style = "permissive"
+            achieved("Who Needs Rules?")
         elif ((neglectful >= authoritarian) and
               (neglectful >= authoritative) and
               (neglectful >= permissive)):
             parenting_style = "neglectful"
+            achieved("Hands-Off Approach")
 
         
         pstyle = "{emoji=" + parenting_style + "} " + parenting_style.capitalize() + " parent"
@@ -244,13 +248,20 @@ init -100 python:
             event_name = "work" + str(year)
             return event_name
 
-        # TODO: If you have a lot of money, have an investment opportunity?
-
         # Otherwise, we get a random crop event
         else:
             # special potato event
             if ((year == 29) and (year28_promised_potatoes)):
                 return "work29_potatoes"
+
+            # If you have a lot of money, have an investment/charity opportunity
+            if (credits > 1000):
+                last_money_event = persistent.number_events_seen["money"]
+                if (last_money_event == 0):
+                    return "money1"
+                elif (last_money_event == 1):
+                    return "money2"
+                
 
             # Find a good crop event.
             # Make a set (no duplicates) of the next crop event for each crop in our field. Then, randomly pick one.
@@ -275,7 +286,7 @@ init -100 python:
                 return random_event
             else:
                 # Reset the number of events seen for each crop and give a default event.
-                persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0}
+                persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0, "money":0}
                 renpy.save_persistent()
                 return "default_crop_event"
 

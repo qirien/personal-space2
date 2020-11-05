@@ -642,7 +642,7 @@ label family2:
             show him normal at center
             show kid concerned at center, baby_pos
             with moveinleft
-            play sound "sfx/baby-cry.ogg" # TODO: replace with older baby cry?
+            play sound "sfx/baby-cry.ogg"
             "I put her in her crib. She wouldn't like it, but she'd be safe enough there for a few hours while I finished the planting."
             show him at midleft with move
             show kid cry with dissolve
@@ -5803,9 +5803,9 @@ label family19:
                        him concerned "Well, yeah, if you're doing it right. The whole point is to show love to the other person. Do you think those people in the video loved each other?"
                        "She shrugged."
                        if family19_watched_video:
-                           him determined "It didn't seem like it to me. I guess some people have sex like that, but in a healthy relationship it's a tender, gentle time to show love to a special person."
+                           him determined "It didn't seem like it to me. I guess some people have sex like that, but in a healthy relationship it's a tender time to show love to a special person."
                        else:
-                           "In a healthy relationship, sex is a tender, gentle time to show love to a special person."
+                           "In a healthy relationship, sex is a tender time to show love to a special person."
                    "She didn't look at me, and I could tell she had a lot on her mind. But it was hard for her to say what she was thinking."
                    "I reached over and hugged her."
                    him normal "I hope you know that I love you."
@@ -5860,7 +5860,6 @@ label family19:
                    him determined "Pornography is addictive."
                    kid determined "What do you mean?"
                    "I had to remember that [kid_name] had grown up much more sheltered than I had... This was a small town with a small school."
-                   "All the analogies I thought of were things she had no experience with -- there were no drugs, no smoking, and even sugar was something she had very little knowledge of."
                    him concerned "Well...it tries to make you feel a certain way. Your body is programmed to want to do things that make it feel that way."
                    kid surprised "Programmed...? Like a robot?"
                    him normal "Not at all. You also have a brain and free will, so you can decide if the things your body wants are good for you."
@@ -6101,7 +6100,7 @@ label family20:
     kid normal "But they work!"
     him surprised "Yeah? Let's hear it!"
     kid shifty "I don't know much yet; just this one note."
-    # TODO: add SFX here
+    play sound "sfx/trombone.ogg"
     him content "Yep, that's a note all right."
     ilian normal "I suppose now you'll want lessons."
     kid happy "Yeah!"

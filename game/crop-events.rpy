@@ -461,7 +461,6 @@ label carrots2:
     play sound "sfx/rain.ogg" loop
     scene fields with fade
     show rain
-    # TODO: play rain sound whenever it rains
     if (carrots_fallow):
         "My carrots grew bigger than last time! I guess I got rid of the pests that were deforming them."
         scene farm_interior with fade
@@ -1170,7 +1169,6 @@ label goats3:
         show kid normal at midleft with dissolve
     him surprised "Hey, did the goats all go inside...?"
     "That seemed unlikely, so I went to go check it out."
-    # TODO: some kind of goat pen background?
     hide him
     hide kid
     with moveoutleft
@@ -2089,4 +2087,10 @@ label honey1:
             him determined "Good luck living on your own."
             travis "Okay, thanks."
 
+    return
+
+# Event for if you have a lot of money.
+# TODO: Finish these
+label money1:
+    "I was when I got a message from Sister Naomi." #but what if she's dead?
     return

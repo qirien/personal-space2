@@ -26,15 +26,15 @@ label credits:
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
-    show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nClker-Free-Vector-Images"
+    show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
     $ renpy.pause(6.0, hard=skippable)
     hide text with fade
 
-    # TODO: add emoji credits
+    show text "GUI graphics based on images by\nNoto Emoji\n\nAnd Pixabay users:\nOpenClipart-Vectors\nClker-Free-Vector-Images"    
 
     # TODO: add more credits from Credits.txt
 
-    show text "Space to Grow was made using the following tools:\n\nthe GIMP (gimp.org)\nAtom (atom.io)\njEdit (jedit.org)\nLunaPic (www.lunapic.com)\nAudacity (audacityteam.org)\nCelestia (celestia.space)\ngit (github.com)" with fade
+    show text "Space to Grow was made using the following tools:\n\nthe GIMP (gimp.org)\nCodeOSS (code.visualstudio.com)\njEdit (jedit.org)\nLunaPic (www.lunapic.com)\nAudacity (audacityteam.org)\nCelestia (celestia.space)\ngit (github.com)" with fade
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
@@ -54,8 +54,6 @@ label credits:
         $ mp.baby_name = kid_name
         $ mp.save()
     $ renpy.save_persistent()
-    
-    # TODO: unlock NG+ - keep enabled crops, number of fields
 
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve
