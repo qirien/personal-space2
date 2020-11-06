@@ -147,6 +147,7 @@ Crossbow Firing and Hitting Target <crossbow.ogg> by Ali_6868, <https://freesoun
 Knife Stab <stab.ogg> by neilsher, <https://freesound.org/people/neilsher/sounds/411743/>
 Splashes in a Bathtub by bbrocer, <https://freesound.org/people/bbrocer/sounds/382649/>
 Door knocking (Angry) <knock.ogg> by Macif, <https://freesound.org/people/Macif/sounds/194365/>
+Trombone Note <trombone.ogg> by Samulis, <https://freesound.org/people/Samulis/sounds/375072/>
 
 ==== Soundjay
 

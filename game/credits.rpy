@@ -32,7 +32,7 @@ label credits:
 
     show text "GUI graphics based on images by\nNoto Emoji\n\nAnd Pixabay users:\nOpenClipart-Vectors\nClker-Free-Vector-Images"    
 
-    # TODO: add more credits from Credits.txt
+    # TODO: add more credits from Credits.txt SFX?
 
     show text "Space to Grow was made using the following tools:\n\nthe GIMP (gimp.org)\nCodeOSS (code.visualstudio.com)\njEdit (jedit.org)\nLunaPic (www.lunapic.com)\nAudacity (audacityteam.org)\nCelestia (celestia.space)\ngit (github.com)" with fade
     $ renpy.pause(4.0, hard=skippable)
