@@ -8630,7 +8630,7 @@ label community30:
 #        label noel_no_confession:
 #            "I tried messaging Noel a few more times, but didn't get any answers."
 #            "The next day, I met [her_name] in the community center for lunch."
-            jump who_suspect
+#            jump who_suspect
 
         label who_suspect:
             scene farm_interior with dissolve
