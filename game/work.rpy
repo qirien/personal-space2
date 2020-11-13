@@ -1096,8 +1096,6 @@ label work18_after_clean:
 # Irrigation Trouble
 label work20:
     play music problems
-    # TODO: Add in reference to community13. Also have Brennan explain WHY this change occurred;
-    # for example, they are moving the mining camp so they want it to be easier to access the water from camp?
     scene fields with fade
     "With Talaam's frequent rains, we didn't need to irrigate the fields very often."
     "But we had a system of gates and canals we could open up to get extra water from the river when it didn't rain enough."
@@ -1140,8 +1138,8 @@ label work20:
     with moveinleft
     "At the camp, it was obvious what had happened. Much of the river had been diverted to give water for the mining machinery."
 
-    him annoyed "Hey, you're stealing all the water! There's none left for our crops downstream!"
-    brennan "Sorry, our refining processes use a lot of water. The river flows over here now."
+    him annoyed "First you contaminate our water, now you're steailng it?! There's none left for our crops downstream!"
+    brennan "Our refining processes use a lot of water. The new site needed water, so the river flows over here now. Sorry."
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
         thuc "Well, who knows? Maybe we can eat what they're making up here?"
@@ -2098,7 +2096,6 @@ label work29_potatoes:
 
 # Year 30, 18 years old
 # Terra doesn't want to help! Pay rent?
-# TODO: This doesn't really have a consequence since this is the last year...
 label work30:
     play music problems
     scene farm_interior with fade
@@ -2117,6 +2114,7 @@ label work30:
     "Part of me wanted to make her stay -- we're farmers! Farming is what we do!"
     "...but another part of me knew that I couldn't force her to stay. Besides, [her_name] wasn't a farmer, either, so why should I expect [kid_name] to be one?"
     $ work28_rent = 0
+    $ factor = 0.75
     menu:
         "What should I say?"
         "If you don't work, you need to pay rent.":
@@ -2150,6 +2148,7 @@ label work30:
                     $ work28_rent = 200
             her surprised "If you can't make it some month, come by the clinic and I can find some work for you."
             kid annoyed "I'll be fine, Mom."
+            $ factor = 0.5
 
         "If you want to live here, you'll need to help.":
             him determined "Everyone that lives here needs to help out in some way."
@@ -2158,6 +2157,7 @@ label work30:
             "We worked out some things that [kid_name] could do that weren't farming -- making meals and running errands for [her_name] and I."
             him concerned "Hopefully I can still count on your help during harvest time."
             kid nervous "Yeah, for now."
+            $ factor = 0.8
         "We can cut back gradually.":
             him determined "I need you until the harvest. After that, we can slowly cut things down."
             kid concerned "Okay..."
@@ -2168,6 +2168,7 @@ label work30:
                him determined "Okay. Thanks, [kid_name]."
             else:
                 kid concerned "Uh, yeah, we'll see."
+            $ factor = 0.5
 
     show bro concerned at quarterleft with moveinleft
     bro concerned "I don't want to work on the farm, either."
@@ -2183,15 +2184,17 @@ label work30:
                 "With the extra money [kid_name] would be paying in rent, I could afford to hire some help. Surely there'd be someone who'd be willing to do some hard work in exchange for a little extra money."
             else:
                 "It would cost me, but I thought the cost of hiring another worker would be less than the cost of reducing the field."
-            $ work28_rent -= 100
+            $ work28_rent -= 125
+            $ factor += 0.2
         "Have [bro_name] help more.":
             him concerned "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
             bro sad "I don't want to..."
             him explaining "I know. But sometimes we all gotta do things we don't want to do."
+            $ factor += 0.2
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."
 
     $ modify_credits(work28_rent)
     # She and Bro only can help a little now.
-    $ kid_other_work = roundint(total_competence *.5)
+    $ kid_other_work = roundint(total_competence * factor)
     return

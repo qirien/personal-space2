@@ -313,7 +313,7 @@ label start:
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
     "But being a dad was a different kind of work than I had ever done before..."
 
-    # TODO: show some sort of inter-scene screen
+    # TODO: show some sort of inter-scene screen?
 
     # Introduction Scenes
     call family_intro

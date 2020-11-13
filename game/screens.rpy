@@ -722,12 +722,12 @@ screen file_slots(title):
 
                 textbutton _("<") action FilePagePrevious()
 
-                textbutton _("{#auto_page}A") action FilePage("auto") # TODO: Disable saving of Autosaves, and if loaded, make a different page the default
+                textbutton _("{#auto_page}A") action FilePage("auto")
 
                 #textbutton _("{#quick_page}Q") action FilePage("quick")
 
                 # range(1, 10) gives the numbers from 1 to 9.
-                for page in range(1, 5):
+                for page in range(1, 7):
                     textbutton "[page]" action FilePage(page)
 
                 textbutton _(">") action FilePageNext()
