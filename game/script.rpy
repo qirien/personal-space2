@@ -149,6 +149,7 @@ label start:
         ban_firegrass = False
         study_published_23 = False
         helen_dead = False      
+        bought_tt = True
         bios = Bios()         
         bios.activate("[his_name]")
         bios.activate("[her_name]")

@@ -2085,12 +2085,13 @@ label honey1:
             him normal "Great! You can pay off the honey you stole by working with the bees."
         "Good luck.":
             him determined "Good luck living on your own."
-            travis "Okay, thanks."
+            travis "Okay."
 
     return
 
 # Event for if you have a lot of money.
 # TODO: Finish these
 label money1:
-    "I was when I got a message from Sister Naomi." #but what if she's dead?
+    "I was doing some financial calculations on the computer pad when I got a message from Sara."
+    sara_c "[his_name], we're looking for people to help out a family in need. Both parents "
     return

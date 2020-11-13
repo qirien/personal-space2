@@ -589,7 +589,7 @@ label message23:
 # Family: Lettie dies; friends with creepy older brother
 label message24:
     nvl clear
-    # Julia links to Talaam Times (TODO: write free sample page?)
+    # Julia links to Talaam Times
     # it's expensive! no advertising revenue?
     # She didn't review the oatmeal soap because it competes with her goat milk soap
     julia_c "I hope I can count on all of you to subscribe to Talaam's first newspaper, the Talaam Times!"
@@ -600,12 +600,28 @@ label message24:
     julia_c "It's available by subscription only, for the low price of 20 credits per year. Individual issues cost 5 credits each."
     him_c "This is for a monthly newsletter?!"
     sara_c "Why is it so expensive?!"
-    julia_c "Unlike on Earth, there's no advertising revenue, so I have to charge more."
+    julia_c "There's no advertising revenue (yet!), so I have to charge more."
     natalia_c "But... you're not printing it on actual paper, right? This is a digital newsletter."
     julia_c "Yes, obviously."
     natalia_c "So it costs you the same amount to make no matter how many people subscribe. So shouldn't you make it cheap to get lots of subscribers?"
     julia_c "I think it's a fair price."
     natalia_c "We'll see if anyone agrees with you."
+    if (bought_tt):
+        scene talaam_times with fade
+        $ renpy.pause()
+        scene stars
+    else:
+        menu:
+            "Should I buy the first issue?"
+            "Buy it (5 credits)":
+                $ bought_tt = True
+                $ colonists += 1
+                $ modify_credits(-5)
+                scene talaam_times with fade
+                $ renpy.pause()
+                scene stars
+            "Dont' buy it":
+                $ pass
     nvl clear
     return
 

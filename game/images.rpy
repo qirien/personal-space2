@@ -68,7 +68,6 @@ init -10:
 
         # Define images for bro (baby, toddler, young, tween, teen)
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
-        # TODO: right now these are just kid's sprites. Change them to be unique.
         for expression_name in kid_expressions:
             renpy.image(("bro", expression_name), ConditionSwitch(
                 "year <= 12", "bro-sprites/baby_%s.png" % expression_name,

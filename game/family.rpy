@@ -7,8 +7,6 @@
 # (or in some cases, decrease) by 1-5 each month.
 # "authoritative", "authoritarian", "permissive", and "neglectful" are cumulative and affect the community's direction and have some correlation to "demanding" and "responsive".  Only increase one per month.
 
-# TODO: Use the trust variable more.
-
 # Intro event
 label family_intro:
     "All [kid_name] needed at first was a clean diaper, milk, and some love. Simple, right?"
@@ -7012,7 +7010,7 @@ label family24:
 
     him angry "I'm worried that he's going to influence you to do stupid things! Stupid things that could ruin the rest of your life."
     kid annoyed "Like what?!"
-    him annoyed "A hundred things! Smoking too much firegrass, or having sex too early, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
+    him annoyed "A hundred things! Smoking too much firegrass, or having sex before you're ready, or getting drunk, or driving tractors too fast, or exploring dangerous caves, or... I don't know!"
     kid yell "We were JUST. HIKING."
     him angry "Yes, this time! What about next time?"
     kid annoyed "He doesn't do any of that stuff! You don't even know him!"
@@ -7023,7 +7021,7 @@ label family24:
     elif (parenting_style == "authoritative"):
         kid determined "I get what you're saying, but that's just not what's going on here."
     elif (parenting_style == "permissive"):
-        kid nervous "Not {b}all{/b} guys that age. C'mon, dad, you're just being overprotective."
+        kid nervous "Not {b}all{/b} guys that age. C'mon, dad, you're being crazy overprotective."
     else:
         kid yell "Now you suddenly care about what I do?!"
 
@@ -7332,9 +7330,12 @@ label family25:
     him happy "And farming?"
     kid nervous "Maybe. I like to eat, anyway!"
     him normal "Hunger is a powerful motivator."
-    kid determined "Anya says she's going to be a miner. Her brother just started and he already earns a lot of money."
-    him surprised "But aren't they leaving in a few years?"
-    kid concerned "Yeah, but she can at least work until then...It just seems like there's not many choices here on Talaam. If you're not a farmer or a miner, why are you even here?"
+    if (has_trust()):
+        kid determined "Anya says she's going to be a miner. Her brother just started and he already earns a lot of money."
+        him surprised "But aren't they leaving in a few years?"
+        kid concerned "Yeah, but she can at least work until then...It just seems like there's not many choices here on Talaam. If you're not a farmer or a miner, why are you even here?"
+    else:
+        kid concerned "It just seems like there's not many choices here on Talaam. If you're not a farmer or a miner, why are you even here?"
     menu:
         "What should I say?"
         "We need other people, too.":
@@ -8055,54 +8056,58 @@ label family28:
                     $ authoritarian += 1
                     jump family28_runaway
 
-    kid surprised "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
-    her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."
-    kid nervous "Ugh, you sound like that dumb game we had to play in health class."
-    her annoyed "And as your mom, I'd tell you that you're smarter than that."
-    menu:
-        "What should I say?"
-        "Life's too short not to enjoy everything!":
-            him happy "Life's too short to worry so much about stuff like that! If you get the chance, enjoy yourself!"
-            kid shifty "Yeah, that's what Brennan said..."
-            her annoyed "Brennan said that, huh?"
-            kid determined "Yeah, when I tried a sip."
-            him surprised "Brennan offered you alcohol?"
-            $ neglectful += 1
-        "A little bit's fine now and then.":
-            him normal "Oh, a little bit now and then won't hurt you. But you don't want it to become something that runs your life."
-            kid determined "Yeah yeah, I know all about alcoholism."
-            her annoyed "No, you really don't. I know we talked about it in health class, but if you haven't seen it for yourself..."
-            kid annoyed "Look, I'll be careful, okay! I only had one sip!"
-            her surprised "One sip... Brennan offered you alcohol?"
-            $ permissive += 1
-        "Listen to your mom.":
-            him determined "Your mom's right. Stay away from that stuff!"
-            her concerned "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
-            kid nervous "Well it was just the one time, so it's not a big deal."
-            her surprised "Just the one time...?  Wait, did Brennan give you alcohol?"
-            $ authoritarian += 1
-        "You need to decide for yourself. But decide now.":
-            $ confident += 1
-            him normal "This is something you have to decide for yourself. So do some objective research, get some opinions, and then figure out what you want to do."
-            her determined "But don't wait until you're in that situation to decide, because then you may not make a good decision."
-            kid nervous "Yeah, maybe I wouldn't have tried it if I had thought about it beforehand..."
-            her surprised "Tried it? Wait, did Brennan give you alcohol?"
-            $ authoritative += 1
+    if (has_trust()):
+        kid surprised "Anyway, would it be so bad if I did use them? I'm practically an adult now, anyway."
+        her concerned "As your family doctor, I'd advise against it. Both are habit-forming and cause permanent damage to various parts of your body."
+        kid nervous "Ugh, you sound like that dumb game we had to play in health class."
+        her annoyed "And as your mom, I'd tell you that you're smarter than that."
+        menu:
+            "What should I say?"
+            "Life's too short not to enjoy everything!":
+                him happy "Life's too short to worry so much about stuff like that! If you get the chance, enjoy yourself!"
+                kid shifty "Yeah, that's what Brennan said..."
+                her annoyed "Brennan said that, huh?"
+                kid determined "Yeah, when I tried a sip."
+                him surprised "Brennan offered you alcohol?"
+                $ neglectful += 1
+            "A little bit's fine now and then.":
+                him normal "Oh, a little bit now and then won't hurt you. But you don't want it to become something that runs your life."
+                kid determined "Yeah yeah, I know all about alcoholism."
+                her annoyed "No, you really don't. I know we talked about it in health class, but if you haven't seen it for yourself..."
+                kid annoyed "Look, I'll be careful, okay! I only had one sip!"
+                her surprised "One sip... Brennan offered you alcohol?"
+                $ permissive += 1
+            "Listen to your mom.":
+                him determined "Your mom's right. Stay away from that stuff!"
+                her concerned "If you never have any, you never have to worry about if you're damaging your body, or getting addicted, or anything like that."
+                kid nervous "Well it was just the one time, so it's not a big deal."
+                her surprised "Just the one time...?  Wait, did Brennan give you alcohol?"
+                $ authoritarian += 1
+            "You need to decide for yourself. But decide now.":
+                $ confident += 1
+                him normal "This is something you have to decide for yourself. So do some objective research, get some opinions, and then figure out what you want to do."
+                her determined "But don't wait until you're in that situation to decide, because then you may not make a good decision."
+                kid nervous "Yeah, maybe I wouldn't have tried it if I had thought about it beforehand..."
+                her surprised "Tried it? Wait, did Brennan give you alcohol?"
+                $ authoritative += 1
 
-    kid concerned "Well, yeah. Just a bit of the cider I delivered. I said it tasted weird, but he said it was an adult thing and maybe that meant I was still a kid. Do I look like a kid to you?!"
-    her determined "I'm going to have to talk to him about that."
-    him determined "Or maybe I should."
-    kid surprised "What? What's the big deal?"
-    her concerned "Some people think it's fun to get other people drunk."
-    him annoyed "When people are drunk, their inhibitions are down. They are more willing to do...things... they might not otherwise do."
-    kid surprised "You mean like... Brennan wouldn't do that!"
-    her nervous "..."
-    him sad "..."
-    her concerned "Not on purpose, but..."
-    him annoyed "But he doesn't always think about the consequences of his actions. Especially where women are concerned."
-    kid nervous "..."
-    her surprised "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
-    him determined "And you can't trust Brennan."
+        kid concerned "Well, yeah. Just a bit of the cider I delivered. I said it tasted weird, but he said it was an adult thing and maybe that meant I was still a kid. Do I look like a kid to you?!"
+        her determined "I'm going to have to talk to him about that."
+        him determined "Or maybe I should."
+        kid surprised "What? What's the big deal?"
+        her concerned "Some people think it's fun to get other people drunk."
+        him annoyed "When people are drunk, their inhibitions are down. They are more willing to do...things... they might not otherwise do."
+        kid surprised "You mean like... Brennan wouldn't do that!"
+        her nervous "..."
+        him sad "..."
+        her concerned "Not on purpose, but..."
+        him annoyed "But he doesn't always think about the consequences of his actions. Especially where women are concerned."
+        kid nervous "..."
+        her surprised "Anyway, decide ahead of time if or how much you want to drink, and make sure you're around people you can trust."
+        him determined "And you can't trust Brennan."
+        "For a minute it looked like [her_name] was about to disagree with me, but instead she just gave [kid_name] a hug."
+        her sad "I hope you know how much we love you."
+        "[kid_name] didn't say anything, but she hugged [her_name] tight. I stepped in to embrace them both, not wanting to be left out."
     return
 
 label family28_runaway:
@@ -8232,13 +8237,13 @@ label family29:
     menu:
         "What should I say?"
         "Of course!":
-            him happy "Of course! She's my hot girlfriend-wife person!"
+            him happy "Of course! She's my hot girlfriend-wife-friend-person!"
             kid surprised "So, even though you guys are older, you still look at her and think she's sexy?"
             him blush "Umm, yeah. Why are you asking this?"
         "Sometimes.":
             him blush "Sometimes. Especially when she acts sexy."
             kid normal "So it's not just her looks?"
-            him normal "Well, that's part of it, but a lot of it is how she acts, how she smiles, what she says."
+            him normal "Well, that's part of it, but a lot of it is how she acts, how she smiles, what she says, how she feels about me."
             kid concerned "Hmmm."
             him surprised "Why are you asking this all of a sudden?"
         "Not as much these days.":
@@ -8250,7 +8255,11 @@ label family29:
 
     kid surprised "Do you think it's important for two people to be physically attracted to each other before getting married?"
     him surprised "Physically attracted?"
-    kid nervous "I mean, I know it's one part of a relationship, but there's plenty of people who are attracted to each other but just aren't good for each other, and probably the opposite might be true, too...?"
+    if (has_trust()):
+        kid nervous "I mean, I know it's one part of a relationship, but there's plenty of people who are attracted to each other but just aren't good for each other, and probably the opposite might be true, too...?"
+    else:
+        kid nervous "Never mind. Forget I said anything."
+        "It's not like I could just forget something like that."
     menu:
         "How important is physical attraction to a marriage?"
         "It's not very important":
@@ -8534,7 +8543,6 @@ label family30:
         # She's still running her delivery service and dating Travis/Lorant
         "I hardly ever saw her -- it seemed like she was always out delivering things."
         $ boyfriend_name = "Lorant"
-        # TODO: modify these, or use these to help determine boyfriend instead of independence
     
     if (boyfriend_name != ""):
         "Sometimes she was hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
