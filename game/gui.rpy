@@ -146,8 +146,8 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 265
-define gui.name_ypos = 15
+define gui.name_xpos = 240
+define gui.name_ypos = 10
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
 ## aligned, 0.5 for centered, and 1.0 for right-aligned.
@@ -438,8 +438,7 @@ define gui.nvl_font = "fonts/OpenSansEmoji.otf"
 # Mobile devices
 ################################################################################
 
-# TODO: Our custom text bg doesn't show up on mobile.
-# TODO: Button font size is too small for choices.
+# TODO: Button font size - check if it is too small for choices.
 init python:
 
     ## This increases the size of the quick buttons to make them easier to touch
@@ -453,44 +452,47 @@ init python:
     if renpy.variant("small"):
 
         ## Font sizes.
-        gui.text_size = 30
-        gui.name_text_size = 36
-        gui.notify_text_size = 25
-        gui.interface_text_size = 36
-        gui.button_text_size = 34
-        gui.label_text_size = 36
+        gui.text_size = 22
+        #gui.name_text_size = 36
+        #gui.notify_text_size = 25
+        #gui.interface_text_size = 36
+        #gui.button_text_size = 34
+        #gui.label_text_size = 36
+        gui.choice_button_text_size = 28
+        gui.choice_spacing = 8
 
         ## Adjust the location of the textbox.
-        gui.textbox_height = 240
-        gui.name_xpos = 80
-        gui.text_xpos = 90
-        gui.text_width = 1100
+        # Some people might have buttons enabled all the time, which is why this is this way. But does anyone still have that?? Test both ways.
+        #gui.textbox_height = 240  
+        # gui.name_xpos = 250
+        # gui.text_xpos = 90
+        # gui.text_width = 1100
 
         gui.navigation_spacing = 20
         gui.pref_button_spacing = 10
 
-        gui.history_height = 190
-        gui.history_text_width = 690
+        #gui.history_height = 190
+        gui.history_text_width = 700
 
         ## File button layout.
         gui.file_slot_cols = 2
         gui.file_slot_rows = 2
 
         ## NVL-mode.
-        gui.nvl_height = 170
+        # gui.nvl_height = 170
 
-        gui.nvl_name_width = 305
-        gui.nvl_name_xpos = 325
+        # gui.nvl_name_width = 305
+        # gui.nvl_name_xpos = 325
 
-        gui.nvl_text_width = 915
-        gui.nvl_text_xpos = 345
-        gui.nvl_text_ypos = 5
+        # gui.nvl_text_width = 915
+        # gui.nvl_text_xpos = 345
+        # gui.nvl_text_ypos = 5
 
-        gui.nvl_thought_width = 1240
-        gui.nvl_thought_xpos = 20
+        # gui.nvl_thought_width = 1240
+        # gui.nvl_thought_xpos = 20
 
-        gui.nvl_button_width = 1240
-        gui.nvl_button_xpos = 20
+        # gui.nvl_button_width = 1240
+        # gui.nvl_button_xpos = 20
 
         ## Quick buttons.
         gui.quick_button_text_size = 20

@@ -1,8 +1,6 @@
 # Using this screen, the user can select which crops to plant where and see the projected results.  When they are done, they can hit "Accept Plan".
 # Farm Planning Screen
 #
-# TODO: Add icons for Message Board ("Chat"), Child Development ("My Child"), and Contacts/bios
-# TODO: Round edges of crop squares
 
 screen plan_farm():
     tag plan_farm

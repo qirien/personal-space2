@@ -126,9 +126,9 @@ screen say(who, what):
 
     # here's our side quick MENU buttons
     showif persistent.times_beaten:
-        imagebutton xpos 1070 ypos 550 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
-    imagebutton xpos 1085 ypos 590 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
-    imagebutton xpos 1015 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
+        imagebutton xpos 1100 ypos 530 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
+    imagebutton xpos 1150 ypos 570 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
+    imagebutton xpos 1095 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
 
 init python:
     def activate_bio(name):
@@ -139,7 +139,8 @@ init python:
 
 
 style window is default
-style say_thought is say_dialogue
+style say_thought is say_dialogue:
+    italic True
 
 style namebox is default
 style namebox_label is say_label
@@ -190,10 +191,13 @@ style say_dialogue:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#input
 
+#TODO: make mobile version move the window up to the top of the screen so we can see when the keyboard pops up
 screen input(prompt):
     style_prefix "input"
 
     window:
+        if (renpy.mobile):
+            ypos 0.3
 
         vbox:
             xpos gui.text_xpos
@@ -225,7 +229,6 @@ style input:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#choice
 
-# TODO: bigger font for phone screens
 screen choice(items):
     style_prefix "choice"
 
@@ -1394,7 +1397,8 @@ style notify_text:
 ## This screen is used for NVL-mode dialogue and menus.
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#nvl
-
+#
+# TODO: On Android, doesn't show the background?
 
 screen nvl(dialogue, items=None):
     window:
@@ -1574,6 +1578,10 @@ screen quick_menu():
 # TODO: make textbox use frame from regular game
 style window:
     variant "small"
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign
+    ysize gui.textbox_height
     background "gui/phone/textbox.png"
 
 style nvl_window:

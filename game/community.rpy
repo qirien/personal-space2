@@ -1743,6 +1743,7 @@ label community11:
     him angry "Wow, really? Martin's dying of skin cancer and you make a sun exposure joke?"
     her concerned "[his_name]..."
     brennan angry "Sorry...I didn't know."
+    show him pout with dissolve
     her annoyed "Of course you didn't. There's a lot that you've missed, just like I'm sure we've missed a lot of events on Earth."
     brennan normal "Anyway... Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I whistled long and loud."
@@ -1849,7 +1850,7 @@ label community11:
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
-            "If you were stuck on a desert island with all of your coworkers, who would you eat first?":
+            "If you were on a desert island...":
                 him surprised "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
                 chaco "Hmmm. Whoever died first."
                 him normal "That's a practical answer."
