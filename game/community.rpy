@@ -6489,7 +6489,7 @@ label community27:
     #if community_22_mining_stopped, the gathering of shells was more intense
     $ shell_count = 0
     $ serve_mudfish = False
-    $ serve_shills = False
+    $ serve_yippers = False
     #conversation with jellymother variables
     $ asked_shell_food = False
     $ uliveshell = False
@@ -6815,7 +6815,7 @@ label call_to_squid:
                     scene farm_exterior with dissolve
                     show him normal at midleft with moveinleft
                     "I went back to the colony and my farm."
-                    scene lab with dissolve #TODO: change other scenes with Dr. Lily to the lab
+                    scene lab with dissolve 
                     #TODO: explain why the nets were cut and there were so many dead jellystars (another animal ate them?)
                     show zaina normal at midright with dissolve
                     show him normal at midleft with moveinleft
@@ -6824,8 +6824,8 @@ label call_to_squid:
                     zaina "I remember that fish!"
                     him doubt "What do you know about it?"
                     zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish eat it without a problem."
-                    him normal "Do those big fish that make the yipping sound eat them?"
-                    zaina "Yes, those fish are called shills. They eat them sometimes." #TODO: call them something other than shills, that's too close to shells and it's confusing
+                    him normal "Do those big fish that make the high-pitched sound eat them?"
+                    zaina "Yes, those fish are called yippers. They eat mudfish sometimes." 
                     him pout "How do the mudfish compare to jellysquid shells for metal content?"
                     zaina "Let's see... "
                     zaina "It looks like the metals in the mudfish meat are similar to the metals in the shells."
@@ -6853,7 +6853,7 @@ label call_to_squid:
                     him sad "I don't know."
                     him pout "The jelly mother asked for help finding shell food. It sounds like this mudfish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
                     zaina "I think it's just the skin that has toxins in it. So maybe if we caught them and made them into filets, they would eat them?"
-                    him determined "Or maybe the Shills that eat the mud fish would have the right minerals in their meat?"
+                    him determined "Or maybe the yippers that eat the mud fish would have the right minerals in their meat?"
                     zaina "I can do some field research this weekend."
                     him content "Great. Maybe the jellymother will talk to you too."
                     zaina "You're not coming with me?"
@@ -6869,14 +6869,14 @@ label call_to_squid:
                     zaina "The jellysquid seemed to remember me, so I didn't have trouble getting her to try a few different foods."
                     zaina "I was able to catch a few mudfish and feed their filets to a jellysquid."
                     zaina "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
-                    zaina "I had a hard time catching the shill, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
-                    zaina "She seemed surprised. The shill is difficult capture, so they rarely eat it."
+                    zaina "I had a hard time catching the yipper, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
+                    zaina "She seemed surprised. The yipper is difficult capture, so they rarely eat it."
                     zaina "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
-                    zaina "She killed a shill and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
+                    zaina "She killed a yipper and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
                     zaina "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
                     him "So what do you think would be best for the jellysquids?"
                     zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
-                    zaina "The jellysquid can easily eat the shill, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
+                    zaina "The jellysquid can easily eat the yipper, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
                     him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
                     zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
                     "What do I think is better?"
@@ -6887,13 +6887,13 @@ label call_to_squid:
                             zaina "I just hope the colony is strong enough to help with this."
                             $ serve_mudfish = True
                             jump aquaculture
-                        "Have them eat shills.":
+                        "Have them eat yippers.":
                             him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
-                            him "If they keep eating shills, they won't have to rely on us to create new shells."
+                            him "If they keep eating yippers, they won't have to rely on us to create new shells."
                             zaina "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
                             him "Right."
                             zaina "I just hope the colony is strong enough to help with this"
-                            $ serve_shills = True
+                            $ serve_yippers = True
                             jump aquaculture
 
                             label aquaculture:
@@ -6908,9 +6908,9 @@ label call_to_squid:
                                         "After about six months, the jellymother told us that our efforts at reparation were sufficient."
                                         "She presented us with some of the fish we could eat as a token of good will."
                                     else:
-                                        "Shills had a longer incubation period than I anticipated. The jellymother started feeding shills to emerging jellysquids."
-                                        "Farming the shills took weekly maintence, which we shared. After the shills were big enough to fend for themselves, we released them into the wild."
-                                        "A few of the jellysquid ate too much shill and ended up with large shells, but they seemed to adapt to it fairly well."
+                                        "Yippers had a longer incubation period than I anticipated. The jellymother started feeding yippers to emerging jellysquids."
+                                        "Farming the yippers took weekly maintence, which we shared. After the yippers were big enough to fend for themselves, we released them into the wild."
+                                        "A few of the jellysquid ate too much yipper and ended up with large shells, but they seemed to adapt to it fairly well."
                                         "The jellymother seemed impressed that we followed up on our promise."
                                         "She presented us with some of the fish we could eat as a token of good will."
                                     $ achieved("Xenophiliac")

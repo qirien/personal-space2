@@ -2089,9 +2089,95 @@ label honey1:
 
     return
 
-# Event for if you have a lot of money.
-# TODO: Finish these
+###########################################################################################
+#
+# MONEY EVENTS - Events for if you have a lot of money.
+#
+###########################################################################################
+
+# Donate to a sick single parent.
 label money1:
+    nvl clear
     "I was doing some financial calculations on the computer pad when I got a message from Sara."
-    sara_c "[his_name], we're looking for people to help out a family in need. Both parents "
+    sara_c "[his_name], we're looking for people to help out a family in need. There's a mom and three little kids and the mom has been sick for the past month."
+    him_c "That's rough. What do they need?"
+    sara_c "Well, she'd like to be able to hire someone to help out with the kids and around the house, but she doesn't have any money. A few people have been taking turns volunteering but they can't do it long term."
+    him_c "So she needs money."
+    sara_c "Basically, yes. We also have a few people looking for work, so it'll be good for everyone. 1000 credits would be enough for a few months."
+    "I explained the situation to [her_name], who said she thought donating was a good idea but left the exact amount up to me."
+    menu:
+        "What should I do?"
+        "Donate 1000 credits":
+            him_c "I'll donate 1000 credits."
+            $ modify_credits(-1000)
+            sara_c "Wow, really?! Okay, I guess my work is done for the day!"            
+            $ colonists += 1
+        "Donate 500 credits":
+            him_c "I'll donate 500 credits."
+            $ modify_credits(-500)
+            sara_c "Thank you; that's very generous of you! I'm sure I can find some other people to chip in the rest."
+            $ colonists += 1
+        "Donate 100 credits":
+            him_c "I can spare 100 credits."
+            $ modify_credits(-100)
+            sara_c "Okay, thanks, every little bit helps!"
+        "Don't donate anything":
+            him_c "Sorry, I can't donate anything."
+            sara_c "Oh... okay."
+            $ colonists -= 1
+            return
+    "About a month later I got a note from the mom and her kids."
+    note_c "Thank you so much for helping out when I was sick. It's been a long recovery but I am starting to work again. Your donation meant the world to me."
+    nvl clear
+    return
+
+# Investment opportunity
+label money2:
+    scene community_center with fade 
+    show him normal at midleft with dissolve
+    "One evening after a meeting, Zaina approached me."
+    show zaina normal at midright with moveinright
+    zaina "Hey, [his_name], I have a question for you."
+    him happy "Okay, ask away!"
+    zaina "You seem like you're good with money. I have a great invention, but I need some capital to get started."
+    him surprised "What's your invention?"
+    zaina "Well, you push it between the rows, and as you walk it spins blades. They can chop up weeds and stuff without using electricity."
+    him concerned "Wait, so it's like a weed chopper?"
+    zaina "That's a great name for it! Yeah, a weed chopper! I think everyone will want one!"
+    him normal "Hmmm. I know pulling weeds is one of my least favorite parts of farming..."
+    zaina "Right?! I talked to Ilian about the parts - we can print most of them, but some parts have to be metal, which is not cheap."
+    him concerned "How much are we talking?"
+    zaina "I could make them for about 45 credits each, but if I made 50 or more of them it would only cost 35 credits each. That makes 1750 credits total."
+    him surprised "1750 credits?!"
+    zaina "I have 750 I could spare, but that's it. Will you help with the other 1000? I'll pay you back with the profits!"
+    menu:
+        "What should I tell her?"
+        "I can invest 1000 and help you sell them." if (get_extra_work() >= 1):
+            $ modify_credits(-1000)
+            him happy "This is a great idea! I can invest 1000 credits and you can pay me back with your profits. I'll help you sell them, too."
+            zaina "Thank you! I'm like a fossil when it comes to business stuff, so I'm glad you can help."
+            scene stars with fade
+            "It was a good thing I helped out - her invention was great, but there were a lot of costs she had not factored into her price. I helped her estimate those and we set a higher price."
+            "I also helped with advertising, and we managed to sell all 50 of the weed choppers."
+            nvl clear
+            $ modify_credits(1500)
+            zaina_c "I couldn't have done it without you! Here's your share of the profits."
+        "I can invest 1000.":
+            $ modify_credits(-1000)
+            him happy "This is a great idea! I can invest 1000 credits and you can pay me back with your profits."
+            zaina "Great!"
+            scene stars with fade
+            "She made a whole bunch of weed choppers, but she underestimated some of the costs and she wasn't very good at explaining it to people. She ended up only being able to sell half of them and giving the rest away."            
+            nvl clear
+            $ modify_credits(800)
+            zaina_c "[his_name], I didn't end up making any profits on this project at all... but I can pay you back 800 credits and a free weed chopper. I'm sorry."            
+        "I'll buy one, but I can't help you.":
+            him concerned "Sorry, I can't help you with this. I would like to buy a weed chopper, though."
+            zaina "Well, I don't think I'll make them if I can't get the capital to make at least 50. It wouldn't really be worth it."
+        "I can't help you.":
+            him determined "Sorry, I can't help you. Good luck, though!"
+            zaina "Okay, I understand. Hopefully I can find another investor..."
+            "She never found anyone, though, so she never made the weed choppers."
+
+    nvl clear
     return

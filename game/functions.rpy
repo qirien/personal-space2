@@ -188,6 +188,15 @@ init -100 python:
     def is_independent():
         return (total_independence >= roundint(year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
+    def get_kid_adjective():
+        if is_independent:
+            return "independent"
+        elif is_competent:
+            return "competent"        
+        elif is_attached:
+            return "friendly"
+        return "smart"
+
     def get_kid_type():
         if (is_attached()):
             if (is_competent()):

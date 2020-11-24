@@ -829,10 +829,10 @@ define lewis_c = Character("Mr. Lewis",
 # TODO: change these colors here and in defines.rpy once we have images for them
 define zaina_c = Character ("Zaina",
     #who_suffix = "  {image=images/icons/zaina-icon.png} ",
-    color="#d8cd87", image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
+    color="#d8cd87", image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
 define kevin_c = Character ("Kevin",
     #who_suffix = "  {image=images/icons/kevin-icon.png} ",
-    color="#324cc5", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow; copied from Miranda for now
+    color="#324cc5", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
 define oleg_c = Character("Oleg",
 #who_suffix = "  {image=images/icons/oleg-icon.png} ",
     color="#d8a687", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #sandstone
@@ -850,3 +850,4 @@ define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestl
 
 # TODO: make this look like a EULA document
 define legalese = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+define note_c = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled")

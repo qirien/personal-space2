@@ -2633,6 +2633,9 @@ label family8:
     "[her_name] moved to follow her, but I held her hand."
     him normal "Didn't her teacher ask us not to come in with her, so she could get used to coming in on her own?"
     her concerned coat "I guess so... Is she really going to be okay?"
+    $ adjective = get_kid_adjective()
+
+    him happy "She's a very [adjective] child; I'm sure she'll be fine!"
     "We heard a wail and saw Oleg arriving with Ilian and Sara. His hand was clenched tightly around Sara's. Ilian left after patting Oleg on the head, hurrying off to the storehouse, probably."
     "Sara gave little Oleg a hug and gestured toward the school, but he shook his head. Tears streamed down his face."
     him surprised "I guess we have it pretty easy, huh?"
@@ -4587,7 +4590,7 @@ label family15:
             him annoyed "You need to learn that you can't always have everything you want!"
             kid yell "{b}You{/b} need to learn to share!"
             him angry "You can't speak that way to me! Go to your room!"
-            kid sad "You should go to your room. Dad, you just hate me!"
+            kid sad "You should go to YOUR room. Dad, you just hate me!"
             him yell "I SAID GO TO YOUR ROOM!"
             $ authoritarian += 1
             hide kid with moveoutright
@@ -4936,7 +4939,10 @@ label family17:
     hide child with dissolve
     show tween with dissolve
     "Well, not completely different."
-    "Sometimes she still acted like a little kid."
+
+    $ adjective = get_kid_adjective()
+
+    "She was still as [adjective] as ever, and sometimes she still acted like a little kid."
     hide tween with dissolve
     show bro normal with dissolve
     "[bro_name] was growing a lot, too, but I didn't notice as much. That's the sad fact of being a younger child -- almost everything you do, your older sibling has done first."
@@ -6600,7 +6606,8 @@ label family22:
                 her normal "I'll pick something everyone will like."
                 him concerned "Good luck!"
                 her excited "With our huge database I'm sure I can find something!"
-                "She somehow managed to find a movie that had teen protagonists for [kid_name], wasn't too scary for [bro_name], and had deep ideas for [her_name] and I." "The acting was terrible, but, hey, you can't have everything."
+                "She somehow managed to find a movie that had teen protagonists for [kid_name], wasn't too scary for [bro_name], and had deep ideas for [her_name] and I." 
+                "The acting was terrible, but, hey, you can't have everything."
                 "I popped some popcorn I had been saving and we snuggled up to watch the movie together."
     elif (parenting_style == "permissive"):
         him normal "Oh, that's cool."
@@ -6859,7 +6866,7 @@ label family23:
         him doubt "No, I just meant you and I fit so well together."
         her flirting "Oh, well in that case I guess you were made for me, too."
         show him happy with dissolve
-        kid annoyed "Ugh, get a room, guys!"
+        kid annoyed "You guys are so cheesy."
     return
 
 # 14.8 Earth years old
@@ -6893,7 +6900,9 @@ label family24:
         "[kid_name].":
             him surprised "[kid_name]'s not a kid anymore . . . I wonder what she'll end up doing? Raising a bunch of kids, or researching crazy alien creatures, or farming like me?"
             him happy "I'm sure not ready to be a grandpa. Let's hope that doesn't happen for a long time yet."
-            him determined "It would serve her right to have kids as stubborn as she is someday."
+            him determined "But it would serve her right to have kids as stubborn as she is someday."
+            $ adjective = get_kid_adjective()
+            him concerned "Stubborn and [adjective]."
         "[bro_name].":
             him concerned "I still don't get [bro_name]. He doesn't talk much, and when he does it's about things I don't get, like factories or far-off galaxies or jellysquids."
             him normal "But I love him all the same."
@@ -8190,7 +8199,8 @@ label family29:
                 bro determined "Especially since she didn't get very good grades this year."
             him normal "I guess we can be happy for her, right?"
             bro concerned "Yeah, I guess so."
-            him surprised "She still doesn't know what she wants to do, though. It's so different from Earth."
+            $ adjective = get_kid_adjective()
+            him surprised "She's really [adjective], but she still doesn't know what she wants to do, though. It's so different from Earth."
             bro surprised "How is that?"
             him normal "On Earth, most kids went straight from high school to a job, or college, or training school, or something like that. Here, though, every kid is doing something different."
         "Catch up to [her_name].":
