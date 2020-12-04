@@ -7860,7 +7860,6 @@ label family27:
 
 # 17.3 Earth years old
 # Terra's job, plans for future
-# TODO: make sure this is consistent with community events
 label family28:
     scene farm_interior with fade
     show him normal at midleft
@@ -8530,9 +8529,9 @@ label family29:
 
 # 18.6 Earth years old (ENDING)
 label family30:
+    $ parenting_style = get_parenting_style()
     "Now that [kid_name] didn't have school every day, she had moved on to other things."
     $ boyfriend_name = ""
-    $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritarian"):    # aCi or aCI
         # Medicine, either at home or on Earth, trying to make her parents happy
         "She had been spending all her time at the clinic with [her_name], learning and assisting."
@@ -8602,23 +8601,31 @@ label family30:
     "Finally, I went and sat outside under the moons and stars."
     scene moons with fade
     "Every inch of ground was saturated with memories."
-    # TODO: use CGs here? Test these...
+    # TODO: Make polaroid style photos with these images.
+    #       We might also have CGs to use here.
+    # You can use "p" to take pictures and then pull those screenshots into GIMP and
+    # polaroid them.
+    # Then have them drift down over a black/star background one at a time.
+    scene stars with fade
+    show memory01 at tilted, driftdown
+    "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
+
     scene fields with fade
     show tractor at center
     show baby_laugh at center, babybackpack_pos
-    show him surprised at center
-    with dissolve # TODO: different transition here? photo style?
+    show him determined at center
+    with dissolve 
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
     scene farm_exterior with fade
     show him happy at midright
-    show toddler_happy at center
+    show toddler_happy at midleft
     with dissolve
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
     scene barn with fade
     show him happy at quarterleft
     show toddler_shifty at center
     show oleg normal at midleft
-    show travis normal at midright #TODO: show the right age for these guys. Or just make the image in GIMP and show it (screenshot if needed)
+    show travis normal at midright 
     with dissolve
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
     scene fields with fade
@@ -8627,17 +8634,20 @@ label family30:
     with dissolve
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
     scene path with fade
-    show tween_normal at midleft
-    show bro_normal at midright
+    show tween at midleft
+    show bro_kid_normal at center
     with dissolve
     "I remember her coming up that hill coming home from school with [bro_name]."
     scene barn with fade
+    show him annoyed at midleft    
     show goat at center
     show tween_annoyed at midright
-    show him normal at quarterleft
     with dissolve
     "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
     scene plain with fade
+    show him laugh at quarterleft
+    show her laugh coat at midleft
+    show teen_surprised at midright    
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
     scene barn with fade
     show oleg at midleft

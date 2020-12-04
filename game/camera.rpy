@@ -2,7 +2,9 @@
 # Python code to take screenshots, place them in the
 # "Photos" directory with a unique timestamp-based
 # filename.
-# TODO: opening and sharing screenshots
+#
+# Right now this is only used for achievements.
+# In the future we could add code for opening and sharing screenshots.
 #####################################################
 
 init python:
@@ -66,7 +68,7 @@ label show_photo_album:
     return
 
 # Display all the photos taken
-# TODO: Store metadata such as year taken, and group accordingly?
+# (not currently used; photos can be taken by pressing 'p' and gallery shown by pressing 'g')
 screen photo_album():
     style_prefix "plan_farm"
     frame:
@@ -109,7 +111,7 @@ screen photo_album_grid():
 
 # Show one photo, full screen. 
 # When you click, hide it.
-# TODO: Add deleting photos, sharing photos?
+
 screen show_photo(photo):
     imagebutton:
         idle photo

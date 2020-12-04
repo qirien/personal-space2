@@ -780,7 +780,7 @@ label message30:
     him_c "If you can't appreciate the amazing beauty of Talaam, you don't deserve to be here."
     brennan_c "I certainly deserve better than this."
     julia_c "So who's in charge of the miners now?"
-    brennan_c "Someone new. Only a few miners are staying on for a second term."
+    brennan_c "Chaco, for now. Only a few miners are staying on for a second term."
     her_c "We wish you well, Brennan."
 
     nvl clear

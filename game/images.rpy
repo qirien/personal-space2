@@ -52,6 +52,14 @@ init -10:
     # Temporary Sprites: TODO delete these
     image oleg normal = im.MatrixColor("images/sprites/boy sad.png", im.matrix.brightness(-0.5))
     image travis normal = "images/sprites/boy normal.png"
+    image baby_laugh = "kid-sprites/baby_laugh.png"
+    image toddler_happy = "kid-sprites/toddler_happy.png"
+    image toddler_shifty = "kid-sprites/toddler_shifty.png"
+    image kid_happy = "kid-sprites/kid_happy.png"
+    image tween_annoyed = "kid-sprites/tween_annoyed.png"
+    image teen_flirting = "kid-sprites/teen_flirting.png"
+    image teen_surprised = "kid-sprites/teen_surprised.png"    
+    image bro_kid_normal = "bro-sprites/kid_normal.png"    
 
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)

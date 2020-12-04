@@ -228,6 +228,11 @@ init -100:
             yalign 0.5
             ease 10.0 yalign 0.8
 
+    transform driftdown:
+        xpos 200 ypos 0.0 yanchor 1.0
+        linear 10.0 ypos 1.0 yanchor 0.0
+
+
 
     # Baby positions for being held
     define baby_ypos = 540

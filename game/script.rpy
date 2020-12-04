@@ -272,8 +272,12 @@ label start:
         "Testing":
             call tests
 
+    # TODO: Take this out when beta testing is over
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+
     "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
+    if (not mp.jack_name):
+        "If you haven't played Our Personal Space 1, it's available for free at http://www.metasepiagames.com and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve

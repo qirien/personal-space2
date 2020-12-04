@@ -61,6 +61,6 @@ label credits:
     $ renpy.pause(3.0, hard=skippable)
 
     "Thank you for playing Our Personal Space 2: Space to Grow!"
-    # TODO: add link, survey, etc?
+    # add link, survey, etc?
 
     $ renpy.full_restart()

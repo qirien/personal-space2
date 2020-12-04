@@ -65,7 +65,7 @@ label community1:
     him concerned "Yeah, she wants to give the new colonists their first physical as soon as possible. Plus, [kid_name] fell asleep at the clinic and we didn't want to wake her."
     ilian normal "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
     him happy "At least there's free soup."
-    ilian "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
+    ilian angry "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "We got our soup and I decided to sit with some of the new colonists."
     scene community_center with fade
     show him normal at midleft
@@ -3710,7 +3710,7 @@ label community17:
     thuc normal "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
     thuc sad "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
     julia "Oh, and don't forget Cape!"
-    julia mad "Last year Gardenia insisted on wearing this cape she made everywhere."
+    julia angry "Last year Gardenia insisted on wearing this cape she made everywhere."
     julia normal "She brought it out today to dress up for the begging."
     "After the children finished eating, they ran around with pails of water."
     "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
@@ -3719,7 +3719,7 @@ label community17:
     "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
     pavel sad "It's a shame we don't have any chocolate to give them."
     natalia "I miss it too."
-    julia mad "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
+    julia angry "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
     thuc sad "They still sound pretty entitled to me!"
     him laugh "Some things never change."
     stop sound fadeout 1.0
@@ -3746,7 +3746,7 @@ label community17:
                 "This was going to be a tough contest."
                 show sara normal at midleft with moveinleft
                 "Sara entered, but her first one ended up dribbling out of her mouth. She tried to spit the second one better, but it ended up hitting Julia on the chin."
-                julia mad "Out of bounds!"
+                julia angry "Out of bounds!"
                 hide sara with moveoutright
                 show kid shifty at midleft with moveinleft
                 show julia normal with dissolve
@@ -4223,7 +4223,7 @@ label community17:
         hide ilian with moveoutright
         stop music fadeout 2.0
         play music audio.exciting fadein 5.0
-        show julia mad at quarterright with moveinleft
+        show julia angry at quarterright with moveinleft
         "Next, Julia sang a song about how she was the best at everything. It was supposed to be funny, but it was a little too true. She did have a good voice, though."
         her surprised "Did she used to sing opera?"
         him surprised "Maybe so!"
@@ -7075,7 +7075,7 @@ label community28:
                     her nervous "This isn't necessary. He doesn't want to be dependent on others for the last years of his life."
                     him pout "I don't want to live in the kind of place where people have to die just because they aren't useful anymore."
                     her angry "It's what Pavel wants."
-                    julia mad "I agree with [his_name]. I want to take care of our sick and elderly."
+                    julia angry "I agree with [his_name]. I want to take care of our sick and elderly."
                     her annoyed "Sara?"
                     sara sad "I do think Pavel's desire is important, but it could bring everyone together if we work together to essentially give him hospice care."
                     her concerned "Brennan?"
@@ -7143,7 +7143,7 @@ label fill_gap:
     sara "Other questions about the candidates?"
     show thuc normal at left with moveinleft
     thuc "Don't vote for Julia! I need her to oversee my water treatment plant."
-    show julia mad at quarterleft with moveinleft
+    show julia angry at quarterleft with moveinleft
     julia "Please vote for me! I don't want to oversee Thuc's sewage factory."
     hide thuc
     hide julia
@@ -7683,20 +7683,20 @@ label community30:
         julia "Yes, please."
         #block him getting the tea?
         him normal "Okay, so tell me more about what happened."
-        julia mad "Do you remember about two Earth years ago, there was a woman who almost killed herself?"
+        julia angry "Do you remember about two Earth years ago, there was a woman who almost killed herself?"
         menu:
             "Yes":
                 him pout "Sure. There was a town council to see how we could help her."
                 julia normal "I was reading about that meeting in my special mayor files."
                 julia "[her_name] called her Carol in that meeting. But her real name is Noel."
                 him laugh "Yes, [her_name] is big on preserving patient confidentiality. Well, at least I thought she was."
-                julia mad "Not a very good pseudoname for her, was it?"
+                julia angry "Not a very good pseudoname for her, was it?"
                 him smirk "Nope."
             "No":
                 him pout "A woman who almost killed herself? I don't remember that."
                 julia normal "She was under a lot of pressure at the time."
                 julia "Her husband was recently disabled, they had two small children, and she became the family's main breadwinner."
-                julia mad "In my special mayor files, they referred to her as Carol, but her real name is Noel."
+                julia angry "In my special mayor files, they referred to her as Carol, but her real name is Noel."
                 him laugh "Wow, great pseudoname."
                 julia normal "You can see how it was easy for me to make the connection there."
         julia "Noel's husband, Joel, died from blunt head trauma last night."
@@ -7704,12 +7704,12 @@ label community30:
         julia "Noel says that she and Joel were on their front porch searching the night sky for shooting stars."
         julia "It started raining and they were about to go inside, but Joel wanted to watch a little longer."
         julia "They saw a really spectacular shooting star."
-        julia mad "He dropped his binoculars but told her to keep watching. He reached down to grab them and his wheelchair tipped over."
+        julia angry "He dropped his binoculars but told her to keep watching. He reached down to grab them and his wheelchair tipped over."
         julia normal "He fell face-first onto their porch."
-        julia mad "She rolled him over and attempted CPR when she noticed that he was unconscious."
+        julia angry "She rolled him over and attempted CPR when she noticed that he was unconscious."
         julia normal "By the time she received assistance from the nearby nurse, he was already dead."
         him doubt "I see. Is [her_name] going to do an autopsy?"
-        julia mad "Yes, the body was just delivered to the medical wing this morning."
+        julia angry "Yes, the body was just delivered to the medical wing this morning."
         him normal "Do I have your official authorization to question Noel and any witnesses?"
         julia normal "Yes, of course!"
         him determined "Can I get that in writing?"
@@ -7719,7 +7719,7 @@ label community30:
         him normal "Looks good."
         him determined "Can I collect evidence?"
         julia "I doubt you'll find any more, but that is permissible."
-        julia mad "We took photos of the body before we moved it, and we took Joel's belongings for further investigation."
+        julia angry "We took photos of the body before we moved it, and we took Joel's belongings for further investigation."
         julia normal "I'll share the photos with you."
         julia "Joel's things are with his body in the hospital."
         julia "Oh, and Noel has a lot of society anxiety and asked not to be questioned in-person."
@@ -8172,7 +8172,7 @@ label community30:
             if knows_previous_head_injuries:
                 him pout "Possibly. But [her_name] said that it was likely that he had received previous head injuries."
                 him "Van also mentioned him falling frequently."
-                julia mad "This is sounding more like neglect?"
+                julia angry "This is sounding more like neglect?"
             else:
                 him pout "Van says that Joel may have been too distracted by the shooting star to break his fall."
                 julia "So it could have been an accident?"
@@ -8187,14 +8187,14 @@ label community30:
             him pout "I have some ideas, but I still have a few leads I want to pursue. You can read my final report when I finish it."
             julia "I see."
         him determined "On Joel's tablet, there were a few messages to you. Do you know anything about that?"
-        julia mad "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying; she used the tablet to communicate with Noel about firegrass deliveries
+        julia angry "That must have been Van. Sometimes he forgot his own tablet and used Joel's to tell me if he'd be home for dinner." #she's lying; she used the tablet to communicate with Noel about firegrass deliveries
         him pout "Okay, that makes sense."
         him surprised "One more thing. I found this ring-like object at Noel's house. Do you know what it is?"
         "It seemed like Julia recognized it."
         julia normal "Maybe some kind of toy?"
         him normal "I had Ilian look in the printing history and he said that you printed it."
         julia "Is that right? I've printed a lot of things..."
-        julia mad "Maybe this was an experimental canning lid."
+        julia angry "Maybe this was an experimental canning lid."
         julia normal "Do keep me updated about the status of the case."
         if not kevin_elected:
             him "Will do."
@@ -8738,7 +8738,7 @@ label community30:
                         show julia normal at midright with dissolve
                         show him determined at midleft with moveinleft
                         him "I've investigated Joel's death and I believe it was the result of chronic neglect."
-                        julia mad "That's so tragic. What happened, exactly?"
+                        julia angry "That's so tragic. What happened, exactly?"
                         him explaining "As I told you earlier, the brakes on his wheelchair weren't working."
                         him "When he reached down to pick up his binoculors, he fell. He died from the resulting head injury."
                         if knows_previous_head_injuries:
