@@ -1884,13 +1884,14 @@ label work28:
     "I thought since we were several minutes early we'd definitely be one of the first 10 customers..."
     play music upbeat
     scene restaurant with fade
-    show miners at right
-    show travis normal at midright with dissolve
+    show miners at center
+    show travis normal at right with dissolve
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
     "Plus, the place wasn't that big."
     "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
     "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
+    hide miners with moveoutright
     show him normal at center
     show her normal at midleft
     show kid normal at quarterleft
@@ -1899,15 +1900,14 @@ label work28:
     "We waited in line for thirty minutes while he and his sister cooked pancakes."
     if community_22_mined_anyway:
         "He had adapted quite well to his prosthetic leg; he didn't even limp anymore."
-    show travis at right
     show him at midright
     show her at center
     show kid at midleft
     show bro at quarterleft
     with move
-    travis "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
+    travis excited "Welcome! It's ten credits each! Apple cider's an additional five; all we have left is soft cider."
     kid determined "Are your parents okay with you running a restaurant?"
-    travis "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
+    travis normal "Sure. As long as I earn enough to pay them back for all the supplies I had to buy."
     menu:
         "What should I say?"
         "Forget it!":
@@ -1920,9 +1920,9 @@ label work28:
             $ modify_credits(-60)
         "Just pancakes.":
             him normal "Just pancakes for four."
-            travis "Pancakes for four, got it!"
+            travis happy "Pancakes for four, got it!"
             her concerned "Oh, I wanted to try the cider..."
-            travis "Plus one cider!"
+            travis normal "Plus one cider!"
             $ modify_credits(-45)
             $ travis_points += 1
         "Pancakes and cider for the whole family!":
@@ -1962,22 +1962,22 @@ label work28:
     show him at midleft with move
     show travis normal at midright with moveinright
 
-    travis "Hey, I wanted to talk to you."
+    travis normal "Hey, I wanted to talk to you."
     him surprised "To me?"
-    travis "Yeah, you grow potatoes, right?"
+    travis happy "Yeah, you grow potatoes, right?"
     him normal "Sometimes..."
-    travis "I want to add potato dishes to the menu. They're cheap, filling, and easy. Can I get your promise that you'll grow at least three fields of potatoes next year and sell them to me?"
+    travis normal "I want to add potato dishes to the menu. They're cheap, filling, and easy. Can I get your promise that you'll grow at least three fields of potatoes next year and sell them to me?"
 
     menu:
         "What should I say?"
         "As long as your price is reasonable.":
-            travis "Oh, it'll be very reasonable. In fact, I'm willing to pay you a lot more than the storehouse for your very best potatoes."
+            travis excited "Oh, it'll be very reasonable. In fact, I'm willing to pay you a lot more than the storehouse for your very best potatoes."
             him happy "Then we have a deal!"
             $ year28_promised_potatoes = True
 
         "I can't promise that.":
             him concerned "There's a lot of factors that come into play while planning my farm... I can't promise you that."
-            travis "I see. Well, I'm sure someone else grows potatoes."
+            travis angry "I see. Well, I'm sure someone else grows potatoes."
     hide travis with moveoutright
     show him at midright with move
     show pete normal at quarterleft with moveinleft

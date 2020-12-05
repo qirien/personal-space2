@@ -2492,7 +2492,7 @@ label family8:
     show kid normal at center with move
     "She scooped up some mud of her own and flung it his way, but it hit Oleg instead, who was busy drawing in the dirt with a stick."
     show travis at squatting with move
-    #show oleg sad with dissolve
+    show oleg sad with dissolve
     show travis at left with move
     "He started crying."
     "[kid_name] didn't seem to notice; she was still chasing down Travis."
@@ -2515,7 +2515,7 @@ label family8:
             him annoyed "You need to go apologize to him."
             "She yelled over at Oleg, who was still wiping his face off onto his shirt."
             kid surprised "Sorry, Oleg!"
-            oleg "..."
+            oleg normal "..."
             menu:
                 "What should I do?"
                 "Insist on a better apology.":
@@ -2528,7 +2528,7 @@ label family8:
                     "She ran over to Oleg."
                     show kid shifty at center with move
                     kid shifty "I'm sorry."
-                    oleg "It's okay."
+                    oleg sad "It's okay."
                     kid angry "There; are you happy now?!"
                     "I sighed. It was so much work to keep up with that child..."
                 "Teach her about apologies later.":
@@ -2568,10 +2568,10 @@ label family8:
             with moveoutleft
             show him at center with move
             him concerned "Sorry about that, Oleg. Here, you can wipe the mud off with this."
-            oleg "Okay. I hate being dirty."
+            oleg normal "Okay. I hate being dirty."
             "Once Oleg got cleaned up, he didn't seem too upset, but went back to his drawing. I was a little jealous of Ilian and Sara sometimes -- how come they got such an easygoing kid?"
-            show kid happy at quarterright
-            show travis normal at right
+            show kid happy behind rain at quarterright
+            show travis normal behind rain at right
             with moveinright
             "[kid_name] ran back toward us, racing Travis, and I had to smile."
             "She wasn't an easy kid -- but I loved her vibrant energy and insatiable curiosity...even when it sometimes exhausted me."
@@ -2581,7 +2581,7 @@ label family8:
                     $ demanding += 1
                     him doubt "[kid_name], you hit Oleg in the face with a mudball and then ran away."
                     kid shifty "Oh. Sorry, Oleg!"
-                    oleg "It's okay."
+                    oleg sad "It's okay."
                 "Let it go.":
                     "Oleg was fine; no need to bring that up again."
 
@@ -2655,14 +2655,17 @@ label family8:
             with moveoutleft
             scene path with fade
             show sara normal at midleft
-            show oleg normal at quarterleft            
+            show oleg sad at quarterleft            
             with dissolve
             show him concerned at midright
             show her concerned coat at center
+            show kid normal at center
             with moveinright
             show her concerned coat with dissolve
             "We walked over and [her_name] pointed to [kid_name] and told Oleg about some of the things she said she wanted to do with Oleg at school."
-            "We walked over to the door together, and finally Oleg peeked inside."
+            show oleg normal
+            with dissolve
+            "While she talked, we walked over to the door together, and finally Oleg peeked inside."
             hide oleg with moveoutleft
             kid "Oleg! You're here! Come on!"
             sara sad "Thanks, guys. I really hope Oleg will be okay..."
@@ -2684,16 +2687,16 @@ label family8:
             "She handed him a small empty bowl with a little spoon. He pretended to take a bite."
             oleg "That's delicious! I like the raisins."
             kid shifty "Travis grew them for me. He's the dad, and I'm the mom, and you can be the baby."
-            oleg "Wahhh, wahhhh!"
+            oleg sad "Wahhh, wahhhh!"
             show kid at center with move
             kid concerned "There, there, baby, have some more cornmeal mush."
-            oleg "Ptooey!"
+            oleg happy "Ptooey!"
             "He pretended to spit it out. He did a pretty good impression of a little baby."
             show travis normal at midright with moveinright
             travis "Dinosaurs with bazookas are coming! Fight them off!"
             show kid angry at pace_back_and_forth
-            show oleg at pace_back_and_forth
-            show travis at pace_back_and_forth
+            show oleg normal at pace_back_and_forth
+            show travis happy at pace_back_and_forth
             "[kid_name] swatted the air with her frying pan while Travis used a rolling pin as a gun and Oleg made some swatting motions in the air."
             "Teacher" "It's circle time! Everyone sit on the rug!"
             hide travis
@@ -2943,7 +2946,7 @@ label family9:
     show kid happy at quarterright, standing with move
     him happy "Welcome home! Oh, I see you brought Oleg with you. Hi, there!"
     show oleg at center with move
-    oleg "Hello, Mr. [his_name]."
+    oleg normal "Hello, Mr. [his_name]."
     kid shifty "Is it okay if Oleg comes over to play?"
     him normal "Of course!"
     "Oleg was so polite and obedient; he hardly ever got into trouble. [kid_name] actually behaved better when he was around."
@@ -2964,14 +2967,16 @@ label family9:
     if (year6_have_baby):
         show bro normal at midleft, baby_pos
     with moveinleft
-    oleg "[kid_name]..."
+    oleg sad "[kid_name]..."
     kid normal "Now go around in a circle. We have to patrol the whole farm for crabirds."
-    oleg "{b}Then{/b} can we play something else?"
+    oleg normal "{b}Then{/b} can we play something else?"
     kid shifty "Maybe."
+    show oleg sad with dissolve
     "Poor Oleg. He was perhaps a little too nice..."
     him concerned "[kid_name], you can't have a rope around someone's neck. That's too dangerous."
     kid annoyed "Awww, dad!"
     "She took the rope off, and Oleg looked a little relieved."
+    show oleg normal with dissolve
     menu:
         "What else should I say?"
         "Maybe you should play something else.":
@@ -2984,7 +2989,7 @@ label family9:
             $ demanding += 1
             him annoyed "Quit bossing Oleg around. He's not going to want to play with you anymore."
             kid angry "Oleg likes playing with me! Don't you, Oleg?"
-            oleg "I do... but {size=-10}I want to play something else{/size}."
+            oleg sad "I do... but {size=-10}I want to play something else{/size}."
             him surprised "What do you want to play, Oleg?"
             $ authoritarian += 1
         "Come here so I can talk to you privately.":
@@ -3007,25 +3012,25 @@ label family9:
             "They didn't need me to tell them what to do. If Oleg didn't like playing horsie, he could just say so."
             $ neglectful += 1
             jump family9_sara
-    oleg "Umm, I don't know..."
+    oleg normal "Umm, I don't know..."
     kid yell "See? If we don't do what I want to do, then we just end up doing nothing!"
     him normal "Figure out something to do together. Maybe that game where you pretend to be on a spaceship visiting different planets?"
     $ oleg_points += 1
-    oleg "Yeah! We can go to pillow planet that's full of pillows!"
+    oleg happy "Yeah! We can go to pillow planet that's full of pillows!"
     kid happy "And applesauce planet!"
     label family9_sara:
         "I was about to leave when Sara walked in."
         show sara sad at left with moveinleft
         sara "Oleg! Where have you been?!"
-        oleg "Just playing."
+        oleg sad "Just playing."
         sara "When you didn't come home from school I was so worried!"
         "Our eyes met, and I knew were were both thinking of Josephina, the Peron's little girl who had gone missing seven years ago."
         "Anytime a kid was missing, we all remembered searching for her all night long, her dead body washing ashore, her funeral..."
         him concerned "I'm sorry; I thought you knew he was here."
-        oleg "[kid_name] wanted me to come play..."
+        oleg normal "[kid_name] wanted me to come play..."
         sara normal "Well, you can't just do whatever [kid_name] says. You have to do what your momma says."
         show oleg at quarterleft with move
-        oleg "I'm sorry, momma."
+        oleg sad "I'm sorry, momma."
         "The poor kid looked about to cry."
         sara "It's okay, baby. It's okay."
         "We setup a schedule where Oleg could come play on certain days, and [kid_name] would play at his house on other days."

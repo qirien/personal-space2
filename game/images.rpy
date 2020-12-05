@@ -50,8 +50,6 @@ init -10:
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
     # Temporary Sprites: TODO delete these
-    image oleg normal = im.MatrixColor("images/sprites/boy sad.png", im.matrix.brightness(-0.5))
-    image travis normal = "images/sprites/boy normal.png"
     image baby_laugh = "kid-sprites/baby_laugh.png"
     image toddler_happy = "kid-sprites/toddler_happy.png"
     image toddler_shifty = "kid-sprites/toddler_shifty.png"
@@ -65,6 +63,7 @@ init -10:
     # Define images for kid (baby, toddler, young, tween, teen)
     init python:
         kid_expressions = ["angry", "annoyed", "cry", "concerned", "determined", "flirting", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
+        simple_expressions = ["happy", "normal", "sad", "angry", "excited"]
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
             renpy.image(("kid", expression_name), ConditionSwitch(
@@ -82,6 +81,20 @@ init -10:
                 "(year-bro_birth_year) <= TODDLER_MAX", "bro-sprites/toddler_%s.png" % expression_name,
                 "(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/kid_%s.png" % expression_name,
                 "True", "bro-sprites/tween_%s.png" % expression_name))
+
+        # Images for Oleg
+        for expression_name in simple_expressions:
+            renpy.image(("oleg", expression_name), ConditionSwitch(
+                "year <= CHILD_MAX", "oleg-sprites/kid %s.png" % expression_name,
+                "year <= TWEEN_MAX", "oleg-sprites/tween %s.png" % expression_name,
+                "True", "oleg-sprites/teen %s.png" % expression_name))    
+
+        # Images for Travis
+        for expression_name in simple_expressions:
+            renpy.image(("travis", expression_name), ConditionSwitch(
+                "year <= CHILD_MAX", "travis-sprites/kid %s.png" % expression_name,
+                "year <= TWEEN_MAX", "travis-sprites/tween %s.png" % expression_name,
+                "True", "travis-sprites/teen %s.png" % expression_name))                                
 
     define photo_scale_factor = 0.7
 
