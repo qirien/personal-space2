@@ -37,7 +37,7 @@ label message2:
     him_c "Sure, I've got potatoes."
     julia_c "I was hoping for something more... flavorful."
     him_c "Potatoes have plenty of flavor!"
-    martín_c "I have artichokes."
+    martin_c "I have artichokes."
     julia_c "That sounds perfect!"
     natalia_c "But we don't need any rice. I was hoping to get some potatoes."
     pete_c "This is starting to sound like a riddle."
@@ -140,7 +140,7 @@ label message6:
         sara_c "Hope you're all planning on coming to the harvest festival next week!!! {emoji=grin}"
     natalia_c "I just hope we can finish the harvest by then."
     julia_c "Having trouble, are you? I expect to be done tomorrow."
-    martín_c "It'll work out. It helped having the school kids home for the week."
+    martin_c "It'll work out. It helped having the school kids home for the week."
     natalia_c "Though we might not have time to do a corn maze like last year."
     him_c "No corn maze?! We gotta do something about that!"
     ilian_c "Shouldn't the food be your highest priority?!"
@@ -188,7 +188,7 @@ label message8:
     sara_c "I've seen you guys in town a lot... is Martín sick again? {emoji=surprised}"
     natalia_c "When is he not?"
     kevin_c "Does he have a chronic illness?"
-    martín_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
+    martin_c "Skin cancer. We keep thinking we got rid of it, but then it comes back somewhere else."
     naomi_c "Can I come over to help you around the house? I'm afraid these old bones aren't much good for harvesting, but I'm sure there's something I can help you with."
     natalia_c "Thank you, Naomi, I'll let you know."
 
@@ -788,57 +788,55 @@ label message30:
 
 
 
-# TODO: redo these with new colors, make icons, etc.
+# TODO: make new icons
 # NVL mode characters for chat rooms, etc
 define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images/icons/her-icon.png} ",
-    color="#84b766", image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # mint green # TODO: should this match something in her clothes?
+    color=rose, image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define him_c = Character("his_name", dynamic=True, who_suffix = "  {image=images/icons/him-icon.png} ",
-    color="#bc1e0e", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # red of his eyes
+    color=red_med, image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define kid_c = Character("kid_name", dynamic=True,
 #who_suffix = "  {image=images/icons/kid-icon.png} ",
-        color="#ca67ac", image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled") # reddish purple
+        color=magenta, image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
-    color="#bf98ff", image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #lavender
+    color=lavendar_gray, image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #lavender
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
-    color="#cccccc", image="pavel_c", kind=nvl, ctc="ctc_blink", ctc_position="nestled")   #gray
+    color=tan_dark, image="pavel_c", kind=nvl, ctc="ctc_blink", ctc_position="nestled")   #gray
 define lily_c = Character("Dr. Lily", who_suffix = "  {image=images/icons/lily-icon.png} ",
-    color="#655283", image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #dark purple
+    color=lavendar, image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  
 define sara_c = Character("Sara", who_suffix = "  {image=images/icons/sara-icon.png} ",
-    color="#ff6767", image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  # salmon pink
+    color=rose_dark, image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
 define thuc_c = Character("Thuc", who_suffix = "  {image=images/icons/thuc-icon.png} ",
-    color="a9ff22", image="thuc", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #lime green
+    color=green_army, image="thuc", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-icon.png} ",
-    color="d2d099", image="ilian", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #khaki
+    color=yellow_light, image="ilian", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define brennan_c = Character("Brennan", who_suffix = "  {image=images/icons/brennan-icon.png} ",
-    color="119811", image="brennan", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #irish green
+    color=green_med, image="brennan", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define pete_c = Character("Pete", who_suffix = "  {image=images/icons/pete-icon.png} ",
-    color="ee7755", image="pete", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #rusty brown
+    color=brown_light, image="pete", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  
 define natalia_c = Character("Natalia", who_suffix = "  {image=images/icons/natalia-icon.png} ",
-    color="f3ca14", image="natalia", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+    color=orange_you_glad, image="natalia", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
 define helen_c = Character("Helen", who_suffix = "  {image=images/icons/helen-icon.png} ",
-    color="77b8ef", image="helen", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #sky blue
+    color=gray_med, image="helen", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-icon.png} ",
-    color="#e7b1cb", image="julia", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #icy pink
-define martín_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
-    color="#9b5b1d", image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #brown
+    color=blue_ice, image="julia", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+define martin_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
+    color=dust_of_the_earth, image="martin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define anya_c = Character("Anya",
-    #who_suffix = "  {image=images/icons/miranda-icon.png} ",
     color="#53b5ab", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #cyan
 define lewis_c = Character("Mr. Lewis",
     color="f3ca14", image="lewis", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
-# TODO: change these colors here and in defines.rpy once we have images for them
 define zaina_c = Character ("Zaina",
     #who_suffix = "  {image=images/icons/zaina-icon.png} ",
-    color="#d8cd87", image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
+    color=yellow_gold, image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
 define kevin_c = Character ("Kevin",
     #who_suffix = "  {image=images/icons/kevin-icon.png} ",
-    color="#324cc5", image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
+    color=yellow, image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
 define oleg_c = Character("Oleg",
 #who_suffix = "  {image=images/icons/oleg-icon.png} ",
-    color="#d8a687", image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #sandstone
+    color=blue_mako, image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define travis_c = Character("Travis",
 #who_suffix = "  {image=images/icons/travis-icon.png} ",
-    color="#ee7755", image="travis", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #rusty brown
+    color=red_light, image="travis", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define van_c = Character("Van",
 #who_suffix = "  {image=images/icons/van-icon.png} ",
         color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue

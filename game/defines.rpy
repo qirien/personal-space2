@@ -140,33 +140,31 @@ init -100:
     ##
     # Declare characters
     ##
-
-    # TODO: Redo colors when sprites are done
     define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
 
-    define her = Character("[her_name]", who_color="#d1a2b8", image="her", ctc="ctc_blink", ctc_position="nestled") #light fuschia
-    define him = Character("[his_name]", who_color="#bc1e0e", image="him", ctc="ctc_blink", ctc_position="nestled") #red
-    define kid = Character("[kid_name]", who_color="#5f2b4f", image="kid", ctc="ctc_blink", ctc_position="nestled") #reddish purple
-    define bro = Character("[bro_name]", who_color="#4a9be0", image="bro", ctc="ctc_blink", ctc_position="nestled") #baby blue
+    define her = Character("[her_name]", who_color=rose, image="her", ctc="ctc_blink", ctc_position="nestled") 
+    define him = Character("[his_name]", who_color=red_med, image="him", ctc="ctc_blink", ctc_position="nestled") 
+    define kid = Character("[kid_name]", who_color=magenta, image="kid", ctc="ctc_blink", ctc_position="nestled") 
+    define bro = Character("[bro_name]", who_color=green_sage, image="bro", ctc="ctc_blink", ctc_position="nestled") 
 
-    define naomi = Character("Sister Naomi", who_color="#bf98ff", image="naomi", ctc="ctc_blink", ctc_position="nestled")  #lavendar
-    define pavel = Character("Mayor Pavel", who_color="#cccccc", image="pavel", ctc="ctc_blink", ctc_position="nestled")   #gray
-    define lily = Character("Dr. Lily", who_color="#655283", image="lily", ctc="ctc_blink", ctc_position="nestled")  #purple
-    define sara = Character("Sara", who_color="#ff6767", image="sara", ctc="ctc_blink", ctc_position="nestled")  # salmon pink
-    define thuc = Character("Thuc", who_color="#a9ff22", image="thuc", ctc="ctc_blink", ctc_position="nestled")  #lime green
-    define ilian = Character("Ilian", who_color="#d2d099", image="ilian", ctc="ctc_blink", ctc_position="nestled") #tangerine
-    define oleg = Character("Oleg", who_color="#d8a687", image="oleg", ctc="ctc_blink", ctc_position="nestled") #sandstone
-    define brennan = Character("Brennan", who_color="#33b533", image="brennan", ctc="ctc_blink", ctc_position="nestled")  #irish green
-    define pete = Character("Pete", who_color="#ee7755", image="pete", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define natalia = Character("Natalia", who_color="#f3ca14", image="natalia", ctc="ctc_blink", ctc_position="nestled")  #yellow
-    define helen = Character("Helen", who_color="#77b8ef", image="helen", ctc="ctc_blink", ctc_position="nestled") #icy gray
-    define travis = Character("Travis", who_color="#ee7755", image="travis", ctc="ctc_blink", ctc_position="nestled")  #rusty brown
-    define julia = Character("Julia", who_color="#e7b1cb", image="julia", ctc="ctc_blink", ctc_position="nestled") #icy blue
-    define martin = Character("Martín", who_color="#9b5b1d", image="martin", ctc="ctc_blink", ctc_position="nestled")  #dark red
+    define naomi = Character("Sister Naomi", who_color=lavendar_gray, image="naomi", ctc="ctc_blink", ctc_position="nestled") 
+    define pavel = Character("Mayor Pavel", who_color=tan_dark, image="pavel", ctc="ctc_blink", ctc_position="nestled") 
+    define lily = Character("Dr. Lily", who_color=lavendar, image="lily", ctc="ctc_blink", ctc_position="nestled") 
+    define sara = Character("Sara", who_color=rose_dark, image="sara", ctc="ctc_blink", ctc_position="nestled")
+    define ilian = Character("Ilian", who_color=yellow_light, image="ilian", ctc="ctc_blink", ctc_position="nestled")  
+    define oleg = Character("Oleg", who_color=blue_mako, image="oleg", ctc="ctc_blink", ctc_position="nestled") 
+    define brennan = Character("Brennan", who_color=green_med, image="brennan", ctc="ctc_blink", ctc_position="nestled")  
+    define pete = Character("Pete", who_color=brown_light, image="pete", ctc="ctc_blink", ctc_position="nestled")  
+    define helen = Character("Helen", who_color=gray_med, image="helen", ctc="ctc_blink", ctc_position="nestled")
+    define travis = Character("Travis", who_color=red_light, image="travis", ctc="ctc_blink", ctc_position="nestled")    
+    define natalia = Character("Natalia", who_color=orange_you_glad, image="natalia", ctc="ctc_blink", ctc_position="nestled")  
+    define martin = Character("Martín", who_color=dust_of_the_earth, image="martin", ctc="ctc_blink", ctc_position="nestled")
+    define thuc = Character("Thuc", who_color=green_army, image="thuc", ctc="ctc_blink", ctc_position="nestled")  
+    define julia = Character("Julia", who_color=blue_ice, image="julia", ctc="ctc_blink", ctc_position="nestled") 
 
-    define chaco = Character("Chaco", who_color="#ee670b", image="chaco", ctc="ctc_blink", ctc_position="nestled") #pumpkin orange
-    define kevin = Character("Kevin", who_color="#324cc5", image="kevin", ctc="ctc_blink", ctc_position="nestled")#dark blue
-    define zaina = Character("Zaina", who_color="#ffcc00", image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow
+    define chaco = Character("Chaco", who_color=blue_dusty_ice, image="chaco", ctc="ctc_blink", ctc_position="nestled") 
+    define kevin = Character("Kevin", who_color=yellow, image="kevin", ctc="ctc_blink", ctc_position="nestled")
+    define zaina = Character("Zaina", who_color=yellow_gold, image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow
     define jellysquid = Character("", kind=nvl, who_color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
 
     define tutorial = Character("Tutorial", who_color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray

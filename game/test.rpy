@@ -473,18 +473,95 @@ label tests:
 
 label test_dialogue:
     $ year = 25
-    scene aurora_animated with fade
+    scene farm_interior with fade
     show him normal at midright
     show her happy at midleft
     with dissolve
     her happy "Thanks so much for taking my turn tonight! I had a crazy day."
     him flirting "I'll cook for you any time!"
-    show kid normal at center with moveinleft
+    show kid normal at center
+    show bro normal at quarterleft
+    with moveinleft
     kid surprised "WHAT is THAT?!"
     him pout "It's dinner."
     kid annoyed "Yeah, but what is it?!"
-    her concerned "Is it... crabird?"
+    bro concerned "Is it... crabird?"
     him annoyed "No!"
+
+    scene yurt_interior with fade
+    show naomi normal at midright
+    show pavel normal at midleft
+    with dissolve
+    naomi sad "Jack brought over something for dinner..."
+    pavel sad "What in the world could it be?"
+
+    scene mine with fade
+    show brennan normal at midright
+    show chaco normal at midleft
+    with dissolve
+    brennan surprised "Did someone... grow this?"
+    chaco sad "Maybe?"
+
+    scene fields with fade
+    show natalia normal at midright
+    show martin normal at midleft
+    with dissolve
+    natalia happy "I heard Jack brought us dinner!"
+    martin angry "If you could call it that."
+
+    scene shack with fade
+    show sara normal at midright
+    show ilian normal at center
+    show oleg normal at midleft    
+    with dissolve
+    sara sad "Where did you say you got this?"
+    oleg angry "Jack was giving them away..."
+    ilian angry "Just because it's free doesn't mean it's any good!"
+
+    scene path with fade
+    show julia normal at midright
+    show thuc normal at midleft
+    with dissolve
+    julia angry "I hope you didn't pay money for this!"
+    thuc happy "I can't tell if I'm supposed to eat it or bury it!"
+
+    scene cave with fade
+    show pete normal at midright
+    show helen normal at midleft
+    show travis normal at center
+    show lily normal at quarterleft
+    with dissolve
+    travis angry "Am I seriously supposed to eat this?!"
+    helen sad "It's what we have, sweetie."
+    pete angry "You ain't eating anything with that attitude! Better say 'thank you' first!"
+    lily angry "I require independent verification of edibility first."
+
+    scene cabins with fade
+    show kevin normal at midright
+    show zaina normal at midleft
+    with dissolve
+    kevin concerned "Could it be for dissolving pipe blockages?"
+    zaina sad "Jack made it sound like you could eat it..."
+
+    scene farm_interior with fade
+    show him determined at midright
+    show her concerned at midleft
+    show kid annoyed at center
+    show bro concerned at quarterleft
+    with dissolve
+    
+    him yell "Don't tell me everyone's too scared to try a new food?!"
+    kid determined "I'm not afraid of anything. I'll try it."
+    her surprised "What does it taste like?"
+    kid surprised "It tastes like..."
+    him surprised "..."
+    kid happy "Garlic spinach cheese sauce?"
+    her normal "Wait, did you make pesto?"
+    him annoyed "Yes! I worked all day on that and shared it with everyone in town and you're acting like I'm making you eat mud!"
+    bro normal "I think it looks more like--"
+    him angry "Careful-- I'm not giving any to people that disparage my cuisine!"
+    bro happy "---like something I want to try."
+    him happy "That's better!"
     return
 
 label test_message_board:

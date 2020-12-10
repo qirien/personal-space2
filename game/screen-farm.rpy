@@ -94,16 +94,16 @@ screen farm_details_screen:
                     text "[his_name] & [her_name]" xoffset 20
                     if (earth_year < 2):
                         $ kid_months = roundint(earth_year * 12)
-                        $ kid_age = str(kid_months) + " Earth months old"
+                        $ kid_age = str(kid_months) + " Earth mos old"
                     else:
-                        $ kid_age = str(roundint(earth_year)) + " Earth years old"
+                        $ kid_age = str(roundint(earth_year)) + " Earth yrs old"
                     text "[kid_name], [kid_age]" xoffset 20
                     if (bro_birth_year != 0):
                         if (bro_years < 2):
                             $ bro_months = roundint(get_earth_years(bro_years) * 12)
-                            $ bro_age_str = str(bro_months) + " Earth months old"
+                            $ bro_age_str = str(bro_months) + " Earth mos old"
                         else:
-                            $ bro_age_str = str(roundint(get_earth_years(bro_years))) + " Earth years old"
+                            $ bro_age_str = str(roundint(get_earth_years(bro_years))) + " Earth yrs old"
                         text "[bro_name], [bro_age_str]" xoffset 20
                     else:
                         text " "

@@ -22,36 +22,59 @@ init python:
 # https://material.io/color/#!/?view.left=0&view.right=1&primary.color=558B2F&secondary.color=ccbb99
 #https://material.io/color/#!/?view.left=0&view.right=1&primary.color=757575&secondary.color=ccbb99
 
-# Mossy green
-define green_med   = "#558b2f"
-define green_light = "#85bb5c"
-define green_dark  = "#255d00"
+init -101: 
+    # Mossy green
+    define green_med   = "#558b2f"
+    define green_light = "#85bb5c"
+    define green_dark  = "#255d00"
 
-# Tan
-define tan_med   = "#ccbb99"
-define tan_light = "#ffedca"
-define tan_dark  = "#9b8b6b"
+    # Tan
+    define tan_med   = "#ccbb99"
+    define tan_light = "#ffedca"
+    define tan_dark  = "#8c7665" # old tan_dark "#9b8b6b" 
 
-# Red
-define red_med   = "#d1282d"
-define red_light = "#ff6157"
-define red_dark  = "#980005"
+    # Red
+    define red_med   = "#d1282d"
+    define red_light = "#ff6157"
+    define red_dark  = "#811819" #old red_dark "#980005"
 
-# Brown
-define brown_med   = "#5a2400"
-define brown_light = "#a74300"
-define brown_dark  = "#2e1200"
+    # Brown
+    define brown_med   = "#54350e" # old "#5a2400"
+    define brown_light = "#7b6040" # old "#a74300"
+    define brown_dark  = "#401f08" # old "#2e1200"
 
-# Yellow
-define yellow = "#f6ed3e"
+    # Yellow
+    define yellow = "#ceb42d" #old "#f6ed3e"
 
-# Shades of Gray
-define white = "#ffffff"
-define white_gray = "#e0e0e0"
-define gray_light = "#aaaaaa"
-define gray_dark  = "#5a5a5a"
-define gray_transparent = "#555a"
-define black = "#000000"
+    # Shades of Gray
+    define white = "#ffffff"
+    define white_gray = "#e0e0e0"
+    define gray_light = "#aaaaaa"
+    define gray_med   = "#cccccc"
+    define gray_dark  = "#5a5a5a"
+    define gray_transparent = "#555a"
+    define black = "#000000"
+
+    # Character Colors
+    # Jack is red defined above
+    define magenta = "#b75198"          # Kid
+    define rose = "#c284a2"             # Kelly
+    define green_sage = "#7ea388"       # Bro
+    define lavendar_gray = "#9696ad"    # Naomi; # Pavel is tan_dark
+    define lavendar = "#7872c3"         # Lily
+    define rose_dark = "#ab6465"        # Sara
+    define yellow_light = "#f6f2b8"     # Ilian
+    define blue_mako = "#047e81"        # Oleg
+    define green_army = "#6a855b"       # Thuc
+# Brennan is green_med
+    #Helen is gray_med, Pete is brown_light; travis is red_light
+    define orange_you_glad = "#e29b3e"  # Natalia 
+    define dust_of_the_earth = "#7d6a5a"# Martin
+    define blue_ice = "#7bdae7"         # Julia
+    define blue_dusty_ice = "#668d92"   # Chaco
+    define yellow_gold = "#80701d"      # Zaina; Kevin is yellow
+
+
 
 
 ## Colors ######################################################################
@@ -103,7 +126,7 @@ define gui.interface_font = "fonts/RobotoSlab-Regular.ttf"
 define gui.accent_font = "fonts/SP-Marker Font.otf"
 
 ## The size of normal dialogue text.
-define gui.text_size = 20
+define gui.text_size = 22
 
 ## The size of character names.
 define gui.name_text_size = 26
@@ -249,7 +272,7 @@ define gui.choice_button_height = None
 define gui.choice_button_tile = False
 define gui.choice_button_borders = Borders(10, 10, 10, 10)
 define gui.choice_button_text_font = gui.default_font
-define gui.choice_button_text_size = gui.text_size
+define gui.choice_button_text_size = 28
 define gui.choice_button_text_xalign = 0.5
 define gui.choice_button_text_idle_color = "#cccccc"
 define gui.choice_button_text_hover_color = "#ffffff"
@@ -265,7 +288,7 @@ define gui.choice_button_text_hover_color = "#ffffff"
 define gui.slot_button_width = 276
 define gui.slot_button_height = 206
 define gui.slot_button_borders = Borders(10, 10, 10, 10)
-define gui.slot_button_text_size = 14
+define gui.slot_button_text_size = 18
 define gui.slot_button_text_xalign = 0.5
 define gui.slot_button_text_idle_color = gui.idle_small_color
 
@@ -297,13 +320,13 @@ define gui.notify_ypos = 45
 define gui.choice_spacing = 6
 
 ## Buttons in the navigation section of the main and game menus.
-define gui.navigation_spacing = 10
+define gui.navigation_spacing = 15
 
 ## Controls the amount of spacing between preferences.
 define gui.pref_spacing = 10
 
 ## Controls the amount of spacing between preference buttons.
-define gui.pref_button_spacing = 5
+define gui.pref_button_spacing = 10
 
 ## The spacing between file page buttons.
 define gui.page_spacing = 5
@@ -387,7 +410,7 @@ define gui.history_name_xalign = 1.0
 ## The position, width, and alignment of the dialogue text.
 define gui.history_text_xpos = 170
 define gui.history_text_ypos = 5
-define gui.history_text_width = 740
+define gui.history_text_width = 700
 define gui.history_text_xalign = 0.0
 
 
@@ -452,13 +475,13 @@ init python:
     if renpy.variant("small"):
 
         ## Font sizes.
-        gui.text_size = 22
+        #gui.text_size = 22
         #gui.name_text_size = 36
         #gui.notify_text_size = 25
         #gui.interface_text_size = 36
         #gui.button_text_size = 34
         #gui.label_text_size = 36
-        gui.choice_button_text_size = 28
+        #gui.choice_button_text_size = 28
         gui.choice_spacing = 8
 
         ## Adjust the location of the textbox.
@@ -468,11 +491,11 @@ init python:
         # gui.text_xpos = 90
         # gui.text_width = 1100
 
-        gui.navigation_spacing = 20
-        gui.pref_button_spacing = 10
+        #gui.navigation_spacing = 20
+        #gui.pref_button_spacing = 10
 
         #gui.history_height = 190
-        gui.history_text_width = 700
+        #gui.history_text_width = 700
 
         ## File button layout.
         gui.file_slot_cols = 2
@@ -495,4 +518,4 @@ init python:
         # gui.nvl_button_xpos = 20
 
         ## Quick buttons.
-        gui.quick_button_text_size = 20
+        #gui.quick_button_text_size = 20
