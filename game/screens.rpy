@@ -1445,8 +1445,10 @@ screen nvl_dialogue(dialogue):
                 if d.who is not None:
                     $ nickname = d.who.split()[0]
                     $ is_jack = d.who.startswith(his_name)
-                    if (d.who_args["color"] is not None):
-                        $ new_color = Color(d.who_args["color"]).shade(0.65)
+                    $ who_color = d.who_args["color"]
+                    $ w_red = Color(who_color).rgb[0]
+                    $ w_green = Color(who_color).rgb[1]
+                    $ w_blue = Color(who_color).rgb[2]
                     if (not is_jack):
                         button:
                             action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
@@ -1459,9 +1461,8 @@ screen nvl_dialogue(dialogue):
 
                 frame:
                     style "nvl_dialogue_frame"
-                    background RoundRect(new_color)
-                    # TODO: RoundRect is deprecated...
-                    # Apply a color transform to a gray/white roundrect?
+                    background Frame(im.MatrixColor("gui/roundrect-lightgray.png",
+                    im.matrix.tint(w_red, w_green, w_blue)), 16, 16, 16, 16)
                     if (is_jack):
                         xalign 1.0
                         xoffset 10
@@ -1519,7 +1520,7 @@ style nvl_label is say_label:
 
 style nvl_dialogue_frame:
     xpos gui.nvl_text_xpos
-    xpadding 10
+    xpadding 16
     bottom_padding 20
 
 style nvl_dialogue:
