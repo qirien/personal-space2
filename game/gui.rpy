@@ -59,6 +59,7 @@ init -101:
     # Jack is red defined above
     define magenta = "#b75198"          # Kid
     define rose = "#c284a2"             # Kelly
+    define blue_med = "#085bcf"
     define green_sage = "#7ea388"       # Bro
     define lavendar_gray = "#9696ad"    # Naomi; # Pavel is tan_dark
     define lavendar = "#7872c3"         # Lily

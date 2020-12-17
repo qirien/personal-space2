@@ -795,18 +795,18 @@ define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images
 define him_c = Character("his_name", dynamic=True, who_suffix = "  {image=images/icons/him-icon.png} ",
     color=red_med, image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define kid_c = Character("kid_name", dynamic=True,
-#who_suffix = "  {image=images/icons/kid-icon.png} ",
-        color=magenta, image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+    who_suffix = "  {image=images/icons/kid-icon.png} ",
+    color=magenta, image="him", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
-    color=lavendar_gray, image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #lavender
+    color=lavendar_gray, image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
-    color=tan_dark, image="pavel_c", kind=nvl, ctc="ctc_blink", ctc_position="nestled")   #gray
+    color=tan_dark, image="pavel_c", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
 define lily_c = Character("Dr. Lily", who_suffix = "  {image=images/icons/lily-icon.png} ",
     color=lavendar, image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  
 define sara_c = Character("Sara", who_suffix = "  {image=images/icons/sara-icon.png} ",
     color=rose_dark, image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
 define thuc_c = Character("Thuc", who_suffix = "  {image=images/icons/thuc-icon.png} ",
-    color=green_army, image="thuc", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+    color=green_sage, image="thuc", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-icon.png} ",
     color=yellow_light, image="ilian", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define brennan_c = Character("Brennan", who_suffix = "  {image=images/icons/brennan-icon.png} ",
@@ -824,22 +824,25 @@ define martin_c = Character("Martín", who_suffix = "  {image=images/icons/marti
 define anya_c = Character("Anya",
     color="#53b5ab", image="anya", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #cyan
 define lewis_c = Character("Mr. Lewis",
-    color="f3ca14", image="lewis", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #yellow
+    color="#be4a25", image="lewis", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #red-orange
 define zaina_c = Character ("Zaina",
-    #who_suffix = "  {image=images/icons/zaina-icon.png} ",
-    color=yellow_gold, image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
+    who_suffix = "  {image=images/icons/zaina-icon.png} ",
+    color=yellow_gold, image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  
 define kevin_c = Character ("Kevin",
-    #who_suffix = "  {image=images/icons/kevin-icon.png} ",
-    color=yellow, image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #
+    who_suffix = "  {image=images/icons/kevin-icon.png} ",
+    color=yellow, image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
 define oleg_c = Character("Oleg",
-#who_suffix = "  {image=images/icons/oleg-icon.png} ",
+    who_suffix = "  {image=images/icons/oleg-icon.png} ",
     color=blue_mako, image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define travis_c = Character("Travis",
-#who_suffix = "  {image=images/icons/travis-icon.png} ",
+    who_suffix = "  {image=images/icons/travis-icon.png} ",
     color=red_light, image="travis", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+define bro_c = Character("[bro_name]",
+    who_suffix = "  {image=images/icons/bro-icon.png} ",
+    color=blue_med, image="bro", kind=nvl, ctc="ctc_blink", ctc_position="nestled")    
 define van_c = Character("Van",
-#who_suffix = "  {image=images/icons/van-icon.png} ",
-        color="55a0ef", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #light blue
+    color="#1c30a1", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  #dark blue
+define chaco_c = Character("Chaco", color=blue_dusty_ice, image="chaco", kind=nvl, ctc="ctc_blink", ctc_position="nestled")     
 define ret_c = Character("RET",
 #who_suffix = "  {image=images/icons/ret-icon.png} ",
         color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled") #gray
