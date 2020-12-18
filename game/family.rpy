@@ -248,6 +248,7 @@ label family1:
             $ authoritarian += 1
 
     stop sound fadeout 2.0
+    stop music fadeout 2.0
     call bedroom_scene(show_baby=True)
     show kid normal with dissolve
     play sound "sfx/baby-gurgle.ogg"
