@@ -787,8 +787,6 @@ label message30:
     return
 
 
-
-# TODO: make new icons
 # NVL mode characters for chat rooms, etc
 define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images/icons/her-icon.png} ",
     color=rose, image="her", kind=nvl, ctc="ctc_blink", ctc_position="nestled")

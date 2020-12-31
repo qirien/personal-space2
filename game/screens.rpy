@@ -973,6 +973,9 @@ screen history():
                     yfit True
 
                 if h.who:
+                    # Add the icon of whoever is speaking if it exists
+                    if h.image_tag is not None:
+                        add "images/icons/" + h.image_tag + "-icon.png"
 
                     label h.who:
                         style "history_name"

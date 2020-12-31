@@ -378,8 +378,8 @@ label work2:
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
     scene fields flip with fade
-    show kevin at midright
-    show zaina at center
+    show kevin normal at midright
+    show zaina normal at center
     with dissolve
     show him normal at midleft with moveinleft
 
@@ -668,7 +668,7 @@ label work8:
 # Bees?!
 label work10:
     scene community_center with fade
-    show kevin at midright
+    show kevin normal at midright
     show him normal at midleft
     with dissolve
     if (crop_enabled("plums") or crop_enabled("plums+")):

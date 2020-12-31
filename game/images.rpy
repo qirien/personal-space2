@@ -72,6 +72,13 @@ init -10:
                 "year <= CHILD_MAX", "kid-sprites/kid_%s.png" % expression_name,
                 "year <= TWEEN_MAX", "kid-sprites/tween_%s.png" % expression_name,
                 "True", "kid-sprites/teen_%s.png" % expression_name)) 
+        
+        renpy.image(("side", "kid"), ConditionSwitch(
+                "year <= BABY_MAX", "kid-sprites/side_baby.png",
+                "year <= TODDLER_MAX", "kid-sprites/side_toddler.png",
+                "year <= CHILD_MAX", "kid-sprites/side_kid.png",
+                "year <= TWEEN_MAX", "kid-sprites/side_tween.png",
+                "True", "kid-sprites/side_teen.png"))             
 
         # Define images for bro (baby, toddler, young, tween, teen)
         # For each expression, add a baby, toddler, young, tween, teen depending on current year

@@ -370,13 +370,13 @@ init python:
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = True
         if (notify):
-            notify_change("{image=gui/crop\ icons/" + crop_name + ".png} " + crop_name + " unlocked!")
+            notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " unlocked!")
 
     def disable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
         crop_info[crop_index][ENABLED_INDEX] = False
         if (notify):
-            notify_change("{image=gui/crop\ icons/" + crop_name + ".png} " + crop_name + " disabled")
+            notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " disabled")
 
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical

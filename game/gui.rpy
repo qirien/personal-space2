@@ -59,15 +59,14 @@ init -101:
     # Jack is red defined above
     define magenta = "#b75198"          # Kid
     define rose = "#c284a2"             # Kelly
-    define blue_med = "#085bcf"
-    define green_sage = "#7ea388"       # Bro
+    define blue_med = "#085bcf"         # Bro
     define lavendar_gray = "#9696ad"    # Naomi; # Pavel is tan_dark
     define lavendar = "#7872c3"         # Lily
     define rose_dark = "#ab6465"        # Sara
     define yellow_light = "#f6f2b8"     # Ilian
     define blue_mako = "#047e81"        # Oleg
-    define green_army = "#6a855b"       # Thuc
-# Brennan is green_med
+    define green_sage = "#7ea388"       # Thuc
+    # Brennan is green_med
     #Helen is gray_med, Pete is brown_light; travis is red_light
     define orange_you_glad = "#e29b3e"  # Natalia 
     define dust_of_the_earth = "#7d6a5a"# Martin
