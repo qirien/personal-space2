@@ -78,7 +78,7 @@ init -10:
                 "year <= TODDLER_MAX", "kid-sprites/side_toddler.png",
                 "year <= CHILD_MAX", "kid-sprites/side_kid.png",
                 "year <= TWEEN_MAX", "kid-sprites/side_tween.png",
-                "True", "kid-sprites/side_teen.png"))             
+                "True", "kid-sprites/side_teen.png"))
 
         # Define images for bro (baby, toddler, young, tween, teen)
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
@@ -89,19 +89,28 @@ init -10:
                 "(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/kid_%s.png" % expression_name,
                 "True", "bro-sprites/tween_%s.png" % expression_name))
 
+        renpy.image(("side", "bro"), "bro-sprites/side_kid.png") #ConditionSwitch(
+                #"(year-bro_birth_year) <= TODDLER_MAX", "bro-sprites/side_toddler.png",
+                #"(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/side_kid.png",
+                #"True", "bro-sprites/side_tween.png"))                
+                # TODO: do we need side images for all of bro?
+
         # Images for Oleg
         for expression_name in simple_expressions:
             renpy.image(("oleg", expression_name), ConditionSwitch(
                 "year <= CHILD_MAX", "oleg-sprites/kid %s.png" % expression_name,
                 "year <= TWEEN_MAX", "oleg-sprites/tween %s.png" % expression_name,
                 "True", "oleg-sprites/teen %s.png" % expression_name))    
+        renpy.image(("side", "oleg"), "oleg-sprites/side_kid.png")     
+        # TODO: We need Oleg as a teen if his hair remains different; wait until Oleg teen sprites redone.           
 
         # Images for Travis
         for expression_name in simple_expressions:
             renpy.image(("travis", expression_name), ConditionSwitch(
                 "year <= CHILD_MAX", "travis-sprites/kid %s.png" % expression_name,
                 "year <= TWEEN_MAX", "travis-sprites/tween %s.png" % expression_name,
-                "True", "travis-sprites/teen %s.png" % expression_name))                                
+                "True", "travis-sprites/teen %s.png" % expression_name))       
+        renpy.image(("side", "travis"), "travis-sprites/side_kid.png")                                         
 
     define photo_scale_factor = 0.7
 
