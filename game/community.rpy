@@ -16,8 +16,8 @@ label community_intro:
     hide thuc
     hide natalia
     with dissolve
-    show julia normal at midleft
-    show ilian normal at midright
+    show julia angry at midleft
+    show ilian angry at midright
     with dissolve
     "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
     "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but somehow we figured out how to get along."
@@ -43,48 +43,47 @@ label community1:
     $ tell_Ngyuens = False
     $ tell_Perons = False
     $ bios.activate("Thuc")
-    $ bios.activate("Julia")
     $ bios.activate("Oleg")
     $ bios.activate("Sara")
     $ bios.activate("Ilian")
 
     scene community_center with fade
     play sound "sfx/people.mp3"
-    show pavel at center with dissolve
+    show pavel normal at center with dissolve
     pavel "I hope you will all welcome our newest colonists! While some of them will farm like you, others are specialists sent by Rare Earth Tech to scout out areas for other uses."
     hide pavel with dissolve
     "After he finished his speech, I got in line with my friend Thuc to have some soup."
     show him normal at midright
     show thuc normal at center
-    show ilian happy at midleft
+    show ilian normal at midleft
     with moveinleft
     thuc "It's pretty exciting to have some new faces around!"
     him surprised "Yeah, I hadn't realized how much I'd gotten used to all you guys until these new folks showed up. I'm surprised Julia's not here."
     thuc sad "She was... feeling pretty worn out."
     thuc normal "Is [her_name] still at work?"
     him concerned "Yeah, she wants to give the new colonists their first physical as soon as possible. Plus, [kid_name] fell asleep at the clinic and we didn't want to wake her."
-    ilian normal "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
+    ilian angry "I wish I didn't have to be here. After talking to people all day the last thing I want to see is more people."
     him happy "At least there's free soup."
-    ilian angry "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
+    ilian normal "It's not free, it came from all those crops you paid to the storehouse! So if any of you gave subpar stuff, we're going to taste it."
     "We got our soup and I decided to sit with some of the new colonists."
     scene community_center with fade
     show him normal at midleft
     show zaina normal at center
     show kevin normal at midright
     with dissolve
-    him "Hi, I'm [his_name]. Welcome to Talaam!"
+    him happy "Hi, I'm [his_name]. Welcome to Talaam!"
     $ bios.activate("Zaina")
     $ bios.activate("Kevin")
-    zaina "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
+    zaina happy "I'm Zaina, and this is my husband Kevin. I'd let him speak for himself but his mouth is full, so I'm socially obligated to be polite in his place."
     him pout "Nice to meet you, Zaina and Kevin. Where will you be living?"
-    zaina "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working. Geological studies, mostly."
-    kevin "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
+    zaina normal "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working. Geological studies, mostly."
+    kevin happy "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
     him surprised "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
-    kevin "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
+    kevin sad "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
     him concerned "I understand that from RET's point of view... but they sure aren't sharing any profits with us!"
-    zaina "You can't be doing too bad. I haven't seen a single starving waif since I arrived."
+    zaina happy "You can't be doing too bad. I haven't seen a single starving waif since I arrived."
     him surprised "That's true, but it's different from Earth. I hope you weren't planning on a life of luxury."
-    kevin "No, I was not. I was planning on a life of adventure and discovery."
+    kevin normal "No, I was not. I was planning on a life of adventure and discovery."
     show him normal
     menu:
         "What kind of life was I planning on?"
@@ -92,13 +91,13 @@ label community1:
             $ miners += 1
             him pout "RET went to the trouble of flying me out here, so I might as well fulfill my end of the bargain."
             him happy "Plus, growing food is essential for our survival!"
-            kevin "That sounds like a good plan."
+            kevin happy "That sounds like a good plan."
         "I came out here for adventure and discovery too.":
             him pout "I love the feeling I get when I look up at the sky and I can see thousands of stars."
             him happy "When I see plants and animals I've never seen before, I feel the thrill of discovery."
             him normal "I really have to exercise my creativity when I need to find solutions to problems with limited supplies."
             him pout "Nothing on Earth compares."
-            kevin "I agree. There's so much to document and try, it's overwhelming."
+            kevin happy "I agree. There's so much to document and try, it's overwhelming."
             $ mavericks += 1
         "At the end of the day, working together is what keeps me going.":
             him pout "It's amazing to colonize a new planet. There's nothing quite like looking at the sky and realizing how far away we are."
@@ -106,14 +105,14 @@ label community1:
             him concerned "If we were working together on Earth, I'd be lucky to count one or two of my coworkers among my close friends."
             him normal "Here, there's no choice. We have to be close to one another to survive."
             him flirting "True, we're always in each other's business. But we're always helping one another too."
-            kevin "It's kind of like you're a big family then?"
+            kevin sad "It's kind of like you're a big family then?"
             him pout "No, it's different. Families don't always get to choose to be together."
             him normal "It's more like we're all united by a common goal."
-            kevin "So it's like you're always at work."
+            kevin happy "So it's like you're always at work."
             him surprised "Kind of, yeah."
             $ colonists += 1
     him happy "You guys are staying here for the rest of your lives, right?"
-    zaina "That's right!"
+    zaina normal "That's right!"
     label ask_zaina_and_kevin:
     menu:
         "What should I ask them about?"
@@ -121,67 +120,67 @@ label community1:
             him pout "So... I know RET is trying to grow the colony..."
 
             him surprised "Are you planning on having kids?"
-            zaina "We'll try. We haven't been able to have kids so far."
-            kevin "That is not why RET sent us out here. Our geology and engineering skills are what they are interested in."
+            zaina sad "We'll try. We haven't been able to have kids so far."
+            kevin sad "That is not why RET sent us out here. Our geology and engineering skills are what they are interested in."
             $ asked_kids = True
             jump ask_zaina_and_kevin
         "Do you have family still on Earth?" if not asked_family:
             him surprised "Do you have family still on Earth?"
-            zaina "I was an only child, and my parents recently died, so I don't have any family on Earth. I do have some friends still there though."
-            kevin "My father and brother are still on Earth, but I do not regret leaving them."
+            zaina sad "I was an only child, and my parents recently died, so I don't have any family on Earth. I do have some friends still there though."
+            kevin normal "My father and brother are still on Earth, but I do not regret leaving them."
             menu:
                 "So you weren't close?":
                     him concerned "Huh. Don't get along with them?"
-                    kevin "They are not men of science. They did not understand my passion for engineering, despite its obvious usefulness."
+                    kevin sad "They are not men of science. They did not understand my passion for engineering, despite its obvious usefulness."
                     him normal "My parents are still on Earth. We have some extremely delayed correspondence."
                 "You don't like them?":
                     him concerned "I take it you didn't like them very much."
-                    kevin "They did not value me or my work. They ignored my accomplishments."
+                    kevin sad "They did not value me or my work. They ignored my accomplishments."
                     him surprised "How would you expect them to? They're probably not experts like you are."
-                    kevin "If they had simply not understood my work, that would have been forgiveable."
-                    kevin "They are not men of science."
+                    kevin normal "If they had simply not understood my work, that would have been forgiveable."
+                    kevin sad "They are not men of science."
                     him pout "My parents are still on Earth. We have some extremely delayed correspondence."
             $ asked_family = True
             jump ask_zaina_and_kevin
         "What kind of food will you grow?" if not asked_grow:
             him normal "You have quite a bit of land out there by the radio tower."
             him happy "Any idea what you'll grow on it?"
-            zaina "We brought some fruit trees, which I hope will make a nice orchard."
-            zaina "Grapes are fairly hardy, and I would love to start a winery sometime!"
-            kevin "I am planning to try my hand at a basic vegetable garden."
+            zaina normal "We brought some fruit trees, which I hope will make a nice orchard."
+            zaina happy "Grapes are fairly hardy, and I would love to start a winery sometime!"
+            kevin happy "I am planning to try my hand at a basic vegetable garden."
             him surprised "Have you ever farmed before?"
-            zaina "I practiced caring for fruit trees in the simulations on the shuttle."
-            kevin "I also raised a magnificent patch of vegetables in the simulations."
+            zaina normal "I practiced caring for fruit trees in the simulations on the shuttle."
+            kevin normal "I also raised a magnificent patch of vegetables in the simulations."
             him pout "So the answer is no."
-            kevin "The simulations have been updated since you flew over."
-            kevin "They're quite lifelike!"
+            zaina happy "The simulations have been updated since you flew over."
+            kevin happy "They're quite lifelike!"
             him normal "Tell me how you feel about them after you harvest your first crops."
             $ asked_grow = True
             jump ask_zaina_and_kevin
         "How was the shuttle ride?" if not asked_shuttle:
             him flirting "Did you start to hate each other a little on the shuttle ride over?"
-            kevin "No, I do not believe it is possible for us to hate each other."
-            zaina "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
+            kevin happy "No, I do not believe it is possible for us to hate each other."
+            zaina happy "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
             him happy "I got married right before coming to Talaam too."
             him surprised "Did people give you all kinds of weird survival gear at your wedding?"
-            kevin "No, they did not. My friends from work are also engineers and understood the limitations of space travel."
-            zaina "His college roommates gave him a custom mix of media! It had everything from the latest datasets to formulae to try."
+            kevin normal "No, they did not. My friends from work are also engineers and understood the limitations of space travel."
+            zaina normal "His college roommates gave him a custom mix of media! It had everything from the latest datasets to formulae to try."
             him normal "That sounds interesting. You should show Pete, our librarian. He gets excited about research and data."
-            zaina "Some of my cousins gave me some hunting goggles. The battery on them wasn't compatible with RET solar technology though."
+            zaina sad "Some of my cousins gave me some hunting goggles. The battery on them wasn't compatible with RET solar technology though, so I had to leave them behind."
             $ asked_shuttle = True
             jump ask_zaina_and_kevin
         "What do you like to do for fun?" if not asked_fun:
             him surprised "What do you like to do for fun?"
-            zaina "I like exploring - spelunking, rock climbing, ice climbing, boating."
+            zaina happy "I like exploring - spelunking, rock climbing, ice climbing, boating."
             him happy "Adventure! That sounds great! How about you, Kevin?"
-            kevin "I enjoy keeping up on the latest research in mining and aerospace."
+            kevin normal "I enjoy keeping up on the latest research in mining and aerospace."
             him concerned "Aerospace? Are you also an astronomer?"
-            kevin "A pilot, when I have the chance."
-            zaina "Which is not very often, as you can imagine."
+            kevin happy "A pilot, when I have the chance."
+            zaina normal "Which is not very often, as you can imagine."
             $ asked_fun = True
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
-            zaina "What about you? What's your deal?" 
+            zaina happy "What about you? What's your deal?" 
             him happy "Farming, family, and food! That's what I'm all about."
 
     scene stars with fade
@@ -212,82 +211,80 @@ label community1:
         "Pavel and Naomi":
             $ bios.activate("Pavel")
             $ bios.activate("Naomi")
+            show pavel normal at right, flip            
             show naomi normal at midright
-            show pavel normal at right
             with moveinright
 
             him surprised "I think you know Pavel already, right?."
-            kevin "It is a pleasure to officially meet you, sir."
-            pavel "And you! But no need to call me 'sir' or anything; Pavel or Mayor will do just fine. We're looking forward to learning more about the rocks here."
-            kevin "Yes, xenomining is a new but fascinating field."
+            kevin happy "It is a pleasure to officially meet you, sir."
+            pavel happy "And you! But no need to call me 'sir' or anything; Pavel or Mayor will do just fine. We're looking forward to learning more about the rocks here."
+            kevin normal "Yes, xenomining is a new but fascinating field."
             him normal "And this is Sister Naomi, his wife."
-            zaina "So is Naomi your last name and Sister your first name?"
+            zaina happy "So is Naomi your last name and Sister your first name?"
             naomi happy "Naomi is my first name. 'Sister' is more of a title."
-            kevin "Are you a nun?"
-            naomi "No, I'm not with any specific religion. I just try to be like a sister to everyone."
+            kevin sad "Are you a nun?"
+            naomi normal "No, I'm not with any specific religion. I just try to be like a sister to everyone."
             him happy "Don't be fooled; she's indispensible! She organizes religious services and is also a therapist."
-            zaina "It's always good to know where to get help when insanity starts to kick in."
-            naomi "My door is always open, whether you are sane or not."
-            kevin "Have you developed any new techniques for the maladies unique to exoplanet colonization?"
-            naomi "People are people, no matter where they live... but, yes, there are some unique challenges to living away from Earth."
+            zaina normal "It's always good to know where to get help when insanity starts to kick in."
+            naomi happy "My door is always open, whether you are sane or not."
+            kevin normal "Have you developed any new techniques for the maladies unique to exoplanet colonization?"
+            naomi sad "People are people, no matter where they live... but, yes, there are some unique challenges to living away from Earth."
             "We talked about homesickness and therapy techniques until it was time to go."
             $ met_grayson = True
         "Thuc and Ilian":
+            $ bios.activate("Julia")
             "I found Thuc, but Ilian had already gone home."
-            show thuc normal at right
+            show thuc normal at quarterright
             with moveinright
             him explaining "Thuc and his wife Julia are my neighbors and some of our best friends."
-            thuc "Well, that's half true."
-            zaina "Oh, you're not best friends?"
-            thuc "No, we're best friends. Not so much Julia, though."
-            kevin "Is she here?"
-            thuc "No, she wasn't feeling well today."
+            thuc happy "Well, that's half true."
+            zaina sad "Oh, you're not best friends?"
+            thuc normal "No, we're best friends. Not so much Julia, though."
+            kevin sad "Is she here?"
+            thuc sad "No, she wasn't feeling well today."
             him pout "They grow a lot of crops and are experts on, ah, how do you put it, Thuc?"
-            thuc "Doo-doo dumping? Poo crew? Team Number Two?"
-            kevin "Human waste treatment is an efficient way to procure more fertilizer."
+            thuc happy "Doo-doo dumping? Poo crew? Team Number Two?"
+            kevin normal "Human waste treatment is an efficient way to procure more fertilizer."
             him normal "Also they have ten kids and Julia is a midwife."
-            zaina "Ten kids? You must be planning to take over the planet by sheer force of genes!"
-            thuc "Yes! When the time is right, our children and goats will descend like a swarm of adorable yet destructive locusts!"
+            zaina happy "Ten kids? You must be planning to take over the planet by sheer force of genes!"
+            thuc happy "Yes! When the time is right, our children and goats will descend like a swarm of adorable yet destructive locusts!"
             him concerned "That would be a real KIDtastrophe."
-            zaina "We should neGOATiate while we still have the chance!"
-            thuc "Maybe it's a good thing Julia's not here; she's already HERD all these goat puns before."
-            kevin "Is Julia your wife?"
-            thuc "Yeah, she loves bossing people around, so she's a great mom."
-            zaina "Oh, is that why you had so many kids?"
-            thuc "Huh. You might be onto something there!"
+            zaina sad "We should neGOATiate while we still have the chance!"
+            thuc normal "Maybe it's a good thing Julia's not here; she's already HERD all these goat puns before."
+            kevin happy "Tell us a little about your wife."
+            thuc happy "Well, she loves bossing people around, so she's a great mom."
+            zaina normal "Oh, is that why you had so many kids?"
+            thuc normal "Huh. You might be onto something there!"
             "The four of us joked and talked until Mayor Grayson asked us to help clean up."
             $ met_nguyen = True
         "Dr. Lily":
             $ bios.activate("Lily")
-            show lily normal at right with moveinright
+            show lily normal at quarterright, flip with moveinright
             him explaining "Dr. Lily is our resident scientist. She was here before most of the other colonists."
-            lily "You're the new geotech crew, correct?"
-            zaina "Yeah, I'm the geo; he's the tech."
-            show him normal with dissolve
-            lily "I see. Is your research for scientifc purposes, or only for divesting Talaam of its rare metals?"
-            zaina "Both. I plan to study many areas and write lots of papers, but RET's the one who paid our way."
-            kevin "And they are interested only in rare earth metals."
-            lily "Is your research over the entire planet, or is it limited to the colony area?"
-            zaina "We're going to survey as much as we can... but this is the landing site, so it's more efficient if we find something near here."
-            kevin "We have a long-range drone that we can use, as well as the new satellites in orbit."
-            lily "I was hoping to have access to the satellites' data; is that possible?"
-            kevin "Yes, I will share the protocol details with you in an email."
-            lily "Excellent. I hear you are an accomplished pilot as well; it's a pity we don't have any flying vehicles here."
+            lily happy "You're the new geotech crew, correct?"
+            zaina happy "Yeah, I'm the geo; he's the tech."
+            show him normal
+            lily angry "I see. Is your research for scientific purposes, or only for divesting Talaam of its rare metals?"
+            zaina sad "Both. I plan to study many areas and write lots of papers, but RET's the one who paid our way."
+            kevin sad "And they are interested only in rare earth metals."
+            lily normal "Is your research over the entire planet, or is it limited to the colony area?"
+            zaina normal "We're going to survey as much as we can... but this is the landing site, so it's more efficient if we find something near here."
+            kevin normal "We have a long-range drone that we can use, as well as the new satellites in orbit."
+            lily normal "I was hoping to have access to the satellites' data; is that possible?"
+            kevin happy "Yes, I will share the protocol details with you in an email."
+            lily happy "Excellent. I hear you are an accomplished pilot as well; it's a pity we don't have any flying vehicles here."
             him happy "I would love a hover tractor!"
-            kevin "My father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
-            show him normal with dissolve
-            kevin "After I obtained my pilot's license, I worked as a pilot for several years."
-            lily "Yet eventually you decided to study engineering?"
-            kevin "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
-            zaina "He's always learning about something!"
-            kevin "I plan to study gardening next."
+            kevin normal "My father was an airline pilot, and I was transfixed upon the idea of flying as a youth."
+            zaina happy "He got his pilot's license and worked as a pilot for a few years."
+            lily normal "Yet eventually you decided to study engineering?"
+            kevin happy "It wasn't enough to simply pilot a craft. I desired to know how they functioned as well."
+            zaina normal "He's always learning about something!"
+            kevin normal "I plan to study gardening next."
             him happy "Hey, that's something I actually know a thing or two about!"
-            lily "You'll be fascinated to know that the soil here has naturally high levels of phosphorus."
+            lily happy "You'll be fascinated to know that the soil here has naturally high levels of phosphorus."
             "We talked about volcanic activity and fertilizer and native plants until the activity was over."
             $ met_kealoha = True
 
-    #TODO: make longer discussion based on menu choice (this is the beginning of the game; we want some really dynamic choices at the start, even if they don't affect a lot)
-    # Maybe something about building a park/playground for everyone?
     stop sound fadeout 1.0
     return
 
@@ -301,36 +298,34 @@ label community2:
     "I started running out of storage space in my cellar, so I took the extras over to the storehouse."
     scene storeroom
     with dissolve
-    show kevin at midleft
+    show kevin normal at midleft
     show ilian normal at midright
-    kevin "It is part of our contract that I bring you my whole harvest, even if I will consume all of it."
-    ilian "I do appreciate your thoroughness. I hope it wasn't too much trouble to show me your buckets of tomatoes and squash."
-    ilian "For things that keep a long time, you don't have to bring them right away."
+    kevin normal "It is part of our contract that I bring you my whole harvest, even if Zaina and I will consume all of it."
+    ilian happy "I do appreciate your thoroughness. I hope it wasn't too much trouble to show me your buckets of tomatoes and squash."
+    ilian normal "For things that keep a long time, you don't have to bring them right away."
     show him normal at left
-    with moveinright
+    with moveinleft
     show ilian happy at midright
-    ilian "Hi [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and he can have more variety in his diet."
+    ilian "Hi, [his_name]. Maybe your surplus can make it worth Kevin's while to come out here and he can have more variety in his diet."
     show him happy at left
     $ random_crop = farm.crops.random_crop(include_animals = False)
-    him "Sure, do you like [random_crop]?"
+    him happy "Sure, do you like [random_crop]?"
     if ((random_crop == "tomatoes") or (random_crop == "squash")):
-        kevin "Yes, that is why I planted some myself. A popular choice, it seems."
+        kevin happy "Yes, that is why I planted some myself. A popular choice, it seems."
     else:
-        kevin "Yes, a variety of foodstuffs is beneficial to anyone's diet."
-    ilian "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we're supposed to have been doing it all along."
+        kevin happy "Yes, a variety of foodstuffs is beneficial to anyone's diet."
+    ilian normal "You know, Kevin and Zaina brought me everything that they harvested this week. Apparently that's the way we're supposed to have been doing it all along."
     him surprised "Huh, really? How in the world do you have time to farm?"
-    kevin "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pasttime."
+    kevin sad "I can't start my engineering calculations until Zaina finishes her assessment, so farming is a useful pasttime."
     him annoyed "It might be an amusing pasttime for you, but it's our survival you're talking about here."
-    kevin "I must depart, but I will take some of what [his_name] brought, if that's permissible."
-    ilian normal "That's what I'm here for."
+    kevin normal "I must depart, but I will take some of what [his_name] brought, if that's permissible."
+    ilian happy "That's what I'm here for."
     hide kevin
     with moveoutleft
     show him normal at midleft with move
-    ilian "We probably should start doing things the way it is in the contract."
-    ilian "I know it seems less efficient, but it gives us more control in case of famine."
+    ilian normal "We probably should start doing things the way it is in the contract. I know it seems less efficient, but it gives us more control in case of famine."
     him concerned "What if the storehouse burns down? Then we'll all have nothing."
-    ilian "Or some alien varmint could eat it all no matter where it is."
-    ilian "Look, I'm just telling you what our contract says. Do you want to read the fine print? I have it here on my tablet."
+    ilian angry "Or some alien pest could eat it all no matter where it is. I'm just telling you what our contract says. Do you want to read it? I pulled it up on my computer pad earlier."
     menu:
         "Actually, yes.":
             call contract
@@ -345,11 +340,10 @@ label community2:
             $ miners += 1
             $ whole_harvest_to_storehouse = True
             him annoyed "How about I can write down the amount I harvest and I'll bring in the surplus?"
-            ilian "I'm pretty sure I could trust you, but it's better if I can measure it all so we can be consistent."
+            ilian normal "I'm pretty sure I could trust you, but it's better if I can measure it all so we can be consistent."
             him pout "I'll weigh it all and document it with photos as well. And I'll bring in everything we don't eat."
-            ilian "I suppose it would be silly to bring in crops that you were just going to take right back home with you to eat. As long as everything's accounted for..."
+            ilian angry "I suppose it would be silly to bring in crops that you were just going to take right back home with you to eat. As long as everything's accounted for..."
             him normal "Great, I'll do that."
-            #TODO: make this add to the future stress variable
         "I will keep storing most of my own crops.":
             $ mavericks += 1
             him annoyed "I'm not changing how I do things because of what some lawyer at RET said. I'll do what's efficient and good for everyone."
@@ -407,7 +401,7 @@ label community3:
             thuc "Your honor, as the defense attorney, I would like to conclude that while my client, Pete, may have exercised poor judgement, he had a legal right to be on the road."
             him pout "The defense may rest. What does the prosecution say?"
             helen "On the day that Pete ran over three chickens in his car, he was attempting to use his computer pad."
-            helen "He circumvented the security to allow voice commands while the car was on, and while he was looking for something to listen to, the innocent chickens tried to cross the road."
+            helen angry "He circumvented the security to allow voice commands while the car was on, and while he was looking for something to listen to, the innocent chickens tried to cross the road."
             thuc sad "A road that had no clear chicken crossing signage."
             helen happy "Does the absence of a chicken crossing sign mean that we disregard chicken life?"
             helen normal "We must charge Pete to the fullest extent the law will allow."
@@ -426,27 +420,26 @@ label community3:
             him concerned "Yes, but I don't want to call it a game night... all the new colonists will think we're a bunch of nerds."
             pete normal "That's what we are. You don't get to farm in space without bein' a little bit of a nerd."
             helen normal "Yeah, enjoying trivial entertainment is cool here."
-            him concerned "No, I especially don't want to look like I'm wasting my time."
+            him concerned "No... I don't want to look like I'm wasting my time."
             him pout "I'm going to put it down as an 'intensive research session.'"
             pete happy "Ha! You ashamed to be playing games? As long as we all call it that they'll be none the wiser."
             scene fields with fade
             show him normal at midright
-            show kevin at midleft
+            show kevin normal at midleft
             "A few months later, Kevin asked me about it after I assessed his first batch of crops."
-            kevin "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
+            kevin sad "I keep seeing people attending 'intensive research sessions' on the colony calendar. What are they?"
             him concerned "Oh, those. It's just people talking to Pete about stuff."
-            kevin "Talking to Pete? About fieldwork?"
+            kevin normal "Talking to Pete? About fieldwork?"
             him normal "I happen to have some research interests outside of fieldwork."
-            kevin "He's a librarian, right? Is your hobby art history or something similar?"
+            kevin happy "He's a librarian, right? Is your hobby art history or something similar?"
             him happy "No, it's far more mundane. That's just what we call our monthly game night."
-            kevin "I would love to play games with others. Why was this information hidden?"
+            kevin sad "I would love to play games with others. Why was this information hidden?"
             him concerned "I guess... I didn't want the new colonists to think I was being frivolous with my time."
-            kevin "Face-to-face socialization is highly recommended by RET's psychologists."
-            kevin "It may feel frivolous, but it can actually increase your productivity."
+            kevin normal "Face-to-face socialization is highly recommended by RET's psychologists. It may feel frivolous, but it can actually increase your productivity."
             him normal "But farmers a long time ago didn't have time to play cards. They worked from sunup to sundown without complaining."
-            kevin "That's simply what they told their grandchildren. Let me come to your game night!"
+            kevin happy "That's simply what they told their grandchildren. Let me come to your game night!"
             him happy "Yeah, you should! We need someone to shake things up."
-            kevin "Shall I invite the other new colonists as well?"
+            kevin normal "Shall I invite the other new colonists as well?"
             menu:
                 "Sure, invite them all!":
                     him normal "Yes, let's invite them. I can reserve the community center."
@@ -491,17 +484,17 @@ label community3:
             $ bios.activate("Martín")
 
             scene community_center with fade
-            show lily at center with dissolve
+            show lily normal at center with dissolve
             "We got there a few minutes late, and her lecture had already started."
             lily "...which is why it is impossible to predict solar flares with one hundred percent accuracy, even with these improvements to the automated alert system."
-            natalia "So you mean some of the times the solar flare warning goes off, there's not actually a solar flare?"
-            lily "Yes. We can tune our algorithms, but ultimately we must make a decision between whether we would rather have false positives or false negatives."
-            lily "A false positive would be when the program says there is a solar flare, but there is not. A false negative would be when the computer says there is not a solar flare, but there actually is."
-            lily "We have tried to achieve the best possible results, but no computer program can be perfect because no data in the real world is perfect."
-            martin "So it's also possible that there have been solar flares that we were not warned about."
-            lily "Yes. Radiation from the sun of varying degrees occurs constantly. We prioritize predicting solar flares that could injure people."
-            lily "I believe that our accuracy, while acceptable, could be improved with better data. That is why I am asking you to install the solar radiation reporting app on your computer pads."
-            lily "This app will allow for a much broader spread of radiation measuring here on the planet. Most of our sensors are in space in order to have a better view of the sun."
+            natalia normal "So you mean some of the times the solar flare warning goes off, there's not actually a solar flare?"
+            lily happy "Yes. We can tune our algorithms, but ultimately we must make a decision between whether we would rather have false positives or false negatives."
+            lily normal "A false positive would be when the program says there is a solar flare, but there is not. A false negative would be when the computer says there is not a solar flare, but there actually is."
+            lily angry "We have tried to achieve the best possible results, but no computer program can be perfect because no data in the real world is perfect."
+            martin angry "So it's also possible that there have been solar flares that we were not warned about."
+            lily normal "Yes. Radiation from the sun of varying degrees occurs constantly. We prioritize predicting solar flares that could injure people."
+            lily angry "I believe that our accuracy, while acceptable, could be improved with better data. That is why I am asking you to install the solar radiation reporting app on your computer pads."
+            lily normal "This app will allow for a much broader spread of radiation measuring here on the planet. Most of our sensors are in space in order to have a better view of the sun."
             lily "This would allow us to try using planetside data as well."
             "She talked for a little while longer about the different ways to measure and predict solar flares, and after answering some questions, the lecture was over."
             scene community_center with fade
@@ -513,28 +506,31 @@ label community3:
             him pout "Why not?"
             her concerned "What if people start ignoring solar flares, thinking that it's a false positive?"
             him determined "Then they're idiots. The false positive rate was like eight percent."
-            her annoyed "People don't always think about things like that rationally. If you're in the middle of something and it's a beautiful day and you get a solar flare warning, it will be tempting to think that this is one of those eight out of a hundred times."
+            her annoyed "People don't always think rationally. If it's a beautiful day and you get a solar flare warning, it will be tempting to think that this is one of those eight out of a hundred times."
             him annoyed "She just said that the weather has nothing to do with solar flares."
             her concerned "But that's not the way people think."
             him determined "That doesn't mean you can keep people in ignorance. People are better off the more knowledge they have, even if some people will use it poorly."
-            show natalia at right
-            show martin at quarterright
+            show him at center
+            show natalia normal at right
+            show martin normal at quarterright
             with moveinright
-            natalia "I agree. The more knowledge, the better."
-            martin "I think there is a certain amount of knowledge that can be dangerous to have."
+            natalia happy "I agree. The more knowledge, the better."
+            martin angry "I think there is a certain amount of knowledge that can be dangerous to have."
             him surprised "What do you mean?"
-            martin "If all you know is fire makes heat, and matches make fire, you don't know enough to use fire safely. So if you're going to learn about fire, you can't stop there -- you have to include knowledge about what fire can burn and how to contain it. So if you're not going to learn enough to be safe, you'd be better off not knowing anything about fire."
-            her normal "Yes, exactly! I see this at the clinic all the time -- people know about some rare disorder that sort of matches their symptoms and they think they have it. They're missing knowledge about how the disorder works and is transmitted and its frequency. They'd be better off if they didn't know about that rare disorder because then they wouldn't jump to conclusions as easily."
+            martin normal "If all you know is fire makes heat, and matches make fire, you don't know enough to use fire safely."
+            martin angry "To use fire, you can't stop there -- you have to include knowledge about what fire can burn and how to contain it. So if you're not going to learn enough to be safe, you'd be better off not knowing anything."
+            her annoyed "Yes! I see this at the clinic. People know a rare disorder that matches some symptoms and they think they have it. They're don't know about how the disorder works and is transmitted and its frequency."
+            her concerned "They'd be better off if they didn't know about that rare disorder because then they wouldn't jump to conclusions as easily."
             him annoyed "Well then the lesson is to do more research and stop jumping to conclusions, not keep people in ignorance!"
-            martin "People have a limited amount of time to learn. They should spend it on learning relevant things in more depth, instead of wasting it on half-learning things they don't even use."
-            show lily at quarterleft with moveinleft
-            lily "I had some of these same reservations. However, I am also concerned that right now, I am the only one who carries this knowledge. Should something happen to me, it will help my successor if others have at least a rudimentary understanding of the big picture."
-            natalia "Yeah, as I'm getting older I feel that pressure, too - a drive to make sure my kids learned everything they needed to."
-            lily "Miranda is learning quickly, but this burden should not be hers alone."
-            "The conversation paused for a moment as if Death had showed up and made a rude remark."
+            martin angry "People have a limited amount of time to learn. They should spend it on learning relevant things in more depth, instead of wasting it on half-learning things they don't even use."
+            show lily normal at quarterleft with moveinleft
+            lily "I had some of these same reservations. However, I am also concerned that right now, I am the only one who carries this knowledge. I would hate for it to be lost with me."
+            natalia normal "Yeah, as I'm getting older I feel that pressure, too - a drive to make sure my kids learned everything they needed to."
+            lily happy "Miranda is learning quickly, but this burden should not be hers alone."
+            "The conversation paused for a moment as if Death had showed up and flipped us all off."
             "I thought about what knowledge would be lost if I died. What did I need to pass on?"
-            natalia "Well, I for one am glad you shared your knowledge with us. I feel like I understand the solar flare system better and can make more well-informed decisions."
-            lily "I hope so."
+            natalia happy "Well, I for one am glad you shared your knowledge with us. I feel like I understand the solar flare system better and can make more well-informed decisions."
+            lily angry "I hope so."
 
         "Watch [kid_name]":
             him normal "You go; I'll take care of [kid_name]."
@@ -562,19 +558,29 @@ label community3:
                     "[kid_name] squirmed down from my arms and ran over to Naomi, allowing her a short hug before she ran over to play."
                     "There weren't a lot of toys on Talaam, but Sister Naomi's house was like a kid's paradise. She had a blanket fort and inside were lots of things for kids to play with."
                     "They weren't technically toys, but there were kitchen utensils and pots and pans and a tower of old cans that Travis was building with and some paper animals that Oleg was arranging carefully by size."
-                    pavel "[his_name]! Good to see you! Well, now the playgroup is complete!"
+                    pavel happy "[his_name]! Good to see you! Well, now the playgroup is complete!"
                     him concerned "I came to help watch the kids, if you want..."
-                    pavel "Very good! We can't let Naomi have all the fun, now, can we?"
-                    naomi "Thank you, [his_name]; that was very thoughtful of you."
-                    pavel "I'd join you, but unfortunately I need to go to the lecture."
+                    pavel normal "Very good! We can't let Naomi have all the fun, now, can we?"
+                    naomi happy "Thank you, [his_name]; that was very thoughtful of you."
+                    pavel sad "I'd join you, but unfortunately I need to go to the lecture."
                     hide pavel with moveoutleft
                     "Travis' can tower fell over and crushed Oleg's paper horse, and Oleg started to cry."
                     "Naomi and I helped straighten out the paper animals and moved Oleg a bit farther away from the falling cans."
-                    naomi "Have you written any poems lately, [his_name]? I do enjoy them."
+                    naomi normal "Have you written any poems lately, [his_name]? I do enjoy them."
                     him surprised "Oh! No, not really."
-                    # TODO: FINISH THIS EVENT
-
-
+                    naomi happy "Well, if you write one I hope you will share it with us. Do you have a favorite poet?"
+                    him normal "I like a lot of Whitman's stuff. Robert Frost, too."
+                    naomi normal "Oh yes. He had a way of inspiring goodness."
+                    "We talked about poetry inbetween feeding the kids a snack and breaking up a fight between Travis and [kid_name] when they both wanted to bang on the same pot."
+                    "Then it was time to head home."
+                    scene farm_interior with fade
+                    show him determined at midright
+                    show her normal at midleft
+                    with dissolve 
+                    him surprised "How was the lecture?"   
+                    her happy "Good! Dr. Lily talked about how the solar flare detectors work. She wants us all to install her app so that she can gather more real-time data from different locations. How about you?"
+                    him normal "Sister Naomi and I talked about poetry while Travis and Terra demolished can towers. There's a parable in there, somewhere..."
+                    her normal "Thanks for taking [kid_name]; it was really nice to hang out without worrying about her or work or anything."
 
     return
 
@@ -603,7 +609,7 @@ label community4:
     else:
         ret_c "Please elect a liaison to help RET and colonists communicate and resolve conflicts of interest."
     pavel "It's my job to encourage whatever is best for the colony."
-    show pavel sad #TODO: this transition is weird... but is it weirder to keep him in the same pose for so long? His arm gets tired!
+    show pavel sad
     pavel "I don't want you to ever question my loyalty. We need someone else for this job."
     pavel normal "The liaison will have to understand what RET will want and tell them what's possible and what's not."
     pavel "They'll have to tell us what RET wants and convince us to change if necessary."
@@ -611,15 +617,15 @@ label community4:
     pavel normal "I doubt anyone will volunteer for extra work, so I'd like everyone to nominate someone tonight."
     pavel "Then we'll vote on the nominations."
     hide pavel with moveoutright
-    show thuc normal at midright
     show him normal at center
+    show thuc normal at midright    
     show lily normal at midleft
     with dissolve
     thuc "Who has time for that extra work? It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
     him happy "At least you know your own personality well, although I think that you don't give yourself enough credit."
     lily angry "I may occasionally enjoy the company of others, but I would prefer not to negotiate between two parties."
-    show pete normal at quarterleft with moveinleft
+    show pete normal at quarterleft behind lily with moveinleft
     pete normal "We need someone who'll stand up for us. Speak out against their stupid rules."
     him concerned "But it needs to be someone tactful, or else RET won't listen to them..."
     hide pete with moveoutleft
@@ -632,13 +638,13 @@ label community4:
     lily happy "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
     show naomi normal at quarterright with moveinright
     naomi "Hello everyone, have you thought of someone to nominate?"
-    him "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liaison separate from Pavel."
+    him surprised "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liaison separate from Pavel."
     naomi sad "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
     him happy "Isn't that what we want from a liaison?"
     lily "What does 'putting the colonists's needs first' mean in this context? Our survival has been RET's main goal with establishing this colony."
     him pout "RET didn't really explain why we need a liaison."
     lily normal "Regardless, I must choose someone. What do you think of Sara?"
-    him "She helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
+    him normal "She helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
     naomi happy "Now that Oleg is a little older, she might be up to something like this."
     him concerned "Maybe. Oleg is about the same age as [kid_name], and she's still quite the handful."
     naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
@@ -7673,6 +7679,7 @@ label community30:
         julia_c "There's been a death in the mining camp."
         julia_c "The primary suspect is someone who was a frequent client of mine, so the town council suggested that I ask an uninvolved party to assist in the investigation."
         him_c "k you can come over in 30 minutes."
+        nvl clear
         scene farm_interior with fade
         show julia normal at midright with dissolve
         show him normal at midleft with moveinleft

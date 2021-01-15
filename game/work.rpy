@@ -378,99 +378,99 @@ label work2:
     show path with fade
     "I headed off towards the mountains. I could just barely see their house from our land, but it took me a while to walk there."
     scene fields flip with fade
-    show kevin at midright
-    show zaina at center
+    show kevin normal at midright
+    show zaina normal at center
     with dissolve
     show him normal at midleft with moveinleft
 
-    zaina "Thanks for coming, [his_name]. I can't believe I ever thought growing my own food would be easy!"
+    zaina happy "Thanks for coming, [his_name]. I can't believe I ever thought growing my own food would be easy!"
     him concerned "Well, some parts aren't too hard. But it helps if you know what you're doing."
     "I walked through their fields with them, pointing out plants that needed different location, or different irrigation, or different nutrients in the soil. Some were more sensitive to solar flares than others, too."
-    kevin "This information was not in the farming guide I was given."
+    kevin sad "This information was not in the farming guide I was given."
     him normal "Yeah, you can't learn everything about alien farming from a book."
-    kevin "That is unfortunate. Perhaps such a book should be made."
+    kevin normal "That is unfortunate. Perhaps such a book should be made."
     him annoyed "If you want to write it, go right ahead."
-    zaina "I think we'll be too busy taking care of these plants to write much about it right now!"
-    kevin "Perhaps at a future time."
-    zaina "Anyway, thanks for helping us out. Our trees didn't bear many plums, but here's a few of the ones we got. Maybe you can plant the seeds after you eat them?"
+    zaina normal "I think we'll be too busy taking care of these plants to write much about it right now!"
+    kevin happy "Perhaps at a future time."
+    zaina happy "Anyway, thanks for helping us out. Our trees didn't bear many plums, but here's a few of the ones we got. Maybe you can plant the seeds after you eat them?"
     him surprised "Plums? That'll be delicious; thank you!"
-    zaina "Thank you, [his_name]!"
+    zaina normal "Thank you, [his_name]!"
 
     $ enable_crop("plums")
     tutorial "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
 
-    kevin "I do not want to pester you continually with farming questions. Is there someone else whom I could also ask for assistance?"
+    kevin sad "I do not want to pester you continually with farming questions. Is there someone else whom I could also ask for assistance?"
     menu:
         "What should I say?"
         "Natalia" if (not met_peron):
             $ bios.activate("Natalia")
             $ bios.activate("Martín")
             him determined "Natalia is a really good farmer."
-            zaina "I don't think we've met her yet... is she the one with all the chickens?"
+            zaina sad "I don't think we've met her yet... is she the one with all the chickens?"
             him happy "Yeah! They also grow beans and a few different types of corn."
-            kevin "Corn is a versatile plant. Culinarily, it can be a vegetable or a grain."
-            zaina "Does she have popcorn?"
+            kevin normal "Corn is a versatile plant. Culinarily, it can be a vegetable or a grain."
+            zaina normal "Does she have popcorn?"
             him surprised "Yeah, I think some popcorn seeds came on the shuttle with you guys and she's been trying them out. I bet her kids love that."
-            kevin "Does she have many children?"
+            kevin sad "Does she have many children?"
             him determined "She and Martín have five kids. Or, four now, I guess."
-            zaina "Now?"
-            him "There was an accident... and their daughter Josephina died when she was four years old."
-            zaina "What a shame. What happened?"
+            zaina sad "Now?"
+            him concerned "There was an accident... and their daughter Josephina died when she was four years old."
+            zaina sad "What a shame. What happened?"
             menu:
                 "What should I tell them?"
                 "Pete ran over her with his tractor.":
-                    him "Pete was driving his tractor and didn't see her in time..."
-                    zaina "How awful. I bet he still feels bad about it."
-                    him "The Peróns have a vigil every year to remember her."
-                    zaina "Are accidents like that common?"
-                    him "No, I mean, usually accidents aren't so bad that someone dies."
-                    him "But Natalia still has a hard time talking to Pete."
+                    him sad "Pete was driving his tractor and didn't see her in time..."
+                    zaina sad "How awful. I bet he still feels bad about it."
+                    him concerned "The Peróns have a vigil every year to remember her."
+                    kevin sad "Are accidents like that common?"
+                    him determined "No, I mean, usually accidents aren't so bad that someone dies. Natalia has mostly forgiven Pete... but it's hard."
                 "She got run over by a tractor.":
-                    him "She wasn't looking where she was going, and a tractor ran over her."
-                    zaina "Was it a self-driving tractor or something?"
-                    him "No, one of my friends was driving it."
-                    zaina "Oh, I see. You don't want to tell me who it was before I get to know them."
-                    him "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
-            him "Anyway, their other kids are old enough to help around the colony. Well, maybe not Mateo. But their oldest son Tomás just got married."
+                    him sad "She wasn't looking where she was going, and a tractor ran over her."
+                    kevin sad "Was it a self-driving tractor or something?"
+                    him concerned "No, one of my friends was driving it."
+                    zaina normal "Oh, I see. You don't want to tell me who it was before I get to know them."
+                    him determined "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
+            him normal "Anyway, their other kids are old enough to help around the colony. Well, maybe not Mateo. But their oldest son Tomás just got married."
             $ met_peron = True
 
         "Mayor Grayson" if (not met_grayson):
             $ bios.activate("Pavel")
             $ bios.activate("Naomi")
             him determined "Honestly, I'd ask Mayor Grayson."
-            kevin "Is the mayor a farmer, too?"
+            kevin sad "Is the mayor a farmer, too?"
             him normal "No, but he knows everyone and how they're doing and who's an expert on what. So he could direct you to the right person. Or if he can't, Naomi could."
-            zaina "That's his wife, right? What is her job exactly?"
+            zaina normal "That's his wife, right? What is her job exactly?"
             him concerned "She helps people who are having a hard time. She can't prescribe medicine, but she's very reassuring and can encourage you to get more help."
-            zaina "Reassuring? So she basically tells you to 'hang in there.'"
+            zaina sad "Reassuring? So she basically tells you to 'hang in there.'"
             him pout "Somehow when she says it, it feels like she understands what you're going through. She has some training in cognitive behavioral techniques, too, as a therapist, so it's not just random talk."
-            zaina "Oh, she's the one who sent out the announcement about church! Do you go to her services?"
+            zaina happy "Oh, she's the one who sent out the announcement about church! Do you go to her services?"
             him normal "No, but [her_name] does."
             $ met_grayson = True
 
         "Julia" if (not met_nguyen):
+            $ bios.activate("Julia")
             him normal "Julia's probably the best person to ask if you want an expert opinion."
-            zaina "That's Thuc's wife, right? Wasn't she sick last time?"
+            zaina sad "That's Thuc's wife, right? Wasn't she sick last time?"
             him concerned "Yeah, she has some kind of chronic pain issue. Whenever she's stuck inside, she reads up on research instead. Lately she's been reading a lot."
-            kevin "So her knowledge is mostly theoretical?"
+            kevin normal "So her knowledge is mostly theoretical?"
             him normal "Not at all; she and Thuc have a thriving farm. They are experts in fertilizer and waste reclamation, which is more interesting than you might think once you get past the 'yuck' factor."
-            zaina "Okay, good to know."
+            zaina normal "Okay, good to know."
             $ met_nguyen = True
         "Pete" if (not met_jennings):
             $ bios.activate("Travis")
             $ bios.activate("Pete")
             $ bios.activate("Helen")
             him normal "You should ask Pete! He and Helen are always trying new things with their cattle herds."
-            kevin "Has he published his research?"
+            kevin normal "Has he published his research?"
             him surprised "Uh, no, not really, but he'll tell you all about it if you let him."
-            kevin "If knowledge is not written and catalogued, it will be lost."
+            kevin sad "If knowledge is not written and catalogued, it will be lost."
             him normal "Yeah, that's kinda true, but who has time for that? Speaking of writing, though, he also runs the library, so if you're looking for a tool or research or need to fabricate something, he can help you out there."
-            zaina "That would be great! I've been trying to fix this oven door handle but I really think I just need a new hinge."
+            zaina happy "That would be great! I've been trying to fix this oven door handle but I really think I just need a new part."
             $ met_jennings = True
 
     him normal "If you want, I'll introduce you next time we get together."
-    zaina "You know, I would really appreciate that. Everyone's so spread out, and we don't get together very often -- I feel like it's taking forever to get to know everyone."
-    kevin "Thank you, [his_name]."
+    zaina normal "You know, I would really appreciate that. Everyone's so spread out, and we don't get together very often -- I feel like it's taking forever to get to know everyone."
+    kevin happy "Thank you, [his_name]."
     return
 
 
@@ -668,7 +668,7 @@ label work8:
 # Bees?!
 label work10:
     scene community_center with fade
-    show kevin at midright
+    show kevin normal at midright
     show him normal at midleft
     with dissolve
     if (crop_enabled("plums") or crop_enabled("plums+")):

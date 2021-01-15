@@ -213,6 +213,8 @@ init -100:
     transform jumpinghigh:
         linear 0.7 yoffset -150
         linear 0.7 yoffset 0
+    transform flip:
+        xzoom -1.0
 
     transform creepright:
         linear 10.0 xoffset 200

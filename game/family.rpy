@@ -253,7 +253,8 @@ label family1:
     show kid normal with dissolve
     play sound "sfx/baby-gurgle.ogg"
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
-    "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt, and underlying everything, a deep exhaustion that magnified every emotion."
+    "That laughter stirred in me so many emotions -- a primal love at her helplessness, frustration at the irony of it all, shame at how selfish I had felt..."
+    "...and underlying everything, a deep exhaustion that magnified every emotion."
     him annoyed "She really needs us, doesn't she?"
     her concerned "We both need you."
 
@@ -632,6 +633,8 @@ label family2:
                     play sound "sfx/baby-shortcry.ogg"
                     kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
+                    "I put her on my lap and let her pretend to steer the tractor on the way home."
+                    # TODO: insert CG here?
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
                     $ achieved("Patience Grandmaster")
                     $ authoritative += 1
@@ -887,7 +890,8 @@ label family3:
     with move
     him normal "Looks like that plant's harmless."
     show him concerned at center with move
-    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field to protect my little [kid_name]. I felt like I had failed, somehow, like a real father would have done something differently."
+    "[her_name] snuggled her close and I held them both, wishing my embrace could create a force field to protect my little [kid_name]."
+    "I felt like I had failed, somehow, like a {b}real{/b} father would have done something differently."
     her concerned "I'm sorry, [his_name]. I should have been watching her closer."
     him surprised "That's just what I was going to say!"
     play music thoughtful
@@ -995,10 +999,9 @@ label family3:
     him flirting "I was going to suggest some romantic star gazing, but..."
     her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
     him normal "Yeah, I'm exhausted. But wasn't this great?"
-    her normal "It was a nice change of scenery. And that sunset was gorgeous."
-    him flirting "Just like you."
+    her normal "It was a nice change of scenery. And that sunset... I know it's the same sun we can see from our house, but the landscape made it look completely different."
+    him flirting "You have the best ideas, [her_nickname]"
     her normal "Good night, [his_nickname]."
-    him normal "Good night, [her_nickname]."
     window hide
     scene black with fade
     return
@@ -1017,7 +1020,6 @@ label family4:
 
     "[kid_name]'s little fingers that used to be so clumsy were now holding crayons and picking up tiny grains of rice."
     "...and then throwing them on the floor."
-    hide kid with fade
     scene farm_interior with fade
     show him determined at midright
     show her determined at midleft
