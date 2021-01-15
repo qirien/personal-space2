@@ -288,12 +288,14 @@ label start:
         $ her_name = mp.kelly_name
     if (mp.baby_name):
         $ kid_name = mp.baby_name
+
+    # TODO: Make the intro parallel the ending. Maybe take it out and jump right in to the good stuff?
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
     "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
     scene stars with fade
     show familyphoto1 at smallphoto, left, tilted, baby_pos with moveinright
     $ renpy.pause(0.2)
-    show familyphoto2 at smallphoto, center, tilted, baby_pos with moveinright
+    show familyphoto2 at smallphoto, center, baby_pos with moveinright
     $ renpy.pause(0.2)
     show familyphoto3 at smallphoto, right, tilted, baby_pos with moveinright
     "Last, there's me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
@@ -316,9 +318,7 @@ label start:
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
     "But being a dad was a different kind of work than I had ever done before..."
-
-    # TODO: show some sort of inter-scene screen?
-
+    
     # Introduction Scenes
     call family_intro
     call community_intro

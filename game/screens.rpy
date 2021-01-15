@@ -1439,6 +1439,9 @@ screen nvl_dialogue(dialogue):
         $ index += 1
         $ is_jack = False
         $ new_color = gray_dark
+        $ w_red = 1.0
+        $ w_green = 1.0
+        $ w_blue = 1.0
         window:
             id d.window_id
 
@@ -1449,6 +1452,8 @@ screen nvl_dialogue(dialogue):
                     $ nickname = d.who.split()[0]
                     $ is_jack = d.who.startswith(his_name)
                     $ who_color = d.who_args["color"]
+                    if (who_color is None):
+                        $ who_color = "#fff"
                     $ w_red = Color(who_color).rgb[0]
                     $ w_green = Color(who_color).rgb[1]
                     $ w_blue = Color(who_color).rgb[2]

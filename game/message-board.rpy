@@ -541,6 +541,7 @@ label message21:
     julia_c "Lay your expectations out clearly with consequences. You shouldn't have to ask him to do these things; he knows what his chores are. If he fails to do them, he faces the consequences. He'll learn soon enough."
     her_c "I think Naomi would remind you to give him lots of love, but maybe in a different way than when he was little?"
     sara_c "Maybe so... I appreciate the advice, guys.{emoji=worried}"
+    $ bios.addToBio("Sara", "Sometimes she and Ilian don't live together... I think their relationship is complicated.")
 
     nvl clear
     return
