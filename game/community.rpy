@@ -180,6 +180,7 @@ label community1:
             $ asked_fun = True
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
+<<<<<<< Updated upstream
             zaina happy "What about you? What's your deal?" 
             him happy "Farming, family, and food! That's what I'm all about."
 
@@ -374,8 +375,7 @@ label community3:
     scene farm_interior with fade
     show him determined at midright
     show her determined at midleft
-    with dissolve    
-   
+
     him surprised "Hey, are you going to Dr. Lily's thing tomorrow night?"
     her concerned "I wanted to... did you want to go instead? Someone needs to watch [kid_name]..."
     him concerned "Well, Pete's having another game night."
@@ -474,7 +474,7 @@ label community3:
 
             return
 
-        "Go to the lecture with [her_name]":  
+        "Go to the lecture with [her_name]":
             $ marriage_strength += 1
             him normal "We should go on a date together!"
             her flirting "It's not quite 'dinner-and-a-movie' but it'll be fun to go together. I bet Sister Naomi would watch [kid_name]"
@@ -977,7 +977,7 @@ label community6:
         pete happy "Nope."
         him happy "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
         thuc normal "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
-        
+
     return
 
 ################################################################################
@@ -1115,9 +1115,9 @@ label community7:
             him_c "Yeah, I figured."
         elif (pstyle == "permissive"):
             thuc_c "I guess sometimes it pays to be the squeaky wheel!"
-            ret_c "We appreciate the Nguyen's consistent, reliable results. We have made a donation of equipment to agricultural teams in Cambodia in their honor." 
-            him_c "They were probably going to do that anyway."        
-            thuc_c "Maybe, maybe not."        
+            ret_c "We appreciate the Nguyen's consistent, reliable results. We have made a donation of equipment to agricultural teams in Cambodia in their honor."
+            him_c "They were probably going to do that anyway."
+            thuc_c "Maybe, maybe not."
         nvl clear
     return
 
@@ -1337,19 +1337,19 @@ label community9:
             him pout "Isn't there supposed to be some place for the arrow to rest?"
             pete "Don't need it. It just rests on your hand."
             "I picked up the bow and nocked an arrow... but couldn't pull it back more than a few inches. The arrow plinked harmlessly off the tree."
-            play sound "sfx/longbow.ogg"            
+            play sound "sfx/longbow.ogg"
             him normal "Ha ha, at least I hit the tree."
             thuc normal "You made this bow?"
             pete normal "Yup. Carved it from a single branch."
             "He drew an arrow, nocked it, and pulled the string back all the way to his jaw. The arrow flew into the dead tree and almost came out the other side."
             play sound "sfx/longbow.ogg"
             him annoyed "I prefer a compound bow."
-            play sound "sfx/crossbow.ogg"            
+            play sound "sfx/crossbow.ogg"
             "I got out my own bow and shot an arrow at our target, and it sunk in with a satisfying {i}thunk{/i}."
             play sound ["sfx/longbow.ogg", "sfx/crossbow.ogg", "sfx/crossbow.ogg", "sfx/longbow.ogg"] loop
             "Thuc got out his crossbow and we took turns trying it out, too."
             stop sound fadeout 1.0
-            show night_overlay            
+            show night_overlay
             "We recovered our arrows and bolts, and I noticed it was getting dark."
             him normal "I'm going to go setup those snares."
             thuc normal "I saw some trails back there. Might be a good spot."
@@ -1703,7 +1703,7 @@ label community11:
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
     show him at quarterleft behind sara
-    show bro at quarterleft, baby_pos     
+    show bro at quarterleft, baby_pos
     show sara at left
     show oleg at left
     show her at midleft
@@ -3021,7 +3021,7 @@ label community14:
         "Joke that I wish I could join them.":
             him flirting "I wish I could join you, but my crops aren't nearly as portable as your cattle!"
             him concerned "Seriously though, take care of yourselves."
-            pete happy "Thanks. And there's plenty of room out there if you ever change your mind."            
+            pete happy "Thanks. And there's plenty of room out there if you ever change your mind."
             $ mavericks += 1
     hide pete
     hide helen
@@ -3687,7 +3687,7 @@ label community17:
         elif (crop_enabled("plums")):
             "[her_name] brought a jar of plum jam that tasted kind of like prunes, but it was still sweet at least."
         elif (crop_enabled("honey")):
-            "[her_name] brought a jar of honey that tasted like plum blossoms."           
+            "[her_name] brought a jar of honey that tasted like plum blossoms."
         "I had made something else to bring."
 
     scene community_center with fade
@@ -6525,7 +6525,7 @@ label community27:
     show her surprised
     show kid surprised
     show bro surprised
-    with dissolve    
+    with dissolve
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
     "I looked at one of the farms, and the nets had been cut."
     him surprised "I wonder if this is Pete's work?"
@@ -6821,7 +6821,7 @@ label call_to_squid:
                     scene farm_exterior with dissolve
                     show him normal at midleft with moveinleft
                     "I went back to the colony and my farm."
-                    scene lab with dissolve 
+                    scene lab with dissolve
                     #TODO: explain why the nets were cut and there were so many dead jellystars (another animal ate them?)
                     show zaina normal at midright with dissolve
                     show him normal at midleft with moveinleft
@@ -6831,7 +6831,7 @@ label call_to_squid:
                     him doubt "What do you know about it?"
                     zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish eat it without a problem."
                     him normal "Do those big fish that make the high-pitched sound eat them?"
-                    zaina "Yes, those fish are called yippers. They eat mudfish sometimes." 
+                    zaina "Yes, those fish are called yippers. They eat mudfish sometimes."
                     him pout "How do the mudfish compare to jellysquid shells for metal content?"
                     zaina "Let's see... "
                     zaina "It looks like the metals in the mudfish meat are similar to the metals in the shells."
@@ -7578,6 +7578,7 @@ label community29:
 
 label community30:
     #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not
+    #TODO make julia's sprites be on the left, since she faces right
     $ account_checked_counter = 0
     $ know_noel_had_firegrass = False
     $ checked_noel = False
@@ -7661,7 +7662,7 @@ label community30:
         scene farm_exterior with fade
         show rain
         play sound "sfx/rain.ogg" loop
-        
+
         # You can use "show rain" to make it look like it's raining outside.
         # BUT, when you show people you need to add "behind rain". For example:
         # scene farm_exterior with fade
@@ -7681,14 +7682,16 @@ label community30:
         him_c "k you can come over in 30 minutes."
         nvl clear
         scene farm_interior with fade
-        show julia normal at midright with dissolve
-        show him normal at midleft with moveinleft
+        show julia normal at midleft with dissolve
+        show him normal at midright with moveinright
         #TODO figure out why the display flashed to the chat for a moment here
         him content "Want some hot tea?"
-        julia "I love tea. What do you have? Any of my special plum tea?"
+        julia happy "I love tea. What do you have? Any of my special plum tea?"
         him laugh "Do I look like I'm made of money? I have mint tea. And if you're feeling tired I can add a few green tea leaves."
-        julia "Yes, please."
-        #block him getting the tea?
+        julia normal "Yes, please."
+        #getting the tea
+        hide him with moveoutright
+        show him normal at midright with moveinright
         him normal "Okay, so tell me more about what happened."
         julia angry "Do you remember about two Earth years ago, there was a woman who almost killed herself?"
         menu:
@@ -7697,44 +7700,44 @@ label community30:
                 julia normal "I was reading about that meeting in my special mayor files."
                 julia "[her_name] called her Carol in that meeting. But her real name is Noel."
                 him laugh "Yes, [her_name] is big on preserving patient confidentiality. Well, at least I thought she was."
-                julia angry "Not a very good pseudoname for her, was it?"
+                julia happy "Not a very good pseudoname for her, was it?"
                 him smirk "Nope."
             "No":
                 him pout "A woman who almost killed herself? I don't remember that."
                 julia normal "She was under a lot of pressure at the time."
                 julia "Her husband was recently disabled, they had two small children, and she became the family's main breadwinner."
-                julia angry "In my special mayor files, they referred to her as Carol, but her real name is Noel."
+                julia happy "In my special mayor files, they referred to her as Carol, but her real name is Noel."
                 him laugh "Wow, great pseudoname."
                 julia normal "You can see how it was easy for me to make the connection there."
-        julia "Noel's husband, Joel, died from blunt head trauma last night."
+        julia angry "Noel's husband, Joel, died from blunt head trauma last night."
         him determined "Okay. Was Noel with him at the time?"
-        julia "Noel says that she and Joel were on their front porch searching the night sky for shooting stars."
-        julia "It started raining and they were about to go inside, but Joel wanted to watch a little longer."
+        julia normal "Noel says that she and Joel were on their front porch searching the night sky for shooting stars."
+        julia angry "It started raining and they were about to go inside, but Joel wanted to watch a little longer."
         julia "They saw a really spectacular shooting star."
-        julia angry "He dropped his binoculars but told her to keep watching. He reached down to grab them and his wheelchair tipped over."
-        julia normal "He fell face-first onto their porch."
-        julia angry "She rolled him over and attempted CPR when she noticed that he was unconscious."
-        julia normal "By the time she received assistance from the nearby nurse, he was already dead."
+        julia "He dropped his binoculars but told her to keep watching. He reached down to grab them and his wheelchair tipped over."
+        julia "He fell face-first onto their porch."
+        julia "She rolled him over and attempted CPR when she noticed that he was unconscious."
+        julia "By the time she received assistance from the nearby nurse, he was already dead."
         him doubt "I see. Is [her_name] going to do an autopsy?"
-        julia angry "Yes, the body was just delivered to the medical wing this morning."
+        julia normal "Yes, the body was just delivered to the medical wing this morning."
         him normal "Do I have your official authorization to question Noel and any witnesses?"
-        julia normal "Yes, of course!"
+        julia happy "Yes, of course!"
         him determined "Can I get that in writing?"
-        julia "I've already sent it to you."
+        julia normal "I've already sent it to you."
         nvl clear
         julia_c "I, Julia Nguyen, hereby officially authorize [his_name] to question Noel and any witnesses about the incidents surrounding Joel's death."
         him normal "Looks good."
         him determined "Can I collect evidence?"
-        julia "I doubt you'll find any more, but that is permissible."
+        julia happy "I doubt you'll find any more, but that is permissible."
         julia angry "We took photos of the body before we moved it, and we took Joel's belongings for further investigation."
         julia normal "I'll share the photos with you."
         julia "Joel's things are with his body in the hospital."
-        julia "Oh, and Noel has a lot of society anxiety and asked not to be questioned in-person."
+        julia happy "Oh, and Noel has a lot of social anxiety and asked not to be questioned in-person."
         him pout "Hmm. Okay."
         him normal "What do you think happened?"
-        julia "I'm not sure. That's why I'm asking you to do this."
+        julia happy "I'm not sure. That's why I'm asking you to do this."
         him determined "I'll get started right away."
-        julia "Thank you. I'll leave you now to get started."
+        julia normal "Thank you. I'll leave you now to get started."
         jump investigation_start
 
     label investigation_start:
@@ -7757,13 +7760,13 @@ label community30:
         "He had an open gash running horizontally across his forehead, with bruising all around it."
         "In the photo of Joel's yurt, I could see that it had a wooden wraparound porch. The porch was raised maybe two inches from the ground and didn't have a railing."
         "Four rain barrels stood on the side. One was open and catching the rain that poured from the roof of the yurt."
-        
+
         "I put my rain gear back on and prepared to set out."
         scene farm_exterior with fade
         show rain
         play sound "sfx/rain.ogg" loop
         show him normal at midleft behind rain
-        
+
         "Where should I go first in my investigation?"
         menu:
             "Visit where Joel died.":
@@ -7790,13 +7793,13 @@ label community30:
                     "I asked where I could find Noel, and an old woman pointed me in the right direction."
                     play sound "sfx/knock.ogg"
                     scene yurt_interior with fade
-                    show him determined at midright 
+                    show him determined at midright
                     with dissolve
                     him determined "Hi, Noel? Hello? Are you here?"
-                    show thuc normal at midleft behind rain with moveinleft
+                    show thuc happy at midleft behind rain with moveinleft
                     thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
                     him concerned "I'm here to examine where Joel died."
-                    thuc sad "Okay, it was just back here."
+                    thuc normal "Okay, it was just back here."
                     him normal "Was Van here when Joel died?"
                     thuc sad "No, but the kids were. They didn't see what happened though."
                     thuc "They don't understand where he is. They think he went back to Earth."
@@ -7805,8 +7808,8 @@ label community30:
                     him content "Oh, right, that's happening next month! Is Brennan going back?"
                     thuc sad "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
                     # TODO: mention Anya
-                    him doubt"Except for Joel's..."
-                    thuc normal "Good point!"
+                    him doubt "Except for Joel's..."
+                    thuc happy "Good point!"
                     him determined "So what were you doing last night? I'm just trying to rule people out right now."
                     thuc sad "I am a pretty suspicious person."
                     thuc normal "I was at home with Julia. She was writing up a 'Where are They Now?' story on the children of the colony while I read through some colony forum posts."
@@ -7819,26 +7822,33 @@ label community30:
                     thuc sad "Yeah, it's on the porch."
                     scene cabins with fade
                     show rain
+                    play sound "sfx/rain.ogg" loop
                     show him pout at midleft behind rain
                     "I went outside to examine the wheelchair."
                     "It was a manually-operated wheelchair and had a well-worn cushion in its seat."
                     "The brakes were engaged, but they weren't preventing the main wheel from spinning."
                     him "Huh."
                     "The brake pad was completely worn out. I took photos of the brake and brake pad with my tablet."
+                    show him at midright with move
                     "I looked at the rain barrels. I wiggled them to confirm that they were the right weight and sloshiness to contain water."
                     "The open barrel had water in it, with some silt at the bottom. It looked like there were a few rocks down there too."
                     "I didn't have my barrel-opening tools with me, so I didn't open the others."
                     "I went back inside and looked around."
                     scene yurt_interior with fade
-                    show him pout at midleft
-                    show thuc normal at midright 
+                    show him pout at midleft with moveinleft
+                    show thuc normal at midright
                     with dissolve
                     "The young children were following me and I told them I was just making sure that everything was where it should be."
                     "Van tried to distract them while I looked under chairs and in the cabinets for anything suspicious."
+                    show him pout at midleft with move
+                    show van sad at left with move
                     # TODO: add more blocking here to show moving around the room
                     "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were boxes of food and a bunch of dust bunnies."
                     "The storage cupboard had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old smoking pipe."
                     "The pipe was covered in dust."
+                    show him normal at right with move
+                    show van sad at midleft with move
+
                     "The sofa bed was covered with children's blankets and toys. There were all kinds of things lodged into the crevices."
                     "I found a plastic ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
                     "The kids were pretty excited to see what I unearthed."
@@ -7860,7 +7870,7 @@ label community30:
                 label examine_body:
                     $ examined_body = True
                     scene hospital with fade
-                    # TODO: change her sprites to the ones with the doctor coat 
+                    # TODO: change her sprites to the ones with the doctor coat
                     show him normal at midleft with moveinleft
                     show her surprised at midright with dissolve
                     "I headed over to the medical building."
@@ -8106,7 +8116,7 @@ label community30:
         show bedroom_overlay
         show night_overlay
         with dissolve
-        
+
         "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
         "I still wanted to talk to Noel herself, about what happened."
         "I also wanted to ask Van about what Noel and Joel's home life was like."
@@ -8114,7 +8124,7 @@ label community30:
   #      "I also wanted to go back to the scene of the crime to look in the barrel."
   #      if mavericks_strong("moderate"): #8
   #         "And I wanted to ask Pete if it was possible to examine financial records for miners." #if you have a good relationship with pete?
-        
+
         if colonists_strong("moderate"): #8
             nvl clear
             oleg_c "i actually did recognize that ring"
@@ -8131,7 +8141,7 @@ label community30:
 
         scene farm_interior with fade
         show him normal at midleft
-        
+
         "The next morning, I sent Noel a message first thing."
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
@@ -8216,7 +8226,7 @@ label community30:
 #            him "One of the miners died in what appears to be an accident."
 #            him "I'm investigating if that's the case and it would be helpful to access their financial records."
 #            pete "{i}Well normally that kind of information is completely confidential.{/i}"
-#            pete "{i}RET keeps records of it because they want to see if people are savin' money and whatnot.{/i}" 
+#            pete "{i}RET keeps records of it because they want to see if people are savin' money and whatnot.{/i}"
 #            pete "{i}I'd sure like to see them so I could figure out where all my credits went.{/i}" #wasn't this resolved earlier? he lent them to Travis
 #            pete "{i}Normally none of us can access it, but there is a way you can tell how much money is in an account.{/i}"
 #            pete "{i}Most vendor accounts require the user's permission to withdraw funds.{/i}"
@@ -8643,7 +8653,7 @@ label community30:
         label who_suspect:
             scene farm_interior with dissolve
             show him determined at midleft
-            show her normal at midright 
+            show her normal at midright
             with dissolve
             him "I think I'm done with my investigation."
             her "Okay. What have you found out so far?"
