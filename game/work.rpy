@@ -162,7 +162,7 @@ label overwork:
                 him happy "Hey, Pete! Want to come help harvest [random_crop]?"
                 pete normal "Not really. I got a bunch of other stuff going on right now."
                 him sad "Oh..."
-                pete normal "Don't look like that..."
+                pete angry "Don't look like that..."
                 him concerned "I'll find some other way..."
                 pete normal "I'll send Travis over. That's all the help I can spare at the moment, though."
                 him normal "Thanks, I think that'll be good enough."
@@ -517,16 +517,16 @@ label work4:
     him happy "And probably more obedient!"
 
     if (work4_showoff):
-        thuc "Hey, are those your [random_crop] on display over there?"
+        thuc happy "Hey, are those your [random_crop] on display over there?"
         him normal "Yeah!"
-        thuc "They turned out really well. How often do you fertilize them?"
+        thuc normal "They turned out really well. How often do you fertilize them?"
         "We talked about [random_crop] for a while, and then I had an idea."
         him surprised "Hey, do you want to grow your own [random_crop]?"
-        thuc "You'd help me get started?"
+        thuc normal "You'd help me get started?"
         him normal "Yeah!"
-        thuc "Sure, that would be great. Do you want a strawberry plant?"
+        thuc happy "Sure, that would be great. Do you want a strawberry plant?"
         him surprised "Strawberries?"
-        thuc "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
+        thuc normal "Yeah, they're pretty easy and they come back every year so they don't take much work. We don't usually get a lot of them but the kids love them."
         him happy "Sure, thanks!"
         $ enable_crop("strawberries")
     return
@@ -672,36 +672,36 @@ label work10:
     show him normal at midleft
     with dissolve
     if (crop_enabled("plums") or crop_enabled("plums+")):
-        kevin "[his_name]. How are your plum trees?"
+        kevin normal "[his_name]. How are your plum trees?"
         if "plums+" not in farm.crops:
             if "plums" in farm.crops: # we just barely planted plums, but it didn't work.
                 him concerned "I tried to plant them a couple weeks ago, but they didn't germinate. It had probably been too long."
-                kevin "Yes, that is possible."
+                kevin sad "Yes, that is possible."
             else:
                 him concerned "I, uh, I'm afraid it didn't work out."
-                kevin "I see."
+                kevin sad "I see."
             $ disable_crop("plums")
             $ disable_crop("plums+", False)
         else:
             him happy "Pretty good! We're even starting to get a few plums on them."
-            kevin "That is good."
+            kevin happy "That is good."
 
     him surprised "How's your garden coming, Kevin?"
-    kevin "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."
+    kevin normal "It does provide some food, but I have noticed that plants here have an average of a 25\% smaller yield than plants on Earth."
     him concerned "There could be several reasons for that..."
-    kevin "After factoring out other issues such as soil quality, solar flares, and unreported crops, I have come to a conclusion."
+    kevin sad "After factoring out other issues such as soil quality, solar flares, and unreported crops, I have come to a conclusion."
     him surprised "What's that?"
-    kevin "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
+    kevin normal "We need more pollinating insects. The native fauna of Talaam have not evolved to pollinate our plants."
     him normal "Like bees?"
-    kevin "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm for 100 credits?"
+    kevin happy "Precisely. Several colonies of bees are arriving on the next shuttle. I fear it is too many for my small garden. Would you be willing to reserve some land for them on your farm for 100 credits?"
     him surprised "Why wouldn't I want bees?"
-    kevin "They do take a certain amount of upkeep and space every year."
+    kevin sad "They do take a certain amount of upkeep and space every year."
 
     menu:
         "What should I say?"
         "Sure, I'd love bees!":
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
-            kevin "Very well. I shall mark you down for bees."
+            kevin normal "Very well. I shall mark you down for bees."
             $ modify_credits(-100)
             $ enable_crop("honey")
             "Bees will boost production of neighboring squares and require just a little work."
@@ -709,14 +709,14 @@ label work10:
             $ achieved("Family Beeswax")
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."
-            kevin "Very well. I shall ask someone else."
+            kevin normal "Very well. I shall ask someone else."
     him surprised "Is that everything?"
-    kevin "What about other garden helpers? Worms, ladybugs, pill bugs..."
+    kevin sad "What about other garden helpers? Worms, ladybugs, pill bugs..."
     "I remembered George, the giant millipede thing that loved feeding on our compost pile, and how surprised [her_name] and I were to find him in the house."
-    him normal "Well, Talaam already has giant millipede creatures - if you have a compost pile eventually they'll find their way to it. Worms came with us from Earth in our compost -- we figured we'd need them and the bacteria."
-    kevin "I see."
+    him normal "Well, Talaam already has giant millipede creatures - if you have a compost pile you'll see them eventually. Worms came with us from Earth in our compost -- we figured we'd need them and the bacteria."
+    kevin normal "I see."
     him concerned "As for ladybugs -- that might be worth looking into. I wonder if they'd eat those corn pests we had a few years back. Though probably wasps would be better, since they had pretty tough armor."
-    kevin "It might be difficult to convince others to bring wasps here."
+    kevin sad "It might be difficult to convince others to bring wasps here."
     him happy "True; ladybugs have a much better reputation!"
     return
 

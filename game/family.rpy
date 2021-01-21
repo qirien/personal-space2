@@ -1867,7 +1867,7 @@ label family6:
     her determined "Well, yeah... if you're just doing what [kid_name] wants because you're afraid she'll throw a fit, or you just want to do the easiest thing, then that's going to teach her the wrong thing."
     her normal "But if you think about it and decide that doing something with [kid_name] is what's best for the family, then I think it's the right thing to do."
     him concerned "Yeah... but it's not always that simple."
-    her determined "No matter what, though, we need to do everything with love. I want her to always feel loved and accepted at home. When she has troubles, I want us to be the ones she trusts to listen and help with compassion."
+    her determined "No matter what, though, we need to do everything with love. When she has troubles, I want {b}us{/b} to be the ones she trusts to listen and help with compassion."
     him normal "I can't imagine her growing up... it feels like she's been little forever."
     her normal "Yeah... I can hardly remember what life was like before we had [kid_name]... what did we even do all day?"
     him happy "Whatever we wanted!"
@@ -1910,6 +1910,7 @@ label family6:
 
 
     if (year6_have_baby):
+        scene stars with fade
         "That's what we said, but [her_name] didn't get pregnant right away."
 
     return
@@ -2487,7 +2488,7 @@ label family8:
     show kid normal behind rain at center
     show travis normal behind rain at midleft
     show oleg normal behind rain at quarterleft
-    travis "Mud fight!"
+    travis happy "Mud fight!"
     him annoyed "Hey! Quit throwing mud! Not everyone wants to play that."
     kid laugh "I do!"
     show kid normal at squatting with move
@@ -2598,7 +2599,7 @@ label family8:
     show kid normal at center
     with dissolve
 
-    kid happy "And then I'm going to make breakfast for Oleg with the toy kitchen set, and then at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors..."
+    kid happy "And then I'm going to make breakfast for Oleg in the toy kitchen, and at recess I'm going to go down the slide really fast and I hope we get to draw and I hope my teacher knows I already know all my colors..."
     kid laugh "...and the letters of the alphabet and my numbers up to fifty except Travis says I always mess up around forty-seven and skip right to forty-nine but I don't, right, daddy?"
     him surprised "Um, what was the question?"
     kid normal "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
@@ -2657,29 +2658,28 @@ label family8:
             hide her
             with moveoutleft
             scene path with fade
-            show sara normal at midleft
+            show sara sad at midleft
             show oleg sad at quarterleft            
             with dissolve
             show him concerned at midright
             show her concerned coat at center
-            show kid normal at center
             with moveinright
-            show her concerned coat with dissolve
+            show her normal coat with dissolve
             "We walked over and [her_name] pointed to [kid_name] and told Oleg about some of the things she said she wanted to do with Oleg at school."
             show oleg normal
             with dissolve
             "While she talked, we walked over to the door together, and finally Oleg peeked inside."
             hide oleg with moveoutleft
             kid "Oleg! You're here! Come on!"
-            sara sad "Thanks, guys. I really hope Oleg will be okay..."
+            sara normal "Thanks, guys. I really hope Oleg will be okay..."
             her happy coat "Now that he's away from us, he'll be fine. He was the same way when we first started playgroup, remember?"
             him happy "He'd cry and cry until you left, and then he'd be completely happy the whole time."
             her concerned coat "Except as soon as you came to pick him up, he'd cry again."
-            sara normal "You're probably right... But maybe we should take a peek, just to make sure."
+            sara sad "You're probably right... But maybe we should take a peek, just to make sure."
             her surprised coat "I'll admit, I'm a little curious about what they're doing..."
             "The three of us crept closer to the schoolhouse."
             her determined coat "Sara, if he sees you or me, he'll start crying. Someone else had better look."
-            him happy "I got this!"
+            him excited "I got this!"
             "I sidled up to the side of the window and slowly peered inside."
             scene classroom with fade
             show kid normal at midright
@@ -2707,12 +2707,12 @@ label family8:
             hide oleg
             with moveoutleft
             scene path with fade
-            show sara sad at midleft
+            show sara normal at midleft
             show her baby happy coat at center
             show him normal at midright
-            sara "Well?"
+            sara normal "Well?"
             him happy "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
-            sara normal "Oh, good. Maybe this school thing is going to work out."
+            sara happy "Oh, good. Maybe this school thing is going to work out."
 
     if (year6_have_baby):
         scene stars with fade
@@ -2797,9 +2797,9 @@ label baby_delivery:
     him happy "I'm fired? You're the one that's on fire! Look at you, awesome momma!"
     her angry "I am literally in as much pain as if I were on fire!"
     him concerned "I know; I'm just trying to help you stay positive."
-    her annoyed "Just shut up and rub my back."
+    her sad "Just shut up and rub my back."
     him happy "OK! One back rub, coming right up!"
-    her concerned "You forgot the 'shut up' part."
+    her nervous "You forgot the 'shut up' part."
     him normal "..."
     scene stars with fade
     "Julia arrived just in time to help the baby come out."
@@ -2807,16 +2807,16 @@ label baby_delivery:
     show her concerned at center, squatting
     show bedroom_overlay
     show him sad baby at midleft
-    show julia normal at quarterright
+    show julia normal at quarterright, flip
     with dissolve
     $ bro_birth_year = year
     $ bro_age = 0
     $ bro_years = 0
 
-    julia "It's a boy!"
+    julia happy "It's a boy!"
     "...but he didn't look like [kid_name] did when she was born."
     him "Is... is he missing some of his lip?"
-    julia "Looks like a cleft lip. Somehow we missed that on the ultrasound."
+    julia normal "Looks like a cleft lip. Somehow we missed that on the ultrasound."
     her surprised "Oh my..."
     menu:
         "What should I say?"
@@ -2826,7 +2826,7 @@ label baby_delivery:
             show him happy baby with dissolve
         "What an ugly child.":
             him "That is the ugliest child I have ever seen."
-            julia "[his_name]!"
+            julia angry "[his_name]!"
             her sad "[his_name]..."
             him happy baby "Don't mind me; I'm just saying whatever pops into my head. He's still our kid!"
         "He's my son!":
@@ -2836,7 +2836,7 @@ label baby_delivery:
     $ achieved("Binary System")
     $ bios.activate("[bro_name]")
     $ bios.changeName("[bro_name]", bro_name)
-    julia "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
+    julia normal "Repairing a cleft lip is a fairly simple surgery. But don't worry about that right now. Just hold that precious baby!"
     "I snuggled him close while Julia finished helping [her_name] with the afterbirth. He opened his eyes and looked right at me. His serious expression pierced my heart."
     him sad baby "Awww, don't worry little guy! We'll take care of you, no matter what."
     her normal "We can't call him 'little guy'. What's his name?"
@@ -3023,7 +3023,7 @@ label family9:
     kid happy "And applesauce planet!"
     label family9_sara:
         "I was about to leave when Sara walked in."
-        show sara sad at left with moveinleft
+        show sara sad at left behind oleg with moveinleft
         sara "Oleg! Where have you been?!"
         oleg sad "Just playing."
         sara "When you didn't come home from school I was so worried!"
@@ -3044,8 +3044,7 @@ label family9:
 # 6.2 Earth years old
 # Fighting with brother OR playing games when she's not supposed to
 label family10:
-    $ bios.addToBio("bro_name", "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
-    $ bios.addToBio("kid_name", "[kid_name] is talkative, stubborn, and likes to try new things. She is friendly but sometimes thoughtless of other people's feelings.")
+    $ bios.addToBio(kid_name, "[kid_name] is talkative, stubborn, and likes to try new things. She is friendly but sometimes thoughtless of other people's feelings.")
     scene stars with fade
     "Sometimes I had to make sure to stop and enjoy the good times. It always felt like such a relief when no one was crying or needed anything, but I didn't want to take such times for granted."
     "[kid_name] came home from school and I gave her a snack."
@@ -4318,6 +4317,7 @@ label family13_end:
 # 8.7 Earth years old
 # Teacher Troubles
 label family14:
+    $ bios.addToBio(bro_name, "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
     play music tense
     scene farm_interior with fade
     show kid angry at midleft

@@ -111,6 +111,7 @@ screen farm_details_screen:
 
             # Community info
             frame:
+                ysize 335
                 style "plan_farm_subframe"
                 #background None
                 xfill True
