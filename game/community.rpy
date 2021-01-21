@@ -1545,14 +1545,14 @@ label community10:
     him surprised "Maybe they're just being friendly?"
     scene farm_exterior flip with fade
     show natalia normal at midright
-    show martin normal at quarterright # TODO: show Perón's kids? use OPS1 kid sprites?
+    show martin normal at right # TODO: show Perón's kids? use OPS1 kid sprites?
     with dissolve
     show him normal at midleft
     show her normal at quarterleft
     show kid normal at left
     show bro normal at quarterleft, baby_pos
     with moveinleft
-    natalia "Thanks for coming over. We're just finishing up the corn."
+    natalia happy "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Peróns had built two picnic benches, with some crabbird shells modified to be stools."
     #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
@@ -1564,22 +1564,23 @@ label community10:
     her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
     show bro happy with dissolve
     martin happy "I know! You are not the only one who knows, however."
-    natalia "The more people who know about your disease, the more people who can help us!"
+    natalia normal "The more people who know about your disease, the more people who can help us!"
     if (asked_only_medicine):
         martin normal "I can hang on until the medicine arrives, but we're still thinking ahead."
     else:
         martin normal "I have a few more months to live, but I'm already slowing down."
     martin angry "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
-    natalia "They aren't as passionate about the farm as you are."
+    natalia happy "They aren't as passionate about the farm as you are."
     show bro nervous with dissolve
     him surprised "But now that they're older, don't you have more time to work on the farm?"
-    natalia "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, mending and reworking clothes..."
+    natalia angry "Absolutely not. I have enough work as it is making food for everyone, washing their clothes, spinning thread and yarn, canning our surplus, making soap, mending and reworking clothes..."
     martin happy "Don't get her started!"
-    show him happy
-    show her happy
+    show him normal
+    show her normal
+    show natalia happy
     show bro happy
     with dissolve
-    natalia "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
+    natalia normal "If I were in charge, I would phase out the turkeys and corn. I think I could handle chickens and beans on my own."
     show her surprised with dissolve
     him concerned "Isn't the corn really important for feeding everyone else's animals?"
     martin normal "Yes, it is the main component of feed for the animals. Someone else would need to start growing more corn if that happened."
@@ -1587,14 +1588,14 @@ label community10:
     show bro concerned
     with dissolve
     him surprised "What are your older kids interested in, if not farming?"
-    natalia "Tomás is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
+    natalia happy "Tomás is always hanging out in the lab, but I think he just wants to spend more time with his wife, Joanna, who works there."
     martin normal "Isabella wants to be our colony's finest writer. You may have seen the book of poetry she messaged to everyone."
     show her normal
     show bro normal
     with dissolve
-    natalia "She can write {b}and{/b} help grow our food!"
+    natalia angry "She can write {b}and{/b} help grow our food!"
     martin angry "Raúl is a good helper on the farm, but he isn't responsible enough to be in charge."
-    natalia "And Mateo is still too young to do much more than harvest corn and feed the flocks."
+    natalia normal "And Mateo is still too young to do much more than harvest corn and feed the flocks."
     martin normal "What would you do in my position? Who do you think should take care of the farm?"
     show him concerned
     show her concerned
@@ -1607,9 +1608,9 @@ label community10:
             $ miners += 1
             him pout "Tomás is your son. It's his duty to help you out."
             martin happy "That's what I keep telling you, Natalia!"
-            natalia "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
+            natalia angry "He doesn't enjoy it... but he can do it. It's just hard for me to ask such a sacrifice of him."
             martin normal "We've all had to sacrifice at one time or another... This is something worth sacrificing for."
-            natalia "But how will you convince Tomás of that?"
+            natalia normal "But how will you convince Tomás of that?"
             martin angry "What do you think would convince him, [his_name]?"
             menu:
                 "What should I say?"
@@ -1618,16 +1619,16 @@ label community10:
                     martin happy "Exactly!"
                 "This is a matter of survival.":
                     him angry "This isn't a buffet where he can just pick the things he likes! This is survival!"
-                    natalia "Now that's dramatic!"
+                    natalia happy "Now that's dramatic!"
                     martin normal "And also true! I'm not sure he realizes that."
                 "Train someone else to take your place.":
                     him concerned "If he doesn't want to take over the farm, then he needs to train someone else to do that job. But in the meantime, it's his responsibility."
-                    natalia "I like that. That gives him options. And Raúl or Mateo might be more interested in farming, anyway."
+                    natalia happy "I like that. That gives him options. And Raúl or Mateo might be more interested in farming, anyway."
                     martin normal "Josephina loved growing things. She would have helped, too."
-                    natalia "I know she would have."
+                    natalia normal "I know she would have."
                 "This is about family.":
                     him concerned "His family needs him. I know you guys are a close family; he'll understand that."
-                    natalia "I don't want to make him feel guilty..."
+                    natalia normal "I don't want to make him feel guilty..."
                     martin normal "Maybe he needs to feel a little guilty to do what he needs to do."
 
             scene black with fade
@@ -1640,12 +1641,12 @@ label community10:
             $ community11_kidsonfarm = False
             $ mavericks += 1
             him pout "If nobody wants to do it, you shouldn't force them to."
-            natalia "See? It's important for kids to follow their dreams!"
+            natalia angry "See? It's important for kids to follow their dreams!"
             martin angry "Tomás is perfectly capable of running a farm; he's just lazy!"
-            natalia "It's not laziness to prefer working in the lab with his wife."
+            natalia normal "It's not laziness to prefer working in the lab with his wife."
             her surprised "But what about the corn everyone needs for their animals?"
             martin normal "It's mostly Pete's cows that eat it; the smaller animals could live on kitchen scraps and foraging."
-            natalia "Then I guess it's Pete's problem."
+            natalia happy "Then I guess it's Pete's problem."
             him concerned "Just... cut back gradually. It'll take time for everyone to adjust."
             scene black with fade
             nvl clear

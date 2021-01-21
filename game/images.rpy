@@ -89,11 +89,11 @@ init -10:
                 "(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/kid_%s.png" % expression_name,
                 "True", "bro-sprites/tween_%s.png" % expression_name))
 
-        renpy.image(("side", "bro"), "bro-sprites/side_kid.png") #ConditionSwitch(
-                #"(year-bro_birth_year) <= TODDLER_MAX", "bro-sprites/side_toddler.png",
-                #"(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/side_kid.png",
-                #"True", "bro-sprites/side_tween.png"))                
-                # TODO: do we need side images for all of bro?
+        renpy.image(("side", "bro"), ConditionSwitch(
+                "year <= 12", "bro-sprites/side_baby.png", 
+                "(year-bro_birth_year) <= TODDLER_MAX", "bro-sprites/side_toddler.png",
+                "(year-bro_birth_year) <= CHILD_MAX", "bro-sprites/side_kid.png",
+                "True", "bro-sprites/side_tween.png"))
 
         # Images for Oleg
         for expression_name in simple_expressions:
