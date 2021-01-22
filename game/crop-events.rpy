@@ -1592,8 +1592,9 @@ label beans2:
             "At least the top layers dried out okay."
             $ harvest_factor = 0.65
 
-    stop sound fadeout 2.0
     $ modify_credits(-(1-harvest_factor) * farm.crops.count("beans") * get_credits_from_name("beans"))
+    "Hopefully the weather will be better for beans next year."
+    stop sound fadeout 2.0
     return
 
 # SPINACH 1 - heat wave kills spinach seeds

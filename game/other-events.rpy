@@ -18,8 +18,8 @@ label parenting_class_questions:
             naomi normal "However, if you praise telling the truth even when it's difficult, and are calm and prepared for answers that you may not like, you are more likely to receive the truth."
             him annoyed "What if they still lie?"
             naomi sad "They may choose to do so. And you will be disappointed and may need to check on things in person instead of just asking them about where they were or whether their chores were done."
-            sara sad "I used to ask Oleg if he had taken out the trash when I knew he hadn't. I thought I was getting him to think for himself, but in reality I was being dishonest by acting like I didn't know."
-            sara normal "He still doesn't like to do it, but if I just tell him 'Please take out the trash', there's less opportunity for lying."
+            ilian angry "I used to ask Oleg if he had taken out the trash when I knew he hadn't. I thought I was getting him to think for himself, but in reality I was being dishonest by acting like I didn't know."
+            ilian normal "He still doesn't like to do it, but if I just tell him 'Please take out the trash', there's less opportunity for lying."
         "How do you make your kids do stuff?":
             him surprised "How do you make your kids do stuff?"
             naomi happy "It sounds like you want [kid_name] to do something she does not want to do."
@@ -94,15 +94,14 @@ label parenting_class1:
     scene community_center with fade
     show natalia normal at midright
     show him normal at midleft
-    show helen normal at quarterright
+    show helen normal at right
     show her normal at quarterleft
     show ilian normal at left
-    show sara normal at right
     show naomi normal at center
     with dissolve
     naomi happy "I'm so glad you all want to learn about being better parents."
-    natalia "I mostly just have a problem with one kid."
-    helen "How is this going to work when all our kids are such different ages?"
+    natalia happy "I mostly just have a problem with one kid."
+    helen sad "How is this going to work when all our kids are such different ages?"
     naomi normal "Even for different ages of children, the principles are the same. I'll make sure to save time for specific questions and discussion at the end."
     naomi sad "What do you think is the most important thing a child needs? Think about it, and write down your answer."
     menu:
@@ -111,29 +110,29 @@ label parenting_class1:
             "I wrote 'Survival'."
             him determined "You can't do anything else if you're dead."
             naomi normal "That is true. What else?"
-            helen "Love."
-            natalia "Stability."
+            helen happy "Love."
+            natalia normal "Stability."
         "To be loved.":
             "I wrote 'Love'."
             him determined "If you feel loved and secure, you have the motivation to do anything else."
             naomi normal "Good, love is important. What else does a child need?"
             natalia "Survival is important, too. They need to be safe."
-            helen "On Earth that might have been a given, but here..."
+            helen sad "On Earth that might have been a given, but here..."
             naomi sad "True, parents are responsible for their children's survival!"
             him annoyed "They also need to learn how to be adults. Otherwise, what's the point?"
         "To learn.":
             "I wrote 'Learning'."
             him determined "The whole job of kids is to learn to be responsible adults. Without that, there's no point in having kids."
             naomi normal "Yes, I see. What else does a child need?"
-            natalia "Survival, of course."
-            helen "And love."
+            natalia normal "Survival, of course."
+            helen happy "And love."
     naomi happy "Love is the vehicle through which we deliver a child's needs. Just love won't feed a child, or teach him to work hard. But we provide all these things with love."
-    natalia "Not just feeling love, but doing the things your child needs most to grow."
+    natalia normal "Not just feeling love, but doing the things your child needs most to grow."
     naomi sad "And if you try to teach these things without love, a child will not want to learn and will not feel safe making the mistakes he needs to make to learn."
     her surprised "Do we really want our kids to feel safe making mistakes? That sounds dangerous."
-    naomi normal "As parents, part of your job is protect kids from making terrible, life-altering mistakes. But without making small mistakes, they will not learn for themselves."
-    helen "I guess Travis could have never learned to walk without falling so many times."
-    natalia "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings."
+    naomi normal "As parents, part of your job is to protect kids from making terrible, life-altering mistakes. But without making small mistakes, they will not learn for themselves."
+    helen normal "I guess Travis could have never learned to walk without falling so many times."
+    natalia happy "And Tomás could have never learned how to get along so well with his wife without having many disagreements with his siblings."
 
     "We talked for a while about being patient with kids' mistakes, and common mistakes for different ages. It was reassuring to learn things like wetting the bed and talking back were completely normal."
 

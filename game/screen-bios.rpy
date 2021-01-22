@@ -1,8 +1,5 @@
 #
 # Screen to show short bios of all the characters.
-# TODO: Make it so you can get to this screen by clicking on someone's portrait,
-#       their mini-portrait in NVL mode, or the main computer screen
-# TODO: Have all bios from the beginning, but only activate them when you meet someone OR when you click on someone's portrait
 #
 screen biographies(name):
     modal True
@@ -163,10 +160,11 @@ init python:
             return self.people[0].getName()
 
         def addToBio(self, name, addition):
+            changePerson = "None"
             for person in self.people:
                 if (person.getName() == name):
                     changePerson = person
-            if (changePerson is None):
+            if (changePerson == "None"):
                 return
             else:
                 changePerson.addToBio(addition)

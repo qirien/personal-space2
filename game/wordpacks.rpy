@@ -10,8 +10,8 @@ init python:
     basic_words.add_words(basic_nouns, basic_adjectives, basic_verbs, basic_other)
 
     # Family-related words
-    family_nouns = ["hair", "family", "face", "father", "mother", "soul", "eye", "daughter", "son", "girl"]
-    family_adjectives = ["young", "gentle", "old", "rosy", "happy", "personal", "bright", "clever", "jealous", "sweet"]
+    family_nouns = ["hair", "family", "face", "father", "mother", "soul", "eye", "daughter", "son", "girl", "boy"]
+    family_adjectives = ["young", "gentle", "old", "rosy", "happy", "personal", "bright", "clever", "jealous", "sweet", "new"]
     family_verbs = ["touch", "feel", "grow", "build", "adore", "love", "nurture", "thank", "help", "frown", "sleep", "pout"]
     family_other = ["forever", "together"]
     family_words = Wordpack()
@@ -50,7 +50,7 @@ init python:
     separation_words.add_words(separation_nouns, separation_adjectives, separation_verbs, separation_other)
 
     # Talaam-related words
-    talaam_nouns = ["star", "flare", "rock", "planet", "crabird", "wolf slug", "turtle snail", "colony", "RET", "liaison", "geyser", "jellystar", "jellysquid", "lightspeed", "nebula", "cave", "accident", "tentacle", "space"]
+    talaam_nouns = ["star", "flare", "rock", "planet", "crabird", "wolf slug", "turtle snail", "colony", "RET", "liaison", "geyser", "jellystar", "jellysquid", "lightspeed", "nebula", "cave", "accident", "tentacle", "space", "life"]
     talaam_adjectives = ["hot", "binary", "trinary", "alien", "solar", "terrestrial", "celestial", "distant", "rainy", "wet", "jiggly", "purple"]
     talaam_verbs = ["revolve", "blaze", "steam", "radiate", "work", "mine", "explode", "dig", "murder", "glow", "tingle"]
     talaam_other = ["huh", "but", "together"]
