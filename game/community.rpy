@@ -180,8 +180,7 @@ label community1:
             $ asked_fun = True
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
-<<<<<<< Updated upstream
-            zaina happy "What about you? What's your deal?" 
+            zaina happy "What about you? What's your deal?"
             him happy "Farming, family, and food! That's what I'm all about."
 
     scene stars with fade
@@ -212,7 +211,7 @@ label community1:
         "Pavel and Naomi":
             $ bios.activate("Pavel")
             $ bios.activate("Naomi")
-            show pavel normal at right, flip            
+            show pavel normal at right, flip
             show naomi normal at midright
             with moveinright
 
@@ -576,8 +575,8 @@ label community3:
                     scene farm_interior with fade
                     show him determined at midright
                     show her normal at midleft
-                    with dissolve 
-                    him surprised "How was the lecture?"   
+                    with dissolve
+                    him surprised "How was the lecture?"
                     her happy "Good! Dr. Lily talked about how the solar flare detectors work. She wants us all to install her app so that she can gather more real-time data from different locations. How about you?"
                     him normal "Sister Naomi and I talked about poetry while Travis and Terra demolished can towers. There's a parable in there, somewhere..."
                     her normal "Thanks for taking [kid_name]; it was really nice to hang out without worrying about her or work or anything."
@@ -618,7 +617,7 @@ label community4:
     pavel "Then we'll vote on the nominations."
     hide pavel with moveoutright
     show him normal at center
-    show thuc normal at midright    
+    show thuc normal at midright
     show lily normal at midleft
     with dissolve
     thuc "Who has time for that extra work? It's hard enough just raising five goats and ten kids."
@@ -1314,7 +1313,7 @@ label community9:
             scene plain with fade
             show pete normal at midright
             show him pout at midleft
-            show thuc normal at center            
+            show thuc normal at center
             "The grass crabs were about the size of a capybara, but had less meat because of their large shells."
             "They ate a lot of grass, and also the woody parts of plants. Their large beak-like claw could cut through branches, which allowed them to gnaw on it while on the move."
             #makes sense?
@@ -1357,7 +1356,7 @@ label community9:
             scene bonfire with fade
             show pete normal at center
             show him normal at midright
-            show thuc normal at quarterright            
+            show thuc normal at quarterright
             show night_overlay
             with dissolve
             play sound "sfx/fire-2.mp3" loop
@@ -1463,7 +1462,7 @@ label community9:
 
             play music tender
             scene canyon with fade
-            show pete normal at midright            
+            show pete normal at midright
             show him pout at midleft
             show thuc normal at center
             with dissolve
@@ -1489,7 +1488,7 @@ label community9:
             scene bonfire with fade
             show pete normal at center
             show him normal at quarterright
-            show thuc normal at midright            
+            show thuc normal at midright
             with dissolve
             play sound "sfx/fire-2.mp3" loop
             "Finally, we were able to roast and eat the grass crab. The meat was surprisingly sweet."
@@ -7602,57 +7601,57 @@ label community30:
         with dissolve
         #TODO: block Kevin sprites when they are done
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
-        kevin "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
+        kevin normal "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
         kevin "I'd like your help with something that happened in the mining camp."
         him pout "Okay. Want to tell me about it in the library? I don't really want to stand outside in the rain."
-        kevin "It is a sensitive matter, and I would not like to be overheard..."
+        kevin sad "It is a sensitive matter, and I would not like to be overheard..."
         him doubt "No one's in there, it's fine."
         scene library with fade
         show kevin normal at midright
         show him normal at midleft
-        #stop sound
+        stop sound
         him determined "What's this all about?"
-        kevin "There has been a death in the mining camp. We are not certain if it was an accident or a murder."
+        kevin sad "There has been a death in the mining camp. We are not certain if it was an accident or a murder."
         kevin "I would like your assistance in the investigation, as a neutral party."
         him normal "Sure, yeah, I can help. I don't have much experience with investigation, though."
-        kevin "Detectives or police would be best, but as there are none, I am asking you."
+        kevin normal "Detectives or police would be best, but as there are none, I am asking you."
         him determined "Is there a crime scene? A primary suspect?"
-        kevin "The woman who almost killed herself about two Earth years ago... do you remember her?"
+        kevin sad "The woman who almost killed herself about two Earth years ago... do you remember her?"
         menu:
             "Yes":
                 him pout "Sure. There was a town council to see how we could help her."
-                kevin "I was reading the documentation from that very town council meeting."
+                kevin normal "I was reading the documentation from that very town council meeting."
                 kevin "They called her Carol, right?"
                 him normal "Yes, [her_name] is big on preserving patient confidentiality."
-                kevin "Her real name is Noel."
+                kevin happy "Her real name is Noel."
                 him laugh "I always knew [her_name] was secretly a fan of puns."
             "No":
                 him pout "That's not ringing any bells for me."
-                kevin "She was consuming an IMMENSE amount firegrass."
+                kevin sad "She was consuming an IMMENSE amount firegrass."
                 kevin "The drug is not especially habit forming--it's comparable to energy drinks back home."
                 kevin "The town council notes referred to her as Carol, but her real name is Noel."
                 him laugh "Is that supposed to be some kind of joke?"
-                kevin "I believe [her_name] was trying to protect her identity, but did not succeed."
-        kevin "Noel's husband, Joel, recently died from blunt head trauma."
+                kevin happy "I believe [her_name] was trying to protect her identity, but did not succeed."
+        kevin sad "Noel's husband, Joel, recently died from blunt head trauma."
         him normal "Okay. Was Noel with him at the time?"
-        kevin "Noel says that she and Joel went just outside their house to look for shooting stars."
+        kevin normal "Noel says that she and Joel went just outside their house to look for shooting stars."
         kevin "She said that it started to rain, but Joel wanted to watch a little longer."
         kevin "She says that he dropped his binoculars but told her to keep looking. He reached down to grab them and his wheelchair tipped over."
-        kevin "He fell face-first onto the concrete-like material just outside their home."
-        kevin "She wasn't able to lift him up, so she rolled him over. She said he was completely unconscious and had stopped breathing."
-        kevin "By the time she received assistance from a nearby nurse, he was already dead."
+        kevin sad "He fell face-first onto the concrete-like material just outside their home."
+        kevin normal "She wasn't able to lift him up, so she rolled him over. She said he was completely unconscious and had stopped breathing."
+        kevin sad "By the time she received assistance from a nearby nurse, he was already dead."
         him pout "I see. Is [her_name] going to do an autopsy?"
-        kevin "Yes, we just delivered the body to the medical wing."
+        kevin normal "Yes, we just delivered the body to the medical wing."
         him doubt "Do I have your official authorization to question Noel and any witnesses?"
-        kevin "I recommend that you not question Noel as an authority figure, because she stated to me that she would remain silent in such a situation."
+        kevin sad "I recommend that you not question Noel as an authority figure, because she stated to me that she would remain silent in such a situation."
         kevin "Nevertheless, you may officially question any witnesses to Joel's death."
         him determined "Can I get that in writing?"
-        kevin "Certainly. I will send you an e-mail stating such, along with photos of the crime scene."
+        kevin normal "Certainly. I will send you an e-mail stating such, along with photos of the crime scene."
         kevin "We also have Joel's tablet and a few of his other possessions, which we seized as part of our initial investigation."
         him concerned "You just took his stuff? Why don't you completely believe Noel's story?"
-        kevin "I do not wish to bias you. Please, start your own investigation and then I will tell you my ideas."
+        kevin happy "I do not wish to bias you. Please, start your own investigation and then I will tell you my ideas."
         him determined "I'll get started right away."
-        kevin "Goodbye."
+        kevin normal "Goodbye."
         jump investigation_start
 
     else:
@@ -7836,20 +7835,21 @@ label community30:
                     show thuc normal at midright
                     with dissolve
                     "The young children were following me and I told them I was just making sure that everything was where it should be."
-                    "Van tried to distract them while I looked under chairs and in the cabinets for anything suspicious."
                     show him pout at midleft with move
-                    show van sad at left with move
+                    "Van tried to distract them while I looked under chairs and in the cabinets for anything suspicious."
+                    show thuc sad at left with move
                     # TODO: add more blocking here to show moving around the room
                     "I felt the pillows and looked under the mattress and didn't see anything unusual. Under the bed were boxes of food and a bunch of dust bunnies."
+                    show him pout at center with move
                     "The storage cupboard had a few kitchen items, like bowls, a mortar and pestle, and a spice grinder. Another shelf held canned items and an old smoking pipe."
                     "The pipe was covered in dust."
-                    show him normal at right with move
-                    show van sad at midleft with move
-
+                    show him pout at right with move
+                    show thuc sad at midleft with move
                     "The sofa bed was covered with children's blankets and toys. There were all kinds of things lodged into the crevices."
                     "I found a plastic ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
                     "The kids were pretty excited to see what I unearthed."
                     "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
+                    show him normal at center with move
                     "As I prepared to head out, I noticed a big backpack near the door. It was the kind used for lengthy hiking trips."
                     him determined "Whose backpack is this?"
                     thuc sad "Oh, that's Van's. Sometimes he stays overnight with the kids, so he brings his sleeping stuff."
@@ -7869,27 +7869,27 @@ label community30:
                     scene hospital with fade
                     # TODO: change her sprites to the ones with the doctor coat
                     show him normal at midleft with moveinleft
-                    show her surprised at midright with dissolve
+                    show her surprised coat at midright with dissolve
                     "I headed over to the medical building."
                     her "Hi [his_name]. I already had lunch, but you can come in and talk to me for a bit while I clean up."
                     him determined "Actually, I'm here on an official assignment. I'm investigating Joel's death."
-                    her normal "I was just writing up the autopsy."
+                    her normal coat "I was just writing up the autopsy."
                     him doubt "What did you find?"
-                    her normal "His blood work was mostly normal."
-                    her surprised "It looks like he died from bleeding into his brain."
+                    her normal coat "His blood work was mostly normal."
+                    her surprised coat "It looks like he died from bleeding into his brain."
                     him doubt "Is that consistent with an injury sustained from falling from a wheelchair?"
-                    her sad "Yes..."
+                    her sad coat "Yes..."
                     him pout "But?"
                     if (has_strong_marriage()):
                         $ knows_previous_head_injuries = True
-                        her nervous "Most of the time, it takes a while to die from a traumatic brain injury. Usually the person with head trauma goes into a coma for a month or something."
+                        her nervous coat "Most of the time, it takes a while to die from a traumatic brain injury. Usually the person with head trauma goes into a coma for a month or something."
                         her "This seemed really sudden."
-                        her sad "It makes me wonder if he had sustained a brain injury earlier."
-                        her nervous "Besides the one that disabled him."
+                        her sad coat "It makes me wonder if he had sustained a brain injury earlier."
+                        her nervous coat "Besides the one that disabled him."
                         him determined "Huh."
                     else:
                         her nervous "That's all."
-                    her surprised "His things are on the other examination table. We can talk more after I finish cleaning up."
+                    her surprised coat "His things are on the other examination table. We can talk more after I finish cleaning up."
                     "I looked at the other examination table. There was his clothing, his tablet, and a ball made from plant fibers." #there could be a menu of what to look at here
                     "His clothing still felt a little damp. He had an RET-issued shirt, but instead of pants, there was a skirt with buttons all the way down. A kilt? Maybe it was easier to put on than pants?"
                     "The ball made of plant fibers was made from a plant that grew near the river. It was a pretty common plant, so we didn't bother growing it in farms."
@@ -7900,19 +7900,19 @@ label community30:
                     "There weren't any photos from the day of his death though."
                     "He messaged Julia occasionally things like 'be there soon' or 'not tonight'. Interesting."
                     "I opened his personal credit account, but I couldn't access it without a code."
-                    her determined "Find anything that explains his death? Like a threatening video or something?"
+                    her determined coat "Find anything that explains his death? Like a threatening video or something?"
                     him pout "No. It does look like he messaged Julia a fair amount."
-                    her surprised "Well, there's no way it was him writing those messages. Since the mining accident, he hasn't been able to read or write."
+                    her surprised coat "Well, there's no way it was him writing those messages. Since the mining accident, he hasn't been able to read or write."
                     her "Noel felt lucky that he could still talk though."
-                    her nervous "It makes me wonder who was using the tablet."
+                    her nervous coat "It makes me wonder who was using the tablet."
                     him normal "It could have been Noel."
-                    her determined "Yeah. Or Van, he's always helping out over there."
+                    her determined coat "Yeah. Or Van, he's always helping out over there."
                     him doubt "Would Van do something like that?"
-                    her concerned "Maybe if he forgot his own tablet? I'm not sure."
+                    her concerned coat "Maybe if he forgot his own tablet? I'm not sure."
                     him pout "Do you know if I can access his credit account? I'm just curious if he had a balance."
-                    her surprised "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
+                    her surprised coat "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
                     him determined "I'll stop by his place before meeting you at home."
-                    her normal "Just let me know if I can help! I love this kind of stuff."
+                    her normal coat "Just let me know if I can help! I love this kind of stuff."
                     if visited_joel_house:
                         jump olegs_house
                     else:
@@ -7930,17 +7930,17 @@ label community30:
             show ilian happy at midright with dissolve
             "I walked over to the storehouse."
             him pout "I have a computery question for Oleg--is he around?"
-            ilian normal "No idea. I'm not responsibile for where he is or isn't."
+            ilian angry "No idea. I'm not responsibile for where he is or isn't."
             him doubt "Sheesh, did I hit a nerve?"
             ilian normal "Yeah, Sara's always asking me where Oleg is like I'm some kind of walking Oleg-GPS."
-            ilian happy "If she cares so much, why doesn't she follow him around?"
+            ilian angry "If she cares so much, why doesn't she follow him around?"
             ilian "I'm the one stuck here all day."
             him explaining "Maybe you can help me with something else."
             "I pull out the ring I found at Noel's house and show it to Ilian."
             him doubt "Any idea what this is? It looks like it came from the 3D printer, and I know that you've been helping to monitor that."
-            ilian normal "Hmm. I have seen this before, come to think of it. Did you get it from Oleg?"
+            ilian happy "Hmm. I have seen this before, come to think of it. Did you get it from Oleg?"
             him normal "No, from Noel's house."
-            ilian "What do you think it is?"
+            ilian normal "What do you think it is?"
             him determined "Well, it's too small to be a bracelet, unless it's a bracelet meant for a baby maybe."
             ilian happy "The one I saw looked just like that. I bet we can see who created the original object in the 3D printer history."
             ilian normal "Let's look. I think I can access the 3D printer history from here."
@@ -7952,16 +7952,16 @@ label community30:
             him concerned "Hey earlier it seemed like you felt frustrated by your job here."
             him content "If you're feeling burned out, maybe you could get someone to help you so you can have some time off."
             ilian normal "No. No, no, no. I've already been over this so many times."
-            ilian happy "I can't trust anyone else with my job. Without me, the colony would be in utter chaos."
+            ilian angry "I can't trust anyone else with my job. Without me, the colony would be in utter chaos."
             him determined "The colony definitely depends on you doing your job."
             him "I'll just send Oleg a message with my question."
-            ilian normal "While you're asking him that, ask him if he's ever coming back, or if he's just going to stay with his mother the whole rainy season."
+            ilian angry "While you're asking him that, ask him if he's ever coming back, or if he's just going to stay with his mother the whole rainy season."
             him doubt "What do you mean? They're not living with you right now?"
             ilian normal "No, they're squatting in that storage shed on the way to the miners' camp."
             him doubt "Why don't you just ask him yourself?"
             ilian happy "He's not talking to me right now."
             ilian normal "Don't just stand there staring at me!"
-            ilian "Ask him!"
+            ilian angry "Ask him!"
             him pout "Uh, okay."
             nvl clear
             him_c "Hey Oleg, do you know if it's possible to open someone's credit program without their passcode?"
@@ -7972,26 +7972,27 @@ label community30:
             him_c "It must be stored centrally, because even after Helen lost her tablet, I don't remember her losing her credits."
             him_c "Ilian is asking me to ask you if you're going to stay with your mom the whole rainy season."
             oleg_c "it's laik"
+            #TODO: investigate crash here
             oleg_c "i'm never comin back ^$^"
             oleg_c "and mom is goin back to earth --> 0"
             oleg_c "tttlt" #touch talaam the last time
             him_c "Are you for real?"
             oleg_c "just tell him that"
             oleg_c "and tell me what he says"
-            # TODO: the "flashing" back to the texting happens after making a choice. is it fixable?
+            # TODO: the "flashing" back to the texting happens here too
             menu:
                 "Tell Ilian what Oleg said.":
                     him sad "Oleg says he's never coming back and that Sara's going on the shuttle back to Earth."
                 "Tell Ilian that Oleg isn't answering your questions.":
                     him sad "Oleg isn't telling me anything."
                     ilian normal "Oh yeah? Then what's all that you're typing?"
-                    ilian "Give me that."
+                    ilian angry "Give me that."
                     "Ilian took my tablet and read what Oleg had written."
-            ilian normal "WHAT there's no WAY that's possible. Every seat on that shuttle is spoken for."
+            ilian angry "WHAT there's no WAY that's possible. Every seat on that shuttle is spoken for."
             him pout "Since Joel died I think there is an empty seat..."
-            ilian "There's no way Sara was next in the waiting list."
+            ilian normal "There's no way Sara was next in the waiting list."
             ilian "She'd have had to get on the waitlist like... FIFTEEN YEARS ago."
-            ilian "UGHHHH I HATE HER SO MUCH THAT WITCH!"
+            ilian angry "UGHHHH I HATE HER SO MUCH THAT WITCH!"
             him_c "He's freaking out! What the heck?"
             oleg_c "ghgh i knew it"
             scene yurt_interior with fade
@@ -8045,65 +8046,68 @@ label community30:
             "It had been a while since I went there, so it was hard to find in the rain, but its glowing interior helped me locate it."
             play sound "sfx/knock.ogg"
             "Sara answered the door when I knocked."
-            show sara sad at midright behind rain with dissolve
+            show sara normal at midright behind rain with dissolve
             sara "Yes? Can I help you?"
             him determined "Hi Sara. Is it okay if I come in?"
             him normal "I brought soup."
-            sara normal "Sure. What's up?"
+            sara happy "Sure. What's up?"
             scene yurt_interior with fade
             show him normal at midleft
             show sara normal at midright
-            show oleg normal at left
+            show oleg normal at left #TODO: are there oleg sprites?
             with dissolve
             him "It might take a while... why don't you guys eat while I ask a few questions?"
             sara "Okay..."
+            show sara normal at center with move
+            show oleg normal at midright with move
             "Sara and Oleg started eating the soup I brought for them."
-            him "I'm just doing a little research on who is on the waitlist for the shuttle going back to Earth."
+            him determined "I'm just doing a little research on who is on the waitlist for the shuttle going back to Earth."
             him "You know, since Joel died, there's an empty spot."
-            him "Brennan told me that you're first on the list. Is that right?"
+            him normal "Brennan told me that you're first on the list. Is that right?"
             #she only opens up if your colony value is high enough? overly complicated
-            sara "Oh, is that what this is about. Ha."
-            sara "Yes, I am first on the list."
-            sara "Back when the miners first arrived, Ilian and I had a big fight over who should get up in the night with Oleg."
-            sara "He said that I should take care of it all, because I could take a nap in the afternoon if I needed to."
+            sara happy "Oh, is that what this is about. Ha."
+            sara normal "Yes, I am first on the list."
+            sara sad "Back when the miners first arrived, Ilian and I had a big fight over who should get up in the night with Oleg."
+            sara normal "He said that I should take care of it all, because I could take a nap in the afternoon if I needed to."
             oleg "Was I a difficult baby?"
-            sara "You were probably normal, but it was still hard for us."
+            sara sad "You were probably normal, but it was still hard for us."
             sara "I got really mad about it. We kept fighting over everything that month."
-            sara "I asked Brennan to put me on the list to go back on the shuttle if something opened up."
-            sara "Whenever Ilian and I started fighting, I was comforted by the idea going back to Earth."
+            sara normal "I asked Brennan to put me on the list to go back on the shuttle if something opened up."
+            sara sad "Whenever Ilian and I started fighting, I was comforted by the idea going back to Earth."
             oleg "Are you really going to go back?"
-            sara "Of course not! I wouldn't leave you here!"
+            sara normal "Of course not! I wouldn't leave you here!"
             oleg "I'm grown up now. You can go back if you want to."
-            sara "I don't want to go back to Earth."
+            sara sad "I don't want to go back to Earth."
             sara "I don't even know if any of my family back on Earth would be alive by the time I got back."
-            sara "My life is here now. But for a while I just needed to believe I could go back if I wanted to."
-            him "I can understand that. You wanted to have a backup plan just in case."
-            him "When I was talking to Ilian earlier, he seemed really anxious and angry."
-            sara "Yeah, I don't want to be around him when he gets like that."
+            sara normal "My life is here now. But for a while I just needed to believe I could go back if I wanted to."
+            him content "I can understand that. You wanted to have a backup plan just in case."
+            him concerned "When I was talking to Ilian earlier, he seemed really anxious and angry."
+            sara sad "Yeah, I don't want to be around him when he gets like that."
             sara "Usually it's because he expected me to notice something that he thinks is obvious."
             oleg "Yeah, like when the outhouse got really stinky because you kept forgetting to leave the door open."
-            sara "I don't like sitting on a wet toilet!"
-            sara "Anyway, I'm tired of trying to guess what it is this time, so I told him he would have to work it out on his own."
+            sara happy "I don't like sitting on a wet toilet!"
+            sara normal "Anyway, I'm tired of trying to guess what it is this time, so I told him he would have to work it out on his own."
             sara "He'll eventually come around."
             # TODO: is Ilian anxious about a secret related to the accident? or knowing about Oleg's firegrass farm?
-            sara "Thanks for the soup."
-            him "You're welcome."
+            sara happy "Thanks for the soup."
+            him content "You're welcome."
             oleg "Yeah, thanks, this is actually good."
             oleg "I thought about what you were saying, about the credit information being stored somewhere."
             oleg "I think it's on the central servers in the library. But I bet it's encrypted and even if Pete knew how to get in he wouldn't help us now."
-            him "Hmmm. You might be right."
+            him determined "Hmmm. You might be right."
 
             if (not mavericks_strong("moderate")): #8:
                 $ oleg_points += 1
                 oleg "I did think of a workaround though. If you can change your user status to admin, you could make withdrawls from people's accounts until you can't withdraw anymore."
                 oleg "Then you would know how much money they have in their account. Then you deposit it quickly and they would only know if they looked really closely at their account history."
-                him "That sounds like it would work. I don't have admin status though..."
+                him excited "That sounds like it would work!"
+                him pout "I don't have admin status though..."
                 oleg "I think Brennan does."
-                him "Thanks."
+                him normal "Thanks."
 
             "As I got up to leave, the plastic ring from earlier fell out of my pocket."
             oleg "Hey, you dropped this. Where did you get one of those?"
-            him "I found it while investigating Noel's home. Do you know what it is?"
+            him explaining "I found it while investigating Noel's home. Do you know what it is?"
             oleg "Nevermind, I thought it looked like one of the videogame controllers we printed."
             "I headed back home in the rain."
         play sound "sfx/rain.ogg" loop
