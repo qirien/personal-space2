@@ -1987,107 +1987,110 @@ label honey1:
 
     show travis normal at midright
     with dissolve
-    show him normal at quarterleft with moveinleft
+    show him normal at quarterleft behind travis with moveinleft
     if (not helen_dead):
-        helen "Oh. Hello, [his_name]."
+        helen happy "Oh. Hello, [his_name]."
         him normal "Hey there, Helen. How's it going?"
-        helen "Okay, I guess. What brings you way out here?"
+        helen normal "Okay, I guess. What brings you way out here?"
         menu:
             "What should I do?"
             "Talk to Helen about Travis":
                 him determined "I'll get right to the point. Travis stole some of our honey."
-                show travis normal at quarterright with move
-                helen "Oh, really? Why do you think that?"
-                show travis normal at right with move
+                show travis angry at quarterright with move
+                helen sad "Oh, really? Why do you think that?"
+                show travis angry at right with move
                 him concerned "I have video footage right here."
                 "I showed her the security video."
-                helen "Hmmm. Travis!"
-                travis "I was just going to go, uh, do my chores!"
-                show helen normal at quarterright with move
-                helen "C'mere and talk with [his_name]. And"
+                helen angry "Hmmm. Travis!"
+                travis normal "I was just going to go, uh, do my chores!"
+                show helen sad at quarterright with move
+                helen sad "C'mere and talk with [his_name]. And--"
                 "She whispered something in his ear that I didn't hear."
                 hide helen with moveoutright
             "Talk to Travis directly.":
                 $ travis_points += 1
                 him determined "Travis, I need to talk to you."
-                show helen at right with move
+                show helen sad at right with move
 
     show him at center with move
     show travis normal at midright with move
-    travis "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
+    travis happy "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
     him annoyed "Don't change the subject. I caught you stealing my honey."
-    travis "Oh, uh, what?"
+    travis normal "Oh, uh, what?"
     "I showed him the video. Standing here and comparing him to the video, it was easier to tell that it was him."
     "He fidgeted and looked around as if wondering if there was an escape route. Or if he could possibly lie his way out of it."
     him determined "I know it was you."
-    travis "Oh. Uh. Yeah."
+    travis angry "Oh. Uh. Yeah."
     menu:
         "What should I say?"
         "Why did you do it?":
             him concerned "Why did you steal from me?"
-            travis "I don't know."
+            travis angry "I don't know."
             him surprised "You don't have a good reason?"
-            travis "Not really. I mean, honey tastes good. It's really sweet."
+            travis normal "Not really. I mean, honey tastes good. It's really sweet."
             him annoyed "That's the only reason?"
-            travis "Pretty much."
+            travis angry "Pretty much."
         "I expect full compensation.":
             $ travis_points -= 1
             him determined "I expect you to compensate me for that honey. It's about 50 credits worth."
-            travis "50 credits?!"
+            travis angry "50 credits?!"
             him concerned "If you don't have the credits, you can work for me instead."
-            travis "..."
+            travis angry "..."
             him surprised "What was that?"
-            travis "...okay."
+            travis normal "...okay."
         "(Wait for him to say something)":
             "I just waited. He shifted his weight from one foot to the other. I waited some more. Finally, he said quietly,"
-            travis "I'm sorry I stole your honey."
+            travis angry "I'm sorry I stole your honey."
             him normal "Thank you, Travis. Please don't let it happen again."
-            travis "I won't."
+            travis normal "I won't."
             "I waited some more. He cleared his throat and looked around."
-            travis "So is that it?"
+            travis happy "So is that it?"
             him determined "Well, usually when someone steals something, they apologize and then give it back."
-            travis "Oh. I can't give it back; we already ate it."
+            travis normal "Oh. I can't give it back; we already ate it."
             him surprised "We?"
-            travis "My brothers and sisters and I."
+            travis happy "My brothers and sisters and I."
             "Well, at least he shared his ill-gotten goods."
             him determined "So what are you going to do instead?"
-            travis "Oh. Ummm, I could probably give you some cheese. I helped make it."
-            him normal "That sounds good. Why don't you and your parents work out something and bring it by later?"
-            travis "Okay."
+            travis angry "Oh. Ummm, I could probably give you some cheese. I helped make it."
+            if (not helen_dead):
+                him normal "That sounds good. Why don't you and your parents work out something and bring it by later?"
+            else:
+                him normal "That sounds good. Why don't you and your dad work out something and bring it by later?"
+            travis normal "Okay."
 
         "I'm disappointed you would steal from me.":
             him sad "I'm disappointed you would steal from me."
-            travis "It's nothing against you personally! We just really wanted something sweet."
+            travis angry "It's nothing against you personally! We just really wanted something sweet."
             him surprised "We?"
-            travis "My brothers and sisters and I. Sometimes we just get really hungry."
+            travis normal "My brothers and sisters and I. Sometimes we just get really hungry."
             him concerned "I see. Unfortunately, I can no longer trust you like I once did."
-            travis "Oh."
+            travis angry "Oh."
             him sad "But if you're really hungry, come ask and I'll give you some food."
-            travis "Oh. I mean, we don't need a handout or anything, we're doing just fine--"
+            travis normal "Oh. I mean, we don't need a handout or anything, we're doing just fine--"
             him normal "It's okay. I get it."
     him surprised "It's gotta be tough living out there by yourselves?"
-    travis "My dad's always saying how we gotta live on our own, do everything ourselves, be independent."
+    travis angry "My dad's always saying how we gotta live on our own, do everything ourselves, be independent."
     him concerned "Yeah..."
-    travis "I guess I was just trying to do something on my own."
+    travis normal "I guess I was just trying to do something on my own."
 
     menu:
         "What should I say?"
         "Quit stealing.":
             $ travis_points -= 1
             him determined "I understand what you're saying, but you can't steal from people."
-            travis "Yeah."
+            travis normal "Yeah."
         "Want to learn beekeeping?":
             $ travis_points += 2
             him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
-            travis "I don't like bees..."
+            travis angry "I don't like bees..."
             him normal "You probably got stung a lot during your heist, huh?"
-            travis "Yeah... but I wasn't going to walk away empty-handed!"
+            travis normal "Yeah... but I wasn't going to walk away empty-handed!"
             him happy "Well, learning how to handle bees without getting stung is part of beekeeping!"
-            travis "Well... that'd be stellar."
+            travis happy "Well... that'd be stellar."
             him normal "Great! You can pay off the honey you stole by working with the bees."
         "Good luck.":
             him determined "Good luck living on your own."
-            travis "Okay."
+            travis normal "Okay."
 
     return
 

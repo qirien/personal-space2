@@ -755,11 +755,11 @@ label work12:
             show brennan normal at midright with dissolve
             show him determined at midleft with moveinleft
             him determined "I'm interested in the wheat."
-            brennan "Good, good. Seems like you're smarter than you look."
+            brennan flirting "Good, good. Seems like you're smarter than you look."
             him annoyed "Don't make me change my mind."
-            brennan angry "Ah, can't you take a joke?"
+            brennan normal "Ah, can't you take a joke?"
             him determined "..."
-            brennan normal "...Right. Here's your wheat."
+            brennan concerned "...Right. Here's your wheat seeds."
             $ enable_crop("wheat")
             # you sold your soul but can now grow wheat.
         "Don't sign a wheat contract":
@@ -770,13 +770,15 @@ label work12:
             show him normal at midright
             show natalia normal at midleft
             with dissolve
-            natalia "I need something for my farm that's easier to grow. Do you have any suggestions?"
+            natalia angry "What do you think of the wheat?"
+            him determined "I don't like the idea of Brennan controlling anything more than he has to."
+            natalia happy "Ha! True enough. I need {b}something{/b} for my farm that's easier to grow. Do you have any suggestions?"
             him surprised "You've been growing corn, right?"
-            natalia "Yes, and it's quite time-intensive."
+            natalia angry "Yes, and it's quite time-intensive."
             him normal "Have you tried potatoes?"
-            natalia "No, do they do well here?"
+            natalia normal "No, do they do well here?"
             him determined "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
-            natalia "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
+            natalia happy "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
             him normal "It's a deal."
             $ enable_crop("corn")
 

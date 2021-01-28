@@ -337,7 +337,7 @@ label message13:
     julia_c "Oh, is that why you stopped at five?"
     natalia_c "No, actually we wanted more kids but I had to have a hysterectomy right after Mateo. Thanks for bringing it up."
     julia_c "I...I'm sorry. I didn't mean to bring up such a sensitive topic."
-    natalia_c "That's okay, now you have no excuse for being insensitive."
+    natalia_c "Well. Now you have no excuse for being insensitive."
 
     nvl clear
     return

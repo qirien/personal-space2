@@ -1690,20 +1690,20 @@ label community11:
     scene plain with fade
     show sara normal at midleft
     show oleg normal at quarterleft
-    show her normal at midright
     show him normal at center
+    show her normal at midright    
     show bro normal at center, baby_pos
     show kid surprised at quarterright
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
     "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
     "The people in the shuttle exited one by one."
-    show him at quarterleft behind sara
-    show bro at quarterleft, baby_pos
     show sara at left
+    show him at midleft
+    show bro at midleft, baby_pos
     show oleg at left
-    show her at midleft
-    show kid at midleft
+    show her at center
+    show kid at center
     with move
     show miners at right behind sara with moveinright
     sara normal "Wow, those guys are built. The women, too -- solid!"
@@ -1728,7 +1728,7 @@ label community11:
     # Jack definitely doesn't like him, but doesn't have a great reason.
     $ bios.activate("Brennan")
     him surprised "Brennan!"
-    brennan happy "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
+    brennan flirting "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
     him pout "No, no one mentioned it. I hope you're not looking to get your old job in the clinc back; [her_name] has a real nurse assisting her now."
     brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
@@ -1738,35 +1738,38 @@ label community11:
     kid annoyed "I'm seven... well, almost seven. It's complicated. Anyway, I'm going to see if they'll let me look inside the shuttle!"
     hide kid with moveoutright
     her flirting "You still don't look a day over 30."
-    brennan normal "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
+    brennan explaining "I'm not, technically. All this space travel has made me into some kind of ageless Dorian Gray, only instead of an awful painting hiding my age, I just have outdated pop culture references."
     her laugh "Ha ha ha!"
     him annoyed "Hmph. No wonder you didn't want to stay on Earth."
-    brennan happy "You don't look like you've aged too badly, considering how much sun you must get."
+    brennan flirting "You don't look like you've aged too badly, considering how much sun you must get."
     him angry "Wow, really? Martin's dying of skin cancer and you make a sun exposure joke?"
     her concerned "[his_name]..."
-    brennan angry "Sorry...I didn't know."
+    brennan sad "Sorry...I didn't know."
     show him pout with dissolve
     her annoyed "Of course you didn't. There's a lot that you've missed, just like I'm sure we've missed a lot of events on Earth."
     brennan normal "Anyway... Can you help me get everyone together? I need to introduce our Miner Welcome program with Pavel."
     "I whistled long and loud."
-    him surprised "Hey, listen up! Quiet down, everyone!"
+    him surprised "Hey, listen up! Quiet down, everyone! Brennan's going to talk."
     hide him
     hide her
     hide sara
     hide bro
     with moveoutleft
-    show brennan normal at center with move
-    brennan happy "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
-    brennan normal "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
-    brennan normal "I sent out the assignments already, so try to find each other!"
+    show miners at center behind brennan with moveinright
+    show brennan normal at center
+    with move
+    brennan normal "Thank you for the warm welcome! We're planning on staying here a good twelve Earth years, and some of us for the rest of our lives."
+    brennan explaining "In order to facilitate our integration into your community, we've assigned each family a miner or miner family to get to know through weekly dinners."
+    brennan happy "I sent out the assignments already, so try to find each other!"
     scene plain with fade
     show him normal at midleft
-    show her normal at center
+    show her determined at quarterleft
     show chaco normal at midright
     with dissolve
     "After asking around, I found our miner."
-    him "Nice to meet you, Chaco."
+    her normal "Nice to meet you, Chaco."    
     $ bios.activate("Chaco")
+    chaco sad "And you."
     define meet_chaco_questions = set()
     label chaco_coversation_loop:
         show him normal
@@ -1777,55 +1780,55 @@ label community11:
             "What should I ask him?"
             "How was the shuttle ride?":
                 him surprised "How was the trip over?"
-                chaco "Fine."
+                chaco normal "Fine."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "Was it hard to adjust?":
                 him surprised "Did it take a while to adjust to living in such a small space?"
-                chaco "No."
+                chaco normal "No."
                 her happy "I felt so cramped when I came over. Sometimes I just wanted some fresh air so badly, I felt like I would die."
-                chaco "They gave us sleeping medicine part of the time."
+                chaco sad "They gave us sleeping medicine part of the time."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "Do you have any hobbies?":
                 him surprised "What do you like to do in your free time?"
-                chaco "Look at the stars."
+                chaco sad "Look at the stars."
                 him happy "This is a great place for stargazing. Some of the constellations even look the same."
-                chaco "Sounds interesting."
+                chaco normal "Sounds interesting."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "Do you have a family?":
                 him concerned "Is anyone waiting for you back on Earth?"
-                chaco "No."
+                chaco sad "No."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "What is your favorite color?":
                 him surprised "What's your favorite color?"
-                chaco "Blue."
+                chaco normal "Blue."
                 him pout "Light blue or dark blue?"
-                chaco "Dark blue."
+                chaco sad "Dark blue."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "What do you like to eat?":
                 him surprised "What's your favorite food?"
-                chaco "Steak."
+                chaco normal "Steak."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "What do you think of Brennan?":
                 him annoyed "How do you like Brennan?"
-                chaco "He talks too much. And he worries too much."
+                chaco sad "He talks too much. And he worries too much."
                 him normal "Sounds about right."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
@@ -1833,30 +1836,30 @@ label community11:
                 jump chaco_coversation_loop
             "Are you religious?":
                 him surprised "Are you religious? Do you believe in God?"
-                chaco "Yes."
+                chaco normal "Yes."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "What is your blood type?":
                 him surprised "What's your blood type?"
-                chaco "O positive."
+                chaco normal "O positive."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "How tall are you?":
                 him surprised "How tall are you?"
-                chaco "172 centimeters."
+                chaco sad "172 centimeters."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
                 jump chaco_coversation_loop
             "If you were on a desert island...":
                 him surprised "If you were stuck on a desert island with all of your coworkers, who would you eat first?"
-                chaco "Hmmm. Whoever died first."
+                chaco sad "Hmmm. Whoever died first."
                 him normal "That's a practical answer."
-                chaco "I'm practical."
+                chaco normal "I'm practical."
                 $ chaco_questions += 1
                 if (chaco_questions >= 4):
                     jump twenty_questions
@@ -1923,7 +1926,7 @@ label community11:
                 him happy "It looks like they sent us a hard drive for the library. You and Pete can look over it."
                 kevin "Looking forward to it!"
 
-            pavel normal "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            pavel happy "These look like plastic pages with compartments full of... seeds? Are these spices?"
             him happy "I sure hope so! This garlic looks great!"
             pavel normal "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
             $ enable_crop("garlic")
@@ -1936,62 +1939,64 @@ label community11:
             show sara normal at midleft
             with moveinleft
             show natalia normal at right
-            show martin angry at quarterright
+            show martin normal at quarterright
             with moveinright
             "RET sent medicine for Martín, but when I gave it to him, he and Natalia looked crestfallen."
-            natalia "This isn't the kind of medicine we needed! This is useless!"
+            martin angry "This isn't the kind of medicine we needed! This is useless!"
+            show sara sad with dissolve
 
             if is_liaison:
-                natalia "Did you tell them what kind of medicine Martín needed?"
+                natalia angry "Didn't you tell them what kind of medicine Martín needed?"
                 him concerned "I told them Martín needed medicine, and I assumed that they knew what kind from the doctor's reports."
             else:
-                natalia "Sara, why didn't you tell them the exact kind of medicine Martín needed?"
+                natalia angry "Sara, why didn't you tell them the exact kind of medicine Martín needed?"
                 sara sad "I'm sorry, I thought they knew what he needed! I just put medicine."
 
-            show her normal at left with moveinleft
-            her happy "Oooh, Gouda cheese culture!"
-
-            hide her
-            with moveoutleft
             hide martin
             hide natalia
             with moveoutright
 
+            show her normal at left with moveinleft
+            her happy "Oooh, Gouda cheese culture!"            
+            hide her
+            with moveoutleft            
+
+            show sara normal with dissolve
             show thuc normal at midright with moveinright
 
             if talked_to_Thuc:
-                thuc normal "I can start growing these peanuts right away!"
+                thuc happy "I can start growing these peanuts right away!"
                 $ enable_crop("peanuts")
             else:
-                thuc "Are there any new seeds to grow? I want some of this peanut butter, by the way."
+                thuc happy "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 
             if talked_to_Sara:
-                sara normal "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
+                sara happy "Oh, are these bicycle tires? Maybe I can make the rest of the bicycle... oh, this looks like a software upgrade for the 3D printer!"
             else:
-                sara normal "It looks like there's a software upgrade here for the 3D printer."
+                sara happy "It looks like there's a software upgrade here for the 3D printer."
 
             hide sara with moveoutleft
             hide thuc with moveoutright
-            show kevin at midright with moveinright
-            show pavel at midleft with moveinleft
+            show kevin normal at midright with moveinright
+            show pavel normal at midleft with moveinleft
 
             if talked_to_Kevin:
-                kevin "Did they send the rest of Tulip House?"
-                him "I'm not sure. There's a big hard drive here for the library though!"
-                kevin "There's bound to be something good in there."
+                kevin sad "Did they send the rest of Tulip House?"
+                him normal "I'm not sure. There's a big hard drive here for the library though!"
+                kevin normal "There's bound to be something good in there."
             else:
-                kevin "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
-                him "It looks like they sent us a hard drive for the library. You and Pete can look over it."
-                kevin "Looking forward to it!"
+                kevin sad "I've been wondering what happened in my favorite Earth TV shows. Did they send any media?"
+                him normal "It looks like they sent us a hard drive for the library. You and Pete can look over it."
+                kevin happy "Looking forward to it!"
 
-            pavel normal "These look like plastic pages with compartments full of... seeds? Are these spices?"
+            pavel sad "These look like plastic pages with compartments full of... seeds? Are these spices?"
             him surprised "Oh, I hope so! Look, garlic!"
-            pavel "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
+            pavel normal "Yes, and it says the cultivation instructions are on the hard drive. I'm looking forward to this!"
             $ enable_crop("garlic")
 
             if (talked_to_Pavel and is_liaison):
                 him normal "Oh, there was one month where I didn't have urgent business for the instacom, so I got the curry recipe for you too."
-                pavel sad "I'm so happy right now!"
+                pavel happy "I'm so happy right now!"
 
         scene black with fade
         if asked_only_medicine:
@@ -2051,18 +2056,20 @@ label community12:
             show ilian normal at midright
             with dissolve
             him "Oh, and I need a pound of ground beef."
-            ilian normal "Unfortunately, we are completely out of beef."
+            ilian angry "Unfortunately, we are completely out of beef."
             him surprised "What?"
             ilian normal"We're completely out of beef."
             him determined "I heard you, but I didn't believe you. I thought we had plenty of beef."
-            ilian normal "We would have, but the miners maxxed out their allotment. So we're completely out of canned beef. Then one of Pete's cows went missing."
+            ilian angry "We would have, but the miners maxxed out their allotment. So we're completely out of canned beef. Then one of Pete's cows went missing."
             ilian normal "It was also a dairy cow, so we're low on milk."
             him doubt "Well, did it just wander off?"
-            ilian "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
+            ilian angry "I just know what Pete told me, which is that a cow is gone and he isn't going to slaughter any more until he builds the herd back up."
             him concerned "Is there going to be an investigation or something?"
             ilian happy "Not my problem. We've got lots of chicken meat if you're desperate for meat."
             him pout "I happen to really like beef, and my family likes butter. I want to find out what happened."
             ilian normal "Go ahead and ask Pete, he knows what happened."
+            scene stars
+
             nvl clear
             him_c "Hey, Pete, what happened to all our beef?"
             pete_c "That's what I'd like to know!"
@@ -2074,29 +2081,29 @@ label community12:
             pete_c "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
             pete_c "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
             pete_c "We'll have to live without beef for a while so that we can give everyone some next season."
-            nvl hide
+            nvl clear
 
             scene farm_interior with fade
             show him normal at midleft
-            show chaco at midright
+            show chaco normal at midright
             show kid normal at left
             with dissolve
             "That night we had Chaco over for dinner again as part of our welcome miner program."
             "It was a habit now, and after a few weeks, Chaco got more comfortable with us and talked more."
             him "Thanks for helping with the dishes, Chaco."
-            chaco "You're welcome. Thanks for the food."
-            chaco "I brought my telescope like you asked. I can show you some stars."
-            chaco "We might be able to see Earth's sun if it's clear."
+            chaco normal "You're welcome. Thanks for the food."
+            chaco sad "I brought my telescope like you asked. I can show you some stars."
+            chaco normal "We might be able to see Earth's sun if it's clear."
             him excited "Great. I think [kid_name] will love that."
             scene moons with fade
-            show chaco at center with moveinleft
+            show him sad at midleft with moveinleft            
+            show chaco sad at center with moveinleft
             show kid happy at midright with moveinleft
-            show him sad at midleft with moveinleft
             "Seeing our old sun, I suddenly felt homesick. I missed grocery stores and delivery services. I missed the way Earth trees silhouetted in the sunset."
-            "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and trains and restaurants." #believable?
-            him sad "It shows how far away we really are."
-            kid "How far away are we?"
-            chaco "About four light years." #TODO: more precise answer?
+            "I missed my parents, and the way my mom made macaroni and cheese with bacon on top. I missed my dad's laugh. I missed roads and trains and rodeos and restaurants." #believable?
+            him concerned "It shows how far away we really are."
+            kid surprised "How far away are we?"
+            chaco normal "4.2465 light years."
             "We looked at the sky."
             him excited "Oh, a shooting star!"
             kid happy "I saw it! I saw it!"
@@ -2106,21 +2113,20 @@ label community12:
             menu:
                 "Do you eat beef often?":
                     him pout "Do you eat beef often?"
-                    chaco "Yes, I do. We have a barbeque when we go past our mining goal."
-                    chaco "Exceed. That's the word. When we exceed our quota."
+                    chaco normal "Yes, I do. We have a barbeque when we... go past our mining goal?"
+                    chaco sad  "Exceed. That's the word. When we exceed our quota."
                     him content "That sounds fun."
-                    chaco "It is."
+                    chaco normal "It is."
                     $ miners += 1
                     $ know_BBQ = True
                 "Did the miners steal the cow?":
                     him pout "Do you know if the miners stole the cow that went missing?"
                     "Chaco keeps looking at the sky, his face inscrutible."
-                    chaco "No, I don't know anything about that."
-                    him concerned "Pete said that one of his cows went missing."
-                    him concerned "He said the cow's tracks were going towards the miner camp."
-                    chaco "I hope he can find it."
+                    chaco sad "No, I don't know anything about that."
+                    him concerned "Pete said that one of his cows went missing. He said the cow's tracks were going towards the miner camp."
+                    chaco normal "I hope he can find it."
                     him sad "Pete said there wouldn't be any more beef this season."
-                    chaco "No more beef? That's not good."
+                    chaco sad "No more beef? That's not good."
             "Chaco packed up his telescope and went home."
             scene farm_exterior with fade
             "The next day, Pavel sent me a message."
@@ -2132,7 +2138,7 @@ label community12:
             pavel_c "I know beef is really popular in South African and Chilean cuisine, and I think most of the miners are from those two countries."
             pavel_c "Can you come with me tomorrow morning? I was able to arrange a meeting with Brennan."
             him_c "...sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
-            pavel_c"You were the first person I asked."
+            pavel_c "You were the first person I asked."
             him_c "Is it because I'm a guy?"
             pavel_c "And you're interested in what happened to the cow! Three-quarters of the miners are men, so it just seemed like a guy's thing."
             menu:
@@ -2140,7 +2146,7 @@ label community12:
                     him_c "I'll invite Sara to come with us."
                     $ colonists += 1
                     $ sara_investigates = True
-                    "You messaged Sara about meeting Brennan tomorrow morning, and she agreed to come with you."
+                    "I messaged Sara about meeting Brennan tomorrow morning, and she agreed to come, too."
                 "Let's go by ourselves.":
                     him_c "Okay, let's keep it a guy thing."
 
@@ -2150,11 +2156,10 @@ label community12:
                 show sara normal at midright with moveinright
                 show pavel normal at center with moveinright
                 "The next day, I met Pavel and Sara on the road to the miner's village."
-                sara "You guys can talk to Brennan. I'll say I'm really into cooking and ask one of the wives what she knows about the cow."
-                pavel "Actually, most of the couples who came along are both miners."
-                pavel "There are a few people who don't work in the mines though."
-                pavel "I think I can talk at length about cooking better than you can. How about I do the recipe swap thing and you can grill Brennan?"
-                sara "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
+                sara "You guys can talk to Brennan. Maybe I'll say I'm really into cooking and ask one of the wives what she knows about the cow?"
+                pavel "Actually, most of the couples who came along are both miners. There are a few support personnel who don't work in the mines though."
+                pavel happy "I think I can talk at length about cooking better than you can. How about I do the recipe swap thing and you two can grill Brennan?"
+                sara happy "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
                 him smirk "Sounds good."
                 jump mining_village
             else:
@@ -2164,128 +2169,135 @@ label community12:
                 with dissolve
                 "The next day, I met Pavel on the road to the miner's village."
                 him pout "I think one of us should talk to Brennan while the other tries to talk to some of the other people in the miners' village."
-                pavel "I've been meaning to ask one of the cooks about her recipes. Are you comfortable talking to Brennan?"
+                pavel happy "I've been meaning to ask one of the cooks about her recipes. Are you comfortable talking to Brennan?"
                 him annoyed "Sometimes I want to punch his pretty face, but I can restrain myself."
-                pavel "He means well."
+                pavel sad "He means well."
                 jump mining_village
 
             label mining_village:
                 scene mine with fade
+                if sara_investigates:
+                    show sara normal at center                
                 show pavel normal at midleft
                 show him normal at midright
                 with moveinleft
-                "As we approach the mining village for the first time, we see a few columns of smoke rising in the wet morning air."
+                "As we approached the mining village for the first time, we saw a few columns of smoke rising in the wet morning air."
                 pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
-                hide him with moveoutright
-                hide pavel with moveoutright
+                hide him
+                hide sara 
+                hide pavel
+                with moveoutright
                 if sara_investigates:
                     hide sara with moveoutright
-                "We walk through the village on the way to the control station, which is higher up on the foothill."
+                "We walked through the village on the way to the control station higher up on the foothill."
                 scene cabins with fade
-                show him normal at midleft with moveinright
-                show pavel normal at left with moveinright
-                with dissolve
                 if sara_investigates:
-                    show sara normal at center with moveinleft
-                "Rivulets of waste water flow down the road as we approach. It doesn't smell like urine, so it's probably leftovers from washing."
-                "The village consists of a few large communal cabins and some single-family cabins. The single-family cabins are even smaller than mine, if that's even possible."
-                "We walk by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
-                "Pavel stops and asks her a question about her laundry, and they start talking. He motions for me to continue without him."
-                hide pavel with moveoutleft
+                    show sara normal at center                
+                show him normal at midleft
+                show pavel normal at left
+                with moveinleft
+                "Rivulets of waste water streamed down the road as we approached. Probably leftovers from washing?"
+                "The village had a few large communal cabins and some single-family cabins. They were all way smaller than our farmhouses."
+                "We walked by a short, old woman in the middle of doing her laundry." #wasn't planning for this to be a drawn character
+                "Pavel stopped and asked her a question about her laundry, and they started talking. He motioned for me to continue without him."
+                hide him 
+                hide sara
+                with moveoutright
                 scene yurt_interior with dissolve
                 show brennan normal at midright
                 with dissolve
-                "I arrive at the control station. It looks like one of the houses repurposed for a small two-person office."
-                brennan "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
+                "I arrived at the control station, which looked like one of the houses repurposed for a small two-person office."
+                brennan concerned "Yes, and keep going for another 10 meters. Get back to me when you're halfway through and I'll give you an air update."
 
                 if sara_investigates:
                     show him normal at left with moveinleft
                     show sara normal at midleft with moveinleft
-                    brennan "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
-                    brennan happy "I do have some tea though, if you would like some."
-                    sara "I would like some."
+                    brennan happy "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
+                    brennan flirting "I do have some tea though, if you would like some."
+                    sara happy "I would like some."
                     him pout "No thanks."
-                    "Brennan serves Sara some tea."
-                    brennan "So there's a missing cow, is there?"
+                    "Brennan poured Sara some tea and she sipped it carefully."
+                    brennan surprised "So there's a missing cow, is there?"
                     sara sad "Yes. Have you seen any cows around here? The cow's tracks came this way."
-                    brennan "Sorry, but I haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
+                    brennan sad "Sorry, but I haven't. I'm mostly concerned with how the mining is going, if we're on schedule for our next shipment, and things like that."
                     if know_BBQ:
-                        sara "I heard that your team likes to have a barbeque when they make it past their mining quota. It seems like you might help supply the beef for that?"
-                        brennan "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
+                        sara normal "I heard that your team likes to have a barbeque when they make it past their mining quota. It seems like you might help supply the beef for that?"
+                        brennan concerned "Actually, I don't have anything to do with that. That's their supervisor's job. I'm the project manager."
                         sara sad "Okay, who is their supervisor then?"
-                        brennan "His name is Bandile. He's down in the mines all day though. You could try messaging him."
-                    brennan "I hope you find the missing cow."
-                    brennan "Now if you don't mind, I need to get back to work."
+                        brennan explaining "His name is Bandile. He's down in the mines all day though. You could try messaging him."
+                    brennan normal "I hope you find the missing cow. Now if you don't mind, I need to get back to work."
                     scene cabins with fade
                     show him normal at midleft with moveinright
                     if sara_investigates:
                         show sara normal at center with moveinright
                     "We left and headed down the mountain. Pavel waved and joined us."
                     show pavel normal at left with moveinleft
-                    pavel "How was your conversation with Brennan?"
+                    pavel happy "How was your conversation with Brennan?"
                     him concerned "Not great. I can't tell if he's hiding something or just defensive."
                     sara sad "Brennan acts like it doesn't matter what they eat, as long as they're alive."
                     pavel sad "I imagine that's how most employers feel about their miners."
-                    sara sad "I don't know why he's playing it so cool. Everyone loves food, right?"
+                    sara normal "I don't know why he's playing it so cool. Everyone loves food, right?"
                     him doubt "If he acted too concerned about food, then he'd have to admit the missing cow is partially his problem."
-                    pavel normal "I did find out that the miners were planning a celebration."
-                    him doubt "For what?"
-                    pavel "They wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
-                    sara normal "Aww, they have community events too!"
+                    pavel happy "I did find out that the miners were planning a celebration."
+                    him surprised "For what?"
+                    pavel normal "They wanted to celebrate one of the local teenagers passing tests to operate heavy machinery."
+                    sara happy "Aww, they have community events too!"
                     if know_BBQ:
-                        sara "Brennan said that the miners's supervisor, Bandile, is in charge of the celebrations."
-                        sara "He recommended messaging him. Can you do that [his_name]?"
-                        him normal "Yes. I want to get to the bottom of this."
+                        sara normal "Brennan said that the miners's supervisor, Bandile, is in charge of the celebrations. Can you message him, [his_name]?"
+                        him determined "Yes. I want to get to the bottom of this."
                         jump message_Bandile
                     else:
-                        him normal "Where do we go from here?"
+                        him concerned "Where do we go from here?"
                         pavel normal "Can you tell Pete what we found out?"
                         jump tell_Pete
 
                 else:
                     show him normal at midleft with moveinright
-                    brennan "Hello, [his_name].  We don't have any extra chairs, so I'm afraid you'll have to stand."
-                    brennan "I do have some tea though, if you would like some."
+                    brennan flirting "Hello, [his_name].  We don't have any extra chairs, so I'm afraid you'll have to stand."
+                    brennan normal "I do have some tea, though, if you would like some."
                     him pout "No thanks."
-                    "Brennan sipped his tea."
-                    brennan happy "How's [her_name] doing? I haven't seen her much since I arrived."
+                    "Brennan sipped his tea and smirked at me."
+                    brennan explaining "How's [her_name] doing? I haven't seen her much since I arrived."
                     him annoyed "Just fine, thanks."
-                    brennan "So there's a missing cow, is there?"
+                    brennan concerned "So there's a missing cow, is there?"
                     him pout "Yeah. Pete says that he thinks it was one of your miners. Is that possible?"
-                    brennan "I think we would have noticed if someone had stolen a cow."
+                    brennan sad "I think we would have noticed if someone had stolen a cow."
                     him doubt "No, but you could have slaughtered it already."
                     brennan angry "How would we have slaughtered it? We have plenty of heavy machinery for cutting through stone but they are too big for cutting up one small cow. Also it would completely mangle the meat."
                     him determined "I don't know how you would have slaughtered it."
                     if know_BBQ:
                         him determined "Chaco told me that you often have barbeques. Is that right?"
-                        brennan "Yeah, the miners's supervisor organizes them every so often. Keeps morale up."
+                        brennan explaining "Yes. The miners's supervisor organizes them every so often. Keeps morale up."
                         him surprised "I thought you were the supervisor."
-                        brennan "No, I'm the project manager."
+                        brennan normal "No, I'm the project manager."
                         him surprised "What's the difference?"
-                        brennan "I tell everyone how fast the mining has to go for us to be on schedule."
-                        brennan "It's not just a monthly check-in kind of thing. I have daily plans for our project, and have to make changes on the fly based on what the miners find, or if someone gets injured."
-                        brennan "It's like if we all went on a long walk to the ocean. Probably one of us would be the navigator, making sure we were going the right direction and ready to camp at nightfall. That's me."
-                        brennan "Another person would notice if someone was lagging behind, or unhappy for some reason. That's the supervisor."
-                        brennan "Surely you have a project manager for the colony's agricultural work?"
+                        brennan explaining "I tell everyone how fast the mining has to go for us to be on schedule."
+                        brennan normal "It's not just a monthly check-in kind of thing. I have daily plans for our project, and have to make changes on the fly based on what the miners find, or if someone gets injured."
+                        brennan explaining "It's like if we all went on a long walk to the ocean. Probably one of us would be the navigator, making sure we were going the right direction and ready to camp at nightfall. That's me."
+                        brennan normal "Another person would notice if someone was lagging behind, or unhappy for some reason. That's the supervisor."
+                        brennan flirting "Surely you have a project manager for the colony's agricultural work?"
                         him determined "We all trust each other to do our jobs."
-                        brennan "Of course. How... quaint."
-                    else:
-                        pass
-                    brennan "I need to get back to work. I hope you can find the missing cow."
+                        brennan normal "Of course. How... quaint."
+                    brennan concerned "I need to get back to work. I hope you can find the missing cow."
                     him pout "I hope so too."
                     "I left and headed down the mountain. Pavel waved and joined me."
-                    pavel "How was your conversation with Brennan?"
+
+                    scene cabins with fade
+                    show him normal at midleft
+                    show pavel normal at midright
+                    with dissolve
+
+                    pavel normal "How was your conversation with Brennan?"
                     him doubt "Not great. I can't tell if he's hiding something or not."
-                    pavel sad "Understandable."
-                    pavel "I met Lisa and she seemed to know something, but didn't say exactly what she knew."
+                    pavel sad "Hmmm, yes. I met Lisa and she seemed to know something, but didn't say exactly what she knew."
                     him doubt "Do they have the cow hiding in one of these communal buildings?"
-                    pavel "I don't know. I do know that they were planning to celebrate a special occasion, probably with some meat."
+                    pavel sad "I don't know. I do know that they were planning to celebrate a special occasion, probably with some meat."
                     him annoyed "Oh. What was the occasion?"
-                    pavel "One of their teenagers passed some complicated tests and they're going to allow her to operate heavy machinery."
+                    pavel normal "One of their teenagers passed some complicated tests and they're going to allow her to operate heavy machinery."
                     him concerned "Wow. I mean, that does seem worth celebrating. But she didn't say if they had the cow?"
-                    pavel "No, just that they wished they had some beef."
-                    him normal "Where do we go from here?"
-                    pavel "Can you tell Pete what we found out?"
+                    pavel sad "No, just that they wished they had some beef."
+                    him determined "Where do we go from here?"
+                    pavel normal "Can you tell Pete what we found out?"
                     jump tell_Pete
 
             label message_Bandile:
@@ -2301,18 +2313,16 @@ label community12:
                 legalese "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
                 legalese "I heard that two of our miners went on a renegade mission to steal the cow."
                 legalese "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
-                legalese "Some of our miners completely understand why we need to save the cows for calving. A few either don't understand or don't care."
                 legalese "Someone let the cow go the next day and no one has seen it since."
-                legalese "I'm so sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
-                show him at midleft
+                legalese "I'm sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
+                show him sad sweat at midleft
                 show pete normal at midright
                 with dissolve
                 him sad sweat "Hey Pete! I found out what happened to your cow."
                 him annoyed sweat "You were right, it was the miners, but they weren't in agreement about it."
                 him determined "Bandile, their supervisor, sends 100 credits as an apology. I think he already transferred it to your account."
-                pete "They think 100 credits is going to replace her?"
-                pete "She could have had about three more calves."
-                pete "Least I can do is try to find her."
+                pete angry "They think 100 credits is going to replace her? She could have had about three more calves!"
+                pete normal "Least I can do is try to find her."
                 "I don't think he ever found her."
                 return
 
@@ -2556,24 +2566,23 @@ label community13:
     play sound "sfx/knock.ogg"
     "I awoke one morning to someone knocking on my door. I wanted to ignore it and keep sleeping, but [kid_name] said someone wanted to talk to me."
     scene farm_exterior with fade
-    show lily normal at midright with dissolve
+    show lily normal at midright, flip with dissolve
     show him surprised at midleft with moveinleft
-    lily "[his_name], we must act at once. In my weekly testing, I found that our water is showing trace amounts of heavy metals!"
-    lily angry "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
-    lily angry "It will probably poison some local wildlife! As well as us!"
+    lily angry "[his_name], we must act at once. In my weekly testing, I found that our water is showing trace amounts of heavy metals!"
+    lily normal "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
+    lily angry  "It will probably poison some local wildlife! As well as us!"
     him concerned "I certainly don't want heavy metals in my irrigation water."
     him sad "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
     if is_liaison:
-        lily angry "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
+        lily normal "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
         him pout "Alright. What do you need me to ask?"
-        lily normal "Tell them to delay further ore processing until the tailings dam has been repaired."
+        lily angry "Tell them to delay further ore processing until the tailings dam has been repaired."
         him surprised "Do they already know about contamination?"
-        lily angry "Have you told them about it? Then no."
+        lily normal "Have you told them about it? Then no."
         him concerned "Are you sure it's the tailings dam?"
         lily angry "I am not completely certain, but it is the most likely culprit."
         him concerned "Do you know where it is?"
-        lily normal "Yes, Zaina mentioned it, let me look it up."
-        lily "She says it's on the mountain's saddle. I have the coordinates."
+        lily normal "Yes, Zaina mentioned it, let me look it up... She says it's on the mountain's saddle. I have the coordinates."
         him pout "Alright. I wrote: 'Please halt ore processing until tailings dam repaired.'"
         lily angry "I hope that I can still endure climbing to the top of this mountain."
         him normal "I've seen you walking around town. I bet you can handle it."
@@ -2603,6 +2612,7 @@ label community13:
     # Whether you're the liaison or not, you go talk with Brennan
     him concerned "You talk to Brennan. I need to make breakfast."
     lily angry "I'm afraid that my concerns may be dismissed due to my age and stature."
+    him surprised "Really? You think Brennan won't listen to you because you're short and... er, older?"
     lily normal "Your company would lend my petition credibility."
     him pout "Okay, I'll go. But I want to be done quickly. I have a lot of work to do today."
     scene path with fade
@@ -2631,29 +2641,28 @@ label community13:
     lily normal "We're not here to ask for a personal day."
     brennan "Oh, sorry. I thought you were someone else."
     scene yurt_interior with fade
-    show brennan normal at midright with dissolve
+    show brennan concerned at midright with dissolve
     show him pout at midleft
     show lily normal at center
     with moveinleft
-    brennan happy "Who do I owe for the pleasure of your visit?"
+    brennan flirting "Who do I owe for the pleasure of this visit?"
     lily angry "Me. Your tailings dam is not sufficiently contained and is contaminating river water with heavy metals."
     lily normal "I urge you to delay any more ore processing until the breach is repaired."
     brennan normal "There were some heavy rains and a tiny trickle got out. Kevin is observing and drawing up plans for how to repair it."
     lily angry "But you're not stopping any ore processing?"
-    brennan normal "I don't know. What will RET think?"
+    brennan concerned "I wasn't planning to. I'd have to get approval."
     if is_liaison:
-        him normal "We asked them, and they said to defer to your judgement."
+        him determined "We asked RET, and they said to defer to your judgement."
     else:
         him normal "Let me check to see if Sara got back to me."
         sara_c "RET says to go with whatever Brennan decides."
         him surprised "They said you can decide what we should do."
     lily angry "Any amount of heavy metals in drinking water can harm humans and animals who drink it."
-    brennan angry "The thing is, ore processing is one of the bottlenecks in our efficiency."
-    brennan angry "If we delay it by any amount, it will delay our whole timeline."
-    brennan normal "Plus stopping ore processing won't reduce the amount of the leak."
+    brennan angry "The thing is, ore processing is one of the bottlenecks in our efficiency. If we delay it by any amount, it will delay our whole timeline."
+    brennan explaining "Plus stopping ore processing won't reduce the amount of the leak."
     lily normal "Yes, but..."
     him concerned "It makes it look like you don't care about other people when you continue with business as usual during a health emergency."
-    brennan normal "If I were more concerned about RET's image, what you're saying would make sense. But we're all RET employees, so we should all want what's best for the company."
+    brennan concerned "If I were more concerned about RET's image, what you're saying would make sense. But we're all RET employees, so we should all want what's best for the company."
     brennan angry "Even if it makes it look like I don't care about water quality."
     "I wasn't sure they were ever going to agree. Maybe I could propose something they would both agree to."
     him surprised "Okay, how about this--"
@@ -2668,7 +2677,7 @@ label community13:
             him concerned "Yeah, but what areas will need treatment?"
         "...just give up.":
             him pout "Lily, just give it up already. You're not going to win against RET."
-            brennan "Surprisingly practical."
+            brennan normal "Surprisingly practical."
             lily angry "I am now questioning the merits of asking you for help, [his_name]. Whether through cynicism or despair, giving up will accomplish nothing."
             $ c13_lily_happiness -= 1
         "...work on something to extract the heavy metals":
@@ -2681,25 +2690,24 @@ label community13:
         "Brennan, how about if you..."
         "...allocate more people to speed up Kevin's repairs.":
             him pout "Can you allocate more people so the repairs go as fast as possible?"
-            brennan "Kevin is still drawing up plans for the repair."
-            brennan "As soon as he knows what he needs, I'll support him as much as possible."
+            brennan concerned "Kevin is still drawing up plans for the repair. As soon as he knows what he needs, I'll support him as much as possible."
             lily angry "Throwing more people at this problem isn't going to solve it."
             $ c13_lily_happiness -= 1
         "...delay for just one day.":
             him pout "Can you just delay for one day, and use all your resources to start fixing this problem?"
             brennan angry "No, I already explained that I cannot. Not at all."
-            brennan normal "Kevin is spending all his energy on fixing the leak. Delaying mining does nothing to help."
+            brennan explaining "Kevin is spending all his energy on fixing the leak. Delaying mining does nothing to help."
         "...send out an apology.":
             him pout "You should send out a big apology."
             lily angry "What will that accomplish?"
-            brennan "Yeah, that does nothing. We need to fix the actual problem."
+            brennan angry "Yeah, that does nothing. We need to fix the actual problem."
             $ c13_lily_happiness -= 1
 
     if (c13_lily_happiness < 1):
         $ lily_mad_at_RET = True
 
     brennan normal "Alright, Lily, you continue to do testing in a few locations to see how bad the contamination is."
-    brennan normal "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
+    brennan concerned "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
     lily normal "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
     # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
     him surprised "Wait, seriously?"
@@ -2707,7 +2715,7 @@ label community13:
     lily normal "I have access to a recipe for a metal organic framework polymer that could remove metals, but I will need to fine-tune it to the contamination."
     brennan normal "That sounds useful to have on hand."
     lily normal "Do you have anyone trained in chemistry lab work who could help me?"
-    brennan normal "I bet Zaina would help you."
+    brennan surprised "I bet Zaina would help you."
     him normal "I can't tell a pipette from a pipe cleaner, but if [her_name] is having a slow day, maybe she could help?"
     "Dr. Lily started messaging people and I went home to work."
     scene farm_interior with fade
@@ -2755,7 +2763,7 @@ label community13:
                 scene community_center with fade
                 play sound "sfx/people.mp3"
                 "Oleg was there, along with Sara, Ilian, Mayor Grayson, Dr. Lily, Brennan, and Kevin."
-                show sara normal at midright with dissolve
+                show sara normal at center with dissolve
                 sara normal "Thank you everyone, for coming. We're here to discuss Dr. Lily's findings, which have implications for everyone on Talaam."
                 stop sound fadeout 1.0
                 hide sara
@@ -2766,33 +2774,33 @@ label community13:
                 show her normal at left
                 with dissolve
                 pavel normal "Were you aware of this leak, Brennan?"
-                brennan normal "We discovered the leak yesterday afternoon, but since Kevin calculated that the contamination would be minimal, we took a wait-and-see approach."
+                brennan explaining "We discovered the leak yesterday afternoon, but since Kevin calculated that the contamination would be minimal, we took a wait-and-see approach."
                 lily normal "That is irresponsible. Any water contamination should be reported immediately."
                 brennan angry "To whom? We don't exactly have a utilities commission."
                 lily angry "To me! I already do routine testing on our water."
                 her annoyed "I would like to be notified as well, since it could impact the health of colonists and miners."
                 pavel sad "I would also like to know of any mining activity that could impact colonists."
-                brennan normal "In the future I will notify you all."
-                brennan normal "Now that we have that out of the way, Kevin, could you tell us a little more about why this happened and how we can prevent it in the future?"
+                brennan sad "In the future I will notify you all."
+                brennan concerned "Now that we have that out of the way, Kevin, could you tell us a little more about why this happened and how we can prevent it in the future?"
                 hide lily
                 hide pavel
                 hide her
-                hide brennan
-                show kevin normal at midleft with dissolve
-                kevin "Yes, I would be happy to." #see http://www.itv.org/en/research-line/technology-of-dams-and-tailings-disposal/ for info on how tailings dams are made
-                kevin "Several unpredictable factors worked in tandem and resulted in a breach to part of the tailings dam."
-                kevin "The crest of the dam was constructed for foot traffic, but not vehicle traffic, but at some point a vehicle crossed the dam, damaging its structure."
-                kevin "We repaired this and posted new signs. However, heavy rains caused more erosion than expected, possibly because plant and soil types are not analogous to Earth's."
-                kevin "I also did not anticipate that the nearby resistive rocks would cause extra solar damage to our electronic warning system." # https://www.nationalgeographic.com/science/2019/03/solar-storms-worse-damage-if-you-live-near-certain-rocks-geology/
-                kevin "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
-                kevin "I have been able to stop the leak for now, but I am still researching materials for the repair."
+                show brennan at midright with move
+                show kevin normal at midleft with moveinleft
+                kevin normal "Yes, I would be happy to." #see http://www.itv.org/en/research-line/technology-of-dams-and-tailings-disposal/ for info on how tailings dams are made
+                kevin sad "Several unpredictable factors worked in tandem and resulted in a breach to part of the tailings dam."
+                kevin normal "The crest of the dam was constructed for foot traffic, but not vehicle traffic, but at some point a vehicle crossed the dam, damaging its structure."
+                kevin sad "We repaired this and posted new signs. However, heavy rains caused more erosion than expected, possibly because plant and soil types are not analogous to Earth's."
+                kevin normal "I also did not anticipate that the nearby resistive rocks would cause extra solar damage to our electronic warning system." # https://www.nationalgeographic.com/science/2019/03/solar-storms-worse-damage-if-you-live-near-certain-rocks-geology/
+                kevin normal "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
+                kevin sad "I have been able to stop the leak for now, but I am still researching materials for the repair."
                 brennan normal "Thank you Kevin. When do you think the repair will be done?"
-                kevin "Certainly by the end of the week."
+                kevin normal "Certainly by the end of the week."
                 hide kevin
                 show brennan normal at center
                 show lily normal at midleft
                 show her normal at left
-                show him pout at midright
+                show him determined at midright
                 with dissolve
                 lily normal "I am working on a polymer that can break down the metal contaminants. I will need to synthesize some chemicals, and it will take at least two days to prepare the necessary amounts."
                 her normal "I can assist Dr. Lily with the synthesis. Our water only contains trace amounts of metals, and I believe that we can still use it for irrigation water."
@@ -2802,7 +2810,7 @@ label community13:
                 menu:
                     "Find an alternate water source.":
                         him pout "I agree with Dr. Lily. Why risk permanent brain damage when we could avoid it?"
-                        him pout "If samples showed elevated levels of heavy metals, there are probably spots in the river where that amount is even higher."
+                        him determined "If samples showed elevated levels of heavy metals, there are probably spots in the river where that amount is even higher."
                         him normal "Could we divert the mountain stream so that it doesn't pass by the tailings pond?"
                         brennan angry "We're currently using power from the stream in our ore mill, so no, that is not an option."
                     "Use the tainted water.":
@@ -2818,7 +2826,7 @@ label community13:
                 label diaper_interruption:
                         show kid concerned at right with moveinright
                         kid annoyed "Dad, [bro_name] has a stinky diaper."
-                        him normal "Thanks for telling me."
+                        him determined "Thanks for telling me."
                         kid sad "I think it's leaking..."
                         menu:
                             "Take care of [bro_name].":
@@ -2881,7 +2889,7 @@ label community13:
             "One location was out by Pete's farm."
             show pete normal at midright with dissolve
             show him normal at midleft with dissolve
-            pete normal "What brings you out here today? I don't see a wagon, so I'm guessing you don't need manure."
+            pete happy "What brings you out here today? I don't see a wagon, so I'm guessing you don't need manure."
             him pout "No, I'm on a mission from Dr. Lily. Did you hear about the heavy metal contamination from the mining?"
             pete normal "No, I haven't heard a thing. Tell me all about it."
             him sad "The tailings pond in the ore processing area on the saddle of the mountain had a leak."
