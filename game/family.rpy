@@ -3472,8 +3472,9 @@ label family11:
             "Hopefully she learned her lesson."
             $ trust -= 1
             $ authoritarian += 1
+            return
 
-        "(Ignore her until she asks politely)" if (manners_patience_count >= 3):
+        "(Ignore her until she asks politely)" if (manners_patience_count >= 2):
             $ confident += 1
             $ manners_patience_count += 1
             him happy "So, [her_name], what did you work on today?"
@@ -3508,7 +3509,7 @@ label family11:
             $ trust += 1
             $ authoritative += 1
             return
-        "I will wait as long as I need to." if (manners_patience_count >= 2):
+        "I will wait as long as I need to." if (manners_patience_count >= 1):
             him determined "I will wait as long as I need to."
             kid shifty "Can I have the sauce?"
             him normal "I expect you to use the word \"please\"."
@@ -3525,6 +3526,7 @@ label family11:
                 him "That makes [manners_grounded_days] days, now. Is this really worth it?"
             else:
                 him angry "Okay, you're grounded for an entire day!"
+            kid angry "Just give the sauce to me!"
             jump manners_patience
 
         "As soon as you ask politely, I will pass them to you." if (manners_patience_count < 2):
@@ -3798,8 +3800,7 @@ label family12:
     pete_c "Nah, I'll just shave it off. Give you a nice rugged look."
     brennan_c "Pete, if you really want to help a fellow out, make me another couple liters of that brew of yours."
     pete_c "If you've got the credits, I've got the brew."
-    sara_c "Please don't let Pete cut your hair. I can give you a nice, short style that'll be easier to comb through. {emoji=happycry}"
-    brennan_c "Don't worry; I'll never shave these luscious locks."
+    sara_c "Please don't let Pete cut your hair. I can give you a shorter style that'll be easier to comb through. {emoji=happycry}"
     nvl hide
 
     if family12_shaved_head:
@@ -4292,7 +4293,7 @@ label family13_end:
             $ marriage_strength += 1
             him determined "I love you. I've seen you working hard for everyone, seen the love you pour into our family, and I'm amazed. You give so much."
             her sad "But it's not enough!"
-            him normal "It's enough. You did all you could."
+            him normal "It {b}is{/b} enough. It'll be okay..."
         "It's my fault, too!":
             him annoyed "Then maybe it's my fault! I should have let you rest more, taken care of the kids more, and then you wouldn't have had to!"
             her sad "No, of course not!"
