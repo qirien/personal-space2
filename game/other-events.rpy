@@ -77,10 +77,11 @@ label parenting_class_questions:
             him surprised "How can you tell what they are ready for?"
             naomi normal "If they trust you and have a curious mind, they will ask you when they are ready to know something."
             him concerned "[kid_name] certainly has a curious mind..."
-            naomi normal "You don't need to give lots of details -- just the facts that are most relevant to her. A toddler may just want to know the proper names for all the body parts. A child may wonder where babies come from. A teenager may want to know how to tell if you love someone."
-            him concerned "My parents didn't talk to me much about those things."
+            naomi normal "You don't need to give lots of details -- just the facts that are most relevant to her."
+            naomi happy "A toddler may just want to know the proper names for all the body parts. A child may wonder where babies come from. A teenager may want to know how to tell if you love someone."
+            him sad "My parents didn't talk to me much about those things."
             naomi sad "Then you may need some practice. If you seem embarrassed or upset that she is asking about sex, then she will not want to ask you in the future. You could start by talking to [her_name]."
-            him surprised "Can't they just talk to [her_name] about it?"
+            him surprised "Can't she just talk to [her_name] about it?"
             naomi normal "[kid_name] may want to know what you have to say."
             "That thought had never occurred to me before -- that when [kid_name] asked me a question, she didn't just want an answer, she wanted {b}my{/b} answer."
 
@@ -142,29 +143,30 @@ label parenting_class1:
 # This is year 14
 label parenting_class2:
     scene community_center with fade
-    show pete normal at quarterright    
+    show pete normal at right        
     show natalia normal at midright
     show him normal at midleft
     show her normal at quarterleft
     show thuc normal at left
-    show sara normal at right
     show naomi normal at center
     with dissolve
 
     naomi happy "Welcome to our parenting workshop!"
     naomi normal "I'd like us to start by thinking about one time when you felt like someone was a good parent to you. It doesn't have to be your actual parent. I'll go first and then I'd like to hear from you."
-    naomi sad "My grandmother told me many stories. Sometimes they had a moral; sometimes they didn't. Sometimes they were about gods and spirits; sometimes they were about animals or mortals. Some were full of action and adventure, and others were full of loss and longing."
-    naomi normal "As a child, I didn't even care what the stories were about. Just the fact that she cared about me enough to share a story made me happy."
-    naomi "What about you?"
-    natalia "I'll never forget the time I accidentally let all the turkeys out of our family's farm. I had no excuse; I stopped to talk to a friend and didn't close the gate. I was worried my Papa would be furious; so I thought I would lie and say my friend did it."
-    natalia "When I told him, he looked at my face. Then he just said, 'Well, we better go get them.'"
-    natalia "We chased them all day. I finally admitted that it was me, and he just nodded and we finally got all the turkeys home."
+    naomi sad "My grandmother told me many stories. Sometimes they had a moral; sometimes they didn't. Sometimes they were about gods and spirits; sometimes they were about animals or mortals."
+    naomi normal "Some were full of action and adventure, and others were full of loss and longing."
+    naomi sad "As a child, I didn't even care what the stories were about. Just the fact that she cared about me enough to share a story made me happy."
+    natalia angry "I'll never forget the time I accidentally let all the turkeys out of our family's farm. I had no excuse; I stopped to talk to a friend and didn't close the gate."
+    natalia normal "I was worried my Papa would be furious; so I thought I would lie and say my friend did it."
+    natalia angry "When I told him, he looked at my face. Then he just said, 'Well, we better go get them.'"
+    natalia happy "We chased them all day. I finally admitted that it was me, and he just nodded and we finally got all the turkeys home."
     naomi happy "Sounds like you could really trust your father. Would anyone else like to share?"
     menu:
         "Should I share?"
         "Share a story about my mom.":
-            him normal "I don't have anything specific, but my mom could always sense when I was feeling down. We never talked about it, but she would make my favorite dinner, macaroni and cheese with bacon, and I'd know she was thinking about me."
-            him happy "And she ended every day with a hug and an 'I love you.' Every day, no matter how old I was."
+            him normal "I don't have anything specific, but my mom could always sense when I was feeling down."
+            him concerned "We never talked about it, but she would make my favorite dinner, macaroni and cheese with bacon, and I'd know she was thinking about me."
+            him normal "And she ended every day with a hug and an 'I love you.' Every day, no matter how old I was."
             naomi normal "She was very good at helping you feel loved."
         "Share a story about my dad.":
             him determined "My dad and I didn't always get along. He expected me to work hard and stay out of his way."

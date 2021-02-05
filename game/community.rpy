@@ -2920,13 +2920,8 @@ label community13:
 
 label community14:
     scene plain with fade
-    show brennan normal at quarterright
-    show pavel normal at left
-    show thuc normal at right
-    show helen normal at midright
-    show pete normal at center
-    show him normal at midleft
-    show lily normal at quarterleft
+    show chaco normal at left
+    show brennan concerned at midleft
     show miners at midright
     with dissolve
 
@@ -2937,10 +2932,10 @@ label community14:
     show thuc normal at center
     show brennan normal at midright
     show him normal at midleft
-    thuc "So Kevin controls the shuttle remotely?"
-    brennan "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, Kevin will make adjustments for it to leave orbit."
-    thuc "When you flew back, your pilot was in the shuttle. Doesn't it make a difference?"
-    brennan angry "There's a bit of a difference, yes. When the pilot's inside the shuttle, they can make adjustments based on feel."
+    thuc happy "So Kevin controls the shuttle remotely?"
+    brennan explaining "Yes, I don't know the details, but it just needs to get into orbit around Talaam. When it's at the right place and speed to get to Earth, Kevin will make adjustments for it to leave orbit."
+    thuc normal "When you flew back, your pilot was in the shuttle. Doesn't it make a difference?"
+    brennan concerned "There's a bit of a difference, yes. When the pilot's inside the shuttle, they can make adjustments based on feel."
     brennan normal "But, since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
     "Kevin was broadcasting the launch on the radio."
     play sound "sfx/radio.mp3"
@@ -2958,49 +2953,48 @@ label community14:
     show pete normal at midright
     show helen normal at center
     with dissolve
-    pete "Before y'all go, I have an announcement to make."
-    pete "Helen and I are taking our family and moving away."
-    pavel "Is there something wrong with your house?"
-    pete happy "Nothing wrong with the ranch."
+    pete angry "Before y'all go, I have an announcement to make."
+    pete normal "Helen and I are taking our family and moving away."
+    pavel sad "Is there something wrong with your house?"
+    helen angry "Nothing's wrong with the ranch."
     hide pavel with moveoutleft
-    pete normal "We're tired of working for RET. We want to try to make it on our own."
+    pete normal "We're tired of working for RET."
+    helen sad "We want to try to make it on our own."
     pete happy "Part of the reason I came here was to live off the land."
-    pete normal "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people."
-    pete "They haven't treated us fairly."
+    pete angry "'Cept now RET is making all sorts of demands of us. Wants us to spend all our time farming food for other people. They haven't treated us fairly."
     $ bios.addToBio("Pete", "Pete got tired of RET telling him what to do and moved his family out to live on their own.")
     $ bios.addToBio("Helen", "Helen and Pete live away from the rest of the colony on their own, trying to be self-sufficient.")
     if require_whole_harvest or rationing:
-        pete "The miners don't respect my property. They stole one of my cows and never returned her."
+        pete normal "The miners don't respect my property. They stole one of my cows and never returned her."
     else:
-        pete "They expect us to feed the miners, but we can barely feed ourselves."
-        pete "They don't respect the natural beauty of Talaam. They've already polluted our water."
+        pete normal "They expect us to feed the miners, but we can barely feed ourselves."
+        pete angry "They don't respect the natural beauty of Talaam. They've already polluted our water."
     if lily_mad_at_RET:
         show lily angry at quarterright with moveinright
-        lily angry "They don't respect the needs of researchers either."
-        lily "I came here to study this planet, not destroy it."
+        lily angry "They don't respect the needs of researchers either. I came here to study this planet, not destroy it."
         lily normal "I'm going with Pete and his family."
         $ bios.addToBio("Lily", "Lily used to live in the colony, but she left in protest of their destructive methods. Now she lives off with Pete and his family.")
         $ mavericks += 1
     else:
         show lily normal at quarterright with moveinright
-        lily "I plan to visit you often."
-        lily "There is so much more to learn about this planet."
+        lily normal "I plan to visit you often."
+        lily happy "There is so much more to learn about this planet."
     if not (asked_only_medicine):
-        pete "They don't even care about us enough to send the right medicines."
+        helen angry "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen also planned to go with Pete and his family."
         $ mavericks += 1
     $ pstyle = get_parenting_style()
     if (pstyle == "authoritarian"):
-        pete "In the end, their bigheaded attitude just makes me downright ornery."
+        pete angry "In the end, their bigheaded attitude just makes me downright ornery."
     elif (pstyle == "authoritative"):
-        pete "They coulda been worse, that's for sure. But they still just make me ornery."
+        pete angry "They coulda been worse, that's for sure. But they still just make me ornery."
     elif (pstyle == "permissive"):
-        pete "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that their tearin' down the house."
+        pete angry "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that their tearin' down the house."
     elif (pstyle == "neglectful"):
-        pete "In the end, all they care about is that stuff they're diggin' out of the ground, and that's not what I'm about at all."
-    pete normal "I know what my contract says. Basically everything I own belongs to RET unless I made it with my own hands. But I reckon credits don't count."
-    pete normal "We're leaving our house and everything in it. Put it to good use, why don't you. I'll be taking my radio and some metal foam sheeting, which I paid for with credits."
-    pete "We'll leave the same amount of cattle the ranch started with, plus some, and take the rest with us."
+        pete angry "In the end, all they care about is that stuff they're diggin' out of the ground, and that's not what I'm about at all."
+    pete normal "I know what my contract says. Basically everything we own belongs to RET unless we made it with our own hands. But I reckon credits don't count."
+    helen normal "We're leaving our house and everything in it. Put it to good use, why don't you. We'll be taking a radio and some metal foam sheeting, which we paid for with credits."
+    pete normal "We'll leave the same amount of cattle the ranch started with, plus some, and take the rest with us."
     pete happy "We'll still have credits in case we can't trade for what we need."
     "Everyone started talking when Pete sat down."
     "Some families wanted to say goodbye, while others just left awkwardly."
@@ -3014,11 +3008,11 @@ label community14:
             him sad "But what if you get hurt or develop skin cancer? What are your cows going to eat?"
             pete normal "We'll figure it out. Seems like half the things [her_name] deals with would heal on their own."
             him concerned "This is your family you're experimenting with."
-            pete "My family's why I'm doing this. I don't like our present condition, so I'm changing it."
+            pete angry "My family's why I'm doing this. I don't like our present condition, so I'm changing it."
         "Tell them that I understand.":
             him sad "I'm sad to see you go, Pete."
             him concerned "I understand why you're leaving, but I'll miss you guys."
-            pete "I'm sure we'll see each other every now and then."
+            pete normal "I'm sure we'll see each other every now and then."
             him flirting "I'd tell you to take pictures, but I guess you won't have your tablet with you."
             pete happy "I'll see if I can train crabirds to send messages."
             $ colonists += 1
@@ -3058,7 +3052,7 @@ label community14:
                 $ ilian_has_cattle = True
             #Ilian feels more loyal to Rare Earth Tech, despite his cynical personality?
     else:
-        "Pete and Helen's cattle went to Ilian, who wanted to take care of them."
+        "Pete and Helen's cattle went to Ilian, who said he wanted to take care of them."
         $ ilian_has_cattle = True
     return
 
@@ -3084,36 +3078,36 @@ label community15:
     her surprised "What are her symptoms?"
     hide her with moveoutright
     "[her_name] continued talking on the radio as she put on her boots and coat and took my tractor down the road."
-    "I fell back asleep and woke up an hour later and started making breakfast"
+    "I fell back asleep and woke up an hour later and started making breakfast."
     scene farm_interior with fade
     show him normal at midleft with dissolve
-    show her concerned at midright with moveinright
-    her concerned "Hi, I'm back."
+    show her concerned coat at midright with moveinright
+    her concerned coat "Hi, I'm back."
     him concerned "Is she...?"
-    her determined "It's... pretty bad."
+    her determined coat "It's... pretty bad."
     him pout "Oh. What's wrong with her?"
-    her concerned "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
+    her concerned coat "It's confidential. Pavel said he was going to send out an announcement. What did he say?"
     "I checked my tablet."
     him sad "He said that she has severe radiation sickness and that she is going to die in the next week or two."
-    her concerned "We'll be doing palliative care."
+    her sad coat "We'll be doing palliative care."
     him determined "Just trying to make her suffer less?"
-    her sad "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
+    her concerned coat "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
     him concerned "We'll understand if she's, ah, indisposed. I'll bring the kids over this afternoon."
-    her concerned "Just... check with Pavel first."
+    her sad coat "Just... check with Pavel first."
     scene path with fade
     show him sad at midleft with moveinleft
     show kid nervous at center with moveinleft
-    show bro sad at left with moveinleft
-    show pavel normal at right with dissolve
+    show bro sad at quarterleft with moveinleft
+    show pavel normal at right, flip with dissolve
     "After I picked the kids up from school, we walked to Naomi and Pavel's house."
     "Pavel was outside."
     pavel sad "Are you here to see Naomi?"
-    him doubt "Yes. Is that alright? I don't want to add to her suffering..."
-    pavel "It's fine. Now is a good time. Sara is in there right now, so you can go in when she comes out."
+    him concerned "Yes. Is that alright? I don't want to add to her suffering..."
+    pavel normal "It's fine. Now is a good time. Sara is in there right now, so you can go in when she comes out."
     him sad "This feels so sudden. Is everything going to be okay?"
-    pavel "I am very sad that Naomi is not going to live longer."
-    pavel "We all have to die at some point though. Naomi has been ministering to her neighbors and their children, which was what she was passionate about."
-    pavel "She likes to say that even though we don't have modern plumbing, we can be civilized by loving each other."
+    pavel sad "I am very sad that Naomi is not going to live longer."
+    pavel normal "We all have to die at some point though. Naomi has been ministering to her neighbors and their children, which was what she was passionate about."
+    pavel sad "She likes to say that even though we don't have modern plumbing, we can be civilized by loving each other."
     show sara sad at midright with moveinright
     "Sara stepped out. Tears were streaming down her face."
     "Should I do or say something?"
@@ -3124,16 +3118,14 @@ label community15:
             show him concerned at center
             "I put my arm around her shoulder."
             sara sad "It's hard to see her like this. But I'm glad I said goodbye."
-            hide sara with moveoutright
             $ colonists += 2
         "Say you're sorry.":
             him concerned "I'm sorry for your loss."
             sara sad "It's our loss, not just mine."
-            hide sara with moveoutright
             $ colonists += 1
         "Say nothing.":
             "Sara walked away quietly sniffing."
-            hide sara with moveoutright
+    hide sara with moveoutleft            
     scene kid_bedroom with fade
     "I entered the room with the kids."
     show naomi normal at midright with dissolve
@@ -3143,7 +3135,7 @@ label community15:
     with moveinleft
     kid annoyed "It stinks in here."
     him pout "Sometimes that happens when you're sick."
-    naomi normal "[his_name], did you come to say goodbye too?"
+    naomi happy "[his_name], did you come to say goodbye too?"
     if (parenting_classes >= 1):
         him normal "I appreciate all your help with the kids, and with parenting classes, and everything else, too..."
     else:
@@ -3166,7 +3158,8 @@ label community15:
         naomi sad "Please don't ignore your children. If you neglect them now, they won't have a relationship with you when they're adults."
         naomi normal "If you don't like being with your children, what was the point of having them?"
         naomi happy "Instead you might as well make a lifelong friend who might take care of you when you're old like me."
-    him surprised "Oh, uh, thanks."
+    him surprised "Oh, uh, okay."
+    "I wasn't sure what to say to that."
     kid nervous "What happens after you die?"
     naomi normal "Some people believe that we go to a different world. Some people believe that we come back in another life."
     naomi sad "Some people believe that our existence ends with death."
@@ -3182,19 +3175,19 @@ label community15:
     naomi sad "Come give me a hug."
     show kid shifty at midright
     show bro sad at midright
-    with move #TODO: better hug "animation"?
+    with move 
     "[kid_name] and [bro_name] gave her a hug."
     him normal "We'll be sure to plant that tree, Naomi. Thank you for letting us visit even though you're sick."
     naomi happy "It's my pleasure. On your way out, tell Pavel that I'm going to take a break."
     him determined "I'll tell him."
     scene path with fade
-    show pavel sad at right with dissolve
+    show pavel sad at right, flip with dissolve
     show kid nervous at quarterleft with moveinright
     show bro normal at midleft with moveinright
     show him sad at center with moveinright
     "We left, and I told Pavel that Naomi wanted a break."
-    pavel sad "Seriously, thank you for coming by."
-    him sad "Let us know if you need anything."
+    pavel sad "[his_name], thank you so much for coming by."
+    him sad "Yeah, uh, let us know if you need anything..."
     pavel sad "I will."
 
     play music worried
@@ -3243,9 +3236,9 @@ label community15:
     nvl clear
     him annoyed "Hey, [her_name], Sara thought I should say something at the funeral..."
     if (is_liaison):
-        her normal "Since you're the liaison? Sure. You can do closing remarks; just keep it short."
+        her sad "Since you're the liaison? Sure. You can do closing remarks; just keep it short."
     else:
-        her normal "You can if you want... somebody needs to speak at the end. Just something short."
+        her sad "You can if you want... somebody needs to speak at the end. Just something short."
     $ c15_funeral = ""
     $ c15_funeral_poem = ""
     menu:
@@ -3276,13 +3269,11 @@ label community15:
     show sara sad at center with moveinleft
     sara "Sister Naomi was my mentor and friend. After I had Oleg, I had pretty bad depression for the first year after he was born."
     sara "Sister Naomi visited me every day until I felt normal again. When I felt like it would have been better for me to die and have someone else watch Oleg, she helped me get out of the house to seek treatment." #depression meds available?
-    sara "I know I'm not the only one she's helped this way. I'm sure each of you have a story about how Sister Naomi helped you feel like you were a necessary part of our community."
-    sara "Now that she's gone, I admit that I feel a little helpless."
-    sara "But I decided to learn from Sister Naomi."
-    sara "She had a story she used to tell about how she was scared of spiders for a long time."
-    sara "You kids might not understand, but spiders are an Earth bug that many people find revolting and terrifying."
-    sara "One time she was alone in her house and there was a giant spider in her shower."
-    sara "She knew that she could kill it with her shampoo bottle. But instead of killing the spider, she decided to touch it."
+    sara normal "I know I'm not the only one she's helped this way. I'm sure each of you have a story about how Sister Naomi helped you feel like you were a necessary part of our community."
+    sara sad "Now that she's gone, I admit that I feel a little helpless."
+    sara normal "But I decided to learn from Sister Naomi."
+    sara sad "She had a story she used to tell about how she was scared of spiders for a long time. You kids might not understand, but spiders are an Earth bug that many people find revolting and terrifying."
+    sara "One time she was alone in her house and there was a giant spider in her shower. She knew that she could kill it with her shampoo bottle. But instead of killing the spider, she decided to touch it."
     sara "She held it in her hands and looked into its eyes. She said that she could feel that the spider was terrified and curious."
     sara normal "I'm not sure if I believe this part, but she said they held eye contact for five minutes."
     sara sad "Then she put it outside. And she wasn't afraid of spiders anymore."
@@ -3410,19 +3401,19 @@ label community16:
     him normal "I can at least do that."
     "That evening I visited the hospital after [her_name] came home."
     scene hospital with fade
-    show pete normal at midright with dissolve
+    show pete normal at midright, squatting with dissolve
     show him normal at midleft with moveinleft
     him "So how's it going?"
-    pete "Things are both harder and easier away from the colony."
+    pete angry "Things are both harder and easier away from the colony."
     pete happy "I feel better about how I'm living though, so it's worth it to me."
     him determined "Does it look like you'll recover?"
-    pete "Yeah, [her_name] just said it was probably an infection that will go away with some antibiotics."
+    pete normal "Yeah, [her_name] just said it was probably an infection that will go away with some antibiotics."
     label c16_convo:
     "What else should we talk about?"
     menu:
         "How will you be paying for your treatment?" if not talked_paid_c16:
             him determined "I hope you're giving us something in return for that medicine."
-            pete "Don't worry! I brought a calf with me. We dropped her off with the herd on our way in."
+            pete angry "Don't worry! I brought a calf with me. We dropped her off with the herd on our way in."
             $ mavericks -= 1
             $ talked_paid_c16 = True
             jump c16_convo
@@ -3442,9 +3433,8 @@ label community16:
             him content "How do Helen and Travis like living in the wild?"
             pete happy "Helen misses her TV shows sometimes, but we've been singing and dancing a lot more."
             pete normal "I think Travis gets lonely, but he and the other kids have plenty of work to help with."
-            pete "He's been getting really into wood carving though. He made a really good crabird the other day."
-            pete "We really miss some of the tools like shovels and hammers."
-            pete "We've tried to make our own, but it's not the same."
+            pete happy "He's been getting really into wood carving though. He made a really good crabird the other day."
+            pete normal "We really miss some of the tools like shovels and hammers. We've tried to make our own, but it's not the same."
             $ talked_family_c16 = True
             jump c16_convo
         "How are Thomas and Joanna?" if ((not asked_only_medicine) and (not talked_TJ_c16)): #TODO?: this or the next menu option is the problem
@@ -3624,17 +3614,15 @@ label community17:
         show miners at quarterright
         show pete normal at left with moveinleft
         "Pete offered to slaughter a steer for the occasion."
-        show brennan normal at midright with moveinright
+        show brennan normal at midright, flip with moveinright
         show chaco normal at right with moveinright
         "Almost all the miners came, bringing some bean stew."
-        brennan "This beef is amazing. Do you have any extra I could buy from you?"
-        pete "You know, credits are not worth that much too me right now."
-        pete happy "We can always use more beans though."
-        brennan happy "Credits are the only thing we have!"
-        pete normal "I don't have a tablet, and I asked RET to delete my name from their records when I left, so I actually have no way of using credits." #TODO: how does he deal in credits later?
-        brennan normal "We've also got lots of rocks?"
-        pete "Any metals?"
-        brennan "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
+        brennan flirting "This beef is amazing. Do you have any extra I could buy from you?"
+        pete angry "You know, credits are not worth that much too me right now. We could always use more beans though."
+        brennan surprised "Credits are the only thing we have!"
+        brennan concerned "Though... we also have lots of rocks?"
+        pete normal "Any metals?"
+        brennan happy "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
         pete happy "Great. Now I just need to figure out how to make a bellows!"
         "Pete also brought a strange seafood dish."
 
@@ -3647,9 +3635,9 @@ label community17:
     if invited_mavericks:
         him pout "So... what is this?"
         pete normal "Out by the ocean, sometimes you can find these critters with a bunch of spiny arms."
-        pete "Sometimes they stay stuck together and you can reel in eight or ten at once."
+        pete happy "Sometimes they stay stuck together and you can reel in eight or ten at once."
         him determined "Is it safe to eat?"
-        pete happy "Hasn't killed me yet. Try it; it's real good."
+        pete normal "Hasn't killed me yet. Try it; it's real good."
         menu:
             "Try it.":
                 "It tastes cool and slippery, and a little fishy."
@@ -3667,11 +3655,11 @@ label community17:
     elif invited_miners: # but not mavericks
         "The miners joined us for our harvest festival. After all, their success is what enables us to continue to live here."
         show miners at right
-        show brennan normal at midright
+        show brennan normal at midright, flip
         with moveinright
-        brennan normal "We didn't have time to go hunting, but we DO have time to soak beans."
+        brennan flirting "We didn't have time to go hunting, but we DO have time to soak beans."
         him doubt "Is this a soup or a dip? It smells... different."
-        brennan happy "Neither. Either. Both! Try some."
+        brennan normal "Neither. Either. Both! Try some."
         menu:
             "Try it.":
                 "I dipped my bread into the very organic-appearing, thick brown dip."
@@ -3681,9 +3669,9 @@ label community17:
                 show him normal
             "Don't try it.":
                 him normal "I'll pass."
-                brennan normal "You don't like beans?"
+                brennan surprised "You don't like beans?"
                 him determined "I'll stick to what I know."
-                brennan happy "How very... predictable of you."
+                brennan flirting "How very... predictable of you."
     else:
         "Almost everyone had submitted a different type of jam for the jam tasting. We each got a bowl of chips to dip in the jams, and then voted for our favorite."
         "Kevin brought plum jam, Ilian had made a spicy tomato chutney, and Julia had a Mystery Jam that tasted like sweet mint tea."
@@ -3696,42 +3684,71 @@ label community17:
         "I had made something else to bring."
 
     scene community_center with fade
-    show thuc normal at quarterleft
-    show julia normal at left
-    show pavel normal at quarterright
-    show him normal at midleft
+    show pavel normal at right, flip
+    show him normal at center
     show natalia normal at midright
     with dissolve
     "I set my dish next to the ones from the other families on the buffet table."
     "Everyone helped themselves and sat down--some at tables and some on the ground."
-    natalia "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
+    natalia happy "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
     him smirk "It's kind of like a souffleé, but I had to make it without an electric mixer, or a reliable oven."
-    natalia "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
+    natalia normal "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
     him sad "I know..."
-    natalia "You might have been better off just leaving out the flour completely."
+    natalia happy "You might have been better off just leaving out the flour completely."
     him normal "Did you try Thuc's goat curry? Where did he get the spices for that?"
     pavel "We got a bunch of spice seeds in the last crop, and I've been growing them!"
     him excited "It's been so long since I've had these kinds of spices. It tastes amazing."
     pavel "I'm not a farmer, but Thuc helped me to at least get more seeds from the plants I grew. I gave him some and it's a whole side project for his kids now."
-    #move thuc to front?
+    show thuc normal at midleft
+    show julia normal at left
+    with moveinleft    
     thuc "Thanks to you my children know the difference between cumin and cardamom!"
     him happy "Which goat are we eating tonight?"
     thuc sad "Shorts."
     pavel "That's a weird name for a goat."
     thuc normal "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
     thuc sad "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
-    julia "Oh, and don't forget Cape!"
+    julia happy "Oh, and don't forget Cape!"
     julia angry "Last year Gardenia insisted on wearing this cape she made everywhere."
     julia normal "She brought it out today to dress up for the begging."
+    show kid normal at midleft
+    show bro normal at left
+    if (invited_mavericks):
+        show travis normal at center
+    show oleg normal at midright
+    with moveinleft
     "After the children finished eating, they ran around with pails of water."
+    show kid at pace_back_and_forth
+    show bro at pace_back_and_forth
+    if (invited_mavericks):
+        show travis at pace_back_and_forth
+    show oleg at pace_back_and_forth
     "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
+    show kid at midleft
+    show bro at left
+    if (invited_mavericks):
+        show travis at center
+    show oleg at midright
+    with move
     "Thuc and I brought out the Harvest Cookies we made together. They're made with rice and corn and the kids noticed them eagerly."
+    hide oleg with moveoutright
+    show kid at center
+    show travis at midright
+    show bro at midleft
+    with move
     "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the cookies."
+    hide travis with moveoutright
+    show kid at midright
+    show bro at center
+    with move
     "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
+    hide kid with moveoutright
+    show bro at midright with move
     pavel sad "It's a shame we don't have any chocolate to give them."
-    natalia "I miss it too."
+    hide bro with moveoutright
+    natalia happy "I miss it too."
     julia angry "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
-    thuc sad "They still sound pretty entitled to me!"
+    thuc happy "They still sound pretty entitled to me!"
     him laugh "Some things never change."
     stop sound fadeout 1.0
 
@@ -3747,9 +3764,9 @@ label community17:
                 "I had spent many days sitting on the back porch spitting seeds with my cousins. I knew all the tricks and felt pretty confident I could do well."
                 "Kevin apparently had managed to grow a few watermelons, though it wasn't really warm enough for it."
                 "The contest was simple: spit two seeds as far as possible. Whoever spits the farthest seed wins."
-                julia "Our first contestant will be... Natalia. Huh. Spitting is something you might actually be good at."
+                julia happy "Our first contestant will be... Natalia. Huh. Spitting is something you might actually be good at."
                 show natalia normal at midleft with moveinleft
-                natalia "You bet I am!"
+                natalia happy "You bet I am!"
                 "She got a good seed in her mouth, backed up several feet, and then ran up to the line, spitting at the last possible second with an audible 'pbbt'."
                 show natalia at midright with move
                 "Natalia's seeds went at least ten meters."
@@ -3763,7 +3780,7 @@ label community17:
                 show julia normal with dissolve
                 "[kid_name] gave it a try. She spat the first one high in the air, but it didn't go very far. The second she spat hard, down at the ground, and it bounced and made it just past Natalia's."
                 show kid happy
-                julia "Well done, [kid_name]! That was spectacular!"
+                julia happy "Well done, [kid_name]! That was spectacular!"
                 hide kid with moveoutright
                 show him pout at midleft with moveinleft
                 "Then it was my turn. I was the last contestant."
@@ -3776,16 +3793,16 @@ label community17:
                         "I had to give it my best effort. If [kid_name] won, I wanted it to be for real."
                         "I flicked my head to give the seed great momentum. It sailed through the air."
                         "The seed bounced once, twice, and then stopped."
-                        julia "The first seed is behind Natalia's! So far [kid_name] is still winning!"
+                        julia normal "The first seed is behind Natalia's! So far [kid_name] is still winning!"
                         "No way. I had one seed left. I was going to make this one count!"
                         "I reared my head back, and spat with my whole body."
                         "The seed bounced and rolled... just ahead of [kid_name]'s."
-                        julia "We have a winner! [his_name]'s went the furthest!"
+                        julia happy "We have a winner! [his_name]'s went the furthest!"
                         him happy "And [kid_name]'s a close second!"
                         show kid nervous with dissolve
                         $ demanding += 1
 
-                    "Let [kid_name] beat you.":
+                    "Let [kid_name] win.":
                         "I wanted to win... but I wanted [kid_name] to win even more."
                         "I made a big show of spitting hard, but I didn't give it my secret head flick that my cousins and I had worked out."
                         "It landed way behind [kid_name]'s."
@@ -3803,40 +3820,44 @@ label community17:
             "The apple peeling contest.":
                 "I'm pretty handy with a knife, so I figured I'd try the apple peeling contest. We all got an apple and a knife, and our job was to make as long of a peel as possible without it breaking."
                 show pavel normal at left
-                show her pout at quarterleft
+                show her concerned at quarterleft
                 show him pout at midleft
                 with moveinleft
                 show zaina normal at right
                 show kevin normal at quarterright
-                show thuc sad at midright
+                show thuc normal at midright
                 with moveinright
-                julia "On your mark... get set... GO!"
+                julia angry "On your mark... get set... GO!"
                 "Even though she made it sound like a race, I tried to take my time. I had to make the peeling narrow enough to be very long, but wide enough that it wouldn't break..."
                 "I felt bad for Kevin, whose peel kept breaking. He was trying to make it way too thin."
-                kevin "This is more challenging than it appears."
-                zaina "Yeah, I think I'm just going to eat mine. None of mine are as long as theirs!"
+                kevin sad "This is more challenging than it appears."
+                zaina happy "Yeah, I think I'm just going to eat mine. None of mine are as long as theirs!"
                 hide kevin
                 hide zaina
                 with moveoutright
+                show pavel sad with dissolve
                 "Pavel kept dropping the knife. He used to be good at this sort of thing, but he just wasn't as dextrous as he used to be."
 
                 hide pavel with moveoutleft
+                show her at left with move
                 "[her_name] finished first with a peel about as long as she was tall."
                 her happy "I do have a lot of practice with a scalpel!"
                 "But her peel was much wider than mine, so I knew my peel would be longer."
                 hide her with moveoutleft
                 "I was more worried about my real competition - Thuc."
-                show him pout with dissolve
+                show thuc sad 
+                show him pout
+                with dissolve
                 "If he was as good at using knives as he was at juggling them, I was in for a tough challenge."
                 "He and I were both cutting slowly and carefully, our eyes fixed on the sharp blade cutting the peel."
                 show him annoyed with dissolve
-                julia "What a contest we have here! Both evenly matched! Both slicing with such care and precision!"
-                natalia "C'mon, we know who you want to win!"
-                julia "I am a neutral announcer! I am completely impartial, even if one of the contestants is my husband!"
+                julia happy "What a contest we have here! Both evenly matched! Both slicing with such care and precision!"
+                natalia happy "C'mon, we know who you want to win!"
+                julia angry "I am a neutral announcer! I am completely impartial, even if one of the contestants is my husband!"
                 if invited_mavericks:
-                    pete "C'mon, [his_name]! You got this!"
+                    pete happy "C'mon, [his_name]! You got this!"
                 if invited_miners:
-                    brennan "My money's on Thuc. There's no way [his_name] will win this."
+                    brennan flirting "My money's on Thuc. There's no way [his_name] will win this."
                     if (has_strong_marriage()):
                         her normal "Are you talking actual money? How much? Because I'm betting on [his_name]."
                     else:
@@ -3844,15 +3865,15 @@ label community17:
                 "I tried to ignore all the comments and concentrate."
                 show him concerned with dissolve
                 "Finally, we were both finished. We laid the peels out on the ground carefully so they wouldn't break. It was going to be close..."
-                julia "And the winner is..."
-                show him surprised
+                julia normal "And the winner is..."
+                show him pout
                 if (invited_miners and invited_mavericks and has_strong_marriage()):
                     julia "[his_name]!"
                     him excited "Yes!!!"
                 else:
-                    julia "Thuc!"
-                    thuc "Wow, really?"
-                    julia "Good job, sweetie."
+                    julia angry "Thuc!"
+                    thuc happy "Wow, really?"
+                    julia happy "Good job, sweetie."
             "The arm wrestling contest.":
                 "I work hard all day, so I'm probably pretty strong, right? Maybe not the strongest, but enough not to embarrass myself."
 
@@ -3999,24 +4020,34 @@ label community17:
         show thuc normal at center with dissolve
         "Thuc got up and announced we were going to have some games, starting off with group juggling."
         him happy "No knives, I hope!"
-        thuc "Not for you dinosaurs!"
+        thuc happy "Not for you dinosaurs!"
         scene community_center with fade
+        show thuc normal at quarterleft
+        if (invited_miners):
+            show brennan normal at right        
         if (invited_mavericks):
             show pete normal at left
             show travis normal at left
-            # show travis if we have a good sprite for this age?
-        show thuc normal at quarterleft
+            # show travis if we have a good sprite for this age
         show her normal at midleft
         show bro normal at center
         show kevin normal at midright
         show oleg normal at quarterright
-        if (invited_miners):
-            show brennan normal at right
         "We got into a big circle and tossed around an apple, saying the person's name as we threw it to them."
         kevin "Your turn, [bro_name]"
         bro surprised "Uh, Mom!"
         her surprised "Oleg!"
         "Then he added another apple, and another, and another."
+        show her normal
+        if (invited_miners):
+            show brennan happy
+        show bro normal
+        show kevin happy
+        if (invited_mavericks):
+            show pete happy
+            show travis happy
+        show thuc happy            
+        with dissolve
         "When we got to about fifteen it was complete chaos, but everyone was laughing."
         show bro sad
         show her concerned
@@ -4027,7 +4058,7 @@ label community17:
         show thuc normal at center
         show him normal at midleft
         show kid normal at quarterleft
-        thuc "Each group needs a volunteer to leave the room!"
+        thuc happy "Each group needs a volunteer to leave the room!"
         "[kid_name] raised her hand from our group, but I figured it might be best if an adult went first to show everyone how it was done, so I volunteered."
         hide him with moveoutleft
         "I left the room, and when I came back, my group had formed a circle."
@@ -4036,13 +4067,13 @@ label community17:
             show helen normal at left
         show thuc normal at quarterleft
         show zaina normal at midleft
-        show kid normal at center
-        show pavel normal at midright
-        show natalia normal at quarterright
+        show pavel normal at midright, flip
+        show natalia normal at quarterright, flip
         if (invited_miners):
             show brennan normal at right
+        show kid normal at center            
         with dissolve
-        thuc "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their 'ailment' is."
+        thuc happy "Now, you, our 'Psychiatrist', ask people questions and try to figure out what their 'ailment' is."
         him content "Oh, okay, I think I've played this before."
         "I looked around the circle ."
         if (invited_mavericks):
@@ -4075,125 +4106,125 @@ label community17:
             "What's your name?":
                 him surprised "What's your name?"
                 if (patient == "helen"):
-                    helen "We're, like, best friends, and you don't know my name?!"
+                    helen happy "We're, like, best friends, and you don't know my name?!"
                 elif (patient == "thuc"):
-                    thuc "You can't remember my name? I didn't know your memory was so bad."
+                    thuc happy "You can't remember my name? I didn't know your memory was so bad."
                 elif (patient == "zaina"):
-                    zaina "If you don't know my name, then you're really in trouble."
+                    zaina happy "If you don't know my name, then you're really in trouble."
                 elif (patient == "kid"):
-                    kid "My name is...uh...Grandpa?"
+                    kid surprised "My name is...uh...Grandpa?"
                 elif (patient == "pavel"):
-                    pavel "Wait, which way are we... oh, right, sorry. My name is, uh, Chicken Lady!"
+                    pavel happy "Wait, which way are we... oh, right, sorry. My name is, uh, Chicken Lady!"
                 elif (patient == "natalia"):
-                    natalia "You've been spending too much time with your cabbages if you can't remember my name."
+                    natalia happy "You've been spending too much time with your cabbages if you can't remember my name."
                 elif (patient == "brennan"):
                     if (invited_mavericks):
-                        brennan "Why are you asking? Did RET put you up to this?"
+                        brennan flirting "Why are you asking? Did RET put you up to this?"
                     else:
-                        brennan "If you're asking my name, you must be from a parallel universe or something."
+                        brennan flirting "If you're asking my name, you must be from a parallel universe or something."
             "What's your favorite food?":
                 him surprised "What's your favorite food?"
                 if (patient == "helen"):
-                    helen "Probably goat meat and rice... or something??"
+                    helen happy "Probably goat meat and rice... or something??"
                 elif (patient == "thuc"):
-                    thuc "I like pickles."
+                    thuc happy "I like pickles."
                 elif (patient == "zaina"):
-                    zaina "Anything sweet!"
+                    zaina happy "Anything sweet!"
                 elif (patient == "kid"):
-                    kid "I like spicy stuff."
+                    kid happy "I like spicy stuff."
                 elif (patient == "pavel"):
-                    pavel "Oh, there's too many to pick just one! Wait, no, I'm supposed to... uh, I mean... a good soufflé?"
+                    pavel happy "Oh, there's too many to pick just one! Wait, no, I'm supposed to... uh, I mean... a good soufflé?"
                 elif (patient == "natalia"):
                     if (invited_mavericks or invited_miners):
-                        natalia "Something with a kick to it."
+                        natalia happy "Something with a kick to it."
                     else:
-                        natalia "Jerky."
+                        natalia happy "Jerky."
                 elif (patient == "brennan"):
                     if (invited_mavericks):
-                        brennan "I wish I could have some chocolate."
+                        brennan flirting "I wish I could have some chocolate."
                     else:
-                        brennan "Spicy meat, yum."
+                        brennan flirting "Spicy meat, yum."
             "What do you like to do for fun?":
                 him surprised "What do you like to do for fun?"
                 if (patient == "helen"):
-                    helen "Throw things."
+                    helen happy "Throw things."
                 elif (patient == "thuc"):
-                    thuc "I think I like to...go hiking?"
+                    thuc happy "I think I like to...go hiking?"
                 elif (patient == "zaina"):
-                    zaina "Probably play with friends."
+                    zaina happy "Probably play with friends."
                 elif (patient == "kid"):
-                    kid "I like when kids come and visit."
+                    kid happy "I like when kids come and visit."
                 elif (patient == "pavel"):
-                    pavel "Ooh! I know, I like to knit!"
+                    pavel happy "Ooh! I know, I like to knit!"
                 elif (patient == "natalia"):
                     if (invited_miners):
-                        natalia "I like to go on dates."
+                        natalia happy "I like to go on dates."
                     else:
-                        natalia "I like playing complicated board games."
+                        natalia happy "I like playing complicated board games."
                 elif (patient == "brennan"):
-                    brennan "Probably target practice or something."
+                    brennan explaining "Probably target practice or something."
 
             "If you got arrested, what would it be for?":
                 him surprised "If you got arrested, what would it be for?"
                 if (patient == "helen"):
-                    helen "Accidentally causing a knife injury."
+                    helen happy "Accidentally causing a knife injury."
                 elif (patient == "thuc"):
-                    thuc "Being a mad scientist."
+                    thuc happy "Being a mad scientist."
                 elif (patient == "zaina"):
-                    zaina "A prank gone wrong."
+                    zaina happy "A prank gone wrong."
                 elif (patient == "kid"):
-                    kid "What's 'arrested'?"
-                    pavel "Back on Earth if you broke the law the police would come and take you to jail."
-                    kid "Oh! Well, he wouldn't...er, {b}I{/b} wouldn't do anything like that."
+                    kid surprised "What's 'arrested'?"
+                    pavel normal "Back on Earth if you broke the law the police would come and take you to jail."
+                    kid happy "Oh! Well, he wouldn't...er, {b}I{/b} wouldn't do anything like that."
                 elif (patient == "pavel"):
-                    pavel "I don't think she would ever... I mean, I would ever be arrested."
+                    pavel sad "I don't think she would ever... I mean, I would ever be arrested."
                 elif (patient == "natalia"):
                     if (invited_miners or invited_mavericks):
-                        natalia "Drunk and disorderly conduct."
+                        natalia happy "Drunk and disorderly conduct."
                     else:
-                        natalia "Something boring like trespassing."
+                        natalia happy "Something boring like trespassing."
                 elif (patient == "brennan"):
-                    brennan "Reckless driving."
+                    brennan flirting "Reckless driving."
             "What's your job?":
                 him surprised "What's your job?"
                 if (patient == "helen"):
-                    helen "Same as you."
+                    helen happy "Same as you."
                 elif (patient == "thuc"):
-                    thuc "Digging in the dirt."
+                    thuc happy "Digging in the dirt."
                 elif (patient == "zaina"):
-                    zaina "Getting smarter."
+                    zaina happy "Getting smarter."
                 elif (patient == "kid"):
-                    kid "I mostly sit around and... write messages?"
+                    kid surprised "I mostly sit around and... write messages?"
                 elif (patient == "pavel"):
-                    pavel "I grow delicious things to eat!"
+                    pavel happy "I grow delicious things to eat!"
                 elif (patient == "natalia"):
                     if (invited_miners):
-                        natalia "Causing trouble."
+                        natalia happy "Causing trouble."
                     elif invited_mavericks:
-                        natalia "Everything my husband doesn't get done."
+                        natalia happy "Everything my husband doesn't get done."
                     else:
-                        natalia "Growing things."
+                        natalia happy "Growing things."
                 elif (patient == "brennan"):
-                    brennan "Keeping things alive."
+                    brennan flirting "Keeping things alive."
             "If you had a superpower, what would it be?":
                 him surprised "If you had a superpower, what would it be?"
                 if (patient == "helen"):
-                    helen "Probably super speed."
+                    helen happy "Probably super speed."
                 elif (patient == "thuc"):
-                    thuc "X-ray vision!"
+                    thuc happy "X-ray vision!"
                 elif (patient == "zaina"):
-                    zaina "A supersonic whine that brings villains to their knees."
+                    zaina happy "A supersonic whine that brings villains to their knees."
                 elif (patient == "kid"):
-                    kid "Probably... flying!"
+                    kid surprised "Probably... flying!"
                 elif (patient == "pavel"):
-                    pavel "I've always thought it would be cool to control time. Then you'd have as much of it as you wanted."
+                    pavel normal "I've always thought it would be cool to control time. Then you'd have as much of it as you wanted."
                 elif (patient == "natalia"):
                     if (invited_miners):
-                        natalia "Probably mind control."
+                        natalia happy "Probably mind control."
                     else:
-                        natalia "Telepathy."
+                        natalia happy "Telepathy."
                 elif (patient == "brennan"):
-                    brennan "Some kind of psionic powers."
+                    brennan flirting "Some kind of psionic powers."
         return
         label c17_psy_decide:
             him pout "You guys are all acting like..."
@@ -4210,15 +4241,15 @@ label community17:
                 "The person on their left.":
                     him doubt "The person on your left?"
                     thuc normal "That's right! You guessed it."
-                    natalia "Though some of the answers were not very accurate."
-                    thuc "I know! That's kind of the point, though"
+                    natalia angry "Though some of the answers were not very accurate."
+                    thuc happy "I know! That's kind of the point, though"
                     jump c17_after_activities
                 "The person on their right.":
                     him doubt "The person on your right?"
-            thuc "Nope! Sorry, [his_name]. We were all acting like the person on our left."
-            kid "That was hard!"
-            pavel "I'm afraid I didn't always answer very well, either."
-            kid "Can I go next?"
+            thuc normal "Nope! Sorry, [his_name]. We were all acting like the person on our left."
+            kid concerned "That was hard!"
+            pavel sad "I'm afraid I didn't always answer very well, either."
+            kid happy "Can I go next?"
     elif (community_17_activity == "performances"):
         show him normal at center
         show kid normal at midleft
@@ -4234,7 +4265,7 @@ label community17:
         hide ilian with moveoutright
         stop music fadeout 2.0
         play music audio.exciting fadein 5.0
-        show julia angry at quarterright with moveinleft
+        show julia angry at quarterright, flip with moveinleft
         "Next, Julia sang a song about how she was the best at everything. It was supposed to be funny, but it was a little too true. She did have a good voice, though."
         her surprised "Did she used to sing opera?"
         him surprised "Maybe so!"
@@ -4242,13 +4273,13 @@ label community17:
         show him normal
         show her normal
         with dissolve
-        show oleg at quarterright with moveinleft
+        show oleg normal at quarterright with moveinleft
         "Oleg performed a magic trick with some playing cards."
         kid surprised "How did he do that??"
         him content "I'm not sure; you'll have to ask him."
         hide oleg with moveoutright
         if (invited_mavericks):
-            show helen at quarterright with moveinleft
+            show helen normal at quarterright with moveinleft
             "Helen drew a quick caricature of Mayor Grayson."
             kid surprised "She can draw so fast!"
             him happy "And it looks just like him!"
@@ -4408,19 +4439,17 @@ label community18:
                 jump cow_options
 
     scene cabins with fade
-    show him normal at midleft with moveinleft
+    show him determined at quarterleft with moveinleft
     show brennan normal at center with dissolve
     "I hopped onto Lettie and rode to the miner's camp, using my binoculars to look for Pete."
-    brennan normal "Hey, we had a few cows come through our settlement about twenty minutes ago."
-    brennan "They ate up half of our herb garden."
-    brennan angry "Whose cows are these?"
-    him "They must be Pete's, because his have those UV blankets on them."
-    him "I was actually trying to find Pete to ask him about this."
-    show pete normal at midright with moveinright
+    brennan concerned "Hey, we had a few cows come through our settlement about twenty minutes ago."
+    brennan angry "They ate up half of our herb garden... Whose cows {b}are{/b} these?"
+    him concerned "They must be Pete's, because his have those UV blankets on them. I was actually trying to find Pete to ask him about this."
+    show pete normal at quarterright with moveinright
     pete "Yep, these're my cows. We ran into a swarm of land lobsters while trying to get back to the summer pasture and the herd split."
-    pete "The larger part of the herd is happily grazing about a half mile down the river."
-    pete "[his_name], you and your horse are just what we need. Can you help me herd the stragglers?"
-    brennan normal "Yes, please, get these cows out of here."
+    pete happy "The larger part of the herd is happily grazing about a half mile down the river."
+    pete normal "[his_name], you and your horse are just what we need. Can you help me herd the stragglers?"
+    brennan flirting "Yes, please, get these cows out of here."
     "Should I help herd the cows?"
     menu:
         "I can help.":
@@ -4433,12 +4462,12 @@ label community18:
             with moveinright
             "We worked together to herd the cattle into a group."
             if c18_cows_in_ranch:
-                him  "I found three of your cows and herded them into the old ranch."
+                him determined "I found three of your cows and herded them into the old ranch."
             else:
-                him "Three of your cows are eating hay in front of my house."
+                him determined "Three of your cows are eating hay in front of my house."
             pete happy "Let's pick them up on the way out."
             scene path with fade
-            show him normal at left with moveinleft
+            show him determined at left with moveinleft
             show pete normal at center with moveinleft
             "Some of the cows were lying down, and we had to wait for them to get up and stretch out."
             pete normal "Don't push them too hard. They'll get stressed out and are more likely to bolt when they get the opportunity."
@@ -4481,10 +4510,9 @@ label community18:
 label community19:
     #you could substitute Pete for Helen in this scene; I just wanted to give Helen some more screen time.
     #this event is currently stand-alone (doesn't affect other events except with relationship values)
-    #TODO: affect actual credits
     scene farm_interior with fade
     show him normal at midleft
-    show her happy at midright
+    show her normal at midright
     with dissolve
     her normal "Hey, I told Sara that we could bring something to dinner this weekend."
     her concerned "I know that the fall harvest isn't quite ready yet... can you get some of that wolf slug meat from Pete?"
@@ -4497,37 +4525,37 @@ label community19:
     scene path with fade
     show helen normal at midright with moveinleft
     show him normal at midleft with moveinleft
+    play sound "sfx/woodchimes.ogg" loop
     "That Tuesday I saw Helen coming through town with a large backpack of wares to sell."
     "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
-    #TODO: sound for this
     "Scarves and gloves with jellystar patterns on them hang from the top."
     him content "Hey Helen! Got any wolf slug meat?"
-    helen "Yeah, I've got some. It'll cost you though--we only found one this week and it was pretty young."
+    helen happy "Yeah, I've got some. It'll cost you though--we only found one this week and it was pretty young."
     him pout "How much?"
     if c18_no_help_pete:
-        helen "80 credits."
+        helen angry "80 credits."
         him annoyed "Hmm. That's outside my price range. Got any beef bones or nuts?"
-        helen "Nothing like that."
+        helen sad "Nothing like that."
         if ate_jellyfish:
             him concerned "How much for this jellystar scarf?"
-            helen "40 credits."
+            helen normal "40 credits."
             him blush "Augh, it's so cute. Guess I have something to save up for."
         else:
             him concerned "I can't afford any of that. See you later."
         "Helen continued her circuit through the colony, stopping to chat to a few people and sell them food."
     else:
-        helen "40 credits."
+        helen normal "40 credits."
         him annoyed "Hmm. That's a lot more expensive than it was before."
-        helen "Wolf slugs are getting harder to find."
+        helen sad "Wolf slugs are getting harder to find."
         him concerned "That's so frustrating. I finally figured out how to prepare them so they kind of tasted like clams."
         helen happy "That's why we were hunting them so much. They're really good."
         helen normal "I think the population is dwindling though, so we should probably stop killing them for now."
         him content "Got any other meat?"
-        helen "Just a few bits of jerky."
+        helen happy "Just a few bits of jerky."
         him explaining "That's fine. We can rehydrate it make soup with it."
-        helen "15 credits."
-        him normal "I made the transaction. Here, you can see it on my tablet."
-        helen "Looks good. Enjoy!"
+        helen normal "15 credits."
+        him normal "Okay, I made the transaction. Here, you can see it on my tablet."
+        helen happy "Looks good. Enjoy!"
         if ate_jellyfish:
             him excited "Also, how much is the jellystar scarf?"
             helen happy "It's 30 credits, but for you I could go as low as 25."
@@ -4536,10 +4564,11 @@ label community19:
             him happy "Yeah. See you next time."
         else:
             him content "Have a good one!"
+    stop sound fadeout 3.0
 
     scene farm_interior with fade
     show him normal at midleft
-    show her happy at midright
+    show her normal at midright
     with dissolve
     "A few weeks later, we were all gearing up for the fall harvest."
     her happy "I love this time of year. Harvesting food together makes me feel like we'll live another year."
@@ -4634,7 +4663,6 @@ label community19:
     natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
     scene stars with fade
     "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomás was able to trap a lot of them that week."
-    #TODO: follow-up on wolf slug hunting? maybe in a later event?
     return
 
 ################################################################################
@@ -4646,30 +4674,29 @@ label community19:
 label community20:
     if lily_mad_at_RET:
         scene yurt_interior with fade
-        show pavel normal at midright with dissolve
+        show pavel normal at midright, flip with dissolve
         "Pavel called me in to meet with him."
         show him normal at midleft with dissolve
         him "Hi Pavel. How can I help you?"
-        pavel sad "Dr. Lily's health has been declining and she doesn't think she'll last much longer."
-        pavel "She wants to move back to the colony."
+        pavel sad "Dr. Lily's health has been declining and she doesn't think she'll last much longer. She wants to move back to the colony."
         pavel normal "We don't have a precedent for this situation. What do you think RET would want?"
         him concerned "Hmm. I haven't heard much from RET so I assume they're happy."
         if mavericks_strong(): #9 #maxiumum is 16 at this point, so to get this you have to side with mavericks more than half the time
             him pout "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
             pavel normal "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
             him determined "That doesn't sound like a problem."
-            pavel "Well, it's like RET is rehiring them, since we grow food for the miners and for ourselves."
+            pavel happy "Well, it's like RET is rehiring them, since we grow food for the miners and for ourselves."
             him doubt "They could live near us and not work for RET."
             pavel sad "But what about treating their illnesses and letting their kids in our school? Using our roads? Borrowing from the tool library?"
             pavel normal "RET isn't sending enough materials to support additional people."
             him concerned "I think we should let Dr. Lily move back. That way she'll share more information with us."
             him content "If a similar situation comes up later, we can change our minds."
-            pavel "Very well. I'll tell Dr. Lily that she can return."
+            pavel happy "Very well. I'll tell Dr. Lily that she can return."
             jump lily_return
         else:
             him pout "I'm a strong believer in communication, so I'll ask."
             him normal "I'll message you when I hear from them."
-            pavel "The sooner I know, the better."
+            pavel happy "The sooner I know, the better."
             scene farm_exterior with fade
             show him pout at center with dissolve
             "I wrote a quick insta-comm from my tablet and headed over to the transmitter to send it."
@@ -4726,7 +4753,7 @@ label community20:
 
         label lily_return:
             scene lab with fade
-            show lily normal at midright with moveinright
+            show lily normal at midright, flip with moveinright
             "Lily moved in with her former lab assistant, Miranda Perón."
             show him normal at midleft with moveinleft
             "One day she called me in to the lab."
@@ -4742,29 +4769,29 @@ label community20:
             scene stars with fade
             "A few months later I heard from Pete that Dr. Lily had disappeared."
             "They found her clothes on the seashore, but no body. Strange..."
-            $ bios.addToBio("Lily", "She become obsessed with the jellyquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
+            $ bios.addToBio("Lily", "She became obsessed with the jellysquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
             return
 
     else:
         scene lab with fade
-        show lily normal at midright with moveinright
+        show lily normal at midright, flip with moveinright
         show him normal at midleft with moveinleft
         "Dr. Lily called me in to meet with her."
-        him "Hello Dr. Lily. How can I help you?"
-        lily "As you might know, I've had some health problems in the past ten years."
+        him normal "Hey there, how can I help you?"
+        lily normal "As you might know, I've had some health problems in the past ten years."
         him surprised "Actually I didn't know that. I'm sorry to hear it."
         lily angry "Oh. Several years ago, I had a heart attack, but I was able to recover fairly quickly, thanks to the many people who came to my aid."
         lily normal "I had to relearn how to speak. And I've had some paralysis on my right side."
         him concerned "Yeah, I guess it just didn't come up! There were times where [her_name] was really busy and I was really busy and I didn't even check the message board."
-        lily "In any case, I feel that I am not going to be around much longer."
+        lily angry "In any case, I feel that I am not going to be around much longer."
         him determined "Okay..."
-        lily "Zaina and Miranda know about our research, but there are a few things we're working on that I wanted to tell you personally."
+        lily normal "Zaina and Miranda know about our research, but there are a few things we're working on that I wanted to tell you personally."
         jump research_briefing
 
     label research_briefing:
         lily happy "I've found that a certain flower turns purple several minutes before a solar flare."
         lily normal "I've tried to isolate the color-changing compound, but have had little success."
-        lily "For now, the easiest way to enjoy this technology is to simply plant this flower in areas where people may need another method of detecting solar flares."
+        lily angry "For now, the easiest way to enjoy this technology is to simply plant this flower in areas where people may need another method of detecting solar flares."
         lily happy "Pete plants them in all his fields, and I think they would be useful in every farm and in recreation areas."
         him pout "That does sound like a useful plant."
         lily normal "Here are some seeds. It's fairly common in higher elevations."
@@ -4792,7 +4819,7 @@ label community20:
         scene stars with fade
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "We never saw her again."
-        $ bios.addToBio("Lily", "She become obsessed with the jellyquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
+        $ bios.addToBio("Lily", "She became obsessed with the jellysquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
     return
 
 ################################################################################
@@ -4809,13 +4836,13 @@ label community21:
     show him normal at midleft
     with dissolve
 
-    thuc "A big group is headed to the seashore this weekend. Want to come with your family?"
+    thuc normal "A big group is headed to the seashore this weekend. Want to come with your family?"
     him content "Yeah, I need a change of pace. Are any of your kids staying behind? I just need someone to take care of a few things while we're gone."
-    thuc sad "Sure, send Gardenia a message. She's staying with Miranda while the rest of us explore."
+    thuc happy "Sure, send Gardenia a message. She's staying with Miranda while the rest of us explore."
     him concerned "Who else is going to be there?"
     thuc normal "I think Kevin and Zaina are going too."
     him pout "Anyone else?"
-    thuc sad "Yeah, Brennan and some of the miners are going too. And I think Pete might be camping over there now, so it'll be one big party!"
+    thuc happy "Yeah, Brennan and some of the miners are going too. And I think Pete might be camping over there now, so it'll be one big party!"
     him determined "Ugh. Brennan."
     thuc normal "He can be kind of funny."
     him annoyed "I don't trust him."
@@ -4831,15 +4858,17 @@ label community21:
     show brennan happy with dissolve
     brennan happy "Glad you could make it to our joint miner-colonist outing! I'll be laying down a few ground rules."
     brennan normal "First, always stick with a buddy."
-    brennan "Don't eat anything unless you are certain it's edible."
-    brennan "Make sure you're far from the river or food when you take a piss."
+    brennan flirting "Don't eat anything unless you are certain it's edible."
+    brennan concerned "Make sure you're far from the river or food when you take a piss."
     brennan angry "And no smoking in tents!"
     hide brennan with moveoutright
     scene path with fade
-    show kevin normal at midright with moveinleft
-    show him normal at left with moveinleft
-    show her happy at midleft with moveinleft
-    # TODO: where are the kids?!
+    show kevin normal at midright, creepright with moveinleft
+    show him normal at left, creepright
+    show her happy at midleft, creepright
+    show kid normal at center, creepright
+    show bro normal at quarterleft, creepright
+    with moveinleft
     "We started walking along."
     her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [her_name] was born."
     her surprised "There's a path here and everything."
@@ -4848,51 +4877,57 @@ label community21:
     hide kevin
     hide him
     hide her
+    hide bro
+    hide kid
     with moveoutright
     scene canyon with fade
-    show her normal at right with moveinleft
-    show him concerned sweat at midright with moveinleft
-    show kevin normal at center with moveinleft
-    "We had to climb through some rocky areas, but our progress was good."
-    him concerned "What's with the no smoking rule? Is it really a problem?"
-    kevin "Firegrass is pretty popular. It's a mild stimulant that the miners use to stay awake so they can work for an extended period of time."
-    kevin "It's stronger than caffeine."
-    kevin "Most miners only use it when they really have to stay up longer, but some smoke every day."
+    show her normal at left, creepright with moveinleft
+    show him concerned sweat at midleft, creepright with moveinleft
+    show kevin normal at center, creepright with moveinleft
+    show kid normal at midleft, creepright with moveinleft
+    show bro normal at quarterleft, creepright with moveinleft
+    "We had to climb through some rocky areas, but our progress was good. The kids ran ahead to hang out with some friends."
+    hide bro
+    hide kid
+    with moveoutright
+    him surprised "What's with the no smoking rule? Is it really a problem?"
+    kevin normal "Firegrass is somewhat popular. It's a mild stimulant, similar to caffeine but stronger. The miners use it to stay alert so they can work for an extended period of time."
+    kevin sad "Most miners only use it when they really have to stay up longer, but some smoke every day."
     him pout "And RET allows that?"
-    kevin "To the miners, we are RET. And we don't have an office for the regulation of firegrass."
+    kevin normal "To the miners, we are RET. And we don't have an office for the regulation of firegrass."
     her concerned "Sometimes I wish we did... I've seen some of the effects of overdose and dependency."
     him determined "Huh. What are they?"
     her surprised "Insomnia. Weight loss. That kind of thing."
     her annoyed "It hasn't killed anyone... yet."
     her concerned "I think we should study it so that we can educate users about how to use it."
     her surprised "It would be great if we could stop people from using it improperly... but we don't have the resources for that."
-    kevin "Yes, and making drugs illegal and punishing people who use them works fantastically."
+    kevin sad "I don't believe making drugs illegal and punishing people who use them has historically been effective."
     him pout "Do the miners need to work such long hours?"
-    kevin "That's up to Brennan, I think. And the individual miners."
+    kevin normal "That's up to Brennan, I think. And the individual miners."
     hide her
     hide him
     hide kevin
     with moveoutright
 
     scene plain with fade
-    show him normal at midright
-    show kid normal at center
-    show brennan normal at midleft
+    show him normal at midleft, creepright
+    show brennan normal at left, creepright
+    show kid normal at quarterleft, creepright    
     with moveinleft
     "Brennan did walk near us a few times, but I didn't feel like talking to him."
     brennan normal "Hi [kid_name], how are you doing?"
-    kid nervous "Hi Brennan. Are you here to make sure I don't slack off too much?"
+    kid surprised "Hi Brennan. Are you here to make sure I don't slack off too much?"
     brennan happy "No, you're not one of my employees. I'm just making conversation to pass the time while I walk."
     kid shifty "Anya told me that you might act polite but that you don't let anyone take a break."
-    brennan normal "I do let miners take breaks, as long as we planned them."
-    brennan "What are you studying in school these days?"
+    brennan explaining "I do let miners take breaks, as long as we planned them."
+    brennan normal "What are you studying in school these days?"
     kid nervous "We're learning about Earth biology and how it's different from biology on Talaam."
-    kid excited "When you were on Earth, did you ever have a dog?"
-    brennan "No, I didn't, but my friend did."
+    kid surprised "When you were on Earth, did you ever have a dog?"
+    brennan explaining "No, I didn't, but my friend did."
     brennan happy "It licked my face whenever I walked in the door, but otherwise I ignored her."
-    kid blush "It seems like it would be really fun to interact with an animal that can tell what you're feeling."
-    brennan normal "Oh, and none of the human animals here can do that?"
-    kid concerned "You know what I mean!"
+    kid happy "It seems like it would be really fun to interact with an animal that can tell what you're feeling."
+    brennan flirting "Oh, and none of the human animals here can do that?"
+    kid shifty "You know what I mean!"
     "We kept walking the rest of the day, chatting with each other while we walked."
     hide him
     hide kid
@@ -4905,6 +4940,12 @@ label community21:
     "We arrived at the ocean in time to frantically set up our tent before sunset."
     "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
     "I'm used to pulling up weeds, so I ended up clearing out a spot for our tent."
+    show purplelight at random_pulse_alpha
+    show purplelight as light0 at random_pulse_alpha with dissolve
+    show purplelight as light1 at random_pulse_alpha with dissolve
+    show purplelight as light2 at random_pulse_alpha with dissolve
+    show purplelight as light3 at random_pulse_alpha with dissolve
+    show purplelight as light4 at random_pulse_alpha with dissolve
     "The moon rose, and we saw glowing lights in the ocean from the jellystars just below the surface."
     if ate_jellyfish:
         "I felt a strange attraction to the lights, and watched them until I fell asleep on the beach."

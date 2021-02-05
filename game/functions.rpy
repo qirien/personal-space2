@@ -39,6 +39,9 @@ init python:
 init python:
     def random_float():
         return renpy.random.random()
+    
+    def random_int(min, max):
+        return renpy.random.randint(min, max)
 
     def notification_add(var_name, amount):
         global notifications
@@ -267,8 +270,10 @@ init -100 python:
             if (credits > 1000):
                 last_money_event = persistent.number_events_seen["money"]
                 if (last_money_event == 0):
+                    persistent.number_events_seen["money"] += 1
                     return "money1"
                 elif (last_money_event == 1):
+                    persistent.number_events_seen["money"] += 1
                     return "money2"
                 
 

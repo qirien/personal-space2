@@ -5,6 +5,7 @@ label bad_nutrition:
         scene farm_interior with fade
         show her concerned coat at midright
         show him determined at midleft
+        with dissolve
         $ common_food = farm.most_frequent_crop()
         if (has_strong_marriage()):
             her normal coat "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
@@ -42,8 +43,6 @@ label bad_nutrition:
 
         return
 
-    # TODO: add in a random element here also?
-    #$ renpy.random.randint(1,20)
     if (bad_nutrition_count >= 2):
         # All nutrients low
         if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium() and (not seen_low_cam)):

@@ -263,6 +263,9 @@ label debt_event:
         "We analyzed our income and expenditures, searching for ways we could do things more cheaply."
         "We cut out some luxuries and managed to reduce our annual expenses by 100 credits."
         $ annual_expenses_base -= 100
+        if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+            $ modify_farm_size(1)
+            "I also decided to prepare another field. That way I could plant more crops."
     else:
         "Even after we tightened our belts and reduced unnecessary expenses, we were still in the red."
         "Ilian stopped selling us everything except the barest necessities."
@@ -823,7 +826,7 @@ label work14:
     him normal "You're old enough to learn how to milk goats. Come with me."
     scene barn with fade
     show goat at center
-    show him normal at midleft
+    show him normal behind goat at midleft
     show kid normal at midright
     with moveinleft
     "I showed her how to lead the goat to the milking stand, wash off her udder, and set up some food for her."
@@ -835,7 +838,7 @@ label work14:
     scene barn with fade
     show goat at center
     show kid cry at midright with dissolve
-    show him concerned at midleft with moveinleft
+    show him concerned at midleft behind goat with moveinleft
     "I dashed back into the barn and saw [kid_name] crying, the bucket tipped over, and the goat lying down, looking quite satisfied."
 
     menu:
@@ -857,7 +860,7 @@ label work14:
         "What should I do?"
         "Show her how to do it right." if (get_extra_work() > 0):
             him normal "It's okay, it takes some practice. Here, let me show you."
-            "I showed her how to put an upside down bucket under the front of the goat so she couldn't just lie down."
+            "I showed her how to put an upside-down bucket under the front of the goat so she couldn't just lie down."
             "We put a bit more food in the goat's trough, and [kid_name] got ready to try again."
             him normal "That's it. Yeah, you've got a nice rhythm going now."
             kid concerned "I'm worried she's going to kick it over again!"
@@ -938,44 +941,47 @@ label work16:
             him normal "Thanks. Where should I put these?"
             sara "There's an empty spot on the table there. Oh, you brought a sign. Perfect."
             $ colonists += 1
-            show him at midright with move
+            hide sara
+            hide pavel
+            with moveoutleft
+            show him at midleft with move
             him surprised "You said your chile peppers are spicy and sweet?"
-            natalia "Oh yes. If you pick them green, they're a little bitter and more savory. If you wait until they turn red, they're sweeter. But the spiciness is the same either way."
+            natalia happy "Oh yes. If you pick them green, they're a little bitter and more savory. If you wait until they turn red, they're sweeter. But the spiciness is the same either way."
             him normal "Sounds very flavorful!"
-            kevin "[his_name], I was thinking about growing [random_crop]? Would you recommend it to me?"
+            kevin sad "[his_name], I was thinking about growing [random_crop]? Would you recommend it to me?"
             menu:
                 "What should I say?"
                 "Yeah, you'll like them!":
                     him happy "Yeah! You'll love them."
-                    kevin "Then perhaps I shall try planting some."
+                    kevin happy "Then perhaps I shall try planting some."
                 "No, you should try something else.":
                     him concerned "I'm not sure they're the best crop for you..."
-                    kevin "Really? Why do you say that?"
+                    kevin normal "Really? Why do you say that?"
                     menu:
                         "What should I say?"
                         "They're too much work.":
                             him annoyed "They're too much work, especially for the yield you get."
-                            kevin "Nevertheless, I would like to try it."
+                            kevin happy "Nevertheless, I would like to try it."
                         "They don't really taste good.":
                             him concerned "Well, they don't really taste very good, so no one wants to eat them."
-                            kevin "I like [random_crop]."
+                            kevin happy "I like [random_crop]."
                             him surprised "Well, maybe they'd be good for you."
                         "They're not worth very much.":
                             him concerned "They don't sell for very much, so unless you love eating them yourself it's probably not worth it."
-                            kevin "I like [random_crop]."
+                            kevin happy "I like [random_crop]."
                             him surprised "Well, maybe they'd be good for you."
                         "They're not very nutritious.":
                             him annoyed "They just aren't that nutritious. Not many vitamins and minerals."
-                            kevin "Oh. I had not considered that."
+                            kevin sad "Oh. I had not considered that."
 
             if (not (crop_enabled("plums") or crop_enabled("plums+"))):
                 him surprised "You don't mind if I take a few plum pits, do you?"
-                kevin "Please do. They are hardy and productive plants."
+                kevin normal "Please do. They are hardy and productive plants."
                 $ enable_crop("plums")
                 him happy "Great! I love fruit."
             else:
                 "Kevin took some of my seeds, and I decided to take some of the chile pepper seeds."
-                natalia "You won't be disappointed!"
+                natalia normal "You won't be disappointed!"
                 $ enable_crop("peppers")
 
         "Expand your farmland." if (farm_size < FARM_SIZE_MAXIMUM):
@@ -984,7 +990,7 @@ label work16:
             scene fields with fade
             show him normal at midleft with dissolve
             show pete normal at midright with moveinright
-            pete "You ready to make this fence?"
+            pete happy "You ready to make this fence?"
             him determined "You bet!"
             "It took us all day, but now I had several more fields for planting!"
             $ modify_farm_size(3)
@@ -1122,7 +1128,7 @@ label work20:
         "Did you use all the water?":
             "Thuc's irrigation techniques are a bit different from mine, since he grows different crops. His require a lot more water because they need to be flooded."
             him annoyed "Did you use all the water?"
-            thuc "No more than usual."
+            thuc sad "No more than usual."
             him determined "Huh. Well, I'm going to go check it out."
 
     "I headed farther upstream, past the town, and up into the hills. While passing the dam that Kevin had fixed a few years ago, I saw it seemed to be holding up."
@@ -1141,18 +1147,18 @@ label work20:
     "At the camp, it was obvious what had happened. Much of the river had been diverted to give water for the mining machinery."
 
     him annoyed "First you contaminate our water, now you're steailng it?! There's none left for our crops downstream!"
-    brennan "Our refining processes use a lot of water. The new site needed water, so the river flows over here now. Sorry."
+    brennan concerned "Our refining processes use a lot of water. The new site needed water, so the river flows over here now. Sorry."
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
-        thuc "Well, who knows? Maybe we can eat what they're making up here?"
-    brennan angry "You'll have to get your water from somewhere else."
+        thuc sad "Well, who knows? Maybe we can eat what they're making up here?"
+    brennan surprised "You'll have to get your water from somewhere else."
 
     menu:
         "What should I say?"
         "YOU need to get YOUR water elsewhere.":
             him annoyed "No, YOU need to get YOUR water from somewhere else! This is farming water!"
             if work20_thuc_present:
-                thuc "We depend on having easy access to water to grow all our crops."
+                thuc normal "We depend on having easy access to water to grow all our crops."
             brennan angry "Sorry, I have my orders."
         "(Say nothing)":
             show him pout with dissolve
@@ -1162,35 +1168,35 @@ label work20:
                 "What should I say?"
                 "Let's work something out.":
                     him concerned "We don't have to fight about this."
-                    brennan "Good. Then leave us alone."
+                    brennan angry "Good. Then leave us alone."
                     him determined "I know you all want to eat, and I don't want to interfere with your mining--"
                     if (miners >= 10):
-                        brennan "[his_name]..."
+                        brennan sad "[his_name]..."
                         if (work20_thuc_present):
                             him determined "It's not just about me and Thuc right now. It's about our whole community."
                         else:
                             him determined "It's not just about me. It's about our whole community."
-                        brennan "Look, I understand what you're saying, [his_name]. Obviously you need water. But my hands are tied."
+                        brennan concerned "Look, I understand what you're saying, [his_name]. Obviously you need water. But my hands are tied."
                     else:
-                        brennan "Yeah, right. You've done nothing but work against me since I got here."
+                        brennan angry "Yeah, right. You've done nothing but work against me since I got here."
                         him angry "It's not about you!"
-                        brennan "I know you hate what RET's doing here, and you're just looking for excuses to stop us. Go complain somewhere else."
+                        brennan sad "I know you hate what RET's doing here, and you're just looking for excuses to stop us. Go complain somewhere else."
 
                 "Can you please just wait until it rains?":
                     him concerned "If you can hold off on your operations just until it rains, then I think we can manage."
-                    brennan "Sorry, [his_name], but I have my own deadlines."
+                    brennan angry "Sorry, [his_name], but I have my own deadlines."
 
         "Food is more important than mining!":
             him annoyed "Food is more important than mining!"
             brennan angry "Without this mining, you wouldn't be here at all."
             him concerned "Without food, none of us will be here very long."
-            brennan "Then we'll all have to box the devil."
+            brennan sad "Then we'll all have to box the devil."
             him surprised "What?"
-            brennan "We'll all just have to make do, won't we?"
+            brennan angry "We'll all just have to make do, won't we?"
     hide brennan with moveoutright
     "I left when it was clear nothing would be accomplished."
     if (work20_thuc_present):
-        thuc "Sorry, [his_name]. We tried..."
+        thuc normal "Sorry, [his_name]. We tried..."
         him determined "I'm not done yet."
     scene farm_interior with fade
 
@@ -1199,7 +1205,7 @@ label work20:
         him_c "Brennan, if we both explain to RET why the farmers need that water, I'm sure they'll understand."
         brennan_c "...If you can get them to authorize a deadline extension, then I can help you."
         "Together, we composed a careful message to RET with our limited characters."
-        him_c "The water miners are using for mining is needed to ensure crops survive. Brennan and I plan to treat and redirect water post-mining back to farm. Please authorize deadline extension."
+        him_c "The water miners are using is needed to ensure crops survive. Brennan and I plan to treat and redirect water post-mining back to farm. Please authorize deadline extension."
         ret_c "Extension authorized. Proceed with plan."
         nvl clear
         "Thuc and I helped Brennan redirect the water back to the original river route after going through water treatment."
@@ -1217,22 +1223,22 @@ label work20:
                 "And I knew just the person so ask for help."
                 scene storeroom with fade
                 show ilian normal at midright with dissolve
-                show him normal at midleft with moveinleft
-                him normal "Hey there, Ilian!"
-                ilian "Hi. What do you need? Oil? Salt? Sugar?"
-                him determined "I'm not here for supplies. I need help with legalese."
-                ilian "So... why are you here?"
+                show him determined at midleft with moveinleft
+                him determined "Hey there, Ilian!"
+                ilian angry "Hi. What do you need? Oil? Salt? Sugar?"
+                him annoyed "I'm not here for supplies. I need help with legalese."
+                ilian normal "So... why are you here?"
                 him normal "You read up on the contract we signed with RET and you didn't even have to. I'm looking for some legal protection for water rights, and I hope there's something in a legal document about it."
-                ilian "We're fighting over water rights now? Isn't that just like an old Western..."
+                ilian happy "We're fighting over water rights now? Isn't that just like an old Western..."
                 him determined "This is serious! My crops are dying! I won't have anything left for the storehouse if this keeps up!"
-                ilian "Fine, we can take a look."
+                ilian angry "Fine, we can take a look."
                 "Ilian knew right where to find the documents, so we were already ahead of what I knew."
-                ilian "Hmmm, water protection, water wildlife, water treatment..."
+                ilian normal "Hmmm, water protection, water wildlife, water treatment..."
                 ilian happy "Aha! Water diversion...water may be diverted no more than two kilometers from its origin for use with mining... water must be treated after mining use... farmers may be required to modify water distribution to accomodate..."
                 him concerned "That doesn't sound good."
                 ilian normal "If you can prove he diverted the water more than two kilometers, you have a chance. Otherwise, you're supposed to modify your systems to accomodate for his water diversion."
                 him sad "I don't think it's more than two kilometers..."
-                ilian "Why am I not surprised?"
+                ilian angry "Why am I not surprised?"
                 him determined "Thanks anyway."
             "Ask RET for help":
                 "This was exactly the kind of thing we needed a liaison for."
@@ -1332,8 +1338,8 @@ label work20:
             thuc "So, our only options are to either build wells and pumps, or build a canal from where Brennan diverted the water to?"
             him sad "That's the way I see it."
             thuc normal "The water table is high enough here that we could probably just build a well."
-            him normal "Yeah, with a windmill pump, and a pond for storage. Just like the one on my grandpa's farm..."
-            thuc "Sounds like a plan!"
+            him concerned "Yeah, with a windmill pump, and a pond for storage. Just like the one on my grandpa's farm..."
+            thuc happy "Sounds like a plan!"
             scene irrigation with fade
             show him determined at midright
             show thuc sad at midleft

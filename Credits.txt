@@ -148,6 +148,7 @@ Knife Stab <stab.ogg> by neilsher, <https://freesound.org/people/neilsher/sounds
 Splashes in a Bathtub by bbrocer, <https://freesound.org/people/bbrocer/sounds/382649/>
 Door knocking (Angry) <knock.ogg> by Macif, <https://freesound.org/people/Macif/sounds/194365/>
 Trombone Note <trombone.ogg> by Samulis, <https://freesound.org/people/Samulis/sounds/375072/>
+chimes-wood-rattle <woodchimes.ogg> by Vehicle, <https://freesound.org/people/Vehicle/sounds/319604/>
 
 ==== Soundjay
 

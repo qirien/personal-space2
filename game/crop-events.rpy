@@ -364,7 +364,7 @@ label corn1:
         show lily normal at midright with moveinright
         lily "After close analysis, I can tell you that these seeds are sterile."
         him annoyed "Obviously! But {b}why{/b} are they sterile?!"
-        lily "Their DNA has mutated. Mutations happen naturally even on Earth. But the radiation from solar flares causes mutations much more frequently."
+        lily angry "Their DNA has mutated. Mutations happen naturally even on Earth. But the radiation from solar flares causes mutations much more frequently."
     else:
         "Miranda ran some tests on them, and concluded that the DNA had mutated to the point that the seeds were sterile."
         "We concluded it was probably the result of solar flares."
@@ -378,8 +378,8 @@ label corn2:
     "There are tons of different types of corn, but on Talaam we mostly grew a variety of hard heirloom corn."
     "It's not so good for eating fresh off the cob because it's not sweet at all."
     "But it grinds up into a nice flour, and you can even pop it a little bit."
-    "It stores easily, too -- after harvesting the ears of corn, I pull the silk and the husks back to expose the colorful kernels."
-    "And then I hang them up to dry for a few months."
+    "It stores easily, too -- after harvesting the ears of corn, I pulled the silk and the husks back to expose the colorful kernels."
+    "And then I hung them up to dry for a few months."
     "When they were all dry, I ran them through the corn sheller. Then the kernels were ready to pop, grind, or store for later."
     "It would take more work, but I could treat the corn with lime in a process called nixtamalization. This allows more B vitamins to be extracted from the corn, kills fungi, and makes it easier to grind."
     "It would be vital if corn were our main staple, but we have such a variety of foods here we probably don't need to."
@@ -634,29 +634,29 @@ label potatoes2:
             "But first I'd need a lot of oil..."
             "More than the goat butter we had or the amount I pressed from squash seeds with our small oil press."
             scene storeroom with fade
-            show ilian at midright with dissolve
+            show ilian normal at midright with dissolve
             show him normal at midleft with moveinleft
-            him "How much for some oil?"
+            him surprised "How much for some oil?"
             ilian "How much do you need?"
-            him "About a liter."
+            him determined "About a liter."
             "He told me and I cringed, but I felt I had to have potato chips!"
             "Then an idea struck me."
-            him "How much would you pay me for potato chips?"
-            ilian "The storehouse doesn't take luxury goods like that. You'll have to ask around."
-            him "Oh."
+            him pout "How much would you pay me for potato chips?"
+            ilian angry "The storehouse doesn't take luxury goods like that. You'll have to ask around."
+            him concerned "Oh."
             ilian happy "But I, personally, would pay very well for such chips."
             "With the amounts he told me, I did some quick calculations in my head."
-            him "Give me 10 liters of oil."
-            ilian "Very well. Just make sure you bring some of those chips by here first, all right?"
+            him normal "Give me 10 liters of oil."
+            ilian normal "Very well. Just make sure you bring some of those chips by here first, all right?"
             scene farm_interior with fade
             show him normal at midleft with moveinleft
             if (year >= 7):
                 show kid normal at midright with moveinright
-                kid "Is dinner ready yet?"
-                him "No, but I'm making a special treat. You make us a salad, and I'm going to make a wonderful thing called potato chips."
-                kid "What, like wood chips? That sounds gross."
-                him "Oh no, much, much better."
-                kid "Okay..."
+                kid surprised "Is dinner ready yet?"
+                him normal "No, but I'm making a special treat. You make us a salad, and I'm going to make a wonderful thing called potato chips."
+                kid concerned "What, like wood chips? That sounds gross."
+                him happy "Oh no, much, much better."
+                kid nervous "Okay..."
                 hide kid with moveoutright
             "I sliced potatoes while I waited for the huge pot of oil to heat up."
             "It took longer than I thought because I tried to slice them very thinly."
@@ -671,8 +671,8 @@ label potatoes2:
             him normal "We can't eat all of these; I need to bag and sell some to make back the money I spent on oil."
             "She looked at the huge vat of oil, and then at my pile of potatoes."
             her flirting "You're going to be in the kitchen for a long time."
-            him "I could use some help..."
-            her "I'll take care of everything else around the house; you just keep cooking potato chips!"
+            him flirting "I could use some help..."
+            her determined "I'll take care of everything else around the house; you just keep cooking potato chips!"
             $ modify_credits(200)
             "In the end we managed to make a little extra with the chips, though it was so much work I wasn't sure I'd do it all the time."
 
@@ -680,8 +680,8 @@ label potatoes2:
             "Potato salad was one of my favorite summer dishes back on Earth. I'd made it before and it wasn't too hard."
             "But there were a lot of things the storehouse didn't have here."
             scene farm_interior with fade
-            show him annoyed at center with dissolve
-            him "Mayonnaise, mustard, pickles, celery -- if I leave all those things out is it even still potato salad?!"
+            show him normal at center with dissolve
+            him annoyed "Mayonnaise, mustard, pickles, celery -- if I leave all those things out is it even still potato salad?!"
             "I'd have to make my own recipe."
             him concerned "I could use goat milk for creaminess, a little vinegar for a nice tang, and I do have some other herbs and spices..."
             him surprised "I have some homemade pickles I could chop up and put in there, and I have one egg I could boil..."
@@ -818,39 +818,39 @@ label squash1:
                 nvl clear
                 "Maybe if I talked to Kevin in person we could work something out."
                 scene farm_exterior flip with fade
-                show kevin at midright with dissolve
+                show kevin normal at midright with dissolve
                 show him normal at midleft with moveinleft
                 him happy "Hey, Kevin! How's it going?"
-                kevin "Satisfactorily."
+                kevin happy "Satisfactorily."
                 him normal "Good, good...hey, about those bees..."
-                kevin "I apologize, but I do not have extra bees at this time."
+                kevin sad "I apologize, but I do not have extra bees at this time."
                 him concerned "Could I maybe, like, borrow them, just for a few weeks?"
-                kevin "I could rent them to you."
+                kevin normal "I could rent them to you."
                 menu:
                     "What should I say?"
                     "Could we trade?":
                         him surprised "Could we trade? Maybe for squash?"
-                        kevin "Squash and goat's milk, in these quantities."
+                        kevin sad "Squash and goat's milk, in these quantities."
                         $ modify_credits(-50)
                         him normal "Looks reasonable. It's a deal."
                     "Okay, how about for 50?":
                         him normal "Okay, how about 50?"
-                        kevin "That is insufficient. I propose 80."
+                        kevin sad "That is insufficient. I propose 80."
                         him surprised "Maybe 60?"
-                        kevin "75 is the lowest I will consider."
+                        kevin normal "75 is the lowest I will consider."
                         $ modify_credits(-75)
                         him normal "All right, 75 it is."
                     "I'll pay you 100.":
                         him normal "I'll pay you 100 for them."
-                        kevin "That is acceptable."
+                        kevin sad "That is acceptable."
                         $ modify_credits(-100)
                         him "It's a deal."
                     "Never mind, I don't need bees.":
-                        kevin "Very well, the choice is yours."
+                        kevin sad "Very well, the choice is yours."
                         jump squash1_forget_it
-                kevin "Good. I will write up a contract."
+                kevin happy "Good. I will write up a contract."
                 him annoyed "A contract, huh?"
-                kevin "Yes. That way the terms are clear and unarguable by both sides."
+                kevin normal "Yes. That way the terms are clear and unarguable by both sides."
                 "I couldn't really argue with that."
                 "I skimmed his legalese and it looked reasonable. For the consideration of the use of his bees, blah blah blah, the undersigned hereby agree to blah blah blah."
                 "I transported his hive of bees at night, when most of them were sleeping, and in the morning they woke up to a new home."
@@ -1056,7 +1056,7 @@ label goats2:
     him_c "Oh... we may end up with some surprise kids, then!"
     thuc_c "You, or your goats?"
     him_c "..."
-    thuc_c "...sorry!"
+    thuc_c "...ha ha, sorry!"
     nvl clear
 
     "So it sounded like I needed to separate or neuter the bucks. Or butcher them."
@@ -1070,18 +1070,18 @@ label goats2:
                 scene shack with fade
             else:
                 scene cave with fade
-            show pete at midright with dissolve
+            show pete normal at midright with dissolve
             show him normal at midleft with moveinleft
             if mavericks_strong():
-                pete "Hey there, [his_name]. Good to see ya."
+                pete happy "Hey there, [his_name]. Good to see ya."
             else:
-                pete "What do {b}you{/b} want?"
+                pete angry "What do {b}you{/b} want?"
             him normal "Hey, Pete! I just wondered if you wanted some goats. The bucks are getting ornery and I really don't want to have two herds."
-            pete "I got plenty of cows to take care of."
+            pete normal "I got plenty of cows to take care of."
             him surprised "Really? Goats aren't much trouble. They just need a fence and a place to sleep. Or you could just eat them."
-            pete "Well... actually, it might be good project for Travis. But I'd need a doe, too."
+            pete happy "Well... actually, it might be good project for Travis. But I'd need a doe, too."
             him "Sure, I can spare one. She's almost full grown."
-            pete "Alrighty then. I'll have some beef to trade you for, alright?"
+            pete normal "Alrighty then. I'll have some beef to trade you for, alright?"
             him "Sounds good. Later, Pete."
             $ mavericks += 1
         "Send the meat to the storehouse":
@@ -1111,7 +1111,10 @@ label goats2:
             "Finally, it was time to taste them."
             "I cut a thin slice and placed it on my tongue. Meaty? Yes. Salty? Yes. Peppery? Yes. Goaty? ...yes."
             "It was not quite the same as the pepperoni from Earth, but it was delicious just the same."
-            "I sold two links of it at the storehouse and had enough money to buy wheat so we could make pizza."
+            if (crop_enabled("wheat")):
+                "With the wheat I grew I could make a crust for pizza."
+            else:
+                "I sold two links of it at the storehouse and had enough money to buy wheat so we could make pizza."
             scene farm_interior with fade
             show him happy at midright with dissolve
             show kid normal at center
@@ -1120,15 +1123,15 @@ label goats2:
             him happy "Dinner's ready!"
             her surprised "Is this a... pepperoni pizza?! Ohhh, [his_name]!"
             if (year >= 7):
-                kid "What's pepponi pitsa?"
+                kid surprised "What's pepponi pitsa?"
                 him determined "Only the best food ever invented."
                 her concerned "It might taste weird to her, though."
                 him happy "That's fine; I'll eat hers!"
-                kid "I want to try it!"
+                kid normal "I want to try it!"
             "We each took a slice. The goat cheese didn't really pull into long strings like mozzarella, but it had melted into nice medallions on the top."
             "The whole wheat crust was denser and less puffy than traditional pizza, too."
             "But after one bite, I was in heaven. The pizza was just slightly crunchy, with tangy tomato sauce, creamy cheese, and, best of all, big rounds of pepperoni that were just the slightest bit cripsy."
-            kid "Hot!"
+            kid surprised "Hot!"
             her sleeping "Mmmm."
             him sleeping "Mmmmmmm."
             her happy "Wow. I haven't had pizza in so long! I'm glad your pepperoni turned out."
@@ -1138,14 +1141,14 @@ label goats2:
             her surprised "Are... are you crying?"
             him sad "This... is the best pizza I've ever had. It tastes like... Earth."
             if (year >= 7):
-                kid "Earth is spicy?"
+                kid normal "Earth is spicy?"
                 her concerned "Spicy and sweet and creamy and saucy and complicated."
                 him flirting "Sounds like someone else I know."
                 her flirting "Shut up and eat your pizza."
                 if (year >= 20):
-                    kid "Dad, that was so bad."
+                    kid annoyed "Dad, that was so bad."
                     him surprised "Was it so bad it's... cheesy?"
-                    kid "Ohhh, dad!"
+                    kid normal "Ohhh, dad!"
 
         "Allocate more land for goats":
             "If we needed two herds, then I'd make two herds. It wasn't too much work to make another goat pen and feeding area."
@@ -1190,7 +1193,7 @@ label goats3:
     "I followed the tracks through a nibbled-on field of [random_crop] and onwards past our property."
     "My heart sank as I realized we were heading on towards the Nguyen's farm. Hopefully it would be Thuc I met first, and not Julia..."
     scene fields with fade
-    show julia at quarterright
+    show julia normal at quarterright
     show goat at midright
     with dissolve
     show him determined at midleft behind goat with moveinleft
@@ -1200,13 +1203,13 @@ label goats3:
     show julia at midright with move
     show goat at center with move
     "They'd skitter a few steps away, then go right back to nibbling on some sweet potato vines."
-    julia "There you are!"
+    julia angry "There you are!"
     him concerned "Sorry about the goats. I just noticed they got out."
-    julia "Well, they've been here all morning. I'm not sure my poor sweet potatoes will recover."
-    him "I-"
-    julia "I tried to reach you on the radio, but you didn't answer."
+    julia normal "Well, they've been here all morning. I'm not sure my poor sweet potatoes will recover."
+    him annoyed "I-"
+    julia angry "I tried to reach you on the radio, but you didn't answer."
     "She looked pointedly at my radio on my belt -- it was turned off. I sometimes 'forgot' to turn on my radio -- the truth is, I liked the peace and quiet."
-    him "Must have forgotten to turn it on. Well, I'll just get these goats out of your way."
+    him blush "Must have forgotten to turn it on. Well, I'll just get these goats out of your way."
     hide him
     hide kid
     hide goat
@@ -1240,15 +1243,15 @@ label goats3:
             $ random_crop = farm.crops.random_crop(include_animals=False)
             "But maybe if I took them some [random_crop] she'd forgive me."
             scene fields with fade
-            show julia at midright with dissolve
+            show julia normal at midright with dissolve
             show him determined at midleft with moveinleft
             him determined "I just wanted to apologize for my goats getting into your sweet potatoes. Here's some [random_crop] for you."
-            julia "Hmph. It's a start, anyway."
+            julia angry "Hmph. It's a start, anyway."
             him surprised "A start?!"
-            julia "I'll let you know in a week if the plants recover or not. If not, we'll need twice this amount to make up for it."
+            julia happy "I'll let you know in a week if the plants recover or not. If not, we'll need twice this amount to make up for it."
             "Sometimes, I couldn't believe this woman. How Thuc could stand being married to her, I had no idea."
             him annoyed "I guess we'll see then."
-            julia "Yes, let's wait and see."
+            julia normal "Yes, let's wait and see."
             hide him with moveoutleft
             scene fields with fade
             show him determined at center with moveinright
@@ -1448,16 +1451,19 @@ label plums2:
             scene farm_exterior with fade
             show him normal at midright with dissolve
             show thuc normal at midleft with moveinleft
-            thuc "Man, I'm so glad you made prunes. Can I just say, everything around here is going a lot more smoothly?"
+            thuc happy "Man, I'm so glad you made prunes. Can I just say, everything around here is going a lot more smoothly?"
             him surprised "You like prunes?"
-            thuc "Well, one of my kids really needed them. I don't want to embarrass them, so that's all I'm going to say. But thank you!"
+            thuc normal "Well, one of my kids really needed them. I don't want to embarrass them, so that's all I'm going to say. But thank you!"
             him normal "You're welcome, I guess."
-            thuc "In fact, I brought you a little something."
+            thuc happy "In fact, I brought you a little something."
             "He handed me a basket full of heads of garlic."
             him surprised "Oh, thanks!"
-            thuc "This is nice and fresh, so you can plant it or eat it."
+            thuc normal "This is nice and fresh, so you can plant it or eat it."
             him happy "Mmmm, this'll be good! Thank you!"
-            "I couldn't wait to eat some, but even better, now I could grow my own."
+            if (crop_enabled("garlic")):
+                "I already had garlic, but I appreciated Thuc's gift."
+            else:
+                "I couldn't wait to eat some, but even better, now I could grow my own."
             $ enable_crop("garlic")
             return
 
@@ -1471,26 +1477,26 @@ label plums2:
             "It was a bit sour, but very flavorful. And the jars should last at least a year."
 
             scene storeroom with fade
-            show ilian at midright with dissolve
+            show ilian normal at midright with dissolve
             show him normal at midleft with moveinleft
-            him "Hey there, Ilian."
-            ilian "Oh. Hello."
+            him normal "Hey there, Ilian."
+            ilian normal "Oh. Hello."
             him happy "How much can you give me for all this plum jam?"
-            ilian "I can only give you 50 credits."
+            ilian angry "I can only give you 50 credits."
             him surprised "What? Why is that?"
-            ilian "I'm out of money. But if you'd like to exchange, I can give you seeds for onions or turnips."
+            ilian normal "I'm out of money. But if you'd like to exchange, I can give you seeds for onions or turnips."
             menu:
                 "Which should I choose?"
                 "Onions":
-                    him "Give me the onions."
+                    him normal "Give me the onions."
                     $ enable_crop("onions")
                 "Turnips":
-                    him "How about the turnips?"
+                    him normal "How about the turnips?"
                     $ enable_crop("turnips")
                 "Credits":
                     $ modify_credits(50)
-                    him "I'll just take the 50 credits"
-            ilian "Fine. Here you go."
+                    him normal "I'll just take the 50 credits"
+            ilian normal "Fine. Here you go."
             "My plum jam didn't make me rich, but at least I got something for it."
             return
 
@@ -1499,7 +1505,7 @@ label plums2:
             $ modify_credits(40)
             "I earned 40 credits for them."
 
-    if not (renpy.showing("storehouse")):
+    if not (renpy.showing("storeroom")):
         scene storeroom with fade
         show ilian at midright
         show him normal at midleft with dissolve
@@ -1536,7 +1542,7 @@ label beans1:
     show him normal at center with dissolve
     if (year >= 7):
         show kid normal at midleft with moveinleft
-        kid "Can I turn the crank?"
+        kid surprised "Can I turn the crank?"
         him happy "Of course!"
         if (year <= CHILD_MAX):
             "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
@@ -1809,7 +1815,7 @@ label strawberries1:
         "What should I do?"
         "Expand your strawberry empire." if (get_extra_work() >= 0):
             him happy "What could be better than more strawberries?!  Let's plant some more, [kid_name]!"
-            kid "Yeah!"
+            kid normal "Yeah!"
             $ strawberries_index = get_crop_index("strawberries")
             $ crop_info[strawberries_index][MAXIMUM_INDEX] += 1
             $ enable_crop("strawberries", False)
@@ -2116,16 +2122,17 @@ label money1:
             him_c "I'll donate 1000 credits."
             $ modify_credits(-1000)
             sara_c "Wow, really?! Okay, I guess my work is done for the day!"            
-            $ colonists += 1
+            $ colonists += 2
         "Donate 500 credits":
             him_c "I'll donate 500 credits."
             $ modify_credits(-500)
             sara_c "Thank you; that's very generous of you! I'm sure I can find some other people to chip in the rest."
-            $ colonists += 1
+            $ colonists += 2
         "Donate 100 credits":
             him_c "I can spare 100 credits."
             $ modify_credits(-100)
             sara_c "Okay, thanks, every little bit helps!"
+            $ colonists += 1
         "Don't donate anything":
             him_c "Sorry, I can't donate anything."
             sara_c "Oh... okay."
@@ -2142,25 +2149,25 @@ label money2:
     show him normal at midleft with dissolve
     "One evening after a meeting, Zaina approached me."
     show zaina normal at midright with moveinright
-    zaina "Hey, [his_name], I have a question for you."
+    zaina normal "Hey, [his_name], I have a question for you."
     him happy "Okay, ask away!"
-    zaina "You seem like you're good with money. I have a great invention, but I need some capital to get started."
+    zaina sad "You seem like you're good with money. I have a great invention, but I need some capital to get started."
     him surprised "What's your invention?"
-    zaina "Well, you push it between the rows, and as you walk it spins blades. They can chop up weeds and stuff without using electricity."
+    zaina normal "Well, you push it between the rows, and as you walk it spins blades. They can chop up weeds and stuff without using electricity."
     him concerned "Wait, so it's like a weed chopper?"
-    zaina "That's a great name for it! Yeah, a weed chopper! I think everyone will want one!"
+    zaina happy "That's a great name for it! Yeah, a weed chopper! I think everyone will want one!"
     him normal "Hmmm. I know pulling weeds is one of my least favorite parts of farming..."
-    zaina "Right?! I talked to Ilian about the parts - we can print most of them, but some parts have to be metal, which is not cheap."
+    zaina normal "Right?! I talked to Ilian about the parts - we can print most of them, but some parts have to be metal, which is not cheap."
     him concerned "How much are we talking?"
-    zaina "I could make them for about 45 credits each, but if I made 50 or more of them it would only cost 35 credits each. That makes 1750 credits total."
+    zaina sad "I could make them for about 45 credits each, but if I made 50 or more of them it would only cost 35 credits each. That makes 1750 credits total."
     him surprised "1750 credits?!"
-    zaina "I have 750 I could spare, but that's it. Will you help with the other 1000? I'll pay you back with the profits!"
+    zaina normal "I have 750 I could spare, but that's it. Will you help with the other 1000? I'll pay you back with the profits!"
     menu:
         "What should I tell her?"
         "I can invest 1000 and help you sell them." if (get_extra_work() >= 1):
             $ modify_credits(-1000)
             him happy "This is a great idea! I can invest 1000 credits and you can pay me back with your profits. I'll help you sell them, too."
-            zaina "Thank you! I'm like a fossil when it comes to business stuff, so I'm glad you can help."
+            zaina happy "Thank you! I'm like a fossil when it comes to business stuff, so I'm glad you can help."
             scene stars with fade
             "It was a good thing I helped out - her invention was great, but there were a lot of costs she had not factored into her price. I helped her estimate those and we set a higher price."
             "I also helped with advertising, and we managed to sell all 50 of the weed choppers."
@@ -2170,7 +2177,7 @@ label money2:
         "I can invest 1000.":
             $ modify_credits(-1000)
             him happy "This is a great idea! I can invest 1000 credits and you can pay me back with your profits."
-            zaina "Great!"
+            zaina happy "Great!"
             scene stars with fade
             "She made a whole bunch of weed choppers, but she underestimated some of the costs and she wasn't very good at explaining it to people. She ended up only being able to sell half of them and giving the rest away."            
             nvl clear
@@ -2178,10 +2185,10 @@ label money2:
             zaina_c "[his_name], I didn't end up making any profits on this project at all... but I can pay you back 800 credits and a free weed chopper. I'm sorry."            
         "I'll buy one, but I can't help you.":
             him concerned "Sorry, I can't help you with this. I would like to buy a weed chopper, though."
-            zaina "Well, I don't think I'll make them if I can't get the capital to make at least 50. It wouldn't really be worth it."
+            zaina sad "Well, I don't think I'll make them if I can't get the capital to make at least 50. It wouldn't really be worth it."
         "I can't help you.":
             him determined "Sorry, I can't help you. Good luck, though!"
-            zaina "Okay, I understand. Hopefully I can find another investor..."
+            zaina sad "Okay, I understand. Hopefully I can find another investor..."
             "She never found anyone, though, so she never made the weed choppers."
 
     nvl clear

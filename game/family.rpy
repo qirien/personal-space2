@@ -4412,7 +4412,7 @@ label family14:
                     him annoyed "We'll talk more about it later."
                     "I couldn't think straight when I was so angry. I didn't want to end up saying or doing something I'd regret."
                     "But I couldn't just let her get away with hitting her brother, either."
-                    "In the end, we took away her computer pad time for a week. I don't know if it helped; we had to do that several times. She didn't use the computer pad for several months because she kept hitting her brother."
+                    "In the end, we took away her computer pad time for a week. Every time she hit her brother, we'd take it away again. She didn't use the computer pad for several months..."
                     "Was this normal? I don't think my brother and sister and I fought like that."
                     "Or maybe we did, but we outgrew it? Was this just a phase?"
                     "I felt like I was trying to harvest tomatoes in the dark."
@@ -4724,7 +4724,7 @@ label family16:
     kid angry "Ugh, I know where everything {b}else{/b} is!"
     him surprised "How can you even have this much stuff? Where did this all come from?"
     kid shifty "I like to collect things."
-    him annoyed "Can't you just pick one thing? I mean, you have shells, rocks, and bottlecaps. And that's not even counting every school art project you've ever made, old plastic containers from rations, and -- what {b}are{/b} these?"
+    him annoyed "Can't you just pick one thing? You have shells, rocks, {b}and{/b} bottlecaps. And that's not even counting every school art project you've ever made, old containers from rations, and -- what {b}are{/b} these?"
     kid annoyed "It's my origami zoo!"
     him surprised "Didn't you make that like three years ago?"
     kid angry "Yes, and I still love it!"
@@ -4878,7 +4878,7 @@ label family16:
     show kid normal at quarterright
     show bro sad at center
     with dissolve
-    "That night after dinner, [bro_name] was quiet."
+    "That night after dinner, [bro_name] was even more quiet than usual."
     him surprised "What are you thinking about, [bro_name]?"
     bro concerned "I miss Sister Naomi."
     him surprised "You do?"
@@ -5265,18 +5265,18 @@ label family17:
                 with moveinleft
                 him determined "Sir Ilian! I would speak with thee!"
                 "He sighed, got up from the cans he was organizing, and came over to the counter."
-                ilian "What do you want?"
+                ilian normal "What do you want?"
                 him excited "This young wizard is in dire need of grainy sustenance!"
-                ilian "I'm not in the mood for games. Just tell me what you want so I can get back to work."
+                ilian angry "I'm not in the mood for games. Just tell me what you want so I can get back to work."
                 him determined "We have need of bread!"
                 show bro surprised with dissolve
                 "I patted [bro_name] on the head, but he clung to my leg timidly. I could see why; Ilian was scowling at us like we were a couple of weevils."
-                ilian "Bread, huh? Not wheat?"
+                ilian normal "Bread, huh? Not wheat?"
                 him normal "No, indeed! Only bread will suffice!"
-                ilian "Don't have any."
+                ilian angry "Don't have any."
                 show bro sad with dissolve
                 him surprised "Alas! How could this be?"
-                ilian "Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
+                ilian normal "Bread doesn't keep more than a few days. I could sell you some wheat if you want to make your own."
                 "I checked the time. It was getting late. We didn't have time to look anywhere else, especially since the farms were so spread out."
                 him determined "Then we shall craft our own bread."
                 show bro normal with dissolve
@@ -5305,21 +5305,21 @@ label family17:
                 pavel sad "Are you, young fellow? Isn't that wonderful, to spend that time with your father..."
                 "He trailed off, a faraway look in his eyes."
                 bro concerned "Do you miss Sister Naomi?"
-                pavel "Sorry, what's that?"
+                pavel normal "Sorry, what's that?"
                 menu:
                     "What should I do?"
                     "Shush [bro_name]":
                         him annoyed "[bro_name]! Don't ask him that!"
-                        pavel normal "Now, now, [his_name]. I like to run a transparent government! You can ask me anything, [bro_name]."
+                        pavel happy "Now, now, [his_name]. I like to run a transparent government! You can ask me anything, [bro_name]."
                         bro nervous "I just wondered if you were thinking about Sister Naomi."
                     "Let [bro_name] talk.":
                         bro nervous "I just wondered if you were thinking about Sister Naomi."
 
                 pavel normal "Oh yes, very much. I can almost feel her right next to me, though, sometimes..."
                 bro surprised "Like a ghost?"
-                pavel "Perhaps a bit like a ghost. Or a powerful memory."
+                pavel happy "Perhaps a bit like a ghost. Or a powerful memory."
                 bro sad "She made the best treats."
-                pavel "She did, didn't she! I couldn't eat any of it, of course, with my diabetes, but when she'd make it I'd just inhale the scent and that was almost as good."
+                pavel sad "She did, didn't she! I couldn't eat any of it, of course, with my diabetes, but when she'd make it I'd just inhale the scent and that was almost as good."
                 bro normal "She even smelled like candy."
                 pavel sad "Yes, now that you mention it, that's exactly what she smelled like. So sweet..."
                 "I was worried we were bothering the Mayor by talking about his dead wife so much, but he didn't seem upset. Even as tears glistened in the corners of his eyes, he had a fond smile on his face."
@@ -5332,16 +5332,16 @@ label family17:
                         him normal "No reason. We just wanted to see you and say hi."
                     "We're searching for some bread.":
                         him determined "[bro_name] has an unquenchable desire for bread! Alas, however, his selfish and knavish father ate it all for lunch."
-                        pavel "Some bread, eh?  I see..."
+                        pavel happy "Some bread, eh?  I see..."
                         bro concerned "Do you have any?"
-                        pavel "No, I don't. You could check with someone that grows wheat, but they'd probably charge a high price for it."
+                        pavel sad "No, I don't. You could check with someone that grows wheat, but they'd probably charge a high price for it."
                         him normal "We thank you for your time, esteemed Mayor."
-                pavel "You should come by more often - maybe on your way home from school, [bro_name]?"
+                pavel normal "You should come by more often - maybe on your way home from school, [bro_name]?"
                 bro nervous "You don't have candy, do you?"
-                pavel "Ha ha ha, no, I don't have candy. But I'll see if I can find something good for you. And we can remember Naomi, together."
+                pavel happy "Ha ha ha, no, I don't have candy. But I'll see if I can find something good for you. And we can remember Naomi, together."
                 bro normal "Okay."
                 "As we left, the sun was setting. It was too late to go anywhere else, so we headed home."
-                $ renpy.notify("Quest Updated: Find [bro_name] some bread!")
+                $ renpy.notify("Quest Updated: Could not find bread!")
 
             "Pete, leader of the mavericks":
                 him determined "Let us ask Sir Pete!"
@@ -5358,35 +5358,35 @@ label family17:
                 show bro normal at quarterleft
                 with moveinleft
                 him surprised "What ho, Sir Pete!"
-                pete "[his_name]. Whoa, is this your little [bro_name]? He's gotten big."
+                pete happy "[his_name]. Whoa, is this your little [bro_name]? He's gotten big."
                 him normal "Indeed he has! How are thy cattle faring?"
-                pete "Not too bad. Some of kids try and scare the cows, playing some kinda game where they try and make 'em run. But I don't think [bro_name]'s one of them."
+                pete normal "Not too bad. Some of kids try and scare the cows, playing some kinda game where they try and make 'em run. But I don't think [bro_name]'s one of them."
                 "I waited for [bro_name] to say something, but he seemed pretty scared of Pete. He just held my hand tight and looked down at the ground."
                 menu:
                     "What should I do?"
                     "Mention him yelling at [bro_name].":
                         him surprised "Is that so? He is afeared mayhap thou shalt yell at him again."
-                        pete "Again? Maybe I thought he was one of the other kids. Getting to be a lot of them, I can't keep them all straight."
+                        pete normal "Again? Maybe I thought he was one of the other kids. Getting to be a lot of them, I can't keep them all straight."
                         him normal "Indeed! Perhaps they should bear their names sewn on their shirts."
-                        pete "Heh. Or we could brand 'em. Right on the forehead."
+                        pete angry "Heh. Or we could brand 'em. Right on the forehead."
                         show him happy with dissolve
                         "I laughed, but then looked down at [bro_name], who was clutching my hand even harder and had his face pressed against my leg."
-                        pete "Kid, I'm joking! Man, where'd you get such a serious kid?"
+                        pete happy "Kid, I'm joking! Man, where'd you get such a serious kid?"
                         him normal "In the usual fashion, as I'm sure you're aware. Nevertheless, it is good for one member of our party to be of a serious nature."
-                        pete "Ain't going to be you, that's for sure. Anyway, what brings you all the way out here? Don't have cheese to trade, if that's what your after."
+                        pete normal "Ain't going to be you, that's for sure. Anyway, what brings you all the way out here? Don't have cheese to trade, if that's what your after."
                         him determined "No, we have come in search of bread!"
                     "Ask about bread.":
                         him determined "We come in search of bread!"
-                pete "You think I got bread?"
+                pete angry "You think I got bread?"
                 him concerned "Our quest is most dire. However, I confess I know not what goods you possess."
-                pete "Nah, wheat's too much of a pain. Got corn and cows and that's about it."
+                pete normal "Nah, wheat's too much of a pain. Got corn and cows and that's about it."
                 him surprised "Mayhap thou wouldst trade a bit of cornmeal for this fine crabird jerky?"
-                pete "All I got are kernels. You gotta grind 'em yourself."
+                pete happy "All I got are kernels. You gotta grind 'em yourself."
                 him normal "Of course! Let us trade, then."
                 "Maybe we could make some cornbread. It wasn't what [bro_name] had in mind, but we didn't have time to look anywhere else, and it was the best I could do."
-                him "Thanks, Pete. See you around."
-                pete "See you. Take it easy, kid."
-                $ renpy.notify("Quest Updated: Find [bro_name] some bread!")
+                him happy "Thank you, Sir Pete! 'Til we meet again."
+                pete normal "See you. Take it easy, kid."
+                $ renpy.notify("Quest Updated: Got ingredients for cornbread!")
 
         scene path with fade
         show horse at center
@@ -5967,7 +5967,7 @@ label family20:
     brennan_c "Musical instruments aren't on the schedule."
     ilian_c "Almost any other instrument would be easier to make. A recorder, or a trombone, or a xylophone..."
     julia_c "Trombone would be ideal, as it has very few parts and you could make up for imprecision with playing technique."
-    ilian_c "Hmm, yes. Trombone isn't as elegant or preciese as a saxophone, but as long as [kid_name] has a decent ear for notes it would be simpler. I supposed it would be better than nothing... I might print one up and give it a try."
+    ilian_c "Hmm, yes. Trombone isn't as elegant or precise as a saxophone, but as long as [kid_name] has a decent ear for notes it would be simpler. I supposed it would be better than nothing... I might print one up and give it a try."
 
     scene farm_interior with fade
     show kid surprised at midright
@@ -5977,12 +5977,12 @@ label family20:
     him concerned "Well..."
     menu:
         "What should I say?"
-        "If you really want one, here's where to start.":
+        "If you want a trombone, here's where to start.":
             $ responsive += 1
             $ demanding += 1
             $ confident += 1
             $ trust += 1
-            him determined "If you really want one, here's where to start."
+            him determined "We can't get a saxophone. But if you want a trombone, here's where to start."
             "I showed her what Kevin and Ilian had said."
             kid normal "I can make one! I'm going to see if we can print one right now!"
             him surprised "Hold on a minute. Before you print anything, you need a detailed plan. We only want to print it if you're actually going to make it."
@@ -5994,14 +5994,12 @@ label family20:
             show kid surprised at midright
             show him normal at midleft
             with dissolve
-            kid annoyed "I can't do this! I don't even know what a saxophone is supposed to be like!"
+            kid annoyed "I can't do this! I don't even know what a trombone is supposed to be like! How do these pieces fit together?!"
             him surprised "Did you ask Ilian to see if he'd help you?"
             kid shifty "I don't want to ask Ilian."
             him surprised "Why not?"
             kid annoyed "I just don't! He's always yelling at Oleg; he'd probably just yell at me."
             "That was actually a possibility."
-            him determined "Well, he's the only person on the entire planet that we know can play the saxophone. Didn't you want to ask if he'd teach you?"
-            kid sad "Can't you do it?"
             him explaining "This is your reponsibility. But if you need my help with something specific, you can ask."
             kid annoyed "That sounds like your way of saying you aren't going to help."
             him normal "I'll help -- but you're in charge."
@@ -6016,8 +6014,7 @@ label family20:
             kid annoyed "Hmph. Fine. Will you come with me to talk to him?"
             him excited "Sure!"
             scene stars with fade
-            "Ilian agreed to help her make a trombone. He said it would be better to start with something simpler before trying a saxophone."
-            "He wanted to make one for himself, too, so they worked on it together every afternoon for a few weeks. I was just happy he agreed to help at all."
+            "Ilian agreed to help her make a trombone. He was making one for himself, anyway, so they worked on it together every afternoon for a few weeks."
         "One way or another, I will find you an instrument!":
             $ responsive += 1
             him determined "I don't think a saxophone is possible right now. But one way or another, I will find you an instrument!"
@@ -6109,13 +6106,13 @@ label family20:
     with dissolve
     show him normal at midleft with moveinleft
     "Finally they were finished. I came over to see what they had made."
-    ilian "This plastic is really terrible; it doesn't even begin to compare to the sound of a cheap brass instrument."
+    ilian angry "This plastic is really terrible; it doesn't even begin to compare to the sound of a cheap brass instrument."
     kid normal "But they work!"
     him surprised "Yeah? Let's hear it!"
     kid shifty "I don't know much yet; just this one note."
     play sound "sfx/trombone.ogg"
     him content "Yep, that's a note all right."
-    ilian normal "I suppose now you'll want lessons."
+    ilian happy "I suppose now you'll want lessons."
     kid happy "Yeah!"
     ilian normal "Let me talk to your father."
     "Ilian had a gleam in his eye. I could tell these lessons weren't going to come cheap."
@@ -6131,11 +6128,11 @@ label family20:
         "15 credits.":
             him annoyed "15 credits."
             "I figured I could probably bargain him down. He looked like he wanted to teach [kid_name] almost as much as she wanted to learn."
-            ilian "15 credits? That's not even minimum wage."
+            ilian angry "15 credits? That's not even minimum wage."
             him determined "There's no such thing as minimum wage."
-            ilian "20 credits for a half hour lesson combined with Oleg."
+            ilian normal "20 credits for a half hour lesson combined with Oleg."
             him doubt "What happened to a 'personal instructor'?"
-            ilian "If you're paying less, you get less. That's how the world works."
+            ilian happy "If you're paying less, you get less. That's how the world works."
             him pout "All right, fine."
             $ modify_credits(-20*28)
         "You have a deal.":
@@ -6144,16 +6141,16 @@ label family20:
             $ modify_credits(-25*28)
         "Isn't there something else we could exchange?" if get_extra_work():
             him concerned "Isn't there something else we could exchange?"
-            ilian "You don't have anything I want."
+            ilian angry "You don't have anything I want."
             him doubt "Like, horseback riding lessons for Oleg, or something?"
-            ilian "Oleg hates horses."
+            ilian normal "Oleg hates horses."
             him normal "I could come help you process food while she's in her lesson. Canning, dehydrating, whatever."
             ilian happy "That could work. Fine; you have a deal."
     "I was worried that music would just be a fad [kid_name] went through, but she really got into it."
     "I wasn't a musician, so I didn't even understand what she was talking about half the time she tried to tell me about her music."
     "But when she played her trombone, I could hear her expressing emotions even she didn't know she had."
     $ bios.addToBio("kid_name", "[kid_name] has been learning to play the trombone from Ilian.")
-    $ bios.addToBio("Ilian", "He's also been giving trombone lessons to [kid_name], though is instrument of choice is the bari saxophone.")
+    $ bios.addToBio("Ilian", "He's also been giving trombone lessons to [kid_name], though his instrument of choice is the bari saxophone.")
     $ plays_trombone = True
     $ oleg_points += 1
     return

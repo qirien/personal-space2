@@ -318,6 +318,13 @@ init -100:
         easeout 0.4 yoffset 3
         repeat
 
+    transform random_pulse_alpha:
+        xpos random_int(0,500)
+        ypos random_int(200,500)
+        easein random_int(1,3) alpha 0.2
+        easeout random_int(1,3) alpha 1.0        
+        repeat
+
     # Setup ACHIEVEMENTS
     python:
         show_which = ""
@@ -420,7 +427,7 @@ define parenting_quotes = [
     "\"...communication with children is based on respect and on skill. It requires (a) that messages preserve the child's as well as the parent's self-respect; (b) that statements of understanding precede statements of advice and instruction.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #11
     "\"The right age to inform a child about sexual matters is when he asks questions….Our explanation should be factual but it does not need to give full account.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #12
     "\"Misbehavior of children must be recognized as a need to teach appropriate behavior, not an excuse to punish. Punishment is a terrible teacher. It only teaches children how not to behave.\"\n\nGlenn Latham, {i}The Power of Positive Parenting{/i}", #13
-    "\"We often rob children of opportunities to feel belonging and significance in meaningful ways through responsible contributions and then complain and criticize them for not developing responsibility. We need to provide opportunities for children to experience responsibility in direct relationship to the privileges they enjoy.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #14
+    "\"We often rob children of opportunities to feel belonging and significance...through responsible contributions and then complain and criticize them for not developing responsibility. We need to provide opportunities for children to experience responsibility in direct relationship to the privileges they enjoy.\"\n\nJane Nelson, {i}Positive Discipline{/i}", #14
     "\"Our children’s well-being affects ours, and ours affects theirs.\"\n\nMyla and John Kabat-Zinn, {i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}", #15
     "\"When a child is in the midst of strong emotions, he cannot listen to anyone. He cannot accept advice or consolation or constructive criticism. He wants us to understand him.\"\n\nHaim G. Ginott, {i}Between Parent and Child{/i}", #16
     "\"The power of empathy and acceptance is immense, and deeply transformative both for the person receiving them and for the person according them.\"\n\nMyla and John Kabat-Zinn, {i}Everyday Blessings: The Inner Work of Mindful Parenting{/i}", #17
