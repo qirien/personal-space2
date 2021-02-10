@@ -58,7 +58,7 @@ label ending:
 
     "We didn't always agree on what [kid_name] should do, but in the end, [kid_name] made her own choices."
     "I'm sure I played a part in those, but I can't put my finger on any one thing that made her turn out the way she did."
-    
+
     # TODO: some of this community stuff doesn't work with these endings. Make them more personal and less far-seeing.
     # TODO: mention jellies in endings?
 
@@ -291,9 +291,9 @@ label ending_aC:
         show him surprised at midleft with moveinleft
         "Before I left, I peeked in the other room to check on [kid_name]. She was studying her anatomy book with a ferocious energy, as though it were her opponent in deadly combat."
         "I smiled at her, proud of her hard work. I almost told her so, but I stopped myself just in time. I didn't want her to get sloppy."
-        show kid angry with dissolve        
+        show kid angry with dissolve
         "She saw my smile, but didn't say anything, just nodded and continued reading, her forehead scrunched up in concentration."
-        
+
     "Ending 2/4, Proving Herself."
     $ achieved("Proving Herself")
     return
@@ -336,7 +336,7 @@ label ending_Ac:
     her determined "Then hers isn't either. Besides, she's still young -- who knows what else she might do?"
     him flirting "Too bad you can't say the same thing about us."
     her flirting "Speak for yourself! I've still got a long life ahead of me."
-    him normal "It's never to late to keep living, right?"
+    him normal "It's never too late to keep living, right?"
     her surprised "You don't regret the life we made here... do you?"
     him concerned "Regret this life...?"
     "I stopped and thought about it for a moment."
@@ -369,7 +369,7 @@ label ending_Ac:
     $ achieved("Forever My Little Girl")
     return
 
-#4 AC - becomes an expert on the jellies, starts to form her own 
+#4 AC - becomes an expert on the jellies, starts to form her own
 #       happy web of relationships on Talaam
 label ending_AC:
     "Ending AC"
@@ -445,7 +445,7 @@ label ending_AC:
     him happy "I'd like that."
     scene stars with fade
     show him normal at quarterleft, sitting
-    show oleg normal at quarterright, sitting    
+    show oleg normal at quarterright, sitting
     show her normal at midleft, sitting
     show bro normal at midright, sitting
     show kid normal at center, sitting
@@ -477,13 +477,43 @@ label ending_AC:
 # TODO: Add some sprites/backgrounds to go with each thing?
 
 label ending_CMiMa:
-    "Over the next few years, our colony flourished."
-    "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
-    "But we had enough food that sharing wasn't a problem."
-    "RET continued to support us with supplies, and eventually we became more self-sufficient."
-    "The miners continued their jobs, and many stayed on Talaam after retiring."
-    "Even though our colony was doing fine, every once in a while, a family would join Pete and the mavericks."
-    "Their low-tech hacks inspired creativity and making do with less."
+    scene bonfire
+    show him blush at midleft
+    show brennan happy at midright
+    show pete happy at center
+    brennan "You've really never heard of quince? It's a common Earth fruit."
+    pete "Even I've heard of it, and I grew up in the middle of nowhere."
+    him "Well, I was kind of a picky eater growing up, so we didn't eat weird things like that."
+    brennan flirting "It's a good thing you grew out of that, since we eat weird things all the time now!"
+    pete normal "They're not even weird anymore. I've gotten to craving these wolfslug curry kebabs year-round."
+    him excited "They are definitely delicious. Thanks for sharing."
+    pete happy "I'm happy to make them for you as long as you bring the flatbread. I have a major brown thumb when it comes to growing wheat."
+    him pout "If I drink the wine Brennan made while I eat the curry kebabs, I can remember what real wine tastes like!"
+    brennan happy "It may be a long time before we can enjoy a mature vintage. I hope in ten years we can enjoy a good bottle together."
+    pete normal "Or a bad bottle. I'm not picky."
+    him content "Speaking of long-term projects, how are your interns this year?"
+    brennan normal "Oh, I have one intern who has a knack for assembling good mining teams."
+    brennan "He made friends with everyone and figured out their compatibilities quickly."
+    pete happy "One of my interns has an amazing spatial memory. She can go foraging with me and then come back and draw a map."
+    pete normal "Of course, with satellite imagery, we have the big things covered."
+    pete "Her maps take out all the excess noise and make it easier to find things."
+    him determined "Sounds like it's going well. My intern seems kind of depressed sometimes. I should have her spend some time with you, Pete."
+    him "She might like leatherworking better than farming."
+    pete happy "If she likes working with her hands, maybe she could make you a saddle for one of those grass crabs!"
+    him sad "I do miss Lettie."
+    brennan surprised "Why did they send just one horse?"
+    him smirk "RET promised me I could bring any one thing to help me with farming. So I chose Lettie."
+    pete normal "I'm surprised they let you do that, and even more surprised she survived the journey."
+    him normal "It was in the contract!"
+    him sad "They would never let more horses come here now though. Not with all the extra-planetary environmental sanctions."
+    pete angry "Hey, no horse could replace Lettie. And who knows, maybe one of these alien quadrapeds can be domesticated."
+    brennan normal "I'm happy to let Zaina find some likely areas this rainy season."
+
+    scene ocean_sunset
+    "There were times when I wasn't sure we would all survive, let along get along together."
+    "To think that I would voluntarily spend time with Brennan..."
+    "I was worried that Pete wouldn't be my friend after leaving the colony, but we adjusted over time."
+
     # TODO: heavy rains in "good" endings, but they cope somehow?
     return
 
