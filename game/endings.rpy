@@ -518,13 +518,50 @@ label ending_CMiMa:
     return
 
 label ending_CMima:
-    "Over the next few years, our colony flourished."
-    "We still had pests, and plants died or didn't grow quite as we thought they would sometimes."
-    "But we had enough food that sharing wasn't a problem."
-    "RET continued to support us with supplies, and eventually we became more self-sufficient."
-    "The miners continued their jobs, and many stayed on Talaam after retiring."
-    "The mavericks, however, had a hard time surviving, and by the end of a few years, most had died or rejoined the colonists."
-    "Pete insisted on living on his own even when everyone else had given up."
+    scene path with fade
+    play sound "sfx/rain.ogg" loop
+    show rain
+    show him pout at midleft
+    show ilian angry at midright
+    with dissolve
+    him "After this next load, will we be done moving supplies?"
+    ilian "No, we need to get at least two more loads to the old mining camp."
+    him doubt "I wish I had harnasses for the cows. This is their kind of work."
+    ilian normal "Our cattle would make lousy cart-pullers. Cattle wouldn't be able to handle the slippery stairs very well either."
+    him sad "I still have to move our supplies to higher ground. How much flooding is expected in the next four hours?"
+    ilian angry "Zaina calculated a good four inches, possibly more if the river floods its banks."
+    ilian normal "Just ask Brennan or Chaco for help. Brennan volunteered the off-duty miners."
+    him content "I hate asking other people for help, but it sure beats losing all my canned carrots."
+    ilian happy "Hey, I know that feeling. We can do this if we work together."
+    "After two more loads, I went home to do some more pushing and pulling."
+
+    scene farm_exterior
+    play sound "sfx/rain.ogg" loop
+    show rain
+    show him surprised at midleft
+    show brennan normal at midright
+    show chaco normal at center
+    behind rain
+    with dissolve
+    brennan "Hey, we were just finishing your last load of essentials! [her_name] asked us to come help. I think you just need to pack your personal items."
+    him content "Thank you so much! I wasn't sure how I was going to get everything up the mountain."
+    "I packed a few last things and headed up the mountain to a temporary shelter."
+
+    scene yurt_interior
+    play sound "sfx/rain.ogg" volume 0.6 loop
+    show rain
+    show him normal at midleft with moveinleft
+    show her normal at midright
+    her "You made it! Welcome to our temporary home."
+    him content "Brennan and Chaco were a real help. It looks like a lot of other families that were close to the river have made it up here too."
+    her sad "I hope Pete and Helen are okay..."
+    him determined "I think they've shown us that they want us to leave them alone."
+    her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
+
+    #several ways this could go. They could discover later that the mavericks were flooded out. A more immediate resolution would be interesting.
+    #maybe Helen shows up with a backpack, explaining that they lost some food storage in the flood, and starts living in the old mining camp
+    #"Pete insisted on living on his own even when everyone else had given up."
+
     return
 
 label ending_CmiMa:
