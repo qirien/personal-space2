@@ -6375,7 +6375,7 @@ label family22:
     "After a boring dinner, I was still hungry.  I went to the pantry to get out a jar of applesauce to share with everyone, but then I noticed a jar was missing."
     "[kid_name] loved applesauce. She was always begging me for more, but she knew she was only allowed to have some when [her_name] or I dished it out."
     him angry "[kid_name]!"
-    kid determined "What?"
+    kid determined "What?! I'm right here!"
     him annoyed "Did you steal the applesauce?"
     kid surprised "No! Is it gone?"
     him determined "One of them is missing, and I'm pretty sure it was you!"

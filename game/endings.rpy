@@ -163,7 +163,10 @@ label ending_ac:
     brennan normal "It's not my fault if you don't know what's going on in your own kid's life."
     her surprised "Brenann!"
     # TODO: adjust based on whether you are a good farmer/liaison or not
-    brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liaison, but you're a terrible father."
+    if (miners_strong()):
+        brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liaison, but you're a terrible father."
+    else:
+        brennan angry "Sorry, but it's true. You may be a decent farmer, but you're a terrible father."
     him angry "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
     brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
     her angry "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
@@ -521,8 +524,8 @@ label ending_CMima:
     scene path with fade
     play sound "sfx/rain.ogg" loop
     show rain
-    show him pout at midleft
-    show ilian angry at midright
+    show him pout behind rain at midleft
+    show ilian angry at midright behind rain
     with dissolve
     him "After this next load, will we be done moving supplies?"
     ilian "No, we need to get at least two more loads to the old mining camp."
@@ -538,10 +541,9 @@ label ending_CMima:
     scene farm_exterior
     play sound "sfx/rain.ogg" loop
     show rain
-    show him surprised at midleft
-    show brennan normal at midright
-    show chaco normal at center
-    behind rain
+    show him surprised behind rain at midleft
+    show brennan normal behind rain at midright
+    show chaco normal behind rain at center
     with dissolve
     brennan "Hey, we were just finishing your last load of essentials! [her_name] asked us to come help. I think you just need to pack your personal items."
     him content "Thank you so much! I wasn't sure how I was going to get everything up the mountain."
@@ -554,7 +556,7 @@ label ending_CMima:
     show her normal at midright
     her "You made it! Welcome to our temporary home."
     him content "Brennan and Chaco were a real help. It looks like a lot of other families that were close to the river have made it up here too."
-    her sad "I hope Pete and Helen are okay..."
+    her sad "I hope Pete and his family are okay..." #Helen may be dead...
     him determined "I think they've shown us that they want us to leave them alone."
     her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
 

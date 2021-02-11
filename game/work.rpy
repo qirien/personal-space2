@@ -1385,12 +1385,13 @@ label work22:
     him annoyed "And the lights are off, which means she's not even here...?"
     hide night_overlay with dissolve
     show her laugh at quarterleft
-    show bro happy at quarterleft
-    show kid happy at midleft
-    show thuc normal at center
     show pete happy at midright
-    show ilian happy at quarterright
-    show sara normal at right
+    show thuc happy at center    
+    show sara happy at quarterright    
+    show ilian happy at right
+    show oleg normal at right    
+    show bro happy at center
+    show kid happy at midleft    
     with dissolve
     play music exciting
     "Everybody" "Happy Birthday, [his_name]!"
@@ -1427,50 +1428,50 @@ label work22:
         "What should I say?"
         "A midlife crisis sounds depressing.":
             him annoyed "Yeah, can we talk about something besides my age?"
-            show oleg at right with moveinright
+            show oleg normal at right with moveinright
             her surprised "Oleg, I heard you're getting to be quite the programmer! What's your latest project?"
             oleg "Uh, not much."
             sara normal "It's okay; tell everyone about your game."
-            thuc "You made a game?"
+            thuc happy "You made a game?"
             oleg "Not really. I mean, kind of. It's not very good."
-            sara "It's pretty fun! It's like a farming game, except that everything's underground and you have to protect crops from monsters and craft UV lights and sprinkler systems and stuff."
+            sara happy "It's pretty fun! It's like a farming game, except that everything's underground and you have to protect crops from monsters and craft UV lights and sprinkler systems and stuff."
             oleg "It's not finished yet..."
             him happy "That sounds awesome. I'd like to play it when you're done."
             oleg "O-okay."
             $ oleg_points += 1
         "A midlife crisis sounds funny.":
             him happy "No, it's funny! Go ahead, tell me what you think I'll do."
-            pete "You don't strike me as a flashy car kind of guy..."
-            ilian "Anyway, those are currently in dismally short supply."
+            pete angry "You don't strike me as a flashy car kind of guy..."
+            ilian angry "Anyway, those are currently in dismally short supply."
             if (is_liaison):
                 sara normal "You're already the RET liaison, so you don't need to seek a position of power."
             else:
                 sara normal "Maybe he'll seek a position of power in the community? Run for mayor?"
-                pete "Pavel'd better watch out."
+                pete happy "Pavel'd better watch out."
             if (get_extra_work() <= 0):
-                thuc "He is kind of a workaholic..."
+                thuc happy "He is kind of a workaholic..."
             else:
-                thuc "Maybe he'll become a workaholic and we'll never see him around."
-                ilian "We already don't see him around."
+                thuc happy "Maybe he'll become a workaholic and we'll never see him around."
+                ilian angry "We already don't see him around."
 
-            pete "Maybe he'll run off and have a wild fling with a hot alien chick."
+            pete normal "Maybe he'll run off and have a wild fling with a hot alien chick."
             sara sad "Uh, wow, where did that come from?"
             him surprised "Wait, there's hot alien chicks here? Where?"
             if has_strong_marriage():
-                thuc "No way. You're so obssessed with [her_name], even if there were I don't think you'd notice."
+                thuc normal "No way. You're so obssessed with [her_name], even if there were I don't think you'd notice."
                 him flirting "I already have all the hot alien chicks I need."
                 her surprised "You do?"
                 him happy "Oh yeah. You're on a planet that's not Earth, so you're an alien. And all I need is you."
                 "I kissed her, right in front of everybody."
                 sara normal "Awwwww! Sweet cheese!"
                 her flirting "It's not cheesy if it's true, right?"
-                pete "Nope. It's still cheesy."
+                pete happy "Nope. It's still cheesy."
             else:
                 her concerned "I guess I'm lucky we haven't encountered aliens yet."
             sara normal "What about music? Maybe he'll start a punk metal band."
             her normal "He does write some pretty hardcore poetry..."
             him happy "Nah, I'm a terrible singer."
-            sara "You might not have a midlife crisis."
+            sara happy "You might not have a midlife crisis."
             him normal "I'm not planning on it!"
 
     hide thuc
@@ -1483,26 +1484,25 @@ label work22:
     "There were fresh fruits and vegetables and even some soft, homemade, whole wheat bread with jam and butter."
     "I savored every bite."
 
-    show him normal at midleft
-    show her normal at midright
+    show him normal at center
+    show her normal at midleft
     with move
     him surprised "Did you plan all this?"
     her surprised "Well, I had the initial idea, but I had a lot of help from your friends."
     $ helping_faction = strongest_faction()
-    show her at center with move
     if (helping_faction == "colonists"):
-        show thuc normal at midright with moveinleft
+        show thuc normal at quarterright with moveinright
         her happy "Especially Thuc!"
-        thuc "If I don't embarrass you for turning 40, who else will?"
+        thuc happy "If I don't embarrass you for turning 40, who else will?"
         her flirting "I don't know; he's pretty good at embarrassing himself."
         him flirting "Hey, shouldn't you be a little nicer to me on my birthday?"
         show her normal with dissolve
-        thuc "Which reminds me... I brought you a little something."
+        thuc normal "Which reminds me... I brought you a little something."
         him surprised "You did?"
         if crop_enabled("onions"):
-            thuc "Yeah, I brought you some turnip seeds. They're not worth much because nobody likes them, but maybe you'd have a use for them?"
+            thuc happy "Yeah, I brought you some turnip seeds. They're not worth much because nobody likes them, but maybe you'd have a use for them?"
             him concerned "Ummm... maybe?"
-            thuc "Sorry; it's the only thing I could think of that you didn't already have."
+            thuc sad "Sorry; it's the only thing I could think of that you didn't already have."
             him happy "No, this is great! I love more variety. Thanks, Thuc."
             $ enable_crop("turnips")
         else:
@@ -1513,24 +1513,24 @@ label work22:
             him cry "I will; thank you! Thank you so much!"
             $ enable_crop("onions")
     elif (helping_faction == "mavericks"):
-        show pete normal at midright with moveinleft
+        show pete normal at quarterright with moveinright
         her happy "Especially Pete!"
-        pete "I thought you'd get a kick outta a surprise party."
+        pete happy "I thought you'd get a kick outta a surprise party."
         him happy "Yeah, it's awesome!!!"
-        pete "I also wanted to give you these."
+        pete normal "I also wanted to give you these."
         him surprised "What kind of seeds are these?"
-        pete "Broccoli."
+        pete happy "Broccoli."
         her surprised "Do you like broccoli a lot?"
-        pete "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
-        her laugh "So true! And it's really healthy, too."
+        pete normal "How're we gonna raise decent kids if they don't learn to eat their broccoli?"
+        her laugh "So true! And it has a lot of vitamin C, too."
         him happy "Great, thank you Pete! It's always good to have some more variety."
         $ enable_crop("broccoli")
     else:
-        show chaco at midright with moveinleft
+        show chaco normal at quarterright with moveinright
         her happy "Especially Chaco!"
         "He didn't say anything, but a slight smile tugged at the corner of his mouth."
         "Coming from Chaco, that was like a big bear hug."
-        chaco "Here."
+        chaco sad "Here."
         "He handed me some credits."
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."

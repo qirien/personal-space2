@@ -4965,10 +4965,18 @@ label community21:
     hide her with moveoutright
 
     scene ocean_sunset with fade
-    show kid normal at quarterright
+    show purplelight at random_pulse_alpha
+    show purplelight as light0 at random_pulse_alpha with dissolve
+    show purplelight as light1 at random_pulse_alpha with dissolve
+    show purplelight as light2 at random_pulse_alpha with dissolve
+    show purplelight as light3 at random_pulse_alpha with dissolve
+    show purplelight as light4 at random_pulse_alpha with dissolve
     show him normal at midright
+    show kid normal at quarterright    
     with dissolve
-    show pete normal at midleft with moveinleft
+    show pete normal at midleft
+    show travis normal at quarterleft
+    with moveinleft
 
 
     "That evening, Pete and his family stopped by."
@@ -4982,23 +4990,26 @@ label community21:
         pete normal "It's going to stay in our home base area, so it probably won't be me answering it, but we're going to see how it goes."
         pete "I bet you noticed that it's hunting season for the jellystars."
         him happy "Yes, they're beautiful."
-        pete happy "They're even better up close. Would you and [kid_name] like to come out on the boat with me?"
+        pete happy "They're even better up close. Would you and [kid_name] like to come out on the boat with us?"
         if ate_jellyfish:
             him excited "Yes, I would love to see them up close!"
         else:
             him doubt "Is it safe?"
             pete normal "They can't hurt humans. And the sky looks clear."
             him normal "Yeah, let's go for it."
-        show her surprised at right with moveinright
         kid happy "Yessss!"
+        travis happy "Just keep your hands out of the water or they'll slurp off all your fingernails!"
+        kid annoyed "Ha! As if I'd believe anything you say!"
+        show her normal at right with moveinright        
         her surprised "You're going out there on a boat?"
         her normal "Don't go too far!"
-        her pout "And I want a turn next!"
+        her excited "And I want a turn next!"
         hide her with moveoutright
-        #TODO: put Travis in this scene?
         scene ocean_open with fade
         show pete normal at midright
         show him normal at midleft
+        show travis normal at midright
+        show kid normal at center
         with dissolve
         "We went out on Pete's little fishing boat, past the place where the waves started crashing."
         pete normal "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows?
@@ -5011,14 +5022,14 @@ label community21:
         "Then words started to appear on its back."
         him surprised "Are those...?"
         pete normal "Yes, they appear to be English words. Maybe they learned from that waterproof tablet that Lily accidentally dropped in the ocean?"
-        pete "They appear to have taught themselves word patterns. I don't think they understand what they're for though."
-        kid pout "Oh, it's just like that game I used to play on my tablet. Here, you just have to..."
+        travis happy "You can even see words sometimes! They seem random, though."
+        kid nervous "Oh, it's just like that game I used to play on my tablet. Here, you just have to..."
         "She moved the word around by touching a dragging it, just like you would on a tablet."
         him excited "That's... incredible."
-        kid concerned "It's not that hard."
+        kid normal "It's not that hard."
         him explaining "No, it's incredible that this animal is replicating the tablet's behavior."
-        pete happy "Travis likes to catch one and sit with it on the beach for a few hours. He says it reminds him of when we lived in the colony."
-        kid happy "That sounds fun. Can I play with it some more?"
+        travis normal "I catch them all the time. It kinda reminds me of school. Well, the fun parts of school anyway."
+        kid happy "Stellar! Can I play with it some more?"
         pete happy "Sure, I bet your mom would love to see it too."
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
         "I was worried about the animal's skin, but it had a shell made of something like glass, which was very resilient."
@@ -5033,72 +5044,76 @@ label community21:
 
     if miners_strong(): #9 #maximum is 15
         scene bonfire with fade
-        show kid normal at quarterright
         show him normal at midright
         show her normal at right
+        show bro normal at quarterright        
         with moveinright
-        show brennan normal at center
+        show chaco normal at left, flip
         show zaina normal at midleft
+        show brennan normal at center
         with moveinleft
         play sound "sfx/fire-2.mp3" loop
-        #TODO: put Chaco in here somewhere? we haven't seen him in a while
-        brennan normal "Zaina and some of the miners caught a bunch of fish."
+        brennan normal "Zaina and Chaco caught a bunch of fish."
         brennan happy "Want to join us for a little roasting party?"
-        her pout "I saw that earlier. They caught the edible ones? I'm surprised the jellystars couldn't get them all."
-        brennan normal "I think she found a little enclave where it was difficult for the jellies to reach them."
+        her concerned "I saw that earlier. They caught the edible ones? I'm surprised the jellystars couldn't get them all."
+        zaina happy "We found a little enclave where the jellies couldn't get them."
+        chaco sad "It was easy."
         him pout "Hmm. As long as fish are the only ones getting roasted."
-        brennan happy "That's up to you!"
+        brennan flirting "That's up to you!"
+        scene bonfire with fade
+        show him normal at midright
+        show her normal at right
+        show bro normal at quarterright
+        show zaina normal at midleft
+        show brennan normal at center
+        with dissolve
         "We sat around eating fish with some flatbread that we cooked on hot stones."
-        zaina "I should come here every year. I welcome this dietery variety!"
-        brennan normal "It's nice to have some company. None of the miners want to hang out with their boss's boss."
-        him normal "About that... do the miners have enough time to sleep and eat?"
-        brennan normal "Honestly at this point they've met their quota for the year. The only thing motivating them now is the giant bonuses for more metal ore."
-        him sad "It's not like we have a luxury good market here, so I guess the money they make here will translate into some kind of Earth currency?"
-        zaina "Yes. Some of the miners come from incredibly poor backgrounds. They make more money in a day than they do in a month back on Earth."
-        zaina "But most of them have gotten it into their head that if they just push themselves for another few years that they can help all their family get out of debt and retire early."
+        zaina happy "I should come here every year. I welcome this dietery variety!"
+        brennan flirting "It's nice to have some company. None of the miners want to hang out with their boss's boss."
+        him concerned "About that... do the miners have enough time to sleep and eat?"
+        brennan explaining "Honestly at this point they've met their quota for the year. The only thing motivating them now is the giant bonuses for more metal ore."
+        him pout "It's not like we have a luxury good market here, so I guess the money they make here will translate into some kind of Earth currency?"
+        zaina normal "Yes. Some of the miners come from incredibly poor backgrounds. They make more money in a day than they do in a month back on Earth."
+        zaina sad "But most of them have gotten it into their head that if they just push themselves for another few years that they can help all their family get out of debt and retire early."
         him determined "And the firegrass just allows them to be more productive."
-        brennan normal "I don't think it's worth the trade-off. For every extra night a miner works on firegrass, they need a day to recover and catch up on sleep."
+        brennan concerned "I don't think it's worth the trade-off. For every extra night a miner works on firegrass, they need a day to recover and catch up on sleep."
         brennan angry "Most of the time they don't stay home. And the way some of them keep using it can't be healthy."
-        brennan normal "I don't know what Pete is doing with all the credits he's amassing from selling it."
+        brennan surprised "I don't know what Pete is doing with all the credits he's amassing from selling it."
         him normal "He buys some expensive things, like medicine. But part of me thinks that he's just going to delete it all like some kind of anarchist."
-        brennan normal "I don't care what he does with the money. I do wish that he'd have a dosage guide or something though."
-        her normal "Hmm. I could make up something like that. We have a training program to help adolescents with alcohol use that I might be able to adapt to firegrass."
+        brennan sad "I don't care what he does with the money. I do wish that he'd have a dosage guide or something though."
+        her determined "Hmm. I could make up something like that. We have a training program to help adolescents with alcohol use that I might be able to adapt to firegrass."
         her concerned "And if it works, it will mean less work for me in the long run."
         her annoyed "But I need more information first. Do you have any idea how prevalent firegrass is?"
-        brennan "Most of the miners have tried it at one point or another. I think five or six of them use it daily now."
-        brennan "Daily users tend to be accustomed to its effects, like people who drink coffee every day."
-        brennan "Some of the teenagers who just started working are curious about it too, but I can't tell if they're just normally grumpy."
+        brennan surprised "Most of the miners have tried it at one point or another. I think five or six of them use it daily now. But then they become accustomed to its effects and it doesn't work as well."
+        brennan flirting "Some of the teenagers who just started working use it, but I can't tell if they're grumpy because of the firegrass or if they're just always grumpy."
         her nervous "Too true. A few of the miners have mentioned it to me. I can give out recommended doses and warn about side effects, but we don't really know what the long-term side effects are right now."
-        brennan "Ultimately it's their responsibility."
+        brennan explaining "Ultimately it's their responsibility."
         her surprised "But we need to make sure they have enough information to make good decisions."
         if mavericks_strong("moderate"): #7
             show pete normal at left with moveinleft
-            pete "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
+            pete angry "What's this I hear about regulating firegrass? Are you trying to reduce my income or something?"
             brennan angry "It's nothing personal. And telling the miners what a safe dosage is might actually increase their consumption."
-            brennan normal "If I knew how much to take for a little pick-me-up that would still let me sleep at night I use it occasionaly."
-            pete "Fair enough."
-            pete happy "I have some cream here that would go really well on these fish."
+            brennan normal "If I knew how much to take for a little pick-me-up that would still let me sleep at night I might use it occasionally."
+            pete normal "Fair enough."
+            "We watched the fire in silence for a few minutes."
+            pete happy "Hey, I got some cream here that would go really well on these fish."
             brennan happy "Yes, please share some! And take a fish in return. You seem to be familiar with them."
-            pete normal "We usually spend part of the winter near the ocean. The mountain provides some shelter from storms and shade when it's sunny."
-            pete "There's a big cave where we usually camp that is a wonderful shelter. There are holes in the top so we can have a fire, but it's enclosed enough that we don't need to worry about radiation."
-            pete happy "The fish are easy to hunt here too, and their bones are good fertilizer"
-            pete normal "The fish you found are actually part of one of my farming experiments... and it looks like it's working."
-            pete happy "Please leave a few to keep reproducing."
-            zaina "Oh, you're cultivating them. That explains why there were so many!"
-            brennan "A few fish? Do we need to make sure to leave a male and a female?"
-            pete normal "Actually these fish change sexes based on their surroundings. But if you leave 5-6 per pool that should be sufficient."
-            him normal "That makes sense. Let's save the bones for fertilizer."
+            pete normal "We usually spend part of the winter near the ocean. We got a mountain cave safe from storms, sun, and radiation."
+            pete happy "The fish are easy to hunt here too, and their bones are good fertilizer! In fact... the fish you found are part of one of my experiments... and it looks like it's working."
+            zaina sad "Oh, you're cultivating them. That explains why there were so many!"
+            brennan surprised "Oh... do we need to make sure to leave a male and a female?"
+            pete normal "Actually these fish change sexes based on their surroundings. But if you leave five or six per pool that should be sufficient."
+            him normal "That makes sense. Save the bones for fertilizer!"
         else:
-            show pete normal at left with moveinleft
+            show pete angry at left with moveinleft
             hide pete
             hide zaina
             with moveoutleft
             "Pete came and asked to talk to Zaina. I couldn't hear exactly what they were talking about, but Pete looked mad and Zaina looked defensive."
-            show zaina normal at midleft with moveinleft
+            show zaina sad at midleft with moveinleft
             him surprised "What was that about?"
-            zaina "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish."
-            zaina "He said it was obvious they were being cultivated because there were so many in the pool."
-            zaina "But seriously, how was I supposed to know? He wanted us to compensate him for the damages to his stock."
+            zaina sad "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish. He said it was obvious they were being cultivated because there were so many... he wants us to compensate him for damages."
+            brennan angry "How could you have known that?"
             "That sounds..."
             menu:
                 "fair.":
@@ -5238,12 +5253,12 @@ label community22:
         sara_c "Tell him to meet us at the canteen in Brennan's mining camp tonight at 5pm."
         him_c "Done."
         "That afternoon, Pete responded that he'd go, and I conveyed his message to Sara."
-        him_c "Are you going to be mining in the ocean?"
+        him_c "Is RET going to be mining near the ocean?"
         sara_c "No, still the mountains. But Brennan said that he knows Pete has a cave over there, so he wanted to make sure not to collapse his cave during the mining."
         him_c "That was considerate of him."
         "The mining continued without incident."
         $ community_22_compromise = True
-        #too facile?
+        #TODO: too facile?
         #stat +=?
         return
 
@@ -5707,7 +5722,7 @@ label community23:
     him annoyed "By yourselves?"
     kid angry "No, Anya's parents are going."
     him concerned "What's the occasion?"
-    kid explaining "Brennan is paying lots of money for glass shells."
+    kid concerned "Brennan is paying lots of money for glass shells."
     kid happy "Anya's family is going to the beach to collect them. I want to try to find some too so I can make some money."
     him determined "How much money are we talking about here?"
     if community_22_mining_stopped:

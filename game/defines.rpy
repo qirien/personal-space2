@@ -321,8 +321,8 @@ init -100:
     transform random_pulse_alpha:
         xpos random_int(0,500)
         ypos random_int(200,500)
-        easein random_int(1,3) alpha 0.2
-        easeout random_int(1,3) alpha 1.0        
+        easein random_int(1,3) alpha 0.1
+        easeout random_int(1,3) alpha 0.8        
         repeat
 
     # Setup ACHIEVEMENTS
