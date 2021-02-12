@@ -296,11 +296,11 @@ label debt_event:
         else:
             "But I already had too much on my plate just with my own farm."
             "Word must have gotten out about our financial plight..."
-            if ((miners_strong()) and (year > MINERS_ARRIVE_YEAR) and not seen_miner_debt):
+            if ((miners_strong()) and (year > MINERS_ARRIVE_YEAR) and not seen_miners_debt):
                 "One of the miners paid me a little extra, saying that the [random_crop] were especially good."
                 $ modify_credits(20)
                 $ seen_miners_debt = True
-            elif ((mavericks_strong()) and (not seen_maverick_debt)):
+            elif ((mavericks_strong()) and (not seen_mavericks_debt)):
                 "Pete dropped off some strange meat. He said it was from a recent hunting trip."
                 $ modify_credits(25)
                 $ seen_mavericks_debt = True

@@ -4948,7 +4948,8 @@ label community21:
     show purplelight as light4 at random_pulse_alpha with dissolve
     "The moon rose, and we saw glowing lights in the ocean from the jellystars just below the surface."
     if ate_jellyfish:
-        "I felt a strange attraction to the lights, and watched them until I fell asleep on the beach."
+        "I felt a strange attraction to the lights, and watched them until [her_name] dragged me back to camp for dinner."
+        
     else:
         "They were beautiful to watch for a few hours while we set up a fire and warmed up food for dinner."
     scene ocean with fade
@@ -5015,16 +5016,19 @@ label community21:
         pete normal "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows?
         "The lights grew bigger, and when we looked closely, we saw that the glowing animals had a different shape from the jellystars."
         "They were about the size of a toaster. They had eyespots on the sides and tentacles at the opposite end, almost like a squid, only with a see-through shell."
-        pete happy "Now for the fun part!"
+        him surprised "Wow, what are those?"
+        pete happy "We call them jellysquids. They're bigger than the jellystars, and have these cool shells."
+        kid surprised "Wow..."
+        pete normal "Now for the fun part!"
         "Pete picked up one of the jellysquids and put it in a bucket in the bottom of the boat."
         "It kept glowing, and changed colors with Pete's touch."
         "At first, the colors changed rapidly."
-        "Then words started to appear on its back."
+        "Then letters started to appear on its back."
         him surprised "Are those...?"
-        pete normal "Yes, they appear to be English words. Maybe they learned from that waterproof tablet that Lily accidentally dropped in the ocean?"
+        pete happy "Yeah, they sure look like English letters. Maybe they learned from that waterproof tablet that Lily accidentally dropped in the ocean?"
         travis happy "You can even see words sometimes! They seem random, though."
         kid nervous "Oh, it's just like that game I used to play on my tablet. Here, you just have to..."
-        "She moved the word around by touching a dragging it, just like you would on a tablet."
+        "She moved the letters around by touching and dragging them, just like you would on a tablet. She formed the word 'star'."
         him excited "That's... incredible."
         kid normal "It's not that hard."
         him explaining "No, it's incredible that this animal is replicating the tablet's behavior."
@@ -5032,10 +5036,13 @@ label community21:
         kid happy "Stellar! Can I play with it some more?"
         pete happy "Sure, I bet your mom would love to see it too."
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
-        "I was worried about the animal's skin, but it had a shell made of something like glass, which was very resilient."
+        "I was worried about the jellysquid's skin, but it had a shell made of something like glass, which was very resilient. We kept it underwater in the bucket, though it slithered out a few times so I guessed it could breathe air."
         "Brennan took a few photos. He seemed pretty interested in their shells."
         "After everyone had seen it, we let it go back into the ocean."
-        hide pete with moveoutleft
+        hide pete
+        hide travis 
+        with moveoutleft
+
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
         "The kids were playing with these weird transparent shells."
@@ -5769,7 +5776,7 @@ label community23:
     show kid concerned at left with moveinleft
     "When they got back a few days later, they looked tired."
     him surprised "Welcome back! How was it?"
-    her nervous "Well, the beach was totally picked over where we normally go, so we did a little exploring."
+    her annoyed "Well, the beach was totally picked over where we normally go, so we did a little exploring."
     if ate_jellyfish:
         him normal "Did you see any jellystars while you were there?"
         her concerned "No, I didn't. Maybe they move with the currents?"
@@ -5837,7 +5844,7 @@ label community23:
         menu:
             "Preserve them and keep them.":
                 him content "Let's keep them! I think we could dry them out in the oven overnight."
-                her normal "Can you and [bro_name] take care of it? I'm super tired."
+                her nervous "Can you and [bro_name] take care of it? I'm super tired."
                 hide her with moveoutright
                 "[bro_name] and I spent the next hour shelling and cleaning the shellfish."
                 "Well, [bro_name] mostly watched and played with the shells."
@@ -5845,10 +5852,11 @@ label community23:
                 $ mavericks += 1 #also debateable
             "Eat some now and sell the rest.":
                 him content "Let's have some with dinner and sell the rest tomorrow."
-                her normal "Can you take care of it? I'm so tired right now."
+                her nervous "Can you take care of it? I'm so tired right now."
                 him normal "Sure."
                 "[bro_name] and I made a seafood-vegetable soup."
                 her laugh "This really hits the spot. Thanks."
+                $ modify_credits(50)
                 $ colonists += 1
                 return
     return
@@ -5867,32 +5875,35 @@ label community24:
     "I was walking into town to have lunch with [her_name] when I saw Thuc working in his yard."
     if community_22_mining_stopped: #this means there was inflation from community23 and Brennan paying a lot for shells
         if thuc_sells_food:
-            him "Hi Thuc, thanks for selling those premium crops for me."
-            thuc "It was no trouble. Miners have tons of credits right now and they're happy to pay more for better goods and services."
+            him happy "Hi Thuc, thanks for selling those premium crops for me."
+            thuc happy "It was no trouble. Miners have tons of credits right now and they're happy to pay more for better goods and services."
         else:
             thuc sad "Hey, I've been worried about you since you've only been selling your crops to Ilian."
             him determined "What do you mean?"
-            thuc "Everyone else is selling their premium crops to the miners directly."
-        thuc normal "They've been paying so much that Miranda stopped working in the research lab and has been cooking and cleaning for miners instead."
+            thuc normal "Everyone else is selling their premium crops to the miners directly."
+        thuc happy "They've been paying so much that Miranda stopped working in the research lab and has been cooking and cleaning for miners instead."
         him surprised "Really? Wow."
-        thuc sad "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
+        thuc normal "Yeah, she wants to earn enough to buy my premium goat milk, so I feel partially responsible."
         him doubt "Do people really drink that stuff?"
-        thuc normal "No, usually people make it into cheese or lotion or something."
-        thuc "Nice lotion sells for even more than goat milk."
+        thuc happy "No, usually people make it into cheese or lotion or something. Nice lotion sells for even more than goat milk."
         him pout "I'm surprised Miranda hasn't tried that."
-        thuc sad "She still does some lab work, but she's gotten really into making soap and stuff. She says it's specially formulated to kill microflora on Talaam."
-        thuc normal "She and Julia are making a plum syrup together too. It tastes amazing."
-        thuc "The price of Pete's firegrass has gone waaaay up, so I think some teenagers are trying to grow some on their own."
-        thuc "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
+        thuc normal "She still does some lab work, but she's gotten really into making soap and stuff. She says it's specially formulated to kill microflora on Talaam."
+        thuc happy "She and Julia are making a plum syrup together too. It tastes amazing."
+        him surprised "Plum syrup? Wow..."
+        thuc sad "The price of Pete's firegrass has gone waaaay up, so I think some teenagers are trying to grow some on their own."
+        thuc normal "Some people have even tried making glass bottles and vases... rumor has it they were trying to make imitation shells."
         him sad "Ugh, is that still a thing?"
         thuc sad "Yes, it is."
         thuc normal "Didn't you read Julia's latest {i}Talaam Times{/i} that did an economic analysis of our luxury goods and reviewed select products?"
-        him blush "I didn't want to pay 20 credits for it! That's like the price of beans for a month."
+        if (bought_tt):
+            him annoyed "Yeah, I thought she was exaggerating so that her soaps would sell better."
+        else:
+            him blush "I didn't want to pay 20 credits for it! That's like the price of beans for a month."
         if not thuc_sells_food:
             him pout "Hmm. Maybe I could make a little money on the side."
-            him "My family might enjoy having some nicer things."
+            him concerned "My family might enjoy having some nicer things."
             thuc normal "I'll take the best you have and sell it in my premium marketplace."
-            thuc "I'll message you as soon as these sell."
+            thuc happy "I'll message you as soon as these sell."
             him happy "Thanks."
         else:
             pass
@@ -5902,15 +5913,15 @@ label community24:
 
 
     else:
-        thuc sad "Hey [his_name], how's business?"
+        thuc normal "Hey [his_name], how's business?"
         him annoyed "Same as ever. You?"
-        thuc normal "I'm glad you asked. Miranda decided that she wasn't making enough money from researching plants and she developed a special soap."
+        thuc happy "I'm glad you asked. Miranda decided that she wasn't making enough money from researching plants and she developed a special soap."
         him surprised "Is it that much different from Natalia's soap?"
-        thuc sad "Yes, she says it's formulated to kill Talaam microflora."
+        thuc normal "Yes, she says it's formulated to kill Talaam microflora."
         him annoyed "This sounds like something I don't actually need."
-        thuc normal "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
-        thuc "Julia gave it a flourescent review in {i}Talaam Times{/i}. The miners love that kind of stuff."
-        thuc sad "The price of firegrass has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
+        thuc happy "Perhaps not. But in my completely unbiased opinion, it's superior to other soaps."
+        thuc normal "Julia gave it a flourescent review in {i}Talaam Times{/i}. The miners love that kind of stuff."
+        thuc happy "The price of firegrass has gone up, and I heard some kids made a videogame together that they want to sell for some ridiculous price."
         thuc normal "You should consider producing some kind of luxury good or service to make some extra money."
         jump luxury_good
 
@@ -5944,8 +5955,8 @@ label luxury_good:
             "I'd go pick up the kids in the morning, and then I'd drop them off at the co-op daycare after lunch."
             "At first it was really difficult. The kids had a hard time changing their routines."
             "I had forgotten how hard it is to do anything with kids in the house, so often I'd still be working on my farm after dinner."
+            $ modify_credits(2000)            
             "I did make a lot of money though!" #+2000/200 credits but more stress?
-            $ modify_credits(2000)
         "Consult on small farming projects.":
             "I advertised my professional farm consulting in the {i}Talaam Times{/i}."
             "I was surprised when Oleg was my first customer."
@@ -5954,12 +5965,12 @@ label luxury_good:
             scene farm_interior with fade
             show him normal at midleft
             show kid normal at midright
-            kid "Oleg is telling everyone that you really know your farming stuff."
+            kid surprised "Oleg is telling everyone that you really know your farming stuff."
             him concerned "Sometimes I wasn't even sure he was listening..."
             kid shifty "He's been doing phosphorus measurements and everything."
+            $ modify_credits(400)
             "A few other people took me up on it, but I didn't make a lot of money off of it."
             "There were plenty of books and other farmers people could consult for free." #+400/40 credits
-            $ modify_credits(400)
     return
 
 ################################################################################

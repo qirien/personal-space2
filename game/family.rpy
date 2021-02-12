@@ -6935,7 +6935,9 @@ label family24:
     hide him with moveoutleft
     scene canyon with fade
     show him normal at midleft with moveinleft
-    "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark. Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark."
+    "The canyon was full of interesting rocks and crags and had great views. I couldn't enjoy them, though, because it was starting to get dark."
+    "Even though [kid_name] was almost 15 in Earth years, I still worried about her after dark..."
+    show him determined with dissolve
     "...Maybe especially because she was almost 15."
     him surprised "[kid_name]!"
     "My call echoed up and down the canyon. I listened carefully, but there was no response, so I walked further along."
@@ -6985,7 +6987,7 @@ label family24:
     "I felt wary. I could think of only one reason two twenty-something boys would hang out with young teenage girls."
     "There was a big difference between fourteen - okay, almost fifteen - and twenty."
     "I'm not sure why it was a much creepier age difference than, say, a 20-year-old and a 25-year-old. But I was definitely creeped out."
-    "Then again, the dating pool was a lot smaller here. I had to remember that this wasn't Earth. There weren't a lot of teenagers or young adults to choose from. Maybe there wasn't anyone else for him to hang out with."
+    "Then again, this wasn't Earth -- the dating pool was a lot smaller here. There weren't a lot of teenagers or young adults to choose from. Maybe there wasn't anyone else for him to hang out with."
     "But I was still uncomfortable."
     menu:
         "What should I say?"
@@ -7012,12 +7014,12 @@ label family24:
             $ demanding += 1
             $ lorant_points -= 1
             him annoyed "I don't want you hanging around with Anya's brother."
-            kid determined "What?! Why not?"
+            kid surprised "What?! Why not?"
             him determined "He's bad news. I can feel it."
             kid angry "'Bad news'? You can 'feel' it? What are you, a fortune teller?"
             him annoyed "Look, I know this isn't obvious to you because you're young. That's not your fault, but as your dad it's my duty to protect you."
             kid yell "Protect me from what? My friends?"
-            him determined "This scenario has happened thousands of times. Older boy meets girl. Boy flatters girl. Girl thinks boy loves her. Boy pressures girl to do stupid things. Girl does stupid things so boy will like her. Boy leaves. Girl cries."
+            him determined "This happens all the time. Older boy meets girl. Boy flatters girl. Girl does stupid things so boy will like her. Boy laughs and leaves. Girl cries."
             kid determined "This is nothing like that! What are you even talking about?"
         "Just be careful.":
             him concerned "Just... be careful, [kid_name]."
@@ -7052,7 +7054,7 @@ label lettie_dies:
     show him normal at midright with move
     him surprised "Lettie!"
     "I knelt next to her. She was barely breathing."
-    kid surprised "Is she okay?"
+    kid concerned "Is she okay?"
     him concerned "I don't think so. Her heartbeat's irregular and weak."
     him surprised "She was fine on the ride up! What could have happened to make her sick so fast?"
     "I looked around. In Lettie's mouth I found some short, flat needles from an evergreen bush nearby."
@@ -7074,7 +7076,7 @@ label lettie_dies:
     "But by the time [her_name] arrived, it was too late."
     "Lettie's heart had stopped."
     show him cry with dissolve
-    show her normal at quarterright behind horse with moveinright
+    show her concerned at center behind horse with moveinright
     her sad "I'm so sorry, [his_name]."
     "I sensed sort of distantly that [her_name] and [kid_name] were saying comforting things and had their arms around me."
     "Lettie had been with me even longer than [her_name]. We'd grown up together."
@@ -7105,6 +7107,8 @@ label lettie_dies:
     "Their family never even apologized to me for Lettie's death from their yew bush."
     "I didn't say anything when they were here, but afterwards I felt like I would explode if I didn't talk about it."
     "So I posted on the farmer's community board."
+
+    nvl clear
 
     him_c "You probably heard Lettie died. She died of yew poisoning from a bush planted by some miners."
     him_c "I hope everyone knows this plant is poisonous to livestock and humans."
@@ -7174,9 +7178,9 @@ label lettie_dies:
     "I shrugged. I felt like a fool. I shouldn't have posted about Lettie's death online, and I didn't know what to do about the creeping weeds of my life."
     her annoyed coat "Well, I agree with you. He's too old for her, and he gives me the creeps. I'm all for giving people a fair chance, but I'm not trusting him alone with my daughter."
     him determined "You don't think I'm just crazy with grief?"
-    her nervous coat "I think posting on the message board like that was a stupid and tactless thing to do, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
+    her nervous coat "I think posting like that was stupid and tactless, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
     him sad "She's not going to like it."
-    her determined coat "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV or whatever. But, like at the clinic, perhaps if we approach this the right way we can minimize her discomfort."
+    her determined coat "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV. Perhaps if we approach this the right way we can minimize her... discomfort."
     menu:
         "What should we do?"
         "Forbid her from hanging out at Anya's house.":
@@ -7210,9 +7214,9 @@ label lettie_dies:
             "We went to [kid_name]'s room."
             scene kid_bedroom with fade
             show kid determined at midright with dissolve
-            show him determined at center
+            show him determined at center behind kid
             show her determined coat at midleft
-            with move
+            with moveinleft
             him determined "[kid_name], we would like your help with a problem."
             kid surprised "What's that?"
             him concerned "We are a bit worried about you hanging out at Anya's house where it's so far and there's not a lot of adults around. We want you and Anya to still be able to hang out, though."
@@ -7224,13 +7228,13 @@ label lettie_dies:
             kid determined "You want somewhere with more people around? No one wants to do that."
             him normal "How about something a bit more centralized; closer to town. So if there's an emergency you'd have plenty of people close by."
             "[kid_name] thought about it for a minute. That was progress; she finally wasn't just trying to shut me down."
-            kid normal "Actually, it'd be cool if we had our own hangout place. Like, in books I always read about teenagers hanging out at malls or cafes or parks or places like that. We don't really have that here."
+            kid normal "Actually, it'd be cool if we had our own hangout place. Like, in books I always read about teenagers hanging out at malls or cafes or clubs or places like that. We don't really have that here."
             her surprised coat "We haven't had that many teenagers before."
             him happy "That's a great idea, [kid_name]!"
             kid annoyed "But you guys can't come there! That would defeat the whole purpose."
             him normal "Let's see what we can work out."
             scene stars with fade
-            "We worked with the community, and some groups agreed to meet in the school instead of the community center so that the teenagers could have the community center to themselves several evenings a week."
+            "We worked with the community so that the teenagers could have the community center to themselves several evenings a week."
             "[kid_name] worked with Anya and some other friends to make a ping pong table and some soft rugs. They talked about future plans, too, like a mini-kitchen and some big speakers for music."
             scene community_center with fade 
             show her normal coat at midright

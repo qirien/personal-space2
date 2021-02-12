@@ -149,7 +149,7 @@ label start:
         ban_firegrass = False
         study_published_23 = False
         helen_dead = False      
-        bought_tt = True
+        bought_tt = False
         bios = Bios()         
         bios.activate("[his_name]")
         bios.activate("[her_name]")
@@ -395,7 +395,7 @@ label life_loop:
         call screen plan_farm() with fade
 
         label yearly_events:
-            window auto
+            #window auto
             if demo_mode:
                 jump demo_continue
             if trailer_mode:
