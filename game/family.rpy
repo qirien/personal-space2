@@ -7544,7 +7544,7 @@ label family26:
             kid angry "Wow. I guess you're too much of an entitled planet-destroying autocrat to even understand what I'm saying!"
             $ neglectful += 1
             return
-    him surprised "So, is there something you can do about it? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
+    him annoyed "Is there something you can do about it? I mean you don't think RET's going to just ship everybody home and pretend they never found this place, right?"
     kid nervous "I guess... they probably wouldn't. But they don't need to farm the jellystars!"
     him surprised "Is that what this is about?"
     kid determined "Yes! We already know that the jellysquids can talk, so why are we eating the jellystars?!"
@@ -7555,7 +7555,7 @@ label family26:
     him determined "That's the theory. We honestly don't really know much about them."
     kid annoyed "Right! So maybe we shouldn't eat them until we do know more!"
     if ate_jellyfish:
-        him concerned "And they're so adorable..."
+        him blush "And they're so adorable..."
         kid normal "Right?!"
     menu:
         "What should I say?"
@@ -7902,6 +7902,7 @@ label family28:
             her flirting "You just want to see me get hot and sweaty."
             him flirting "Wish I could! But it'll be more efficient if we split up."
             her normal "Sure, as long as this doesn't turn into a horror movie."
+            show him pout with dissolve
             "She left, and I turned to my computer pad. There were several ways I could go about this..."
             nvl clear
             menu:
@@ -8126,6 +8127,33 @@ label family28:
         "For a minute it looked like [her_name] was about to disagree with me, but instead she just gave [kid_name] a hug."
         her sad "I hope you know how much we love you."
         "[kid_name] didn't say anything, but she hugged [her_name] tight. I stepped in to embrace them both, not wanting to be left out."
+    else: #does not trust parents
+        kid annoyed "It's not any of your business. Deal with it."
+        menu:
+            "What should I say?"
+            "Just as long as you're not using it.":
+                him pout "Just as long as you're not using any of that stuff I guess it's okay."
+                kid nervous "I didn't ask for your opinion, but okay."
+                $ authoritative += 1
+            "You are not allowed to work at this job.":
+                him annoyed "No. This is unacceptable. You may not work at this job!"
+                her concerned "I have some concerns too, [kid_name]. Let's talk about it."
+                kid nervous "I'm not stopping this job. I finally found something useful to do and I make good money and you aren't going to stop me."
+                him angry "Oh yeah? If you're so independent why don't you try living on your own and see how you like it!"
+                kid angry "I will! I'm sick of your arbitrary rules and you making decisions for me."
+                her sad "[kid_name]..."
+                jump family28_runaway
+                $ authoritarian += 1
+            "If that's what you want to do...":
+                him surprised "Well, I guess if that's what you want to do..."
+                her concerned "Just be careful, [kid_name]."
+                kid nervous "Okay, okay."
+                $ permissive += 1
+            "I don't care.":
+                him annoyed "It's your life."
+                her concerned "Be careful, [kid_name]..."
+                kid nervous "Uh-huh."
+                $ neglectful += 1
     return
 
 label family28_runaway:

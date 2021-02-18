@@ -323,7 +323,8 @@ init -100 python:
             return False
         else:
             farm_size += amount
-            notification_add("Farm Size", amount)    
+            notify_change("Farm Size +" + str(amount))
+            #notification_add("Farm Size", amount)    
             return True
 
     # Calculate expenses required for the family for this year

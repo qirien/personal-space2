@@ -71,12 +71,13 @@ screen yearly_summary():
                                     vbox:                                        
                                         xsize 200
                                         xalign 1.0
-                                        label "Year [year] Summary"                    
-                                        text notifications
+                                        #label "Year [year] Summary"
+                                        #text notifications
                                         label "[kid_name]"
                                         hbox:
                                             null width 40
                                             vbox:
+                                                ysize 10
                                                 for var in ["attachment", "competence"]:
                                                     use show_stat(var)
                                         label "Factions"

@@ -236,7 +236,7 @@ label debt_event:
         her annoyed "He let me have the things anyway, just giving me a warning and subtracting the credits further into the negative... But that has happened the last three times I was there."
         menu:
             "What should I say?"
-            "I'll try harder":
+            "I'll try harder.":
                 $ marriage_strength += 1
                 him concerned "I'm sorry, [her_name] -- it's hard to balance everything, but I can do better."
                 her sad "I know you're trying hard, but we can't be in debt."
