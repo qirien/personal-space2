@@ -149,7 +149,8 @@ label overwork:
                 show pete normal at center
                 show helen normal at midright
                 show travis normal at quarterright
-                show lily normal at quarterleft
+                if (year < LILY_DIES_YEAR):
+                    show lily normal at quarterleft
                 "With so many people, it didn't take us very long to harvest all the [random_crop]."
                 him happy "Thanks, guys!"
             else:

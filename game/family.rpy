@@ -8237,7 +8237,7 @@ label family29:
             him normal "I guess we can be happy for her, right?"
             bro concerned "Yeah, I guess so."
             $ adjective = get_kid_adjective()
-            him surprised "She's really [adjective], but she still doesn't know what she wants to do, though. It's so different from Earth."
+            him surprised "She's really [adjective], but she still doesn't know what she wants to do. It's so different from Earth."
             bro surprised "How is that?"
             him normal "On Earth, most kids went straight from high school to a job, or college, or training school, or something like that. Here, though, every kid is doing something different."
         "Catch up to [her_name].":
@@ -8254,12 +8254,12 @@ label family29:
     scene community_center with fade
     if (kevin_elected):
         show kevin normal at center
-        kevin "Welcome to the Talaam graduation ceremony."
-        kevin "This year, we have five students graduating."
+        kevin happy "Welcome to the Talaam graduation ceremony."
+        kevin normal "This year, we have five students graduating."
     else:
         show julia normal at center
-        julia "Welcome, parents, teachers, friends, and community, to the Talaam graduation ceremony!"
-        julia "This year, we celebrate the graduation of five outstanding students."
+        julia happy "Welcome, parents, teachers, friends, and community, to the Talaam graduation ceremony!"
+        julia normal "This year, we celebrate the graduation of five outstanding students."
 
     "There were two graduates that I didn't know very well, and then Anya, Oleg, and [kid_name]."
     "The kids each gave a short speech about education, and the teachers gave out some awards, and then the mayor handed them each a certificate."
@@ -8324,7 +8324,7 @@ label family29:
             kid concerned "Yeah..."
             him normal "But other things are important too -- having similar life goals, having a good friendship, sacrificing for the other person."
             kid normal "Huh... that's just what Mom said."
-            him surprised "Oh! Glad we're, uh, on the same page."
+            him blush "Oh! Glad we're, uh, on the same page."
             kid nervous "So... Do you think just being good friends is enough?"
             $ lorant_points += 1
         "It's really important.":
@@ -8388,7 +8388,7 @@ label family29:
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Have they been in other relationships?" if not (family29_otherrelationships):
+        "Have they had other relationships?" if not (family29_otherrelationships):
             $ responsive += 1
             him determined "Have they ever been in a serious relationship with anyone else?"
             kid annoyed "I'm not answering that one."
@@ -8397,7 +8397,7 @@ label family29:
             if (family29_question_count < 3):
                 jump family29_questions
         "Do they view sex the same way?" if not (family29_sex):
-            him annoyed "Do they both have similar attitudes about sex?"
+            him surprised "Do they both have similar attitudes about sex?"
             kid annoyed "Definitely not answering that one!"
             him annoyed "Well, it's important! If you're wondering if two best friends can have a successful marriage, it's going to depend a lot on how much they care about sex!"
             kid angry "It's kind of hard to know how much you care about something if you've-- if it's not something you do all the time!"
@@ -8552,15 +8552,19 @@ label family29:
     her concerned "I know...I just want [kid_name] to be happy. Not just short-term happy; long-term, life-satisfyingly happy."
     him sad "It feels like we have less and less control over that, doesn't it?"
     her nervous "Yeah..."
-    show her normal at center, sitting with move
+    show her nervous at center, sitting with move
     "We sat outside right next to each other, leaning our heads together. Her hair tickled my neck and I breathed in its soft scent of hospital soap and antiseptic."
-    show him content with dissolve
+    show him content
+    show her normal
+    with dissolve
     "She massaged my hand in hers, knowing just the right places and just the right amount to push."
     show him sleeping with dissolve
     "I carefully massaged her neck with my other hand, exactly the way she liked."
     her sleeping "Mmmmm."
     "We leaned into each other and gazed up at the moons."
-    show her normal with dissolve
+    show her normal
+    show him content
+    with dissolve
     "This happiness, this was what I wanted for [kid_name]..."
     "Was that too much to ask?"
     return
@@ -8596,7 +8600,7 @@ label family30:
 
     if ((total_attachment < ATTACHMENT_HIGH) and (total_competence < COMPETENCE_HIGH)):
         # If she is leaving with Lorant, you don't even find out about it until later
-        "Some nights she didn't even come home. I assumed she was staying the night at Anya's, but looking back I'm guessing that wasn't the case."
+        "Some nights she didn't even come home. I assumed she was with Anya, but looking back I'm guessing that wasn't the case."
         "If I'd known, would I have tried to stop her? Would it have made a difference?"
         "I had too many of my own problems to deal with to spare much time for anyone else's."
         return
@@ -8688,7 +8692,7 @@ label family30:
     show teen_surprised at midright    
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
     scene barn with fade
-    show oleg at midleft
+    show oleg happy at midleft
     show teen_flirting at center
     "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though she had only ever seen it in videos."
 
@@ -8843,7 +8847,7 @@ label family30:
             him cry "Oh, [kid_name]..."
             "We held each other and cried. I suddenly realized that even if [kid_name] didn't go to Earth, eventually she was going to leave us in some way."
             "And that was what I was crying for."
-            "After we had all exhausted our tears, [her_name] notice the time."
+            "After we had all exhausted our tears, [her_name] noticed the time."
 
         "Try to cheer everyone up":
             "I stood back for a few minutes, giving [her_name] and [kid_name] and [bro_name] a minute to cry-hug together. But it didn't seem to make them feel any better."

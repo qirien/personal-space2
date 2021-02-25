@@ -541,7 +541,6 @@ label message21:
     julia_c "Lay your expectations out clearly with consequences. You shouldn't have to ask him to do these things; he knows what his chores are. If he fails to do them, he faces the consequences. He'll learn soon enough."
     her_c "I think Naomi would remind you to give him lots of love, but maybe in a different way than when he was little?"
     sara_c "Maybe so... I appreciate the advice, guys.{emoji=worried}"
-    $ bios.addToBio("Sara", "Sometimes she and Ilian don't live together... I think their relationship is complicated.")
 
     nvl clear
     return
@@ -770,7 +769,13 @@ label message30:
     nvl clear
     # Miner's shuttle is leaving. Most are returning to Earth since contracts are complete; a few have renewed to stay on as senior workers
     sara_c "Is it true there's going to be chocolate coming on the shuttle?!"
-    him_c "They are including some coffee, sugar, and chocolate, yes."
+    if is_liaison:
+        him_c "They are including some coffee, sugar, and chocolate, yes."
+    else:
+        if kevin_elected:
+            kevin_c "Yes, the manifest includes some coffee, sugar, and chocolate."
+        else:
+            julia_c "Oh yes, coffee, sugar, and chocolate!"
     sara_c "Yay! {emoji=hearteyes}"
 
     brennan_c "It's going to be busy these next few days, so if I don't get a chance, I wanted to say farewell to all of you."

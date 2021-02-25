@@ -361,9 +361,9 @@ label life_loop:
                     $ modify_credits(-allowance_amount * 7)
 
                 # Check for credit Achievements
-                if (credits >= 2000):
+                if (credits >= 1500):
                     $ achieved("Rich Dad")
-                elif (credits <= -2000):
+                elif (credits <= -1000):
                     $ achieved("Poor Dad")
                     
         if (crop_enabled("wheat")):

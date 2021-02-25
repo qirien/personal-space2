@@ -925,7 +925,7 @@ label squash2:
             sara_c "What are squash bugs????? {emoji=surprised}"
             natalia_c "A squash farmer's worst nightmare. I haven't seen any here yet, but if they're anywhere on the planet I'm sure they'll find all the squash plants."
             him_c "They found all of mine. But whoever brought them should be responsible for getting rid of them!"
-            if (year < 15):
+            if (year < NAOMI_DIES_YEAR):
                 naomi_c "Do you think someone brought them here on purpose?"
             else:
                 sara_c "You're not saying someone brought them here on purpose?! {emoji=shocked}"
@@ -2110,10 +2110,10 @@ label honey1:
 label money1:
     nvl clear
     "I was doing some financial calculations on the computer pad when I got a message from Sara."
-    sara_c "[his_name], we're looking for people to help out a family in need. There's a mom and three little kids and the mom has been sick for the past month."
+    sara_c "[his_name], we're looking for people to help out a family in need. There's a dad and three little kids and the dad has been sick for the past month."
     him_c "That's rough. What do they need?"
-    sara_c "Well, she'd like to be able to hire someone to help out with the kids and around the house, but she doesn't have any money. A few people have been taking turns volunteering but they can't do it long term."
-    him_c "So she needs money."
+    sara_c "Well, he'd like to be able to hire someone to help out with the kids and around the house, but he doesn't have any money. A few people have been taking turns volunteering but they can't do it long term."
+    him_c "So he needs money."
     sara_c "Basically, yes. We also have a few people looking for work, so it'll be good for everyone. 1000 credits would be enough for a few months."
     "I explained the situation to [her_name], who said she thought donating was a good idea but left the exact amount up to me."
     menu:
@@ -2138,8 +2138,8 @@ label money1:
             sara_c "Oh... okay."
             $ colonists -= 1
             return
-    "About a month later I got a note from the mom and her kids."
-    note_c "Thank you so much for helping out when I was sick. It's been a long recovery but I am starting to work again. Your donation meant the world to me."
+    "About a month later I got a note from the dad and his kids."
+    note_c "Thanks so much for helping out when I was sick. It's been a long recovery but I am starting to work again. Your donation made a huge difference."
     nvl clear
     return
 

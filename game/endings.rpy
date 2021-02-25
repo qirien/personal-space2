@@ -114,11 +114,11 @@ label ending_ac:
     him normal "I can't keep track of who's with who anymore!"
 
     show brennan normal at midleft with moveinleft
-    brennan normal "[her_name]. I just wanted to say I'm sorry."
+    brennan sad "[her_name]. I just wanted to say I'm sorry."
     her surprised "Sorry for what?"
-    brennan angry "That [kid_name]'s leaving. I tried to convince her to stay, but after everything she told me... well, I can't blame her."
+    brennan concerned "That [kid_name]'s leaving. I tried to convince her to stay, but after everything she told me... well, I can't blame her."
     him annoyed "Leaving? Leaving for where?"
-    brennan normal "Earth, of course. Where else would we be headed?"
+    brennan flirting "Earth, of course. Where else would we be headed?"
     him angry "She's NOT going with YOU!"
     brennan angry "Of course not. She's traded places with Anya so she can be with Lorant. I thought you knew."
     her determined "No. We did not."
@@ -128,7 +128,7 @@ label ending_ac:
     her concerned "[kid_name]! You-- you're leaving?!"
     kid annoyed "Yeah."
     him angry "Like hell you are! You take that bag right back home right now!"
-    brennan normal "Sorry, she's a legal adult and she signed a contract."
+    brennan explaining "Sorry, she's a legal adult and she signed a contract."
     her sad "Why would you do this?"
     kid angry "Lorant loves me. We're happy together. And I've always wanted to go to Earth."
     him determined "But we'll never see you again."
@@ -160,20 +160,19 @@ label ending_ac:
     "Just like that, she was gone from my life."
     "I never saw her again."
     him yell "How could you let her sign a contract like that without even mentioning it to us?!"
-    brennan normal "It's not my fault if you don't know what's going on in your own kid's life."
+    brennan concerned "It's not my fault if you don't know what's going on in your own kid's life."
     her surprised "Brenann!"
-    # TODO: adjust based on whether you are a good farmer/liaison or not
     if (miners_strong()):
         brennan angry "Sorry, but it's true. You're a fine farmer, [his_name], and a decent liaison, but you're a terrible father."
     else:
         brennan angry "Sorry, but it's true. You may be a decent farmer, but you're a terrible father."
-    him angry "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a wondeful father to them."
-    brennan normal "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
+    him angry "Since when do you know anything about being a father? Oh wait, you've probably got bastards on several planets by now. I'm sure you're a {b}wonderful{/b} father to them."
+    brennan flirting "Before I came back I decided to make sure I'd never be a father. Seems like you should have done the same."
     her angry "Enough! This might be the last time you see each other. Do you really want the other person to remember you this way?"
     him annoyed "I'd be happy if he never thought of me again."
-    brennan angry "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
+    brennan sad "I'm sorry, [her_name]. I wouldn't want your last memories of me to be sad ones."
     her concerned "Will you look out for [kid_name]? I know you said you never wanted to be a father..."
-    brennan normal "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
+    brennan explaining "I'm not her father. But... I am her manager. Yes, I'll watch out for her."
     "[her_name] glared at me. I wanted to get in one last barb at Brennan, to hurt him so he'd feel as awful as I did. But I didn't want to hurt [her_name]."
     menu:
         "What should I say."
@@ -227,7 +226,7 @@ label ending_ac:
     her sad "Then what are we supposed to do now?"
     him determined "The only thing we can do is try and be better than we were. Maybe she's back on Earth, but we can still send her messages. We can try and do better with [bro_name]."
     her concerned "That's true, but..."
-    her sad "None of that will bring my baby back."
+    her cry "None of that will bring my baby back."
 
     "Ending 1/4, Bring Back My Baby."
     $ achieved("Bring Back My Baby")
@@ -250,7 +249,7 @@ label ending_aC:
     kid nervous "Right here?"
     her concerned coat "Almost... a little lower. See, when you pinch it, it looks like this."
     kid sad "Maybe you should do it."
-    thuc "Yeah, this is the most painful shot I've ever had, and you haven't even pierced the skin yet!"
+    thuc happy "Yeah, this is the most painful shot I've ever had, and you haven't even pierced the skin yet!"
     her annoyed coat "She needs the practice! I'll make sure she does it right. Try again, [kid_name]."
     kid concerned "Okay... right, um, here?"
     her normal coat "Yes, that's right!"
@@ -276,6 +275,7 @@ label ending_aC:
     her annoyed coat "She feels awkward touching people, and she's always second-guessing herself, and she needs my reassurance even about easy little things."
     him flirting "I'm sure she just needs more practice. I've heard from a {b}very{/b} reliable source that it takes a lot of time to become a competent medical professional."
     if (total_independence >= INDEPENDENCE_HIGH):
+        # TODO: Depending on family30, she may have already said that she's going back to Earth...
         her concerned coat "She's thinking about going back to Earth to study."
         him surprised "Why would she do that? She can learn everything she needs right here!"
         show kid determined at quarterleft with moveinleft

@@ -26,12 +26,15 @@ label credits:
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
-    show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker\n\nAnd Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
-    $ renpy.pause(6.0, hard=skippable)
+    show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker"
+    $ renpy.pause(3.0, hard=skippable)
+    
+    show text "And Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
+    $ renpy.pause(3.0, hard=skippable)
     hide text with fade
 
     show text "GUI graphics based on images by\nNoto Emoji\n\nAnd Pixabay users:\nOpenClipart-Vectors\nClker-Free-Vector-Images"    
-
+    $ renpy.pause(2.0, hard=skippable)
     # TODO: add more credits from Credits.txt SFX?
 
     show text "Space to Grow was made using the following tools:\n\nthe GIMP (gimp.org)\nCodeOSS (code.visualstudio.com)\njEdit (jedit.org)\nLunaPic (www.lunapic.com)\nAudacity (audacityteam.org)\nCelestia (celestia.space)\ngit (github.com)" with fade
@@ -61,6 +64,7 @@ label credits:
     $ renpy.pause(3.0, hard=skippable)
 
     "Thank you for playing Our Personal Space 2: Space to Grow!"
+    "You've unlocked New Game+, including the Skip button for text you've already seen. All crops you've unlocked will carry over to your next playthrough."
     # add link, survey, etc?
 
     $ renpy.full_restart()
