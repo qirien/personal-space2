@@ -539,7 +539,6 @@ label ending_CMima:
     "After two more loads, I went home to do some more pushing and pulling."
 
     scene farm_exterior with fade
-    play sound "sfx/rain.ogg" loop
     show rain
     show him surprised behind rain at midleft
     show brennan normal behind rain at midright
@@ -569,7 +568,7 @@ label ending_CMima:
     #several ways this could go. They could discover later that the mavericks were flooded out. A more immediate resolution would be interesting.
     #maybe Helen shows up with a backpack, explaining that they lost some food storage in the flood, and starts living in the old mining camp
     #"Pete insisted on living on his own even when everyone else had given up."
-
+    stop sound fadeout 1.0
     return
 
 label ending_CmiMa:
@@ -592,7 +591,6 @@ label ending_CmiMa:
     "After two more loads, I went home to do some more pushing and pulling."
 
     scene farm_exterior with fade
-    play sound "sfx/rain.ogg" loop
     show rain
     show him surprised behind rain at midleft
     show pete normal behind rain at midright
@@ -625,6 +623,7 @@ label ending_CmiMa:
     "I don't think I could bring myself to like the miners though."
     "Everything they stood for was against my principles. If they didn't want my help, then I didn't want to help them."
 
+    stop sound fadeout 1.0
     return
 
 label ending_Cmima:
@@ -646,7 +645,6 @@ label ending_Cmima:
     "After two more loads, I went home to do some more pushing and pulling."
 
     scene farm_exterior with fade
-    play sound "sfx/rain.ogg" loop
     show rain
     show him surprised behind rain at midleft
     show thuc happy behind rain at midright
@@ -676,6 +674,7 @@ label ending_Cmima:
     her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
     "We focused on our own needs in our little community."
     "How could we help the others when it was a struggle to survive just with our own neighbors?"
+    stop sound fadeout 1.0
     return
 
 label ending_cMiMa:
