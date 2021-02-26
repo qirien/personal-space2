@@ -550,7 +550,6 @@ label ending_CMima:
 
     scene yurt_interior with fade
     play sound "sfx/rain.ogg" volume 0.6 loop
-    show rain
     show him normal at midleft with moveinleft
     show her normal at midright
     her "You made it! Welcome to our temporary home."
@@ -606,8 +605,9 @@ label ending_CmiMa:
     with dissolve
     play sound "sfx/rain.ogg" volume 0.6 loop
     show rain
-    show him normal at midleft with moveinleft
-    show her normal at midright
+    show him normal at midleft with moveinleft behind rain
+    show her normal at midright behind rain
+    with dissolve
     her "You made it! Welcome to our temporary home."
     him content "Phew! I'm glad we have a place to sleep."
     her sad "I hope Brennan and the others are okay..."
@@ -677,7 +677,7 @@ label ending_Cmima:
     stop sound fadeout 1.0
     return
 
-label ending_cMiMa:
+label ending_cMiMa:    
     "Over the next few years, the colony had difficulty making enough food to survive."
     "People started hoarding food. Some continued to work through solar flares, only to die from the following radiation poisoning in a few years."
     "We became less like a colony and more like a few loosely-connected settlers."
@@ -708,15 +708,75 @@ label ending_cmiMa:
     return
 
 label ending_cmima: #is this ending even possible?
-    "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
-    "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
-    "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
-    "The mavericks weren't doing any better."
-    "A year of heavy rains made problems for everyone."
-    "Floods destroyed our food storage, contaminated our water, and completely killed off some of our crops."
-    "After moving to higher ground, we tried again with the seeds we managed to save."
-    "Some of us died of malnutrition and exhaustion."
-    "It felt like soon our bones and possessions would be the only evidence of our existence here."
+    scene farm_exterior with fade
+    play sound "sfx/rain.ogg" loop
+    show rain
+    show him pout at midleft
+    "It sure is raining a lot this week. The river's waters have been rising and the rain shows no sign of stopping."
+    nvl_clear
+    him_c "Hey, is there a flood warning or anything? It looks like the river could bust its banks any minute."
+    thuc_c "Didn't you hear? Zaina told everyone within a kilometer of the river to evacuate today."
+    him_c "Um, no, I didn't see anything like that."
+    thuc_c "Huh. One of my kids told me about it. Maybe she only sent it out to the miners?"
+    him_c "Where should we evacuate?"
+    thuc_c "I dunno. I'd offer my place but we have to evacuate too."
+
+    him sad "I guess we could go to the community center? That's almost a kilometer away from the river."
+    scene farm_interior with fade
+    play sound "sfx/rain.ogg" volume 0.6 loop
+    show her normal at midright
+    show him determined at midleft with moveinleft
+    with fade
+    him "Hey, I heard that it's supposed to flood! We need to load up the wagon and move stuff."
+    her surprised "Why didn't we hear about this sooner?"
+    him sad "I don't know, maybe Zaina sent an e-mail to the miners but forgot about us colonists?"
+    her nervous "How much is it supposed to flood? Do we need to take everything?"
+    him determined "It looks like that's what Thuc's family did."
+    her_c "How much is it supposed to flood? Can just empty our cellar and be okay?"
+    thuc_c "I don't know, but it's supposed to keep raining for another week or two!"
+    him pout "Let's take as much as we can. Unfortunately none of the solar batteries are fully charged right now though..."
+    her determined "We'll have to pull the wagon ourselves. Got it."
+
+    scene farm_exterior with fade
+    play sound "sfx/rain.ogg" loop
+    show rain
+    show him pout at midleft behind rain with dissolve
+    show her nervous at midright behind rain with dissolve
+    her "If we load the wagon up too high, we'll never get it through the mud."
+    him "I know. I just hate to waste any food."
+    her determined "Let's prioritize the dried meats and fruit, which will be the lightest and most calorie dense."
+    him determined "Right."
+    "We managed to get a load to the community center."
+
+    scene community_center with fade
+    play sound "sfx/rain.ogg" volume 0.6 loop
+    show him determined at midleft with dissolve
+    show her determined at left with dissolve
+    show ilian angry and midright with dissolve
+    ilian "Why are you bringing that here?"
+    him doubt "I figured it would be less susceptible to flooding here?"
+    ilian normal "No, you need to take it to higher ground. It's likely to flood in the night here."
+    him pout "Okay, then... where?"
+    ilian angry "Like I know. No one tells me anything!"
+    him doubt "I guess we'll look around and see what everyone else is doing..."
+
+    scene path with fade
+    play sound "sfx/rain.ogg" loop
+    show rain
+    show him pout at midleft behind rain with dissolve
+    show her nervous at midright behind rain with dissolve
+    "We took our wagon up the foothill towards the miner's camp. Other colonists had found places to stay here, with tents popping up every now and then."
+    "We set up a temporary shelter, but it was still very wet. We were able to get another light load up, but most of our food storage was ruined by the flood."
+
+    # "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
+    # "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
+    # "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
+    # "The mavericks weren't doing any better."
+    # "A year of heavy rains made problems for everyone."
+    # "Floods destroyed our food storage, contaminated our water, and completely killed off some of our crops."
+    # "After moving to higher ground, we tried again with the seeds we managed to save."
+    # "Some of us died of malnutrition and exhaustion."
+    # "It felt like soon our bones and possessions would be the only evidence of our existence here."
     return
 
 
