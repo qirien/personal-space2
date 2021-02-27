@@ -8300,7 +8300,7 @@ label family29:
         "Why are you asking this?":
             him blush "That's a weird question. Why are you asking?"
 
-    kid surprised "Do you think it's important for two people to be physically attracted to each other before getting married?"
+    kid blush "Do you think it's important for two people to be physically attracted to each other before getting married?"
     him surprised "Physically attracted?"
     if (has_trust()):
         kid nervous "I mean, I know it's one part of a relationship, but there's plenty of people who are attracted to each other but just aren't good for each other, and probably the opposite might be true, too...?"
@@ -8327,6 +8327,7 @@ label family29:
             him blush "Oh! Glad we're, uh, on the same page."
             kid nervous "So... Do you think just being good friends is enough?"
             $ lorant_points += 1
+            $ oleg_points += 1
         "It's really important.":
             him determined "It's pretty important. I mean... you want to enjoy having sex with your spouse, right?"
             kid surprised "So you wouldn't enjoy it if you weren't attracted to Mom?"
@@ -8337,6 +8338,7 @@ label family29:
             him surprised "You talked to Mom about this?"
             kid annoyed "Yeah, of course. But she said I should get a guy's perspective."
             $ travis_points += 1
+            $ oleg_points -= 1
 
     him surprised "Wait, is this about you? You and..."
     menu:
@@ -8373,7 +8375,7 @@ label family29:
         "What should I ask?"
         "Is he gay?" if not (family29_gay):
             him surprised "Is he gay? Is that why he's not attracted to you? I mean, your friend?"
-            kid concerned "I don't think so. I mean, it doesn't seem like he's really attracted to anybody. So...maybe?"
+            kid concerned "I don't think so. I mean, it doesn't seem like he's really attracted to anybody."
             $ family29_gay = True
             $ family29_question_count += 1
             if (family29_question_count < 3):
@@ -8489,7 +8491,7 @@ label family29:
                 $ neglectful += 1
 
         him explaining "Anyway, getting married is awesome if you do it right. I hope that your, uh, friend can make a good choice."
-        kid concerned "Yeah, I'll... tell her what you said."
+        kid blush "Yeah, I'll... tell her what you said."
         him surprised "And you should also tell her..."
         "I thought I could slip in one more piece of advice, but I wanted it to be good."
 
@@ -8573,7 +8575,6 @@ label family29:
 label family30:
     $ parenting_style = get_parenting_style()
     "Now that [kid_name] didn't have school every day, she had moved on to other things."
-    $ boyfriend_name = ""
     if (parenting_style == "authoritarian"):    # aCi or aCI
         # Medicine, either at home or on Earth, trying to make her parents happy
         "She had been spending all her time at the clinic with [her_name], learning and assisting."
@@ -8918,6 +8919,7 @@ label family30:
         with dissolve
         "I stopped chewing. I stopped breathing. I couldn't do or think about anything else until I knew the answer to this question."
         if (not is_attached()) and (is_competent()) and (is_independent()):
+            $ family30_leaving = True
             kid determined "I am."
             her sad "Oh, sweetie..."
             him normal "You're going to Earth to study hard and become the best, right?"

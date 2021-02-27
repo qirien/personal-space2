@@ -92,9 +92,12 @@ label start:
         allowance_amount = 0
 
         # variables for boy relationships for Terra
+        boyfriend_name = ""
         travis_points = 0
         lorant_points = 0
         oleg_points = 0
+
+        family30_leaving = True
 
 
     # COMMUNITY

@@ -472,7 +472,25 @@ label tests:
     return
 
 label test_dialogue:
+    if (mp.jack_name):
+        $ his_name = mp.jack_name
+    else:
+        $ his_name = "Jack"
+    if (mp.kelly_name):
+        $ her_name = mp.kelly_name
+    else:
+        $ her_name = "Kelly"        
+    if (mp.baby_name):
+        $ kid_name = mp.baby_name
+    else:
+        $ kid_name = "Terra"
+    if (mp.bro_name):
+        $ bro_name = mp.bro_name
+    else:
+        $ bro_name = "Aeron"
+
     $ year = 25
+    $ bro_birth_year = 8
     scene farm_interior with fade
     show him normal at midright
     show her happy at midleft
@@ -540,7 +558,7 @@ label test_dialogue:
     show kevin normal at midright
     show zaina normal at midleft
     with dissolve
-    kevin concerned "Could it be for dissolving pipe blockages?"
+    kevin sad "Could it be for dissolving pipe blockages?"
     zaina sad "Jack made it sound like you could eat it..."
 
     scene farm_interior with fade

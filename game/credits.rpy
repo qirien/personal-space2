@@ -29,7 +29,7 @@ label credits:
     show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nDorothea Witter-Rieder\nMarcus Budde\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\nAndrea Landaker\nWes Landaker"
     $ renpy.pause(3.0, hard=skippable)
     
-    show text "And Pixabay users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
+    show text "And {a=http://www.pixabay.com}Pixabay{/a} users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
     $ renpy.pause(3.0, hard=skippable)
     hide text with fade
 
@@ -41,7 +41,7 @@ label credits:
     $ renpy.pause(4.0, hard=skippable)
     hide text with fade
 
-    show text "and of course...\n\nRen'py\nwww.renpy.org" with fade
+    show text "and of course...\n\nRen'py\n{a=http://www.renpy.org}www.renpy.org{/a}" with fade
     $ renpy.pause(3.0, hard=skippable)
     hide text with fade
 
@@ -55,6 +55,7 @@ label credits:
         $ mp.jack_name = his_name
         $ mp.kelly_name = her_name
         $ mp.baby_name = kid_name
+        $ mp.bro_name = bro_name
         $ mp.save()
     $ renpy.save_persistent()
 

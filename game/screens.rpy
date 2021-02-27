@@ -348,8 +348,12 @@ screen navigation():
         $ has_saves = renpy.newest_slot()
         if main_menu:
             if has_saves:
-                textbutton _("Resume") action FileLoad("quitsave", slot=True)
-            textbutton _("New Game") action Start()
+                textbutton _("Resume") action FileLoad("quitsave", slot=True) text_size 50
+
+            if (persistent.times_beaten):
+                textbutton _("New Game +") action Start()    
+            else:
+                textbutton _("New Game") action Start()
 
         else:
 
@@ -364,6 +368,9 @@ screen navigation():
 
         if has_saves:
             textbutton _("Achievements") action ShowMenu("achievements")
+        
+        if (main_menu and persistent.times_beaten):
+            textbutton _("Bonus") action ShowMenu("bonus")
 
         if _in_replay:
 
@@ -1235,6 +1242,23 @@ screen achievements():
                         text persistent.achievements[title]["desc"] xalign 0.5 italic True size gui.quick_button_text_size
                     else:
                         text ""
+
+screen bonus():
+    tag menu
+
+    if renpy.mobile:
+        $ cols = 2
+    else:
+        $ cols = 3
+
+    use game_menu(_("Bonus"), scroll="viewport"):
+        vpgrid:
+            xfill True
+            cols 2
+            spacing 10
+
+            textbutton "Deleted Ending" action Start("ending_extra")
+            textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")
 
 
 ## Confirm screen ##############################################################

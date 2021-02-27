@@ -1866,7 +1866,7 @@ label work28:
     $ bios.addToBio("Travis", "He doesn't seem to have the same issues with our community that Pete does. He hangs out here a lot and even opened up our colony's first restaurant.")
 
     nvl clear
-    travis_c "You are all invited to the Grand Opening of Jelly Laugh, Talaam's first restaurant, next weekend! The first 10 customers get free pancakes!"
+    travis_c "You are all invited to the Grand Opening of the DinerMight, Talaam's first restaurant, next weekend! The first 10 customers get free pancakes!"
     julia_c "A restaurant?! Who has enough credits to go there?"
     zaina_c "It might be nice for special occasions."
     brennan_c "Might you be serving your dad's special cider?"

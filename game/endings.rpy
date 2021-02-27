@@ -11,7 +11,6 @@ label ending:
     "And we both grew up as farmers, too."
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
-    # TODO: work/farm ending stuff?
     # TODO: remove debug code
     "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]"
     # community ending
@@ -274,17 +273,48 @@ label ending_aC:
     him determined "Well, if she's not going to help grow food, then helping people not die is a pretty good use of her talents."
     her annoyed coat "She feels awkward touching people, and she's always second-guessing herself, and she needs my reassurance even about easy little things."
     him flirting "I'm sure she just needs more practice. I've heard from a {b}very{/b} reliable source that it takes a lot of time to become a competent medical professional."
-    if (total_independence >= INDEPENDENCE_HIGH):
-        # TODO: Depending on family30, she may have already said that she's going back to Earth...
-        her concerned coat "She's thinking about going back to Earth to study."
-        him surprised "Why would she do that? She can learn everything she needs right here!"
-        show kid determined at quarterleft with moveinleft
-        kid determined "If I'm going to be a doctor, then I want to be a real doctor, not just mom's apprentice. I want to become the best, and Earth is the only place I can do that."
-        him pout "The best, huh?"
-        her normal coat "There have been so many new advances since we left -- you can learn them all and come back and teach me."
-        kid normal "I've put my name on the list for the next shuttle. It'll be a few years, but if I can get my pre-med done here, then I can go straight to med school on Earth."
-        him determined "You could help make Talaam even better... Good thinking, [kid_name]."
-        kid normal "Thanks, dad."
+    if family30_leaving:
+        her concerned coat "It's just... after tomorrow, she'll be gone, and I won't be able to help her anymore."
+        him content "We've been helping her for her whole life... it's time for her to move on. There will be people on Earth who can help her out."
+        her sad coat "But no one knows what's best for her as well as we do!"
+        him surprised "That's true. I wish we could go with her..."
+        her concerned coat "But we can't."
+        
+        scene plain with fade 
+        show kid normal at quarterright
+        show her concerned at center
+        show him concerned at midleft
+        show bro concerned at quarterleft, flip
+        with dissolve
+        her sad "It's not too late to change your mind. You could complete your studies here..."
+        kid concerned "I know, mom, but I want to be a real doctor, not just your apprentice. I want to become the best, so Earth is where I need to go."
+        him determined "Study hard, [kid_name]. Make us proud."
+        kid sad "I'm trying, dad."
+        her determined "We are proud. And you'll always have a home here, no matter what happens."
+        him annoyed "Don't get caught up with stupid college stuff, all right? Stay away from cheating and drugs and wild parties and boys and... pretty much just stay in your room the whole time."
+        her normal "Not the whole time! Oh, I'm so excited for you to experience Earth! You might even get to meet your cousins."
+        kid normal "I'm excited to see a rain forest. Or any forest at all, actually."
+        bro normal "Send us pictures!"
+        him excited "Wow, my little daughter, on her way to med school..."
+        kid sad "Oh no...What if I can't do it? What if I really suck at taking care of myself? What am I thinking; I've never even been to a real school!"
+        her normal "No backing out now! You'll be fine. I promise."
+        him normal "Don't forget us."
+        kid concerned "I'll send you messages when I can."
+        show brennan flirting at right with moveinright
+        brennan flirting "Careful, or you'll end up stuck here for another 12 years. The shuttle's leaving!"
+
+        kid blush "But... I don't know if I can do this!"
+        him determined "You can and you will! Now, get on that shuttle!"
+        her surprised "Goodbye, [kid_name]! We love you!"
+        "She hoisted her duffle bag onto her shoulder and boarded the shuttle. I couldn't believe it was really happening. Our baby was leaving."
+        bro sad "Goodbye!"
+        "I didn't know what to say. All I could think about were the things I didn't have a chance to teach her, to tell her."
+        "What if she started failing her classes? What if she didn't cook herself good enough food? What if she made huge mistakes and didn't apologize? What if her heart was broken?"
+        "It was too late for me to teach her those things. She'd have to learn from her own mistakes, now."
+        hide kid
+        hide brennan
+        with moveoutright
+        him surprised "Goodbye!"
 
     else:
         her concerned coat "Yeah...maybe."
@@ -293,12 +323,12 @@ label ending_aC:
         show kid determined at midright with dissolve
         show him surprised at midleft with moveinleft
         "Before I left, I peeked in the other room to check on [kid_name]. She was studying her anatomy book with a ferocious energy, as though it were her opponent in deadly combat."
-        "I smiled at her, proud of her hard work. I almost told her so, but I stopped myself just in time. I didn't want her to get sloppy."
+        "I smiled at her, proud of her hard work. I almost told her so, but I stopped myself just in time. I didn't want her to get overconfident."
         show kid angry with dissolve
         "She saw my smile, but didn't say anything, just nodded and continued reading, her forehead scrunched up in concentration."
 
-    "Ending 2/4, Proving Herself."
     $ achieved("Proving Herself")
+    "Ending 2/4, Proving Herself."
     return
 
 
@@ -315,10 +345,16 @@ label ending_Ac:
     kid happy "Da-ad..."
     him surprised "We going to see you at dinner tonight?"
 
-    # TODO: have this depend on boy stats/independence
-    kid normal "Not tonight, I'm meeting some friends at Travis' place."
-    him concerned "The bar?"
-    kid annoyed "It's mostly a restaurant! Besides, nothing else is open late."
+    if (boyfriend_name == "Oleg"):
+        kid normal "Not tonight, I'm going to Oleg's."
+    elif (boyfriend_name == "Travis"):
+        kid normal "Not tonight. I'm helping Travis at DinerMight."
+        him concerned "Is he going to pay you for all the free waitressing you do?"
+        kid normal "He pays me in meals! His pancakes are the best. Besides, it's the only chance we have to be together."
+    else:
+        kid normal "Not tonight, I'm meeting some friends at DinerMight."
+        him concerned "Travis' bar?"
+        kid annoyed "It's mostly a restaurant! Besides, nothing else is open late."
     him normal "Okay, well, come back tomorrow and I'll have another load for you."
     kid happy "I will!"
     hide kid with moveoutleft
@@ -379,8 +415,12 @@ label ending_AC:
     scene stars with fade
     "[kid_name] moved out. We all pitched in to build a dorm-style apartment building for the growing number of non-farmers that didn't need a lot of space."
     "She seemed to like it; it was closer to town, where she spent most of her time in the library and at the science lab studying biology, astronomy, and sociology."
-    # TODO: should your convo about marriage affect this? YES (chooses whether they are best friends or boyfriend/girlfriend)
-    "And she was closer to her boyfriend, Oleg."
+    if (boyfriend_name == "Oleg"):
+        "And she was closer to her boyfriend, Oleg."
+    elif (boyfriend_name == "Travis"):
+        "And she was closer to her boyfriend, Travis, and her other friends, like Oleg."
+    else:
+        "And she was closer to her friends, especially Oleg."
     "We invited them over for dinner about once a week, where she'd catch us up on all the latest developments."
     scene farm_interior with fade
     show her normal at right
@@ -409,7 +449,7 @@ label ending_AC:
     him flirting "We do prefer our daughter not to starve to death."
     if (independence >= INDEPENDENCE_HIGH):
         kid normal "Well, that's what I wanted to tell you! A non-profit group on Earth, the Extraterrestrial Allies Foundation, has approved a grant to pay us for our work, obtain equipment, and send more researchers here to Talaam."
-        if (miners > 10):
+        if (miners_strong()):
             oleg "RET made a large donation, too, I think on Brennan's advice."
             him annoyed "They're probably hoping the jellysquids will lead them to more mineral deposits."
     else:
@@ -424,7 +464,10 @@ label ending_AC:
     oleg "-you'll be able to improve the model, and also improve predictions! That's great! Which physics engine are you using as a base?"
 
     "I listened to my family talk. I didn't understand half of what Oleg and [bro_name] were talking about, but I loved to see [bro_name] excited about something."
-    "[kid_name] reached over and held Oleg's hand, and he squeezed it back as he extolled the virtues of his favorite physics engine."
+    if (boyfriend_name == "Oleg"):
+        "[kid_name] reached over and held Oleg's hand, and he squeezed it back as he extolled the virtues of his favorite physics engine."
+    else:
+        "[kid_name] listened as Oleg extolled the virtues of his favorite physics engine."
     "I put my arm around [her_name] and pulled her close just as she was about to put a forkful of food in her mouth."
     "The food fell on her lap and she elbowed me in mock indignation."
     her flirting "Oh, now look one you've done. You've ruined my fanciest clothes."
@@ -460,7 +503,10 @@ label ending_AC:
     "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found. Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
-    "So I'm not just happy that she and Oleg are dating."
+    if (boyfriend_name == "Oleg"):
+        "So I'm not just happy that she and Oleg are dating."
+    else:
+        "So I'm not just happy that she found such a good friend in Oleg."
     "I'm not just happy that she's staying here, on Talaam."
     "I'm also happy she found a way to do something she loves that helps people"
     "She's working hard to understand the jellies in a way that no one else can."
@@ -605,7 +651,7 @@ label ending_CmiMa:
     with dissolve
     play sound "sfx/rain.ogg" volume 0.6 loop
     show rain
-    show him normal at midleft with moveinleft behind rain
+    show him normal at midleft behind rain with moveinleft 
     show her normal at midright behind rain
     with dissolve
     her "You made it! Welcome to our temporary home."
@@ -713,7 +759,7 @@ label ending_cmima: #is this ending even possible?
     show rain
     show him pout at midleft
     "It sure is raining a lot this week. The river's waters have been rising and the rain shows no sign of stopping."
-    nvl_clear
+    nvl clear
     him_c "Hey, is there a flood warning or anything? It looks like the river could bust its banks any minute."
     thuc_c "Didn't you hear? Zaina told everyone within a kilometer of the river to evacuate today."
     him_c "Um, no, I didn't see anything like that."
@@ -777,78 +823,4 @@ label ending_cmima: #is this ending even possible?
     # "After moving to higher ground, we tried again with the seeds we managed to save."
     # "Some of us died of malnutrition and exhaustion."
     # "It felt like soon our bones and possessions would be the only evidence of our existence here."
-    return
-
-
-# acI - Rejects your life and joins mavericks, but fails. Moves from one job to the next, but drives away people around her and isn't good at anything.
-# TODO: Delete or use or have as an unlockable?
-label ending_extra:
-    "This ending was deleted due to changes in what variables were used to compute the ending. You would originally get this ending if you were a neglectful parent but [kid_name] was very independent."
-    scene stars with fade
-    "Even though [kid_name] still lives on Talaam, I worry a lot about her."
-    "She's got more competition with deliveries and now it's harder for her to get business."
-    "I worry that she moved in with Travis because she needed a job and a place to stay, not because she really loves him."
-    "I worry that she'll be too prideful to ask for help when she needs it."
-    "And I worry that I didn't teach her enough for her to be out on her own already."
-    "And the worst part about these worries is that, for the most part, I can't do anything about them."
-    "I try to talk to her, to be there for her..."
-    "...but she doesn't want anything to do with me."
-
-    scene restaurant with fade
-    show travis normal at quarterright
-    show kid determined at midright
-    with dissolve
-    show him at midleft
-    with moveinleft
-    him concerned "Hey, [kid_name]."
-    kid annoyed "Dad. What are you doing here?"
-    him sad "I just had some extra pickles and thought you might like some."
-    "I held them out like I used to hold carrots out for Lettie when I was training her."
-    "She looked at Travis, who shrugged and walked off."
-    hide travis with moveoutright
-    show kid at center with move
-    "She took the pickles but didn't get too close."
-    show kid at midright with move
-    kid concerned "Thanks."
-    him determined "If there's anything you need help with--"
-    kid annoyed "Dad, I'm fine."
-    him surprised "How's Travis?"
-    kid nervous "Good."
-    him normal "You still have lots of deliveries to make?"
-    kid determined "Some. But the miners that left were my best customers."
-    menu:
-        "What should I say?"
-        "What are you going to do?":
-            him surprised "So...what are you going to do?"
-            kid annoyed "Something else, I guess. Don't worry about it, dad -- it's my life."
-            him sad "I'm your dad; I can't not worry about you."
-        "Come home.":
-            him sad "Come home, [kid_name]. Your room is still there, waiting for you--"
-            kid angry "So you can boss me around? No thanks, dad."
-            him annoyed "I wouldn't--"
-            kid annoyed "Yeah, you would. You don't know any other way to be."
-            "That was unfair. But I couldn't think of a good retort."
-            kid determined "And that's fine, but I can't live there anymore."
-            him determined "You could."
-        "Travis doesn't deserve you.":
-            him annoyed "Travis doesn't deserve you. Why are you still hanging around him?"
-            kid annoyed "You don't even know him! He works hard!"
-            him surprised "Doing what?"
-            kid nervous "Look, you had your chance to be my dad when I was little and I didn't have a choice. It's too late to start caring now."
-            him angry "I've cared for you your whole life!"
-    kid sad "Ugh, Dad, can we not?"
-    him sad "..."
-    kid determined "Just... just let me live my life, okay? I'm going to make mistakes."
-    kid surprised "Maybe I'll be unemployed, maybe I'll trust the wrong person and have my heart broken, maybe I'll go hungry and eat nothing but potatoes for a month, or maybe I'll hunt crabirds and die alone in the wilderness!"
-    kid normal "But if I don't try, if I don't get a chance to make those mistakes for myself...what's the point of being alive?"
-    show him surprised with dissolve
-    "I wanted to embrace her, to give her a father's comfort. But I didn't think I could take it if she pushed me away."
-    him concerned "I understand."
-    "I turned to leave."
-    kid surprised "Dad?"
-    him surprised "Yes?"
-    kid normal "Thanks for the pickles."
-    him normal "Anytime."
-
-    "Ending, Mistakes to Call My Own."
     return

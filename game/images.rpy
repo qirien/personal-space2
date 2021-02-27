@@ -62,7 +62,7 @@ init -10:
     # DYNAMIC SPRITES
     # Define images for kid (baby, toddler, young, tween, teen)
     init python:
-        kid_expressions = ["angry", "annoyed", "cry", "concerned", "determined", "excited", "explaining", "flirting", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
+        kid_expressions = ["angry", "annoyed", "blush", "cry", "concerned", "determined", "excited", "explaining", "flirting", "happy", "laugh", "nervous", "normal", "sad", "shifty", "surprised", "yell"]
         simple_expressions = ["happy", "normal", "sad", "angry", "excited"]
         # For each expression, add a baby, toddler, young, tween, teen depending on current year
         for expression_name in kid_expressions:
