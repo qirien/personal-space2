@@ -465,6 +465,8 @@ label tests:
             call test_endings
         "Test Poetry":
             call test_poems
+        "Demo":
+            call demo
         "Quit":
             return
 

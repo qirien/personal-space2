@@ -15,178 +15,174 @@ label start:
     # These have to be here instead of in an init block to tell Ren'Py that they will change and should be saved with the game state.
 
     # GAME ENGINE
-    python:
-        demo_mode = False
-        trailer_mode = False
-        testing_mode = False
-        save_name = "Intro"
-        notifications = ""
-        read_messages = False
-        read_handbook = False
-        word_board = Board(basic_words, family_words, farm_words)
-        year11_poem = ""
-        year18_poem = ""
-        photos = []
+    default demo_mode = False
+    default trailer_mode = False
+    default testing_mode = False
+    default save_name = "Intro"
+    default notifications = ""
+    default read_messages = False
+    default read_handbook = False
+    $ word_board = Board(basic_words, family_words, farm_words)
+    default year11_poem = ""
+    default year18_poem = ""
+    default photos = []
 
     # PARENTS
-    python:
-        # Demanding and Reponsive may change by more or less than 1 each year
-        # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
-        # Max for each is about 30
-        demanding = 0
-        # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
-        responsive = 0
-        # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
-        confident = 0
-        # The Four Parenting Styles
-        # Only one of these should be increased each year, maximum value at the end of the game is 30
-        authoritarian = 0
-        authoritative = 0
-        permissive = 0
-        neglectful = 0
-        trust = 0
+    # Demanding and Reponsive may change by more or less than 1 each year
+    # Positive indicates high expectations and reponsibilities for child; negative indicates indulgence and undiscpline
+    # Max for each is about 30
+    default demanding = 0
+    # Positive indicates high emotional attachment and empathy; negative indicates aloofness and dismissiveness of child's feelings
+    default responsive = 0
+    # When you give your child opportunities to do things for herself, you show confidence in her. This increases her independence.
+    default confident = 0
+    # The Four Parenting Styles
+    # Only one of these should be increased each year, maximum value at the end of the game is 30
+    default authoritarian = 0
+    default authoritative = 0
+    default permissive = 0
+    default neglectful = 0
+    default trust = 0
 
-        # Default names
-        his_name = "Jack"
-        her_name = "Kelly"
-        his_nickname = "dear"
-        her_nickname = "lover"
-        kid_name = "Terra"
-        bro_name = "Aeron"
+    # Default names
+    default his_name = "Jack"
+    default her_name = "Kelly"
+    default his_nickname = "dear"
+    default her_nickname = "lover"
+    default kid_name = "Terra"
+    default bro_name = "Aeron"
 
-        bro_birth_year = 0
-        # YEARS is Talaam time; AGE is Earth time
-        bro_years = -1
-        bro_age = -1
-        year6_have_baby = False
-        year8_have_baby = False
-        family12_shaved_head = False
-        family27_no_work = False
-        plays_trombone = False
-        parenting_classes = 0
+    default bro_birth_year = 0
+    # YEARS is Talaam time; AGE is Earth time
+    default bro_years = -1
+    default bro_age = -1
+    default year6_have_baby = False
+    default year8_have_baby = False
+    default family12_shaved_head = False
+    default family27_no_work = False
+    default plays_trombone = False
+    default parenting_classes = 0
 
-        marriage_strength = 0
+    default marriage_strength = 0
 
     # CHILD
-    python:
-        # CHILD STATS.
-        # Amount of emotional intelligence, how loved and secure child feels
-        attachment = 0
-        total_attachment = 0
-        # Reponsibility and ability to work hard, practical knowledge
-        competence = 0
-        total_competence = 0
-        # Confidence, autonomy
-        independence = 0
-        total_independence = 0
+    # Amount of emotional intelligence, how loved and secure child feels
+    default attachment = 0
+    default total_attachment = 0
+    # Reponsibility and ability to work hard, practical knowledge
+    default competence = 0
+    default total_competence = 0
+    # Confidence, autonomy
+    default independence = 0
+    default total_independence = 0
 
-        kid_work_slider = 0
-        kid_other_work = 0
+    default kid_work_slider = 0
+    default kid_other_work = 0
 
-        sex_ed_biology = False
-        sex_ed_commitment = False
-        sex_ed_babycreation = False
-        sex_ed_goodfeeling = False
-        sex_ed_birthcontrol = False
+    default sex_ed_biology = False
+    default sex_ed_commitment = False
+    default sex_ed_babycreation = False
+    default sex_ed_goodfeeling = False
+    default sex_ed_birthcontrol = False
 
-        allowance_amount = 0
+    default allowance_amount = 0
 
-        # variables for boy relationships for Terra
-        boyfriend_name = ""
-        travis_points = 0
-        lorant_points = 0
-        oleg_points = 0
+    # variables for boy relationships for Terra
+    default boyfriend_name = ""
+    default travis_points = 0
+    default lorant_points = 0
+    default oleg_points = 0
 
-        family30_leaving = True
+    default family30_leaving = True
 
 
     # COMMUNITY
-    python:
-        met_jennings = False
-        met_grayson = False
-        met_kealoha = False
-        met_nguyen = False
-        met_andrevski = False
-        met_peron = False
-        
-        is_liaison = False
-        asked_only_medicine = False
-        trade_with_mavericks = False
-        invited_mavericks = False
-        invited_miners = False
-        whole_harvest_to_storehouse = False
-        town_hall_games = False
-        no_luxuries = False #used in community 8 and community 11
-        # Community groups. The higher the variable, the better your relationship with that group is.
-        total_colonists = 0
-        colonists = 0
-        total_miners = 0
-        miners = 0
-        total_mavericks = 0
-        mavericks = 0
-        jellies = 0 # TODO: we don't actually use this variable
-        require_whole_harvest = False
-        rationing = False
-        lily_mad_at_RET = False
-        c18_no_help_pete = False
-        ate_jellyfish = False
-        thuc_has_cattle = False
-        ilian_has_cattle = False
-        thuc_sells_food = False
-        cave_explored = False
-        talked_to_Natalia = False
-        talked_to_Thuc = False
-        talked_to_Sara = False
-        talked_to_Kevin = False
-        talked_to_Pavel = False
-        community11_kidsonfarm = False
-        community_17_planparty = False
-        community_22_mining_stopped = False
-        community_22_forced_mavericks_leave = False
-        community_22_compromise = False
-        community_22_mined_anyway = False
-        touched_jellystar_25 = False
-        no_euthanasia_26 = False
-        jellypeople_happy = False
-        kevin_elected = False
-        ban_firegrass = False
-        study_published_23 = False
-        helen_dead = False      
-        bought_tt = False
-        bios = Bios()         
-        bios.activate("[his_name]")
-        bios.activate("[her_name]")
-        bios.activate("[kid_name]")
+    default met_jennings = False
+    default met_grayson = False
+    default met_kealoha = False
+    default met_nguyen = False
+    default met_andrevski = False
+    default met_peron = False
+    
+    default is_liaison = False
+    default asked_only_medicine = False
+    default trade_with_mavericks = False
+    default invited_mavericks = False
+    default invited_miners = False
+    default whole_harvest_to_storehouse = False
+    default town_hall_games = False
+    default no_luxuries = False #used in community 8 and community 11
+    
+    # Community groups. The higher the variable, the better your relationship with that group is.
+    default total_colonists = 0
+    default colonists = 0
+    default total_miners = 0
+    default miners = 0
+    default total_mavericks = 0
+    default mavericks = 0
+    default jellies = 0 # TODO: we don't actually use this variable
+    
+    default require_whole_harvest = False
+    default rationing = False
+    default lily_mad_at_RET = False
+    default c18_no_help_pete = False
+    default ate_jellyfish = False
+    default thuc_has_cattle = False
+    default ilian_has_cattle = False
+    default thuc_sells_food = False
+    default cave_explored = False
+    default talked_to_Natalia = False
+    default talked_to_Thuc = False
+    default talked_to_Sara = False
+    default talked_to_Kevin = False
+    default talked_to_Pavel = False
+    default community11_kidsonfarm = False
+    default community_17_planparty = False
+    default community_22_mining_stopped = False
+    default community_22_forced_mavericks_leave = False
+    default community_22_compromise = False
+    default community_22_mined_anyway = False
+    default touched_jellystar_25 = False
+    default no_euthanasia_26 = False
+    default jellypeople_happy = False
+    default kevin_elected = False
+    default ban_firegrass = False
+    default study_published_23 = False
+    default helen_dead = False      
+    default bought_tt = False
+    $ bios = Bios()         
+    $ bios.activate("[his_name]")
+    $ bios.activate("[her_name]")
+    $ bios.activate("[kid_name]")
 
     # FARM
+    default year = 1
+    default earth_year = 1
+
+    # Work/crops
+    default farm_size = 12
+    if (persistent.times_beaten):
+        $ farm_size = 12 + (persistent.times_beaten*2)
+    $ farm = Field(farm_size, FARM_SIZE_MAXIMUM)
+    default selected_crop_index = 0
+    default terra_overwork_count = 0
+    default sortby = "calories"
+    default show_sort = False
+
+    # Yield of most recent set of crops, in percentages
+    default credits = 0
+    default years_yield = [100] * farm_size
+    default annual_expenses_base = 2500
+    default debt_consecutive_years = 0
+    default debt_event_count = 0
+    default seen_miners_debt = False
+    default seen_mavericks_debt = False
+    default seen_colonists_debt = False
+
     python:
-        year = 1
-        earth_year = 1
-
-        # Work/crops
-        if (persistent.times_beaten):
-            farm_size = 12 + (persistent.times_beaten*2)
-        else:
-            farm_size = 12
-        farm = Field(farm_size, FARM_SIZE_MAXIMUM)
-        selected_crop_index = 0
-        terra_overwork_count = 0
-        sortby = "calories"
-        show_sort = False
-
-        # Yield of most recent set of crops, in percentages
-        years_yield = [100] * farm_size
-        annual_expenses_base = 2500
-        debt_consecutive_years = 0
-        debt_event_count = 0
-        seen_miners_debt = False
-        seen_mavericks_debt = False
-        seen_colonists_debt = False
-
         # Dictionary containing the number of events seen for each crop
         # TODO: The fact that this is persistent means that on a second playthrough, we might get weird things like Terra milking goats as a baby or bro doing stuff before he's born...
         persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0, "money":0}
-        credits = 0
         crop_info_index = 2  # This is the currently selected crop. It needs to be one that is valid at the beginning of the game.
 
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
@@ -234,33 +230,32 @@ label start:
             "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
 
-        total_calories = 0
-        total_nutrition = 0
-        total_value = 0
-        total_work = 0
+    default total_calories = 0
+    default total_nutrition = 0
+    default total_value = 0
+    default total_work = 0
+    default current_work = 0
 
-        current_work = 0
+    default overwork_count = 0
+    default overwork_colonists = 0
+    default overwork_miners = 0
+    default overwork_family = 0
+    default overwork_mavericks = 0
+    default overwork_self = 0
 
-        overwork_count = 0
-        overwork_colonists = 0
-        overwork_miners = 0
-        overwork_family = 0
-        overwork_mavericks = 0
-        overwork_self = 0
+    default bad_nutrition_count = 0
+    default seen_low_cam = False
+    default seen_low_ca = False
+    default seen_low_c = False
+    default seen_low_a = False
+    default seen_low_m = False
 
-        bad_nutrition_count = 0
-        seen_low_cam = False
-        seen_low_ca = False
-        seen_low_c = False
-        seen_low_a = False
-        seen_low_m = False
+    default work8_choice = ""
+    default year28_promised_potatoes = False
 
-        work8_choice = ""
-        year28_promised_potatoes = False
-
-        # Crop event variables
-        crop_temporarily_disabled = ""
-        squash2_method = ""
+    # Crop event variables
+    default crop_temporarily_disabled = ""
+    default squash2_method = ""
 
     #######################################################################
     # Prologue
@@ -268,12 +263,10 @@ label start:
     scene stars with fade
     $ _quit_slot = "quitsave"
     menu:
-        "Demo":
-            jump demo
         "Beta":
             $ pass
         "Testing":
-            call tests
+            jump tests
 
     # TODO: Take this out when beta testing is over
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
@@ -292,7 +285,7 @@ label start:
     if (mp.baby_name):
         $ kid_name = mp.baby_name
 
-    # TODO: Make the intro parallel the ending. Maybe take it out and jump right in to the good stuff?
+    # TODO: Make the intro parallel the ending. Make it snappier. Maybe take it out and jump right in to the good stuff?
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
     "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
     scene stars with fade
