@@ -179,6 +179,27 @@ init -100 python:
             renpy.show_screen("show_notification", msg)
         return
 
+    # Get the person's first name from their display name.
+    # Used in the message board - bios interface
+    def get_nickname(name):
+        if (name.startswith(his_name)):
+            return "[his_name]"
+        elif (name.startswith(her_name)):
+            return "[her_name]"
+        elif (name.startswith(kid_name)):
+            return "[kid_name]"
+        elif (name.startswith(bro_name)):
+            return "[bro_name]"
+        elif (name.startswith("Dr.")):
+            return "Lily"
+        elif (name.startswith("Mayor")):
+            return "Pavel"
+        elif (name.startswith("Sister")):
+            return "Naomi"
+
+        else:
+            return name.split()[0]
+
     # Returns whether kid is attached, competent, or indepedent for her age,
     # based on whether she is on track to reach the _HIGH value for
     # that stat.

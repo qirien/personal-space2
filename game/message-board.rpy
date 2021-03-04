@@ -804,7 +804,7 @@ define kid_c = Character("kid_name", dynamic=True,
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
     color=lavendar_gray, image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
-    color=tan_dark, image="pavel_c", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
+    color=tan_dark, image="pavel", kind=nvl, ctc="ctc_blink", ctc_position="nestled") 
 define lily_c = Character("Dr. Lily", who_suffix = "  {image=images/icons/lily-icon.png} ",
     color=lavendar, image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled")  
 define sara_c = Character("Sara", who_suffix = "  {image=images/icons/sara-icon.png} ",

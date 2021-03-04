@@ -117,8 +117,9 @@ screen say(who, what):
         if who is not None:    
             window:
                 style "namebox"
-                button:                
-                    action [ActivateBio(who), Show("biographies", irisout, who)] 
+                $ nickname =  get_nickname(who)
+                button:                                
+                    action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
                     text who:
                         id "who"
     
@@ -1473,7 +1474,7 @@ screen nvl_dialogue(dialogue):
                 xfill True
                 yfit gui.nvl_height is None
                 if d.who is not None:
-                    $ nickname = d.who.split()[0]
+                    $ nickname = get_nickname(d.who)
                     $ is_jack = d.who.startswith(his_name)
                     $ who_color = d.who_args["color"]
                     if (who_color is None):
@@ -1505,7 +1506,7 @@ screen nvl_dialogue(dialogue):
                             text_align 1.0
                 if (is_jack):
                     button:
-                        action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
+                        action [ActivateBio(nickname), Show("biographies", irisout, "[his_name]")] 
                         text d.who:
                             id d.who_id
                             xalign 0.0

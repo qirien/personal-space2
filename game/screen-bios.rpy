@@ -35,13 +35,15 @@ screen biographies(name):
                                 else:
                                     text "" xalign 0.0
                                 textbutton fname action SetVariable("show_person", name)
-                            #TODO: add icons somewhere in here add "images/icons/" + name + "-icon.png"
 
                 null width 5
                 vbox:
                     xsize MIDDLE_COLUMN_WIDTH-32
                     yalign 0.0                    
-                    label bios.getFullName(show_person) 
+                    hbox:
+                        $ iconname = bios.getIconName(show_person)
+                        add "images/icons/" + iconname + "-icon.png"
+                        label bios.getFullName(show_person) xalign 0.9 yalign 1.0
                     text  bios.getBio(show_person) 
 
 
@@ -120,6 +122,18 @@ init python:
                 return person
             else:
                 raise StopIteration
+
+        def getIconName(self, name):
+            if ("his_name" in name) or (his_name in name):
+                return "him"
+            elif ("her_name" in name):
+                return "her"
+            elif ("kid_name" in name):
+                return "kid"
+            elif ("bro_name" in name):
+                return "bro"
+            else:
+                return name.lower()
 
         def hasUnread(self):
             for person in self.people:
