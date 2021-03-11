@@ -109,9 +109,10 @@ init -100 python:
 
         def get_poem_as_string(self, index=0):
             poem_string = ""
-            for poem_line in self.poems[index]:
-                poem_string += " ".join(poem_line)
-                poem_string += "\n"
+            if ((len(self.poems) >= index) and (len(self.poems) > 0)):
+                for poem_line in self.poems[index]:
+                    poem_string += " ".join(poem_line)
+                    poem_string += "\n"
 
             return poem_string.rstrip()
 

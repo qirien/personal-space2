@@ -126,11 +126,11 @@ init python:
         def getIconName(self, name):
             if ("his_name" in name) or (his_name in name):
                 return "him"
-            elif ("her_name" in name):
+            elif ("her_name" in name) or (her_name in name):
                 return "her"
-            elif ("kid_name" in name):
+            elif ("kid_name" in name) or (kid_name in name):
                 return "kid"
-            elif ("bro_name" in name):
+            elif ("bro_name" in name) or (bro_name in name):
                 return "bro"
             else:
                 return name.lower()

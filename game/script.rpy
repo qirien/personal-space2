@@ -452,8 +452,44 @@ label life_loop:
             # Reset our variables for a new year while keeping a running total
             call reset_variables
 
+            if (year == BABY_MAX):
+                scene stars with fade
+                show text "End Baby Years"
+                $ renpy.pause(2.0)
+                show baby_cg
+                $ renpy.pause()
+
+            if (year == TODDLER_MAX):
+                scene stars with fade
+                show text "End Toddler Years"
+                $ renpy.pause(2.0)
+                show toddler_cg
+                $ renpy.pause()
+
+            if (year == CHILD_MAX):
+                scene stars with fade
+                show text "End Childhood Years"
+                $ renpy.pause(2.0)
+                show child_cg
+                $ renpy.pause()
+
+            if (year == TWEEN_MAX):
+                scene stars with fade
+                show text "End Tween Years"
+                $ renpy.pause(2.0)
+                show tween_cg
+                $ renpy.pause()
+
+            if (year == YTEEN_MAX):
+                scene stars with fade
+                show text "End Young Teen Years"
+                $ renpy.pause(2.0)
+                show yteen_cg
+                $ renpy.pause()
+
             $ year += 1
             if (persistent.max_year < year):
                 $ persistent.max_year = year
+
     jump ending
     return

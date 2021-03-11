@@ -548,13 +548,15 @@ label community3:
                     "If I was going to be watching [kid_name] all evening, it would be nice to hang out with someone else. Maybe I'd even learn a few things."
                     scene yurt_interior with fade
                     show naomi normal at midright
-                    show pavel normal at right
+                    show pavel normal at right, flip
                     with dissolve
                     show him normal at midleft
-                    show kid normal at left
+                    show kid happy at midleft, baby_pos
                     with moveinleft
                     naomi "[kid_name]! I'm so glad you came!"
+                    show kid normal at midright, standing with move
                     "[kid_name] squirmed down from my arms and ran over to Naomi, allowing her a short hug before she ran over to play."
+                    hide kid with moveoutright
                     "There weren't a lot of toys on Talaam, but Sister Naomi's house was like a kid's paradise. She had a blanket fort and inside were lots of things for kids to play with."
                     "They weren't technically toys, but there were kitchen utensils and pots and pans and a tower of old cans that Travis was building with and some paper animals that Oleg was arranging carefully by size."
                     pavel happy "[his_name]! Good to see you! Well, now the playgroup is complete!"
@@ -566,11 +568,17 @@ label community3:
                     "Travis' can tower fell over and crushed Oleg's paper horse, and Oleg started to cry."
                     "Naomi and I helped straighten out the paper animals and moved Oleg a bit farther away from the falling cans."
                     naomi normal "Have you written any poems lately, [his_name]? I do enjoy them."
-                    him surprised "Oh! No, not really."
-                    naomi happy "Well, if you write one I hope you will share it with us. Do you have a favorite poet?"
-                    him normal "I like a lot of Whitman's stuff. Robert Frost, too."
+                    $ latest_poem = word_board.get_poem_as_string(-1)
+                    if (latest_poem and latest_poem.len() > 1):
+                        him surprised "Oh! Well, here's my latest one."
+                        him determined "[latest_poem]"
+                        naomi happy "You do get right to the heart of things, don't you? Do you have a favorite poet?"
+                    else:
+                        him surprised "Oh! No, not really."
+                        naomi happy "Well, if you write one I hope you will share it with us. Do you have a favorite poet?"
+                    him normal "Some modern poetry is good, but some is just pretentious pontificating. I like a lot of older stuff, like Whitman and Frost."
                     naomi normal "Oh yes. He had a way of inspiring goodness."
-                    "We talked about poetry inbetween feeding the kids a snack and breaking up a fight between Travis and [kid_name] when they both wanted to bang on the same pot."
+                    "We talked about poetry in between feeding the kids a snack and breaking up a fight between Travis and [kid_name] when they both wanted to bang on the same pot."
                     "Then it was time to head home."
                     scene farm_interior with fade
                     show him determined at midright
