@@ -279,8 +279,8 @@ label ending_aC:
         her sad coat "But no one knows what's best for her as well as we do!"
         him surprised "That's true. I wish we could go with her..."
         her concerned coat "But we can't."
-        
-        scene plain with fade 
+
+        scene plain with fade
         show kid normal at quarterright
         show her concerned at center
         show him concerned at midleft
@@ -540,7 +540,14 @@ label ending_CMiMa:
     him pout "If I drink the wine Brennan made while I eat the curry kebabs, I can remember what real wine tastes like!"
     brennan happy "It may be a long time before we can enjoy a mature vintage. I hope in ten years we can enjoy a good bottle together."
     pete normal "Or a bad bottle. I'm not picky."
-    him content "Speaking of long-term projects, how are your interns from the high school working out?"
+
+    him happy "If we can work together like we did in evacuating me and my neighbors from the flood, I think that's likely."
+    pete happy "I even got some wheat out of the deal!"
+    brennan explaining "You act like it was an act of altruism, but really, I just hate farming."
+
+    him content "I'm happy to grow wheat for both of you."
+    him normal "Speaking of hating farming, how are your interns from the high school working out?"
+    him pout "I know some of them are hoping to learn a trade other than farming."
     brennan normal "Oh, I have one intern who has a knack for assembling good mining teams."
     brennan "He made friends with everyone and figured out their compatibilities quickly."
     pete happy "One of my interns has an amazing spatial memory. She can go foraging with me and then come back and draw a map."
@@ -567,170 +574,171 @@ label ending_CMiMa:
     return
 
 label ending_CMima:
-    scene path with fade
-    play sound "sfx/rain.ogg" loop
-    show rain
-    show him pout behind rain at midleft
-    show ilian angry at midright behind rain
-    with dissolve
-    him "After this next load, will we be done moving supplies?"
-    ilian "No, we need to get at least two more loads to the old mining camp."
-    him doubt "I wish I had harnasses for the cows. This is their kind of work."
-    ilian normal "Our cattle would make lousy cart-pullers. Cattle wouldn't be able to handle the slippery stairs very well either."
-    him sad "I still have to move our supplies to higher ground. How much flooding is expected in the next four hours?"
-    ilian angry "Zaina calculated a good four inches, possibly more if the river floods its banks."
-    ilian normal "Just ask Brennan or Chaco for help. Brennan volunteered the off-duty miners."
-    him content "I hate asking other people for help, but it sure beats losing all my canned carrots."
-    ilian happy "Hey, I know that feeling. We can do this if we work together."
-    "After two more loads, I went home to do some more pushing and pulling."
+    jump flood_ending
 
-    scene farm_exterior with fade
-    show rain
-    show him surprised behind rain at midleft
-    show brennan normal behind rain at midright
-    show chaco normal behind rain at center
-    with dissolve
-    brennan "Hey, we were just finishing your last load of essentials! [her_name] asked us to come help. I think you just need to pack your personal items."
-    him content "Thank you so much! I wasn't sure how I was going to get everything up the mountain."
-    "I packed a few last things and headed up the mountain to a temporary shelter."
+    label flood_ending:
+        scene path with fade
+        play sound "sfx/rain.ogg" loop
+        show rain
+        show him pout behind rain at midleft
+        show ilian angry at midright behind rain
+        with dissolve
+        him "After this next load, will we be done moving supplies?"
+        ilian "No, we need to get at least two more loads to the old mining camp."
+        him doubt "I wish I had harnasses for the cows. This is their kind of work."
+        ilian normal "Our cattle would make lousy cart-pullers. Cattle wouldn't be able to handle the slippery stairs very well either."
+        him sad "I still have to move our supplies to higher ground. How much flooding is expected in the next four hours?"
 
-    scene yurt_interior with fade
-    play sound "sfx/rain.ogg" volume 0.6 loop
-    show him normal at midleft with moveinleft
-    show her normal at midright
-    her "You made it! Welcome to our temporary home."
-    him content "Brennan and Chaco were a real help. It looks like a lot of other families that were close to the river have made it up here too."
-    her sad "I hope Pete and the others are okay..."
-    him determined "I think they've shown us that they want us to leave them alone."
-    her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
+        if ending_CMima:
+            ilian angry "Zaina calculated a good four inches, possibly more if the river floods its banks."
+            ilian normal "Just ask Brennan or Chaco for help. Brennan volunteered the off-duty miners."
+        if ending_CmiMa:
+            ilian angry "Pete was saying that the rainfall hasn't been this heavy since we arrived. The river might even flood its banks in the next few hours."
+            ilian normal "Pete and some of the others have been helping to move stuff, since their camp is already on high ground."
+        if ending_CMima OR ending_CmiMa
+            him content "I hate asking other people for help, but it sure beats losing all my stored grain."
+            ilian happy "Hey, I know that feeling. We can do this if we work together."
+        if ending_Cmima
+            ilian angry "Zaina calculated a good four inches, possibly more if the river floods its banks."
+            ilian normal "I would help you, but I've got my own stuff to move after this."
+            him cry "I won't be able to bring up everything. Guess I'll say goodbye to my barrels of apples."
+            ilian angry "Ask around. Maybe Thuc and Julia can help you, since their kids already moved their storage this morning."
 
-    "It's hard to believe that I would call Brennan a friend now, but he is actually kind of nice sometimes."
-    "I think he warmed up to us original colonists after we helped the miners through a few tough times."
-    "Pete and the others, though, have drifted apart from us."
-    "If they had been more reasonable, things wouldn't be like this."
-    "At least, I'd rather believe that than think it could be my problem."
+        "After two more loads, I went home to do some more pushing and pulling."
 
-    #several ways this could go. They could discover later that the mavericks were flooded out. A more immediate resolution would be interesting.
-    #maybe Helen shows up with a backpack, explaining that they lost some food storage in the flood, and starts living in the old mining camp
-    #"Pete insisted on living on his own even when everyone else had given up."
-    stop sound fadeout 1.0
-    return
+        if ending_CMima:
+            scene farm_exterior with fade
+            show rain
+            show him surprised behind rain at midleft
+            show brennan normal behind rain at midright
+            show chaco normal behind rain at center
+            with dissolve
+            brennan "Hey, we were just finishing your last load of essentials! [her_name] asked us to come help. I think you just need to pack your personal items."
+            him content "Thank you so much! I wasn't sure how I was going to get everything up the mountain."
+            "I packed a few last things and headed up the mountain to a temporary shelter."
+
+            scene yurt_interior with fade
+            play sound "sfx/rain.ogg" volume 0.6 loop
+            show him normal at midleft with moveinleft
+            show her normal at midright
+            her "You made it! Welcome to our temporary home."
+            him content "Brennan and Chaco were a real help. It looks like a lot of other families that were close to the river have made it up here too."
+            her sad "I hope Pete and the others are okay..."
+            him determined "I think they've shown us that they want us to leave them alone."
+            her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
+
+            "It's hard to believe that I would call Brennan a friend now, but he is actually kind of nice sometimes."
+            "I think he warmed up to us original colonists after we helped the miners through a few tough times."
+            "Pete and the others, though, have drifted apart from us."
+            "If they had been more reasonable, things wouldn't be like this."
+            "At least, I'd rather believe that than think it could be my problem."
+
+        if ending_CmiMa:
+            scene farm_exterior with fade
+            show rain
+            show him surprised behind rain at midleft
+            show pete normal behind rain at midright
+            show travis teen happy behind rain at center
+            with dissolve
+            pete "Hi [his_name]! [her_name] asked us to come help. We got your last grain barrel onto our wagon. I think you just need to pack your personal items."
+            him content "Thank you so much! I wasn't sure how I was going to get everything up to higher ground."
+            pete normal "After you've got everything, we're going to try to take as much of your yurt with us."
+            him determined "Let's save as much as we can."
+            "I packed a few last things and headed up to a temporary shelter which Pete and the others helped to build."
+
+            scene shack with fade
+            with dissolve
+            play sound "sfx/rain.ogg" volume 0.6 loop
+            show rain
+            show him normal at midleft behind rain with moveinleft
+            show her normal at midright behind rain
+            with dissolve
+            her "You made it! Welcome to our temporary home."
+            him content "Phew! I'm glad we have a place to sleep."
+            her sad "I hope Brennan and the others are okay..."
+            him determined "They're already in the mountains, so I doubt a flood will affect them very much."
+            her nervous "Yes, but their mines could fill up with water faster than they expected."
+            him sad "Even if I wanted to help, I don't think they would trust me."
+            her sad "Why would they? It's not like we've been all that trusting of them."
+            him determined "It's too late to change that now."
+
+            scene black with fade
+            "I've grown a lot closer to Pete and Travis over the past 18 years."
+            "Even after they left the colony, I still wanted what was best for them and the others living with them."
+            "I don't think I could bring myself to like the miners though."
+            "Everything they stood for was against my principles. If they didn't want my help, then I didn't want to help them."
+
+        if ending_Cmima
+            scene farm_exterior with fade
+            show rain
+            show him surprised behind rain at midleft
+            show thuc happy behind rain at midright
+            show julia normal behind rain at center
+            with dissolve
+            thuc happy "I didn't want all your canned food to go to waste, so we took it up the mountain!"
+            thuc sad "We can bring it back though, if you really wanted to feed the fishes."
+            him content "Thank you so much! Maybe you can have some of my dried fish as thanks."
+            "I packed a few last things and headed up the mountain to a temporary shelter."
+
+            scene shack with fade
+            play sound "sfx/rain.ogg" volume 0.6 loop
+            show rain
+            show him normal at midleft with moveinleft
+            show her normal at midright
+            her "You made it! Welcome to our temporary home."
+            him pout "Yes, ours along with a bunch of other people..."
+            her nervous "At least it's out of the rain."
+            him sad "Why didn't Brennan let us use the old mining camp as temporary shelter?"
+            her concerned "I think the current rumor is that he didn't want people taking any of the equipment they left there."
+            him normal "Like we would want any of that mining crap anyway."
+            her surprised "Right? What would we do with it?"
+            him pout "Maybe we could strip some solar cells from the solar panels though..."
+            her laugh "I guess he wasn't far off."
+            her sad "I hope Pete and the others are okay..."
+            him determined "I think they've shown us that they want us to leave them alone."
+            her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
+            "We focused on our own needs in our little community."
+            "How could we help the others when it was a struggle to survive just with our own neighbors?"
+
+        stop sound fadeout 1.0
+        return
 
 label ending_CmiMa:
-    scene path with fade
-    play sound "sfx/rain.ogg" loop
-    show rain
-    show him pout behind rain at midleft
-    show ilian angry at midright behind rain
-    with dissolve
-    him "After this next load, will we be done moving supplies?"
-    ilian "No, we need to get at least two more loads to the old mining camp."
-    him doubt "It's times like this that I really miss Lettie."
-    ilian normal "Well, I miss your tractor. Since it's been cloudy for that last two weeks I'm guessing the charge is pretty low?"
-    him sad "Yeah, it had only enough charge to move itself, but not an additional load."
-    him sad "I still have to move our supplies to higher ground. How much flooding is expected in the next four hours?"
-    ilian angry "Pete was saying that the rainfall hasn't been this heavy since we arrived. The river might even flood its banks in the next few hours."
-    ilian normal "Pete and some of the others have been helping to move stuff, since their camp is already on high ground."
-    him content "I hate asking other people for help, but it sure beats losing all my stored grain."
-    ilian happy "Hey, I know that feeling. We can do this if we work together."
-    "After two more loads, I went home to do some more pushing and pulling."
-
-    scene farm_exterior with fade
-    show rain
-    show him surprised behind rain at midleft
-    show pete normal behind rain at midright
-    show travis teen happy behind rain at center
-    with dissolve
-    pete "Hi [his_name]! [her_name] asked us to come help. We got your last grain barrel onto our wagon. I think you just need to pack your personal items."
-    him content "Thank you so much! I wasn't sure how I was going to get everything up to higher ground."
-    pete normal "After you've got everything, we're going to try to take as much of your yurt with us."
-    him determined "Let's save as much as we can."
-    "I packed a few last things and headed up to a temporary shelter which Pete and the others helped to build."
-
-    scene shack with fade
-    with dissolve
-    play sound "sfx/rain.ogg" volume 0.6 loop
-    show rain
-    show him normal at midleft behind rain with moveinleft 
-    show her normal at midright behind rain
-    with dissolve
-    her "You made it! Welcome to our temporary home."
-    him content "Phew! I'm glad we have a place to sleep."
-    her sad "I hope Brennan and the others are okay..."
-    him determined "They're already in the mountains, so I doubt a flood will affect them very much."
-    her nervous "Yes, but their mines could fill up with water faster than they expected."
-    him sad "Even if I wanted to help, I don't think they would trust me."
-    her sad "Why would they? It's not like we've been all that trusting of them."
-    him determined "It's too late to change that now."
-
-    scene black with fade
-    "I've grown a lot closer to Pete and Travis over the past 18 years."
-    "Even after they left the colony, I still wanted what was best for them and the others living with them."
-    "I don't think I could bring myself to like the miners though."
-    "Everything they stood for was against my principles. If they didn't want my help, then I didn't want to help them."
-
-    stop sound fadeout 1.0
-    return
+    jump flood_ending
 
 label ending_Cmima:
-    scene path with fade
-    play sound "sfx/rain.ogg" loop
-    show rain
-    show him pout behind rain at midleft
-    show ilian angry at midright behind rain
-    with dissolve
-    him "After this next load, will we be done moving supplies?"
-    ilian "No, we need to get at least two more loads to the old mining camp."
-    him doubt "I wish I had harnasses for the cows. This is their kind of work."
-    ilian normal "Our cattle would make lousy cart-pullers. Cattle wouldn't be able to handle the slippery stairs very well either."
-    him sad "I still have to move our supplies to higher ground. How much flooding is expected in the next four hours?"
-    ilian angry "Zaina calculated a good four inches, possibly more if the river floods its banks."
-    ilian normal "I would help you, but I've got my own stuff to move after this."
-    him cry "I won't be able to bring up everything. Guess I'll say goodbye to my barrels of apples."
-    ilian angry "Ask around. Maybe Thuc and Julia can help you, since their kids already moved their storage this morning."
-    "After two more loads, I went home to do some more pushing and pulling."
+    jump flood_ending
 
-    scene farm_exterior with fade
-    show rain
-    show him surprised behind rain at midleft
-    show thuc happy behind rain at midright
-    show julia normal behind rain at center
-    with dissolve
-    thuc happy "I didn't want all your canned food to go to waste, so we took it up the mountain!"
-    thuc sad "We can bring it back though, if you really wanted to feed the fishes."
-    him content "Thank you so much! Maybe you can have some of my dried fish as thanks."
-    "I packed a few last things and headed up the mountain to a temporary shelter."
-
-    scene shack with fade
+label ending_cMiMa:
+    scene farm_interior with fade
     play sound "sfx/rain.ogg" volume 0.6 loop
     show rain
-    show him normal at midleft with moveinleft
-    show her normal at midright
-    her "You made it! Welcome to our temporary home."
-    him pout "Yes, ours along with a bunch of other people..."
-    her nervous "At least it's out of the rain."
-    him sad "Why didn't Brennan let us use the old mining camp as temporary shelter?"
-    her concerned "I think the current rumor is that he didn't want people taking any of the equipment they left there."
-    him normal "Like we would want any of that mining crap anyway."
-    her surprised "Right? What would we do with it?"
-    him pout "Maybe we could strip some solar cells from the solar panels though..."
-    her laugh "I guess he wasn't far off."
-    her sad "I hope Pete and the others are okay..."
-    him determined "I think they've shown us that they want us to leave them alone."
-    her nervous "Well, since we never talk to them, I guess we wouldn't know even if they did need help."
-    "We focused on our own needs in our little community."
-    "How could we help the others when it was a struggle to survive just with our own neighbors?"
-    stop sound fadeout 1.0
-    return
+    show him concerned at midleft
+    show her normal and midright
+    him "Hmm. It's time to plan next year's crops..."
+    her concerned "Do you think there will be enough food for everyone?"
+    him determined "Well, it has been more difficult after a bunch of colonists moved to live with the miners and Pete's group."
+    him "The storehouse is barely even functional anymore. Usually I can find things if I look around long enough..."
+    her nervous "But it's a lot less organized."
+    him pout "In some ways, yes. Luckily, I've been working with the miners and their crops are doing a lot better this year."
+    him sad "We might not have a rice again for a while, since it requires a more coordinated effort."
+    her determined "As long as we have some kind of starchy crop, like potatoes or wheat, we should be fine."
+    him "I heard that our school is down to one teacher too."
+    her annoyed "Yeah, I'm glad that we already had our kids. It would be so much harder now."
+    him normal "Speaking of things that are more difficult now, Zaina told me that there could be a flood in our valley this weekend."
+    her surprised "A flood? Do we need to start making sandbags?"
+    him determined "No, it will probably be too big for that. We'll need to evacuate."
+    her annoyed "Why am I only hearing about this now?"
+    him
 
-label ending_cMiMa:    
-    "Over the next few years, the colony had difficulty making enough food to survive."
-    "People started hoarding food. Some continued to work through solar flares, only to die from the following radiation poisoning in a few years."
-    "We became less like a colony and more like a few loosely-connected settlers."
-    "Did some families join the mavericks? Or did they just leave in search of food one day, never to return?"
-    "The miners bought their food from the mavericks, and the mavericks in turn used their credits to access the colony's technology."
-    "Pete would sometimes take over the library for a day, lamenting how the databases these days were only used for entertainment and not for education."
-    "He and Brennan developed a business relationship."
+    scene black with fade
+    scene farm_exterior with fade
+    play sound "sfx/rain.ogg" loop
+    show rain
+
+    her sad "I have noticed that since people can't buy food reliably at the storehouse anymore, they're starting to stockpile food."
+
+
     return
 
 label ending_cMima:
