@@ -150,6 +150,7 @@ label start:
     default study_published_23 = False
     default helen_dead = False      
     default bought_tt = False
+    default c_end = ""
     $ bios = Bios()         
     $ bios.activate("[his_name]")
     $ bios.activate("[her_name]")
