@@ -574,9 +574,9 @@ label ending_CMiMa:
     return
 
 label ending_CMima:
-    jump flood_ending
+    jump flood_ending_C
 
-    label flood_ending:
+    label flood_ending_C:
         scene path with fade
         play sound "sfx/rain.ogg" loop
         show rain
@@ -704,62 +704,128 @@ label ending_CMima:
         return
 
 label ending_CmiMa:
-    jump flood_ending
+    jump flood_ending_C
 
 label ending_Cmima:
-    jump flood_ending
+    jump flood_ending_C
 
 label ending_cMiMa:
-    scene farm_interior with fade
-    play sound "sfx/rain.ogg" volume 0.6 loop
-    show rain
-    show him concerned at midleft
-    show her normal and midright
-    him "Hmm. It's time to plan next year's crops..."
-    her concerned "Do you think there will be enough food for everyone?"
-    him determined "Well, it has been more difficult after a bunch of colonists moved to live with the miners and Pete's group."
-    him "The storehouse is barely even functional anymore. Usually I can find things if I look around long enough..."
-    her nervous "But it's a lot less organized."
-    him pout "In some ways, yes. Luckily, I've been working with the miners and their crops are doing a lot better this year."
-    him sad "We might not have a rice again for a while, since it requires a more coordinated effort."
-    her determined "As long as we have some kind of starchy crop, like potatoes or wheat, we should be fine."
-    him "I heard that our school is down to one teacher too."
-    her annoyed "Yeah, I'm glad that we already had our kids. It would be so much harder now."
-    him normal "Speaking of things that are more difficult now, Zaina told me that there could be a flood in our valley this weekend."
-    her surprised "A flood? Do we need to start making sandbags?"
-    him determined "No, it will probably be too big for that. We'll need to evacuate."
-    her annoyed "Why am I only hearing about this now?"
-    him
+    jump flood_ending_c
 
-    scene black with fade
-    scene farm_exterior with fade
+label flood_ending_c: #for cMiMa, cmiMa, and cMima, but not cmima
+    scene path with fade
     play sound "sfx/rain.ogg" loop
     show rain
+    show him pout behind rain at midleft
+    if ending_cmiMa or ending_cMiMa:
+        show pete angry at midright behind rain
+        with dissolve
+    if ending_cMima or ending_cMiMa:
+        show brennan concerned at right behind rain
+        with dissolve
+    him "Thanks for warning me about the flood and for helping us evacuate."
+    if ending_cmiMa or ending_cMiMa:
+        pete happy "You might be working for an evil corporation, but you don't deserve to die of starvation after a flood ruins your food storage."
+        him pout "Wait, are you saying the other colonists do deserve that?"
+        pete normal "I don't know them personally like I do you."
+    if ending_cMima or ending_cMiMa:
+        brennan explaining "You know, it's in our best interest to keep at least one farmer happy."
+        him pout "Aren't you helping the others?"
+        brennan flirting "We don't have time to move everyone, so I chose the farmer I hate the least."
+        him smirk "Ha. That makes sense."
+    him surprised "Do the other colonists even know about the flood?"
+    if ending_cMiMa:
+        pete happy "Not my circus..."
+        brennan explaining "Not my monkeys!"
+    if ending_cmiMa or ending_cMiMa:
+        pete happy "If they haven't figured out there's a flood at this point, I'm not sure that a message would help."
+    if ending_cMima or ending_cMiMa:
+        brennan surprised "I think it would be obvious by now."
+    him determined "We should at least check the storehouse. The food stored there can help feed everyone."
+    if ending_cmiMa or ending_cMiMa:
+        pete normal "Fine with me."
+    if ending_cMima or ending_cMiMa:
+        brennan normal "You make a good point. Let's see how they're doing."
+    "We finished taking the last of my food storage to the evacuation camp in the foothills and headed to the storehouse."
 
-    her sad "I have noticed that since people can't buy food reliably at the storehouse anymore, they're starting to stockpile food."
+    scene storeroom with fade
+    play sound "sfx/rain.ogg" volume 0.6 loop
+    show him determined at center with dissolve
+    show ilian angry at midright with dissolve
+    if ending_cmiMa or ending_cMiMa:
+        show pete normal at midleft with dissolve
+    if ending_cMima or ending_cMiMa:
+        show brennan concerned at left with dissolve
+    ilian "What do you guys want?"
+    him normal "Do you need any help moving the storehouse goods before the flood comes in?"
+    ilian normal "Pshh. I'm not going to fall for that kind of trap. You just want all our food for yourselves."
+    ilian angry "According to the RET contracts, food not in the storehouse doesn't belong to RET anymore."
+    him doubt "But if we don't move it, it will be ruined and no one will be able to eat it."
+    ilian "Only if the flooding is as bad as Zaina says, but wouldn't she be motivated to get the food out of our dirty colonists' hands?"
+    him pout "I don't think she feels that way about colonists..."
+    him "How much food is back there, anyway?"
+    ilian normal "None of your business."
+    if ending_cmiMa or ending_cMiMa:
+        show pete normal at right with move
+        pete "There's scarcely enough to feed one family back here."
+    if ending_cMima:
+        show brennan sad at right with move
+        brennan "There's only three barrels back here. I thought there would be more."
+    ilian angry "Hey, authorized personelle only!"
+    ilian "People haven't been bringing in their crops to the storehouse. They said it was too much trouble."
+    him sad "I see. I hope they're able to save their food storage from the flood."
 
+    scene path with fade
+    play sound "sfx/rain.ogg" loop
+    show rain
+    show him sad behind rain at midleft
+    if ending_cmiMa or ending_cMiMa:
+        show pete normal at midright behind rain
+        with dissolve
+    if ending_cMima or ending_cMiMa:
+        show brennan concerned at right behind rain
+        with dissolve
+    him "That went worse than I expected."
+    if ending_cmiMa or ending_cMiMa:
+        pete "You colonists need to get organized or something worse than a flood is going to wipe you out."
+    if ending_cMima or ending_cMiMa:
+        brennan "I had no idea things were this bad. Someone needs to come in and cut the crap."
+    him "I guess no one wants to take responsibility."
+    if ending_cmiMa or ending_cMiMa:
+        pete "I can see that. Run along now, I think [her_name] is waiting for you in the temporary shelter."
+    if ending_cMima:
+        brennan "No kidding. You wouldn't want to keep [her_name] waiting for you too long. She should be there by now."
 
+    scene shack with fade
+    play sound "sfx/rain.ogg" volume 0.6 loop
+    show rain
+    show him normal at midleft with moveinleft
+    show her normal at midright
+    her "You made it! Welcome to our temporary home."
+    him "I'm relieved, but somehow I'm not feeling glad."
+    her annoyed "Yeah, this was so disorganized. I'm sure in a few weeks I'm going to be hearing about how so-and-so didn't get any help and nearly died."
+    him sad "It's a shame. I feel like we could have done better."
+    her concerned "At least we have friends who can help us when we need it."
+    him normal "Yeah."
+    if ending_cmiMa:
+        "Had I focused too much on helping Pete's group, to the detriment of my other relationships?"
+        "I can't be everything to everyone. At least Pete's still a good friend."
+    if ending_cMima:
+        "Did I focus too much on pleasing the miners, when I should have tried to balance things out a little more?"
+        "At least RET's interests are secured, and they can continue supporting us."
+    if  ending_cMiMa:
+        "Had I focused too much on trying to make sure the miners and Pete's group were happy, neglecting the issues in my own community?"
+        "I feel like I could only do so much. There's always going to be something left undone."
+
+    stop sound fadeout 1.0
     return
 
 label ending_cMima:
-    "RET gave permission to the miners to use violent force on anyone who sabotagued or otherwise hindered the miners's operations."
-    "A year of violent rains upset crops and native wildlife."
-    "Floods destroyed our food storage of dried goods, and some people had to move to higher ground permanently."
-    "The mavericks, also suffering from the weather, started stealing food from wherever they could find it."
-    "A few were caught by the miners and beaten."
-    "Eventually, the Brennan sent some of his miners to help hunt and forage in areas that weren't flooded."
-    "Part of the colony ended up moving to a drier part of the continent."
-    return
+    jump flood_ending_c
+
 
 label ending_cmiMa:
-    "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
-    "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
-    "The colony wasn't doing well either, with our farms yielding less and less food each year."
-    "Luckily, the mavericks had long ago learned how to survive without external help."
-    "They shared their food with us and helped us build up our farms, but it was at a price."
-    "In return for their food and labor, the mavericks required some of the colonists to join them."
-    "People still died more often since we didn't have access to medical equipment from Earth, but we didn't all die out."
-    return
+    jump flood_ending_c
 
 label ending_cmima: #is this ending even possible?
     scene farm_exterior with fade
@@ -822,13 +888,4 @@ label ending_cmima: #is this ending even possible?
     "We took our wagon up the foothill towards the miner's camp. Other colonists had found places to stay here, with tents popping up every now and then."
     "We set up a temporary shelter, but it was still very wet. We were able to get another light load up, but most of our food storage was ruined by the flood."
 
-    # "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
-    # "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
-    # "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
-    # "The mavericks weren't doing any better."
-    # "A year of heavy rains made problems for everyone."
-    # "Floods destroyed our food storage, contaminated our water, and completely killed off some of our crops."
-    # "After moving to higher ground, we tried again with the seeds we managed to save."
-    # "Some of us died of malnutrition and exhaustion."
-    # "It felt like soon our bones and possessions would be the only evidence of our existence here."
     return
