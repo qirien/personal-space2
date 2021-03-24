@@ -2303,7 +2303,7 @@ label family7:
         scene stars with fade
         "I wanted to be a better parent."
 
-    "But I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
+    "I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
     "Did I really have time for one more thing?"
     menu:
         "What should I do?"

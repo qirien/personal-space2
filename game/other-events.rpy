@@ -69,12 +69,12 @@ label parenting_class_questions:
             naomi normal "Sometimes we forget that children also need to learn how to do simple things, like cleaning their room, or washing dishes, or putting away their laundry."
             him concerned "I guess no one's born knowing how to do those things..."
             naomi happy "And they will learn that best with lots of positive encouragement as they master each small step. It may sound silly to you to say, 'Thank you for putting your socks away,' but it is effective."
-        "How do you talk to kids about sex?":
-            him surprised "How do you talk to kids about sex?"
+        "How do you talk to kids about difficult topics?":
+            him surprised "How do you talk to kids about difficult topics?"
             naomi normal "How do you want your kids to feel about their bodies? About babies? About affection?"
             him determined "Well, those are all good things, I guess."
             naomi happy "Then let your conversation reflect that as you talk about the parts of human life they are ready to learn about."
-            him surprised "How can you tell what they are ready for?"
+            her surprised "How can you tell what they are ready for?"
             naomi normal "If they trust you and have a curious mind, they will ask you when they are ready to know something."
             him concerned "[kid_name] certainly has a curious mind..."
             naomi normal "You don't need to give lots of details -- just the facts that are most relevant to her."

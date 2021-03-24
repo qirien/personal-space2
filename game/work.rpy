@@ -361,6 +361,7 @@ label farm_tutorial:
                 "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
+                "Sometimes there's extra things I can only do if I have extra work, so I don't want to try to do too much."
         "No.":
             $ pass
     return
