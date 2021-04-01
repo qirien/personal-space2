@@ -140,35 +140,35 @@ init -100:
     ##
     # Declare characters
     ##
-    define narrator = Character(ctc="ctc_blink", ctc_position="nestled")
+    define narrator = Character(ctc="ctc_blink", ctc_position="nestled-close")
 
-    define her = Character("[her_name]", who_color=rose, image="her", ctc="ctc_blink", ctc_position="nestled") 
-    define him = Character("[his_name]", who_color=red_med, image="him", ctc="ctc_blink", ctc_position="nestled") 
-    define kid = Character("[kid_name]", who_color=magenta, image="kid", ctc="ctc_blink", ctc_position="nestled") 
-    define bro = Character("[bro_name]", who_color=blue_med, image="bro", ctc="ctc_blink", ctc_position="nestled") 
+    define her = Character("[her_name]", who_color=rose, image="her", ctc="ctc_blink", ctc_position="nestled-close") 
+    define him = Character("[his_name]", who_color=red_med, image="him", ctc="ctc_blink", ctc_position="nestled-close") 
+    define kid = Character("[kid_name]", who_color=magenta, image="kid", ctc="ctc_blink", ctc_position="nestled-close") 
+    define bro = Character("[bro_name]", who_color=blue_med, image="bro", ctc="ctc_blink", ctc_position="nestled-close") 
 
-    define naomi = Character("Sister Naomi", who_color=lavendar_gray, image="naomi", ctc="ctc_blink", ctc_position="nestled") 
-    define pavel = Character("Mayor Pavel", who_color=tan_dark, image="pavel", ctc="ctc_blink", ctc_position="nestled") 
-    define lily = Character("Dr. Lily", who_color=lavendar, image="lily", ctc="ctc_blink", ctc_position="nestled") 
-    define sara = Character("Sara", who_color=rose_dark, image="sara", ctc="ctc_blink", ctc_position="nestled")
-    define ilian = Character("Ilian", who_color=yellow_light, image="ilian", ctc="ctc_blink", ctc_position="nestled")  
-    define oleg = Character("Oleg", who_color=blue_mako, image="oleg", ctc="ctc_blink", ctc_position="nestled") 
-    define brennan = Character("Brennan", who_color=green_med, image="brennan", ctc="ctc_blink", ctc_position="nestled")  
-    define pete = Character("Pete", who_color=brown_light, image="pete", ctc="ctc_blink", ctc_position="nestled")  
-    define helen = Character("Helen", who_color=gray_med, image="helen", ctc="ctc_blink", ctc_position="nestled")
-    define travis = Character("Travis", who_color=red_light, image="travis", ctc="ctc_blink", ctc_position="nestled")    
-    define natalia = Character("Natalia", who_color=orange_you_glad, image="natalia", ctc="ctc_blink", ctc_position="nestled")  
-    define martin = Character("Martín", who_color=dust_of_the_earth, image="martin", ctc="ctc_blink", ctc_position="nestled")
-    define thuc = Character("Thuc", who_color=green_sage, image="thuc", ctc="ctc_blink", ctc_position="nestled")  
-    define julia = Character("Julia", who_color=blue_ice, image="julia", ctc="ctc_blink", ctc_position="nestled") 
+    define naomi = Character("Sister Naomi", who_color=lavendar_gray, image="naomi", ctc="ctc_blink", ctc_position="nestled-close") 
+    define pavel = Character("Mayor Pavel", who_color=tan_dark, image="pavel", ctc="ctc_blink", ctc_position="nestled-close") 
+    define lily = Character("Dr. Lily", who_color=lavendar, image="lily", ctc="ctc_blink", ctc_position="nestled-close") 
+    define sara = Character("Sara", who_color=rose_dark, image="sara", ctc="ctc_blink", ctc_position="nestled-close")
+    define ilian = Character("Ilian", who_color=yellow_light, image="ilian", ctc="ctc_blink", ctc_position="nestled-close")  
+    define oleg = Character("Oleg", who_color=blue_mako, image="oleg", ctc="ctc_blink", ctc_position="nestled-close") 
+    define brennan = Character("Brennan", who_color=green_med, image="brennan", ctc="ctc_blink", ctc_position="nestled-close")  
+    define pete = Character("Pete", who_color=brown_light, image="pete", ctc="ctc_blink", ctc_position="nestled-close")  
+    define helen = Character("Helen", who_color=gray_med, image="helen", ctc="ctc_blink", ctc_position="nestled-close")
+    define travis = Character("Travis", who_color=red_light, image="travis", ctc="ctc_blink", ctc_position="nestled-close")    
+    define natalia = Character("Natalia", who_color=orange_you_glad, image="natalia", ctc="ctc_blink", ctc_position="nestled-close")  
+    define martin = Character("Martín", who_color=dust_of_the_earth, image="martin", ctc="ctc_blink", ctc_position="nestled-close")
+    define thuc = Character("Thuc", who_color=green_sage, image="thuc", ctc="ctc_blink", ctc_position="nestled-close")  
+    define julia = Character("Julia", who_color=blue_ice, image="julia", ctc="ctc_blink", ctc_position="nestled-close") 
 
-    define chaco = Character("Chaco", who_color=blue_dusty_ice, image="chaco", ctc="ctc_blink", ctc_position="nestled") 
-    define kevin = Character("Kevin", who_color=yellow, image="kevin", ctc="ctc_blink", ctc_position="nestled")
-    define zaina = Character("Zaina", who_color=yellow_gold, image="zaina", ctc="ctc_blink", ctc_position="nestled") #golden yellow
-    define jellysquid = Character("Jellysquid", kind=nvl, who_color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled", what_font="fonts/KidZone.ttf")  #purple
+    define chaco = Character("Chaco", who_color=blue_dusty_ice, image="chaco", ctc="ctc_blink", ctc_position="nestled-close") 
+    define kevin = Character("Kevin", who_color=yellow, image="kevin", ctc="ctc_blink", ctc_position="nestled-close")
+    define zaina = Character("Zaina", who_color=yellow_gold, image="zaina", ctc="ctc_blink", ctc_position="nestled-close") #golden yellow
+    define jellysquid = Character("Jellysquid", kind=nvl, who_color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/KidZone.ttf")  #purple
 
-    define tutorial = Character("Tutorial", who_color="#ededed", ctc="ctc_blink", ctc_position="nestled")  #light gray
-    define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled")
+    define tutorial = Character("Tutorial", who_color="#ededed", ctc="ctc_blink", ctc_position="nestled-close")  #light gray
+    define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 
     ##
     # Custom transitions, positions, etc.

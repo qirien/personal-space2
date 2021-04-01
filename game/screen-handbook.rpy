@@ -37,7 +37,7 @@ screen parenting_handbook():
                     textbutton "X" xpos MIDDLE_COLUMN_WIDTH-64 ypos -45 action Hide("parenting_handbook", irisin)
                     use kid_info
 
-screen kid_info:
+screen kid_info():
     tag kid_info
     if (show_year <= BABY_MAX):
         use baby_info
@@ -52,27 +52,27 @@ screen kid_info:
     else:
         use teen_info
 
-screen baby_info:
+screen baby_info():
     tag kid_info
     text childs_mind["baby"] yalign 0.0
 
-screen toddler_info:
+screen toddler_info():
     tag kid_info
     text childs_mind["toddler"]
 
-screen child_info:
+screen child_info():
     tag kid_info
     text childs_mind["child"]
 
-screen tween_info:
+screen tween_info():
     tag kid_info
     text childs_mind["tween"]
 
-screen yteen_info:
+screen yteen_info():
     tag kid_info
     text childs_mind["yteen"]
 
-screen teen_info:
+screen teen_info():
     tag kid_info
     text childs_mind["teen"]
 

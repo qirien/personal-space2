@@ -163,7 +163,7 @@ label fight_brennan:
     "Ready? Fight!"
     $ change_cursor("punch")
     call screen punch(punchBrennan)
-    show brennan mad
+    show brennan angry
     $ change_cursor("default")
     "That was some serious fighting."  
     return

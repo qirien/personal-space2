@@ -817,5 +817,5 @@ label test_positions:
     "end test positions"
     return
 
-screen countdown:
+screen countdown():
     timer 0.01 repeat True action If(time > 0, true=SetVariable('time', time - 0.02), false=[Hide('countdown'), Jump(timer_jump)])

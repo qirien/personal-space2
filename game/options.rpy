@@ -1,6 +1,4 @@
-﻿define config.console = True
-
-## This file contains options that can be changed to customize your game.
+﻿## This file contains options that can be changed to customize your game.
 ##
 ## Lines beginning with two '#' marks are comments, and you shouldn't uncomment
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
@@ -15,12 +13,6 @@
 ## The _() surrounding the string marks it as eligible for translation.
 
 define config.name = _("OPS2: Space to Grow")
-
-
-## Determines if the title given above is shown on the main menu screen. Set
-## this to False to hide the title.
-
-define gui.show_name = False
 
 ## The version of the game.
 define config.version = "0.4"

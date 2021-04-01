@@ -58,7 +58,6 @@ label ending:
     "We didn't always agree on what [kid_name] should do, but in the end, [kid_name] made her own choices."
     "I'm sure I played a part in those, but I can't put my finger on any one thing that made her turn out the way she did."
 
-    # TODO: some of this community stuff doesn't work with these endings. Make them more personal and less far-seeing.
     # TODO: mention jellies in endings?
 
     $ parenting_style = get_parenting_style()
@@ -525,34 +524,32 @@ label ending_CMiMa:
     $ c_end = "CMiMa"
     "Community Ending CMiMa"
     scene bonfire with fade
+    show pete normal at center
     show him normal at midleft
     show brennan normal at midright
-    show pete normal at center
     brennan happy "You've really never heard of quince? It's a common Earth fruit."
     pete happy "Even I've heard of it, and I grew up in the middle of nowhere."
     him blush "Well, I was kind of a picky eater growing up, so we didn't eat weird things like that."
-    brennan flirting "It's a good thing you grew out of that, since we eat weird things all the time now!"
+    brennan flirting "It's a good thing you grew out of that, since weird things are {i}de rigueur{/i} these days."
     pete normal "They're not even weird anymore. I've gotten to craving these wolfslug curry kebabs year-round."
-    him excited "They are definitely delicious. Thanks for sharing."
-    pete happy "I'm happy to make them for you as long as you bring the flatbread. I have a major brown thumb when it comes to growing wheat."
-    him pout "If I drink the wine Brennan made while I eat the curry kebabs, I can remember what real wine tastes like!"
-    brennan happy "It may be a long time before we can enjoy a mature vintage. I hope in ten years we can enjoy a good bottle together."
-    pete normal "Or a bad bottle. I'm not picky."
+    him pout "If I drink the wine Brennan made while I eat the curry kebabs, I almost feel like I'm in a fancy restaurant. All we need is a French waiter in a tuxedo."
+    "Brennan stood and bowed, imitating a waiter with a terrible French accent."
+    brennan normal "Mais oui! Please accept our apologies for the very limited wine menu. I'm afraid nonvintage is all we have at the moment."
+    pete happy "It beats a nonexistent wine menu every time."
 
-    him happy "If we can work together like we did in evacuating me and my neighbors from the flood, I think that's likely."
-    pete happy "I even got some wheat out of the deal!"
-    brennan explaining "You act like it was an act of altruism, but really, I just hate farming."
+    "I enjoyed another bite of wolfslug kebab, the tangy, spicy curry sauce dripping down my chin. I wiped it off with a piece of the flatbread I had brought and ate that, too."
 
-    him content "I'm happy to grow wheat for both of you."
-    him normal "Speaking of hating farming, how are your interns from the high school working out?"
+    him happy "Thanks for saving my wheat from that flood. I still can't believe we got everyone and their food stores out so quickly."    
+    brennan explaining "You act like it was an act of altruism, but really, I'd do almost anything not to have to grow my own food."
+
+    him normal "Speaking of people who hate growing their own food, how are your interns from the high school working out?"
     him pout "I know some of them are hoping to learn a trade other than farming."
     brennan normal "Oh, I have one intern who has a knack for assembling good mining teams."
     brennan "He made friends with everyone and figured out their compatibilities quickly."
-    pete happy "One of my interns has an amazing spatial memory. She can go foraging with me and then come back and draw a map."
-    pete normal "Of course, with satellite imagery, we have the big things covered."
-    pete "Her maps take out all the excess noise and make it easier to find things."
-    him determined "Sounds like it's going well. My intern seems kind of depressed sometimes. I think she likes handicrafts though. I should have her spend some time with you, Pete."
-    him "She might like leatherworking better than farming."
+    pete normal "One of my interns has an amazing spatial memory. She can go foraging with me and then come back and draw a map."
+    pete happy "With satellite imagery, we have the big things covered, but her maps take out all the extra noise and make it easier to find things."
+    him determined "Huh, good for you. My intern seems kind of depressed sometimes. I think she likes handicrafts though. I should have her spend some time with you, Pete."
+    him surprised "She might like leatherworking better than farming."
     pete happy "If she likes working with her hands, maybe she could make you a saddle for one of those grass crabs!"
     him sad "I do miss Lettie."
     brennan surprised "Why did they send just one horse?"
@@ -560,16 +557,15 @@ label ending_CMiMa:
     pete normal "I'm surprised they let you do that, and even more surprised she survived the journey."
     him normal "It was in the contract!"
     him sad "They would never let more horses come here now though. Not with all the extra-planetary environmental sanctions."
-    pete angry "Hey, no horse could replace Lettie. And who knows, maybe one of these alien quadrapeds can be domesticated."
+    pete angry "Hey, no horse could replace Lettie. But who knows, maybe one of these huge alien critters can be domesticated."
     brennan normal "I'm happy to let Zaina find some likely candidates for domestication this rainy season."
 
     scene ocean_sunset
     "There were times when I wasn't sure we would all survive, let alone get along together."
     "To think that I would voluntarily spend time with Brennan..."
-    "I was worried that Pete wouldn't be my friend after leaving the colony, but we still make time to see each other and help each other out."
-    "I'm so glad I have so many people I can rely on."
+    "And even though Pete left the colony, we still make time to see each other and help each other out."
+    "I'm glad I have so many people I can rely on."
 
-    # TODO: heavy rains in "good" ending, but it isn't a big deal?
     return
 
 label ending_CMima:

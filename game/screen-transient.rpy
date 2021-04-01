@@ -38,7 +38,6 @@ screen show_notification(message=""):
     timer 3 action Hide("show_notification")
 
 # Show a summary of changes for the previous year
-# TODO: abstract out computer pad stuff somehow
 screen yearly_summary():
     key "K_RETURN" action Return()
     key "K_SPACE" action Return()
@@ -119,7 +118,7 @@ screen show_stat(var):
         spacing 0
         $ old_value = eval("total_" + var)
         $ delta = eval(var)
-        $ max = eval(var.upper() + "_MAX") # TODO: or should we use _MAX? What about if 
+        $ max = eval(var.upper() + "_MAX")
         $ new_value = old_value + delta
         $ high_value = roundint(year * (eval(var.upper() + "_HIGH")/float(MAX_YEARS)))
         text var.capitalize()

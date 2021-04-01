@@ -79,7 +79,7 @@ label yearly_messages:
 ##
 # Subscreen letting the user see information on crops and choose which to plant this year
 ##
-screen farm_details_screen:
+screen farm_details_screen():
     hbox:
         xalign 0.5
         xfill True
@@ -170,12 +170,13 @@ screen farm_details_screen:
                 label "Total"
                 use crops_totals
 
-# TODO: mask the rest of the screen?
-# OR... just make this take up the whole screen. That way we have more room for fat fingers on phones.
+# TODO: make this take up the whole screen so there's more room for fat fingers on phones?
+# TODO: Phones need a checkmark icon or make it so if you click outside the screen it sets and returns. Also make it so clicking the X doesn't cancel the choice?
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     modal True
     default show_sort = False
+    add "gui/overlay/confirm.png"
     frame:
         style_prefix "crop_details"
         yalign 0.5
@@ -190,8 +191,17 @@ screen choose_crop(crop_index=0):
                     xfill True
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
-                        label crop_name.capitalize()
-                        textbutton "X" xpos 120 ypos -2 text_size 26 action Hide("choose_crop", irisin)
+                        label crop_name.capitalize()                        
+                        textbutton "X":                         
+                            xpos 110
+                            ypos -2
+                            text_size 32
+                            text_font "fonts/Questrial-Regular.otf"
+                            text_bold True
+                            if not renpy.variant("touch"):
+                                action Hide("choose_crop", irisin)
+                            if renpy.variant("touch"):
+                                action [ SetCrop(crop_index, crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", irisin) ]
 
                     # Display info about the selected crop
                     hbox:
@@ -271,6 +281,13 @@ screen choose_crop(crop_index=0):
                                     else:
                                         action [ SetCrop(crop_index,    crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", irisin)]
 
+                    if renpy.variant("touch"):
+                        textbutton "Done":
+                            style "plan_farm_button"
+                            xalign 1.0
+                            action [ SetCrop(crop_index, crop_info[selected_crop_index][NAME_INDEX]), Hide("choose_crop", irisin) ]
+                                
+
 screen sort_buttons():
     $ show_buttons = ["calories"]
     if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
@@ -330,7 +347,7 @@ screen nutrition_icons(crop_index):
             for i in range(heart_count, 6):
                 add STAT_ICON_BASE + "nutrition.png"
 
-screen crops_layout:
+screen crops_layout():
     frame:
         yfill True
         background "soil"
@@ -406,7 +423,7 @@ style crop_history_hbox is crop_details_hbox:
     xsize LEFT_COLUMN_WIDTH-10
     xalign 0.5
 
-screen crops_totals:
+screen crops_totals():
     vbox:
         yalign 0.0
         $ calories_needed = get_calories_required(year)

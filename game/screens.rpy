@@ -192,7 +192,6 @@ style say_dialogue:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#input
 
-#TODO: make mobile version move the window up to the top of the screen so we can see when the keyboard pops up
 screen input(prompt):
     style_prefix "input"
 
@@ -1427,7 +1426,7 @@ style notify_text:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#nvl
 #
-# TODO: On Android, doesn't show the background?
+# TODO: On Android, doesn't show the background? I think I fixed this but test it.
 
 screen nvl(dialogue, items=None):
     window:
@@ -1609,8 +1608,6 @@ screen quick_menu():
     #     textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
     #     textbutton _("Menu") action ShowMenu()
     #     textbutton _("Auto") action Preference("auto-forward", "toggle")
-
-# TODO: make textbox use frame from regular game
 style window:
     variant "small"
     xalign 0.5
@@ -1619,9 +1616,6 @@ style window:
     ysize gui.textbox_height
     background "gui/phone/textbox.png"
 
-style nvl_window:
-    variant "small"
-    background "gui/phone/nvl.png"
 
 style main_menu_frame:
     variant "small"

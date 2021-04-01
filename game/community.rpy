@@ -2473,7 +2473,7 @@ label community12:
                     $ modify_credits(50)
                     him explaining "You know, if you have the credits, I bet Pete could do some hunting for you."
                     chaco "I'll ask him."
-                    scene stars with fadew
+                    scene stars with fade
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
                     "Dr. Lily took a few people out foraging."
                     "The miners lived off the meat and foraged food for almost a month."
@@ -8394,26 +8394,26 @@ label community30:
         play sound "sfx/rain.ogg" volume 0.6 loop
         show kid normal at midright with dissolve
         show him sad at midleft with moveinleft
-        kid "How's that investigation going?"
+        kid surprised "How's that investigation going?"
         him content "Oh, hi. I feel like I'm not getting anywhere. I have more questions than answers."
-        kid "What have you found out so far?"
+        kid concerned "What have you found out so far?"
         him concerned "Firegrass is involved somehow."
         him surprised "I know you don't always know what you're carrying when you do deliveries... but do you know who besides Pete has been dealing with firegrass?"
         if (is_attached()):
             "[kid_name] sighed and frowned."
             if ban_firegrass:
                 kid nervous "I don't want to get anyone in trouble. But I can tell you that Noel was involved."
-                him "Involved how?"
+                him determined "Involved how?"
                 kid concerned "I don't know exactly how, but she received deliveries that were way larger than any single person would actually consume."
                 him explaining "From Pete?"
-                kid "Yeah, from Pete and some other people."
+                kid nervous "Yeah, from Pete and some other people."
                 him doubt "Which other people?"
                 kid sad "From the other firegrass farm." # Miners who took over Oleg's firegrass farm
-                him "What other firegrass farm?"
-                kid "..."
-                kid nervous "Oleg started a firegrass farm a while back, but he sold it to some miners."
+                him surprised "What other firegrass farm?"
+                kid nervous "..."
+                kid determined "Oleg started a firegrass farm a while back, but he sold it to some miners."
                 him surprised "Wow. I didn't know that. Thanks for your help."
-                kid shifty "Just don't get him in trouble. He's not involved anymore."
+                kid concerned "Just don't get him in trouble. He's not involved anymore."
                 him sad "I won't. I'm investigating a murder, not a firegrass farm."
                 $ know_noel_received_firegrass_deliveries = True
             else:
@@ -8422,18 +8422,18 @@ label community30:
                 him doubt "Like how large?"
                 kid surprised "Larger than any single person would ever smoke or otherwise consume."
                 him pout "What did she do with it all?"
-                kid shift "I don't know! She must have been doing something with it though!"
+                kid determined "I don't know! She must have been doing something with it though!"
                 him determined "And who do you mean by everyone?"
                 kid nervous "Everyone who's in the firegrass business."
                 him doubt "Other than Pete?"
-                kid "Yeah, there are some other people who grow it too."
+                kid concerned "Yeah, there are some other people who grow it too."
                 him determined "Really? Who?"
-                kid "..."
+                kid nervous "..."
                 kid sad "So a few years ago Oleg started a firegrass farm, but it was a lot of work."
                 kid nervous "He sold it to a bunch of miners who don't know what they're doing."
                 him surprised "Wow, really? I had no idea. That does explain his sudden interest in farming a few years ago..."
                 him determined "Is that all the people who grow firegrass?"
-                kid "Yeah, everyone currently in the business. The ones I know about, anyway."
+                kid determined "Yeah, everyone currently in the business. The ones I know about, anyway."
                 $ know_noel_received_firegrass_deliveries = True
         else:
             "[kid_name] didn't even look up from her tablet."
