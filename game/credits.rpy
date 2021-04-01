@@ -65,7 +65,7 @@ label credits:
     $ renpy.pause(3.0, hard=skippable)
 
     "Thank you for playing Our Personal Space 2: Space to Grow!"
-    "You've unlocked New Game+, including the Skip button for text you've already seen. All crops you've unlocked will carry over to your next playthrough."
-    # add link, survey, etc?
+    "New Game+ unlocked! Skip button unlocked! Bonus section unlocked!"
+    # TODO: add link, survey, etc?
 
     $ renpy.full_restart()

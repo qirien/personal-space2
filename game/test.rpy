@@ -54,6 +54,15 @@ label test_endings:
     $ year = 30
     $ bro_birth_year = 8
 
+    call ending_CMiMa
+    call ending_CMima
+    call ending_CmiMa
+    call ending_Cmima
+    call ending_cMiMa
+    call ending_cMima
+    call ending_cmiMa
+    call ending_cmima
+
     call ending_ac
     call ending_aC
     call ending_Ac

@@ -10,6 +10,7 @@ init -10:
     image fields flip = im.Flip("images/bg/fields.jpg", horizontal = True)
     image bro_bedroom = im.Flip("images/bg/kid_bedroom.jpg", horizontal = True)
 
+    # TODO: replace with actual CGs
     image baby_cg:
         "images/cgs/chapter-baby.png"
         xalign 0.0 yalign 0.5
@@ -19,25 +20,23 @@ init -10:
     image toddler_cg:
         "images/cgs/chapter-toddler.png"
         xalign 0.0 yalign 0.5
-        linear 8.0 xalign 0.9 yalign 0.5
-        linear 4.0 zoom 0.75       
+        linear 6.0 xalign 0.7 yalign 0.5
+        linear 6.0 zoom 0.75       
 
     image child_cg:
         "images/cgs/chapter-child.png"
         xalign 0.0 yalign 0.5
-        linear 8.0 xalign 0.9 yalign 0.5
-        linear 4.0 zoom 0.75
+        linear 6.0 xalign 0.7 yalign 0.5
+        linear 6.0 zoom 0.75
 
     image tween_cg:
-    # TODO: replace with tween
-        "images/cgs/chapter-baby.png"
+        "images/cgs/chapter-tween.png"
         xalign 0.0 yalign 0.5
         linear 8.0 xalign 0.9 yalign 0.5
         linear 4.0 zoom 0.75
 
     image yteen_cg:
-    # TODO: replace with young teen
-        "images/cgs/chapter-baby.png"
+        "images/cgs/chapter-teen.png"
         xalign 0.0 yalign 0.5
         linear 8.0 xalign 0.9 yalign 0.5
         linear 4.0 zoom 0.75
