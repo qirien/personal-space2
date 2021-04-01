@@ -124,13 +124,14 @@ init python:
                 raise StopIteration
 
         def getIconName(self, name):
-            if ("his_name" in name) or (his_name in name):
+            global his_name, her_name, kid_name, bro_name
+            if ("his_name" in name) or (his_name in name) or ("Jack" in name):
                 return "him"
-            elif ("her_name" in name) or (her_name in name):
+            elif ("her_name" in name) or (her_name in name) or ("Kelly" in name):
                 return "her"
-            elif ("kid_name" in name) or (kid_name in name):
+            elif ("kid_name" in name) or (kid_name in name) or ("Terra" in name):
                 return "kid"
-            elif ("bro_name" in name) or (bro_name in name):
+            elif ("bro_name" in name) or (bro_name in name) or ("Aeron" in name):
                 return "bro"
             else:
                 return name.lower()

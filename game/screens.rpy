@@ -798,6 +798,7 @@ screen preferences():
 
             hbox:
                 box_wrap True
+                # TODO: Add tooltips explaining these better
 
                 if renpy.variant("pc"):
 

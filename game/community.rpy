@@ -569,7 +569,7 @@ label community3:
                     "Naomi and I helped straighten out the paper animals and moved Oleg a bit farther away from the falling cans."
                     naomi normal "Have you written any poems lately, [his_name]? I do enjoy them."
                     $ latest_poem = word_board.get_poem_as_string(-1)
-                    if (latest_poem and latest_poem.len() > 1):
+                    if (latest_poem and (len(latest_poem) > 1)):
                         him surprised "Oh! Well, here's my latest one."
                         him determined "[latest_poem]"
                         naomi happy "You do get right to the heart of things, don't you? Do you have a favorite poet?"
@@ -1113,7 +1113,7 @@ label community7:
             him_c "Yeah, I figured."
         elif (pstyle == "authoritative"):
             thuc_c "Well, at least they got back to me."
-            ret_c "Because each colonists has different needs and skills, their compensation is also different. Unfortunately, we are not able to modify these contracts once they are signed."
+            ret_c "Because each colonist has different needs and skills, their compensation is also different. Unfortunately, we are not able to modify these contracts once they are signed."
             him_c "Yeah, I figured."
         elif (pstyle == "permissive"):
             thuc_c "I guess sometimes it pays to be the squeaky wheel!"
@@ -1551,8 +1551,8 @@ label community10:
     her surprised "I wonder what they wanted to talk about..."
     him surprised "Maybe they're just being friendly?"
     scene farm_exterior flip with fade
-    show natalia normal at midright
-    show martin normal at right # TODO: show Perón's kids? use OPS1 kid sprites?
+    show natalia happy at midright
+    show martin happy at right # TODO: show Perón's kids? use OPS1 kid sprites?
     with dissolve
     show him normal at midleft
     show her normal at quarterleft
@@ -1567,15 +1567,13 @@ label community10:
     hide kid
     with moveoutright
     show bro surprised at center,baby_pos with move
-    martin "You both know about my skin cancer, right?"
-    her concerned "I assure you that doctor-patient confidentiality is important to me and I would never discuss your health problems without your consent!"
+    him concerned "So, how have you been lately?"
     show bro happy with dissolve
-    martin happy "I know! You are not the only one who knows, however."
-    natalia normal "The more people who know about your disease, the more people who can help us!"
     if (asked_only_medicine):
-        martin normal "I can hang on until the medicine arrives, but we're still thinking ahead."
+        martin normal "Well, I'm not dead yet. I can hang on until the medicine arrives, but we're still thinking ahead."
     else:
-        martin normal "I have a few more months to live, but I'm already slowing down."
+        martin normal "I'm not dead yet, but..."
+    natalia angry "We get rid of one cancer spot, and then another pops up somewhere else. And the side effects of the drugs are just barely better than the symptoms!"
     martin angry "My children are old enough to take care of the farm, but I'm not sure if it's a good idea."
     natalia happy "They aren't as passionate about the farm as you are."
     show bro nervous with dissolve
