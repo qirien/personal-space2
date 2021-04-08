@@ -347,6 +347,7 @@ init -100:
                 "Chez Dad": {"desc":"Ate Alien Escargot", "file":None}, 
                 "Family Beeswax": {"desc":"Got Bees", "file":None}, 
                 "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":None},
+                "Super Farmer": {"desc":"Unlocked all crops", "file":None},
             # Achievements for Endings
                 "Bring Back My Baby": {"desc":"Ending #1", "file":None},
                 "Proving Herself": {"desc":"Ending #2", "file":None},
@@ -382,6 +383,7 @@ init -100:
         "Chez Dad", # ate escargot
         "Family Beeswax", # got bees
         "Lousy Haircut", # shaved your head to get rid of lice
+        "Super Farmer",
         # Achievements for each ending
         "Bring Back My Baby", "Proving Herself", "Forever My Little Girl",  "The Stars are Bright", 
         # Achievements for each parenting style

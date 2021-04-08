@@ -59,7 +59,6 @@ init python:
                 # TODO: Set difficulty level? Remove completely?  Add in New Game+?
                 # still runaway pests on perennials...
                 if USE_PESTS:
-                    current_pests = self.health[i][Field.PEST_LEVEL_INDEX]
                     #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
                     # Decrease yield based on randomness and number of times crop has been in that spot lately.
                     # Set pest level of field after crops.

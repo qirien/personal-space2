@@ -4532,7 +4532,7 @@ label community18:
             pete normal "I won't forget this."
             if (not mavericks_strong("moderate")): #5
                 him determined "You need to compensate the miners and colonists for the losses they incurred."
-                pete angry "You need to stop acting like a narcissistic viper."
+                pete angry "You need to stop acting like a selfish, stuck-up snake. This could have happened to anyone."
             scene stars with fade
             "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
     return
@@ -5163,9 +5163,9 @@ label community21:
                     him pout "If you came to my farm and picked my tomatoes I would say the same thing."
                     him "It's only fair for us to compensate him for his work."
                     zaina "So how much do you want to pay for the fish your family ate?"
-                    #TODO affect credit numbers
-                    him "I don't know, 10 credits? We'll think of something."
-                    zaina "I'll pitch in 10 credits then."
+                    $ modify_credits(-50)
+                    him "I don't know, 50 credits?"
+                    zaina "I'll pitch in 50 credits, too."
                 "absurd.":
                     him angry "There weren't any fences or signs posted."
                     him "How could he expect us to know about his fish farm?"
@@ -5203,6 +5203,7 @@ label community21:
     with moveoutright
     stop sound fadeout 1.0
     #TODO: Does this event need a choice?
+    # Maybe you get to choose who you hang out with at one point and that increases your faction rep with them?
     return
 
 ################################################################################
@@ -5769,7 +5770,7 @@ label community23:
     him determined "How much money are we talking about here?"
     if community_22_mining_stopped:
         # you are never the liaison in this option, since you lose liaisonship in community 22 if you choose to stop mining
-        kid explaining "50 credits for each shell." #TODO: make this number a fairly high amount, but not so high that it seems ridiculous at first
+        kid explaining "50 credits for each shell." 
         him doubt "Really? That seems strange."
         kid shifty "That's what Anya told me."
         him determined "Let me ask Brennan if that's right."
@@ -6672,6 +6673,7 @@ label community27:
     "It had way more than ten tentacles and was a little smaller than our rowboat." #this line is optional--if Clarissa wants to draw it. They are not humanoid. DO THEY HAVE SHELLS is the important question
     #the jellyperson could have up to four shells, connects easily with jellystars and jellysquids for a modular body. Maybe it's just a bunch of jellysquids stuck together in the middle, but they are bigger than normal
     #jellyperson controls their own luminesence
+    # TODO: jellyfish drawing/CG? Or just some sprites?
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
@@ -6810,7 +6812,6 @@ label call_to_squid:
             "I felt like I had done everything I could. I made arrangements for my farm for the weekend and headed back to the ocean."
             if (is_attached()):
                 "[kid_name] really wanted to come, too."
-            #TODO: kid can come or not based on parenting style?
             scene rowboat with fade
             show him concerned at midleft
             if (is_attached()):
@@ -7171,7 +7172,7 @@ label community28:
         show brennan concerned at left
         with dissolve
         "She also invited me and [her_name] to a meeting that night to discuss Mayor Pavel Grayson's future."
-        sara sad "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." #TODO: check last three events to see if Pavel is in them
+        sara sad "Thank you all for coming. Pavel has been experiencing early signs of dementia for a while now. Recently his memory and sense of direction has become worse." 
         sara sad "Pavel has requested that he be allowed to end his own life before his cognitive abilities decline too much more. He agreed on a threshold with [her_name]."
         sara normal "He wrote down his wishes and signed it, and I witnessed this. He was oriented to time, place, and circumstance at the time."
         sara sad "[her_name] has agreed to do weekly assessments and determine Pavel's cognitive abilities."
@@ -7351,9 +7352,11 @@ label no_euthanasia:
     show pavel sad at quarterright, flip
     show her determined coat at center    
     with dissolve
+    play sound "sfx/heartbeats.ogg"
     "[her_name] quickly injected him with adrenaline."
     "She treated him the rest of the day."
     "We pitched in to help watch him around the clock."
+    stop sound fadeout 1.0
     show him concerned at quarterleft with moveinleft
     pavel sad "I'm so sorry... I really didn't want to make life harder, and here I am, just making things worse."
     him sad "I'm just glad you're okay now."
@@ -7473,6 +7476,7 @@ label community29:
         show him concerned at midleft
         with moveinleft
         show her determined coat at center with moveinleft
+        play sound "sfx/heartbeats.ogg"
         "I followed them in case I could help [her_name]. She was working so quickly that I was worried she would accidentally poke me with a needle."
         her angry coat "I'm not sure if she'll make it! Get Julia and Van so they can help me."
         scene cabins with fade
@@ -7486,6 +7490,7 @@ label community29:
         show her annoyed coat at center
         show helen sad at midright
         with dissolve
+        play sound "sfx/heartbeats.ogg"
         "By the time they arrived, Helen had delivered the baby, but it was stillborn."
         "[her_name] was still working furiously."
         show julia angry at center
@@ -7495,6 +7500,7 @@ label community29:
         him surprised "Why?"
         her angry coat "He has O- blood and we're all out! We need to do a blood transfusion if we want Helen to live."
         him annoyed "Okay, okay!"
+        stop sound fadeout 1.0
         hide him
         hide julia
         with moveoutleft
@@ -7513,15 +7519,18 @@ label community29:
         show him normal at left
         show ilian normal at quarterleft
         with moveinleft
+        play sound "sfx/heartbeats.ogg"
         "As soon as we arrived, [her_name] got the tubes ready for the blood transfusion."
         show her annoyed coat at midleft with move
         her angry coat "Helen, stay with us for a little longer!"
+        play sound "sfx/heartbeats-slow.ogg"
         pete normal "Helen, baby, hang in there! You gotta save her, doc!"
         show her annoyed coat at center with move
         her annoyed coat "I'm working as quickly as I can!"
-        "We heard the heart rate monitor slowing, and then it stopped." #TODO: heart monitor sound? for every time they're in the hospital in this event?
+        "We heard the heart rate monitor slowing, and then it stopped." 
         "[her_name] tried to resucitate Helen for a long time, but was not successful."
         her cry coat "We were too late. I'm so sorry Pete."
+        stop sound fadeout 1.0
         show pete angry at squatting with move
         $ helen_dead = True
         "He didn't say anything, just turned away from us and collapsed next to her bed. He stayed with her body until [her_name] locked the hospital for the day."
@@ -7566,15 +7575,17 @@ label community29:
         show her nervous coat at midleft
         "I didn't hear from [her_name] until she got back the next evening."
         show her nervous coat at midright with move
-        "She gave me a big hug."
+        "She practically knocked me over with a desperate hug. I stroked her hair for a few minutes until she was calm enough to talk."
         show her nervous coat at center with move
-        him content "Welcome back! How'd it go?"
+        him surprised "How'd it go?"
         her cry coat "At the crack of dawn Pete told me to leave and that he wasn't going to pay anything to a bunch of murderers."
-        him determined "Huh."
+        him sad "Oh man..."
         her nervous coat "He followed me about halfway back... just glaring at me."
         her sad coat "I was afraid he was going to attack me, but I think he just wanted to make sure I was really leaving."
+        him pout "I don't think Pete would actually attack you... but I'm glad you're home safe."
+        her surprised coat "Yeah... probably not... but I've never seen him like that."
         him pout "What are you going to do about him not paying?"
-        her nervous coat "I guess I won't give him hospital services until he makes an effort to pay. It's more the principle of the matter now."
+        her nervous coat "I guess I'll treat him if it's an emergency, but otherwise I won't see him unless he makes an effort to pay something. It's more the principle of the matter now."
         him sad "Yeah, it's not like you can actually buy more hospital supplies with the credits."
         her sad coat "Exactly."
         jump credits29
@@ -7648,11 +7659,13 @@ label community29:
         show her determined coat at center
         show him determined at quarterleft
         with dissolve
+        play sound "sfx/heartbeats.ogg"
         "Helen delivered her stillborn baby, but started hemorrhaging and had to have a blood transfusion."
         "Luckily [her_name] had already extracted some O- blood from Ilian."
         $ bios.addToBio("Helen", "She survived a difficult delivery of her stillborn baby, Sage.")
-        her blush coat "Helen, I'm so glad that you surivived! There were a few times where I wasn't sure if you would make it."
-        helen normal "I'm glad I survived, too."
+        stop sound fadeout 1.0
+        her blush coat "Helen, I'm so glad that you survived! There were a few times where I wasn't sure if you would make it."
+        helen normal "I'm glad I survived, too."        
         pete happy "Me three."
         her concerned coat "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
         pete normal "I think I have enough credits to pay you."
@@ -7939,8 +7952,7 @@ label community30:
                     thuc normal "Well, they're actually going back to Earth on the shuttle, so we're trying to explain that he's dead."
                     him surprised "Oh, right, that's happening next month! Is Brennan going back?"
                     thuc sad "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
-                    # TODO: mention Anya
-                    him doubt "Except for Joel's..."
+                    him doubt "Except for Joel's... And maybe Anya's, but I don't think that's relevant right now."
                     thuc happy "Good point!"
                     him determined "So what were you doing last night? I'm just trying to rule people out right now."
                     thuc sad "I am a pretty suspicious person."

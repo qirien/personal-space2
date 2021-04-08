@@ -164,6 +164,7 @@ label start:
     default farm_size = 12
     if (persistent.times_beaten):
         $ farm_size = 12 + (persistent.times_beaten*2)
+        $ USE_PESTS = True
     $ farm = Field(farm_size, FARM_SIZE_MAXIMUM)
     default selected_crop_index = 0
     default terra_overwork_count = 0
@@ -272,9 +273,13 @@ label start:
     # TODO: Take this out when beta testing is over
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
-    "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
-    if (not mp.jack_name):
-        "If you haven't played Our Personal Space 1, it's available for free at http://www.metasepiagames.com and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+    if (persistent.times_beaten):
+        "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size." # TODO: add sunflower seeds/nuts/eggs?
+        "Crops will now start to develop pests if you plant the same crop too many times in a row. Pests will reduce your yield. You can get rid of pests with goats, bees, or leaving the square empty."
+    else:
+        "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
+        if (not mp.jack_name):
+            "If you haven't played Our Personal Space 1, it's available for free at http://www.metasepiagames.com and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve
