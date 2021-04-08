@@ -43,7 +43,6 @@ label community1:
     $ tell_Ngyuens = False
     $ tell_Perons = False
     $ bios.activate("Thuc")
-    $ bios.activate("Oleg")
     $ bios.activate("Sara")
     $ bios.activate("Ilian")
 
@@ -474,6 +473,7 @@ label community3:
             return
 
         "Go to the lecture with [her_name]":
+            $ colonists += 1
             $ marriage_strength += 1
             him normal "We should go on a date together!"
             her flirting "It's not quite 'dinner-and-a-movie' but it'll be fun to go together. I bet Sister Naomi would watch [kid_name]"
@@ -532,6 +532,7 @@ label community3:
             lily angry "I hope so."
 
         "Watch [kid_name]":
+            $ colonists += 1
             him normal "You go; I'll take care of [kid_name]."
             her surprised "You sure?"
             him happy "Yeah, you need to get out more!"
@@ -628,6 +629,9 @@ label community4:
     show thuc normal at midright
     show lily normal at midleft
     with dissolve
+    $ bios.activate("Lily")
+    $ bios.activate("Oleg")
+    $ bios.activate("Naomi")
     thuc "Who has time for that extra work? It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
     him happy "At least you know your own personality well, although I think that you don't give yourself enough credit."
@@ -685,7 +689,6 @@ label community4:
         "I was nominated, but Sara was elected as the new representative."
     else:
         "Sara is elected as the new representative."
-        #TODO: should a leader of the militia be elected here as well?
 
     if (is_liaison):
         $ bios.addToBio(his_name, "I'm also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
@@ -714,14 +717,13 @@ label community5:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
         $ pstyle = get_parenting_style()
-        # TODO: should this be more telegram style and less texting style?
         nvl clear
         if (pstyle== "authoritative"):
-            ret_c "50 new miner neighbors are coming in 4 Earth years. Plz feed them when they come."
+            ret_c "50 new miner neighbors are coming in 4 Earth years. Be prepared to support them with food."
         elif(pstyle == "authoritarian"):
-            ret_c "50 miners are arriving in 4 Earth years. Prepare 2 feed them, and create $ so that they can pay u 4 what they eat."
+            ret_c "50 miners are arriving in 4 Earth years. Prepare to feed them. Develop monetary system so they can pay you."
         elif(pstyle == "permissive"):
-            ret_c "We're sending fifty miners ur way, so if u could feed them, that would be gr8. They'll have $."
+            ret_c "We're sending 50 miners your way, so if you could feed them, that would be great. They'll have money..."
         else:
             ret_c "50 new miner neighbors are coming in 4 Earth years. Feed them."
         nvl clear
@@ -751,7 +753,7 @@ label community5:
                 $ rationing = True
                 jump ration_harvest
             "Don't set aside food for the miners. They can hunt and forage. Feeding miners wasn't in our contract.":
-                $ pass #rationale: this has pros and cons for mavericks, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
+                #rationale: this has pros and cons for mavericks, so I don't actually want to subtract from their score. It's easier to simply not add to the miner variable.
                 $ miners -= 1
                 jump no_formal_rationing
     else:
@@ -775,7 +777,6 @@ label community5:
         him pout "I'll talk to them." #this could also be a choice... how neglectful do you want to be
         $ rationing = True
         jump talk_about_food_storage
-        # TODO: when/where are crops preserved?  Does Ilian have machines/employees that do this? Or are farmers supposed to do this before taking to the storehouse?
     return
 
     label whole_harvest_required:
@@ -920,6 +921,7 @@ label community6:
     show helen normal at quarterright
     show kevin normal at quarterleft
     with dissolve
+    $ bios.activate("Helen")
     thuc happy "I brought 'Maximal Conquest' tonight, are you guys up for it?"
     kevin "I have read the rules and watched the tutorial. I am prepared to join you."
     him pout "Yes, and I promise to start in the Northern Hemisphere this time."
@@ -973,12 +975,12 @@ label community6:
         $ require_whole_harvest = False
         thuc normal "Speaking of food, Ilian just sent out a message that we don't have to bring in all the surplus anymore."
         thuc "He has enough data, and he sent out a table of who should bring in how much."
-        thuc "It ended up being about twenty percent for most farmers." #TODO: is this a reasonable amount?
+        thuc "It ended up being about thirty percent for most farmers." 
         pete normal "I deliver directly to my customers, so I've just been sending Ilian my stats."
         thuc sad "I guess it doesn't really make sense to bring in a calf to the storehouse."
         pete happy "Nope."
         him happy "It was a little more work to bring in all my crops, but I think I had a better variety of fresh food that way."
-        thuc normal "And in comparison, twenty percent of our crops seems pretty easy to bring in!"
+        thuc normal "And in comparison, thirty percent of our crops seems pretty easy to bring in!"
 
     return
 
@@ -1007,14 +1009,12 @@ label community7:
 
 
     # HANGOUT_EVENT
-    # TODO: Add a choice about whom you sit with
-
     show kevin normal at midright with moveinright
     show him normal at midleft with moveinleft
     kevin sad "I'm surprised that they're offering incentives. The thrill of discovery and scientific progress should be sufficient to motivate people to learn."
     him happy "Well, those are nice, but food and money are useful, too! I know my parents are enjoying the money RET sent them to pay for me coming here."
     kevin normal "Why would RET pay your parents?"
-    him normal "Well, they gave me a bunch of money that I used for their retirement fund."
+    him normal "Well, they gave me a bunch of money that I used for their retirement."
     kevin sad "They made me no such offer."
     show him at center with move
     show thuc normal at midleft
@@ -1158,6 +1158,8 @@ label community8:
                     "I told Sara what everyone wanted, and she wrote the report."
                     return
         scene farm_exterior flip with fade
+        $ bios.activate("Natalia")
+        $ bios.activate("Martín")
         "Who will I talk to about what Earth luxuries they want?"
         menu:
             "Natalia" if not talked_to_Natalia:
@@ -1279,6 +1281,9 @@ label community8:
 ################################################################################
 
 label community9:
+    $ bios.activate("Pete")
+    $ bios.activate("Helen")
+    $ bios.activate("Travis")
     scene pond with fade
     show pete normal at midright
     show him normal at midleft
@@ -1294,7 +1299,7 @@ label community9:
     him concerned "Yeah, that was fun, we should do that again."
     pete "I'm going hunting this weekend. Come along if you want."
     him surprised "Really? Where?"
-    pete happy "I'm gonna hike out a couple klicks, spend the night, then see if I can get one of those big grass crabs."
+    pete happy "I'm gonna hike out a couple klicks, spend the night, then see if I can bag one of those big grass crabs."
     him pout "Overnight?"
     pete normal "Yeah, the grass crabs avoid the towns and farms - they like wide grassy areas."
     "What do I tell Pete?"
@@ -1380,7 +1385,6 @@ label community9:
             "I didn't go to quite as great of lengths as Pete, but I did tie some branches to my hat and smudge soot on my clothes."
             pete "They'll never see us coming!"
             stop sound fadeout 1.0
-            # TODO: can we show this?
 
             scene plain with fade
             show night_overlay
@@ -1434,7 +1438,6 @@ label community9:
             "Suddenly, the animal pinched Pete's leg with its giant front claw!"
             show pete angry at squatting with move
             pete angry "Yeeeowch!"
-            # TODO: Should this be a timed menu?
             menu:
                 "Tackle the crab.":
                     $ mavericks += 1
@@ -1546,13 +1549,14 @@ label community10:
     with dissolve
     her normal "I'm leaving for work now. Goodbye honey!"
     him happy "Bye, [her_name]. Don't forget; we're having dinner with the Peróns tonight."
-    show bro happy with dissolve
+    show bro normal with dissolve
     kid happy "Yay, I get to play with Mateo!"
     her surprised "I wonder what they wanted to talk about..."
     him surprised "Maybe they're just being friendly?"
     scene farm_exterior flip with fade
     show natalia happy at midright
-    show martin happy at right # TODO: show Perón's kids? use OPS1 kid sprites?
+    show martin happy at right
+    show boy green at quarterright
     with dissolve
     show him normal at midleft
     show her normal at quarterleft
@@ -1562,9 +1566,9 @@ label community10:
     natalia happy "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
     "We ate outside, where the Peróns had built two picnic benches, with some crabbird shells modified to be stools."
-    #TODO: If we have sprites for any of their kids, I can insert them into the conversation.
     "After the meal, [kid_name] ran off to play with the other kids and Natalia brought out some toys for [bro_name]."
     hide kid
+    hide boy
     with moveoutright
     show bro surprised at center,baby_pos with move
     him concerned "So, how have you been lately?"
@@ -2043,7 +2047,6 @@ label community11:
             "We hoped they could learn what they needed to know from Natalia and their neighbors."
     return
 
-# TODO: community editing ends here
 ################################################################################
 #
 # COMMUNITY 12: missing cow
@@ -2762,7 +2765,7 @@ label community13:
             "Yeah, we should both go to the meeting.":
                 him pout "It's my duty to know what's going on so I can represent the interests of the colonists to RET."
                 him happy "Plus this way the kids can see what local politics are like in action!"
-                her annoyed "They're just going to run around and look for other children to play with, and then go to bed late and be cranky all day tomorrow."
+                her annoyed "They're just going to run around screaming with other kids, and then go to bed late and be cranky all day tomorrow."
                 him normal "Probably."
                 him pout "Let's get ready to go everyone!"
                 kid happy "I hope Oleg is there!"
@@ -2775,24 +2778,25 @@ label community13:
                 hide sara
                 show lily normal at midleft with dissolve
                 lily angry "Heavy metals leaked from the tailings dam into the river we use for irrigation and drinking water."
-                show pavel sad at midright
-                show brennan normal at center
-                show her normal at left
+                show pavel sad at midright, flip
+                show brennan surprised at center
+                show her normal coat at left
                 with dissolve
                 pavel normal "Were you aware of this leak, Brennan?"
                 brennan explaining "We discovered the leak yesterday afternoon, but since Kevin calculated that the contamination would be minimal, we took a wait-and-see approach."
                 lily normal "That is irresponsible. Any water contamination should be reported immediately."
                 brennan angry "To whom? We don't exactly have a utilities commission."
                 lily angry "To me! I already do routine testing on our water."
-                her annoyed "I would like to be notified as well, since it could impact the health of colonists and miners."
+                her annoyed coat "I would like to be notified as well, since it could impact the health of colonists and miners."
                 pavel sad "I would also like to know of any mining activity that could impact colonists."
                 brennan sad "In the future I will notify you all."
                 brennan concerned "Now that we have that out of the way, Kevin, could you tell us a little more about why this happened and how we can prevent it in the future?"
                 hide lily
                 hide pavel
                 hide her
-                show brennan at midright with move
-                show kevin normal at midleft with moveinleft
+                hide brennan
+                with dissolve
+                show kevin normal at center with moveinleft
                 kevin normal "Yes, I would be happy to." #see http://www.itv.org/en/research-line/technology-of-dams-and-tailings-disposal/ for info on how tailings dams are made
                 kevin sad "Several unpredictable factors worked in tandem and resulted in a breach to part of the tailings dam."
                 kevin normal "The crest of the dam was constructed for foot traffic, but not vehicle traffic, but at some point a vehicle crossed the dam, damaging its structure."
@@ -2800,18 +2804,20 @@ label community13:
                 kevin normal "I also did not anticipate that the nearby resistive rocks would cause extra solar damage to our electronic warning system." # https://www.nationalgeographic.com/science/2019/03/solar-storms-worse-damage-if-you-live-near-certain-rocks-geology/
                 kevin normal "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
                 kevin sad "I have been able to stop the leak for now, but I am still researching materials for the repair."
-                brennan normal "Thank you Kevin. When do you think the repair will be done?"
+                show kevin at midleft with move
+                show brennan normal at midright with dissolve
+                brennan surprised "Thank you Kevin. When do you think the repair will be done?"
                 kevin normal "Certainly by the end of the week."
                 hide kevin
-                show brennan normal at center
+                show him determined at center                
+                show brennan surprised at midright
                 show lily normal at midleft
-                show her normal at left
-                show him determined at midright
+                show her determined coat at left
                 with dissolve
                 lily normal "I am working on a polymer that can break down the metal contaminants. I will need to synthesize some chemicals, and it will take at least two days to prepare the necessary amounts."
-                her normal "I can assist Dr. Lily with the synthesis. Our water only contains trace amounts of metals, and I believe that we can still use it for irrigation water."
+                her determined coat "I can assist Dr. Lily with the synthesis. Our water only contains trace amounts of metals, and I believe that we can still use it for irrigation water."
                 lily angry "I completely disagree. We should not knowingly ingest poison."
-                her annoyed "We don't have the capacity to distill enough water for crops. If we don't use the river water, we'll starve because we won't have enough food."
+                her annoyed coat "We don't have the capacity to distill enough water for crops. If we don't use the river water, we'll starve because we won't have enough food."
                 "What do I think we should do?"
                 menu:
                     "Find an alternate water source.":
@@ -2827,10 +2833,15 @@ label community13:
                         him pout "Let's give everyone all the information we have and let them decide for themselves."
                         lily normal "If there is no way to get pure water, colonists will default to using the river water like they always have."
                         lily angry "Is that really a decision?"
-                        her normal "Let's just tell them it's fine to use the river water then."
+                        her determined coat "Let's just tell them it's fine to use the river water then."
 
                 label diaper_interruption:
-                        show kid concerned at right with moveinright
+                        show kid concerned at quarterright
+                        show bro concerned at right
+                        with moveinright
+                        show him surprised at midright
+                        show brennan at center
+                        with move
                         kid annoyed "Dad, [bro_name] has a stinky diaper."
                         him determined "Thanks for telling me."
                         kid sad "I think it's leaking..."
@@ -2841,33 +2852,38 @@ label community13:
                                 "I looked at [her_name]. She was reading something on her tablet intently."
                                 him concerned "[her_name], could you change [bro_name]'s diaper?"
                                 if (has_strong_marriage()):
-                                    her concerned "Could you do it please? This discussion is really important to me."
+                                    her concerned coat "Could you do it please? This discussion is really important to me."
                                     him normal "I'm on it."
                                 else:
-                                    her angry "No, I need to make sure farmers can access irrigation water."
+                                    her angry coat "No, I need to make sure farmers can access irrigation water."
                                     him annoyed "Okay, sheesh."
-                        hide lily
-                        hide brennan
-                        hide her
+                        hide him
+                        hide kid
+                        hide bro
+                        with moveoutright
                         "I left the discussion and changed [bro_name]'s diaper."
-                        #bro sprites?
                         "When I got back, everyone was discussing the best emergency response system."
-                        show her normal at left with dissolve
-                        her normal "We decided to let farmers irrigate with river water, and Zaina will help Dr. Lily and I synthesize the polymer, hopefully by tomorrow."
+                        scene community_center with fade
+                        show her determined coat at midleft with dissolve
+                        show him concerned at midright
+                        show bro normal at quarterright
+                        with moveinright
+                        her normal coat "We decided to let farmers irrigate with river water, and Zaina will help Dr. Lily and I synthesize the polymer, hopefully by tomorrow."
                         if (has_strong_marriage()):
-                            her concerned "Dr. Lily is anxious to continue her work, so I've agreed to go help her tonight."
+                            her concerned coat "Dr. Lily is anxious to continue her work, so I've agreed to go help her tonight."
                             him concerned "I kind of volunteered you. Are you up for it? You could be up all night."
-                            her normal "I know. This is a compromise Dr. Lily and I are both satisfied with. Can you take the kids home?"
+                            her normal coat "I know. This is a compromise Dr. Lily and I are both satisfied with. Can you take the kids home?"
                             him normal "Sure."
                         else:
-                            her annoyed "Dr. Lily enlisted me to help her tonight."
+                            her annoyed coat "Dr. Lily enlisted me to help her tonight."
                             him concerned "Are you up for that?"
-                            her annoyed "I'm not sure I really have a choice... she said that you told her I could help."
-                            her normal "I guess I can stay and help her and you can put the kids to bed."
+                            her nervous coat "I'm not sure I really have a choice... she said that you told her I could help."
+                            her determined coat "I guess I can stay and help her and you can put the kids to bed."
                             him annoyed "Fine."
                         scene farm_interior with fade
                         "I took [kid_name] and [bro_name] home and put them to bed. [bro_name] took a long time to fall asleep, but it gave me some time to research heavy metal contamination in crops."
-                        "The fruits and vegetables would be fine, but if we ate chickens who ate the contaminated food, it could be a problem." #TODO: follow-up somewhere?
+                        "The fruits and vegetables would be fine, but if we ate chickens who ate the contaminated food, it could be a problem."
+                        "[her_name] and Dr. Lily said they would test them later."
     else:
         him normal "Good luck getting everyone to agree to something."
         hide her with dissolve
@@ -3116,18 +3132,20 @@ label community15:
     pavel sad "She likes to say that even though we don't have modern plumbing, we can be civilized by loving each other."
     show sara sad at midright with moveinright
     "Sara stepped out. Tears were streaming down her face."
-    "Should I do or say something?"
     menu:
+        "What should I do?"
         #this menu might give players a false sense that you have a relationship meter with Sara
-        # TODO: Maybe Helen is here too and you have to decide whom to comfort?
-        "Pur your arm around her shoulder.":
-            show him concerned at center
-            "I put my arm around her shoulder."
+        "Talk to Pavel":
+            him concerned "I'm sorry..."
+            pavel normal "Oh, [his_name]..."
+            pavel sad "What am I going to do without her?"
+            "I didn't have an answer to that, but I sat next to him and put my arm around his shoulders for awhile."
+            "He had always seemed like such a solid, happy guy... but when I hugged him now his body seemed wobbly and shaky."            
+            $ colonists += 1
+        "Talk to Sara":
+            him concerned "I'm sorry..."
             sara sad "It's hard to see her like this. But I'm glad I said goodbye."
-            $ colonists += 2
-        "Say you're sorry.":
-            him concerned "I'm sorry for your loss."
-            sara sad "It's our loss, not just mine."
+            "We hugged and she left, wiping away tears."
             $ colonists += 1
         "Say nothing.":
             "Sara walked away quietly sniffing."
@@ -3250,12 +3268,14 @@ label community15:
     menu:
         "Should I participate in the funeral?"
         "Prepare a poem":
+            $ colonists += 1
             $ c15_funeral = "poem"
             "The best way to keep it short would be to make a poem. I'd better make it good, though..."
             $ word_board.set_wordpack(basic_words, talaam_words, separation_words)
             call make_poem
             $ c15_funeral_poem = word_board.get_poem_as_string(-1)
         "Say a few words":
+            $ colonists += 1
             $ c15_funeral = "speak"
         "Don't speak at the funeral.":
             him pout "I really think you should speak instead."
@@ -3305,7 +3325,7 @@ label community15:
             "Remember her by caring for each other.":
                 him "Sister Naomi wouldn't want us to spend a bunch of time talking about her. In fact, she'd probably be embarassed."
                 him concerned "She'd want us to remember her by doing the kinds of things she did -- taking time to enjoy the people around us and helping each other."
-                him content "So let's remember her every day, and let that memory propel us forward to do good to others."
+                him content "So let's remember her often, and let that memory propel us forward to do good to others."
             "Life is hard; then we die.":
                 him "Death is a normal part of life."
                 him determined "That doesn't mean we have to like it, but we do need to accept it, and move on."
@@ -3443,7 +3463,7 @@ label community16:
             pete normal "We really miss some of the tools like shovels and hammers. We've tried to make our own, but it's not the same."
             $ talked_family_c16 = True
             jump c16_convo
-        "How are Thomas and Joanna?" if ((not asked_only_medicine) and (not talked_TJ_c16)): #TODO?: this or the next menu option is the problem
+        "How are Thomas and Joanna?" if ((not asked_only_medicine) and (not talked_TJ_c16)): 
             him determined "Are Thomas and Joanna enjoying it out there?"
             pete normal "They're not as into camping as I am. Honestly they seem pretty miserable sometimes."
             pete happy "I know they come back to visit family just about every week though."
@@ -4291,12 +4311,19 @@ label community17:
             him happy "And it looks just like him!"
             her concerned "I don't know; his nose looks a little clownish, if you ask me."
             hide helen with moveoutright
-        show thuc normal at quarterright with moveinleft
-        # TODO: Do we have any other kids? Van?
+        show thuc normal at right
+        show boy red at right
+        with moveinleft        
         "Thuc and his kids performed a skit. Each kid talked about how they loved to throw pebbles in the river."
-        "Then Gardenia came in all wet, and when asked what was wrong, she yelled, 'My name is Pebbles!'"
+        show girl sad at quarterright with moveinleft
+        "Then Gardenia came in all wet, and when asked what was wrong, she yelled:"
+        show girl normal with dissolve
+        "Gardenia" "My name is Pebbles!"
         kid laugh "That was the best one so far!"
-        hide thuc with moveoutright
+        hide thuc
+        hide boy
+        hide girl
+        with moveoutright
         "Last, Kevin came on and told some jokes."
         show kevin normal at quarterright with moveinright
         show him normal
@@ -4311,8 +4338,8 @@ label community17:
         him happy "Because if you average the first two, you get a hit, right?"
         kid surprised "Oh... right."
         her concerned "Because in statistics you do a lot of averages...?"
+        bro concerned "What's averages?"
         kid happy "Ohhh, I get it!  Ha ha ha!"
-        bro concerned "I don't get it."
 
 label c17_after_activities:
     stop music fadeout 5.0
@@ -4322,6 +4349,9 @@ label c17_after_activities:
     "The flames' warmth warded off the damp chill growing in the night air."
     "The kids scampered through the night, looking for more sticks to add to the flames, but I just watched the fire flickering."
     "The flames devoured everything, turning it to warmth and light."
+    show him normal at right, sitting
+    show her normal at midright, sitting
+    with dissolve
     her concerned "It's just like us."
     him surprised "What is?"
     her surprised "We are like the fire, consuming food constantly, turning it into babies and laughter and farms and... everything!"
@@ -4385,10 +4415,10 @@ label community18:
     natalia_c "nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
     nvl clear
+
     scene fields with fade
     show him angry at left with moveinleft
     "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
-    # TODO: there's a flicker back to the texting background here. not sure why. A: I don't see this. Let me know if it's still a problem.
     him "GO HOME COWS! KEEP MOVING!"
     show him yell at center with move
     him yell "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
@@ -4497,12 +4527,12 @@ label community18:
             him sad "Keep better track of your cows, Pete."
             pete normal "Can I use Lettie to herd them?"
             him concerned "No, I don't let just anyone ride her."
-            pete "You're not gonna help one bit?"
+            pete angry "You're not gonna help one bit?"
             him annoyed "No, I'm not."
-            pete "I won't forget this."
+            pete normal "I won't forget this."
             if (not mavericks_strong("moderate")): #5
                 him determined "You need to compensate the miners and colonists for the losses they incurred."
-                pete normal "You need to stop being a jerk."
+                pete angry "You need to stop acting like a narcissistic viper."
             scene stars with fade
             "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
     return
@@ -4988,7 +5018,6 @@ label community21:
 
     "That evening, Pete and his family stopped by."
     if mavericks_strong(): #9 #TODO: calibrate this number and others. don't make this event too easy to trigger. #maxiumum is 16
-        #TODO: maybe Travis should be in this event too?
         pete happy "Hey it's good to see you guys!"
         pete normal "I have a two-way radio now. It turns out communication is good for business."
         him content "Really? I thought you were all into a technology-free lifestyle."

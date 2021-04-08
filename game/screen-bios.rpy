@@ -133,6 +133,8 @@ init python:
                 return "kid"
             elif ("bro_name" in name) or (bro_name in name) or ("Aeron" in name):
                 return "bro"
+            elif ("Martín" in name):
+                return "martin"
             else:
                 return name.lower()
 

@@ -462,6 +462,7 @@ label work2:
             zaina normal "Okay, good to know."
             $ met_nguyen = True
         "Pete" if (not met_jennings):
+            $ mavericks += 1
             $ bios.activate("Travis")
             $ bios.activate("Pete")
             $ bios.activate("Helen")

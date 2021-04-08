@@ -2783,6 +2783,7 @@ label family8:
     return
 
 label baby_delivery:
+    $ bios.activate("Julia")
     play music audio.tense
     scene bedroom with fade
     show her normal at midright, squatting

@@ -233,7 +233,7 @@ label screenshots:
     scene barn with fade
     show him annoyed at quarterleft
     show kid nervous at quarterright
-    show boy sad at right
+    show oleg sad at right
     menu:
         "[kid_name] hurt her friend's feelings."
         "A)  Make her apologize":
