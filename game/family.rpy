@@ -8645,60 +8645,33 @@ label family30:
     "Finally, I went and sat outside under the moons and stars."
     scene moons with fade
     "Every inch of ground was saturated with memories."
-    # TODO: Make polaroid style photos with these images.
-    #       We might also have CGs to use here.
-    # You can use "p" to take pictures and then pull those screenshots into GIMP and
-    # polaroid them.
-    # Then have them drift down over a black/star background one at a time.
-    scene stars with fade
-    show memory01 at tilted, driftdown
+    show memory01 at tilted, center, driftdown, threefourths_size
     "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
 
-    scene fields with fade
-    show tractor at center
-    show baby_laugh at center, babybackpack_pos
-    show him determined at center
-    with dissolve 
-    "Like the time [kid_name] rode on my back while I drove through that field, and I almost tipped over the tractor because she covered my eyes while I was turning."
-    scene farm_exterior with fade
-    show him happy at midright
-    show toddler_happy at midleft
-    with dissolve
+    show memory02 at tilted, midright, driftdown, threefourths_size
     "I remember her making mud pies in the dirt over there when [her_name] was pregnant with [bro_name]."
-    scene barn with fade
-    show him happy at quarterleft
-    show toddler_shifty at center
-    show oleg normal at midleft
-    show travis normal at midright 
-    with dissolve
+
+    show memory03 at tilted, midleft, driftdown, threefourths_size
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
-    scene fields with fade
-    show him explaining at midright
-    show kid_happy at midleft
-    with dissolve
+    
+    show memory04 at tilted, center, driftdown, threefourths_size
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
-    scene path with fade
-    show tween at midleft
-    show bro_kid_normal at center
-    with dissolve
+
+    show memory05 at tilted, midright, driftdown, threefourths_size
     "I remember her coming up that hill coming home from school with [bro_name]."
-    scene barn with fade
-    show him annoyed at midleft    
-    show goat at center
-    show tween_annoyed at midright
-    with dissolve
+    
+    show memory06 at tilted, midleft, driftdown, threefourths_size
     "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
-    scene plain with fade
-    show him laugh at quarterleft
-    show her laugh coat at midleft
-    show teen_surprised at midright    
+    
+    show memory07 at tilted, center, driftdown, threefourths_size
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
-    scene barn with fade
-    show oleg happy at midleft
-    show teen_flirting at center
+    # scene barn with fade
+    # show oleg happy at midleft
+    # show teen_flirting at center
+    # TODO: Replace when we have an Oleg with hair.
+    show memory08 at tilted, midright, driftdown, threefourths_size
     "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though she had only ever seen it in videos."
 
-    scene moons with fade
     "Could she really leave all this behind?"
     "...could she really leave {b}me{/b} behind?"
     "The grief weighed on me like I was a horse with an unwelcome rider in the saddle."

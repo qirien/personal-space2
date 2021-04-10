@@ -8,7 +8,7 @@ init -100:
     define CHILD_MAX = 15
     define TWEEN_MAX = 22
     define YTEEN_MAX = 25
-    define TRANSITION_YEARS = [0, BABY_MAX+1, TODDLER_MAX+1, CHILD_MAX+1, TWEEN_MAX+1, YTEEN_MAX+1]
+    define TRANSITION_YEARS = [1, BABY_MAX+1, TODDLER_MAX+1, CHILD_MAX+1, TWEEN_MAX+1, YTEEN_MAX+1]
 
     # Talaam Events
     define MINERS_ARRIVE_YEAR = 11
@@ -194,6 +194,9 @@ init -100:
 
     transform smallphoto:
         size (370,350)
+    transform threefourths_size:
+        zoom 0.8
+
     transform tilted:
         choice:
             rotate 0
@@ -201,6 +204,18 @@ init -100:
             rotate -10
         choice:
             rotate 10
+        choice:
+            rotate 5
+        choice:
+            rotate -5
+        choice:
+            rotate -8
+        choice:
+            rotate 8
+        choice:
+            rotate 3
+        choice:
+            rotate -3
 
     transform sitting:
         ypos 0.45 yanchor 0.0
@@ -229,7 +244,7 @@ init -100:
             ease 10.0 yalign 0.8
 
     transform driftdown:
-        xpos 200 ypos 0.0 yanchor 1.0
+        ypos 0.0 yanchor 1.0
         linear 10.0 ypos 1.0 yanchor 0.0
 
 
