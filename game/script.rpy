@@ -164,7 +164,6 @@ label start:
     default farm_size = 12
     if (persistent.times_beaten):
         $ farm_size = 12 + (persistent.times_beaten*2)
-        $ USE_PESTS = True
     $ farm = Field(farm_size, FARM_SIZE_MAXIMUM)
     default selected_crop_index = 0
     default terra_overwork_count = 0
@@ -275,7 +274,6 @@ label start:
 
     if (persistent.times_beaten):
         "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size." # TODO: add sunflower seeds/nuts/eggs?
-        "Crops will now start to develop pests if you plant the same crop too many times in a row. Pests will reduce your yield. You can get rid of pests with goats, bees, or leaving the square empty."
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
@@ -374,13 +372,13 @@ label life_loop:
         # TUTORIALS FOR NEW STUFF
         if (year == MONEY_YEAR):
             "I now earn credits for the crops I choose, after deductions for expenses."
-            # TODO: Add a screenshot with the credits section highlighted
+            scene tutorial-credits with fade
             "This part of the screen shows how much I'll earn and how much my expenses are."
             "Hopefully I can stay out of debt..."
         if (year == KID_WORK_YEAR):
             "[kid_name] is old enough to start helping on the farm."
-            # TODO: Add a screenshot with her work area highlighted
-            "I can choose how much she should work on the farm, which will give more Work to grow crops."
+            scene tutorial-kid-work with fade
+            "I can choose how much she should work on the farm. The more she works, the more total Work we will have for crops on the farm. The more competent she is, the more efficient her work will be."
         $ farm.reset_crops(farm_size)
         $ read_messages = False
         $ read_handbook = False

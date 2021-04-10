@@ -634,7 +634,6 @@ label family2:
                     kid annoyed "Aaa!"
                     him normal "Yeah! We did it!"
                     "I put her on my lap and let her pretend to steer the tractor on the way home."
-                    # TODO: insert CG here?
                     "I was completely exhausted, mentally and physically and psychologically, but I finished the planting I needed to for today."
                     $ achieved("Patience Grandmaster")
                     $ authoritative += 1
@@ -2708,7 +2707,7 @@ label family8:
             with moveoutleft
             scene path with fade
             show sara normal at midleft
-            show her baby happy coat at center
+            show her normal coat at center
             show him normal at midright
             sara normal "Well?"
             him happy "They were all playing happily. They even obeyed the teacher when she called them. I think they'll be fine."
@@ -2745,19 +2744,20 @@ label family8:
                 her angry coat "I'll cry if I want to! Especially if my husband is yelling at me!"
                 him angry "Fine, I'm sorry! I just..."
                 label pregnancy_alone:
-                    her concerned coat "I need us to be on the same side."
-                    her sad coat "I don't want to be alone."
+                    her sad  coat "I need us to be on the same side."
+                    her nervous coat "I don't want to be alone."
                     him determined "Hey. You're not alone. I'll always be by your side."
                     him normal "I'll be on your side, at your side, sideways, right-side-up and upside-down!"
                     show him content at center with move
+                    show her cry coat at center with move
                     "I held her close, stroking her hair, and she embraced me with a need I hadn't felt from her in a long time."
                     "Not the hunger of desire, or loneliness, but of needing someone to share her burdens."
-
+                    show her nervous coat at midleft with move
                     "But I still had a lot of questions. I relived those sleepless, stressful months of when [kid_name] was a baby and wondered how we could do that again."
                     her concerned coat "You're still worried."
                     him normal "So are you."
                     her determined coat "Yes. But I think we can do it."
-                    him determined "If you really want to... then we'll make it work."
+                    him content "If you really want to... then we'll make it work."
             "We can do this!":
                 $ marriage_strength += 1
                 him happy "We can totally do this!"

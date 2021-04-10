@@ -1187,6 +1187,8 @@ label community8:
                 show him normal at midleft
                 show sara normal at midright
                 with dissolve
+                if (not is_liaison):
+                    him surprised "What about you, Sara? Is there anything {b}you{/b} would want from Earth?"
                 sara normal "Oh, I don't know if this is possible, but I would really, really love a bicycle."
                 sara sad "I'm terrible with horses and I hate how they just eat more of our food."
                 sara happy "A bicycle wouldn't get hurt by radiation and can go faster in some situations. And maybe Oleg can ride it when he gets older!"

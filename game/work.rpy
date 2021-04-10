@@ -343,7 +343,6 @@ label work_intro:
     return
 
 label farm_tutorial:
-    # TODO: Update screenshots to illustrate this.
     menu:
         "Would you like to see the Farming Tutorial?"
         "Yes.":
@@ -352,16 +351,19 @@ label farm_tutorial:
                 scene tutorial-mid with dissolve
                 "The middle of the screen shows the farm layout."
                 scene tutorial-right with dissolve
-                "On the right is the current farm's stats."
-                scene tutorial-mid with dissolve
-                "When I click on a farm space, I can choose what crop should go there and see information about each crop."
-                "The background color of each space shows how much nitrogen is in this field. If it's a dark color, there's plenty of nitrogen for crops."
+                "On the right is how many calories the current farm will provide, and how much work it will take."
+                scene tutorial-crop-select with dissolve
+                "When I select a farm space, I can choose what crop should go there and see information about each crop."
+                scene tutorial-red with dissolve   
+                "The background color of each space shows how much nitrogen is in this field."
+                "A red color means there's not enough nitrogen for that crop and I need to pick something else."
+                "If it's a dark color, there's plenty of nitrogen for crops."
+                scene tutorial-light with dissolve
                 "If it's a light color, nitrogen in that field is running low. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
-                scene tutorial-right with dissolve
                 "I need a certain amount of calories, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
-                "Sometimes there's extra things I can only do if I have extra work, so I don't want to try to do too much."
+                "Sometimes there's extra options I can only choose if I have extra work, so I don't want to try to do too much."
         "No.":
             $ pass
     return
