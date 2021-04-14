@@ -293,11 +293,11 @@ label start:
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
     "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
     scene stars with fade
-    show familyphoto1 at smallphoto, left, tilted, baby_pos with moveinright
+    show familyphoto1 at tinyphoto, left, tilted, baby_pos with moveinright
     $ renpy.pause(0.2)
-    show familyphoto2 at smallphoto, center, baby_pos with moveinright
+    show familyphoto2 at tinyphoto, center, baby_pos with moveinright
     $ renpy.pause(0.2)
-    show familyphoto3 at smallphoto, right, tilted, baby_pos with moveinright
+    show familyphoto3 at tinyphoto, right, tilted, baby_pos with moveinright
     "Last, there's me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
     menu name_change_loop:
         "[his_name], [her_name], and [kid_name]... Are those names correct?"

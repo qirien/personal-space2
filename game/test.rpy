@@ -1,5 +1,60 @@
 # Test functions to ensure various parts of the game are working
 # Not called in the actual game. Intended for development use only.
+label tests:
+    menu:
+        "Which test would you like to run?"
+        "Jump to Year":
+            jump test_jump_year
+        "Test Farming Screen":
+            jump test_farming_screen
+        "Crop Events.":
+            call test_crops
+        "Family Events.":
+            call test_family
+        "Community Events":
+            call test_community
+        "Graphics Tests":
+            menu:
+                "Which graphics test?"
+                "Test Family Photo":
+                    call test_family_photo
+                "Emoji":
+                    call test_emoji
+                "Sprites":
+                    call test_sprites
+                "Positions":
+                    call test_positions
+                "Screenshots":
+                    call screenshots
+
+        "Dialogue Test":
+            call test_dialogue
+        "Omake":
+            call omake
+        "Message Board":
+            call test_message_board
+        "Trailer":
+            jump trailer
+        "Test Endings":
+            call test_endings
+        "Test Poetry":
+            call test_poems
+        "Test Credits":
+            $ year = 30
+            $ bro_birth_year = 8
+            $ total_mavericks = 8
+            $ total_miners = 8
+            $ total_colonists = 8
+            $ total_attachment = 25
+            $ total_competence = 10
+            call credits
+        "Demo":
+            call demo
+        "Quit":
+            return
+
+    jump tests
+    return    
 
 label test_family_photo:
     $ year = 10
@@ -229,21 +284,135 @@ label demo_continue:
     return
 
 label screenshots:
-    $ year = 8
-    scene barn with fade
-    show him annoyed at quarterleft
-    show kid nervous at quarterright
-    show oleg sad at right
-    menu:
-        "[kid_name] hurt her friend's feelings."
-        "A)  Make her apologize":
-            $ pass
-        "B)  Discuss how she can apologize":
-            $ pass
-        "C)  Apologize to his mom":
-            $ pass
-        "D)  Let it go":
-            $ pass
+    # 1 happy baby moment
+    $ year = 1
+    "#1"
+    scene farm_interior with fade
+    show her baby happy at center
+    show him content at midleft
+    with dissolve
+    him "She's almost asleep..."
+
+    # 5 baby bro born
+    $ year = 5
+    "#2"
+    scene bedroom with fade
+    show her nervous at center, squatting
+    show him sad baby at midleft
+    show kid annoyed at midright, squatting
+    show bedroom_overlay
+    him "It's a boy!"
+
+    # 11 Miners (Brennan) arrive
+    $ year = 11
+    "#3"
+    scene plain with fade
+    show miners at left
+    show him pout at center
+    show bro normal at center, baby_pos
+    show her surprised at midright
+    show kid surprised at midright
+    show brennan flirting at midleft
+    brennan "No one told you I was coming?"
+
+    # 15 Naomi dies (maybe CG with all the dead ppl - Martin, Lily, Naomi, Pavel)
+    $ year = 14
+    "#4"
+    scene community_center with fade
+    show lily happy at quarterleft
+    show naomi happy at midleft
+    show pavel happy at center
+    show martin happy at midright
+    with dissolve
+    pavel "We will always remember..."
+
+    # 17 Harvest Festival, showing ppl from favorite faction
+    $ year = 17
+    "#5"
+    scene community_center with fade
+    "Did this already"
+
+    # 17 Riding Lettie with bro
+    $ year = 17
+    "#6"
+    scene path with fade
+    show horse at center
+    show him content at center
+    show bro happy at center
+    with dissolve
+    "Quest complete!"
+
+    # 21 trip to beach with community
+    $ year = 21
+    "#7"
+    scene ocean_sunset with fade
+    show purplelight at random_pulse_alpha
+    show purplelight as light0 at random_pulse_alpha with dissolve
+    show purplelight as light1 at random_pulse_alpha with dissolve
+    show purplelight as light2 at random_pulse_alpha with dissolve
+    show purplelight as light3 at random_pulse_alpha with dissolve
+    show purplelight as light4 at random_pulse_alpha with dissolve
+    show her laugh at midleft
+    show him laugh at center
+    show bro happy at center, squatting
+    show kid happy at midright
+    with dissolve
+    her "Wait, what?!"
+    
+    # 27 talking to jellypeople - we need a jellyperson for this I think!!
+    $ year = 27
+    "#8"
+    #MiMa
+    scene bonfire with fade
+    show pete happy at midright
+    show him laugh at center
+    show brennan explaining at midleft
+    brennan "...and that's why you should never trust a skinny chef."
+
+    #Mi
+    scene bonfire with fade
+    show him laugh at center
+    show brennan explaining at midleft
+    show thuc happy at midright
+    brennan "I think I've told this joke before."
+
+    #Ma
+    scene bonfire with fade
+    show pete happy at midright    
+    show thuc happy at midleft
+    show him laugh at center
+    pete "I ain't never heard that one before!"
+
+    #C
+    scene bonfire with fade
+    show thuc happy at midleft
+    show him normal at center
+    show ilian normal at midright
+    ilian "That was almost funny."
+
+
+    # 30 family group hug if authoritative, permissive; clinic scene if authoritarian; subdued family photo without Terra if she left
+    $ year = 30    
+    "#9"
+    scene farm_interior with fade
+    show him normal at midleft 
+    show her normal at midright
+    show bro normal at midright, squatting 
+    show kid normal at center
+    him "group hug!"
+
+    scene hospital with fade
+    show her surprised coat at midright
+    show kid concerned at center
+    with dissolve
+    her "Not quite."
+
+    scene farm_interior with fade
+    show him concerned at midleft
+    show her concerned at midright
+    show bro concerned at center
+    bro "I miss her..."
+    
 
     $ year = 9
     scene kid_bedroom with fade
@@ -442,45 +611,6 @@ label trailer_after_cleanup:
 
     return
 
-label tests:
-    menu:
-        "Which test would you like to run?"
-        "Jump to Year":
-            jump test_jump_year
-        "Test Farming Screen":
-            jump test_farming_screen
-        "Crop Events.":
-            call test_crops
-        "Family Events.":
-            call test_family
-        "Community Events":
-            call test_community
-        "Test Family Photo":
-            call test_family_photo
-        "Emoji":
-            call test_emoji
-        "Dialogue Test":
-            #call test_positions
-            call test_dialogue
-        "Omake":
-            call omake
-        "Sprites":
-            call test_sprites
-        "Message Board":
-            call test_message_board
-        "Trailer":
-            jump trailer
-        "Test Endings":
-            call test_endings
-        "Test Poetry":
-            call test_poems
-        "Demo":
-            call demo
-        "Quit":
-            return
-
-    jump tests
-    return
 
 label test_dialogue:
     if (mp.jack_name):
@@ -512,6 +642,7 @@ label test_dialogue:
     show bro normal at quarterleft
     with moveinleft
     kid surprised "WHAT is THAT?!"
+    show her surprised with dissolve    
     him pout "It's dinner."
     kid annoyed "Yeah, but what is it?!"
     bro concerned "Is it... crabird?"
@@ -548,7 +679,7 @@ label test_dialogue:
     ilian angry "Just because it's free doesn't mean it's any good!"
 
     scene path with fade
-    show julia normal at midright
+    show julia normal at midright, flip
     show thuc normal at midleft
     with dissolve
     julia angry "I hope you didn't pay money for this!"
@@ -630,12 +761,15 @@ label test_message_board:
     return
 
 label test_jump_year:
-    $ year_str = renpy.input("What year should we jump to?", default=1)
+    $ year_str = renpy.input("What year should we jump to?")
     $ year = int(year_str)
     $ earth_year = get_earth_years(year)
     $ bro_birth_year = 8
     $ year8_have_baby = True
     $ credits = 1000
+    $ total_miners = renpy.random.randint(0,year)
+    $ total_mavericks = renpy.random.randint(0,year-total_miners)
+    $ total_colonists = year - total_miners - total_mavericks
     menu:
         "What type of parent are you?"
         "Authoritarian":

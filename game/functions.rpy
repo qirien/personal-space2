@@ -434,6 +434,7 @@ init -100 python:
     # to be to return TRUE.  Default is "strong", while "moderate" and 
     # "weak" have less stringent requirements.
     def mavericks_strong(strength="strong"):
+        global total_mavericks, total_miners, total_colonists
         strong = faction_strong(total_mavericks, strength)
         if (strong):            
             notify_change("{emoji=friends} Mavericks")
@@ -452,6 +453,8 @@ init -100 python:
     # Helper function for each faction to calculate whether they are "strong" or not.
     # TODO: tweak this based on actual results
     def faction_strong(faction_value, strength="strong"):
+        print("factionvalue=" + str(faction_value))
+        global year
         strong = False
         if (strength == "weak"):
             strong = ((faction_value / (year / 7.0)) >= 1)

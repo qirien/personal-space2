@@ -786,7 +786,7 @@ label work12:
             him normal "Have you tried potatoes?"
             natalia normal "No, do they do well here?"
             him determined "As long as you keep them dry, they're great! Do you want some seed potatoes to get started?"
-            natalia happy "Oh, you're too kind. That would be wonderful. I have seed corn, if you'd like some in exchange."
+            natalia happy "Yeah, it's something different, anyway! I have seed corn, if you want to exchange."
             him normal "It's a deal."
             $ enable_crop("corn")
 

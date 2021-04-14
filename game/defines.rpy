@@ -192,8 +192,10 @@ init -100:
     transform centered:
         xpos 0.5 ypos 0.5 xanchor 0.5 yanchor 0.5
 
-    transform smallphoto:
+    transform tinyphoto:
         size (370,350)
+    transform smallphoto:
+        zoom 0.5
     transform threefourths_size:
         zoom 0.8
 
@@ -245,8 +247,7 @@ init -100:
 
     transform driftdown:
         ypos 0.0 yanchor 1.0
-        linear 10.0 ypos 1.0 yanchor 0.0
-
+        linear 15.0 ypos 1.0 yanchor 0.0
 
 
     # Baby positions for being held

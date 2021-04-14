@@ -854,4 +854,5 @@ define ret_c = Character("RET",
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/FreeMono.ttf")
 
 define legalese = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+define bandile_c = Character("Bandile", color=tan_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define note_c = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")

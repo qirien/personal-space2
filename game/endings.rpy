@@ -15,23 +15,23 @@ label ending:
     "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]"
     # community ending
     # TODO: is this too high? too low?
-    if (colonists >= FACTION_HIGH):
+    if (total_colonists >= FACTION_HIGH):
         $ achieved("It Takes This Village")
-        if (miners >= FACTION_HIGH):
+        if (total_miners >= FACTION_HIGH):
             $ achieved("Miner Details")
-            if (mavericks >= FACTION_HIGH):
+            if (total_mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")                
                 call ending_CMiMa
             else:
                 call ending_CMima
         else:
-            if (mavericks >= FACTION_HIGH):
+            if (total_mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")
                 call ending_CmiMa
             else:
                 call ending_Cmima
     else:
-        if (miners >= FACTION_HIGH):
+        if (total_miners >= FACTION_HIGH):
             $ achieved("Miner Details")
             if (mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")
@@ -39,7 +39,7 @@ label ending:
             else:
                 call ending_cMima
         else:
-            if (mavericks >= FACTION_HIGH):
+            if (total_mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")
                 call ending_cmiMa
             else:

@@ -2146,7 +2146,6 @@ label community12:
             if know_BBQ:
                 him_c "I heard from Chaco that they have barbeques when they mine over quota."
             pavel_c "Hmm. We need to ask the miners what they know."
-            pavel_c "I know beef is really popular in South African and Chilean cuisine, and I think most of the miners are from those two countries."
             pavel_c "Can you come with me tomorrow morning? I was able to arrange a meeting with Brennan."
             him_c "...sure. Did you invite Sara or Natalia? They also seemed invested in the fate of Pete's cow."
             pavel_c "You were the first person I asked."
@@ -2318,14 +2317,14 @@ label community12:
                 nvl clear
                 him_c "Hi Bandile, this is [his_name] with the colonists. My friend Pete is missing a cow."
                 him_c "Her tracks went in the direction of the miner's camp. Do you know anything that could help us find her?"
-                legalese "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
-                legalese "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
-                legalese "We were buying beef and having barbeques almost fortnighly, and everyone really enjoyed them."
-                legalese "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
-                legalese "I heard that two of our miners went on a renegade mission to steal the cow."
-                legalese "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
-                legalese "Someone let the cow go the next day and no one has seen it since."
-                legalese "I'm sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
+                bandile_c "Hello [his_name]. Please excuse me for not meeting in person. I do know about the cow."
+                bandile_c "While our miners are making lots of credits, they don't have very many luxuries to spend them on."
+                bandile_c "We were buying beef and having barbeques almost fortnightly, and everyone really enjoyed them."
+                bandile_c "After the best meat was gone, everyone wanted to continue the tradition. Some of our miners felt that it wasn't a real barbeque without beef."
+                bandile_c "I heard that two of our miners went on a renegade mission to steal the cow."
+                bandile_c "They were able to get the cow into camp, but another miner started arguing with them, trying to explain why they shouldn't kill it."
+                bandile_c "Someone let the cow go the next day and no one has seen it since."
+                bandile_c "I'm sorry for our community's loss of the cow. My uncle had a ranch when I was growing up and I know how important each cow is when you're growing a herd."
                 show him sad sweat at midleft
                 show pete normal at midright
                 with dissolve
@@ -3596,11 +3595,11 @@ label community17:
         "Last was the food. I figured I'd just have everyone bring something."
 
     nvl clear
+    $ pstyle = get_parenting_style()
     if (is_liaison):
         him_c "I hope you can all come to the harvest festival tomorrow night. It's a potluck, so bring food. There will also be [community_17_activity]."
     else:
         sara_c "Don't forget the harvest festival tomorrow night! Potluck! There will be [community_17_activity]!"
-    $ pstyle = get_parenting_style()
     if (pstyle == "authoritarian"):
         if (is_liaison):
             him_c "Also, RET sends a reminder to make sure you take care of your farm first before going to the party."
@@ -3735,10 +3734,12 @@ label community17:
     thuc sad "Shorts."
     pavel "That's a weird name for a goat."
     thuc normal "When the baby goats start eating solid food, we name them after the first non-food thing they try to eat. Our other goats are Shoe, Finger, Stick, and Shirt."
-    thuc sad "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
+    thuc happy "Actually, we have a Shirt 1 and a Shirt 2, since that is a popular choice!"
     julia happy "Oh, and don't forget Cape!"
     julia angry "Last year Gardenia insisted on wearing this cape she made everywhere."
     julia normal "She brought it out today to dress up for the begging."
+    show boy green at right
+    show girl normal at quarterleft    
     show kid normal at midleft
     show bro normal at left
     if (invited_mavericks):
@@ -3748,6 +3749,8 @@ label community17:
     "After the children finished eating, they ran around with pails of water."
     show kid at pace_back_and_forth
     show bro at pace_back_and_forth
+    show girl at pace_back_and_forth
+    show boy at pace_back_and_forth
     if (invited_mavericks):
         show travis at pace_back_and_forth
     show oleg at pace_back_and_forth
