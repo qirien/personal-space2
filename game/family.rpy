@@ -158,6 +158,7 @@ label family1:
             "..."
             "I {b}was{/b} a traitor."
             menu:
+                "...What should I do?"
                 "Go back and apologize.":
                     $ responsive += 1
                     "I had to make things right."
@@ -726,6 +727,7 @@ label family2:
     him concerned "..."
     her concerned coat "I...thought it would be a good thing, for everyone."
     menu:
+        "What should I say?"
         "You should have asked me first.":
             $ marriage_strength -= 1
             him annoyed "You should have talked to me about it first. After all, I'll be watching them half the time."
@@ -1747,6 +1749,7 @@ label family6:
             him happy "She'll learn to swim faster with practice! C'mon, [kid_name], grab a towel!"
             her determined "I guess if we're going together..."
             menu:
+                "What should I say?"
                 "You can stay here if you want.":
                     $ marriage_strength += 1
                     him surprised "Why don't you stay here and rest? I know you've had a tough week."
@@ -1770,6 +1773,7 @@ label family6:
             him surprised "Maybe we can do both somehow?"
             her concerned "We only have a few hours... what did you have in mind?"
             menu:
+                "What should I say?"
                 "Let's relax for an hour and then go swimming.":
                     $ responsive += 1
                     $ demanding += 1
@@ -2579,6 +2583,7 @@ label family8:
             "[kid_name] ran back toward us, racing Travis, and I had to smile."
             "She wasn't an easy kid -- but I loved her vibrant energy and insatiable curiosity...even when it sometimes exhausted me."
             menu:
+                "What should I do?"
                 "Have her apologize to Oleg.":
                     $ oleg_points += 1
                     $ demanding += 1
@@ -3177,6 +3182,7 @@ label family10:
                         him happy "Ahhhh, lava!"
                         "We made our guys run down the pile of blocks."
                         menu:
+                            "What should I do?"
                             "Keep playing with them.":
                                 "The three of us played natural disaster-escaping family until dinner time."
                                 $ permissive += 1
@@ -3217,6 +3223,7 @@ label family10:
                 "I gave [bro_name] his figure. He looked at it suspiciously, as if trying to tell from its appearance whether it was still okay to play with after being \"dead\"."
                 kid angry "Dad, you're ruining the game!"
                 menu:
+                    "What should I do?"
                     "Scold her some more.":
                         him angry "No, {b}you{/b} are ruining the game! How does it make [bro_name] feel to have you killing off his guy?"
                         kid annoyed "It's just a game!"
@@ -4409,6 +4416,7 @@ label family14:
             kid cry "It feels like everyone's just being mean. Everyone hates me."
             "I could feel I was getting angry. She wasn't listening at all!"
             menu:
+                "What should I do?"
                 "(Leave the room)":
                     him annoyed "We'll talk more about it later."
                     "I couldn't think straight when I was so angry. I didn't want to end up saying or doing something I'd regret."
@@ -4958,6 +4966,7 @@ label family17:
     "[bro_name] was growing a lot, too, but I didn't notice as much. That's the sad fact of being a younger child -- almost everything you do, your older sibling has done first."
     "That doesn't mean I didn't love him. His 'firsts' just weren't as exciting. Although, now that I thought about it..."
     menu:
+        "Do I have a favorite kid?"
         "[kid_name] was my favorite.":
             hide bro with dissolve
             show kid happy at center with dissolve
@@ -5777,33 +5786,34 @@ label family19:
                    him determined "I know -- our brains are wired to respond to sex very strongly. And at your age, it's probably something you're curious about."
                    kid nervous "..."
                    menu:
-                       "That's why you need to have a plan.":
-                           him normal "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
-                           kid surprised "A plan?"
-                           him determined "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you."
-                           kid concerned "..."
-                           him surprised "Will you do that?"
-                           kid determined "..."
-                           "She didn't say anything, just pulled at a strand of her hair and twisted it."
-                           him concerned "Can you please do that?"
-                           kid shifty "...okay."
-                       "I'll find you some better learning materials.":
-                           him normal "If you learn about sex from pornography, you might learn some things that are wrong."
-                           kid surprised "Like what?"
-                           him determined "Like that it's normal to hurt someone during sex. That's not normal; it's abusive and dangerous."
-                           kid shifty "Oh."
-                           him normal "So I'll find you better learning materials, okay?"
-                       "Come to me if you have questions.":
-                           him normal "Instead of searching the internet, I hope you'll ask me questions you have about sex."
-                           kid shifty "Oh."
-                           "I could see that wasn't going to happen."
-                           him concerned "Or you could talk to Mom."
-                       "Parts of that video were false." if family19_watched_video:
-                           him concerned "I'm worried that you'll think the things you saw in that video were normal. That was not normal sex. That was abusive instead of loving."
-                           kid shifty "Oh."
-                           him determined "That's why pornography isn't good for you. It teaches you that sex is just doing whatever gets you aroused."
-                           kid concerned "..."
-                           him normal "But sex is showing love and commitment to the other person in ways that you both enjoy."
+                        "What should I say?"
+                        "That's why you need to have a plan.":
+                            him normal "That's why you need to have a plan ahead of time, so the thinking part of your brain can be more in control."
+                            kid surprised "A plan?"
+                            him determined "Yeah. If you see pornography, turn off the screen and bring the computer pad to me. I won't be mad; I'll just help you."
+                            kid concerned "..."
+                            him surprised "Will you do that?"
+                            kid determined "..."
+                            "She didn't say anything, just pulled at a strand of her hair and twisted it."
+                            him concerned "Can you please do that?"
+                            kid shifty "...okay."
+                        "I'll find you some better learning materials.":
+                            him normal "If you learn about sex from pornography, you might learn some things that are wrong."
+                            kid surprised "Like what?"
+                            him determined "Like that it's normal to hurt someone during sex. That's not normal; it's abusive and dangerous."
+                            kid shifty "Oh."
+                            him normal "So I'll find you better learning materials, okay?"
+                        "Come to me if you have questions.":
+                            him normal "Instead of searching the internet, I hope you'll ask me questions you have about sex."
+                            kid shifty "Oh."
+                            "I could see that wasn't going to happen."
+                            him concerned "Or you could talk to Mom."
+                        "Parts of that video were false." if family19_watched_video:
+                            him concerned "I'm worried that you'll think the things you saw in that video were normal. That was not normal sex. That was abusive instead of loving."
+                            kid shifty "Oh."
+                            him determined "That's why pornography isn't good for you. It teaches you that sex is just doing whatever gets you aroused."
+                            kid concerned "..."
+                            him normal "But sex is showing love and commitment to the other person in ways that you both enjoy."
 
                    kid shifty "..."
                    him concerned "..."
@@ -6556,6 +6566,7 @@ label family22:
         her concerned "I was going to go over some patients' charts..."
         extend "but that can wait. What should we do?"
         menu:
+            "What should we do?"
             "We should play a game together.":
                 him excited "We should play a game together!"
                 kid shifty "As long as it's not something stupid."
@@ -7907,6 +7918,7 @@ label family28:
             "She left, and I turned to my computer pad. There were several ways I could go about this..."
             nvl clear
             menu:
+                "What should I do?"
                 "Ask around.":
                     "I decided to ask around. Maybe someone else had seen her."
                     if (mavericks > 10):
@@ -8343,6 +8355,7 @@ label family29:
 
     him surprised "Wait, is this about you? You and..."
     menu:
+        "Is this about her..."
         "...and Oleg?":
             $ oleg_points += 1
             kid determined "I can't talk about who it is. He would be... This is just really personal stuff, okay?"
@@ -8469,6 +8482,7 @@ label family29:
         kid annoyed "Dad..."
         him happy "And I with her! But I think it was also..."
         menu:
+            "Why did we get married?"
             "To make it official.":
                 him normal "We wanted to make our love official. To promise our love to each other in front of everyone."
                 kid determined "Huh. Okay."

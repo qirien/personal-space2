@@ -102,7 +102,7 @@ screen yearly_summary():
                                 vbox:
                                     label "Quote"
                                     hbox:
-                                        null width 40
+                                        null width 30
                                         text parenting_quotes[year]
                         frame:
                             #xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH

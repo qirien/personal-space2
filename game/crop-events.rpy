@@ -621,6 +621,7 @@ label potatoes2:
     "I wanted to do something different with them for dinner tonight..."
 
     menu:
+        "What should I do with the potatoes?"
         "Put them in a chowder":
             "There's nothing like a nice, hearty chowder. Goat's milk, onions, some grass crab meat, herbs, and, of course, lots of potatoes."
             show her surprised at midleft with moveinleft
@@ -802,6 +803,7 @@ label squash1:
     else:
         "So if I wanted to get a decent squash harvest this year, I'd need to help them out."
         menu:
+            "What should I do about the squash?"
             "Pollinate by hand" if (get_extra_work() >= 0):
                 him determined "I guess I'm Cupid's little helper today..."
                 "I took a paintbrush and dabbed the pollen from the male flowers and then brushed it on the female flowers."
@@ -880,6 +882,7 @@ label squash2:
     "They must have been transported on one of the shuttles -- maybe in some wood or fruit."
     "But I didn't have time to waste on being furious. I had to get rid of them!"
     menu:
+        "What should I do about squash bugs?"
         "Exterminate them all by hand!" if (get_extra_work() >= 0):
             $ squash2_method = "exterminate"
             if (year >= 10):
@@ -1062,6 +1065,7 @@ label goats2:
     "So it sounded like I needed to separate or neuter the bucks. Or butcher them."
 
     menu:
+        "What should I do about the goats?"
         "Smuggle some to Pete" if (year >14): #only if Pete and his group have left
             "I felt bad for Pete. Maybe he would like some goats."
             "I couldn't send him a message; radio communications weren't private."
@@ -1321,6 +1325,7 @@ label tomatoes1:
     "...but not too sad."
     "This year, my tomatoes were doing pretty well, but a lot of them had a sunken, mushy area on the bottom."
     menu:
+        "What should I do about the tomatoes?"
         "Do some research." if (get_extra_work() >= 0):
             "I did a bit of research about tomato problems and found something that described my tomatoes exactly."
             "Blossom-end rot.  If I added some more calcium to the soil and watered more evenly, this shouldn't happen next time."
@@ -1613,6 +1618,7 @@ label spinach1:
     "They needed cool temperatures to germinate. The weather was nice again -- for now."
     "I had enough seeds to plant one more batch of spinach. But if those also failed, then next year I wouldn't have any spinach seeds at all."
     menu:
+        "What should I do with my spinach seeds?"
         "Plant them again now.":
             "I carefully looked at the weather, and when it looked like it would be nice and cool I planted them again."
             "And they did germinate -- little spinach sproutlings emerged from the soil."
@@ -1659,6 +1665,7 @@ label spinach2:
     him "What could be eating the spinach?"
     $ spinach2_cameras = False
     menu spinach_3_menu:
+        "What should I do?"
         "Check the surveillance cameras" if (not spinach2_cameras):
             "I trained the farm's cameras on the spinach plot, but the next morning when I looked at the video, none of the motion sensors were triggered.  I scanned through the video but couldn't find anything out of the ordinary."
             $ spinach2_cameras = True

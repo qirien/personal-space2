@@ -128,6 +128,7 @@ label community1:
             zaina sad "I was an only child, and my parents recently died, so I don't have any family on Earth. I do have some friends still there though."
             kevin normal "My father and brother are still on Earth, but I do not regret leaving them."
             menu:
+                "What should I say?"
                 "So you weren't close?":
                     him concerned "Huh. Don't get along with them?"
                     kevin sad "They are not men of science. They did not understand my passion for engineering, despite its obvious usefulness."
@@ -326,6 +327,7 @@ label community2:
     him concerned "What if the storehouse burns down? Then we'll all have nothing."
     ilian angry "Or some alien pest could eat it all no matter where it is. I'm just telling you what our contract says. Do you want to read it? I pulled it up on my computer pad earlier."
     menu:
+        "Do I want to read the RET contract?"
         "Actually, yes.":
             call contract
         "No, I believe you.":
@@ -439,6 +441,7 @@ label community3:
             him happy "Yeah, you should! We need someone to shake things up."
             kevin normal "Shall I invite the other new colonists as well?"
             menu:
+                "What should I say?"
                 "Sure, invite them all!":
                     him normal "Yes, let's invite them. I can reserve the community center."
                     $ colonists += 1
@@ -669,8 +672,7 @@ label community4:
     hide thuc
     with moveoutright
     menu:
-        "Who should I nominate? I can't nominate myself."
-
+        "Whom should I nominate? I can't nominate myself."
         "Sister Naomi. She'll do what's best for everyone.":
             $ colonists += 1
         "Sara. She's familiar with colony politics since she assists the mayor.":
@@ -740,9 +742,9 @@ label community5:
             ilian normal "I don't know how much food you guys are storing, so I have no idea if we'll have enough food for them or not."
             ilian angry "If worst comes to worst, they could farm instead of mining, which I'm sure RET would be THRILLED with."
 
-        ilian normal "What do you want to do?"
-        "How should we prepare?"
+        ilian normal "What do you want to do?"        
         menu:
+            "How should we prepare for the miners' arrival?"
             "Have the farmers bring their whole harvest instead of storing it individually, and encourage them to grow extra food.":
                 $ miners += 2
                 $ require_whole_harvest = True
@@ -821,7 +823,7 @@ label community5:
         pete angry "Cheese doesn't keep well, either, for the same reasons. The best way to store my surplus is to keep growing this herd."
         label convince_Pete:
         menu:
-            "Is that really the best way?"
+            "What should I tell Pete?"
             "We could can some of the meat." if not talked_cans:
                 him concerned "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
                 him normal "How about it?"
@@ -1160,8 +1162,8 @@ label community8:
         scene farm_exterior flip with fade
         $ bios.activate("Natalia")
         $ bios.activate("Martín")
-        "Who will I talk to about what Earth luxuries they want?"
         menu:
+            "Who should I talk to about what Earth luxuries they want?"
             "Natalia" if not talked_to_Natalia:
                 show him normal at midleft
                 show natalia normal at midright
@@ -1304,8 +1306,8 @@ label community9:
     pete happy "I'm gonna hike out a couple klicks, spend the night, then see if I can bag one of those big grass crabs."
     him pout "Overnight?"
     pete normal "Yeah, the grass crabs avoid the towns and farms - they like wide grassy areas."
-    "What do I tell Pete?"
     menu:
+        "What do I tell Pete?"
         "Sounds fun! Go with him and invite Thuc.": #you learn the particulars of how to camp safe from radiation.
             $ mavericks += 1
             $ colonists += 1
@@ -1441,6 +1443,7 @@ label community9:
             show pete angry at squatting with move
             pete angry "Yeeeowch!"
             menu:
+                "What should I do?"
                 "Tackle the crab.":
                     $ mavericks += 1
                     show him annoyed at right with move
@@ -1613,6 +1616,7 @@ label community10:
     show bro nervous
     with dissolve
     menu:
+        "What should I say?"
         "Tomás and Joanna should be in charge of the farm and get the other siblings to help.":
             $ community11_kidsonfarm = True
             $ colonists += 1
@@ -2122,6 +2126,7 @@ label community12:
             show him pout at midleft
             "Especially when we had problems here... Chaco might know something about the missing cow. What should I ask?"
             menu:
+                "What should I say?"
                 "Do you eat beef often?":
                     him pout "Do you eat beef often?"
                     chaco normal "Yes, I do. We have a barbeque when we... go past our mining goal?"
@@ -2152,6 +2157,7 @@ label community12:
             him_c "Is it because I'm a guy?"
             pavel_c "And you're interested in what happened to the cow! Three-quarters of the miners are men, so it just seemed like a guy's thing."
             menu:
+                "What should I say?"
                 "Let's ask Sara if she wants to come too.":
                     him_c "I'll invite Sara to come with us."
                     $ colonists += 1
@@ -2412,6 +2418,7 @@ label community12:
                 brennan normal "And most crucially, the equipment to detect and broadcast solar flares."
                 brennan "Could you really live without all that?"
                 menu:
+                    "What should I say?"
                     "It would be difficult, but we could.":
                         # increase luddite relationship?
                         him pout "More people would die of preventable causes. But I think that overall we could survive."
@@ -2420,6 +2427,7 @@ label community12:
                         brennan angry "Yeah, and you're so ethical, you're willing to die to be independent."
                         brennan normal "You shouldn't be making that decision for everyone else, too."
                         menu:
+                            "What should I say?"
                             "True enough.":
                                 him pout "I hadn't thought of it that way. You have a good point."
                                 jump community12_choose_farming
@@ -2750,8 +2758,11 @@ label community13:
     "I consulted the map Zaina had been working on as she scouted the surrounding land for good mining spots."
     "Zaina had climbed other mountains in the same range as the ones close to our river, which also had water flowing from them, but none of them were nearby."
     "It also occured to me that we could gather water upstream from the tailings pond."
-    show kid normal at midright with dissolve
-    "[kid_name] came back from school with her little brother and I explained that we needed to be careful with our water for now."
+    show kid normal at midright
+    show bro normal at quarterright
+    with moveinright
+    show him concerned with dissolve
+    "[kid_name] came back from school with [bro_name] and I explained that we needed to be careful with our water for now."
     show her normal at center with dissolve
     "[her_name] came back from work early. We started preparing dinner together."
     her determined "There's an emergency town meeting tonight to discuss the water contamination."
@@ -2759,6 +2770,7 @@ label community13:
         him pout "I know, I saw the message."
         her surprised "Should we just bring the kids along?"
         menu:
+            "What should I say?"
             "No, I'll stay home with them.":
                 him happy "I'll get the kids to bed on time. You have more expertise with heavy metal poisoning than I do anyway."
                 him normal "You can tell me all about the meeting, and I'll report it to RET later."
@@ -2819,8 +2831,9 @@ label community13:
                 her determined coat "I can assist Dr. Lily with the synthesis. Our water only contains trace amounts of metals, and I believe that we can still use it for irrigation water."
                 lily angry "I completely disagree. We should not knowingly ingest poison."
                 her annoyed coat "We don't have the capacity to distill enough water for crops. If we don't use the river water, we'll starve because we won't have enough food."
-                "What do I think we should do?"
+                
                 menu:
+                    "What do I think we should do?"
                     "Find an alternate water source.":
                         him pout "I agree with Dr. Lily. Why risk permanent brain damage when we could avoid it?"
                         him determined "If samples showed elevated levels of heavy metals, there are probably spots in the river where that amount is even higher."
@@ -2847,6 +2860,7 @@ label community13:
                         him determined "Thanks for telling me."
                         kid sad "I think it's leaking..."
                         menu:
+                            "What should I do?"
                             "Take care of [bro_name].":
                                 him concerned "I'd better take care of him right away then."
                             "Ask [her_name].":
@@ -2890,8 +2904,9 @@ label community13:
         hide her with dissolve
         label meeting_abstain:
             "I put [kid_name] and [bro_name] to bed like normal."
-            hide kid with dissolve
-            # hide bro
+            hide kid
+            hide bro
+            with dissolve
             "I took some time to do more research on heavy metals and the things we eat."
             "Even if the fruits and vegetables were fine, eating chickens that ate those vegetables could be a problem."
             nvl clear
@@ -3022,9 +3037,9 @@ label community14:
     "Everyone started talking when Pete sat down."
     "Some families wanted to say goodbye, while others just left awkwardly."
     "I pushed through the crowd to tell Pete some parting words."
-    show him concerned at quarterleft with moveinleft
-    "What do I say?"
+    show him concerned at quarterleft with moveinleft    
     menu:
+        "What do I say?"
         "Warn them of their impending doom.":
             him cry "Don't leave! You'll die out there!"
             pete happy "I've camped out for days on hunting trips. It's not that much more dangerous than living here."
@@ -3229,6 +3244,7 @@ label community15:
     her cry "Who will reassure us when we're feeling hopeless?"
     her sad "Who will give me hope that there's something bigger out there?"
     menu:
+        "What should I say?"
         "It'll be okay.":
             him content "I'm sure someone will fill the gap."
             her annoyed "It's not like you ever liked going to church."
@@ -3410,8 +3426,8 @@ label community16:
     her concerned coat "But I asked them to pay with some food, and they want to donate a calf."
     him concerned "But after they left us... are we going to act like nothing happened?"
     her annoyed coat "I'm not acting like nothing happened. I'm acting like any empathetic human would and trying to take care of our friends."
-    "How did I feel?"
     menu:
+        "What should I say?"
         "Do everything you can for Pete.":
             him annoyed "Do everything you can for Pete. He's an important part of our community."
             him concerned "We'll lose a lot of hands-on knowledge about cattle if he dies."
@@ -3438,6 +3454,7 @@ label community16:
     label c16_convo:
     "What else should we talk about?"
     menu:
+        "What should I say?"
         "How will you be paying for your treatment?" if not talked_paid_c16:
             him determined "I hope you're giving us something in return for that medicine."
             pete angry "Don't worry! I brought a calf with me. We dropped her off with the herd on our way in."
@@ -3485,6 +3502,7 @@ label community16:
         pete "Things won't be the same without her."
         him sad "No, they won't."
         menu:
+            "What should I say?"
             "Had she been visiting you often?":
                 him determined "Was she stopping by your place frequently?"
                 pete normal "Yes, she was pretty worried about us. She stopped by at least once a week and sometimes twice."
@@ -3492,6 +3510,7 @@ label community16:
                 pete happy "She helped Travis practice foraging, and she showed me how to knit."
                 pete "She'd bring little things for us to feel more at home."
                 menu:
+                    "What should I say?"
                     "So it's kind of your fault that she died.":
                         $ mavericks -= 1
                         him annoyed "If she was visiting you that much, that explains why she died of radiation poisoning."
@@ -3523,15 +3542,16 @@ label community16:
                         pete happy "Come see us sometime after I get healthy!"
                         pete normal "Bring some vegetables and we can slow-roast some beef."
                         menu:
-                             "Sure.":
-                                 him excited "That sounds amazing. I'll be over right away."
-                                 pete happy "See you soon."
-                                 $ mavericks += 1
-                             "I'm busy.":
-                                 him happy "As tempting as that is, I can't spare any time away from the farm."
-                                 pete normal "Come on."
-                                 him determined "I've got more crops to raise with the miners and all. Sorry."
-                                 pete normal "Guess I'll see you next time I have a life-threatening illness."
+                            "What should I say?"
+                            "Sure.":
+                                him excited "That sounds amazing. I'll be over right away."
+                                pete happy "See you soon."
+                                $ mavericks += 1
+                            "I'm busy.":
+                                him happy "As tempting as that is, I can't spare any time away from the farm."
+                                pete normal "Come on."
+                                him determined "I've got more crops to raise with the miners and all. Sorry."
+                                pete normal "Guess I'll see you next time I have a life-threatening illness."
             "(Say nothing)":
                 him sad "..."
                 jump pete_neutral_c16
@@ -3554,6 +3574,7 @@ label community17:
     if (is_liaison):
         "Someone needs to plan it... but who?"
         menu:
+            "Who should plan the festival?"
             "Plan it yourself.":
                 $ community_17_planparty = True
                 "I decided to plan it myself. I knew what made a good harvest festival."
@@ -3565,6 +3586,7 @@ label community17:
         "Sara asked me who we should invite to the festival this year."
 
     menu:
+        "Who should we invite to the harvest festival?"
         "The miners and Pete's group." if (mavericks_strong() and miners_strong()): #6
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_mavericks = True
@@ -3666,6 +3688,7 @@ label community17:
         him determined "Is it safe to eat?"
         pete normal "Hasn't killed me yet. Try it; it's real good."
         menu:
+            "What should I do?"
             "Try it.":
                 "It tastes cool and slippery, and a little fishy."
                 "It's been so long since I'd had anything that tasted unusual."
@@ -3688,6 +3711,7 @@ label community17:
         him doubt "Is this a soup or a dip? It smells... different."
         brennan normal "Neither. Either. Both! Try some."
         menu:
+            "What should I do?"
             "Try it.":
                 "I dipped my bread into the very organic-appearing, thick brown dip."
                 "It tasted like beans, with a strange combination of spices."
@@ -4430,9 +4454,9 @@ label community18:
     show him yell at right with move
     "They looked a little scared, but they started creeping back as soon as I turned my back."
     show him pout at center with move
-    label cow_options:
-        "How should I handle the cows?"
+    label cow_options:        
         menu:
+            "How should I handle the cows?"
             "Herd them to the colony ranch.":
                 scene path with fade
                 show him pout at right with dissolve
@@ -4490,9 +4514,9 @@ label community18:
     pete "Yep, these're my cows. We ran into a swarm of land lobsters while trying to get back to the summer pasture and the herd split."
     pete happy "The larger part of the herd is happily grazing about a half mile down the river."
     pete normal "[his_name], you and your horse are just what we need. Can you help me herd the stragglers?"
-    brennan flirting "Yes, please, get these cows out of here."
-    "Should I help herd the cows?"
+    brennan flirting "Yes, please, get these cows out of here."    
     menu:
+        "Should I help herd the cows?"
         "I can help.":
             $ mavericks += 1
             $ miners += 1
@@ -4653,6 +4677,7 @@ label community19:
         if is_liaison:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
+                "What should we do with the cows?"
                 "Let's give them to Pete.":
                     $ mavericks += 1
                     him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
@@ -4676,6 +4701,7 @@ label community19:
         if is_liaison:
             "{i}Wait. Should we use this as an opportunity to build our relationship with others?{/i}"
             menu:
+                "What should we do with the cows?"
                 "Let's give them to Pete.":
                     $ mavericks += 1
                     him_c "Let's give the cows to Pete. His herd seems to be surviving off of nearby rangelands"
@@ -4758,6 +4784,7 @@ label community20:
                 him_c "RET said they didn't want Lily to come back."
                 pavel_c "I was afraid of that. Well, do you want to let her back or not?"
                 menu:
+                    "What should I say?"
                     "Let her come back":
                         him_c "I think RET is being unreasonable. We should let her back anyway."
                         him_c "She's already sacrificed so much for the colony."
@@ -4776,8 +4803,8 @@ label community20:
                 jump lily_return
             else:
                 "They never responded."
-                "What should do?"
                 menu:
+                    "What should I say?"
                     "Let her come back":
                         nvl clear
                         him_c "RET never got back to me, but I think we should let her come back to the colony."
@@ -5161,9 +5188,9 @@ label community21:
             him surprised "What was that about?"
             zaina sad "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish. He said it was obvious they were being cultivated because there were so many... he wants us to compensate him for damages."
             brennan angry "How could you have known that?"
-            "That sounds..."
             menu:
-                "fair.":
+                "What do I think?"
+                "That sounds fair.":
                     $ mavericks += 1
                     him pout "If you came to my farm and picked my tomatoes I would say the same thing."
                     him "It's only fair for us to compensate him for his work."
@@ -5171,7 +5198,7 @@ label community21:
                     $ modify_credits(-50)
                     him "I don't know, 50 credits?"
                     zaina "I'll pitch in 50 credits, too."
-                "absurd.":
+                "That's absurd.":
                     him angry "There weren't any fences or signs posted."
                     him "How could he expect us to know about his fish farm?"
                     zaina "I know. He needs to realize that he doesn't own everything outside the colony."
@@ -5398,7 +5425,7 @@ label community22:
                 brennan_c "Maybe I am. I don't actually want to murder him."
                 kevin_c "Perhaps he needs encouragement through physical threats."
                 menu:
-                    "Is that what I want?" #should this be a choice?
+                    "Should we use physical threats?" #should this be a choice?
                     "Yes, we need to be more forceful.":
                         him_c "I can get some guns from Ilian. Brennan, do you have some intimidating miners who could hold them?"
                         brennan_c "Intimidating, yes. But I don't know if I could trust them not to fire them."
@@ -5441,7 +5468,7 @@ label community22:
                         scene black with fade
                         "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         #TODO: expand?
-                        $ mavericks -= mavericks #or a large minus to the relationship
+                        $ mavericks -= mavericks 
                         $ miners += 1
                         $ community_22_forced_mavericks_leave = True #this variable isn't used again
                         return
@@ -5741,6 +5768,7 @@ label community23:
     her concerned coat "I don't think they don't work very well. I've seen cows walking around without them; they might be able to take them off somehow."
     her surprised coat "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
     menu:
+        "Should [her_name] publish her study results?"
         "Yes, definitely.":
             him blush "People should know the risks of what they're eating. You should definitely tell everyone."
             him concerned "Just be honest about how much we don't know."
@@ -5849,6 +5877,7 @@ label community23:
         him normal "I get plenty from my goats. What are you selling it for, though?"
         thuc normal "Just 100 credits for a pint."
         menu:
+            "What should I say?"
             "That's crazy!":
                 him doubt "You're nuts."
                 thuc sad "You'll be back."
@@ -5883,6 +5912,7 @@ label community23:
         her nervous "They should be... I didn't do a toxicity panel but we've eaten them before."
         her annoyed "What should we do with them?"
         menu:
+            "What should we do with the shellfish?"
             "Preserve them and keep them.":
                 him content "Let's keep them! I think we could dry them out in the oven overnight."
                 her nervous "Can you and [bro_name] take care of it? I'm super tired."
@@ -5971,6 +6001,7 @@ label luxury_good:
     scene farm_exterior with fade
     "I want to try selling something new."
     menu:
+        "What should I do?"
         "Write a guide for beginning farmers on Talaam.":
             "I spent a few months writing a comprehensive guide to beginning farming on Talaam."
             "I had [her_name] edit it, and I had Thuc guest write a chapter."
@@ -6040,6 +6071,7 @@ label community25:
         him pout "Hmm. These jellystar recipes look kind of good. And I'm pretty tired of so much [random_crop]."
         him "Maybe I should try them."
         menu:
+            "What should I do?"
             "Buy and eat them.":
                 "I bought some dried jellystars and we had them in soup. They were really tasty, and [her_name] said they were nutritious, too."
                 $ ate_jellyfish = True
@@ -6063,6 +6095,7 @@ label community25:
         chaco "I'm the one who checks on it every day and takes notes."
         label jelly_convo:
             menu:
+                "What should I say?"
                 "What's new?" if not new_25:
                     him determined "Any new developments?"
                     chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
@@ -6092,6 +6125,7 @@ label community25:
                     him normal "Can I touch one?"
                     chaco "You can... sometimes it agitates them."
                     menu:
+                        "What should I do?"
                         "Touch one.":
                             "I crouched down on the pier and reached out to touch one."
                             "I felt a little spark like static and felt one of the spines poking me."
@@ -6127,6 +6161,7 @@ label community25:
         pete "Not bad. Just checking out Brennan's jellystar farm."
         label jelly2_convo:
             menu:
+                "What should I say?"
                 "Is the farm effective?" if not effective_25:
                     him concerned "Is it working?"
                     pete normal "It's making lots of jellystars, but no jellysquid that I've seen."
@@ -6144,6 +6179,7 @@ label community25:
                     him normal "Is it safe to touch them?"
                     pete normal "It won't kill you. Go ahead and try it."
                     menu:
+                        "What should I do?"
                         "Touch one.":
                             "I crouched down on the pier and reached out to touch one."
                             "I felt a little spark like static and feel one of the spines poking me."
@@ -6246,6 +6282,7 @@ label community25:
         "I found a pier surrounded by nets that enclosed bunches of jellystar."
         "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
         menu:
+            "What should I do?"
             "Touch one.":
                 "I crouched down on the pier and reached out to touch one."
                 show him surprised with dissolve
@@ -6332,8 +6369,8 @@ label community26:
         her surprised coat "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
         brennan explaining "I also don't want to see that. But I don't think outlawing firegrass will stop people from using it."
         brennan angry "Pete is going to sell firegrass no matter what we decide."
-        "How do I feel about the issue?"
         menu:
+            "What should I say?"
             "We should try to ban firegrass use.":
                 $ ban_firegrass = True
                 him annoyed "Even if people will still use firegrass, we should do everything we can to stop people from abusing it."
@@ -6426,9 +6463,9 @@ label community26:
                 him annoyed "Maybe if you weren't such a food snob you would enjoy your life more."
                 pavel normal "Having a discerning palate makes me appreciate good things even more! But we're getting distracted."
                 pavel sad "Certainly growing more tea could help with the alertness issues people usually turn to firegrass for."
-                her concerned coat "But I don't think tea can easily replace firegrass for people who are already using it."
-                "What do I recommend?"
+                her concerned coat "But I don't think tea can easily replace firegrass for people who are already using it."                
                 menu:
+                    "What do I recommend?"
                     "Push for Brennan to change the amount of hours miners can work.":
                         him concerned "I think Pavel has the right idea. Maybe if the miners didn't feel so anxious about working every waking second, they wouldn't feel the need to use firegrass."
                         her annoyed coat "I agree with you, but I there's a chemical dependence going on here too. Their bodies are used to this drug now, and they use it to feel normnal."
@@ -6547,6 +6584,7 @@ label community26:
         ilian "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
         "Hmm. I could live with this. Do I want to?"
         menu:
+            "What should I do?"
             "Keep buying beef from Pete.":
                 "I decided to keep buying real beef when I could from Pete. It tasted better."
                 "[her_name] didn't eat it, though."
@@ -6682,6 +6720,7 @@ label community27:
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
+        "What should I do?"
         "Run away.":
             him blush "I don't want to explain this when I don't really understand it myself."
             him "Let's go home."
@@ -6700,9 +6739,11 @@ label text_conversation:
     "It displayed several words that I could drag to the answer area."
     "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
     menu:
+        "What should I say?"
         "I":
             him concerned "Brennan and I are humans and co-workers. I'm partially responsible for his actions in her eyes."
             menu:
+                "I..."
                 "stole them":
                     him sad "We took the shells without proper research or community consensus."
                     kid surprised "Well, Brennan did."
@@ -6733,6 +6774,7 @@ label text_conversation:
 
         "He":
             menu:
+                "He..."
                 "stole them":
                     him annoyed "Brennan took the shells without researching the ecosystem thoroughly or gaining a community consensus."
                     him doubt "He basically stole them."
@@ -6751,6 +6793,7 @@ label text_conversation:
 
 label call_to_squid:
     menu:
+        "What should I say?"
         "Yes, I will bring them.":
             him blush "I have no idea what we're going to do, but we're going to figure something out."
             kid angry "Maybe Brennan has some shells we could give back."
@@ -6835,12 +6878,13 @@ label call_to_squid:
                 "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
                 him concerned "That's not a lot to work with. Hmmm."
                 menu question_menu:
+                    "What should I say?"
                     "Why" if ((not uliveshell) and (not ulivenot) and (not weliveshell) and (not welivenot)):
-                        "Why..."
                         menu:
-                            "you..." if ((not uliveshell) and (not ulivenot)):
-                                "Why you..."
+                            "Why..."
+                            "you..." if ((not uliveshell) and (not ulivenot)):                                
                                 menu:
+                                    "Why you..."
                                     "live shell?" if (not uliveshell):
                                         jellysquid "Shell save us from enemy."
                                         $ uliveshell = True
@@ -6851,8 +6895,8 @@ label call_to_squid:
                                         $ ulivenot = True
                                         jump question_menu
                             "we..." if ((not weliveshell) and (not welivenot)):
-                                "Why we..."
                                 menu:
+                                    "Why we..."
                                     "live shell?" if (not weliveshell):
                                         jellysquid "You don't live in a shell. Your shell is inside you."
                                         $ weliveshell = True
@@ -6862,8 +6906,8 @@ label call_to_squid:
                                         $welivenot = True
                                         jump question_menu
                     "What" if ((not whatu) and (not whatwe) and (not whatshell) and (not asked_shell_food)):
-                        "What..."
                         menu:
+                            "What..."
                             "you?" if (not whatu):
                                 jellysquid "I am animal in water."
                                 jellysquid "What are you?"
@@ -6899,12 +6943,12 @@ label call_to_squid:
                                 $ asked_shell_food = True
                                 jump question_menu
                                 #you need to see this option for the plot to progress
-                    "Where" if ((not whereulive) and (not whereufood) and (not whereunotlive) and (not wherewelive) and (not wherewefood) and (not wherewenotlive)):
-                        "Where..."
+                    "Where" if ((not whereulive) and (not whereufood) and (not whereunotlive) and (not wherewelive) and (not wherewefood) and (not wherewenotlive)):                        
                         menu:
-                            "you..." if ((not whereulive) and (not whereufood) and (not whereunotlive)):
-                                "Where you..."
+                            "Where..."
+                            "you..." if ((not whereulive) and (not whereufood) and (not whereunotlive)):                                
                                 menu:
+                                    "Where you..."
                                     "live?" if (not whereulive):
                                         jellysquid "We live here, in the ocean."
                                         $ whereulive = True
@@ -6917,11 +6961,11 @@ label call_to_squid:
                                         jellysquid "We do not live on land."
                                         $ whereunotlive = True
                                         jump question_menu
-                            "we..." if ((not wherewelive) and (not wherewefood) and (not wherewenotlive)):
-                                "Where we..."
+                            "we..." if ((not wherewelive) and (not wherewefood) and (not wherewenotlive)):                                
                                 menu:
+                                    "Where we..."
                                     "live?" if (not wherewelive):
-                                        jellysquid "You live on land. You know it. Why do you ask?"
+                                        jellysquid "You live on land. You know. Why ask?"
                                         $ wherewelive = True
                                         jump question_menu
                                     "food?" if (not wherewefood):
@@ -7005,9 +7049,9 @@ label call_to_squid:
                     zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
                     zaina "The jellysquid can easily eat the yipper, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
                     him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
-                    zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
-                    "What do I think is better?"
+                    zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."                    
                     menu: #should this be a decision? remove it?
+                        "What do I think is better?"
                         "Serve mudfish to the jellysquids.":
                             him "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
                             him "Also, we won't have to worry about shell overgrowth."
@@ -7140,6 +7184,7 @@ label community28:
     him sad "And you found something out and now you won't discuss it because of patient-doctor confidentiality. I get it."
     her concerned "If you were in Mayor Grayson's situation... would you want to live as long as possible, or would you want someone to help you die when you could no longer remember who you were most of the time?"
     menu:
+        "What would I want?"
         "I'd want to die before being a burden on others.":
             him concerned "I think I'd rather die prematurely than live without remembering who I was or what I was doing that day."
             her determined "I think I would too."
@@ -7196,10 +7241,12 @@ label community28:
             him doubt "I feel like helping him commit suicide is criminal."
             her concerned "But who will take care of him if we don't euthanize him? He could easily kill himself by wandering away or eating something inedible."
             menu:
+                "What should I say?"
                 "I could help":
                     him normal "I could supervise him eight hours a day."
                     her surprised "I don't think that's a good idea. And who would take the other sixteen hours in a day?"
                     $ marriage_strength -= 1 #not sure if you want this variable to have minuses?
+                    $ colonists += 1
                     sara normal "He could stay with us from dinner until after midnight. We usually stay up that late anyway."
                     julia normal "I'm always waking up early with my chronic pain. I could take the early morning shift, if he's awake then."
                     sara "Oh, or maybe we can set up his tablet to alert you if he wakes up."
@@ -7842,6 +7889,7 @@ label community30:
         him normal "So tell me more about what happened."
         julia angry "Do you remember about two Earth years ago, there was a woman who almost killed herself?"
         menu:
+            "Do I remember her?"
             "Yes":
                 him pout "Sure. There was a town council to see how we could help her."
                 julia normal "I was reading about that meeting in my special mayor files."
@@ -7914,9 +7962,9 @@ label community30:
         show rain
         play sound "sfx/rain.ogg" loop
         show him determined at center behind rain with moveinleft
-
-        "Where should I go first in my investigation?"
+        
         menu:
+            "Where should I go first in my investigation?"
             "Visit where Joel died.":
                 label joel_house:
                     $ visited_joel_house = True
@@ -8137,9 +8185,10 @@ label community30:
             oleg_c "and tell me what he says"
             # TODO: the "flashing" back to the texting happens here too
             menu:
-                "Tell Ilian what Oleg said.":
+                "What should I tell Ilian?"
+                "Tell him what Oleg said.":
                     him sad "Oleg says he's never coming back and that Sara's going on the shuttle back to Earth."
-                "Tell Ilian that Oleg isn't answering your questions.":
+                "Tell him Oleg isn't answering your questions.":
                     him sad "Oleg isn't telling me anything."
                     ilian normal "Oh yeah? Then what's all that you're typing?"
                     ilian angry "Give me that."
@@ -8517,6 +8566,7 @@ label community30:
                             jump who_suspect
 
                         menu: #allow players to ask about 3 people
+                            "Whose account should I check?"
                             "Noel's" if not checked_noel:
                                 brennan normal "Noel has around 100 credits."
                                 $ checked_noel = True
@@ -8591,6 +8641,7 @@ label community30:
                                 him normal "Yeah, thanks."
                                 jump who_suspect
                             menu: #allow players to ask about 3 people
+                                "Whose account should I check?"
                                 "Noel's" if not checked_noel:
                                     "Noel has around 100 credits."
                                     $ checked_noel = True
@@ -8673,6 +8724,7 @@ label community30:
                                     her_c "Did you want to check anyone else's account?"
 
                                 menu:
+                                    "Whose account should I check?"
                                     "Julia's" if not checked_julia:
                                         if ban_firegrass:
                                             her_c "Julia has around 7,000 credits."
@@ -8726,6 +8778,7 @@ label community30:
                                 "I thought I heard [her_name] stirring and I quickly put her tablet away."
                                 jump who_suspect
                             menu: #allow players to ask about 3 people
+                                "Whose account should I check?"
                                 "Noel's" if not checked_noel:
                                     "Noel has around 100 credits."
                                     $ checked_noel = True

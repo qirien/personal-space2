@@ -20,7 +20,7 @@ label overwork:
     # The first time you ask for help from a group, it's a bonding experience. After that, they get annoyed.
     nvl clear
     menu:
-        "What should I do?"
+        "I have too much work... what should I do?"
         "Ask other farmers for help." if (overwork_colonists < 2):
             $ overwork_colonists += 1
             if (overwork_colonists <= 1):
@@ -408,7 +408,7 @@ label work2:
 
     kevin sad "I do not want to pester you continually with farming questions. Is there someone else whom I could also ask for assistance?"
     menu:
-        "What should I say?"
+        "Who should they go to for farming questions??"
         "Natalia" if (not met_peron):
             $ bios.activate("Natalia")
             $ bios.activate("Martín")
@@ -955,7 +955,7 @@ label work16:
             him normal "Sounds very flavorful!"
             kevin sad "[his_name], I was thinking about growing [random_crop]? Would you recommend it to me?"
             menu:
-                "What should I say?"
+                "Would I recommend [random_crop]?"
                 "Yeah, you'll like them!":
                     him happy "Yeah! You'll love them."
                     kevin happy "Then perhaps I shall try planting some."
@@ -2144,7 +2144,7 @@ label work30:
             kid determined "I can pay 150 per month."
             her concerned "No, [kid_name], you might need that money..."
             menu:
-                "What should I say?"
+                "Is 150 credits good for rent?"
                 "That's too much.":
                     him normal "Hey, I don't think your tiny room here is worth that much. Let's say 100 and it'll be fine."
                     her normal "Oh. That's not that much."

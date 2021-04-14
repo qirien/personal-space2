@@ -168,41 +168,41 @@ init -10:
         "True", "images/bg/restaurant.jpg"
     )
 
-    # TODO: use relative positions when they are fixed
     layeredimage family_photo:
         if True:
             "family_photo_bg"
 
-        if (get_parenting_style() == "authoritative"):
-            pos(320, 80)
+        if ((year == 12) and family12_shaved_head):
+            pos(480,80)
+            "him bald"
+        elif (get_parenting_style() == "authoritative"):
+            pos(450, 80)
             #align(0.3, 1.0)
             "him content"
         elif (get_parenting_style() == "authoritarian"):
-            pos(320, 80)
-            #align(0.3, 1.0)
+            pos(450, 80)
             "him pout"
         elif (get_parenting_style() == "permissive"):
-            pos(350, 80)
-            #align(0.3, 1.0)
+            pos(480, 80)
             "him normal"
         elif (year <= BABY_MAX):
-            pos(320, 80)
+            pos(480, 80)
             "him determined"
         # if neglectful, he is not in the picture at all, unless needed to hold a baby
 
         if has_strong_marriage():
-            pos(650, 150)
+            pos(600, 120)
             #align(0.7, 1.0)
             "her happy"
         elif (marriage_strength > 0):
-            pos(650, 150)
+            pos(600, 120)
             "her normal"
         else:
-            pos(650, 150)
-            "her nervous coat"
+            pos(600, 120)
+            "her determined coat"
 
         group kid:
-            pos(400, 250)
+            pos(320, 200)
             #align(0.45, 1.0)
             attribute ACI:
                 "kid happy"
@@ -223,23 +223,23 @@ init -10:
 
         #align(0.6, 1.0)
         if ((bro_age >= 0) and (get_parenting_style() == "authoritative")):
-            pos(670, 300)
+            pos(680, 250)
             #align(0.6, 1.0)
             "bro happy"
         elif ((bro_age >= 0) and (get_parenting_style() == "authoritarian")):
-            pos(670, 300)
+            pos(680, 250)
             #align(0.6, 1.0)
             "bro concerned"
         elif ((bro_age >= 0) and (get_parenting_style() == "permissive")):
-            pos(670, 300)
+            pos(680, 250)
             #align(0.6, 1.0)
             "bro normal"
-        elif ((bro_age >= 0) and (get_parenting_style() == "inconsistent")):
-            pos(670, 300)
+        elif ((bro_age >= 0) and (get_parenting_style() == "neglectful")):
+            pos(680, 250)
             #align(0.6, 1.0)
             "bro sad"
         elif (bro_age >= 0):
-            pos(670, 300)
+            pos(680, 250)
             "bro determined"
         if True:
             "polaroid"
