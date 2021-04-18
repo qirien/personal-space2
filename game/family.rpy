@@ -8937,14 +8937,16 @@ label family30:
         him happy "Okay, group hug!"
         show him normal at midleft with move
         show her normal at midright with move
+        show kid normal with dissolve        
         her annoyed "Watch the foot!"
-        show bro at midright with move
+        show bro at midleft with move        
         bro "Your hair is in my face!"
+        show her at center with move
         "Finally everyone was comfy and we had a minute just to hold one another."
         show him sleeping
         show her sleeping
-        show kid normal # TODO: sleeping sprites?
-        show bro normal
+        show kid explaining
+        show bro sleeping
         with dissolve
         "I closed my eyes and tried to remember every detail of this moment, from how my arm barely reached across [bro_name]'s growing shoulders, to how a few tears had streaked across [her_name]'s face."
         "I felt [kid_name]'s hand on my back, which used to be so small and helpless, and now was strong like her mother's and callused like mine."

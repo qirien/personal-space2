@@ -51,12 +51,12 @@ init python:
                     if (work8_choice == "improve"):
                         new_nitrogen += 5
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
+                print(i)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
 
                 pest_factor = 0 # how pests affect yield
                 pest_growth = 0 # how much pests increase/decrease this year
-                # If pest calculation is on
-                # TODO: Set difficulty level? Remove completely?  Add in New Game+?
+                # If pest calculation is on (which it's not; might cause bugs, no pun intended, or something)               
                 # still runaway pests on perennials...
                 if USE_PESTS:
                     #print "Crop " + str(i) + " is " + crop_name + " and current_nitrogen: " + str(current_nitrogen) + ", current_pests: " + str(current_pests)
@@ -204,9 +204,9 @@ init python:
                 valid_layout = False
 
             # Check calories
-            total_cals = self.get_total_calories()
-            if (total_cals < get_calories_required(year)):
-                valid_layout = False
+            # total_cals = self.get_total_calories()
+            # if (total_cals < get_calories_required(year)):
+            #     valid_layout = False
 
             return valid_layout
 
@@ -364,18 +364,19 @@ init python:
         crop_index = get_crop_index(crop_name)
         return crop_info[crop_index][ENABLED_INDEX]
 
-    # TODO: test this
     def enable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
-        crop_info[crop_index][ENABLED_INDEX] = True
-        if (notify):
+        if (notify and not crop_info[crop_index][ENABLED_INDEX]):
             notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " unlocked!")
+        crop_info[crop_index][ENABLED_INDEX] = True
+        return
 
     def disable_crop(crop_name, notify=True):
-        crop_index = get_crop_index(crop_name)
-        crop_info[crop_index][ENABLED_INDEX] = False
-        if (notify):
+        crop_index = get_crop_index(crop_name)        
+        if (notify and crop_info[crop_index][ENABLED_INDEX]):
             notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " disabled")
+        crop_info[crop_index][ENABLED_INDEX] = False
+        return
 
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical

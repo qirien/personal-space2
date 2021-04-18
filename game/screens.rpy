@@ -798,34 +798,36 @@ screen preferences():
             hbox:
                 box_wrap True
                 # TODO: Add tooltips explaining these better
+                $ tooltip = GetTooltip()
 
                 if renpy.variant("pc"):
 
                     vbox:
                         style_prefix "radio"
                         label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                        textbutton _("Window") action Preference("display", "window") tooltip "Run in a window"
+                        textbutton _("Fullscreen") action Preference("display", "fullscreen") tooltip "Run fullscreen"
 
                 vbox:
                     style_prefix "radio"
                     label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                    textbutton _("Disable") action Preference("rollback side", "disable") tooltip "Clicking anywhere will advance text."
+                    textbutton _("Left") action Preference("rollback side", "left") tooltip "Clicking on the left side of the screen will roll back text"
+                    textbutton _("Right") action Preference("rollback side", "right") tooltip "Clicking on the right side of the screen will roll back text"
 
                 vbox:
                     style_prefix "check"
                     label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    if (config.developer):
+                        textbutton _("Unseen Text") action Preference("skip", "toggle") tooltip "Skip text even if you haven't seen it before"                        
+                    textbutton _("After Choices") action Preference("after choices", "toggle") tooltip "After a choice is made, continue skipping"
+                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle")) tooltip "Disable transitions while skipping"
 
                 vbox:
                     style_prefix "radio"
                     label _("Auto Advance")
-                    textbutton _("On") action Preference("auto-forward", "enable")
-                    textbutton _("Off") action Preference("auto-forward", "disable")
+                    textbutton _("On") action Preference("auto-forward", "enable") tooltip "Advance text automatically"
+                    textbutton _("Off") action Preference("auto-forward", "disable") tooltip "Click to advance text"
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
@@ -840,11 +842,11 @@ screen preferences():
 
                     label _("Text Speed")
 
-                    bar value Preference("text speed")
+                    bar value Preference("text speed") tooltip "How fast we put letters on the screen"
 
                     label _("Auto-Forward Time")
 
-                    bar value Preference("auto-forward time")
+                    bar value Preference("auto-forward time") tooltip "How fast the screen advances in Auto mode"
 
                 vbox:
 
@@ -880,6 +882,9 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+            
+            if tooltip:
+                text "[tooltip]" yalign 1.0 italic True
 
 
 style pref_label is gui_label

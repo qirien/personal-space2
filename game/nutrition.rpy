@@ -32,9 +32,9 @@ label bad_nutrition:
         else:
             her determined coat "And for now let's trade for a few different foods."
 
-        scene bg tutorial-crop-nutrition with fade
+        scene tutorial-crop-nutrition with fade
         "I added [her_name]'s nutrition information to my farm planning app so that I could keep track of that better."
-        scene bg tutorial-nutrition with fade
+        scene tutorial-nutrition with fade
         "I need to make sure I can harvest crops with enough of the main three nutrients: Vitamin A, Vitamin C, and Magnesium."
         if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             scene fields with fade
@@ -47,30 +47,34 @@ label bad_nutrition:
     if (bad_nutrition_count >= 2):
         # All nutrients low
         if  (farm.low_vitamin_c() and farm.low_vitamin_a() and farm.low_magnesium() and (not seen_low_cam)):
-            $ seen_low_cam = True
+            scene stars with fade
+            $ seen_low_cam = True            
             "I felt like I was sick all the time. I had no energy, my gums were always bleeding, and I felt weak and cranky."
             "Finally, I went to see [her_name]."
+            scene hospital with fade
+            show her concerned coat at midright with dissolve
+            show him determined at midleft with moveinleft
             him determined "Help me, doc."
-            her concerned "What's wrong?"
+            her surprised coat "What's wrong?"
             him concerned "I don't know; maybe it's nothing. I just feel like I'm a little bit sick all the time."
-            her determined "Oh, really?"
+            her determined coat "Oh, really?"
             him sad "Yeah. So if I'm just making it up, tell me and I'll get back to work. But if there is something wrong, maybe you can help me."
             $ common_food = farm.most_frequent_crop()
-            her angry "I know exactly what's wrong with you!  You've been eating nothing but [common_food] and your body's sick!"
+            her angry coat "I know exactly what's wrong with you!  You've been eating nothing but [common_food] and your body's sick!"
             him surprised "This is all from my diet?"
-            her annoyed "Yes, I warned you about this!"
+            her annoyed coat "Yes, I warned you about this!"
             him sad "Oh."
-            her concerned "..."
+            her concerned coat "..."
             him concerned "Are the kids okay?"
-            her annoyed "Yes, I've been supplementing their diet."
+            her annoyed coat "Yes, I've been supplementing their diet."
             him annoyed "But not mine."
-            her angry "No! I wanted you to understand how serious this is!"
+            her angry coat "No! I wanted you to understand how serious this is!"
             him surprised "Can't we just buy what we need from the storehouse?"
-            her annoyed "Yes, but it gets expensive. Here's a list."
+            her annoyed coat "Yes, but it gets expensive. Here's a list."
+            $ modify_credits(-100)
             "She had made a list of foods we needed to buy."
             him concerned "Sorry, [her_name]. I feel like I failed you."
-            her determined "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
-            $ modify_credits(-50)
+            her determined coat "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
 
         # Low Vitamin A & C
         elif (farm.low_vitamin_c() and farm.low_vitamin_a() and (not seen_low_ca)):

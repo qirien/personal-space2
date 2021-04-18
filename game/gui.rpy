@@ -461,14 +461,7 @@ define gui.nvl_font = "fonts/OpenSansEmoji.otf"
 # Mobile devices
 ################################################################################
 
-# TODO: Button font size - check if it is too small for choices.
 init python:
-
-    ## This increases the size of the quick buttons to make them easier to touch
-    ## on tablets and phones.
-    if renpy.variant("touch"):
-
-        gui.quick_button_borders = Borders(60, 14, 60, 0)
 
     ## This changes the size and spacing of various GUI elements to ensure they
     ## are easily visible on phones.

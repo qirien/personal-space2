@@ -2124,7 +2124,7 @@ label money1:
     sara_c "Basically, yes. We also have a few people looking for work, so it'll be good for everyone. 1000 credits would be enough for a few months."
     "I explained the situation to [her_name], who said she thought donating was a good idea but left the exact amount up to me."
     menu:
-        "What should I do?"
+        "What should I do? I have [credits] credits."
         "Donate 1000 credits":
             him_c "I'll donate 1000 credits."
             $ modify_credits(-1000)
@@ -2186,7 +2186,7 @@ label money2:
             him happy "This is a great idea! I can invest 1000 credits and you can pay me back with your profits."
             zaina happy "Great!"
             scene stars with fade
-            "She made a whole bunch of weed choppers, but she underestimated some of the costs and she wasn't very good at explaining it to people. She ended up only being able to sell half of them and giving the rest away."            
+            "She made a whole bunch of weed choppers, but she underestimated some of the costs and she wasn't very good at explaining it. She ended up only selling half of them and giving the rest away."
             nvl clear
             $ modify_credits(800)
             zaina_c "[his_name], I didn't end up making any profits on this project at all... but I can pay you back 800 credits and a free weed chopper. I'm sorry."            

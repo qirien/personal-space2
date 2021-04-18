@@ -4,7 +4,7 @@
 init python:
 
     def actionHyperlinkHandler(action_string):
-        print action_string
+        #print action_string
         return renpy.python.py_eval("renpy.run({})".format(action_string))
 
     config.hyperlink_handlers.update({"action": actionHyperlinkHandler})
@@ -289,12 +289,12 @@ init -100 python:
 
             # If you have a lot of money, have an investment/charity opportunity
             if (credits > 1000):
-                last_money_event = persistent.number_events_seen["money"]
+                last_money_event = number_events_seen["money"]
                 if (last_money_event == 0):
-                    persistent.number_events_seen["money"] += 1
+                    number_events_seen["money"] += 1
                     return "money1"
                 elif (last_money_event == 1):
-                    persistent.number_events_seen["money"] += 1
+                    number_events_seen["money"] += 1
                     return "money2"
                 
 
@@ -306,7 +306,7 @@ init -100 python:
                     #get the number of the next event for this crop
                     #print "Crop: " + crop_name
                     crop_name = crop_name.rstrip("+")
-                    next_event = persistent.number_events_seen[crop_name] + 1
+                    next_event = number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
                         possible_events.add(event_label)
@@ -315,14 +315,12 @@ init -100 python:
             if (num_possible_events > 0):
                 random_event = renpy.random.choice(list(possible_events))
                 crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
-                persistent.number_events_seen[crop_name] += 1
+                number_events_seen[crop_name] += 1
                 #print "Picked event: " + random_event
-                renpy.save_persistent()
                 return random_event
             else:
                 # Reset the number of events seen for each crop and give a default event.
-                persistent.number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0, "money":0}
-                renpy.save_persistent()
+                number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0, "money":0}
                 return "default_crop_event"
 
     # Change amount of credits you have
@@ -383,15 +381,15 @@ init -100 python:
         return (calories_kid + calories_bro)
 
     def get_calories_kid(age):
-        if (0 <= age < 2):
+        if (0 <= age < BABY_MAX):
             return 5
-        if (2 <= age < 5):
+        if (BABY_MAX <= age < TODDLER_MAX):
             return 10
-        if (5 <= age < 11):
+        if (TODDLER_MAX <= age < CHILD_MAX):
             return 15
-        if (11 <= age < 14):
+        if (CHILD_MAX <= age < YTEEN_MAX):
             return 20
-        if (14 <= age):
+        if (YTEEN_MAX <= age):
             return 25
         return 0
 

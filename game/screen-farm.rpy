@@ -33,11 +33,10 @@ screen plan_farm():
                                 style "plan_farm_subframe"
                                 hbox:
                                     label "Status" xsize 100
-                                    # TODO: allow more than one status?
                                     if (not valid_layout):
-                                        if (farm.get_total_calories() < get_calories_required(year)):
-                                            text "Need more calories!" style "alert_text"
-                                        elif (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
+                                        # if (farm.get_total_calories() < get_calories_required(year)):
+                                        #     text "Need more calories!" style "alert_text"
+                                        if (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
                                             text "Need to allocate all goats!" style "alert_text"
                                         elif (crop_enabled("honey") and (farm.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
                                             text "Need to allocate all bees!" style "alert_text"
@@ -53,17 +52,15 @@ screen plan_farm():
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
-                                # TODO: take this out unless NG+?
-                                #showif persistent.times_beaten:
-                                textbutton "Random":
-                                    action [
-                                            set_default_crops,
-                                            renpy.restart_interaction
-                                            ]
+                                showif persistent.times_beaten:
+                                    textbutton "Random":
+                                        action [
+                                                set_default_crops,
+                                                renpy.restart_interaction
+                                                ]
                                 textbutton "Done":
-                                # TODO: What if no valid layout is possible? Have emergency help button?
                                     sensitive valid_layout
-                                    action Jump("yearly_events")
+                                    action If((farm.get_total_calories() < get_calories_required(year)), Confirm("Do you really want to continue without enough calories?", Jump("yearly_events")), Jump("yearly_events"))
 
 
 # To change appearance, see screens.rpy, screen nvl

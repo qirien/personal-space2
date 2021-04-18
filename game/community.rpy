@@ -3132,7 +3132,7 @@ label community15:
     her concerned coat "Yeah. I told Pavel to post that everyone should try to give her a last visit, although her symptoms are a lot like severe food poisoning, so..."
     him concerned "We'll understand if she's, ah, indisposed. I'll bring the kids over this afternoon."
     her sad coat "Just... check with Pavel first."
-    scene path with fade
+    scene farm_exterior flip with fade
     show him sad at midleft with moveinleft
     show kid nervous at center with moveinleft
     show bro sad at quarterleft with moveinleft
@@ -3166,9 +3166,9 @@ label community15:
         "Say nothing.":
             "Sara walked away quietly sniffing."
     hide sara with moveoutleft            
-    scene kid_bedroom with fade
+    scene bro_bedroom with fade
     "I entered the room with the kids."
-    show naomi normal at midright with dissolve
+    show naomi normal at midright, flip with dissolve
     show him sad at midleft
     show bro concerned at quarterleft
     show kid nervous at center
