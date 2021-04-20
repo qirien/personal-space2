@@ -179,6 +179,7 @@ label start:
     default seen_miners_debt = False
     default seen_mavericks_debt = False
     default seen_colonists_debt = False
+    default low_calories_count = 0
 
     python:
         # Dictionary containing the number of events seen for each crop
@@ -390,9 +391,6 @@ label life_loop:
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
 
-
-        # TODO: Is there some way to detect if we have an impossible situation here? Like, even if you planted potatoes in every square with enough nitrogen, you still couldn't have enough calories?
-        # Should you lose, or your favorite faction/family rescue you?
         call screen plan_farm() with fade
 
         label yearly_events:
@@ -412,6 +410,11 @@ label life_loop:
                 $ achieved("Potato Papa")
                 
             play music farming fadeout 3.0 fadein 3.0
+
+            # LOW CALORIES EVENT (optional)
+            if (farm.low_calories()):
+                call low_calories
+
             # MALNUTRITION EVENT (optional)
             if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
                 call bad_nutrition

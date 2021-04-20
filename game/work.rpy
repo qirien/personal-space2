@@ -268,6 +268,7 @@ label debt_event:
             $ modify_farm_size(1)
             "I also decided to prepare another field. That way I could plant more crops."
     else:
+        # TODO: RET should send you a nastygram in here, too
         "Even after we tightened our belts and reduced unnecessary expenses, we were still in the red."
         "Ilian stopped selling us everything except the barest necessities."
         "I had to do something."

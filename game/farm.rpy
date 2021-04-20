@@ -204,9 +204,8 @@ init python:
                 valid_layout = False
 
             # Check calories
-            # total_cals = self.get_total_calories()
-            # if (total_cals < get_calories_required(year)):
-            #     valid_layout = False
+            # if self.low_calories():
+            #    valid_layout = False
 
             return valid_layout
 
@@ -245,6 +244,9 @@ init python:
                 current_crop_name = self.crops[i].rstrip("+")
                 vitM += multiplier * crop_info[get_crop_index(current_crop_name)][VITM_INDEX]
             return (vitM < get_vitamins_required(year))
+
+        def low_calories(self):
+            return (self.get_total_calories() < get_calories_required(year))
 
         def most_frequent_crop(self):
             return self.crops.most_frequent_crop()

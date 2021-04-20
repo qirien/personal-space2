@@ -276,3 +276,60 @@ label bad_nutrition:
         $ modify_farm_size(1)
 
     return
+
+label low_calories:
+    $ cals_got = farm.get_total_calories()
+    $ cals_needed = get_calories_required(year)
+    $ cals_short = cals_needed - cals_got
+
+    # We weren't short by very much
+    if (cals_short < (0.1 * cals_needed)):
+        "Even though I didn't plant enough crops to feed our family comfortably, we tightened our belts and traded a few things and managed to get by."        
+        if (year > MONEY_YEAR):
+            $ modify_credits(farm.income_loss(cals_got/cals_needed))
+            "Since we ended up eating everything I planted, I wasn't able to make much money, though."
+        "I wouldn't repeat that mistake again."
+        if (farm_size < FARM_SIZE_MAXIMUM):
+            "I prepared another field to make sure I'd have plenty of room for crops next year."
+            $ modify_farm_size(1)
+        return
+
+    if (low_calories_count < 1):
+        scene farm_interior with fade
+        show her determined at midleft
+        show him determined at midright
+        show kid determined at center
+        with dissolve
+
+        her surprised "When I went to the cellar to get some beans, I noticed there was hardly anything in there."
+        kid annoyed "Not beans again!"
+        her annoyed "[kid_name], please don't interrupt. [his_name], are we going to have enough food this year?"
+        "I didn't know what to tell her. We didn't have enough food. I was supposed to be growing enough for our family and some extra, but this year... I just couldn't."
+        if (year > MONEY_YEAR):
+            $ modify_credits(farm.income_loss(cals_got/cals_needed))
+            him blush "We, uh, we might have to buy some things from the storehouse..."
+        else:
+            him blush "We, uh, we might have to get some help..."
+        her angry "I don't know how this could have happened! We're not just short by a little - you knew this would happen!"        
+        him sad "Yeah. I- I'm sorry."
+        hide him with moveoutleft
+        scene fields with fade
+        "I felt like a worthless farmer, a worthless dad... What was I good for if I couldn't even feed people?!"
+
+        if (farm_size < FARM_SIZE_MAXIMUM):
+            "I prepared another field to make sure I'd have plenty of room for crops next year."
+            $ modify_farm_size(1)
+    else:
+        "I didn't plant enough crops to feed our family."        
+        if (year > MONEY_YEAR):
+            $ modify_credits(farm.income_loss(cals_got/cals_needed))
+            "Even after we tightened our belts and reduced what we ate it still wasn't enough."
+        else:
+            "I didn't plant enough crops to feed our family and I had to beg from our neighbors."
+    
+    # Nobody likes a slacker...
+    $ colonists -= 1
+    $ miners -= 1
+    $ mavericks -= 1
+    $ marriage_strength -= 1
+    return
