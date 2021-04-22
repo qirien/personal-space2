@@ -713,8 +713,8 @@ label work10:
             kevin normal "Very well. I shall mark you down for bees."
             $ modify_credits(-100)
             $ enable_crop("honey")
-            "Bees will boost production of neighboring squares and require just a little work."
-            "However, you have to allocate a space for them every year."
+            tutorial "Bees will boost production of neighboring squares and require just a little work."
+            tutorial "However, you have to allocate a space for them every year."
             $ achieved("Family Beeswax")
         "No thanks.":
             him concerned "No thanks; I already have enough to worry about."

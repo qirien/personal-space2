@@ -273,7 +273,14 @@ label start:
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
     if (persistent.times_beaten):
-        "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size." # TODO: add sunflower seeds/nuts/eggs?
+        "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked." # TODO: add sunflower seeds/nuts/eggs?
+        if (persistent.crops_unlocked):
+            $ i = 0
+            while (i < len(crop_info)):
+                if crop_info[i][NAME_INDEX] in persistent.crops_unlocked:
+                    $ enable_crop(crop_info[i][NAME_INDEX])
+                $ i += 1
+
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
@@ -369,7 +376,7 @@ label life_loop:
                 # TODO: Check for all crops unlocked achievement
                     
         if (crop_enabled("wheat")):
-            $modify_credits(-WHEAT_COST)
+            $ modify_credits(-WHEAT_COST)
 
         # TUTORIALS FOR NEW STUFF
         if (year == MONEY_YEAR):

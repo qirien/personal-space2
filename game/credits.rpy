@@ -87,6 +87,15 @@ label credits:
         $ mp.baby_name = kid_name
         $ mp.bro_name = bro_name
         $ mp.save()
+    
+    if persistent.crops_unlocked is None:
+        $ persistent.crops_unlocked = set()
+    $ i = 0
+    while (i < len(crop_info)):
+        if crop_info[i][ENABLED_INDEX]:
+            $ persistent.crops_unlocked.add(crop_info[i][NAME_INDEX])
+            $ print("Adding: " + crop_info[i][NAME_INDEX])
+        $ i += 1
     $ renpy.save_persistent()
 
     scene stars with fade

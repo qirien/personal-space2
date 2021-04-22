@@ -1982,7 +1982,9 @@ label community11:
 
             if talked_to_Thuc:
                 thuc happy "I can start growing these peanuts right away!"
+                him happy "Ooh, I want some, too!"
                 $ enable_crop("peanuts")
+                tutorial "Peanuts, like beans, help restore nitrogen in the soil so other plants can grow better."
             else:
                 thuc happy "Are there any new seeds to grow? I want some of this peanut butter, by the way."
 

@@ -257,7 +257,7 @@ init -100 python:
 
     # Find the right work event for this year
     def get_next_work_event():
-        global crop_temporarily_disabled, crop_info
+        global crop_temporarily_disabled, crop_info, number_events_seen
         # Enable any crops that were temporarily disabled
         if (crop_temporarily_disabled != ""):
             enable_crop(crop_temporarily_disabled, False)
@@ -306,6 +306,7 @@ init -100 python:
                     #get the number of the next event for this crop
                     #print "Crop: " + crop_name
                     crop_name = crop_name.rstrip("+")
+                    print("Crop name: " + crop_name)
                     next_event = number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):

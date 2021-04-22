@@ -1466,7 +1466,7 @@ label plums2:
             thuc normal "This is nice and fresh, so you can plant it or eat it."
             him happy "Mmmm, this'll be good! Thank you!"
             if (crop_enabled("garlic")):
-                "I already had garlic, but I appreciated Thuc's gift."
+                "I already could grow my own garlic, but I appreciated Thuc's gift."
             else:
                 "I couldn't wait to eat some, but even better, now I could grow my own."
             $ enable_crop("garlic")

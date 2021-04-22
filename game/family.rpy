@@ -8873,7 +8873,7 @@ label family30:
             "I just felt too awkward. I didn't want to break down and cry or watch others cry, so I slipped away."
             jump family30_night
 
-    her surprised coat "Is that really what time it is?! I'm late!"
+    her surprised coat "Oh no, is that really what time it is?! I'm late!"
     bro surprised "I'm late for school!"
     him concerned "You two take the tractor; I won't need it today."
     hide bro
