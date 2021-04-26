@@ -3,6 +3,10 @@
 
 # TODO: include CGs here as photos? maybe a jellysquid image?
 label credits:
+    # TODO: Different music?
+    play music maintheme
+
+
     window hide
     scene black with fade
     $ skippable = not persistent.times_beaten
@@ -34,7 +38,7 @@ label credits:
     else:
         show credits05-colonists at tilted, right, driftdown, smallphoto
 
-    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nChristos Anestopoulos\nAmbient Teknology\n\nUsed with permission from {a=http://www.magnatune.com}Magnatune{/a}" with dissolve
+    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nChristos Anestopoulos\nAmbient Teknology\n\nUsed with permission from {a=http://www.magnatune.com}Magnatune{/a}\n\nand {a=https://bit.ly/2xNM03K}LonePeakMusic{/a}" with dissolve
     $ renpy.pause(4.0, hard=skippable)
     hide text with dissolve
 
