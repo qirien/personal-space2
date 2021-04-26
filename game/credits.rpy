@@ -1,7 +1,7 @@
 ##
 # CREDITS
 
-# TODO: include CGs here! a jellysquid image?
+# TODO: include CGs here as photos? maybe a jellysquid image?
 label credits:
     window hide
     scene black with fade
@@ -105,6 +105,5 @@ label credits:
 
     "Thank you for playing Our Personal Space 2: Space to Grow!"
     "New Game+ unlocked! Bonus section unlocked!"
-    # TODO: add link, survey, etc?
 
     $ renpy.full_restart()
