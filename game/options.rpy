@@ -26,7 +26,7 @@ define config.autosave_on_quit = True
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
-define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepia.icecavern.net}http://metasepia.icecavern.net{/a}\n\n{a=credits}Full Credits{/a}")
+define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepiagames.com}http://metasepiagames.com{/a}\n\n{a=credits}Full Credits{/a}")
 
 
 ## A short name for the game used for executables and directories in the built

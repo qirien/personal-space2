@@ -265,8 +265,6 @@ define gui.quick_button_text_selected_color = gui.accent_color
 ## Choice Buttons ##############################################################
 ##
 ## Choice buttons are used in the in-game menus.
-
-# TODO: Customize these buttons? Use the same frame as the Confim screen?
 define gui.choice_button_width = 500
 define gui.choice_button_height = None
 define gui.choice_button_tile = False

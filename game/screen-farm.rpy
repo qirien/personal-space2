@@ -167,8 +167,7 @@ screen farm_details_screen():
                 label "Total"
                 use crops_totals
 
-# TODO: make this take up the whole screen so there's more room for fat fingers on phones?
-# TODO: Phones need a checkmark icon or make it so if you click outside the screen it sets and returns. Also make it so clicking the X doesn't cancel the choice?
+# TODO: Phones need a checkmark icon or make it so if you click outside the screen it sets and returns. Ask on Discord?
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     modal True
@@ -325,7 +324,6 @@ screen stat_icons(stat_value, stat_index):
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
 
-# TODO: should the red ones be gray since they are less useful?
 screen nutrition_icons(crop_index):
     hbox:
         style "stat_icon_hbox"

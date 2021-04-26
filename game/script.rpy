@@ -226,8 +226,8 @@ label start:
             "onions" : "These useful bulb vegetables are good raw or cooked. They keep well, too.",
             "garlic" : "Their pungent flavor is versatile and sought after.",
             "spinach" : "This leafy vegetable is healthy and good for salads or cooking.",
-            "broccoli" : "This vegetable is easy to grow and nutritious. Eat the flower buds and the stems!",
-            "goats" : "Goats restore nitrogen, eat pests, and provide nutritious milk and meat.",
+            "broccoli" : "This vegetable is easy to grow and full of vitamin C. Eat the flower buds and the stems!",
+            "goats" : "Goats restore nitrogen, eat pests, and provide calorie-dense milk and meat.",
             "honey" : "Bees help pollinate flowering crops and provide valuable honey."
             }
 
