@@ -87,7 +87,6 @@ screen p_display(board, call_return=False):
                                     spacing 5
                                     imagebutton auto "gui/twitter_%s.png" action TweetPoem(board.poems[count]) tooltip "Share this poem on Twitter" 
                                     textbutton " × " action Confirm("Delete this poem?", DeletePoem(board, count)) tooltip "Delete this poem" xalign 0.5
-                                    # TODO: Add action to edit poem: textbutton " ✎ " action 
                                 vbox:
                                     spacing 5
                                     for i in range(0, board.MAX_LINES):

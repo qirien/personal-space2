@@ -96,6 +96,39 @@ label ending:
         "No":
             $ pass
     call credits
+
+    # Set multi-persistent variables about this playthrough
+    if not persistent.times_beaten:
+        $ persistent.times_beaten = 1
+    else:
+        $ persistent.times_beaten += 1
+
+    if renpy.variant('pc'):
+        $ mp.jack_name = his_name
+        $ mp.kelly_name = her_name
+        $ mp.baby_name = kid_name
+        $ mp.bro_name = bro_name
+        $ mp.save()
+    
+    if persistent.crops_unlocked is None:
+        $ persistent.crops_unlocked = set()
+    $ i = 0
+    while (i < len(crop_info)):
+        if crop_info[i][ENABLED_INDEX]:
+            $ persistent.crops_unlocked.add(crop_info[i][NAME_INDEX])
+            $ print("Adding: " + crop_info[i][NAME_INDEX])
+        $ i += 1
+    $ renpy.save_persistent()
+
+    scene stars with fade
+    show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve
+    stop music fadeout 3.0
+    $ renpy.pause(3.0, hard=skippable)
+
+    "Thank you for playing Our Personal Space 2: Space to Grow!"
+    "New Game+ unlocked! Bonus section unlocked!"
+
+    $ renpy.full_restart()
     return
 
 #1 aci - Blames you for everything. Clingy. Returns to Earth (with Lorant?) but you know the relationship won't last.
