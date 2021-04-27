@@ -3,7 +3,7 @@
 
 # TODO: include CGs here! a jellysquid image?
 label credits:
-    # TODO: Different music?
+    # TODO: Different music? If we don't end up getting a special song, maybe https://lonepeakmusic.bandcamp.com/track/made-in-liverpool
     play music maintheme
 
 
