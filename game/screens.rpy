@@ -261,12 +261,17 @@ style choice_button is button:
     properties gui.button_properties("choice_button")
     background "leaves_branches"#"roundrect_medgreen"
 
-style choice_button_text is button_text
+style choice_button_text is button_text:
+    insensitive_strikethrough True
+    insensitive_color "#ccc"
 style choice_chosen is choice_button#:
     #background "#333a"
 
 style choice_chosen_text is choice_button_text:
     italic True
+    color "#ccc"
+    hover_color "#fff"
+    insensitive_strikethrough True    
 
 style choice_vbox is vbox:
     xalign 0.5

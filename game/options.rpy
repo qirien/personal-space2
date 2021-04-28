@@ -80,10 +80,17 @@ define config.exit_transition = dissolve
 
 define config.after_load_transition = None
 
+## Include menu options you can't choose but disable them.
+define config.menu_include_disabled = False
+
+# TODO: Do we actually want this? If so, we should probably restructure menus as menusets.
+init python:
+    if (persistent.times_beaten):
+        config.menu_include_disabled = True
 
 ## Used when entering the main menu after the game has ended.
 
-define config.end_game_transition = None
+define config.end_game_transition = dissolve
 
 # Transition for when someone says something
 # The "master" part says to only do it on the sprites layer and not on the window layer.

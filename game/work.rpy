@@ -1627,10 +1627,11 @@ label work24:
     kid nervous "Ohhh. Oh, that hurts!"
     "She continued with a colorful curse that shocked me. Looking at her leg, though, I couldn't really blame her."
     $ work24_stopped_bleeding = False
-    $ work24_walk = False
+    default work24_menuset = set()
     menu work24_first_aid:
+        set work24_menuset
         "What should I do?"
-        "Stop the bleeding." if not work24_stopped_bleeding:
+        "Stop the bleeding.":
             him determined "First we better stop the bleeding."
             "I took off my shirt and wrapped it tightly around her leg."
             him concerned "Hold this on there, okay?"
@@ -1665,13 +1666,12 @@ label work24:
             with moveinleft
             her surprised coat "[his_name]? What's wrong?"
 
-        "See if she can walk." if not (work24_stopped_bleeding or work24_walk):
+        "See if she can walk.":
             him surprised "Can you stand up?"
             show kid determined at right, standing with move
             kid determined "Maybe... ugh. No, not really."
             show kid sad at right, squatting with move
             "As she tried to stand up, more blood trickled down her leg."
-            $ work24_walk = True
             jump work24_first_aid
         "Get some help.":
             him determined "I'm going to see if I can get some help, okay?"

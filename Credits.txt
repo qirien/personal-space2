@@ -29,9 +29,7 @@ The following images are in the public domain.
 
 Starscape <stars.jpg> rendered with Celestia, <http://celestia.space>
 
-RoscheiderHof-rathaus (coal stove) <farm-interior.jpg> by Andrea Landaker, derived from <http://commons.wikimedia.org/wiki/File:RoscheiderHof-rathaus-2008-8.jpg>, by Dorothea Witter-Rieder.
-
-Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Kid Bedroom <kid_bedroom.jpg>, Canyon <canyon.jpg>, Sunset <sunset.jpg> by Andrea Landaker
+Path <path.jpg>, Pond <pond.jpg>, Bedroom <bedroom.jpg>, Fields <fields.jpg>, Kid Bedroom <kid_bedroom.jpg>, Canyon <canyon.jpg>, Sunset <sunset.jpg>, Yurt Interior <yurt_interior.jpg> by Andrea Landaker
 
 Ocean <ocean.jpg>, and Ocean Sunset <ocean-sunset.jpg> by Andrea Landaker and Lisa Horner
 

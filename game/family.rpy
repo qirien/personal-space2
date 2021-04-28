@@ -487,10 +487,12 @@ label family2:
             play sound "sfx/baby-gurgle.ogg"
             "I don't know how much of my words she understood, but she sensed my excitement and smiled up at me."
             him normal "Yeah! Let me just put you in the backpack..."
+            show kid at jumpinghigh
             him concerned "Both feet at the same time, now... Left, then right, no, hey, stop bending your legs!"
+            show kid behind him at center, babybackpack_pos with move
             him happy "There we go! We're going to go make plants grow!"
             play sound "sfx/baby-coo.ogg"
-            kid happy "Daa!"
+            kid normal "Daa!"
             scene fields with fade
             show tractor at midleft
             show kid normal at midleft, babybackpack_pos
@@ -512,14 +514,11 @@ label family2:
             "She kicked her legs more, in frustration now. She pushed against me, trying to worm her way out of the backpack, but she was strapped in tight."
             "I tried to think about what would help her be happy while I worked on these fields for the next hour or two."
             $ family2_activity_count = 0
-            $ family2_sung = False
-            $ family2_eat = False
-            $ family2_play = False
-            $ family2_talk = False
+            default family2_menuset = set()
             menu family2_baby_activities:
-                "Sing a song." if not family2_sung:
+                set family2_menuset
+                "Sing a song.":
                     $ family2_activity_count += 1
-                    $ family2_sung = True
                     $ family2_work_done += 1
                     $ responsive += 1
                     "I tried to remember some songs she might like."
@@ -534,9 +533,8 @@ label family2:
                     him concerned "I need to learn some more songs!"
                     jump family2_baby_activities
 
-                "Give her something to eat." if not family2_eat:
+                "Give her something to eat.":
                     $ family2_activity_count += 1
-                    $ family2_eat = True
                     $ family2_work_done += 1
                     $ responsive += 1
                     him surprised "Are you hungry, [kid_name]? I didn't bring any food..."
@@ -553,9 +551,8 @@ label family2:
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
-                "Give her something to play with." if not family2_play:
+                "Give her something to play with.":
                     $ family2_activity_count += 1
-                    $ family2_play = True
                     $ family2_work_done += 1
                     $ responsive += 1
                     him surprised "You probably want something to play with, huh? I didn't bring any toys..."
@@ -575,9 +572,8 @@ label family2:
                     kid angry "Aaaa!"
                     jump family2_baby_activities
 
-                "Talk to her." if not family2_talk:
+                "Talk to her.":
                     $ family2_activity_count += 1
-                    $ family2_talk = True
                     $ family2_work_done += 1
                     $ responsive += 1
                     play sound "sfx/baby-gurgle.ogg"
@@ -1315,12 +1311,12 @@ label family5:
 
     $ family5_punishment = ""
     $ family5_reward = ""
-    $ family5_research = False
-    $ family5_prepared = False
     $ family5_method = ""
+    default family5_menuset = set()
     menu family5_strategy:
+        set family5_menuset
         "What should I say?"
-        "She should have consequences for accidents." if ((family5_punishment == "") or (family5_punishment == "be spanked")):
+        "She should have consequences for accidents.":
             $ demanding += 1
             him determined "I think [kid_name] needs to have some consequences for having an accident."
             her concerned "What kind of consequences?"
@@ -1358,7 +1354,7 @@ label family5:
                     $ family5_punishment = "be spanked"
                     jump family5_strategy
 
-        "She should have rewards for success." if (family5_reward == ""):
+        "She should have rewards for success.":
             $ responsive += 1
             him normal "We need some kind of reward."
             her concerned "What did you have in mind?"
@@ -1383,7 +1379,7 @@ label family5:
                     her happy "Oh yeah, she loves that!"
                     $ family5_reward = "big"
                     jump family5_strategy
-        "We should research this first." if (not family5_research):
+        "We should research this first.":
             him determined "Actually, I want to do some research first."
             her determined "Good idea. Let's both do some research and talk more in twenty minutes."
             "We snuggled up together on the couch, reading on our computer pads. It was not the most romantic topic, but I was glad we were working together."
@@ -1404,7 +1400,7 @@ label family5:
             $ family5_research = True
             jump family5_strategy
 
-        "We should be prepared for messes." if (not family5_prepared):
+        "We should be prepared for messes.":
             him concerned "Maybe part of the problem is our attitude. This is a big step for her; we can't expect her to be perfect at it right away."
             her concerned "Maybe you're right..."
             him normal "I mean, think about how long it took her to learn to walk, and how many times she had to fall down."
@@ -2055,16 +2051,16 @@ label family7:
             him annoyed "Stop it, [kid_name]. We have to put the toys away or we might step on them and break them."
             kid angry "No! You're mean!"
             "I wasn't making very much progress... I needed to try something else."
-            $ family7_logic = False
+            default family7_menuset = set()
             menu family7_cleanup_convince_menu:
+                set family7_menuset
                 "What should I do?"
-                "Convince her with logic." if (not family7_logic):
+                "Convince her with logic.":
                     him normal "If you like having toys, then you're responsible for taking care of those toys. Part of taking care of toys is putting them away."
                     kid yell "No! I'm still playing!"
                     him determined "Look at the clock. You can see it's bedtime."
                     kid annoyed "I'm not tired!"
                     "This wasn't working."
-                    $ family7_logic = True
                     jump family7_cleanup_convince_menu
 
                 "Bribe her.":
@@ -4115,9 +4111,11 @@ label family13:
                     kid normal "Sure, dad."
                     $ authoritative += 1
                     jump family13_end
-            menu:
+            default family13_menuset = set()
+            menu family13menu:
+                set family13_menuset
                 "What should I tell her about sex?"
-                "Tell her the physical mechanics." if not sex_ed_biology:
+                "Tell her the physical mechanics.":
                     $ confident += 1
                     him explaining "A man's penis can go inside the woman's vagina when they have sex. His sperm come out and can combine with on of her eggs to make a baby."
                     kid concerned "Oh."
@@ -4134,7 +4132,7 @@ label family13:
                     $ sex_ed_counter += 1
                     $ trust += 1
                     jump sex_ed
-                "Emphasize committment and marriage." if not sex_ed_commitment:
+                "Emphasize committment and marriage.":
                     $ demanding += 1
                     him happy "Sex is an important part of marriage. It makes you feel closer together, and you show your love for your spouse in a special way."
                     if (not sex_ed_biology):
@@ -4145,7 +4143,7 @@ label family13:
                     $ sex_ed_commitment = True
                     $ sex_ed_counter += 1
                     jump sex_ed
-                "Tell her the baby-creation part." if not sex_ed_babycreation:
+                "Tell her the baby-creation part.":
                     him explaining "Sex is how babies are made, so it's kind of a big deal. You need parents who are going to stay together and work together to take care of the baby."
                     if (not sex_ed_biology):
                         kid nervous "Okay, but what is it?!"
@@ -4157,19 +4155,19 @@ label family13:
                     $ sex_ed_babycreation = True
                     $ sex_ed_counter += 1
                     jump sex_ed
-                "Explain how good it feels." if not sex_ed_goodfeeling:
+                "Explain how good it feels.":
                     him blush "It feels really good to have sex together."
                     if (not sex_ed_biology):
                         kid nervous "Okay, but what is it?!"
                     else:
-                        kid surprised "Like... spinning really fast on the spinner at the playground??"
+                        kid surprised "Like... spinning really fast on a tire swing??"
                         him normal "Kind of. But special. It makes you feel closer to the person you're with, so you want to make sure it's someone you love enough to be with forever."
                         kid concerned "Forever?"
                         him concerned "Well, that's how I feel. Some people don't look at it as that special, I guess. But your mom and I only share it with each other, so it helps us feel closer together."
                     $ sex_ed_counter += 1
                     $ sex_ed_goodfeeling = True
                     jump sex_ed
-                "Talk about birth control." if not sex_ed_birthcontrol:
+                "Talk about birth control.":
                     him explaining "If the man and woman aren't ready for a baby, there's ways to have sex without making a baby."
                     if (not sex_ed_biology):
                         kid nervous "Okay, but what is sex?!"
@@ -4533,12 +4531,12 @@ label family14:
     her concerned "Sister Naomi is holding another parenting class...do you want to go?"    
     show him annoyed with dissolve
     "Part of me felt defensive -- did [her_name] think I needed parenting lessons?!"
-    $ pstyle = get_parenting_style()
-    if (pstyle == "authoritarian"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
         "I thought I was doing just fine. I knew what I wanted, the kids knew I was boss, everything was fine."
-    elif (pstyle == "authoritative"):
+    elif (parenting_style == "authoritative"):
         "I thought I was doing okay. Though sometimes it was hard to know when to listen and when to lay down the law."
-    elif (pstyle == "permissive"):
+    elif (parenting_style == "permissive"):
         "I admitted that I didn't really know what I was doing. I mostly just let the kids do what they wanted. And it was going okay, I guess?"
     else:
         "I wasn't really interested in parenting."
@@ -5071,48 +5069,43 @@ label family17:
     "I turned my attention to [bro_name], who was working his way through handkerchief number three."
 
     $ cry_duration = 0
-    $ family17_think = False
-    $ family17_ask = False
-    $ family17_yell = False
-    $ family17_sit = False
+    default family17_menuset = set()
     menu family17_cry_loop:
+        set family17_menuset
         "What should I do?"
-        "Think about it from [bro_name]'s point of view." if (not family17_think):
+        "Think about it from [bro_name]'s point of view.":
             $ responsive += 1
             "It wasn't that unusual for us to be out of bread; we didn't have it all the time. But [bro_name] did really like it."
             "I had eaten the last two pieces with my lunch. Maybe he had been looking forward to eating them?"
             "That didn't seem worth throwing a fit about, though... maybe something happened at school?"
-            $ family17_think = True
             $ cry_duration += 1
             if (cry_duration >= 2):
                 jump family17_after_cry
             else:
                 jump family17_cry_loop
-        "Ask him what happened at school." if (not family17_ask):
+        "Ask him what happened at school.":
             him surprised "Did something happen at school?"
             "It was like he didn't even hear me. He just kept crying."
-            $ family17_ask = True
             $ cry_duration += 1
             if (cry_duration >= 2):
                 jump family17_after_cry
             else:
                 jump family17_cry_loop
-        "Yell at him." if (not family17_yell):
+        "Yell at him.":
             $ responsive -= 1
             $ demanding += 1
             him angry "Quit crying and tell me what's wrong! I can't help you if you won't talk about it!"
             "He just cried even louder."
-            $ family17_yell = True
             $ cry_duration += 1
             jump family17_angry
-        "Just sit quietly with him." if (not family17_sit):
+        "Just sit quietly with him.":
             $ responsive += 1
             $ trust += 1
             "I didn't know what to do, so I just sat down next to him."
             "I patted his back. That's supposed to be reassuring, right?"
+            "It was like I wasn't even there."
             him concerned "..."
             "After a few minutes, he was still crying."
-            $ family17_sit = True
             $ cry_duration += 1
             if (cry_duration >= 2):
                 jump family17_after_cry
@@ -5126,46 +5119,40 @@ label family17:
         him surprised "Bread? Really? This whole thing is just about bread?"
         bro cry "I really like it! I wanted to have it when I got home! But it was all gone.  Wahhhhhhhh!"
         "Uh-oh... that was my fault. I ate the rest of the bread for lunch."
-        $ family17_apologize = False
-        $ family17_acknowledge = False
-        $ family17_tell = False
-        $ family17_ask = False
         $ sniffle_duration = 0
+        default family17sniffle_menuset = set()
         menu family17_sniffle_loop:
+            set family17sniffle_menuset
             "What should I do?"
-            "Apologize for eating it." if (not family17_apologize):
+            "Apologize for eating it.":
                 $ responsive += 1
                 $ trust += 1
                 him surprised "I'm sorry -- I ate it for lunch. I didn't know you wanted it."
                 bro sad "I want bread!"
-                $ family17_apologize = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
                 jump family17_sniffle_loop
-            "Acknowledge his feelings." if (not family17_acknowledge):
+            "Acknowledge his feelings.":
                 $ responsive += 1
                 him sad "You were pretty disappointed when you came home and the bread was gone, huh?"
                 "He nodded."
-                $ family17_acknowledge = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
                 jump family17_sniffle_loop
-            "Tell him to accept facts."  if (not family17_tell):
+            "Tell him to accept facts.":
                 $ demanding += 1
                 him determined "Well, the bread's gone, and that's all there is to it. Crying won't bring it back."
                 bro sad "But I want bread!"
-                $ family17_tell = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
                 jump family17_sniffle_loop
-            "Ask what this is really about."  if (not family17_ask):
+            "Ask what this is really about.":
                 $ demanding += 1
                 him annoyed "[bro_name], you can't be this upset about bread. That's just not that important. What's really going on here?"
                 bro sad "It's important to me!"
-                $ family17_ask = True
                 $ sniffle_duration += 1
                 if (sniffle_duration >= 2):
                     jump family17_after_sniffle
@@ -5723,9 +5710,6 @@ label family18:
 # 11.8 Earth years old
 # Pornography...
 label family19:
-    $ family19_notlikethat = False
-    $ family19_questions = False
-    $ family19_unacceptable = False
     scene farm_interior with fade
     show him normal at center with dissolve
     "I was about to send a message to the farming committee. When I was looking for my photo to attach, I found a pornographic video stored on the computer pad."
@@ -5770,9 +5754,11 @@ label family19:
             kid nervous "Oh..."
             "She falls silent. You sense that she wants to leave, but she might also have questions that she doesn't know how to ask."
 
+            default family19_menuset = set()
             menu family19_porn_chat:
-               "What should I say?"
-               "Tell me about what happened." if (sex_ed_biology):
+                set family19_menuset
+                "What should I say?"
+                "Tell me about what happened." if (sex_ed_biology):
                    $ demanding += 1
                    $ responsive += 1
                    him concerned "Tell me about what happened."
@@ -5781,7 +5767,7 @@ label family19:
                    kid annoyed "Yeah, I wasn't! I was just looking up something about a book I was reading."
                    him sad "I know. I probably should have talked to you about pornography before. But it's kind of hard for me to talk about sometimes, since sex is such a private thing."
                    kid surprised "Then why do people make videos like that?"
-                   him concerned "That's a good question. Maybe they're trying to make money, or express themselves? It's hard for me to understand why, actually."
+                   him concerned "Ummm... Maybe they're trying to make money, or express themselves? It's hard for me to understand why, actually."
                    kid shifty "I just... I just couldn't stop watching it."
                    him determined "I know -- our brains are wired to respond to sex very strongly. And at your age, it's probably something you're curious about."
                    kid nervous "..."
@@ -5838,8 +5824,7 @@ label family19:
                    "Hopefully I was doing okay."
                    $ confident += 1
                    $ authoritative += 1
-               "This is not acceptable computer use." if (not family19_unacceptable):
-                   $ family19_unacceptable = True
+                "This is not acceptable computer use.":
                    $ demanding += 1
                    him determined "Pornography is not acceptable computer use."
                    kid surprised "Oh. Uh, okay."
@@ -5859,7 +5844,7 @@ label family19:
                        him blush "Uh, yeah."
                        $ authoritarian += 1
 
-               "Never look at this kind of garbage again!":
+                "Never look at this kind of garbage again!":
                    him annoyed "You must never look at this kind of thing again."
                    kid annoyed "..."
                    him angry "Did you hear me?!"
@@ -5867,19 +5852,18 @@ label family19:
                    "She stomped off. She was so temperamental these days, it was hard to get through to her. But I wouldn't stop trying."
                    $ demanding += 1
                    $ authoritarian += 1
-               "You're old enough to be responsible for you watch.":
+                "You're old enough to be responsible for you watch.":
                    him pout  "Well, you're old enough to be responsible for what you watch."
                    kid sad "Okay..."
                    $ permissive += 1
-               "You know that real sex isn't like that, right?" if (not family19_notlikethat):
+                "You know that real sex isn't like that, right?":
                    $ responsive += 1
                    him surprised "You know that real sex isn't like that, right?"
                    kid nervous "Oh, uh, yeah."
                    "She tried to sound confident in her answer but failed."
                    "I felt like I had something more I needed to teach her, but I wasn't sure how to say it..."
-                   $ family19_notlikethat = True
                    jump family19_porn_chat
-               "Pornography is addictive.":
+                "Pornography is addictive.":
                    $ demanding += 1
                    him determined "Pornography is addictive."
                    kid determined "What do you mean?"
@@ -5910,7 +5894,7 @@ label family19:
                    else:
                        him concerned "Uh, yeah."
                        $ authoritative += 1
-               "Do you have any questions about sex?" if (not family19_questions):
+                "Do you have any questions about sex?":
                    $ responsive += 1
                    him doubt "Do you have any questions about sex?"
                    kid surprised "What? No!"
@@ -5921,7 +5905,6 @@ label family19:
                        return
                    else:
                        "I could tell she did have questions; she just didn't know how to ask them. Or maybe she didn't know what to ask."
-                   $ family19_questions = True
                    jump family19_porn_chat
     return
 
@@ -7613,6 +7596,7 @@ label family26:
 # 16.7 Earth years old
 # Financial Responsibility & Bikes
 label family27:
+    $ parenting_style = get_parenting_style()
     play music working
     scene farm_interior with fade
     show him normal at midright with dissolve
@@ -7625,7 +7609,6 @@ label family27:
     kid annoyed "And, not just school, but going to town, too. Every time I want to go it takes me half an hour just to walk there."
     him surprised "Is that really why you want a bike?"
 
-    $ parenting_style = get_parenting_style()
     if (parenting_style == "authoritative"):
         kid happy "I would be a lot more useful to this family with a bike. I could go shopping for you and even ride it around the farm when we work together."
     elif (parenting_style == "authoritarian"):
@@ -8377,24 +8360,19 @@ label family29:
     him determined "Okay, okay! Can I ask some questions about these two mystery people, then?"
     kid annoyed "Maybe..."
     $ family29_question_count = 0
-    $ family29_gay = False
-    $ family29_lifegoals = False
-    $ family29_otherrelationships = False
-    $ family29_sex = False
-    $ family29_kids = False
-    $ family29_ready = False
-    $ family29_why = False
     # You get to ask 3 questions.
+    default family29_menuset = set()
     menu family29_questions:
+        set family29_menuset
         "What should I ask?"
-        "Is he gay?" if not (family29_gay):
+        "Is he gay?":
             him surprised "Is he gay? Is that why he's not attracted to you? I mean, your friend?"
             kid concerned "I don't think so. I mean, it doesn't seem like he's really attracted to anybody."
             $ family29_gay = True
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Do they have similar life goals?" if not (family29_lifegoals):
+        "Do they have similar life goals?":
             $ demanding += 1
             him surprised "Do they have similar life goals?"
             kid surprised "What does that even mean?"
@@ -8404,7 +8382,7 @@ label family29:
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Have they had other relationships?" if not (family29_otherrelationships):
+        "Have they had other relationships?":
             $ responsive += 1
             him determined "Have they ever been in a serious relationship with anyone else?"
             kid annoyed "I'm not answering that one."
@@ -8412,7 +8390,7 @@ label family29:
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Do they view sex the same way?" if not (family29_sex):
+        "Do they view sex the same way?":
             him surprised "Do they both have similar attitudes about sex?"
             kid annoyed "Definitely not answering that one!"
             him annoyed "Well, it's important! If you're wondering if two best friends can have a successful marriage, it's going to depend a lot on how much they care about sex!"
@@ -8422,7 +8400,7 @@ label family29:
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Do they both want kids?" if not (family29_kids):
+        "Do they both want kids?":
             $ demanding += 1
             him surprised "Do they both want kids?"
             kid concerned "Why would that matter?"
@@ -8436,7 +8414,7 @@ label family29:
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Are they even ready for marriage?" if not (family29_ready):
+        "Are they even ready for marriage?":
             $ demanding += 1
             him determined "If these anonymous people that you know are anywhere near your age, they probably aren't even ready for marriage."
             kid annoyed "Oh yeah? What makes someone ready for marriage?"
@@ -8462,7 +8440,7 @@ label family29:
             $ family29_question_count += 1
             if (family29_question_count < 3):
                 jump family29_questions
-        "Why do they want to get married?" if not (family29_why):
+        "Why do they want to get married?":
             $ responsive += 1
             him determined "Why do they want to get married?"
             show kid sad with dissolve

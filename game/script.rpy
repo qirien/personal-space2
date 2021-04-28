@@ -1,14 +1,6 @@
-﻿## Our Personal Space 2
+﻿## Our Personal Space 2: Space to Grow
+#  by Metasepia Games, http://metasepiagames.com
 ## MAIN
-
-## The game starts here.
-#
-# TODO: Make disabled choices visible, but disabled. Use a 🔒 symbol
-#       the first time through, and second time through show what you'd need
-#       to get that choice.
-#       A later version of Ren'Py should support this automatically...
-##
-
 label start:
 
     # Initialize dynamic variables that need to be saved with saved game state.
@@ -43,6 +35,7 @@ label start:
     default permissive = 0
     default neglectful = 0
     default trust = 0
+    default parenting_style = "permissive"
 
     # Default names
     default his_name = "Jack"
@@ -274,6 +267,7 @@ label start:
 
     if (persistent.times_beaten):
         "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked." # TODO: add sunflower seeds/nuts/eggs?
+        "Choices you've made before will show up in italics so you can decide if you want to see something different."
         if (persistent.crops_unlocked):
             $ i = 0
             while (i < len(crop_info)):
@@ -462,6 +456,7 @@ label life_loop:
             window hide
             call increase_stats
             
+            $ parenting_style = get_parenting_style()
             call screen yearly_summary with slowfade 
 
             # Reset our variables for a new year while keeping a running total

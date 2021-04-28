@@ -90,7 +90,10 @@ screen yearly_summary():
                                                     for var in ["miners", "colonists"]:  
                                                         use show_stat(var) 
                                         
-                                    $ kid_type = get_kid_type()
+                                    if (year <= BABY_MAX):
+                                        $ kid_type = "baby"
+                                    else:
+                                        $ kid_type = get_kid_type()
                                     add "family_photo_small " + kid_type xalign 1.0
 
                             frame:

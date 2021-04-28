@@ -12,7 +12,7 @@ label ending:
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
     # TODO: remove debug code
-    "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]"
+    "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]. Colonists: [total_colonists], Miners: [total_miners], Mavericks: [total_mavericks]. Please screenshot this ('s') and send it with your feedback."
     # community ending
     # TODO: is this too high? too low?
     if (total_colonists >= FACTION_HIGH):

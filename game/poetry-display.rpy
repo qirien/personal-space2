@@ -124,9 +124,9 @@ init python:
 
     def tweet_poem(poem):
         import webbrowser, urllib
-        pp_url = urllib.quote("https://www.metasepiagames.com/PluginPoetry")
+        pp_url = urllib.quote("https://www.metasepiagames.com")
         pp_poem = urllib.quote(stringify(poem))
-        webbrowser.open_new("http://twitter.com/intent/tweet?text=" + pp_poem + "&hashtags=PluginPoetry&url=" + pp_url)
+        webbrowser.open_new("http://twitter.com/intent/tweet?text=" + pp_poem + "&hashtags=SpaceToGrow&url=" + pp_url)
 
     TweetPoem = renpy.curry(tweet_poem)
 
@@ -139,7 +139,7 @@ init python:
                 poem_string += " "
             poem_string += "\n"
         
-        return poem_string.strip()
+        return poem_string.strip() + "\n"
 
 style pd_button_text is button_text:
     size 16

@@ -610,12 +610,12 @@ label community4:
     "Pavel, our mayor, called a town meeting."
     pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 250 characters, you know."
     pavel "They said:"
-    $ pstyle = get_parenting_style()
-    if (pstyle== "authoritative"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style== "authoritative"):
         ret_c "Please elect a liaison to help RET & colonists communicate & resolve conflicts."
-    elif(pstyle == "authoritarian"):
+    elif(parenting_style == "authoritarian"):
         ret_c "You must choose a liaison. Must be someone trustworthy, flexible, to work with colonists and us."
-    elif(pstyle == "permissive"):
+    elif(parenting_style == "permissive"):
         ret_c "We think it would facilitate interactions between RET and colonists, if you could pick one person as a liaison..."
     else:
         ret_c "Please elect a liaison to help RET and colonists communicate and resolve conflicts of interest."
@@ -680,14 +680,14 @@ label community4:
         "Pete. He'll make sure RET doesn't get too much control.":
             $ mavericks += 1
     "After the nominations, we voted for our favorite candidate."
-    $ pstyle = get_parenting_style()
-    if (pstyle== "authoritative"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style== "authoritative"):
         "My fellow colonists elected me to be the new representative."
         $ is_liaison = True
-    elif(pstyle == "authoritarian"):
+    elif(parenting_style == "authoritarian"):
         "Sara, and Sister Naomi and I were nominated. I had the most votes, but not by much."
         $ is_liaison = True
-    elif(pstyle == "permissive"):
+    elif(parenting_style == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
     else:
         "Sara is elected as the new representative."
@@ -718,13 +718,13 @@ label community5:
     if is_liaison:
         "RET sent me an instantaneous communication with advice on how to proceed."
         "It said:"
-        $ pstyle = get_parenting_style()
+        $ parenting_style = get_parenting_style()
         nvl clear
-        if (pstyle== "authoritative"):
+        if (parenting_style== "authoritative"):
             ret_c "50 new miner neighbors are coming in 4 Earth years. Be prepared to support them with food."
-        elif(pstyle == "authoritarian"):
+        elif(parenting_style == "authoritarian"):
             ret_c "50 miners are arriving in 4 Earth years. Prepare to feed them. Develop monetary system so they can pay you."
-        elif(pstyle == "permissive"):
+        elif(parenting_style == "permissive"):
             ret_c "We're sending 50 miners your way, so if you could feed them, that would be great. They'll have money..."
         else:
             ret_c "50 new miner neighbors are coming in 4 Earth years. Feed them."
@@ -1103,21 +1103,21 @@ label community7:
                 thuc happy "You do have a point. With my new crop of fertilizer I'll be stinking at least!"
 
     scene stars with fade
-    $ pstyle = get_parenting_style()
-    if (pstyle == "neglectful"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "neglectful"):
         "Thuc never heard back from them."
     else:
         "Later, Thuc showed me RET's response."
         nvl clear
-        if (pstyle == "authoritarian"):
+        if (parenting_style == "authoritarian"):
             thuc_c "Can you believe this crap?"
             ret_c "Compensation contracts were negotiated previously and are binding and immutable."
             him_c "Yeah, I figured."
-        elif (pstyle == "authoritative"):
+        elif (parenting_style == "authoritative"):
             thuc_c "Well, at least they got back to me."
             ret_c "Because each colonist has different needs and skills, their compensation is also different. Unfortunately, we are not able to modify these contracts once they are signed."
             him_c "Yeah, I figured."
-        elif (pstyle == "permissive"):
+        elif (parenting_style == "permissive"):
             thuc_c "I guess sometimes it pays to be the squeaky wheel!"
             ret_c "We appreciate the Nguyen's consistent, reliable results. We have made a donation of equipment to agricultural teams in Cambodia in their honor."
             him_c "They were probably going to do that anyway."
@@ -1137,12 +1137,12 @@ label community8:
     if is_liaison:
         scene farm_exterior with fade
         "Urgent insta-com from RET!"
-        $ pstyle = get_parenting_style()
-        if (pstyle == "authoritative"):
+        $ parenting_style = get_parenting_style()
+        if (parenting_style == "authoritative"):
             "Have 10kg xtra space on the shuttle. What Earth luxuries needed?"
-        elif(pstyle == "authoritarian"):
+        elif(parenting_style == "authoritarian"):
             "Tell us what extras to put on the shuttle by this evening."
-        elif(pstyle == "permissive"):
+        elif(parenting_style == "permissive"):
             "If u want Earth goods, tell us what u want by 2night!"
         else:
             $ no_luxuries = True
@@ -3023,14 +3023,14 @@ label community14:
         helen angry "They don't even care about us enough to send the right medicines."
         "Tomás Perón and Joanna Nguyen also planned to go with Pete and his family."
         $ mavericks += 1
-    $ pstyle = get_parenting_style()
-    if (pstyle == "authoritarian"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style == "authoritarian"):
         pete angry "In the end, their bigheaded attitude just makes me downright ornery."
-    elif (pstyle == "authoritative"):
+    elif (parenting_style == "authoritative"):
         pete angry "They coulda been worse, that's for sure. But they still just make me ornery."
-    elif (pstyle == "permissive"):
+    elif (parenting_style == "permissive"):
         pete angry "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that their tearin' down the house."
-    elif (pstyle == "neglectful"):
+    elif (parenting_style == "neglectful"):
         pete angry "In the end, all they care about is that stuff they're diggin' out of the ground, and that's not what I'm about at all."
     pete normal "I know what my contract says. Basically everything we own belongs to RET unless we made it with our own hands. But I reckon credits don't count."
     helen normal "We're leaving our house and everything in it. Put it to good use, why don't you. We'll be taking a radio and some metal foam sheeting, which we paid for with credits."
@@ -3152,7 +3152,6 @@ label community15:
     "Sara stepped out. Tears were streaming down her face."
     menu:
         "What should I do?"
-        #this menu might give players a false sense that you have a relationship meter with Sara
         "Talk to Pavel":
             him concerned "I'm sorry..."
             pavel normal "Oh, [his_name]..."
@@ -3186,14 +3185,14 @@ label community15:
     naomi sad "Yes, I'm dying. When I'm gone, you'll have to help the other kids to be nice to each other. Can you do that for me?"
     kid normal "I will."
     naomi normal "[his_name], I've been watching how you parent your children."
-    $ pstyle = get_parenting_style()
-    if (pstyle== "authoritative"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style== "authoritative"):
         naomi happy "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
         naomi normal "Keep up the good work."
-    elif(pstyle == "authoritarian"):
+    elif(parenting_style == "authoritarian"):
         naomi sad "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
         naomi normal "If you consider [kid_name]'s opinion sometimes, I think she will be happier."
-    elif(pstyle == "permissive"):
+    elif(parenting_style == "permissive"):
         naomi happy "You let [kid_name] do her own thing a lot."
         naomi normal "That can be good sometimes, but children need boundaries, otherwise they won't respect society's rules."
     else:
@@ -3531,12 +3530,12 @@ label community16:
                         pete happy "What was her title?"
                         him content "Overseer of Restraint."
                         pete "Ha. I doubt I would have even noticed something like that."
-                        $ pstyle = get_parenting_style()
-                        if (pstyle== "authoritative"):
+                        $ parenting_style = get_parenting_style()
+                        if (parenting_style== "authoritative"):
                             him pout "I think I would notice!"
-                        elif(pstyle == "authoritarian"):
+                        elif(parenting_style == "authoritarian"):
                             him explaining "I would probably only notice when she did poke him."
-                        elif(pstyle == "permissive"):
+                        elif(parenting_style == "permissive"):
                             him doubt "I don't think not poking Oleg would ever happen under my watch."
                         else:
                             him determined "Yeah, I wouldn't notice either"
@@ -3619,12 +3618,12 @@ label community17:
         "Last was the food. I figured I'd just have everyone bring something."
 
     nvl clear
-    $ pstyle = get_parenting_style()
+    $ parenting_style = get_parenting_style()
     if (is_liaison):
         him_c "I hope you can all come to the harvest festival tomorrow night. It's a potluck, so bring food. There will also be [community_17_activity]."
     else:
         sara_c "Don't forget the harvest festival tomorrow night! Potluck! There will be [community_17_activity]!"
-    if (pstyle == "authoritarian"):
+    if (parenting_style == "authoritarian"):
         if (is_liaison):
             him_c "Also, RET sends a reminder to make sure you take care of your farm first before going to the party."
         else:
@@ -3632,7 +3631,7 @@ label community17:
         thuc_c "Oh darn, I was planning on not feeding or milking the goats, but I guess I better do that even though there's a party..."
         him_c "Yeah, we wouldn't want you to think you're on vacation or something!"
         ilian_c "Next they'll be reminding us to brush our teeth before bed."
-    elif (pstyle == "authoritative"):
+    elif (parenting_style == "authoritative"):
         if (is_liaison):
             him_c "Also, RET alloted some sugar for treats, so let me know if you want to make something with it for the party."
         else:
@@ -3641,7 +3640,7 @@ label community17:
         julia_c "Isn't that just flan?"
         natalia_c "It's completely different!"
         sara_c "Either way, it sounds delicious!!! {emoji=hearteyes}"
-    elif (pstyle == "permissive"):
+    elif (parenting_style == "permissive"):
         if (is_liaison):
             him_c "Also, RET set aside some sugar for treats and says everyone can take the day off..."
         else:
@@ -4006,7 +4005,7 @@ label community17:
                                 menu community17_trash_talk:
                                     "What should I say?"
                                     "You're so rude...":
-                                        him annoyed "You're so rude, old ladies wouldn't stop to help you even if you had a heart attack in the middle of the street."
+                                        him annoyed "You're so rude, nobody would stop to help you even if you had a heart attack in the middle of the street."
                                     "You're so stupid...":
                                         him annoyed "You're so stupid, when Pete told you a drink was on the house you ran to get a ladder."
                                     "You're so wimpy...":
@@ -4771,16 +4770,16 @@ label community20:
             "I wrote a quick insta-comm from my tablet and headed over to the transmitter to send it."
             # "Dr. Lily wants to return to colony. OK?"
             "Later that day I checked to see if they responded."
-            $ pstyle = get_parenting_style()
+            $ parenting_style = get_parenting_style()
             nvl clear
-            if (pstyle== "authoritative"):
+            if (parenting_style== "authoritative"):
                 ret_c "She may stay as a guest, and she must share her findings from her research."
                 him normal "Sounds fair to me."
                 nvl clear
                 him_c "RET said that Lily can stay 'as a guest' as long as she shares her research."
                 pavel_c "I'll pass this on. It sounds like calling her a guest is their way of acknowledging that she left."
                 jump lily_return
-            elif (pstyle == "authoritarian"):
+            elif (parenting_style == "authoritarian"):
                 ret_c "Dr. Lily is not authorized to rejoin the colony."
                 nvl clear
                 him_c "RET said they didn't want Lily to come back."
@@ -4797,7 +4796,7 @@ label community20:
                         him_c "I think RET made it pretty clear that we shouldn't let her back to the colony."
                         pavel_c "Understood. I'll send her a message telling her as much."
                         jump lily_not_return
-            elif(pstyle == "permissive"):
+            elif(parenting_style == "permissive"):
                 ret_c "Yes, of course she can return!"
                 nvl clear
                 him_c "RET said that she can come back."
@@ -5301,12 +5300,12 @@ label community22:
         him_c "Yes, I can. I'll send the message at lunch."
         nvl clear
         "They got back to me later that evening."
-        $ pstyle = get_parenting_style()
-        if (pstyle == "authoritarian"):
+        $ parenting_style = get_parenting_style()
+        if (parenting_style == "authoritarian"):
             ret_c "We cannot guarantee the safety of anyone remaining in the caves. We will start with mining the uninhabited portion."
-        elif (pstyle == "authoritative"):
+        elif (parenting_style == "authoritative"):
             ret_c "Good compromise! Please ensure everyone's safety while mining the uninhabited portion of the caves."
-        elif (pstyle == "permissive"):
+        elif (parenting_style == "permissive"):
             ret_c "If Pete won't move, we won't make him. Mine as safely as you can."
         else:
             ret_c "OK."
@@ -6881,10 +6880,10 @@ label call_to_squid:
                 him concerned "That's not a lot to work with. Hmmm."
                 menu question_menu:
                     "What should I say?"
-                    "Why" if ((not uliveshell) and (not ulivenot) and (not weliveshell) and (not welivenot)):
+                    "Why" if (not (uliveshell and ulivenot and weliveshell and welivenot)):
                         menu:
                             "Why..."
-                            "you..." if ((not uliveshell) and (not ulivenot)):                                
+                            "you..." if (not (uliveshell and ulivenot)):                                
                                 menu:
                                     "Why you..."
                                     "live shell?" if (not uliveshell):
@@ -6896,7 +6895,7 @@ label call_to_squid:
                                         jellysquid "Other fish eat us. You do not eat. Give shells."
                                         $ ulivenot = True
                                         jump question_menu
-                            "we..." if ((not weliveshell) and (not welivenot)):
+                            "we..." if (not (weliveshell and welivenot)):
                                 menu:
                                     "Why we..."
                                     "live shell?" if (not weliveshell):
@@ -6907,7 +6906,7 @@ label call_to_squid:
                                         jellysquid "Do you eat? You need to eat to live."
                                         $welivenot = True
                                         jump question_menu
-                    "What" if ((not whatu) and (not whatwe) and (not whatshell) and (not asked_shell_food)):
+                    "What" if (not (whatu and whatwe and whatshell and asked_shell_food)):
                         menu:
                             "What..."
                             "you?" if (not whatu):
@@ -6945,10 +6944,10 @@ label call_to_squid:
                                 $ asked_shell_food = True
                                 jump question_menu
                                 #you need to see this option for the plot to progress
-                    "Where" if ((not whereulive) and (not whereufood) and (not whereunotlive) and (not wherewelive) and (not wherewefood) and (not wherewenotlive)):                        
+                    "Where" if (not (whereulive and whereufood and whereunotlive and wherewelive and wherewefood and wherewenotlive)):
                         menu:
                             "Where..."
-                            "you..." if ((not whereulive) and (not whereufood) and (not whereunotlive)):                                
+                            "you..." if (not (whereulive and whereufood  and whereunotlive)):                                
                                 menu:
                                     "Where you..."
                                     "live?" if (not whereulive):
@@ -6963,7 +6962,7 @@ label call_to_squid:
                                         jellysquid "We do not live on land."
                                         $ whereunotlive = True
                                         jump question_menu
-                            "we..." if ((not wherewelive) and (not wherewefood) and (not wherewenotlive)):                                
+                            "we..." if (not (wherewelive and wherewefood and wherewenotlive)):                                
                                 menu:
                                     "Where we..."
                                     "live?" if (not wherewelive):
@@ -6990,46 +6989,47 @@ label call_to_squid:
                     "I went back to the colony and my farm."
                     scene lab with fade
                     #TODO: explain why the nets were cut and there were so many dead jellystars (another animal ate them?)
-                    show zaina normal at midright with dissolve
+                    show zaina sad at midright with dissolve
                     show him normal at midleft with moveinleft
                     "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
                     "When I mentioned the mudfish, she looked excited."
-                    zaina "I remember that fish!"
+                    zaina happy "I remember that fish!"
                     him doubt "What do you know about it?"
-                    zaina "It's one of the few fish the jellystars won't eat. But a few other, bigger fish eat it without a problem."
+                    zaina sad "It's one of the few fish the jellystars won't eat. But a few other, bigger fish eat it without a problem."
                     him normal "Do those big fish that make the high-pitched sound eat them?"
-                    zaina "Yes, those fish are called yippers. They eat mudfish sometimes."
+                    zaina normal "Yes, those fish are called yippers. They eat mudfish sometimes."
                     him pout "How do the mudfish compare to jellysquid shells for metal content?"
-                    zaina "Let's see... "
-                    zaina "It looks like the metals in the mudfish meat are similar to the metals in the shells."
+                    zaina sad "Let's see... "
+                    zaina normal "It looks like the metals in the mudfish meat are similar to the metals in the shells."
                     him determined "Sounds promising. Maybe we could get the jellystars to eat the mudfish so they'll have the necessary minerals to make their shells."
-                    zaina "That could work... but maybe there's a reason they don't eat mudfish. Should we really be helping them? We might just make things worse"
+                    zaina sad "That could work... but maybe there's a reason they don't eat mudfish. Should we really be helping them? We might just make things worse"
                     him annoyed "I feel like since my fellow humans took the shells to begin with that I have a responsibility to help them."
-                    zaina "Maybe we should leave well enough alone."
+                    zaina normal "Maybe we should leave well enough alone."
                     him angry "It's too late to leave them alone. We've been farming them and other fish. We've taken their shells. We made this problem and we should solve it."
-                    zaina "What are we going to do for them? Feed them so they become dependent on us? Domesticate them?"
+                    zaina sad "What are we going to do for them? Feed them so they become dependent on us? Domesticate them?"
                     him annoyed "No, I don't think they could be domesticated. They're not like other animals."
-                    him angry "They can sort of write to us Zaina! How are you not curious about that?"
-                    zaina "I was curious about that. I've actually spent several years studying them."
-                    zaina "I helped Dr. Lily teach them how to 'write'."
+                    zaina normal "That's for sure..."
+                    him angry "They can write to us, Zaina! How are you not curious about that?"
+                    zaina sad "I was curious about that. I've actually spent several years studying them."
+                    zaina happy "I helped Dr. Lily teach them how to 'write'."
                     him surprised "Wow. I had no idea."
-                    zaina "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
-                    zaina "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others."
-                    zaina "If a central brain can link up to the jellysquids, it also explains how jellysquids we'd never seen before already knew how to interact with us."
-                    zaina "These animals are one of the most interesting beings I've studied."
+                    zaina normal "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
+                    zaina happy "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others."
+                    zaina normal "If a central brain can link up to the jellysquids, it also explains how jellysquids we'd never seen before already knew how to interact with us."
+                    zaina happy "These animals are one of the most interesting beings I've studied."
                     him doubt "Why didn't you tell the rest of us what you were doing?"
-                    zaina "We alluded to it in our reports. We weren't sure if we were dealing with intelligent life or something like a very smart parrot."
-                    zaina "We didn't want everyone to get excited for no reason."
-                    zaina "Also, maybe we were a little protective and selfish of our discoveries."
-                    zaina "I admit that I'm jealous that she showed herself to you."
-                    zaina "Why make contact with you now? Why not when I was actively trying to communicate with her kind?" #part of Dr. Lily's consciousness in the jellymother now? ~~
+                    zaina normal "We alluded to it in our reports. We weren't sure if we were dealing with intelligent life or something like a very smart parrot."
+                    zaina happy "We didn't want everyone to get excited for no reason."
+                    zaina sad "Also, maybe we were a little protective and selfish of our discoveries."
+                    zaina normal "I admit that I'm jealous that she showed herself to you."
+                    zaina sad "Why make contact with you now? Why not when I was actively trying to communicate with her kind?" #part of Dr. Lily's consciousness in the jellymother now? ~~
                     him sad "I don't know."
                     him pout "The jelly mother asked for help finding shell food. It sounds like this mudfish could help, but they don't like how it tastes. Is there a way we can make it taste better to them?"
-                    zaina "I think it's just the skin that has toxins in it. So maybe if we caught them and made them into filets, they would eat them?"
+                    zaina normal "I think it's just the skin that has toxins in it. So maybe if we caught them and made them into filets, they would eat them?"
                     him determined "Or maybe the yippers that eat the mud fish would have the right minerals in their meat?"
-                    zaina "I can do some field research this weekend."
+                    zaina happy "I can do some field research this weekend."
                     him content "Great. Maybe the jellymother will talk to you too."
-                    zaina "You're not coming with me?"
+                    zaina sad "You're not coming with me?"
                     him normal "I've been out there twice already. I need to work on my farm"
                     "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
                     nvl clear
@@ -7039,33 +7039,35 @@ label call_to_squid:
                     zaina_c "She was confused that you weren't there, but I managed to talk to her!"
                     zaina_c "I'll tell you everything when I get back. Gotta save my battery in case it's cloudy tomorrow."
                     "Next week, Zaina returned and asked me to meet with her."
-                    zaina "The jellysquid seemed to remember me, so I didn't have trouble getting her to try a few different foods."
-                    zaina "I was able to catch a few mudfish and feed their filets to a jellysquid."
-                    zaina "They did eat it, and I noticed that their shell grew a little the next day. It's an unconscious process for them, so they can't really tell me how much their shell is growing at a given time."
-                    zaina "I had a hard time catching the yipper, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
-                    zaina "She seemed surprised. The yipper is difficult capture, so they rarely eat it."
-                    zaina "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
-                    zaina "She killed a yipper and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
-                    zaina "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
-                    him "So what do you think would be best for the jellysquids?"
-                    zaina "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
-                    zaina "The jellysquid can easily eat the yipper, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells would grow more quickly than they're used to."
-                    him "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
-                    zaina "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."                    
-                    menu: #should this be a decision? remove it?
+                    zaina normal "The jellysquid seemed to remember me, so I didn't have trouble getting her to try a few different foods."
+                    zaina happy "I was able to catch a few mudfish and skin them and feed them to a jellysquid."
+                    him doubt "Zaina the fish-skinner..."
+                    zaina normal "Hey, they ate it! And the next day, their shell was a little bigger. I measured it."
+                    zaina sad "I had a hard time catching the yipper, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
+                    him surprised "How'd that go?"
+                    zaina normal "She seemed surprised. The yipper is difficult to capture, so they rarely eat it."
+                    zaina sad "Still, she was curious, so she instructed some of the jellystars to make a net to catch one."
+                    zaina normal "She killed a yipper and had jellysquids eat it, and I observed bigger growth patterns in those jellysquid the next day compared to the one that ate the mudfish."
+                    zaina happy "That matches my hypothesis that consuming a higher concentration of metals would increase their growth more rapidly. They are usually limited by what minerals their body has on hand."
+                    him concerned "So what do you think would be best for the jellysquids?"
+                    zaina sad "It's hard to say. The jellysquids would need our help to eat the mudfish, since its skin contains toxins. But the mudfish's concentrations are the most similar to what they're used to."
+                    zaina normal "The jellysquid can easily eat the yipper, but instructing them to eat a fellow predator could really mess with the food chain ecology. Also, it's possible that their shells could grow too quickly."
+                    him surprised "Hmm. That does sound like a difficult decision. Do you think we could farm either?"
+                    zaina sad "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."                    
+                    menu: #TODO: should this be a decision? remove it? Maybe one you get help from colonists and the other you need help from miners?
                         "What do I think is better?"
-                        "Serve mudfish to the jellysquids.":
-                            him "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
-                            him "Also, we won't have to worry about shell overgrowth."
-                            zaina "I just hope the colony is strong enough to help with this."
+                        "Skin mudfish for the jellysquids.":
+                            him normal "I think we should encourage them to eat mudfish. If we all work together to catch and skin them, we'll be able to show the jellymother that we really care."
+                            him pout "Also, we won't have to worry about shell overgrowth."
+                            zaina normal "I just hope the colony is strong enough to help with this."
                             $ serve_mudfish = True
                             jump aquaculture
-                        "Have them eat yippers.":
-                            him "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
-                            him "If they keep eating yippers, they won't have to rely on us to create new shells."
-                            zaina "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
-                            him "Right."
-                            zaina "I just hope the colony is strong enough to help with this"
+                        "Have them keep eating yippers.":
+                            him concerned "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
+                            him pout "If they keep eating yippers, they won't have to rely on us to create new shells."
+                            zaina normal "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"
+                            him normal "Right."
+                            zaina sad "I just hope the colony is strong enough to help with this"
                             $ serve_yippers = True
                             jump aquaculture
 

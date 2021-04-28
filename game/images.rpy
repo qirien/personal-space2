@@ -10,6 +10,8 @@ init -10:
     image fields flip = im.Flip("images/bg/fields.jpg", horizontal = True)
     image bro_bedroom = im.Flip("images/bg/kid_bedroom.jpg", horizontal = True)
 
+    image nullimage = Null()
+
     # TODO: replace with actual CGs
     image baby_cg:
         "images/cgs/chapter-baby.png"
@@ -175,6 +177,12 @@ init -10:
         if ((year == 12) and family12_shaved_head):
             pos(480,80)
             "him bald"
+        elif (year <= BABY_MAX and ((get_parenting_style == "neglectful") or (get_parenting_style() == "authoritarian"))):
+            pos(450, 80)
+            "him baby sad"
+        elif (year <= BABY_MAX):
+            pos(450, 80)            
+            "him baby happy"
         elif (get_parenting_style() == "authoritative"):
             pos(450, 80)
             #align(0.3, 1.0)
@@ -220,6 +228,8 @@ init -10:
                 "kid annoyed"
             attribute aci:
                 "kid sad"
+            attribute baby:
+                "nullimage"
 
         #align(0.6, 1.0)
         if ((bro_age >= 0) and (get_parenting_style() == "authoritative")):
