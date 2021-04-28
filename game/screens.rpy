@@ -802,7 +802,6 @@ screen preferences():
 
             hbox:
                 box_wrap True
-                # TODO: Add tooltips explaining these better
                 $ tooltip = GetTooltip()
 
                 if renpy.variant("pc"):
@@ -849,9 +848,9 @@ screen preferences():
 
                     bar value Preference("text speed") tooltip "How fast we put letters on the screen"
 
-                    label _("Auto-Forward Time")
+                    label _("Auto-Forward Delay")
 
-                    bar value Preference("auto-forward time") tooltip "How fast the screen advances in Auto mode"
+                    bar value Preference("auto-forward time") tooltip "How much delay to provide in Auto mode"
 
                 vbox:
 
@@ -1270,6 +1269,7 @@ screen bonus():
 
             textbutton "Deleted Ending" action Start("ending_extra")
             textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")
+            textbutton "Fighting Minigame" action Start("fight_brennan")
 
 
 ## Confirm screen ##############################################################

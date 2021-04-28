@@ -12,7 +12,8 @@ label ending:
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
     # TODO: remove debug code
-    "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]. Colonists: [total_colonists], Miners: [total_miners], Mavericks: [total_mavericks]. Please screenshot this ('s') and send it with your feedback."
+    $ parenting_style = get_parenting_style()
+    "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]. Marriage: [marriage_strength], Style: [parenting_style], Trust: [trust].  Colonists: [total_colonists], Miners: [total_miners], Mavericks: [total_mavericks]. Please screenshot this ('s') and send it with your feedback."
     # community ending
     # TODO: is this too high? too low?
     if (total_colonists >= FACTION_HIGH):
@@ -116,7 +117,6 @@ label ending:
     while (i < len(crop_info)):
         if crop_info[i][ENABLED_INDEX]:
             $ persistent.crops_unlocked.add(crop_info[i][NAME_INDEX])
-            $ print("Adding: " + crop_info[i][NAME_INDEX])
         $ i += 1
     $ renpy.save_persistent()
 

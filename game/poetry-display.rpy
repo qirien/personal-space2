@@ -3,7 +3,7 @@
 ##
 
 # Computer variant
-screen poem_display(poem, take_photo=True):
+screen poem_display(poem, take_photo=False):
     variant "large"
     frame:
         style_prefix "pp"
@@ -12,7 +12,7 @@ screen poem_display(poem, take_photo=True):
         use show_poem(poem, take_photo)
 
 # mobile variant
-screen poem_display(poem, take_photo=True):
+screen poem_display(poem, take_photo=False):
     frame:
         style_prefix "pps"
         xfill True

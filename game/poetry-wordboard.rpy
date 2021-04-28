@@ -106,6 +106,7 @@ init -100 python:
             self.poems.append(self.poem)
             self.poem = [[]]
             self.current_line = 0
+            return
 
         def get_poem_as_string(self, index=0):
             poem_string = ""

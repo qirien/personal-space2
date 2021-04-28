@@ -31,11 +31,6 @@ label community_intro:
 
 label community1:
     play music happy
-    $ asked_kids = False
-    $ asked_family = False
-    $ asked_grow = False
-    $ asked_shuttle = False
-    $ asked_fun = False
     $ tell_Kelly = False
     $ tell_Graysons = False
     $ tell_Pete = False
@@ -112,18 +107,18 @@ label community1:
             $ colonists += 1
     him happy "You guys are staying here for the rest of your lives, right?"
     zaina normal "That's right!"
-    label ask_zaina_and_kevin:
-    menu:
+    default community1_menuset = set()
+    menu ask_zaina_and_kevin:
+        set community1_menuset
         "What should I ask them about?"
-        "Are you planning to have children?" if not asked_kids:
+        "Are you planning to have children?":
             him pout "So... I know RET is trying to grow the colony..."
 
             him surprised "Are you planning on having kids?"
             zaina sad "We'll try. We haven't been able to have kids so far."
             kevin sad "That is not why RET sent us out here. Our geology and engineering skills are what they are interested in."
-            $ asked_kids = True
             jump ask_zaina_and_kevin
-        "Do you have family still on Earth?" if not asked_family:
+        "Do you have family still on Earth?":
             him surprised "Do you have family still on Earth?"
             zaina sad "I was an only child, and my parents recently died, so I don't have any family on Earth. I do have some friends still there though."
             kevin normal "My father and brother are still on Earth, but I do not regret leaving them."
@@ -140,9 +135,8 @@ label community1:
                     kevin normal "If they had simply not understood my work, that would have been forgiveable."
                     kevin sad "They are not men of science."
                     him pout "My parents are still on Earth. We have some extremely delayed correspondence."
-            $ asked_family = True
             jump ask_zaina_and_kevin
-        "What kind of food will you grow?" if not asked_grow:
+        "What kind of food will you grow?":
             him normal "You have quite a bit of land out there by the radio tower."
             him happy "Any idea what you'll grow on it?"
             zaina normal "We brought some fruit trees, which I hope will make a nice orchard."
@@ -155,9 +149,8 @@ label community1:
             zaina happy "The simulations have been updated since you flew over."
             kevin happy "They're quite lifelike!"
             him normal "Tell me how you feel about them after you harvest your first crops."
-            $ asked_grow = True
             jump ask_zaina_and_kevin
-        "How was the shuttle ride?" if not asked_shuttle:
+        "How was the shuttle ride?":
             him flirting "Did you start to hate each other a little on the shuttle ride over?"
             kevin happy "No, I do not believe it is possible for us to hate each other."
             zaina happy "We got married right before the shuttle ride. So it was kind of like our honeymoon!"
@@ -167,9 +160,8 @@ label community1:
             zaina normal "His college roommates gave him a custom mix of media! It had everything from the latest datasets to formulae to try."
             him normal "That sounds interesting. You should show Pete, our librarian. He gets excited about research and data."
             zaina sad "Some of my cousins gave me some hunting goggles. The battery on them wasn't compatible with RET solar technology though, so I had to leave them behind."
-            $ asked_shuttle = True
             jump ask_zaina_and_kevin
-        "What do you like to do for fun?" if not asked_fun:
+        "What do you like to do for fun?":
             him surprised "What do you like to do for fun?"
             zaina happy "I like exploring - spelunking, rock climbing, ice climbing, boating."
             him happy "Adventure! That sounds great! How about you, Kevin?"
@@ -177,7 +169,6 @@ label community1:
             him concerned "Aerospace? Are you also an astronomer?"
             kevin happy "A pilot, when I have the chance."
             zaina normal "Which is not very often, as you can imagine."
-            $ asked_fun = True
             jump ask_zaina_and_kevin
         "I'm done asking them questions.":
             zaina happy "What about you? What's your deal?"
@@ -706,10 +697,6 @@ label community4:
 ################################################################################
 
 label community5:
-    $ talked_cans = False
-    $ talked_credits = False
-    $ talked_something = False
-    $ talked_canning_dairy = False
     show farm_exterior with fade
     "Zaina and Kevin discovered indium and some other valuable resources nearby and developed a mining plan."
     "They said RET was sending a shuttle of miners that would arrive in several years."
@@ -821,31 +808,30 @@ label community5:
         show pete
         pete normal "This climate is so wet that no amount of salting and drying will make jerky last four Earth years."
         pete angry "Cheese doesn't keep well, either, for the same reasons. The best way to store my surplus is to keep growing this herd."
-        label convince_Pete:
-        menu:
+        $ talked_canning_dairy = False
+        default community5_menuset = set()
+        menu convince_Pete:
+            set community5_menuset
             "What should I tell Pete?"
-            "We could can some of the meat." if not talked_cans:
+            "We could can some of the meat.":
                 him concerned "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
                 him normal "How about it?"
                 pete angry "I don't think anyone should have to eat canned meat, not when they live next to me! I mean, which would you rather have, spam or steak?"
                 him surprised "Good point."
-                $ talked_cans = True
                 jump convince_Pete
-            "You'll need credits to get other food." if not talked_credits:
+            "You'll need credits to get other food.":
                 him concerned "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
                 him surprised "How will you afford vegetables and grain?"
                 pete happy "Plenty of people are willing to trade for or buy milk and beef."
                 pete normal "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either. I prefer to deal directly with my customers."
-                $ talked_credits = True
                 jump convince_Pete
-            "If we canned some beef, then we'd have meat even if your herd died suddenly." if not talked_something:
+            "If we canned some beef, then we'd have meat even if your herd died suddenly.":
                 him surprised "What if one day you wake up and your whole herd of cattle is gone?"
                 him pout "If you canned some meat, then we would at least have something."
                 pete happy "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
                 pete angry "Plus I think canned meat is revolting. I would rather just eat vegetables."
-                $ talked_something = True
                 jump convince_Pete
-            "We could can some of the dairy products." if not talked_canning_dairy:
+            "We could can some of the dairy products.":
                 him normal "We could try making dried milk powder or clarified butter, which would last a long time."
                 pete angry "Why would we do that when we have plenty of fresh stuff?"
                 him pout "I know cows don't produce consistently. So you could have some dairy on hand in case your cows don't eat as much."
@@ -1151,6 +1137,7 @@ label community8:
         "I'm not sure why they couldn't have asked about our preferences sooner."
         "I'd really like some good Earth toilet paper. [her_name] wants some Gouda cheese culture."
         "I need to find out what everyone else wants too, and send a brief message summarizing it. TODAY!"
+        default community8_menuset = set()
         label talk_about_luxuries:
             if (talked_about_luxuries_counter >= 4):
                 if is_liaison:
@@ -1160,11 +1147,12 @@ label community8:
                     "I told Sara what everyone wanted, and she wrote the report."
                     return
         scene farm_exterior flip with fade
-        $ bios.activate("Natalia")
-        $ bios.activate("Martín")
         menu:
+            set community8_menuset
             "Who should I talk to about what Earth luxuries they want?"
-            "Natalia" if not talked_to_Natalia:
+            "Natalia":
+                $ bios.activate("Natalia")
+                $ bios.activate("Martín")
                 show him normal at midleft
                 show natalia normal at midright
                 with dissolve
@@ -1176,7 +1164,7 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Natalia = True
                 jump talk_about_luxuries
-            "Thuc" if not talked_to_Thuc:
+            "Thuc":
                 show him normal at midleft
                 show thuc normal at midright
                 with dissolve
@@ -1185,7 +1173,7 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Thuc = True
                 jump talk_about_luxuries
-            "Sara" if not talked_to_Sara:
+            "Sara":
                 show him normal at midleft
                 show sara normal at midright
                 with dissolve
@@ -1197,7 +1185,7 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Sara = True
                 jump talk_about_luxuries
-            "Kevin" if not talked_to_Kevin:
+            "Kevin":
                 show him normal at midleft
                 show kevin normal at midright
                 with dissolve
@@ -1211,7 +1199,7 @@ label community8:
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Kevin = True
                 jump talk_about_luxuries
-            "Pavel" if not talked_to_Pavel:
+            "Pavel":
                 show him normal at midleft
                 show pavel sad at midright, flip
                 with dissolve
@@ -1235,6 +1223,9 @@ label community8:
                 pavel normal "You are going to have to cram a lot into that message!"
                 $ talked_about_luxuries_counter += 1
                 $ talked_to_Pavel = True
+                jump talk_about_luxuries
+            "No one else":
+                $ talked_about_luxuries_counter = 5
                 jump talk_about_luxuries
         label write_report:
             if talked_to_Natalia:
@@ -6054,15 +6045,6 @@ label luxury_good:
 
 label community25:
     #Brennan's Jellysquid farm
-    $ new_25 = False
-    $ new2_25 = False
-    $ eat_25 = False
-    $ eat2_25 = False
-    $ jellysquid_25 = False
-    $ meat_25 = False
-    $ effective_25 = False
-    $ touch_25 = False
-    $ touch2_25 = False
 
     scene farm_interior with fade
     show him normal at midleft
@@ -6094,64 +6076,60 @@ label community25:
         chaco "Yep."
         him normal "Are you in charge of it?"
         chaco "I'm the one who checks on it every day and takes notes."
-        label jelly_convo:
-            menu:
-                "What should I say?"
-                "What's new?" if not new_25:
-                    him determined "Any new developments?"
-                    chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
-                    chaco "Their pigments probably glow in UV light."
-                    him excited "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans to be out then?"
-                    chaco "Probably not."
-                    him pout "How do they glow when it's cloudy then?"
-                    chaco "Luminescence."
-                    $ new_25 = True
-                    jump jelly_convo
-                "What do they eat?" if not eat_25:
-                    him pout "What do you feed them?"
-                    chaco "Nothing. They probably eat plankton."
-                    chaco "I've seen them eat tiny fish too."
-                    $ eat_25 = True
-                    jump jelly_convo
-                "Have you made any jellysquid?" if not jellysquid_25:
-                    him determined "Any luck getting them to aggregate into a jellysquid?"
-                    chaco "No. But we have a clue."
-                    chaco "We found a baby jellysquid."
-                    chaco "We put it in the farm. It died, and the jellystars ate its tiny shell."
-                    him doubt "Weird."
-                    $ jellysquid_25 = True
-                    jump jelly_convo
-                "Can I touch one?" if not touch_25:
-                    "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
-                    him normal "Can I touch one?"
-                    chaco "You can... sometimes it agitates them."
-                    menu:
-                        "What should I do?"
-                        "Touch one.":
-                            "I crouched down on the pier and reached out to touch one."
-                            "I felt a little spark like static and felt one of the spines poking me."
-                            "The jellystars grasped each other and made a long chain to the edge of the net."
-                            "I could see and think but it felt like I was in a trance."
-                            "Chaco took my hand out of the water."
-                            chaco "Weird, huh."
-                            $ touched_jellystar_25 = True
-                        "Don't touch one.":
-                            "I decided to just look at the jellystars."
-                    $ touch_25 = True
-                    jump jelly_convo
-                "Why is there so much extra jellystar meat?" if not meat_25:
-                    him pout "It doesn't look like there are that many jellystars right now."
-                    him "Where did all the extra meat come from?"
-                    chaco "They reproduce on their own and crowd each other."
-                    chaco "Brennan thinks that they can't combine if there are too many of them."
-                    him doubt "What do you think?"
-                    chaco "I'm not sure."
-                    $ meat_25 = True
-                    jump jelly_convo
-                "I'm done talking.":
-                    him normal "Good seeing you."
-                    chaco "You too."
-                    jump after_convo_25
+        default community25_menuset = set()
+        menu jelly_convo:
+            set community25_menuset
+            "What should I say?"
+            "What's new?":
+                him determined "Any new developments?"
+                chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
+                chaco "Their pigments probably glow in UV light."
+                him excited "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans to be out then?"
+                chaco "Probably not."
+                him pout "How do they glow when it's cloudy then?"
+                chaco "Luminescence."
+                jump jelly_convo
+            "What do they eat?":
+                him pout "What do you feed them?"
+                chaco "Nothing. They probably eat plankton."
+                chaco "I've seen them eat tiny fish too."
+                jump jelly_convo
+            "Have you made any jellysquid?":
+                him determined "Any luck getting them to aggregate into a jellysquid?"
+                chaco "No. But we have a clue."
+                chaco "We found a baby jellysquid."
+                chaco "We put it in the farm. It died, and the jellystars ate its tiny shell."
+                him doubt "Weird."
+                jump jelly_convo
+            "Can I touch one?":
+                "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                him normal "Can I touch one?"
+                chaco "You can... sometimes it agitates them."
+                menu:
+                    "What should I do?"
+                    "Touch one.":
+                        "I crouched down on the pier and reached out to touch one."
+                        "I felt a little spark like static and felt one of the spines poking me."
+                        "The jellystars grasped each other and made a long chain to the edge of the net."
+                        "I could see and think but it felt like I was in a trance."
+                        "Chaco took my hand out of the water."
+                        chaco "Weird, huh."
+                        $ touched_jellystar_25 = True
+                    "Don't touch one.":
+                        "I decided to just look at the jellystars."
+                jump jelly_convo
+            "Why is there so much extra jellystar meat?":
+                him pout "It doesn't look like there are that many jellystars right now."
+                him "Where did all the extra meat come from?"
+                chaco "They reproduce on their own and crowd each other."
+                chaco "Brennan thinks that they can't combine if there are too many of them."
+                him doubt "What do you think?"
+                chaco "I'm not sure."
+                jump jelly_convo
+            "I'm done talking.":
+                him normal "Good seeing you."
+                chaco "You too."
+                jump after_convo_25
 
     elif (mavericks_strong()): #10
         "I looked around the coast for the jellystar farm."
@@ -6160,103 +6138,96 @@ label community25:
         "Out on the pier, I could see that the jellystars were enclosed by large net walls."
         him "How's it going?"
         pete "Not bad. Just checking out Brennan's jellystar farm."
-        label jelly2_convo:
-            menu:
-                "What should I say?"
-                "Is the farm effective?" if not effective_25:
-                    him concerned "Is it working?"
-                    pete normal "It's making lots of jellystars, but no jellysquid that I've seen."
-                    him normal "Colonists have been eating lots of jellystar soup thanks to that."
-                    $ effective_25 = True
+        default jelly2_menuset = set()
+        menu jelly2_convo:
+            set jelly2_menuset
+            "What should I say?"
+            "Is the farm effective?":
+                him concerned "Is it working?"
+                pete normal "It's making lots of jellystars, but no jellysquid that I've seen."
+                him normal "Colonists have been eating lots of jellystar soup thanks to that."
+                jump jelly2_convo
+            "What do they eat?":
+                him doubt "Do they feed them fish or something?"
+                pete happy "They're like the goats of the ocean."
+                pete "They can live off of just about anything, including whatever plankton are floating around."
+                jump jelly2_convo
+            "Can I touch one?":
+                "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                him normal "Is it safe to touch them?"
+                pete normal "It won't kill you. Go ahead and try it."
+                menu:
+                    "What should I do?"
+                    "Touch one.":
+                        "I crouched down on the pier and reached out to touch one."
+                        "I felt a little spark like static and feel one of the spines poking me."
+                        "The jellystars grasped each other and made a long chain to the edge of the net."
+                        "I could see and think but it felt like I was in a trance."
+                        "Pete took my hand out of the water."
+                        pete happy "Sometimes they do that."
+                        $ touched_jellystar_25 = True
+                        jump jelly2_convo
+                    "Don't touch one.":
+                        "I decided to just look at the jellystars."
+                        jump jelly2_convo
+            "What's new with you?":
+                him determined "How are you doing? Still selling firegrass?"
+                if (community_22_mining_stopped):
+                    pete normal "Yes, but the sudden inflation almost gave me a heart attack."
+                    pete "My stock was completely wiped out for a few months, because people were stocking up before I figured out what happened."
                     jump jelly2_convo
-                "What do they eat?" if not eat2_25:
-                    him doubt "Do they feed them fish or something?"
-                    pete happy "They're like the goats of the ocean."
-                    pete "They can live off of just about anything, including whatever plankton are floating around."
-                    $ eat2_25 = True
+                elif (community_22_compromise):
+                    pete happy "Yep. From my secret firegrass fields."
+                    pete "Travis and Helen made an interesting game together that they call Talaam chess."
+                    pete normal "You should try it out sometime!"
+                    him happy "That brings back memories. I thought you guys were too busy to play games."
+                    pete happy "Nope. I think I actually have more free time now than when I was the colony's librarian."
+                    pete "I was always trying to read everything so I could know how to help everyone."
+                    pete normal "I do miss reading sometimes."
                     jump jelly2_convo
-                "Can I touch one?" if not touch2_25:
-                    "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
-                    him normal "Is it safe to touch them?"
-                    pete normal "It won't kill you. Go ahead and try it."
-                    menu:
-                        "What should I do?"
-                        "Touch one.":
-                            "I crouched down on the pier and reached out to touch one."
-                            "I felt a little spark like static and feel one of the spines poking me."
-                            "The jellystars grasped each other and made a long chain to the edge of the net."
-                            "I could see and think but it felt like I was in a trance."
-                            "Pete took my hand out of the water."
-                            pete happy "Sometimes they do that."
-                            $ touched_jellystar_25 = True
-                            $ touch2_25 = True
-                            jump jelly2_convo
-                        "Don't touch one.":
-                            "I decided to just look at the jellystars."
-                            $ touch2_25 = True
-                            jump jelly2_convo
-                "What's new with you?" if not new2_25:
-                    him determined "How are you doing? Still selling firegrass?"
-                    if (community_22_mining_stopped):
-                        pete normal "Yes, but the sudden inflation almost gave me a heart attack."
-                        pete "My stock was completely wiped out for a few months, because people were stocking up before I figured out what happened."
-                        $ new2_25 = True
-                        jump jelly2_convo
-                    elif (community_22_compromise):
-                        pete happy "Yep. From my secret firegrass fields."
-                        pete "Travis and Helen made an interesting game together that they call Talaam chess."
-                        pete normal "You should try it out sometime!"
-                        him happy "That brings back memories. I thought you guys were too busy to play games."
-                        pete happy "Nope. I think I actually have more free time now than when I was the colony's librarian."
-                        pete "I was always trying to read everything so I could know how to help everyone."
-                        pete normal "I do miss reading sometimes."
-                        $ new2_25 = True
-                        jump jelly2_convo
-                    elif (community_22_mined_anyway):
-                        pete normal "Well it's been hard for Travis to adjust to not having feet."
-                        pete "I shouldn't have been so stubborn and stayed in the caves."
-                        pete "I'm just glad Travis didn't die in there."
-                        pete "He has mixed feelings about the prosthetics. He feels like he should be able to live without them but he depends on them for certain things."
-                        pete "I can't depend on him to do much cattle herding. He keeps busy with wood carving."
-                        him pout "Yeah, I saw he carved some kind of chess set?"
-                        pete happy "He and Helen collaborated on that. She knits little hats for the pyramid-shaped pieces so you can change them around."
-                        him happy "So you still get around to playing board games now and then?"
-                        pete happy "Sure do! You should come by sometime and play Talaamian chess with me."
-                        $ new2_25 = True
-                        jump jelly2_convo
-                    else: #this should be impossible to get, since the other ending resets luddite relationship to 0. it's here as a safety net in case something goes horribly wrong.
-                        pete normal "It's been hard finding a new place to live."
-                        pete "We've found a place that I think will be safe from radiation."
-                        pete happy "I don't really want anyone to know where it is though."
-                        him determined "That's understandable."
-                        $ new2_25 = True
-                        jump jelly2_convo
-                "That's all I want to say.":
-                    him determined "It was good seeing you."
-                    pete normal "There's something I'm worried about..."
-                    pete "Is it ethical to farm the jellystars like this?"
-                    if ate_jellyfish:
-                        him pout "I'm worried about that too."
-                        pete happy "Each arm in a jellystar has its own nerve bundle. Their nerve network is a lot like an octopus's."
-                        him doubt "They can probably feel when they're touching something other than themselves... but they don't even have eyes."
-                        pete normal "I wonder if they can sense UV radiation."
-                        him determined "Wow, senses I haven't even thought about."
-                        pete happy "And in jellysquid form, they are definitely intelligent."
-                    else:
-                        him pout "What do you mean? They're not that different from cattle, are they?"
-                        pete normal "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
-                        him doubt "But can they sense the world around them? Do they even have a brain?"
-                        pete happy "They don't have eyes, or much of a brain. But they can definitely feel things with their tentacles."
-                        pete normal "I wouldn't be surprised if they can sense UV radiation."
-                        him determined "But they're not even as intelligent as a cow!"
-                        pete normal "No, not in the jellystar form. But the jellysquids are definitely intelligent."
-                        pete happy "And the jellysquids are made up of jellystars! They're like baby jellysquids."
-                    him pout "That reminds me--I haven't seen any jellysquid up here."
-                    pete normal "They've all been caught for their shells."
-                    him doubt "And there aren't any jellysquids in this farm?"
-                    pete normal "I've been checking it every week or so and there haven't been any jellysquids at all."
-                    pete happy "They must need something else to change."
-                    jump after_convo_25
+                elif (community_22_mined_anyway):
+                    pete normal "Well it's been hard for Travis to adjust to not having feet."
+                    pete "I shouldn't have been so stubborn and stayed in the caves."
+                    pete "I'm just glad Travis didn't die in there."
+                    pete "He has mixed feelings about the prosthetics. He feels like he should be able to live without them but he depends on them for certain things."
+                    pete "I can't depend on him to do much cattle herding. He keeps busy with wood carving."
+                    him pout "Yeah, I saw he carved some kind of chess set?"
+                    pete happy "He and Helen collaborated on that. She knits little hats for the pyramid-shaped pieces so you can change them around."
+                    him happy "So you still get around to playing board games now and then?"
+                    pete happy "Sure do! You should come by sometime and play Talaamian chess with me."
+                    jump jelly2_convo
+                else: #this should be impossible to get, since the other ending resets luddite relationship to 0. it's here as a safety net in case something goes horribly wrong.
+                    pete normal "It's been hard finding a new place to live."
+                    pete "We've found a place that I think will be safe from radiation."
+                    pete happy "I don't really want anyone to know where it is though."
+                    him determined "That's understandable."
+                    jump jelly2_convo
+            "That's all I want to say.":
+                him determined "It was good seeing you."
+                pete normal "There's something I'm worried about..."
+                pete "Is it ethical to farm the jellystars like this?"
+                if ate_jellyfish:
+                    him pout "I'm worried about that too."
+                    pete happy "Each arm in a jellystar has its own nerve bundle. Their nerve network is a lot like an octopus's."
+                    him doubt "They can probably feel when they're touching something other than themselves... but they don't even have eyes."
+                    pete normal "I wonder if they can sense UV radiation."
+                    him determined "Wow, senses I haven't even thought about."
+                    pete happy "And in jellysquid form, they are definitely intelligent."
+                else:
+                    him pout "What do you mean? They're not that different from cattle, are they?"
+                    pete normal "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
+                    him doubt "But can they sense the world around them? Do they even have a brain?"
+                    pete happy "They don't have eyes, or much of a brain. But they can definitely feel things with their tentacles."
+                    pete normal "I wouldn't be surprised if they can sense UV radiation."
+                    him determined "But they're not even as intelligent as a cow!"
+                    pete normal "No, not in the jellystar form. But the jellysquids are definitely intelligent."
+                    pete happy "And the jellysquids are made up of jellystars! They're like baby jellysquids."
+                him pout "That reminds me--I haven't seen any jellysquid up here."
+                pete normal "They've all been caught for their shells."
+                him doubt "And there aren't any jellysquids in this farm?"
+                pete normal "I've been checking it every week or so and there haven't been any jellysquids at all."
+                pete happy "They must need something else to change."
+                jump after_convo_25
 
         label after_convo_25: #only if you your relationship with the miners is high enough?
             scene farm_exterior with fade

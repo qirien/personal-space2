@@ -51,7 +51,6 @@ init python:
                     if (work8_choice == "improve"):
                         new_nitrogen += 5
                 new_nitrogen = bounded_value(new_nitrogen, 0, Field.NITROGEN_FULL)
-                print(i)
                 self.health[i][Field.NITROGEN_LEVEL_INDEX] = new_nitrogen
 
                 pest_factor = 0 # how pests affect yield

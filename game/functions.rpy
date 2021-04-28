@@ -13,7 +13,7 @@ init python:
 # Menu Randomization
 ##
 
-# TODO: change this to True to start shuffling menus
+# we could change this to True to start shuffling menus
 default shuffle_menu = False
 init python:
     renpy_menu = menu
@@ -304,9 +304,8 @@ init -100 python:
             for crop_name in farm.crops:
                 if (crop_name != ""):
                     #get the number of the next event for this crop
-                    #print "Crop: " + crop_name
+                    #print("Crop: " + crop_name)
                     crop_name = crop_name.rstrip("+")
-                    print("Crop name: " + crop_name)
                     next_event = number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
@@ -452,7 +451,7 @@ init -100 python:
     # Helper function for each faction to calculate whether they are "strong" or not.
     # TODO: tweak this based on actual results
     def faction_strong(faction_value, strength="strong"):
-        print("factionvalue=" + str(faction_value))
+        # print("factionvalue=" + str(faction_value))
         global year
         strong = False
         if (strength == "weak"):

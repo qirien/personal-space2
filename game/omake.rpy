@@ -103,32 +103,9 @@ label ending_extra:
 # Code for a minigame to punch people.
 # Not very sophisticated.
 ####################################################
-#TODO: remove if we end up not using this
-
-
-##
-# DYNAMIC MOUSE CURSOR
-##
-init 1 python:
-    def change_cursor(type="default"):
-        persistent.mouse = type
-        if type == "default":
-            setattr(config, "mouse", None)
-        elif type == "punch":
-            setattr(config, "mouse", {"default": [("gui/punch.png", 6, 6)]})
-
-    if not hasattr(persistent, "mouse"):
-        change_cursor()
-    else:
-        change_cursor(persistent.mouse)
-
-    def random_float():
-        return renpy.random.random()
-
-
 init python:
     class Punchable(renpy.store.object):
-        def __init__(self, name, hitpoints=10):
+        def __init__(self, name, hitpoints=5):
             self.name = name
             self.maxHP = hitpoints
             self.currentHP = hitpoints
@@ -141,7 +118,7 @@ init python:
             return self.currentHP
             
         def getImage(self):
-            return Image("images/sprites/" + self.name.lower() + " normal.png")
+            return Image("images/sprites/" + self.name.lower() + " flirting.png")
             
         def getMadImage(self):
             return Image("images/sprites/" + self.name.lower() + " angry.png")
@@ -150,7 +127,6 @@ init -1 python:
     punchBrennan = None
     
     def punch_him():
-        # TODO: if we actually use this, add in a "POW!" or something
         renpy.notify("POW!")
         punchBrennan.punch()            
 
@@ -161,10 +137,10 @@ label fight_brennan:
     show brennan normal at midleft
     $ punchBrennan = Punchable("Brennan", 7)
     "Ready? Fight!"
-    $ change_cursor("punch")
     call screen punch(punchBrennan)
-    show brennan angry
-    $ change_cursor("default")
+    show brennan sad
+    show him determined
+    with dissolve    
     "That was some serious fighting."  
     return
 

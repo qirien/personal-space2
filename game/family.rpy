@@ -134,6 +134,59 @@ label family1:
             "She had a big list of things to try, and we tried them all.  I don't know if the white noise and the bath worked, or if she finally just wore herself out, but eventually she stopped crying and fell asleep."
             $ authoritative += 1
 
+        "Let [kid_name] cry.":
+            $ demanding += 1
+            $ confident += 1
+            him normal "Sometimes babies cry. Since nothing we're doing is helping, let's just set her down and take a break."
+            her "We can't take a break. We're her parents!"
+            him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
+            show him normal at center with move
+            him determined "Come here, little siren."
+            show him baby sad
+            show her sad
+            with dissolve
+            show him baby sad at right
+            with move
+            show him at squatting
+            show kid angry at right, squatting
+            with move
+            show him normal at standing with move
+            "We set [kid_name] down and I set a timer for ten minutes."
+            show him determined at midleft with move
+            show her at midright with move
+            "We listened to her scream while we did the dishes together silently."
+            "[her_name] started crying, too."
+            her cry "Why am I so bad at this?"
+            show kid cry with dissolve
+            him surprised "You've been doing a perfect job all day! It's not your fault."
+            her sad "Maybe if she had a different mom she wouldn't cry so much."
+            him angry "No way!"
+            show kid sad with dissolve
+            show him normal at center with move
+            him "I've seen you with her; you give her everything she needs. You're patient, loving, and hard-working. She's our daughter, and we're the parents she needs!"
+            him determined "We're the parents she's got, and we'll raise her, no matter what!"
+            "I held [her_name] for a while and she seemed to calm down a little. When the timer went off, I dashed for [kid_name] before [her_name] could respond."
+            show him normal at right
+            with move
+            him happy "Now I'm going to try to be as awesome a parent as you've been all day. You just get some sleep or read a book or whatever you want to do! I got this!"
+            hide kid with dissolve
+            show him sad baby at pace_back_and_forth
+            with move
+            show her surprised with dissolve
+            stop sound fadeout 10.0
+            "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
+            her normal "[his_name]... You don't have to try to impress me."
+            him happy baby "What's that? [kid_name] and I can't hear you; we're having too much fun."
+            play music videogame
+            "[her_name] laughed, just for a second, and it was the most beautiful sound I'd heard all day. She put on some music with a good beat, and then came over and joined our dancing."
+            show her happy at center
+            show him happy baby at midleft, standing
+            with move
+            "[kid_name] didn't know what to make of it, but we certainly felt better after our crazy midnight dancing."
+            "I don't know if it was the music or dancing or if she just tired herself out, but eventually [kid_name] fell asleep and we followed suit."
+            $ authoritative += 1
+            $ authoritarian += 1
+
         "Let [her_name] handle it.":
             $ marriage_strength -= 1
             $ responsive -= 1
@@ -188,65 +241,7 @@ label family1:
                     scene barn with fade
                     "I lay down on the hay in the barn and closed my eyes. [kid_name]'s screams echoed in my head so loudly I sat up and looked around. But there was no one there."
                     "Sleep was a long time in coming."
-                    $ neglectful += 1
-
-        "Let [kid_name] cry.":
-            $ demanding += 1
-            $ confident += 1
-            him normal "Sometimes babies cry. Since nothing we're doing is helping, let's just set her down and take a break."
-            her "We can't take a break. We're her parents!"
-            him annoyed "It won't kill her to not be held for ten minutes.  Come here, [her_nickname]."
-            show him normal at center with move
-            him determined "Come here, little siren."
-            show him baby sad
-            show her sad
-            with dissolve
-            show him baby sad at right
-            with move
-            show him at squatting
-            show kid angry at right, squatting
-            with move
-            show him normal at standing with move
-            "We set [kid_name] down and I set a timer for ten minutes."
-            show him determined at midleft with move
-            show her at midright with move
-            "We listened to her scream while we did the dishes together silently."
-            "[her_name] started crying, too."
-            her cry "Why am I so bad at this?"
-            show kid cry with dissolve
-            him surprised "You've been doing a perfect job all day! It's not your fault."
-            her sad "Maybe if she had a different mom she wouldn't cry so much."
-            him angry "No way!"
-            show kid sad with dissolve
-            show him normal at center with move
-            him "I've seen you with her; you give her everything she needs. You're patient, loving, and hard-working. She's our daughter, and we're the parents she needs!"
-            him determined "We're the parents she's got, and we'll raise her, no matter what!"
-            "I held [her_name] for a while and she seemed to calm down a little. When the timer went off, I dashed for [kid_name] before [her_name] could respond."
-            show him normal at right
-            with move
-            him happy "Now I'm going to try to be as awesome a parent as you've been all day. You just get some sleep or read a book or whatever you want to do! I got this!"
-            hide kid with dissolve
-            show him sad baby at pace_back_and_forth
-            with move
-            show her surprised with dissolve
-            # show him squatting with move
-            stop sound fadeout 10.0
-            "I danced around the room with [kid_name], who seemed slightly calmed by the swaying motions, though she still fussed and squirmed."
-            # show him sad baby at left, standing
-            # with move
-            her normal "[his_name]... You don't have to try to impress me."
-            # show him at midright, squatting
-            # with move
-            him happy baby "What's that? [kid_name] and I can't hear you; we're having too much fun."
-            play music videogame
-            "[her_name] laughed, just for a second, and it was the most beautiful sound I'd heard all day. She put on some music with a good beat, and then came over and joined our dancing."
-            show her happy at center
-            show him happy baby at midleft, standing
-            with move
-            "[kid_name] didn't know what to make of it, but we certainly felt better after our crazy midnight dancing."
-            "I don't know if it was the music or dancing or if she just tired herself out, but eventually [kid_name] fell asleep and we followed suit."
-            $ authoritative += 1
-            $ authoritarian += 1
+                    $ neglectful += 1        
 
     stop sound fadeout 2.0
     stop music fadeout 2.0
@@ -1312,6 +1307,7 @@ label family5:
     $ family5_punishment = ""
     $ family5_reward = ""
     $ family5_method = ""
+    $ family5_research = False
     default family5_menuset = set()
     menu family5_strategy:
         set family5_menuset
