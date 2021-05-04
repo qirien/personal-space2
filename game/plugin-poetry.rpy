@@ -3,7 +3,7 @@
 ##
 
 # Computer variant
-screen plugin_poetry(board, call_return=False):
+screen plugin_poetry(board, call_return=True):
     variant "large"
     frame:
         style_prefix "pp"
@@ -13,7 +13,7 @@ screen plugin_poetry(board, call_return=False):
         use pp_screen(board, call_return)
 
 # phone/tablet variant
-screen plugin_poetry(board, call_return=False):
+screen plugin_poetry(board, call_return=True):
     frame:
         style_prefix "pps"
         xfill True
@@ -21,7 +21,7 @@ screen plugin_poetry(board, call_return=False):
         background "#000"
         use pp_screen(board, call_return)
 
-screen pp_screen(board, call_return=False):
+screen pp_screen(board, call_return=True):
     $ display_words = board.get_display_words()
     $ nouns = display_words.get_nouns()
     $ adjectives = display_words.get_adjectives()

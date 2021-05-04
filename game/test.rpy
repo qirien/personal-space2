@@ -925,12 +925,18 @@ label test_family:
 label test_community:
     $ year = 1
     while (year <= 30):
+        $ farm.reset_crops(farm_size)
+        $ farm.crops.setDefault()
         $ renpy.notify("Year [year]")
         call expression "community" + str(year)
+
+        call increase_stats
+        call reset_variables
         $ year += 1
 
     "Game complete."
     "mavericks: [mavericks]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
+    jump ending
     return
 
 label test_positions:

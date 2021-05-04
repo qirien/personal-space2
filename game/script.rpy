@@ -366,8 +366,6 @@ label life_loop:
                     $ achieved("Rich Dad")
                 elif (credits <= -1000):
                     $ achieved("Poor Dad")
-
-                # TODO: Check for all crops unlocked achievement
                     
         if (crop_enabled("wheat")):
             $ modify_credits(-WHEAT_COST)

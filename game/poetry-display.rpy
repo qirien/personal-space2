@@ -27,7 +27,7 @@ screen show_poem(poem, take_photo=True):
     if (take_photo):
         key "mousedown_1" action [Function(take_picture), Hide("poem_display", whitefade)]
     else:        
-        key "mousedown_1" action Hide("poem_display")                
+        key "mousedown_1" action [Hide("poem_display"), Return()] 
 
     frame:
         xalign 0.5 

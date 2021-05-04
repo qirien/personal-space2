@@ -20,7 +20,7 @@ label community_intro:
     show ilian angry at midright
     with dissolve
     "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
-    "They were our family here, whether we liked it or not, so like a family, we had our fights and jealousies and annoyances -- but somehow we figured out how to get along."
+    "Though shuttles came from Earth every few years, for the most part... we were on our own."
     return
 
 ###############################################################################
@@ -5825,7 +5825,7 @@ label community23:
     bro concerned "I wanna go to the beach too!"
     her flirting "I need you to stay here and make sure [his_name] takes good care of the farm!"
     her happy "And we'll bring you some fish."
-    bro nervous "Okay..."
+    bro sad "Okay..."
     "[her_name] and [kid_name] went to the beach, and [bro_name] and I played games and went on a walk."
     hide her with moveoutright
     hide kid with moveoutright

@@ -27,7 +27,7 @@ label credits:
     hide text with dissolve
 
     show credits04 at tilted, left, driftdown, smallphoto
-    show text "Testing by\n\nWes Landaker\nSapphire Landaker" with dissolve # TODO: Add other testers
+    show text "Testing by\n\nWes Landaker\nSapphire Landaker\nLisa Horner\nCatherine White" with dissolve # TODO: Add other testers
     $ renpy.pause(2.0, hard=skippable)
     hide text with dissolve
 

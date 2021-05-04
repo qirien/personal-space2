@@ -370,6 +370,9 @@ init python:
         if (notify and not crop_info[crop_index][ENABLED_INDEX]):
             notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " unlocked!")
         crop_info[crop_index][ENABLED_INDEX] = True
+        #Check for all crops unlocked achievement
+        if (all_crops_unlocked()):
+            achieved("Super Farmer")
         return
 
     def disable_crop(crop_name, notify=True):
@@ -378,6 +381,14 @@ init python:
             notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " disabled")
         crop_info[crop_index][ENABLED_INDEX] = False
         return
+    
+    # Check all the crops. If any are disabled, return False. Otherwise, return True.
+    def all_crops_unlocked():
+        for i in range(0, len(crop_info)):
+            if (not crop_info[i][ENABLED_INDEX]):
+                return False
+        return True
+
 
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical

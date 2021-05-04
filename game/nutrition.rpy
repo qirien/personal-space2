@@ -328,6 +328,7 @@ label low_calories:
             "I didn't plant enough crops to feed our family and I had to beg from our neighbors."
     
     # Nobody likes a slacker...
+    $ low_calories_count += 1
     $ colonists -= 1
     $ miners -= 1
     $ mavericks -= 1

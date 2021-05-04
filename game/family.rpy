@@ -19,7 +19,6 @@ label family_intro:
     him sleeping "Mrmph?"
     her concerned "[kid_name]'s crying."
     show kid cry with dissolve
-    "Sometimes I still had to remind myself that we had a baby, even though it had been several weeks."
     "It was my turn to help her at night."
     him concerned "Okay..."
     stop sound fadeout 2.0
@@ -31,14 +30,12 @@ label family_intro:
     show kid laugh with dissolve
     "She was too little to hold the bottle herself, but she lifted her hands in jerky movements that brushed against me."
     show kid concerned with dissolve
+    "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."    
     "I dozed off and dropped the bottle."
-    "Maybe I could prop it up somehow and sleep while she ate? I had a vague feeling that might not be a good idea."
-    "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."
     show kid normal with dissolve
-    "She finally finished the bottle, dozing off right away for once."
+    "She finally finished the bottle, settling down without a fuss for once."
     show him sleeping with dissolve
     "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
-    "I guess it felt a little bit pointless to take care of [kid_name] in the middle of the night if [her_name] couldn't sleep through it, but she seemed to appreciate it."
     return
 
 # 3 Earth mos. old
@@ -1307,6 +1304,7 @@ label family5:
     $ family5_punishment = ""
     $ family5_reward = ""
     $ family5_method = ""
+    $ family5_prepared = False
     $ family5_research = False
     default family5_menuset = set()
     menu family5_strategy:

@@ -84,7 +84,7 @@ define config.after_load_transition = None
 ## Include menu options you can't choose but disable them.
 define config.menu_include_disabled = False
 
-# TODO: Do we actually want this? If so, we should probably restructure menus as menusets.
+# This will show disabled menu items during New Game +
 init python:
     if (persistent.times_beaten):
         config.menu_include_disabled = True

@@ -331,9 +331,8 @@ label debt_event:
 label work_intro:
     play music farming
     scene fields with fade
-    "[kid_name] wasn't the only thing I was taking care of, though. I was also responsible for our entire farm."
-    "Over the past two years, with a lot of trial and error, I'd found some crops and varieties that worked well."
-    "I still had a lot of decisions to make, though, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
+    "In addition to taking care of [kid_name], I was also responsible for our entire farm."
+    "I had a lot of decisions to make, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
     "The area of Talaam we had settled on was cool and dry. It didn't have seasons like temperate zones on Earth; the temperature stayed mild year round, though there was still a warm season and a cool season."
     "This meant that we could grow crops year round, but some crops didn't grow as well because they expected more sun or frost."
     scene aurora_animated with fade
