@@ -2339,7 +2339,7 @@ label community12:
                 him "I'll tell him what we know."
                 scene farm_exterior
                 show him at midleft with dissolve
-                show pete at midright with dissolve
+                show pete normal at midright with dissolve
                 him sad sweat "Pete, we don't know for sure, but it seems pretty likely that some miners took your cow, but she escaped."
                 pete "Yeah, that's about what I thought too."
                 pete "Are they going to find her for me?"
@@ -8803,7 +8803,7 @@ label community30:
                                     jump account_check_sneak2
                                 "No one else.":
                                     $ account_checked_counter = 5
-                                    jump account_sneak2
+                                    jump account_check_sneak2
 
 #        label back_to_noel:
 #            "I decided to go back to Noel's place. This time, I brought my barrel-opening tools."

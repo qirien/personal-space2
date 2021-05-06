@@ -302,8 +302,11 @@ label low_calories:
         with dissolve
 
         her surprised "When I went to the cellar to get some beans, I noticed there was hardly anything in there."
-        kid annoyed "Not beans again!"
-        her annoyed "[kid_name], please don't interrupt. [his_name], are we going to have enough food this year?"
+        if (year > BABY_MAX):
+            kid annoyed "Not beans again!"
+            her annoyed "[kid_name], please don't interrupt. [his_name], are we going to have enough food this year?"
+        else:
+            her annoyed "Are we going to have enough food this year?"
         "I didn't know what to tell her. We didn't have enough food. I was supposed to be growing enough for our family and some extra, but this year... I just couldn't."
         if (year > MONEY_YEAR):
             $ modify_credits(farm.income_loss(cals_got/cals_needed))
@@ -328,7 +331,7 @@ label low_calories:
             "I didn't plant enough crops to feed our family and I had to beg from our neighbors."
     
     # Nobody likes a slacker...
-    $ low_calories_count += 1
+    $ low_calories_count += 1    
     $ colonists -= 1
     $ miners -= 1
     $ mavericks -= 1

@@ -28,7 +28,7 @@ label credits:
 
     show credits04 at tilted, left, driftdown, smallphoto
     show text "Testing by\n\nWes Landaker\nSapphire Landaker\nLisa Horner\nCatherine White" with dissolve # TODO: Add other testers
-    $ renpy.pause(2.0, hard=skippable)
+    $ renpy.pause(4.0, hard=skippable)
     hide text with dissolve
 
     if ((total_miners >= total_colonists) and (total_miners >= total_mavericks)):

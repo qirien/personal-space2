@@ -75,6 +75,14 @@ label reset_variables:
     $ colonists = 0
     $ mavericks = 0
     $ miners = 0
+
+    #Have a minimum of 0 so you don't get too in the hole.
+    if (total_colonists < 0):
+        $ total_colonists = 0
+    if (total_mavericks < 0):
+        $ total_mavericks = 0
+    if (total_miners < 0):
+        $ total_miners = 0
     return
 
 ##

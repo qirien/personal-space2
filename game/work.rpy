@@ -2039,19 +2039,19 @@ label work29_potatoes:
     scene fields with fade
     show him determined at midright
     with dissolve
-    show travis at midleft with moveinleft
+    show travis normal at midleft with moveinleft
 
     him normal "Hey there, Travis!"
     if (farm.crops.count("potatoes") >= 3):
-        travis "Hey, thanks for growing all those potatoes like I asked. The fries are one of my most popular items."
+        travis excited "Hey, thanks for growing all those potatoes like I asked. The fries are one of my most popular items."
         $ modify_credits(1000)
         $ travis_points += 1
         "He had paid me 1000 credits more than the storehouse would have, so I was pretty happy with the arrangement."
         him happy "No problem. You need anything else?"
-        travis "Yeah, actually. I was hoping to buy some honey from you so I can sell ice cream."
+        travis happy "Yeah, actually. I was hoping to buy some honey from you so I can sell ice cream."
         if ("honey" in farm.crops):
             him concerned "I am going to have some honey this year..."
-            travis "Great, will you sell it to me? I can pay in advance."
+            travis normal "Great, will you sell it to me? I can pay in advance."
             him determined "Hmmm. Let me think about that."
             "There was something about the idea that bothered me... I stood in silence for a moment, trying to figure out what it was."
             "Then I figured it out. There was not that much honey on Talaam. If he bought all of mine, his ice cream would be one of the few sweet things on the whole planet."
@@ -2067,15 +2067,15 @@ label work29_potatoes:
                     $ travis_points += 1
                 "I don't want to do that.":
                     him concerned "Sorry, I don't want to sell all my honey to you. You can buy it from the storehouse like everyone else."
-                    travis "If that's what you want."
+                    travis angry "If that's what you want."
                     $ colonists += 1
         else:
             him concerned "Sorry, I don't have any honey this year."
-            travis "Okay, well, think about it for next year!"
+            travis normal "Okay, well, think about it for next year!"
             $ mavericks += 1
 
     else:
-        travis "Hey... I thought you agreed to grow three fields of potatoes for me."
+        travis angry "Hey... I thought you agreed to grow three fields of potatoes for me."
         "I thought back to the pancake breakfast at the restaurant... I had agreed to do that."
         menu:
             "What should I say?"
@@ -2083,26 +2083,26 @@ label work29_potatoes:
                 $ travis_points -= 1
                 "I shrugged."
                 him determined "Sorry."
-                travis "'Sorry'? That's it? I thought I could trust you."
+                travis excited "'Sorry'? That's it? I thought I could trust you."
                 him annoyed "Hey, we didn't have a contract or anything. I was going to be doing you a favor."
-                travis "I didn't think two honest people needed a contract to keep their word. I guess I was wrong."
+                travis angry "I didn't think two honest people needed a contract to keep their word. I guess I was wrong."
                 $ mavericks -= 1
             "I can sell you something else.":
                 him concerned "Hey, I'm really sorry about that... can I sell you something else?"
-                travis "Hmmm... I'm looking at buying honey to make ice cream, if you have any of that."
-                if (farm.crop.contains("honey")):
+                travis normal "Hmmm... I'm looking at buying honey to make ice cream, if you have any of that."
+                if (farm.crops.count("honey") > 0):
                     him normal "I do have honey."
-                    travis "I guess that'll work."
+                    travis angry "I guess that'll work."
                     "We worked out the specifics, and he paid me 500 credits."
                     $ modify_credits(500)
                 else:
                     him sad "Sorry, I don't have honey, either."
-                    travis "Forget it, then."
+                    travis excited "Forget it, then!"
                     $ mavericks -= 1
-            "I can sell you the potatoes I have." if (farm.crops.contains("potatoes")):
+            "I can sell you the potatoes I have." if (farm.crops.count("potatoes") > 0):
                 $ potato_count = farm.crops.count("potatoes")
-                him "I can sell you the potatoes I do have."
-                travis "I guess that'll work."
+                him concerned "I can sell you the potatoes I do have."
+                travis normal "I guess that'll work."
                 $ modify_credits(300 * potato_count)
                 "He paid me for the potatoes and left."
     return
