@@ -15,7 +15,12 @@ screen parenting_handbook():
         vbox:
             hbox:
                 label "Child Development"
-                #textbutton "X" xpos -24 ypos -4 action Hide("parenting_handbook", zoomout)
+                textbutton "X":
+                    xpos -52
+                    xfill False
+                    text_font "fonts/Questrial-Regular.otf"
+                    text_bold True 
+                    action Hide("parenting_handbook", irisin) 
             hbox:
                 null width 30
                 vbox:
@@ -34,7 +39,6 @@ screen parenting_handbook():
                 null width 5
                 vbox:
                     xsize MIDDLE_COLUMN_WIDTH-32
-                    textbutton "X" xpos MIDDLE_COLUMN_WIDTH-64 ypos -45 action Hide("parenting_handbook", irisin)
                     use kid_info
 
 screen kid_info():
@@ -82,7 +86,6 @@ screen teen_info():
 
 style parenting_frame is computer_sub_frame:
     xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 8
-    ysize COMPUTER_SUB_HEIGHT
 style parenting_label is computer_sub_label
 style parenting_label_text is computer_sub_label_text
 style parenting_text is computer_sub_text
@@ -92,8 +95,10 @@ style parenting_hbox is computer_sub_hbox
 style parenting_button is computer_sub_button:
     xfill True
     selected_background green_dark
+    padding (4,10)
 
 style parenting_button_text is computer_sub_button_text:
     hover_color green_med
     selected_color white
     idle_color gray_light
+    size 24

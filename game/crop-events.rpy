@@ -3,7 +3,7 @@
 # Default crop event, if no other crop event can be found
 label default_crop_event:
     scene fields with fade
-    "The year passed by in a blur: -- tilling, planting, weeding, harvesting -- the endless cycle of life on the farm."
+    "The year passed by in a blur: -- tilling, planting, weeding, harvesting the same crops over and over -- the endless cycle of life on the farm."
     return
 
 # Events that can happen if you have Terra work more than 70%

@@ -8584,6 +8584,9 @@ label community30:
                                 $ checked_terra = True
                                 $ account_checked_counter += 1
                                 jump account_check
+                            "No one else.":
+                                $ account_checked_counter = 5
+                                jump account_check
                 else:
                     brennan explaining "I can't do that for you."
                     brennan concerned "If someone finds out I was poking in their accounts, I'll never hear the end of it."
@@ -8658,6 +8661,9 @@ label community30:
                                     $ checked_terra = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak
+                                "No one else.":
+                                $ account_checked_counter = 5
+                                jump account_check_sneak    
                                 
                     else:
                         show brennan at midleft with move
@@ -8728,7 +8734,7 @@ label community30:
                                         $ account_checked_counter +=1
                                         her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
                                         jump account_check_her
-                                    "I'm done.":
+                                    "No one else.":
                                         $ account_checked_counter +=4
                                         jump account_check_her
 
@@ -8795,6 +8801,9 @@ label community30:
                                     $ checked_terra = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
+                                "No one else.":
+                                    $ account_checked_counter = 5
+                                    jump account_sneak2
 
 #        label back_to_noel:
 #            "I decided to go back to Noel's place. This time, I brought my barrel-opening tools."

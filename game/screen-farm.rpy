@@ -167,7 +167,7 @@ screen farm_details_screen():
                 label "Total"
                 use crops_totals
 
-# TODO: Phones need a checkmark icon or make it so if you click outside the screen it sets and returns. Ask on Discord?
+# TODO: Make it so if you click outside the screen it sets and returns. Ask on Discord?
 screen choose_crop(crop_index=0):
     on "show" action SetVariable("selected_crop_index", get_crop_index(farm.crops[crop_index]))
     modal True
@@ -666,7 +666,7 @@ style computer_sub_label_text is plan_farm_label_text:
     color green_light
 
 style computer_sub_text is plan_farm_text:
-    size 16
+    size 18
     color white
 
 style computer_sub_grid is grid

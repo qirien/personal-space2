@@ -157,7 +157,7 @@ label start:
     default farm_size = 12
     if (persistent.times_beaten):
         $ farm_size = min(12 + (persistent.times_beaten*2), FARM_SIZE_MAXIMUM)
-    $ farm = Field(farm_size, FARM_SIZE_MAXIMUM)
+    default farm = Field(farm_size, FARM_SIZE_MAXIMUM)
     default selected_crop_index = 0
     default terra_overwork_count = 0
     default sortby = "calories"
@@ -173,6 +173,10 @@ label start:
     default seen_mavericks_debt = False
     default seen_colonists_debt = False
     default low_calories_count = 0
+
+    default number_events_seen = {}
+    default crop_info = ()
+
 
     python:
         # Dictionary containing the number of events seen for each crop

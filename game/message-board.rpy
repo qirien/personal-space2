@@ -723,8 +723,8 @@ label message28:
     sara_c "But if they have the possibility to become sentient... I don't think I'm going to eat them anymore. Plus they are just too cute! {emoji=hearteyes}"
     if (ate_jellyfish):
         him_c "They are adorable!"
-    kid_c "yay, sara! ur such a stellar mom! {font=fonts/OpenSansEmoji.otf}\(^ O ^)/{/font}"
-    oleg_c "only bc she's not ur mom. now she won't cook me jellies. (q n p)"
+    kid_c "yay, sara! ur such a stellar mom! {font=fonts/OpenSansEmoji.otf}\(^O^)/{/font}"
+    oleg_c "only bc she's not ur mom. now she won't cook me jellies. (q_n_p)"
     nvl clear
     return
 

@@ -13,13 +13,13 @@ screen biographies(name):
         vbox:
             hbox:
                 label "Community Bios"
-                textbutton "X" xalign 0.97 action Hide("biographies", irisin) xfill False
+                textbutton "X" xalign 0.97 text_font "fonts/Questrial-Regular.otf" text_bold True action Hide("biographies", irisin) xfill False
             hbox:
                 null width 20
 
                 vpgrid:
                     cols 1
-                    xsize LEFT_COLUMN_WIDTH-50
+                    xsize LEFT_COLUMN_WIDTH
                     draggable True
                     mousewheel True
                     scrollbars "vertical"
@@ -38,13 +38,13 @@ screen biographies(name):
 
                 null width 5
                 vbox:
-                    xsize MIDDLE_COLUMN_WIDTH-32
+                    xsize MIDDLE_COLUMN_WIDTH-32-50 #we gave up 50px for the left section to be bigger.
                     yalign 0.0                    
                     hbox:
                         $ iconname = bios.getIconName(show_person)
                         add "images/icons/" + iconname + "-icon.png"
                         label bios.getFullName(show_person) xalign 0.9 yalign 1.0
-                    text  bios.getBio(show_person) 
+                    text bios.getBio(show_person) 
 
 
 ###############################################################################
@@ -54,7 +54,8 @@ screen biographies(name):
 ###############################################################################
 style bio_hbox is parenting_hbox
 style bio_vbox is parenting_vbox
-style bio_frame is parenting_frame
+style bio_frame is parenting_frame:
+    ysize COMPUTER_SUB_HEIGHT
 style bio_button is parenting_button
 style bio_button_text is parenting_button_text
 
@@ -205,7 +206,7 @@ init python:
             self.addPerson("Chaco", "Chaco Acosta", "Chaco is one of the miners. We were assigned to help him feel welcome. I still don't know much about him, except that he doesn't like to talk about himself.")
             self.addPerson("Brennan", "Brennan Callahan", "When we first arrived on Talaam, Brennan was assigned to assist [her_name] at the clinic. But the real reason he was here was to report back to RET about our planet's value for mining. His favorite things are wine, women, and being smug and condescending. I thought I would never have to deal with him again, but now he's back as the manager for RET's mining operation.")
 
-            self.addPerson("Zaina", "Zaina Shirazi", "Zaina arrived from Earth around the time [kid_name] was born. She's a geologist helping to scout out the planet for RET so that they know where the best mining sites will be. She and {a=action:SetVariable('show_person', 'Zaina')}Kevin{/a} got married right before they came here. They also have their own garden. And she has a great sense of humor (well, she laughs at my jokes anyway).")
+            self.addPerson("Zaina", "Zaina Shirazi", "Zaina arrived from Earth around the time [kid_name] was born. She's a geologist helping to scout out the planet for RET so that they know where the best mining sites will be. She and {a=action:SetVariable('show_person', 'Kevin')}Kevin{/a} got married right before they came here. They also have their own garden. And she has a great sense of humor (well, she laughs at my jokes anyway).")
             self.addPerson("Kevin", "Kevin Washington", "As a mining engineer, Kevin is making plans for future mining by RET. He has a real head for numbers, but he sometimes takes things too literally and wants everything to be quantifiable like math is. In that way he and his wife {a=action:SetVariable('show_person', 'Zaina')}Zaina{/a} are kind of opposites, but they are both curious and fast learners.")
 
             self.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")

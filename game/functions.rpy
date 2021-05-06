@@ -150,22 +150,26 @@ init -100 python:
            (authoritative >= permissive) and
            (authoritative >= neglectful)):
             parenting_style = "authoritative"
-            achieved("Firm Yet Fair")
+            if (year > TODDLER_MAX):
+                achieved("Firm Yet Fair")
         elif ((authoritarian >= authoritative) and
               (authoritarian >= permissive) and
               (authoritarian >= neglectful)):
             parenting_style = "authoritarian"
-            achieved("Big Boss")
+            if (year > TODDLER_MAX):
+                achieved("Big Boss")
         elif ((permissive >= authoritarian) and
               (permissive >= authoritative) and
               (permissive >= neglectful)):
             parenting_style = "permissive"
-            achieved("Who Needs Rules?")
+            if (year > TODDLER_MAX):
+                achieved("Who Needs Rules?")
         elif ((neglectful >= authoritarian) and
               (neglectful >= authoritative) and
               (neglectful >= permissive)):
             parenting_style = "neglectful"
-            achieved("Hands-Off Approach")
+            if (year > TODDLER_MAX):
+                achieved("Hands-Off Approach")
 
         
         pstyle = "{emoji=" + parenting_style + "} " + parenting_style.capitalize() + " parent"
@@ -216,7 +220,7 @@ init -100 python:
         if is_independent:
             return "independent"
         elif is_competent:
-            return "competent"        
+            return "capable"        
         elif is_attached:
             return "friendly"
         return "smart"
@@ -256,6 +260,7 @@ init -100 python:
         return earth_years
 
     # Find the right work event for this year
+    # TODO: on mobile, got a bug here on year 3 where number_events_seen was not defined??
     def get_next_work_event():
         global crop_temporarily_disabled, crop_info, number_events_seen
         # Enable any crops that were temporarily disabled
@@ -287,20 +292,19 @@ init -100 python:
             if ((year == 29) and (year28_promised_potatoes)):
                 return "work29_potatoes"
 
-            # If you have a lot of money, have an investment/charity opportunity
+            # Find a good crop event.
+            # Make a set (no duplicates) of the next crop event for each crop in our field. Then, randomly pick one.
+            possible_events = set()
+            # If you have a lot of money, you might get an investment/charity opportunity
             if (credits > 1000):
                 last_money_event = number_events_seen["money"]
                 if (last_money_event == 0):
                     number_events_seen["money"] += 1
-                    return "money1"
+                    possible_events.add("money1")
                 elif (last_money_event == 1):
                     number_events_seen["money"] += 1
-                    return "money2"
+                    possible_events.add("money2")
                 
-
-            # Find a good crop event.
-            # Make a set (no duplicates) of the next crop event for each crop in our field. Then, randomly pick one.
-            possible_events = set()
             for crop_name in farm.crops:
                 if (crop_name != ""):
                     #get the number of the next event for this crop
