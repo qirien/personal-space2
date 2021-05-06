@@ -8662,8 +8662,8 @@ label community30:
                                     $ account_checked_counter += 1
                                     jump account_check_sneak
                                 "No one else.":
-                                $ account_checked_counter = 5
-                                jump account_check_sneak    
+                                    $ account_checked_counter = 5
+                                    jump account_check_sneak    
                                 
                     else:
                         show brennan at midleft with move
