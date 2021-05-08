@@ -1202,7 +1202,7 @@ label goats3:
     with dissolve
     show him determined at midleft behind goat with moveinleft
     if (year > 7):
-        show kid at quarterleft with moveinleft
+        show kid concerned at quarterleft with moveinleft
     "Sure, enough, Julia was there scowling and flapping a dishtowel, trying to drive the goats away."
     show julia at midright with move
     show goat at center with move
@@ -1271,7 +1271,7 @@ label goats3:
 
         "Scold [kid_name]." if (year > 7):
             "It must have been [kid_name]. There's no other possibility."
-            show kid at midright with moveinright
+            show kid concerned at midright with moveinright
             him determined "[kid_name], I'm disappointed that you let the goats escape."
             kid sad "It wasn't me! I closed it all the way, I know I did!"
             him concerned "It's the only explanation that makes any sense."
@@ -1512,7 +1512,7 @@ label plums2:
 
     if not (renpy.showing("storeroom")):
         scene storeroom with fade
-        show ilian at midright
+        show ilian normal at midright
         show him normal at midleft with dissolve
 
     "While I was at the storehouse, I saw that they had a ton of onions for just 15 credits."

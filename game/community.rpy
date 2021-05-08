@@ -504,6 +504,7 @@ label community3:
             her concerned "But that's not the way people think."
             him determined "That doesn't mean you can keep people in ignorance. People are better off the more knowledge they have, even if some people will use it poorly."
             show him at center
+            with move
             show natalia normal at right
             show martin normal at quarterright
             with moveinright
@@ -2338,17 +2339,17 @@ label community12:
             label tell_Pete:
                 him "I'll tell him what we know."
                 scene farm_exterior
-                show him at midleft with dissolve
+                show him sad sweat at midleft with dissolve
                 show pete normal at midright with dissolve
-                him sad sweat "Pete, we don't know for sure, but it seems pretty likely that some miners took your cow, but she escaped."
-                pete "Yeah, that's about what I thought too."
-                pete "Are they going to find her for me?"
+                him "Pete, we don't know for sure, but it seems pretty likely that some miners took your cow, but she escaped."
+                pete angry "Yeah, that's about what I thought too."
+                pete normal "Are they going to find her for me?"
                 him determined "No. I don't think they even know which direction she went."
-                pete "I don't believe this. They steal my cow and then expect me to find her?"
+                pete angry "I don't believe this. They steal my cow and then expect me to find her?"
                 pete "She could have had three more calves."
-                pete "Who do they think they are anyway?"
+                pete "Who do they think they are anyway?!"
                 him determined "Sorry, I tried, but I couldn't find anything definitive."
-                pete "Least I can do is try to find her."
+                pete normal "Least I can do is try to find her."
                 "I don't think he ever found her."
                 return
     else:
@@ -2468,16 +2469,16 @@ label community12:
                     "But the lettuce and radishes weren't enough to feed the miners."
                     scene farm_exterior with dissolve
                     show him normal at midleft
-                    show chaco at midright
+                    show chaco normal at midright
                     chaco "Thank you so much for dinner tonight."
                     him happy "You're welcome."
-                    chaco "Could you sell me some of your crops?"
+                    chaco sad "Could you sell me some of your crops?"
                     chaco "I can give you plenty of credits for them."#make this a decision if we have food/money variables
                     him pout "We don't have a lot of extra food right now, but we can spare a little."
-                    chaco "This is great. I'm so sick of radish salad."
+                    chaco normal "This is great. I'm so sick of radish salad."
                     $ modify_credits(50)
                     him explaining "You know, if you have the credits, I bet Pete could do some hunting for you."
-                    chaco "I'll ask him."
+                    chaco sad "I'll ask him."
                     scene stars with fade
                     "Pete went on a quick hunting trip. He had to make several trips back to the hunting site to carry back all the carcasses."
                     "Dr. Lily took a few people out foraging."
@@ -2537,27 +2538,27 @@ label community12:
                     "The next day, I helped set up a rudimentary irrigation system and we planted more long-term crops."
                     scene farm_exterior with fade
                     show him normal at midleft
-                    show chaco at midright
+                    show chaco normal at midright
                     with dissolve
                     "I asked Chaco about how things were going at our weekly dinner."
-                    him "So, how do you like the new food?"
+                    him surprised "So, how do you like the new food?"
                     chaco "The meat isn't bad."
-                    chaco "I miss bread."
+                    chaco sad "I miss bread."
                     him content "Do you like hunting?"
-                    chaco "We buy our meat from Pete."
+                    chaco normal "We buy our meat from Pete."
                     him concerned "You're not going hunting?"
                     #chaco looks uncomfortable
-                    chaco "No. Brennan said we don't have time."
+                    chaco sad "No. Brennan said we don't have time."
                     him pout "Hmm, so Pete is selling meat on the side."
                     him pout "What about your farm?"
-                    chaco "We paid some other farmers to come take care of it."
+                    chaco normal "We paid some other farmers to come take care of it."
                     chaco "Brennan said it would be easier and quicker for us to focus on mining."
-                    chaco "He said that we're probably going to be stuck here unless we work hard."
+                    chaco sad "He said that we're probably going to be stuck here unless we work hard."
                     him determined "Yes, he does say that."
-                    chaco "Is it true?"
+                    chaco normal "Is it true?"
                     him sad "It's true that I decided to let you be in charge of your own food."
                     him pout "I was hoping that being connected to your food would help you feel alive."
-                    chaco "Eating food definitely helps."
+                    chaco sad "Eating food definitely helps."
                     show stars with dissolve
                     "Other colonists told me how they were helping the miners by doing extra work on the side."
                     "Some of the teenagers from the colony had a great time foraging on the weekends, selling their finds to the miners, and spending their money on the weird crafts they made for each other."
@@ -7166,27 +7167,34 @@ label community28:
             her surprised "But what about people who live like that normally? Are you saying their lives aren't worth living?"
             him determined "Uhh... I guess that's up to their caretakers. But since I know what my life is like now and what it would be like then, I can make that decision for myself."
             her determined "I think I agree with you."
+            jump c28_next_day
         "I'd want to live as long as possible":
-            him annoyed "I think I'd want to live as long as possible and die a natural death."
-            her annoyed "Even if it meant you needed other people to watch you all day, bathe you and help you go to the bathroom?"
-            her sad "Even if it meant that you wouldn't know who you were or what you were doing?"
-            him doubt "You're basically describing the cognitive state and care needs of small babies, and we highly value their lives."
-            him content "Is there something wrong with being cared for when you're old?"
-            her concerned "Babies are easier to take care of because they are small and can't walk anywhere. Plus, their incompetence has a regular timeline."
-            her sad "I've seen cases where a person can suffer from dementia for decades."
-            him explaining "I've seen cases where a person takes care of other people for decades."
-            her surprised "I guess it depends on what the person wants and if their society has the resources to take care of them."
-            him pout "I think a society that kills its old people if they have dementia is diseased."
-            him annoyed "What about children born with disabilities? Are you going to kill them too?"
-            her determined "It's different when it's an old person, because they can consent to euthanasia before it gets bad."
-            him sad "That's just giving up."
-            her concerned "There's no known cure."
-            him surprised "There's plenty of enjoyable things in life even if you can't remember them. You don't have to remember anything to appreciate a good meal, or share a joke with someone, or enjoy a sunset."
-            her annoyed "But is that enough to make life worth living?"
-            him concerned "I would still want to live, if only for those everyday moments."
-            her concerned "Well, this isn't about what you or I want. It's about what Mayor Grayson might want."
-            him annoyed "Okay, okay."
-            $ against_euthanasia = True
+            him annoyed "I think I'd want to live as long as possible and die a natural death."            
+        "As long as I'm not a vegetable, I'd want to live.":
+            him concerned "As long as I have some brain activity, I'd want to live. If that's gone, then I wouldn't want you to waste effort on me."
+
+    her annoyed "Even if it meant you needed other people to watch you all day, bathe you and help you go to the bathroom?"
+    her sad "Even if it meant that you wouldn't know who you were or what you were doing?"
+    him doubt "You're basically describing the cognitive state and care needs of small babies, and we highly value their lives."
+    him content "Is there something wrong with being cared for when you're old?"
+    her concerned "Babies are easier to take care of because they are small and can't walk anywhere. Plus, their incompetence has a regular timeline."
+    her sad "I've seen cases where a person can suffer from dementia for decades."
+    him explaining "I've seen cases where a person takes care of other people for decades."
+    her surprised "I guess it depends on what the person wants and if their society has the resources to take care of them."
+    him pout "I think a society that kills its old people if they have dementia is diseased."
+    him annoyed "What about children born with disabilities? Are you going to kill them too?"
+    her determined "It's different when it's an old person, because they can consent to euthanasia before it gets bad."
+    him sad "That's just giving up."
+    her concerned "There's no known cure."
+    him surprised "There's plenty of enjoyable things in life even if you can't remember them. You don't have to remember anything to appreciate a good meal, or share a joke with someone, or enjoy a sunset."
+    her annoyed "But is that enough to make life worth living?"
+    him concerned "I would still want to live, if only for those everyday moments."
+    her concerned "Well, this isn't about what you or I want. It's about what Mayor Grayson might want."
+    him annoyed "He should know that we're willing to take care of him. He's like family!"
+    her nervous "Well, you might end up doing just that."
+    $ against_euthanasia = True
+
+label c28_next_day:
     "The next day, Sara sent out a message saying that Mayor Grayson was ready to retire and that we would be electing a new mayor at a meeting next week."
     if is_liaison:
         scene community_center with fade
@@ -7208,7 +7216,7 @@ label community28:
         her concerned "At this rate, he may need constant supervision in six months to a year."
         her sad "He doesn't have any family to keep an eye on him."
         her determined "I wouldn't be able to supervise him and perform my duties as a doctor at the same time."
-        her surprised "My assistant could watch him for half of her normal hours, but it would decrease the amount of preventative care visits she makes." #gender check assistant
+        her surprised "My assistant could watch him for half of her normal hours, but it would decrease the amount of preventative care visits she makes."
         her determined "We're putting the question of whether or not to euthanize Pavel Grayson up for discussion."
         if against_euthanasia:
             him determined "I don't think Pavel should give up so quickly. Maybe his cognitive decline won't be as quick as we think it will be."
@@ -7246,7 +7254,7 @@ label community28:
                      julia normal "Why don't we have Pavel consent to euthanasia again in a week?"
                      brennan normal "I agree with Julia."
                      her concerned "Sara?"
-                     sara sad "I like Julia's compromise. I'd like to talk to Pavel more about it, but if it really is what he wants..."
+                     sara sad "I guess it's a good compromise. I'd like to talk to Pavel more about it, but if it really is what he wants..."
                      her sleeping "I understand."
                      jump fill_gap
         else:
@@ -7311,9 +7319,9 @@ label fill_gap:
     ilian angry "There are twice as many miners as colonists. They could easily outvote the colonists on anything."
     kevin normal "We don't really vote on policies, just who should be in charge of making policy decisions, which probably won't be a miner anyway, because their contracts don't let them have another job."
     sara normal "Well, I think that covers the main arguments for and against. Please get out your tablets and we'll take a vote on whether the miners should be allowed to vote or not."
-    scene black with fade
-    "Which way will I vote?"
+    scene black with fade    
     menu:
+        "Which way will I vote?"
         "Allow miners to vote for the mayor now and in future elections.":
             $ miners += 1
             jump after_vote
@@ -7408,10 +7416,26 @@ label no_euthanasia:
     him surprised "Why don't you let me help you with that knife?"
     pavel sad "No! I need it! For the vegetables..."
     scene stars with fade
+    "Sometimes [kid_name] would just sit next to him and talk... she didn't seem to mind that he never remembered anything she told him."
+    scene farm_interior with fade
+    show pavel normal at right
+    show kid concerned at midright
+    with dissolve
+    kid "So now Travis and Anya are both mad at me! I was just trying to be a good friend to both of them, but all they want to do is complain about each other..."
+    pavel sad "Oh dear. That's terrible, uh, ah... I'm sorry, I can't think of your name."
+    show him surprised at left with moveinleft
+    him annoyed "[kid_name]. Her name is [kid_name]."
+    pavel normal "I knew that! Maybe you should ask Naomi, [kid_name]. She always knows what to do."
+    kid sad "Yeah, she did..."
+    pavel sad "I need to find her. I think she got lost on the way home."
+    kid cry "She's... I'll walk with you, Papa Pavel."
+    scene stars with fade
+
     "He had a stroke that left him unable to speak coherently or to move without prompting."
     scene farm_interior with fade
     show him concerned at midleft
     show her determined at midright
+    show pavel sad at right
     with dissolve
     her concerned "He needs adult-sized diapers... and someone to spoon-feed him. We should probably move him to the hospital."
     him determined "We can do it."
@@ -7761,6 +7785,7 @@ label community30:
     $ talked_to_pete = False
     $ accuse_noel_of_murder = False
     $ know_rings_purpose = False
+    default c30_menuset = set()
     if kevin_elected:
         scene path with fade
         show rain
@@ -8509,167 +8534,172 @@ label community30:
             "[kid_name] didn't even look up from her tablet."
             kid determined "Like I'd tell you."
             him annoyed "You're no help."
-        "I still wanted to see if I could find out account information relating to the case."
-        menu:
-            "How should I approach that problem?"
-            "Ask Brennan to help you.":
-                "I arranged to meet with Brennan in the community center to ask for his help."
-                scene community_center with fade
+        default c30account_menuset = set()
+        menu c30_wantaccountinfo:
+            set c30account_menuset
+            "I still wanted to see if I could find out account information relating to the case."
+            "Go see Brennan":
+                "I arranged to meet with Brennan in his office to ask for his help."
+                scene yurt_interior with fade
                 play sound "sfx/rain.ogg" volume 0.6 loop
                 show him normal at midright
                 show brennan surprised at midleft
                 with dissolve
                 brennan "What have you found so far with the investigation?"
-                him "I have a lot of ideas but not very much evidence."
-                him concerned "For various reasons, I want to check how much money some people have in their account."
-                brennan explaining "To see if someone has an unusual amount of money? I can see how that would be useful."
-                brennan surprised "I can withdraw and deposit from accounts--is that why you need my help with this?"
-                him determined "Yes. You can withdraw money until the account is empty, record the number, and then deposit it back."
-                brennan concerned "Kind of a roundabout way of doing it. Is it the only way?"
-                him doubt "As far as I know."
-                if miners_strong(): #10
-                    brennan "I'll help you. But I don't have all day, so let's do this quickly."
-                    label account_check:
-                        if account_checked_counter > 3:
-                            if checked_joel:
-                                brennan surprised "I bet Noel was hiding her money in Joel's account."
-                                brennan "She was still collecting disability pay, based on various factors, including her reduced salary."
-                                him surprised "Huh. So she didn't make this much money working overtime?"
-                                brennan sad "No, she has only been working in the mines a few days a week since her suicide attempt."
-                                jump who_suspect
-                            brennan angry "Okay, okay, that's enough."
-                            jump who_suspect
+                him pout "I have a lot of ideas but not very much evidence."
+                menu:
+                    "Should I ask for his help?"
+                    "Ask him honestly.":
+                        him concerned "For various reasons, I want to check how much money some people have in their account."
+                        brennan explaining "To see if someone has an unusual amount of money? I can see how that would be useful."
+                        brennan surprised "I can withdraw and deposit from accounts--is that why you need my help with this?"
+                        him determined "Yes. You can withdraw money until the account is empty, record the number, and then deposit it back."
+                        brennan concerned "Kind of a roundabout way of doing it. Is it the only way?"
+                        him doubt "As far as I know."
+                        if miners_strong(): #10
+                            brennan "I'll help you. But I don't have all day, so let's do this quickly."                    
+                            label account_check:
+                                if account_checked_counter > 3:
+                                    if checked_joel:
+                                        brennan surprised "I bet Noel was hiding her money in Joel's account."
+                                        brennan "She was still collecting disability pay, based on various factors, including her reduced salary."
+                                        him surprised "Huh. So she didn't make this much money working overtime?"
+                                        brennan sad "No, she has only been working in the mines a few days a week since her suicide attempt."
+                                        jump who_suspect
+                                    brennan angry "Okay, okay, that's enough."
+                                    jump who_suspect
 
-                        menu: #allow players to ask about 3 people
-                            "Whose account should I check?"
-                            "Noel's" if not checked_noel:
-                                brennan normal "Noel has around 100 credits."
-                                $ checked_noel = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "Joel's" if not checked_joel:
-                                if ban_firegrass:
-                                    brennan surprised "Joel has over 10,000 credits."
-                                else:
-                                    brennan surprised "Joel has over 7,000 credits."
-                                $ checked_joel = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "Julia's" if not checked_julia:
-                                if ban_firegrass:
-                                    brennan surprised "Julia has around 7,000 credits."
-                                else:
-                                    brennan surprised "Julia has around 4,000 credits."
-                                $ checked_julia = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "Van's" if not checked_van:
-                                brennan sad "Van has around 200 credits."
-                                $ checked_van = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "Sara's" if not checked_sara:
-                                brennan normal "Sara has around 2,000 credits."
-                                $ checked_sara = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "Oleg's" if not checked_oleg:
-                                brennan normal "Oleg has around 1,000 credits." #decide Oleg's level of involvement
-                                $ checked_oleg = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "[kid_name]'s" if not checked_terra:
-                                brennan surprised "You think [kid_name] could be involved in this?"
-                                brennan normal "[kid_name] has about 500 credits."
-                                $ checked_terra = True
-                                $ account_checked_counter += 1
-                                jump account_check
-                            "No one else.":
-                                $ account_checked_counter = 5
-                                jump account_check
-                else:
-                    brennan explaining "I can't do that for you."
-                    brennan concerned "If someone finds out I was poking in their accounts, I'll never hear the end of it."
-                    brennan normal "Good luck with the rest of your investigation."
-                    #TODO: make it so you can go back and try other options from here
-            "Try to use Brennan's account without him knowing.":
-                    scene yurt_interior with fade
-                    play sound "sfx/rain.ogg" volume 0.6 loop
-                    show brennan normal at midright
-                    show him normal at midleft
-                    with dissolve
-                    "I visited Brennan in his office and told him I wanted to know who was on the shift schedule when Joel died so I could rule them out."
-                    brennan happy "Hold on, I can bring it up in just a minute."
-                    brennan flirting "Here's the list."
-                    show brennan normal at midleft with move
-                    show brennan normal at midright with move
-                    "He handed me his tablet to show me the shift list."
-                    brennan angry "No, don't take a photo of my tablet. I don't want the miners to know that I'm helping you too much."
-                    brennan concerned "Oh, it's already time for our evening briefing."
-                    brennan surprised "Take a screenshot and send it to yourself."
-                    if miners_strong(): #10
-                        hide brennan with moveoutright
-                        "Brennan left the tablet with me while he went to the briefing."
-                        "I hurriedly opened the payments program. Whose account should I check first?"
-                        label account_check_sneak:
-                            if account_checked_counter > 3:
-                                "I saw Brennan coming back and quickly closed the program."
-                                show brennan normal at midright with moveinright
-                                brennan "Did you get what you need?"
-                                him normal "Yeah, thanks."
-                                jump who_suspect
-                            menu: #allow players to ask about 3 people
-                                "Whose account should I check?"
-                                "Noel's" if not checked_noel:
-                                    "Noel has around 100 credits."
-                                    $ checked_noel = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "Joel's" if not checked_joel:
-                                    if ban_firegrass:
-                                        "Joel has over 10,000 credits."
-                                    else:
-                                        "Joel has over 5,000 credits."
-                                    $ checked_joel = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "Julia's" if not checked_julia:
-                                    if ban_firegrass:
-                                        "Julia has around 7,000 credits."
-                                    else:
-                                        "Julia has around 4,000 credits."
-                                    $ checked_julia = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "Van's" if not checked_van:
-                                    "Van has around 200 credits."
-                                    $ checked_van = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "Sara's" if not checked_sara:
-                                    "Sara has around 2,000 credits."
-                                    $ checked_sara = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "Oleg's" if not checked_oleg:
-                                    "Oleg has around 1,000 credits." #decide Oleg's level of involvement
-                                    $checked_oleg = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "[kid_name]'s" if not checked_terra:
-                                    "[kid_name] has about 500 credits."
-                                    $ checked_terra = True
-                                    $ account_checked_counter += 1
-                                    jump account_check_sneak
-                                "No one else.":
-                                    $ account_checked_counter = 5
-                                    jump account_check_sneak    
-                                
-                    else:
-                        show brennan at midleft with move
-                        hide brennan with moveoutright
-                        "Brennan took the tablet with him. I wasn't able to look at anyone's account."
-                        jump who_suspect
+                                menu: #allow players to ask about 3 people
+                                    set c30_menuset
+                                    "Whose account should I check?"
+                                    "Noel's":
+                                        brennan normal "Noel has around 100 credits."
+                                        $ checked_noel = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "Joel's":
+                                        if ban_firegrass:
+                                            brennan surprised "Joel has over 10,000 credits."
+                                        else:
+                                            brennan surprised "Joel has over 7,000 credits."
+                                        $ checked_joel = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "Julia's":
+                                        if ban_firegrass:
+                                            brennan surprised "Julia has around 7,000 credits."
+                                        else:
+                                            brennan surprised "Julia has around 4,000 credits."
+                                        $ checked_julia = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "Van's":
+                                        brennan sad "Van has around 200 credits."
+                                        $ checked_van = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "Sara's":
+                                        brennan normal "Sara has around 2,000 credits."
+                                        $ checked_sara = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "Oleg's":
+                                        brennan normal "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                        $ checked_oleg = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "[kid_name]'s":
+                                        brennan surprised "You think [kid_name] could be involved in this?"
+                                        brennan normal "[kid_name] has about 500 credits."
+                                        $ checked_terra = True
+                                        $ account_checked_counter += 1
+                                        jump account_check
+                                    "No one else.":
+                                        $ account_checked_counter = 5
+                                        jump account_check
+                        else:
+                            brennan explaining "I can't do that for you."
+                            brennan concerned "If someone finds out I was poking in their accounts, I'll never hear the end of it."
+                            brennan normal "Good luck with the rest of your investigation."
+                            scene stars with fade
+                            jump c30_wantaccountinfo
+                    "Try to use his account without him knowing.":                
+                        him concerned "I want to know who was on the shift schedule when Joel died so I can rule them out."
+                        "He accepted the lie without hesitation."
+                        brennan explaining "Hold on, I can bring it up in just a minute."
+                        brennan flirting "Here's the list."
+                        show brennan normal at midright with move
+                        show brennan normal at midleft with move
+                        "He handed me his computer pad to show me the shift list."
+                        brennan concerned "Oh, it's already time for our evening briefing."
+                        brennan surprised "Take a photo but make sure you can't tell it's my computer pad."
+                        brennan angry "I don't want the miners to know that I'm helping you too much."
+                        if miners_strong(): #10
+                            hide brennan with moveoutleft
+                            "Brennan left the tablet with me while he went to the briefing."
+                            "I hurriedly opened the payments program. Whose account should I check first?"
+                            label account_check_sneak:
+                                if account_checked_counter > 3:
+                                    "I saw Brennan coming back and quickly closed the program."
+                                    show brennan normal at midleft with moveinleft
+                                    brennan "What, you're still here? Did you need something else?"
+                                    him normal "No, I was just sending a message. I'll get out of your way."
+                                    scene stars with fade
+                                    jump who_suspect
+                                menu: #allow players to ask about 3 people
+                                    set c30_menuset
+                                    "Whose account should I check?"
+                                    "Noel's":
+                                        "Noel has around 100 credits."
+                                        $ checked_noel = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "Joel's":
+                                        if ban_firegrass:
+                                            "Joel has over 10,000 credits."
+                                        else:
+                                            "Joel has over 5,000 credits."
+                                        $ checked_joel = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "Julia's":
+                                        if ban_firegrass:
+                                            "Julia has around 7,000 credits."
+                                        else:
+                                            "Julia has around 4,000 credits."
+                                        $ checked_julia = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "Van's":
+                                        "Van has around 200 credits."
+                                        $ checked_van = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "Sara's":
+                                        "Sara has around 2,000 credits."
+                                        $ checked_sara = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "Oleg's":
+                                        "Oleg has around 1,000 credits." #decide Oleg's level of involvement
+                                        $checked_oleg = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "[kid_name]'s":
+                                        "[kid_name] has about 500 credits."
+                                        $ checked_terra = True
+                                        $ account_checked_counter += 1
+                                        jump account_check_sneak
+                                    "No one else.":
+                                        $ account_checked_counter = 5
+                                        jump account_check_sneak    
+                                    
+                        else:
+                            show brennan at midright with move
+                            hide brennan with moveoutleft
+                            "Brennan took the tablet with him. I wasn't able to look at anyone's account."
+                            scene stars with fade
+                            jump c30_wantaccountinfo
             "Explore other options.":
 #            else: #in this branch, you don't talk to pete or kid, so you don't know that Noel was receiving shipments of firegrass. you have talked to Oleg though, which so far isn't dependent on another variable.
 #                "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
@@ -8705,8 +8735,9 @@ label community30:
                                     her_c "Did you want to check anyone else's account?"
 
                                 menu:
+                                    set c30_menuset
                                     "Whose account should I check?"
-                                    "Julia's" if not checked_julia:
+                                    "Julia's":
                                         if ban_firegrass:
                                             her_c "Julia has around 7,000 credits."
                                         else:
@@ -8714,22 +8745,22 @@ label community30:
                                         $ checked_julia = True
                                         $ account_checked_counter +=1
                                         jump account_check_her
-                                    "Van's" if not checked_van:
+                                    "Van's":
                                         her_c "Van has around 200 credits."
                                         $ checked_van = True
                                         $ account_checked_counter +=1
                                         jump account_check_her
-                                    "Sara's" if not checked_sara:
+                                    "Sara's":
                                         her_c "Sara has around 2,000 credits."
                                         $ checked_sara = True
                                         $ account_checked_counter +=1
                                         jump account_check_her
-                                    "Oleg's" if not checked_oleg:
+                                    "Oleg's":
                                         her_c "Oleg has around 1,000 credits." #decide Oleg's level of involvement
                                         $ checked_oleg = True
                                         $ account_checked_counter +=1
                                         jump account_check_her
-                                    "[kid_name]'s" if not checked_terra:
+                                    "[kid_name]'s":
                                         $ checked_terra = True
                                         $ account_checked_counter +=1
                                         her_c "No, let's not check [kid_name]'s account. She deserves some privacy."
@@ -8744,8 +8775,7 @@ label community30:
                             her_c "No, sorry. It's too risky."
                             him_c "But if you don't help me, we might never figure out what happened to Joel."
                             her_c "And if I do help you, I could lose the trust of my patients."
-                            him_c "I guess I'll have to find some other way to investigate how many credits my suspects have."
-                            "When [her_name] was asleep, I tried getting into her tablet, but she had changed the passcode."
+                            "When [her_name] was asleep, I tried getting into her tablet, but she had changed her passcode."
                             jump who_suspect
                     "Keep it a secret.":
                         scene farm_interior with fade
@@ -8753,19 +8783,19 @@ label community30:
                         show him determined at midleft with dissolve
                         "After [her_name] went to bed, I got out her tablet and typed in the passcode."
                         "I found the accounts program she used for work and opened it up."
-                        "Whose account did I want to check?"
                         label account_check_sneak2:
                             if account_checked_counter > 3:
                                 "I thought I heard [her_name] stirring and I quickly put her tablet away."
                                 jump who_suspect
                             menu: #allow players to ask about 3 people
+                                set c30_menuset
                                 "Whose account should I check?"
-                                "Noel's" if not checked_noel:
+                                "Noel's":
                                     "Noel has around 100 credits."
                                     $ checked_noel = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
-                                "Joel's" if not checked_joel:
+                                "Joel's":
                                     if ban_firegrass:
                                         "Joel has over 10,000 credits."
                                     else:
@@ -8773,7 +8803,7 @@ label community30:
                                     $ checked_joel = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
-                                "Julia's" if not checked_julia:
+                                "Julia's":
                                     if ban_firegrass:
                                         "Julia has around 7,000 credits."
                                     else:
@@ -8781,22 +8811,22 @@ label community30:
                                     $ checked_julia = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
-                                "Van's" if not checked_van:
+                                "Van's":
                                     "Van has around 200 credits."
                                     $ checked_van = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
-                                "Sara's" if not checked_sara:
+                                "Sara's":
                                     "Sara has around 2,000 credits."
                                     $ checked_sara = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
-                                "Oleg's" if not checked_oleg:
+                                "Oleg's":
                                     "Oleg has around 1,000 credits." #decide Oleg's level of involvement
                                     $checked_oleg = True
                                     $ account_checked_counter += 1
                                     jump account_check_sneak2
-                                "[kid_name]'s" if not checked_terra:
+                                "[kid_name]'s":
                                     "[kid_name] has about 500 credits."
                                     $ checked_terra = True
                                     $ account_checked_counter += 1
@@ -8913,6 +8943,7 @@ label community30:
             menu:
                 "What should I say?"
                 # TODO: Add Joel wanting to commit suicide as an option?
+                # TODO: Add something that changes depending on whether you checked certain accounts
                 "It was a tragic accident following neglect.":
                     him pout "Van and Noel definitely should have made fixing Joel's brakes a priority."
                     him sad "Life got in the way, and they procrastinated something that was more important than they thought it was."
@@ -8977,7 +9008,7 @@ label community30:
                         show sara normal at center
                         "The next morning, we awaited the verdict."
                         if knows_previous_head_injuries:
-                            sara sad "The jury found Noel and Van guilty of criminal negligance."
+                            sara sad "The jury found Noel and Van guilty of criminal negligence."
                             sara normal "Together with the mayor, they decided that Noel and Van should attend therapy weekly for six months and perform 200 hours of community service, including researching a better wheelchair brake system to prevent similar accidents in the future."
                             sara "They also agreed that Van could count up to 50 hours of babysitting as community service."
                             thuc sad "Come on. He makes so little that his whole job should be considered community service."
@@ -8985,7 +9016,7 @@ label community30:
                             thuc normal "Nah, I guess it could be worse."
                             sara normal "We'll consider the case closed then."
                         else:
-                            sara sad "The jury found Noel and Van guilty of negligance, but not to a criminal degree."
+                            sara sad "The jury found Noel and Van guilty of negligence, but not to a criminal degree."
                             sara normal "Together with the mayor, they decided that Noel and Van should attend three months of weekly therapy and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
                             thuc normal "Sounds fair."
                             him yell "A man died and the punishment is therapy and a little service?"
@@ -9050,12 +9081,12 @@ label community30:
                             with dissolve
                             "The next morning, we awaited the verdict."
                             if knows_previous_head_injuries:
-                                sara sad "The jury found Noel guilty of criminal negligance."
+                                sara sad "The jury found Noel guilty of criminal negligence."
                                 sara "Noel will attend therapy weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
                                 thuc normal "Sounds fair."
                                 sara normal "We'll consider the case closed then."
                             else:
-                                sara sad "The jury found Noel guilty of negligance, but not to a criminal degree."
+                                sara sad "The jury found Noel guilty of negligence, but not to a criminal degree."
                                 sara normal "Noel will attend three months of weekly therapy and perform 20 hours of community service, focused on improving wheelchair brakes to prevent future accidents."
                                 thuc normal "Sounds fair."
                                 him yell "A man died and the punishment is therapy and a little service?"

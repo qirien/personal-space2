@@ -271,13 +271,14 @@ label start:
 
     if (persistent.times_beaten):
         "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked." # TODO: add sunflower seeds/nuts/eggs?
-        "Choices you've made before will show up in italics so you can decide if you want to see something different."
         if (persistent.crops_unlocked):
             $ i = 0
             while (i < len(crop_info)):
                 if crop_info[i][NAME_INDEX] in persistent.crops_unlocked:
                     $ enable_crop(crop_info[i][NAME_INDEX])
+                    pause 0.5
                 $ i += 1
+        "Choices you've made before will show up in italics so you can decide if you want to see something different."
 
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
