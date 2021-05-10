@@ -350,9 +350,8 @@ screen navigation():
         yalign 0.5
 
         spacing gui.navigation_spacing
-        $ has_saves = renpy.newest_slot()
         if main_menu:
-            if has_saves:
+            if renpy.can_load("quitsave"):
                 textbutton _("Resume") action FileLoad("quitsave", slot=True) text_size 50
 
             if (persistent.times_beaten):
@@ -366,12 +365,12 @@ screen navigation():
 
             textbutton _("Save") action ShowMenu("save")
 
-        if has_saves:
+        if (persistent.max_year):
             textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
 
-        if has_saves:
+        if (persistent.max_year):
             textbutton _("Achievements") action ShowMenu("achievements")
         
         if (main_menu and persistent.times_beaten):

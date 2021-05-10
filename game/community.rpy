@@ -4583,7 +4583,7 @@ label community19:
     scene path with fade
     show helen normal at midright with moveinleft
     show him normal at midleft with moveinleft
-    play sound "sfx/woodchimes.ogg" loop
+    play sound "sfx/woodchimes.ogg" loop #TODO: this crashes on Android??
     "That Tuesday I saw Helen coming through town with a large backpack of wares to sell."
     "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
     "Scarves and gloves with jellystar patterns on them hang from the top."

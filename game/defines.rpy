@@ -171,7 +171,7 @@ init -100:
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 
     ##
-    # Custom transitions, positions, etc.
+    # Custom transitions, transforms, positions, etc.
     ##
     define fade = Fade(0.2, 0.2, 0.2)
     define slowfade = Fade(0.5, 0.5, 0.5)
@@ -181,6 +181,7 @@ init -100:
     define irisoutslow = CropMove(0.5, "irisout")
     define irisinslow = CropMove(0.5, "irisin")
     define slowmove = MoveTransition(1.25)
+    
     transform midleft:
         xpos 0.35 xanchor 0.5 ypos 1.0 yanchor 1.0
     transform midright:
@@ -340,6 +341,12 @@ init -100:
         easein random_int(1,3) alpha 0.1
         easeout random_int(1,3) alpha 0.8        
         repeat
+    
+    transform bounce():
+        xalign 0.5 
+        yalign 0        
+        easein 0.5 yalign 0.3
+        easein 0.5 yalign 0
 
     # Setup ACHIEVEMENTS
     python:

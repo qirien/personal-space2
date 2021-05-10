@@ -96,8 +96,7 @@ define config.end_game_transition = dissolve
 # Transition for when someone says something
 # The "master" part says to only do it on the sprites layer and not on the window layer.
 define config.say_attribute_transition = { "master" : Dissolve(0.5, alpha=True) }
-
-# Transition for when window shown/hidden
+define config.say_attribute_transition_layer = "master"
 
 ## A variable to set the transition used when the game starts does not exist.
 ## Instead, use a with statement after showing the initial scene.
@@ -118,8 +117,8 @@ define config.window = "auto"
 
 ## Transitions used to show and hide the dialogue window
 
-define config.window_show_transition = Dissolve(.2)
-define config.window_hide_transition = Dissolve(.2)
+define config.window_show_transition = { "screens" : Dissolve(.2) }
+define config.window_hide_transition = { "screens" : Dissolve(.2) }
 
 
 ## Preference defaults #########################################################
