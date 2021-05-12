@@ -104,10 +104,29 @@ style frame:
 
 screen say(who, what):
     style_prefix "say"
+    default show_menutab = False
 
-    # If there's a side image, display it above the text. Do not display
-    # on the phone variant - there's no room.
-    #if not renpy.variant("small"):
+    showif show_menutab:
+        imagebutton xpos 1245 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")
+        frame: 
+            background "gui/menutabbg.png"
+            xpos 1130
+            ypos 555
+            at popside
+            hbox:
+                spacing 15
+                vbox:
+                    spacing 15
+                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle")                # TOdO: make this look different if you're turning it ON or OFF.
+                    imagebutton auto "gui/log_%s.png"  action ShowMenu("history")
+                vbox:
+                    showif persistent.times_beaten:
+                        imagebutton auto "gui/skip_%s.png" action Skip()
+                    else:
+                        null height 71
+                    imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences")
+    else:
+        imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")    
 
     window:
         id "window"
@@ -126,10 +145,12 @@ screen say(who, what):
     imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, who)]
 
     # here's our side quick MENU buttons
-    showif persistent.times_beaten:
-        imagebutton xpos 1100 ypos 530 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
-    imagebutton xpos 1150 ypos 570 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
-    imagebutton xpos 1095 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
+    #showif persistent.times_beaten:
+    #    imagebutton xpos 1100 ypos 530 auto "gui/skipbutton_%s.png" action Skip() id "skipbutton"    
+    #imagebutton xpos 1150 ypos 570 auto "gui/menubutton_%s.png" action ShowMenu("save") id "menubutton"
+    #imagebutton xpos 1095 yalign 1.0 auto "gui/logbutton_%s.png" action ShowMenu("history") id "logbutton"
+ 
+        
 
 init python:
     def activate_bio(name):
