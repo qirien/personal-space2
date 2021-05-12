@@ -2837,7 +2837,7 @@ label baby_delivery:
     him sad baby "Awww, don't worry little guy! We'll take care of you, no matter what."
     her normal "We can't call him 'little guy'. What's his name?"
     play sound "sfx/newborn-cry.ogg" fadein 2.0
-    him baby happy "We talked about lots of names..."
+    him baby normal "We talked about lots of names..."
     her determined "You let me choose [kid_name]'s name. Now you pick this baby's name."
     stop sound fadeout 5.0
     him sad baby "Really? You trust me to name him?"
