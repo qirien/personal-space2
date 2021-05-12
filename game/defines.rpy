@@ -252,7 +252,7 @@ init -100:
 
 
     # Baby positions for being held
-    define baby_ypos = 540
+    define baby_ypos = 520
     transform babybackpack_pos:
         ypos baby_ypos-180 xoffset -80 yanchor 1.0
     transform baby_pos:

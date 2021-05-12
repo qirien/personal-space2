@@ -148,7 +148,7 @@ label family1:
             show kid angry at right, squatting
             with move
             show him normal at standing with move
-            "We set [kid_name] down and I set a timer for ten minutes."
+            "We set [kid_name] down on some blankets and I set a timer for ten minutes."
             show him determined at midleft with move
             show her at midright with move
             "We listened to her scream while we did the dishes together silently."
