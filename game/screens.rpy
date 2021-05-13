@@ -117,7 +117,7 @@ screen say(who, what):
                 spacing 15
                 vbox:
                     spacing 15
-                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle")                # TOdO: make this look different if you're turning it ON or OFF.
+                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle")
                     imagebutton auto "gui/log_%s.png"  action ShowMenu("history")
                 vbox:
                     showif persistent.times_beaten:

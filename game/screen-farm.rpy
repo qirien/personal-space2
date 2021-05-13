@@ -188,9 +188,9 @@ screen choose_crop(crop_index=0):
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
                         label crop_name.capitalize()                        
                         textbutton "X":                         
-                            xpos 110
+                            xpos 105
                             ypos -2
-                            text_size 32
+                            text_size 40
                             text_font "fonts/Questrial-Regular.otf"
                             text_bold True
                             if not renpy.variant("touch"):

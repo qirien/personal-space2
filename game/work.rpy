@@ -805,8 +805,8 @@ label work14:
     show kid normal at midleft
     "I never realized how much I knew about farming until I had to teach someone else."
     "Even though she grew up on our farm, there was still so much [kid_name] didn't know."
-    $ style = get_parenting_style()
-    if (style== "authoritative"):
+    $ parenting_style = get_parenting_style()
+    if (parenting_style== "authoritative"):
         "...but she's learning fast!"
         "I love seeing her grow more independent. When she's done feeding the goats, she doesn't sit around waiting for me to tell her what to do."
         "She looks around and starts doing whatever is needed, whether it's a fence that needs repairing, weeds that need to be pulled, or produce that needs to be harvested."
@@ -816,7 +816,7 @@ label work14:
         kid normal "Yeah! I bet I can do it all by myself!"
         "She'd watched me many times, but the technique is a little tricky."
 
-    elif (style == "authoritarian"):
+    elif (parenting_style == "authoritarian"):
         "...like how to do what needs to be done without me having to tell her every detail."
         "She's pretty good at feeding the goats every day, but when she's done I'll often find her playing with them instead of moving on to what really needs to be done."
         "But I really wanted her to learn how to milk the goats."

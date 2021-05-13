@@ -24,7 +24,7 @@ init -100:
     define MIDDLE_COLUMN_WIDTH = 480
     define RIGHT_COLUMN_WIDTH = 310
     define TOP_SECTION_HEIGHT = 520
-    define COMPUTER_SUB_HEIGHT = 400
+    define COMPUTER_SUB_HEIGHT = 500
 
     # Farming parameters
     define FARM_SIZE_MAXIMUM = 25

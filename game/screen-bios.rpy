@@ -13,7 +13,7 @@ screen biographies(name):
         vbox:
             hbox:
                 label "Community Bios"
-                textbutton "X" xalign 0.97 text_font "fonts/Questrial-Regular.otf" text_bold True action Hide("biographies", irisin) xfill False
+                textbutton "X" xalign 0.97 text_font "fonts/Questrial-Regular.otf" text_bold True text_size 42 action Hide("biographies", irisin) xfill False
             hbox:
                 null width 20
 
@@ -102,7 +102,7 @@ init python:
             self.nickname = newName            
         def addToBio(self, addition):
             self.activated = True
-            self.bio = self.bio + "\n_____________________________________________\n\n" + addition
+            self.bio = self.bio + "\n___________________________________\n\n" + addition
             self.read = False
             return
 
