@@ -605,6 +605,7 @@ style plan_farm_button_text is button_text:
     font "fonts/Questrial-Regular.otf"
     idle_color green_dark
     hover_color green_med
+    size 36
 
 style plan_farm_total_text is text:
     font "fonts/FreeMono.ttf"

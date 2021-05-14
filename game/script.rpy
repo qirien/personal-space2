@@ -503,6 +503,7 @@ label life_loop:
             $ year += 1
             if (persistent.max_year < year):
                 $ persistent.max_year = year
+                $ renpy.save_persistent()
             scene stars
 
     jump ending
