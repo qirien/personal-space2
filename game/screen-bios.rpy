@@ -15,7 +15,7 @@ screen biographies(name):
                 label "Community Bios"
                 textbutton "X" xalign 0.97 text_font "fonts/Questrial-Regular.otf" text_bold True text_size 42 action Hide("biographies", irisin) xfill False
             hbox:
-                null width 20
+                null width 10
 
                 vpgrid:
                     cols 1
@@ -36,9 +36,9 @@ screen biographies(name):
                                     text "" xalign 0.0
                                 textbutton fname action SetVariable("show_person", name)
 
-                null width 5
+                null width 10
                 vbox:
-                    xsize MIDDLE_COLUMN_WIDTH-32-50 #we gave up 50px for the left section to be bigger.
+                    #xsize MIDDLE_COLUMN_WIDTH-32-50 #we gave up 50px for the left section to be bigger.
                     yalign 0.0                    
                     hbox:
                         $ iconname = bios.getIconName(show_person)
@@ -102,7 +102,7 @@ init python:
             self.nickname = newName            
         def addToBio(self, addition):
             self.activated = True
-            self.bio = self.bio + "\n___________________________________\n\n" + addition
+            self.bio = addition + "\n\n" + self.bio
             self.read = False
             return
 
@@ -209,10 +209,10 @@ init python:
             self.addPerson("Zaina", "Zaina Shirazi", "Zaina arrived from Earth around the time [kid_name] was born. She's a geologist helping to scout out the planet for RET so that they know where the best mining sites will be. She and {a=action:SetVariable('show_person', 'Kevin')}Kevin{/a} got married right before they came here. They also have their own garden. And she has a great sense of humor (well, she laughs at my jokes anyway).")
             self.addPerson("Kevin", "Kevin Washington", "As a mining engineer, Kevin is making plans for future mining by RET. He has a real head for numbers, but he sometimes takes things too literally and wants everything to be quantifiable like math is. In that way he and his wife {a=action:SetVariable('show_person', 'Zaina')}Zaina{/a} are kind of opposites, but they are both curious and fast learners.")
 
-            self.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows who is best at what and how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}, but their kids and grandkids all live on Earth.")
+            self.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}; their kids and grandkids all live on Earth.")
             self.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
 
-            self.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily has lived on Talaam longer than anyone else. She was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her precision problem-solving skills to Talaam's biology and geology, like with her edible plant guide and solar flare warning system. She tends to keep to herself unless you get her talking about rocks or plants.")
+            self.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her precision problem-solving skills to Talaam's biology and geology, like with her edible plant guide and solar flare warning system. She tends to keep to herself unless rocks or plants are involved.")
 
             self.addPerson("Natalia", "Natalia Perón", "Natalia is laid-back and friendly, so we get along pretty well. She farms nearby, raising chickens and growing beans, corn, squash, and other crops. She's married to {a=action:SetVariable('show_person', 'Martín')}Martín{/a} and they have five kids: Tomás (married to Joanna Nguyen), Isabella, Raúl, Josephina (who passed away as a child), and Mateo.")
             self.addPerson("Martín", "Martín Perón", "Martín is one of those quiet guys that you just kind of forget about most of the time. But he's dependable, and honest, and he doesn't deserve the cancer he's been fighting for years. He's really good with the kids he and {a=action:SetVariable('show_person', 'Natalia')}Natalia{/a} have, though his kids are all older than mine. His son Tomás is married to Joanna Nguyen, and then there's Isabella, Raúl, and Mateo. Josephina was hit by a tractor when she was little and died.")

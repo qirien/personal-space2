@@ -118,13 +118,11 @@ screen say(who, what):
                 vbox:
                     spacing 15
                     imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle")
-                    imagebutton auto "gui/log_%s.png"  action ShowMenu("history")
-                vbox:
-                    showif persistent.times_beaten:
-                        imagebutton auto "gui/skip_%s.png" action Skip()
-                    else:
-                        null height 71
                     imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences")
+                showif persistent.times_beaten:
+                    vbox:                
+                        imagebutton auto "gui/skip_%s.png" action Skip()
+                    
     else:
         imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")    
 
@@ -382,8 +380,6 @@ screen navigation():
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
-
             textbutton _("Save") action ShowMenu("save")
 
         if (persistent.max_year):
@@ -401,11 +397,10 @@ screen navigation():
 
             textbutton _("End Replay") action EndReplay(confirm=True)
 
-        elif not main_menu:
-
+        if main_menu:
+            textbutton _("About") action ShowMenu("about")
+        else:
             textbutton _("Main Menu") action MainMenu()
-
-        textbutton _("About") action ShowMenu("about")
 
         if renpy.variant("pc"):
 

@@ -3005,7 +3005,7 @@ label community14:
         show lily angry at quarterright with moveinright
         lily angry "They don't respect the needs of researchers either. I came here to study this planet, not destroy it."
         lily normal "I'm going with Pete and his family."
-        $ bios.addToBio("Lily", "Lily used to live in the colony, but she left in protest of their destructive methods. Now she lives off with Pete and his family.")
+        $ bios.addToBio("Lily", "Lily left the colony with Pete in protest of RET's destructive methods.")
         $ mavericks += 1
     else:
         show lily normal at quarterright with moveinright
@@ -4830,7 +4830,7 @@ label community20:
             scene stars with fade
             "A few months later I heard from Pete that Dr. Lily had disappeared."
             "They found her clothes on the seashore, but no body. Strange..."
-            $ bios.addToBio("Lily", "She became obsessed with the jellysquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
+            $ bios.addToBio("Lily", "She spent her last few years obsessed with the jellysquids until one day she walked into the ocean. We never saw her again.")
             return
 
     else:
@@ -4880,7 +4880,7 @@ label community20:
         scene stars with fade
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
         "We never saw her again."
-        $ bios.addToBio("Lily", "She became obsessed with the jellysquids and spent her last few years studying them. Then one day, she walked into the ocean and we never saw her again.")
+        $ bios.addToBio("Lily", "She spent her last few years obsessed with the jellysquids until one day she walked into the ocean. We never saw her again.")
     return
 
 ################################################################################
@@ -5237,7 +5237,7 @@ label community21:
 #
 ################################################################################
 label community22:
-    $ bios.addToBio("Oleg", "He loves any kind of tech. He writes his own apps and is the one people turn to if they can't figure out their computer pad.")
+    $ bios.addToBio("Oleg", "He writes his own apps and is the one people turn to if they can't figure out their computer pad.")
     if (miners_strong("moderate") and mavericks_strong("moderate") and is_liaison): #6
         scene stars with fade
         nvl clear
@@ -5724,7 +5724,7 @@ label mining_anyway:
     "She said that his tibia was completely shattered."
     "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
-    $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he hasn't let that stop him. He's still as obnoxious and hyper as ever.")
+    $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he he's still as obnoxious and hyper as ever.")
 
     $ travis_points -= 1
     $ community_22_mined_anyway = True
@@ -7446,7 +7446,7 @@ label no_euthanasia:
     "In the morning, we found his body drowned in the river."
     scene church with fade
     "His funeral was well-attended, and we reminisced about his optimistic spirit."
-    $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and became less and less attached to reality. He became bed-ridden and couldn't feed himself, but we cared for him until the very end.")
+    $ bios.addToBio("Pavel", "He suffered from dementia and became less and less attached to reality. We cared for him until the very end.")
     return
 
 label euthanasia:
@@ -7454,7 +7454,7 @@ label euthanasia:
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present."
     "After [her_name] performed the euthanasia, we held a simple funeral where we celebrated Pavel's lifetime of good-natured optimism."
-    $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and started to become confused and forgetful. He asked for euthanasia and we allowed him to do that.")
+    $ bios.addToBio("Pavel", "He suffered from dementia and started to become confused and forgetful. He asked for euthanasia and we allowed him to do that.")
     return
 
 

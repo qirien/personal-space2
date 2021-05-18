@@ -4318,7 +4318,7 @@ label family13_end:
 # 8.7 Earth years old
 # Teacher Troubles
 label family14:
-    $ bios.addToBio(bro_name, "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter, more anxious, and more sensitive to change.")
+    $ bios.addToBio(bro_name, "Now that he's older, the differences between him and [kid_name] are more obvious. [bro_name] is a lot quieter and more sensitive.")
     play music tense
     scene farm_interior with fade
     show kid angry at midleft
@@ -6152,7 +6152,7 @@ label family20:
 # 13 Earth years old
 # Sarcastic Humor
 label family21:
-    $ bios.addToBio("Oleg", "He's a good friend to [kid_name]. They hang out and talk to each other and sometimes play video games together.")
+    $ bios.addToBio("Oleg", "He and [kid_name] hang out and talk to each other and sometimes play video games together.")
     play music videogame
     scene farm_interior with fade
     show him normal at midleft
