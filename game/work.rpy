@@ -331,12 +331,10 @@ label debt_event:
 label work_intro:
     play music farming
     scene fields with fade
-    "In addition to taking care of [kid_name], I was also responsible for our entire farm."
-    "I had a lot of decisions to make, from how much of each crop to plant, to what field it should be planted on, to how to deal with problems."
-    "The area of Talaam we had settled on was cool and dry. It didn't have seasons like temperate zones on Earth; the temperature stayed mild year round, though there was still a warm season and a cool season."
-    "This meant that we could grow crops year round, but some crops didn't grow as well because they expected more sun or frost."
+    "The area of Talaam we had settled on didn't have seasons like temperate zones on Earth; the temperature stayed mild all year and it rained a lot."
+    "This meant that we could grow crops year round, but some crops didn't grow as well."
     scene aurora_animated with fade
-    "Talaam's frequent solar flares meant that we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
+    "Talaam's frequent solar flares meant we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
     "The flares' radiation was dangerous to humans, but so far hadn't had much effect on plants."
     "On this new planet, though, everything was an experiment."
     call farm_tutorial

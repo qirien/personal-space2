@@ -210,7 +210,7 @@ init -10:
             "her determined coat"
 
         group kid:
-            pos(320, 200)
+            pos(320, 250)
             #align(0.45, 1.0)
             attribute ACI:
                 "kid happy"

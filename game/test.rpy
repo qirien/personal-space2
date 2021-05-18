@@ -57,30 +57,34 @@ label tests:
     return    
 
 label test_family_photo:
-    $ year = 10
-    $ bro_age = -1
-    $ bro_years = 0
-    scene stars with fade
-    "Scrapbook time! Aren't we cute?"
-    $ authoritarian = 10
-    $ marriage_strength = 10
-    show family_photo_small Aci at center,kid_pos with moveinright
+    $ i = 0
+    $ bro_birth_year = 6
+    while (i < len(TRANSITION_YEARS)):
+        $ year= TRANSITION_YEARS[i]
+        $ bro_years = year - bro_birth_year
+        $ bro_age = get_earth_years(year - bro_birth_year)
+        scene stars with fade
+        "Scrapbook time! Aren't we cute?"
+        $ authoritarian = 10
+        $ marriage_strength = 10
+        show family_photo_small Aci at center,kid_pos with moveinright
 
-    "We weren't ready..."
+        "We weren't ready..."
 
-    $ authoritarian = 0
-    $ permissive = 10
-    $ marriage_strength = 0
-    show family_photo_small acI at center,kid_pos with moveinright
+        $ authoritarian = 0
+        $ permissive = 10
+        $ marriage_strength = 0
+        show family_photo_small acI at center,kid_pos with moveinright
 
-    "She has her eyes closed..."
+        "She has her eyes closed..."
 
-    $ permissive= 0
-    $ neglectful = 10
-    $ marriage_strength = 1
-    show family_photo_small aCI at center,kid_pos with moveinright
+        $ permissive= 0
+        $ neglectful = 10
+        $ marriage_strength = 1
+        show family_photo_small aCI at center,kid_pos with moveinright
 
-    "We weren't ready..."
+        "We weren't ready..."
+        $ i += 1
 
 
     return

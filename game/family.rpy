@@ -20,6 +20,20 @@ label family_intro:
     her concerned "[kid_name]'s crying."
     show kid cry with dissolve
     "It was my turn to help her at night."
+    menu:
+        tutorial "Choices like this one will determine your relationship with others, parenting style, and [kid_name]'s qualities."
+        "Pretend to be asleep":
+            $ marriage_strength -= 1
+            "I didn't respond. I tried to keep my breathing as even as possible."
+            her annoyed "[his_name]!"
+            "She nudged me with her foot."
+            "I couldn't really pretend to be asleep after that."
+        "Get up and help [kid_name]":
+            $ marriage_strength += 1
+        "Ask [her_name] to do it":
+            him annoyed "Can't you help her?"
+            her annoyed "It's your turn."
+            "She was right..."
     him concerned "Okay..."
     stop sound fadeout 2.0
     show her sleeping
@@ -30,12 +44,15 @@ label family_intro:
     show kid laugh with dissolve
     "She was too little to hold the bottle herself, but she lifted her hands in jerky movements that brushed against me."
     show kid concerned with dissolve
-    "I tried to see it as a special time to snuggle, but my brain kept yelling at me to go back to sleep."    
-    "I dozed off and dropped the bottle."
+    "I dozed off and dropped the bottle at least three times."
     show kid normal with dissolve
-    "She finally finished the bottle, settling down without a fuss for once."
+    "She finally finished, settling down with only a little fuss."
     show him sleeping with dissolve
-    "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
+    if (has_strong_marriage()):
+        "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
+    else:
+        "[her_name] rolled over, trying to get comfortable. I reached over across the baby and squeezed her arm. She placed her hand on top of mine and eventually we both fell back asleep."
+        $ marriage_strength += 1
     return
 
 # 3 Earth mos. old

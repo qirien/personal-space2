@@ -295,7 +295,8 @@ label start:
     if (mp.baby_name):
         $ kid_name = mp.baby_name
 
-    # TODO: Make the intro parallel the ending. Make it snappier. Maybe take it out and jump right in to the good stuff?
+    "Thirty years ago, when [kid_name] was first born, I had no idea what I was getting into."
+    "Thirty years sounds like a long time, but because our planet's rotation is different from Earth's, that's only about eighteen Earth years."
     "This is a pretty good family picture of us. There's my wife [her_name], looking gorgeous and sassy, as usual, and our daughter [kid_name]. Though she's much older now."
     "[kid_name]'s actually smiling in this picture, though I remember it took us a long time to get one good one."
     scene stars with fade
@@ -304,7 +305,7 @@ label start:
     show familyphoto2 at tinyphoto, center, baby_pos with moveinright
     $ renpy.pause(0.2)
     show familyphoto3 at tinyphoto, right, tilted, baby_pos with moveinright
-    "Last, there's me, of course. [his_name]. Though, these days I'm more often called 'Dad'."
+    "Last, there's me, of course. [his_name]. Though, she usually calls me 'Dad', even now."
     menu name_change_loop:
         "[his_name], [her_name], and [kid_name]... Are those names correct?"
         "Yes, continue.":
@@ -323,7 +324,7 @@ label start:
     play music upbeat
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
-    "But being a dad was a different kind of work than I had ever done before..."
+    "But being a dad was a different kind of work than I had ever done before."
     
     # Introduction Scenes
     call family_intro
@@ -331,12 +332,6 @@ label start:
     call work_intro
 
     scene stars with fade
-    "In some ways, life was pretty repetitive. Planting and harvesting didn't change much from year to year."
-    "But [kid_name] grew from baby to woman, and our community evolved as new settlers arrived, along with new problems."
-    "I suppose I changed, too, over the last thirty years."
-    "Thirty years... wow, that makes me seem really old. But it's the same as eighteen Earth years."
-    "Eighteen years . . . is still a long time!"
-    "At the time I didn't even feel like I was making choices, but looking back, I can see that many small actions led to how our lives are today."
 
     #####################################################################
     # The Loop of Life                                                  #

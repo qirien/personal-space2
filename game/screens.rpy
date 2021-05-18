@@ -117,11 +117,11 @@ screen say(who, what):
                 spacing 15
                 vbox:
                     spacing 15
-                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle")
-                    imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences")
+                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle") tooltip "Auto Advance"
+                    imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu"
                 showif persistent.times_beaten:
                     vbox:                
-                        imagebutton auto "gui/skip_%s.png" action Skip()
+                        imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
                     
     else:
         imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")    
@@ -141,6 +141,9 @@ screen say(who, what):
                         id "who"
     
     imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, who)]
+    $ tooltip = GetTooltip()
+    if tooltip:
+        text "[tooltip]" italic True yalign 0.75 xalign 1.0
 
     # here's our side quick MENU buttons
     #showif persistent.times_beaten:

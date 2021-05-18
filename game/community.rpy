@@ -6,21 +6,21 @@
 label community_intro:
     play music community
     scene fields with fade
-    "The three of us were just some of the several hundred other colonists on the planet of Talaam. Enough to feel like a real community, but few enough that we all knew each other."
     show pete normal at midleft
     show thuc normal at midright
     show natalia normal at center
     with dissolve
-    "There were some I got along with..."
+    "The three of us lived near the several hundred other colonists on the planet of Talaam. Enough to feel like a real community, but few enough that we all knew each other."
     hide pete
     hide thuc
     hide natalia
     with dissolve
-    show julia angry at midleft
-    show ilian angry at midright
+    show julia normal at midleft
+    show ilian normal at midright
+    show naomi normal at center
     with dissolve
-    "...and some I didn't. But we all had one thing in common -- we worked hard to grow the food we all needed to survive on this planet, light years away from Earth."
-    "Though shuttles came from Earth every few years, for the most part... we were on our own."
+    "Like a family, we argued and fought sometimes, but we all had one thing in common -- we worked hard to survive on this planet, light years away from Earth."
+    "At the time I didn't even feel like I was making choices, but looking back, I can see that many of my small actions led to how things are today."    
     return
 
 ###############################################################################
@@ -7713,7 +7713,7 @@ label community29:
         play sound "sfx/heartbeats.ogg"
         "Helen delivered her stillborn baby, but started hemorrhaging and had to have a blood transfusion."
         "Luckily [her_name] had already extracted some O- blood from Ilian."
-        $ bios.addToBio("Helen", "She survived a difficult delivery of her stillborn baby, Sage.")
+        $ bios.addToBio("Helen", "She survived the difficult delivery of her stillborn baby, Sage.")
         stop sound fadeout 1.0
         her blush coat "Helen, I'm so glad that you survived! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."        
