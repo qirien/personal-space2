@@ -599,6 +599,7 @@ init -100 python:
         else:
             achievement.grant(a_name)            
             notify_change("Achievement Unlocked!\n" + a_name)
-            renpy.call("photo", a_name)
+            if (not renpy.mobile()): # TODO: If this feature is added, add to android
+                renpy.call("photo", a_name)
 
         return

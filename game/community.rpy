@@ -7443,10 +7443,11 @@ label no_euthanasia:
     "One day Julia was late coming to watch him, and Sara left him alone."
     "Julia couldn't find him that night and we all started searching for him."
     scene pond with fade
-    "In the morning, we found his body drowned in the river."
+    "In the morning, we found his body drowned in the river." #TODO wait, I thought he couldn't move without prompting?? How did he get all the way to the river?
     scene church with fade
-    "His funeral was well-attended, and we reminisced about his optimistic spirit."
+    "His funeral was well-attended, and we reminisced about his optimistic spirit."# TODO: Show just a portion of this (doesn't have to be the whole funeral) instead of telling.
     $ bios.addToBio("Pavel", "He suffered from dementia and became less and less attached to reality. We cared for him until the very end.")
+    
     return
 
 label euthanasia:
