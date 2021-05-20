@@ -1454,7 +1454,6 @@ style notify_text:
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#nvl
 #
-# TODO: On Android, doesn't show the background? I think I fixed this but test it.
 
 screen nvl(dialogue, items=None):
     window:
@@ -1534,7 +1533,7 @@ screen nvl_dialogue(dialogue):
                             text_align 1.0
                 if (is_jack):
                     button:
-                        action [ActivateBio(nickname), Show("biographies", irisout, "[his_name]")] 
+                        action [ActivateBio(nickname), Show("biographies", irisout, his_name)] 
                         text d.who:
                             id d.who_id
                             xalign 0.0

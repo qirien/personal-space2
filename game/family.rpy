@@ -5494,11 +5494,12 @@ label family18:
                     show kid surprised with dissolve
                     "I lifted her up. It had been a long time since I carried her anywhere. Her arms and legs were so long, now. And she was much heavier."
                     kid angry "Stop it! Dad, put me down! I'll take a bath, I will, just put me down!"
-                    "I could probably make it all the way to the river. But maybe I shouldn't. I felt suddenly guilty. How would I like it if someone threw me in the river? Then again, I didn't want to let her think she could get away with this kind of disobedience."
+                    "I paused. I felt suddenly guilty. How would I like it if someone threw me in the river? Then again, I didn't want to let her think she could get away with this kind of disobedience."
                     menu:
                         "What should I do?"
                         "Set her down.":
                             $ trust -= 1
+                            show him at center with move
                             him determined "Fine."
                             kid surprised "Wow. I can't believe you were seriously going to throw me in the river."
                             him annoyed "I can't believe you were seriously going to make me throw you in the river instead of just taking a bath."
@@ -5763,7 +5764,7 @@ label family19:
             kid shifty "I don't know."
             him surprised "I know that it's from when you were using it."
             kid nervous "Oh..."
-            "She falls silent. You sense that she wants to leave, but she might also have questions that she doesn't know how to ask."
+            "She falls silent. I sensed that she wanted to leave, but she also maybe had questions that she didn't know how to ask."
 
             default family19_menuset = set()
             menu family19_porn_chat:
@@ -6099,7 +6100,7 @@ label family20:
             "It amazed me how much her voice improved, and though I soon got tired of her practicing the same songs over and over, it was nice to hear music around the house."
             him happy "You sound good, [kid_name]. Keep practicing."
             "She didn't say anything, just blushed and kept singing."
-            kid nervous "{emoji=music}Please don't take my sunshine away.{emoji=music}"
+            kid shifty "{emoji=music}Please don't take my sunshine away.{emoji=music}"
             $ bios.addToBio("kid_name", "[kid_name] likes to sing and has been taking voice lessons from Julia.")
             $ authoritarian += 1
             return
@@ -6256,10 +6257,14 @@ label family21:
                             kid annoyed "Yeah, you would."
                             him normal "Then maybe it's time to do something else."
                             $ authoritarian += 1
+                    hide kid
+                    hide bro
+                    with moveoutright
                     "I felt kind of bad taking away their video games, but it was the simplest solution I could see to the problem."
                     "But soon enough, they were fighting again..."
                     kid determined "Can you just run like a normal person without swinging your arms around like a jellysquid?!"
                     bro determined "I'm not trying to!"
+                    show him sad with dissolve
                     "Maybe siblings just always fought, and there was nothing I could do about it..."
                     return
                 "You're hurting [bro_name]'s feelings.":

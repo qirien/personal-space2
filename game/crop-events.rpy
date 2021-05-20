@@ -565,7 +565,6 @@ label carrots3:
     with dissolve
 
     him "I'm never going to stop eating these delicious carrots!!!"
-
     return
 
 # POTATOES 1 - Solanine
@@ -1908,6 +1907,25 @@ label strawberries2:
             "Maybe next year I could plant strawberries from the seeds that I salvaged."
     stop sound fadeout 2.0
     $ achieved("Mutant Ninja Berries")
+    return
+
+label onions1:
+    scene fields with fade
+    show him normal at center with dissolve
+    "One reason I liked onions is that their growing season was opposite many other plants."
+    "We planted them right after harvesting most other vegetables."
+    "They grew slowly during our cool, rainy months, and we harvested them when the weather got warm."
+    "And I never would have predicted that onions would have been so popular!"
+    zaina_c "[his_name], are your onions almost done?! Onions just make everything taste better!"    
+    if (year < PAVEL_DIES_YEAR):
+        pavel_c "In a good curry they are essential!"
+    if (year < LILY_DIES_YEAR):
+        lily_c "Did you know onions were eaten in ancient Egypt, and China? They are one of the oldest cultivated foods."
+    if (year < MARTIN_DIES_YEAR):
+        martin_c "They grow wild all over Earth, on every continent."
+    julia_c "Save onion skins for Gardenia, please! She wants to use them to make a yellow dye."
+    $ modify_credits(farm.crops.count("onions") * get_credits_from_name("onions"))
+    "Since not many people planted them this year, they were in really high demand."
     return
 
 # Honey event

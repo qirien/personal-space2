@@ -78,9 +78,9 @@ init -100:
     # Static variables used for endings
     # TODO: Tweak these so all endings are possible.
     define ATTACHMENT_HIGH = 25 #Max is ~60
-    define ATTACHMENT_MAX = 60
+    define ATTACHMENT_MAX = 50
     define COMPETENCE_HIGH = 25 #Max is ~60
-    define COMPETENCE_MAX = 60
+    define COMPETENCE_MAX = 50
     define INDEPENDENCE_HIGH = 17 #Max is ~35
     define INDEPENDENCE_MAX = 35
     define FACTION_HIGH = 10

@@ -4070,19 +4070,18 @@ label community17:
         him happy "No knives, I hope!"
         thuc happy "Not for you dinosaurs!"
         scene community_center with fade
-        show thuc normal at quarterleft
         if (invited_miners):
             show brennan normal at right        
         if (invited_mavericks):
             show pete normal at left
-            show travis normal at left
-            # show travis if we have a good sprite for this age
+            show travis normal at right        
+        show thuc normal at quarterleft
         show her normal at midleft
         show bro normal at center
         show kevin normal at midright
         show oleg normal at quarterright
         "We got into a big circle and tossed around an apple, saying the person's name as we threw it to them."
-        kevin "Your turn, [bro_name]"
+        kevin "Your turn, [bro_name]."
         bro surprised "Uh, Mom!"
         her surprised "Oleg!"
         "Then he added another apple, and another, and another."
@@ -5096,7 +5095,8 @@ label community21:
         kid happy "Stellar! Can I play with it some more?"
         pete happy "Sure, I bet your mom would love to see it too."
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
-        "I was worried about the jellysquid's skin, but it had a shell made of something like glass, which was very resilient. We kept it underwater in the bucket, though it slithered out a few times so I guessed it could breathe air."
+        "I was worried about the jellysquid's skin, but it had a shell made of something like glass, which was very resilient."
+        "We kept it underwater in the bucket, though it slithered out a few times so I guessed it could breathe air."
         "Brennan took a few photos. He seemed pretty interested in their shells."
         "After everyone had seen it, we let it go back into the ocean."
         hide pete
@@ -6782,8 +6782,7 @@ label call_to_squid:
             show him concerned at center
             show kid concerned at midleft
             with moveinleft
-            her "What on Earth happened to you?"
-            kid shifty "I think you mean 'What on Talaam' happened to us."
+            her "What on Earth happened to you?!"
             "I told [her_name] what happened. Then I left to see how many shells I could recover."
             stop sound fadeout 1.0
             if (mavericks_strong("moderate")): #8
@@ -6814,8 +6813,8 @@ label call_to_squid:
             if (miners_strong("moderate")): #8
                 brennan explaining "I'll give you two shells. Find out more information. What part of the shell do they need?"
                 him sad "I have my own farm to run!"
-                brennan flirting "I can give you some credits for someone else to take care of your farm. I need you to be our new alien liaison!"
                 $ modify_credits(200)
+                brennan flirting "I can give you some credits for someone else to take care of your farm. I need you to be our new alien liaison!"
                 $ shell_count += 2
             else:
                 brennan angry "All my jellysquid farms were destroyed anyway. I can't farm them anymore."
@@ -6823,7 +6822,7 @@ label call_to_squid:
                 brennan sad "Sorry, my hands are tied."
             scene farm_exterior with fade
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
-            "I had Julia print it in that week's {i}Talaam Times{/i}"
+            "I had Julia print it in that week's {i}Talaam Times{/i}."
             if colonists_strong("moderate"): #8
                 "Four families gave me one shell each."
                 $ shell_count += 4
@@ -6901,7 +6900,7 @@ label call_to_squid:
                                 $ whatwe = True
                                 jump question_menu
                             "shell?" if (not whatshell):
-                                "Jellysquid." "Shell protects children."
+                                jellysquid "Shell protects children."
                                 $ whatshell = True
                                 jump question_menu
                             "shell food?" if (not asked_shell_food):
@@ -6942,11 +6941,11 @@ label call_to_squid:
                                         $ wherewelive = True
                                         jump question_menu
                                     "food?" if (not wherewefood):
-                                        "Jellysquid." "Your food is on land. And water."
+                                        jellysquid "Your food is on land. And water."
                                         $ wherewefood = True
                                         jump question_menu
                                     "not live?" if (not wherewenotlive):
-                                        "Jellysquid." "You do not live in the ocean."
+                                        jellysquid "You do not live in the ocean."
                                         $ wherewenotlive = True
                                         jump question_menu
 

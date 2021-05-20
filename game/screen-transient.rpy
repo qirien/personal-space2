@@ -44,7 +44,6 @@ screen yearly_summary():
     style_prefix "plan_farm"
     frame:
         background  "computer_pad_with_screen"
-        # TODO: make wallpaper that you can change? Unlock wallpaper pictures as you play the game?
         text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
         textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
         textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
@@ -128,11 +127,11 @@ screen show_stat(var):
         hbox:
             spacing 5
             #textbutton "{emoji=" + var + "}" tooltip var.capitalize()
-            if (new_value >= high_value):
+            #if (new_value >= high_value): - this would be to have red be low and green be high
+            if (delta >= 0):
                 bar value AnimatedValue(new_value, max, 0.7, old_value) style "summary_bar"
             else:
                 bar value AnimatedValue(new_value, max, 0.7, old_value) style "summary_bar_low"
-            #use tricolor_bar(high_value, old_value+delta, max, 200, CROP_LAYOUT_BAR_WIDTH*3, False)
             if (delta != 0):
                 if (delta < 0):
                     text str(delta) at delay_fadein color red_dark

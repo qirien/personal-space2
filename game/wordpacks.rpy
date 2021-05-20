@@ -26,8 +26,8 @@ init python:
     baby_words.add_words(baby_nouns, baby_adjectives, baby_verbs, baby_other)
 
     # Romance related words
-    romance_nouns = ["body", "lips", "soul", "eyes", "legs", "hair", "scent", "baby", "honey", "marriage", "you", "skin", "chocolate", "wine", "sunset", "two", "smile", "heart", "lover", "friend"]
-    romance_adjectives = ["smooth", "graceful", "sexy", "sweaty", "hot", "tender", "sparkly", "romantic", "my", "sweet", "crimson", "lonely", "awesome", "fabulous", "gorgeous", "beautiful", "best", "one"]
+    romance_nouns = ["body", "lips", "soul", "eyes", "energy", "hair", "scent", "baby", "honey", "marriage", "you", "skin", "chocolate", "wine", "sunset", "two", "smile", "heart", "lover", "friend"]
+    romance_adjectives = ["smooth", "graceful", "sultry", "sweaty", "hot", "tender", "sparkly", "romantic", "my", "sweet", "crimson", "lonely", "awesome", "fabulous", "gorgeous", "beautiful", "best", "one"]
     romance_verbs = ["sigh", "nibble", "caress", "kiss", "embrace", "taste", "soar", "dance", "entangle", "devour", "drink", "flutter", "hold", "murmur", "whisper"]
     romance_other = ["oh", "together", "with", "alone", "just", "always", "yes"]
     romance_words = Wordpack()
