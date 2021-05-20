@@ -22,9 +22,9 @@ label credits:
     hide text with dissolve
 
     show credits03 at tilted, right, driftdown, smallphoto
-    show text "Character Art and Cutscene Graphics By\n\nClarissa Helps" with dissolve
+    show text "Character Art and Cutscene Graphics By\n\nClarissa Helps\n\n\nAdditional Art By\n\nInes Ben Najem" with dissolve
     $ renpy.pause(4.0, hard=skippable)
-    hide text with dissolve
+    hide text with dissolve    
 
     show credits04 at tilted, left, driftdown, smallphoto
     show text "Testing by\n\nWes Landaker\nSapphire Landaker\nLisa Horner\nCatherine White" with dissolve # TODO: Add other testers
