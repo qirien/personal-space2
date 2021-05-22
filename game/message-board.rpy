@@ -631,11 +631,11 @@ label message25:
     nvl clear
     sara_c "After you chop it up, do you just sautee it?"
     thuc_c "I like it in a little goat cream with beans and garlic."
-    natalia_c "I think Ilian is selling it dried now. Dried jellysquid is really good in soup."
+    natalia_c "I think Ilian is selling it dried now. Dried jellystar is really good in soup."
     julia_c "It's especially good with a little of my plum syrup! Ten percent off this week!"
     natalia_c "I think everyone has tried your plum syrup by now..."
-    sara_c "Jellysquid has a pretty high water content... is there anything left after it's dried out?"
-    him_c "Why do we suddenly have so much jellysquid? I wasn't sure if it was approved for human consumption."
+    sara_c "Jellystar has a pretty high water content... is there anything left after it's dried out?"
+    him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
     if ate_jellyfish:
         him_c "Dr. Lily once told me that they contain a parasite which could decrease reaction speed."
         sara_c "Really? I haven't noticed anything like that."
@@ -645,9 +645,9 @@ label message25:
         natalia_c "Yeah, I don't like cutting up the carcasses. It just makes me sad."
     ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse. It's really cheap right now, and we're still drying more. You can use it for bait when fishing, too."
     him_c "He's farming the form with the shell?"
-    ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellysquid to offload."
+    ilian_c "I'm not sure if he got them to reproduce but he had a lot of dead jellystar to offload."
     him_c "I'm surprised because I don't think Brennan has much experience in aquatic animal husbandry."
-    brennan_c "I have been trying to farm jellysquid, which resulted in surplus jellysquids."
+    brennan_c "I have been trying to farm jellysquids, which resulted in surplus jellystars."
     sara_c "Are the jellysquid even the same species? {emoji=surprised}"
     julia_c "Dr. Lily reported that the jellysquid form is an aggregate of the jellystar one, but she never personally witnessed how it happens."
     julia_c "She wrote about it in a paper on them. You should probably read it if you're trying to raise them."
@@ -804,11 +804,11 @@ define kid_c = Character("kid_name", dynamic=True,
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
     color=lavendar_gray, image="naomi", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
-    color=tan_dark, image="pavel", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") 
+    color=tan_dark, image="pavel", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define lily_c = Character("Dr. Lily", who_suffix = "  {image=images/icons/lily-icon.png} ",
-    color=lavendar, image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  
+    color=lavendar, image="lily", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define sara_c = Character("Sara", who_suffix = "  {image=images/icons/sara-icon.png} ",
-    color=rose_dark, image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") 
+    color=rose_dark, image="sara", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define thuc_c = Character("Thuc", who_suffix = "  {image=images/icons/thuc-icon.png} ",
     color=green_sage, image="thuc", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-icon.png} ",
@@ -816,9 +816,9 @@ define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-ic
 define brennan_c = Character("Brennan", who_suffix = "  {image=images/icons/brennan-icon.png} ",
     color=green_med, image="brennan", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define pete_c = Character("Pete", who_suffix = "  {image=images/icons/pete-icon.png} ",
-    color=brown_light, image="pete", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  
+    color=brown_light, image="pete", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define natalia_c = Character("Natalia", who_suffix = "  {image=images/icons/natalia-icon.png} ",
-    color=orange_you_glad, image="natalia", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") 
+    color=orange_you_glad, image="natalia", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define helen_c = Character("Helen", who_suffix = "  {image=images/icons/helen-icon.png} ",
     color=gray_med, image="helen", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-icon.png} ",
@@ -831,10 +831,10 @@ define lewis_c = Character("Mr. Lewis",
     color="#be4a25", image="lewis", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  #red-orange
 define zaina_c = Character ("Zaina",
     who_suffix = "  {image=images/icons/zaina-icon.png} ",
-    color=yellow_gold, image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  
+    color=yellow_gold, image="zaina", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define kevin_c = Character ("Kevin",
     who_suffix = "  {image=images/icons/kevin-icon.png} ",
-    color=yellow, image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") 
+    color=yellow, image="kevin", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define oleg_c = Character("Oleg",
     who_suffix = "  {image=images/icons/oleg-icon.png} ",
     color=blue_mako, image="oleg", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
@@ -843,10 +843,10 @@ define travis_c = Character("Travis",
     color=red_light, image="travis", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define bro_c = Character("[bro_name]",
     who_suffix = "  {image=images/icons/bro-icon.png} ",
-    color=blue_med, image="bro", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")    
+    color=blue_med, image="bro", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define van_c = Character("Van",
     color="#1c30a1", image="van", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  #dark blue
-define chaco_c = Character("Chaco", color=blue_dusty_ice, image="chaco", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")     
+define chaco_c = Character("Chaco", color=blue_dusty_ice, image="chaco", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define ret_c = Character("RET",
 #who_suffix = "  {image=images/icons/ret-icon.png} ",
         color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") #gray
