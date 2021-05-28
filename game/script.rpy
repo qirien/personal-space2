@@ -393,7 +393,7 @@ label life_loop:
         call screen plan_farm() with fade
 
         label yearly_events:
-            #window auto
+            scene stars with fade
             if demo_mode:
                 jump demo_continue
             if trailer_mode:

@@ -16,32 +16,32 @@ init -10:
     image baby_cg:
         "images/cgs/chapter-baby.png"
         xalign 0.0 yalign 0.5
-        linear 8.0 xalign 0.9 yalign 0.5
-        linear 4.0 zoom 0.75
+        linear 5.0 xalign 0.9 yalign 0.5
+        linear 5.0 zoom 0.75
 
     image toddler_cg:
         "images/cgs/chapter-toddler.png"
         xalign 0.0 yalign 0.5
-        linear 6.0 xalign 0.7 yalign 0.5
-        linear 6.0 zoom 0.75       
+        linear 5.0 xalign 0.7 yalign 0.5
+        linear 5.0 zoom 0.75       
 
     image child_cg:
         "images/cgs/chapter-child.png"
         xalign 0.0 yalign 0.5
-        linear 6.0 xalign 0.7 yalign 0.5
-        linear 6.0 zoom 0.75
+        linear 5.0 xalign 0.7 yalign 0.5
+        linear 5.0 zoom 0.75
 
     image tween_cg:
         "images/cgs/chapter-tween.png"
         xalign 0.0 yalign 0.5
-        linear 8.0 xalign 0.9 yalign 0.5
-        linear 4.0 zoom 0.75
+        linear 5.0 xalign 0.9 yalign 0.5
+        linear 5.0 zoom 0.75
 
     image yteen_cg:
         "images/cgs/chapter-teen.png"
         xalign 0.0 yalign 0.5
-        linear 8.0 xalign 0.9 yalign 0.5
-        linear 4.0 zoom 0.75
+        linear 5.0 xalign 0.9 yalign 0.5
+        linear 5.0 zoom 0.75
 
     image aurora_animated:
         "images/bg/aurora.jpg"

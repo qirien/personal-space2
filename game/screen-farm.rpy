@@ -107,14 +107,14 @@ screen farm_details_screen():
 
             # Community info
             frame:
-                ysize 335
+                ysize 305
                 style "plan_farm_subframe"
                 #background None
                 xfill True
                 vbox: 
                     label " "
                     grid 2 2:
-                        spacing 30
+                        xspacing 30
                         xalign 0.5
                         vbox:
                             imagebutton auto "gui/messages_%s.png" action Jump("yearly_messages")
