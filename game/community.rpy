@@ -682,7 +682,7 @@ label community4:
     elif(parenting_style == "permissive"):
         "I was nominated, but Sara was elected as the new representative."
     else:
-        "Sara is elected as the new representative."
+        "Sara was elected as the new representative."
 
     if (is_liaison):
         $ bios.addToBio(his_name, "I'm also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
@@ -4848,20 +4848,36 @@ label community20:
         jump research_briefing
 
     label research_briefing:
-        lily happy "I've found that a certain flower turns purple several minutes before a solar flare."
-        lily normal "I've tried to isolate the color-changing compound, but have had little success."
-        lily angry "For now, the easiest way to enjoy this technology is to simply plant this flower in areas where people may need another method of detecting solar flares."
-        lily happy "Pete plants them in all his fields, and I think they would be useful in every farm and in recreation areas."
-        him pout "That does sound like a useful plant."
-        lily normal "Here are some seeds. It's fairly common in higher elevations."
-        #TODO: make this a variable that affects a future event
+        $ lily_briefed = True
+        lily happy "I may have found intelligent life on Talaam."
+        him surprised "Wow. What do you mean?"
+        lily normal "Zaina has been helping me in teaching an aquatic animal our system of communication."
+        him determined "Have they learned to speak English??"
+        lily happy "No, they can't speak. But they can change the color of their skin to resemble our alphabet."
+        him doubt "How does that work?"
+        lily normal "They have skin like a cephalopod's."
+        him pout "No, I mean, how do you communicate with them if you aren't speaking to them?"
+        lily happy "I write to them in simple language through my tablet. The new models are waterproof, you know."
+        lily normal "Sometimes they seem to be able to read words that I write on the tablet. Sometimes they seem like Earth animals and are completely uninterested in commmunicating."
+        lily "I know that Zaina will continue this research. Since our findings are unusual, I want to wait until we know more to send the report to any of the others."
+        him surprised "Is this an animal I've eaten? What does it look like?"
+        lily happy "I doubt that you've eaten it. They do seem to have some relationship to the jellystars."
+        lily normal "I think I may be able to communicate with them more directly."
+        him pout "Are they telepathic or something??"
+        lily happy "No, don't be silly. They would need a physical connection to communicate directly."
+        him surprised "They can send you their thoughts??"
+        lily angry "That is NOT what I said. For all we know, they could just be like very advanced parrots."
+        lily normal "They can imitate human writing, but I can't tell if they can understand it reliably."
+        him excited "This is so cool!"
+        lily normal "Please don't tell anyone else about our findings until we are ready. I don't want rumors to interfere with our research."
+        lily happy "You can help by supporting Zaina and Miranda in their studies of the creatures."
+        him determined "I won't let you down!"
 
         if ate_jellyfish:
             lily normal "I suspect that the jellystar creature you ate contains a parasite that affects human brains."
             him doubt "And you just let Pete serve it to everyone?"
             lily angry "I have a suspicion, but no proof. Your fondness for the jellystar seems harmless."
-            him pout "Huh. I just assumed everyone liked them."
-            him excited "Come on, they're like the mascot of this planet!"
+            him pout "Huh. I just assumed everyone liked them because of how entrancing they are."
             lily happy "They are indeed beautiful. The way they can aggregate and form larger creatures is remarkable."
             him surprised "They... combine to form a bigger animal?"
             lily normal "Yes, Earth has a few examples. The Portugese Man-of-War is technically an aggregate of many smaller animals."
@@ -4877,7 +4893,7 @@ label community20:
 
         scene stars with fade
         "A few months later, Dr. Lily disappeared on a visit to the ocean."
-        "We never saw her again."
+        "We never found her body..."
         $ bios.addToBio("Lily", "She spent her last few years obsessed with the jellysquids until one day she walked into the ocean. We never saw her again.")
     return
 
@@ -5093,6 +5109,11 @@ label community21:
         travis normal "I catch them all the time. It kinda reminds me of school. Well, the fun parts of school anyway."
         kid happy "Stellar! Can I play with it some more?"
         pete happy "Sure, I bet your mom would love to see it too."
+        if lily_briefed:
+            him determined "This must be the organism that Dr. Lily said she was communicating with."
+            pete normal "Dr. Lily was talking to these things?"
+            him pout "Um, she didn't want to share any of her findings yet, but she did mention studying a life form she thought could be intelligent."
+            pete happy "She made first contact without getting politicians involved! Good on her."
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
         "I was worried about the jellysquid's skin, but it had a shell made of something like glass, which was very resilient."
         "We kept it underwater in the bucket, though it slithered out a few times so I guessed it could breathe air."
@@ -5104,7 +5125,7 @@ label community21:
 
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
-        "The kids were playing with these weird transparent shells."
+        "The kids were playing with these creatures with weird transparent shells. They called them jellysquids."
         hide pete with moveoutleft
     stop sound fadeout 1.0
 
@@ -5738,6 +5759,7 @@ label mining_anyway:
 ################################################################################
 label community23:
     # "Brennan wants to collect jellysquid shells for minerals" He knows about them from the beach event, and has been investigating them ever since he "saw" them.
+    # it seems like Jack doesn't make the connection between the jellysquids and the shells until later
     # Pete's cows have cancer
     # Terra is 14 here
     $ pete_knows_his_cows_have_cancer = False
@@ -5853,6 +5875,11 @@ label community23:
         her surprised "I helped. Some of that money is rightfully mine."
         kid determined "You can have 100 credits of it. But the rest is mine."
         $ modify_credits(100)
+        if lily_briefed:
+            him determined "Wait, you were hunting down the jellysquids? I thought they were intelligent?"
+            kid happy "Not intelligent enough to not get caught!"
+            him pout "Should we really be trying to catch them?"
+            kid annoyed "Ugh. Some of us need credits more than we need moral high ground."
         him normal "Oh yeah, we need to get some rice to go with dinner tonight."
         her normal "I know. We stopped by the storehouse on the way home."
         "She handed me a cup of rice."
@@ -5897,8 +5924,8 @@ label community23:
         #(community_22_forced_mavericks_leave) OR (community_22_compromise) OR (community_22_mined_anyway)
         kid excited "We found ten shells!"
         her happy "That's fifty credits for you!"
-        kid explaining "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!" #something hipper?
-        her surprised "Or you could save it for something you actually need." #could make this a choice if you want to do a parenting crossover
+        kid explaining "I can finally buy my own fossil! Or maybe I'll get jars and jars of applesauce. Or I could print out lots of things!"
+        her surprised "Or you could save it for something you actually need."
         kid determined "Bo---ring."
         hide kid with moveoutright
         her normal "We went pretty far out, and I found a lot of shellfish."
@@ -6047,29 +6074,39 @@ label luxury_good:
 
 label community25:
     #Brennan's Jellysquid farm
-
-    scene farm_interior with fade
-    show him normal at midleft
-    "I had seen some tasty-sounding jellystar recipes lately."
-    if not ate_jellyfish:
-        $ random_crop = farm.crops.random_crop(include_animals = False)
-        him pout "Hmm. These jellystar recipes look kind of good. And I'm pretty tired of so much [random_crop]."
-        him "Maybe I should try them."
-        menu:
-            "What should I do?"
-            "Buy and eat them.":
-                "I bought some dried jellystars and we had them in soup. They were really tasty, and [her_name] said they were nutritious, too."
-                $ ate_jellyfish = True
-            "Don't eat them.":
-                "I decided not to eat them."
+    scene farm_exterior with fade
+    nvl clear
+    him_c "I haven't seen fresh jellystar for a few weeks. I was using it for fertilizer!"
+    him_c "Brennan, does that mean you've figured out how to breed jellysquids?"
+    brennan_c "Yes, I have."
+    brennan_c "I can unequivocally say that a jellysquid is formed by the union of two jellystars under the right conditions."
+    julia_c "The jellysquids couldn't make their shells in the presence of so many other jellystars."
+    him_c "How do they even know when other jellystars are nearby?"
+    julia_c "When they touch each other, they form a rudimentary network if there are at least two other jellystars in arm's reach."
+    julia_c "They basically form into a net, which can catch even more food than if they transform into jellysquids."
+    him_c "Huh, that's really interesting."
+    brennan_c "That information is supposed to be confidential."
+    julia_c "I guess you should have had Miranda sign a non-disclosure agreement."
+    julia_c "It's not like any of us want to breed them."
+    brennan_c "You may not have an interest in that, but the miners would much prefer to farm jellysquids than drill rocks in the dark."
+    brennan_c "Most of them don't read colonists' chat though."
+    julia_c "Well if it's more efficient maybe they should be farming jellysquid."
+    brennan_c "I'm still doing research to see if that's the case."
+    brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
+    brennan_c "I do have some jellystar meat, but since it isn't in high demand I was planning to sell it to Pete for fertilizer or fish food."
+    him_c "Save some for me! My family will be out by the ocean for the cloudy season."
+    if (miners_strong()): #12
+        brennan_c "Send me the dates you'll be there and I'll have someone meet you."
+        him_c "Will do."
     else:
-        "I ate them all the time, so it was fun to see even more ways to enjoy one of my favorite foods."
-    "The jellystar farm made them quite an economical food."
+        brennan_c "I'll send you a map with the location of the farms."
+        brennan_c "You can catch your own jellystars and pay me for whatever you take."
+        him_c "Will do."
 
     scene ocean with fade
     show him normal at midleft with dissolve
     play sound "sfx/ocean-waves.mp3"
-    "Every cloudy season, we like to spend more time outside. Usually we end up making the long trek to the beach. It's a lot easier now that the kids are bigger."
+    "Our now-yearly trek to the beach is a lot easier now that the kids are bigger."
     if (miners_strong()): #12
         show chaco normal at midright with dissolve
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."
@@ -6078,12 +6115,20 @@ label community25:
         chaco "Yep."
         him normal "Are you in charge of it?"
         chaco "I'm the one who checks on it every day and takes notes."
+        chaco "Here's a net. Catch what you want and I'll weigh it for you. Ten credits a pound."
+        him normal "Great! I'll start catching them."
+        show him normal at center with moveinleft
+        show him normal at right with moveinleft
+        "The first few were easy to catch. Then the jellystars started to hold on to each other and I couldn't catch anymore with the net."
+        show him pout and midleft with moveinright
+        him "This is kind of difficult!"
+        chaco sad "Yeah, when they start balling up like that it's really hard to catch just one or two."
         default community25_menuset = set()
         menu jelly_convo:
             set community25_menuset
             "What should I say?"
-            "What's new?":
-                him determined "Any new developments?"
+            "What's new with the jellystars?":
+                him determined "Have you noticed anything unusual about the jellystars?"
                 chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
                 chaco "Their pigments probably glow in UV light."
                 him excited "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans to be out then?"
@@ -6134,20 +6179,29 @@ label community25:
                 jump after_convo_25
 
     elif (mavericks_strong()): #10
-        "I looked around the coast for the jellystar farm."
+        "I found the jellystar farm on the map that Brennan gave me."
         show pete normal at midright with dissolve
         "I saw Pete standing on a pier and walked down to say hi."
         "Out on the pier, I could see that the jellystars were enclosed by large net walls."
         him "How's it going?"
         pete "Not bad. Just checking out Brennan's jellystar farm."
+        him determined "I came here to bring home a bucket for fertilizer."
+        pete happy "Help yourself!"
+        "I brought out my net and started catching jellystars and putting them in my bucket."
+        show him determined at center with moveinleft
+        show him determined at right with moveinleft
+        "After catching a few, the jellystars started clumping together by grasping each others' arms."
+        show him pout at midleft with moveinright
+        pete normal "Yeah, they do that. You'll have to wait for them to untwine before catching more."
+        him determined "It seems like a pretty effective survival strategy."
         default jelly2_menuset = set()
         menu jelly2_convo:
             set jelly2_menuset
-            "What should I say?"
+            "I could find out more about the farm. What should I ask about?"
             "Is the farm effective?":
                 him concerned "Is it working?"
                 pete normal "It's making lots of jellystars, but no jellysquid that I've seen."
-                him normal "Colonists have been eating lots of jellystar soup thanks to that."
+                him normal "I've been using a lot of jellystar fertilizer thanks to that."
                 jump jelly2_convo
             "What do they eat?":
                 him doubt "Do they feed them fish or something?"
@@ -6213,11 +6267,15 @@ label community25:
                 pete "Is it ethical to farm the jellystars like this?"
                 if ate_jellyfish:
                     him pout "I'm worried about that too."
-                    pete happy "Each arm in a jellystar has its own nerve bundle. Their nerve network is a lot like an octopus's."
+                    pete happy "Did you know that each arm in a jellystar has its own nerve bundle? Their nerve network is a lot like an octopus's."
                     him doubt "They can probably feel when they're touching something other than themselves... but they don't even have eyes."
                     pete normal "I wonder if they can sense UV radiation."
                     him determined "Wow, senses I haven't even thought about."
                     pete happy "And in jellysquid form, they are definitely intelligent."
+                    if lily_briefed:
+                        him "I think Dr. Lily was teaching them to read or something."
+                        pete "Yeah, Travis used to play with them constantly! It wasn't like texting a friend."
+                        pete normal "It was like playing a really buggy reading app."
                 else:
                     him pout "What do you mean? They're not that different from cattle, are they?"
                     pete normal "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
@@ -6226,7 +6284,11 @@ label community25:
                     pete normal "I wouldn't be surprised if they can sense UV radiation."
                     him determined "But they're not even as intelligent as a cow!"
                     pete normal "No, not in the jellystar form. But the jellysquids are definitely intelligent."
-                    pete happy "And the jellysquids are made up of jellystars! They're like baby jellysquids."
+                    pete happy "And the jellysquids are made up of jellystars! The jellystars are like baby jellysquids."
+                    if lily_briefed:
+                        him "Oh, right. I think Dr. Lily was teaching the jellysquids to read or something."
+                        pete "Yeah, Travis used to play with them constantly! It wasn't like texting a friend."
+                        pete normal "It was like playing a really buggy reading app."
                 him pout "That reminds me--I haven't seen any jellysquid up here."
                 pete normal "They've all been caught for their shells."
                 him doubt "And there aren't any jellysquids in this farm?"
@@ -6234,30 +6296,16 @@ label community25:
                 pete happy "They must need something else to change."
                 jump after_convo_25
 
-        label after_convo_25: #only if you your relationship with the miners is high enough?
-            scene farm_exterior with fade
-            nvl clear
-            him_c "I haven't seen fresh jellystar for a few weeks. Brennan, does that mean you've figured out how to breed jellysquids?"
-            brennan_c "Yes, I have."
-            julia_c "The jellysquids couldn't make their shells in the presence of so many other jellystars."
-            him_c "How do they even know when other jellystars are nearby?"
-            julia_c "When they touch each other, they form a rudimentary network if there are at least two other jellystars in arm's reach."
-            julia_c "They basically form into a net, which can catch even more food than if they transform into jellysquids."
-            him_c "Huh, that's really interesting."
-            brennan_c "That information is supposed to be confidential."
-            julia_c "I guess you should have had Miranda sign a non-disclosure agreement."
-            julia_c "It's not like any of us want to breed them."
-            brennan_c "You may not have an interest in that, but the miners would much prefer to farm jellysquids."
-            brennan_c "Most of them don't read colonists' chat though."
-            julia_c "Well if it's more efficient maybe they should be farming jellysquid."
-            brennan_c "I'm still doing research to see if that's the case."
-            brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
-            brennan_c "I do have some jellysquid meat, but since it isn't in high demand I was planning to sell it to Pete for fertilizer or fish food."
+
 
     else: #if neither miners or mavericks is high enough
-        "I looked around the coast for the jellystar farm."
+        "I found the jellystar farm on the map where Brennan said it would be."
         "I found a pier surrounded by nets that enclosed bunches of jellystar."
         "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+        "I brought out my net and started catching jellystars and putting them in my bucket."
+        show him determined at center with moveinleft
+        show him determined at right with moveinleft
+        "After catching a few, the jellystars started clumping together by grasping each others' arms."
         menu:
             "What should I do?"
             "Touch one.":
@@ -6273,6 +6321,9 @@ label community25:
             "Don't touch one.":
                 "I decided to just look at the jellystar."
                 jump after_convo_25
+
+    label after_convo_25:
+        "I came back the next day and caught a few more jellystars. After drying them out in the sun, they were easy to take home to my farm."
 
     stop sound fadeout 1.0
     return
@@ -6681,7 +6732,7 @@ label community27:
     "Then the back of the jellysquid looked like the literacy game again."
     nvl clear
     computer "'Grown-ups only! Needs permission to access more content.'"
-    computer "'2+3 = ?'"
+    computer "'12+3 = ?'"
     nvl clear
     "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking our travel app, but it didn't adjust to my exact location the way ours can with the radio towers."
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
@@ -6953,7 +7004,11 @@ label call_to_squid:
 
                     "Finish talking" if asked_shell_food:
                         "I felt like I understood enough to try and help."
+                        "The jelly mother creature was trying to tell me that the jellystars needed to eat the jellysquid shells in order to make their own shells."
+                        "In the absence of shells, maybe they could eat something else that could be their \"shell food\" that would give them the necessary nutrients to make their own shells."
                         "I put the jellysquid back in the water."
+                        "Something about our conversation reminded me of Dr. Lily."
+                        "It was businesslike and highly focused on a certain outcome."
                         jump back_to_farm27
 
                 label back_to_farm27:
@@ -6985,7 +7040,10 @@ label call_to_squid:
                     him angry "They can write to us, Zaina! How are you not curious about that?"
                     zaina sad "I was curious about that. I've actually spent several years studying them."
                     zaina happy "I helped Dr. Lily teach them how to 'write'."
-                    him surprised "Wow. I had no idea."
+                    if lily_briefed:
+                        him determined "Before she died, Dr. Lily told me about the research you guys were doing."
+                    else:
+                        him surprised "Wow. I had no idea."
                     zaina normal "We didn't publicize the research, but I've 'spoken' to the jellysquids before."
                     zaina happy "Now that I know that the jellymother can use them to communicate, it explains why sometimes they were so much more articulate than others."
                     zaina normal "If a central brain can link up to the jellysquids, it also explains how jellysquids we'd never seen before already knew how to interact with us."
@@ -7012,8 +7070,20 @@ label call_to_squid:
                     zaina_c "She was confused that you weren't there, but I managed to talk to her!"
                     zaina_c "I'll tell you everything when I get back. Gotta save my battery in case it's cloudy tomorrow."
                     "Next week, Zaina returned and asked me to meet with her."
-                    zaina normal "The jellysquid seemed to remember me, so I didn't have trouble getting her to try a few different foods."
-                    zaina happy "I was able to catch a few mudfish and skin them and feed them to a jellysquid."
+                    zaina happy "It was so weird talking to the jellymother through her little jellysquid!"
+                    zaina "It kind of reminded me of talking to Dr. Lily, oddly enough."
+                    him content "I felt the same way! Maybe since she taught them how to communicate, her communication style carried over?"
+                    zaina normal "Who knows? I spent just as much time teaching them, and they don't have my bubbly personality."
+                    him concerned "I wouldn't call your personality \"bubbly\"..."
+                    zaina happy "You know me, I radiate good vibes!"
+                    zaina normal "Just kidding. We were mostly teaching them the alphabet and syntax, not stylistic choices, which is why I find it interesting that the jellymother has a definite style of communicating."
+                    zaina sad "I asked about the nets in the jellystar farms. She said that she had cut the nets herself! They must use tools."
+                    him determined "When I went I saw pieces of jellystars in the ocean everywhere..."
+                    zaina normal "Yeah, I bet that after she freed the jellystars from the farms a bunch of predators came in a ate them."
+                    zaina happy "You noticed how they tend to ball up when they start getting eaten? It's like a game of soccer for the predator fish."
+                    zaina sad "Except they're eating the whole time."
+                    zaina normal "Anyway, the jellysquid seemed to remember me, even though the ones I trained are long dead. I was able to get them to try a few different foods."
+                    zaina happy "I fed skinned mudfish to a jellysquid."
                     him doubt "Zaina the fish-skinner..."
                     zaina normal "Hey, they ate it! And the next day, their shell was a little bigger. I measured it."
                     zaina sad "I had a hard time catching the yipper, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
@@ -7029,9 +7099,9 @@ label call_to_squid:
                     zaina sad "Yes, we could. It would take a lot of work to make an aquatic farm, but maybe we could use it for other fish later."
                     if (mavericks_strong("moderate")):
                         "After talking to Pete, we decided to try feeding the jellystars mudfish at an interspecies barbeque."
-                            $ serve_mudfish = True
-                            jump aquaculture
-                    else "Have them keep eating yippers.":
+                        $ serve_mudfish = True
+                        jump aquaculture
+                    else:
                         him concerned "I don't know if we could farm and skin enough mudfish to grow hundreds of shells."
                         him pout "If they keep eating yippers, they won't have to rely on us to create new shells."
                         zaina normal "But we're going to try to farm them so we won't accidentally collapse the food chain, right?"

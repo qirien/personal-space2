@@ -96,7 +96,7 @@ label start:
     default met_nguyen = False
     default met_andrevski = False
     default met_peron = False
-    
+
     default is_liaison = False
     default asked_only_medicine = False
     default trade_with_mavericks = False
@@ -105,7 +105,8 @@ label start:
     default whole_harvest_to_storehouse = False
     default town_hall_games = False
     default no_luxuries = False #used in community 8 and community 11
-    
+    default lily_briefed = False #community 20, community 21, community 25, and community 27
+
     # Community groups. The higher the variable, the better your relationship with that group is.
     default total_colonists = 0
     default colonists = 0
@@ -141,10 +142,10 @@ label start:
     default kevin_elected = False
     default ban_firegrass = False
     default study_published_23 = False
-    default helen_dead = False      
+    default helen_dead = False
     default bought_tt = False
     default c_end = ""
-    $ bios = Bios()         
+    $ bios = Bios()
     $ bios.activate("[his_name]")
     $ bios.activate("[her_name]")
     $ bios.activate("[kid_name]")
@@ -325,7 +326,7 @@ label start:
     "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
     "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
     "But being a dad was a different kind of work than I had ever done before."
-    
+
     # Introduction Scenes
     call family_intro
     call community_intro
@@ -366,7 +367,7 @@ label life_loop:
                     $ achieved("Rich Dad")
                 elif (credits <= -1000):
                     $ achieved("Poor Dad")
-                    
+
         if (crop_enabled("wheat")):
             $ modify_credits(-WHEAT_COST)
 
@@ -407,7 +408,7 @@ label life_loop:
             # Achievement for planting mostly potatoes
             if (farm.crops.count("potatoes") >= (farm.crops.len() - 4)):
                 $ achieved("Potato Papa")
-                
+
             play music farming fadeout 3.0 fadein 3.0
 
             # LOW CALORIES EVENT (optional)
@@ -453,9 +454,9 @@ label life_loop:
             scene stars
             window hide
             call increase_stats
-            
+
             $ parenting_style = get_parenting_style()
-            call screen yearly_summary with slowfade 
+            call screen yearly_summary with slowfade
 
             # Reset our variables for a new year while keeping a running total
             call reset_variables
