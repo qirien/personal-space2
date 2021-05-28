@@ -29,6 +29,7 @@ label family_intro:
             "She nudged me with her foot."
             "I couldn't really pretend to be asleep after that."
         "Get up and help [kid_name]":
+            $ responsive += 1
             $ marriage_strength += 1
         "Ask [her_name] to do it":
             him annoyed "Can't you help her?"
@@ -2323,7 +2324,8 @@ label family7:
             call parenting_class1
         "Do some reading":
             "I tried to read some parenting books, but they all seemed to conflict with each other."
-            "One book said to love your kids no matter what; another said to make sure not to spoil your child by doing whatever they said. One said to never let a baby cry; another said that it's okay for babies to cry sometimes."
+            "One book said to love your kids no matter what; another said to make sure not to spoil your child by doing whatever they said."
+            "One said to never let a baby cry; another said that it's okay for babies to cry sometimes."
             "The few things they agreed on were things I already knew: being a parent is hard, and kids need parents."
         "Do nothing":
             "I didn't have time for this. And, really, our ancestors didn't have time to read parenting books and humans turned out okay, so why should I have to turn it into some huge complicated thing?"
@@ -4328,7 +4330,7 @@ label family13_end:
     show her cry
     show him concerned
     with dissolve
-    "I gave her a tissue for her nose, and then held her close. We both grieved, but at least we could share our grief with each other."
+    "I gave her a handkerchief for her nose, and then held her close. We both grieved, but at least we could share our grief with each other."
 
     return
 
@@ -4539,7 +4541,7 @@ label family14:
     show her concerned at midright
     show him determined at midleft
     with dissolve
-    her concerned "Sister Naomi is holding another parenting class...do you want to go?"    
+    her concerned "Sister Naomi is holding a parenting class...do you want to go?"    
     show him annoyed with dissolve
     "Part of me felt defensive -- did [her_name] think I needed parenting lessons?!"
     $ parenting_style = get_parenting_style()

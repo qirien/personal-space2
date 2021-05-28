@@ -1644,7 +1644,7 @@ label community10:
             natalia_c "Thanks for helping us with Tomás. We talked to him, and he's decided he will help out at the farm, at least for a little while."
             him_c "Glad to hear it! He's a good kid."
             #more investment in older farms; Tomás and Joanna are less likely to join the mavericks this way
-        "Let Natalia scale back the farm.":
+        "Natalia should scale back the farm.":
             $ community11_kidsonfarm = False
             $ mavericks += 1
             him pout "If nobody wants to do it, you shouldn't force them to."
@@ -2901,6 +2901,7 @@ label community13:
             hide kid
             hide bro
             with dissolve
+            show him determined with dissolve
             "I took some time to do more research on heavy metals and the things we eat."
             "Even if the fruits and vegetables were fine, eating chickens that ate those vegetables could be a problem."
             nvl clear
@@ -2933,12 +2934,12 @@ label community13:
             pete normal "Didn't take long for big business to sully this planet."
             him annoyed "You joined that big business when you signed up to come here!"
             pete angry "That's a decision I question more and more each day."
-            pete normal "Don't stop on my accout. Go ahead and do your job."
-            him normal "I will."
+            pete normal "Don't stop on my account. Go ahead and do your job."
+            him determined "I will."
             scene cabins with fade
             "The last bottle had to be released by the tailings dam, and I hiked halfway up the mountain to deliver it to Kevin, who took it the rest of the way."
             show kevin normal at midright with dissolve
-            show him normal at midleft with dissolve
+            show him determined at midleft with dissolve
             kevin normal "I do hope there are no long-term consequences of the leak. I feel personally responsible."
             him pout "We can't change what happened. All we can do now is try to learn from this and do better next time."
     return

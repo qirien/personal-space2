@@ -706,9 +706,9 @@ label work10:
     menu:
         "What should I say?"
         "Sure, I'd love bees!":
+            $ modify_credits(-100)
             him happy "I'd love bees! Better pollination, honey, that sleepy buzzing sound on summer afternoons..."
             kevin normal "Very well. I shall mark you down for bees."
-            $ modify_credits(-100)
             $ enable_crop("honey")
             tutorial "Bees will boost production of neighboring squares and require just a little work."
             tutorial "However, you have to allocate a space for them every year."
