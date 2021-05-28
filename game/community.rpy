@@ -7466,6 +7466,7 @@ label no_euthanasia:
     "Gradually, he got better. He became familiar in our houses and we got to know a different side of him."
     "At first, it was helpful to have another adult around, and I learned some great recipes from Pavel."
     "He had a hard time finding words, and it was kind of frustrating to talk to him about anything abstract."
+    "He would keep telling me the same things over and over, because he couldn't remember what he had told me just a few hours ago."
     "As his disease progressed, it was harder to for him to understand simple commands."
     scene farm_interior with fade
     show him normal at midleft
@@ -7504,7 +7505,8 @@ label no_euthanasia:
     show her determined at midright
     show pavel sad at right
     with dissolve
-    her concerned "He needs adult-sized diapers... and someone to spoon-feed him. We should probably move him to the hospital."
+    her concerned "He needs someone to spoon-feed him. We should probably move him to the hospital."
+    her nervous "At least we have some automated washing machines now to wash the diapers he's using."
     him determined "We can do it."
     scene stars with fade
     "One day Julia was late coming to watch him, and Sara left him alone."
@@ -7829,16 +7831,6 @@ label community29:
             him surprised "This is the first I've heard of it."
             kid concerned "..."
             return
-
-# many of the endings have Terra going back to Earth. Does a shuttle arrive at the last event? Is it taking some of the miners back at the end of their contracts?
-# I think that sounds good.  It's kind of a nice circle and parallel to the first game.  That would make the miners have ~12 year contracts in Earth time.
-#Carol's husband dies in what appears to be an accident. He is in a wheelchair and his chair tips in the rain while Carol is nearby. She reports that she was distracted by one of her children.
-#Further investigation shows that their family was scheduled to return in the upcoming shuttle. Now that he is dead, the first person on the waitlist was ____.??
-#Van was still visiting Carol's family pretty frequently. Can we just use old Thuc character art for Van? He reports that she was recently using fireweed, but seemed short on credits.
-#Carol's husband's tablet is retained as evidence. He only used the tablet for a few games--he could no longer read or write. Yet it appears that Carol was using the tablet to message someone...
-#Oleg's app is there! It has been modified and her dosage is pretty high.
-#JULIA DEALING FIREWEED (transported by your daughter?) bum bum bum
-# WHO STOLE PETE'S CREDITS???
 
 ################################################################################
 #
