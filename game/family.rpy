@@ -5361,25 +5361,27 @@ label family17:
                 him concerned "Yeah, he... Pete doesn't like people interfering with him."
                 bro surprised "Is he going to yell at us if we ask for bread?"
                 him happy "I think not, my apprentice! And if he does, we shall withstand his blows with the power of jolly cooperation! Do not fear!"
-                "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]. He was so quiet that he didn't always get much attention, but his little arms held me tight as we rode and I got the feeling he was feeling better."
+                "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]."            
+                "He was so quiet that he didn't always get much attention, but his little arms held me tight as we rode and I got the feeling he was feeling better."
                 scene farm_exterior flip with fade
                 show pete normal at midright with dissolve
                 show him normal at midleft
-                show bro normal at quarterleft
+                show bro concerned at quarterleft
                 with moveinleft
                 him surprised "What ho, Sir Pete!"
                 pete happy "[his_name]. Whoa, is this your little [bro_name]? He's gotten big."
                 him normal "Indeed he has! How are thy cattle faring?"
-                pete normal "Not too bad. Some of kids try and scare the cows, playing some kinda game where they try and make 'em run. But I don't think [bro_name]'s one of them."
+                pete normal "Not too bad. Some kids try and scare the cows, playing some kinda game where they try and make 'em run. But I don't think [bro_name]'s one of them."
                 "I waited for [bro_name] to say something, but he seemed pretty scared of Pete. He just held my hand tight and looked down at the ground."
                 menu:
                     "What should I do?"
                     "Mention him yelling at [bro_name].":
                         him surprised "Is that so? He is afeared mayhap thou shalt yell at him again."
-                        pete normal "Again? Maybe I thought he was one of the other kids. Getting to be a lot of them, I can't keep them all straight."
+                        pete happy "Again? Maybe I thought he was one of the other kids. Getting to be a lot of them, I can't keep them all straight."
                         him normal "Indeed! Perhaps they should bear their names sewn on their shirts."
                         pete angry "Heh. Or we could brand 'em. Right on the forehead."
-                        show him happy with dissolve
+                        show him happy
+                        show bro surprised with dissolve
                         "I laughed, but then looked down at [bro_name], who was clutching my hand even harder and had his face pressed against my leg."
                         pete happy "Kid, I'm joking! Man, where'd you get such a serious kid?"
                         him normal "In the usual fashion, as I'm sure you're aware. Nevertheless, it is good for one member of our party to be of a serious nature."
@@ -5401,7 +5403,7 @@ label family17:
         scene path with fade
         show horse at center
         show him normal at center
-        show bro normal at center
+        show bro concerned at center
         with dissolve
         show night_overlay
         "[bro_name] and I were both engrossed in our own thoughts on the ride back home."
@@ -5772,7 +5774,7 @@ label family19:
             menu family19_porn_chat:
                 set family19_menuset
                 "What should I say?"
-                "Tell me about what happened." if (sex_ed_biology):
+                "Tell me what happened." if (sex_ed_biology):
                    $ demanding += 1
                    $ responsive += 1
                    him concerned "Tell me about what happened."
@@ -5838,7 +5840,7 @@ label family19:
                    "Hopefully I was doing okay."
                    $ confident += 1
                    $ authoritative += 1
-                "This is not acceptable computer use.":
+                "This computer use is not OK.":
                    $ demanding += 1
                    him determined "Pornography is not acceptable computer use."
                    kid surprised "Oh. Uh, okay."
@@ -5858,7 +5860,7 @@ label family19:
                        him blush "Uh, yeah."
                        $ authoritarian += 1
 
-                "Never look at this kind of garbage again!":
+                "Never look at this again!":
                    him annoyed "You must never look at this kind of thing again."
                    kid annoyed "..."
                    him angry "Did you hear me?!"
@@ -5866,11 +5868,11 @@ label family19:
                    "She stomped off. She was so temperamental these days, it was hard to get through to her. But I wouldn't stop trying."
                    $ demanding += 1
                    $ authoritarian += 1
-                "You're old enough to be responsible for you watch.":
+                "You're old enough to decide.":
                    him pout  "Well, you're old enough to be responsible for what you watch."
                    kid sad "Okay..."
                    $ permissive += 1
-                "You know that real sex isn't like that, right?":
+                "Real sex isn't like that...":
                    $ responsive += 1
                    him surprised "You know that real sex isn't like that, right?"
                    kid nervous "Oh, uh, yeah."
@@ -5908,7 +5910,7 @@ label family19:
                    else:
                        him concerned "Uh, yeah."
                        $ authoritative += 1
-                "Do you have any questions about sex?":
+                "Do you have questions?":
                    $ responsive += 1
                    him doubt "Do you have any questions about sex?"
                    kid surprised "What? No!"

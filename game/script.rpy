@@ -187,7 +187,7 @@ label start:
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
         crop_info =     (#Name          CAL VA VC VM VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
-                        ["corn",         9, 0, 1, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
+                        ["corn",         9, 3, 2, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 0, 6, 2, 6, 6, 40, True, False, False, 100],
                         ["wheat",        9, 0, 0, 1, 9, 10, 20, False, False, False, 2],
                         ["peppers",      2, 2, 9, 1, 5, 5, 25, False, False, True, 100],    # "Fruits"
@@ -363,7 +363,7 @@ label life_loop:
                     $ modify_credits(-allowance_amount * 7)
 
                 # Check for credit Achievements
-                if (credits >= 1500):
+                if (credits >= 2000):
                     $ achieved("Rich Dad")
                 elif (credits <= -1000):
                     $ achieved("Poor Dad")
@@ -394,7 +394,7 @@ label life_loop:
         call screen plan_farm() with fade
 
         label yearly_events:
-            scene stars with fade
+            scene stars
             if demo_mode:
                 jump demo_continue
             if trailer_mode:

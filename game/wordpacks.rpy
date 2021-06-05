@@ -5,7 +5,7 @@ init python:
     basic_nouns = ["word", "you", "she", "joy", "I", "we",  "scent", "sound", "me", "pain", "wonder", "dream", "moon", "sun", "us"]
     basic_adjectives = ["beautiful", "blue", "gray", "red", "soft", "feathery",  "pink", "your", "my", "our", "orange", "this", "brown", "dry", "her"]
     basic_verbs = ["jump", "know", "smile", "dance", "sing", "kick", "glow", "is", "are", "eat", "trust", "am"]
-    basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when", "to", "-ness"]
+    basic_other = ["in", "on", "after", "before", "for", "of", "and", "the", "-ing", "-ly", "!", "?", "-s", "every", "from", "around", "between", "-y", "a", "no", "where", "when", "to", "-ness", "with", "but"]
     basic_words = Wordpack()
     basic_words.add_words(basic_nouns, basic_adjectives, basic_verbs, basic_other)
 

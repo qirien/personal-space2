@@ -1250,7 +1250,7 @@ screen achievements():
                     if (achievement.has(title)):
                         $ photo_file = persistent.achievements[title]["file"]
                         if (photo_file):
-                            $ photo_file = "Photos/" + photo_file
+                            $ photo_file = "images/achievements/" + photo_file
                             imagebutton:
                                 idle photo_file
                                 at thumbnail

@@ -1223,7 +1223,7 @@ label work20:
             "Search RET's legal documents":
                 "It sounded about as fun as giving myself a root canal with a backhoe."
                 "But if I could find some legal description of how the water was supposed to be shared, Brennan would probably honor it."
-                "And I knew just the person so ask for help."
+                "And I knew just the person to ask for help."
                 scene storeroom with fade
                 show ilian normal at midright with dissolve
                 show him determined at midleft with moveinleft
@@ -1237,7 +1237,7 @@ label work20:
                 ilian angry "Fine, we can take a look."
                 "Ilian knew right where to find the documents, so we were already ahead of what I knew."
                 ilian normal "Hmmm, water protection, water wildlife, water treatment..."
-                ilian happy "Aha! Water diversion...water may be diverted no more than two kilometers from its origin for use with mining... water must be treated after mining use... farmers may be required to modify water distribution to accomodate..."
+                ilian happy "Aha! Water diversion...water may be diverted no more than two kilometers... water must be treated after mining use... farmers may be required to modify water distribution to accomodate..."
                 him concerned "That doesn't sound good."
                 ilian normal "If you can prove he diverted the water more than two kilometers, you have a chance. Otherwise, you're supposed to modify your systems to accomodate for his water diversion."
                 him sad "I don't think it's more than two kilometers..."
@@ -1258,32 +1258,42 @@ label work20:
                         "River diverted for mining":
                             $ work20_message += "River diverted for mining "
                             jump work20_message_check
-                        "Brennan refuses to help":
-                            $ work20_message += "Brennan refuses to help "
+                        "No notice was given":
+                            $ work20_message += "No notice was given "
+                            $ work20_message_score += 1
+                            jump work20_message_check
+                        "Brennan refused to help":
+                            $ work20_message += "Brennan refuses to help "                            
                             jump work20_message_check
                         "No water for crops":
                             $ work20_message += "No water for crops "
                             $ work20_message_score += 1
                             jump work20_message_check
-                        "Brennan stole our irrigation water for mining":
-                            $ work20_message += "Brennan stole our irrigation water for mining "
+                        "Brennan stole our water for mining":
+                            $ work20_message += "Brennan stole our water for mining "
                             jump work20_message_check
-                        "Tried to negotiate with Brennan but he refused to work with us":
-                            $ work20_message += "Tried to negotiate with Brennan but he refused to work with us "
+                        "Tried to negotiate with Brennan":
+                            $ work20_message += "Tried to negotiate with Brennan "
                             $ work20_message_score += 1
+                            jump work20_message_check
+                        "Water is vital for growing food":
+                            $ work20_message += "Water is vital for growing food "
                             jump work20_message_check
                         "Please help":
                             $ work20_message += "Please help "
                             jump work20_message_check
-                        "Please require Brennan to redirect water back to original stream":
-                            $ work20_message += "Please require Brennan to redirect water back to original stream "
+                        "Mining water needs to return":
+                            $ work20_message += "Mining water needs to return "
                             $ work20_message_score += 2
                             jump work20_message_check
-                        "I noticed there was no water in the river, so I followed it upstream":
-                            $ work20_message += "I noticed there was no water in the river, so I followed it upstream "
+                        "I noticed there was no water":
+                            $ work20_message += "I noticed there was no water "
                             jump work20_message_check
-                        "I talked with Brennan and asked him politely to return the water, but he said he won't":
-                            $ work20_message += "I talked with Brennan and asked him politely to return the water, but he said he won't "
+                        "I followed the river upstream": 
+                            $ work20_message += "I followed the river upstream "
+                            jump work20_message_check
+                        "I talked with Brennan":
+                            $ work20_message += "I talked with Brennan"
                             jump work20_message_check
                         "(Finish)":
                             jump work20_message_done
@@ -1306,7 +1316,7 @@ label work20:
                         him_c "[work20_message]"
                         "After several hours, I still had no response. I finally looked up the Earth timetable and realized it was the middle of the night there."
                         "Finally, a response came back."
-                        if (work20_message_score >= 2):
+                        if (work20_message_score >= 3):
                             ret_c "If Mr. Callahan did not give prior notice to redirection, he must ensure outflow goes back to river. Otherwise, you must work out alternative water source."
                             "That was exactly what I was hoping for."
                             "Brennan griped and complained, but once he put some miners working on it, the water came back quickly."

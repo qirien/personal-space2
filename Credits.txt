@@ -8,7 +8,7 @@
 
 .License
 ****
-"Our Personal Space 2: Space to Grow" Program, Text & Dialogue © 2020 Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+"Our Personal Space 2: Space to Grow" Program, Text & Dialogue © 2021 Metasepia Games <http://www.metasepiagames.com>. 
 
 This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
@@ -108,7 +108,7 @@ Polaroid <polaroid.png> from <a href="https://pixabay.com/vectors/polaroid-film-
 
 .License
 ****
-"Our Personal Space 2" Character Sprites © 2017-2019 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
+"Our Personal Space 2" Character Sprites © 2021 Clarissa Helps, Andrea Landaker <qirien@icecavern.net>, Rachel Helps <rmeibos@gmail.com>.
 
 This artwork is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 

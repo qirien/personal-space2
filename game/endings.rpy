@@ -509,7 +509,7 @@ label ending_AC:
     him surprised "Old people?!"
     her surprised "I don't see any old people in here..."
     show him happy
-    show her happy
+    show her normal
     with dissolve
 
     him surprised "Anyway... how are your studies coming, [kid_name]?"
@@ -540,7 +540,7 @@ label ending_AC:
     else:
         "So I'm not just happy that she found such a good friend in Oleg."
     "I'm not just happy that she's staying here, on Talaam."
-    "I'm also happy she found a way to do something she loves that helps people"
+    "I'm also happy she found a way to do something she loves that helps people."
     "She's working hard to understand the jellies in a way that no one else can."
     "With her research and mediation, I see a bright, peaceful future ahead for her."
     "And I'll get to see it all happen."

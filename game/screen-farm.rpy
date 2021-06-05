@@ -28,7 +28,7 @@ screen plan_farm():
                         hbox:
                             spacing 10
                             frame:
-                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + 30
+                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH# + 30
                                 style "plan_farm_subframe"
                                 hbox:
                                     label "Status" xsize 100

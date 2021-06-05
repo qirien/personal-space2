@@ -3028,6 +3028,7 @@ label community14:
     helen normal "We're leaving our house and everything in it. Put it to good use, why don't you. We'll be taking a radio and some metal foam sheeting, which we paid for with credits."
     pete normal "We'll leave the same amount of cattle the ranch started with, plus some, and take the rest with us."
     pete happy "We'll still have credits in case we can't trade for what we need."
+    pete normal "Ilian said he'd take over the library for me."
     "Everyone started talking when Pete sat down."
     "Some families wanted to say goodbye, while others just left awkwardly."
     "I pushed through the crowd to tell Pete some parting words."
@@ -3179,8 +3180,7 @@ label community15:
     naomi normal "[his_name], I've been watching how you parent your children."
     $ parenting_style = get_parenting_style()
     if (parenting_style== "authoritative"):
-        naomi happy "I think you are doing a really good job. It's hard to be patient and not blow up at your kids sometimes."
-        naomi normal "Keep up the good work."
+        naomi happy "You are a fine father. It's hard to be patient but you try to consider your kids' happiness and growth."
     elif(parenting_style == "authoritarian"):
         naomi sad "I think you're too harsh with your children sometimes. It's true that you make the rules in your home, but you can also decide when to change them or bend them."
         naomi normal "If you consider [kid_name]'s opinion sometimes, I think she will be happier."
@@ -3197,11 +3197,11 @@ label community15:
     naomi normal "Some people believe that we go to a different world. Some people believe that we come back in another life."
     naomi sad "Some people believe that our existence ends with death."
     naomi happy "No matter what happens, I'll be alive in your memories of me."
-    kid sad "I'll forget."
+    kid sad "I'll never forget!"
     naomi normal "Dying is a natural part of life. Your crops don't stay alive forever, do they?"
     kid normal "We have a tree that's been growing since I was a baby!"
     naomi sad "Can you plant a tree for me when I die?"
-    kid sad "Yes."
+    kid sad "Um, okay..."
     naomi happy "You can plant it on my grave, and then you can think about how my body is becoming a tree."
     kid annoyed "Gross."
     naomi normal "And let [bro_name] help."
@@ -3215,9 +3215,10 @@ label community15:
     him determined "I'll tell him."
     scene path with fade
     show pavel sad at right, flip with dissolve
-    show kid nervous at quarterleft with moveinright
-    show bro normal at midleft with moveinright
-    show him sad at center with moveinright
+    show kid nervous at quarterleft
+    show bro normal at midleft
+    show him sad at center
+    with moveinright
     "We left, and I told Pavel that Naomi wanted a break."
     pavel sad "[his_name], thank you so much for coming by."
     him sad "Yeah, uh, let us know if you need anything..."
@@ -5463,25 +5464,32 @@ label community22:
                         travis angry "Okay..."
                         hide travis with moveoutright
                         him surprised "Hello Helen. We're looking for Pete."
-                        helen "What do you want with him? And why are you carrying those guns?"
+                        helen sad "What do you want with him? And why are you carrying those guns?"
                         him normal "Look, we're not here to shoot anyone."
                         show helen at left with move
                         "Before I could finish explaining, Helen kicked Chaco in the crotch and took his gun."
-                        helen "We. Are. Not. Moving."
+                        helen angry "We. Are. Not. Moving."
                         "She flicked off the safety and aimed the gun right at us. The small, usually timid woman had a righteous fire in her eyes as she prepared to defend her home and kids."
                         "Chaco must have sensed my apprehension, because he whispered."
                         chaco sad "Don't worry; it's not loaded."
-                        helen "What?!"
+                        helen sad "What?!"
                         "She opened the chamber to check for a round, and Chaco grabbed her arms while she was distracted."
                         "Helen started screaming, and Pete appeared from behind some rocks."
                         show pete normal at right with moveinright
-                        pete "What is going on here?"
-                        pete angry "Let her go!"
-                        him angry "Not until you promise to leave the caves!"
-                        pete normal "Wow. Three against one. Is that how this works?"
-                        pete angry "Fine. We'll leave the caves. Just give us five days."
-                        him annoyed "Okay. Bandile, let her go."
-                        "Bandile let go of Helen. She looked at me like I was vomit."
+                        pete "What in the devil's outhouse is going on here?"                        
+                        him angry "You need to promise to leave the caves!"
+                        pete angry "Is that what this is about?! You come and attack my family... for RET and their--"
+                        "He punched me in the face and tried to grab the gun. We wrestled for it while out of the corner of my eye I saw Chaco struggling to keep Helen back."
+                        "I managed to get my shoulder into Pete's gut and we both fell to the ground. He landed on top of me and started bashing my head against the rock. My hands flailed helplessly."
+                        helen angry "Pete! Pete, stop!"
+                        pete angry "Give me one good reason!"
+                        helen sad "Is this a battle you can win?!"
+                        "He stopped banging my head on the rocks long enough to glance over at his kids, who were peeking out from the back of the cave, eyes wide with fear."
+                        "Pete dropped me and stood back, tossing the gun out the cave."
+                        pete normal "Fine. We'll leave the caves."
+                        him determined "Pete, I-"
+                        pete angry "Don't talk. Just leave."
+                        "Pete and Helen looked at me like I was dog vomit as I left with Chaco. I felt lower than a maggot. We got what we wanted... but was it worth it?"
                         scene black with fade
                         "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
                         $ mavericks -= mavericks
@@ -5517,7 +5525,6 @@ label community22:
 #                            return
                             # should we allow the compromise ending here, or only in the "best stats" ending above?
                             # the other alternative is jump stop_mining, or not have this alternate to the choice
-                        # TODO: you will never reach this because of the return above?
                         him_c "It's not worth fighting over."
                         brennan_c "It's not worth it to you, but it's worth it to me."
                         him_c "What have you got against Pete?"
@@ -6735,7 +6742,7 @@ label community27:
     computer "'Grown-ups only! Needs permission to access more content.'"
     computer "'12+3 = ?'"
     nvl clear
-    "I answered the question. Then it asked me to 'proceed on the highlighted route' to continue, showing a top-down map. I could tell it was mimicking our travel app, but it didn't adjust to my exact location the way ours can with the radio towers."
+    "I answered the question. Then it asked me to 'proceed on highlighted route', showing a top-down map. I could tell it was mimicking our travel app, but it didn't adjust to my exact location."
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
     "Something under the surface was emitting a light."

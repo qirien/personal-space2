@@ -371,6 +371,7 @@ label corn1:
 
     $ modify_credits(-0.6 * farm.crops.count("corn") * get_credits_from_name("corn"))
     "There wasn't really anything I could do. I just would have to work with having less corn than I thought this year."
+    return
 
 # CORN2: How to process corn
 label corn2:
@@ -2109,9 +2110,10 @@ label honey1:
         "Quit stealing.":
             $ travis_points -= 1
             him determined "I understand what you're saying, but you can't steal from people."
-            travis normal "Yeah."
+            travis angry "Yeah."
         "Want to learn beekeeping?":
             $ travis_points += 2
+            $ mavericks += 1
             him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
             travis angry "I don't like bees..."
             him normal "You probably got stung a lot during your heist, huh?"
@@ -2121,7 +2123,7 @@ label honey1:
             him normal "Great! You can pay off the honey you stole by working with the bees."
         "Good luck.":
             him determined "Good luck living on your own."
-            travis normal "Okay."
+            travis angry "Okay."
 
     return
 
