@@ -656,7 +656,7 @@ label test_dialogue:
     show naomi normal at midright
     show pavel normal at midleft
     with dissolve
-    naomi sad "Jack brought over something for dinner..."
+    naomi sad "[his_name] brought over something for dinner..."
     pavel sad "What in the world could it be?"
 
     scene mine with fade
@@ -670,7 +670,7 @@ label test_dialogue:
     show natalia normal at midright
     show martin normal at midleft
     with dissolve
-    natalia happy "I heard Jack brought us dinner!"
+    natalia happy "I heard [his_name] brought us dinner!"
     martin angry "If you could call it that."
 
     scene shack with fade
@@ -679,7 +679,7 @@ label test_dialogue:
     show oleg normal at midleft    
     with dissolve
     sara sad "Where did you say you got this?"
-    oleg angry "Jack was giving them away..."
+    oleg angry "[his_name] was giving them away..."
     ilian angry "Just because it's free doesn't mean it's any good!"
 
     scene path with fade
@@ -705,7 +705,7 @@ label test_dialogue:
     show zaina normal at midleft
     with dissolve
     kevin sad "Could it be for dissolving pipe blockages?"
-    zaina sad "Jack made it sound like you could eat it..."
+    zaina sad "[his_name] made it sound like you could eat it..."
 
     scene farm_interior with fade
     show him determined at midright

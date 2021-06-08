@@ -510,7 +510,7 @@ label family2:
             with moveinleft
             "We got on the tractor and I drove back to the field that needed planting."
             "I had to kind of sit on the edge of the seat so that there was room behind me for the backpack. It wasn't the comfiest seat, but it worked."
-            "Terra cooed and kicked and played with my hair and seemed to enjoy the ride..."
+            "[kid_name] cooed and kicked and played with my hair and seemed to enjoy the ride..."
             "...for about ten minutes."
             play sound "sfx/baby-fussy.ogg"
             kid determined "Aaaa!"
@@ -771,7 +771,7 @@ label family2:
             her happy coat "I'm pretty sure you have."
             if (family2_work_done >= 5):
                 show him pout with dissolve
-                "I felt a twinge of guilt as she said that. I hadn't been a super dad today at all; super farmer, maybe, but I'd let Terra cry in order to get my work done..."
+                "I felt a twinge of guilt as she said that. I hadn't been a super dad today at all; super farmer, maybe, but I'd let [kid_name] cry in order to get my work done..."
                 "[her_name] saw the look on my face and stroked my face."
                 her surprised coat "What is it?"
                 him sad "Today was... it was a long day."
@@ -3217,7 +3217,7 @@ label family10:
                 kid concerned "We all died."
                 bro sad "All died."
                 kid shifty "Except me. I ran away."
-                him annoyed "Terra..."
+                him annoyed "[kid_name]..."
                 kid concerned "And now I live by myself in the jungle."
                 "[bro_name] reached for his figurine, but she pulled it out first and put it up high where he couldn't reach."
                 kid annoyed "You can't play with him. He's dead."
@@ -3841,7 +3841,7 @@ label family12:
 
 label family12_contact_parents:
     nvl clear
-    him_c "Hey, is this Anya's parents? I'm Terra's dad, and she says Anya invited her over for tomorrow after school?"
+    him_c "Hey, is this Anya's parents? I'm [kid_name]'s dad, and she says Anya invited her over for tomorrow after school?"
     "Several hours later, I got a response."
     lewis_c "Yeah, that's okay."
     menu:
@@ -4511,8 +4511,8 @@ label family14:
                     kid angry "I guess. I still don't want to write them ten times. My hand gets sore. And what's the point of writing by hand, anyway? You and mom never write by hand. It's a waste of paper."
                     him happy "One problem at a time, [kid_name]. Let's send your teacher a note. Do you want to type it, or write it."
                     kid annoyed "Type it!"
-                    "We wrote to her teacher, and Terra asked if she could have harder spelling words and type them instead of handwrite them."
-                    "I wasn't sure what her teacher would say, but at least I helped Terra with her problem at school."
+                    "We wrote to her teacher, and [kid_name] asked if she could have harder spelling words and type them instead of handwrite them."
+                    "I wasn't sure what her teacher would say, but at least I helped [kid_name] with her problem at school."
                     him determined "Now, there's one more thing."
                     kid surprised "What's that?"
                     him annoyed "You hit your brother. How can you make it up to him?"
