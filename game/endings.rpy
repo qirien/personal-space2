@@ -59,8 +59,6 @@ label ending:
     "We didn't always agree on what [kid_name] should do, but in the end, [kid_name] made her own choices."
     "I'm sure I played a part in those, but I can't put my finger on any one thing that made her turn out the way she did."
 
-    # TODO: mention jellies in endings?
-
     $ parenting_style = get_parenting_style()
     "Parenting style: [parenting_style]"
 
@@ -259,8 +257,11 @@ label ending_ac:
     her concerned "That's true, but..."
     her cry "None of that will bring my baby back."
 
-    "Ending 1/4, Bring Back My Baby."
     $ achieved("Bring Back My Baby")
+    "Ending 1/4: Bring Back My Baby."
+    window auto hide
+    show ending1_cg
+    $ renpy.pause()    
 
     return
 
@@ -360,7 +361,10 @@ label ending_aC:
         "She saw my smile, but didn't say anything, just nodded and continued reading, her forehead scrunched up in concentration."
 
     $ achieved("Proving Herself")
-    "Ending 2/4, Proving Herself."
+    "Ending 2/4: Proving Herself."
+    window auto hide
+    show ending2_cg
+    $ renpy.pause()    
     return
 
 
@@ -436,8 +440,11 @@ label ending_Ac:
     "I can't stop thinking these kinds of things."
     "I guess that's part of what it means to be a parent."
 
-    "Ending 3/4, Forever My Little Girl"
     $ achieved("Forever My Little Girl")
+    "Ending 3/4: Forever My Little Girl"
+    window auto hide
+    show ending3_cg
+    $ renpy.pause()
     return
 
 #4 AC - becomes an expert on the jellies, starts to form her own
@@ -545,8 +552,12 @@ label ending_AC:
     "With her research and mediation, I see a bright, peaceful future ahead for her."
     "And I'll get to see it all happen."
 
-    "Ending 4/4 The Stars are Bright"
     $ achieved("The Stars are Bright")
+    "Ending 4/4: The Stars are Bright"    
+    window auto hide
+    show ending4_cg
+    $ renpy.pause()
+
     return
 
 #############################################################################

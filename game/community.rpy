@@ -3580,18 +3580,18 @@ label community17:
         "Sara asked me who we should invite to the festival this year."
 
     menu:
-        "Who should we invite to the harvest festival?"
-        "The miners and Pete's group." if (mavericks_strong() and miners_strong()): #6
+        "Who should we invite to the harvest festival? Besides the farmers, of course."
+        "The miners and Pete's group" if (mavericks_strong() and miners_strong()): #6
             "Might as well invite everyone on the planet. Then it'd be a really big party!"
             $ invited_mavericks = True
             $ invited_miners = True
-        "Pete's group." if (mavericks_strong()): #6
+        "Pete's group" if (mavericks_strong()): #6
             "I'd like to invite Pete's group."
             $ invited_mavericks = True
-        "The miners." if (miners_strong()): #6
+        "The miners" if (miners_strong()): #6
             "We should invite the miners."
             $ invited_miners = True
-        "The usual-- just all the other colonists.":
+        "Nobody else; just the colonists":
             "We don't need to invite anyone else. It's a harvest festival, after all, so we should celebrate everyone who did the actual farming."
 
     if (community_17_planparty):
@@ -3793,12 +3793,15 @@ label community17:
     "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
     hide kid with moveoutright
     show bro at midright with move
+    hide bro with moveoutright    
+    show harvest_cg
     pavel sad "It's a shame we don't have any chocolate to give them."
-    hide bro with moveoutright
     natalia happy "I miss it too."
     julia angry "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
     thuc happy "They still sound pretty entitled to me!"
     him laugh "Some things never change."
+    window auto hide
+    $ renpy.pause()
     stop sound fadeout 1.0
 
     scene community_center with fade
@@ -5268,8 +5271,7 @@ label community22:
         brennan_c "How 21st-century. Ask him if he can meet tomorrow evening at the canteen in the miner camp. Around 5pm, if he has a watch."
         him_c "Okay, I sent him the message."
         kevin_c "I am unable to attend, but Zaina will be there."
-        "That evening, Pete replied to say he could make it."
-        him_c "Pete can come. See you all there."
+        him_c "Pete says he can come. See you all there."
 
         "The next evening..."
         scene mine with fade
@@ -5279,27 +5281,26 @@ label community22:
         show brennan normal at center
         with dissolve
         brennan "We've almost completely mined the rare metals from the first mountain."
-        pete "It's not much of a mountain anymore."
+        pete angry "It's not much of a mountain anymore."
         brennan angry "That is an unfortunate side effect of mining. A side effect which concerns you, because the next logical place for us to mine is Mount Maverick."
-        pete happy "Are you saying this planet isn't big enough for the both of us?"
+        pete happy "Are you saying this planet ain't big enough for the both of us?"
         pete normal "Can't you mine somewhere else?"
-        zaina "I've gone on several trips over the last few years to look for better prospects. Mount Maverick is our best prospect in a 50-mile radius."
-        pete "You say that, but I can't help but feel that you're persecuting me and my family. I guess you're going to tell us we have to move now."
+        zaina sad "I've gone on several trips over the last few years to look for better prospects. Mount Maverick is our best prospect in a 50-mile radius."
+        pete angry "You say that, but I can't help but feel that you're persecuting me and my family. I guess you're going to tell us we have to move now."
         pete "And you're in on this too, [his_name]? It figures."
         him determined "That's not why we're meeting you. We want you to show Zaina and Kevin exactly where you live so that they can avoid disturbing you."
         pete happy "Is that... right?"
-        brennan "Mount Maverick is enormous. Part of what makes it efficient to mine is that our mining equipment is already close to it. But we don't need to mine the whole thing."
+        brennan concerned "Mount Maverick is enormous. Part of what makes it efficient to mine is that our mining equipment is already close to it. But we don't need to mine the whole thing."
         pete normal "You say that, but you don't know how much of the mountain we live in."
-        zaina "I thought you said it was one cave."
+        zaina normal "I thought you said it was one cave."
         pete happy "One main cave. I think you should see it before making any decisions."
-        zaina "I'm always up for making informed decisions."
+        zaina happy "I'm always up for making informed decisions."
         him concerned "I can't leave my farm right now, but I'm sure Zaina is up for the job."
-        zaina "It shouldn't take more than a few days."
-        brennan "While you're there, see if you can collect any shells from those tablet-like squids."
-        zaina "Oh, the glass ones? Are you thinking they could have high mineral content?"
+        zaina sad "It shouldn't take more than a few days."
+        brennan explaining "While you're there, see if you can collect any shells from those tablet-like squids."
+        zaina normal "Oh, the glass ones? Are you thinking they could have high mineral content?"
         pete normal "There are places where they're common. I can show you."
         scene stars with fade
-        "A week later..."
         nvl clear
         zaina_c "So, Pete wasn't kidding when he said that the caves are extensive."
         zaina_c "I think some kind of animal probably made them, because they are much bigger than most Earth caves."
@@ -5322,10 +5323,12 @@ label community22:
             ret_c "OK."
 
         #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
-        him_c "RET says it's okay to only  mine a portion of the mountain. We should make sure it's safe for everyone."
+        him_c "RET says it's okay to only mine a portion of the mountain. We should make sure it's safe for everyone."
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
         brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
-        "The mining continued without incident."
+        show mountain_cg
+        "Pete still wasn't happy about the tremors the mining caused, and it irked Brennan to leave so much easy ore untouched."        
+        "However, the mining continued without incident."
         $ community_22_compromise = True
         # does this need a stat +=?
         return
@@ -5343,9 +5346,10 @@ label community22:
         him_c "Is RET going to be mining near the ocean?"
         sara_c "No, still the mountains. But Brennan said that he knows Pete has a cave over there, so he wanted to make sure not to collapse his cave during the mining."
         him_c "That was considerate of him."
-        "The mining continued without incident."
+        show mountain_cg
+        "Apparently there were a lot of minerals where Pete lived in his caves. RET wanted to mine there."
+        "I guess Sara helped them work out a compromise where RET would mine there during the part of the year Pete lived somewhere else."
         $ community_22_compromise = True
-        #TODO: too facile? check in testing
         #stat +=?
         return
 
@@ -5373,7 +5377,7 @@ label community22:
         else:
             scene stars with fade
             nvl clear
-            sara_c "Hey [his_name]. You knew Pete pretty well, right?"
+            sara_c "Hey [his_name]. You know Pete pretty well, right?"
             sara_c "Brennan is going to start mining in the mountain where Pete and his group are living. Could you give us some advice on how to proceed?"
             sara_c "We're trying to decide if we could get him to leave or if we should cut our losses now."
             sara_c "I just added you to the chat."
@@ -5388,7 +5392,7 @@ label community22:
             brennan_c "You know Pete, right? What approach should we take?"
         menu:
             "What should I recommend?"
-            "Get him to leave.":
+            "Force him to leave.":
                 him_c "I know Pete. He's stubborn. I don't think negotiation will get us anywhere."
                 him_c "We're trying to run a business here."
                 him_c "If he needs somewhere to live there are plenty of other suitable places."
@@ -5413,22 +5417,22 @@ label community22:
                 "He came through the village, selling various things."
                 him normal "Hello Pete."
                 pete "Hello. I've been meaning to talk to you."
-                pete "You are truly a traitor."
+                pete angry "You are truly a traitor."
                 him annoyed "What do you mean?"
-                pete "Writing that letter to get me to leave my cave. There's no way I'm leaving."
+                pete normal "Writing that letter to get me to leave my cave. There's no way I'm leaving."
                 him doubt "You're not there now..."
-                pete "I'm not, but my family is!"
-                pete "I'm telling you, there's no better place for us to live. The cave protects us from solar flares, but lets in enough light to see by."
-                pete "There are so many other places to mine."
-                him determined "But that mountain has the highest probability of having a lot of ore."
-                pete "I don't care. We're not leaving."
+                pete angry "I'm not, but my family is!"
+                pete normal "I'm telling you, there's no better place for us to live. The cave protects us from solar flares, but lets in enough light to see by."
+                pete angry "There are so many other places to mine."
+                him determined "But that mountain has the highest concentrations of ore."
+                pete normal "I don't care. We're not leaving."
                 him angry "Then you'll die in a cave collapse."
-                pete "Better than killing my friendships to serve some company."
-                pete "What do you care if RET is slightly less efficient? It's not like money gets you much around here."
+                pete angry "Better than killing my friendships to serve some company."
+                pete normal "What do you care if RET is slightly less efficient? It's not like money gets you much around here."
                 him yell "Easy for you to say, when you have plenty of it!"
-                pete "I'm not hoarding it. Anyone can grow firegrass."
+                pete angry "I'm not hoarding it. Anyone can grow firegrass."
                 him determined "Yeah, but if we all start growing firegrass, we won't have vegetables to eat."
-                pete "Fair point. Still, I think you guys are bluffing and I am not going to leave my home for RET."
+                pete normal "Fair point. Still, I think you guys are bluffing and I am not going to leave my home for RET."
 
                 scene black with fade # convey passage of time with this?
                 nvl clear
@@ -5446,52 +5450,72 @@ label community22:
                         scene cabins with fade
                         show him normal at midleft
                         show brennan normal at midright
-                        him "Okay Brennan, who's coming with me?"
-                        brennan "Bandile and Chaco have agreed to come with you."
+                        him surprised "Okay Brennan, who's coming with me?"
+                        brennan concerned "Just Chaco. Sorry."
                         scene path with fade
-                        "On the way there, I told them our plan was to intimidate, not harm. I gave them both guns."
-                        scene black with fade
-                        "We saw Helen as we approached the cave entrance."
+                        "On the way there, I told him our plan was to intimidate, not harm. I gave him the shotgun and kept the rifle for myself."
                         scene cave with fade
+                        "We saw Helen as we approached the cave entrance."
                         show helen normal at midright
                         show travis normal at right
                         with dissolve
-                        show him surprised at midleft with moveinleft
-                        show chaco normal at left with moveinleft
+                        show him determined at left with moveinleft
+                        show chaco normal at midleft behind helen with moveinleft 
                         helen sad "Travis, go find the little ones and stay inside."
                         travis "What's going on? I want to say hi."
                         helen angry "Go now!"
                         travis angry "Okay..."
                         hide travis with moveoutright
-                        him surprised "Hello Helen. We're looking for Pete."
+                        him normal "Hello Helen. We're looking for Pete."
                         helen sad "What do you want with him? And why are you carrying those guns?"
-                        him normal "Look, we're not here to shoot anyone."
-                        show helen at left with move
+                        him surprised "Look, we're not here to shoot anyone."
+                        show helen at midleft with move
+                        show chaco at bounce
                         "Before I could finish explaining, Helen kicked Chaco in the crotch and took his gun."
+                        show helen at midright with move
                         helen angry "We. Are. Not. Moving."
                         "She flicked off the safety and aimed the gun right at us. The small, usually timid woman had a righteous fire in her eyes as she prepared to defend her home and kids."
                         "Chaco must have sensed my apprehension, because he whispered."
                         chaco sad "Don't worry; it's not loaded."
                         helen sad "What?!"
+                        show chaco at midright with move
                         "She opened the chamber to check for a round, and Chaco grabbed her arms while she was distracted."
+                        show helen at bounce
                         "Helen started screaming, and Pete appeared from behind some rocks."
                         show pete normal at right with moveinright
                         pete "What in the devil's outhouse is going on here?"                        
                         him angry "You need to promise to leave the caves!"
                         pete angry "Is that what this is about?! You come and attack my family... for RET and their--"
+                        show pete at quarterleft with move
+                        show him at bounce
                         "He punched me in the face and tried to grab the gun. We wrestled for it while out of the corner of my eye I saw Chaco struggling to keep Helen back."
+                        show helen at bounce
+                        show pete at bounce
+                        with dissolve
+                        show chaco at bounce
+                        show him at bounce                        
                         "I managed to get my shoulder into Pete's gut and we both fell to the ground. He landed on top of me and started bashing my head against the rock. My hands flailed helplessly."
                         helen angry "Pete! Pete, stop!"
                         pete angry "Give me one good reason!"
                         helen sad "Is this a battle you can win?!"
+                        show travis angry at right with moveinright
                         "He stopped banging my head on the rocks long enough to glance over at his kids, who were peeking out from the back of the cave, eyes wide with fear."
+                        hide travis with moveoutright
+                        show pete at right with move
                         "Pete dropped me and stood back, tossing the gun out the cave."
                         pete normal "Fine. We'll leave the caves."
                         him determined "Pete, I-"
                         pete angry "Don't talk. Just leave."
+                        show helen angry with dissolve
+                        show chaco at midleft with move
                         "Pete and Helen looked at me like I was dog vomit as I left with Chaco. I felt lower than a maggot. We got what we wanted... but was it worth it?"
-                        scene black with fade
-                        "They left the caves and started a camp nearby. The mining proceeded, but suffered from so many mysterious setbacks and equipment malfunctions that they stopped halfway through and changed to a different location."
+                        hide him
+                        hide chaco
+                        with moveoutleft
+                        show mountain_cg
+                        "Pete and Helen left the caves and started a camp nearby. The mining proceeded as planned."
+                        "However, the miners soon experienced mysterious equipment malfunctions. And just when they got their equipment working again, something else would break in the middle of the night."
+                        "Eventually the miners stopped halfway through and moved to a different location."
                         $ mavericks -= mavericks
                         $ miners += 1
                         $ community_22_forced_mavericks_leave = True #this variable isn't used again
@@ -5720,24 +5744,30 @@ label mining_anyway:
     show her normal at midright
     show kid normal at center
     with dissolve
-    "Brennan continued with the mining even though the mavericks were still living in the caves."
+    "Brennan continued mining the mountain even though the mavericks were still living in caves there."
     "We were cleaning up after breakfast a few weeks later when we heard Pete on the radio."
     play sound "sfx/radio.mp3"
     pete "{i}[her_name], do you copy? Please, are you there? We have a medical emergency.{/i}"
     her surprised "I'm here. What's wrong?"
+    scene mountain_cg
     pete "{i}Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking.{/i}"
     her annoyed "Is he breathing? Does he have a heartbeat?"
     pete "{i}He's alive and he called us for help. But he's completely stuck underneath a rock right now.{/i}"
-    her normal "See if you can keep him warm."
-    her sleeping "The cave is probably unstable."
-    her normal "If you try to get him out, you could make it worse or get stuck yourself."
+    her determined "See if you can keep him warm."
+    her concerned "The cave is probably unstable."
+    her annoyed "If you try to get him out, you could make it worse or get stuck yourself."
     pete "{i}There must be something we can do. I can't sit and watch him die.{/i}"
     her determined "Don't try to move him until I have more information. I'll radio back to you in five minutes."
     "She turned the radio off."
+    scene farm_interior with fade
+    show him determined at midleft
+    show her determined at midright
+    show kid sad at center
+    with dissolve
     him sad "That did not sound good." #would Terra say something here too?
     kid cry "Is Travis going to be okay?"
-    her angry "I don't know yet."
-    her "I need an expert opinion..."
+    her sleeping "I don't know yet."
+    her concerned "I need an expert opinion before we move rocks..."
     play sound "sfx/radio.mp3"
     "[her_name] radioed Kevin and explained the situation. He offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
     "She told Pete about their plan and he agreed to let them come help Travis."
@@ -5746,13 +5776,12 @@ label mining_anyway:
     her normal "I'll do my best."
     him determined "Good luck."
     hide her with moveoutright
-    show night_overlay
-    "That night, she told me that Travis was still alive but his leg was probably broken. Kevin was taking measurements and gave some orders for miners on the other side to suspend operations while he worked."
-    "The next morning, [her_name] said that they were able to extract Travis."
-    "The damage to Travis's leg was bad enough that [her_name] wanted to do surgery."
+    scene stars with fade
+    "Travis was still alive but his leg was probably broken. Kevin was taking measurements and gave some orders for miners on the other side to suspend operations while he worked."
+    "The next morning, [her_name] they were able to extract Travis."
+    "The damage to Travis's leg was bad enough that [her_name] had to do surgery there."
     "After a day of recovery, [her_name] returned to the colony with Helen and Travis, who rode a cow since he couldn't walk."
-    "She said that his tibia was completely shattered."
-    "She had to amputate the lower leg and knee. Travis's recovery took over a year, but he was able to grow a new knee at least." #maybe it's cooler if I don't explain it
+    "His tibia was completely shattered; she had to amputate his entire lower leg." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
     $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he he's still as obnoxious and hyper as ever.")
 
@@ -6746,11 +6775,11 @@ label community27:
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
     "Something under the surface was emitting a light."
+    show jellymother_cg    
     "It came closer to the surface, and I could see part of it."
-    "It had way more than ten tentacles and was a little smaller than our rowboat."
+    "It had way more than ten tentacles and was a little larger than our rowboat."
     #the jellyperson could have up to four shells, connects easily with jellystars and jellysquids for a modular body. Maybe it's just a bunch of jellysquids stuck together in the middle, but they are bigger than normal
     #jellyperson controls their own luminesence
-    # TODO: jellyfish drawing/CG? Or just some sprites?
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
     menu:
@@ -8027,9 +8056,9 @@ label community30:
         else:
             him_c "Hey, can you send me those images you mentioned?"
             julia_c "Sure, here you go."
+        scene murder with fade
         "I examined the photos."
-        #TODO: a CG here would be great, but not required."
-        "There was a photo of Joel's body, and a photo of the porch area where it took place."
+        "There was a photo of Joel's wheelchair, the porch area where he died, and his body."
         "Joel's face in the photo looked super pale. He was on the floor on his back and his mouth and eyes were open."
         "He had an open gash running horizontally across his forehead, with bruising all around it."
         "In the photo of Joel's yurt, I could see that it had a wooden wraparound porch. The porch was raised maybe two inches from the ground and didn't have a railing."

@@ -342,11 +342,11 @@ init -100:
         easeout random_int(1,3) alpha 0.8        
         repeat
     
-    transform bounce():
-        xalign 0.5 
-        yalign 0        
-        easein 0.5 yalign 0.3
-        easein 0.5 yalign 0
+    transform bounce:     
+        easein 0.1 xoffset 30
+        easein 0.1 xoffset 0
+        easein 0.1 xoffset 15
+        easein 0.1 xoffset 0
 
     # Setup ACHIEVEMENTS
     python:

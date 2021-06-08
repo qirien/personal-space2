@@ -43,6 +43,44 @@ init -10:
         linear 5.0 xalign 0.9 yalign 0.5
         linear 5.0 zoom 0.75
 
+    image jellymother_cg:
+        "images/cgs/jellymother.png"
+        linear 15.0 zoom 0.5
+
+    image harvest_cg:
+        "images/cgs/hallowgiving.png"
+        xalign 0.9 yalign 0.5 zoom 0.75
+        linear 5.0 xalign 0.5 yalign 0.5
+        linear 5.0 zoom 0.5
+
+    image mountain_cg:
+        "images/cgs/mountain.png"
+        linear 10.0 zoom 0.5
+
+    image ending1_cg:
+        "images/cgs/ending1.png"
+        xalign 0.0 yalign 0.4
+        linear 5.0 xalign 0.8 yalign 0.5
+        linear 5.0 zoom 0.5
+
+    image ending2_cg:
+        "images/cgs/ending2.png"
+        xalign 0.8 yalign 0.3
+        linear 5.0 xalign 0.0 yalign 0.2
+        linear 5.0 zoom 0.5
+
+    image ending3_cg:
+        "images/cgs/ending3.png"
+        xalign 0.0 yalign 0.2
+        linear 5.0 zoom 0.75
+        linear 5.0 zoom 0.5
+
+    image ending4_cg:
+        "images/cgs/ending4.png"
+        xalign 0.0 yalign 0.5
+        linear 5.0 xalign 1.0 yalign 0.5
+        linear 5.0 zoom 0.5
+
     image aurora_animated:
         "images/bg/aurora.jpg"
         xalign 1.0 yalign 1.0
