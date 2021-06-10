@@ -921,7 +921,7 @@ label squash2:
             $ squash2_method = "passthebuck"
             nvl clear
             him_c "Alright, who brought squash bugs to Talaam?!"
-            if (year < 11):
+            if (year < MARTIN_DIES_YEAR):
                 martin_c "Not squash bugs!"
             else:
                 natalia_c "Oh no, not squash bugs!"

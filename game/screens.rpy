@@ -121,7 +121,7 @@ screen say(who, what):
                     imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu"
                 vbox:                
                     showif renpy.mobile:
-                        imagebutton auto "gui/log_%s.png" action ShowMenu("History") tooltip "History"
+                        imagebutton auto "gui/log_%s.png" action ShowMenu("history") tooltip "History"
                     showif persistent.times_beaten:
                         imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
                     
@@ -391,6 +391,7 @@ screen navigation():
             textbutton _("Load") action ShowMenu("load")
 
         textbutton _("Preferences") action ShowMenu("preferences")
+        #textbutton _("History") action ShowMenu("history")
 
         if (persistent.max_year):
             textbutton _("Achievements") action ShowMenu("achievements")

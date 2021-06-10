@@ -849,7 +849,7 @@ define van_c = Character("Van",
 define chaco_c = Character("Chaco", color=blue_dusty_ice, image="chaco", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
 define ret_c = Character("RET",
 #who_suffix = "  {image=images/icons/ret-icon.png} ",
-        color="555555", image="ret", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") #gray
+        color="555555", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") #gray
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/FreeMono.ttf")
 

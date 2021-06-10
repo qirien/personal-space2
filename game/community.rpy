@@ -457,7 +457,7 @@ label community3:
                     "I told Kevin that I liked the intimate atmosphere of playing games in someone's house, and we couldn't simply invite everyone."
                     "He came to a few game nights but I think he ended up hosting his own with some of the other new colonists."
 
-                "Ask Pavel to encourage meetups":
+                "Ask Pavel to encourage meetups.":
                     him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
                     scene stars with fade #not sure what scene to show for this ending.
                     "I asked Pavel to remind everyone to remember to get to know the new colonists."

@@ -16,8 +16,8 @@ init -10:
     image baby_cg:
         "images/cgs/chapter-baby.png"
         xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.9 yalign 0.5
-        linear 5.0 zoom 0.75
+        linear 5.0 xalign 0.8 yalign 0.5
+        linear 5.0 zoom 0.5
 
     image toddler_cg:
         "images/cgs/chapter-toddler.png"

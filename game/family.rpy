@@ -35,6 +35,7 @@ label family_intro:
             him annoyed "Can't you help her?"
             her annoyed "It's your turn."
             "She was right..."
+            $ marriage_strength -= 1
     him concerned "Okay..."
     stop sound fadeout 2.0
     show her sleeping
