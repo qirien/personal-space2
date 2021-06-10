@@ -2,10 +2,10 @@
 # Screen to show short bios of all the characters.
 #
 screen biographies(name):
+    on "show" action SetVariable("show_person", name)
     modal True
     zorder 1
     style_prefix "bio"
-    on "show" action SetVariable("show_person", name)
 
     frame:
         xalign 0.5
@@ -174,7 +174,10 @@ init python:
                     return person
             return None
 
-        def getFirstPersonName(self):
+        def getFirstUnreadPersonName(self):
+            for person in self.people:
+                if (person.getActive() and (person.getRead() == False)):
+                    return person.getName()
             return self.people[0].getName()
 
         def addToBio(self, name, addition):

@@ -385,7 +385,6 @@ label life_loop:
         $ read_messages = False
         $ read_handbook = False
         $ show_year = year
-        $ show_person = "Thuc"
 
         # Autosave
         $ renpy.force_autosave(take_screenshot=True)

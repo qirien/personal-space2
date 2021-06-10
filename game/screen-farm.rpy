@@ -133,7 +133,7 @@ screen farm_details_screen():
                                 text " " ypos -40 style "alert_text" # We have to have this here or it messes up all the positions
 
                         vbox:
-                            imagebutton auto "gui/bios_%s.png" action Show("biographies", irisout, bios.getFirstPersonName())
+                            imagebutton auto "gui/bios_%s.png" action Show("biographies", irisout, bios.getFirstUnreadPersonName())
                             text "Bios" style "tiny_text"
                             showif (bios.hasUnread()):
                                 text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce

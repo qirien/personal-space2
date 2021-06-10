@@ -8475,20 +8475,16 @@ label community30:
         him_c "I understand if you don't want to talk about it right away, but what you saw is important to help us determine his cause of death."
         "I'll see if Van will talk to me in the meanwhile."
         nvl clear
-        him_c "Hi Van, how's it going?"
-        van_c "Not bad, I'm just headed out in a few minutes."
-        van_c "How are you?"
-        him_c "Good. So as you know, I'm investigating Joel's death..."
-        him_c "What can you tell me about Joel's home life?"
-        #I got another crash here
+        him_c "Hi Van, do you have a few minutes?"
+        van_c "I'll be headed out soon but okay."
+        him_c "So as you know, I'm investigating Joel's death...What can you tell me about Joel's home life?"
         van_c "I've been around Noel and her family for years."
         van_c "For a few months while she was trying to quit firegrass I was taking her children to and from the co-op every day and watching them on weekends."
-        van_c "Recently I've only been going over there a few times a week, but I'll probably be there all this week."
+        van_c "Now I go over a few times a week, but I'll probably be there all this week."
         him_c "Did you check on Joel during these times?"
         van_c "Oh yeah, sometimes I did food runs for him when Noel was really depressed."
         van_c "He made amazing pancakes."
-        van_c "He used to tell me that if I ever decided to lose the use of my legs, I should go back to Earth for that."
-        van_c "He was so excited to go back to Earth and buy an exoskeleton."
+        van_c "He used to tell me that if I ever decided to lose the use of my legs, I should go back to Earth for that. He wanted to go back to Earth and buy an exoskeleton."
         if knows_previous_head_injuries:
             him_c "Did you witness him sustaining any head injuries?"
             van_c "Oh yeah, I've seen him fall a few times. It seems like he would fall once a week or so."
@@ -8516,12 +8512,12 @@ label community30:
             show julia normal at midright, flip with dissolve
             show him determined at midleft with moveinleft
             him "I wanted to give you an update."
-            him "I examined the wheelchair, and it looks like the breaks were worn and dysfunctional."
+            him "I examined the wheelchair, and it looks like the brakes were worn and dysfunctional."
             julia "Sounds like an explanation for an accident."
             if knows_previous_head_injuries:
                 him pout "Possibly. But [her_name] said that it was likely that he had received previous head injuries."
                 him "Van also mentioned him falling frequently."
-                julia angry "This is sounding more like neglect?"
+                julia angry "This is sounding more like neglect!"
             else:
                 him pout "Van says that Joel may have been too distracted by the shooting star to break his fall."
                 julia "So it could have been an accident?"
@@ -8598,9 +8594,12 @@ label community30:
         scene farm_interior
         play sound "sfx/rain.ogg" volume 0.6 loop
         show kid normal at midright with dissolve
-        show him sad at midleft with moveinleft
-        kid surprised "How's that investigation going?"
-        him content "Oh, hi. I feel like I'm not getting anywhere. I have more questions than answers."
+        show him determined at midleft with moveinleft
+        if (is_attached()):
+            kid surprised "Hey, Dad. How's that investigation going?"
+        else:
+            kid surprised "Oh. Hi. Still 'investigating'?"
+        him sad "I feel like I'm not getting anywhere. I have more questions than answers."
         kid concerned "What have you found out so far?"
         him concerned "Firegrass is involved somehow."
         him surprised "I know you don't always know what you're carrying when you do deliveries... but do you know who besides Pete has been dealing with firegrass?"
@@ -9045,7 +9044,7 @@ label community30:
 #            if know_noel_had_firegrass:
 #                him "I found firegrass hidden in one of Noel's rain barrels."
             if checked_joel:
-                him determined "I knew that Joel had an unusual amount of credits in his account. "
+                him determined "I know that Joel had an unusual amount of credits in his account. "
             if knows_previous_head_injuries:
                 him pout "Joel had had previous head injuries, which could explain why he died so quickly after his fall."
             her concerned "Do you think it was an accident or was there foul play?"
@@ -9092,7 +9091,7 @@ label community30:
                             "We didn't talk much that week. The day of the trial came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
                             "I showed the photos of the broken brake and explained how their dysfunction was caused by normal wear and tear."
                             show her determined at left with moveinleft
-                            "I had [her_name] testify that Joel's head injury was consistent with his fall."
+                            "[her_name] testified that Joel's head injury was consistent with his fall."
                             if knows_previous_head_injuries:
                                 "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
                             hide her with moveoutleft
@@ -9119,7 +9118,7 @@ label community30:
                             "The next morning, we awaited the verdict."
                             if knows_previous_head_injuries:
                                 sara sad "The jury found Noel and Van guilty of criminal negligence."
-                                sara normal "Together with the mayor, they decided that Noel and Van should attend therapy weekly for six months and perform 200 hours of community service, including researching a better wheelchair brake system to prevent similar accidents in the future."
+                                sara normal "Together with the mayor, they decided that Noel and Van should attend therapy weekly for six months and perform 200 hours of community service, including researching improved wheelchair brakes."
                                 sara "They also agreed that Van could count up to 50 hours of babysitting as community service."
                                 thuc sad "Come on. He makes so little that his whole job should be considered community service."
                                 sara sad "That's what the jury decided. Would you like to make a formal appeal?"
@@ -9192,7 +9191,7 @@ label community30:
                                 "The next morning, we awaited the verdict."
                                 if knows_previous_head_injuries:
                                     sara sad "The jury found Noel guilty of criminal negligence."
-                                    sara "Noel will attend therapy weekly for six months and perform 200 hours of community service, including researching a better wheelchair break system to prevent similar accidents in the future."
+                                    sara "Noel will attend therapy weekly for six months and perform 200 hours of community service, including researching better wheelchair brakes."
                                     thuc normal "Sounds fair."
                                     sara normal "We'll consider the case closed then."
                                 else:

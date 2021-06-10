@@ -938,8 +938,6 @@ label test_community:
         call reset_variables
         $ year += 1
 
-    "Game complete."
-    "mavericks: [mavericks]\nColonists: [colonists]\nMiners: [miners]\nJellies: [jellies]."
     jump ending
     return
 
