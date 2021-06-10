@@ -716,7 +716,7 @@ label message27:
 label message28:
     nvl clear
     thuc_c "So the jellysquid are like, real live aliens?! That's so cool!"
-    sara_c "Does this mean we shouldn't eat them anymore?"
+    sara_c "So I guess we shouldn't eat them anymore..."
     him_c "We shouldn't eat the jellysquids, but they don't mind if we eat jellystars."
     sara_c "But... aren't the jellystars like their babies?! {emoji=shocked}"
     zaina_c "Their life cycle is not analogous to humans'. The jellystars are not sentient and are more like eggs than babies."

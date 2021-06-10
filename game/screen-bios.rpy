@@ -23,6 +23,7 @@ screen biographies(name):
                     draggable True
                     mousewheel True
                     scrollbars "vertical"
+                    yinitial bios.getPosition(name)
                     for person in bios:
                         $ name = person.getName()
                         $ fname = person.getFullName()
@@ -204,6 +205,13 @@ init python:
             else:
                 return person.getFullName()
 
+        # Return a float identifying how far this person is down the list. Used to scroll to someone we clicked on.
+        def getPosition(self, name):         
+            i = 0   
+            for i in range(0, len(self.people)):
+                if (self.people[i].getName() == name):
+                    return (float(i) / len(self.people))
+
         # Content for all the bios
         def initialize(self):
             self.addPerson("Chaco", "Chaco Acosta", "Chaco is one of the miners. We were assigned to help him feel welcome. I still don't know much about him, except that he doesn't like to talk about himself.")
@@ -213,7 +221,7 @@ init python:
             self.addPerson("Kevin", "Kevin Washington", "As a mining engineer, Kevin is making plans for future mining by RET. He has a real head for numbers, but he sometimes takes things too literally and wants everything to be quantifiable like math is. In that way he and his wife {a=action:SetVariable('show_person', 'Zaina')}Zaina{/a} are kind of opposites, but they are both curious and fast learners.")
 
             self.addPerson("Pavel", "Mayor Pavel Grayson", "If all managers could be like Pavel, no one would mind working. He loves everyone and tries to help each person do their best. He's not the smartest or the most talented or the nicest person, but he knows how to keep everyone happy and productive. His wife is {a=action:SetVariable('show_person', 'Naomi')}Sister Naomi{/a}; their kids and grandkids all live on Earth.")
-            self.addPerson("Naomi", "Sister Naomi Grayson", "She's and older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
+            self.addPerson("Naomi", "Sister Naomi Grayson", "She's an older woman who specializes in helping people deal with life, whether through therapy, religion, or just being a good friend. Whenever someone's having a hard time, chances are you'll find her helping out. She and {a=action:SetVariable('show_person', 'Pavel')}Pavel{/a} have been married for like fifty years and have a bunch of kids and grandkids back on Earth.")            
 
             self.addPerson("Lily", "Dr. Lily Kealoha", "Dr. Lily was part of the first group of scientists to come to the planet, study it, and approve it for colonization. She applies her precision problem-solving skills to Talaam's biology and geology, like with her edible plant guide and solar flare warning system. She tends to keep to herself unless rocks or plants are involved.")
 

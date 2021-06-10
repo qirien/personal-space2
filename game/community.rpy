@@ -3783,11 +3783,13 @@ label community17:
     "Thuc and I brought out the Harvest Cookies we made together. They're made with rice and corn and the kids noticed them eagerly."
     hide oleg with moveoutright
     show kid at center
-    show travis at midright
+    if (invited_mavericks):
+        show travis at midright
     show bro at midleft
     with move
     "They started cleaning the serving dishes and I made a show of inspecting their work and giving them the cookies."
-    hide travis with moveoutright
+    if (invited_mavericks):
+        hide travis with moveoutright
     show kid at midright
     show bro at center
     with move
@@ -5271,7 +5273,6 @@ label community22:
         brennan_c "Except I don't know how to get ahold of Pete."
         him_c "Oh, he has a radio now. I can sort of text him with it."
         brennan_c "How 21st-century. Ask him if he can meet tomorrow evening at the canteen in the miner camp. Around 5pm, if he has a watch."
-        him_c "Okay, I sent him the message."
         kevin_c "I am unable to attend, but Zaina will be there."
         him_c "Pete says he can come. See you all there."
 
@@ -5294,7 +5295,7 @@ label community22:
         pete happy "Is that... right?"
         brennan concerned "Mount Maverick is enormous. Part of what makes it efficient to mine is that our mining equipment is already close to it. But we don't need to mine the whole thing."
         pete normal "You say that, but you don't know how much of the mountain we live in."
-        zaina normal "I thought you said it was one cave."
+        zaina sad "I thought you said it was one cave."
         pete happy "One main cave. I think you should see it before making any decisions."
         zaina happy "I'm always up for making informed decisions."
         him concerned "I can't leave my farm right now, but I'm sure Zaina is up for the job."
@@ -6125,13 +6126,10 @@ label community25:
     julia_c "They basically form into a net, which can catch even more food than if they transform into jellysquids."
     him_c "Huh, that's really interesting."
     brennan_c "That information is supposed to be confidential."
-    julia_c "I guess you should have had Miranda sign a non-disclosure agreement."
-    julia_c "It's not like any of us want to breed them."
+    julia_c "I guess you should have had Miranda sign a non-disclosure agreement. You needn't worry; none of us want to breed them."
     brennan_c "You may not have an interest in that, but the miners would much prefer to farm jellysquids than drill rocks in the dark."
-    brennan_c "Most of them don't read colonists' chat though."
-    julia_c "Well if it's more efficient maybe they should be farming jellysquid."
-    brennan_c "I'm still doing research to see if that's the case."
-    brennan_c "For the reasons you mentioned, it's difficult to farm them en masse."
+    julia_c "Well if it's more efficient, maybe they should be farming jellysquid."
+    brennan_c "The research isn't clear yet. For the reasons you mentioned, it's difficult to farm them en masse."
     brennan_c "I do have some jellystar meat, but since it isn't in high demand I was planning to sell it to Pete for fertilizer or fish food."
     him_c "Save some for me! My family will be out by the ocean for the cloudy season."
     if (miners_strong()): #12
@@ -6284,7 +6282,7 @@ label community25:
                     pete normal "I do miss reading all day sometimes."
                     jump jelly2_convo
                 elif (community_22_mined_anyway):
-                    pete normal "Well it's been hard for Travis to adjust to not having feet."
+                    pete normal "Well it's been hard for Travis to adjust to not having a leg."
                     pete "I shouldn't have been so stubborn and stayed in the caves."
                     pete "I'm just glad Travis didn't die in there."
                     pete "He has mixed feelings about the prosthetics. He feels like he should be able to live without them but he depends on them for certain things."
@@ -6310,11 +6308,10 @@ label community25:
                     him doubt "They can probably feel when they're touching something other than themselves... but they don't even have eyes."
                     pete normal "I wonder if they can sense UV radiation."
                     him determined "Wow, senses I haven't even thought about."
-                    pete happy "And in jellysquid form, they are definitely intelligent."
+                    pete happy "And in jellysquid form, they're pretty smart."
                     if lily_briefed:
                         him "I think Dr. Lily was teaching them to read or something."
-                        pete "Yeah, Travis used to play with them constantly! It wasn't like texting a friend."
-                        pete normal "It was like playing a really buggy reading app."
+                        pete normal "Yeah, Travis used to play with them constantly! It was like playing a really buggy reading app."
                 else:
                     him pout "What do you mean? They're not that different from cattle, are they?"
                     pete normal "I've dissected a dead jellystar before. Each arm has its own nerve bundle, like an Earth octopus."
@@ -6326,8 +6323,7 @@ label community25:
                     pete happy "And the jellysquids are made up of jellystars! The jellystars are like baby jellysquids."
                     if lily_briefed:
                         him "Oh, right. I think Dr. Lily was teaching the jellysquids to read or something."
-                        pete "Yeah, Travis used to play with them constantly! It wasn't like texting a friend."
-                        pete normal "It was like playing a really buggy reading app."
+                        pete normal "Yeah, Travis used to play with them constantly! It was like playing a really buggy reading app."
                 him pout "That reminds me--I haven't seen any jellysquid up here."
                 pete normal "They've all been caught for their shells."
                 him doubt "And there aren't any jellysquids in this farm?"
@@ -6363,6 +6359,18 @@ label community25:
 
     label after_convo_25:
         "I came back the next day and caught a few more jellystars. After drying them out in the sun, they were easy to take home to my farm."
+        if (touched_jellystar_25):
+            scene black with fade
+            show purplelight at random_pulse_alpha
+            show purplelight as light0 at random_pulse_alpha
+            show purplelight as light1 at random_pulse_alpha
+            show purplelight as light2 at random_pulse_alpha
+            show purplelight as light3 at random_pulse_alpha
+            show purplelight as light4 at random_pulse_alpha
+            with dissolve
+            "That night I had a strange dream where I was underwater and jellystars were dancing all around me. They invited me into a dark underwater cave where something large lurked in the shadows."
+            "I swam closer and closer, but before I could see what it was, I woke up."
+            "The weird thing is, in my dream, I wasn't scared. I was just really curious..."
 
     stop sound fadeout 1.0
     return
@@ -6386,13 +6394,13 @@ label community26:
     show her normal at midright
     with dissolve
     her surprised "I met with a miner this week who was a heavy user of firegrass."
-    her sad "She has severe insomnia and depression."
-    him pout "And sleeping pills don't help?"
-    her concerned "Well, they do help her sleep, but then she feels sleepy in the morning and usually uses firegrass to help her feel more awake."
+    him surprised "Whoa, you don't usually tell me about your patients..."
+    her sad "She told me it was okay as long as I don't use her real name - she's desperate for relief from severe insomnia and depression."
+    him pout "I guess you already tried sleeping pills?"
+    her concerned "Well, they help her sleep, but then she feels tired in the morning and usually uses firegrass to help her feel more awake."
     her annoyed "She has frequent panic attacks and has lost an unhealthy amount of weight."
-    her concerned "Mayor Grayson agrees that we don't have the resources for a mental hospital."
     her sad "Sara completed training to do some mental health counseling and has started sessions with her, but she needs more than just therapy."
-    him doubt "Like medicine?"
+    him doubt "Different medicine?"
     her nervous "We don't have the kind that would help her."
     him pout "Hmmm."
     her surprised "She doesn't seem to be getting better anytime soon. She has suicidal tendencies."
@@ -6457,7 +6465,7 @@ label community26:
                 brennan concerned "It should be someone who's part of their respective community, so they won't be resented as much."
                 him smirk "Does that mean you're volunteering, Brennan?"
                 brennan flirting "No, I do enough hounding. Let someone else experience the social isolation that comes from enforcing rules."
-                brennan normal "I can find someone to check with the miners. We'll probably use a warnings system."
+                brennan normal "I can find someone to check with the miners. We'll probably use a warning system."
                 pavel normal "I can assign a few people in the colony."
                 brennan surprised "What should I recommend to miners who are sleepy on a night shift but can't get a prescription?"
                 brennan concerned "I know we have some green tea around, but there never seems to be enough..."
@@ -6641,13 +6649,12 @@ label community26:
             ilian happy "I'll be heading up the synthetic meat production, which will be in a laboratory building we'll build near the storehouse."
         ilian normal "I'll show you how the 'meat' is grown."
         scene petri with fade
-        "Ilian showed us a petri dish.'"
         ilian happy "This is where we grow the meat from bovine stem cells. Every day I feed it a little food, or growth culture."
         ilian normal "We sprinkle a little xanthan gum on top to prevent fungal growth."
-        ilian "Workers in the lab will feed the cells and eventually start stretching them out to make the texture more appealing."
-        ilian happy "You can all try a sample here so you know what to expect."
+        ilian "Eventually you can stretch and knead them to make the texture more appealing."
+        ilian happy "Here, try a sample."
         thuc normal "Hmm, the texture is good. It doesn't have a strong taste."
-        ilian normal "There isn't any fat in it, so it doesn't taste as strong as you might expect it to."
+        ilian normal "There isn't any fat in it, so the taste is milder."
         "Hmm. I could live with this. Do I want to?"
         menu:
             "What should I do?"
@@ -6787,7 +6794,8 @@ label community27:
     #the jellyperson could have up to four shells, connects easily with jellystars and jellysquids for a modular body. Maybe it's just a bunch of jellysquids stuck together in the middle, but they are bigger than normal
     #jellyperson controls their own luminesence
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
-    "The jellysquid's surface changed to show a question: 'Why have you killed my children?'"
+    "The jellysquid's surface changed to show a question."
+    jellysquid "Why have you killed my children?"
     menu:
         "What should I do?"
         "Run away.":
@@ -6867,6 +6875,7 @@ label call_to_squid:
             him blush "I have no idea what we're going to do, but we're going to figure something out."
             kid angry "Maybe Brennan has some shells we could give back."
             jellysquid "Bring them tomorrow."
+            nvl clear
             show him concerned with dissolve
             "The jellysquid jumped out of the bucket and into the water."
             "The net of jellystars pushed us back towards shore."
@@ -6916,6 +6925,7 @@ label call_to_squid:
                 brennan angry "All my jellysquid farms were destroyed anyway. I can't farm them anymore."
                 brennan concerned "And I already made promises to the miners based on the shells I have now."
                 brennan sad "Sorry, my hands are tied."
+            "At least Brennan wouldn't be farming jellysquids anymore."
             scene farm_exterior with fade
             "I wasn't sure if I had enough shells, so I wrote up my experience and ended with a plea for anyone holding onto a shell to return it to the squid people."
             "I had Julia print it in that week's {i}Talaam Times{/i}."
@@ -7284,7 +7294,7 @@ label community28:
 
     her annoyed "Even if it meant you needed other people to watch you all day, bathe you and help you go to the bathroom?"
     her sad "Even if it meant that you wouldn't know who you were or what you were doing?"
-    him doubt "You're basically describing the cognitive state and care needs of small babies, and we highly value their lives."
+    him doubt "You could say the same thing about babies, and we highly value their lives."
     him content "Is there something wrong with being cared for when you're old?"
     her concerned "Babies are easier to take care of because they are small and can't walk anywhere. Plus, their incompetence has a regular timeline."
     her sad "I've seen cases where a person can suffer from dementia for decades."
@@ -7541,7 +7551,7 @@ label no_euthanasia:
     kid cry "She's... I'll walk with you, Papa Pavel."
     scene stars with fade
 
-    "Then, he had a stroke that left him unable to speak coherently."
+    "Then, he had a stroke that left him unable to speak coherently or feed himself."
     scene farm_interior with fade
     show him concerned at midleft
     show her determined at midright
@@ -7556,6 +7566,7 @@ label no_euthanasia:
     "Julia couldn't find him that night and we all started searching for him."
     scene pond with fade
     "In the morning, we found his body drowned in the river."
+    $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and became less and less attached to reality. He had a stroke and couldn't feed himself, but we cared for him until the very end.")
     scene church with fade
     show sara normal at midright
     show julia normal at right, flip
@@ -7575,13 +7586,13 @@ label no_euthanasia:
         sara normal "She wanted her neighbor to stop letting their chickens roam freely in their shared yards."
         sara "Pavel didn't have a readily-available solution, but he met with her and her neighbor together, more than once, to try to resolve their problems."
         sara sad "That wasn't the only time he went the extra mile to help our colony. He was constantly trying to promote friendship across professions and age groups."
-        $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and became less and less attached to reality. He had a stroke and couldn't feed himself, but we cared for him until the very end.")
         return
 
 label euthanasia:
     scene church with fade
     "After about a month, [her_name] announced that Pavel's euthanasia would be that week, and asked villagers to pay their final respects."
     "Pavel said goodbye to most of us. He wasn't completely present. [her_name] performed the euthanasia in the hospital."
+    $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and became less and less attached to reality. Because of this, he decided to end his life.")
     jump pavel_funeral
 
 ################################################################################

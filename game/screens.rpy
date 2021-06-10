@@ -119,8 +119,10 @@ screen say(who, what):
                     spacing 15
                     imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle") tooltip "Auto Advance"
                     imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu"
-                showif persistent.times_beaten:
-                    vbox:                
+                vbox:                
+                    showif renpy.mobile:
+                        imagebutton auto "gui/log_%s.png" action ShowMenu("History") tooltip "History"
+                    showif persistent.times_beaten:
                         imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
                     
     else:
@@ -134,8 +136,8 @@ screen say(who, what):
         if who is not None:    
             window:
                 style "namebox"
-                $ nickname =  get_nickname(who)
-                button:                                
+                $ nickname = get_nickname(who)
+                button:                       
                     action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
                     text who:
                         id "who"

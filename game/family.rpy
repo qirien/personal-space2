@@ -6425,14 +6425,15 @@ label family22:
     bro concerned "I...was hungry."
     her surprised "And so you took the applesauce?"
     bro sad "...Yes."
-    her concerned "I see. Thank you for telling the truth, [bro_name]. I'm disappointed you broke our rule and took something that wasn't yours. How are you going to fix this?"
+    her concerned "I see. Thank you for telling the truth, [bro_name]."
+    bro nervous "..."
+    her annoyed "I'm disappointed you broke our rule and took something that wasn't yours. How are you going to fix this?"
     bro concerned "...I don't know."
     her determined "I'll let you think about it for a while. I'll ask you again at bedtime, okay?"
     bro sad "Okay."
     him determined "..."
     bro concerned "...can I go now?"
     her normal "Yes. I love you, [bro_name]."
-    bro concerned "I love you too, mommy."
     hide bro with moveoutleft
     menu:
         "What should I do?"
@@ -7065,8 +7066,11 @@ label lettie_dies:
     show kid normal at right
     with moveinright
     "I was about to say something when I noticed a strange smell, like a stable that had never been mucked out. We were almost to where I had tied up Lettie, but something was wrong."
+    show kid sad
+    show him determined
+    with dissolve
     "The smell was horse diarrhea, and when I ran up Lettie was trembling and shaking."
-    show him normal at midright with move
+    show him at midright with move
     him surprised "Lettie!"
     "I knelt next to her. She was barely breathing."
     kid concerned "Is she okay?"
@@ -7374,7 +7378,7 @@ label family25:
         "What should I say?"
         "We need other people, too.":
             $ responsive += 1
-            him normal "We need people to do other things, too. Sara, and Ilian aren't farmers, but imagine how disorganized we'd be without them!"
+            him normal "We need people to do other things, too. Sara and Ilian aren't farmers, but imagine how disorganized we'd be without them!"
             him happy "Or how much less we'd know without Zaina's studies, or how many people would have died without your mom there to fix them up."
             him concerned "I love farming, but if you don't want to do that, there's plenty of other great things you can do to help the colony."
             kid shifty "Thanks for the speech, dad."
@@ -7410,7 +7414,7 @@ label family25:
                 #"ACI"
                 kid determined "I just can't wait to live on my own!"
                 him concerned "You're that excited to leave us?"
-                kid normal "Not to leave you. But it sounds fun to take care of myself, and then I could hang out with you guys whenever I wanted."
+                kid normal "Not to leave you. But it sounds fun to take care of myself, and I could still hang out with you guys whenever I wanted."
             else:
                 # "ACi"
                 kid concerned "If I left, I'd be worried about you and Mom."
@@ -7702,7 +7706,7 @@ label family27:
                     kid surprised "How do I know what people need?"
                     him determined "Look on the message board, or ask someone who's connected to the community."
                     kid sad "Too bad Sister Naomi's not here anymore..."
-                    him concerned "Yeah, she'd probably have some great ideas. But Ilian or Natalia might know something, too. Or you could ask mom."
+                    him concerned "Yeah, she'd probably have some great ideas. But Sara or Natalia might know something, too. Or you could ask mom."
                     kid nervous "Okay."
                 "Ask the miners." if miners_strong():
                     $ responsive += 1
@@ -8534,9 +8538,9 @@ label family29:
                 $ trust -= 1
                 $ demanding += 1
                 $ lorant_points += 1
-            "Parents will always be there for you.":
-                him concerned "Just... no matter what happens, know that we'll always be here for you, okay? We love you, no matter what."
-                kid normal "Thanks, dad."
+            "Trust your parents.":
+                him concerned "Just... no matter what happens, know that parents will always be here for you, okay? We love you, no matter what."
+                kid normal "Thanks, dad. I'll be sure to tell {b}her{/b} that."
                 $ trust += 1
                 $ responsive += 1
             "They should try a relationship.":
@@ -8545,7 +8549,7 @@ label family29:
                 him normal "There's different levels of attraction. You don't need a  raging inferno of lust for a good marriage, but you should probably have at least a small spark of 'I'd like to kiss this person'."
                 kid happy "Ha, ha."
                 $ oleg_points += 1
-            "There's no point in a relationship without physical attraction.":
+            "There's no point in a relationship.":
                 him "There's no point in even starting a relationship without some physical attraction, no matter how good of friends they are."
                 kid concerned "Hmmm, okay."
                 $ travis_points += 1

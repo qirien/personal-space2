@@ -1415,7 +1415,7 @@ label work22:
     him flirting "--old enough that my age is boring. I can't believe you got all the awesome people in one place at the same time for my birthday."
     her concerned "Well, Brennan and Julia couldn't make it."
     him happy "Like I said, all the awesome people are here!"
-    kid normal "You looked so surprised."
+    kid laugh "You looked so surprised."
     bro normal "Did you even know we were here?"
     him normal "Nope! You were like stealthy birthday ninjas!"
     "The kids ran off to the a table covered with a variety of foods -- looks like [her_name] organized a potluck. I made a mental note to visit it very soon."
@@ -1475,7 +1475,10 @@ label work22:
                 him flirting "I already have all the hot alien chicks I need."
                 her surprised "You do?"
                 him happy "Oh yeah. You're on a planet that's not Earth, so you're an alien. And all I need is you."
+                show him at quarterleft with move
+                show her sleeping with dissolve
                 "I kissed her, right in front of everybody."
+                show him at midleft with move
                 sara normal "Awwwww! Sweet cheese!"
                 her flirting "It's not cheesy if it's true, right?"
                 pete happy "Nope. It's still cheesy."

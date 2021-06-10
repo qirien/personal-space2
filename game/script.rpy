@@ -199,7 +199,7 @@ label start:
                         ["strawberries+",1, 0, 2, 0, 6, 2, 0, False, True, True, 0],
                         ["beans",        6, 0, 0, 6, 4, 7, -20, True, False, True, 100],   # Legumes
                         ["peanuts",      7, 0, 0, 6, 5, 8, -40, False, False, False, 100],
-                        ["carrots",      3, 9, 1, 0, 3, 3, 10, True, False, False, 100],   # Root Vegetables
+                        ["carrots",      3, 10, 1, 0, 3, 3, 10, True, False, False, 100],   # Root Vegetables
                         ["turnips",      3, 0, 6, 1, 1, 4, 10, False, False, False, 100],
                         ["onions",       4, 0, 3, 1, 5, 4, 5, False, False, False, 100],
                         ["garlic",       1, 0, 7, 2, 5, 2, 4, False, False, False, 100],
@@ -268,10 +268,10 @@ label start:
             jump tests
 
     # TODO: Take this out when beta testing is over
-    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
     if (persistent.times_beaten):
-        "Welcome back to Space to Grow! Since you've played it before, you can now use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked." # TODO: add sunflower seeds/nuts/eggs?
+        "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked."
         if (persistent.crops_unlocked):
             $ i = 0
             while (i < len(crop_info)):
@@ -280,6 +280,7 @@ label start:
                     pause 0.5
                 $ i += 1
         "Choices you've made before will show up in italics so you can decide if you want to see something different."
+        "Choices you normally wouldn't see will show up crossed out so you can see other options."
 
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
@@ -426,7 +427,7 @@ label life_loop:
             # Terra work events (optional)
             if ((year > TODDLER_MAX) and (kid_work_slider >= 70)):
                 $ probability = 4/3.0*kid_work_slider - 80
-                if (renpy.random.random() < probability/100):
+                if (renpy.random.random() < probability/100.0):
                     $ next_event = terra_overwork_count + 1
                     $ event_label = "terra_overwork" + str(next_event)
                     if renpy.has_label(event_label):

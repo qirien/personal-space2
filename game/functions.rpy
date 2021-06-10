@@ -195,13 +195,13 @@ init -100 python:
     # Used in the message board - bios interface
     def get_nickname(name):
         if (name.startswith(his_name)):
-            return "[his_name]"
+            return "Jack"
         elif (name.startswith(her_name)):
-            return "[her_name]"
+            return "Kelly"
         elif (name.startswith(kid_name)):
-            return "[kid_name]"
+            return "Terra"
         elif (name.startswith(bro_name)):
-            return "[bro_name]"
+            return "Aeron"
         elif (name.startswith("Dr.")):
             return "Lily"
         elif (name.startswith("Mayor")):

@@ -473,11 +473,11 @@ label ending_AC:
     bro determined "Can you pass the mashed potatoes?"
     kid annoyed "Aren't you eating anything else?! You're still as picky as ever..."
     him surprised "How come we never knew about the jellysquid city?"
-    oleg "It never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
+    oleg angry "It never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
     kid normal "Oleg's made an app to help us map their city, and another to help us communicate better with them."
     him determined "Better communication would definitely be a good thing."
     if jellypeople_happy:
-        kid happy "I'm just glad you didn't mess up our first contact with them... they're still recovering from all the shells they lost, but since they moved to another area and merged with another colony they've been growing much better."
+        kid happy "I'm just glad you didn't mess up our first contact with them... they're still recovering from all the shells they lost, but since they moved and merged with another colony they've been doing much better."
     else:
         kid concerned "I'm just glad we were able to recover from that terrible first contact..."
         him surprised "Did they ever find shells for their babies?"
@@ -500,8 +500,8 @@ label ending_AC:
     her happy "He's actually been studying sunspots and solar flares lately."
     kid surprised "Really?"
     bro determined "Yeah... I've been trying to make a computer model so we can predict solar flares long-term more accurately, but the physics engines just aren't good enough to simulate the sunspots. But with enough data-"
-    oleg "-you'll be able to improve the model, and also improve predictions! That's great! Which physics engine are you using as a base?"
-
+    oleg happy "-you'll be able to improve the model, and also improve predictions! That's great! Which physics engine are you using as a base?"
+    show kid happy with dissolve
     "I listened to my family talk. I didn't understand half of what Oleg and [bro_name] were talking about, but I loved to see [bro_name] excited about something."
     if (boyfriend_name == "Oleg"):
         "[kid_name] reached over and held Oleg's hand, and he squeezed it back as he extolled the virtues of his favorite physics engine."
@@ -512,7 +512,7 @@ label ending_AC:
     her flirting "Oh, now look one you've done. You've ruined my fanciest clothes."
     him flirting "Want me to help you clean that off?"
     her happy "Mom, Dad, can you not? Some of us are trying to eat here."
-    oleg "I don't know; it's kind of sweet to see old people that are still so in love."
+    oleg normal "I don't know; it's kind of sweet to see old people that are still so in love."
     him surprised "Old people?!"
     her surprised "I don't see any old people in here..."
     show him happy
