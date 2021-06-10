@@ -119,12 +119,13 @@ screen say(who, what):
                     spacing 15
                     imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle") tooltip "Auto Advance"
                     imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu"
-                vbox:                
-                    spacing 15
-                    #showif renpy.mobile:
-                    imagebutton auto "gui/log_%s.png" action ShowMenu("history") tooltip "History"
-                    showif persistent.times_beaten:
-                        imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
+                showif (renpy.mobile or persistent.times_beaten):
+                    vbox:                
+                        spacing 15
+                        showif persistent.times_beaten:
+                            imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
+                        showif renpy.mobile:
+                            imagebutton auto "gui/log_%s.png" action ShowMenu("history") tooltip "History"                            
                     
     else:
         imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")    
