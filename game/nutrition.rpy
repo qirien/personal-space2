@@ -222,16 +222,18 @@ label bad_nutrition:
                 her determined coat "It'll take a few minutes for me analyze the spectrometer's results."
                 hide her with moveoutright
                 "I talked with [kid_name] while we waited for [her_name] to finish."                
-                show her normal coat at midright with moveinright
+                show her determined coat at midright with moveinright
             else:
+                if (bro_years > CHILD_MAX):
+                    him concerned "Uh, I have a lot to do here..."
                 if (bro_years > 0):
                     him concerned "I'll stay here with the kids while you do it."
                 else:
                     him concerned "I'll stay here with [kid_name] while you do it."
-                her sad "Okay..."
+                her sad coat "Okay..."
                 hide her with moveoutleft
                 "She was gone for about an hour."
-                show her normal coat at midright with moveinleft
+                show her determined coat at midright with moveinleft
             her concerned coat "This confirms it. I have a magnesium deficiency."
             him surprised "Magnesium??"
             her determined coat "Yes. Normally we get plenty from nuts, beans, and eggs. But we haven't been eating many of those lately."
@@ -278,15 +280,15 @@ label bad_nutrition:
     return
 
 label low_calories:
-    $ cals_got = farm.get_total_calories()
-    $ cals_needed = get_calories_required(year)
+    $ cals_got = float(farm.get_total_calories())
+    $ cals_needed = float(get_calories_required(year))
     $ cals_short = cals_needed - cals_got
 
     # We weren't short by very much
     if (cals_short < (0.1 * cals_needed)):
         "Even though I didn't plant enough crops to feed our family comfortably, we tightened our belts and traded a few things and managed to get by."        
         if (year > MONEY_YEAR):
-            $ modify_credits(farm.income_loss(cals_got/cals_needed))
+            $ modify_credits(farm.income_loss(cals_got/cals_needed*100.0))
             "Since we ended up eating everything I planted, I wasn't able to make much money, though."
         "I wouldn't repeat that mistake again."
         if (farm_size < FARM_SIZE_MAXIMUM):
@@ -309,7 +311,7 @@ label low_calories:
             her annoyed "Are we going to have enough food this year?"
         "I didn't know what to tell her. We didn't have enough food. I was supposed to be growing enough for our family and some extra, but this year... I just couldn't."
         if (year > MONEY_YEAR):
-            $ modify_credits(farm.income_loss(cals_got/cals_needed))
+            $ modify_credits(farm.income_loss(cals_got/cals_needed*100.0))
             him blush "We, uh, we might have to buy some things from the storehouse..."
         else:
             him blush "We, uh, we might have to get some help..."
@@ -325,7 +327,7 @@ label low_calories:
     else:
         "I didn't plant enough crops to feed our family."        
         if (year > MONEY_YEAR):
-            $ modify_credits(farm.income_loss(cals_got/cals_needed))
+            $ modify_credits(farm.income_loss(cals_got/cals_needed*100.0))
             "Even after we tightened our belts and reduced what we ate it still wasn't enough."
         else:
             "I didn't plant enough crops to feed our family and I had to beg from our neighbors."

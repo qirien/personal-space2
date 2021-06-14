@@ -193,10 +193,10 @@ label start:
                         ["wheat",        9, 0, 0, 1, 9, 10, 20, False, False, False, 2],
                         ["peppers",      2, 2, 9, 1, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 3, 4, 1, 6, 6, 15, True, False, True, 100],
-                        ["plums",        3, 1, 1, 1, 7, 7, 5, False, True, True, 1],
+                        ["plums",        3, 1, 1, 1, 7, 7, 15, False, True, True, 1],
                         ["plums+",       3, 1, 1, 1, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
                         ["squash",       4, 8, 3, 2, 2, 4, 15, True, False, True, 100],
-                        ["strawberries", 1, 0, 2, 0, 6, 4, 5, False, True, True, 1],
+                        ["strawberries", 1, 0, 2, 0, 6, 4, 15, False, True, True, 1],
                         ["strawberries+",1, 0, 2, 0, 6, 2, 0, False, True, True, 0],
                         ["beans",        6, 0, 0, 6, 4, 7, -20, True, False, True, 100],   # Legumes
                         ["peanuts",      7, 0, 0, 6, 5, 8, -40, False, False, False, 100],

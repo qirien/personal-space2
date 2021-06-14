@@ -17,12 +17,12 @@ label credits:
     hide text with dissolve
 
     show credits02 at tilted, left, driftdown, smallphoto
-    show text "Designed and Written By\n\nAndrea Landaker\n\nRachel Helps" with dissolve
+    show text "Designed and Written by\n\nAndrea Landaker\n\nRachel Helps" with dissolve
     $ renpy.pause(4.0, hard=skippable)
     hide text with dissolve
 
     show credits03 at tilted, right, driftdown, smallphoto
-    show text "Character Art and Cutscene Graphics By\n\nClarissa Helps\n\n\nAdditional Art By\n\nInes Ben Najem" with dissolve
+    show text "Character Art and Cutscene Graphics by\n\nClarissa Helps\n\n\nAdditional Art by\n\nInes Ben Najem" with dissolve
     $ renpy.pause(4.0, hard=skippable)
     hide text with dissolve    
 

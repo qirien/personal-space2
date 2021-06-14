@@ -5208,23 +5208,24 @@ label community21:
             hide zaina
             with moveoutleft
             "Pete came and asked to talk to Zaina. I couldn't hear exactly what they were talking about, but Pete looked mad and Zaina looked defensive."
-            show zaina sad at midleft with moveinleft
+            show zaina sad at midleft behind brennan with moveinleft
             him surprised "What was that about?"
-            zaina sad "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish. He said it was obvious they were being cultivated because there were so many... he wants us to compensate him for damages."
+            zaina sad "Pete says that the pool of fish we found was actually a fish farm and asked us not to steal his fish. He said it was obvious they were being cultivated because there were so many..."
             brennan angry "How could you have known that?"
+            zaina sad "He wants us to compensate him for damages..."
             menu:
                 "What do I think?"
                 "That sounds fair.":
                     $ mavericks += 1
                     him pout "If you came to my farm and picked my tomatoes I would say the same thing."
-                    him "It's only fair for us to compensate him for his work."
+                    him concerned "It's only fair for us to compensate him for his work."
                     zaina "So how much do you want to pay for the fish your family ate?"
-                    $ modify_credits(-50)
-                    him "I don't know, 50 credits?"
-                    zaina "I'll pitch in 50 credits, too."
+                    $ modify_credits(-20)
+                    him surprised "I don't know, 20 credits?"
+                    zaina normal "I'll pitch in 20 credits, too."
                 "That's absurd.":
-                    him angry "There weren't any fences or signs posted."
-                    him "How could he expect us to know about his fish farm?"
+                    him determined "There weren't any fences or signs posted."
+                    him angry "How could he expect us to know about his fish farm?"
                     zaina "I know. He needs to realize that he doesn't own everything outside the colony."
                     brennan normal "He knows he doesn't own everything. But these fish were surprisingly easy to catch, right?"
                     brennan "Let's give him a few fossils or something when we get back. I'll talk to him."
@@ -5251,9 +5252,7 @@ label community21:
     show kid happy at midleft
     with dissolve
     play sound "sfx/ocean-waves.mp3"
-    "The next day was more relaxing in the shade, playing with jellysquids, and catching fish."
-    "I even taught [kid_name] how to swim. Kind of."
-    "We traveled back to the colony without incident."
+    "The next day was more relaxing in the shade, playing with jellysquids, and catching fish. [kid_name] is getting much better at swimming."
     hide him
     hide kid
     with moveoutright
@@ -5437,7 +5436,7 @@ label community22:
                 him yell "Easy for you to say, when you have plenty of it!"
                 pete angry "I'm not hoarding it. Anyone can grow firegrass."
                 him determined "Yeah, but if we all start growing firegrass, we won't have vegetables to eat."
-                pete normal "Fair point. Still, I think you guys are bluffing and I am not going to leave my home for RET."
+                pete normal "Be that as it may... I am not going to leave my home for R-E-bloodsucking-T."
 
                 scene black with fade # convey passage of time with this?
                 nvl clear
@@ -5755,13 +5754,13 @@ label mining_anyway:
     pete "{i}[her_name], do you copy? Please, are you there? We have a medical emergency.{/i}"
     her surprised "I'm here. What's wrong?"
     scene mountain_cg
-    pete "{i}Travis... he was up in one of the higher chambers whittling when the mountain started sh-shaking.{/i}"
+    pete "{i}Travis... he was up in one of the higher chambers and, and the mountain started sh-shaking.{/i}"
     her annoyed "Is he breathing? Does he have a heartbeat?"
-    pete "{i}He's alive and he called us for help. But he's completely stuck underneath a rock right now.{/i}"
+    pete "{i}He's alive and he called us for help. But he's stuck under a pile of rocks!{/i}"
     her determined "See if you can keep him warm."
     her concerned "The cave is probably unstable."
     her annoyed "If you try to get him out, you could make it worse or get stuck yourself."
-    pete "{i}There must be something we can do. I can't sit and watch him die.{/i}"
+    pete "{i}I gotta do something! I can't just sit and listen to him!{/i}"
     her determined "Don't try to move him until I have more information. I'll radio back to you in five minutes."
     "She turned the radio off."
     scene farm_interior with fade
@@ -5774,19 +5773,16 @@ label mining_anyway:
     her sleeping "I don't know yet."
     her concerned "I need an expert opinion before we move rocks..."
     play sound "sfx/radio.mp3"
-    "[her_name] radioed Kevin and explained the situation. He offered to go with her to the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
-    "She told Pete about their plan and he agreed to let them come help Travis."
+    "[her_name] radioed Kevin and explained the situation. He offered to go with her and analyze the cave." #would Kevin be sypathetic? He suggests using force against them in a another option.
     her determined "I'll take the necessary medical supplies with me. It looks like I'll be gone the next two days, but we'll stay in contact over the radio."
     kid sad "You can fix Travis, can't you?"
     her normal "I'll do my best."
     him determined "Good luck."
     hide her with moveoutright
     scene stars with fade
-    "Travis was still alive but his leg was probably broken. Kevin was taking measurements and gave some orders for miners on the other side to suspend operations while he worked."
-    "The next morning, [her_name] they were able to extract Travis."
-    "The damage to Travis's leg was bad enough that [her_name] had to do surgery there."
-    "After a day of recovery, [her_name] returned to the colony with Helen and Travis, who rode a cow since he couldn't walk."
-    "His tibia was completely shattered; she had to amputate his entire lower leg." #maybe it's cooler if I don't explain it
+    "Travis was still alive but his leg seemed broken. Kevin gave some orders for miners on the other side to suspend operations while he worked to hold up the cave ceiling and stabilize the rocks."
+    "The next morning, [her_name] was able to extract Travis."
+    "His tibia was shattered; [her_name] had to amputate his entire lower leg." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
     $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he he's still as obnoxious and hyper as ever.")
 
@@ -5988,9 +5984,9 @@ label community23:
                 him content "Let's have some with dinner and sell the rest tomorrow."
                 her nervous "Can you take care of it? I'm so tired right now."
                 him normal "Sure."
+                $ modify_credits(50)
                 "[bro_name] and I made a seafood-vegetable soup."
                 her laugh "This really hits the spot. Thanks."
-                $ modify_credits(50)
                 $ colonists += 1
                 return
     return
@@ -6426,9 +6422,10 @@ label community26:
         sara sad "I've been visiting her at home to start her therapy. I think her husband feels like it's his fault that she's depressed."
         brennan sad "I remember his accident. The perfect storm of several miscommunications." #tie it to an earlier event?
         brennan concerned "He can't walk anymore, but he can still talk and do things with his hands. He did have some brain damage, so he sometimes makes unpredictable mistakes."
-        her surprised coat "Their family needs intensive care right now. I don't think Van Nguyen is too busy right now, and he did an apprenticeship with me a few years ago."
+        her surprised coat "Their family needs intensive care right now. Is there anyone who could lend them a hand?"
+        sara normal "Could you do without Van Nguyen for a while? I know you don't have a lot of nurses..."
         brennan surprised "I assume he's one of Thuc and Julia's kids?"
-        her normal coat "Yes. He's their youngest and has a great sense of humor. He should be able to babysit the kids for a few hours a day."
+        her normal coat "Yes. He's their youngest and has a great sense of humor. He's my apprentice but he should be able to babysit the kids for a few hours a day."
         brennan explaining "So, they'll have a babysitter/nurse and a psychotherapist visiting them..."
         her determined coat "I would like you to keep paying Carol enough to live off of while she recovers."
         brennan angry "Her husband is already on disability... and what if she never recovers?"
@@ -6443,7 +6440,7 @@ label community26:
         else:
             her concerned coat "Even miners who don't take very much experience side effects like insomnia and reduced appetite."
         her surprised coat "I think we should discourage the use of firegrass somehow. I don't want to see any more cases of insomnia and depression."
-        brennan explaining "I also don't want to see that. But I don't think outlawing firegrass will stop people from using it."
+        brennan explaining "I also don't want to see that. But I don't think outlawing firegrass will stop people from getting flared."
         brennan angry "Pete is going to sell firegrass no matter what we decide."
         menu:
             "What should I say?"
@@ -7749,9 +7746,6 @@ label community29:
         him concerned "Yeah, that's more of a face-to-face conversation."
         him sad "I don't think I can leave the farm this week, but take the radio and keep me updated."
         her determined coat "Will do."
-        him determined "Do you need the wagon?"
-        her nervous coat "If he wants to pay in food I want to be able to transport it."
-        him concerned "Makes sense."
         scene black with fade
         "She left early the next morning. That evening she radioed me."
         play sound "sfx/radio.mp3"
@@ -7886,7 +7880,7 @@ label community29:
             kid shifty "I heard a rumor that Pete's credits were stolen."
             her determined coat "That's what Pete said."
             kid determined "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
-            him surprised "This is the first I've heard of it."
+            her surprised "Maybe that's where his money went..."
             kid concerned "..."
             return
 
@@ -8068,16 +8062,8 @@ label community30:
         play music problems
         show him determined at center with dissolve
         nvl clear
-        "Where should I start?"
-        "I need the images of the crime scene."
-        if kevin_elected:
-            him_c "Hey, can you send me those images you mentioned?"
-            kevin_c "Of course. Here are the photos of the crime scene."
-        else:
-            him_c "Hey, can you send me those images you mentioned?"
-            julia_c "Sure, here you go."
+        "I started with the images of the crime scene."
         scene murder with fade
-        "I examined the photos."
         "There was a photo of Joel's wheelchair, the porch area where he died, and his body."
         "Joel's face in the photo looked super pale. He was on the floor on his back and his mouth and eyes were open."
         "He had an open gash running horizontally across his forehead, with bruising all around it."

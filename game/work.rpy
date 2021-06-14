@@ -21,7 +21,7 @@ label overwork:
     nvl clear
     menu:
         "I have too much work... what should I do?"
-        "Ask other farmers for help." if (overwork_colonists < 2):
+        "Ask other farmers for help." if ((overwork_colonists < 2) and colonists_strong("moderate")):
             $ overwork_colonists += 1
             if (overwork_colonists <= 1):
                 $ colonists += 1
@@ -49,7 +49,7 @@ label overwork:
                 "Not many people showed up, but we were able to harvest most of the [random_crop]."
                 $ modify_credits(farm.income_loss(98))
 
-        "Ask miners for help." if ((year > MINERS_ARRIVE_YEAR) and (overwork_miners < 2)):
+        "Ask miners for help." if ((year > MINERS_ARRIVE_YEAR) and (overwork_miners < 2) and miners_strong("moderate")):
             $ overwork_miners += 1
             if (overwork_miners <= 1):
                 $ miners += 1
@@ -127,7 +127,7 @@ label overwork:
                 her concerned "I'll help you out this time. But this is the last time."
                 him concerned "Thank you, [her_name]."
 
-        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_mavericks < 2) and not helen_dead):
+        "Ask Pete's group for help." if ((year > PETE_LEAVES_YEAR) and (overwork_mavericks < 2) and mavericks_strong("moderate") and not helen_dead):
             $ overwork_mavericks += 1
             if (overwork_mavericks <= 1):
                 $ mavericks += 1

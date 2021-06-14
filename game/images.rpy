@@ -34,14 +34,14 @@ init -10:
     image tween_cg:
         "images/cgs/chapter-tween.png"
         xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.9 yalign 0.5
-        linear 5.0 zoom 0.75
+        linear 5.0 xalign 0.6 yalign 0.3
+        linear 5.0 zoom 0.5
 
     image yteen_cg:
         "images/cgs/chapter-teen.png"
-        xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.9 yalign 0.5
-        linear 5.0 zoom 0.75
+        xalign 0.0 yalign 0.6
+        linear 5.0 xalign 0.8 yalign 0.3
+        linear 5.0 zoom 0.5
 
     image jellymother_cg:
         "images/cgs/jellymother.png"
