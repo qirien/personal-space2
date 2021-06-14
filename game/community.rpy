@@ -2086,7 +2086,7 @@ label community12:
             pete_c "I've put tiny screws that look like security cameras at intervals around my fence and so far it's working!!"
             him_c "Like that would fool anyone."
             pete_c "I think it was the miners. Two different boot tracks went out the gate with the cow's prints."
-            pete_c "They had to wake up the cow and push her. I can tell they had a hard time but I bet they had a plum or something to get her going."
+            pete_c "They had to wake up the cow and push her. I can tell they had a hard time but I bet they had some fruit or something to get her going."
             pete_c "I don't know how they'll butcher and slaughter her without the tools for it. Things could get really messy."
             pete_c "We've already butchered this season's bulls, and with the demand for beef so high, I can't justify slaughtering any cows."
             pete_c "We'll have to live without beef for a while so that we can give everyone some next season."
@@ -2131,7 +2131,7 @@ label community12:
                     $ know_BBQ = True
                 "Did the miners steal the cow?":
                     him pout "Do you know if the miners stole the cow that went missing?"
-                    "Chaco keeps looking at the sky, his face inscrutible."
+                    "Chaco kept looking at the sky, his face inscrutable."
                     chaco sad "No, I don't know anything about that."
                     him concerned "Pete said that one of his cows went missing. He said the cow's tracks were going towards the miner camp."
                     chaco normal "I hope he can find it."
@@ -2154,9 +2154,10 @@ label community12:
                 "What should I say?"
                 "Let's ask Sara if she wants to come too.":
                     him_c "I'll invite Sara to come with us."
+                    if (not is_liaison):
+                        him_c "She is the RET liaison, after all."
                     $ colonists += 1
                     $ sara_investigates = True
-                    "I messaged Sara about meeting Brennan tomorrow morning, and she agreed to come, too."
                 "Let's go by ourselves.":
                     him_c "Let's keep it a guy thing."
 
@@ -2166,7 +2167,7 @@ label community12:
                 show sara normal at midright with moveinright
                 show pavel normal at center with moveinright
                 "The next day, I met Pavel and Sara on the road to the miner's village."
-                sara "You guys can talk to Brennan. Maybe I'll say I'm really into cooking and ask one of the wives what she knows about the cow?"
+                sara sad "You guys can talk to Brennan. Maybe I'll say I'm really into cooking and ask one of the wives what she knows about the cow?"
                 pavel "Actually, most of the couples who came along are both miners. There are a few support personnel who don't work in the mines though."
                 pavel happy "I think I can talk at length about cooking better than you can. How about I do the recipe swap thing and you two can grill Brennan?"
                 sara happy "Yeah, I think you're right. What about you [his_name], does that sound like a good plan?"
@@ -2193,13 +2194,13 @@ label community12:
                 with moveinleft
                 "As we approached the mining village for the first time, we saw a few columns of smoke rising in the wet morning air."
                 pavel "Brennan said he'd meet us just outside the mine. I think that's where their control station is."
+                "We walked through the village on the way to the control station higher up on the foothill."
                 hide him
                 hide sara
                 hide pavel
                 with moveoutright
                 if sara_investigates:
                     hide sara with moveoutright
-                "We walked through the village on the way to the control station higher up on the foothill."
                 scene cabins with fade
                 if sara_investigates:
                     show sara normal at center
@@ -2222,7 +2223,7 @@ label community12:
                 if sara_investigates:
                     show him normal at left with moveinleft
                     show sara normal at midleft with moveinleft
-                    brennan happy "Hello, and welcome. We don't have any extra chairs, so I'm afraid you'll have to stand."
+                    brennan happy "Oh, hello. We don't have any extra chairs, so I'm afraid you'll have to stand."
                     brennan flirting "I do have some tea though, if you would like some."
                     sara happy "I would like some."
                     him pout "No thanks."
@@ -2238,8 +2239,7 @@ label community12:
                     brennan normal "I hope you find the missing cow. Now if you don't mind, I need to get back to work."
                     scene cabins with fade
                     show him normal at midleft with moveinright
-                    if sara_investigates:
-                        show sara normal at center with moveinright
+                    show sara normal at center with moveinright
                     "We left and headed down the mountain. Pavel waved and joined us."
                     show pavel normal at left with moveinleft
                     pavel happy "How was your conversation with Brennan?"
@@ -2263,7 +2263,7 @@ label community12:
 
                 else:
                     show him normal at midleft with moveinright
-                    brennan flirting "Hello, [his_name].  We don't have any extra chairs, so I'm afraid you'll have to stand."
+                    brennan flirting "Oh, it's you.  We don't have any extra chairs, so I'm afraid you'll have to stand."
                     brennan normal "I do have some tea, though, if you would like some."
                     him pout "No thanks."
                     "Brennan sipped his tea and smirked at me."
@@ -2332,7 +2332,7 @@ label community12:
                 him annoyed sweat "You were right, it was the miners, but they weren't in agreement about it."
                 him determined "Bandile, their supervisor, sends 100 credits as an apology. I think he already transferred it to your account."
                 pete angry "They think 100 credits is going to replace her? She could have had about three more calves!"
-                pete normal "Least I can do is try to find her."
+                pete normal "Guess I'll keep looking."
                 "I don't think he ever found her."
                 return
 
@@ -2346,10 +2346,10 @@ label community12:
                 pete normal "Are they going to find her for me?"
                 him determined "No. I don't think they even know which direction she went."
                 pete angry "I don't believe this. They steal my cow and then expect me to find her?"
-                pete "She could have had three more calves."
-                pete "Who do they think they are anyway?!"
+                pete normal "She could have had three more calves."
+                pete angry "Who do they think they are anyway?!"
                 him determined "Sorry, I tried, but I couldn't find anything definitive."
-                pete normal "Least I can do is try to find her."
+                pete normal "Guess I'll keep looking."
                 "I don't think he ever found her."
                 return
     else:
@@ -2670,7 +2670,7 @@ label community13:
         sara_c "RET says to go with whatever Brennan decides."
         him surprised "They said you can decide what we should do."
     lily angry "Any amount of heavy metals in drinking water can harm humans and animals who drink it."
-    brennan angry "The thing is, ore processing is one of the bottlenecks in our efficiency. If we delay it by any amount, it will delay our whole timeline."
+    brennan angry "Ore processing is one of the bottlenecks in our efficiency. If we delay it by any amount, it will delay our whole timeline."
     brennan explaining "Plus stopping ore processing won't reduce the amount of the leak."
     lily normal "Yes, but..."
     him concerned "It makes it look like you don't care about other people when you continue with business as usual during a health emergency."
@@ -2718,7 +2718,7 @@ label community13:
     if (c13_lily_happiness < 1):
         $ lily_mad_at_RET = True
 
-    brennan normal "Alright, Lily, you continue to do testing in a few locations to see how bad the contamination is."
+    brennan normal "Lily, continue to do testing in a few locations to see how bad the contamination is."
     brennan concerned "As soon as Kevin has those plans, I'll give him as many people as he needs to fix the leak."
     lily normal "Very well. I will send out a notice to everyone informing them to commence distilling all their water for now, including irrigation water."
     # https://www.sciencedaily.com/releases/2018/03/180314092258.htm an MOF/polymer "can quickly and selectively remove high amounts of heavy metals like lead and mercury from real-world samples"
@@ -2731,13 +2731,14 @@ label community13:
     him normal "I can't tell a pipette from a pipe cleaner, but if [her_name] is having a slow day, maybe she could help?"
     "Dr. Lily started messaging people and I went home to work."
     scene farm_interior with fade
+    show him determined at midleft with moveinleft
     nvl clear
     lily_c "Heavy metals have been detected in our water supply."
     lily_c "Distill all irrigation and culinary water until further notice."
-    lily_c "Please tell your neighbors if they do not typically see these messages."
     natalia_c "How in the world are we supposed to distill all our irrigation water?!"
     thuc_c "I don't have a way to distill {b}any{/b} water right now."
     ilian_c "We have a few emergency distillers that I'll put out right away, but they'll only make enough for drinking."
+    pete_c "RET's screwing us over again... I'll print up some parts."
     thuc_c "How long has the contamination been going on?"
     lily_c "Sometime in the last week."
     her_c "What metals exactly?"
@@ -2745,9 +2746,8 @@ label community13:
     her_c "Please send me the details." #https://www.medlife.com/blog/heavy-metal-poisoning-symptoms-treatments/ treatment includes chelates, but they can take away other important minerals
     him_c "I don't think we can distill enough water for the crops. Does anyone know of an alternative water supply?"
     brennan_c "Is this really necessary? Dr. Lily's test only detected trace amounts."
-    lily_c "Trace amounts can easily concentrate in fruits, vegetables, and roots."
-    her_c "Our bodies can handle small amounts of heavy metals... Dr. Lily, I'll be right over to discuss what the health recommendations should be."
-    show him normal at midleft with dissolve
+    lily_c "Trace amounts can easily concentrate in plants, especially rice and root vegetables."
+    her_c "Adults can handle small amounts of heavy metals, but not children... Dr. Lily, I'll be right over to discuss what the health recommendations should be."
     "I set up a small distillery on our stove, but it would only make enough water to drink that night."
     "I consulted the map Zaina had been working on as she scouted the surrounding land for good mining spots."
     "Zaina had climbed other mountains in the same range as the ones close to our river, which also had water flowing from them, but none of them were nearby."
@@ -2797,7 +2797,7 @@ label community13:
                 lily angry "To me! I already do routine testing on our water."
                 her annoyed coat "I would like to be notified as well, since it could impact the health of colonists and miners."
                 pavel sad "I would also like to know of any mining activity that could impact colonists."
-                brennan sad "In the future I will notify you all."
+                brennan sad "Fine, in the future I will notify you all."
                 brennan concerned "Now that we have that out of the way, Kevin, could you tell us a little more about why this happened and how we can prevent it in the future?"
                 hide lily
                 hide pavel
@@ -2810,7 +2810,7 @@ label community13:
                 kevin normal "The crest of the dam was constructed for foot traffic, but not vehicle traffic, but at some point a vehicle crossed the dam, damaging its structure."
                 kevin sad "We repaired this and posted new signs. However, heavy rains caused more erosion than expected, possibly because plant and soil types are not analogous to Earth's."
                 kevin normal "I also did not anticipate that the nearby resistive rocks would cause extra solar damage to our electronic warning system." # https://www.nationalgeographic.com/science/2019/03/solar-storms-worse-damage-if-you-live-near-certain-rocks-geology/
-                kevin normal "Because of the damage to the warning system, we did not receive notification when the leak breeched the first and second water lock."
+                kevin normal "Because of the damage to the warning system, we did not receive notification when the leak breached the first and second water lock."
                 kevin sad "I have been able to stop the leak for now, but I am still researching materials for the repair."
                 show kevin at midleft with move
                 show brennan normal at midright with dissolve

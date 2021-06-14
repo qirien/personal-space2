@@ -149,6 +149,7 @@ label start:
     $ bios.activate("[his_name]")
     $ bios.activate("[her_name]")
     $ bios.activate("[kid_name]")
+    default show_person = "Thuc"
 
     # FARM
     default year = 1

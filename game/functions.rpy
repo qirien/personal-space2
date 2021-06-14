@@ -194,14 +194,16 @@ init -100 python:
     # Get the person's first name from their display name.
     # Used in the message board - bios interface
     def get_nickname(name):
+        if (not name):
+            return name
         if (name.startswith(his_name)):
-            return "Jack"
+            return his_name
         elif (name.startswith(her_name)):
-            return "Kelly"
+            return her_name
         elif (name.startswith(kid_name)):
-            return "Terra"
+            return kid_name
         elif (name.startswith(bro_name)):
-            return "Aeron"
+            return bro_name
         elif (name.startswith("Dr.")):
             return "Lily"
         elif (name.startswith("Mayor")):

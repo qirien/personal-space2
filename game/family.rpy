@@ -4235,7 +4235,7 @@ label family13_end:
             him sad "No."
             kid sad "Oh."
             "She didn't ask me anything else, which was fine with me because I didn't want to talk about it, either."
-            "I felt like maybe it was partly my fault; I should have let [her_name] rest more, or grown better food, or... something."
+            "I felt like maybe it was partly my fault; I should have let [her_name] rest more, or grown better crops to eat, or... something."
             "And if I felt that way, how did [her_name] feel?"
         "No, the baby died.":
             him sad "No, the baby died for some reason while it was inside Mom."
@@ -4293,7 +4293,7 @@ label family13_end:
     call bedroom_scene
     her concerned "I'm sorry..."
     him concerned "Hey, hey, it's not your fault."
-    her sad "Maybe if I hadn't worked so hard, or eaten better food, or..."
+    her sad "Maybe if I hadn't worked so hard, or eaten better, or..."
     him determined "You're a doctor; you know sometimes these things just happen."
     her cry "Just because we don't know the cause doesn't mean there isn't one!"
     menu:

@@ -105,6 +105,7 @@ style frame:
 screen say(who, what):
     style_prefix "say"
     default show_menutab = False
+    $ nickname = get_nickname(who)
 
     showif show_menutab:
         imagebutton xpos 1245 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")
@@ -138,13 +139,12 @@ screen say(who, what):
         if who is not None:    
             window:
                 style "namebox"
-                $ nickname = get_nickname(who)
                 button:                       
                     action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
                     text who:
                         id "who"
     
-    imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, who)]
+    imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, nickname)]
     $ tooltip = GetTooltip()
     if tooltip:
         text "[tooltip]" italic True yalign 0.75 xalign 1.0
