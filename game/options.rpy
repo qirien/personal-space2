@@ -15,7 +15,7 @@
 define config.name = _("OPS2: Space to Grow")
 
 ## The version of the game.
-define config.version = "0.4"
+define config.version = "0.5"
 define config.developer = True
 define config.console = True
 #define config.auto_choice_delay = 1 #None
