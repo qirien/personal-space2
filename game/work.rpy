@@ -268,7 +268,6 @@ label debt_event:
             $ modify_farm_size(1)
             "I also decided to prepare another field. That way I could plant more crops."
     else:
-        # TODO: RET should send you a nastygram in here, too
         "Even after we tightened our belts and reduced unnecessary expenses, we were still in the red."
         "Ilian stopped selling us everything except the barest necessities."
         "I had to do something."
@@ -285,10 +284,10 @@ label debt_event:
                         "Pavel paid me for helping him move some furniture and carry some heavy things for him."
                     else:
                         "I knew Sara didn't have much, but she paid me to help fix up some things at her house."
-                    $ modify_credits(50)
+                    $ modify_credits(100)
                 block:
                     "Ilian let me work in the storehouse organizing and preserving food."
-                    $ modify_credits(40)
+                    $ modify_credits(50)
                 block:
                     if (year < LILY_DIES_YEAR):
                         "Dr. Lily needed some help cataloguing samples of local plants and animals. It was monotonous work, but she paid well."

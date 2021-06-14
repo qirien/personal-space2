@@ -117,4 +117,3 @@ init -100 python:
 
             return poem_string.rstrip()
 
-        # TODO: change wordpacks?
