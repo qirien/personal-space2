@@ -2737,8 +2737,7 @@ label community13:
     lily_c "Distill all irrigation and culinary water until further notice."
     natalia_c "How in the world are we supposed to distill all our irrigation water?!"
     thuc_c "I don't have a way to distill {b}any{/b} water right now."
-    ilian_c "We have a few emergency distillers that I'll put out right away, but they'll only make enough for drinking."
-    pete_c "RET's screwing us over again... I'll print up some parts."
+    ilian_c "We have a few emergency distillers that I'll put out right away, but they'll only make enough for drinking. We should ask Pete to print some parts."
     thuc_c "How long has the contamination been going on?"
     lily_c "Sometime in the last week."
     her_c "What metals exactly?"
@@ -2898,13 +2897,14 @@ label community13:
         him normal "Good luck getting everyone to agree to something."
         hide her with moveoutleft
         label meeting_abstain:
-            "I put [kid_name] and [bro_name] to bed like normal."
+            "I put [kid_name] and [bro_name] to bed, but I was thinking about arsenic and distillation and poison the whole time."
             hide kid
             hide bro
             with dissolve
             show him determined with dissolve
-            "I took some time to do more research on heavy metals and the things we eat."
-            "Even if the fruits and vegetables were fine, eating chickens that ate those vegetables could be a problem."
+            "Finally, I had time to do more research on heavy metals and foods."
+            "Peeling root vegetables could help get rid of some contaminants."
+            "Even if the fruits and vegetables were fine, eating animals that ate those vegetables could be a problem."
             nvl clear
             her_c "Hey, we're done with the meeting, but I'm going to help Dr. Lily tonight, so don't wait up."
             him_c "How was it?"
@@ -4589,7 +4589,7 @@ label community19:
     scene path with fade
     show helen normal at midright with moveinleft
     show him normal at midleft with moveinleft
-    play sound "sfx/woodchimes.ogg" loop #TODO: this crashes on Android??
+    play sound "sfx/woodchimes.ogg" loop #TODO: this crashes on Android?? Maybe fixed; test again.
     "That Tuesday I saw Helen coming through town with a large backpack of wares to sell."
     "She had made some chimes out of hollowed-out branches and bull horns that hung from the pack to give an audible signal of her passing."
     "Scarves and gloves with jellystar patterns on them hang from the top."
@@ -5009,8 +5009,10 @@ label community21:
     brennan explaining "No, I didn't, but my friend did."
     brennan happy "It licked my face whenever I walked in the door, but otherwise I ignored her."
     kid happy "It seems like it would be really fun to interact with an animal that can tell what you're feeling."
-    brennan flirting "Oh, and none of the human animals here can do that?"
-    kid shifty "You know what I mean!"
+    brennan flirting "Oh, and none of the creatures here can do that?"
+    kid shifty "I don't think so..."
+    brennan surprised "Not even the human ones?"
+    kid laugh "Oh, those don't count!"
     "We kept walking the rest of the day, chatting with each other while we walked."
     hide him
     hide kid
@@ -7484,26 +7486,27 @@ label no_euthanasia:
     sara_c "I told him we could start next week. {emoji=happy}"
     scene kid_bedroom with fade
     show him normal at midleft with moveinleft
-    show pavel sad at quarterright with dissolve #TODO: sprite of pavel with eyes closed?
+    show pavel sleeping at quarterright with dissolve
 
     "The next day, I stopped by his house to check on him. Just in case."
     "He seemed to be deeply asleep..."
     show him surprised at center with move
     "No, he was out cold. Dead?"
     "He left a note on his computer pad."
-    legalese "I'm so grateful that you were willing to look after me. When I think of all the care I will likely need, I find it unbearable to think of the burden I would place on you."
-    legalese "Do try to survive, but if you can't survive, please keep your spirit of self-sacrifice and compassion."
-    legalese "Don't think of my suicide as a failure on your part. This was my own rational decision in the face of a known future I preferred not to live."
+    nvl clear
+    pavel_c "I'm so grateful that you were willing to look after me. When I think of all the care I will likely need, I find it unbearable to think of the burden I would place on you."
+    pavel_c "Do try to survive, but if you can't survive, please keep your spirit of self-sacrifice and compassion."
+    pavel_c "Don't think of my suicide as a failure on your part. This was my own rational decision in the face of a known future I preferred not to live."
     "I quickly messaged [her_name], and she rushed over from across the street."
     show him cry at midleft with move
     show her annoyed coat at center with moveinleft
     "I felt a few tears fall from my eyes. This was how he thanked us?"
-    her surprised coat "He's still alive! It looks like he injected himself with opiates last night, but he's still conscious."
+    her surprised coat "He's still alive! It looks like he overdosed on opiates last night, but he's still conscious."
     "I hurriedly wiped my face."
     him surprised "Are you going to save him?"
     her determined coat "I'm going to try."
     scene hospital with fade
-    show pavel sad at quarterright, flip
+    show pavel sleeping at quarterright, flip
     show her determined coat at center
     with dissolve
     play sound "sfx/heartbeats.ogg"
@@ -7542,7 +7545,7 @@ label no_euthanasia:
     show kid concerned at midright
     with dissolve
     kid "So now Travis and Anya are both mad at me! I was just trying to be a good friend to both of them, but all they want to do is complain about each other..."
-    pavel sad "Oh dear. That's terrible, uh, ah... I'm sorry, I can't think of your name."
+    pavel sad "Oh dear. That's terrible. Um, ah... would you tell me your name again, dear?"
     show him surprised at left with moveinleft
     him annoyed "[kid_name]. Her name is [kid_name]."
     pavel normal "I knew that! Maybe you should ask Naomi, [kid_name]. She always knows what to do."
@@ -7565,6 +7568,7 @@ label no_euthanasia:
     "One day Julia was late coming to watch him, and Sara left him alone."
     "Julia couldn't find him that night and we all started searching for him."
     scene pond with fade
+    show pavel sleeping at center with dissolve
     "In the morning, we found his body drowned in the river."
     $ bios.addToBio("Pavel", "In his later years, he suffered from dementia and became less and less attached to reality. He had a stroke and couldn't feed himself, but we cared for him until the very end.")
     scene church with fade
@@ -7629,7 +7633,7 @@ label community29:
     him_c "Oh... is a healthy baby possible?"
     her_c "Yes, but she might need extra care. Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    if (mavericks_strong("moderate")): #5 #TODO: I changed this to moderate. see if it's too difficult to get in testing
+    if (mavericks_strong("moderate")): #5 
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "She doesn't want to stay with Travis at his restaurant?"
         her_c "It's noisy in the evenings and there isn't really room for her there."
@@ -9004,7 +9008,7 @@ label community30:
 #                            "I opened the water barrels. They were all full of water."
 #                            jump noel_no_confession
 
-#        #TODO: if ban_firegrass
+#        # if ban_firegrass....?
 #        label noel_confession:
 #            scene community_center
 #            "I met Noel in the community center. She thanked me for helping her."
@@ -9272,7 +9276,6 @@ label community30:
                                         him_c "I'm accusing her of conspiring to murder Joel. And I'm accusing Van of putting that plan into action."
                                         sara_c "Got it. See you next week."
                                         him_c "Sounds like a plan."
-                                        # TODO: I got a crash here, but I'm not sure why.
                                         him normal "Sara says she can make it happen."
                                         him pout "In the meantime, can you really test if the tea has firegrass in it?"
                                         her determined "I have tools for measuring the amount of caffeine is in a given substance."
