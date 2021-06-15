@@ -428,16 +428,17 @@ label ending_Ac:
 
     scene classroom with fade
     show toddler at center with dissolve
-    "I remember when she was little, she wasn't afraid of anything, and she couldn't wait to do new things like go to school or go to the beach."
+    "I remember when she was little, she wasn't afraid of anything."
     scene ocean with fade
     show child at center with dissolve
-    "Now, when I ask her what she sees in her future, she just shrugs."
+    "She couldn't wait to do new things like go to school or go to the beach."
     scene sunset with fade
     show kid nervous at center with dissolve
+    "Now, when I ask her what she sees in her future, she just shrugs."
     "She's changed a lot...but in some ways, she's still a kid."
     "That's fine for now, but part of me wants more for her."
-    "Should she want to leave home? Is it my fault that she doesn't? Should I have taught her more, somehow?"
-    "I can't stop thinking these kinds of things."
+    "Should I have taught her more, made her work harder?"
+    "I can't stop thinking these kinds of things..."
     "I guess that's part of what it means to be a parent."
 
     $ achieved("Forever My Little Girl")
@@ -704,7 +705,8 @@ label ending_cmima: #is this ending even possible?
     show her nervous at midright behind rain with dissolve
     "We took our wagon up the foothill towards the miner's camp. Other colonists had found places to stay here, with tents popping up every now and then."
     "We set up a temporary shelter, but it was still very wet. We were able to get another light load up, but most of our food storage was ruined by the flood."
-
+    stop sound fadeout 1.0
+    
     return
 
 label flood_ending_C:

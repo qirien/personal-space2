@@ -262,11 +262,11 @@ label start:
     #######################################################################
     scene stars with fade
     $ _quit_slot = "quitsave"
-    menu:
-        "Beta":
-            $ pass
-        "Testing":
-            jump tests
+    # menu:
+    #     "Beta":
+    #         $ pass
+    #     "Testing":
+    #         jump tests
 
     # TODO: Take this out when beta testing is over
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
