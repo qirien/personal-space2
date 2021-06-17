@@ -131,7 +131,6 @@ label ending:
 
 #1 aci - Blames you for everything. Clingy. Returns to Earth (with Lorant?) but you know the relationship won't last.
 label ending_ac:
-    "Ending aci"
     play music tense
     scene plain with fade
     show him determined at center
@@ -270,7 +269,6 @@ label ending_ac:
 # she has no confidence or self-direction.
 # always worried, aims to please people, scared of making mistakes
 label ending_aC:
-    "Ending aCi."
     scene hospital with fade
     show her normal coat at midright
     show thuc normal at center
@@ -370,7 +368,6 @@ label ending_aC:
 
 #3 Ac - sets out on her own, with delivery service, but you worry she will not know enough or be able to work hard enough
 label ending_Ac:
-    "Ending AcI."
     scene fields with fade
     show him normal at midright
     show kid normal at midleft
@@ -451,7 +448,6 @@ label ending_Ac:
 #4 AC - becomes an expert on the jellies, starts to form her own
 #       happy web of relationships on Talaam
 label ending_AC:
-    "Ending AC"
     scene stars with fade
     "[kid_name] moved out. We all pitched in to build a dorm-style apartment building for the growing number of non-farmers that didn't need a lot of space."
     "She seemed to like it; it was closer to town, where she spent most of her time in the library and at the science lab studying biology, astronomy, and sociology."

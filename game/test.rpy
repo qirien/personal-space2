@@ -891,8 +891,6 @@ label test_crops:
             call expression work_event
             $ year += 1
 
-
-    "The end"
     jump ending
     return
 
@@ -922,7 +920,6 @@ label test_family:
 
         $ year += 1
 
-    "The end"
     jump ending
     return
 

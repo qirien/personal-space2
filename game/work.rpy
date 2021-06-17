@@ -351,6 +351,7 @@ label farm_tutorial:
                 "On the right is how many calories the current farm will provide, and how much work it will take."
                 scene tutorial-crop-select with dissolve
                 "When I select a farm space, I can choose what crop should go there and see information about each crop."
+                "I always have to allocate space for my goats, but which other crops I plant is up to me."
                 scene tutorial-red with dissolve   
                 "The background color of each space shows how much nitrogen is in this field."
                 "A red color means there's not enough nitrogen for that crop and I need to pick something else."
