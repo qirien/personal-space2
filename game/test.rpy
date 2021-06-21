@@ -726,6 +726,7 @@ label test_dialogue:
     him angry "Careful-- I'm not giving any to people that disparage my cuisine!"
     bro happy "---like something I want to try."
     him happy "That's better!"
+    scene stars with fade
     return
 
 label test_message_board:

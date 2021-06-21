@@ -720,7 +720,7 @@ label family2:
 
     her determined coat "[his_name], we need help."
     him annoyed "With what?"
-    her annoyed coat "With [kid_name]! You know where their Helen's son Travis was was she was in surgery?"
+    her annoyed coat "With [kid_name]! You know where Helen's son Travis was when she was in surgery?"
     him surprised "Terrorizing the clinic's cotton ball supplies?"
     her determined coat "No! He was at Sister Naomi's."
     him normal "Oh, well, that was nice of her."

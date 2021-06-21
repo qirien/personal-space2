@@ -16,32 +16,32 @@ init -10:
     image baby_cg:
         "images/cgs/chapter-baby.png"
         xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.8 yalign 0.5
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 0.8 yalign 0.5
+        linear 3.0 zoom 0.5
 
     image toddler_cg:
         "images/cgs/chapter-toddler.png"
         xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.8 yalign 0.2
-        linear 5.0 zoom 0.5       
+        linear 3.0 xalign 0.8 yalign 0.2
+        linear 3.0 zoom 0.5       
 
     image child_cg:
         "images/cgs/chapter-child.png"
-        xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.7 yalign 0.5
-        linear 5.0 zoom 0.75
+        xalign 0.0 yalign 0.1
+        linear 3.0 xalign 0.7 yalign 0.5
+        linear 3.0 zoom 0.75
 
     image tween_cg:
         "images/cgs/chapter-tween.png"
         xalign 0.0 yalign 0.5
-        linear 5.0 xalign 0.6 yalign 0.3
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 0.6 yalign 0.3
+        linear 3.0 zoom 0.5
 
     image yteen_cg:
         "images/cgs/chapter-teen.png"
         xalign 0.0 yalign 0.6
-        linear 5.0 xalign 0.8 yalign 0.3
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 0.8 yalign 0.3
+        linear 3.0 zoom 0.5
 
     image jellymother_cg:
         "images/cgs/jellymother.png"
@@ -55,31 +55,31 @@ init -10:
 
     image mountain_cg:
         "images/cgs/mountain.png"
-        linear 10.0 zoom 0.5
+        linear 8.0 zoom 0.5
 
     image ending1_cg:
         "images/cgs/ending1.png"
         xalign 0.0 yalign 0.4
-        linear 5.0 xalign 0.8 yalign 0.5
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 0.8 yalign 0.5
+        linear 3.0 zoom 0.5
 
     image ending2_cg:
         "images/cgs/ending2.png"
         xalign 0.8 yalign 0.3
-        linear 5.0 xalign 0.0 yalign 0.2
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 0.0 yalign 0.2
+        linear 3.0 zoom 0.5
 
     image ending3_cg:
         "images/cgs/ending3.png"
         xalign 0.0 yalign 0.2
-        linear 5.0 zoom 0.75
-        linear 5.0 zoom 0.5
+        linear 2.0 zoom 0.75
+        linear 2.0 zoom 0.5
 
     image ending4_cg:
         "images/cgs/ending4.png"
         xalign 0.0 yalign 0.5
-        linear 5.0 xalign 1.0 yalign 0.5
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 1.0 yalign 0.5
+        linear 3.0 zoom 0.5
 
     image aurora_animated:
         "images/bg/aurora.jpg"

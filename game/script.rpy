@@ -278,15 +278,19 @@ label start:
             while (i < len(crop_info)):
                 if crop_info[i][NAME_INDEX] in persistent.crops_unlocked:
                     $ enable_crop(crop_info[i][NAME_INDEX])
-                    pause 0.5
+                    pause 0.4
                 $ i += 1
         "Choices you've made before will show up in italics so you can decide if you want to see something different."
         "Choices you normally wouldn't see will show up crossed out so you can see other options."
+        $ renpy.hide_screen("show_notification") #Just in case this got stuck on or something
 
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
             "If you haven't played Our Personal Space 1, it's available for free at http://www.metasepiagames.com and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+        if (not renpy.mobile):
+            "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
+            "If you miss something, you can scroll backwards and forwards using the mousewheel."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve
@@ -359,8 +363,8 @@ label life_loop:
                 $ income = farm.calculate_income(years_yield)
                 if (income < get_expenses_required(year-1)):
                     $ debt_consecutive_years += 1
-                $ modify_credits(income)
-                $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY)) # We want this for the PREVIOUS year.
+                $ modify_credits(income, False)
+                $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY), False) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
                     $ modify_credits(-allowance_amount * 7)
 
@@ -389,12 +393,14 @@ label life_loop:
         $ show_year = year
 
         # Autosave
+        $ renpy.block_rollback()
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
 
         call screen plan_farm() with fade
 
         label yearly_events:
+            $ renpy.block_rollback()
             scene stars
             if demo_mode:
                 jump demo_continue
@@ -465,35 +471,35 @@ label life_loop:
             if (year == BABY_MAX):
                 scene stars with fade
                 show text "End Baby Years"
-                $ renpy.pause(2.0)
+                $ renpy.pause(1.5)
                 show baby_cg
                 $ renpy.pause()
 
             if (year == TODDLER_MAX):
                 scene stars with fade
                 show text "End Toddler Years"
-                $ renpy.pause(2.0)
+                $ renpy.pause(1.5)
                 show toddler_cg
                 $ renpy.pause()
 
             if (year == CHILD_MAX):
                 scene stars with fade
                 show text "End Childhood Years"
-                $ renpy.pause(2.0)
+                $ renpy.pause(1.5)
                 show child_cg
                 $ renpy.pause()
 
             if (year == TWEEN_MAX):
                 scene stars with fade
                 show text "End Tween Years"
-                $ renpy.pause(2.0)
+                $ renpy.pause(1.5)
                 show tween_cg
                 $ renpy.pause()
 
             if (year == YTEEN_MAX):
                 scene stars with fade
                 show text "End Young Teen Years"
-                $ renpy.pause(2.0)
+                $ renpy.pause(1.5)
                 show yteen_cg
                 $ renpy.pause()
 

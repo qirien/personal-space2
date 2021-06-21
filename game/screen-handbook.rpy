@@ -86,7 +86,7 @@ screen teen_info():
 ###################################################################
 
 style parenting_frame is computer_sub_frame:
-    xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 8
+    xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 48
 style parenting_label is computer_sub_label
 style parenting_label_text is computer_sub_label_text
 style parenting_text is computer_sub_text

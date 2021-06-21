@@ -45,8 +45,7 @@ screen yearly_summary():
     frame:
         background  "computer_pad_with_screen"
         text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
-        textbutton "?" xpos 1076 ypos 16 style "computer_button" action Jump("farm_tutorial")
-        textbutton "             " xpos 1085 ypos 16 style "computer_button"  action ShowMenu("preferences")
+        imagebutton auto "gui/computerpadbutton_%s.png" action ShowMenu("save") xpos 1233 yalign 0.5
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -71,7 +70,10 @@ screen yearly_summary():
                                         xalign 1.0
                                         #label "Year [year] Summary"
                                         #text notifications
-                                        label "[kid_name]"
+                                        hbox:
+                                            label "[kid_name]"
+                                            $ iconname = bios.getIconName("[kid_name]")
+                                            add "images/icons/" + iconname + "-icon.png"
                                         hbox:
                                             null width 40
                                             vbox:

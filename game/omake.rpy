@@ -95,6 +95,7 @@ label ending_extra:
     him normal "Anytime."
 
     "Ending, Mistakes to Call My Own."
+    scene stars with fade
     return
 
 

@@ -248,7 +248,7 @@ init -100:
 
     transform driftdown:
         ypos 0.0 yanchor 1.0
-        linear 15.0 ypos 1.0 yanchor 0.0
+        linear 10.0 ypos 1.0 yanchor 0.0
 
 
     # Baby positions for being held

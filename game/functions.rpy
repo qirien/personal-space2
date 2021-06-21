@@ -338,11 +338,12 @@ init -100 python:
                 return "default_crop_event"
 
     # Change amount of credits you have
-    def modify_credits(amount):
+    def modify_credits(amount, show_notification=True):
         global credits, notifications
         amount = roundint(amount)
-        credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
-        notify_change(credit_msg)
+        if show_notification:
+            credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
+            notify_change(credit_msg)
         credits += amount
         return
 
@@ -432,7 +433,7 @@ init -100 python:
     # Return True if marriage is strong for the current year
     # A rate of 1 per 4 years is considered high given a current max of 10
     def has_strong_marriage():
-        strong = (marriage_strength >= roundint(year / 4.0))
+        strong = (marriage_strength >= roundint(year / 4.5))
         if strong:
             notify_change("{emoji=heart} Strong Marriage")
         return strong

@@ -346,7 +346,7 @@ label farm_tutorial:
                 scene tutorial-left with fade
                 "The left part of the screen shows information about my family and colony."
                 scene tutorial-mid with dissolve
-                "The middle of the screen shows the farm layout."
+                "The middle of the screen shows the current year and the farm layout."
                 scene tutorial-right with dissolve
                 "On the right is how many calories the current farm will provide, and how much work it will take."
                 scene tutorial-crop-select with dissolve
@@ -416,7 +416,7 @@ label work2:
             kevin normal "Corn is a versatile plant. Culinarily, it can be a vegetable or a grain."
             zaina normal "Does she have popcorn?"
             him surprised "Yeah, I think some popcorn seeds came on the shuttle with you guys and she's been trying them out. I bet her kids love that."
-            kevin sad "Does she have many children?"
+            kevin sad "Her kids?"
             him determined "She and Martín have five kids. Or, four now, I guess."
             zaina sad "Now?"
             him concerned "There was an accident... and their daughter Josephina died when she was four years old."
@@ -435,6 +435,7 @@ label work2:
                     him concerned "No, one of my friends was driving it."
                     zaina normal "Oh, I see. You don't want to tell me who it was before I get to know them."
                     him determined "Yeah. The Peróns are still pretty sad about it and hold a vigil every year where it happened."
+                    $ mavericks += 1
             him normal "Anyway, their other kids are old enough to help around the colony. Well, maybe not Mateo. But their oldest son Tomás just got married."
             $ met_peron = True
 

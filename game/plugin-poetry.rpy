@@ -83,6 +83,7 @@ screen pp_screen(board, call_return=True):
                     # adding a new word doesn't work anymore...
                     #textbutton "+" action renpy.curried_invoke_in_new_context(textinput) size_group "nav_buttons"
                     textbutton "↔" action ShuffleWordLists(board) size_group "nav_buttons" tooltip "Get different words"
+                    text "Shuffle" italic True
                 vbox:
                     label "Nouns"
                     vpgrid:

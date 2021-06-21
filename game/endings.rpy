@@ -59,9 +59,6 @@ label ending:
     "We didn't always agree on what [kid_name] should do, but in the end, [kid_name] made her own choices."
     "I'm sure I played a part in those, but I can't put my finger on any one thing that made her turn out the way she did."
 
-    $ parenting_style = get_parenting_style()
-    "Parenting style: [parenting_style]"
-
     if (total_attachment < ATTACHMENT_HIGH):
         if (total_competence < COMPETENCE_HIGH):
             call ending_ac

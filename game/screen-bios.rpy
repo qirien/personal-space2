@@ -19,7 +19,7 @@ screen biographies(name):
 
                 vpgrid:
                     cols 1
-                    xsize LEFT_COLUMN_WIDTH
+                    xsize LEFT_COLUMN_WIDTH + 40
                     draggable True
                     mousewheel True
                     scrollbars "vertical"

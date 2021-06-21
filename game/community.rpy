@@ -573,7 +573,7 @@ label community3:
                         him surprised "Oh! No, not really."
                         naomi happy "Well, if you write one I hope you will share it with us. Do you have a favorite poet?"
                     him normal "Some modern poetry is good, but some is just pretentious pontificating. I like a lot of older stuff, like Whitman and Frost."
-                    naomi normal "Oh yes. He had a way of inspiring goodness."
+                    naomi normal "Oh yes. I love how Frost inspires goodness."
                     "We talked about poetry in between feeding the kids a snack and breaking up a fight between Travis and [kid_name] when they both wanted to bang on the same pot."
                     "Then it was time to head home."
                     scene farm_interior with fade
@@ -643,51 +643,98 @@ label community4:
     him pout "I don't think she would do that. She can make tough decisions."
     lily happy "I believe Thuc has a valid point. We're endeavouring to nominate someone independent from Pavel."
     show naomi normal at quarterright with moveinright
-    naomi "Hello everyone, have you thought of someone to nominate?"
+    naomi "Have you thought of someone to nominate?"
     him surprised "I was thinking of nominating you, but Thuc and Lily said that would defeat the point of making the liaison separate from Pavel."
     naomi sad "Pavel and I are in frequent, close contact. Also, I would almost certainly choose to put the colonists's needs first."
     him happy "Isn't that what we want from a liaison?"
-    lily "What does 'putting the colonists's needs first' mean in this context? Our survival has been RET's main goal with establishing this colony."
+    lily angry "What does 'putting the colonists's needs first' mean in this context? Our survival has been RET's main goal with establishing this colony."
     him pout "RET didn't really explain why we need a liaison."
     lily normal "Regardless, I must choose someone. What do you think of Sara?"
     him normal "She helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
     naomi happy "Now that Oleg is a little older, she might be up to something like this."
     him concerned "Maybe. Oleg is about the same age as [kid_name], and she's still quite the handful."
-    naomi "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
+    naomi normal "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
     lily happy "And based on your relationships with other colonists, your socialization skills are at least average."
     thuc happy "Yeah! Let's make [his_name] do it!"
     him surprised "Hang on. I already feel pretty busy just with farming committee meetings, raising [kid_name], and the farming stuff."
-    naomi "We're all busy. Someone has to do this."
-    lily normal "This discussion has helped me decide who to nominate. Thank you."
+    thuc sad "We all do..."
+    naomi happy "We will help support whoever is elected so they can fulfill all their duties."
     hide lily with moveoutleft
     hide naomi
     hide thuc
     with moveoutright
+    scene community_center with fade
+    show pavel normal at center with dissolve
+    pavel "We will now take nominations for liaison."
+    show him determined at quarterleft with moveinleft
+    $ c4_sara_nominated = False
+    $ c4_him_nominated = False
     menu:
         "Whom should I nominate? I can't nominate myself."
         "Sister Naomi. She'll do what's best for everyone.":
             $ colonists += 1
+            him surprised "I nominate Sister Naomi."
+            show naomi normal at quarterright with moveinright
+            naomi "I decline the nomination."
+            hide naomi with moveoutright
         "Sara. She's familiar with colony politics since she assists the mayor.":
             $ miners += 1
+            him surprised "I nominate Sara."
+            show sara normal at quarterright with moveinright
+            sara "If elected, I would do my best to be fair to everyone. I would need help, though!"
+            hide sara with moveoutright
+            $ c4_sara_nominated = True
         "Pete. He'll make sure RET doesn't get too much control.":
             $ mavericks += 1
-    "After the nominations, we voted for our favorite candidate."
+            him surprised "I nominate Pete."
+            show pete normal at quarterright with moveinright
+            pete normal "If elected, you can count on me to stand up for us against RET."
+            hide pete with moveoutright
+    hide him with moveoutleft
     $ parenting_style = get_parenting_style()
-    if (parenting_style== "authoritative"):
-        "My fellow colonists elected me to be the new representative."
-        $ is_liaison = True
-    elif(parenting_style == "authoritarian"):
-        "Sara, and Sister Naomi and I were nominated. I had the most votes, but not by much."
-        $ is_liaison = True
-    elif(parenting_style == "permissive"):
-        "I was nominated, but Sara was elected as the new representative."
+    show lily normal at quarterleft with moveinleft
+    if (parenting_style == "authoritative"):
+        lily normal "[his_name] is well-known to be fair and considerate of others. I nominate him."
+        $ c4_him_nominated = True
+    elif (parenting_style == "authoritarian"):
+        lily normal "[his_name] will follow rules and be dependable. I nominate him."
+        $ c4_him_nominated = True
     else:
-        "Sara was elected as the new representative."
-
-    if (is_liaison):
+        if c4_sara_nominated:
+            lily normal "Sara would support us and be fair, and is also familiar with colony politics. I second Sara's nomination."
+        else:
+            lily normal "Sara would support us and be fair, and is also familiar with colony politics. I nominate her."
+            show sara normal at quarterright with moveinright
+            sara "If elected, I would do my best to be fair to everyone. I would need help, though!"
+            hide sara with moveoutright
+    if c4_him_nominated:
+        show him normal at quarterright with moveinright
+        menu:
+            "What should I say?"
+            "I decline.":
+                him pout "I decline the nomination."
+            "I'll stand up for the colony.":
+                him determined "I'll make sure RET understands what we need and won't let them push us around."
+                $ mavericks += 1
+                $ is_liaison = True
+            "I'll balance the needs of RET and the colony":
+                him surprised "I would try to balance the colony's needs with the needs of the company."
+                $ miners += 1
+                $ colonists += 1
+                $ is_liaison = True
+        hide him with moveoutright
+    hide lily with moveoutleft
+    "After the nominations, we voted for our favorite candidate."
+    pavel normal "The results are in..."
+    if ((parenting_style == "authoritarian") or (parenting_style == "permissive")):
+        pavel sad "Oh, this was very close. Ahem, sorry, ah, forget I said that."
+    if is_liaison:
+        pavel happy "[his_name] will be our liaison! Wonderful! Let's support him as best we can."
         $ bios.addToBio(his_name, "I'm also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
     else:
+        pavel happy "Sara will be our new liaison! And she will do a wonderful job. Please give her your full support."
         $ bios.addToBio("Sara", "She's also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
+        
     stop sound fadeout 1.0
     return
 
@@ -791,7 +838,7 @@ label community5:
         show him normal at midright
         show pete normal at midleft
         him normal "Hey Pete. How are your cattle doing?"
-        pete happy "Surprisingly hale for living on an alien planet."
+        pete happy "Hale and hearty, despite living on an alien planet."
         him pout "Great. There's something I want to ask you about."
         him concerned "I heard that you're not storing much surplus in the storehouse."
         jump pete_no_storehouse
@@ -3780,7 +3827,7 @@ label community17:
         show travis at center
     show oleg at midright
     with move
-    "Thuc and I brought out the Harvest Cookies we made together. They're made with rice and corn and the kids noticed them eagerly."
+    "Thuc and I brought out the Harvest Cookies we made together. The kids gathered in close. I tried not to let any of them drool on the cookies."
     hide oleg with moveoutright
     show kid at center
     if (invited_mavericks):
@@ -6155,7 +6202,7 @@ label community25:
         show him normal at center with moveinleft
         show him normal at right with moveinleft
         "The first few were easy to catch. Then the jellystars started to hold on to each other and I couldn't catch anymore with the net."
-        show him pout and midleft with moveinright
+        show him pout at midleft with moveinright
         him "This is kind of difficult!"
         chaco sad "Yeah, when they start balling up like that it's really hard to catch just one or two."
         default community25_menuset = set()
