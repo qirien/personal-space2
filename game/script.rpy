@@ -291,6 +291,8 @@ label start:
         if (not renpy.mobile):
             "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
             "If you miss something, you can scroll backwards and forwards using the mousewheel."
+        else:
+            "You can use the tab at the right to bring up more options, like auto advance, preferences, and a conversation log."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve
