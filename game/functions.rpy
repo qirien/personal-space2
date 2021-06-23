@@ -196,14 +196,6 @@ init -100 python:
     def get_nickname(name):
         if (not name):
             return name
-        if (name.startswith(his_name)):
-            return his_name
-        elif (name.startswith(her_name)):
-            return her_name
-        elif (name.startswith(kid_name)):
-            return kid_name
-        elif (name.startswith(bro_name)):
-            return bro_name
         elif (name.startswith("Dr.")):
             return "Lily"
         elif (name.startswith("Mayor")):

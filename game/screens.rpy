@@ -1507,7 +1507,7 @@ screen nvl_dialogue(dialogue):
                 yfit gui.nvl_height is None
                 if d.who is not None:
                     $ nickname = get_nickname(d.who)
-                    $ is_jack = d.who.startswith(his_name)
+                    $ is_jack = (d.who == his_name)
                     $ who_color = d.who_args["color"]
                     if (who_color is None):
                         $ who_color = "#fff"
