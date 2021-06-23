@@ -1292,7 +1292,7 @@ screen bonus():
 
             textbutton "Deleted Ending" action Start("ending_extra")
             textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")
-            textbutton "Fighting Minigame" action Start("fight_brennan")
+            textbutton "Fighting Minigame" action Start("fight_brennan") # TODO: should we really have this in here?
 
 
 ## Confirm screen ##############################################################
