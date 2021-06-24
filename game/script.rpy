@@ -203,7 +203,7 @@ label start:
                         ["carrots",      3, 10, 1, 0, 3, 3, 10, True, False, False, 100],   # Root Vegetables
                         ["turnips",      3, 0, 6, 1, 1, 4, 10, False, False, False, 100],
                         ["onions",       4, 0, 3, 1, 5, 4, 5, False, False, False, 100],
-                        ["garlic",       1, 0, 7, 2, 5, 2, 4, False, False, False, 100],
+                        ["garlic",       1, 0, 7, 2, 5, 2, 4, False, False, False, 2],
                         ["spinach",      1, 6, 3, 2, 3, 2, 10, True, False, False, 100],   # Leafy greens
                         ["broccoli",     3, 2, 10, 1, 2, 3, 15, False, False, False, 100],
                         ["goats",        8, 1, 0, 1, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
@@ -425,7 +425,7 @@ label life_loop:
                 call low_calories
 
             # MALNUTRITION EVENT (optional)
-            if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
+            if farm.low_vitamins():
                 call bad_nutrition
 
             # Debt event if your credits have decreased for 3

@@ -26,7 +26,6 @@ init python:
             # Current health of the field, with Nitrogen levels and Pest levels
             # We *cannot* do health = [[100, 5] * max_size] because then all elements of the array point to the same memory location.
             self.health = [[Field.NITROGEN_FULL, Field.PEST_NONE] for i in range(max_size)]
-            [[Field.NITROGEN_FULL, Field.PEST_NONE]] * max_size
             # History of the last three crops planted in each space
             self.history = [["fallow", "fallow", "fallow"]] * max_size
             # Current crops planted in each space
@@ -208,8 +207,13 @@ init python:
 
             return valid_layout
 
+        # If we're checking for vitamins, return if we have enough vitamins.
+        # Otherwise, we can't have low vitamins yet
         def low_vitamins(self):
-            return (self.low_vitamin_a() or self.low_vitamin_c() or self.low_magnesium())
+            if (year > NUTRITION_YEAR):
+                return (self.low_vitamin_a() or self.low_vitamin_c() or self.low_magnesium())
+            else:
+                return False
 
         def low_vitamin_a(self):
             vitA = 0
@@ -278,6 +282,64 @@ init python:
             difference = self.calculate_income(low_yield) - self.calculate_income(high_yield)
             return difference
 
+        
+        def autoPlace(self):
+            self.clear_crops()
+
+            # Place goats and honey
+            goats_needed = crop_info[get_crop_index("goats")][MAXIMUM_INDEX]
+            honey_needed = crop_info[get_crop_index("honey")][MAXIMUM_INDEX]
+
+            while (goats_needed):
+                self.crops[self.min_nitrogen_index()] = "goats"
+                goats_needed -= 1
+
+            while (honey_needed):
+                self.crops[self.min_nitrogen_index()] = "honey"
+                honey_needed -= 1
+
+            available_crop_names = set(self.crops.getAvailableCrops())
+            for i in range(0, self.crops.len()):
+                crop_name = "beans"
+                # If it's a perennial, keep it.
+                # Otherwise, fill it with what makes sense
+                if (self.crops[i] == "fallow"):
+                    if (self.health[i][Field.NITROGEN_LEVEL_INDEX] < 50):
+                        crop_name = renpy.random.choice(list(available_crop_names.intersection(["beans", "peanuts"])))
+                    elif self.low_vitamin_c():
+                        crop_name = renpy.random.choice(list(available_crop_names.intersection(["potatoes", "peppers", "turnips", "broccoli", "spinach", "garlic"])))
+                    elif self.low_vitamin_a():
+                        crop_name = renpy.random.choice(list(available_crop_names.intersection(["squash", "carrots", "spinach"])))
+                    elif self.low_magnesium():
+                        crop_name = renpy.random.choice(list(available_crop_names.intersection(["beans", "peanuts"])))
+                    elif (self.low_calories()):
+                        crop_name = renpy.random.choice(list(available_crop_names.intersection(["wheat", "corn", "onions", "potatoes"])))
+                    else:
+                        crop_name = "fallow"
+                    
+                    self.crops[i] = crop_name
+
+                    # If we've reached the max, remove this crop from the ones that can be chosen
+                    if (self.crops.items.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
+                        available_crop_names.remove(crop_name)
+
+                    # If we have enough calories and nutrition and don't have work left, break out and return
+                    if (not self.low_calories() and not self.low_vitamins()):
+                    #if (self.get_total_work() >= get_work_available()):
+                        return
+            return
+
+        # Return the index of the empty square that has the least nitrogen
+        def min_nitrogen_index(self):
+            min_so_far = 500
+            index = 0
+            for i in range(0, self.crops.len()):
+                if (self.health[i][Field.NITROGEN_LEVEL_INDEX] < min_so_far):
+                    if (self.crops[i] == "fallow"):
+                        index = i
+                        min_so_far = self.health[i][Field.NITROGEN_LEVEL_INDEX]
+            return index
+
     ##
     # CROPS OBJECT
     ##
@@ -299,13 +361,17 @@ init python:
         def len(self):
             return len(self.items)
 
-        # Randomly select from currently available crops, respecting maximums
-        def setDefault(self):
+        def getAvailableCrops(self):
             available_crop_names = []
             for i in range(0, len(crop_info)):
                 if (crop_info[i][ENABLED_INDEX] and (crop_info[i][MAXIMUM_INDEX] > 0) and
                 (crop_temporarily_disabled != crop_info[i][NAME_INDEX])):
                     available_crop_names.append(crop_info[i][NAME_INDEX])
+            return available_crop_names
+
+        # Randomly select from currently available crops, respecting maximums
+        def setDefault(self):
+            available_crop_names = getAvailableCrops(self)            
 
             for i in range(0, self.len()):
                 # If it's a perennial, keep it.
@@ -383,10 +449,12 @@ init python:
         return
     
     # Check all the crops. If any are disabled, return False. Otherwise, return True.
+    # TODO: can you get this trophy??
     def all_crops_unlocked():
         for i in range(0, len(crop_info)):
-            if (not crop_info[i][ENABLED_INDEX]):
-                return False
+            if (crop_info[i][NAME_INDEX][-1] != "+"):
+                if (not crop_info[i][ENABLED_INDEX]):
+                    return False
         return True
 
 

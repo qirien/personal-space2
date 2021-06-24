@@ -28,7 +28,7 @@ screen plan_farm():
                         hbox:
                             spacing 10
                             frame:
-                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH# + 30
+                                xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + 20
                                 style "plan_farm_subframe"
                                 hbox:
                                     label "Status" xsize 100
@@ -44,19 +44,15 @@ screen plan_farm():
                                     else:
                                         text "OK!" style "plan_farm_status_text" color green_dark
                             hbox:
-                                yalign 0.5
-                                xsize RIGHT_COLUMN_WIDTH + 20
+                                xsize RIGHT_COLUMN_WIDTH
                                 textbutton "Clear":
                                     action [
                                             clear_crops,
                                             renpy.restart_interaction
                                             ]
                                 showif persistent.times_beaten:
-                                    textbutton "Random":
-                                        action [
-                                                set_default_crops,
-                                                renpy.restart_interaction
-                                                ]
+                                    textbutton "Auto":
+                                        action[ auto_place_crops, renpy.restart_interaction]
                                 textbutton "Done":
                                     sensitive valid_layout
                                     action If((farm.get_total_calories() < get_calories_required(year)), Confirm("Do you really want to continue without enough calories?", Jump("yearly_events")), Jump("yearly_events"))
@@ -583,6 +579,10 @@ init python:
         kid_work_slider = new_value
         renpy.restart_interaction()
         return
+
+    def auto_place_crops():
+        global farm
+        farm.autoPlace()
 
 #############################################################################
 #

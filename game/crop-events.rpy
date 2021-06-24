@@ -590,7 +590,6 @@ label potatoes1:
             "I decided not to risk poisoning myself or others."
             $ modify_credits(-0.2 * farm.crops.count("potatoes") * get_credits_from_name("potatoes"))
             "But even though they weren't good to eat, they would be fine for planting."
-            # some kind of variable?  community_level?  farm_level? sustence?
             $ colonists += 1
         "Warn people about the risks of solanine.":
             nvl clear
@@ -1154,7 +1153,7 @@ label goats2:
                     him surprised "Was it so bad it's... cheesy?"
                     kid normal "Ohhh, dad!"
 
-        "Allocate more land for goats":
+        "Allocate more land for goats" if (get_extra_work() >= 0):
             "If we needed two herds, then I'd make two herds. It wasn't too much work to make another goat pen and feeding area."
             "And it would be better to control the goats' mating, so we didn't have goats getting pregnant too young or goat pee smell getting on the milk or things like that."
             "I'm sure we'd eat some of these goats eventually, but for now I just wanted to grow the herd."
@@ -1946,7 +1945,7 @@ label honey1:
     him surprised "It looks like... a kid?!"
     "The kid looked about [kid_name]'s age. At first I thought maybe it was her... but then I noticed that the kid entered and left from the path that led to town."
     "I couldn't make out his features, but it looked like a boy wearing a wide-brimmed hat."
-    "There couldn't be that many kids that age with that kid of hat on the planet."
+    "There couldn't be that many kids that age with that kind of hat on the planet."
     menu:
         "What should I do?"
         "Ask on the colony message area.":
