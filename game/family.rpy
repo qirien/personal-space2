@@ -7104,12 +7104,12 @@ label lettie_dies:
     scene stars with fade
 
     "That whole evening was a blur."
-    $ strongest_faction = strongest_faction()
-    if (strongest_faction == "colonists"):
+    $ fav_faction = strongest_faction()
+    if (fav_faction == "colonists"):
         "Thuc arrived with his tractor and a big trailer."
-    elif (strongest_faction == "miners"):
+    elif (fav_faction == "miners"):
         "Brennan had someone bring a big front loader from the mine."
-    elif (strongest_faction == "mavericks"):
+    elif (fav_faction == "mavericks"):
         "Pete brought my tractor and trailer over."
 
     "Anya and Lorant and Oleg showed up and together we all managed to transport Lettie's body back to our farm."

@@ -104,10 +104,12 @@ label ending:
         $ mp.kelly_name = her_name
         $ mp.baby_name = kid_name
         $ mp.bro_name = bro_name
+        $ mp.boyfriend_name = boyfriend_name
         $ mp.save()
     
     if persistent.crops_unlocked is None:
         $ persistent.crops_unlocked = set()
+    $ persistent.boyfriend_name = boyfriend_name
     $ i = 0
     while (i < len(crop_info)):
         if crop_info[i][ENABLED_INDEX]:
@@ -376,7 +378,7 @@ label ending_Ac:
     him surprised "We going to see you at dinner tonight?"
 
     if (boyfriend_name == "Oleg"):
-        kid normal "Not tonight, I'm going to Oleg's."
+        kid normal "Not tonight, I'm going to Oleg's. We're going to do some experiments to see what motor might work for my bike."
     elif (boyfriend_name == "Travis"):
         kid normal "Not tonight. I'm helping Travis at DinerMight."
         him concerned "Is he going to pay you for all the free waitressing you do?"
@@ -451,7 +453,7 @@ label ending_AC:
     if (boyfriend_name == "Oleg"):
         "And she was closer to her boyfriend, Oleg."
     elif (boyfriend_name == "Travis"):
-        "And she was closer to her boyfriend, Travis, and her other friends, like Oleg."
+        "And she was closer to her boyfriend, Travis, and her other friends."
     else:
         "And she was closer to her friends, especially Oleg."
     "We invited them over for dinner about once a week, where she'd catch us up on all the latest developments."
@@ -459,7 +461,10 @@ label ending_AC:
     show her normal at right
     show him normal at midright
     show kid normal at center
-    show oleg normal at midleft
+    if (boyfriend_name == "Travis"):
+        show travis normal at midleft
+    else:
+        show oleg normal at midleft
     show bro normal at left
     kid "...so it turns out that the jellysquids cultivate the cucumber kelp on purpose, and use both it and the fish that feed on it for food and tools."
     her surprised "The jellysquids use tools?"
@@ -467,8 +472,13 @@ label ending_AC:
     bro determined "Can you pass the mashed potatoes?"
     kid annoyed "Aren't you eating anything else?! You're still as picky as ever..."
     him surprised "How come we never knew about the jellysquid city?"
-    oleg angry "It never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
-    kid normal "Oleg's made an app to help us map their city, and another to help us communicate better with them."
+    if (boyfriend_name == "Travis"):
+        travis happy "It's in the deep ocean. Not much scuba diving going on here!"
+        kid normal "And since it's made out of organic materials it looked like a coral reef or something."
+        travis excited "Oleg's new app makes talking with them way easier, though!"
+    else:
+        oleg angry "It never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
+        kid normal "Oleg's made an app to help us map their city, and another to help us communicate better with them."
     him determined "Better communication would definitely be a good thing."
     if jellypeople_happy:
         kid happy "I'm just glad you didn't mess up our first contact with them... they're still recovering from all the shells they lost, but since they moved and merged with another colony they've been doing much better."
@@ -477,13 +487,17 @@ label ending_AC:
         him surprised "Did they ever find shells for their babies?"
         kid determined "No, but they merged with another colony and have been able to grow more since then."
 
+    show travis normal with dissolve
     him concerned "This sounds like great research..."
     kid annoyed "...but you wonder how I'm going to make a living, right?"
     him flirting "We do prefer our daughter not to starve to death."
     if (independence >= INDEPENDENCE_HIGH):
         kid normal "Well, that's what I wanted to tell you! A non-profit group on Earth, the Extraterrestrial Allies Foundation, has approved a grant to pay us for our work, obtain equipment, and send more researchers here to Talaam."
         if (miners_strong()):
-            oleg "RET made a large donation, too, I think on Brennan's advice."
+            if (boyfriend_name == "Travis"):
+                travis angry "They're probably hoping to make money off the aliens somehow."
+            else:
+                oleg normal "RET made a large donation, too, I think on Brennan's advice."
             him annoyed "They're probably hoping the jellysquids will lead them to more mineral deposits."
     else:
         kid nervous "Yeah, I'm still working on that part..."
@@ -494,11 +508,17 @@ label ending_AC:
     her happy "He's actually been studying sunspots and solar flares lately."
     kid surprised "Really?"
     bro determined "Yeah... I've been trying to make a computer model so we can predict solar flares long-term more accurately, but the physics engines just aren't good enough to simulate the sunspots. But with enough data-"
-    oleg happy "-you'll be able to improve the model, and also improve predictions! That's great! Which physics engine are you using as a base?"
+    if (boyfriend_name == "Travis"):
+        kid normal "-we can improve the underlying model and also the predictions."
+        travis happy "Are you really using the physics engine from that space game as a base?"
+    else:
+        oleg happy "-you'll be able to improve the model, and also improve predictions! That's great! Which physics engine are you using as a base?"
     show kid happy with dissolve
-    "I listened to my family talk. I didn't understand half of what Oleg and [bro_name] were talking about, but I loved to see [bro_name] excited about something."
+    "I listened to my family talk. I didn't understand half of what [bro_name] talked about, but I loved to see him excited about something."
     if (boyfriend_name == "Oleg"):
         "[kid_name] reached over and held Oleg's hand, and he squeezed it back as he extolled the virtues of his favorite physics engine."
+    elif (boyfriend_name == "Travis"):
+        "[kid_name] leaned over and rested her head on Travis' chest while we listend to [bro_name] talk about physics engines."
     else:
         "[kid_name] listened as Oleg extolled the virtues of his favorite physics engine."
     "I put my arm around [her_name] and pulled her close just as she was about to put a forkful of food in her mouth."
@@ -506,9 +526,14 @@ label ending_AC:
     her flirting "Oh, now look one you've done. You've ruined my fanciest clothes."
     him flirting "Want me to help you clean that off?"
     her happy "Mom, Dad, can you not? Some of us are trying to eat here."
-    oleg normal "I don't know; it's kind of sweet to see old people that are still so in love."
-    him surprised "Old people?!"
-    her surprised "I don't see any old people in here..."
+    if (boyfriend_name == "Travis"):
+        travis happy "Here, [kid_name], let's show these old folks how it's done."
+        "She put her arms around his neck and he pulled her in for a long kiss.  ...Too long, if you ask me."
+        bro concerned "Not at the dinner table, guys!!"
+    else:
+        oleg normal "I don't know; it's kind of sweet to see old folks that are still so in love."
+    him surprised "Old folks?!"
+    her surprised "I don't see any old folks in here..."
     show him happy
     show her normal
     with dissolve
@@ -517,14 +542,20 @@ label ending_AC:
     kid happy "Great! Zaina is answering my questions about astronomy, Thuc is teaching me Earth biology, and Sara's helping me with sociology. Every book is so Earth-centric, though."
     her flirting "It's almost as if that was the only planet humans lived on for thousands of years."
     kid nervous "Well, it's not now, so they need to update their materials!"
-    oleg normal "At least the star charts aren't completely worthless."
+    if (boyfriend_name == "Travis"):
+        travis normal "We went stargazing the other night and found a bunch of constellations using Earth's charts."
+    else:
+        oleg normal "At least the star charts aren't completely worthless."
     him surprised "Really? The stars seem completely foreign from what I remember from Earth..."
     kid normal "Well, there's different planets obviously, and since Talaam's axis of rotation is different the hemispheres don't exactly match up. But I bet I can find some constellations you'd recognize!"
     bro happy "And I'll show you a cool nebula!"
     him happy "I'd like that."
     scene stars with fade
     show him normal at quarterleft, sitting
-    show oleg normal at quarterright, sitting
+    if (boyfriend_name == "Travis"):
+        show travis normal at quarterright, sitting
+    else:
+        show oleg normal at quarterright, sitting
     show her normal at midleft, sitting
     show bro normal at midright, sitting
     show kid normal at center, sitting
@@ -536,7 +567,9 @@ label ending_AC:
     "I want a lot of things for [kid_name], but most of all I want her to find some of this same happiness I've found. Happiness in love, in family, in community."
     "The kind of happiness you feel after working hard all day to accomplish something amazing and coming home to people who love you and forgive you and want you to be your best."
 
-    if (boyfriend_name == "Oleg"):
+    if (boyfriend_name == "Travis"):
+        "So I'm not just happy that she and Travis are dating."
+    elif (boyfriend_name == "Oleg"):
         "So I'm not just happy that she and Oleg are dating."
     else:
         "So I'm not just happy that she found such a good friend in Oleg."
@@ -549,7 +582,9 @@ label ending_AC:
     $ achieved("The Stars are Bright")
     "Ending 4/4: The Stars are Bright"    
     window auto hide
-    show ending4_cg
+    show ending4_cg # TODO: Different version for Travis?
+    #if (boyfriend_name == "Travis"):
+    #    persistent.achievements["The Stars are Bright"["file"]] = ""
     $ renpy.pause()
 
     return

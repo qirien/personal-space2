@@ -277,11 +277,10 @@ label start:
             $ i = 0
             while (i < len(crop_info)):
                 if crop_info[i][NAME_INDEX] in persistent.crops_unlocked:
-                    $ enable_crop(crop_info[i][NAME_INDEX])
-                    pause 0.4
+                    $ enable_crop(crop_info[i][NAME_INDEX], False)
                 $ i += 1
         "Choices you've made before will show up in italics so you can decide if you want to see something different."
-        "Choices you normally wouldn't see will show up crossed out so you can see other options."
+        "Unavailable choices will show up crossed out so you can see what they are."
         $ renpy.hide_screen("show_notification") #Just in case this got stuck on or something
 
     else:

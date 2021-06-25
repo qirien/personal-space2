@@ -1255,7 +1255,7 @@ screen achievements():
                     if (achievement.has(title)):
                         $ photo_file = persistent.achievements[title]["file"]
                         if (photo_file):
-                            $ photo_file = "images/achievements/" + photo_file
+                            $ photo_file = "images/cgs/" + photo_file
                             imagebutton:
                                 idle photo_file
                                 at thumbnail
@@ -1279,15 +1279,9 @@ screen achievements():
 screen bonus():
     tag menu
 
-    if renpy.mobile:
-        $ cols = 2
-    else:
-        $ cols = 3
-
     use game_menu(_("Bonus"), scroll="viewport"):
-        vpgrid:
+        vbox:
             xfill True
-            cols 2
             spacing 10
 
             textbutton "Deleted Ending" action Start("ending_extra")

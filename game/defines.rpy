@@ -372,10 +372,10 @@ init -100:
                 "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":"ach13.jpg"},
                 "Super Farmer": {"desc":"Unlocked all crops", "file":"ach14.jpg"},
             # Achievements for Endings
-                "Bring Back My Baby": {"desc":"Ending #1", "file":"ach15.jpg"},
-                "Proving Herself": {"desc":"Ending #2", "file":"ach16.jpg"},
-                "Forever My Little Girl": {"desc":"Ending #3", "file":"ach17.jpg"},
-                "The Stars are Bright": {"desc":"Ending #4", "file":"ach18.jpg"},            
+                "Bring Back My Baby": {"desc":"Ending #1", "file":"ending1.jpg"},
+                "Proving Herself": {"desc":"Ending #2", "file":"ending2.jpg"},
+                "Forever My Little Girl": {"desc":"Ending #3", "file":"ending3.jpg"},
+                "The Stars are Bright": {"desc":"Ending #4", "file":"ending4.jpg"},            
             # Achievements for each parenting style
                 "Big Boss": {"desc":"Authoritarian Parent", "file":"ach19.jpg"},
                 "Firm Yet Fair": {"desc":"Authoritative Parent", "file":"ach20.jpg"},

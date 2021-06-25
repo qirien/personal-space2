@@ -371,7 +371,7 @@ init python:
 
         # Randomly select from currently available crops, respecting maximums
         def setDefault(self):
-            available_crop_names = getAvailableCrops(self)            
+            available_crop_names = self.getAvailableCrops()
 
             for i in range(0, self.len()):
                 # If it's a perennial, keep it.
