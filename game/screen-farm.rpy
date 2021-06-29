@@ -63,7 +63,7 @@ label yearly_messages:
     $ message = "message" + `year`
     $ read_messages = True
     nvl clear
-    call expression message
+    call expression message from _call_expression_4
     #computer "\n(End of messages)"
     nvl clear
     call screen plan_farm

@@ -22,29 +22,29 @@ label ending:
             $ achieved("Miner Details")
             if (total_mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")                
-                call ending_CMiMa
+                call ending_CMiMa from _call_ending_CMiMa
             else:
-                call ending_CMima
+                call ending_CMima from _call_ending_CMima
         else:
             if (total_mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")
-                call ending_CmiMa
+                call ending_CmiMa from _call_ending_CmiMa
             else:
-                call ending_Cmima
+                call ending_Cmima from _call_ending_Cmima
     else:
         if (total_miners >= FACTION_HIGH):
             $ achieved("Miner Details")
             if (mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")
-                call ending_cMiMa
+                call ending_cMiMa from _call_ending_cMiMa
             else:
-                call ending_cMima
+                call ending_cMima from _call_ending_cMima
         else:
             if (total_mavericks >= FACTION_HIGH):
                 $ achieved("Don't Tread on Me")
-                call ending_cmiMa
+                call ending_cmiMa from _call_ending_cmiMa
             else:
-                call ending_cmima
+                call ending_cmima from _call_ending_cmima
 
     if (has_strong_marriage()):
         "I don't know if I would have made it through it all without [her_name]."
@@ -61,14 +61,14 @@ label ending:
 
     if (total_attachment < ATTACHMENT_HIGH):
         if (total_competence < COMPETENCE_HIGH):
-            call ending_ac
+            call ending_ac from _call_ending_ac
         else:
-            call ending_aC
+            call ending_aC from _call_ending_aC
     else:
         if (total_competence < COMPETENCE_HIGH):
-            call ending_Ac
+            call ending_Ac from _call_ending_Ac
         else:
-            call ending_AC
+            call ending_AC from _call_ending_AC
 
     menu:
         "Would you like to make one last poem?"
@@ -82,7 +82,7 @@ label ending:
                 "[her_name]":
                     $ word_board.set_wordpack(basic_words, family_words, romance_words)
 
-            call make_poem
+            call make_poem from _call_make_poem_5
         "No":
             $ pass
     menu:
@@ -91,7 +91,7 @@ label ending:
             call screen poetry_display(word_board, True)
         "No":
             $ pass
-    call credits
+    call credits from _call_credits
 
     # Set multi-persistent variables about this playthrough
     if not persistent.times_beaten:

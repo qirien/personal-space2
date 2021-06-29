@@ -8,37 +8,37 @@ label tests:
         "Test Farming Screen":
             jump test_farming_screen
         "Crop Events.":
-            call test_crops
+            call test_crops from _call_test_crops
         "Family Events.":
-            call test_family
+            call test_family from _call_test_family
         "Community Events":
-            call test_community
+            call test_community from _call_test_community
         "Graphics Tests":
             menu:
                 "Which graphics test?"
                 "Test Family Photo":
-                    call test_family_photo
+                    call test_family_photo from _call_test_family_photo
                 "Emoji":
-                    call test_emoji
+                    call test_emoji from _call_test_emoji
                 "Sprites":
-                    call test_sprites
+                    call test_sprites from _call_test_sprites
                 "Positions":
-                    call test_positions
+                    call test_positions from _call_test_positions
                 "Screenshots":
-                    call screenshots
+                    call screenshots from _call_screenshots
 
         "Dialogue Test":
-            call test_dialogue
+            call test_dialogue from _call_test_dialogue
         "Omake":
-            call omake
+            call omake from _call_omake
         "Message Board":
-            call test_message_board
+            call test_message_board from _call_test_message_board
         "Trailer":
             jump trailer
         "Test Endings":
-            call test_endings
+            call test_endings from _call_test_endings
         "Test Poetry":
-            call test_poems
+            call test_poems from _call_test_poems
         "Test Credits":
             $ year = 30
             $ bro_birth_year = 8
@@ -47,9 +47,9 @@ label tests:
             $ total_colonists = 8
             $ total_attachment = 25
             $ total_competence = 10
-            call credits
+            call credits from _call_credits_1
         "Demo":
-            call demo
+            call demo from _call_demo
         "Quit":
             return
 
@@ -93,13 +93,13 @@ label test_poems:
     "Time for a poetry fest! Make 3 poems!"
     "ready... set... GO!"
     $ word_board.set_wordpack(basic_words, family_words, baby_words)
-    call make_poem
+    call make_poem from _call_make_poem_6
     "OK, that one was pretty good. Time for another!"
     $ word_board.set_wordpack(basic_words, family_words, talaam_words)
-    call make_poem
+    call make_poem from _call_make_poem_7
     "Not bad, not bad. Last one will be the best though!"
     $ word_board.set_wordpack(basic_words, family_words, talaam_words, separation_words)
-    call make_poem
+    call make_poem from _call_make_poem_8
     "OK, now that you've made three poems, let's look at them."
     call screen poetry_display(word_board, True)
     "You looked at your poems. Now save your game, load it, and see if they are still there."
@@ -113,19 +113,19 @@ label test_endings:
     $ year = 30
     $ bro_birth_year = 8
 
-    call ending_CMiMa
-    call ending_CMima
-    call ending_CmiMa
-    call ending_Cmima
-    call ending_cMiMa
-    call ending_cMima
-    call ending_cmiMa
-    call ending_cmima
+    call ending_CMiMa from _call_ending_CMiMa_1
+    call ending_CMima from _call_ending_CMima_1
+    call ending_CmiMa from _call_ending_CmiMa_1
+    call ending_Cmima from _call_ending_Cmima_1
+    call ending_cMiMa from _call_ending_cMiMa_1
+    call ending_cMima from _call_ending_cMima_1
+    call ending_cmiMa from _call_ending_cmiMa_1
+    call ending_cmima from _call_ending_cmima_1
 
-    call ending_ac
-    call ending_aC
-    call ending_Ac
-    call ending_AC
+    call ending_ac from _call_ending_ac_1
+    call ending_aC from _call_ending_aC_1
+    call ending_Ac from _call_ending_Ac_1
+    call ending_AC from _call_ending_AC_1
     
     return
 
@@ -257,9 +257,9 @@ label demo:
 label demo_continue:
     $ year = 4
     $ earth_year = get_earth_years(year)
-    call interscene_text(year, "Family")
+    call interscene_text(year, "Family") from _call_interscene_text_3
     play music parenting
-    call family4
+    call family4 from _call_family4
 
     # $ bro_birth_year = 8
     # $ year = 14
@@ -271,14 +271,14 @@ label demo_continue:
     $ year = 18
     $ earth_year = get_earth_years(year)
     $ kid_work_slider = 70
-    call interscene_text(year, "Work")
+    call interscene_text(year, "Work") from _call_interscene_text_4
     play music farming
-    call spinach2
+    call spinach2 from _call_spinach2
     $ year = 23
     $ earth_year = get_earth_years(year)
-    call interscene_text(year, "Family")
+    call interscene_text(year, "Family") from _call_interscene_text_5
     play music parenting
-    call family23
+    call family23 from _call_family23
     scene stars with fade
     $ parenting_style = get_parenting_style()
     $ favorite_faction = strongest_faction()
@@ -467,7 +467,7 @@ label trailer:
     $ renpy.pause(2.0)
 
     $ year = 1
-    call bedroom_scene(True)
+    call bedroom_scene(True) from _call_bedroom_scene_7
     "All [kid_name] needed at first was a clean diaper, milk, and some love."
     show kid sad with dissolve
     show him concerned
@@ -759,9 +759,9 @@ label test_message_board:
     nvl clear
     $ i = 1
     while (i <= MAX_YEARS):
-        call interscene_text(i, "Message Board")
+        call interscene_text(i, "Message Board") from _call_interscene_text_6
         $ message = "message" + `i`
-        call expression message
+        call expression message from _call_expression_5
         $ i += 1
     return
 
@@ -826,23 +826,23 @@ label test_sprites:
     # Test Kid sprites
     $ year = 1
     "Baby"
-    call test_sprite("kid")
+    call test_sprite("kid") from _call_test_sprite
     $ year = 3
     "Toddler"
-    call test_sprite("kid")
+    call test_sprite("kid") from _call_test_sprite_1
     $ year = 7
     "Young Kid"
-    call test_sprite("kid")
+    call test_sprite("kid") from _call_test_sprite_2
     $ year = 13
     "Older Kid"
-    call test_sprite("kid")
+    call test_sprite("kid") from _call_test_sprite_3
     $ year = 23
     "Teen"
-    call test_sprite("kid")
+    call test_sprite("kid") from _call_test_sprite_4
 
     # Test Adult Sprites
-    call test_sprite("him")
-    call test_sprite("her")
+    call test_sprite("him") from _call_test_sprite_5
+    call test_sprite("her") from _call_test_sprite_6
 
     return
 
@@ -887,9 +887,9 @@ label test_crops:
 
             # MALNUTRITION EVENT (optional)
             if (farm.low_vitamins() and (year > NUTRITION_YEAR)):
-                call bad_nutrition
+                call bad_nutrition from _call_bad_nutrition_1
             $ work_event = get_next_work_event()
-            call expression work_event
+            call expression work_event from _call_expression_6
             $ year += 1
 
     jump ending
@@ -912,12 +912,12 @@ label test_family:
         $ farm.reset_crops(farm_size)
         $ farm.crops.setDefault()
         $ renpy.notify("Year [year]")
-        call expression "family" + str(year)
+        call expression "family" + str(year) from _call_expression_7
         # Increase child stats based on this year's parenting decisions
-        call increase_stats
+        call increase_stats from _call_increase_stats_1
 
         # Reset our variables while keeping a running total
-        call reset_variables
+        call reset_variables from _call_reset_variables_1
 
         $ year += 1
 
@@ -930,10 +930,10 @@ label test_community:
         $ farm.reset_crops(farm_size)
         $ farm.crops.setDefault()
         $ renpy.notify("Year [year]")
-        call expression "community" + str(year)
+        call expression "community" + str(year) from _call_expression_8
 
-        call increase_stats
-        call reset_variables
+        call increase_stats from _call_increase_stats_2
+        call reset_variables from _call_reset_variables_2
         $ year += 1
 
     jump ending

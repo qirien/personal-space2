@@ -335,9 +335,9 @@ label start:
     "But being a dad was a different kind of work than I had ever done before."
 
     # Introduction Scenes
-    call family_intro
-    call community_intro
-    call work_intro
+    call family_intro from _call_family_intro
+    call community_intro from _call_community_intro
+    call work_intro from _call_work_intro
 
     scene stars with fade
 
@@ -421,16 +421,16 @@ label life_loop:
 
             # LOW CALORIES EVENT (optional)
             if (farm.low_calories()):
-                call low_calories
+                call low_calories from _call_low_calories
 
             # MALNUTRITION EVENT (optional)
             if farm.low_vitamins():
-                call bad_nutrition
+                call bad_nutrition from _call_bad_nutrition
 
             # Debt event if your credits have decreased for 3
             # years in a row and your credits are < -100
             if ((debt_consecutive_years >= 3) and (credits < -100)):
-                call debt_event
+                call debt_event from _call_debt_event
 
             # Terra work events (optional)
             if ((year > TODDLER_MAX) and (kid_work_slider >= 70)):
@@ -439,35 +439,35 @@ label life_loop:
                     $ next_event = terra_overwork_count + 1
                     $ event_label = "terra_overwork" + str(next_event)
                     if renpy.has_label(event_label):
-                        call expression event_label
+                        call expression event_label from _call_expression
 
             # WORK EVENTS (farming)
-            call interscene_text(year, "Work")
+            call interscene_text(year, "Work") from _call_interscene_text
             $ work_event = get_next_work_event()
-            call expression work_event
+            call expression work_event from _call_expression_1
 
             # FAMILY EVENTS (parenting/home life)
             play music parenting fadeout 3.0 fadein 3.0
-            call interscene_text(year, "Family")
-            call expression "family" + str(year)
+            call interscene_text(year, "Family") from _call_interscene_text_1
+            call expression "family" + str(year) from _call_expression_2
 
             # COMMUNITY EVENTS (building community, helping factions)
             play music community fadeout 3.0 fadein 3.0
             #show screen interscene(year, "Community")
-            call interscene_text(year, "Community")
-            call expression "community" + str(year)
+            call interscene_text(year, "Community") from _call_interscene_text_2
+            call expression "community" + str(year) from _call_expression_3
 
             # Increase child stats based on this year's parenting decisions
             stop music fadeout 3.0
             scene stars
             window hide
-            call increase_stats
+            call increase_stats from _call_increase_stats
 
             $ parenting_style = get_parenting_style()
             call screen yearly_summary with slowfade
 
             # Reset our variables for a new year while keeping a running total
-            call reset_variables
+            call reset_variables from _call_reset_variables
 
             if (year == BABY_MAX):
                 scene stars with fade

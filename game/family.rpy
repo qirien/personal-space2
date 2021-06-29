@@ -12,7 +12,7 @@ label family_intro:
     "All [kid_name] needed at first was a clean diaper, milk, and some love. Simple, right?"
     "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
     play music sad
-    call bedroom_scene(True)
+    call bedroom_scene(True) from _call_bedroom_scene_1
     show kid sad with dissolve
     play sound "sfx/newborn-cry.ogg" fadein 10.0
     her sleeping "[his_name]."
@@ -123,7 +123,7 @@ label family1:
             show him baby normal at center with moveinleft
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
             hide him with moveoutright
-            call bedroom_scene(show_baby=True) 
+            call bedroom_scene(show_baby=True) from _call_bedroom_scene_2 
             "Finally, she was sleeping in bed, and I fell into bed next to her and [her_name]."
             $ authoritative += 1
             $ permissive += 1
@@ -261,7 +261,7 @@ label family1:
 
     stop sound fadeout 2.0
     stop music fadeout 2.0
-    call bedroom_scene(show_baby=True)
+    call bedroom_scene(show_baby=True) from _call_bedroom_scene_3
     show kid normal with dissolve
     play sound "sfx/baby-gurgle.ogg"
     "The next day, [kid_name] woke up with gurgles and smiles, as if the nightmare of the night before had never happened."
@@ -275,7 +275,7 @@ label family1:
         "Yes":
             window hide
             $ word_board.set_wordpack(basic_words, family_words, baby_words)
-            call make_poem
+            call make_poem from _call_make_poem_1
             $ baby_poem = word_board.get_poem_as_string(-1)
 
             scene farm_interior with fade
@@ -1585,7 +1585,7 @@ label family5:
     if (family5_prepared):
         "It helped that [her_name] and I decided to expect messes. They were still annoying, but they didn't make me quite so mad."
     "There were plenty more accidents, but over the next few months, [kid_name] slowly caught on."
-    call bedroom_scene(False, False)
+    call bedroom_scene(False, False) from _call_bedroom_scene_4
     her concerned "I think I can finally say [kid_name] is potty trained."
     him flirting "Don't say it out loud! You might jinx it!"
     her sad "In some ways, that was the hardest part of parenting yet."
@@ -1772,7 +1772,7 @@ label family6:
                     him happy "Come on, it'll be fun!"
                     her concerned "I suppose..."
 
-            call family6_swimming
+            call family6_swimming from _call_family6_swimming
             $ permissive += 1
 
         "Let me think about it.":
@@ -1803,7 +1803,7 @@ label family6:
                     him normal "Right. How much of a mess can she make in an hour?"
                     "It turned out she could make quite a large mess of soap suds and water in fifteen minutes, but we all pitched in with towels and then hung them out and headed to the swimming hole together."
                     "We'd have to airdry after swimming, because we used every towel in the house cleaning her mess. But we managed."
-                    call family6_swimming
+                    call family6_swimming from _call_family6_swimming_1
 
                     $ authoritative += 1
                 "Let's relax together.":
@@ -2021,7 +2021,7 @@ label family7:
                     him annoyed "You are not the boss around here! Show some respect"
                     kid annoyed "You are not the boss of me!"
                     him angry "Oh yes I am!"
-                    call family7_angry_ending
+                    call family7_angry_ending from _call_family7_angry_ending
                 "Spank her.":
                     "I had to show her. I had to make her realize that she was a tiny powerless child and she had to obey me!"
                     "I grabbed her and put her face down on my lap."
@@ -2034,13 +2034,13 @@ label family7:
                     "(whack)"
                     him "boss!"
                     "(whack)"
-                    call family7_angry_ending
+                    call family7_angry_ending from _call_family7_angry_ending_1
                 "Guilt trip her.":
                     him determined "Your mother and I worked hard to make your birthday awesome. And you won't even clean up your toys?!"
                     kid annoyed "No. I'm still playing."
                     "I wasn't getting through to her. I felt like I had to make her understand!"
                     him angry "You are not the boss! You do what your parents say, not the other way around!"
-                    call family7_angry_ending
+                    call family7_angry_ending from _call_family7_angry_ending_2
                 "Take a deep breath.":
                     "I tried to breathe deeply and calm down. If I did something while I was angry, it might be something I'd regret."
                     "But that sick desire to prove I was the boss, to make her afraid of me, to force her to obey, was still there."
@@ -2057,7 +2057,7 @@ label family7:
                             him annoyed "You're being really rude. That's not how you talk to adults."
                             kid concerned "Yes it is!"
                             him angry "You are not the boss!"
-                            call family7_angry_ending
+                            call family7_angry_ending from _call_family7_angry_ending_3
             $ authoritarian += 1
         "Try to convince her.":
             $ responsive += 1
@@ -2094,7 +2094,7 @@ label family7:
                     "She put one in, too."
                     "[her_name] helped, and together we cleaned up the mess."
                     $ permissive += 1
-                    call family7_bedtime
+                    call family7_bedtime from _call_family7_bedtime
                 "Set consequences.":
                     $ demanding += 1
                     him angry "You clean these up right now or...."
@@ -2128,12 +2128,12 @@ label family7:
                                 "Put them away.":
                                     "I wasn't going to throw away something I had worked so hard on. I gathered up all the toys in the box and hid them away. Maybe I'd get them out when she'd forgotten about it."
                                     $ trust -= 1
-                                    call family7_bedtime
+                                    call family7_bedtime from _call_family7_bedtime_1
                                 "Give her another chance.":
                                     "I picked up the box and started putting pieces into it in slow motion."
                                     kid cry "No, stop, daddy, I'll clean up!"
                                     "She helped put all the pieces away so fast we were done in under a minute. I couldn't believe she had thrown a fit about such a simple thing."
-                                    call family7_she_cleaned_up
+                                    call family7_she_cleaned_up from _call_family7_she_cleaned_up
                             $ authoritarian += 1
                         "...or you won't be able to play with them tomorrow.":
                             him determined "Clean these up now or you won't be able to play with them tomorrow."
@@ -2147,7 +2147,7 @@ label family7:
                             him annoyed "You decided not to clean up; that's what happens."
                             her normal "Anyway, now it's bedtime! As soon as you brush your teeth, we'll read you a story."
                             $ authoritative += 1
-                            call family7_bedtime
+                            call family7_bedtime from _call_family7_bedtime_2
                         "...or you'll get a spanking!":
                             him annoyed "You clean these up right now or you'll get a spanking!"
                             her concerned "[his_name]..."
@@ -2244,10 +2244,10 @@ label family7:
                                     him annoyed "Maybe too patient. Why is she acting so bratty, anyway?"
                                     her concerned "She might just be tired. She woke up pretty early this morning."
                                     "I heard clanking coming from the other room. Peeking around the corner, I saw that she had started putting the toys in the box."
-                                    call family7_she_cleaned_up
+                                    call family7_she_cleaned_up from _call_family7_she_cleaned_up_1
                                     $ authoritative += 1
                                     $ trust += 1
-                                    call family7_bedtime
+                                    call family7_bedtime from _call_family7_bedtime_3
                                 "Give up.":
                                     jump family7_give_up
                                 "Demand she clean up now.":
@@ -2302,7 +2302,7 @@ label family7:
                     her flirting "And now it's time for bed!"
                     hide her with moveoutleft
                     $ authoritative += 1
-                    call family7_bedtime
+                    call family7_bedtime from _call_family7_bedtime_4
 
     if (year6_have_baby):
         scene stars with fade
@@ -2322,7 +2322,7 @@ label family7:
         "Take a parenting class":
             "I asked around to see if anyone was willing to teach a parenting class."
             "Sister Naomi thought that was a great idea. Soon me and a few other moms and dads were gathered at the community center. There were even some parents that I thought already knew everything."
-            call parenting_class1
+            call parenting_class1 from _call_parenting_class1
         "Do some reading":
             "I tried to read some parenting books, but they all seemed to conflict with each other."
             "One book said to love your kids no matter what; another said to make sure not to spoil your child by doing whatever they said."
@@ -2351,7 +2351,7 @@ label family7:
             her normal "Yeah, I'll ask her!"
             scene stars with fade
             "After [her_name] talked to her, Sister Naomi agreed to host a parenting workshop one night a week. Her husband, Mayor Grayson, offered to watch the kids so anyone who wanted to could attend."
-            call parenting_class1
+            call parenting_class1 from _call_parenting_class1_1
     return
 
 label family7_bedtime:
@@ -2733,7 +2733,7 @@ label family8:
         "[her_name]'s second pregnancy seemed to go by so much faster than the first one."
         "A few weeks after school started, [her_name] went into labor in the middle of the night."
         "We didn't even have time to get to the clinic."
-        call baby_delivery
+        call baby_delivery from _call_baby_delivery
 
     else:
         scene stars with fade
@@ -2907,7 +2907,7 @@ label baby_delivery:
         "Write a poem?"
         "Yes":
             $ word_board.set_wordpack(basic_words, family_words, baby_words)
-            call make_poem
+            call make_poem from _call_make_poem_2
             $ baby_poem = word_board.get_poem_as_string(-1)
             nvl clear
             him_c "Sorry to spam you all, but I wrote a poem about our new baby and I wanted to share it with you."
@@ -3405,7 +3405,7 @@ label family10:
             "[kid_name] was really looking forward to having a little brother or sister; she was all excited to help with everything."
             "A week before her due date, [her_name] went into labor in the middle of the night."
             "We didn't even have time to get to the clinic."
-            call baby_delivery
+            call baby_delivery from _call_baby_delivery_1
     return
 
 # 6.8 Earth years old
@@ -3596,7 +3596,7 @@ label family12:
             him normal "Sure, you can go."
             kid happy "Stellar! I'm going to message her right now, she'll be so excited!"
             $ permissive += 1
-            call family12_anyas_house
+            call family12_anyas_house from _call_family12_anyas_house
         "Are her parents going to be home?":
             $ demanding += 1
             $ confident += 1
@@ -3606,7 +3606,7 @@ label family12:
             kid annoyed "We don't talk about our parents!"
             him surprised "Why don't I message her parents and get some more information? What's her last name?"
             kid determined "Uh... Anya, um, Lewis? I think?"
-            call family12_contact_parents
+            call family12_contact_parents from _call_family12_contact_parents
         "I don't want you going over to some random miner's house.":
             $ demanding += 1
             him annoyed "I don't want you going over to some random miner's house. I don't know anything about them!"
@@ -3617,7 +3617,7 @@ label family12:
                     him determined "I don't know them, and I don't have time to get to know them. Sorry, [kid_name]."
                     kid yell "You're so mean!"
                     $ neglectful += 1
-                    call family12_disobey
+                    call family12_disobey from _call_family12_disobey
                 "You can't go over to someone's house unless I know them.":
                     $ demanding += 1
                     him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
@@ -3626,10 +3626,10 @@ label family12:
                     kid angry "But your job is to pick my friends?!"
                     him "Yes, it is."
                     $ authoritarian += 1
-                    call family12_disobey
+                    call family12_disobey from _call_family12_disobey_1
                 "Maybe I could send them a message.":
                     him concerned "I guess I could send a message or something..."
-                    call family12_contact_parents
+                    call family12_contact_parents from _call_family12_contact_parents_1
 
         "Why don't you invite her to come over here?":
             $ demanding += 1
@@ -3641,10 +3641,10 @@ label family12:
                     him determined "Sorry, [kid_name]. You can't go over to someone's house unless I know their parents."
                     kid annoyed "What?! Dad, that's so mean."
                     $ authoritarian += 1
-                    call family12_disobey
+                    call family12_disobey from _call_family12_disobey_2
                 "Let me talk to her parents first.":
                     him concerned "I guess I could send her parents a message..."
-                    call family12_contact_parents
+                    call family12_contact_parents from _call_family12_contact_parents_2
 
     scene stars with fade
     "Anya was a good enough kid; she and [kid_name] certainly seemed to have fun together. They giggled and made mud pies and bracelets and played space explorers."
@@ -3853,7 +3853,7 @@ label family12_contact_parents:
         "Can Anya come over here instead?":
             him_c "Can Anya come over here instead?"
             lewis_c "Sure."
-            call family12_anya_come_over
+            call family12_anya_come_over from _call_family12_anya_come_over
             return
         "When should I pick her up?":
             him_c "When should I pick her up?"
@@ -3861,7 +3861,7 @@ label family12_contact_parents:
 
     nvl hide
     "I didn't have as many details as I wanted, but I told [kid_name] that she could go."
-    call family12_anyas_house
+    call family12_anyas_house from _call_family12_anyas_house_1
     return
 
 label family12_anyas_house:
@@ -4290,7 +4290,7 @@ label family13_end:
             him happy "How about Team Let's Eat This Food Before It Gets Cold?"
             kid normal "Da-ad."
 
-    call bedroom_scene
+    call bedroom_scene from _call_bedroom_scene_5
     her concerned "I'm sorry..."
     him concerned "Hey, hey, it's not your fault."
     her sad "Maybe if I hadn't worked so hard, or eaten better, or..."
@@ -4560,7 +4560,7 @@ label family14:
         "Should I go?"
         "Go to parenting class.":
             him normal "Sure, I'll come, too."
-            call parenting_class2
+            call parenting_class2 from _call_parenting_class2
         "Don't go.":
             him determined "I'm staying here."
             her concerned "Okay. See you later."
@@ -8651,7 +8651,7 @@ label family30:
     "No, I should wait."
     "It was getting really late; I should go to bed."
     "But my mind was racing and my heart was thumping as if I was about to be attacked by wolfslugs."
-    call bedroom_scene(sleeping=True)
+    call bedroom_scene(sleeping=True) from _call_bedroom_scene_6
     "Finally, I lay down next to [her_name] and tossed and turned, trying to get comfortable. Nothing felt right."
     show him determined
     with dissolve

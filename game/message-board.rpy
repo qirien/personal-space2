@@ -267,7 +267,7 @@ label message11:
             "Yes.":
                 him_c "I'll send you one!"
                 $ word_board.set_wordpack(basic_words, family_words, farm_words, baby_words, talaam_words)
-                call make_poem
+                call make_poem from _call_make_poem_3
                 $ year11_poem = word_board.get_poem_as_string(-1)
                 natalia_c "Thanks for your poem; I'll pass it along."
             "No.":
@@ -447,7 +447,7 @@ label message18:
             "Should I submit a poem?"
             "Yes":
                 $ word_board.set_wordpack(basic_words, family_words, separation_words, romance_words, talaam_words)
-                call make_poem
+                call make_poem from _call_make_poem_4
                 $ year18_poem = word_board.get_poem_as_string(-1)
                 lily_c "Thank you for the poem, [his_name]."
                 thuc_c "I gotta see the jellystar poem!"
