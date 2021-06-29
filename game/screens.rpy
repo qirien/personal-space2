@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 ## Initialization
 ################################################################################
 
@@ -1255,7 +1255,7 @@ screen achievements():
                     if (achievement.has(title)):
                         $ photo_file = persistent.achievements[title]["file"]
                         if (photo_file):
-                            $ photo_file = "images/cgs/" + photo_file
+                            $ photo_file = "images/cgs/" + photo_file + ".jpg"
                             imagebutton:
                                 idle photo_file
                                 at thumbnail
@@ -1287,6 +1287,7 @@ screen bonus():
             textbutton "Deleted Ending" action Start("ending_extra")
             textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")
             textbutton "Fighting Minigame" action Start("fight_brennan") # TODO: should we really have this in here?
+            textbutton "Season's Greetings" action Show("show_photo", irisout, "terra-christmas")
 
 
 ## Confirm screen ##############################################################
