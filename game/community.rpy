@@ -320,7 +320,7 @@ label community2:
     menu:
         "Do I want to read the RET contract?"
         "Actually, yes.":
-            call contract
+            call contract from _call_contract
         "No, I believe you.":
              $ pass
 
@@ -3331,7 +3331,7 @@ label community15:
             $ c15_funeral = "poem"
             "The best way to keep it short would be to make a poem. I'd better make it good, though..."
             $ word_board.set_wordpack(basic_words, talaam_words, separation_words)
-            call make_poem
+            call make_poem from _call_make_poem
             $ c15_funeral_poem = word_board.get_poem_as_string(-1)
         "Say a few words":
             $ colonists += 1
@@ -4180,26 +4180,26 @@ label community17:
         if (invited_mavericks):
             "Time to ask Helen a question."
             $ patient = "helen"
-            call c17_psy_menu
+            call c17_psy_menu from _call_c17_psy_menu
         $ patient = "thuc"
         "I decided to ask Thuc something."
-        call c17_psy_menu
+        call c17_psy_menu from _call_c17_psy_menu_1
         $ patient = "zaina"
         "I needed a question for Zaina."
-        call c17_psy_menu
+        call c17_psy_menu from _call_c17_psy_menu_2
         $ patient = "kid"
         "What should I ask [kid_name]?"
-        call c17_psy_menu
+        call c17_psy_menu from _call_c17_psy_menu_3
         $ patient = "pavel"
         "Pavel's turn."
-        call c17_psy_menu
+        call c17_psy_menu from _call_c17_psy_menu_4
         $ patient = "natalia"
         "Next is Natalia."
-        call c17_psy_menu
+        call c17_psy_menu from _call_c17_psy_menu_5
         if invited_miners:
             $ patient = "brennan"
             "I guess I should ask Brennan something."
-            call c17_psy_menu
+            call c17_psy_menu from _call_c17_psy_menu_6
         jump c17_psy_decide
 
         menu c17_psy_menu:

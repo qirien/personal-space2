@@ -90,9 +90,9 @@ label reset_variables:
 ##
 label increase_stats:
     # Child stats
-    call increase_attachment
-    call increase_competence
-    call increase_independence 
+    call increase_attachment from _call_increase_attachment
+    call increase_competence from _call_increase_competence
+    call increase_independence from _call_increase_independence 
     return
 
 # Increase attachment based on how responsive you were last year

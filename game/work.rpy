@@ -83,7 +83,7 @@ label overwork:
                 $ marriage_strength += 1
                 $ responsive += 1
                 $ demanding += 1
-                call bedroom_scene(False, False)
+                call bedroom_scene(False, False) from _call_bedroom_scene
                 show him determined with dissolve
                 show her surprised with dissolve
                 show him concerned with dissolve
@@ -336,7 +336,7 @@ label work_intro:
     "Talaam's frequent solar flares meant we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
     "The flares' radiation was dangerous to humans, but so far hadn't had much effect on plants."
     "On this new planet, though, everything was an experiment."
-    call farm_tutorial
+    call farm_tutorial from _call_farm_tutorial
     return
 
 label farm_tutorial:

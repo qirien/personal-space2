@@ -1720,7 +1720,7 @@ label spinach2:
                                 kid sad "They just want to eat a little spinach."
                                 him concerned "They will eat all our spinach, and they won't stop there."
                                 if (is_independent()):
-                                    call spinach2_eat_snails
+                                    call spinach2_eat_snails from _call_spinach2_eat_snails
                                 elif (is_attached() and is_competent()):
                                     kid concerned "What do you want me to do?"
                                     him determined "Just drop them in this bucket of water and they'll probably drown."
@@ -1735,7 +1735,7 @@ label spinach2:
                             "Send her away and kill them yourself.":
                                 him determined "I'll take care of it. You just run along, now."
                                 if (is_independent()):
-                                    call spinach2_eat_snails
+                                    call spinach2_eat_snails from _call_spinach2_eat_snails_1
                                 else:
                                     hide kid with moveoutleft
                                     "She left, and I carried out the death sentence on the turtle-snails."
@@ -1744,13 +1744,13 @@ label spinach2:
                     "And we harvested a lot of wonderful spinach."
                 "Just pick the spinach early":
                     "It'd be too much work to kill all the snails. If I just harvested the spinach early then there wouldn't be anything for them to eat."
-                    call spinach2_pick_early
+                    call spinach2_pick_early from _call_spinach2_pick_early
         "Just pick the spinach early":
             "I decided to just pick the spinach. It was still small, but edible. It would probably taste even better."
             "As I was picking it, I found one of the creatures responsible."
             "It was small, with a hard, domelike shell. Its body was soft and squishy, but it with little feet protuberances like a caterpillar."
             "We called them turtle snails. I hoped that after I finished picking the spinach, they wouldn't have anything else to eat and they would leave."
-            call spinach2_pick_early
+            call spinach2_pick_early from _call_spinach2_pick_early_1
 
     scene black with fade
     return

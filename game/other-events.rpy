@@ -138,7 +138,7 @@ label parenting_class1:
 
     "We talked for a while about being patient with kids' mistakes, and common mistakes for different ages. It was reassuring to learn things like wetting the bed and talking back were completely normal."
 
-    call parenting_class_questions
+    call parenting_class_questions from _call_parenting_class_questions
     return
 
 # This is year 14
@@ -181,5 +181,5 @@ label parenting_class2:
 
 
     naomi happy "Thank you, everyone. Sometimes we focus so much on mistakes, but I think it's important to remember positive examples as well."
-    call parenting_class_questions
+    call parenting_class_questions from _call_parenting_class_questions_1
     return
