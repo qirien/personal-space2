@@ -608,6 +608,7 @@ label message24:
     natalia_c "We'll see if anyone agrees with you."
     if (bought_tt):
         scene talaam_times with fade
+        $ renpy.pause(5.0)
         $ renpy.pause()
         scene stars
     else:
@@ -618,6 +619,7 @@ label message24:
                 $ colonists += 1
                 $ modify_credits(-5)
                 scene talaam_times with fade
+                $ renpy.pause(5.0)
                 $ renpy.pause()
                 scene stars
             "Dont' buy it":

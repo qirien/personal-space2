@@ -1,18 +1,51 @@
 # Omake, unlocked after beating the game
-# What do Terra and Aeron do when no one else is home...?
-# TODO: write this
-label omake:
-    $ year = 15
-    scene farm_interior with fade
-    show kid normal at midright
-    show bro normal at midleft
+# What really happened to Dr. Lily?
+label jellysquid_logs:
+    $ year = 30
+    scene lab with fade
+    show kid normal at center
     with dissolve
-    kid determined "And that's why you can't tell mom and dad, no matter what, okay?"
-    bro concerned ""
+    kid determined "I finally managed to recover some data from Dr. Lily's computer pad that the jellies recovered from the bottom of the ocean."
+    kid concerned "I heard she died mysteriously several years ago..."
+    kid normal "Maybe her logs have some clues? The water damage corrupted some files but there are some bits I can read..."
 
+    nvl clear
+    lily_c "2nd M$nth, Day 7\nJel1ysquid resp;nding positPvely to ^raining. AsYociati&n ind*x incre sing at a rat# indicatihg lejrning is taking place. See att^&Ch@# $tA."
+    lily_c "4th Mon#h, Day 21\nInge&ting jellyst(rs or jellyJquid produce! interesting h_rmonal eff+cts in =umans - elevat3d oxytoc1n and ser9tonin. Ob,erved in?multi;le subjec*s. Bac3eria/v2rus/pheromon-s?? More st@dy~needed."
+    lily_c "7th Month, Day 17\nDir3ct neural commu^ication 0ay be poss5ble. Tr*ining resulQs have>leveled.off; lCnguag@ is lim#ting factor. Sc8ba equi~ment request denieP."
+    lily_c "C)pied all res5arch to Mira`da. EverythingEs in order. IfGneural link estab9ished as plan#ed, languZge cognitio7 should incre|se exponentiall'. Last entr:... see you soYn, Winston."
+    nvl clear
+
+    kid surprised "Winston? I don't think there's anyone on the colony with that name..."
+
+    kid_c "Hey mom, do you know of anyone on Talaam named Winston?"
+    her_c "Winston? No... wait, I think he was one of the original researchers. Yes, he was Dr. Lily's husband, but he died before your dad and I arrived."
+    kid_c "OK, thanks."
+
+    kid determined "So she went to establish a neural link with the jellies, and thought she might die..."
+    kid nervous "Well, I guess she did die."
+
+    kid surprised "But wait, month 7, day 21?! That's right before she died, and also right around when we started being able to talk to the jellysquids on the computer pads..."
+    kid excited "Maybe Dr. Lily's plan worked! The jellies learned our language from her neural link or whatever! I have to ask them!"
+
+    scene rowboat with fade 
+    show kid normal at midleft with dissolve
+
+    nvl clear
+    kid_c "Do you know Dr. Lily?"
+    jellysquid "Yes."
+    kid_c "Is she... still there?"
+    jellysquid "Thinking parts, yes. Shell parts, no."
+    kid surprised "So... like her brain is there but not the rest of her??"
+    kid_c "You mean her brain?"
+    jellysquid "Brain? Thinking parts. Yes."
+    nvl clear
+
+    kid happy "Amazing..."
+    kid_c "Thank you, Dr. Lily!"
+    jellysquid "Yes."
+    scene stars with fade
     return
-
-
 
 
 # No longer used as an ending, but unlocked as a BONUS after beating the game.

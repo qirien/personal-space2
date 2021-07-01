@@ -461,7 +461,7 @@ label community3:
                     him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
                     scene stars with fade #not sure what scene to show for this ending.
                     "I asked Pavel to remind everyone to remember to get to know the new colonists."
-                    "He sent an annoucement to the community bulletin."
+                    "He sent an announcement to the community bulletin."
                     "I don't know if anyone actually did anything about it, but the thought was there."
 
             return
@@ -6824,7 +6824,7 @@ label community27:
     him pout "What is it trying to say? I thought they made their own shells."
     kid sad "Maybe they need to see another shell to know how to make it?"
     him surprised "Hmm. They do seem to be intelligent animals, but isn't it part of their body?"
-    jellysquid "Help me?"
+    jellysquid "Help we?"
     "Then the back of the jellysquid looked like the literacy game again."
     nvl clear
     computer "'Grown-ups only! Needs permission to access more content.'"
@@ -6841,7 +6841,7 @@ label community27:
     #jellyperson controls their own luminesence
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question."
-    jellysquid "Why have you killed my children?"
+    jellysquid "Why killed we children?"
     menu:
         "What should I do?"
         "Run away.":
@@ -6857,8 +6857,8 @@ label community27:
 
 label text_conversation:
     "It started displaying text."
-    jellysquid "My babies can't grow."
-    jellysquid "Where are the baby's shells?" #this should come after asking about the babies
+    jellysquid "We babies can't grow."
+    jellysquid "Where are baby shells?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
     "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
     menu:
@@ -6872,15 +6872,15 @@ label text_conversation:
                     kid surprised "Well, Brennan did."
                     him surprised "Didn't you help him?"
                     kid sad "Yeah. But I needed the money."
-                    jellysquid  "Give them back to my children."
+                    jellysquid  "Give them back to we children."
                     jump call_to_squid
                 "ate them":
                     him doubt "I ate them. Using the minerals inside for technology is like eating to an animal."
                     him sad "I am part of the animal that consumes technology."
                     kid sad "I guess I am too."
                     "After I put in this answer, the jellysquid grabbed my shirt and tried to eat it."
-                    jellysquid "You say you ate the clothes but it is not in your clothes."
-                    jellysquid "Are the clothes inside you?"
+                    jellysquid "It is not in your shell."
+                    jellysquid "Are the shell inside you?"
                     menu:
                         "Yes.":
                             him surprised "The clothes of my consumerism are in my bones!"
@@ -6888,11 +6888,11 @@ label text_conversation:
                             jump boat_capsized
                         "No.":
                             him surprised "I think it wants to know where the shells are physically."
-                            jellysquid "Bring them for my babies to eat"
+                            jellysquid "Bring for we babies to eat"
                             jump call_to_squid
                 "lost them":
                     him doubt "We sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    jellysquid "Find them for my babies to eat."
+                    jellysquid "Find them for we babies to eat."
                     jump call_to_squid
 
         "He":
@@ -6902,16 +6902,16 @@ label text_conversation:
                     him annoyed "Brennan took the shells without researching the ecosystem thoroughly or gaining a community consensus."
                     him doubt "He basically stole them."
                     kid annoyed "We're the same way though. We've been using this planet without knowing how we would change things."
-                    jellysquid "Take them from him. Give back to my children."
+                    jellysquid "Take them. Give back to we children."
                     jump call_to_squid
                 "ate them":
                     him doubt "Brennan ate them, sort of. Using the minerals inside for technology is like eating to an animal."
-                    jellysquid "Bring his clothes here so we can eat them after he's done."
-                    kid surprised "Is it talking about the shells?"
+                    jellysquid "Bring his shell here so we can eat them after he's done."
+                    kid surprised "Is it talking about clothes or actual shells?"
                     jump call_to_squid
                 "lost them":
                     him determined "Brennan sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    jellysquid "Find them for my babies to eat."
+                    jellysquid "Find them for we babies to eat."
                     jump call_to_squid
 
 label call_to_squid:
@@ -6997,7 +6997,7 @@ label call_to_squid:
             if shell_count > 2:
                 jellysquid "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
-                jellysquid "More. Hundreds."
+                jellysquid "More. More. Hundreds."
                 "I kept tracing a question mark."
                 "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
                 him concerned "That's not a lot to work with. Hmmm."
@@ -7022,7 +7022,8 @@ label call_to_squid:
                                 menu:
                                     "Why we..."
                                     "live shell?" if (not weliveshell):
-                                        jellysquid "You don't live in a shell. Your shell is inside you."
+                                        jellysquid "You soft outside, not a shell. Your shell is inside?"
+                                        him surprised "I guess our skeleton is like our shell?"
                                         $ weliveshell = True
                                         jump question_menu
                                     "live not?" if (not welivenot):
@@ -7045,14 +7046,14 @@ label call_to_squid:
                                         jellysquid "Then why do you need shell?"
                                         jump question_menu
                                     "We live not.":
-                                        "That is not possible. Dead things don't move."
+                                        "Is a lie or jest? Dead things don't move."
                                         jump question_menu
                             "we?" if (not whatwe):
                                 jellysquid "You are new animals. We do not know what you are."
                                 $ whatwe = True
                                 jump question_menu
                             "shell?" if (not whatshell):
-                                jellysquid "Shell protects children."
+                                jellysquid "Shell protects we children."
                                 $ whatshell = True
                                 jump question_menu
                             "shell food?" if (not asked_shell_food):

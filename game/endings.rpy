@@ -259,7 +259,8 @@ label ending_ac:
     "Ending 1/4: Bring Back My Baby."
     window auto hide
     show ending1_cg
-    $ renpy.pause()    
+    $ renpy.pause(6.0)    
+    $ renpy.pause()
 
     return
 
@@ -361,7 +362,8 @@ label ending_aC:
     "Ending 2/4: Proving Herself."
     window auto hide
     show ending2_cg
-    $ renpy.pause()    
+    $ renpy.pause(6.0)    
+    $ renpy.pause()
     return
 
 
@@ -441,6 +443,7 @@ label ending_Ac:
     "Ending 3/4: Forever My Little Girl"
     window auto hide
     show ending3_cg
+    $ renpy.pause(6.0)
     $ renpy.pause()
     return
 
@@ -585,6 +588,7 @@ label ending_AC:
     show ending4_cg # TODO: Different version for Travis?
     #if (boyfriend_name == "Travis"):
     #    persistent.achievements["The Stars are Bright"["file"]] = ""
+    $ renpy.pause(6.0)
     $ renpy.pause()
 
     return
