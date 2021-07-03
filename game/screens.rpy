@@ -1501,7 +1501,7 @@ screen nvl_dialogue(dialogue):
                 yfit gui.nvl_height is None
                 if d.who is not None:
                     $ nickname = get_nickname(d.who)
-                    $ is_jack = (d.who == his_name)
+                    $ is_jack = d.who.startswith(his_name)
                     $ who_color = d.who_args["color"]
                     if (who_color is None):
                         $ who_color = "#fff"
@@ -1532,7 +1532,7 @@ screen nvl_dialogue(dialogue):
                             text_align 1.0
                 if (is_jack):
                     button:
-                        action [ActivateBio(nickname), Show("biographies", irisout, his_name)] 
+                        action Show("biographies", irisout, nickname) 
                         text d.who:
                             id d.who_id
                             xalign 0.0

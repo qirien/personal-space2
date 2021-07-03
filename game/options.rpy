@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("OPS2: Space to Grow")
+define config.name = _("Space to Grow")
 
 ## The version of the game.
 define config.version = "0.6"
@@ -34,7 +34,7 @@ define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepiagames.com
 ## distribution. This must be ASCII-only, and must not contain spaces, colons,
 ## or semicolons.
 
-define build.name = "OPS2_SpaceToGrow"
+define build.name = "SpaceToGrow"
 
 ## Sounds and music ############################################################
 

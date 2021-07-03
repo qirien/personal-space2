@@ -190,7 +190,7 @@ label start:
                         ["fallow",       0, 0, 0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
                         ["corn",         10, 3, 2, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 0, 6, 2, 6, 6, 40, True, False, False, 100],
-                        ["wheat",        10, 0, 0, 2, 9, 9, 20, False, False, False, 2],
+                        ["wheat",        10, 5, 5, 7, 9, 9, 20, False, False, False, 2],
                         ["peppers",      2, 2, 9, 1, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 3, 4, 1, 6, 6, 15, True, False, True, 100],
                         ["plums",        3, 1, 1, 1, 7, 7, 15, False, True, True, 1],

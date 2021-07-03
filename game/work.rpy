@@ -742,7 +742,7 @@ label work12:
     julia_c "What's the catch?"
     brennan_c "Well, the seeds are patented. We put a lot of work into creating this variety and we can't have everyone distributing them."
     julia_c "Meaning we couldn't save seeds to plant next year."
-    brennan_c "Right. You'd need to buy them from me. Well, from RET, really."
+    brennan_c "Right; they're sterile. You'd need to buy seeds each year from me. Well, from RET, really."
     if (community11_kidsonfarm):
         natalia_c "Hmm, I might get some for Joanna to try. If they're as good as you say..."
     else:
@@ -922,7 +922,9 @@ label work16:
     kevin_c "I plan on bringing some plum pits."
     pavel_c "Wonderful! I hope everyone will participate."
 
-    $ random_crop = farm.crops.random_crop(include_animals = False)
+    $ random_crop = "wheat"
+    while (random_crop == "wheat"): #this won't go forever because you can only grow 2 fields of wheat
+        $ random_crop = farm.crops.random_crop(include_animals = False)
     "A seed exchange could be good; I could share my great [random_crop] and get something new to plant in the future."
     "But Pete was already planning to come over and fence a new section of land for farming."
     "Last week I helped him expand his cattle paddock with a bigger fence and he was planning to return the favor."
@@ -976,9 +978,9 @@ label work16:
                             him surprised "Well, maybe they'd be good for you."
                         "They're not very nutritious.":
                             him annoyed "They just aren't that nutritious. Not many vitamins and minerals."
-                            kevin sad "Oh. I had not considered that."
+                            kevin sad "Oh. I had not considered that."                        
 
-            if (not (crop_enabled("plums") or crop_enabled("plums+"))):
+            if (not ((crop_enabled("plums") or crop_enabled("plums+")))):
                 him surprised "You don't mind if I take a few plum pits, do you?"
                 kevin normal "Please do. They are hardy and productive plants."
                 $ enable_crop("plums")

@@ -3547,10 +3547,9 @@ label community16:
             "What should I say?"
             "Had she been visiting you often?":
                 him determined "Was she stopping by your place frequently?"
-                pete normal "Yes, she was pretty worried about us. She stopped by at least once a week and sometimes twice."
-                pete "It was really important to her that we knew that she still cared about us after we left."
-                pete happy "She helped Travis practice foraging, and she showed me how to knit."
-                pete "She'd bring little things for us to feel more at home."
+                pete normal "Yeah, she was always checking on us, once or twice a week. Wanted us to know she still cared, even though we left."
+                pete happy "She helped Travis find wild foods, and she showed me how to knit."
+                pete "She'd bring little treats and things for us to feel more at home."
                 menu:
                     "What should I say?"
                     "So it's kind of your fault that she died.":
@@ -3558,22 +3557,21 @@ label community16:
                         him annoyed "If she was visiting you that much, that explains why she died of radiation poisoning."
                         pete normal "We warned her to be cautious. It's not like we wanted her to die."
                         him angry "But if you hadn't left she wouldn't have gone to see you."
-                        pete normal "If ya'll had been a little friendlier she wouldn't have felt so bad for us."
+                        pete normal "If y'all had been a little friendlier she wouldn't have felt so bad for us."
                         him yell "It's hard to be friendly when you live so far away!"
                         pete normal "Our doors are always open."
                         him determined "..."
-                        jump pete_neutral_c16
 
                     "She was good at that.":
                         him explaining "She was always making something for someone's birthday or just celebrating some made-up holiday."
                         pete happy "That's true. When Travis found a grove of Ringlets, she made him a crown of leaves and called him the explorer prince."
                         him concerned "She did something similar when [kid_name] went a whole day without poking Oleg."
-                        pete happy "What was her title?"
+                        pete normal "What was her title?"
                         him content "Overseer of Restraint."
-                        pete "Ha. I doubt I would have even noticed something like that."
+                        pete happy "Ha. I doubt I would have even noticed something like that."
                         $ parenting_style = get_parenting_style()
                         if (parenting_style== "authoritative"):
-                            him pout "I think I would notice!"
+                            him pout "Hmmm, maybe I'd notice."
                         elif(parenting_style == "authoritarian"):
                             him explaining "I would probably only notice when she did poke him."
                         elif(parenting_style == "permissive"):
@@ -3596,9 +3594,6 @@ label community16:
                                 pete normal "Guess I'll see you next time I have a life-threatening illness."
             "(Say nothing)":
                 him sad "..."
-                jump pete_neutral_c16
-    label pete_neutral_c16:
-        pete normal "Can't wait to get back to my cattle."
         pete happy "Thanks for stopping by, I guess."
 
     return
@@ -3692,7 +3687,7 @@ label community17:
     natalia_c "They sure loved those last year!"
     thuc_c "I think we need a better name, though."
     him_c "Sweet Treats? Rookie Cookies? Sprite Bites?"
-    julia_c "Ummm... no. You should call them 'harvest cookies', since you only make them for the harvest festival."
+    julia_c "Ahem, no. You should call them 'harvest cookies', since you only make them for the harvest festival."
     thuc_c "Huh. Okay, that works."
 
     nvl clear
@@ -4391,9 +4386,9 @@ label community17:
         with moveinleft
         "Thuc and his kids performed a skit. Each kid talked about how they loved to throw pebbles in the river."
         show girl sad at quarterright with moveinleft
-        "Then Gardenia came in all wet, and when asked what was wrong, she yelled:"
+        "Then a young girl came in soaking wet, and when asked what was wrong, she yelled:"
         show girl normal with dissolve
-        "Gardenia" "My name is Pebbles!"
+        "Girl" "My name is Pebbles!"
         kid laugh "That was the best one so far!"
         hide thuc
         hide boy
@@ -4429,7 +4424,7 @@ label c17_after_activities:
     with dissolve
     her concerned "It's just like us."
     him surprised "What is?"
-    her surprised "We are like the fire, consuming food constantly, turning it into babies and laughter and farms and... everything!"
+    her surprised "We're like the fire, consuming food constantly, turning it into babies and laughter and farms and... everything!"
     him flirting "We couldn't do it without food. Good thing some of us are farmers, huh?"
     her determined "Well, we also can't do any of this if we're dead, so I'm happy doing the job I'm doing."
     him happy "I'm happy with the job you're doing, too."
@@ -5075,9 +5070,9 @@ label community21:
     window auto hide
     show purplelight at random_pulse_alpha
     show purplelight as light0 at random_pulse_alpha with dissolve
-    show purplelight as light1 at random_pulse_alpha with dissolve
+    show purplelight as light1 at random_pulse_alpha
     show purplelight as light2 at random_pulse_alpha with dissolve
-    show purplelight as light3 at random_pulse_alpha with dissolve
+    show purplelight as light3 at random_pulse_alpha
     show purplelight as light4 at random_pulse_alpha with dissolve
     "The moon rose, and we saw glowing lights in the ocean from the jellystars just below the surface."
     if ate_jellyfish:
@@ -5101,9 +5096,9 @@ label community21:
     scene ocean_sunset with fade
     show purplelight at random_pulse_alpha
     show purplelight as light0 at random_pulse_alpha with dissolve
-    show purplelight as light1 at random_pulse_alpha with dissolve
+    show purplelight as light1 at random_pulse_alpha
     show purplelight as light2 at random_pulse_alpha with dissolve
-    show purplelight as light3 at random_pulse_alpha with dissolve
+    show purplelight as light3 at random_pulse_alpha
     show purplelight as light4 at random_pulse_alpha with dissolve
     show him normal at midright
     show kid normal at quarterright
@@ -5299,7 +5294,8 @@ label community21:
     show kid happy at midleft
     with dissolve
     play sound "sfx/ocean-waves.mp3"
-    "The next day was more relaxing in the shade, playing with jellysquids, and catching fish. [kid_name] is getting much better at swimming."
+    "The next day was more relaxing in the shade, playing with jellysquids, and catching fish. [kid_name] and I enjoyed swimming together and splashing each other."
+    "Then we had to go back home again."
     hide him
     hide kid
     with moveoutright
@@ -6211,29 +6207,29 @@ label community25:
             "What should I say?"
             "What's new with the jellystars?":
                 him determined "Have you noticed anything unusual about the jellystars?"
-                chaco "During the double full moon, if there's a solar flare, it makes the jellystars glow."
+                chaco normal "During the double full moon, if there's a solar flare, it makes the jellystars glow."
                 chaco "Their pigments probably glow in UV light."
                 him excited "That's incredible. I hadn't thought about how solar flares would affect the moonlight. Is it safe for humans to be out then?"
-                chaco "Probably not."
+                chaco sad "Probably not."
                 him pout "How do they glow when it's cloudy then?"
-                chaco "Bioluminescence."
+                chaco normal "Bioluminescence."
                 jump jelly_convo
             "What do they eat?":
                 him pout "What do you feed them?"
-                chaco "Nothing. They eat things like plankton."
-                chaco "I've seen them eat tiny fish too."
+                chaco sad "Nothing. They eat things like plankton."
+                chaco normal "I've seen them eat tiny fish too."
                 jump jelly_convo
             "Have you made any jellysquid?":
                 him determined "Any luck getting them to aggregate into a jellysquid?"
-                chaco "No. But we have a clue."
-                chaco "We found a baby jellysquid."
+                chaco normal "No. But we have a clue."
+                chaco sad "We found a baby jellysquid."
                 chaco "We put it in the farm. It died, and the jellystars ate its tiny shell."
                 him doubt "Weird."
                 jump jelly_convo
             "Can I touch one?":
                 "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
                 him normal "Can I touch one?"
-                chaco "You can... sometimes it agitates them."
+                chaco normal "You can... sometimes it agitates them."
                 menu:
                     "What should I do?"
                     "Touch one.":
@@ -6242,7 +6238,7 @@ label community25:
                         "The jellystars grasped each other and made a long chain to the edge of the net."
                         "I could see and think but it felt like I was in a trance."
                         "Chaco took my hand out of the water."
-                        chaco "Weird, huh."
+                        chaco sad "Weird, huh."
                         $ touched_jellystar_25 = True
                     "Don't touch one.":
                         "I decided to just look at the jellystars."
@@ -6250,14 +6246,14 @@ label community25:
             "Why is there so much extra jellystar meat?":
                 him pout "It doesn't look like there are that many jellystars right now."
                 him "Where did all the extra meat come from?"
-                chaco "They reproduce on their own and crowd each other."
-                chaco "Brennan thinks that they can't combine if there are too many of them."
+                chaco normal "They reproduce on their own and crowd each other."
+                chaco sad "Brennan thinks that they can't combine if there are too many of them."
                 him doubt "What do you think?"
-                chaco "I'm not sure."
+                chaco normal "I'm not sure."
                 jump jelly_convo
             "I'm done talking.":
                 him normal "Good seeing you."
-                chaco "You too."
+                chaco sad "You too."
                 jump after_convo_25
 
     elif (mavericks_strong()): #10
