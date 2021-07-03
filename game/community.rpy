@@ -461,7 +461,7 @@ label community3:
                     him normal "I'll ask Pavel, the mayor, to remind them to make socialization a priority."
                     scene stars with fade #not sure what scene to show for this ending.
                     "I asked Pavel to remind everyone to remember to get to know the new colonists."
-                    "He sent an annoucement to the community bulletin."
+                    "He sent an announcement to the community bulletin."
                     "I don't know if anyone actually did anything about it, but the thought was there."
 
             return
@@ -734,7 +734,7 @@ label community4:
     else:
         pavel happy "Sara will be our new liaison! And she will do a wonderful job. Please give her your full support."
         $ bios.addToBio("Sara", "She's also the official colony liaison, responsible for negotiating between RET and the people of Talaam.")
-        
+
     stop sound fadeout 1.0
     return
 
@@ -861,19 +861,13 @@ label community5:
         menu convince_Pete:
             set community5_menuset
             "What should I tell Pete?"
-            "We could can some of the meat.":
-                him concerned "I know canned meat doesn't taste very good compared to fresh, but it will keep for longer."
-                him normal "How about it?"
-                pete angry "I don't think anyone should have to eat canned meat, not when they live next to me! I mean, which would you rather have, spam or steak?"
-                him surprised "Good point."
-                jump convince_Pete
             "You'll need credits to get other food.":
                 him concerned "Even if the best way to store cow meat is on a live cow, you're still going to need to eat something other than milk and meat."
                 him surprised "How will you afford vegetables and grain?"
                 pete happy "Plenty of people are willing to trade for or buy milk and beef."
                 pete normal "Ilian is just acting as a middleman. I don't like that he controls all the prices of food either. I prefer to deal directly with my customers."
                 jump convince_Pete
-            "If we canned some beef, then we'd have meat even if your herd died suddenly.":
+            "Canned beef would last for years.":
                 him surprised "What if one day you wake up and your whole herd of cattle is gone?"
                 him pout "If you canned some meat, then we would at least have something."
                 pete happy "That's true. But the herd is so small now that I need every cow and bull for good genetic diversity."
@@ -1374,7 +1368,7 @@ label community9:
             "They ate a lot of grass, and also the woody parts of plants. Their large beak-like claw could cut through branches, which allowed them to gnaw on it while on the move."
             #makes sense?
             thuc sad "It seems like in the morning, they like to be in the sun, but then in the evening, they like to be in the shade."
-            pete angry "They're cold-blooded critters, like insects. The can't make their own body heat."
+            pete angry "They're cold-blooded critters, like insects. They can't make their own body heat."
             show thuc normal
             him surprised "This herd is a pretty good size. There's all different sizes of them."
             scene canyon with fade
@@ -1775,7 +1769,8 @@ label community11:
     show her normal at quarterright
     show kid at midright
     with move
-    "I was about to introduce myself to one of the miners when I saw someone with commercial-worthy flowing red hair."
+    "I was about to introduce myself to one of the miners when I saw a familiar shade of red hair."
+    "His man bun and 70's collar made him look like someone who loves to talk about environmental issues but hates camping."
     him annoyed "Wait a minute, I recognize him!"
     show her surprised with dissolve
     #BRENNAN ON SCREEN. he looks the same
@@ -2631,7 +2626,7 @@ label community13:
     lily normal "Probably due to damage in one of the tailings dams! We must fix the dam and prevent future accidents."
     lily angry  "It will probably poison some local wildlife! As well as us!"
     him concerned "I certainly don't want heavy metals in my irrigation water."
-    him sad "Can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
+    him sad "But can we discuss it later? I just got out of bed and was hoping to sleep a bit more."
     if is_liaison:
         lily normal "I need you to insta-com Earth. If you message them soon, we can get them before working hours are over. Otherwise we need to wait a full fifteen hours."
         him pout "Alright. What do you need me to ask?"
@@ -3019,11 +3014,11 @@ label community14:
     brennan normal "But, since we're just sending back metal, feeling the pain of excessive g-forces isn't a problem our pilots need to worry about."
     "Kevin was broadcasting the launch on the radio."
     play sound "sfx/radio.mp3"
-    kevin "{i} Lift-off in 10{/i}"
-    kevin "{i}9{/i}"
-    kevin "{i}8{/i}"
-    kevin "{i}7,6,5,4{/i}"
-    kevin "{i}3,2,1{/i}"
+    kevin "{i} Lift-off in 10, 9, 8, 7, 6,{/i}"
+    kevin "{i}5, 4,{/i}"
+    kevin "{i}3{/i}"
+    kevin "{i}2{/i}"
+    kevin "{i}1{/i}"
     "We watched the shuttle as it started consuming fuel to power its flight."
     kevin "{i}Lift-off, we have lift-off{/i}"
     "Soon the shuttle was just a twinkle in the sky, and it disappeared."
@@ -3253,6 +3248,7 @@ label community15:
     naomi happy "You can plant it on my grave, and then you can think about how my body is becoming a tree."
     kid annoyed "Gross."
     naomi normal "And let [bro_name] help."
+    bro "I'll help."
     naomi sad "Come give me a hug."
     show kid shifty at midright
     show bro sad at midright
@@ -3267,9 +3263,8 @@ label community15:
     show bro normal at midleft
     show him sad at center
     with moveinright
-    "We left, and I told Pavel that Naomi wanted a break."
     pavel sad "[his_name], thank you so much for coming by."
-    him sad "Yeah, uh, let us know if you need anything..."
+    him sad "Naomi said she needs a break right now. And uh, let us know if you need anything..."
     pavel sad "I will."
 
     play music worried
@@ -3509,7 +3504,7 @@ label community16:
             pete happy "I've been working on some other ways to deflect radiation though!"
             him doubt "Really? It seems like you wouldn't have the technology..."
             pete normal "I'd started working on it before I left. I found out that the shells of all these animals are resistant to radiation."
-            him normal "That makes sense. Why didn't I think of that?"
+            him normal "Just like we suspected!"
             pete normal "The main problem is that the shells are brittle, so I can't bend them into other shapes, but I've been experimenting with different treatments for them."
             him content "That's really interesting."
             #offer to help prototype
@@ -3838,7 +3833,7 @@ label community17:
     "Of course, a few other adults were busy saving leftovers and helping the smallest children clean dishes."
     hide kid with moveoutright
     show bro at midright with move
-    hide bro with moveoutright    
+    hide bro with moveoutright
     show harvest_cg
     pavel sad "It's a shame we don't have any chocolate to give them."
     natalia happy "I miss it too."
@@ -4435,9 +4430,10 @@ label c17_after_activities:
         #move to a later, more sparse event?
         scene ocean with fade
         "Afterwards, I couldn't stop thinking about the seafood that Pete brought."
+        "He said he made it from a creature with spiny arms?"
         "I wonder what they look like."
         nvl clear
-        him_c "Dr. Lily, do you have any photos of the sea creature Pete brought?"
+        him_c "Dr. Lily, do you have any photos of the sea creature Pete served at the harvest festival?"
         if lily_mad_at_RET:
             "She responded via the messaging software. Guess she hadn't given up all technology."
         else:
@@ -4445,11 +4441,12 @@ label c17_after_activities:
         lily_c "I don't have a camera capable of taking photos underwater, but I'll e-mail you some photos of them out of water."
         lily_c "On Earth, jellyfish span various families of creatures, so I think it's safe to call this a kind of jellyfish. But they have five tentacles, so I've been calling them jellystars."
         lily_c "The creatures are very popular here and children and adults have been drawing them and incorporating their likeness into jewelry."
-        "I felt relief just looking at the photos of the creature out of water and the drawings."
-        "I started making my own drawings, and send a few back to Lily."
+        "Looking at the photos and drawings of the creature, I felt like I wanted to take care of it."
+        "It reminded me of how I felt when I looked at photos of baby animals."
+        "I started making my own drawings, and sent a few back to Lily."
         lily_c "Did you eat some of this jellystar at the feast?"
         him_c "Yes. Are they in season?"
-        lily_c "I find your interest in them highly unusual."
+        lily_c "Everyone seems to go a little ga-ga over them."
         him_c "Why? Aren't they beautiful creatures?"
         lily_c "Yes. They are."
 
@@ -5374,7 +5371,7 @@ label community22:
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
         brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
         show mountain_cg
-        "Pete still wasn't happy about the tremors the mining caused, and it irked Brennan to leave so much easy ore untouched."        
+        "Pete still wasn't happy about the tremors the mining caused, and it irked Brennan to leave so much easy ore untouched."
         "However, the mining continued without incident."
         $ community_22_compromise = True
         # does this need a stat +=?
@@ -5507,7 +5504,7 @@ label community22:
                         show travis normal at right
                         with dissolve
                         show him determined at left with moveinleft
-                        show chaco normal at midleft behind helen with moveinleft 
+                        show chaco normal at midleft behind helen with moveinleft
                         helen sad "Travis, go find the little ones and stay inside."
                         travis "What's going on? I want to say hi."
                         helen angry "Go now!"
@@ -5530,7 +5527,7 @@ label community22:
                         show helen at bounce
                         "Helen started screaming, and Pete appeared from behind some rocks."
                         show pete normal at right with moveinright
-                        pete "What in the devil's outhouse is going on here?"                        
+                        pete "What in the devil's outhouse is going on here?"
                         him angry "You need to promise to leave the caves!"
                         pete angry "Is that what this is about?! You come and attack my family... for RET and their--"
                         show pete at quarterleft with move
@@ -5540,7 +5537,7 @@ label community22:
                         show pete at bounce
                         with dissolve
                         show chaco at bounce
-                        show him at bounce                        
+                        show him at bounce
                         "I managed to get my shoulder into Pete's gut and we both fell to the ground. He landed on top of me and started bashing my head against the rock. My hands flailed helplessly."
                         helen angry "Pete! Pete, stop!"
                         pete angry "Give me one good reason!"
@@ -6820,7 +6817,7 @@ label community27:
     him pout "What is it trying to say? I thought they made their own shells."
     kid sad "Maybe they need to see another shell to know how to make it?"
     him surprised "Hmm. They do seem to be intelligent animals, but isn't it part of their body?"
-    jellysquid "Help me?"
+    jellysquid "Help we?"
     "Then the back of the jellysquid looked like the literacy game again."
     nvl clear
     computer "'Grown-ups only! Needs permission to access more content.'"
@@ -6830,14 +6827,14 @@ label community27:
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
     "Something under the surface was emitting a light."
-    show jellymother_cg    
+    show jellymother_cg
     "It came closer to the surface, and I could see part of it."
     "It had way more than ten tentacles and was a little larger than our rowboat."
     #the jellyperson could have up to four shells, connects easily with jellystars and jellysquids for a modular body. Maybe it's just a bunch of jellysquids stuck together in the middle, but they are bigger than normal
     #jellyperson controls their own luminesence
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question."
-    jellysquid "Why have you killed my children?"
+    jellysquid "Why killed we children?"
     menu:
         "What should I do?"
         "Run away.":
@@ -6853,8 +6850,8 @@ label community27:
 
 label text_conversation:
     "It started displaying text."
-    jellysquid "My babies can't grow."
-    jellysquid "Where are the baby's shells?" #this should come after asking about the babies
+    jellysquid "We babies can't grow."
+    jellysquid "Where are baby shells?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
     "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
     menu:
@@ -6868,15 +6865,15 @@ label text_conversation:
                     kid surprised "Well, Brennan did."
                     him surprised "Didn't you help him?"
                     kid sad "Yeah. But I needed the money."
-                    jellysquid  "Give them back to my children."
+                    jellysquid  "Give them back to we children."
                     jump call_to_squid
                 "ate them":
                     him doubt "I ate them. Using the minerals inside for technology is like eating to an animal."
                     him sad "I am part of the animal that consumes technology."
                     kid sad "I guess I am too."
                     "After I put in this answer, the jellysquid grabbed my shirt and tried to eat it."
-                    jellysquid "You say you ate the clothes but it is not in your clothes."
-                    jellysquid "Are the clothes inside you?"
+                    jellysquid "It is not in your shell."
+                    jellysquid "Are the shell inside you?"
                     menu:
                         "Yes.":
                             him surprised "The clothes of my consumerism are in my bones!"
@@ -6884,11 +6881,11 @@ label text_conversation:
                             jump boat_capsized
                         "No.":
                             him surprised "I think it wants to know where the shells are physically."
-                            jellysquid "Bring them for my babies to eat"
+                            jellysquid "Bring for we babies to eat"
                             jump call_to_squid
                 "lost them":
                     him doubt "We sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    jellysquid "Find them for my babies to eat."
+                    jellysquid "Find them for we babies to eat."
                     jump call_to_squid
 
         "He":
@@ -6898,16 +6895,16 @@ label text_conversation:
                     him annoyed "Brennan took the shells without researching the ecosystem thoroughly or gaining a community consensus."
                     him doubt "He basically stole them."
                     kid annoyed "We're the same way though. We've been using this planet without knowing how we would change things."
-                    jellysquid "Take them from him. Give back to my children."
+                    jellysquid "Take them. Give back to we children."
                     jump call_to_squid
                 "ate them":
                     him doubt "Brennan ate them, sort of. Using the minerals inside for technology is like eating to an animal."
-                    jellysquid "Bring his clothes here so we can eat them after he's done."
-                    kid surprised "Is it talking about the shells?"
+                    jellysquid "Bring his shell here so we can eat them after he's done."
+                    kid surprised "Is it talking about clothes or actual shells?"
                     jump call_to_squid
                 "lost them":
                     him determined "Brennan sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    jellysquid "Find them for my babies to eat."
+                    jellysquid "Find them for we babies to eat."
                     jump call_to_squid
 
 label call_to_squid:
@@ -6993,7 +6990,7 @@ label call_to_squid:
             if shell_count > 2:
                 jellysquid "Good shells. Need more."
                 "I traced a question mark on the jellysquid's shell."
-                jellysquid "More. Hundreds."
+                jellysquid "More. More. Hundreds."
                 "I kept tracing a question mark."
                 "It displayed the words 'Why, What, Where, you, we, live, shell, food, not.'"
                 him concerned "That's not a lot to work with. Hmmm."
@@ -7018,7 +7015,8 @@ label call_to_squid:
                                 menu:
                                     "Why we..."
                                     "live shell?" if (not weliveshell):
-                                        jellysquid "You don't live in a shell. Your shell is inside you."
+                                        jellysquid "You soft outside, not a shell. Your shell is inside?"
+                                        him surprised "I guess our skeleton is like our shell?"
                                         $ weliveshell = True
                                         jump question_menu
                                     "live not?" if (not welivenot):
@@ -7041,14 +7039,14 @@ label call_to_squid:
                                         jellysquid "Then why do you need shell?"
                                         jump question_menu
                                     "We live not.":
-                                        "That is not possible. Dead things don't move."
+                                        "Is a lie or jest? Dead things don't move."
                                         jump question_menu
                             "we?" if (not whatwe):
                                 jellysquid "You are new animals. We do not know what you are."
                                 $ whatwe = True
                                 jump question_menu
                             "shell?" if (not whatshell):
-                                jellysquid "Shell protects children."
+                                jellysquid "Shell protects we children."
                                 $ whatshell = True
                                 jump question_menu
                             "shell food?" if (not asked_shell_food):
@@ -7673,7 +7671,7 @@ label community29:
     him_c "Oh... is a healthy baby possible?"
     her_c "Yes, but she might need extra care. Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
-    if (mavericks_strong("moderate")): #5 
+    if (mavericks_strong("moderate")): #5
         her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "She doesn't want to stay with Travis at his restaurant?"
         her_c "It's noisy in the evenings and there isn't really room for her there."

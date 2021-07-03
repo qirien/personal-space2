@@ -474,6 +474,7 @@ label life_loop:
                 show text "End Baby Years"
                 $ renpy.pause(1.5)
                 show baby_cg
+                $ renpy.pause(6.0)
                 $ renpy.pause()
 
             if (year == TODDLER_MAX):
@@ -481,6 +482,7 @@ label life_loop:
                 show text "End Toddler Years"
                 $ renpy.pause(1.5)
                 show toddler_cg
+                $ renpy.pause(6.0)
                 $ renpy.pause()
 
             if (year == CHILD_MAX):
@@ -488,6 +490,7 @@ label life_loop:
                 show text "End Childhood Years"
                 $ renpy.pause(1.5)
                 show child_cg
+                $ renpy.pause(6.0)
                 $ renpy.pause()
 
             if (year == TWEEN_MAX):
@@ -495,6 +498,7 @@ label life_loop:
                 show text "End Tween Years"
                 $ renpy.pause(1.5)
                 show tween_cg
+                $ renpy.pause(6.0)
                 $ renpy.pause()
 
             if (year == YTEEN_MAX):
@@ -502,6 +506,7 @@ label life_loop:
                 show text "End Young Teen Years"
                 $ renpy.pause(1.5)
                 show yteen_cg
+                $ renpy.pause(6.0)
                 $ renpy.pause()
 
             $ year += 1
