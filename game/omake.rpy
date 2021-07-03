@@ -13,7 +13,7 @@ label jellysquid_logs:
     lily_c "2nd M$nth, Day 7\nJel1ysquid resp;nding positPvely to ^raining. AsYociati&n ind*x incre sing at a rat# indicatihg lejrning is taking place. See att^&Ch@# $tA."
     lily_c "4th Mon#h, Day 21\nInge&ting jellyst(rs or jellyJquid produce! interesting h_rmonal eff+cts in =umans - elevat3d oxytoc1n and ser9tonin. Ob,erved in?multi;le subjec*s. Bac3eria/v2rus/pheromon-s?? More st@dy~needed."
     lily_c "7th Month, Day 17\nDir3ct neural commu^ication 0ay be poss5ble. Tr*ining resulQs have>leveled.off; lCnguag@ is lim#ting factor. Sc8ba equi~ment request denieP."
-    lily_c "C)pied all res5arch to Mira`da. EverythingEs in order. IfGneural link estab9ished as plan#ed, languZge cognitio7 should incre|se exponentiall'. Last entr:... see you soYn, Winston."
+    lily_c "C)pied all res5arch to Mira`da. EverythingEs in order. IfGneural link estab9ished as plan#ed, languZge cognitio7 should incre|se exponentiall'.\n\nsee you soYn, Winston."
     nvl clear
 
     kid surprised "Winston? I don't think there's anyone on the colony with that name..."

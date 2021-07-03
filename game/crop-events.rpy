@@ -1931,6 +1931,7 @@ label onions1:
 
 # Honey event
 # Can only happen year 11+
+# TODO: Except in new game+???
 label honey1:
     scene fields with fade
     show him normal at center with dissolve

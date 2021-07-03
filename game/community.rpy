@@ -6812,8 +6812,8 @@ label community27:
     jellysquid "Sad Sad Sad Sad Sad Sad"
     show kid nervous
     "[kid_name] touched the jellysquid's shell."
-    jellysquid "We children are dying."
-    jellysquid "We can't find shells."
+    jellysquid "The children are dying."
+    jellysquid "The children can't find shells."
     him pout "What is it trying to say? I thought they made their own shells."
     kid sad "Maybe they need to see another shell to know how to make it?"
     him surprised "Hmm. They do seem to be intelligent animals, but isn't it part of their body?"
@@ -6850,7 +6850,7 @@ label community27:
 
 label text_conversation:
     "It started displaying text."
-    jellysquid "We babies can't grow."
+    jellysquid "The babies can't grow."
     jellysquid "Where are baby shells?" #this should come after asking about the babies
     "It displayed several words that I could drag to the answer area."
     "The words were 'I', 'He', 'stole,' 'ate,' 'lost,' and 'them'."
@@ -6881,11 +6881,11 @@ label text_conversation:
                             jump boat_capsized
                         "No.":
                             him surprised "I think it wants to know where the shells are physically."
-                            jellysquid "Bring for we babies to eat"
+                            jellysquid "Bring for the babies to eat"
                             jump call_to_squid
                 "lost them":
                     him doubt "We sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    jellysquid "Find them for we babies to eat."
+                    jellysquid "Find them for the babies to eat."
                     jump call_to_squid
 
         "He":
@@ -6904,7 +6904,7 @@ label text_conversation:
                     jump call_to_squid
                 "lost them":
                     him determined "Brennan sent them in a shuttle to another planet. They're basically lost, but on purpose?"
-                    jellysquid "Find them for we babies to eat."
+                    jellysquid "Find them for the babies to eat."
                     jump call_to_squid
 
 label call_to_squid:

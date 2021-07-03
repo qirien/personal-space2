@@ -288,7 +288,10 @@ init python:
 
             # Place goats and honey
             goats_needed = crop_info[get_crop_index("goats")][MAXIMUM_INDEX]
-            honey_needed = crop_info[get_crop_index("honey")][MAXIMUM_INDEX]
+            if (crop_info[get_crop_index("honey")][ENABLED_INDEX]):
+                honey_needed = crop_info[get_crop_index("honey")][MAXIMUM_INDEX]
+            else:
+                honey_needed = 0
 
             while (goats_needed):
                 self.crops[self.min_nitrogen_index()] = "goats"

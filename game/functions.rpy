@@ -315,7 +315,10 @@ init -100 python:
                     next_event = number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
-                        possible_events.add(event_label)
+                        if ((event_label == "honey1") and (year < TODDLER_MAX)):
+                            pass
+                        else:
+                            possible_events.add(event_label)
 
             num_possible_events = len(possible_events)
             if (num_possible_events > 0):

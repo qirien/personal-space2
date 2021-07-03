@@ -479,6 +479,7 @@ label ending_AC:
         travis happy "It's in the deep ocean. Not much scuba diving going on here!"
         kid normal "And since it's made out of organic materials it looked like a coral reef or something."
         travis excited "Oleg's new app makes talking with them way easier, though!"
+        show travis normal with dissolve
     else:
         oleg angry "It never showed up on our scans because one, it's underwater, and two, it's completely made out of living, organic materials, so it just looked like a coral reef or something."
         kid normal "Oleg's made an app to help us map their city, and another to help us communicate better with them."
@@ -490,7 +491,6 @@ label ending_AC:
         him surprised "Did they ever find shells for their babies?"
         kid determined "No, but they merged with another colony and have been able to grow more since then."
 
-    show travis normal with dissolve
     him concerned "This sounds like great research..."
     kid annoyed "...but you wonder how I'm going to make a living, right?"
     him flirting "We do prefer our daughter not to starve to death."
