@@ -111,7 +111,7 @@ label message5:
     # Liaison business -- ratifying charter, objections must be posted by two weeks, blah blah. Kevin feels it's not precise
     # People encouraging liaison, they don't actually do much yet
     if (is_liaison):
-        him_c "Hey, we need to ratify the our charter tomorrow at the meeting in two weeks, so please look it over before then. Now is the time if you have any objections."
+        him_c "Hey, we need to ratify our charter in two weeks, so please look it over before then. Now is the time if you have any objections."
     else:
         sara_c "If you haven't had a chance to read our new charter, please look it over!  We're ratifying it in two weeks so if you have any issues, let's work them out before then!"
 

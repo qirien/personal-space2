@@ -123,7 +123,7 @@ label family1:
             show him baby normal at center with moveinleft
             "I tiptoed back into the house and struggled to take her out of the carrier without waking her up."
             hide him with moveoutright
-            call bedroom_scene(show_baby=True) from _call_bedroom_scene_2 
+            call bedroom_scene(show_baby=True) from _call_bedroom_scene_2
             "Finally, she was sleeping in bed, and I fell into bed next to her and [her_name]."
             $ authoritative += 1
             $ permissive += 1
@@ -257,7 +257,7 @@ label family1:
                     scene barn with fade
                     "I lay down on the hay in the barn and closed my eyes. [kid_name]'s screams echoed in my head so loudly I sat up and looked around. But there was no one there."
                     "Sleep was a long time in coming."
-                    $ neglectful += 1        
+                    $ neglectful += 1
 
     stop sound fadeout 2.0
     stop music fadeout 2.0
@@ -520,7 +520,7 @@ label family2:
             him surprised "I guess it's probably pretty boring for you, huh?"
             kid concerned "..."
             him concerned "Sorry, baby, but we have to get this work done, or we won't have food to eat."
-            play sound "sfx/baby-shortcry.ogg"            
+            play sound "sfx/baby-shortcry.ogg"
             kid angry "Aaaa!"
             "She kicked her legs more, in frustration now. She pushed against me, trying to worm her way out of the backpack, but she was strapped in tight."
             "I tried to think about what would help her be happy while I worked on these fields for the next hour or two."
@@ -1538,7 +1538,7 @@ label family5:
                 him determined "Remember, pee goes in the potty. Go sit on the potty."
             else:
                 him angry "[kid_name]! You peed on the floor!"
-                kid sad "Uh-oh."
+                kid sad "Uh-oh"
                 him annoyed "Pee goes in the potty. Go sit on the potty."
             "While she sat on the potty, I got her some clean clothes and helped her wash off."
             kid normal "I not have any pee."
@@ -1553,13 +1553,13 @@ label family5:
                 him surprised "Next time you have a pee feeling, where do you need to go?"
                 kid normal "I go potty."
                 him determined "Right."
-            elif (family5_punishment == "go to timeout"):
+            if (family5_punishment == "go to timeout"):
                 him determined "Okay, now you have to go to timeout while I clean it up."
                 kid angry "No!!!"
                 "We spent thirty minutes of her popping out of timeout and me putting her back in while also trying to clean up the mess."
                 "I felt so frustrated at the end, I was ready to call the whole thing off."
                 "Good thing it was the weekend, and I could take turns with [her_name]."
-            elif (family5_punishment == "not use the computer pad"):
+            if (family5_punishment == "not use the computer pad"):
                 him determined "Now you can't use the computer pad until you pee in the potty."
                 kid angry "No!"
                 him annoyed "Pee goes in the potty, [kid_name]. Use the potty, and you can use the computer pad again."
@@ -1567,7 +1567,7 @@ label family5:
                 "She threw a huge tantrum, screaming and crying to use the computer pad. It took all my patience to remain calm, but somehow I did it until she calmed down thirty minutes later."
                 show kid cry with dissolve
                 "Good thing it was the weekend, and I could take turns with [her_name]."
-            elif (family5_punishment == "be spanked"):
+            if (family5_punishment == "be spanked"):
                 him angry "No! You don't pee in your pants!"
                 "I gave her a light spank - enough she would feel it, but not enough that it should hurt much."
                 kid yell "Wahhhhh!"
@@ -1577,18 +1577,6 @@ label family5:
                 her concerned "I don't think this method is working."
                 him sad "I'm ready to try something else."
                 $ trust -= 1
-            else:
-                hide kid with moveoutright
-                "She ran off to play while I cleaned up the mess. As I washed and scrubbed, I felt more and more angry."
-                "Why was I always the one cleaning everything up?!"
-                show kid normal at midright with moveinright
-                kid normal "Play with me, Daddy!"
-                him angry "No! I'm still cleaning up YOUR stinky, smelly mess!"
-                kid cry "No! No mess! Play!"
-                him yell "Get out of here!"
-                hide kid with moveoutright
-                "She ran off, crying."
-                "I cleaned the mess off the floor and clothes, but I felt like a mess inside..."
             if (family5_method == "keep her outside"):
                 "We decided to spend the day outside again, so that made subsequent messes easier to cleanup."
 
@@ -2685,7 +2673,7 @@ label family8:
             with moveoutleft
             scene path with fade
             show sara sad at midleft
-            show oleg sad at quarterleft            
+            show oleg sad at quarterleft
             with dissolve
             show him concerned at midright
             show her concerned coat at center
@@ -3792,7 +3780,7 @@ label family12:
             him bald "I could get used to this! Wow, feel how smooth my head is!"
             show her annoyed at center with move
             her "Ick. It feels like a rat's tail."
-            $ achieved("Lousy Haircut")            
+            $ achieved("Lousy Haircut")
             "Yeah, it looked pretty weird, too. Oh well; my hair would grow back soon enough."
         "Don't shave it.":
             him concerned "I just don't want to shave it. Sorry, [her_name]."
@@ -3892,7 +3880,7 @@ label family12_anyas_house:
         "She'll be fine on her own.":
             $ responsive += 1
             $ confident += 1
-            "I couldn't be there for [kid_name] forever. She needed to be ready to be without me or another adult, and she couldn't learn those skills without practicising them."
+            "I couldn't be there for [kid_name] forever. She needed to be ready to be without me or another adult, and she couldn't learn those skills without practicing them."
 
     "The whole walk home [kid_name] talked and talked about everything she and Anya did. It was pretty cute, actually."
     return
@@ -4143,7 +4131,7 @@ label family13:
                 "What should I tell her about sex?"
                 "Tell her the physical mechanics.":
                     $ confident += 1
-                    him explaining "A man's penis can go inside the woman's vagina when they have sex. His sperm come out and can combine with on of her eggs to make a baby."
+                    him explaining "A man's penis can go inside the woman's vagina when they have sex. His sperm come out and can combine with one of her eggs to make a baby."
                     kid concerned "Oh."
                     "She thought about it for a minute."
                     kid surprised "And that's how you and Mom made me?"
@@ -4280,7 +4268,7 @@ label family13_end:
             show bro normal at left with moveinleft
             him normal "That's good. Do you think we can make dinner so quietly that we can surprise her when she wakes up?"
             show bro concerned at midleft
-            show kid normal at center 
+            show kid normal at center
             with move
             kid normal "Yeah! Let's make something she likes!"
             bro normal "I can help!"
@@ -4541,7 +4529,7 @@ label family14:
                     "At least we worked things out with her teacher."
                     $ confident += 1
                     $ authoritative += 1
-                    
+
         "You're just whining.":
             him explaining "Quit whining and don't hit your brother."
             kid annoyed "But...!"
@@ -4549,12 +4537,12 @@ label family14:
             $ neglectful += 1
             $ confident += 1
             $ trust -= 1
-    
+
     scene farm_interior with fade
     show her concerned at midright
     show him determined at midleft
     with dissolve
-    her concerned "Sister Naomi is holding a parenting class...do you want to go?"    
+    her concerned "Sister Naomi is holding a parenting class...do you want to go?"
     show him annoyed with dissolve
     "Part of me felt defensive -- did [her_name] think I needed parenting lessons?!"
     $ parenting_style = get_parenting_style()
@@ -4577,7 +4565,7 @@ label family14:
             him determined "I'm staying here."
             her concerned "Okay. See you later."
             hide her with moveoutleft
-    
+
     return
 
 # 9.4 Earth years old
@@ -5185,7 +5173,7 @@ label family17:
                 jump family17_sniffle_loop
 
     label family17_after_sniffle:
-        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out." 
+        "He was finally starting to calm down a bit. I guess maybe he just needed someone to listen to him? Or maybe he just had to let it all out."
         "[her_name] said he had some sensory processing issues and experienced things very intensely."
         "I tried to remember that he wasn't doing all this just to annoy me; he was feeling some intense emotions and having trouble dealing with them."
 
@@ -5374,7 +5362,7 @@ label family17:
                 him concerned "Yeah, he... Pete doesn't like people interfering with him."
                 bro surprised "Is he going to yell at us if we ask for bread?"
                 him happy "I think not, my apprentice! And if he does, we shall withstand his blows with the power of jolly cooperation! Do not fear!"
-                "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]."            
+                "It was a long ride over to Pete's ranch, but it felt good to spend time with [bro_name]."
                 "He was so quiet that he didn't always get much attention, but his little arms held me tight as we rode and I got the feeling he was feeling better."
                 scene farm_exterior flip with fade
                 show pete normal at midright with dissolve
@@ -5423,7 +5411,7 @@ label family17:
         "But as we approached home, [bro_name] broke the silence."
         bro normal "I like riding with you, dad."
         him happy "I like riding with you, [bro_name]."
-        $ renpy.notify("Quest Complete!")        
+        $ renpy.notify("Quest Complete!")
         "We didn't find the bread [bro_name] wanted, but he seemed to be feeling better. Maybe hanging out with dad was what he really needed."
     return
 
@@ -5561,7 +5549,7 @@ label family18:
                             "I felt kind of mad, but I couldn't blame her. I had humiliated her and made her feel like a little kid again. I thought that was what she needed. But what did she need now?"
                             menu:
                                 "What should I do?"
-                                "Try to cheer her up with a water fight.":                                
+                                "Try to cheer her up with a water fight.":
                                     $ responsive += 1
                                     play music exciting
                                     show him normal at midleft with move
@@ -6641,7 +6629,7 @@ label family22:
                 her normal "I'll pick something everyone will like."
                 him concerned "Good luck!"
                 her excited "With our huge database I'm sure I can find something!"
-                "She somehow managed to find a movie that had teen protagonists for [kid_name], wasn't too scary for [bro_name], and had deep ideas for [her_name] and I." 
+                "She somehow managed to find a movie that had teen protagonists for [kid_name], wasn't too scary for [bro_name], and had deep ideas for [her_name] and I."
                 "The acting was terrible, but, hey, you can't have everything."
                 "I popped some popcorn I had been saving and we snuggled up to watch the movie together."
     elif (parenting_style == "permissive"):
@@ -7009,7 +6997,7 @@ label family24:
             "Though I wasn't sure how much I trusted Lorant, I didn't know what to say."
             "We walked in silence for several minutes."
             $ neglectful += 1
-            $ lorant_points += 1            
+            $ lorant_points += 1
             jump lettie_dies
 
     "Anya's brother Lorant was about twenty. I didn't know much about him except that he worked in the mine and was planning on returning to Earth with his parents when their contract was up."
@@ -7268,7 +7256,7 @@ label lettie_dies:
             scene stars with fade
             "We worked with the community so that the teenagers could have the community center to themselves several evenings a week."
             "[kid_name] worked with Anya and some other friends to make a ping pong table and some soft rugs. They talked about future plans, too, like a mini-kitchen and some big speakers for music."
-            scene community_center with fade 
+            scene community_center with fade
             show her normal coat at midright
             show him normal at midleft
             with dissolve
@@ -7777,7 +7765,7 @@ label family27:
             scene stars with fade
             $ modify_credits(200)
             "With [kid_name]'s help, I was able to make some extra money from the farm..."
-            $ modify_credits(-bike_cost)   
+            $ modify_credits(-bike_cost)
             "...but not nearly enough to cover the cost of the bike."
             $ kid_work_slider += 20
             if (kid_work_slider > 100):
@@ -8625,7 +8613,7 @@ label family30:
         # She's still running her delivery service and dating Travis/Lorant
         "I hardly ever saw her -- it seemed like she was always out delivering things."
         $ boyfriend_name = "Lorant"
-    
+
     if (boyfriend_name != ""):
         "Sometimes she was hanging out with her boyfriend, [boyfriend_name]. I'm not sure how that happened, but apparently they're a thing."
 
@@ -8682,16 +8670,16 @@ label family30:
 
     show memory03 at tilted, midleft, driftdown, threefourths_size
     "I saw a rope and it reminded me of how she liked to play with Oleg and Travis before they were old enough for school."
-    
+
     show memory04 at tilted, center, driftdown, threefourths_size
     "The bucket reminded me of when we picked tomatoes together, and she'd always eat about twice as many as she put in her little bucket, seeds dripping down her chin."
 
     show memory05 at tilted, midright, driftdown, threefourths_size
     "I remember her coming up that hill coming home from school with [bro_name]."
-    
+
     show memory06 at tilted, midleft, driftdown, threefourths_size
     "A goat bleated and I remembered teaching her how to milk goats and that time the goats all got out and we chased them down together."
-    
+
     show memory07 at tilted, center, driftdown, threefourths_size
     "I saw her bike and remembered how she saved and worked for that thing, and then when we finally got it she didn't even know how to ride it. That didn't stop her from trying, though!"
     # scene barn with fade
@@ -8952,9 +8940,9 @@ label family30:
         him happy "Okay, group hug!"
         show him normal at midleft with move
         show her normal at midright with move
-        show kid normal with dissolve        
+        show kid normal with dissolve
         her annoyed "Watch the foot!"
-        show bro at midleft with move        
+        show bro at midleft with move
         bro "Your hair is in my face!"
         show her at center with move
         "Finally everyone was comfy and we had a minute just to hold one another."
