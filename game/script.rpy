@@ -286,7 +286,7 @@ label start:
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
-            "If you haven't played Our Personal Space 1, it's available for free at http://www.metasepiagames.com and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+            "If you haven't played {a=https://www.metasepiagames.com/OurPersonalSpace/index.html}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
         if (not renpy.mobile):
             "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
             "If you miss something, you can scroll backwards and forwards using the mousewheel."
