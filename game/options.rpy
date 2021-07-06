@@ -15,7 +15,7 @@
 define config.name = _("Space to Grow")
 
 ## The version of the game.
-define config.version = "0.6"
+define config.version = "0.7"
 define config.developer = True
 define config.console = True
 #define config.auto_choice_delay = 0.5 #None
@@ -24,10 +24,12 @@ define config.console = True
 define config.autosave_on_choice = False
 define config.autosave_on_quit = True
 
+define config.load_failed_label = "life_loop" #If it can't find where to return to, just replay the current year.
+
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
-define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepiagames.com}http://metasepiagames.com{/a}\n\n{a=credits}Full Credits{/a}")
+define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepiagames.com}http://metasepiagames.com{/a}\n\n{a=credits}Credits{/a}") #TODO: link to LICENSE, HTML version
 
 
 ## A short name for the game used for executables and directories in the built

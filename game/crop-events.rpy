@@ -870,7 +870,7 @@ label squash1:
 # SQUASH2 - squash bugs
 label squash2:
     play music problems
-    play sound "sfx/rain.ogg"
+    play sound "sfx/rain.ogg" loop
     scene fields with fade
     show rain
     show him normal at center behind rain with dissolve
@@ -1561,7 +1561,7 @@ label beans1:
 
 # BEANS 2 - Wet beans
 label beans2:
-    play sound "sfx/rain.ogg"
+    play sound "sfx/rain.ogg" loop
     scene fields with fade
     show rain
     show him concerned at center behind rain with dissolve
@@ -1847,7 +1847,7 @@ label strawberries1:
 
 # Strawberries 2 - mutant cancerous strawberries from solar flare
 label strawberries2:
-    play sound "sfx/rain.ogg"
+    play sound "sfx/rain.ogg" loop
     scene fields with fade
     show rain
     "There were two things I liked about strawberries."

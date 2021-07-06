@@ -41,7 +41,7 @@ label start:
     default his_name = "Jack"
     default her_name = "Kelly"
     default his_nickname = "dear"
-    default her_nickname = "lover"
+    default her_nickname = "sweetie"
     default kid_name = "Terra"
     default bro_name = "Aeron"
 
@@ -211,7 +211,7 @@ label start:
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
-            "potatoes" : "A starchy root vegetable with a lot of calories that doesn't take too much work.",
+            "potatoes" : "A starchy root vegetable providing a lot of energy that doesn't take too much work.",
             "wheat" : "A nutritious grain, usually made into bread.",
             "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
             "tomatoes" : "A juicy, versatile fruit; can be eaten raw or cooked.",
@@ -286,7 +286,7 @@ label start:
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
-            "If you haven't played Our Personal Space 1, it's available for free at http://www.metasepiagames.com and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+            "If you haven't played {a=https://www.metasepiagames.com/OurPersonalSpace/index.html}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
         if (not renpy.mobile):
             "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
             "If you miss something, you can scroll backwards and forwards using the mousewheel."
@@ -319,9 +319,9 @@ label start:
         "Yes, continue.":
             $ pass
         "No, change names.":
-            $his_name = renpy.input("Husband's Name", default=his_name)
-            $her_name = renpy.input("Wife's Name", default=her_name)
-            $kid_name = renpy.input("Baby girl's Name", default=kid_name)
+            $his_name = renpy.input("Husband's Name", default=his_name, length=12)
+            $her_name = renpy.input("Wife's Name", default=her_name, length=12)
+            $kid_name = renpy.input("Baby girl's Name", default=kid_name, length=12)
             jump name_change_loop
 
     $ bios.changeName("[his_name]", his_name)

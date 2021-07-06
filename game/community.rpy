@@ -38,6 +38,8 @@ label community1:
     $ tell_Ngyuens = False
     $ tell_Perons = False
     $ bios.activate("Thuc")
+    $ bios.activate("Julia")
+    $ bios.activate("Oleg")
     $ bios.activate("Sara")
     $ bios.activate("Ilian")
 
@@ -185,7 +187,7 @@ label community1:
     him "Some people have complained that her bedside manner is a little callous."
     him "So her objectivity is more relevant to customer satisfaction than, say, mine."
     kevin "Are you implying that your carrots cannot feel your love?"
-    him "Probably not. Unless that love manifests itself in better care."
+    him happy "Not at all. But my carrots won't scowl at me if we disagree on something!"
     hide her
     hide kid
     with dissolve
@@ -223,7 +225,6 @@ label community1:
             "We talked about homesickness and therapy techniques until it was time to go."
             $ met_grayson = True
         "Thuc and Ilian":
-            $ bios.activate("Julia")
             "I found Thuc, but Ilian had already gone home."
             show thuc normal at quarterright
             with moveinright
@@ -625,7 +626,6 @@ label community4:
     show lily normal at midleft
     with dissolve
     $ bios.activate("Lily")
-    $ bios.activate("Oleg")
     $ bios.activate("Naomi")
     thuc "Who has time for that extra work? It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
@@ -651,7 +651,7 @@ label community4:
     him pout "RET didn't really explain why we need a liaison."
     lily normal "Regardless, I must choose someone. What do you think of Sara?"
     him normal "She helped Pavel out with some administrative stuff, so she's familiar with the bureaucratic work."
-    naomi happy "Now that Oleg is a little older, she might be up to something like this."
+    naomi happy "Now that Oleg is a little older, she might have time for this position."
     him concerned "Maybe. Oleg is about the same age as [kid_name], and she's still quite the handful."
     naomi normal "What about you? You don't have close ties to Pavel, so we don't have to worry about a conflict of interest there."
     lily happy "And based on your relationships with other colonists, your socialization skills are at least average."
@@ -951,6 +951,8 @@ label community6:
     show helen normal at quarterright
     show kevin normal at quarterleft
     with dissolve
+    $ bios.activate("Travis")
+    $ bios.activate("Pete")
     $ bios.activate("Helen")
     thuc happy "I brought 'Maximal Conquest' tonight, are you guys up for it?"
     kevin "I have read the rules and watched the tutorial. I am prepared to join you."
@@ -1318,9 +1320,9 @@ label community8:
 ################################################################################
 
 label community9:
+    $ bios.activate("Travis")
     $ bios.activate("Pete")
     $ bios.activate("Helen")
-    $ bios.activate("Travis")
     scene pond with fade
     show pete normal at midright
     show him normal at midleft
@@ -6690,6 +6692,7 @@ label community26:
         him pout "I'm not going to just throw away all my goats. But if they're primarily for milk, maybe I don't need quite so many."
         $ goats_index = get_crop_index("goats")
         $ crop_info[goats_index][MAXIMUM_INDEX] = 1
+        $ farm.delete_crop("goats")
         if thuc_has_cattle:
             thuc sad "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
             ilian happy "You can start by building the laboratory to grow the meat in."
@@ -6845,7 +6848,7 @@ label community27:
     #jellyperson controls their own luminesence
     "Jellystars, joined in a chain, connected the large organism to the jellysquid in my bucket."
     "The jellysquid's surface changed to show a question."
-    jellysquid "Why killed we children?"
+    jellysquid "Why killed children?"
     menu:
         "What should I do?"
         "Run away.":
@@ -6869,6 +6872,7 @@ label text_conversation:
         "What should I say?"
         "I":
             him concerned "Brennan and I are humans and co-workers. I'm partially responsible for his actions in her eyes."
+            $ miners += 1
             menu:
                 "I..."
                 "stole them":
@@ -6876,7 +6880,7 @@ label text_conversation:
                     kid surprised "Well, Brennan did."
                     him surprised "Didn't you help him?"
                     kid sad "Yeah. But I needed the money."
-                    jellysquid  "Give them back to we children."
+                    jellysquid  "Give them back to children."
                     jump call_to_squid
                 "ate them":
                     him doubt "I ate them. Using the minerals inside for technology is like eating to an animal."
@@ -6906,11 +6910,11 @@ label text_conversation:
                     him annoyed "Brennan took the shells without researching the ecosystem thoroughly or gaining a community consensus."
                     him doubt "He basically stole them."
                     kid annoyed "We're the same way though. We've been using this planet without knowing how we would change things."
-                    jellysquid "Take them. Give back to we children."
+                    jellysquid "Take them. Give back to children."
                     jump call_to_squid
                 "ate them":
                     him doubt "Brennan ate them, sort of. Using the minerals inside for technology is like eating to an animal."
-                    jellysquid "Bring his shell here so we can eat them after he's done."
+                    jellysquid "Bring his shell here so children can eat after he's done."
                     kid surprised "Is it talking about clothes or actual shells?"
                     jump call_to_squid
                 "lost them":
@@ -7057,7 +7061,7 @@ label call_to_squid:
                                 $ whatwe = True
                                 jump question_menu
                             "shell?" if (not whatshell):
-                                jellysquid "Shell protects we children."
+                                jellysquid "Shell protects children."
                                 $ whatshell = True
                                 jump question_menu
                             "shell food?" if (not asked_shell_food):
@@ -7952,6 +7956,7 @@ label community29:
 
 label community30:
     #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not
+    play music problems
     $ account_checked_counter = 0
     $ know_noel_had_firegrass = False
     $ checked_noel = False
@@ -8111,7 +8116,7 @@ label community30:
         julia happy "Oh, and Noel has a lot of social anxiety and asked not to be questioned in-person."
         him pout "Hmm. I wonder if it's social anxiety or something else."
         him normal "What do you think happened?"
-        julia normal "I'm not sure. That's why I'm asking you to do this."
+        julia angry "I'm not sure. That's why I'm asking you to do this."
         him determined "I'll get started right away."
         julia happy "Thank you. I'll leave you now to get started."
         jump investigation_start
@@ -8119,7 +8124,7 @@ label community30:
     label investigation_start:
         scene farm_interior with fade
         play sound "sfx/rain.ogg" volume 0.6 loop
-        play music problems
+        play music investigation
         show him determined at center with dissolve
         nvl clear
         "I started with the images of the crime scene."
@@ -9320,7 +9325,7 @@ label community30:
                                         sara_c "You can come to report your findings, accuse Julia of whatever, and then we'll have the jury right there."
                                         sara_c "But what are you accusing her of? I need to arrange for the defense as well."
                                         him_c "I'm accusing her of conspiring to murder Joel. And I'm accusing Van of putting that plan into action."
-                                        sara_c "Got it. See you next week."
+                                        sara_c "Got it. {emoji=sad} See you next week."
                                         him_c "Sounds like a plan."
                                         him normal "Sara says she can make it happen."
                                         him pout "In the meantime, can you really test if the tea has firegrass in it?"
@@ -9370,7 +9375,7 @@ label community30:
                                             show sara normal at center with dissolve
                                             sara sad "Thank you both for your arguments. Please go home while the jury deliberates, and I'll tell you their verdict in the morning."
                                             scene black with fade
-                                            "I had trouble sleeping, and eagerly awaited the verdict."
+                                            "I had trouble sleeping, and anxiously awaited the verdict."
                                             scene community_center with fade
                                             play sound "sfx/rain.ogg" volume 0.6 loop
                                             show him determined at midright
@@ -9386,7 +9391,7 @@ label community30:
                                             else:
                                                 sara normal "They also found Julia guilty of misrepresenting her plum tea syrup."
                                             sara "Everyone involved will have to attend weekly therapy sessions with me for a month and do some community service hours."
-                                            him angry "But it's clear that Julia was somehow involved with Noel's buying all that firegrass."
+                                            him angry "But it's clear that Julia was somehow involved with Noel buying all that firegrass."
                                             zaina sad "And you also have no evidence of that!"
                                             sara sad "Zaina is right. You have evidence for a lot of things, but no real connection between Julia and Noel."
                                             if know_rings_purpose:

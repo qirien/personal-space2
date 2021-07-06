@@ -26,8 +26,10 @@ screen show_poem(poem, take_photo=True):
     # Make it so you can click anywhere to proceed
     if (take_photo):
         key "mousedown_1" action [Function(take_picture), Hide("poem_display", whitefade)]
+        key "K_SPACE" action [Function(take_picture), Hide("poem_display", whitefade)]
     else:        
         key "mousedown_1" action [Hide("poem_display"), Return()] 
+        key "K_SPACE" action [Hide("poem_display"), Return()]
 
     frame:
         xalign 0.5 
