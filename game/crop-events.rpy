@@ -258,7 +258,7 @@ label garlic1:
     her happy "Garlic mashed potatoes?! Wow!"
     if (bro_age > TODDLER_MAX):
         bro sad "Mashed potatoes are my favorite! But those smell bad..."
-    kid angry "I'm not eating any!"        
+    kid angry "I'm not eating any!"
     him angry "Hey, you haven't even tried it yet."
     kid annoyed "I don't need to try it! It smells disgusting!"
     menu:
@@ -1649,7 +1649,7 @@ label spinach1:
             her surprised "Is the spinach ready yet? I wanted to make a salad to go with dinner."
             him concerned "Sorry, no spinach this year. It got too hot."
             her concerned "Oh...that's too bad."
-            $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))            
+            $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
             him normal "Don't worry; we'll definitely have some next year."
             $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 2
     return
@@ -1673,7 +1673,7 @@ label spinach2:
             show night_overlay with dissolve
             show him annoyed at center with moveinleft
             "After [kid_name] and [her_name] went to bed, I snuck out of the house to examine the spinach plants.  My flashlight caught something small and slimy -- it looked like a snail!"
-            "It wasn't exactly like an Earth snail -- its shell's hard, but instead of a spiral it's more of a dome, like a turtle. Its body was soft and squishy, but with little feet protuberances like a caterpillar."
+            "It wasn't exactly like an Earth snail; its shell was hard, and shaped like a turtle's shell instead of in a spiral pattern. Its body was soft and squishy, but with little feet protuberances like a caterpillar."
             menu:
                 "What should I do?"
                 "Hand pick them off":
@@ -1696,9 +1696,9 @@ label spinach2:
                         kid "What are you doing out here?"
                         him angry "I am about to dispense justice onto these vicious turtle-snails that have been murdering our spinach."
                         "She peered inside the trap."
-                        kid annoyed "Yuck. How are you going to do that?"
+                        kid annoyed "How are you going to do that?"
                         him concerned "I haven't decided yet..."
-                        kid nervous "They're kind of cute."
+                        kid nervous "Actually, they're kind of cute."
                         him annoyed "Cute as cockroaches."
                         kid concerned "You're not going to kill them, are you?!"
                         menu:
@@ -1917,7 +1917,7 @@ label onions1:
     "We planted them right after harvesting most other vegetables."
     "They grew slowly during our cool, rainy months, and we harvested them when the weather got warm."
     "And I never would have predicted that onions would have been so popular!"
-    zaina_c "[his_name], are your onions almost done?! Onions just make everything taste better!"    
+    zaina_c "[his_name], are your onions almost done?! Onions just make everything taste better!"
     if (year < PAVEL_DIES_YEAR):
         pavel_c "In a good curry they are essential!"
     if (year < LILY_DIES_YEAR):
@@ -2149,7 +2149,7 @@ label money1:
         "Donate 1000 credits":
             him_c "I'll donate 1000 credits."
             $ modify_credits(-1000)
-            sara_c "Wow, really?! Okay, I guess my work is done for the day!"            
+            sara_c "Wow, really?! Okay, I guess my work is done for the day!"
             $ colonists += 2
         "Donate 500 credits":
             him_c "I'll donate 500 credits."
@@ -2173,7 +2173,7 @@ label money1:
 
 # Investment opportunity
 label money2:
-    scene community_center with fade 
+    scene community_center with fade
     show him normal at midleft with dissolve
     "One evening after a meeting, Zaina approached me."
     show zaina normal at midright with moveinright
@@ -2210,7 +2210,7 @@ label money2:
             "She made a whole bunch of weed choppers, but she underestimated some of the costs and she wasn't very good at explaining it. She ended up only selling half of them and giving the rest away."
             nvl clear
             $ modify_credits(800)
-            zaina_c "[his_name], I didn't end up making any profits on this project at all... but I can pay you back 800 credits and a free weed chopper. I'm sorry."            
+            zaina_c "[his_name], I didn't end up making any profits on this project at all... but I can pay you back 800 credits and a free weed chopper. I'm sorry."
         "I'll buy one, but I can't help you.":
             him concerned "Sorry, I can't help you with this. I would like to buy a weed chopper, though."
             zaina sad "Well, I don't think I'll make them if I can't get the capital to make at least 50. It wouldn't really be worth it."

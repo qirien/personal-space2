@@ -352,7 +352,7 @@ label farm_tutorial:
                 scene tutorial-crop-select with dissolve
                 "When I select a farm space, I can choose what crop should go there and see information about each crop."
                 "I always have to allocate space for my goats, but which other crops I plant is up to me."
-                scene tutorial-red with dissolve   
+                scene tutorial-red with dissolve
                 "The background color of each space shows how much nitrogen is in this field."
                 "A red color means there's not enough nitrogen for that crop and I need to pick something else."
                 "If it's a dark color, there's plenty of nitrogen for crops."
@@ -978,7 +978,7 @@ label work16:
                             him surprised "Well, maybe they'd be good for you."
                         "They're not very nutritious.":
                             him annoyed "They just aren't that nutritious. Not many vitamins and minerals."
-                            kevin sad "Oh. I had not considered that."                        
+                            kevin sad "Oh. I had not considered that."
 
             if (not ((crop_enabled("plums") or crop_enabled("plums+")))):
                 him surprised "You don't mind if I take a few plum pits, do you?"
@@ -1152,7 +1152,7 @@ label work20:
     with moveinleft
     "At the camp, it was obvious what had happened. Much of the river had been diverted to give water for the mining machinery."
 
-    him annoyed "First you contaminate our water, now you're steailng it?! There's none left for our crops downstream!"
+    him annoyed "First you contaminate our water, now you're stealing it?! There's none left for our crops downstream!"
     brennan concerned "Our refining processes use a lot of water. The new site needed water, so the river flows over here now. Sorry."
     him angry "Sorry? SORRY?! \"Sorry\" isn't going to make food grow out of the ground!"
     if work20_thuc_present:
@@ -1211,6 +1211,7 @@ label work20:
         him_c "Brennan, if we both explain to RET why the farmers need that water, I'm sure they'll understand."
         brennan_c "...If you can get them to authorize a deadline extension, then I can help you."
         "Together, we composed a careful message to RET with our limited characters."
+        nvl clear
         him_c "The water miners are using is needed to ensure crops survive. Brennan and I plan to treat and redirect water post-mining back to farm. Please authorize deadline extension."
         ret_c "Extension authorized. Proceed with plan."
         nvl clear
@@ -1266,7 +1267,7 @@ label work20:
                             $ work20_message_score += 1
                             jump work20_message_check
                         "Brennan refused to help":
-                            $ work20_message += "Brennan refuses to help "                            
+                            $ work20_message += "Brennan refuses to help "
                             jump work20_message_check
                         "No water for crops":
                             $ work20_message += "No water for crops "
@@ -1292,7 +1293,7 @@ label work20:
                         "I noticed there was no water":
                             $ work20_message += "I noticed there was no water "
                             jump work20_message_check
-                        "I followed the river upstream": 
+                        "I followed the river upstream":
                             $ work20_message += "I followed the river upstream "
                             jump work20_message_check
                         "I talked with Brennan":
@@ -1402,12 +1403,12 @@ label work22:
     hide night_overlay with dissolve
     show her laugh at quarterleft
     show pete happy at midright
-    show thuc happy at center    
-    show sara happy at quarterright    
+    show thuc happy at center
+    show sara happy at quarterright
     show ilian happy at right
-    show oleg normal at right    
+    show oleg normal at right
     show bro happy at center
-    show kid happy at midleft    
+    show kid happy at midleft
     with dissolve
     play music exciting
     "Everybody" "Happy Birthday, [his_name]!"
