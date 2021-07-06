@@ -4622,11 +4622,12 @@ label community19:
     her normal "Hey, I told Sara that we could bring something to dinner this weekend."
     her concerned "I know that the fall harvest isn't quite ready yet... can you get some of that wolf slug meat from Pete?"
     him concerned "Sure. Helen usually comes through town on Tuesday selling it."
-    her annoyed "Oh, so Helen can sully herself with credits instead of Pete trading this and that."
+    her annoyed "Wait, she's selling them for credits? After Pete was telling everyone how much better it is to trade things?"
     him normal "I don't mind. Credits are so much more convenient."
-    her normal "But they're also completely abstract. A credit only represents something because we decide it's valuable."
+    her normal "That's true. I'm just worried that they might not be as useful for Pete and Helen. A credit only represents something because we decide it's valuable."
     him pout "The same could be said of any object that we sell."
-    her flirting "Tell me that when you're hungry! I budgeted up to 20 credits for meat or protein, so see what you can get."
+    her concerned "But the objects we sell have intrinsic value, unlike a credit. You can eat a zucchini, but you can't eat a credit."
+    her flirting "Anyway, I budgeted up to 20 credits for meat or protein, so see what you can get."
     scene path with fade
     show helen normal at midright with moveinleft
     show him normal at midleft with moveinleft
@@ -4695,7 +4696,7 @@ label community19:
     thuc_c "The wild alfalfa is too far away, and it starts dying as soon as the rainy season starts. Plus it's mixed in with native weeds."
     her surprised "What's going on? Some exciting gossip?"
     him determined "Crabbirds ate all the Perón's corn, so we won't be harvesting it together."
-    her sad "Whaaaaat? What will the cows eat all winter?"
+    her sad "Whaaaaat? What will the cows eat during the rainy season?"
     him pout "That's what everyone's wondering. Maybe they can increase the amount of alfalfa in the feed?"
     her concerned "I wonder why there were so many crabbirds. We've never seen this many before, have we?"
     him doubt "Who knows. Maybe since they've been eating our crops, they've been able to reproduce faster."
@@ -4705,9 +4706,9 @@ label community19:
     him pout "Yeah. I think they are mostly herbivorous."
     her surprised "Maybe... some kind of larger bird that we haven't seen before?"
     him annoyed "I think we would have noticed a larger bird by now."
-    her concerned "oh..."
-    him content "Oh?"
-    her_c "It's probably the wolf slugs - Helen said there aren't very many around anymore."
+    him concerned "oh..."
+    her concerned "Oh?"
+    him_c "It's probably the wolf slugs - Helen said there aren't very many around anymore."
     sara_c "How could they even catch a crabbird?! {emoji=worried}"
     lily_c "It is probable that the wolf slugs eat their eggs. They have been observed near crabbird nesting grounds."
     him_c "That makes a lot of sense."
@@ -4868,7 +4869,7 @@ label community20:
             him "Hello Dr. Lily. Welcome back!"
             lily angry "Thank you. I still do not approve of RET's practices, and I do not believe they felt the gravity of my protest."
             lily happy "However, since I have spent more time in the field, I have made many more observations about the flora and fauna of this planet."
-            him surprised "Are you going to publish them?"
+            him doubt "Are you going to publish them?"
             lily normal "Some of my observations have led to theories, but I have not yet tested them."
             lily happy "I would like to tell you some of my theories."
             jump research_briefing
@@ -4899,7 +4900,8 @@ label community20:
     label research_briefing:
         $ lily_briefed = True
         lily happy "I may have found intelligent life on Talaam."
-        him surprised "Wow. What do you mean?"
+        him excited "Wow!"
+        him surprised "What do you mean?"
         lily normal "Zaina has been helping me in teaching an aquatic animal our system of communication."
         him determined "Have they learned to speak English??"
         lily happy "No, they can't speak. But they can change the color of their skin to resemble symbols."
@@ -5139,7 +5141,7 @@ label community21:
         show kid normal at center
         with dissolve
         "We went out on Pete's little fishing boat, past the place where the waves started crashing."
-        pete normal "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows?
+        pete normal "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows? #they spend the rainy season there
         "The lights grew bigger, and when we looked closely, we saw that the glowing animals had a different shape from the jellystars."
         "They were about the size of a toaster. They had eyespots on the sides and tentacles at the opposite end, almost like a squid, only with a see-through shell."
         him surprised "Wow, what are those?"
@@ -5166,6 +5168,11 @@ label community21:
             pete normal "Dr. Lily was talking to these things?"
             him pout "Um, she didn't want to share any of her findings yet, but she did mention studying a life form she thought could be intelligent."
             pete happy "She made first contact without getting politicians involved! Good on her."
+        scene ocean_sunset with fade
+        show pete normal at midright
+        show him normal at midleft
+        show travis normal at midright
+        show kid happy at center
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
         "I was worried about the jellysquid's skin, but it had a shell made of something like glass, which was very resilient."
         "We kept it underwater in the bucket, though it slithered out a few times so I guessed it could breathe air."
@@ -5237,12 +5244,12 @@ label community21:
             "We watched the fire in silence for a few minutes."
             pete happy "Hey, I got some cream here that would go really well on these fish."
             brennan happy "Yes, please share some! And take a fish in return. You seem to be familiar with them."
-            pete normal "We usually spend part of the winter near the ocean. We got a mountain cave safe from storms, sun, and radiation."
+            pete normal "We usually spend part of the rainy season near the ocean. We got a mountain cave safe from storms, sun, and radiation."
             pete happy "The fish are easy to hunt here too, and their bones are good fertilizer! In fact... the fish you found are part of one of my experiments... and it looks like it's working."
             zaina sad "Oh, you're cultivating them. That explains why there were so many!"
             brennan surprised "Oh... do we need to make sure to leave a male and a female?"
             pete normal "Actually these fish change sexes based on their surroundings. But if you leave five or six per pool that should be sufficient."
-            him normal "That makes sense. Save the bones for fertilizer!"
+            him normal "That makes sense. Give me your fish bones when you're done, everyone!"
         else:
             show pete angry at left with moveinleft
             hide pete
@@ -5369,6 +5376,7 @@ label community22:
             ret_c "OK."
 
         #"But I don't really want a group of displaced people to potentially sabotoge future mining projects." #do we need to contrast with his earlier opinion on caves?
+        nvl clear
         him_c "RET says it's okay to only mine a portion of the mountain. We should make sure it's safe for everyone."
         kevin_c "We need to do some explorational mining, but according to my calculations, we'll definitely be able to mine a quarter of the mountain without disturbing the cave system."
         brennan_c "That sounds like a good place to start. We'll be busy for the next few months refining our current ore. Start taking samples now to get a better plan."
@@ -5780,7 +5788,7 @@ label community22:
     else:
         #try to calibrate to make this end pretty rare. maybe just compare mining value to mavericks in elif?
         "The miners started working in a different mountain this year."
-        "It happened to be the same mountain that the mavericks wintered in by the ocean."
+        "It happened to be the same mountain by the ocean that the mavericks usually spent the rainy season in."
         jump mining_anyway
         return
 
@@ -6454,6 +6462,7 @@ label community26:
         show sara normal at right
         show brennan concerned at left
         show her normal coat at center
+        with dissolve
         "[her_name] called a town council with me, the mayor, Brennan, and Sara as our spiritual leader."
         her determined coat "Thank you for meeting with me today. I would like to discuss a miner who has debilitating insomnia and depression primarily due to her use of firegrass. We can call her Carol."
         her concerned coat "Four years ago, her husband was disabled in a mining accident and she cared for him and watched her children during most of the day."
@@ -6575,7 +6584,7 @@ label community26:
                 him explaining "Well, if we're treating it as a drug, it shouldn't matter what it tastes like."
                 pavel normal "Of course it matters! Do you eat fruits and vegetables because they have the chemicals necessary for you to survive?"
                 pavel sad "Or do you just have no sense of taste?"
-                him annoyed "Maybe if you weren't such a food snob you would enjoy your life more."
+                him annoyed "Maybe if you weren't such a connoisseur you would enjoy your life more."
                 pavel normal "Having a discerning palate makes me appreciate good things even more! But we're getting distracted."
                 pavel sad "Certainly growing more tea could help with the alertness issues people usually turn to firegrass for."
                 her concerned coat "But I don't think tea can easily replace firegrass for people who are already using it."
@@ -6656,7 +6665,7 @@ label community26:
         show thuc normal at midright
         with dissolve
         "About once a year, we'd been receiving shuttles with supplies from RET, which the miners would send back full of rare ore."
-        "This year it seemed like they anticipated [her_name]'s previous research on meat, even though the shuttle had been sent years beforehand."
+        "This year it seemed like they anticipated [her_name]'s findings of cancerous cells in meat, even though the shuttle had been sent years beforehand."
         "Ilian called a meeting to discuss this year's shipment."
         ilian happy "The shuttle this year came with equipment and recipes for growing synthetic meat."
         ilian angry "Some of you may have tried some in the shuttle on the way over but the instructions say that the flavor has improved considerably."
@@ -6721,7 +6730,7 @@ label community26:
             pete happy "How's it going?"
             him content "Not bad. I'm optimistic about this new crop."
             him surprised "How are you?"
-            pete happy "The clouds still drop rain and wolfslugs still fear me."
+            pete happy "The clouds still drop rain and wolf slugs still fear me."
             pete angry "But I haven't been selling much firegrass or beef lately. Is there a conspiracy to stopy buying my wares?"
             him concerned "No, nothing so extreme."
             him sad "One of the miners was a heavy user of firegrass for a few years, and it started to really impact her sleep and mental health."
@@ -6798,7 +6807,9 @@ label community27:
     with dissolve
     "Brennan's jellysquid farms, which dotted the coastline at regular intervals, were completely empty."
     "I looked at one of the farms, and the nets had been cut."
-    him surprised "I wonder if this is Pete's work?"
+    him surprised "I wonder if this is Pete's work... or..."
+    him determined "Did you have anything to do with this, [kid_name]?"
+    kid sad "No! It was like this when we got here!"
     hide him
     hide kid
     with moveoutright
@@ -7113,7 +7124,6 @@ label call_to_squid:
                     show him normal at midleft with moveinleft
                     "I went back to the colony and my farm."
                     scene lab with fade
-                    #TODO: explain why the nets were cut and there were so many dead jellystars (another animal ate them?)
                     show zaina sad at midright with dissolve
                     show him normal at midleft with moveinleft
                     "I had a long talk with Zaina about the jellysquids. She chided me for not taking any pictures or recording my 'conversation' with the jellymother."
@@ -7134,8 +7144,8 @@ label call_to_squid:
                     zaina sad "What are we going to do for them? Feed them so they become dependent on us? Domesticate them?"
                     him annoyed "No, I don't think they could be domesticated. They're not like other animals."
                     zaina normal "That's for sure..."
-                    him angry "They can write to us, Zaina! How are you not curious about that?"
-                    zaina sad "I was curious about that. I've actually spent several years studying them."
+                    him excited "They can write to us, Zaina! Isn't it amazing??"
+                    zaina sad "It is amazing. I've actually spent several years studying them."
                     zaina happy "I helped Dr. Lily teach them how to 'write'."
                     if lily_briefed:
                         him determined "Before she died, Dr. Lily told me about the research you guys were doing."
@@ -7146,7 +7156,7 @@ label call_to_squid:
                     zaina normal "If a central brain can link up to the jellysquids, it also explains how jellysquids we'd never seen before already knew how to interact with us."
                     zaina happy "These animals are one of the most interesting beings I've studied."
                     him doubt "Why didn't you tell the rest of us what you were doing?"
-                    zaina normal "We alluded to it in our reports. We weren't sure if we were dealing with intelligent life or something like a very smart parrot."
+                    zaina normal "We alluded to it in our reports. We weren't sure if we were dealing with intelligent life or a very good mimic."
                     zaina happy "We didn't want everyone to get excited for no reason."
                     zaina sad "Also, maybe we were a little protective and selfish of our discoveries."
                     zaina normal "I admit that I'm jealous that she showed herself to you."
@@ -7160,6 +7170,7 @@ label call_to_squid:
                     zaina sad "You're not coming with me?"
                     him normal "I've been out there twice already. I need to work on my farm"
                     "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
+                    scene black with fade
                     nvl clear
                     zaina_c "Wooooow I just got back from talking to... her? them?"
                     zaina_c "Alien life! Talking! To us!"
@@ -7167,6 +7178,9 @@ label call_to_squid:
                     zaina_c "She was confused that you weren't there, but I managed to talk to her!"
                     zaina_c "I'll tell you everything when I get back. Gotta save my battery in case it's cloudy tomorrow."
                     "Next week, Zaina returned and asked me to meet with her."
+                    scene lab with fade
+                    show zaina sad at midright with dissolve
+                    show him normal at midleft with moveinleft
                     zaina happy "It was so weird talking to the jellymother through her little jellysquid!"
                     zaina "It kind of reminded me of talking to Dr. Lily, oddly enough."
                     him content "I felt the same way! Maybe since she taught them how to communicate, her communication style carried over?"
@@ -7176,11 +7190,11 @@ label call_to_squid:
                     zaina normal "Just kidding. We were mostly teaching them the alphabet and syntax, not stylistic choices, which is why I find it interesting that the jellymother has a definite style of communicating."
                     zaina sad "I asked about the nets in the jellystar farms. She said that she had cut the nets herself! They must use tools."
                     him determined "When I went I saw pieces of jellystars in the ocean everywhere..."
-                    zaina normal "Yeah, I bet that after she freed the jellystars from the farms a bunch of predators came in a ate them."
+                    zaina normal "Yeah, I bet that after she freed the jellystars from the farms a bunch of predators came in and ate them."
                     zaina happy "You noticed how they tend to ball up when they start getting eaten? It's like a game of soccer for the predator fish."
                     zaina sad "Except they're eating the whole time."
                     zaina normal "Anyway, the jellysquid seemed to remember me, even though the ones I trained are long dead. I was able to get them to try a few different foods."
-                    zaina happy "I fed skinned mudfish to a jellysquid."
+                    zaina happy "I skinned a mudfish and fed it to a jellysquid."
                     him doubt "Zaina the fish-skinner..."
                     zaina normal "Hey, they ate it! And the next day, their shell was a little bigger. I measured it."
                     zaina sad "I had a hard time catching the yipper, despite using mudfish as bait. Eventually the jellymother found me and I told her what I was trying to do."
@@ -7208,6 +7222,8 @@ label call_to_squid:
                         jump aquaculture
 
                         label aquaculture:
+                            scene ocean with fade
+                            show him normal at midleft with dissolve
                             "I started making plans for a fish farm off the coast."
                             "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
                             "After I explained my plans to the jellymother, she said that she could help trap a few of the first fish to start the farm."
@@ -7620,18 +7636,21 @@ label no_euthanasia:
     show her sad at midleft
     label pavel_funeral:
         "At his funeral, we reminisced about his optimistic spirit."
+        show julia normal at center with moveinright
         julia "Pavel was my steadiest supporter as I edited {i}The Talaam Times{/i} over the years."
-        julia "There were times when I felt like no one cared about the hard work I put into the newspaper. Whenever I felt like quitting, Pavel would tell me how much he enjoyed reading it."
+        julia happy "There were times when I felt like no one cared about the hard work I put into the newspaper. Whenever I felt like quitting, Pavel would tell me how much he enjoyed reading it."
         julia happy "He even tried my recipe for goat jerky when a bunch of our goats died and we had to preserve the meat quickly."
         julia angry "It was one of the most disgusting things I've ever eaten... and Pavel agreed with me! But he didn't chide me for wasting spices."
         julia normal "He just said that that was the price of admission for culinary creativity."
         hide julia with moveoutright
+        show sara normal with moveinright
         sara normal "There was a community meeting where a farmer came in and told Pavel all the things he was doing wrong as mayor."
         sara sad "She was getting very specific, and some of her complaints were a bit personal, saying that Pavel was more interested in cooking than the real problems at hand."
         sara happy "Pavel didn't get defensive though. He sat and listened to everything that farmer said. He thanked the farmer for coming and talking to him and asked her what she thought he should do to make it right."
         sara normal "She wanted her neighbor to stop letting their chickens roam freely in their shared yards."
         sara "Pavel didn't have a readily-available solution, but he met with her and her neighbor together, more than once, to try to resolve their problems."
         sara sad "That wasn't the only time he went the extra mile to help our colony. He was constantly trying to promote friendship across professions and age groups."
+        hide sara with moveoutright
         return
 
 label euthanasia:
@@ -8429,7 +8448,7 @@ label community30:
             with dissolve
             him "It might take a while... why don't you guys eat while I ask a few questions?"
             sara "Sounds serious. Did something happen?"
-            him determined "I'm investigating Joel's death, so I'm investigating who was on the waitlist of the shuttle going back to Earth."
+            him determined "I'm investigating Joel's death, so I'm doing some research on who was on the waitlist of the shuttle going back to Earth."
             him normal "Brennan told me that you're first on the list. Is that right?"
             sara happy "Oh, is that what this is about. Ha. Well. I'll tell you all about it."
             show him normal at left with move

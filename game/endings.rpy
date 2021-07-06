@@ -21,7 +21,7 @@ label ending:
         if (total_miners >= FACTION_HIGH):
             $ achieved("Miner Details")
             if (total_mavericks >= FACTION_HIGH):
-                $ achieved("Don't Tread on Me")                
+                $ achieved("Don't Tread on Me")
                 call ending_CMiMa from _call_ending_CMiMa
             else:
                 call ending_CMima from _call_ending_CMima
@@ -106,7 +106,7 @@ label ending:
         $ mp.bro_name = bro_name
         $ mp.boyfriend_name = boyfriend_name
         $ mp.save()
-    
+
     if persistent.crops_unlocked is None:
         $ persistent.crops_unlocked = set()
     $ persistent.boyfriend_name = boyfriend_name
@@ -259,7 +259,7 @@ label ending_ac:
     "Ending 1/4: Bring Back My Baby."
     window auto hide
     show ending1_cg
-    $ renpy.pause(6.0)    
+    $ renpy.pause(6.0)
     $ renpy.pause()
 
     return
@@ -362,7 +362,7 @@ label ending_aC:
     "Ending 2/4: Proving Herself."
     window auto hide
     show ending2_cg
-    $ renpy.pause(6.0)    
+    $ renpy.pause(6.0)
     $ renpy.pause()
     return
 
@@ -583,7 +583,7 @@ label ending_AC:
     "And I'll get to see it all happen."
 
     $ achieved("The Stars are Bright")
-    "Ending 4/4: The Stars are Bright"    
+    "Ending 4/4: The Stars are Bright"
     window auto hide
     show ending4_cg # TODO: Different version for Travis?
     #if (boyfriend_name == "Travis"):
@@ -616,7 +616,7 @@ label ending_CMiMa:
 
     "I enjoyed another bite of wolfslug kebab, the tangy, spicy curry sauce dripping down my chin. I wiped it off with a piece of the flatbread I had brought and ate that, too."
 
-    him happy "Thanks for saving my wheat from that flood. I still can't believe we got everyone and their food stores out so quickly."    
+    him happy "Thanks for saving my wheat from that flood. I still can't believe we got everyone and their food stores out so quickly."
     brennan explaining "You act like it was an act of altruism, but really, I'd do almost anything not to have to grow my own food."
 
     him normal "Speaking of people who hate growing their own food, how are your interns from the high school working out?"
@@ -637,7 +637,7 @@ label ending_CMiMa:
     pete angry "Hey, no horse could replace Lettie. But who knows, maybe one of these huge alien critters can be domesticated."
     brennan normal "I'm happy to let Zaina find some likely candidates for domestication this rainy season."
 
-    scene ocean_sunset
+    scene ocean_sunset with fade
     "There were times when I wasn't sure we would all survive, let alone get along together."
     "To think that I would voluntarily spend time with Brennan..."
     "And even though Pete left the colony, we still make time to see each other and help each other out."
@@ -738,7 +738,7 @@ label ending_cmima: #is this ending even possible?
     "We took our wagon up the foothill towards the miner's camp. Other colonists had found places to stay here, with tents popping up every now and then."
     "We set up a temporary shelter, but it was still very wet. We were able to get another light load up, but most of our food storage was ruined by the flood."
     stop sound fadeout 1.0
-    
+
     return
 
 label flood_ending_C:

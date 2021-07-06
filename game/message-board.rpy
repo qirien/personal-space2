@@ -639,10 +639,11 @@ label message25:
     sara_c "Jellystar has a pretty high water content... is there anything left after it's dried out?"
     him_c "Why do we suddenly have so much jellystar? I wasn't sure if it was approved for human consumption."
     if ate_jellyfish:
-        him_c "Dr. Lily once told me that they contain a parasite which could decrease reaction speed."
+        him_c "Dr. Lily once told me that they contain a parasite which makes you love jellystars."
+        him_c "After a while, you don't even want to eat them anymore."
         sara_c "Really? I haven't noticed anything like that."
-        him_c "Well, she did say it was only a difference of a few milliseconds."
-        him_c "Also, I think they're too cute to eat."
+        him_c "Maybe it doesn't work on everyone?."
+        him_c "But I think they're too cute to eat, so apparently I have this parasite."
         thuc_c "I do feel a twinge of guilt when I eat them. But if they're already processed I don't think about it as much."
         natalia_c "Yeah, I don't like cutting up the carcasses. It just makes me sad."
     ilian_c "Brennan started farming them for their shells. He doesn't need the meat, so he sold it all to the storehouse. It's really cheap right now, and we're still drying more. You can use it for bait when fishing, too."
@@ -656,7 +657,9 @@ label message25:
     brennan_c "Thanks, I'll look it up. I've made a few observations of my own."
     julia_c "You should publish them!"
     brennan_c "My information is proprietary."
-    julia_c "How much?"
+    julia_c "Why do you want the shells, anyway?"
+    brennan_c "They contain some of the same metals that we've been mining."
+    julia_c "What kind of metals?"
     brennan_c "Message me."
     nvl clear
     return
