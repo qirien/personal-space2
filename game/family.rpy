@@ -285,7 +285,8 @@ label family1:
             him happy "Want to hear my new poem?"
             her "I can tell you really want to share it with me."
             him normal "I think you'll like it. Okay, here it is."
-            him determined "[baby_poem]"
+            call speak_poem(baby_poem) from _call_speak_poem_1
+
             show her at center with move
             show her normal
             show him baby happy with dissolve

@@ -568,7 +568,7 @@ label community3:
                     $ latest_poem = word_board.get_poem_as_string(-1)
                     if (latest_poem and (len(latest_poem) > 1)):
                         him surprised "Oh! Well, here's my latest one."
-                        him determined "[latest_poem]"
+                        call speak_poem(latest_poem) from _call_speak_poem_2
                         naomi happy "You do get right to the heart of things, don't you? Do you have a favorite poet?"
                     else:
                         him surprised "Oh! No, not really."
@@ -3364,10 +3364,10 @@ label community15:
     sara "I may not be as wise or inspiring as Sister Naomi. But I am organized and consistent. So please come and share your life wisdom and experience."
     hide sara with moveoutright
     "Some of the children sang one of the songs Naomi taught them when they were young." #does Brennan do anything? What about the miners? Kevin or Zaina?
-    if (c15_funeral == "poem"):
+    if ((c15_funeral == "poem") and c15_funeral_poem):
         show him pout at center with moveinleft
         "I walked up to the stand and shared the poem I had written."
-        him "[c15_funeral_poem]"
+        call speak_poem(c15_funeral_poem) from _call_speak_poem_3
         hide him with moveoutright
     elif (c15_funeral == "speak"):
         show him pout at center with moveinleft

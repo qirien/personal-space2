@@ -141,6 +141,19 @@ label bedroom_scene(show_baby=False, sleeping=True):
 # Poem making function
 ##
 #
+
+label speak_poem(poem_to_speak):
+    $ poem_lines = poem_to_speak.split("\n")
+    if (len(poem_lines) <= 3):
+        him determined "[poem_to_speak]"
+    else:
+        $ poem_line_count = 0
+        while (poem_line_count < len(poem_lines)):
+            $ poem_current_line = poem_lines[poem_line_count]
+            $ poem_line_count += 1
+            him determined "[poem_current_line]"
+    return
+
 label make_poem:
     $ word_board.generate_display_words()
     call screen plugin_poetry(word_board, True)
@@ -315,7 +328,10 @@ init -100 python:
                     next_event = number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
+                        # Exclude crop events where characters would be too young
                         if ((event_label == "honey1") and (year < TODDLER_MAX)):
+                            pass
+                        elif ((event_label == "garlic1") and (year < CHILD_MAX)):
                             pass
                         else:
                             possible_events.add(event_label)
