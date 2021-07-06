@@ -1008,7 +1008,7 @@ label family3:
     her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
     him normal "Yeah, I'm exhausted. But wasn't this great?"
     her normal "It was a nice change of scenery. And that sunset... I know it's the same sun we can see from our house, but the landscape made it look completely different."
-    him flirting "You have the best ideas, [her_nickname]"
+    him flirting "You have the best ideas, [her_nickname]."
     her normal "Good night, [his_nickname]."
     window hide
     scene black with fade

@@ -106,7 +106,7 @@ init -100:
     define audio.parenting = "music/05-Before the Time Slips Away-Jeff Wahl_.ogg"
     define audio.community = "music/11-Wiseman's View-Ken Bonfield_.ogg"
     define audio.farming = "music/11-In My Life-Ray Montford_.ogg"
-    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg", "music/08-One More Sleep-Ray Montford.ogg", "music/LonePeakMusic-OpenSore.ogg"]
+    define audio.computer = ["music/03-Gaja-Amfibia_.ogg", "music/08-Skyhawk Beach-Blue Wave Theory_.ogg", "music/08-One More Sleep-Ray Montford.ogg", "music/LonePeakMusic-OpenSore.ogg", "music/CoolRock.mp3"]
 
     # Specialty one-off songs
     define audio.teenmusic = "music/06-The Fate of Canned Corn-Glen Bledsoe.mp3"
@@ -133,8 +133,8 @@ init -100:
     define audio.sad = "music/01-May It Begin-Ray Montford_.ogg" #plodding through desert carrying a heavy sack of burdens
     define audio.tense = "music/03-Centerline-Ken Bonfield_.ogg" #something terrible is happening and I'm moving through molasses
 
+    define audio.investigation = "music/05-Libre Penseur-Justin St-Pierre.ogg"
     #investigation? http://download.magnatune.com/artists/albums/justinstpierre-insulaire?song=6
-    # BUT we pay $89/month and can choose 10 songs per month, so we might not want to go over 20.
 
 
     ##

@@ -13,22 +13,22 @@ label credits:
 
     show credits01 at tilted, right, driftdown, smallphoto
     show text "Credits" with dissolve
-    $ renpy.pause(2.0, hard=skippable)
+    $ renpy.pause(2.0)
     hide text with dissolve
 
     show credits02 at tilted, left, driftdown, smallphoto
     show text "Designed and Written by\n\nAndrea Landaker\n\nRachel Helps" with dissolve
-    $ renpy.pause(4.0, hard=skippable)
+    $ renpy.pause(4.0)
     hide text with dissolve
 
     show credits03 at tilted, right, driftdown, smallphoto
     show text "Character Art and Cutscene Graphics by\n\nClarissa Helps\n\n\nAdditional Art by\n\nInes Ben Najem\nMike Soprano" with dissolve
-    $ renpy.pause(4.0, hard=skippable)
+    $ renpy.pause(4.0)
     hide text with dissolve    
 
     show credits04 at tilted, left, driftdown, smallphoto
     show text "Testing by\n\nWes Landaker\nSapphire Landaker\nPatricia Tan\nLisa Horner\nCatherine White" with dissolve # TODO: Add other testers
-    $ renpy.pause(4.0, hard=skippable)
+    $ renpy.pause(4.0)
     hide text with dissolve
 
     if ((total_miners >= total_colonists) and (total_miners >= total_mavericks)):
@@ -38,17 +38,17 @@ label credits:
     else:
         show credits05-colonists at tilted, right, driftdown, smallphoto
 
-    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nGled Bledsoe\nChristos Anestopoulos\nAmbient Teknology\n\nLicensed by {a=http://www.magnatune.com}Magnatune{/a}\n\nAlso featuring {a=https://bit.ly/2xNM03K}LonePeakMusic{/a}" with dissolve
-    $ renpy.pause(5.0, hard=skippable)
+    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nGled Bledsoe\nChristos Anestopoulos\nAmbient Teknology\nJustin St-Pierre\n\nLicensed by {a=http://www.magnatune.com}Magnatune{/a}\n\nAlso featuring {a=https://bit.ly/2xNM03K}LonePeakMusic{/a} and {a=https://incompetech.com}Kevin MacLeod{/a}" with dissolve
+    $ renpy.pause(5.0)
     hide text with dissolve
 
     show credits06 at tilted, left, driftdown, smallphoto
     show text "Backgrounds based on images by\nLisa Horner\nMike Soprano\nWes Landaker\nAndrea Landaker\nKuruzovich\nMarcus Budde"
-    $ renpy.pause(5.0, hard=skippable)
+    $ renpy.pause(5.0)
     
     show credits07 at tilted, right, driftdown, smallphoto    
     show text "{a=http://www.flickr.com}Flickr{/a} users:\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\ngavin rice\nWilliam Klos\n\nAnd {a=http://www.pixabay.com}Pixabay{/a} users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
-    $ renpy.pause(5.0, hard=skippable)
+    $ renpy.pause(5.0)
     hide text with dissolve
 
     if (faction_strong(total_mavericks) and faction_strong(total_miners)):
@@ -60,7 +60,7 @@ label credits:
     else:
         show credits08-colonists at tilted, left, driftdown, smallphoto
     show text "GUI graphics by Andrea Landaker\nResources include images by\nNoto Emoji\n\nAnd Pixabay users:\nOpenClipart-Vectors\nClker-Free-Vector-Images\n\nPublic Domain Sound Effects from {a=http://www.freesound.org}FreeSound.org{/a}\nOther SFX from {a=http://www.soundjay.com}Soundjay{/a}\n\nBaby voice acting by Petra Helps"
-    $ renpy.pause(5.0, hard=skippable)
+    $ renpy.pause(5.0)
 
     if (total_attachment < ATTACHMENT_HIGH):
         if (total_competence < COMPETENCE_HIGH):
@@ -71,11 +71,11 @@ label credits:
         show credits09-home at tilted, right, driftdown, smallphoto
 
     show text "Space to Grow was made using the following tools:\n\nthe GIMP (gimp.org)\nCodeOSS (code.visualstudio.com)\njEdit (jedit.org)\nLunaPic (www.lunapic.com)\nAudacity (audacityteam.org)\nCelestia (celestia.space)\ngit (github.com)" with dissolve
-    $ renpy.pause(5.0, hard=skippable)
+    $ renpy.pause(5.0)
     hide text with dissolve
     
     show text "and of course...\n\nRen'py\n{a=http://www.renpy.org}www.renpy.org{/a}" with dissolve
-    $ renpy.pause(6.0, hard=skippable)
+    $ renpy.pause(6.0)
     hide text with dissolve
 
     return

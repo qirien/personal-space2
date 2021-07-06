@@ -41,7 +41,7 @@ label start:
     default his_name = "Jack"
     default her_name = "Kelly"
     default his_nickname = "dear"
-    default her_nickname = "lover"
+    default her_nickname = "sweetie"
     default kid_name = "Terra"
     default bro_name = "Aeron"
 
