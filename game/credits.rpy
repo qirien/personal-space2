@@ -59,7 +59,7 @@ label credits:
         show credits08-mavericks at tilted, left, driftdown, smallphoto
     else:
         show credits08-colonists at tilted, left, driftdown, smallphoto
-    show text "GUI graphics by Andrea Landaker\nResources include images by\nNoto Emoji\n\nAnd Pixabay users:\nOpenClipart-Vectors\nClker-Free-Vector-Images\n\nPublic Domain Sound Effects from {a=http://www.freesound.org}FreeSound.org{/a}\nOther SFX from {a=http://www.soundjay.com}Soundjay{/a}"
+    show text "GUI graphics by Andrea Landaker\nResources include images by\nNoto Emoji\n\nAnd Pixabay users:\nOpenClipart-Vectors\nClker-Free-Vector-Images\n\nPublic Domain Sound Effects from {a=http://www.freesound.org}FreeSound.org{/a}\nOther SFX from {a=http://www.soundjay.com}Soundjay{/a}\n\nBaby voice acting by Petra Helps"
     $ renpy.pause(5.0, hard=skippable)
 
     if (total_attachment < ATTACHMENT_HIGH):

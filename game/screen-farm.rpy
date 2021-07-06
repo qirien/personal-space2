@@ -34,7 +34,7 @@ screen plan_farm():
                                     label "Status" xsize 100
                                     if (not valid_layout):
                                         # if (farm.get_total_calories() < get_calories_required(year)):
-                                        #     text "Need more calories!" style "alert_text"
+                                        #     text "Need more energy!" style "alert_text"
                                         if (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
                                             text "Need to allocate all goats!" style "alert_text"
                                         elif (crop_enabled("honey") and (farm.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
@@ -55,7 +55,7 @@ screen plan_farm():
                                         action[ auto_place_crops, renpy.restart_interaction]
                                 textbutton "Done":
                                     sensitive valid_layout
-                                    action If((farm.get_total_calories() < get_calories_required(year)), Confirm("Do you really want to continue without enough calories?", Jump("yearly_events")), Jump("yearly_events"))
+                                    action If((farm.get_total_calories() < get_calories_required(year)), Confirm("Do you really want to continue without enough energy?", Jump("yearly_events")), Jump("yearly_events"))
 
 
 # To change appearance, see screens.rpy, screen nvl
@@ -86,16 +86,16 @@ screen farm_details_screen():
                     text "[his_name] & [her_name]" xoffset 20
                     if (earth_year < 2):
                         $ kid_months = roundint(earth_year * 12)
-                        $ kid_age = str(kid_months) + " Earth mos old"
+                        $ kid_age = str(kid_months) + " Earth mos"
                     else:
-                        $ kid_age = str(roundint(earth_year)) + " Earth yrs old"
+                        $ kid_age = str(roundint(earth_year)) + " Earth years"
                     text "[kid_name], [kid_age]" xoffset 20
                     if (bro_birth_year != 0):
                         if (bro_years < 2):
                             $ bro_months = roundint(get_earth_years(bro_years) * 12)
-                            $ bro_age_str = str(bro_months) + " Earth mos old"
+                            $ bro_age_str = str(bro_months) + " Earth mos"
                         else:
-                            $ bro_age_str = str(roundint(get_earth_years(bro_years))) + " Earth yrs old"
+                            $ bro_age_str = str(roundint(get_earth_years(bro_years))) + " Earth years"
                         text "[bro_name], [bro_age_str]" xoffset 20
                     else:
                         text " "
@@ -198,7 +198,7 @@ screen choose_crop(crop_index=0):
                         style_prefix "crop_status"
                         vpgrid:
                             cols 2
-                            text "   Calories: " #extra spaces are needed because vpgrid takes size for ALL children from size of first child
+                            text "    Energy: " #extra spaces are needed because vpgrid takes size for ALL children from size of first child
                             frame:
                                 use stat_icons(crop_info[selected_crop_index][CALORIES_INDEX], CALORIES_INDEX)
                             if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
@@ -450,7 +450,7 @@ screen crops_totals():
 
         #grid 2 4
         hbox:
-            text "Calories    "# + str(total_calories) + " / " + str(calories_needed)
+            text "Energy     "# + str(total_calories) + " / " + str(calories_needed)
             showif (total_calories < calories_needed):
                 text "{b}!{/b}" style "alert_text" at tiny_bounce
         hbox:

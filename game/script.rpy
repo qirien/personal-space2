@@ -211,7 +211,7 @@ label start:
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",
-            "potatoes" : "A starchy root vegetable with a lot of calories that doesn't take too much work.",
+            "potatoes" : "A starchy root vegetable providing a lot of energy that doesn't take too much work.",
             "wheat" : "A nutritious grain, usually made into bread.",
             "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
             "tomatoes" : "A juicy, versatile fruit; can be eaten raw or cooked.",
@@ -319,9 +319,9 @@ label start:
         "Yes, continue.":
             $ pass
         "No, change names.":
-            $his_name = renpy.input("Husband's Name", default=his_name)
-            $her_name = renpy.input("Wife's Name", default=her_name)
-            $kid_name = renpy.input("Baby girl's Name", default=kid_name)
+            $his_name = renpy.input("Husband's Name", default=his_name, length=12)
+            $her_name = renpy.input("Wife's Name", default=her_name, length=12)
+            $kid_name = renpy.input("Baby girl's Name", default=kid_name, length=12)
             jump name_change_loop
 
     $ bios.changeName("[his_name]", his_name)

@@ -38,6 +38,8 @@ label community1:
     $ tell_Ngyuens = False
     $ tell_Perons = False
     $ bios.activate("Thuc")
+    $ bios.activate("Julia")
+    $ bios.activate("Oleg")
     $ bios.activate("Sara")
     $ bios.activate("Ilian")
 
@@ -223,7 +225,6 @@ label community1:
             "We talked about homesickness and therapy techniques until it was time to go."
             $ met_grayson = True
         "Thuc and Ilian":
-            $ bios.activate("Julia")
             "I found Thuc, but Ilian had already gone home."
             show thuc normal at quarterright
             with moveinright
@@ -625,7 +626,6 @@ label community4:
     show lily normal at midleft
     with dissolve
     $ bios.activate("Lily")
-    $ bios.activate("Oleg")
     $ bios.activate("Naomi")
     thuc "Who has time for that extra work? It's hard enough just raising five goats and ten kids."
     lily "I could take on additional duties, but I anticipate that my personality is not well-suited for liaison work."
@@ -951,6 +951,8 @@ label community6:
     show helen normal at quarterright
     show kevin normal at quarterleft
     with dissolve
+    $ bios.activate("Travis")
+    $ bios.activate("Pete")
     $ bios.activate("Helen")
     thuc happy "I brought 'Maximal Conquest' tonight, are you guys up for it?"
     kevin "I have read the rules and watched the tutorial. I am prepared to join you."
@@ -1318,9 +1320,9 @@ label community8:
 ################################################################################
 
 label community9:
+    $ bios.activate("Travis")
     $ bios.activate("Pete")
     $ bios.activate("Helen")
-    $ bios.activate("Travis")
     scene pond with fade
     show pete normal at midright
     show him normal at midleft
@@ -6681,6 +6683,7 @@ label community26:
         him pout "I'm not going to just throw away all my goats. But if they're primarily for milk, maybe I don't need quite so many."
         $ goats_index = get_crop_index("goats")
         $ crop_info[goats_index][MAXIMUM_INDEX] = 1
+        $ farm.delete_crop("goats")
         if thuc_has_cattle:
             thuc sad "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
             ilian happy "You can start by building the laboratory to grow the meat in."

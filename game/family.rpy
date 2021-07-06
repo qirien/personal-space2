@@ -1328,7 +1328,7 @@ label family5:
     default family5_menuset = set()
     menu family5_strategy:
         set family5_menuset
-        "What should I say?"
+        "Which ideas should we use?"
         "She should have consequences for accidents.":
             $ demanding += 1
             him determined "I think [kid_name] needs to have some consequences for having an accident."
@@ -1448,7 +1448,7 @@ label family5:
                     her concerned "It sounds like a lot of work, but if it pays off it'll be worth it."
                     $ family5_method = "give her lots to drink"
             jump family5_strategy
-        "I think that's a good plan.":
+        "That's as much of a plan as we need.":
             him normal "Okay, sounds like we have a plan."
             scene stars with fade
             "And the next day we began our plan."
@@ -1538,7 +1538,7 @@ label family5:
                 him determined "Remember, pee goes in the potty. Go sit on the potty."
             else:
                 him angry "[kid_name]! You peed on the floor!"
-                kid sad "Uh-oh"
+                kid sad "Uh-oh."
                 him annoyed "Pee goes in the potty. Go sit on the potty."
             "While she sat on the potty, I got her some clean clothes and helped her wash off."
             kid normal "I not have any pee."
@@ -1553,13 +1553,13 @@ label family5:
                 him surprised "Next time you have a pee feeling, where do you need to go?"
                 kid normal "I go potty."
                 him determined "Right."
-            if (family5_punishment == "go to timeout"):
+            elif (family5_punishment == "go to timeout"):
                 him determined "Okay, now you have to go to timeout while I clean it up."
                 kid angry "No!!!"
                 "We spent thirty minutes of her popping out of timeout and me putting her back in while also trying to clean up the mess."
                 "I felt so frustrated at the end, I was ready to call the whole thing off."
                 "Good thing it was the weekend, and I could take turns with [her_name]."
-            if (family5_punishment == "not use the computer pad"):
+            elif (family5_punishment == "not use the computer pad"):
                 him determined "Now you can't use the computer pad until you pee in the potty."
                 kid angry "No!"
                 him annoyed "Pee goes in the potty, [kid_name]. Use the potty, and you can use the computer pad again."
@@ -1567,7 +1567,7 @@ label family5:
                 "She threw a huge tantrum, screaming and crying to use the computer pad. It took all my patience to remain calm, but somehow I did it until she calmed down thirty minutes later."
                 show kid cry with dissolve
                 "Good thing it was the weekend, and I could take turns with [her_name]."
-            if (family5_punishment == "be spanked"):
+            elif (family5_punishment == "be spanked"):
                 him angry "No! You don't pee in your pants!"
                 "I gave her a light spank - enough she would feel it, but not enough that it should hurt much."
                 kid yell "Wahhhhh!"
@@ -1577,6 +1577,18 @@ label family5:
                 her concerned "I don't think this method is working."
                 him sad "I'm ready to try something else."
                 $ trust -= 1
+            else:
+                hide kid with moveoutright
+                "She ran off to play while I cleaned up the mess. As I washed and scrubbed, I felt more and more angry."
+                "Why was I always the one cleaning everything up?!"
+                show kid normal at midright with moveinright
+                kid normal "Play with me, Daddy!"
+                him angry "No! I'm still cleaning up YOUR stinky, smelly mess!"
+                kid cry "No! No mess! Play!"
+                him yell "Get out of here!"
+                hide kid with moveoutright
+                "She ran off, crying."
+                "I cleaned the mess off the floor and clothes, but I felt like a mess inside..."                
             if (family5_method == "keep her outside"):
                 "We decided to spend the day outside again, so that made subsequent messes easier to cleanup."
 
@@ -2863,7 +2875,7 @@ label baby_delivery:
     him sad baby "Really? You trust me to name him?"
     her flirting "As long as it's one of the names we both agreed on."
     him baby happy "Okay! Let's see... you look like a..."
-    $ bro_name = renpy.input("Baby's Name", default=bro_name)
+    $ bro_name = renpy.input("Baby's Name", default=bro_name, length=12)
 
     her surprised "You picked [bro_name]? Hmmm. I guess he does kind of look like a '[bro_name]'."
     scene farm_interior with fade

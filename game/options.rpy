@@ -24,6 +24,8 @@ define config.console = True
 define config.autosave_on_choice = False
 define config.autosave_on_quit = True
 
+define config.load_failed_label = "life_loop" #If it can't find where to return to, just replay the current year.
+
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
