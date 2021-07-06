@@ -760,7 +760,7 @@ screen file_slots(title):
 
                 textbutton _("<") action FilePagePrevious()
 
-                textbutton _("{#auto_page}A") action FilePage("auto")
+                textbutton _("{#auto_page}Auto") action FilePage("auto")
 
                 #textbutton _("{#quick_page}Q") action FilePage("quick")
 

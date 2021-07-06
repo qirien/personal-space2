@@ -357,7 +357,7 @@ label farm_tutorial:
                 "A red color means there's not enough nitrogen for that crop and I need to pick something else."
                 "If it's dark brown, there's plenty of nitrogen for crops."
                 scene tutorial-light with dissolve
-                "The lighter the brown the lower the nitrogen in that field. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
+                "The lighter the brown color, the lower the nitrogen in that field. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
                 "I need a certain amount of energy, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."

@@ -198,6 +198,8 @@ init python:
 
     # build.classify('game/**.png', 'archive')
     # build.classify('game/**.jpg', 'archive')
+    # TODO: We should archive up music to protect musicians.
+    # build.classify('game/music/**', 'archive') 
 
     ## Files matching documentation patterns are duplicated in a mac app build,
     ## so they appear in both the app and the zip file.
@@ -215,4 +217,4 @@ init python:
 ## The username and project name associated with an itch.io project, separated
 ## by a slash.
 
-# define build.itch_project = "renpytom/test-project"
+define build.itch_project = "qirien/space-to-grow"

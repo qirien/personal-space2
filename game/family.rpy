@@ -96,7 +96,7 @@ label family1:
             hide him
             with moveoutleft
             scene farm_exterior with fade
-            show night_overlay with dissolve
+            show night_overlay with dissolve #TODO: can we have this fade in with the background instead of after? maybe just no dissolve?
             show him baby sad at center behind night_overlay
             with moveinright
             him "There now, little [kid_name], how's that?"
@@ -2327,7 +2327,10 @@ label family7:
         scene stars with fade
         "I wanted to be a better parent."
 
-    "I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
+    if (is_liaison):
+        "I had so much on my plate already -- serving as community liaison, farming, and taking care of everyday life."
+    else:
+        "I had so much on my plate already -- farming, parenting, and taking care of everyday life..."
     "Did I really have time for one more thing?"
     menu:
         "What should I do?"
@@ -6602,7 +6605,7 @@ label family22:
                 bro normal "Okay..."
                 "We played a few rounds of pictionary. The kids did surprisingly well, and I liked the game a lot better when [her_name] was on my team."
             "We should go for a walk.":
-                him happy "The weather's nice; let's go for a walk."
+                him happy "The weather's nice; let's go for a walk to the river."
                 kid determined "But I'm tired!"
                 bro annoyed "I'm not swimming!"
                 her normal "The river's not that far. And you don't have to swim. Bring a book if you're worried you'll get bored, [bro_name]."
@@ -7614,20 +7617,23 @@ label family26:
             kid angry "I guess there's no getting through your thick skull. You're a lost cause, dad."
             him angry "I don't need to listen to this."
         "I'm already doing what I can.":
-            him concerned "Look, I tried to stop the cave mining. I tried to stop the jellystar farming. But I can't make other people not do stuff."
+            if (not community_22_mined_anyway):
+                him concerned "Look, I tried to stop the cave mining. I don't farm jellystars. But I can't make other people not do stuff."
+            else:
+                "I don't have a jellystar farm. As for other people... I can't tell them what to do."                
             if is_liaison:
                 kid determined "You should be able to! Are you the liaison or not?!"
                 him determined "I'm just a liaison, not a dictator."
             else:
                 kid determined "Well, someone needs to make them stop."
-                him surprised "Maybe you could convince them?"
-                kid surprised "Why would they listen to me?"
-                him explaining "Why wouldn't they?"
-                kid determined "I'm just a teenager..."
-                him normal "But you have some knowledge they don't. So share it in the most convincing, honest way you can and let people make their own decisions."
-                kid nervous "I don't know..."
-                him determined "If you believe in this as strongly as you make it sound, then you will."
-                $ confident += 1
+            him surprised "Maybe you could convince them?"
+            kid surprised "Why would they listen to me?"
+            him explaining "Why wouldn't they?"
+            kid determined "I'm just a teenager..."
+            him normal "But you have some knowledge they don't. So share it in the most convincing, honest way you can and let people make their own decisions."
+            kid nervous "I don't know..."
+            him determined "If you believe in this as strongly as you make it sound, then you will."
+            $ confident += 1
     return
 
 # 16.7 Earth years old
