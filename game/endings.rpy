@@ -15,7 +15,6 @@ label ending:
     $ parenting_style = get_parenting_style()
     "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]. Marriage: [marriage_strength], Style: [parenting_style], Trust: [trust].  Colonists: [total_colonists], Miners: [total_miners], Mavericks: [total_mavericks]. Please screenshot this ('s') and send it with your feedback."
     # community ending
-    # TODO: is this too high? too low?
     if (total_colonists >= FACTION_HIGH):
         $ achieved("It Takes This Village")
         if (total_miners >= FACTION_HIGH):

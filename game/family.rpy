@@ -8949,7 +8949,7 @@ label family30:
                 kid normal "How many kids get to grow up and study aliens?! I'm not going to find those anywhere else!"
             else:
                 kid happy "There's nothing on Earth that could compare to what we have here. It's pretty amazing, once I got to thinking about it."
-                him "You're only saying that because you've never eaten churros or cotton candy."
+                him flirting "You're only saying that because you've never eaten churros or cotton candy."
                 her annoyed "[his_name]! Shhh!"
                 her happy "Go on, sweetie."
                 kid surprised "Oh. Um, that's it. That's all I wanted to say."

@@ -234,9 +234,6 @@ screen choose_crop(crop_index=0):
                     vpgrid:
                         cols (count_enabled_crops()//4 + 2) #more columns with more enabled crops
                         spacing 10
-                        draggable True
-                        mousewheel True
-                        #scrollbars "vertical"
                         side_xalign 0.5
 
                         # Sort by proper key

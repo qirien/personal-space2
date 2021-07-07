@@ -22,19 +22,19 @@ init -10:
     image toddler_cg:
         "images/cgs/chapter-toddler.png"
         xalign 0.0 yalign 0.5
-        linear 3.0 xalign 0.8 yalign 0.2
+        linear 3.0 xalign 0.6 yalign 0.2
         linear 3.0 zoom 0.5       
 
     image child_cg:
         "images/cgs/chapter-child.png"
-        xalign 0.0 yalign 0.1
-        linear 3.0 xalign 0.7 yalign 0.5
-        linear 3.0 zoom 0.75
+        xalign 0.0 yalign 0.2
+        linear 3.0 xalign 0.6 yalign 0.2
+        linear 3.0 zoom 0.5
 
     image tween_cg:
         "images/cgs/chapter-tween.png"
         xalign 0.0 yalign 0.5
-        linear 3.0 xalign 0.6 yalign 0.3
+        linear 3.0 xalign 0.5 yalign 0.3
         linear 3.0 zoom 0.5
 
     image yteen_cg:
@@ -45,17 +45,17 @@ init -10:
 
     image jellymother_cg:
         "images/cgs/jellymother.png"
-        linear 15.0 zoom 0.5
+        linear 12.0 zoom 0.5
 
     image harvest_cg:
         "images/cgs/hallowgiving.png"
         xalign 0.9 yalign 0.5 zoom 0.75
-        linear 5.0 xalign 0.5 yalign 0.5
-        linear 5.0 zoom 0.5
+        linear 3.0 xalign 0.5 yalign 0.5
+        linear 3.0 zoom 0.5
 
     image mountain_cg:
         "images/cgs/mountain.png"
-        linear 8.0 zoom 0.5
+        linear 6.0 zoom 0.5
 
     image ending1_cg:
         "images/cgs/ending1.png"

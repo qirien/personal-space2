@@ -10,7 +10,7 @@ label community_intro:
     show thuc normal at midright
     show natalia normal at center
     with dissolve
-    "The three of us lived near the several hundred other colonists on the planet of Talaam. Enough to feel like a real community, but few enough that we all knew each other."
+    "Our little family lived near the several hundred other colonists on the planet of Talaam. There's enough people to feel like a real community, but few enough that we all knew each other."
     hide pete
     hide thuc
     hide natalia
@@ -4529,7 +4529,7 @@ label community18:
                     ilian_c "But they might have parasites or bad habits!"
                     ilian_c "Please separate them somehow. Put them into the barn or something."
                     him_c "Sorry, I don't think I can do that. Hopefully Pete can sort it all out soon."
-                    $ c18_cows_in_ranch = True
+                $ c18_cows_in_ranch = True
             "Feed them something so they won't eat my plants.":
                 "I take out some of Lettie's hay and feed it to the cows, who happily dig into it."
                 "Hopefully that will last long enough for me to find Pete."
@@ -4601,7 +4601,7 @@ label community18:
             pete normal "I won't forget this."
             if (not mavericks_strong("moderate")): #5
                 him determined "You need to compensate the miners and colonists for the losses they incurred."
-                pete angry "You need to stop acting like a selfish, stuck-up snake. This could have happened to anyone."
+                pete angry "You need to deflate your ego - it's blown up like a puff adder. This could have happened to anyone."
             scene stars with fade
             "Pete spent all day gently walking his cows out to the pasture land half a mile from the colony."
     return
@@ -7894,7 +7894,7 @@ label community29:
         "I stopped by often to see [her_name] and I played a game or two with Helen."
         "Helen had always been pretty shy, but as a community we completely doted on her as she survived her pregnancy."
         "Natalia made a beautiful quilt for the future baby, and Travis made a wicker cradle."
-        "Joanna made a waterproof book with high-contast images, and the elementary school kids made a mobile out of felted plant fibers."
+        "Joanna made a waterproof book with high-contrast images, and the elementary school kids made a mobile out of felted plant fibers."
         play music tense
         "Two weeks after she went on bedrest, Helen stopped taking visitors."
         scene farm_interior with fade

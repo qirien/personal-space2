@@ -20,10 +20,11 @@ screen biographies(name):
                 vpgrid:
                     cols 1
                     xsize LEFT_COLUMN_WIDTH + 40
-                    draggable True
                     mousewheel True
+                    edgescroll (70, 50)
+                    pagekeys True
                     scrollbars "vertical"
-                    yinitial bios.getPosition(name)
+                    yinitial bios.getPosition(name) #Scroll to where the current person is in the list
                     for person in bios:
                         $ name = person.getName()
                         $ fname = person.getFullName()

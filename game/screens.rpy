@@ -377,7 +377,7 @@ screen navigation():
 
         spacing gui.navigation_spacing
         if main_menu:
-            if renpy.can_load("quitsave"):
+            if ((persistent.max_year) and renpy.can_load("quitsave")):
                 textbutton _("Resume") action FileLoad("quitsave", slot=True) text_size 50
 
             if (persistent.times_beaten):

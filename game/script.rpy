@@ -302,6 +302,7 @@ label start:
         $ her_name = mp.kelly_name
     if (mp.baby_name):
         $ kid_name = mp.baby_name
+    $ persistent.max_year = year
 
     "Thirty years ago, when [kid_name] was first born, I had no idea what I was getting into."
     "Thirty years sounds like a long time, but because our planet's rotation is different from Earth's, that's only about eighteen Earth years."

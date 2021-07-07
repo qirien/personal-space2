@@ -26,6 +26,8 @@ label tests:
                     call test_positions from _call_test_positions
                 "Screenshots":
                     call screenshots from _call_screenshots
+                "CGs":
+                    call test_cgs from _call_test_cgs
 
         "Dialogue Test":
             call test_dialogue from _call_test_dialogue
@@ -55,6 +57,89 @@ label tests:
 
     jump tests
     return    
+
+label test_cgs:
+    "Here are the CGs we have in the game."
+    show text "End Baby Years"
+    window auto hide
+    $ renpy.pause(1.5)
+    show baby_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    scene stars with fade
+    show text "End Toddler Years"
+    $ renpy.pause(1.5)
+    show toddler_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    scene stars with fade
+    show text "End Childhood Years"
+    $ renpy.pause(1.5)
+    show child_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    scene stars with fade
+    show text "End Tween Years"
+    $ renpy.pause(1.5)
+    show tween_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    scene stars with fade
+    show text "End Young Teen Years"
+    $ renpy.pause(1.5)
+    show yteen_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    "Other CGs"
+    show harvest_cg
+    pavel sad "It's a shame we don't have any chocolate to give them."
+    natalia happy "I miss it too."
+    julia angry "This is better than Halloween. They're actually helping people instead of running around with entitled threats."
+    thuc happy "They still sound pretty entitled to me!"
+    him laugh "Some things never change."
+    window auto hide
+    $ renpy.pause()
+
+    show mountain_cg
+    "Pete still wasn't happy about the tremors the mining caused, and it irked Brennan to leave so much easy ore untouched."
+    "However, the mining continued without incident."
+
+    show jellymother_cg
+    "It came closer to the surface, and I could see part of it."
+    "It had way more than ten tentacles and was a little larger than our rowboat."
+
+    "Endings"
+    
+    "Ending 1/4."
+    window auto hide
+    show ending1_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    "Ending 2/4."
+    window auto hide
+    show ending2_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    "Ending 3/4."
+    window auto hide
+    show ending3_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    "Ending 4/4."
+    window auto hide
+    show ending4_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
+
+    return
 
 label test_family_photo:
     $ i = 0
