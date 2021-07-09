@@ -349,6 +349,7 @@ label farm_tutorial:
                 "The middle of the screen shows the current year and the farm layout."
                 scene tutorial-right with dissolve
                 "On the right is how much energy the current farm will provide, and how much work it will take."
+                "I can also clear the whole farm if I want to start from scratch."
                 scene tutorial-crop-select with dissolve
                 "When I select a farm space, I can choose what crop should go there and see information about each crop."
                 "I always have to allocate space for my goats, but which other crops I plant is up to me."

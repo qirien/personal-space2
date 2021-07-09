@@ -825,7 +825,7 @@ label community5:
         him normal "Good. I don't want any trouble with RET."
 
     label ration_harvest:
-        ilian angry "I support your plan, but not everyone' as enthusiastic about this. Some of the other farmers are reluctant to centrally locate food."
+        ilian angry "I support your plan, but not everyone's as enthusiastic about this. Some of the other farmers are reluctant to centrally locate food."
         him surprised "Oh? Like who?"
         ilian normal "Like Pete and Martín."
         ilian happy "I think they'd listen to you if you tried to persuade them though."
@@ -1747,7 +1747,7 @@ label community11:
     show kid surprised at quarterright
     "Families gather at a safe distance from the landing area to watch the sky."
     "We shared binoculars and cheered as the shuttle landed."
-    "I helped take a wagonload of people to the landing area to greet them and transport people and goods."
+    "I helped bring a wagonload of onlookers to the landing area to greet the newcomers and transport people and goods."
     "The people in the shuttle exited one by one."
     show sara at left
     show him at midleft
@@ -3504,7 +3504,7 @@ label community16:
             him pout "Did you find any more weird plants and animals out there?"
             pete normal "Mostly the same ones. There are some bugs I hadn't seen before that look kind of like pill bugs."
             pete happy "I've been working on some other ways to deflect radiation though!"
-            him doubt "Really? It seems like you wouldn't have the technology..."
+            him doubt "You found something that actually worked?"
             pete normal "I'd started working on it before I left. I found out that the shells of all these animals are resistant to radiation."
             him normal "Just like we suspected!"
             pete normal "The main problem is that the shells are brittle, so I can't bend them into other shapes, but I've been experimenting with different treatments for them."
@@ -3977,7 +3977,7 @@ label community17:
                 show kevin normal at midright with moveinright
                 kevin "I have studied up on many effective arm wrestling techniques. This contest is not purely about physical strength."
                 him surprised "So... you're saying that I'm stronger than you, but you read about some fancy tricks and that's why you'll win?"
-                kevin "To put it in simple terms, yet."
+                kevin "To put it in simple terms, yes."
                 him smirk "We'll see about that!"
                 "We locked arms, and Julia blew her whistle."
                 show him pout with dissolve
@@ -4003,11 +4003,13 @@ label community17:
                         "But I wasn't going to let him do that."
                         "I hooked his wrist, twisting his arm slightly, and pushed his hand down to the table."
                         kevin "Well done. Perhaps I require more practice."
-                        him annoyed "Good game, Kevin."
+                        him normal "Good game, Kevin."
                 hide kevin with moveoutright
+                show him annoyed sweat with dissolve
                 if invited_miners:
-                    show brennan normal at midright with moveinright
+                    show brennan surprised at midright with moveinright
                     "The highlight of the evening was when I beat Brennan in about 1.6 seconds."
+                    show him happy
                     brennan angry "I wasn't ready!"
                     hide brennan with moveoutright
                 if invited_mavericks:
@@ -4020,6 +4022,7 @@ label community17:
                 show ilian normal at midright with moveinright
                 "Really? Well, if Ilian made it this far, he must be pretty good."
                 "We squared off on either side of the table."
+                show him determined with dissolve
                 julia "Go!"
                 "We both pushed against each other, not too hard, just testing the other guy."
                 ilian happy "When we're finished, you're going to be drooling on the floor."
@@ -4996,7 +4999,7 @@ label community21:
     show bro normal at quarterleft, creepright
     with moveinleft
     "We started walking along."
-    her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [her_name] was born."
+    her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [kid_name] was born."
     her surprised "There's a path here and everything."
     kevin "Yes, I like to visit the ocean at least once a month. And Pete and his cattle are excellent at making a pathway."
     him surprised "Oh yeah, Pete drives his cattle this way about twice a year."

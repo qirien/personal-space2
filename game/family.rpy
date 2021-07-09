@@ -291,15 +291,7 @@ label family1:
             show her normal
             show him baby happy with dissolve
             show her normal at midright with move
-            if (("fragile" in baby_poem) or
-                ("love" in baby_poem) or
-                ("milk" in baby_poem) or
-                ("gentle" in baby_poem) or
-                ("smile" in baby_poem) or
-                ("tender" in baby_poem)):
-                her happy "Awwww! Yeah, that's our little [kid_name]!"
-                him "I'm glad you agree!"
-            elif (("precious" in baby_poem) or
+            if (("precious" in baby_poem) or
                 ("cute" in baby_poem) or
                 ("joy" in baby_poem) or
                 ("adore" in baby_poem)):
@@ -313,7 +305,15 @@ label family1:
                 ("pain" in baby_poem) or
                 ("blood" in baby_poem)):
                 her concerned "That's... exactly how it is. I'm not sure I like it, but it's definitely true."
-            elif (len(baby_poem) <= 50):
+            elif (("fragile" in baby_poem) or
+                ("love" in baby_poem) or
+                ("milk" in baby_poem) or
+                ("gentle" in baby_poem) or
+                ("smile" in baby_poem) or
+                ("tender" in baby_poem)):
+                her happy "Awwww! That's really sweet... your love really comes out in your poems, [his_name]."
+                him normal "Hopefully it shows other places, too."
+            elif (len(baby_poem) <= 30):
                 her surprised "Wow, it's... very short!"
             else:
                 her concerned "Hmmm. Okay."
@@ -1644,12 +1644,12 @@ label family6:
     show kid normal at right
     with dissolve
 
-    kid surprised "Daddy, what's a elephant?"
+    kid surprised "Daddy, what's a elafunt?"
     him surprised "An elephant? It's a big Earth animal with a nose called a trunk that goes all the way to the ground."
     show kid at midright with move
     kid concerned "Really?"
     him normal "Yeah, here, I'll show you a picture."
-    kid surprised "Did the elephants eat your crops on the farm?"
+    kid surprised "Did the elafunts eat your crops on the farm?"
     show kid at quarterright with move
     him determined "No, they only live in Africa and south Asia on Earth. And they don't bother people."
     kid concerned "They're scary!"
@@ -1916,7 +1916,7 @@ label family6:
             him sad "I don't know. Not now, that's for sure."
             her determined "Well, think about it. I would like to have at least one more kid sometime. And I think sooner is better than later."
             $ year6_have_baby = False
-        "It would be efficient":
+        "It would be efficient.":
             him surprised "It's probably more efficient to have them closer together."
             her normal "Yeah, if we wait too long they won't really want to play together."
             him normal "And we'll forget all the tricks we learned!"
@@ -1946,7 +1946,7 @@ label family6_swimming:
     show him normal at midleft
     show kid normal at midright
     with dissolve
-    "It was pretty fun to swim with [kid_name]; she tried to hard to swim but she kept doggy paddling instead."
+    "It was pretty fun to swim with [kid_name]; she tried so hard to swim but she kept doggy paddling instead."
     him happy "Big arms! Big arms!"
     kid surprised "My arms are big! So big!"
     him excited "Scoop the water! Come on!"
@@ -2625,7 +2625,6 @@ label family8:
     "Soon school started, and [her_name] and I walked [kid_name] to the school for her first day."
     scene path with fade
     show him normal at midleft
-    show her normal coat at midright
     show kid normal at center
     with dissolve
 
@@ -2633,7 +2632,6 @@ label family8:
     kid laugh "...and the letters of the alphabet and my numbers up to fifty except Travis says I always mess up around forty-seven and skip right to forty-nine but I don't, right, daddy?"
     him surprised "Um, what was the question?"
     kid normal "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
-    her concerned coat "[kid_name]."
     kid concerned "What?"
     her normal coat "We're almost there. Come get a goodbye hug."
     kid normal "Bye, mommy!"
@@ -2962,7 +2960,10 @@ label family9:
     show kid normal at center with dissolve
     "School completely changed our family dynamics."
     "Instead of yearning for a few minutes of uninterrupted time and slogging through our weekly turn in the kids' co-op, I found myself looking forward to her coming home from school."
-    "She seemed to appreciate me more, too."
+    if (year6_have_baby):
+        "And now that [bro_name]'s cleft lip has been repaired and he's older, he's more independent, too."
+    else:
+        "[kid_name] seemed to appreciate me more, too."
     scene fields with fade
     show him normal at midright
     if (year6_have_baby):
@@ -3433,7 +3434,8 @@ label family11:
     show her normal at quarterright
     show kid normal at center
     show bro concerned at midright, baby_pos
-    "Meal times at our house were never boring. [kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
+    "Meal times at our house were never boring."
+    "[kid_name] would tell us about what happened at school, [her_name] would talk about the patients she saw, and I would update everyone on how the crops were doing."
     show bro happy with dissolve
     "Even [bro_name] usually had something to say."
     "They weren't always peaceful, though..."
@@ -4526,7 +4528,7 @@ label family14:
                     kid annoyed "Ugh, that'd be even more work!"
                     him normal "It'd be less boring."
                     kid angry "I guess. I still don't want to write them ten times. My hand gets sore. And what's the point of writing by hand, anyway? You and mom never write by hand. It's a waste of paper."
-                    him happy "One problem at a time, [kid_name]. Let's send your teacher a note. Do you want to type it, or write it."
+                    him happy "One problem at a time, [kid_name]. Let's send your teacher a note. Do you want to type it, or write it?"
                     kid annoyed "Type it!"
                     "We wrote to her teacher, and [kid_name] asked if she could have harder spelling words and type them instead of handwrite them."
                     "I wasn't sure what her teacher would say, but at least I helped [kid_name] with her problem at school."
@@ -6437,7 +6439,7 @@ label family22:
     bro surprised "..."
     her determined "You know that you're not allowed to take applesauce from the pantry."
     bro nervous "..."
-    "I started to say something, but [her_name] but a hand on my arm. It was hard for me to be patient with [bro_name] sometimes, but he liked to do things at his own pace."
+    "I started to say something, but [her_name] put a hand on my arm. It was hard for me to be patient with [bro_name] sometimes, but he liked to do things at his own pace."
     her concerned "Tell me about what happened."
     bro concerned "I...was hungry."
     her surprised "And so you took the applesauce?"
@@ -8658,15 +8660,15 @@ label family30:
     "I didn't think it was even a possibility but apparently her friend Anya was willing to give up her spot for [kid_name]."
     if (has_strong_marriage()):
         "I went to talk to [her_name] about it, but she was sound asleep. I remember she'd had to go in early this morning for something urgent, so she was probably really tired."
-    show him concerned
+    show him concerned with dissolve
     "[kid_name] couldn't leave... we were a family! She was so tightly woven into the fabric of my life; if she tried to detach herself, I thought my whole world would fall apart."
-    show him determined
+    show him determined with dissolve
     "Not only that, I depended on her to help me with the farm."
     "I guess I had always known in some abstract way that eventually she would leave, but this..."
-    show him sad
+    show him sad with dissolve
     "This was too fast."
     "I thought about waking [kid_name] up to talk to her, but I was worried that I might not say the right things since I was feeling so upset."
-    show him concerned
+    show him concerned with dissolve
     "No, I should wait."
     "It was getting really late; I should go to bed."
     "But my mind was racing and my heart was thumping as if I was about to be attacked by wolfslugs."

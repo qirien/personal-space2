@@ -10,7 +10,7 @@ label bad_nutrition:
         if (has_strong_marriage()):
             her normal coat "[his_name], I wanted to thank you for always growing plenty of food for our family. We've always had enough to eat."
             him surprised "Oh. I'm, uh, glad you appreciate it."
-            her concerned coat "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with just [common_food]."
+            her concerned coat "But I'm worried that we are not eating a balanced diet with these foods. The human body needs more than 30 different vitamins, minerals, and nutrients. We can't get all those with the foods we have now."
         else:
             her concerned coat "[his_name], I don't want to tell you how to do your job..."
             him annoyed "Why do I get the feeling you're about to tell me how to do my job?"

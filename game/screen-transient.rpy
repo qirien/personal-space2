@@ -35,7 +35,7 @@ screen show_notification(message=""):
             ypadding 10
             background "roundrect_lightgray"
             text message size 30
-    timer 3 action Hide("show_notification")
+    timer 5.0 action Hide("show_notification")
 
 # Show a summary of changes for the previous year
 screen yearly_summary():

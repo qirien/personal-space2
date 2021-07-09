@@ -32,9 +32,9 @@ screen parenting_handbook():
                     showif (year > TODDLER_MAX):
                         textbutton "Child (6-9)" selected (TODDLER_MAX < show_year <= CHILD_MAX) action SetVariable("show_year", CHILD_MAX)
                     showif (year > CHILD_MAX):
-                        textbutton "Tween (10-12)" selected (CHILD_MAX < show_year <= TWEEN_MAX) action SetVariable("show_year", TWEEN_MAX)
+                        textbutton "Tween (10-13)" selected (CHILD_MAX < show_year <= TWEEN_MAX) action SetVariable("show_year", TWEEN_MAX)
                     showif (year > TWEEN_MAX):
-                        textbutton "Young Teen (13-15)" selected (TWEEN_MAX < show_year <= YTEEN_MAX) action SetVariable("show_year", YTEEN_MAX)
+                        textbutton "Young Teen (14-15)" selected (TWEEN_MAX < show_year <= YTEEN_MAX) action SetVariable("show_year", YTEEN_MAX)
                     showif (year > YTEEN_MAX):
                         textbutton "Older Teen (16-18)" selected (YTEEN_MAX < show_year) action SetVariable("show_year", MAX_YEARS)
                 null width 5

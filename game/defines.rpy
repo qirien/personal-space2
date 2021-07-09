@@ -468,6 +468,6 @@ define parenting_quotes = [
     "\"That is what parenthood is, a relationship… The secret is to honor our relationship with our children in all of our interactions with them.\"\n\n Neufeld and Maté, {i}Hold On to Your Kids{/i}", #27
     "\"But kids don't stay with you if you do it right. It's the one job where, the better you are, the more surely you won't be needed in the long run.\"\n\nBarbara Kingsolver, {i}Pigs in Heaven{/i}", #28
     "\"The visions we offer our children shape the future. It matters what those visions are. Often they become self-fulfilling prophecies. Dreams are maps.\"\n\nCarl Sagan", #29
-    "\"Raising a child is in many ways is a long process of saying goodbye.\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #30
+    "\"Raising a child is in many ways a long process of saying goodbye.\"\n\nTuber, Steven, ed., {i}Parenting : Contemporary Clinical Perspectives{/i}", #30
 
 ]

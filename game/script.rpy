@@ -191,8 +191,8 @@ label start:
                         ["corn",         10, 3, 2, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 0, 6, 2, 6, 6, 40, True, False, False, 100],
                         ["wheat",        10, 5, 5, 7, 9, 9, 20, False, False, False, 2],
-                        ["peppers",      2, 2, 9, 1, 5, 5, 25, False, False, True, 100],    # "Fruits"
-                        ["tomatoes",     3, 3, 4, 1, 6, 6, 15, True, False, True, 100],
+                        ["peppers",      2, 2, 9, 0, 5, 5, 25, False, False, True, 100],    # "Fruits"
+                        ["tomatoes",     3, 3, 4, 2, 8, 6, 15, True, False, True, 100],
                         ["plums",        3, 1, 1, 1, 7, 7, 15, False, True, True, 1],
                         ["plums+",       3, 1, 1, 1, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
                         ["squash",       4, 8, 3, 2, 2, 4, 15, True, False, True, 100],
@@ -200,14 +200,14 @@ label start:
                         ["strawberries+",1, 0, 2, 0, 6, 2, 0, False, True, True, 0],
                         ["beans",        6, 0, 0, 6, 4, 7, -20, True, False, True, 100],   # Legumes
                         ["peanuts",      7, 0, 0, 6, 5, 8, -40, False, False, False, 100],
-                        ["carrots",      3, 10, 1, 0, 3, 3, 10, True, False, False, 100],   # Root Vegetables
-                        ["turnips",      3, 0, 6, 1, 1, 4, 10, False, False, False, 100],
-                        ["onions",       4, 0, 3, 1, 5, 4, 5, False, False, False, 100],
-                        ["garlic",       1, 0, 7, 2, 5, 2, 4, False, False, False, 2],
+                        ["carrots",      3, 10, 2, 0, 3, 3, 10, True, False, False, 100],   # Root Vegetables
+                        ["turnips",      3, 0, 6, 2, 1, 4, 10, False, False, False, 100],
+                        ["onions",       4, 0, 3, 2, 5, 4, 5, False, False, False, 100],
+                        ["garlic",       1, 0, 7, 2, 5, 2, 4, False, False, False, 100],
                         ["spinach",      1, 6, 3, 2, 3, 2, 10, True, False, False, 100],   # Leafy greens
-                        ["broccoli",     3, 2, 10, 1, 2, 3, 15, False, False, False, 100],
+                        ["broccoli",     3, 2, 10, 2, 2, 3, 15, False, False, False, 100],
                         ["goats",        8, 1, 0, 1, 9, 5, Field.NITROGEN_GOATS, True,  False, False, 1],   # Miscellaneous
-                        ["honey",        2, 0, 0, 0, 8, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
+                        ["honey",        2, 0, 0, 0, 10, 2, Field.NITROGEN_FALLOW, False, False, False, 1])
         crop_descriptions = {
             "fallow" : "Let this field rest to restore nitrogen.",
             "corn" : "A starchy, versatile grain. Needs lots of nitrogen.",

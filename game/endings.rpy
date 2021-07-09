@@ -527,7 +527,7 @@ label ending_AC:
     "The food fell on her lap and she elbowed me in mock indignation."
     her flirting "Oh, now look one you've done. You've ruined my fanciest clothes."
     him flirting "Want me to help you clean that off?"
-    her happy "Mom, Dad, can you not? Some of us are trying to eat here."
+    kid happy "Mom, Dad, can you not? Some of us are trying to eat here."
     if (boyfriend_name == "Travis"):
         travis happy "Here, [kid_name], let's show these old folks how it's done."
         "She put her arms around his neck and he pulled her in for a long kiss.  ...Too long, if you ask me."

@@ -436,6 +436,11 @@ init python:
 
     def enable_crop(crop_name, notify=True):
         crop_index = get_crop_index(crop_name)
+        if (crop_info[crop_index][ENABLED_INDEX]):
+            if (crop_info[crop_index][MAXIMUM_INDEX] < 100):
+                crop_info[crop_index][MAXIMUM_INDEX] += 1
+                if notify:
+                    notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " + 1!")    
         if (notify and not crop_info[crop_index][ENABLED_INDEX]):
             notify_change("{image=gui/crop icons/" + crop_name + ".png} " + crop_name.capitalize() + " unlocked!")
         crop_info[crop_index][ENABLED_INDEX] = True

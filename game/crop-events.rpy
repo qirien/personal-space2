@@ -1488,12 +1488,15 @@ label plums2:
             him happy "How much can you give me for all this plum jam?"
             ilian angry "I can only give you 50 credits."
             him surprised "What? Why is that?"
-            ilian normal "I'm out of money. But if you'd like to exchange, I can give you seeds for onions or turnips."
+            ilian normal "I'm out of money. But if you'd like to exchange, I can give you seeds for onions, broccoli, or turnips."
             menu:
                 "Which should I choose?"
                 "Onions":
                     him normal "Give me the onions."
                     $ enable_crop("onions")
+                "Broccoli":
+                    him normal "Broccoli sounds good."
+                    $ enable_crop("broccoli")                    
                 "Turnips":
                     him normal "How about the turnips?"
                     $ enable_crop("turnips")
