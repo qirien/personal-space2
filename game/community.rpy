@@ -2679,11 +2679,8 @@ label community13:
     with moveinleft
     "When we arrived, the control station was empty."
     him surprised "Look, we tried, but he's not here. Let's just send him a message."
-    lily angry "I don't want to risk them poisoning any more wildlife, or people. Do you know where Brennan sleeps?"
-    him pout "I have no idea."
-    play sound "sfx/knock.ogg"
-    "Dr. Lily knocked on the door of a nearby hut. She knocked for several minutes until she got an answer."
-    lily normal "He said Brennan lives over here."
+    lily angry "I don't want to risk them poisoning any more wildlife, or people. We'll try his office."
+
     hide him
     hide lily
     with moveoutright
@@ -2692,7 +2689,7 @@ label community13:
     show lily normal at midright
     with moveinleft
     play sound "sfx/knock.ogg"
-    "She knocked on his door. A voice came from behind the door."
+    "She knocked on the door. A voice came from behind the door."
     brennan "I am NOT pushing back any deadlines for your personal days, and that's final!"
     lily normal "We're not here to ask for a personal day."
     brennan "Oh, sorry. I thought you were someone else."
@@ -2924,7 +2921,7 @@ label community13:
                         her normal coat "We decided to let farmers irrigate with river water, and Zaina will help Dr. Lily and I synthesize the polymer, hopefully by tomorrow."
                         if (has_strong_marriage()):
                             her concerned coat "Dr. Lily is anxious to continue her work, so I've agreed to go help her tonight."
-                            him concerned "I kind of volunteered you. Are you up for it? You could be up all night."
+                            him concerned "Are you up for it? You could be up all night."
                             her normal coat "I know. This is a compromise Dr. Lily and I are both satisfied with. Can you take the kids home?"
                             him normal "Sure."
                         else:
@@ -6834,7 +6831,7 @@ label community27:
     him pout "What is it trying to say? I thought they made their own shells."
     kid sad "Maybe they need to see another shell to know how to make it?"
     him surprised "Hmm. They do seem to be intelligent animals, but isn't it part of their body?"
-    jellysquid "Help we?"
+    jellysquid "Help?"
     "Then the back of the jellysquid looked like the literacy game again."
     nvl clear
     computer "'Grown-ups only! Needs permission to access more content.'"
@@ -6899,7 +6896,7 @@ label text_conversation:
                             jump boat_capsized
                         "No.":
                             him surprised "I think it wants to know where the shells are physically."
-                            jellysquid "Bring for the babies to eat"
+                            jellysquid "Bring for the babies to eat."
                             jump call_to_squid
                 "lost them":
                     him doubt "We sent them in a shuttle to another planet. They're basically lost, but on purpose?"
@@ -6944,7 +6941,7 @@ label call_to_squid:
             show him concerned at center
             show kid concerned at midleft
             with moveinleft
-            her "What on Earth happened to you?!"
+            her "What happened?!"
             "I told [her_name] what happened. Then I left to see how many shells I could recover."
             stop sound fadeout 1.0
             if (mavericks_strong("moderate")): #8
@@ -7236,13 +7233,13 @@ label call_to_squid:
                                     "A few months later, we spent a whole day skinning mudfish and feeding them to jellysquids."
                                     "We ended up going every month for a while. It felt like we got to know some of the growing jellysquids."
                                     "After about six months, the jellymother told us that our efforts at reparation were sufficient."
-                                    "She presented us with some of the fish we could eat as a token of good will."
+                                    "She presented us with some of the fish we could eat as a token of goodwill."
                                 else:
                                     "Yippers had a longer incubation period than I anticipated. The jellymother started feeding yippers to emerging jellysquids."
                                     "Farming the yippers took weekly maintence, which we shared. After the yippers were big enough to fend for themselves, we released them into the wild."
                                     "A few of the jellysquid ate too much yipper and ended up with large shells, but they seemed to adapt to it fairly well."
                                     "The jellymother seemed impressed that we followed up on our promise."
-                                    "She presented us with some of the fish we could eat as a token of good will."
+                                    "She presented us with some of the fish we could eat as a token of goodwill."
                                 $ achieved("Xenophiliac")
                                 $ jellypeople_happy = True
                                 return

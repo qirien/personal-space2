@@ -23,13 +23,15 @@ screen poem_display(poem, take_photo=False):
 
 # Show one poem in the middle, nice and large
 screen show_poem(poem, take_photo=True):
-    # Make it so you can click anywhere to proceed
+    # Make it so you can click anywhere or press button to proceed
     if (take_photo):
         key "mousedown_1" action [Function(take_picture), Hide("poem_display", whitefade)]
         key "K_SPACE" action [Function(take_picture), Hide("poem_display", whitefade)]
+        key "K_RETURN" action [Function(take_picture), Hide("poem_display", whitefade)]
     else:        
         key "mousedown_1" action [Hide("poem_display"), Return()] 
         key "K_SPACE" action [Hide("poem_display"), Return()]
+        key "K_RETURN" action [Hide("poem_display"), Return()]
 
     frame:
         xalign 0.5 

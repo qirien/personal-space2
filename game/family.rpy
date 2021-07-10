@@ -3592,7 +3592,10 @@ label family11:
 label family12:
     scene farm_interior with fade
     show him normal at midright
+    show bro normal at quarterleft, baby_pos
+    with dissolve
     show kid normal at midleft with moveinleft
+    bro happy "Hi!"
     him happy "Welcome home, [kid_name]! How was school?"
     kid surprised "Pretty good. Hey, can I go over to Anya's house tomorrow? I can walk home with her."
     him surprised "Tomorrow? Who's Anya?"
@@ -3604,6 +3607,7 @@ label family12:
     "On the other hand, I didn't know much about the miners. Should I really let her go to someone's house I didn't know?"
     "I couldn't help but think of Josephina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
     kid sad "Please, dad? We're like best friends."
+    bro concerned "Best fwends?"
     him surprised "Who are her parents?"
     kid annoyed "I don't know; just...parents, I guess."
     menu:
@@ -3669,6 +3673,7 @@ label family12:
     "Several days later, though, I noticed something."
     scene farm_interior with fade
     show him normal at midright
+    show bro normal at quarterright, baby_pos
     show kid normal at midleft
     kid annoyed "I'm just so itchy! All the time!"
     him surprised "Did you touch a weird plant or something? Where do you itch?"
@@ -3683,6 +3688,7 @@ label family12:
     him concerned "They look like little sesame seeds, or..."
     kid concerned "Or what?!"
     him surprised "Eggs?"
+    bro concerned "Eggs?"
     kid surprised "Eggs?! From what?!"
     play music tense
     show her normal coat at quarterleft with moveinleft
@@ -3693,7 +3699,7 @@ label family12:
     her concerned coat "My guess is that they didn't decontaminate clothing or toys thoroughly enough to kill lice. They are pretty resistant little bugs."
     show him concerned
     kid angry "I have lice?!"
-    her determined coat "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I sent you a message with some instructions."
+    her determined coat "Yes. I'm going to send out a community alert right now. [his_name], can you get started treating [kid_name]? I'll stay here with [bro_name]."
     menu:
         "What should I say?"
         "I'm not doing that.":
@@ -3767,7 +3773,7 @@ label family12:
     her surprised "You got them all?"
     him sad "I went through her whole head... that's all I can do for today."
     hide kid with moveoutleft
-    her determined "Good, now I'll take a look at your hair."
+    her determined "Good, now I'll take a look at your hair. Luckily [bro_name] doesn't have much hair."
     show her at center with move
     "I sat on the stool and waited for the verdict. My scalp itched like crazy."
     her determined "Yup, you have them, too. Where's that comb?"
@@ -4055,9 +4061,8 @@ label family13:
     show kid normal at midleft
     show bro normal at quarterleft
     with dissolve
-
-    her "So, if you look on the screen there, hopefully I can get a good angle so you can see the baby's face."
     show ultrasound at right, baby_pos with dissolve
+    her "Look at the screen... Maybe I can get a good angle so you can see his face?"
     him surprised "Was that it?"
     her concerned coat "Maybe? I don't think I'll ever get used to performing an ultrasound on myself..."
     him normal "You could have asked the nurse to help, right?"

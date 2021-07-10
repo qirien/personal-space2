@@ -457,7 +457,6 @@ init python:
         return
     
     # Check all the crops. If any are disabled, return False. Otherwise, return True.
-    # TODO: can you get this trophy??
     def all_crops_unlocked():
         for i in range(0, len(crop_info)):
             if (crop_info[i][NAME_INDEX][-1] != "+"):

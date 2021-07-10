@@ -2141,9 +2141,11 @@ label honey1:
 label money1:
     nvl clear
     "I was doing some financial calculations on the computer pad when I got a message from Sara."
+    nvl clear
     sara_c "[his_name], we're looking for people to help out a family in need. There's a dad and three little kids and the dad has been sick for the past month."
     him_c "That's rough. What do they need?"
-    sara_c "Well, he'd like to be able to hire someone to help out with the kids and around the house, but he doesn't have any money. A few people have been taking turns volunteering but they can't do it long term."
+    sara_c "Well, he'd like to be able to hire someone to help out with the kids and around the house, but he can't really afford it."
+    sara_c "A few people have been taking turns volunteering but they can't do it long term."
     him_c "So he needs money."
     sara_c "Basically, yes. We also have a few people looking for work, so it'll be good for everyone. 1000 credits would be enough for a few months."
     "I explained the situation to [her_name], who said she thought donating was a good idea but left the exact amount up to me."
@@ -2170,6 +2172,7 @@ label money1:
             $ colonists -= 1
             return
     "About a month later I got a note from the dad and his kids."
+    nvl clear
     note_c "Thanks so much for helping out when I was sick. It's been a long recovery but I am starting to work again. Your donation made a huge difference."
     nvl clear
     return

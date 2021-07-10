@@ -555,6 +555,7 @@ init python:
         # if we have put in the max of this crop, select something else.
         if (max_crops_reached):
             selected_crop_index = 0
+        renpy.retain_after_load()
         return
 
     SetCrop = renpy.curry(set_crop)

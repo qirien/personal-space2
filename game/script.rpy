@@ -399,6 +399,7 @@ label life_loop:
         $ renpy.force_autosave(take_screenshot=True)
         $ renpy.notify("Autosaving...")
 
+        $ renpy.retain_after_load()
         call screen plan_farm() with fade
 
         label yearly_events:

@@ -854,8 +854,8 @@ label test_jump_year:
     $ year_str = renpy.input("What year should we jump to?")
     $ year = int(year_str)
     $ earth_year = get_earth_years(year)
-    $ bro_birth_year = 8
-    $ year8_have_baby = True
+    $ bro_birth_year = 8 #6
+    $ year8_have_baby = True #$ year6_have_baby = True #
     $ credits = 1000
     $ total_miners = renpy.random.randint(0,year)
     $ total_mavericks = renpy.random.randint(0,year-total_miners)
