@@ -188,9 +188,9 @@ label start:
         # Tuple containing the crop name, calories, nutrition, value, work, nitrogen_usage, currently enabled, persistent/perennial, pollinated, and maximum allowed.
         crop_info =     (#Name          CAL VA VC VM VAL WK  NIT ENABLED PERRENIAL   POLL    MAX
                         ["fallow",       0, 0, 0, 0, 0, 0, Field.NITROGEN_FALLOW, True, False, False, 100],
-                        ["corn",         10, 3, 2, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
+                        ["corn",         10, 4, 2, 2, 7, 7, 50, False, False, False, 100],    # Grains/Starches
                         ["potatoes",     10, 0, 6, 2, 6, 6, 40, True, False, False, 100],
-                        ["wheat",        10, 5, 5, 7, 9, 9, 20, False, False, False, 2],
+                        ["wheat",        10, 5, 5, 6, 9, 9, 20, False, False, False, 2],
                         ["peppers",      2, 2, 9, 0, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 3, 4, 2, 8, 6, 15, True, False, True, 100],
                         ["plums",        3, 1, 1, 1, 7, 7, 15, False, True, True, 1],
@@ -214,9 +214,9 @@ label start:
             "potatoes" : "A starchy root vegetable providing a lot of energy that doesn't take too much work.",
             "wheat" : "A nutritious grain, usually made into bread.",
             "peppers" : "A vegetable with lots of vitamins A and C. Can be spicy!",
-            "tomatoes" : "A juicy, versatile fruit; can be eaten raw or cooked.",
+            "tomatoes" : "A juicy, versatile fruit; can be eaten raw or cooked. Popular!",
             "plums" : "A sweet fruit that can be dried into prunes or eaten raw. Grows on a tree that can't be moved.",
-            "squash" : "This hearty vegetable keeps well and is easy to grow.",
+            "squash" : "This hearty vegetable keeps well and is easy to grow. Lots of vitamin A!",
             "strawberries" : "Small, sweet, and tangy! They come back every year.",
             "beans" : "These legumes are tough to harvest, but keep well and are very nutritious. They fix nitrogen in the soil.",
             "peanuts" : "This legume takes hard work to harvest, shell, and boil. Fixes nitrogen in the soil.",
@@ -262,11 +262,6 @@ label start:
     #######################################################################
     scene stars with fade
     $ _quit_slot = "quitsave"
-    # menu:
-    #     "Beta":
-    #         $ pass
-    #     "Testing":
-    #         jump tests
 
     # TODO: Take this out when beta testing is over
     "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
@@ -291,7 +286,7 @@ label start:
             "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
             "If you miss something, you can scroll backwards and forwards using the mousewheel."
         else:
-            "You can use the tab at the right to bring up more options, like auto advance, preferences, and a conversation log."
+            "You can use the tab at the right to bring up more options, like auto advance, preferences and saving your game, and a conversation log."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve

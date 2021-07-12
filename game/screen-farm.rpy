@@ -339,11 +339,11 @@ screen crops_layout():
         background "soil"
         #background brown_dark
         vpgrid:
-            yalign 0.5
+            yalign 0.05
             style_prefix "crop_layout"
 
             # number of columns is the square root of farm_size
-            cols round(farm_size**0.5)
+            cols 5#round(farm_size**0.5)
             side_xalign 0.5
             for i in range(0, farm_size):
                 vbox:

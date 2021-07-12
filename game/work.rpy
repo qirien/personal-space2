@@ -346,7 +346,7 @@ label farm_tutorial:
                 scene tutorial-left with fade
                 "The left part of the screen shows information about my family and colony."
                 scene tutorial-mid with dissolve
-                "The middle of the screen shows the current year and the farm layout."
+                "The middle of the screen shows the current year and the farm layout. I have a lot of land but it's not all cleared for farming yet."
                 scene tutorial-right with dissolve
                 "On the right is how much energy the current farm will provide, and how much work it will take."
                 "I can also clear the whole farm if I want to start from scratch."
@@ -357,8 +357,9 @@ label farm_tutorial:
                 "The background color of each space shows how much nitrogen is in this field."
                 "A red color means there's not enough nitrogen for that crop and I need to pick something else."
                 "If it's dark brown, there's plenty of nitrogen for crops."
-                scene tutorial-light with dissolve
+                scene tutorial-mid with dissolve
                 "The lighter the brown color, the lower the nitrogen in that field. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
+                scene tutorial-right with dissolve
                 "I need a certain amount of energy, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
@@ -408,7 +409,7 @@ label work2:
     kevin sad "I do not want to pester you continually with farming questions. Is there someone else whom I could also ask for assistance?"
     menu:
         "Who should they go to for farming questions??"
-        "Natalia" if (not met_peron):
+        "Natalia, a sassy farmer growing beans and corn." if (not met_peron):
             $ bios.activate("Natalia")
             $ bios.activate("Martín")
             him determined "Natalia is a really good farmer."
@@ -440,7 +441,7 @@ label work2:
             him normal "Anyway, their other kids are old enough to help around the colony. Well, maybe not Mateo. But their oldest son Tomás just got married."
             $ met_peron = True
 
-        "Mayor Grayson" if (not met_grayson):
+        "Mayor Grayson. He's not a farmer but he knows everyone!" if (not met_grayson):
             $ bios.activate("Pavel")
             $ bios.activate("Naomi")
             him determined "Honestly, I'd ask Mayor Grayson."
@@ -454,7 +455,7 @@ label work2:
             him normal "No, but [her_name] does."
             $ met_grayson = True
 
-        "Julia" if (not met_nguyen):
+        "Julia, a bossy farmer who's an expert on fertilizer." if (not met_nguyen):
             $ bios.activate("Julia")
             him normal "Julia's probably the best person to ask if you want an expert opinion."
             zaina sad "That's Thuc's wife, right? Wasn't she sick last time?"
@@ -463,7 +464,7 @@ label work2:
             him normal "Not at all; she and Thuc have a thriving farm. They are experts in fertilizer and waste reclamation, which is more interesting than you might think once you get past the 'yuck' factor."
             zaina normal "Okay, good to know."
             $ met_nguyen = True
-        "Pete" if (not met_jennings):
+        "Pete, the cattle rancher librarian." if (not met_jennings):
             $ mavericks += 1
             $ bios.activate("Travis")
             $ bios.activate("Pete")
@@ -1396,8 +1397,9 @@ label work20:
 # A surprise 40th birthday party
 label work22:
     play music problems
-    scene community_center with fade
-    show night_overlay with dissolve
+    scene community_center
+    show night_overlay
+    with fade
     show him determined at left behind night_overlay with moveinleft
     him determined "Why did [her_name] want to meet me here? It makes no sense..."
     him annoyed "And the lights are off, which means she's not even here...?"
@@ -1410,7 +1412,7 @@ label work22:
     show oleg normal at right
     show bro happy at center
     show kid happy at midleft
-    with dissolve
+    with moveinbottom
     play music exciting
     "Everybody" "Happy Birthday, [his_name]!"
     him surprised "Whoa! What are you guys all doing here in the dark??"

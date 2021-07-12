@@ -95,8 +95,9 @@ label family1:
             "I snuggled her into her baby carrier and closed the door behind me."
             hide him
             with moveoutleft
-            scene farm_exterior with fade
-            show night_overlay with dissolve #TODO: can we have this fade in with the background instead of after? maybe just no dissolve?
+            scene farm_exterior
+            show night_overlay
+            with fade
             show him baby sad at center behind night_overlay
             with moveinright
             him "There now, little [kid_name], how's that?"
@@ -104,8 +105,9 @@ label family1:
             "She's still crying. I better get further from the house so I don't keep up [her_name]."
             hide him
             with moveoutleft
-            scene fields with fade
-            show night_overlay with dissolve
+            scene farm_exterior
+            show night_overlay
+            with fade
             show him baby sad at center behind night_overlay
             with moveinright
             "The winters on Talaam were mild, but it was cold enough that I snuggled [kid_name] close to my chest as I walked, feeling her tiny warmth through my jacket."
@@ -232,13 +234,13 @@ label family1:
                     $ responsive += 1
                     "I had to make things right."
                     "I ran back to the house. I could still hear [kid_name]'s crying even from outside."
-                    scene bedroom with fade
+                    scene bedroom
                     show her cry at midright, squatting
                     show kid sad at center, baby_pos, squatting
                     show bedroom_overlay
                     show night_overlay
-                    with dissolve
-                    show him concerned at quarterleft with moveinleft
+                    with fade
+                    show him concerned at quarterleft behind night_overlay with moveinleft
                     "[her_name] was lying on the bed with her arm around [kid_name], her face streaked with red from crying."
                     show her sad with dissolve
                     "I was glad to see she'd stopped crying, but then she looked up at me with hollow eyes and a resigned expression."
@@ -998,15 +1000,16 @@ label family3:
     play sound "sfx/fire-2.mp3" loop
     "Camping was ten times harder with little [kid_name]. When we cooked our dinner, one of us had their hands full making sure she didn't fall into the fire."
     "After dinner, she kept trying to run away and explore. I put her on my back for awhile but she yelled and complained and was pretty heavy anyway."
-    scene moons with fade
+    scene moons
     show him sleeping at midright
     show her sleeping at center
     show kid normal at center, baby_pos
     show night_overlay
+    with fade
     stop sound fadeout 1.0
     "When it started to get dark, we were both exhausted."
     him flirting "I was going to suggest some romantic star gazing, but..."
-    her concerned "Yeah, the only thing I want to look at right now is the inside of my eyelids."
+    her concerned "The only thing I want to look at right now is the inside of my eyelids!"
     him normal "Yeah, I'm exhausted. But wasn't this great?"
     her normal "It was a nice change of scenery. And that sunset... I know it's the same sun we can see from our house, but the landscape made it look completely different."
     him flirting "You have the best ideas, [her_nickname]."
@@ -2348,12 +2351,12 @@ label family7:
             "I didn't have time for this. And, really, our ancestors didn't have time to read parenting books and humans turned out okay, so why should I have to turn it into some huge complicated thing?"
         "Discuss it with [her_name]":
             "I decided to talk to [her_name] about it. We were both [kid_name]'s parents, after all!"
-            scene bedroom with fade
+            scene bedroom
             show him sleeping at midleft, squatting
             show her sleeping at midright, squatting
             show bedroom_overlay
             show night_overlay
-            with dissolve
+            with fade
 
             him determined "Hey, [her_name]?"
             her surprised "What?"
@@ -3721,7 +3724,7 @@ label family12:
     "But [her_name]'s instructions were pretty thorough."
 
     "First we queued up a lice comb to be 3D printed at the library."
-    scene storeroom with fade
+    scene library with fade
     show pete normal at midright with dissolve
     show him normal at center
     show kid normal at midleft
@@ -5317,7 +5320,8 @@ label family17:
                 if (farm.crops.count("wheat") > 0):
                     "It galled me to pay Ilian for the wheat I had just sold him, but I did it anyway. I didn't keep a lot of wheat around since it brought in a lot of money. I also bought some yeast."
                 else:
-                    "I paid Ilian for the wheat, and also some yeast. We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
+                    "I paid Ilian for the wheat, and also some yeast."
+                    "We only had one farm growing wheat and it was in high demand, so it was pretty expensive. The bread from this morning was a gift from one of [her_name]'s patients."
                 $ renpy.notify("Quest Updated: Got ingredients for bread!")
 
             "Pavel Grayson, the mayor":
@@ -5424,12 +5428,12 @@ label family17:
                 pete normal "See you. Take it easy, kid."
                 $ renpy.notify("Quest Updated: Got ingredients for cornbread!")
 
-        scene path with fade
+        scene path
         show horse at center
         show him normal at center
         show bro concerned at center
-        with dissolve
         show night_overlay
+        with fade
         "[bro_name] and I were both engrossed in our own thoughts on the ride back home."
         "But as we approached home, [bro_name] broke the silence."
         bro normal "I like riding with you, dad."
@@ -6689,10 +6693,10 @@ label family22:
 # with friends, etc.
 
 label family23:
-    "It hadn't really been a big deal to share our computer pad with the kids when they were small."
+    "It hadn't really been a big deal to share my computer pad with the kids when they were small."
     "On Earth we had been used to everyone having their own, but lots of things were different here on Talaam."
-    "We didn't have an electronics store where you could just go pick up another computer pad whenever you wanted."
-    "Lately, [kid_name] was on there all the time..."
+    "We didn't have an electronics store where you could just go pick up another computer pad whenever you wanted, and [her_name] used hers at work all day."
+    "Lately, [kid_name] was on my computer pad all the time..."
     scene farm_interior with fade
     show kid normal at midright with dissolve
     show him normal at midleft behind kid with moveinleft
@@ -8314,11 +8318,11 @@ label family29:
     "Well, everyone except Pete's mavericks. They didn't participate in our schooling system."
     "[kid_name] and I walked home together."
     play music thoughtful
-    scene path with fade
+    scene path
     show him normal at midright
     show kid normal at midleft
     show night_overlay
-    with dissolve
+    with fade
     him happy "My daughter... all graduated from school!"
     kid happy "That's me! Phew, I'm so glad to be done!"
     him surprised "You didn't like school?"

@@ -1436,6 +1436,10 @@ label plums2:
     "But finally they started to soften and ripen, and when I ate one, the juice dribbled down my chin and my taste buds exploded with the tangy sweet, rich flavor."
     "No matter how tasty they were, though, there were still limits to the amount of plums a small family could eat at a time."
     "I'd need to do something with all these plums..."
+    "I saved a few pits in case I wanted to plant more later."
+    $ plums_index = get_crop_index("plums")
+    $ crop_info[plums_index][MAXIMUM_INDEX] += 1
+    $ enable_crop("plums", False)
     "I could just bring them to the storehouse, but they'd be worth more if I made them into prunes or jam first."
 
     $ make_item = "plums"
@@ -1934,7 +1938,6 @@ label onions1:
 
 # Honey event
 # Can only happen year 11+
-# TODO: Except in new game+???
 label honey1:
     scene fields with fade
     show him normal at center with dissolve
@@ -2130,6 +2133,40 @@ label honey1:
             travis angry "Okay."
 
     return
+
+# BROCCOLI 1 - grubs?!
+label broccoli1:
+    scene farm_interior with fade
+    show him normal at midright
+    show her normal at midleft
+    show kid normal at center
+    him happy "Man, I love broccoli! Especially with this goat cheese sauce..."
+    kid annoyed "It's okay."
+    her concerned "I usually like it, but there's something funny about it today..."
+    him surprised "Really? I haven't tasted anything weird."
+    her surprised "Did you wash the broccoli before you cooked it?"
+    him determined "I rinsed it off, sure."
+    "She poked around under the cheese sauce, and when her fork came out, it had a small blob on it that didn't look like broccoli or cheese."
+    "It looked like..."
+    her blush "A caterpillar?!"
+    kid surprised "What?!"
+    him doubt "Do they even have caterpillars here?"
+    "She brought the fork closer to my face."
+    her annoyed "You tell me!"
+    "It wasn't a caterpillar - there were no nubby feet or sections. But it definitely looked like some kind of tiny grub."
+    her sad "I'm pretty sure I ate one of those..."
+    him surprised "Yeah, me too. Hopefully they're not poisonous."
+    her angry "Well, they're definitely disgusting!"
+    hide her with moveoutleft
+    kid shifty "...I'm done."
+    hide kid with moveoutleft
+    him laugh "Looks like more food for me!"
+    "I picked off the strange grubs and enjoyed my broccoli."
+
+    "...but next time I made sure to wash it very thoroughly."
+
+    return
+
 
 ###########################################################################################
 #

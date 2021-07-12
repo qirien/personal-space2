@@ -98,7 +98,7 @@ screen p_display(board, call_return=False):
                                             spacing 5
                                             if (i < len(board.poems[count])):
                                                 for j in range(0, len(board.poems[count][i])):
-                                                    textbutton board.poems[count][i][j] action Show("poem_display", dissolve, board.poems[count], False) tooltip "Show only this poem"
+                                                    textbutton board.poems[count][i][j] #action Show("poem_display", dissolve, board.poems[count], False) tooltip "Show only this poem"
 
             vbox:
                 xalign 0.8

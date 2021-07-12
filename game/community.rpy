@@ -54,7 +54,7 @@ label community1:
     show ilian normal at midleft
     with moveinleft
     thuc "It's pretty exciting to have some new faces around!"
-    him surprised "Yeah, I hadn't realized how much I'd gotten used to all you guys until these new folks showed up. I'm surprised Julia's not here."
+    him surprised "I hadn't realized how much I'd gotten used to all you guys until these new folks showed up. I'm surprised Julia's not here."
     thuc sad "She was... feeling pretty worn out."
     thuc normal "Is [her_name] still at work?"
     him concerned "Yeah, she wants to give the new colonists their first physical as soon as possible. Plus, [kid_name] fell asleep at the clinic and we didn't want to wake her."
@@ -1405,12 +1405,12 @@ label community9:
             with moveoutright
             hide pete with moveoutleft
 
-            scene bonfire with fade
+            scene bonfire
             show pete normal at center
             show him normal at midright
             show thuc normal at quarterright
             show night_overlay
-            with dissolve
+            with fade
             play sound "sfx/fire-2.mp3" loop
 
             "When we returned, Pete had some beans cooking on a small fire and was making what looked like a cloak of branches and small pieces of yarn."
@@ -1425,10 +1425,12 @@ label community9:
             pete "They'll never see us coming!"
             stop sound fadeout 1.0
 
-            scene plain with fade
+            scene plain
             show night_overlay
+            with fade
             play music tense
             "The next day, we woke up before the sun to catch the grass crabs while they're still drowsy."
+            hide night_overlay with dissolve
             "By the time we found them, the sun was starting to come up, and the grass crabs were warming themselves and chewing on sticks."
             show pete normal at midleft
             show him pout at quarterleft
@@ -2055,16 +2057,16 @@ label community11:
         scene black with fade
         if asked_only_medicine:
             "Thanks to the cancer medicine, Martín was able to work on the farm for six more months before dying a peaceful death."
-            $ bios.addToBio("Martín", "He passed away from skin cancer not that long ago.")
-            scene church with fade
-            "The family had a small funeral and buried him in the colony graveyard."
             "Tomás and Joanna took a break from working in the lab to learn all they could from him."
             "They promised to help with the corn and turkeys."
+            $ bios.addToBio("Martín", "He passed away from skin cancer not that long ago.")
+            scene church with fade
+            call martin_funeral from c11_dead_later
             $ miners += 1
             $ colonists += 1
         else:
-            jump Martin_dead_sooner
             $ mavericks += 1
+            jump martin_dead_sooner
         return
 
     label no_luxuries:
@@ -2082,13 +2084,29 @@ label community11:
         martin angry "I would have liked to live a little longer, but in the end, we can only do so much."
         $ mavericks += 1
 
-        label Martin_dead_sooner:
+        label martin_dead_sooner:
             $ bios.addToBio("Martín", "He passed away from skin cancer not that long ago.")
             scene church with fade
-            "Without the medication, Martín's condition swiftly deteriorated, and he died the next week."
-            "The family had a small funeral and buried him in the colony graveyard next to Josephina."
+            "Without the medication, Martín's condition swiftly deteriorated, and he died after a few weeks."
+            call martin_funeral from c11_dead_sooner
             "Tomás and Joanna Nguyen decided to help out their mother, but they weren't prepared to take full responsibility for the farm."
             "We hoped they could learn what they needed to know from Natalia and their neighbors."
+    return
+
+label martin_funeral:
+    show naomi normal at center with dissolve
+    naomi normal "Martín was the kind of person you could depend on. I noticed this many times."
+    naomi happy "Whether a farmer needed help with harvesting or someone was building a barn or couldn't get their tractor to start, he was there. He wouldn't even say anything; he would just help and then leave."
+    naomi sad  "Even when he was sick and in pain, he was looking for ways to lift the burdens of others."
+    hide naomi with dissolve
+    show natalia normal at center with dissolve
+    natalia angry "Of course I'll miss my husband! He was the only one that I could count on to always be there, no matter what."
+    natalia normal "Through corn pests and my health issues and problems with our kids, he listened and I felt like together we could figure {b}anything{/b} out."
+    natalia angry "Now that he's gone..."
+    natalia normal "No. He's not gone. He's just moved on, to be with our dear Josephina. She's probably been missing us! How happy she'll be now that she has her daddy with her!"
+    natalia happy "And I have faith that I'll see both of them again someday."
+    scene stars with fade
+    "The family buried him in the colony graveyard next to Josephina."
     return
 
 ################################################################################
@@ -3061,7 +3079,7 @@ label community14:
     if (parenting_style == "authoritarian"):
         pete angry "In the end, their bigheaded attitude just makes me downright ornery."
     elif (parenting_style == "authoritative"):
-        pete angry "They coulda been worse, that's for sure. But they still just make me ornery."
+        pete angry "In the end, I don't like anyone telling me what to do, no matter how they do it."
     elif (parenting_style == "permissive"):
         pete angry "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that their tearin' down the house."
     elif (parenting_style == "neglectful"):
@@ -3140,15 +3158,16 @@ label community14:
 
 label community15:
     play music sad
-    scene bedroom with fade
+    scene bedroom
     show night_overlay
-    show her sleeping at midright, squatting
-    show him sleeping at midleft, squatting
-    show bedroom_overlay
+    show her sleeping behind night_overlay at midright, squatting
+    show him sleeping behind night_overlay at midleft, squatting
+    show bedroom_overlay behind night_overlay
+    with fade
     "In the early morning, [her_name]'s radio went off."
     play sound "sfx/radio.mp3"
+    show her concerned with dissolve
     pavel "{i}[her_name], I think you should come over here.{/i}"
-    show her surprised
     pavel "{i}Naomi is really sick.{/i}"
     her surprised "What are her symptoms?"
     hide her with moveoutright
@@ -3773,7 +3792,7 @@ label community17:
     "I set my dish next to the ones from the other families on the buffet table."
     "Everyone helped themselves and sat down--some at tables and some on the ground."
     natalia happy "Is this what all those eggs you were buying from me were for? Is it just an omelet?"
-    him smirk "It's kind of like a souffleé, but I had to make it without an electric mixer, or a reliable oven."
+    him smirk "It's kind of like a soufflé, but I had to make it without an electric mixer, or a reliable oven."
     natalia normal "Mmm. It's not bad. But you should be careful not to mix it too much after you add the flour."
     him sad "I know..."
     natalia happy "You might have been better off just leaving out the flour completely."
@@ -4468,7 +4487,7 @@ label community18:
     $ c18_cows_in_ranch = False
     $ c18_cows_in_street = False
     nvl clear
-    natalia_c "there are three stray cattle in my yard eating my crops... I've been trying to scare them away but it's not working."
+    natalia_c "There are three stray cattle in my yard eating my crops... I've been trying to scare them away but it's not working."
     if thuc_has_cattle:
         natalia_c "Thuc, did your cattle get out?"
         thuc_c "No, it must be some other cattle!"
@@ -4478,10 +4497,10 @@ label community18:
         ilian_c "His usually have those big UV blankets on them."
     natalia_c "Any advice on how to scare them away?"
     ilian_c "Yell at them and wave your arms."
-    natalia_c "tried that"
+    natalia_c "Tried that."
     thuc_c "I didn't hear you so I don't think you're yelling loudly enough!"
-    natalia_c "come over and do it yourself then!"
-    natalia_c "nevermind, they're coming to you!"
+    natalia_c "Come over and do it yourself then!"
+    natalia_c "Nevermind, they're coming to you!"
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
     nvl clear
 
@@ -4706,7 +4725,7 @@ label community19:
     him pout "Yeah. I think they are mostly herbivorous."
     her surprised "Maybe... some kind of larger bird that we haven't seen before?"
     him annoyed "I think we would have noticed a larger bird by now."
-    him concerned "oh..."
+    him concerned "Oh..."
     her concerned "Oh?"
     him_c "It's probably the wolf slugs - Helen said there aren't very many around anymore."
     sara_c "How could they even catch a crabbird?! {emoji=worried}"
@@ -8500,13 +8519,13 @@ label community30:
             oleg normal "Uh, no, I... thought it looked like one of the videogame controllers we printed."
             "I headed back home in the rain."
         play sound "sfx/rain.ogg" loop
-        scene bedroom with fade
+        scene bedroom
         play sound "sfx/rain.ogg" volume 0.6 loop
         show her sleeping at midright, squatting
         show him sleeping at midleft, squatting
         show bedroom_overlay
         show night_overlay
-        with dissolve
+        with fade
 
         "As I was falling asleep in my warm, dry bed, I thought about what I still wanted to investigate."
         "I still wanted to talk to Noel herself, about what happened."

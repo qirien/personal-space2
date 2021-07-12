@@ -495,6 +495,7 @@ label message20:
     if (year18_poem != ""):
         sara_c "[his_name], would you mind posting your poem? I wanted to read it again."
         him_c "Sure."
+        nvl clear
         him_c "[year18_poem]"
 
         if (("sexy" in year18_poem) or
@@ -538,7 +539,7 @@ label message21:
     ilian_c "You could just stop talking to him."
     sara_c "I wish I could ask Naomi...{emoji=cry}"
     natalia_c "He still needs you. Look at it from his perspective - strange chemicals are flooding his brain while he's dealing with new social issues, AND people are telling him what to do all the time."
-    julia_c "Lay your expectations out clearly with consequences. You shouldn't have to ask him to do these things; he knows what his chores are. If he fails to do them, he faces the consequences. He'll learn soon enough."
+    julia_c "Lay your expectations out clearly with consequences. He knows what his chores are. If he fails to do them, he faces the consequences. He'll learn soon enough."
     her_c "I think Naomi would remind you to give him lots of love, but maybe in a different way than when he was little?"
     sara_c "Maybe so... I appreciate the advice, guys.{emoji=worried}"
 
