@@ -7729,7 +7729,7 @@ label community29:
         jump helen_convo_29
     else:
         her_c "She didn't want to stay in the colony, so she and her family are staying in their summer house until she has the baby."
-        her_c "That way I can help her quickly when she goes into labor."
+        her_c "That way Julia and I can help her quickly when she goes into labor."
         "I didn't really see her at all and forgot about her for a few months."
         play music tense
         scene path with fade
@@ -7860,6 +7860,7 @@ label community29:
         jump credits29
 
     label helen_convo_29:
+        play music tender
         him surprised "How are you liking life back in the colony?"
         helen happy "Well, there are so many people to talk to. It's kind of overwhelming."
         helen normal "Some people are so busy that they don't have time to talk to me, but it's also a relief."
@@ -7867,10 +7868,10 @@ label community29:
         helen normal "It made me feel more isolated, because I never had any cool news to share."
         helen "I haven't looked at a forum in ages and it's such a relief. If someone wants to tell me something, they can come find me."
         helen happy "If someone else can take care of it, then no one bothers me!"
-        helen sad "I really miss my family though, and certain foods we like to make."
+        helen sad "I really miss Pete and our other kids though, and certain foods we like to make."
         him content "Really? What kind of food?"
         helen normal "Well, when we butcher a cow certain cuts sell pretty quickly even at high prices. But other parts aren't as popular."
-        helen happy "I like to make a soup with the feet and tail and some of the innards. We even ate the brains a few times! It's not very healthy but it was something different."
+        helen happy "I like to make a soup with the feet, tail and intestines. We even ate the brains a few times! It's not very healthy but it was something different."
         helen sad "I wonder if that's why I have high blood pressure now..."
         if keep_buying_pete_beef:
             him normal "How is the herd doing? Pete hasn't come by to butcher or sell meat in a long time."
@@ -7888,7 +7889,7 @@ label community29:
         helen normal "Or maybe I'm just too stressed out and it would be better if I could just calm down."
         him doubt "There isn't much you can do about it now besides follow [her_name]'s instructions."
         helen sad "I wish there were something I could do. I feel so unhelpful."
-        him content "Just try to stay healthy and grow that baby. Do you know what you want to name her?"
+        him content "Just try to stay healthy and grow that baby. Do you know what you want to name the baby?"
         helen normal "Yes. Before we left, Pete and I agreed to name her Sage."
         if community_22_compromise or community_22_mined_anyway:
             helen happy "Oh, I brought a set of Talaam chess with me! Want to play?"
@@ -7907,47 +7908,98 @@ label community29:
             helen normal "Thanks, I will!"
         scene hospital with fade
         show helen normal at midright
+        show julia normal at center
         with dissolve
         "For the last month of her pregnancy, Helen was on bedrest in the hospital."
         show him normal at midleft with moveinleft
-        "I stopped by often to see [her_name] and I played a game or two with Helen."
-        "Helen had always been pretty shy, but as a community we completely doted on her as she survived her pregnancy."
-        "Natalia made a beautiful quilt for the future baby, and Travis made a wicker cradle."
+        julia "Are you sure there isn't anything else you need? I could bring our choir to sing to you if you like."
+        helen normal "Oh, there's no need for that. I have been craving beef though..."
+        julia normal "I'll make you some beef stew."
+        helen happy "Thanks, I'd like that."
+        julia angry "Hello [his_name], don't you have some farming to be doing this time of day?"
+        him normal "Sometimes I like to have lunch with my wife!"
+        him content "It's been a pleasure to see Helen, too."
+        julia normal "I agree. I'll be off then."
+        hide julia with moveoutright
+        show natalia normal at center with moveinleft
+        natalia "Helen! How are you feeling? What do you think of these colors for the baby blanket?"
+        helen normal "Oh, I like the blue. How were you able to get this green color?"
+        natalia happy "That's easy to make from any plant, but spinach gives a vibrant green."
+        natalia normal "Do you already have company for lunch? Mind if I join you?"
+        him content "That's fine with me. Helen can play Talaam chess and talk no problem."
+        show travis normal at left with moveinleft
+        travis "Hey, mom, I brought you some breakfast for lunch!"
+        helen happy "Oh, thank you! That sounds delicious!"
+        travis "Wow, I had no idea you were so popular>"
+        natalia happy "Since Helen is stuck on bedrest, she can't run away from all the people who want to talk to her!"
+        travis "I'll stop by later when you don't have as many visitors."
+        helen normal "I'm not going anywhere!"
+        hide travis with moveoutleft
+        "As a community we completely doted on Helen as she survived her pregnancy."
+        "Travis made a wicker cradle for the baby."
         "Joanna made a waterproof book with high-contrast images, and the elementary school kids made a mobile out of felted plant fibers."
         play music tense
         "Two weeks after she went on bedrest, Helen stopped taking visitors."
         scene farm_interior with fade
         show her sad coat at midright
         show him surprised at midleft with dissolve
-        her "Helen wants to be alone right now... she told me to tell everyone that the fetus is dead and she'll be having a stillbirth."
+        him concerned "Did we all bug Helen by visiting her too much? What happened?"
+        her "No... she told me to tell everyone that the fetus is dead and she'll be having a stillbirth."
+        her cry coat "I wonder if there's something I could have done. She's devastated."
         him sad "That's so sad. We were all looking forward to meeting Sage."
         her nervous coat "I wish I could have prevented this. Pete is coming tomorrow, and then we'll induce her labor."
+        her sad coat "Can you come just in case something happens? I can put up a privacy screen for Helen."
+        him blush "Giving birth seems like a pretty personal thing. But it sounds smart to have people nearby."
         scene hospital with fade
         show pete angry at right
         show helen angry at midright
-        show her determined coat at center
-        show him determined at quarterleft
+        show julia normal at center
+        show her determined coat at midleft
+        show him determined at left
         with dissolve
         play sound "sfx/heartbeats.ogg"
-        "Helen delivered her stillborn baby, but started hemorrhaging and had to have a blood transfusion."
-        "Luckily [her_name] had already extracted some O- blood from Ilian."
-        $ bios.addToBio("Helen", "She survived the difficult delivery of her stillborn baby, Sage.")
+        julia normal "Take as long as you need to get Sage out."
+        helen sad "It's not Sage! It's a dead body!"
+        julia normal "I know. I'm so sorry."
+        helen angry "Can you please stop talking and just rub my back?"
+        julia happy "Of course, dear."
+        her normal coat "Just push a little more!"
+        "Helen delivered her stillborn baby."
+        julia normal "I'll wash the body."
+        hide julia with moveoutleft
+        her annoyed coat "Now just another little push for the afterbirth."
+        pete normal "Is that much blood normal?"
+        her determined coat "No! Pete, talk to Helen and try to keep her from fainting."
+        pete angry "Helen, you can't go yet."
+        pete normal "I don't know how I'd survive without you."
+        show helen sad
+        "Pete kept talking to Helen while [her_name] scrambled to give Helen medicine and more blood."
+        "Luckily Ilian had donated some of his O- blood recently."
         stop sound fadeout 1.0
-        her blush coat "Helen, I'm so glad that you survived! There were a few times where I wasn't sure if you would make it."
+        "[her_name] didn't really need me, but I think just being there helped Pete and Helen feel supported."
+        "After a few hours, it looked like Helen would survive."
+        $ bios.addToBio("Helen", "She survived the difficult delivery of her stillborn baby, Sage.")
+        her blush coat "Helen, you're looking so much better! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."
         pete happy "Me three."
+        her determined coat "I'm going to stay here tonight to keep an eye on your blood pressure and other vitals."
+        pete normal "In that case, I'll be back late tonight after I get the cows settled for the night."
+        scene black with fade
+        scene hospital with fade
+        show her determined coat at right
+        show helen normal at midright
+        show pete normal at midleft
+        with dissolve
+        her "I think Helen is through the worst of it."
         her concerned coat "Unfortunately a blood transfusion is very expensive in terms of using up scarce resources..."
         pete normal "I think I have enough credits to pay you."
         her annoyed coat "Got it. Can you approve the transaction?"
         pete happy "Sure, just hand me your tablet."
         pete angry "What gives? It's saying I have insufficient funds."
         her surprised coat "Let's try charging just one credit."
-        pete angry "What is going on? It still says insufficient funds."
-        pete normal "[his_name], can you try drawing a credit from my account to verify that it's not just something on [her_name]'s tablet?"
-        him pout "Okay, here."
-        pete normal "Still the same problem. I know I had over a thousand in there last week."
+        pete angry "What is going on? It still says insufficient funds. I know I had over a thousand in there last week."
         pete angry "Someone stole from me. But I guess that's my problem."
-        helen sad "Here, take Sage's things and sell them to the storehouse. That should pay for some of it."
+        helen sad "Here, take the baby things and sell them to the storehouse. That should pay for some of it."
         pete normal "We can settle the rest later. When can Helen come home?"
         her determined coat "I want to keep you under observation for another two days. At least keep the quilt from Natalia?"
         helen sad "We don't have any use for those things now... besides selling them."
@@ -7963,7 +8015,7 @@ label community29:
             kid shifty "I heard a rumor that Pete's credits were stolen."
             her determined coat "That's what Pete said."
             kid determined "But didn't he tell Travis he could borrow whatever he needed to get his restaurant started?"
-            her surprised "Maybe that's where his money went..."
+            her surprised coat "Maybe that's where his money went..."
             kid concerned "..."
             return
 
@@ -7989,7 +8041,6 @@ label community30:
     $ visited_joel_house = False
     $ knows_previous_head_injuries = False
     $ know_noel_received_firegrass_deliveries = False
-    $ talked_to_pete = False
     $ accuse_noel_of_murder = False
     $ know_rings_purpose = False
     default c30_menuset = set()
@@ -8151,6 +8202,9 @@ label community30:
         "There was a photo of Joel's wheelchair, the porch area where he died, and his body."
         "Joel's face in the photo looked super pale. He was on the floor on his back and his mouth and eyes were open."
         "He had an open gash running horizontally across his forehead, with bruising all around it."
+        "When we were just talking about his death, it didn't seem like a big deal, but seeing his body made it feel more real."
+        "I felt a little nauseous, but tried to focus on small details to distract myself from my body's emotional response."
+        "His wound seemed consistent with falling onto his head. [her_name] would know more about that."
         "In the photo of Joel's yurt, I could see that it had a wooden wraparound porch. The porch was raised maybe two inches from the ground and didn't have a railing."
         "Four rain barrels stood on the side. One was open and catching the rain that poured from the roof of the yurt."
 
@@ -8246,7 +8300,7 @@ label community30:
                     "The sofa bed was covered with children's blankets and toys. There were all kinds of things lodged into the crevices."
                     "I found a plastic ring, a few wooden buttons, a doll made out of corn husks and silk, some apple seeds, and a bunch of crumbs."
                     "The kids were pretty excited to see what I unearthed."
-                    "I looked at the ring, which was smaller than a bracelet but bigger than a napkin ring, and put it in my pocket."
+                    "I looked at the ring, which was smaller than a bracelet but bigger than a ring, and put it in my pocket."
                     show him at center with move
                     "As I prepared to head out, I noticed a big backpack near the door. It was the kind used for lengthy hiking trips."
                     him surprised "Whose backpack is this?"
@@ -8631,51 +8685,6 @@ label community30:
             him "Will do."
         else:
             him "I'll update you at the end of the investigation."
-
-#        if (mavericks_strong("moderate")): #8 #check values #only if you don't talk to Oleg?
-#            "I went back home and made myself some lunch. I ate some broccoli and corn porridge and then radioed Pete."
-#            play sound "sfx/radio.mp3"
-#            pete "{i}What can I help you with?{/i}"
-#            him "Hey, I'm in kind of a complicated situation."
-#            him "One of the miners died in what appears to be an accident."
-#            him "I'm investigating if that's the case and it would be helpful to access their financial records."
-#            pete "{i}Well normally that kind of information is completely confidential.{/i}"
-#            pete "{i}RET keeps records of it because they want to see if people are savin' money and whatnot.{/i}"
-#            pete "{i}I'd sure like to see them so I could figure out where all my credits went.{/i}" #wasn't this resolved earlier? he lent them to Travis
-#            pete "{i}Normally none of us can access it, but there is a way you can tell how much money is in an account.{/i}"
-#            pete "{i}Most vendor accounts require the user's permission to withdraw funds.{/i}"
-#            pete "{i}But Brennan can withdraw funds without the user's permission, at least for the miners.{/i}" #if you want to make this into a puzzle later, you can limit the number of withdrawals. Another possible explanation is making a hold on the money but not charging it.
-#            pete "{i}Gives him some authority I guess.{/i}"
-#            pete "{i}If you were Brennan, you could withdraw credits until you can't withdraw no more.{/i}"
-#            pete "{i}That'll tell you how much is in the account.{/i}"
-#            pete "{i}Then just pay 'em back the amount you took out and they won't notice unless they dig real deep into the transaction history.{/i}"
-#            him "Interesting."
-#            pete "{i}I'm curious. Who was the miner who died?{/i}"
-#            him "It was a man named Joel, who was married to Noel."
-#            pete "{i}Oh. I've delt with Noel before.{/i}"
-#            pete "{i}You can't trust anything she says.{/i}"
-#            him "What do you mean?"
-#            play sound "sfx/radio.mp3"
-#            if not ban_firegrass:
-#                pete "{i}She keeps trying to get me to lower the price of firegrass for her.{/i}"
-#                him "She buys firegrass from you?"
-#                pete "{i}She insists that she doesn't use it anymore and that it's for a friend.{/i}"
-#                pete "{i}I give her a discount because she buys in bulk and does more of the processing.{/i}" #bundling up the firegrass in amounts measured by the little plastic ring
-#                pete "{i}I don't really care who it's for as long as she has the money.{/i}"
-#                pete "{i}She treats me like her personal therapist.{/i}"
-#                pete "{i}I feel like I have to listen to her or she might stop buying from me.{/i}"
-#                him "Who else would she buy firegrass from?"
-#                pete "{i}[his_name], if you don't know the answer to that question I seriously doubt you're going to figure out what happened to Joel.{/i}"
-#                him "{i}Come on, give me a hint?{/i}"
-#                pete "{i}Your daughter might know...{/i}" #In family27, Tera makes deliveries. She doesn't quit even if you ask her to stop.
-#            else:
-#                 pete "{i}I can't say exactly what she buys from me but she buys a lot of it, if you catch my drift{/i}"
-#                 pete "{i}She always has some sob story about why I should give her a better price, but I don't give in!{/i}"
-#                 pete "{i}Good luck finding out what happened.{/i}"
-#                 him "About that... do you have any leads?"
-#                 pete "{i}You seriously don't know? Maybe you should ask [kid_name].{/i}"
-#            "I said goodbye to Pete and pondered what to do with this information."
-#            $ talked_to_pete = True
         scene farm_interior
         play sound "sfx/rain.ogg" volume 0.6 loop
         show kid normal at midright with dissolve
@@ -9029,88 +9038,6 @@ label community30:
                                     $ account_checked_counter = 5
                                     jump account_check_sneak2
 
-#        label back_to_noel:
-#            "I decided to go back to Noel's place. This time, I brought my barrel-opening tools."
-#            "When I got there, Noel was there, along with her two young sons." #about ages 4 and 6
-            #if you keep the cut, make a better transition? jump noel_no_confession
-#            "I asked her if I could talk to her about Joel's death, but she didn't want to talk about it, especially not with her children needing her."
-#            menu:
-#                "How should I approach the situation?"
-#                "Finish searching the premises.":
-#                    $ know_noel_had_firegrass = True #this variable name isn't great... you know she received deliveries if you talk to Pete and kid is attached; this is for when you find it at her house
-#                    "I told her I had been authorized to search her house and that I wanted to look inside her barrels."
-#                    "She strongly protested, saying that she would lose water, but I reassured her that the rainy season would last another two weeks."
-#                    "She offered to open the plugs on the sides of them, so I could see that it was just water, but that made me all the more suspicious."
-#                    "Two of the barrels apeared to be normal, but the third actually had another barrel inside of it."
-#                    "The inner barrel was full of firegrass."
-#                    "Noel told me that she didn't smoke it anymore but was just holding it for a friend."
-#                    "I asked her which friend, but she refused to say."
-#                    if ban_firegrass:
-#                        "I told her I would have to report her for possessing firegrass."
-#                        "She asked me to leave, so I did."
-#                    jump noel_no_confession
-#                "Offer to help entertain her children.":
-#                    "I could tell that she was exhausted. Her kids looked wired."
-#                    "I offered to take her kids down to the storehouse to see if I could get them some dried fruit."
-#                    "She started crying and nodded. Her sons refused to go with me intially, but relented after I promised to buy them something."
-#                    "On the way there, they ran ahead and hid in bushes so they could ambush me as I passed by."
-#                    "I pretended to be surprised and chased them there."
-#                    "One of the colonists was selling hot cornbread at the storehouse and I bought some for the boys and some to take back to Noel."
-#                    "When we got back, Noel was asleep. I read a few stories to her children on my tablet and stayed until they fell asleep."
-#                    "The next day, Noel sent me an e-mail." #e-mail display for following?
-#                    "Dear [his_name]. Thank you for taking Jam and Neal to get cornbread yesterday."
-#                    "Joel's death has been difficult for me to come to terms with."
-#                    "I know it's difficult for my kids too."
-#                    "I think I'm ready to talk about what happened. Can I meet you in the community center?"
-#                    jump noel_confession
-#                "Come back later.":
-#                    "I told Noel I would come back later."
-#                    "She said that she didn't want to talk about it."
-#                    "I asked if I could come by next time Van was watching her kids."
-#                    "She said no."
-#                    menu:
-#                        "Did I respect her wishes?"
-#                        "Yes.":
-#                            "I didn't return to her house."
-#                            jump noel_no_confession
-#                        "No.":
-#                            "I came back to the house when I thought she would be gone."
-#                            "I opened the water barrels. They were all full of water."
-#                            jump noel_no_confession
-
-#        # if ban_firegrass....?
-#        label noel_confession:
-#            scene community_center
-#            "I met Noel in the community center. She thanked me for helping her."
-#            "She explained that she knew that Joel's wheelchair brakes were wearing out, but that he wanted to fix them himself."
-#            "Tears streamed down her face as she told me that she kept meaning to fix them when he was asleep, but she never had the energy."
-#            him "I understand that you felt like you could have prevented his death."
-#            menu:
-#                "Do I have any more questions?"
-#                "Yes":
-#                    menu:
-#                        "What should I ask?"
-#                        "Why did Joel have so much money in his account?" if checked_joel:
-#                            him "I found out that Joel has quite a bit of money in his account. Why is that?"
-#                            "Noel explained that she was simply saving money there in case of an emergency."
-#                        "What is this plastic ring for?": #for portioning bundles of firegrass
-#                            "Noel stared at it for a minute."
-#                            "She said it must be a children's toy."
-#                        "Van told me that Joel had previous head injuries. Why is that?" if knows_previous_head_injuries:
-#                            "Noel explained that Joel often vehemently refused help when it was necessary."
-#                            "Because of this, he often fell out of his wheelchair and hit his head."
-#                            "She said that she would have Van check for signs of concussion, and while he had one or two bad ones, he usually got better."
-#                "No":
-#                    pass
-#            "Before she left, I gave her a half-hug. I didn't completely understand her but I still could see that she was suffering."
-##            "Afterwards, I met [her_name] in the community center for lunch."
-#            jump who_suspect
-
-#        label noel_no_confession:
-#            "I tried messaging Noel a few more times, but didn't get any answers."
-#            "The next day, I met [her_name] in the community center for lunch."
-#            jump who_suspect
-
         label who_suspect:
             scene farm_interior with fade
             play sound "sfx/rain.ogg" volume 0.6 loop
@@ -9126,8 +9053,6 @@ label community30:
             him doubt "Of course, if someone had pushed him, they would want to make it look like he fell."
             if know_noel_received_firegrass_deliveries:
                 him determined "[kid_name] told me that Noel received unusually large shipments of firegrass."
-#            if know_noel_had_firegrass:
-#                him "I found firegrass hidden in one of Noel's rain barrels."
             if checked_joel:
                 him determined "I know that Joel had an unusual amount of credits in his account. "
             if knows_previous_head_injuries:
@@ -9174,14 +9099,31 @@ label community30:
                             show thuc sad at midright
                             with dissolve
                             "We didn't talk much that week. The day of the trial came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
-                            "I showed the photos of the broken brake and explained how their dysfunction was caused by normal wear and tear."
-                            show her determined at left with moveinleft
-                            "[her_name] testified that Joel's head injury was consistent with his fall."
+                            him concerned "These are the photos of the brake on Joel's wheelchair."
+                            him determined "Here's a video of me holding the brakes down and spinning the wheelchair wheels."
+                            him concerned "It's obvious that the brakes were not functional at the time of Joel's death."
+                            him explaining "No one sabotaged the brakes; they simply wore out over time,"
+                            him surprised "Usually the spouse of a disabled person is considered their primary caregiver."
+                            him pout "However, Noel has been experiencing some disabilities of her own."
+                            him doubt "Therefore her caregiver, Van Ngyuen, bears some of the blame for the neglect that caused Joel's death."
+                            show her determined coat at left with moveinleft
+                            her annoyed coat "Joel's wounds are consistent with falling out of his wheelchair."
                             if knows_previous_head_injuries:
-                                "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
+                                her concerned coat "Joel had sustained similar injuries before this one, which made his final injury fatal."
                             hide her with moveoutleft
-                            "Thuc talked about how we all forget things from time to time even if we don't want to."
-                            "He said it could have been any one of us that forgot to do something that ended up killing someone."
+                            thuc sad "We all forget things from time to time even if we don't want to."
+                            thuc normal "Once I forgot to close my goat pen and one of my goats died from eating something poisonous."
+                            thuc happy "That's different from when I slaughter a goat on purpose to eat its meat."
+                            thuc sad "It is sad that Joel died. But Van has not been and was not responsible for Joels' health."
+                            thuc normal "When he started working with Noel's family, his responsibility was explicitly to help Noel and her children, not Joel."
+                            thuc normal "I've sent everyone screenshots of the relevant messages where Mayor Grayson and [her_name] first set up Van's visits with Noel."
+                            him determined "Maybe on paper, Van was only tasked with helping Noel and the kids, but he helped with Van's care too."
+                            him annoyed "Besides, any caregiver has a responsibility to report abuse they observe, even if it's not of their patient."
+                            thuc sad "Okay, how easy is it to observe that someone's brakes are worn out?"
+                            him yell "I saw it right away!"
+                            thuc happy "But you were looking for something wrong!"
+                            show sara normal at right with moveinright
+                            sara "That's enough! I think you've both made good points. The jury is ready to deliberate."
                             "Thuc and I left the room while the jury convened."
                             scene path with fade
                             play sound "sfx/rain.ogg" loop
@@ -9189,7 +9131,7 @@ label community30:
                             show him determined at midleft behind rain
                             show thuc normal at midright behind rain
                             with dissolve
-                            him "I think we both did our jobs."
+                            him "Dang. Things got heated back there."
                             thuc sad "I hope we can put this incident behind us soon."
                             "After thirty minutes the jury was still going."
                             show sara normal at left behind raind
@@ -9204,7 +9146,7 @@ label community30:
                             if knows_previous_head_injuries:
                                 sara sad "The jury found Noel and Van guilty of criminal negligence."
                                 sara normal "Together with the mayor, they decided that Noel and Van should attend therapy weekly for six months and perform 200 hours of community service, including researching improved wheelchair brakes."
-                                sara "They also agreed that Van could count up to 50 hours of babysitting as community service."
+                                sara "They also agreed that Van could count up to 100 hours of babysitting as community service."
                                 thuc sad "Come on. He makes so little that his whole job should be considered community service."
                                 sara sad "That's what the jury decided. Would you like to make a formal appeal?"
                                 thuc normal "Nah, I guess it could be worse."
@@ -9243,26 +9185,45 @@ label community30:
                                 show thuc normal at midleft
                                 with dissolve
                                 "The day of the trial came, and I presented my case to a jury of twelve people, including Zaina and some other colonists."
+                                him concerned "These are the photos of the brake on Joel's wheelchair."
+                                him determined "Here's a video of me holding the brakes down and spinning the wheelchair wheels."
+                                him concerned "It's obvious that the brakes were not functional at the time of Joel's death."
+
                                 if accuse_noel_of_murder:
-                                    "I showed how easy it was to replace the brake pads, and that failing to do this was not just neglect, but probably stemming from a desire to kill Joel."
+                                    him explaining "It takes five minutes to replace the brake pads with basic tools every colonist and miner has access to."
+                                    him doubt "Failing to do so was a clear message on Noel's part."
+                                    him determined "She wanted him to die."
                                 else:
-                                    "I showed the photos of the broken brake and explained how their dysfunction was caused by normal wear and tear."
+                                    him explaining "No one sabotaged the brakes; they simply wore out over time,"
+                                    him surprised "Usually the spouse of a disabled person is considered their primary caregiver."
                                 show her determined coat at right with moveinright
-                                "I had [her_name] testify that Joel's head injury was consistent with his fall."
+                                her annoyed coat "Joel's head injury was consistent with his fall."
                                 if knows_previous_head_injuries:
-                                    "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
+                                    her concerned coat "I had previously treated Joel for head injuries similar to this one. The previous injuries made this final injury fatal."
                                 hide her with moveoutright
                                 show thuc sad with dissolve
-                                "Thuc talked about how we all forget things from time to time even if we don't want to."
-                                "He said it could have been any one of us that forgot to do something that ended up killing someone."
+                                thuc sad "We all forget things from time to time even if we don't want to."
+                                thuc normal "Once I forgot to close my goat pen and one of my goats died from eating something poisonous."
+                                thuc happy "That's different from when I slaughter a goat on purpose to eat its meat."
+                                thuc sad "It is sad that Joel died. If Noel had changed his wheelchair brakes sooner, maybe he would still be with us today."
+                                thuc happy "We don't need to make a traumatic and sad event even sadder by accusing someone who made a mistake of committing a crime."
+                                him determined "Neglecting someone is a serious crime. Not doing something that results in someone's death is as bad as doing something that results in someone's death."
+                                thuc sad "Okay, why didn't you replace the brakes then?"
+                                him yell "I didn't even know about them! Joel's not my responsibility!"
+                                thuc happy "But you said that not doing something was as bad as doing something!"
+                                show sara normal at right with moveinright
+                                sara "That's enough! I think you've both made good points. We understand the point [his_name] was trying to make. The jury is ready to deliberate."
                                 "Thuc and I left the room while the jury convened."
                                 scene path with fade
                                 play sound "sfx/rain.ogg" loop
                                 show rain
                                 show him normal at midright behind rain
                                 show thuc normal at midleft behind rain
-                                him concerned "I think we both did our jobs."
-                                thuc sad "I hope we can put this incident behind us soon."
+                                him concerned "Since when do you care so much about Noel?"
+                                thuc sad "I've heard all about her difficulties from five different sources."
+                                thuc normal "Yes, she does get depressed and stops washing dishes for weeks. But that doesn't mean she should go to jail."
+                                him doubt "But what about the people who suffer because of her depression? Are they supposed to just accept that pile of dirty dishes?"
+                                thuc sad "Yes. No. I don't know. All I know is that Noel already punishes herself enough for her shortcomings."
                                 "After thirty minutes the jury was still going."
                                 show sara normal at left behind rain with moveinleft
                                 sara "You guys can go home and come back in the morning. The jury is still deliberating."
@@ -9358,42 +9319,59 @@ label community30:
                                             play sound "sfx/rain.ogg" volume 0.6 loop
                                             show him determined at midright
                                             show zaina normal at midleft
-                                            # show sara normal at center?
                                             with dissolve
                                             "The day of the trial came. Zaina acted as the defense."
                                             "Twelve colonists acted as the jury."
-                                            if checked_joel:
-                                                "I told the jury that Joel had an unusual amount of credits in his account when he died."
-                                                show zaina sad with dissolve
-                                                "Zaina asked about how I knew this information. When I couldn't explain, Sara dismissed the evidence."
-                                            "I showed the photos of the broken brake and explained how their dysfunction was caused by wear and tear."
-                                            show him annoyed with dissolve
-                                            "I also showed how easy it was to replace the brake pads, and that failing to do this was not just neglect, but probably stemming from a desire to kill Joel."
-                                            show zaina sad with dissolve
-                                            "Zaina argued that I couldn't prove that anyone wanted to kill Joel, and that it could have been just neglect."
+                                            "After explaining the circumstances of Joel's death and showing the photos of his body, I started to discuss the problem with the wheelchair's brakes."
+                                            him explaining "Here are the photos of the wheelchair, and a video of me showing how even with the brakes on, the wheel can spin freely."
+                                            him annoyed "It is very easy to replace the brake pads. I did it in five minutes, and that's without previous knowledge of how this wheelchair works."
+                                            him determined "Considering the ease of fixing the brakes, failing to fix them was criminal, intentional neglect."
+                                            zaina sad "There's no way to prove anyone's intention in neglecting Joel. The neglect could have been from simple forgetfulness."
                                             show her determined coat at right with moveinright
-                                            "I had [her_name] testify that Joel's head injury was consistent with his fall."
+                                            her "Joel's head injury was consistent with his fall."
                                             if knows_previous_head_injuries:
-                                                "She also mentioned that he had sustained similar injuries before this one, which made his final injury fatal."
-    #                                        if talked_to_pete:
-    #                                            "I had arranged for Pete to come and testify about how Noel had bought large quantities for firegrass from him."
-    #                                        if know_noel_had_firegrass:
-    #                                            "I testified about how I had found hidden firegrass at Noel's house."
-                                            "[her_name] testified to finding elevated caffeine levels in Julia's plum tea syrup, consistent with it containing firegrass."
+                                                "Joel had sustained several previous head injuries from similar falls. Those injuries, which hadn't yet fully healed, made this latest one fatal."
+                                            her annoyed coat "Additionally, I found elevated caffeine levels in Julia's plum tea syrup, consistent with it containing firegrass."
                                             hide her with moveoutright
                                             if not ban_firegrass:
-                                                "Zaina reminded the jury that buying and using firegrass was perfectly legal."
+                                                zaina normal "As we all know, buying and using firegrass is perfectly legal."
                                             else:
-                                                "I emphasized that dealing in firegrass without knowledge from a doctor was against our colony's law."
+                                                him explaining "Dealing in firegrass without knowledge from a doctor is against our colony's law."
+                                            if checked_joel:
+                                                him explaining "Joel had a suspicious amount of credits in his account when he died."
+                                                zaina sad "And how do you know this information?"
+                                                him blush "Um, I can't say exactly how I received this information, but I promise it's true."
+                                                zaina normal "If we can't verify your information, we can't use it as evidence."
+                                                him concerned "Um, okay."
                                             if know_rings_purpose:
-                                                "I argued that the presence of the firegrass-measuring ring, which had been designed and distributed by Julia, proved their business connection."
-                                                "I told the jury that the most logical conclusion was that Noel had wanted to stop buying firegrass for Julia, but in retaliation, Julia had Van murder Joel to teach Noel a lesson."
-                                                "Zaina said that while Julia and Noel may have been business partners, that the unfortunate loss of Joel was unconnected."
+                                                him doubt "This is a ring I found in Noel's house. Does anyone here know what it's for?"
+                                                him surprised "It's a ring made to measure bundles of firegrass!"
+                                                him explaining "Since this is an object that was printed with our 3D printer, I was able to find the printer of this design:"
+                                                him determined "Julia!"
+                                                him doubt "Why would Noel have firegrass-measuring ring designed by Julia?"
+                                                him normal "Because she was responsible for processing firegrass that she bought from Pete for Julia."
+                                                him determined "I believe that Noel had wanted to stop buying firegrass for Julia, but in retaliation, Julia had Van murder Joel to teach Noel a lesson!"
+                                                zaina sad "While it's possible that Julia and Noel may have been business partners, the unfortunate loss of Joel is unconnected to their business."
                                             else:
-                                                "Zaina argued that I had no real way of connecting Noel to Julia."
-                                            show sara normal at center with dissolve
+                                                zaina normal "So what if there's caffeine in Julia's plum syrup? What does that have to do with Noel?"
+                                                him doubt "I think that Noel was buying firegrass and processing it to give to Julia!"
+                                                zaina sad "Do you have any evidence of this connection?"
+                                                him pout "Well, I heard that Noel used to buy lots of firegrass from Pete. More than anyone would use for their own consumption."
+                                                zaina normal "That's interesting, but it doesn't really show us how Julia was involved."
+                                                him doubt "And Van had this huge backpack he would take to their house, and sometimes used Joel's tablet to message his mom."
+                                                zaina sad "Did the messages mention firegrass?"
+                                                him pout "Well... no..."
+                                            show sara normal at right with moveinright
                                             sara sad "Thank you both for your arguments. Please go home while the jury deliberates, and I'll tell you their verdict in the morning."
                                             scene black with fade
+                                            nvl clear
+                                            julia_c "Wow, accusing me of murder??"
+                                            julia_c "I knew you didn't like me, but I never thought you would go this far."
+                                            him_c "Don't pretend you have nothing to do with this."
+                                            julia_c "It's true that Van has been helping Noel and her family for a while now."
+                                            julia_c "And it's also true that there's caffeine in my plum syrup."
+                                            him_c "Why would you hide that? It seems like it would be a selling point."
+                                            julia_c "People would much rather believe in the unique powers of plums <3"
                                             "I had trouble sleeping, and anxiously awaited the verdict."
                                             scene community_center with fade
                                             play sound "sfx/rain.ogg" volume 0.6 loop
@@ -9405,7 +9383,7 @@ label community30:
                                             sara sad "The jury decided that Julia and Van were not guilty of murder, but that Van was guilty of neglect."
                                             if ban_firegrass:
                                                 sara sad "They also found Julia guilty of selling firegrass-derived products without the oversight of a physician and without notifying her buyers."
-                                                if talked_to_pete or know_noel_had_firegrass: #is talked_to_pete deprecated?
+                                                if know_noel_had_firegrass:
                                                     sara "They found Noel guilty of posession of firegrass without a license."
                                             else:
                                                 sara normal "They also found Julia guilty of misrepresenting her plum tea syrup."
@@ -9416,11 +9394,12 @@ label community30:
                                             if know_rings_purpose:
                                                 him yell "Why else would she have had the plastic ring Julia designed to measure firegrass bundles?"
                                                 zaina normal "She could have made it for something else and other people just started using it for firegrass bundles."
-                                                zaina "Or maybe it was intended for firegrass, but that doesn't mean she murdered Joel."
+                                                zaina "Or maybe it was intended for firegrass, and they were business partners, but that doesn't mean she murdered Joel."
                                                 sara normal "Zaina is right. The case is closed."
                                             else:
                                                 him annoyed "But Van is over there all the time!"
                                                 sara normal "I'm sorry, but that's not evidence! The case is closed."
+
 
                             "Noel.":
                                 label noel:
@@ -9498,29 +9477,3 @@ label community30:
 # Why did Noel hide her profits in Joel's account? Out of an anxious desire to store money for their life back on Earth, she wanted to keep collecting disability pay as long as possible after her suicide attempt.
 # How did Joel die? Van and Noel knew that Joel's wheelchair brakes were breaking down. In fact, they had repaired them many times in the past. This time Joel wanted to do it himself but he kept putting it off.
 # Also, Joel wouldn't let Van or Noel repair the wheelchair for him. He had been acting depressed frequently. So maybe he felt like it wasn't worth fixing.
-
-
-#    #see endings.rpy for current draft of endings
-
-#    if (miners >= 12):
-#        "New miners have arrived to replace the ones who are leaving. I'm kind of sad to see some of them go."
-#    if (mavericks >= 12):
-#        "Pete and the other people living away from the colony prospered. Sometimes a family from the colony would join them."
-#    if (colonists >= 12):
-#        "We continued to grow our farms and discover more about life on Talaam."
-#    if jellypeople_happy:
-#        "We collaborated with the jellymother to create and maintain more fish farms."
-
-#    if (mavericks <= 5):
-#        "Pete lived away from the colony, but the other mavericks came back to live with the colony."
-#        "They said it was too difficult to find enough food without our farming equipment."
-##        if (colonists <= 5):
-
-#    if (miners <= 5):
-#        "We received sudden news that RET had gone out of business. Another company would accept the return of the latest shuttle, but there would be no more support shipments from Earth."
-#        "The remaining miners were very unhappy, but most learned how to hunt or farm to survive."
-#        if (colonists <= 5):
-#            "We barely grew enough food for ourselves. We felt like we were constantly on the brink of total collapse."
-#            "Some of us died of malnutrition and exhaustion."
-
-    #TODO: fill in the various endings, figure out what the threshold numbers should be
