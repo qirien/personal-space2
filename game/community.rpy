@@ -7982,6 +7982,17 @@ label community29:
         her blush coat "Helen, you're looking so much better! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."
         pete happy "Me three."
+        helen sad "Can I see the baby?"
+        show julia normal at center with moveinleft
+        julia normal "Of course you can. Here she is."
+        "Julia had washed the baby's body and bundled it up."
+        helen "Her hair was so dark!"
+        pete angry "She's beautiful."
+        helen normal "You can take her back now."
+        julia happy "Do you want me to take some photos to remember her by?"
+        helen sad "Oh, I don't know. Pete, can you decide?"
+        pete normal "I think we'd like one or two. But just keep them on file until we ask you for them."
+        hide julia with moveoutleft
         her determined coat "I'm going to stay here tonight to keep an eye on your blood pressure and other vitals."
         pete normal "In that case, I'll be back late tonight after I get the cows settled for the night."
         scene black with fade
