@@ -7941,7 +7941,7 @@ label community29:
         "For the last month of her pregnancy, Helen was on bedrest in the hospital."
         show him normal at midleft with moveinleft
         julia "Are you sure there isn't anything else you need? I could bring our choir to sing to you if you like."
-        helen normal "Oh, there's no need for that. I have been craving beef though..."
+        helen normal "Ahhh, no, but, thank you! I... have been craving beef though..."
         julia normal "I'll make you some beef stew."
         helen happy "Thanks, I'd like that."
         julia angry "Hello [his_name], don't you have some farming to be doing this time of day?"
@@ -7958,9 +7958,9 @@ label community29:
         show travis normal at left with moveinleft
         travis "Hey, mom, I brought you some breakfast for lunch!"
         helen happy "Oh, thank you! That sounds delicious!"
-        travis "Wow, I had no idea you were so popular>"
+        travis angry "Wow, I had no idea you were so popular."
         natalia happy "Since Helen is stuck on bedrest, she can't run away from all the people who want to talk to her!"
-        travis "I'll stop by later when you don't have as many visitors."
+        travis normal "I'll stop by later when you don't have as many visitors."
         helen normal "I'm not going anywhere!"
         hide travis with moveoutleft
         "As a community we completely doted on Helen as she survived her pregnancy."
@@ -7986,20 +7986,20 @@ label community29:
         show him determined at left
         with dissolve
         play sound "sfx/heartbeats.ogg"
-        julia normal "Take as long as you need to get Sage out."
+        julia happy "Take as long as you need to get Sage out."
         helen sad "It's not Sage! It's a dead body!"
-        julia normal "I know. I'm so sorry."
+        julia normal "You're right... I'm so sorry, dear."
         helen angry "Can you please stop talking and just rub my back?"
         julia happy "Of course, dear."
-        her normal coat "Just push a little more!"
+        her annoyed coat "Just push a little more!"
         "Helen delivered her stillborn baby."
         julia normal "I'll wash the body."
         hide julia with moveoutleft
-        her annoyed coat "Now just another little push for the afterbirth."
+        her concerned coat "Now just another little push for the afterbirth."
         pete normal "Is that much blood normal?"
-        her determined coat "No! Pete, talk to Helen and try to keep her from fainting."
-        pete angry "Helen, you can't go yet."
-        pete normal "I don't know how I'd survive without you."
+        her angry coat "No! Pete, talk to Helen and try to keep her from fainting."
+        pete angry "Right! Um, Helen, you can't go yet."
+        pete normal "I, uh, I don't know how I'd survive without you."
         show helen sad
         "Pete kept talking to Helen while [her_name] scrambled to give Helen medicine and more blood."
         "Luckily Ilian had donated some of his O- blood recently."
@@ -8010,9 +8010,10 @@ label community29:
         her blush coat "Helen, you're looking so much better! There were a few times where I wasn't sure if you would make it."
         helen normal "I'm glad I survived, too."
         pete happy "Me three."
-        helen sad "Can I see the baby?"
+        helen sad "Can I... see the baby?"
+        her concerned coat "Of course."
         show julia normal at center with moveinleft
-        julia normal "Of course you can. Here she is."
+        julia normal "Here she is."
         "Julia had washed the baby's body and bundled it up."
         helen "Her hair was so dark!"
         pete angry "She's beautiful."
@@ -8022,7 +8023,7 @@ label community29:
         pete normal "I think we'd like one or two. But just keep them on file until we ask you for them."
         hide julia with moveoutleft
         her determined coat "I'm going to stay here tonight to keep an eye on your blood pressure and other vitals."
-        pete normal "In that case, I'll be back late tonight after I get the cows settled for the night."
+        pete normal "In that case, I'll be back later after I get the cows settled for the night."
         scene black with fade
         scene hospital with fade
         show her determined coat at right

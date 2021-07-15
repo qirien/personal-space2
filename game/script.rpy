@@ -142,6 +142,7 @@ label start:
     default kevin_elected = False
     default ban_firegrass = False
     default study_published_23 = False
+    default keep_buying_pete_beef = False
     default helen_dead = False
     default bought_tt = False
     default c_end = ""
