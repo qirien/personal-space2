@@ -4483,6 +4483,10 @@ label c17_after_activities:
 ################################################################################
 
 label community18:
+    scene barn with fade
+    show horse at center
+    show him concerned at center with dissolve
+    "I was just about to take Lettie out for a ride when my computer pad started beeping with messages."
     $ c18_waited = False
     $ c18_cows_in_ranch = False
     $ c18_cows_in_street = False
@@ -4504,33 +4508,54 @@ label community18:
     thuc_c "My fence is goatproof and cattle-proof. Looks like they're after [his_name]'s crops now."
     nvl clear
 
-    scene fields with fade
-    show him angry at left with moveinleft
     "My fence isn't robust enough to protect against cattle. I ran out to the front yard."
+    hide him
+    hide horse
+    with moveoutleft
+    scene fields with fade
+    show horse at left, flip
+    show him angry at midleft
+    with moveinleft
     him "GO HOME COWS! KEEP MOVING!"
-    show him yell at center with move
+    show horse at center
+    show him yell at center
+    with move
     him yell "YOU DON'T WANT ANY OF THIS TERRIBLE FOOD."
-    show him yell at right with move
+    show horse at right
+    show him yell at quarterright
+    with move
     "They looked a little scared, but they started creeping back as soon as I turned my back."
-    show him pout at center with move
+    show horse at center
+    show him pout at center
+    with move
     label cow_options:
         menu:
             "How should I handle the cows?"
             "Herd them to the colony ranch.":
                 scene path with fade
-                show him pout at right with dissolve
-                "I hopped onto Lettie and herded the cows over to the ranch."
-                show him pout at center with move
+                show horse at right
+                show him pout at quarterright
+                with dissolve
+                "Lettie and I herded the cows over to the ranch."
+                show horse at center
+                show him pout at center
+                with move
                 "The cows were nervous, but I calmly blocked their way if they tried to escape."
-                show him pout at midright with move
+                show horse at midright
+                show him pout at midright
+                with move
                 "It took me a few tries to get them to go the direction of the ranch, so I bribed them with a little of Lettie's hay. They seemed skittish."
-                show him pout at center with move
+                show horse at center
+                show him pout at center
+                with move
                 "A few of them seemed to recognize the ranch when we got there, which made it easier for them to join the herd."
-                show him pout at left with move
+                show horse at left
+                show him pout at midleft
+                with move
                 if thuc_has_cattle:
                     nvl clear
                     thuc_c "What are Pete's cattle doing out here? I thought he and the others were camped by the sea."
-                    him_c "That's where they stay in the rainy and cold months. It's warming up again so they're headed inland."
+                    him_c "That's where they stay in the rainy and cold months. It's warming up again so they're headed inland, near the mining camp."
                     natalia_c "Those cows ate a whole row of crops before I noticed them. He should compensate me for my losses."
                     him_c "Thuc, I herded the escaped cattle into the ranch with yours."
                     thuc_c "Oh, um... that was a good idea, but how are we going to tell them apart when we find Pete?"
@@ -4538,13 +4563,13 @@ label community18:
                 else:
                     nvl clear
                     thuc_c "What are Pete's cattle doing out here? I thought he and the others were camped by the sea."
-                    him_c "That's where they stay in the rainy and cold months. It's warming up again so they're headed inland."
+                    him_c "That's where they stay in the rainy and cold months. It's warming up again so they're headed inland, near the mining camp."
                     natalia_c "Those cows ate a whole row of crops before I noticed them. He should compensate me for my losses."
                     him_c "Ilian, I herded the escaped cattle into the ranch with yours."
                     ilian_c "NOOOOOOOOOOOOOOOOOOO"
                     ilian_c "Quick, see if you can separate them while you still can!"
                     him_c "They're the ones with the bright blue blankets, like you said."
-                    him_c "It's not that hard to tell them apart"
+                    him_c "It's not that hard to tell them apart."
                     ilian_c "But they might have parasites or bad habits!"
                     ilian_c "Please separate them somehow. Put them into the barn or something."
                     him_c "Sorry, I don't think I can do that. Hopefully Pete can sort it all out soon."
@@ -4563,9 +4588,11 @@ label community18:
                 jump cow_options
 
     scene cabins with fade
-    show him determined at quarterleft with moveinleft
-    show brennan normal at center with dissolve
-    "I hopped onto Lettie and rode to the miner's camp, using my binoculars to look for Pete."
+    show brennan normal at center with dissolve    
+    show horse behind brennan at left, flip
+    show him determined at quarterleft
+    with moveinleft
+    "Lettie and I rode to the mining camp, and I used my binoculars to look for Pete."
     brennan concerned "Hey, we had a few cows come through our settlement about twenty minutes ago."
     brennan angry "They ate up half of our herb garden... Whose cows {b}are{/b} these?"
     him concerned "They must be Pete's, because his have those UV blankets on them. I was actually trying to find Pete to ask him about this."
@@ -4581,6 +4608,7 @@ label community18:
             $ miners += 1
             him normal "Sure thing." #make this a choice as well?
             scene plain with fade
+            show horse at right
             show him normal at midright
             show pete normal at midleft
             with moveinright
@@ -4591,14 +4619,18 @@ label community18:
                 him determined "Three of your cows are eating hay in front of my house."
             pete happy "Let's pick them up on the way out."
             scene path with fade
-            show him determined at left with moveinleft
+            show horse at left, flip
+            show him determined at midleft
+            with moveinleft
             show pete normal at center with moveinleft
             "Some of the cows were lying down, and we had to wait for them to get up and stretch out."
             pete normal "Don't push them too hard. They'll get stressed out and are more likely to bolt when they get the opportunity."
             him concerned "I know, I know."
             pete "I'm pretty slow, but I know where we're going, so I'll take the front."
             show pete normal at right with move
-            show him pout at midright with move
+            show horse at midright
+            show him pout at midright
+            with move
             "Eventually, the stragglers joined the rest of the herd."
             pete happy "Thanks [his_name]."
             pete normal "I have a cow that is on her last legs. I'll bring her to the butchery and give out some meat as an apology for the trouble."
@@ -5333,10 +5365,14 @@ label community21:
 #
 ################################################################################
 label community22:
+    scene barn with fade
+    show horse at center
+    show him normal at center
+    with dissolve 
+    nvl clear
+    "I was finishing up brushing Lettie one day when I got a message on my compter pad."
     $ bios.addToBio("Oleg", "He writes his own apps and is the one people turn to if they can't figure out their computer pad.")
     if (miners_strong("moderate") and mavericks_strong("moderate") and is_liaison): #6
-        scene stars with fade
-        nvl clear
         brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you and Pete about how we can mine Mount Maverick."
         brennan_c "Without injuring anyone."
         brennan_c "Except I don't know how to get ahold of Pete."
@@ -5407,8 +5443,6 @@ label community22:
         return
 
     elif (miners_strong("moderate") and mavericks_strong("moderate") and (not is_liaison)): #6
-        scene stars with fade
-        nvl clear
         sara_c  "Hi [his_name]. We need to talk to Pete about mining in Mount Maverick. Do you know where he is right now?"
         him_c "Actually, he has a two-way radio now! I can sort of text him."
         sara_c "Great. Can you give me his frequency?"
@@ -5427,9 +5461,7 @@ label community22:
         return
 
     elif (miners_strong("low")): #3
-        nvl clear
         if is_liaison:
-            scene stars with fade
             brennan_c "Hi Zaina, Kevin, and [his_name]. I'd like to meet with you about our future mining prospects."
             kevin_c "I am unable to attend, but Zaina will be there."
             him_c "See you there."
@@ -5448,8 +5480,6 @@ label community22:
             jump Pete_stay_or_go
 
         else:
-            scene stars with fade
-            nvl clear
             sara_c "Hey [his_name]. You know Pete pretty well, right?"
             sara_c "Brennan is going to start mining in the mountain where Pete and his group are living. Could you give us some advice on how to proceed?"
             sara_c "We're trying to decide if we could get him to leave or if we should cut our losses now."
@@ -5888,7 +5918,7 @@ label community23:
     him pout "What about the cows from the colony?"
     her determined coat "I compared the meat from them with the meat from Pete's cows. The colony's cows also have irregular cells, but not as frequently as Pete's cows do."
     him determined "Pete's cows are outside more, but they have those UV blankets."
-    her concerned coat "I don't think they don't work very well. I've seen cows walking around without them; they might be able to take them off somehow."
+    her concerned coat "I don't think they work very well. I've seen cows walking around without them; they might be able to take them off somehow."
     her surprised coat "My question for you is if you think I should publish the results of my study, given that Pete's beef might be dangerous."
     menu:
         "Should [her_name] publish her study results?"
@@ -6181,10 +6211,11 @@ label luxury_good:
 
 label community25:
     #Brennan's Jellysquid farm
-    scene farm_exterior with fade
+    scene fields with fade
+    show him determined with dissolve
+    "I needed to add some more fertilizer to some fields. I'd been experimenting with adding dead jellystars, but lately no one had any..."
     nvl clear
-    him_c "I haven't seen fresh jellystar for a few weeks. I was using it for fertilizer!"
-    him_c "Brennan, does that mean you've figured out how to breed jellysquids?"
+    him_c "Brennan, where's all the cheap jellystars? Have you figured out how to breed jellysquids?"
     brennan_c "Yes, I have."
     brennan_c "I can unequivocally say that a jellysquid is formed by the union of two jellystars under the right conditions."
     julia_c "The jellysquids couldn't make their shells in the presence of so many other jellystars."
@@ -6709,9 +6740,6 @@ label community26:
         ilian normal "Um, they didn't specifically say anything about that..."
         thuc normal "We should keep chickens and turkeys for their eggs and feathers at least."
         him pout "I'm not going to just throw away all my goats. But if they're primarily for milk, maybe I don't need quite so many."
-        $ goats_index = get_crop_index("goats")
-        $ crop_info[goats_index][MAXIMUM_INDEX] = 1
-        $ farm.delete_crop("goats")
         if thuc_has_cattle:
             thuc sad "If I won't be as busy with cattle, I might as well start in on this synthetic meat thing."
             ilian happy "You can start by building the laboratory to grow the meat in."
@@ -6750,7 +6778,7 @@ label community26:
             him content "Not bad. I'm optimistic about this new crop."
             him surprised "How are you?"
             pete happy "The clouds still drop rain and wolf slugs still fear me."
-            pete angry "But I haven't been selling much firegrass or beef lately. Is there a conspiracy to stopy buying my wares?"
+            pete angry "But I haven't been selling much firegrass or beef lately. Is there a conspiracy to stop buying my wares?"
             him concerned "No, nothing so extreme."
             him sad "One of the miners was a heavy user of firegrass for a few years, and it started to really impact her sleep and mental health."
             him determined "A bunch of us tried to educate people about its dangers and discourage them from abusing it."
@@ -8077,7 +8105,7 @@ label community30:
         him_c "If it's so urgent, maybe you could just tell me now? I just have a few more weeds to pull in this sopping rain and I'd like to be done."
         julia_c "There's been a death in the mining camp."
         julia_c "The primary suspect is someone who was a frequent client of mine, so the town council suggested that I ask an uninvolved party to assist in the investigation."
-        him_c "dang. give me 30 minutes."
+        him_c "Dang. give me 30 minutes."
         nvl clear
 
         scene farm_interior with fade

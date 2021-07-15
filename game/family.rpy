@@ -6370,7 +6370,7 @@ label family21:
                             $ permissive += 1
                 "Quit being so rude!":
                     him angry "Quit being so rude!"
-                    her annoyed "Alright! Fine! You don't have to yell."
+                    kid annoyed "Alright! Fine! You don't have to yell."
                     $ authoritarian += 1
         "Say nothing.":
             $ trust -= 1

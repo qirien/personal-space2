@@ -1503,6 +1503,7 @@ label work22:
     hide oleg
     hide ilian
     with dissolve
+    $ achieved("Over the Hill")
     "I finally got to make my way over to the snacks. Pete had brought two kinds of cheeses, and Ilian had dug a few tiny pieces of chocolate out of the storehouse."
     "There were fresh fruits and vegetables and even some soft, homemade, whole wheat bread with jam and butter."
     "I savored every bite."
@@ -1558,7 +1559,6 @@ label work22:
         him happy "Oh! Wow. Thank you, Chaco; this is a very generous gift!"
         chaco "Wanted to thank you."
         $ modify_credits(50)
-    $ achieved("Over the Hill")
     return
 
 # Year 24, 14.8 years old

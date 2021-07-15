@@ -113,7 +113,7 @@ init -100:
     define audio.OPS1 = "music/LinesBuildWalls.ogg"
     define audio.saxophone = "music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
     define audio.saxophone_solo = "<from 289>music/10-Wish You Could Stay-Christos Anestopoulos.mp3"
-    define audio.videogame = "music/08-Electrospective Skuz-Ambient Teknology.ogg"
+    define audio.videogame = "<loop 5.0 to 201.0>music/08-Electrospective Skuz-Ambient Teknology.ogg"
 
     # Emotional themes
     # Happy/excited
