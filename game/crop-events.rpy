@@ -186,8 +186,6 @@ label terra_overwork4:
     show kid determined at midright
     with dissolve
 
-    $ random_crop = farm.crops.random_crop(include_animals = False)
-
     "You don't always hear much about the work on a field after the harvest is done."
     "We had to till in the stubble, and then [kid_name] and I had a lot of maintenance to do on the equipment."
     "Every farm machine had to be cleaned and oiled; and in order to that we had to take a lot of pieces apart."

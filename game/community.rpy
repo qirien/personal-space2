@@ -6222,32 +6222,32 @@ label luxury_good:
                 him pout "I guess no one's checking for health code violations here..."
                 her normal "Well, whatever it is, it's delicious!"
                 him normal "Yeah, it always makes me feel like I can go out and do anything."
-            "Helen's jellystar hat for [kid_name] (30)":
+            "Helen's jellystar hat for [kid_name] (50)":
                 $ mavericks += 1
                 "I bought a jellystar hat that Helen knitted and gave it to [kid_name]."
                 show kid normal at midright with dissolve
                 kid excited "It's so cute!! Thank you, dad!"
                 if (ate_jellyfish):
-                    $ modify_credits(-60)                    
+                    $ modify_credits(-100)                    
                     him happy "It was so adorable I ended up buying one for myself, too!"
                     "Everyone complimented our matching hats."
                 else:
-                    $ modify_credits(-30)                    
+                    $ modify_credits(-50)                    
                     him happy "It was so cute I almost bought one for myself, too."
                     kid normal "It's so warm! Like a cozy alien hug."
-            "Fancy soap for [her_name] (30)":
+            "Fancy soap for [her_name] (40)":
                 $ marriage_strength += 1
                 "I knew [her_name] used to get fancy soap all the time back on Earth..."
-                $ modify_credits(-30)
+                $ modify_credits(-40)
                 show her surprised at midright with dissolve
                 her "Oh, [his_name], you didn't have to get me anything..."
                 him happy "I wanted to! I know you miss a lot of things from Earth..."
                 her concerned "I do... and I know you don't like to spend money on unnecessary things. So this means a lot to me."
                 her normal "Thank you, sweetie."                
 
-            "Cool rocks from the miners for [bro_name] (20)":
+            "Cool rocks from the miners for [bro_name] (60)":
                 $ miners += 1
-                $ modify_credits(-20)
+                $ modify_credits(-60)
                 "Some of the miners were selling these iridescent rocks they found while mining."
                 "Apparently they didn't have any rare minerals in them, but someone had polished them and they were just the right size to hold in your hand."
                 show bro normal at midright with dissolve
@@ -8480,7 +8480,7 @@ label community30:
             show ilian normal at midright with dissolve
             "I walked over to the storehouse."
             him pout "I have a computery question for Oleg--is he around?"
-            ilian angry "No idea. I'm not responsibile for where he is or isn't."
+            ilian angry "No idea. I'm not responsible for where he is or isn't."
             him doubt "Sheesh, did I hit a nerve?"
             ilian normal "Yeah, Sara's always asking me where Oleg is like I'm some kind of walking Oleg-GPS."
             ilian angry "If she cares so much, why doesn't she follow him around? I'm the one stuck here all day."
@@ -8518,7 +8518,7 @@ label community30:
             him_c "Hey Oleg, do you know if it's possible to open someone's credit program without their passcode?"
             oleg_c "nope, not without wiping everything."
             him_c "Is credit data stored in the library server then? Or would wiping someone's tablet erase all their credits?"
-            oleg_c "dunno never tried ghgh {font=fonts/OpenSansEmoji.otf}¯\_(~.~)_/¯{/font}" #this is supposed to simulate not know what acronyms or emoji the teenagers are using right now
+            oleg_c "dunno never tried ghgh {font=fonts/OpenSansEmoji.otf}¯\\_(~.~)_/¯{/font}" #this is supposed to simulate not know what acronyms or emoji the teenagers are using right now
             oleg_c "now i'm curious tho"
             him_c "It must be stored centrally, because even after Helen lost her tablet, I don't remember her losing her credits."
             him_c "Ilian is asking me to ask you if you're going to stay with your mom the whole rainy season."
@@ -9320,6 +9320,19 @@ label community30:
                                 thuc normal "Yes, she does get depressed and stops washing dishes for weeks. But that doesn't mean she should go to jail."
                                 him doubt "But what about the people who suffer because of her depression? Are they supposed to just accept that pile of dirty dishes?"
                                 thuc sad "Yes. No. I don't know. All I know is that Noel already punishes herself enough for her shortcomings."
+                                him sad "Yeah..."
+                                if (checked_joel and know_rings_purpose):
+                                    him surprised "By the way, I found out about Julia's \"secret\" ingredient..."
+                                    thuc normal "Ha ha ha...oh yeah?"
+                                    him doubt "How do you feel about her lacing her syrup with firegrass?"
+                                    if (ban_firegrass):
+                                        thuc sad "I keep telling her it tastes good enough without the firegrass..."
+                                    else:
+                                        thuc sad "I keep telling her that advertising the firegrass would improve sales but she won't hear it."
+                                    him explaining "She probably just likes to pull one over on everyone."
+                                    thuc happy "And her sales are so good, maybe she's right? Anyway, that's her thing, not mine. I don't even like her plum syrup."
+                                    him surprised "You don't?"
+                                    thuc sad "Way too sweet, and it makes me jumpy."
                                 "After thirty minutes the jury was still going."
                                 show sara normal at left behind rain with moveinleft
                                 sara "You guys can go home and come back in the morning. The jury is still deliberating."
@@ -9444,7 +9457,7 @@ label community30:
                                                 him surprised "It's a ring made to measure bundles of firegrass!"
                                                 him explaining "Since this is an object that was printed with our 3D printer, I was able to find the printer of this design:"
                                                 him determined "Julia!"
-                                                him doubt "Why would Noel have firegrass-measuring ring designed by Julia?"
+                                                him doubt "Why would Noel have a firegrass-measuring ring designed by Julia?"
                                                 him normal "Because she was responsible for processing firegrass that she bought from Pete for Julia."
                                                 him determined "I believe that Noel had wanted to stop buying firegrass for Julia, but in retaliation, Julia had Van murder Joel to teach Noel a lesson!"
                                                 zaina sad "While it's possible that Julia and Noel may have been business partners, the unfortunate loss of Joel is unconnected to their business."
@@ -9559,6 +9572,8 @@ label community30:
                             jump neglect
                         "It was murder.":
                             jump murder
+
+    # TODO: achievement if you found all the clues?
     stop sound fadeout 1.0
     return
 

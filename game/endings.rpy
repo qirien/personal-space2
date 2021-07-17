@@ -11,9 +11,8 @@ label ending:
     "And we both grew up as farmers, too."
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
-    # TODO: remove debug code
     $ parenting_style = get_parenting_style()
-    "Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]. Marriage: [marriage_strength], Style: [parenting_style], Trust: [trust].  Colonists: [total_colonists], Miners: [total_miners], Mavericks: [total_mavericks]. Please screenshot this ('s') and send it with your feedback."
+    #"Reached ending. Attachment: [total_attachment], Competence: [total_competence], Independence: [total_independence]. Marriage: [marriage_strength], Style: [parenting_style], Trust: [trust].  Colonists: [total_colonists], Miners: [total_miners], Mavericks: [total_mavericks]. Please screenshot this ('s') and send it with your feedback."
     # community ending
     if (total_colonists >= FACTION_HIGH):
         $ achieved("It Takes This Village")
@@ -598,7 +597,6 @@ label ending_AC:
 
 label ending_CMiMa:
     $ c_end = "CMiMa"
-    "Community Ending CMiMa"
     scene bonfire with fade
     show pete normal at center
     show him normal at midleft
@@ -646,37 +644,30 @@ label ending_CMiMa:
 
 label ending_CMima:
     $ c_end = "CMima"
-    "Community Ending CMima"
     jump flood_ending_C
 
 label ending_CmiMa:
     $ c_end = "CmiMa"
-    "Community Ending CmiMa"
     jump flood_ending_C
 
 label ending_Cmima:
     $ c_end = "Cmima"
-    "Community Ending Cmima"
     jump flood_ending_C
 
 label ending_cMiMa:
     $ c_end = "cMima"
-    "Community Ending cMiMa"
     jump flood_ending_c
 
 label ending_cMima:
     $ c_end = "cMima"
-    "Community Ending cMima"
     jump flood_ending_c
 
 label ending_cmiMa:
     $ c_end = "cmiMa"
-    "Community Ending cmiMa"
     jump flood_ending_c
 
 label ending_cmima: #is this ending even possible?
     $ c_end = "cmima"
-    "Community Ending cmima"
     scene farm_exterior with fade
     play sound "sfx/rain.ogg" loop
     show rain
