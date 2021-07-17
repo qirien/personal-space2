@@ -6201,6 +6201,62 @@ label luxury_good:
             $ modify_credits(400)
             "A few other people took me up on it, but I didn't make a lot of money off of it."
             "There were plenty of books and other farmers people could consult for free." #+400/40 credits
+
+    if (credits >= 100):
+        scene farm_interior with fade
+        show him normal at center with dissolve
+        him surprised "I have a bit of extra money... maybe I should buy something?"
+        menu:
+            "What should I buy?"
+            "Julia's plum syrup for the family (40)":
+                $ colonists += 1
+                "I bought some of Julia's plum syrup. [her_name] liked to put it in mint tea, and the kids drizzled it on squash."
+                $ modify_credits(-40)
+                show her normal at midright
+                show kid normal at midleft
+                show bro normal at quarterleft
+                with dissolve
+                kid happy "This stuff is sooo good!"
+                bro happy "I could eat this forever."
+                her surprised "What's actually in it? She didn't put any ingredients on the label."
+                him pout "I guess no one's checking for health code violations here..."
+                her normal "Well, whatever it is, it's delicious!"
+                him normal "Yeah, it always makes me feel like I can go out and do anything."
+            "Helen's jellystar hat for [kid_name] (30)":
+                $ mavericks += 1
+                "I bought a jellystar hat that Helen knitted and gave it to [kid_name]."
+                show kid normal at midright with dissolve
+                kid excited "It's so cute!! Thank you, dad!"
+                if (ate_jellyfish):
+                    $ modify_credits(-60)                    
+                    him happy "It was so adorable I ended up buying one for myself, too!"
+                    "Everyone complimented our matching hats."
+                else:
+                    $ modify_credits(-30)                    
+                    him happy "It was so cute I almost bought one for myself, too."
+                    kid normal "It's so warm! Like a cozy alien hug."
+            "Fancy soap for [her_name] (30)":
+                $ marriage_strength += 1
+                "I knew [her_name] used to get fancy soap all the time back on Earth..."
+                $ modify_credits(-30)
+                show her surprised at midright with dissolve
+                her "Oh, [his_name], you didn't have to get me anything..."
+                him happy "I wanted to! I know you miss a lot of things from Earth..."
+                her concerned "I do... and I know you don't like to spend money on unnecessary things. So this means a lot to me."
+                her normal "Thank you, sweetie."                
+
+            "Cool rocks from the miners for [bro_name] (20)":
+                $ miners += 1
+                $ modify_credits(-20)
+                "Some of the miners were selling these iridescent rocks they found while mining."
+                "Apparently they didn't have any rare minerals in them, but someone had polished them and they were just the right size to hold in your hand."
+                show bro normal at midright with dissolve
+                him explaining "Here, this is for you."
+                bro surprised "For me? Wow..."
+                "He stared at it for a minute, turning it over to see how the light changed its colors and rubbing its smooth surface with his thumb."
+                bro normal "Thank you."
+            "Don't buy anything.":
+                "I came to Talaam to get away from all the consumerism and money worries of Earth. Why would I want to go back to that now?!"
     return
 
 ################################################################################

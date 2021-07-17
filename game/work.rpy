@@ -1921,7 +1921,7 @@ label work28:
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
     "Plus, the place wasn't that big."
     "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
-    "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, sausage gravy, and honey butter."
+    "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, lab-grown sausage gravy, and honey butter."
     hide miners with moveoutright
     show him normal at center
     show her normal at midleft
@@ -2188,10 +2188,11 @@ label work30:
             "We worked out some things that [kid_name] could do that weren't farming -- making meals and running errands for [her_name] and I."
             him concerned "Hopefully I can still count on your help during harvest time."
             kid nervous "Yeah, for now."
-            $ factor = 0.8
+            $ factor = 0.3
         "We can cut back gradually.":
             him determined "I need you until the harvest. After that, we can slowly cut things down."
             kid concerned "Okay..."
+            $ factor = 0.5
         "You don't have to work here.":
             him concerned "You don't have to work on the farm. But I could definitely use your help."
             if (is_attached()):
@@ -2199,7 +2200,6 @@ label work30:
                him determined "Okay. Thanks, [kid_name]."
             else:
                 kid concerned "Uh, yeah, we'll see."
-            $ factor = 0.5
 
     show bro concerned at quarterleft with moveinleft
     bro concerned "I don't want to work on the farm, either."
@@ -2216,12 +2216,12 @@ label work30:
             else:
                 "It would cost me, but I thought the cost of hiring another worker would be less than the cost of reducing the field."
             $ work28_rent -= 125
-            $ factor += 0.2
+            $ factor -= 0.2
         "Have [bro_name] help more.":
             him concerned "Sorry, [bro_name]. With [kid_name] leaving, I need your help more than ever."
             bro sad "I don't want to..."
             him explaining "I know. But sometimes we all gotta do things we don't want to do."
-            $ factor += 0.2
+            $ factor -= 0.2
     "I guess it was [kid_name]'s job to grow up and eventually leave us."
     "I wasn't quite ready for it to start, though."
 

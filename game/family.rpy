@@ -7836,7 +7836,7 @@ label family27:
     her determined "She still has a lot to learn. I don't want her to miss out on important parts of her education."
 
     # Reduce available work (even if you tell her not to work, she still does)
-    $ kid_other_work = roundint(total_competence * .35)
+    $ kid_other_work = roundint(total_competence * .15)
     menu:
         "What should I say?"
         "We should encourage her work.":

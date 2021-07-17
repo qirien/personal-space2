@@ -57,8 +57,7 @@ init -100:
     define MAGNESIUM_LOW = 10
 
     # Calorie data
-    define CALORIES_BASE = 50
-    define NUTRITION_BASE = 50
+    define CALORIES_BASE = 45
     define WORK_BASE = 60
     define WHEAT_COST = 200
 
@@ -77,20 +76,20 @@ init -100:
 
     # Static variables used for endings
     # TODO: Tweak these so all endings are possible.
-    define ATTACHMENT_HIGH = 25 #Max is ~60
-    define ATTACHMENT_MAX = 50
-    define COMPETENCE_HIGH = 25 #Max is ~60
-    define COMPETENCE_MAX = 50
-    define INDEPENDENCE_HIGH = 17 #Max is ~35
-    define INDEPENDENCE_MAX = 35
+    define ATTACHMENT_HIGH = 25 #Max is ~55
+    define ATTACHMENT_MAX = 45
+    define COMPETENCE_HIGH = 25 #Max is ~55
+    define COMPETENCE_MAX = 40
+    define INDEPENDENCE_HIGH = 18 #Max is ~35
+    define INDEPENDENCE_MAX = 30
     define FACTION_HIGH = 10
-    define FACTION_MAX = 20
-    define MINERS_MAX = 20
-    define COLONISTS_MAX = 20
-    define MAVERICKS_MAX = 20
-    define MINERS_HIGH = 12
-    define COLONISTS_HIGH = 12
-    define MAVERICKS_HIGH = 12
+    define FACTION_MAX = 18
+    define MINERS_MAX = 18
+    define COLONISTS_MAX = 18
+    define MAVERICKS_MAX = 18
+    define MINERS_HIGH = 11
+    define COLONISTS_HIGH = 11
+    define MAVERICKS_HIGH = 11
 
     define MAX_YEARS = 30
 

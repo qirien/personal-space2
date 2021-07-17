@@ -408,15 +408,15 @@ init -100 python:
 
     def get_calories_kid(age):
         if (0 <= age < BABY_MAX):
-            return 5
+            return 4
         if (BABY_MAX <= age < TODDLER_MAX):
-            return 10
+            return 9
         if (TODDLER_MAX <= age < CHILD_MAX):
-            return 15
+            return 14
         if (CHILD_MAX <= age < YTEEN_MAX):
-            return 20
+            return 19
         if (YTEEN_MAX <= age):
-            return 25
+            return 23
         return 0
 
     # Calculate the amount of work available.

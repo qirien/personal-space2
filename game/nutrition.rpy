@@ -35,9 +35,12 @@ label bad_nutrition:
         scene tutorial-nutrition with fade
         "I added [her_name]'s nutrition information to my farm planning app so that I could keep track of that better."
         scene tutorial-crop-nutrition with fade
-        "I need to make sure I can harvest crops with enough Vitamin A, Vitamin C, and Magnesium, as shown with the heart icons."
+        "I need to try to harvest crops with enough Vitamin A, Vitamin C, and Magnesium, as shown with the heart icons."
         "Other nutrients are shown as green hearts since I don't need to worry about them."
-        if ((get_extra_work() > 0) and (farm_size < FARM_SIZE_MAXIMUM)):
+        him concerned "This is going to be a lot to keep track of..."
+        her determined coat "If you really can't get enough vitamins or if you have too much work to do, I'm sure our friends will help us out."
+        him determined "I'd like to be independent... but that's a good backup plan."
+        if ((get_extra_work() >= 0) and (farm_size < FARM_SIZE_MAXIMUM)):
             scene fields with fade
             "I thought that if my farm was bigger, I might have more room to plant crops with better nutrients."
             "I was able to add another field."
