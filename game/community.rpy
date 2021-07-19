@@ -5194,14 +5194,18 @@ label community21:
         "We went out on Pete's little fishing boat, past the place where the waves started crashing."
         pete normal "You see that mountain? There's a fantastic cave there where we stay about half the year." #so do they spend winter or summer there? and where are the cows? #they spend the rainy season there
         "The lights grew bigger, and when we looked closely, we saw that the glowing animals had a different shape from the jellystars."
+        show jellysquid4 at right, baby_pos with dissolve
         "They were about the size of a toaster. They had eyespots on the sides and tentacles at the opposite end, almost like a squid, only with a see-through shell."
         him surprised "Wow, what are those?"
         pete happy "We call them jellysquids. They're bigger than the jellystars, and have these cool shells."
         kid surprised "Wow..."
         pete normal "Now for the fun part!"
         "Pete picked up one of the jellysquids and put it in a bucket in the bottom of the boat."
+        show jellysquid3 at right, baby_pos with dissolve
         "It kept glowing, and changed colors with Pete's touch."
+        show jellysquid2 at right, baby_pos with dissolve
         "At first, the colors changed rapidly."
+        show jellysquid1 at right, baby_pos with dissolve
         "Then letters started to appear on its back."
         him surprised "Are those...?"
         pete happy "Yeah, they sure look like English letters. Maybe they learned from that waterproof tablet that Lily accidentally dropped in the ocean?"
@@ -5224,6 +5228,7 @@ label community21:
         show him normal at midleft
         show travis normal at midright
         show kid happy at center
+        show jellysquid0 at right, baby_pos with dissolve
         "When we came back we showed everyone the amazing animal, and [kid_name] demonstrated it to everyone."
         "I was worried about the jellysquid's skin, but it had a shell made of something like glass, which was very resilient."
         "We kept it underwater in the bucket, though it slithered out a few times so I guessed it could breathe air."
@@ -5231,7 +5236,8 @@ label community21:
         "After everyone had seen it, we let it go back into the ocean."
         hide pete
         hide travis
-        with moveoutleft
+        hide jellysquid0
+        with moveoutright
 
     else:
         "He chatted to a few people but I didn't get a chance to say hi."
@@ -5883,7 +5889,7 @@ label mining_anyway:
     "The next morning, [her_name] was able to extract Travis."
     "His tibia was shattered; [her_name] had to amputate his entire lower leg." #maybe it's cooler if I don't explain it
     "Pete and the others stopped living in the caves while the mining continued." #we could change this to them stopping mining; it just affects how upset Brennan is in the next event
-    $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he he's still as obnoxious and hyper as ever.")
+    $ bios.addToBio("Travis", "He lost his leg in a mining accident, but he's still as obnoxious and hyper as ever.")
 
     $ travis_points -= 1
     $ community_22_mined_anyway = True
@@ -6016,7 +6022,7 @@ label community23:
             him determined "Wait, you were hunting down the jellysquids? I thought they were intelligent?"
             kid happy "Not intelligent enough to not get caught!"
             him pout "Should we really be trying to catch them?"
-            kid annoyed "Ugh. Some of us need credits more than we need moral high ground."
+            kid nervous "I don't know! Everyone else was doing it..."
         him normal "Oh yeah, we need to get some rice to go with dinner tonight."
         her normal "I know. We stopped by the storehouse on the way home."
         "She handed me a cup of rice."
@@ -6340,7 +6346,7 @@ label community25:
                 him doubt "Weird."
                 jump jelly_convo
             "Can I touch one?":
-                "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                "One jellystar had five tentacles covered with purple spines like an Earth sea urchin."
                 him normal "Can I touch one?"
                 chaco normal "You can... sometimes it agitates them."
                 menu:
@@ -6400,7 +6406,7 @@ label community25:
                 pete "They can live off of just about anything, including whatever plankton are floating around."
                 jump jelly2_convo
             "Can I touch one?":
-                "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+                "One jellystar had five tentacles covered with purple spines like an Earth sea urchin."
                 him normal "Is it safe to touch them?"
                 pete normal "It won't kill you. Go ahead and try it."
                 menu:
@@ -6490,7 +6496,7 @@ label community25:
     else: #if neither miners or mavericks is high enough
         "I found the jellystar farm on the map where Brennan said it would be."
         "I found a pier surrounded by nets that enclosed bunches of jellystar."
-        "One jellysquid had five tentacles covered with purple spines like an Earth sea urchin."
+        "One jellystar had five tentacles covered with purple spines like an Earth sea urchin."
         "I brought out my net and started catching jellystars and putting them in my bucket."
         show him determined at center with moveinleft
         show him determined at right with moveinleft
@@ -6924,6 +6930,7 @@ label community27:
     "We spent a long time searching for a jellysquid. There were a lot of fish in the water eating bits of dead animals... was it dead jellysquid?"
     "I thought I saw a live jellysquid and got out of the boat. The ocean was shallow here and I was able to stand up."
     "I caught the jellysquid in a bucket after some chasing."
+    show jellysquid4 at quarterleft, baby_pos with moveinbottom
     "It wasn't displaying the reading game on its tablet-like shell like it had years before. Instead it said:"
     nvl clear
     jellysquid "Sad Sad Sad Sad Sad Sad"
@@ -6959,7 +6966,7 @@ label community27:
             him "Let's go home."
             "I tried to leave, but the jellystars kept my boat from moving."
             jump boat_capsized
-        "Engage." if (ate_jellyfish) or (touched_jellystar_25): #does this include AND?
+        "Engage." if ((ate_jellyfish) or (touched_jellystar_25)): #does this include AND?
             him determined "I am interested in communicating with these aliens."
             kid shifty "Tell it! It can't hear you."
             him surprised "Okay, I'll touch the jellysquid's back."
@@ -7101,6 +7108,7 @@ label call_to_squid:
                 show kid sad at quarterleft
             with moveinleft
             "The jellystars seemed to sense my presence quickly in the boat, and took me to a different place, where I met with the jellysquid parent."
+            show jellysquid0 at center, baby_pos with moveinbottom
             "They communicated to me through a jellysquid, which I put in a bucket on my boat."
             jellysquid "Did you bring shells?"
             show him surprised #it looks like he's holding something sorta
@@ -7326,7 +7334,9 @@ label call_to_squid:
 
                         label aquaculture:
                             scene ocean with fade
-                            show him normal at midleft with dissolve
+                            show him normal at midleft
+                            show jellysquid1 at center, baby_pos
+                            with dissolve
                             "I started making plans for a fish farm off the coast."
                             "I wanted it to have a grated opening, so we wouldn't have to worry about changing the water. I also drew in a sluice gate in case we wanted to release all the fish at once."
                             "After I explained my plans to the jellymother, she said that she could help trap a few of the first fish to start the farm."
@@ -7360,6 +7370,7 @@ label call_to_squid:
                 show him blush at left
                 if (is_attached()):
                     show kid nervous at midleft
+                show jellysquid0 at center, baby_pos
                 with moveinright
                 "I heard a sound like a water pump and then my boat was jettisoned toward the shore. My boat skid across the surface like a skipping rock."
                 "The jellysquid was still in the boat with me."
@@ -7791,14 +7802,14 @@ label community29:
     nvl clear
     her_c "Helen is pregnant!!!!"
     him_c "Oh, congratulations to her."
-    her_c "Yes, congratulations, but with the state of our technology, it is dangerous for her to be pregnant."
+    her_c "Yes, congratulations, but it's also dangerous."
     him_c "Really? Why?"
-    her_c "She's in her mid-forties in Earth years. Even in regular hospitals, that's considered a high-risk pregnancy."
+    her_c "She's in her mid-forties in Earth years. Even in regular hospitals, that's considered a high-risk pregnancy, and we're not as well-equipped as Earth hospitals."
     him_c "Oh... is a healthy baby possible?"
     her_c "Yes, but she might need extra care. Since she's no longer a colonist, I have to figure out how to charge her for medical expenses..."
     him_c "Okay..."
     if (mavericks_strong("moderate")): #5
-        her_c "Which I'll figure out. The reason I'm messaging you is that she wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
+        her_c "Which I'll figure out. She wanted to stay with us during the last trimester of her pregnancy so she could be nearby in case of complications."
         him_c "She doesn't want to stay with Travis at his restaurant?"
         her_c "It's noisy in the evenings and there isn't really room for her there."
         him_c "There's not that much room for her here either."
@@ -8345,13 +8356,13 @@ label community30:
                     thuc "Hi [his_name]! Noel is taking a break in the baths in town. Me and Van are watching her kids while she's away."
                     him concerned "I'm here to examine where Joel died."
                     thuc normal "Got it. He died back here."
-                    him determined "Was Van here when Joel died?"
+                    him determined "Was your son Van here when Joel died?"
                     thuc sad "No, but the kids were. They didn't see what happened though."
                     thuc "They don't understand where he is. They think he went back to Earth."
                     him sad "He might as well be there, for all they know."
                     thuc normal "Well, they're actually going back to Earth on the shuttle, so we're trying to explain that he's dead."
-                    him surprised "Oh, right, that's happening next month! Is Brennan going back?"
-                    thuc sad "Yeah, it's part of his job. About half of the miners are going back too. Every spot is spoken for."
+                    him surprised "They're going back with Brennan?"
+                    thuc sad "Yeah, about half of the miners are going back too. Every spot is spoken for."
                     him doubt "Except for Joel's... And maybe Anya's, but I don't think that's relevant right now."
                     thuc happy "Good point!"
                     him determined "So what were you doing last night? I'm just trying to rule people out right now."
@@ -8455,7 +8466,7 @@ label community30:
                     him surprised "It could have been Noel."
                     her determined coat "Yeah. Or Van, he's always helping out over there."
                     him doubt "Would Van do something like that?"
-                    her concerned coat "Maybe if he forgot his own tablet? I'm not sure."
+                    her concerned coat "Maybe if he forgot his own tablet and needed to tell his mom something? I'm not sure."
                     him pout "Do you know if I can access his credit account? I'm just curious if he had a balance."
                     her surprised coat "Hmmm. I think you'd have to have the code. Maybe Oleg would know?"
                     him determined "I'll stop by his place before meeting you at home."
@@ -8478,11 +8489,10 @@ label community30:
             play sound "sfx/rain.ogg" volume 0.6 loop
             show him normal at midleft with moveinleft
             show ilian normal at midright with dissolve
-            "I walked over to the storehouse."
             him pout "I have a computery question for Oleg--is he around?"
             ilian angry "No idea. I'm not responsible for where he is or isn't."
             him doubt "Sheesh, did I hit a nerve?"
-            ilian normal "Yeah, Sara's always asking me where Oleg is like I'm some kind of walking Oleg-GPS."
+            ilian normal "Sara's always asking me where Oleg is like I'm some kind of walking Oleg-GPS."
             ilian angry "If she cares so much, why doesn't she follow him around? I'm the one stuck here all day."
             him explaining "Maybe you can help me with something else."
             "I pull out the ring I found at Noel's house and show it to Ilian."
@@ -8548,7 +8558,7 @@ label community30:
             oleg_c "ghgh i knew it"
             nvl clear
 
-            scene yurt_interior with fade
+            scene farm_interior with fade
             play sound "sfx/rain.ogg" volume 0.6 loop
             show him normal at midleft
             "I tried to calm down Ilian, but it was no use. I went home and made cabbage and potato soup for dinner."
@@ -8630,9 +8640,9 @@ label community30:
             oleg angry "Was I a difficult baby?"
             sara sad "You were probably normal, but it was still hard for us."
             sara "I got really mad about it. We kept fighting over everything that month."
-            sara normal "I asked Brennan to put me on the list to go back on the shuttle if something opened up."
+            sara normal "I asked them to put me on the list to go back on the shuttle if something opened up."
             sara sad "Whenever Ilian and I started fighting, I was comforted by the idea of going back to Earth."
-            oleg normal "Are you really going to go back?"
+            oleg normal "Huh. You still want to go back?"
             sara normal "Of course not! I wouldn't leave you here!"
             oleg happy "I don't really need you anymore. You can go back if you want to."
             sara sad "No, baby, I don't want to go back to Earth."
@@ -8643,7 +8653,7 @@ label community30:
             sara sad "Yeah, I don't want to be around him when he gets like that."
             sara "Usually it's because he expected me to notice something that he thinks is obvious."
             oleg normal "Yeah, like when the outhouse got really stinky because you kept forgetting to leave the door open."
-            sara happy "I don't like sitting on a wet toilet!"
+            sara happy "It was rainy! I didn't want to sit on a wet toilet!"
             sara normal "Anyway, I'm tired of trying to guess what it is this time, so I told him he would have to work it out on his own."
             sara "He'll eventually come around."
             # TODO: is Ilian anxious about a secret related to the accident? or knowing about Oleg's firegrass farm?
@@ -8707,7 +8717,7 @@ label community30:
         nvl clear
         him_c "Hi, Noel? I'm investigating Joel's death. Could you tell me what happened when he died?"
         him "She's not answering me."
-        him_c "I understand if you don't want to talk about it right away, but what you saw is important to help us determine his cause of death."
+        him_c "I understand if you don't want to talk about it right away, but what you saw is important."
         "I'll see if Van will talk to me in the meanwhile."
         nvl clear
         him_c "Hi Van, do you have a few minutes?"

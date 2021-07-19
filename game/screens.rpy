@@ -1255,7 +1255,7 @@ screen achievements():
                     if (achievement.has(title)):
                         $ photo_file = persistent.achievements[title]["file"]
                         if (photo_file):
-                            if (photo_file.endswith(".jpg")): # for backwards compatability
+                            if (photo_file.endswith(".jpg") or photo_file.endswith(".png")): # for backwards compatability
                                 $ photo_file = "images/cgs/" + photo_file
                             else:
                                 $ photo_file = "images/cgs/" + photo_file + ".jpg"

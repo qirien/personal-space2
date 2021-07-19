@@ -3063,7 +3063,7 @@ label family9:
         sara "Oleg! Where have you been?!"
         oleg sad "Just playing."
         sara "When you didn't come home from school I was so worried!"
-        "Our eyes met, and I knew were were both thinking of Josephina, the Peron's little girl who had gone missing seven years ago."
+        "Our eyes met, and I knew were were both thinking of Josephina, the Perón's little girl who had gone missing seven years ago."
         "Anytime a kid was missing, we all remembered searching for her all night long, her dead body washing ashore, her funeral..."
         him concerned "I'm sorry; I thought you knew he was here."
         oleg normal "[kid_name] wanted me to come play..."
@@ -3608,7 +3608,7 @@ label family12:
     him determined "Oh."
     "I wasn't sure what to think about that. On the one hand, I was glad she had a new friend; she'd never had a girl her own age to be friends with before."
     "On the other hand, I didn't know much about the miners. Should I really let her go to someone's house I didn't know?"
-    "I couldn't help but think of Josephina, the Peron's daughter that accidentally got run over by Pete's tractor when she was about this age."
+    "I couldn't help but think of Josephina, the Perón's daughter that accidentally got run over by Pete's tractor when she was about this age."
     kid sad "Please, dad? We're like best friends."
     bro concerned "Best fwends?"
     him surprised "Who are her parents?"
@@ -8631,7 +8631,7 @@ label family30:
     elif (parenting_style == "authoritative"):  # ACi or ACI
         # Studies jellypeople and sociology-biology, living with you or married
         "Ever since that trip to the ocean where we communicated with the jelly people, [kid_name] had been obssessed with them."
-        "Miranda had been meeting with them and studying them, and so [kid_name] joined her. She was also taking online classes in biology and sociology."
+        "Zaina and Miranda had been meeting with them and studying them, and so [kid_name] joined them. She was also taking online classes in biology and sociology."
         $ boyfriend_name = get_boyfriend_name()
 
     elif (parenting_style == "permissive"):     # Aci or AcI
@@ -8893,7 +8893,7 @@ label family30:
             kid normal "If you're trying to make me want to leave, you're doing a pretty good job."
             "I brought over some handkerchiefs and everyone composed themselves, except for [bro_name], who was still laughing and looked like he might actually wet his pants."
 
-            her concerned coat "That reminds me... Did you hear about how the Peron's armored their scarecrow so the crabirds couldn't get at it?"
+            her concerned coat "That reminds me... Did you hear about how the Perón's armored their scarecrow so the crabirds couldn't get at it?"
             kid nervous "Armor on a scarecrow?"
             him surprised "That sounds a little extreme."
             her flirting coat "Its suit is...impeccable."

@@ -165,6 +165,7 @@ label start:
     default terra_overwork_count = 0
     default sortby = "calories"
     default show_sort = False
+    default work_increase = 0 # The amount of extra work you have now that kids are older
 
     # Yield of most recent set of crops, in percentages
     default credits = 0
@@ -269,6 +270,7 @@ label start:
 
     if (persistent.times_beaten):
         "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked."
+        $ work_increase = 10
         if (persistent.crops_unlocked):
             $ i = 0
             while (i < len(crop_info)):
@@ -476,6 +478,7 @@ label life_loop:
                 $ renpy.pause()
 
             if (year == TODDLER_MAX):
+                $ work_increase += 5
                 scene stars with fade
                 show text "End Toddler Years"
                 $ renpy.pause(1.5)
@@ -484,6 +487,7 @@ label life_loop:
                 $ renpy.pause()
 
             if (year == CHILD_MAX):
+                $ work_increase += 5
                 scene stars with fade
                 show text "End Childhood Years"
                 $ renpy.pause(1.5)
@@ -492,6 +496,7 @@ label life_loop:
                 $ renpy.pause()
 
             if (year == TWEEN_MAX):
+                $ work_increase += 5
                 scene stars with fade
                 show text "End Tween Years"
                 $ renpy.pause(1.5)
@@ -500,6 +505,7 @@ label life_loop:
                 $ renpy.pause()
 
             if (year == YTEEN_MAX):
+                $ work_increase += 5
                 scene stars with fade
                 show text "End Young Teen Years"
                 $ renpy.pause(1.5)

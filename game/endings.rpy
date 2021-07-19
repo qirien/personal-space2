@@ -7,8 +7,7 @@ label ending:
     scene stars with fade
     play music thoughtful
     "[kid_name]'s childhood was so different from my own. Instead of playgrounds and ready-made toys, she had alien creatures and mining conflicts."
-    "I guess we both had parents, friends, and problems."
-    "And we both grew up as farmers, too."
+    "I guess we both had parents, friends, and problems.... and we both grew up as farmers."
     "When she was a baby, I never would have guessed she'd grow up like she did."
 
     $ parenting_style = get_parenting_style()
@@ -105,9 +104,9 @@ label ending:
         $ mp.boyfriend_name = boyfriend_name
         $ mp.save()
 
+    $ persistent.boyfriend_name = boyfriend_name
     if persistent.crops_unlocked is None:
         $ persistent.crops_unlocked = set()
-    $ persistent.boyfriend_name = boyfriend_name
     $ i = 0
     while (i < len(crop_info)):
         if crop_info[i][ENABLED_INDEX]:
@@ -118,12 +117,12 @@ label ending:
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve
     stop music fadeout 3.0
-    $ renpy.pause(3.0, hard=skippable)
+    $ renpy.pause(2.0)
 
     "Thank you for playing Our Personal Space 2: Space to Grow!"
-    "New Game+ unlocked! Bonus section unlocked!"
+    if (persistent.times_beaten <= 1):
+        "New Game+ unlocked! Bonus section unlocked!"
 
-    $ renpy.full_restart()
     return
 
 #1 aci - Blames you for everything. Clingy. Returns to Earth (with Lorant?) but you know the relationship won't last.
@@ -288,6 +287,7 @@ label ending_aC:
     thuc normal "So, is that all I need?"
     her normal coat "Yes, let me know if you don't start feeling better by tonight."
     hide thuc with moveoutleft
+    show kid at center with move
     show him normal at quarterleft with moveinright
     him happy "Hello, lovely ladies! I brought you some lunch!"
     kid annoyed "I'm not hungry."
@@ -529,8 +529,7 @@ label ending_AC:
     kid happy "Mom, Dad, can you not? Some of us are trying to eat here."
     if (boyfriend_name == "Travis"):
         travis happy "Here, [kid_name], let's show these old folks how it's done."
-        "She put her arms around his neck and he pulled her in for a long kiss.  ...Too long, if you ask me."
-        bro concerned "Not at the dinner table, guys!!"
+        "She put her arms around his neck and he pulled her in for a long kiss."
     else:
         oleg normal "I don't know; it's kind of sweet to see old folks that are still so in love."
     him surprised "Old folks?!"
@@ -613,7 +612,7 @@ label ending_CMiMa:
 
     "I enjoyed another bite of wolfslug kebab, the tangy, spicy curry sauce dripping down my chin. I wiped it off with a piece of the flatbread I had brought and ate that, too."
 
-    him happy "Thanks for saving my wheat from that flood. I still can't believe we got everyone and their food stores out so quickly."
+    him happy "Thanks for saving my potatoes from that flood. I still can't believe we got everyone and their food stores out so quickly."
     brennan explaining "You act like it was an act of altruism, but really, I'd do almost anything not to have to grow my own food."
 
     him normal "Speaking of people who hate growing their own food, how are your interns from the high school working out?"
@@ -621,7 +620,7 @@ label ending_CMiMa:
     brennan normal "Oh, I have one intern who has a knack for assembling good mining teams."
     brennan "He made friends with everyone and figured out their compatibilities quickly."
     pete normal "One of my interns has an amazing spatial memory. She can go foraging with me and then come back and draw a map."
-    pete happy "With satellite imagery, we have the big things covered, but her maps take out all the extra noise and make it easier to find things."
+    pete happy "With satellite imagery, you have the big things covered, but her maps take out all the extra noise and make it easier to find things."
     him determined "Huh, good for you. My intern seems kind of depressed sometimes. I think she likes handicrafts though. I should have her spend some time with you, Pete."
     him surprised "She might like leatherworking better than farming."
     pete happy "If she likes working with her hands, maybe she could make you a saddle for one of those grass crabs!"

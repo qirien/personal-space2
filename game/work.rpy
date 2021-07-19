@@ -1955,11 +1955,10 @@ label work28:
             her concerned "Oh, I wanted to try the cider..."
             travis normal "Plus one cider!"
             $ modify_credits(-45)
-            $ travis_points += 1
         "Pancakes and cider for the whole family!":
             him happy "Pancakes and cider for everyone!"
             kid laugh "Nice!"
-            $ travis_points += 2
+            $ travis_points += 1
             $ modify_credits(-60)
 
     scene restaurant with fade
@@ -2055,7 +2054,7 @@ label work28:
 # You only get this event if you promised potatoes to Travis
 label work29_potatoes:
     scene fields with fade
-    show him determined at midright
+    show him normal at midright
     with dissolve
     show travis normal at midleft with moveinleft
 
@@ -2082,7 +2081,6 @@ label work29_potatoes:
                     "We worked out the specifics, and he paid me 500 credits."
                     $ modify_credits(500)
                     $ mavericks += 1
-                    $ travis_points += 1
                 "I don't want to do that.":
                     him concerned "Sorry, I don't want to sell all my honey to you. You can buy it from the storehouse like everyone else."
                     travis angry "If that's what you want."

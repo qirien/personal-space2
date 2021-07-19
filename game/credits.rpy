@@ -9,7 +9,6 @@ label credits:
 
     window hide
     scene black with fade
-    $ skippable = not persistent.times_beaten
 
     show credits01 at tilted, right, driftdown, smallphoto
     show text "Credits" with dissolve
@@ -47,7 +46,7 @@ label credits:
     $ renpy.pause(5.0)
     
     show credits07 at tilted, right, driftdown, smallphoto    
-    show text "{a=http://www.flickr.com}Flickr{/a} users:\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\ngavin rice\nWilliam Klos\n\nAnd {a=http://www.pixabay.com}Pixabay{/a} users:\nShannon Anderson\nJacqueline Macou\nSabine van Erp\nShibang\nHumusak\nEmslichter\nMilt Ritter\nStockSnap\nDavid Mark\nhifijohn\nFree-Photos\nStockSnap"
+    show text "{a=http://www.flickr.com}Flickr{/a} users:\nMr. Gray\nNASA\nAlbuquerque South Broadway Cultural Center\nPresidencia de la República Mexicana\nFormlabs Inc.\ngavin rice\nWilliam Klos\n\nAnd {a=http://www.pixabay.com}Pixabay{/a} users:\nShannon Anderson, Jacqueline Macou\nSabine van Erp, Shibang\nHumusak,Emslichter\nMilt Ritter, StockSnap\nDavid Mark, hifijohn\nFree-Photos"
     $ renpy.pause(5.0)
     hide text with dissolve
 

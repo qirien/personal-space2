@@ -1671,30 +1671,64 @@ label spinach2:
     menu spinach_3_menu:
         "What should I do?"
         "Check the surveillance cameras" if (not spinach2_cameras):
-            "I trained the farm's cameras on the spinach plot, but the next morning when I looked at the video, none of the motion sensors were triggered.  I scanned through the video but couldn't find anything out of the ordinary."
+            "I trained the farm's cameras on the spinach plot, but the next morning when I looked at the video, none of the motion sensors had triggered. "
+            "I scanned through the video but couldn't find anything out of the ordinary."
             $ spinach2_cameras = True
             jump spinach_3_menu
         "Check on your spinach at night":
             show night_overlay with dissolve
             show him annoyed at center with moveinleft
             "After [kid_name] and [her_name] went to bed, I snuck out of the house to examine the spinach plants.  My flashlight caught something small and slimy -- it looked like a snail!"
-            "It wasn't exactly like an Earth snail; its shell was hard, and shaped like a turtle's shell instead of in a spiral pattern. Its body was soft and squishy, but with little feet protuberances like a caterpillar."
+            show turtlesnail as ts0 at random_pos behind night_overlay with dissolve
+            "It wasn't exactly like an Earth snail. Its body was soft and squishy, but with little feet protuberances like a caterpillar."
+            "Now that I looked more closely, I could see a lot of them..."
+            show turtlesnail as ts1 at random_pos behind night_overlay
+            show turtlesnail as ts2 at random_pos behind night_overlay
+            show turtlesnail as ts3 at random_pos behind night_overlay 
+            show turtlesnail as ts4 at random_pos behind night_overlay
+            show turtlesnail as ts5 at random_pos behind night_overlay
+            show turtlesnail as ts6 at random_pos behind night_overlay
+            show turtlesnail as ts7 at random_pos behind night_overlay
+            show turtlesnail as ts8 at random_pos behind night_overlay
+            show turtlesnail as ts9 at random_pos behind night_overlay
+            show turtlesnail as ts10 at random_pos behind night_overlay
+            show turtlesnail as ts11 at random_pos behind night_overlay
+            show turtlesnail as ts12 at random_pos behind night_overlay
+            with dissolve
             menu:
                 "What should I do?"
                 "Hand pick them off":
-                    "I spend several hours that night plucking off snails and putting them in a bucket. And the next night.  And the next night.  There's fewer each night, but it's tedious work."
+                    hide ts0
+                    hide ts1
+                    hide ts2
+                    hide ts3
+                    with dissolve
+                    "I spend several hours that night plucking off snails and putting them in a bucket. And the next night.  And the next night."
+                    "There were fewer each night, but it was tedious work."
                     if (get_work_kid() > 0):
                         show him determined at midright with move
                         show kid annoyed at midleft behind night_overlay with moveinleft
                         "I enlisted [kid_name]'s help. At first she was a little grossed out..."
                         show kid normal with dissolve
                         "...but eventually she got really good at it. With her shorter height, she was able to see the turtle-snails hiding under the leaves better than I could."
+                    hide ts4
+                    hide ts5
+                    hide ts6
+                    hide ts7
+                    with dissolve
                     "At first the turtle-snails seemed endless, but after a few nights there were less and less of them."
+                    hide ts8
+                    hide ts9
+                    hide ts10
+                    hide ts11
+                    hide ts12
+                    with dissolve
                     "And we harvested a lot of wonderful spinach."
                 "Make snail traps":
                     "I put some tasty smelling bait in the middle of a hole covered with boards."
                     scene fields with fade
                     show him normal at midright with dissolve
+                    show turtlesnail at center, baby_pos
                     "In the morning, the hole was full of turtle-snails, just waiting for me."
                     if (get_work_kid() > 0):
                         show kid surprised at midleft with dissolve
@@ -1714,7 +1748,9 @@ label spinach2:
                                 kid surprised "Okay, where?"
                                 him normal "The other side of the river should be far enough."
                                 "We got a bucket, filled it with snails, and she escorted them across the river."
-                                hide kid with moveoutright
+                                hide turtlesnail
+                                hide kid
+                                with moveoutright
                                 kid normal "There you go little buddies."
                                 him happy "Bye bye, vicious spinach eaters!"
                             "Have [kid_name] help you kill them.":
@@ -1744,6 +1780,7 @@ label spinach2:
                                 else:
                                     hide kid with moveoutleft
                                     "She left, and I carried out the death sentence on the turtle-snails."
+                    hide turtlesnail with dissolve
 
                     "I made some more traps and repeated the process until no more turtle-snails appeared."
                     "And we harvested a lot of wonderful spinach."
@@ -2117,7 +2154,7 @@ label honey1:
             him determined "I understand what you're saying, but you can't steal from people."
             travis angry "Yeah."
         "Want to learn beekeeping?":
-            $ travis_points += 2
+            $ travis_points += 1
             $ mavericks += 1
             him determined "You want to be independent? Why don't you come learn beekeeping? Eventually I'll need to split the hive and you can have your own bees."
             travis angry "I don't like bees..."

@@ -347,6 +347,10 @@ init -100:
         easein 0.1 xoffset 15
         easein 0.1 xoffset 0
 
+    transform random_pos:
+        xpos random_int(20, 1260)
+        ypos random_int(300,700)
+
     # Setup ACHIEVEMENTS
     python:
         show_which = ""
@@ -371,10 +375,10 @@ init -100:
                 "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":"ach13"},
                 "Super Farmer": {"desc":"Unlocked all crops", "file":"ach14"},
             # Achievements for Endings
-                "Bring Back My Baby": {"desc":"Ending #1", "file":"ending1"},
-                "Proving Herself": {"desc":"Ending #2", "file":"ending2"},
-                "Forever My Little Girl": {"desc":"Ending #3", "file":"ending3"},
-                "The Stars are Bright": {"desc":"Ending #4", "file":"ending4"},            
+                "Bring Back My Baby": {"desc":"Ending #1", "file":"ending1.png"},
+                "Proving Herself": {"desc":"Ending #2", "file":"ending2.png"},
+                "Forever My Little Girl": {"desc":"Ending #3", "file":"ending3.png"},
+                "The Stars are Bright": {"desc":"Ending #4", "file":"ending4.png"},            
             # Achievements for each parenting style
                 "Big Boss": {"desc":"Authoritarian Parent", "file":"ach19"},
                 "Firm Yet Fair": {"desc":"Authoritative Parent", "file":"ach20"},

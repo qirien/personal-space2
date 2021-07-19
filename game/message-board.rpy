@@ -41,7 +41,7 @@ label message2:
     julia_c "That sounds perfect!"
     natalia_c "But we don't need any rice. I was hoping to get some potatoes."
     pete_c "This is starting to sound like a riddle."
-    him_c "Okay, no problem, I'll send some potatoes to the Perons, and they'll send artichokes to the Nguyens, and the Nguyens can send rice to me."
+    him_c "Okay, no problem, I'll send some potatoes to the Peróns, and they'll send artichokes to the Nguyens, and the Nguyens can send rice to me."
     ilian_c "IF ONLY THERE WAS A CENTRAL PLACE TO BRING ALL YOUR FOOD WHERE SOMEONE COULD INVENTORY IT AND KEEP TRACK OF IT AND DISTRIBUTE IT!!!!"
     pete_c "No need to get all bent out of shape, it all worked out."
     nvl clear
@@ -219,7 +219,7 @@ label message9:
     nvl clear
     return
 
-# Community: Peron's over, who should take care of farm?
+# Community: Perón's over, who should take care of farm?
 # Family: Fighting with brother OR playing games on tablet when she's not supposed to. Baby bro born if not already
 label message10:
     nvl clear

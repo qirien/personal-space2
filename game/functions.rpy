@@ -421,10 +421,10 @@ init -100 python:
 
     # Calculate the amount of work available.
     def get_work_available():
-        return WORK_BASE + get_work_kid()
+        return WORK_BASE + work_increase + get_work_kid()
 
     def get_work_kid():
-        return roundint(total_competence * (kid_work_slider / 100.0) - kid_other_work)
+        return roundint(total_competence * 1.5 * (kid_work_slider / 100.0) - kid_other_work)
 
     def get_work_needed():
         total_work = 0

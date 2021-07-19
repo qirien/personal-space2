@@ -15,10 +15,10 @@
 define config.name = _("Space to Grow")
 
 ## The version of the game.
-define config.version = "0.7"
+define config.version = "0.8"
 define config.developer = True
 define config.console = True
-#define config.auto_choice_delay = 0.5 #None
+#define config.auto_choice_delay = 0.1 #None #TODO: make sure to delete this
 
 ## Game Saving Behavior
 define config.autosave_on_choice = False
