@@ -1253,7 +1253,7 @@ screen achievements():
             for title in achievement_list:
                 vbox:
                     if (achievement.has(title)):
-                        $ photo_file = persistent.achievements[title]["file"]
+                        $ photo_file = achievement_dict[title]["file"]
                         if (photo_file):
                             if (photo_file.endswith(".jpg") or photo_file.endswith(".png")): # for backwards compatability
                                 $ photo_file = "images/cgs/" + photo_file
@@ -1275,7 +1275,7 @@ screen achievements():
                             at highlight_imagebutton
                     text title xalign 0.5
                     showif (show_which == title):
-                        text persistent.achievements[title]["desc"] xalign 0.5 italic True size gui.quick_button_text_size
+                        text achievement_dict[title]["desc"] xalign 0.5 italic True size gui.quick_button_text_size
                     else:
                         text ""
 

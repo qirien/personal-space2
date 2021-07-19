@@ -8136,7 +8136,6 @@ label community30:
     #variables to test--mavericks > 10; miners > 10; has_strong_marriage; kevin_elected vs. not
     play music problems
     $ account_checked_counter = 0
-    $ know_noel_had_firegrass = False
     $ checked_noel = False
     $ checked_joel = False
     $ checked_julia = False
@@ -9159,10 +9158,14 @@ label community30:
             him doubt "Of course, if someone had pushed him, they would want to make it look like he fell."
             if know_noel_received_firegrass_deliveries:
                 him determined "[kid_name] told me that Noel received unusually large shipments of firegrass."
+            if know_rings_purpose:
+                him surprised "I found a firegrass measuring ring at Joel's house."
             if checked_joel:
                 him determined "I know that Joel had an unusual amount of credits in his account. "
             if knows_previous_head_injuries:
                 him pout "Joel had had previous head injuries, which could explain why he died so quickly after his fall."
+            if (checked_joel and know_rings_purpose and know_noel_received_firegrass_deliveries and knows_previous_head_injuries):
+                $ achieved("Take That!")
             her concerned "Do you think it was an accident or was there foul play?"
 
             menu:
@@ -9502,7 +9505,7 @@ label community30:
                                             sara sad "The jury decided that Julia and Van were not guilty of murder, but that Van was guilty of neglect."
                                             if ban_firegrass:
                                                 sara sad "They also found Julia guilty of selling firegrass-derived products without the oversight of a physician and without notifying her buyers."
-                                                if know_noel_had_firegrass:
+                                                if know_noel_received_firegrass_deliveries:
                                                     sara "They found Noel guilty of posession of firegrass without a license."
                                             else:
                                                 sara normal "They also found Julia guilty of misrepresenting her plum tea syrup."

@@ -113,6 +113,7 @@ label ending:
             $ persistent.crops_unlocked.add(crop_info[i][NAME_INDEX])
         $ i += 1
     $ renpy.save_persistent()
+    $ achievement.sync()
 
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve

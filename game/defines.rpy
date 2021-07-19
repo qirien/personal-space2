@@ -355,40 +355,41 @@ init -100:
     python:
         show_which = ""
         # Has achievement name, description, and spot for screenshot/icon
-        if (not persistent.achievements):
-            persistent.achievements = {
-            # Game Progression
-                "Carbon Copy": {"desc":"Trained Daughter in Farming", "file":"ach00"},
-                "Binary System": {"desc":"Father of Two", "file":"ach01"},
-                "Patience Grandmaster": {"desc":"Kept your Cool", "file":"ach02"},
-                "Talked the Talk": {"desc":"Answered Her Biology Questions", "file":"ach03"},
-                "Over the Hill": {"desc":"Turned 40", "file":"ach04"},
-            # Special weird things
-                "Scurvy Dog": {"desc":"Got Scurvy", "file":"ach05"}, 
-                "Rich Dad": {"desc":"Saved a LOT of credits!", "file":"ach06"}, 
-                "Poor Dad": {"desc":"Deep in debt", "file":"ach07"}, 
-                "Blackberry & Asparagus": {"desc":"Good Marriage Relationship", "file":"ach08"}, 
-                "Potato Papa": {"desc":"Planted almost all Potatoes", "file":"ach09"}, 
-                "Mutant Ninja Berries": {"desc":"Had Mutated Strawberries", "file":"ach10"}, 
-                "Chez Dad": {"desc":"Ate Alien Escargot", "file":"ach11"}, 
-                "Family Beeswax": {"desc":"Got Bees", "file":"ach12"}, 
-                "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":"ach13"},
-                "Super Farmer": {"desc":"Unlocked all crops", "file":"ach14"},
-            # Achievements for Endings
-                "Bring Back My Baby": {"desc":"Ending #1", "file":"ending1.png"},
-                "Proving Herself": {"desc":"Ending #2", "file":"ending2.png"},
-                "Forever My Little Girl": {"desc":"Ending #3", "file":"ending3.png"},
-                "The Stars are Bright": {"desc":"Ending #4", "file":"ending4.png"},            
-            # Achievements for each parenting style
-                "Big Boss": {"desc":"Authoritarian Parent", "file":"ach19"},
-                "Firm Yet Fair": {"desc":"Authoritative Parent", "file":"ach20"},
-                "Who Needs Rules?": {"desc":"Permissive Parent", "file":"ach21"},
-                "Hands-Off Approach": {"desc":"Neglectful Parent", "file":"ach22"},
-            # Achievements for each community favored
-                "Xenophiliac": {"desc":"Friend to the Jellies", "file":"ach23"},
-                "Don't Tread on Me": {"desc":"Friend to the Mavericks", "file":"ach24"},
-                "It Takes This Village": {"desc":"Friend to the Colonists", "file":"ach25"},
-                "Miner Details": {"desc":"Friend to the Miners", "file":"ach26"},            
+        # This needs to be persistent if you are using the screenshots for achievements system.
+        achievement_dict = {
+        # Game Progression
+            "Carbon Copy": {"desc":"Trained Daughter in Farming", "file":"ach00"},
+            "Binary System": {"desc":"Father of Two", "file":"ach01"},
+            "Patience Grandmaster": {"desc":"Kept your Cool", "file":"ach02"},
+            "Talked the Talk": {"desc":"Answered Her Biology Questions", "file":"ach03"},
+            "Over the Hill": {"desc":"Turned 40", "file":"ach04"},
+        # Special weird things
+            "Scurvy Dog": {"desc":"Got Scurvy", "file":"ach05"}, 
+            "Rich Dad": {"desc":"Saved a LOT of credits!", "file":"ach06"}, 
+            "Poor Dad": {"desc":"Deep in debt", "file":"ach07"}, 
+            "Blackberry & Asparagus": {"desc":"Good Marriage Relationship", "file":"ach08"}, 
+            "Potato Papa": {"desc":"Planted almost all Potatoes", "file":"ach09"}, 
+            "Mutant Ninja Berries": {"desc":"Had Mutated Strawberries", "file":"ach10"}, 
+            "Chez Dad": {"desc":"Ate Alien Escargot", "file":"ach11"}, 
+            "Family Beeswax": {"desc":"Got Bees", "file":"ach12"}, 
+            "Lousy Haircut": {"desc":"Shaved Head to get rid of Lice", "file":"ach13"},
+            "Super Farmer": {"desc":"Unlocked all crops", "file":"ach14"},
+            "Take That!": {"desc":"Found all evidence in murder mystery", "file":"murder.png"},
+        # Achievements for Endings
+            "Bring Back My Baby": {"desc":"Ending #1", "file":"ending1.png"},
+            "Proving Herself": {"desc":"Ending #2", "file":"ending2.png"},
+            "Forever My Little Girl": {"desc":"Ending #3", "file":"ending3.png"},
+            "The Stars are Bright": {"desc":"Ending #4", "file":"ending4.png"},            
+        # Achievements for each parenting style
+            "Big Boss": {"desc":"Authoritarian Parent", "file":"ach19"},
+            "Firm Yet Fair": {"desc":"Authoritative Parent", "file":"ach20"},
+            "Who Needs Rules?": {"desc":"Permissive Parent", "file":"ach21"},
+            "Hands-Off Approach": {"desc":"Neglectful Parent", "file":"ach22"},
+        # Achievements for each community favored
+            "Xenophiliac": {"desc":"Friend to the Jellies", "file":"ach23"},
+            "Don't Tread on Me": {"desc":"Friend to the Mavericks", "file":"ach24"},
+            "It Takes This Village": {"desc":"Friend to the Colonists", "file":"ach25"},
+            "Miner Details": {"desc":"Friend to the Miners", "file":"ach26"}           
             }
 
         #Ordered list to show them in a specific order
@@ -409,13 +410,14 @@ init -100:
         "Chez Dad", # ate escargot
         "Family Beeswax", # got bees
         "Lousy Haircut", # shaved your head to get rid of lice
-        "Super Farmer",
+        "Super Farmer", # unlocked all crops
+        "Take That!", # found all evidence in community30
         # Achievements for each ending
         "Bring Back My Baby", "Proving Herself", "Forever My Little Girl",  "The Stars are Bright", 
         # Achievements for each parenting style
         "Big Boss", "Firm Yet Fair", "Who Needs Rules?", "Hands-Off Approach",
         # Achievements for each community favored
-        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details",
+        "Xenophiliac", "Don't Tread on Me", "It Takes This Village", "Miner Details"
         ]
 
         for title in achievement_list:
