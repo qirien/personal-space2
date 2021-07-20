@@ -275,7 +275,6 @@ init -100 python:
         return earth_years
 
     # Find the right work event for this year
-    # TODO: on mobile, got a bug here on year 3 where number_events_seen was not defined??
     def get_next_work_event():
         global crop_temporarily_disabled, crop_info, number_events_seen
         # Enable any crops that were temporarily disabled
@@ -336,17 +335,15 @@ init -100 python:
                         else:
                             possible_events.add(event_label)
 
-            num_possible_events = len(possible_events)
+            num_possible_events = len(possible_events)          
             if (num_possible_events > 0):
                 random_event = renpy.random.choice(list(possible_events))
                 crop_name = ''.join([i for i in random_event if not i.isdigit()])  # strip off the trailing numbers of the crop event to get back the original crop_name
                 number_events_seen[crop_name] += 1
                 #print "Picked event: " + random_event
                 return random_event
-            else:
-                # Reset the number of events seen for each crop and give a default event.
-                number_events_seen = {"fallow":0, "corn":0, "potatoes":0, "wheat":0, "peppers":0, "tomatoes":0, "plums":0, "squash":0, "strawberries":0, "beans":0, "peanuts":0, "carrots":0, "turnips":0, "onions":0, "garlic":0, "spinach":0, "broccoli":0, "goats":0, "honey":0, "money":0}
-                return "default_crop_event"
+
+        return "default_crop_event"         # If somehow we don't have any crop events, then just give a default one.
 
     # Change amount of credits you have
     def modify_credits(amount, show_notification=True):
@@ -424,7 +421,7 @@ init -100 python:
         return WORK_BASE + work_increase + get_work_kid()
 
     def get_work_kid():
-        return roundint(total_competence * 1.5 * (kid_work_slider / 100.0) - kid_other_work)
+        return roundint(total_competence * 1.2 * (kid_work_slider / 100.0) - kid_other_work)
 
     def get_work_needed():
         total_work = 0

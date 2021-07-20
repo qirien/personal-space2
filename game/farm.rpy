@@ -392,20 +392,27 @@ init python:
         # If weighted, then you will be more likely to get a crop the more times it is planted.
         def random_crop(self, weighted = True, include_animals = True):
             chosen_crop = ""
-            while (chosen_crop == ""):
-                if weighted:
-                    chosen_crop = renpy.random.choice(self.items)
-                else:
-                    chosen_crop = renpy.random.choice(list(set(self.items)))
+            crops_selection = []
+
+            # Build a list of possible crops
+            for curr_crop in self.items:
                 if (not include_animals):
-                    if ((chosen_crop == "goats") or (chosen_crop == "honey")):
-                        chosen_crop = ""
+                    if not ((curr_crop == "goats") or (curr_crop == "honey") or (curr_crop == "fallow")):
+                        crops_selection.append(curr_crop)
+                else:
+                    if (curr_crop != "fallow"):
+                        crops_selection.append(curr_crop)
 
-                # an empty field is not a valid choice
-                if (chosen_crop == "fallow"):
-                    chosen_crop = ""
+            # If we have any to choose from, choose randomly.
+            if (len(crops_selection) > 0):
+                if weighted:
+                    chosen_crop = renpy.random.choice(crops_selection)
+                else:
+                    chosen_crop = renpy.random.choice(list(set(crops_selection)))
 
-            chosen_crop = chosen_crop.rstrip("+")
+                chosen_crop = chosen_crop.rstrip("+")
+            else: # otherwise just use the generic word "crops"
+                chosen_crop = "crops"
             return chosen_crop
 
         def most_frequent_crop(self):

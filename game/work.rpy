@@ -585,8 +585,8 @@ label work6:
     "We worked together all afternoon. When she got tired, I let her play in the dirt at the end of a row while I worked. I'm not sure if she helped me be any faster, but she was excited to make plants grow."
     $ competence += 2
     $ achieved("Carbon Copy")
-    "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her {color=#ff0}competence{/color}."
-    "Her competence increases as she learns and helps."
+    "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her competence."
+    "Her competence increases as she leanrs, works, and develops self-discipline."
     window hide
     scene black with fade
     return
@@ -885,7 +885,7 @@ label work14:
             $ confident += 1
         "Finish it for her." if (get_extra_work() > 0):
             him concerned "Just go home. I'll take care of it."
-            him sad "Oh-okay."
+            kid sad "Oh-okay."
             "I finished milking, put the goat away, filtered the milk, and washed the equipment."
             "It would be so nice if [kid_name] could learn to do this, but maybe she just wasn't ready yet."
             $ permissive += 1

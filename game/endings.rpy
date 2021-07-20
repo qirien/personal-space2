@@ -43,13 +43,17 @@ label ending:
             else:
                 call ending_cmima from _call_ending_cmima
 
+    scene aurora with fade
+    show him normal at midleft
+    show her normal at midright
+    with dissolve
     if (has_strong_marriage()):
         "I don't know if I would have made it through it all without [her_name]."
         "She listens to me, she helps me with kids and on the farm, and when she disagrees she tells me straight up but with love."
         "After all that we've been through, our relationship is stronger than ever."
         $ achieved("Blackberry & Asparagus")
     else:
-        "But even after everything we've been through, [her_name] and I are still together."
+        "Even after everything we've been through, [her_name] and I are still together."
         "Is it because of love, or are we just so used to each other we can't imagine living any other way?"
         "I'm glad she's with me, anyway."
 
@@ -88,6 +92,11 @@ label ending:
             call screen poetry_display(word_board, True)
         "No":
             $ pass
+
+    $ playtime = round(renpy.get_game_runtime() / 60.0 / 60.0, 1)
+    "[kid_name] had [total_attachment]/[ATTACHMENT_HIGH] attachment and [total_competence]/[COMPETENCE_HIGH] competence. Your overall parenting style was [parenting_style]."
+    "[his_name] had [total_colonists]/[COLONISTS_HIGH] colonists points, [total_miners]/[MINERS_HIGH] miners points, and [total_mavericks]/[MAVERICKS_HIGH] mavericks points. Play time [playtime] hours."
+
     call credits from _call_credits
 
     # Set multi-persistent variables about this playthrough
@@ -121,8 +130,7 @@ label ending:
     $ renpy.pause(2.0)
 
     "Thank you for playing Our Personal Space 2: Space to Grow!"
-    if (persistent.times_beaten <= 1):
-        "New Game+ unlocked! Bonus section unlocked!"
+    "New Game+ unlocked! Bonus section unlocked! Unlocked crops saved!"
 
     return
 

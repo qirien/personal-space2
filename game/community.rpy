@@ -1785,7 +1785,7 @@ label community11:
     brennan flirting "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
     him pout "No, no one mentioned it. I hope you're not looking to get your old job in the clinc back; [her_name] has a real nurse assisting her now."
     brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
-    brennan angry "Plus, I was the only applicant with relevant experience, having lived here for a year before."
+    brennan angry "Plus, I was the only applicant with relevant experience, having lived here before."
     her normal "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
     brennan happy "I'm really happy to be breathing fresh air, with my feet on solid ground again."
     brennan normal "How is your daughter? How old is she now - in Earth years?"
@@ -3471,7 +3471,7 @@ label community16:
     $ talked_Lily_c16 = False
     scene farm_interior with fade
     show him normal at midleft with dissolve
-    "It's a beautiful day out. [her_name] is on her way home for a quick lunch."
+    "It was a beautiful day out. [her_name] was on her way home for a quick lunch."
     show her normal coat at midright with moveinright
     her "Thanks for making lunch for us."
     him content "No problem. I was outside weeding anyway; it wasn't much trouble to pick some vegetables."
@@ -4716,6 +4716,7 @@ label community19:
         if ate_jellyfish:
             him excited "Also, how much is the jellystar scarf?"
             helen happy "It's 30 credits, but for you I could go as low as 25."
+            $ modify_credits(-25)
             him smirk "Hmm. I'll take it too. And do you have any of that jellystar food?"
             helen normal "Here you go. We stopped eating the jellystar. They're too cute to eat!"
             him happy "Yeah. See you next time."
@@ -6305,7 +6306,9 @@ label community25:
     play sound "sfx/ocean-waves.mp3"
     "Our now-yearly trek to the beach is a lot easier now that the kids are bigger."
     if (miners_strong()): #12
-        show chaco normal at midright with dissolve
+        show chaco normal at midright
+        show jellystar at center, baby_pos behind chaco, him
+        with dissolve
         "I looked around the coast for a bit and found Chaco tending his jellystar farm."
         "Nets with a close weave enclosed a small area off a pier."
         him pout "Is this the famous jellystar farm?"
@@ -6353,6 +6356,8 @@ label community25:
                     "What should I do?"
                     "Touch one.":
                         "I crouched down on the pier and reached out to touch one."
+                        show him surprised with dissolve
+                        show jellystar at jumpinghigh
                         "I felt a little spark like static and felt one of the spines poking me."
                         "The jellystars grasped each other and made a long chain to the edge of the net."
                         "I could see and think but it felt like I was in a trance."
@@ -6377,7 +6382,9 @@ label community25:
 
     elif (mavericks_strong()): #10
         "I found the jellystar farm on the map that Brennan gave me."
-        show pete normal at midright with dissolve
+        show pete normal at midright
+        show jellystar at center, baby_pos behind pete, him
+        with dissolve
         "I saw Pete standing on a pier and walked down to say hi."
         "Out on the pier, I could see that the jellystars were enclosed by large net walls."
         him "How's it going?"
@@ -6413,6 +6420,8 @@ label community25:
                     "What should I do?"
                     "Touch one.":
                         "I crouched down on the pier and reached out to touch one."
+                        show him surprised with dissolve
+                        show jellystar at jumpinghigh
                         "I felt a little spark like static and feel one of the spines poking me."
                         "The jellystars grasped each other and made a long chain to the edge of the net."
                         "I could see and think but it felt like I was in a trance."
@@ -6494,6 +6503,7 @@ label community25:
 
 
     else: #if neither miners or mavericks is high enough
+        show jellystar at center, baby_pos behind him with dissolve
         "I found the jellystar farm on the map where Brennan said it would be."
         "I found a pier surrounded by nets that enclosed bunches of jellystar."
         "One jellystar had five tentacles covered with purple spines like an Earth sea urchin."
@@ -6507,6 +6517,7 @@ label community25:
                 "I crouched down on the pier and reached out to touch one."
                 show him surprised with dissolve
                 "I felt a little spark like static and feel one of the spines poking me."
+                show jellystar at jumpinghigh
                 "The jellystars grasped each other and made a long chain to the edge of the net."
                 "I could see and think but it felt like I was in a trance."
                 "After a few minutes -- or maybe an hour? -- it let me go."
@@ -6527,9 +6538,12 @@ label community25:
             show purplelight as light2 at random_pulse_alpha
             show purplelight as light3 at random_pulse_alpha
             show purplelight as light4 at random_pulse_alpha
+            show jellystar at pace_back_and_forth
             with dissolve
             "That night I had a strange dream where I was underwater and jellystars were dancing all around me. They invited me into a dark underwater cave where something large lurked in the shadows."
+            show jellystar at center, closeup_baby with move
             "I swam closer and closer, but before I could see what it was, I woke up."
+            hide jellystar with dissolve
             "The weird thing is, in my dream, I wasn't scared. I was just really curious..."
 
     stop sound fadeout 1.0
@@ -6949,6 +6963,7 @@ label community27:
     nvl clear
     "I answered the question. Then it asked me to 'proceed on highlighted route', showing a top-down map. I could tell it was mimicking our travel app, but it didn't adjust to my exact location."
     "I followed the map, which took my little borrowed rowboat past the swell of the waves, which as far as I knew was uncharted territory."
+    show jellystar at midright, baby_pos with moveinright
     "My rowing became easier, and I noticed that jellystars were guiding my boat towards my destination."
     "Something under the surface was emitting a light."
     show jellymother_cg
@@ -7107,7 +7122,7 @@ label call_to_squid:
             if (is_attached()):
                 show kid sad at quarterleft
             with moveinleft
-            "The jellystars seemed to sense my presence quickly in the boat, and took me to a different place, where I met with the jellysquid parent."
+            "The jellystars seemed to sense my presence quickly in the boat, and took me to where I met with the jellysquid parent."
             show jellysquid0 at center, baby_pos with moveinbottom
             "They communicated to me through a jellysquid, which I put in a bucket on my boat."
             jellysquid "Did you bring shells?"
@@ -7226,6 +7241,7 @@ label call_to_squid:
                         "The jelly mother creature was trying to tell me that the jellystars needed to eat the jellysquid shells in order to make their own shells."
                         "In the absence of shells, maybe they could eat something else that could be their \"shell food\" that would give them the necessary nutrients to make their own shells."
                         "I put the jellysquid back in the water."
+                        hide jellysquid0 with moveoutbottom
                         "Something about our conversation reminded me of Dr. Lily."
                         "It was businesslike and highly focused on a certain outcome."
                         jump back_to_farm27
