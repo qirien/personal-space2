@@ -335,7 +335,7 @@ label work_intro:
     scene aurora_animated with fade
     "Talaam's frequent solar flares meant we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
     "The flares' radiation was dangerous to humans, but so far hadn't had much effect on plants."
-    "On this new planet, though, everything was an experiment."
+    "On this new planet, everything was an experiment."
     call farm_tutorial from _call_farm_tutorial
     return
 
@@ -364,6 +364,12 @@ label farm_tutorial:
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
                 "Sometimes there's extra options I can only choose if I have extra work, so I don't want to try to do too much."
+
+                if (not renpy.mobile):
+                    "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
+                    "If you miss something, you can scroll backwards and forwards using the mousewheel."
+                else:
+                    "You can use the tab at the right to bring up more options, like auto advance, preferences, and a conversation log."
         "No.":
             $ pass
     return

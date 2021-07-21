@@ -266,7 +266,7 @@ label start:
     $ _quit_slot = "quitsave"
 
     # TODO: Take this out when beta testing is over
-    "Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
+    #"Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
     if (persistent.times_beaten):
         "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked."
@@ -285,11 +285,6 @@ label start:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
             "If you haven't played {a=https://www.metasepiagames.com/OurPersonalSpace/index.html}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
-        if (not renpy.mobile):
-            "You can press the ESC key or right-click at any time to bring up the menu to change options or save your game."
-            "If you miss something, you can scroll backwards and forwards using the mousewheel."
-        else:
-            "You can use the tab at the right to bring up more options, like auto advance, preferences and saving your game, and a conversation log."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve
@@ -329,13 +324,24 @@ label start:
 
     scene stars_animated with fade
     play music upbeat
-    "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
-    "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
+    menu:
+        "Did I always want to be a dad?"
+        "Ever since I was a kid!":
+            "I always wanted to be a dad. I dreamed of teaching my kids, loving them, laughing together."
+            "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
+        "Not until recently.":
+            "Ever since I married [her_name], I've wanted to start a family."
+            "I dreamed of teaching my kids, loving them, laughing together."
+            "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
+        "I'm still not sure I want to be a dad.":
+            "Having a baby... it just sounds so strange. I wasn't sure I was ready... but we had a baby anyway."
+            "Now, I know how to work hard, so I figured I could handle anything."
+
     "But being a dad was a different kind of work than I had ever done before."
 
     # Introduction Scenes
     call family_intro from _call_family_intro
-    call community_intro from _call_community_intro
+    #call community_intro from _call_community_intro
     call work_intro from _call_work_intro
 
     scene stars with fade

@@ -10,7 +10,7 @@
 # Intro event
 label family_intro:
     "All [kid_name] needed at first was a clean diaper, milk, and some love. Simple, right?"
-    "It didn't always feel simple, though. Sometimes it was all I could do just to stay awake."
+    "But sometimes... it was all I could do just to stay awake."
     play music sad
     call bedroom_scene(True) from _call_bedroom_scene_1
     show kid sad with dissolve
@@ -54,7 +54,6 @@ label family_intro:
         "[her_name] reached across the baby and squeezed my hand before we both fell back asleep."
     else:
         "[her_name] rolled over, trying to get comfortable. I reached over across the baby and squeezed her arm. She placed her hand on top of mine and eventually we both fell back asleep."
-        $ marriage_strength += 1
     return
 
 # 3 Earth mos. old
