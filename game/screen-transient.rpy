@@ -38,7 +38,7 @@ screen show_notification(message=""):
     timer 5.0 action Hide("show_notification")
 
 # Show a summary of changes for the previous year
-screen yearly_summary():
+screen yearly_summary(endgame=False):
     key "K_RETURN" action Return()
     key "K_SPACE" action Return()
     style_prefix "plan_farm"
@@ -66,30 +66,67 @@ screen yearly_summary():
                                     spacing 10
                                     xfill True
                                     vbox:                                        
-                                        xsize 200
-                                        xalign 1.0
-                                        #label "Year [year] Summary"
-                                        #text notifications
-                                        hbox:
-                                            label "[kid_name]"
-                                            $ iconname = bios.getIconName("[kid_name]")
-                                            add "images/icons/" + iconname + "-icon.png"
-                                        hbox:
-                                            null width 40
-                                            vbox:
-                                                ysize 10
-                                                for var in ["attachment", "competence"]:
-                                                    use show_stat(var)
-                                        label "Factions"
-                                        hbox:
-                                            null width 40
-                                            vbox:
-                                                if (year > PETE_LEAVES_YEAR):
-                                                    for var in ["miners", "colonists", "mavericks"]:
-                                                        use show_stat(var) 
-                                                else:
-                                                    for var in ["miners", "colonists"]:  
-                                                        use show_stat(var) 
+                                        xsize 230
+                                        #xalign 1.0
+                                        if (endgame):
+                                            label "Farm"
+                                            hbox:
+                                                null width 30
+                                                vbox: 
+                                                    text "Size"
+                                                    text "Credits"
+                                                    text "Overworked"
+                                                    text "Bad Nutrition"
+                                                    text "Low Calories"
+                                                    text "Kid Overworked"
+                                                vbox:
+                                                    text "[farm_size]" xalign 1.0 
+                                                    text "[credits]" xalign 1.0
+                                                    text "[overwork_count]" xalign 1.0
+                                                    text "[bad_nutrition_count]" xalign 1.0
+                                                    text "[low_calories_count]" xalign 1.0
+                                                    text "[terra_overwork_count]" xalign 1.0
+                                            null height 10
+                                            label "Community"
+                                            if is_liaison:
+                                                text "Liaison:     [his_name]" xpos 30
+                                            else:
+                                                text "Liaison:     Sara" xpos 30
+                                            if kevin_elected:
+                                                text "Mayor:      Kevin" xpos 30
+                                            else:
+                                                text "Mayor:      Julia" xpos 30
+                                            if (ban_firegrass):
+                                                text "Firegrass: Banned" xpos 30
+                                            else:
+                                                text "Firegrass: Legal" xpos 30
+                                            if (kevin_elected):
+                                                text "Miners:   Can Vote" xpos 30
+                                            else:
+                                                text "Miners:   Cannot Vote" xpos 30
+                                            $ playtime = round(renpy.get_game_runtime() / 60.0 / 60.0, 1)
+                                            text "Game Time: [playtime] hours"
+                                        else:
+                                            hbox:
+                                                label "[kid_name]"
+                                                $ iconname = bios.getIconName("[kid_name]")
+                                                add "images/icons/" + iconname + "-icon.png"
+                                            hbox:
+                                                null width 40
+                                                vbox:
+                                                    ysize 10
+                                                    for var in ["attachment", "competence"]:
+                                                        use show_stat(var)
+                                            label "Factions"
+                                            hbox:
+                                                null width 40
+                                                vbox:
+                                                    if (year > PETE_LEAVES_YEAR):
+                                                        for var in ["miners", "colonists", "mavericks"]:
+                                                            use show_stat(var) 
+                                                    else:
+                                                        for var in ["miners", "colonists"]:  
+                                                            use show_stat(var) 
                                         
                                     if (year <= BABY_MAX):
                                         $ kid_type = "baby"
@@ -104,18 +141,73 @@ screen yearly_summary():
                                 style "plan_farm_subframe"
 
                                 vbox:
-                                    label "Quote"
-                                    hbox:
-                                        null width 30
-                                        text parenting_quotes[year]
+                                    # Screen for at the end of the game
+                                    if (endgame):
+                                        $ strong_marriage = has_strong_marriage()
+                                        $ boyfriend_name = get_boyfriend_name()
+                                        $ parenting_style = get_parenting_style().capitalize()
+                                        $ bff = strongest_faction().capitalize()
+                                        $ adjective = get_kid_adjective().capitalize()
+                                        $ att_percent = min(100, int(100.0*total_attachment/ATTACHMENT_MAX))
+                                        $ com_percent = min(100, int(100.0*total_competence/COMPETENCE_MAX))
+                                        # Info about Jack
+                                        label "[his_name]"
+                                        text "[parenting_style] parent" xpos 30
+                                        if (total_colonists >= COLONISTS_HIGH):
+                                            text "Colonists' Friend" xpos 30
+                                        if (total_miners >= MINERS_HIGH):
+                                            text "Miners' Friend" xpos 30
+                                        if (total_mavericks >= MAVERICKS_HIGH):
+                                            text "Mavericks' Friend" xpos 30
+                                        if (jellypeople_happy):
+                                            text "Jellypeople's Friend" xpos 30
+                                        # Info about Kelly 
+                                        if (strong_marriage):
+                                            label "[her_name] {emoji=heart}"
+                                        else:
+                                            label "[her_name] {emoji=nutrition-half}"
+                                        # Info about Terra          
+                                        if (total_attachment >= ATTACHMENT_HIGH):
+                                            label "[kid_name] {emoji=heart}"
+                                        else:
+                                            label "[kid_name] {emoji=nutrition-half}"
+                                        text "Attachment: [att_percent]%" xpos 30
+                                        text "Competence: [com_percent]%" xpos 30
+                                        if (total_attachment < ATTACHMENT_HIGH):
+                                            if (total_competence < COMPETENCE_HIGH):
+                                                text "Occupation:   Drifter" xpos 30
+                                            else:
+                                                text "Occupation:   Med Student" xpos 30
+                                        else:
+                                            if (total_competence < COMPETENCE_HIGH):
+                                                    text "Occupation:   Delivery Girl" xpos 30
+                                            else:
+                                                text "Occupation:   Xenologer" xpos 30
+                                        if (boyfriend_name != ""):
+                                            text "Boyfriend:      [boyfriend_name]" xpos 30
+                                        # Info about Aeron
+                                        if (total_attachment < ATTACHMENT_HIGH):
+                                            label "[bro_name] {emoji=nutrition-half}"
+                                        else:
+                                            label "[bro_name] {emoji=heart}"
+                                    else:
+                                        label "Quote"
+                                        hbox:
+                                            null width 30
+                                            text parenting_quotes[year]
                         frame:
                             #xsize LEFT_COLUMN_WIDTH + MIDDLE_COLUMN_WIDTH + RIGHT_COLUMN_WIDTH
                             style "plan_farm_subframe"
                             vbox:
                                 xfill True
-                                textbutton "Continue":
-                                     xalign 0.5
-                                     action Return()
+                                if (endgame):
+                                    textbutton "The End":
+                                        xalign 0.5
+                                        action Return() 
+                                else:
+                                    textbutton "Continue":
+                                        xalign 0.5
+                                        action Return()
 
 screen show_stat(var):
     vbox:

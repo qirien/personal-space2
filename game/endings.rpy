@@ -93,12 +93,6 @@ label ending:
         "No":
             $ pass
 
-    $ playtime = round(renpy.get_game_runtime() / 60.0 / 60.0, 1)
-    "[kid_name] had [total_attachment]/[ATTACHMENT_HIGH] attachment and [total_competence]/[COMPETENCE_HIGH] competence. Your overall parenting style was [parenting_style]."
-    "[his_name] had [total_colonists]/[COLONISTS_HIGH] colonists points, [total_miners]/[MINERS_HIGH] miners points, and [total_mavericks]/[MAVERICKS_HIGH] mavericks points. Play time [playtime] hours."
-
-    call credits from _call_credits
-
     # Set multi-persistent variables about this playthrough
     if not persistent.times_beaten:
         $ persistent.times_beaten = 1
@@ -124,14 +118,16 @@ label ending:
     $ renpy.save_persistent()
     $ achievement.sync()
 
+    call credits from _call_credits
+    scene stars with fade
+    call screen yearly_summary(endgame=True) with slowfade
     scene stars with fade
     show text "{size=140}{font=fonts/SP-Marker Font.otf}The End{/font}{/size}" with dissolve
     stop music fadeout 3.0
     $ renpy.pause(2.0)
 
-    "Thank you for playing Our Personal Space 2: Space to Grow!"
     "New Game+ unlocked! Bonus section unlocked! Unlocked crops saved!"
-
+    "Thank you for playing Our Personal Space 2: Space to Grow!"
     return
 
 #1 aci - Blames you for everything. Clingy. Returns to Earth (with Lorant?) but you know the relationship won't last.
@@ -591,9 +587,12 @@ label ending_AC:
     $ achieved("The Stars are Bright")
     "Ending 4/4: The Stars are Bright"
     window auto hide
-    show ending4_cg # TODO: Different version for Travis?
-    #if (boyfriend_name == "Travis"):
-    #    persistent.achievements["The Stars are Bright"["file"]] = ""
+    if (boyfriend_name == "Travis"):        
+        $ achievement_dict["The Stars are Bright"]["file"] = "ending4t.png"
+        show ending4t_cg 
+    else:
+        $ achievement_dict["The Stars are Bright"]["file"] = "ending4.png"
+        show ending4o_cg
     $ renpy.pause(6.0)
     $ renpy.pause()
 

@@ -31,8 +31,6 @@ label tests:
 
         "Dialogue Test":
             call test_dialogue from _call_test_dialogue
-        "Omake":
-            call omake from _call_omake
         "Message Board":
             call test_message_board from _call_test_message_board
         "Trailer":
@@ -133,12 +131,17 @@ label test_cgs:
     $ renpy.pause(6.0)
     $ renpy.pause()
 
-    "Ending 4/4."
+    "Ending 4/4 (Oleg)."
     window auto hide
-    show ending4_cg
+    show ending4o_cg
     $ renpy.pause(6.0)
     $ renpy.pause()
 
+    "Ending 4/4 (Travis)."
+    window auto hide
+    show ending4t_cg
+    $ renpy.pause(6.0)
+    $ renpy.pause()
     return
 
 label test_family_photo:

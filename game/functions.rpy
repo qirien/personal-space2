@@ -232,11 +232,11 @@ init -100 python:
         return (total_independence >= roundint(year * (INDEPENDENCE_HIGH/float(MAX_YEARS))))
 
     def get_kid_adjective():
-        if is_independent:
+        if is_independent():
             return "independent"
-        elif is_competent:
+        elif (is_competent() and (total_competence >= total_attachment)): 
             return "capable"        
-        elif is_attached:
+        elif (is_attached() and (total_attachment >= total_competence)):
             return "friendly"
         return "smart"
 

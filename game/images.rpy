@@ -75,11 +75,16 @@ init -10:
         linear 2.0 zoom 0.75
         linear 2.0 zoom 0.5
 
-    image ending4_cg:
+    image ending4o_cg:
         "images/cgs/ending4.png"
         xalign 0.0 yalign 0.5
         linear 3.0 xalign 1.0 yalign 0.5
         linear 3.0 zoom 0.5
+    image ending4t_cg:
+        "images/cgs/ending4t.png"
+        xalign 0.0 yalign 0.5
+        linear 3.0 xalign 1.0 yalign 0.5
+        linear 3.0 zoom 0.5        
 
     image aurora_animated:
         "images/bg/aurora.jpg"
