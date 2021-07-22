@@ -347,10 +347,9 @@ label community2:
         nvl clear
         legalese "In return for your individually contracted compensation, Rare Earth Tech, hereafter referred to as 'RET', will provide supplies, technology, and infrastructure to RET Colonists."
         legalese "Farmers will farm 3 acres to the best of their ability as weather permits."
-        legalese "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager"
-        legalese "to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."
-        legalese "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations"
-        legalese "and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
+        legalese "All food farmed by RET Colonists and all livestock raised by RET Colonists is property of RET, to be rationed out by the Storehouse Manager to all RET Employees according to the chart in Appendix C based on family size and estimated caloric consumption."
+        legalese "Any Colonist not in accordance with this agreement will not be accorded Storehouse rations and will be expected to return all RET property, including but not limited to technology, vehicles, furniture, tools, etc."
+        nvl clear
         legalese "Colonist couples of childbearing age must attempt to replace themselves through reproduction."
         legalese "Children of RET employees are also RET employees with regards to the legal status of their surplus goods."
         legalese "RET reserves the right to amend this document as it sees fit."
@@ -601,7 +600,7 @@ label community4:
     show pavel normal at center with dissolve
     play sound "sfx/people.mp3"
     "Pavel, our mayor, called a town meeting."
-    pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 250 characters, you know."
+    pavel "Rare Earth Tech sent us an instantaneous message. It's a bit short, but they only have 140 characters, you know."
     pavel "They said:"
     $ parenting_style = get_parenting_style()
     if (parenting_style== "authoritative"):
@@ -1026,13 +1025,15 @@ label community7:
     play music thoughtful
     show community_center with fade
     show zaina normal at center with dissolve
-    zaina "The fossil record near here contains many invertebrates that do not have shells. If they had been merely eaten to death, we wouldn't have their fossils."
-    zaina sad "One possibility is that an area that used to be part of the ocean became locked into one area, and they ate up all possible prey."
-    zaina normal "Another possibility is that solar flares are a geologically recent event, and that they died quickly once the flares started."
-    zaina sad "However, the existence of other animals at the same time with shells that are resistent to radiation makes it likely that the solar flare problem was cyclic."
+    zaina "Isotopic analysis of these samples are helping us build a map of the irradiance history of Talaam's sun."
+    zaina normal "This irradiance, which we notice today in the form of frequent solar flares, may not have always been the case on this planet."
+    zaina happy "If the irradiance cyclical, it's possible we might have more or less solar flares in the future."
+    zaina sad "However, as we have only been taking irradiance measurements from Talaam orbit for a relatively short period of time, it may take some time to correlate that data with our isotopic analysis."
+    zaina normal "I'm also hoping to find fossils that will tell us more about Talaam's prehistoric plants and animals. The most likely places around here would be the cliffs near the river and the canyon leading up toward the mountain."
+    zaina happy "I'll be looking, but let me know if you find anything!"
     show zaina normal at midright with move
     show pavel normal at midleft with moveinleft
-    pavel "Thank you, Zaina, for the presentation on Talaam's geologic history."
+    pavel "Thank you, Zaina, for the presentation on your progress researching Talaam's geologic history."
     hide zaina with moveoutright
     show pavel at center with move
     pavel "We want you to feel that your fellow farmers are co-workers, so please use this time to talk to them."
@@ -1378,7 +1379,7 @@ label community9:
             show pete normal at center
             show him normal at midleft
             with dissolve
-            "We setup a camp nearby, and Pete strung his giant longbow and waxed the string."
+            "We set up a camp nearby, and Pete strung his giant longbow and waxed the string."
             pete "Here, give this baby a try. Aim for that dead tree over there."
             him pout "Isn't there supposed to be some place for the arrow to rest?"
             pete "Don't need it. It just rests on your hand."
@@ -1607,7 +1608,7 @@ label community10:
     with moveinleft
     natalia happy "Thanks for coming over. We're just finishing up the corn."
     martin "We made a turkey bean soup. It should go well with your salad."
-    "We ate outside, where the Peróns had built two picnic benches, with some crabbird shells modified to be stools."
+    "We ate outside, where the Peróns had built two picnic benches, with some crabird shells modified to be stools."
     "After the meal, [kid_name] ran off to play with the other kids and Natalia brought out some toys for [bro_name]."
     hide kid
     hide boy
@@ -2442,7 +2443,7 @@ label community12:
         brennan angry "Ha! Who's going to teach them what they can eat?"
         him explaining "Dr. Lily can. It's half the reason she's here."
         him "As for hunting, I think that your workers will enjoy a change of pace. It might even make them more productive."
-        brennan concerned "I've tasted crabbird though. It's not as good as chicken."
+        brennan concerned "I've tasted crabird though. It's not as good as chicken."
         him normal "We have some really good recipes. Put enough spices on it and you can hardly tell the difference."
         him explaining "You can start growing some spices and potatoes. We'll start you off and then soon you'll be enjoying the joys of farming!"
         him "Pete can teach you how to hunt."
@@ -2751,7 +2752,7 @@ label community13:
             brennan normal "Surprisingly practical."
             lily angry "I am now questioning the merits of asking you for help, [his_name]. Whether through cynicism or despair, giving up will accomplish nothing."
             $ c13_lily_happiness -= 1
-        "...work on something to extract the heavy metals":
+        "...work on something to extract the heavy metals.":
             him pout "Lily, is there something you could do to get the metals out of the water and the ground?"
             lily normal "Distillation will remove heavy metals from water."
             him surprised "Really?"
@@ -2763,7 +2764,6 @@ label community13:
             him pout "Can you allocate more people so the repairs go as fast as possible?"
             brennan concerned "Kevin is still drawing up plans for the repair. As soon as he knows what he needs, I'll support him as much as possible."
             lily angry "Throwing more people at this problem isn't going to solve it."
-            $ c13_lily_happiness -= 1
         "...delay for just one day.":
             him pout "Can you just delay for one day, and use all your resources to start fixing this problem?"
             brennan angry "No, I already explained that I cannot. Not at all."
@@ -3342,7 +3342,7 @@ label community15:
         "Prepare a poem":
             $ colonists += 1
             $ c15_funeral = "poem"
-            "The best way to keep it short would be to make a poem. I'd better make it good, though..."
+            "The best way to keep it short would be to make a poem about how to remember Naomi. I'd better make it good, though..."
             $ word_board.set_wordpack(basic_words, talaam_words, separation_words)
             call make_poem from _call_make_poem
             $ c15_funeral_poem = word_board.get_poem_as_string(-1)
@@ -3395,7 +3395,7 @@ label community15:
                 him concerned "She was honest, kind, and thoughtful. She put others' needs before her own."
                 him content "We will greatly miss her."
             "Remember her by caring for each other.":
-                him "Sister Naomi wouldn't want us to spend a bunch of time talking about her. In fact, she'd probably be embarassed."
+                him "Sister Naomi wouldn't want us to spend a bunch of time talking about her. In fact, she'd probably be embarrassed."
                 him concerned "She'd want us to remember her by doing the kinds of things she did -- taking time to enjoy the people around us and helping each other."
                 him content "So let's remember her often, and let that memory propel us forward to do good to others."
             "Life is hard; then we die.":
@@ -3475,7 +3475,7 @@ label community16:
     show her normal coat at midright with moveinright
     her "Thanks for making lunch for us."
     him content "No problem. I was outside weeding anyway; it wasn't much trouble to pick some vegetables."
-    her nervous coat "I just got a call from Helen... Pete is really sick."
+    her nervous coat "I just got a message from Helen... Pete is really sick."
     him surprised "Are they going to bring him in?"
     her sad coat "Yes. I told them that I would treat him like any other colonist."
     her concerned coat "But I asked them to pay with some food, and they want to donate a calf."
@@ -4718,7 +4718,7 @@ label community19:
             helen happy "It's 30 credits, but for you I could go as low as 25."
             $ modify_credits(-25)
             him smirk "Hmm. I'll take it too. And do you have any of that jellystar food?"
-            helen normal "Here you go. We stopped eating the jellystar. They're too cute to eat!"
+            helen normal "Here you go. We stopped eating the jellystars. They're too cute to eat!"
             him happy "Yeah. See you next time."
         else:
             him content "Have a good one!"
@@ -4738,7 +4738,7 @@ label community19:
     "The next day I was checking my messages at breakfast when I saw Natalia posting on the community chat."
     nvl clear
     natalia_c "Thank you everyone for your willingness to help with the harvest, but we won't be needing any extra hands on Wednesday."
-    natalia_c "Last night a giant flock of crabbirds came and ate almost all of the corn."
+    natalia_c "Last night a giant flock of crabirds came and ate almost all of the corn."
     natalia_c "I know that many of you were depending on our corn to feed your livestock over the rainy season. I'm sorry this happened."
     thuc_c "Wow, that is devastating news."
     nvl clear
@@ -4747,13 +4747,13 @@ label community19:
     him_c "Aren't there patches of wild alfalfa we could feed them?"
     thuc_c "The wild alfalfa is too far away, and it starts dying as soon as the rainy season starts. Plus it's mixed in with native weeds."
     her surprised "What's going on? Some exciting gossip?"
-    him determined "Crabbirds ate all the Perón's corn, so we won't be harvesting it together."
+    him determined "crabirds ate all the Perón's corn, so we won't be harvesting it together."
     her sad "Whaaaaat? What will the cows eat during the rainy season?"
     him pout "That's what everyone's wondering. Maybe they can increase the amount of alfalfa in the feed?"
-    her concerned "I wonder why there were so many crabbirds. We've never seen this many before, have we?"
+    her concerned "I wonder why there were so many crabirds. We've never seen this many before, have we?"
     him doubt "Who knows. Maybe since they've been eating our crops, they've been able to reproduce faster."
     her nervous "But wouldn't that mean that their natural predators could eat more of them?"
-    him concerned "Huh. I wonder what the natural predators of the crabbirds are."
+    him concerned "Huh. I wonder what the natural predators of the crabirds are."
     her annoyed "Well, it's not the land lobsters, because they eat smaller things, right?"
     him pout "Yeah. I think they are mostly herbivorous."
     her surprised "Maybe... some kind of larger bird that we haven't seen before?"
@@ -4761,8 +4761,8 @@ label community19:
     him concerned "Oh..."
     her concerned "Oh?"
     him_c "It's probably the wolf slugs - Helen said there aren't very many around anymore."
-    sara_c "How could they even catch a crabbird?! {emoji=worried}"
-    lily_c "It is probable that the wolf slugs eat their eggs. They have been observed near crabbird nesting grounds."
+    sara_c "How could they even catch a crabird?! {emoji=worried}"
+    lily_c "It is probable that the wolf slugs eat their eggs. They have been observed near crabird nesting grounds."
     him_c "That makes a lot of sense."
     ilian_c "If we keep feeding the livestock at the same rate as before, we need to lose four cows."
     if thuc_has_cattle:
@@ -4815,14 +4815,14 @@ label community19:
             him_c "Let's butcher the cows. But give me some of the fresh meat before you make it all into jerky!"
             ilian_c "Don't worry, I will!"
     nvl clear
-    natalia_c "The crabbirds are still around... what are we going to do about them?"
+    natalia_c "The crabirds are still around... what are we going to do about them?"
     julia_c "Maybe we could make nets or traps for them."
-    sara_c "Oooh, I love crabbird chowder! {emoji=yum}"
+    sara_c "Oooh, I love crabird chowder! {emoji=yum}"
     ilian_c "I do have a yearly stipulation of credits from RET for helping with emergencies..."
-    ilian_c "If you process your crabbirds in the cannery, I promise we'll pay a good price for them."
-    natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabbirds that day instead."
+    ilian_c "If you process your crabirds in the cannery, I promise we'll pay a good price for them."
+    natalia_c "Since everyone was making arrangements to help with the harvest on Wednesday anyway, let's hunt crabirds that day instead."
     scene stars with fade
-    "We all spent the day hunting crabbirds. Since none of us were very experienced, we didn't catch very many, but Tomás was able to trap a lot of them that week."
+    "We all spent the day hunting crabirds. Since none of us were very experienced, we didn't catch very many, but Tomás was able to trap a lot of them that week."
     return
 
 ################################################################################
@@ -4840,7 +4840,11 @@ label community20:
         him "Hi Pavel. How can I help you?"
         pavel sad "Dr. Lily's health has been declining and she doesn't think she'll last much longer. She wants to move back to the colony."
         pavel normal "We don't have a precedent for this situation. What do you think RET would want?"
-        him concerned "Hmm. I haven't heard much from RET so I assume they're happy."
+        if (not is_liaison):
+            him surprised "Me? Why are you asking me?"
+            pavel normal "I just want to hear what you have to say."
+        else:
+            him concerned "Hmm. I haven't heard much from RET so I assume they're happy."
         if mavericks_strong(): #9 #maxiumum is 16 at this point, so to get this you have to side with mavericks more than half the time
             him pout "We could ask them, but if they say no, would we really want to turn Dr. Lily away?"
             pavel normal "That's true, but we're setting a precedent here. What if in 80 years, Pete's group is like 30 people and suddenly want to join back with us?"
@@ -4961,7 +4965,7 @@ label community20:
         lily normal "They have skin like a cephalopod's."
         him pout "No, I mean, how do you communicate with them if you aren't speaking to them?"
         lily happy "I write to them in simple language through my tablet. The new models are waterproof, you know."
-        lily normal "Sometimes they seem to be able to read words that I write on the tablet. Sometimes they seem like Earth animals and are completely uninterested in commmunicating."
+        lily normal "Sometimes they seem to be able to read words that I write on the tablet. Sometimes they seem like Earth animals and are completely uninterested in communicating."
         lily "I know that Zaina will continue this research. Since our findings are unusual, I want to wait until we know more to send the report to any of the others."
         him surprised "Is this an animal I've eaten? What does it look like?"
         lily happy "I doubt that you've eaten it. They do seem to have some relationship to the jellystars."
@@ -5102,7 +5106,7 @@ label community21:
     kid nervous "We're learning about Earth biology and how it's different from biology on Talaam."
     kid surprised "When you were on Earth, did you ever have a dog?"
     brennan explaining "No, I didn't, but my friend did."
-    brennan happy "It licked my face whenever I walked in the door, but otherwise I ignored her."
+    brennan happy "She used to lick my face whenever I walked in the door, but otherwise I ignored her."
     kid happy "It seems like it would be really fun to interact with an animal that can tell what you're feeling."
     brennan flirting "Oh, and none of the creatures here can do that?"
     kid shifty "I don't think so..."
@@ -5118,7 +5122,7 @@ label community21:
     play music sea
     play sound "sfx/ocean-waves.mp3" loop
     "We arrived at the ocean in time to frantically set up our tent before sunset."
-    "[kid_name] and [bro_name] were actually pretty helpful getting everything setup, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
+    "[kid_name] and [bro_name] were actually pretty helpful getting everything set up, though nobody wanted to clear the ground and risk getting stuck with spiny leaves."
     "I'm used to pulling up weeds, so I ended up clearing out a spot for our tent."
     window auto hide
     show purplelight at random_pulse_alpha
@@ -6231,6 +6235,7 @@ label luxury_good:
                 him normal "Yeah, it always makes me feel like I can go out and do anything."
             "Helen's jellystar hat for [kid_name] (50)":
                 $ mavericks += 1
+                $ responsive += 1
                 "I bought a jellystar hat that Helen knitted and gave it to [kid_name]."
                 show kid normal at midright with dissolve
                 kid excited "It's so cute!! Thank you, dad!"
@@ -6254,6 +6259,7 @@ label luxury_good:
 
             "Cool rocks from the miners for [bro_name] (60)":
                 $ miners += 1
+                $ responsive += 1
                 $ modify_credits(-60)
                 "Some of the miners were selling these iridescent rocks they found while mining."
                 "Apparently they didn't have any rare minerals in them, but someone had polished them and they were just the right size to hold in your hand."
@@ -8671,7 +8677,7 @@ label community30:
             sara happy "It was rainy! I didn't want to sit on a wet toilet!"
             sara normal "Anyway, I'm tired of trying to guess what it is this time, so I told him he would have to work it out on his own."
             sara "He'll eventually come around."
-            # TODO: is Ilian anxious about a secret related to the accident? or knowing about Oleg's firegrass farm?
+            # is Ilian anxious about a secret related to the accident? or knowing about Oleg's firegrass farm?
             sara happy "Thanks for the soup."
             him content "You're welcome."
             oleg happy "Yeah, thanks, this is actually good."
@@ -9186,7 +9192,6 @@ label community30:
 
             menu:
                 "What should I say?"
-                # TODO: Add something that changes depending on whether you checked certain accounts?
                 "It was a tragic accident following neglect.":
                     label neglect:
                         him pout "Van and Noel definitely should have made fixing Joel's brakes a priority."
@@ -9602,7 +9607,6 @@ label community30:
                         "It was murder.":
                             jump murder
 
-    # TODO: achievement if you found all the clues?
     stop sound fadeout 1.0
     return
 

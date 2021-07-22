@@ -12,7 +12,6 @@ init -10:
 
     image nullimage = Null()
 
-    # TODO: replace with actual CGs
     image baby_cg:
         "images/cgs/chapter-baby.png"
         xalign 0.0 yalign 0.5
@@ -126,7 +125,7 @@ init -10:
     image teen = "kid-sprites/teen_normal.png"
     image goat_flip = im.Flip("images/sprites/goat.png", horizontal = True)
 
-    # Temporary Sprites: TODO delete these
+    # Temporary Sprites for trailer, testing, etc
     image baby_laugh = "kid-sprites/baby_laugh.png"
     image toddler_happy = "kid-sprites/toddler_happy.png"
     image toddler_shifty = "kid-sprites/toddler_shifty.png"
@@ -178,8 +177,7 @@ init -10:
                 "year <= CHILD_MAX", "oleg-sprites/kid %s.png" % expression_name,
                 "year <= TWEEN_MAX", "oleg-sprites/tween %s.png" % expression_name,
                 "True", "oleg-sprites/teen %s.png" % expression_name))    
-        renpy.image(("side", "oleg"), "oleg-sprites/side_kid.png")     
-        # TODO: We need Oleg as a teen if his hair remains different; wait until Oleg teen sprites redone.           
+        renpy.image(("side", "oleg"), "oleg-sprites/side_kid.png")           
 
         # Images for Travis
         for expression_name in simple_expressions:

@@ -270,6 +270,7 @@ label family1:
     "...and underlying everything, a deep exhaustion that magnified every emotion."
     him annoyed "She really needs us, doesn't she?"
     her concerned "We both need you."
+    "I had so many emotions to sort through... sometimes I liked to write poems to try to focus my thoughts better. They usually weren't that great, but it helped me to understand and share what I was feeling."
 
     menu:
         "Write a poem?"
@@ -353,14 +354,14 @@ label family2:
         "What should I do?"
         "Go straight home.":
             $ responsive += 1
-            "I didn't want to leave [kid_name] alone. If she was asleep, I could setup the baby monitor and go back out to work."
+            "I didn't want to leave [kid_name] alone. If she was asleep, I could set up the baby monitor and go back out to work."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
             play sound "sfx/baby-cry.ogg" fadein 5.0
             "It was a good thing, too. [kid_name] was kind of cry-shouting. If she could talk, it'd mean something like 'Mom! Dad! Where are you?'"
 
         "Ask [her_name] for more information.":
             $ responsive += 1
-            him determined "Hey, is [kid_name] asleep? Did you setup the baby monitor?"
+            him determined "Hey, is [kid_name] asleep? Did you set up the baby monitor?"
             "I waited for a few minutes, but [her_name] didn't respond. She was probably on the other channel talking to whoever had the emergency."
             "I decided to head home. It bugged me to leave the planting unfinished but [kid_name] was more important."
             play sound "sfx/baby-cry.ogg" fadein 5.0
@@ -1466,7 +1467,7 @@ label family5:
             if (family5_prepared):
                 "We were prepared for her to have lots of messes, and we weren't going to let that bother us."
             if (family5_method == "remind her"):
-                "I setup a program on my computer pad to beep every 30 minutes to remind me to remind her to try using the toilet."
+                "I set up a program on my computer pad to beep every 30 minutes to remind me to remind her to try using the toilet."
             if (family5_method == "keep her outside"):
                 "We got ready to spend the day outside. The weather was warm enough that we put [kid_name] in just some underwear, and we brought chairs outside to try to enjoy ourselves."
                 "We brought a small bucket for her to use as a potty."
@@ -1637,7 +1638,7 @@ label family5:
 label family6:
     play music [happy, upbeat]
     scene stars with fade
-    "I remember when [kid_name] was so small and crying incosolably; I couldn't wait for her to learn to talk."
+    "I remember when [kid_name] was so small and crying inconsolably; I couldn't wait for her to learn to talk."
     "Now she was like a perpetual motion machine of questions and opinions."
 
     scene farm_interior with fade
@@ -1665,8 +1666,8 @@ label family6:
     him annoyed "They all spy on each other, you mean."
     her surprised "Was there an elephant in the game you were playing?"
     show kid at midright with move
-    kid annoyed "Yes. But they should have wolfslugs; those are my favorite."
-    him determined "You're scared of elephants, but you like wolfslugs."
+    kid annoyed "Yes. But they should have wolf slugs; those are my favorite."
+    him determined "You're scared of elephants, but you like wolf slugs."
     show kid at quarterright with move
     kid happy "Yep!"
     her concerned "How strange that must be for her to grow up without experiencing Earth firsthand..."
@@ -3071,7 +3072,7 @@ label family9:
         oleg sad "I'm sorry, momma."
         "The poor kid looked about to cry."
         sara "It's okay, baby. It's okay."
-        "We setup a schedule where Oleg could come play on certain days, and [kid_name] would play at his house on other days."
+        "We set up a schedule where Oleg could come play on certain days, and [kid_name] would play at his house on other days."
         "I hoped they would continue to be good friends."
         return
     return
@@ -3148,7 +3149,7 @@ label family10:
         "[bro_name] was a more easygoing kid."
         "I love [kid_name], but it would've been a challenge to have two kids like that..."
         "He was finally getting old enough to play with [kid_name], though he was still learning how."
-        "She had stacked up the blocks into a mountain, and had setup some little figurines at the base."
+        "She had stacked up the blocks into a mountain, and had set up some little figurines at the base."
         menu:
             "What should I say?"
             "Compliment them on playing well.":
@@ -3213,7 +3214,7 @@ label family10:
                         menu:
                             "What should I do?"
                             "Keep playing with them.":
-                                "The three of us played natural disaster-escaping family until dinner time."
+                                "The three of us played natural-disaster-escaping family until dinner time."
                                 $ permissive += 1
                             "Compliment them on getting along.":
                                 $ demanding += 1
@@ -3892,7 +3893,7 @@ label family12_contact_parents:
 
 label family12_anyas_house:
     scene cabins with fade
-    "I decided to go over a little early to pickup [kid_name]. Maybe I could meet her parents."
+    "I decided to go over a little early to pick up [kid_name]. Maybe I could meet her parents."
     play sound "sfx/knock.ogg"
     "But when I got there and knocked on the door, a teenager answered the door."
     "Anya and [kid_name] had been playing in the mud in the backyard, which was fine, but I wasn't sure if the teenager counted as a 'responsible adult' or not."
@@ -4087,7 +4088,7 @@ label family13:
     her determined coat "I cry sometimes, too. Sometimes words just aren't enough."
     "I helped [her_name] put away the ultrasound machine, and we started to walk back home."
     scene path with fade
-    "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and I on ahead."
+    "[bro_name] wanted to walk really slowly and look at all the flowers, but [kid_name] wanted to run, so [her_name] sent [kid_name] and me on ahead."
 
     scene fields with fade
     show him normal at midright
@@ -4694,7 +4695,7 @@ label allowance_how:
     "(This is tricky... what kind of allowance should I give her?)"
     menu:
         "What should I say?"
-        "Make a proposal.":
+        "Write a budget proposal.":
             $ demanding += 1
             him explaining "You'll need to write up a budget proposal."
             kid concerned "A budget proposal? I don't know how to do that!"
@@ -6229,7 +6230,7 @@ label family21:
             "She didn't look up, just shrugged as they continued their battle."
             kid determined "Sorry."
             "They kept playing, but soon [bro_name] made a mistake."
-            kid angry "Really? You didn't see that guy whose been slobbering over your shoulder for the last ten minutes?"
+            kid angry "Really? You didn't see that guy who's been slobbering over your shoulder for the last ten minutes?"
             bro sad "I did, but I couldn't move in time!"
             him annoyed "Pause your game and listen to me!"
             kid determined "I can't pause it; it's online. We still have a chance to beat Oleg if [bro_name] would stop rolling on the ground like a turtle snail."
@@ -6931,7 +6932,7 @@ label family24:
     show him normal at midleft behind horse with moveinleft
     him "Hello, old girl."
     "She nickered softly in return and stepped up to me. I patted her neck and talked to her as I got her ready to ride."
-    him content "We're going to go pickup [kid_name] from Anya's house."
+    him content "We're going to go pick up [kid_name] from Anya's house."
     "Lettie shook her head."
     him surprised "I know, she's old enough to come home on her own, but it'll be dark, and sometimes it's the only chance I get to talk to her."
     him normal "Besides, you want a walk, right?"
@@ -7104,7 +7105,7 @@ label lettie_dies:
     him concerned "I don't think so. Her heartbeat's irregular and weak."
     him surprised "She was fine on the ride up! What could have happened to make her sick so fast?"
     "I looked around. In Lettie's mouth I found some short, flat needles from an evergreen bush nearby."
-    "The bush was not a plant native to Talaam. In fact, it looked like."
+    "The bush was not a plant native to Talaam. In fact, it looked like--"
     him determined "Yew."
     kid surprised "Me? I didn't do anything!"
     him concerned "No, a yew tree. Or bush, looks like. Who plants yew where there's horses around?!"
@@ -7708,10 +7709,10 @@ label family27:
             $ confident += 1
             if (allowance_amount > 0):
                 him annoyed "You have an allowance, you know. You could save up for it yourself."
-                $ saving_weeks = roundint(float(bike_cost) / float(allowance_amount))
+                $ saving_weeks = float(bike_cost) / float(allowance_amount)
                 kid angry "What?! That would take me like..."
                 "She did some calculations in her head."
-                $ saving_months = saving_weeks / 4.0
+                $ saving_months = roundint(saving_weeks / 4.0)
                 kid annoyed "...[saving_weeks] weeks! That's [saving_months] months, which is way too long for me to wait."
             him determined "You could earn your own money."
             kid determined "Doing what?"
@@ -8679,7 +8680,7 @@ label family30:
     show him concerned with dissolve
     "No, I should wait."
     "It was getting really late; I should go to bed."
-    "But my mind was racing and my heart was thumping as if I was about to be attacked by wolfslugs."
+    "But my mind was racing and my heart was thumping as if I was about to be attacked by wolf slugs."
     call bedroom_scene(sleeping=True) from _call_bedroom_scene_6
     "Finally, I lay down next to [her_name] and tossed and turned, trying to get comfortable. Nothing felt right."
     show him determined

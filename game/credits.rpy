@@ -1,11 +1,8 @@
 ##
 # CREDITS
 
-# TODO: include CGs here as photos? maybe a jellysquid image?
 label credits:
-    # TODO: Different music? If we don't end up getting a special song, maybe https://lonepeakmusic.bandcamp.com/track/made-in-liverpool
     play music maintheme
-
 
     window hide
     scene black with fade
@@ -36,6 +33,9 @@ label credits:
         show credits05-mavericks at tilted, right, driftdown, smallphoto
     else:
         show credits05-colonists at tilted, right, driftdown, smallphoto
+
+    if jellypeople_happy:
+        show jellysquid4 at tilted, left, driftdown, flip
 
     show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nGled Bledsoe\nChristos Anestopoulos\nAmbient Teknology\nJustin St-Pierre\n\nLicensed by {a=http://www.magnatune.com}Magnatune{/a}\n\nAlso featuring {a=https://bit.ly/2xNM03K}LonePeakMusic{/a} and {a=https://incompetech.com}Kevin MacLeod{/a}" with dissolve
     $ renpy.pause(5.0)

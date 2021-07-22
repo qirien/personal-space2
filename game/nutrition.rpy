@@ -28,7 +28,7 @@ label bad_nutrition:
         # are we using currency yet?
         if (year >= MONEY_YEAR):
             her determined coat "And for now let's get a few things at the storehouse."
-            $ modify_credits(-50)
+            $ modify_credits(-150)
         else:
             her determined coat "And for now let's trade for a few different foods."
 
@@ -75,7 +75,7 @@ label bad_nutrition:
             her angry coat "No! I wanted you to understand how serious this is!"
             him surprised "Can't we just buy what we need from the storehouse?"
             her annoyed coat "Yes, but it gets expensive. Here's a list."
-            $ modify_credits(-100)
+            $ modify_credits(-200)
             "She had made a list of foods we needed to buy."
             him concerned "Sorry, [her_name]. I feel like I failed you."
             her determined coat "We're all alive and kicking, so no one's failed yet. Just... please try better next time, okay?"
@@ -112,7 +112,7 @@ label bad_nutrition:
                         "What should I say?"
                         "You're right.":
                             him_c "You're right, Ilian. Sorry, guys, I'm going to have to back out. I'm taking the goat's milk to the storehouse where you can buy it from Ilian."
-                            $ modify_credits(-50)
+                            $ modify_credits(-150)
                             "I ended up paying a premium for peppers and squash for the family diet."
                             return
                         "We should only bring extra.":
@@ -248,14 +248,14 @@ label bad_nutrition:
             him normal "Well then, I'm glad you caught it."
             her normal coat "This supplement is just a short-term solution. We'll need to buy some beans or nuts."
             him determined "Okay."
-            $ modify_credits(-50)
+            $ modify_credits(-150)
 
         else:
             # seen all the events that would apply
             "The crops I planted didn't provide the vitamins and minerals we needed."
             if (year > 5):
                 "I had to spend money at the storehouse to buy some different foods."
-                $ modify_credits(-50)
+                $ modify_credits(-200)
             else:
                 "I had to trade with other farmers to get a better variety of food."
 
@@ -271,7 +271,7 @@ label bad_nutrition:
 
     if (year > 5):
         "I had to spend money at the storehouse to buy some different foods."
-        $ modify_credits(-50)
+        $ modify_credits(-200)
     else:
         "I had to trade with other farmers to get a better variety of food."
 

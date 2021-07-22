@@ -114,7 +114,6 @@ label start:
     default miners = 0
     default total_mavericks = 0
     default mavericks = 0
-    default jellies = 0 # TODO: we don't actually use this variable
     
     default require_whole_harvest = False
     default rationing = False
@@ -265,7 +264,6 @@ label start:
     scene stars with fade
     $ _quit_slot = "quitsave"
 
-    # TODO: Take this out when beta testing is over
     #"Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
     if (persistent.times_beaten):
@@ -334,7 +332,7 @@ label start:
             "I dreamed of teaching my kids, loving them, laughing together."
             "Of course, I knew it'd be a lot of work too. I thought I was ready for that."
         "I'm still not sure I want to be a dad.":
-            "Having a baby... it just sounds so strange. I wasn't sure I was ready... but we had a baby anyway."
+            "Having a baby... it just sounded so strange. I wasn't sure I was ready... but we had a baby anyway."
             "Now, I know how to work hard, so I figured I could handle anything."
 
     "But being a dad was a different kind of work than I had ever done before."
@@ -372,7 +370,7 @@ label life_loop:
                 $ modify_credits(income, False)
                 $ modify_credits(-(get_expenses_required(year-1) - KELLY_SALARY), False) # We want this for the PREVIOUS year.
                 if (allowance_amount != 0):
-                    $ modify_credits(-allowance_amount * 7)
+                    $ modify_credits(-allowance_amount * 4 * 7)
 
                 # Check for credit Achievements
                 if (credits >= 2000):

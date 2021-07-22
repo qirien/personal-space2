@@ -16,7 +16,7 @@ define config.name = _("Space to Grow")
 
 ## The version of the game.
 define config.version = "0.8"
-define config.developer = True
+define config.developer = True # TODO: set to false before release
 define config.console = True
 #define config.auto_choice_delay = 0.1 #None #TODO: make sure to delete this
 
@@ -202,7 +202,7 @@ init python:
     # build.classify('game/**.png', 'archive')
     # build.classify('game/**.jpg', 'archive')
     # TODO: We should archive up music to protect musicians.
-    # build.classify('game/music/**', 'archive') 
+    build.classify('game/music/**', 'archive') 
 
     ## Files matching documentation patterns are duplicated in a mac app build,
     ## so they appear in both the app and the zip file.

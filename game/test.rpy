@@ -540,7 +540,7 @@ label screenshots:
 
 label trailer:
     $ trailer_mode = True
-    image title = "images/bg/title.jpg" # TODO: replace this
+    image title = "images/bg/title.jpg"
     image metasepia = "images/bg/metasepia-logo.jpg"
     play music maintheme fadein 1.0
     scene black with fade

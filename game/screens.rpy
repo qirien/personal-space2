@@ -1290,7 +1290,7 @@ screen bonus():
             textbutton "Deleted Ending" action Start("ending_extra")
             textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")
             textbutton "Lily's Fate" action Start("jellysquid_logs")
-            #textbutton "Fighting Minigame" action Start("fight_brennan") # TODO: should we really have this in here?
+            #textbutton "Fighting Minigame" action Start("fight_brennan") #should we really have this in here? I guess not.
             textbutton "Season's Greetings" action Show("show_photo", irisout, "terra-christmas")
 
 

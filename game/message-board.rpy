@@ -31,7 +31,6 @@ label message2:
     nvl clear
     # Reference whole harvest problem with convo about crop trading
     thuc_c "We finally got a good crop of rice!"
-    sara_c "That's great; I know you worked really hard on that!"
     julia_c "Yes, it only took us three years, but I think we've figured it out."
     thuc_c "So does anyone want to trade?"
     him_c "Sure, I've got potatoes."
@@ -100,7 +99,9 @@ label message4:
     helen_c "...anyway, um, Zaina's zucchini pickles are really good, too."
     him_c "Really? I'll have to try them out."
     zaina_c "Thanks! Always glad to share the love when it comes to zucchini."
-
+    zaina_c "Oh, and one more thing... I'm looking for an exploring partner - I found some caves but I need to climb up to them. It'd be safer to have a buddy."
+    thuc_c "I have a little climbing experience; if you have the gear, I can go with you."
+    zaina_c "Great! I can't wait to see what we find!"
     nvl clear
     return
 
@@ -265,7 +266,7 @@ label message11:
         menu:
             "Should I submit a poem?"
             "Yes.":
-                him_c "I'll send you one!"
+                him_c "I'll send you one - maybe about my family, or Talaam..."
                 $ word_board.set_wordpack(basic_words, family_words, farm_words, baby_words, talaam_words)
                 call make_poem from _call_make_poem_3
                 $ year11_poem = word_board.get_poem_as_string(-1)
@@ -598,7 +599,7 @@ label message24:
     thuc_c "It's really more of a newsletter."
     julia_c "Our first issue has a gardening section, cooking section, local news items, miner's update, weather and solar flare predictions, and product reviews."
     zaina_c "That could be useful... where can I get it?"
-    julia_c "It's available by subscription only, for the low price of 20 credits per year. Individual issues cost 5 credits each."
+    julia_c "It's available by subscription only, for the low price of 20 credits per year."
     him_c "This is for a monthly newsletter?!"
     sara_c "Why is it so expensive?!"
     julia_c "There's no advertising revenue (yet!), so I have to charge more."
@@ -614,11 +615,11 @@ label message24:
         scene stars
     else:
         menu:
-            "Should I buy the first issue?"
+            "Should I subscribe?"
             "Buy it (5 credits)":
                 $ bought_tt = True
                 $ colonists += 1
-                $ modify_credits(-5)
+                $ modify_credits(-20)
                 scene talaam_times with fade
                 $ renpy.pause(5.0)
                 $ renpy.pause()

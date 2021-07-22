@@ -612,13 +612,13 @@ label ending_CMiMa:
     pete happy "Even I've heard of it, and I grew up in the middle of nowhere."
     him blush "Well, I was kind of a picky eater growing up, so we didn't eat weird things like that."
     brennan flirting "It's a good thing you grew out of that, since weird things are {i}de rigueur{/i} these days."
-    pete normal "They're not even weird anymore. I've gotten to craving these wolfslug curry kebabs year-round."
+    pete normal "They're not even weird anymore. I've gotten to craving these wolf slug curry kebabs year-round."
     him pout "If I drink the wine Brennan made while I eat the curry kebabs, I almost feel like I'm in a fancy restaurant. All we need is a French waiter in a tuxedo."
     "Brennan stood and bowed, imitating a waiter with a terrible French accent."
     brennan normal "Mais oui! Please accept our apologies for the very limited wine menu. I'm afraid nonvintage is all we have at the moment."
     pete happy "It beats a nonexistent wine menu every time."
 
-    "I enjoyed another bite of wolfslug kebab, the tangy, spicy curry sauce dripping down my chin. I wiped it off with a piece of the flatbread I had brought and ate that, too."
+    "I enjoyed another bite of wolf slug kebab, the tangy, spicy curry sauce dripping down my chin. I wiped it off with a piece of the flatbread I had brought and ate that, too."
 
     him happy "Thanks for saving my potatoes from that flood. I still can't believe we got everyone and their food stores out so quickly."
     brennan explaining "You act like it was an act of altruism, but really, I'd do almost anything not to have to grow my own food."
@@ -626,7 +626,7 @@ label ending_CMiMa:
     him normal "Speaking of people who hate growing their own food, how are your interns from the high school working out?"
     him pout "I know some of them are hoping to learn a trade other than farming."
     brennan normal "Oh, I have one intern who has a knack for assembling good mining teams."
-    brennan "He made friends with everyone and figured out their compatibilities quickly."
+    brennan "He made friends with everyone and figured out their compatibilities quickly. He'll be a great help to Chaco after I leave."
     pete normal "One of my interns has an amazing spatial memory. She can go foraging with me and then come back and draw a map."
     pete happy "With satellite imagery, you have the big things covered, but her maps take out all the extra noise and make it easier to find things."
     him determined "Huh, good for you. My intern seems kind of depressed sometimes. I think she likes handicrafts though. I should have her spend some time with you, Pete."
@@ -639,7 +639,11 @@ label ending_CMiMa:
     him normal "It was in the contract!"
     him sad "They would never let more horses come here now though. Not with all the extra-planetary environmental sanctions."
     pete angry "Hey, no horse could replace Lettie. But who knows, maybe one of these huge alien critters can be domesticated."
-    brennan normal "I'm happy to let Zaina find some likely candidates for domestication this rainy season."
+    brennan normal "I'm happy to let Zaina find some likely candidates for domestication this rainy season. After tomorrow, I'm gone."
+    him surprised "You know, we might actually miss you a little this time."
+    pete normal "He likes to complain, but I bet he'll be back in another five or ten years. Just can't get enough of this place."
+    brennan flirting "I'm hoping to retire early when I get back and never leave Earth again."
+    him happy "I guess we'll see."
 
     scene ocean_sunset with fade
     "There were times when I wasn't sure we would all survive, let alone get along together."

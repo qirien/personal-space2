@@ -330,7 +330,7 @@ label debt_event:
 label work_intro:
     play music farming
     scene fields with fade
-    "The area of Talaam we had settled on didn't have seasons like temperate zones on Earth; the temperature stayed mild all year and it rained a lot."
+    "The area of Talaam we had settled on didn't have dramatic seasons like temperate zones on Earth; there was a cool, rainy season and a warm, drier season, but no snow or intense heat."
     "This meant that we could grow crops year round, but some crops didn't grow as well."
     scene aurora_animated with fade
     "Talaam's frequent solar flares meant we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
@@ -411,6 +411,7 @@ label work2:
 
     $ enable_crop("plums")
     tutorial "Place perennials like plums carefully when planning the farm. They can't be moved once they're planted without killing them."
+    tutorial "They require much less work and nitrogen after the first year."
 
     kevin sad "I do not want to pester you continually with farming questions. Is there someone else whom I could also ask for assistance?"
     menu:
@@ -936,6 +937,7 @@ label work16:
     "A seed exchange could be good; I could share my great [random_crop] and get something new to plant in the future."
     "But Pete was already planning to come over and fence a new section of land for farming."
     "Last week I helped him expand his cattle paddock with a bigger fence and he was planning to return the favor."
+    "Even though he left the colony, we were still friends, and he didn't live too far away."
     menu:
         "What should I do?"
         "Go to the seed exchange.":
@@ -1577,7 +1579,7 @@ label work24:
     show him normal at midleft
     show kid normal at midright
     with dissolve
-    "We were using the front loader attachment to add manure and to the fields."
+    "We were using the front loader attachment to add manure to the fields."
     kid nervous "Please let me do the driving, dad! I know how to do it!"
     him annoyed "You haven't driven with the front loader attachment. The feel is totally different."
     kid annoyed "Well, how am I going to learn about it if you don't let me try it?!"

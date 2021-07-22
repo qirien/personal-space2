@@ -75,11 +75,10 @@ init -100:
     define CROP_STATUS_ICON_SIZE = 32
 
     # Static variables used for endings
-    # TODO: Tweak these so all endings are possible.
     define ATTACHMENT_HIGH = 25 #Max is ~55
     define ATTACHMENT_MAX = 45
     define COMPETENCE_HIGH = 25 #Max is ~55
-    define COMPETENCE_MAX = 40
+    define COMPETENCE_MAX = 45
     define INDEPENDENCE_HIGH = 18 #Max is ~35
     define INDEPENDENCE_MAX = 30
     define FACTION_HIGH = 10

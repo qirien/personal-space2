@@ -102,12 +102,13 @@ label increase_attachment:
     $ attachment += inc_amount
     return
 
-# Increase competence based on how demanding you were last year #and how much Terra worked
+# Increase competence based on how demanding you were last year
+# and how much Terra worked
 label increase_competence:
     $ inc_amount = 0
-    # Sometimes increase competence with a probability proportional to how much they work. If they work 100%, increase it a quarter of the time.
-    # if (renpy.random.random() <= (kid_work_slider/400.0)):
-    #     $ inc_amount += 1
+    # Sometimes increase competence with a probability proportional to how much they work. Use the equation probability = work^2/200
+    if (renpy.random.random() <= (kid_work_slider*kid_work_slider/200.0/100.0)):
+        $ inc_amount += 1
     $ inc_amount += demanding
     $ competence += inc_amount
     return
@@ -472,7 +473,6 @@ init -100 python:
         return strong
 
     # Helper function for each faction to calculate whether they are "strong" or not.
-    # TODO: tweak this based on actual results
     def faction_strong(faction_value, strength="strong"):
         # print("factionvalue=" + str(faction_value))
         global year
