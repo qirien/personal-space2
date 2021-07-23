@@ -201,7 +201,8 @@ init python:
 
     # build.classify('game/**.png', 'archive')
     # build.classify('game/**.jpg', 'archive')
-    # TODO: We should archive up music to protect musicians.
+    
+    # Archive up music
     build.classify('game/music/**', 'archive') 
 
     ## Files matching documentation patterns are duplicated in a mac app build,

@@ -122,9 +122,9 @@ screen say(who, what):
                     imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu"
                 showif (renpy.mobile or persistent.times_beaten):
                     vbox:                
-                        spacing 15
                         showif persistent.times_beaten:
                             imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
+                            null height 15
                         showif renpy.mobile:
                             imagebutton auto "gui/log_%s.png" action ShowMenu("history") tooltip "History"                            
                     
