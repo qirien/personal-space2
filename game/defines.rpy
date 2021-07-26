@@ -421,6 +421,7 @@ init -100:
 
         for title in achievement_list:
             achievement.register(title)
+        achievement.sync()
 
 
     # Setup parenting manual
