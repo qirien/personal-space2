@@ -608,7 +608,8 @@ init -100 python:
         if (achievement.has(a_name)):
             return
         else:
-            achievement.grant(a_name)            
+            achievement.grant(a_name)
+            achievement.sync()            
             notify_change("Achievement Unlocked!\n" + a_name)
             #if (not renpy.mobile): # take a screenshot for later use
             #    renpy.call("photo", a_name)
