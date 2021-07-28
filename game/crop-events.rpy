@@ -1657,6 +1657,7 @@ label spinach1:
             $ modify_credits(-farm.crops.count("spinach") * get_credits_from_name("spinach"))
             him normal "Don't worry; we'll definitely have some next year."
             $ crop_info[get_crop_index("spinach")][MAXIMUM_INDEX] = 2
+    $ farm.delete_crop("spinach")
     return
 
 # SPINACH2 - turtle slugs

@@ -9,7 +9,7 @@ label splashscreen:
     with Pause(1)
     
     scene black
-    with Pause(0.5)
+    with Pause(0.25)
 
     return
 ## MAIN

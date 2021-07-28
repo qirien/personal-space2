@@ -181,7 +181,8 @@ screen choose_crop(crop_index=0):
                     xfill True
                     hbox:
                         $ crop_name = crop_info[selected_crop_index][NAME_INDEX]
-                        label crop_name.capitalize()                        
+                        label crop_name.capitalize() 
+
                         textbutton "X":                         
                             xpos 105
                             ypos -2
@@ -218,7 +219,14 @@ screen choose_crop(crop_index=0):
                             else:
                                 null
                                 null
-                        text crop_descriptions[crop_name.rstrip("+")]
+                        vbox:
+                            text crop_descriptions[crop_name.rstrip("+")]
+
+                            $ num_avail = crop_info[selected_crop_index][MAXIMUM_INDEX]
+                            if (num_avail != 100):
+                                text "x[num_avail]" italic True 
+                            else:
+                                text "unlimited" italic True
 
                     # Buttons to sort by different stats
                     hbox:
@@ -248,7 +256,7 @@ screen choose_crop(crop_index=0):
                             (crop_temporarily_disabled != crops_to_show[j][NAME_INDEX])):
                                 $ crop_name = crops_to_show[j][NAME_INDEX]
                                 $ crop_info_index = get_crop_index(crop_name)
-                                $ max_crops_reached = (farm.crops.count(crop_name) >= crops_to_show[j][MAXIMUM_INDEX])
+                                $ max_crops_reached = False #TODO: is this better? (farm.crops.count(crop_name) >= crops_to_show[j][MAXIMUM_INDEX])
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == crop_info_index)                            
                                 imagebutton:
@@ -550,6 +558,10 @@ init python:
     def set_crop(index, crop_name):
         global farm
         global selected_crop_index
+        # If we would go over the maximum, remove old one(s) instead until we have room for the selected crop
+        while (farm.crops.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX]):
+            farm.delete_one_crop(crop_name)
+
         farm.crops[index] = crop_name
         max_crops_reached = (farm.crops.count(crop_name) >= crop_info[get_crop_index(crop_name)][MAXIMUM_INDEX])
         # if we have put in the max of this crop, select something else.

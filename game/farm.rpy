@@ -143,7 +143,7 @@ init python:
                         crop_info[plus_index][MAXIMUM_INDEX] += 1
                     else:
                         new_crops[i] = crop_name
-                # keep crop names for next year?
+                # keep crop names for next year
                 else:
                     new_crops[i] = crop_name
             self.crops = new_crops
@@ -181,8 +181,7 @@ init python:
 
         # Check if the current farm layout is valid.
         # To be valid, we need no crops that would use more nitrogen than is available
-        # and we need enough calories.
-        # We also need all goats allocated.
+        # We also need all goats and bees allocated.
         def is_valid_layout(self):
             valid_layout = True
             # Check if this nitrogen is valid
@@ -273,6 +272,21 @@ init python:
                 current_crop_name = self.crops[i]
                 if (current_crop_name == crop_name):
                     self.crops[i] = "fallow"
+
+        # Delete the instance of this crop that has the highest nitrogen
+        def delete_one_crop(self, crop_name):
+            delete_index = -1
+            delete_nitro = -Field.NITROGEN_FULL
+            for i in range(0, self.crops.len()):
+                current_crop_name = self.crops[i]
+                if (current_crop_name == crop_name):
+                    field_nitro = self.health[i][Field.NITROGEN_LEVEL_INDEX] 
+                    if (field_nitro >= delete_nitro):
+                        delete_index = i
+                        delete_nitro = field_nitro 
+
+            self.crops[delete_index] = "fallow"
+            return
 
         # Calculate how much income we lose if we only get
         # a certain percentage of our crops.
