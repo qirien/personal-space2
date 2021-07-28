@@ -330,10 +330,10 @@ label debt_event:
 label work_intro:
     play music farming
     scene fields with fade
-    "The area of Talaam we had settled on didn't have dramatic seasons like temperate zones on Earth; there was a cool, rainy season and a warm, drier season, but no snow or intense heat."
+    "The part of the planet we had settled on didn't have dramatic seasons like temperate zones on Earth; there was a cool, rainy season and a warm, drier season, but no snow or intense heat."
     "This meant that we could grow crops year round, but some crops didn't grow as well."
     scene aurora_animated with fade
-    "Talaam's frequent solar flares meant we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
+    "Our planet, Talaam, had frequent solar flares, which meant we always had to check the forecast and be ready to take shelter in case strong flares were predicted."
     "The flares' radiation was dangerous to humans, but so far hadn't had much effect on plants."
     "On this new planet, everything was an experiment."
     call farm_tutorial from _call_farm_tutorial
@@ -344,7 +344,7 @@ label farm_tutorial:
         "Would you like to see the Farming Tutorial?"
         "Yes.":
                 scene tutorial-left with fade
-                "The left part of the screen shows information about my family and colony."
+                "The left part of the screen shows information about my family and colony, and has apps for messages, parenting, contacts, and poetry."
                 scene tutorial-mid with dissolve
                 "The middle of the screen shows the current year and the farm layout. I have a lot of land but it's not all cleared for farming yet."
                 scene tutorial-right with dissolve
@@ -360,7 +360,7 @@ label farm_tutorial:
                 scene tutorial-mid with dissolve
                 "The lighter the brown color, the lower the nitrogen in that field. I should put something there that will add nitrogen, like goats or beans, or I can leave the field fallow to rest."
                 scene tutorial-right with dissolve
-                "I need a certain amount of energy, and I only have a certain amount of work I can do. Other than that, I can choose whatever crops I want."
+                "My family needs the crops to provide a minimum amount of energy, but there's only so much work I can do. Other than that, I can choose whatever crops I want."
                 if (year > MONEY_YEAR):
                     "Some crops are worth more money than others. If I don't choose crops well, I could end up losing credits."
                 "Sometimes there's extra options I can only choose if I have extra work, so I don't want to try to do too much."

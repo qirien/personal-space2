@@ -74,7 +74,7 @@ label community1:
     him pout "Nice to meet you, Zaina and Kevin. Where will you be living?"
     zaina normal "We've set up a house out by the radio tower. It's closer to the mountains where I'll be working. Geological studies, mostly."
     kevin happy "And after Zaina figures out where the goods are, I'm in charge of figuring out if it's even possible for us to mine."
-    him surprised "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition."
+    him surprised "Oh, right, that's Rare Earth Tech's plan to pay for this whole expedition. I've been so focused on growing food I haven't really thought about RET and why they brought us here."
     kevin sad "Yes. Usually when a company invests money into a research project they would do so with the expectation of making a profit."
     him concerned "I understand that from RET's point of view... but they sure aren't sharing any profits with us!"
     zaina happy "You can't be doing too bad. I haven't seen a single starving waif since I arrived."
@@ -134,7 +134,7 @@ label community1:
                     him concerned "I take it you didn't like them very much."
                     kevin sad "They did not value me or my work. They ignored my accomplishments."
                     him surprised "How would you expect them to? They're probably not experts like you are."
-                    kevin normal "If they had simply not understood my work, that would have been forgiveable."
+                    kevin normal "If they had simply not understood my work, that would have been forgivable."
                     kevin sad "They are not men of science."
                     him pout "My parents are still on Earth. We have some extremely delayed correspondence."
             jump ask_zaina_and_kevin
