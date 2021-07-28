@@ -256,7 +256,6 @@ screen choose_crop(crop_index=0):
                             (crop_temporarily_disabled != crops_to_show[j][NAME_INDEX])):
                                 $ crop_name = crops_to_show[j][NAME_INDEX]
                                 $ crop_info_index = get_crop_index(crop_name)
-                                $ max_crops_reached = False #TODO: is this better? (farm.crops.count(crop_name) >= crops_to_show[j][MAXIMUM_INDEX])
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == crop_info_index)                            
                                 imagebutton:
@@ -268,7 +267,7 @@ screen choose_crop(crop_index=0):
                                     anchor (0.5, 0.5)
                                     align  (0.5, 0.5)
                                     selected is_selected
-                                    sensitive ((not max_crops_reached) and (crop_info[crop_info_index][NITROGEN_INDEX] < farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX]))
+                                    sensitive (crop_info[crop_info_index][NITROGEN_INDEX] < farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX])
                                     if (not renpy.variant("touch")):
                                         hovered SetLocalVariable("selected_crop_index", crop_info_index)
                                     if renpy.variant("touch"):
