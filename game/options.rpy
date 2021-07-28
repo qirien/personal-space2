@@ -16,9 +16,10 @@ define config.name = _("Space to Grow")
 
 ## The version of the game.
 define config.version = "0.8"
-define config.developer = True # TODO: set to false before release
-define config.console = True
-#define config.auto_choice_delay = 0.1 #None #TODO: make sure to delete this
+# Uncomment if you want the cheat/developer console enabled.
+#define config.console = True
+
+#define config.auto_choice_delay = 0.1 #None 
 
 ## Game Saving Behavior
 define config.autosave_on_choice = False

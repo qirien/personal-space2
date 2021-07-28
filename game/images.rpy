@@ -12,6 +12,7 @@ init -10:
 
     image nullimage = Null()
 
+    # CGs
     image baby_cg:
         "images/cgs/chapter-baby.png"
         xalign 0.0 yalign 0.5

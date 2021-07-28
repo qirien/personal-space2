@@ -1,5 +1,17 @@
 ﻿## Our Personal Space 2: Space to Grow
 #  by Metasepia Games, http://metasepiagames.com
+# Splashscreen before the main menu
+label splashscreen:
+    scene black
+    with Pause(0.5)
+
+    show metasepia-logo with dissolve
+    with Pause(1)
+    
+    scene black
+    with Pause(0.5)
+
+    return
 ## MAIN
 label start:
 
