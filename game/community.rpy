@@ -970,10 +970,10 @@ label community6:
     pete normal "Nah, it's better. I used to check my tablet for new messages all day long. I haven't checked them for a week and I haven't missed anything."
     pete happy "Instead I'm living more in the moment. I don't even mind doing my feed calculations for the cattle by hand."
     helen happy "I miss watching Skulls of Iron. But at least one of the tablets is repairable, so we should be back to our normal selves soon."
-    pete normal "You can keep it. I like feeling like I'm completely on my own, getting away from all the drama in town and online."
+    pete normal "You can keep your technology. I like feeling like I'm completely on my own, getting away from all the drama in town and online."
     thuc normal "But you're still having game night, and you have your family, too, so it's not like you're completely isolated."
     menu:
-        "What do you think?"
+        "What do you think about living on your own?"
         "We need each other to survive.":
             $ colonists += 1
             him pout "We need each other to survive. There's no way one person could survive on their own out here."
@@ -986,11 +986,11 @@ label community6:
             $ mavericks += 1
             him pout "I understand wanting to be away from it all. It's part of the reason I came here."
             pete happy "We don't have to deal with inane government interference or rules made just for the sake of havin' 'em."
-            him concerned "Although some of RETs demands have felt that way..."
+            him concerned "Although some of RET's demands have felt that way..."
             pete normal "True. But you can see where they're coming from for the most part."
             pete happy "And they're not in our face about it. I could go set out on my own tonight and they'd be none the wiser."
             helen "You could, as long as you planned it out with your wife first."
-        "We have an obligation to help RET feed their miners now.":
+        "I'd like being alone, but we have commitments to RET.":
             $ miners += 1
             him pout "Being alone sounds romantic, but we have an obligation to help RET feed their miners now."
             him concerned "If we all went rogue, those miners would starve to death. And we wouldn't be holding up our end of the bargain. It was expensive to send us out here."
@@ -1023,13 +1023,14 @@ label community6:
 
 label community7:
     play music thoughtful
-    show community_center with fade
+    scene community_center with fade
     show zaina normal at center with dissolve
     zaina "Isotopic analysis of these samples are helping us build a map of the irradiance history of Talaam's sun."
     zaina normal "This irradiance, which we notice today in the form of frequent solar flares, may not have always been the case on this planet."
     zaina happy "If the irradiance cyclical, it's possible we might have more or less solar flares in the future."
     zaina sad "However, as we have only been taking irradiance measurements from Talaam orbit for a relatively short period of time, it may take some time to correlate that data with our isotopic analysis."
-    zaina normal "I'm also hoping to find fossils that will tell us more about Talaam's prehistoric plants and animals. The most likely places around here would be the cliffs near the river and the canyon leading up toward the mountain."
+    zaina normal "I'm also hoping to find fossils that will tell us more about Talaam's prehistoric plants and animals."
+    zaina sad "The most likely places around here would be the cliffs near the river and the canyon leading up toward the mountain."
     zaina happy "I'll be looking, but let me know if you find anything!"
     show zaina normal at midright with move
     show pavel normal at midleft with moveinleft
@@ -2081,7 +2082,7 @@ label community11:
         him pout "That's what we came out here for."
         natalia "Did RET send any medicine for Martín?"
         brennan normal "No, sorry, I think they just sent some new batteries and stuff."
-        natalia "They don't care what happens to us!"
+        natalia angry "They don't care what happens to us!"
         martin angry "I would have liked to live a little longer, but in the end, we can only do so much."
         $ mavericks += 1
 
@@ -2102,10 +2103,10 @@ label martin_funeral:
     hide naomi with dissolve
     show natalia normal at center with dissolve
     natalia angry "Of course I'll miss my husband! He was the only one that I could count on to always be there, no matter what."
-    natalia normal "Through corn pests and my health issues and problems with our kids, he listened and I felt like together we could figure {b}anything{/b} out."
+    natalia sad "Through corn pests and my health issues and problems with our kids, he listened and I felt like together we could figure {b}anything{/b} out."
     natalia angry "Now that he's gone..."
-    natalia normal "No. He's not gone. He's just moved on, to be with our dear Josephina. She's probably been missing us! How happy she'll be now that she has her daddy with her!"
-    natalia happy "And I have faith that I'll see both of them again someday."
+    natalia sad "No. He's not gone. He's just moved on, to be with our dear Josephina. She's probably been missing us! How happy she'll be now that she has her daddy with her!"
+    natalia normal "And I have faith that I'll see both of them again someday."
     scene stars with fade
     "The family buried him in the colony graveyard next to Josephina."
     return
@@ -3297,7 +3298,7 @@ label community15:
     "[her_name] started crying."
     her sad "It won't be the same without her."
     her cry "Who will reassure us when we're feeling hopeless?"
-    her sad "Who will give me hope that there's something bigger out there?"
+    her sad "I'm sorry; that's really selfish of me. But she always gave me hope that there is something bigger out there... and now she's gone."
     menu:
         "What should I say?"
         "It'll be okay.":
@@ -3314,8 +3315,7 @@ label community15:
             her concerned "I know. But she's just so good at it."
             him content "That's true. She could have been just a preacher, but she filled in the gaps."
             him normal "She watched our children and took care of sick people."
-            her annoyed "Hey, I make house calls too!"
-            her sad "But I know what you mean. She took care of their spirits, not their bodies."
+            her surprised "I mean, I guess I'm still around to help sick people... but she took care of their spirits."
             #this decision only affects dialogue right now.
     her concerned "Oh, no...who's going to talk at her funeral?"
     him surprised "Are you putting that together?"
@@ -3421,16 +3421,15 @@ label community15:
     him determined "So she probably knew there was a flare, but couldn't find shelter in time?"
     her concerned "That seems likely."
     him doubt "Too bad she wasn't inspired to take a tent with her."
-    her sad "She probably felt that she didn't have time, or maybe someone else had checked them out."
-    him concerned "Someone ought to invent a radiation umbrella or something."
-    her surprised "It's not that simple..."
-    him sad "Nothing is."
+    her annoyed "Really? You're going to make fun of someone who was so unselfish that she put other people's needs ahead of her own health and safety?!"
+    him sad "I didn't mean it like that..."
+    her surprised "What did you mean, then?"
     menu:
         "What should I say?"
         "I'll miss her.":
-            him concerned "I'll miss her."
+            him concerned "Sorry, you're right... I will miss her."
             her sad "Me, too."
-        "Farewell to a great leader.":
+        "Farewell to a great leader.":            
             him concerned "Farewell to a great leader. She loved and worked hard, even for people who didn't agree with her."
             her sad "Yes . . . I want to be more like that."
         "I'm not going to die like that.":
@@ -3446,8 +3445,9 @@ label community15:
             her happy "I never get tired of hearing you say that."
             him happy "Don't you mean, 'I love you, too'?"
             her laugh "I love you, too, [his_name]."
-        "(Don't say anything)":
-            "I didn't say anything, just sat and held [her_name], both of us lost in our own thoughts."
+        "I don't know.":
+            him determined "I don't know... I don't know what to say."
+            "We sat in silence, just holding each other, both of us lost in our own thoughts."
 
     # Dr. Lily has a stroke and worries about her progress being lost if she should die.
     # should this go in the next event? what happens if she left with the mavericks?
@@ -3717,11 +3717,11 @@ label community17:
         show chaco normal at right with moveinright
         "Almost all the miners came, bringing some bean stew."
         brennan flirting "This beef is amazing. Do you have any extra I could buy from you?"
-        pete angry "You know, credits are not worth that much too me right now. We could always use more beans though."
+        pete angry "You know, credits are not worth that much to me right now. We could always use more beans though."
         brennan surprised "Credits are the only thing we have!"
         brennan concerned "Though... we also have lots of rocks?"
         pete normal "Any metals?"
-        brennan happy "Oh, lots. Next time you want any ore, just come over with a cow and wagon."
+        brennan happy "Oh, lots. Next time you want any ore, just come over. You'll need a wagon to haul it, though."
         pete happy "Great. Now I just need to figure out how to make a bellows!"
         "Pete also brought a strange seafood dish."
 
@@ -3820,7 +3820,7 @@ label community17:
         show travis normal at center
     show oleg normal at midright
     with moveinleft
-    "After the children finished eating, they ran around with pails of water."
+    "After the children finished eating, they ran around with pails of water to clean all the dishes."
     show kid at pace_back_and_forth
     show bro at pace_back_and_forth
     show girl at pace_back_and_forth
@@ -3828,7 +3828,7 @@ label community17:
     if (invited_mavericks):
         show travis at pace_back_and_forth
     show oleg at pace_back_and_forth
-    "After cleaning my plate, they held their hands out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
+    "After cleaning my plate, they held bags out expectantly yelling: 'treat for trick!'" #should they LICK the plates clean instead?? too weird?
     show kid at midleft
     show bro at left
     if (invited_mavericks):
@@ -4747,7 +4747,7 @@ label community19:
     him_c "Aren't there patches of wild alfalfa we could feed them?"
     thuc_c "The wild alfalfa is too far away, and it starts dying as soon as the rainy season starts. Plus it's mixed in with native weeds."
     her surprised "What's going on? Some exciting gossip?"
-    him determined "crabirds ate all the Perón's corn, so we won't be harvesting it together."
+    him determined "Crabirds ate all the Perón's corn, so we won't be harvesting it together."
     her sad "Whaaaaat? What will the cows eat during the rainy season?"
     him pout "That's what everyone's wondering. Maybe they can increase the amount of alfalfa in the feed?"
     her concerned "I wonder why there were so many crabirds. We've never seen this many before, have we?"
@@ -5053,7 +5053,7 @@ label community21:
     with moveinleft
     "We started walking along."
     her "Wow, it's been so long since I've been this way! I don't think I've been to the ocean since before [kid_name] was born."
-    her surprised "There's a path here and everything."
+    her normal "There's a path here and everything."
     kevin "Yes, I like to visit the ocean at least once a month. And Pete and his cattle are excellent at making a pathway."
     him surprised "Oh yeah, Pete drives his cattle this way about twice a year."
     hide kevin
@@ -6214,62 +6214,80 @@ label luxury_good:
             "There were plenty of books and other farmers people could consult for free." #+400/40 credits
 
     if (credits >= 100):
-        scene farm_interior with fade
-        show him normal at center with dissolve
-        him surprised "I have a bit of extra money... maybe I should buy something?"
-        menu:
-            "What should I buy?"
-            "Julia's plum syrup for the family (40)":
-                $ colonists += 1
-                "I bought some of Julia's plum syrup. [her_name] liked to put it in mint tea, and the kids drizzled it on squash."
-                $ modify_credits(-40)
-                show her normal at midright
-                show kid normal at midleft
-                show bro normal at quarterleft
-                with dissolve
-                kid happy "This stuff is sooo good!"
-                bro happy "I could eat this forever."
-                her surprised "What's actually in it? She didn't put any ingredients on the label."
-                him pout "I guess no one's checking for health code violations here..."
-                her normal "Well, whatever it is, it's delicious!"
-                him normal "Yeah, it always makes me feel like I can go out and do anything."
-            "Helen's jellystar hat for [kid_name] (50)":
-                $ mavericks += 1
-                $ responsive += 1
-                "I bought a jellystar hat that Helen knitted and gave it to [kid_name]."
-                show kid normal at midright with dissolve
-                kid excited "It's so cute!! Thank you, dad!"
-                if (ate_jellyfish):
-                    $ modify_credits(-100)                    
-                    him happy "It was so adorable I ended up buying one for myself, too!"
-                    "Everyone complimented our matching hats."
-                else:
-                    $ modify_credits(-50)                    
-                    him happy "It was so cute I almost bought one for myself, too."
-                    kid normal "It's so warm! Like a cozy alien hug."
-            "Fancy soap for [her_name] (40)":
-                $ marriage_strength += 1
-                "I knew [her_name] used to get fancy soap all the time back on Earth..."
-                $ modify_credits(-40)
-                show her surprised at midright with dissolve
-                her "Oh, [his_name], you didn't have to get me anything..."
-                him happy "I wanted to! I know you miss a lot of things from Earth..."
-                her concerned "I do... and I know you don't like to spend money on unnecessary things. So this means a lot to me."
-                her normal "Thank you, sweetie."                
+        $ community24_bought = False
+        label community24_buy:
+            scene farm_interior with fade
+            show him normal at center with dissolve
+            if (community24_bought):
+                him surprised "Should I get anything else?"
+            else:
+                him surprised "I have a bit of extra money... maybe I should buy something?"
+            default community24_menuset = set()
+            menu:
+                set community24_menuset
+                "What should I buy?"
+                "Julia's plum syrup for the family (40)":
+                    $ colonists += 1
+                    "I bought some of Julia's plum syrup. [her_name] liked to put it in mint tea, and the kids drizzled it on squash."
+                    $ modify_credits(-40)
+                    show her normal at midright
+                    show kid normal at midleft
+                    show bro normal at quarterleft
+                    with dissolve
+                    kid happy "This stuff is sooo good!"
+                    bro happy "I could eat this forever."
+                    her surprised "What's actually in it? She didn't put any ingredients on the label."
+                    him pout "I guess no one's checking for health code violations here..."
+                    her normal "Well, whatever it is, it's delicious!"
+                    him normal "Yeah, it always makes me feel like I can go out and do anything."
+                    $ community24_bought = True
+                    jump community24_buy
+                "Helen's jellystar hat for [kid_name] (50)":
+                    $ mavericks += 1
+                    $ responsive += 1
+                    "I bought a jellystar hat that Helen knitted and gave it to [kid_name]."
+                    show kid normal at midright with dissolve
+                    kid excited "It's so cute!! Thank you, dad!"
+                    if (ate_jellyfish):
+                        $ modify_credits(-100)                    
+                        him happy "It was so adorable I ended up buying one for myself, too!"
+                        "Everyone complimented our matching hats."
+                    else:
+                        $ modify_credits(-50)                    
+                        him happy "It was so cute I almost bought one for myself, too."
+                        kid normal "It's so warm! Like a cozy alien hug."
+                    $ community24_bought = True
+                    jump community24_buy
+                "Fancy soap for [her_name] (40)":
+                    $ marriage_strength += 1
+                    "I knew [her_name] used to get fancy soap all the time back on Earth..."
+                    $ modify_credits(-40)
+                    show her surprised at midright with dissolve
+                    her "Oh, [his_name], you didn't have to get me anything..."
+                    him happy "I wanted to! I know you miss a lot of things from Earth..."
+                    her concerned "I do... and I know you don't like to spend money on unnecessary things. So this means a lot to me."
+                    her normal "Thank you, sweetie."                
+                    $ community24_bought = True
+                    jump community24_buy
+                "Cool rocks from the miners for [bro_name] (60)":
+                    $ miners += 1
+                    $ responsive += 1
+                    $ modify_credits(-60)
+                    "Some of the miners were selling these iridescent rocks they found while mining."
+                    "Apparently they didn't have any rare minerals in them, but someone had polished them and they were just the right size to hold in your hand."
+                    show bro normal at midright with dissolve
+                    him explaining "Here, this is for you."
+                    bro surprised "For me? Wow..."
+                    "He stared at it for a minute, turning it over to see how the light changed its colors and rubbing its smooth surface with his thumb."
+                    bro normal "Thank you."
+                    $ community24_bought = True
+                    jump community24_buy
+                "I've bought enough stuff.":
+                    if (community24_bought):
+                        "I didn't need to buy anything else."
+                    else:
+                        "I came to Talaam to get away from all the consumerism and money worries of Earth. Why would I want to go back to that now?!"
 
-            "Cool rocks from the miners for [bro_name] (60)":
-                $ miners += 1
-                $ responsive += 1
-                $ modify_credits(-60)
-                "Some of the miners were selling these iridescent rocks they found while mining."
-                "Apparently they didn't have any rare minerals in them, but someone had polished them and they were just the right size to hold in your hand."
-                show bro normal at midright with dissolve
-                him explaining "Here, this is for you."
-                bro surprised "For me? Wow..."
-                "He stared at it for a minute, turning it over to see how the light changed its colors and rubbing its smooth surface with his thumb."
-                bro normal "Thank you."
-            "Don't buy anything.":
-                "I came to Talaam to get away from all the consumerism and money worries of Earth. Why would I want to go back to that now?!"
     return
 
 ################################################################################
@@ -7301,7 +7319,7 @@ label call_to_squid:
                     zaina happy "I can do some field research this weekend."
                     him content "Great. Maybe the jellymother will talk to you too."
                     zaina sad "You're not coming with me?"
-                    him normal "I've been out there twice already. I need to work on my farm"
+                    him normal "I've been out there twice already. I need to work on my farm."
                     "I left feeling like maybe there was hope for reconciliation between us and the jellypeople."
                     scene black with fade
                     nvl clear
@@ -8895,6 +8913,8 @@ label community30:
                                         brennan "She was still collecting disability pay, based on various factors, including her reduced salary."
                                         him surprised "Huh. So she didn't make this much money working overtime?"
                                         brennan sad "No, she has only been working in the mines a few days a week since her suicide attempt."
+                                        him concerned "She attempted suicide?!"
+                                        brennan concerned "You didn't know? Sorry, I shouldn't have said anything, then."
                                         jump who_suspect
                                     brennan angry "Okay, okay, that's enough."
                                     jump who_suspect
@@ -9264,8 +9284,8 @@ label community30:
                             him "Dang. Things got heated back there."
                             thuc sad "I hope we can put this incident behind us soon."
                             "After thirty minutes the jury was still going."
-                            show sara normal at left behind raind
-                            sara "The jury is going to be awhile. You can both come home and we'll discuss their final decision tomorrow morning."
+                            show sara normal at left behind rain
+                            sara "The jury is going to be awhile. You can both go home and we'll discuss their final decision tomorrow morning."
                             scene black with fade
                             scene community_center with fade
                             play sound "sfx/rain.ogg" volume 0.6 loop

@@ -489,7 +489,7 @@ init python:
     # Return indices of what is 'adjacent' - -1 and +1 for horizontal,
     # and -num_columns and +num_columns for vertical
     def get_adjacent(crop_index, max_size):
-        num_columns = roundint(max_size**0.5)
+        num_columns = 5 #We no longer use the square root. roundint(max_size**0.5)
         # left edge
         if ((crop_index % num_columns) == 0):
             potential_indices = [crop_index-num_columns, crop_index+1, crop_index+num_columns]

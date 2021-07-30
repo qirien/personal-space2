@@ -531,6 +531,13 @@ label message20:
 # Family: Terra's mean and sarcastic
 label message21:
     nvl clear
+    zaina_c "Thanks to everyone who helped look for Dr. Lily."
+    her_c "It's been two weeks since she disappeared. I think she's really gone."
+    sara_c "I'll plan a funeral for her. Who knows, maybe she'll show up in the middle of it and prove us all wrong!{emoji=happycry}"
+    him_c "That would be great, but..."
+    ilian_c "That's just wishful thinking. Obviously she's at the bottom of the ocean and is not coming back."
+    sara_c "Yeah, you're right... {emoji=sad}"
+    nvl clear
     # Naomi's gone, but Sara needs parenting advice. How to deal with teenagers?!
     # Natalia and Julia give conflicting good advice
     sara_c "I can't believe I'm old enough to have a teenager!! {emoji=scream}"

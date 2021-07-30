@@ -2635,7 +2635,7 @@ label family8:
     kid laugh "...and the letters of the alphabet and my numbers up to fifty except Travis says I always mess up around forty-seven and skip right to forty-nine but I don't, right, daddy?"
     him surprised "Um, what was the question?"
     kid normal "I'm so excited to eat lunch there, too! I have my very own lunch box and I'm going to show it to Travis and he'll think it's so cool how we made it together, daddy."
-    kid concerned "What?"
+    him concerned "What?"
     her normal coat "We're almost there. Come get a goodbye hug."
     kid normal "Bye, mommy!"
     "She turned to me, and I felt like I should say something, but I wasn't sure what."
@@ -2976,11 +2976,11 @@ label family9:
     show oleg normal at quarterleft
     with moveinleft
     kid happy "Daddy!"
-    show kid normal at midright with move
+    show kid normal at center with move
     if (year6_have_baby):
         "I set [bro_name] down so I could give [kid_name] my full attention for a minute."
-        show bro surprised at baby_pos
-        show kid at midright with move
+        show bro surprised at right with move
+    show kid at midright with move
     "She tackled me with a big hug and I swung her around in a circle."
     show kid happy at quarterright, standing with move
     him happy "Welcome home! Oh, I see you brought Oleg with you. Hi, there!"
@@ -4757,8 +4757,17 @@ label allowance_how:
 label family16:
     play music tense
     scene stars with fade
-    "The way my kids grew up was pretty different from how [her_name] and I grew up on Earth. They never experienced things like grocery stores, recess with two hundred kids, or being on a sports team."
-    "But some things were pretty similar to my own childhood."
+    show child with dissolve
+    "I still couldn't get used to how tall [kid_name] was all of a sudden. It was like my little girl had spent a few years in a portal world and come back to us completely different."
+    hide child with dissolve
+    show tween with dissolve
+    "Well, not completely different."
+
+    $ adjective = get_kid_adjective()
+
+    "She was still as [adjective] as ever, and sometimes she still acted like a little kid."
+    hide tween with dissolve
+
     scene kid_bedroom with fade
     show him annoyed at midright
     show kid determined at midleft
@@ -4990,19 +4999,11 @@ label family16:
 # Sibling fighting; Unexplained crying
 label family17:
     scene stars with fade
-    show child with dissolve
-    "I still couldn't get used to how tall [kid_name] was all of a sudden. It was like my little girl had spent a few years in a portal world and come back to us completely different."
-    hide child with dissolve
-    show tween with dissolve
-    "Well, not completely different."
-
-    $ adjective = get_kid_adjective()
-
-    "She was still as [adjective] as ever, and sometimes she still acted like a little kid."
-    hide tween with dissolve
+    "[kid_name] took a lot of my attention - she loved to talk and be around people. But [bro_name] was growing up, too."
     show bro normal with dissolve
-    "[bro_name] was growing a lot, too, but I didn't notice as much. That's the sad fact of being a younger child -- almost everything you do, your older sibling has done first."
-    "That doesn't mean I didn't love him. His 'firsts' just weren't as exciting. Although, now that I thought about it..."
+    "I honestly didn't notice him much. That's the sad fact of being a younger child -- almost everything you do, your older sibling has done first."
+    "And he didn't seem to mind being in the background most of the time."
+    "That doesn't mean I didn't love [bro_name]. His 'firsts' just weren't as exciting. Although, now that I thought about it..."
     menu:
         "Do I have a favorite kid?"
         "[kid_name] was my favorite.":
@@ -5022,7 +5023,8 @@ label family17:
             "[kid_name] was always expressive and loved to talk and have people pay attention to her."
             "[bro_name] was a lot quieter. He was happy just doing his own thing most of the time."
 
-    "But even he had problems sometimes."
+    "The way my kids grew up was pretty different from how [her_name] and I grew up on Earth. They never experienced things like grocery stores, recess with two hundred kids, or being on a sports team."
+    "But getting along with siblings seemed to be a problem no matter where someone grew up..."
     scene farm_exterior with fade
     show him normal at center with moveinright
 
@@ -7122,6 +7124,7 @@ label lettie_dies:
     him sad "Okay, okay old girl. [her_name]'s coming."
     "But by the time [her_name] arrived, it was too late."
     "Lettie's heart had stopped."
+    hide horse with dissolve
     show him cry with dissolve
     show her concerned at center behind horse with moveinright
     her sad "I'm so sorry, [his_name]."
@@ -7227,7 +7230,7 @@ label lettie_dies:
     him determined "You don't think I'm just crazy with grief?"
     her nervous coat "I think posting like that was stupid and tactless, but you make a fair point. We can be good neighbors and support the miners without trusting Anya's brother with our daughter."
     him sad "She's not going to like it."
-    her determined coat "I'm a doctor; I'm used to people not liking their treatments, whether its pills or cryotherapy or an IV. Perhaps if we approach this the right way we can minimize her... discomfort."
+    her determined coat "I'm a doctor; I'm used to people not liking their treatments, whether it's pills or cryotherapy or an IV. Perhaps if we approach this the right way we can minimize her... discomfort."
     menu:
         "What should we do?"
         "Forbid her from hanging out at Anya's house.":
@@ -8715,7 +8718,6 @@ label family30:
     # scene barn with fade
     # show oleg happy at midleft
     # show teen_flirting at center
-    # TODO: Replace when we have an Oleg with hair.
     show memory08 at tilted, midright, driftdown, threefourths_size
     "And the moonlight shining through the barn reminded me of the time I caught her dancing with Oleg. She was trying to teach him the swing, though she had only ever seen it in videos."
 
@@ -8817,10 +8819,12 @@ label family30:
             her concerned coat "On the other side, if you decide not to go, you might never get that chance again, either."
             him determined "If you went to Earth, you'd be completely alone. No family, no friends, no community supporting you."
             her determined coat "But you'd have a chance to meet so many more new people and friends that you would never meet here."
-            him normal "On Earth, you could get a traditional college degree in anything you wanted."
-            her concerned coat "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
-            him annoyed "If you go to college on Earth, they'll tell you all the classes you need to take and you'll have to write papers that say what your teachers want and do exactly what they say."
-            her normal coat "But here, you're in charge of your education, and while that gives you a lot of freedom to study what you want, it might be hard to stay motivated and learn efficiently without as much structure."
+            kid normal "Yeah... sometimes I feel like everything is the same here all the time."
+            her concerned coat "On Earth, you could get a traditional college degree in anything you wanted."
+            him concerned "But you might be in debt when it's over, and unless you have a very well-paying job, that debt could last a long time."
+            her flirting coat "Unless you leave it all behind and move to a new planet!"
+            him annoyed "And, if you go to college on Earth, they'll tell you all the classes you need to take and you'll have to write papers that say what your teachers want and do exactly what they say."
+            her normal coat "But here, you're in charge of your education, which might make it hard to stay motivated and learn efficiently without as much structure."
             kid surprised "That's... a lot to think about!"
             him normal "Good! If you're not thinking about it a lot, you'll probably make the wrong decision."
             her concerned coat "I don't think there is a 'wrong' decision here. But please gain as much information as you can and think hard before you make a decision."

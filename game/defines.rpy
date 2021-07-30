@@ -163,7 +163,7 @@ init -100:
     define chaco = Character("Chaco", who_color=blue_dusty_ice, image="chaco", ctc="ctc_blink", ctc_position="nestled-close") 
     define kevin = Character("Kevin", who_color=yellow, image="kevin", ctc="ctc_blink", ctc_position="nestled-close")
     define zaina = Character("Zaina", who_color=yellow_gold, image="zaina", ctc="ctc_blink", ctc_position="nestled-close") #golden yellow
-    define jellysquid = Character("Jellysquid", kind=nvl, who_color="#614bb5", image="jellysquid", ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/KidZone.ttf")  #purple
+    define jellysquid = Character("Jellysquid", kind=nvl, who_color="#614bb5", ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/KidZone.ttf")  #purple
 
     define tutorial = Character("Tutorial", who_color="#ededed", ctc="ctc_blink", ctc_position="nestled-close")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
@@ -353,6 +353,7 @@ init -100:
     # Setup ACHIEVEMENTS
     python:
         show_which = ""
+        #achievement.steam_position = "top left"
         # Has achievement name, description, and spot for screenshot/icon
         # This needs to be persistent if you are using the screenshots for achievements system.
         achievement_dict = {

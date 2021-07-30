@@ -593,7 +593,7 @@ label work6:
     $ competence += 2
     $ achieved("Carbon Copy")
     "You can now choose how much [kid_name] helps on the farm. Her effectiveness depends on her competence."
-    "Her competence increases as she leanrs, works, and develops self-discipline."
+    "Her competence increases as she learns, works, and develops self-discipline."
     window hide
     scene black with fade
     return

@@ -366,7 +366,10 @@ init -100 python:
             return False
         else:
             farm_size += amount
-            notify_change("Farm Size +" + str(amount))
+            if (amount < 0):
+                notify_change("Farm Size " + str(amount))
+            else:
+                notify_change("Farm Size +" + str(amount))
             #notification_add("Farm Size", amount)    
             return True
 

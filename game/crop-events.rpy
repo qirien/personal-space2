@@ -2087,7 +2087,7 @@ label honey1:
                 him determined "Travis, I need to talk to you."
                 show helen sad at right with move
 
-    show him at center with move
+    show him at midleft with move
     show travis normal at midright with move
     travis happy "Uh, hi there Mr. [his_name]. It's, uh, been awhile. How's [kid_name]?"
     him annoyed "Don't change the subject. I caught you stealing my honey."
@@ -2143,7 +2143,7 @@ label honey1:
             him sad "But if you're really hungry, come ask and I'll give you some food."
             travis normal "Oh. I mean, we don't need a handout or anything, we're doing just fine--"
             him normal "It's okay. I get it."
-    him surprised "It's gotta be tough living out there by yourselves?"
+    him surprised "It's gotta be tough living out here by yourselves..."
     travis angry "My dad's always saying how we gotta live on our own, do everything ourselves, be independent."
     him concerned "Yeah..."
     travis normal "I guess I was just trying to do something on my own."

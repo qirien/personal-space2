@@ -279,7 +279,7 @@ label start:
     #"Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
     if (persistent.times_beaten):
-        "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen. We'll also increase your starting farm size and enable crops you've unlocked."
+        "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen. We've also increase your starting farm size and enabled crops you've unlocked."
         $ work_increase = 10
         if (persistent.crops_unlocked):
             $ i = 0
@@ -430,7 +430,7 @@ label life_loop:
             $ total_work = farm.get_total_work()
 
             # Achievement for planting mostly potatoes
-            if (farm.crops.count("potatoes") >= (farm.crops.len() - 4)):
+            if (farm.crops.count("potatoes") >= (farm.crops.len() - 5)):
                 $ achieved("Potato Papa")
 
             play music farming fadeout 3.0 fadein 3.0

@@ -138,7 +138,7 @@ screen say(who, what):
             window:
                 style "namebox"
                 button:                       
-                    action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
+                    action If((bios.getBio(nickname) != ""), [ActivateBio(nickname), Show("biographies", irisout, nickname)]) 
                     text who:
                         id "who"
     
@@ -1513,7 +1513,7 @@ screen nvl_dialogue(dialogue):
                     $ w_blue = Color(who_color).rgb[2]
                     if (not is_jack):
                         button:
-                            action [ActivateBio(nickname), Show("biographies", irisout, nickname)] 
+                            action If((bios.getBio(nickname) != ""), [ActivateBio(nickname), Show("biographies", irisout, nickname)]) 
                             text d.who:
                                 id d.who_id
                     else:

@@ -21,7 +21,7 @@ transform popdown():
         yoffset -15.0  alpha 0.0
         easein 0.5 yoffset 0.0 alpha 1.0
 
-    # When it's hidden, slide it down and fade it out.
+    # When it's hidden, slide it up and fade it out.
     on hide:
         easeout 0.5 yoffset -15.0 alpha 0.0
 
