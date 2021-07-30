@@ -30,7 +30,7 @@ define config.load_failed_label = "life_loop" #If it can't find where to return 
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.
 
-define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepiagames.com}http://metasepiagames.com{/a}\n\n{a=credits}Credits{/a}") #TODO: link to LICENSE, HTML version
+define gui.about = _("Created by Metasepia Games\n\n{a=http://metasepiagames.com}http://metasepiagames.com{/a}\n\n{a=credits}Credits{/a}\n{a=http://metasepiagames.com/SpaceToGrow/LICENSE.html}Full License{/a}") 
 
 
 ## A short name for the game used for executables and directories in the built
