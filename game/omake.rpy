@@ -1,6 +1,7 @@
 # Omake, unlocked after beating the game
 # What really happened to Dr. Lily?
 label jellysquid_logs:
+    $ bios = Bios()
     $ year = 30
     scene lab with fade
     show kid normal at center
@@ -50,6 +51,7 @@ label jellysquid_logs:
 
 # No longer used as an ending, but unlocked as a BONUS after beating the game.
 label ending_extra:
+    $ bios = Bios()
     if (mp.jack_name):
         $ his_name = mp.jack_name
     else:
