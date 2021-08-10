@@ -1741,7 +1741,7 @@ label spinach2:
                         kid nervous "Actually, they're kind of cute."
                         him annoyed "Cute as cockroaches."
                         kid concerned "You're not going to kill them, are you?!"
-                        menu:
+                        menu spinach2_kill_snails:
                             "What should I do?"
                             "Have [kid_name] help you move them.":
                                 $ confident += 1
@@ -1773,7 +1773,7 @@ label spinach2:
                                     kid cry "No, I won't do it!"
                                     hide kid with moveoutleft
                                     "She ran back to the house crying. Maybe this was one job I shouldn't delegate."
-                                    "I dropped them in a bucket of water one by one and that seemed to kill them."
+                                    "I crushed each one under my boot with a satisfying crunch."
                             "Send her away and kill them yourself.":
                                 him determined "I'll take care of it. You just run along, now."
                                 if (is_independent()):

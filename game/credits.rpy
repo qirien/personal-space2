@@ -37,7 +37,7 @@ label credits:
     if jellypeople_happy:
         show jellysquid4 at tilted, left, driftdown, flip
 
-    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nGled Bledsoe\nChristos Anestopoulos\nAmbient Teknology\nJustin St-Pierre\n\nLicensed by {a=http://www.magnatune.com}Magnatune{/a}\n\nAlso featuring {a=https://bit.ly/2xNM03K}LonePeakMusic{/a} and {a=https://incompetech.com}Kevin MacLeod{/a}" with dissolve
+    show text "With music by\n\nKen Bonfield\nRay Montford\nJeff Wahl\n\nAmfibia\nBlue Wave Theory\nEhren Starks\nGled Bledsoe\nChristos Anestopoulos\nAmbient Teknology\nJustin St-Pierre\n\nLicensed from {a=http://ilicensemusic.com/}iLicenseMusic{/a}\n\nAlso featuring {a=https://bit.ly/2xNM03K}LonePeakMusic{/a} and {a=https://incompetech.com}Kevin MacLeod{/a}" with dissolve
     $ renpy.pause(5.0)
     hide text with dissolve
 
