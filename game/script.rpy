@@ -1,5 +1,8 @@
 ﻿## Our Personal Space 2: Space to Grow
-#  by Metasepia Games, http://metasepiagames.com
+#  (c) 2021 by Metasepia Games, http://metasepiagames.com
+# 
+# This code is released under the GPL v3.0; see accompanying LICENSE file for details.
+
 # Splashscreen before the main menu
 label splashscreen:
     scene black

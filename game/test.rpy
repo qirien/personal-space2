@@ -705,6 +705,7 @@ label trailer_after_cleanup:
 
 
 label test_dialogue:
+    $ bios = Bios()
     if (mp.jack_name):
         $ his_name = mp.jack_name
     else:
