@@ -290,7 +290,7 @@ label message12:
     if (is_liaison):
         him_c "Okay, this area is now private for colonists-only. You can use the old area if you want to talk to everyone on Talaam."
     else:
-        sara_c "Okay, I setup this new area for colonists only. The old area was kind of overrun by miners!"
+        sara_c "Okay, I set up this new area for colonists only. The old area was kind of overrun by miners!"
 
     julia_c "Nothing against the miners, but they don't need to hear all about our crops and things like that."
     ilian_c "And we don't need to hear about all their safety classes and deadlines."
@@ -570,7 +570,7 @@ label message22:
     pavel_c "Isn't anyone else interested in fish sauce??"
     natalia_c "Not really."
     him_c "I don't know what I'd use it for."
-    thuc_c "Maybe we can make a small batch togther, Pavel."
+    thuc_c "Maybe we can make a small batch together, Pavel."
 
     nvl clear
     return

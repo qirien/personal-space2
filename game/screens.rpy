@@ -108,7 +108,7 @@ screen say(who, what):
     $ nickname = get_nickname(who)
 
     showif show_menutab:
-        imagebutton xpos 1245 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")
+        imagebutton xpos 1245 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab") alt "Hide Menu Tab"
         frame: 
             background "gui/menutabbg.png"
             xpos 1130
@@ -118,16 +118,16 @@ screen say(who, what):
                 spacing 15
                 vbox:
                     spacing 15
-                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle") tooltip "Auto Advance"
-                    imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu"
+                    imagebutton auto "gui/auto_%s.png" action Preference("auto-forward", "toggle") tooltip "Auto Advance" alt "Auto Forward"
+                    imagebutton auto "gui/menu_%s.png" action ShowMenu("preferences") tooltip "Menu" alt "Menu"
                 vbox:                
-                    imagebutton auto "gui/log_%s.png" action ShowMenu("history") tooltip "History"                            
+                    imagebutton auto "gui/log_%s.png" action ShowMenu("history") tooltip "History" alt "History"         
                     null height 15
                     showif persistent.times_beaten:
-                        imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content"
+                        imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content" alt "Skip"
                     
     else:
-        imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")    
+        imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab") alt "Show Menu Tab"
 
     window:
         id "window"
@@ -142,7 +142,7 @@ screen say(who, what):
                     text who:
                         id "who"
     
-    imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, nickname)]
+    imagebutton idle SideImage() xpos 120 ypos 560 action [ActivateBio(who), Show("biographies", irisout, nickname)] alt nickname
     $ tooltip = GetTooltip()
     if tooltip:
         text "[tooltip]" italic True yalign 0.75 xalign 1.0
@@ -1262,6 +1262,7 @@ screen achievements():
                                 at thumbnail
                                 action Show("show_photo", irisout, photo_file)
                                 hovered SetVariable("show_which", title)
+                                alt title
                         else:
                             text title
                     else:
@@ -1270,6 +1271,7 @@ screen achievements():
                             hover "gui/locked.png"
                             action NullAction()
                             hovered SetVariable("show_which", title)
+                            alt title + " Locked"
                             at highlight_imagebutton
                     text title xalign 0.5
                     showif (show_which == title):
@@ -1286,8 +1288,8 @@ screen bonus():
             spacing 10
 
             textbutton "Deleted Ending" action Start("ending_extra")
-            textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")
             textbutton "Lily's Fate" action Start("jellysquid_logs")
+            textbutton "Bonus Scene: Mystery Meal" action Start("test_dialogue")            
             #textbutton "Fighting Minigame" action Start("fight_brennan") #should we really have this in here? I guess not.
             textbutton "Season's Greetings" action Show("show_photo", irisout, "terra-christmas")
 

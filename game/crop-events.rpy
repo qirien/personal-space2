@@ -405,7 +405,8 @@ label corn2:
                     if (bro_years > 0):
                         show bro normal at quarterright
                     her surprised "Chips and salsa?! Wonderful!"
-                    kid happy "I like chips, too!"
+                    if (year > BABY_MAX):
+                        kid happy "I like chips, too!"
                     him happy "Eat up!"
 
             "Don't treat it.":
@@ -420,7 +421,8 @@ label corn2:
                 her happy "Popcorn!!"
                 "The kernels were small and less airy than normal Earth popcorn, but [kid_name] wouldn't know the difference."
                 him happy "Eat up!"
-                kid surprised "It's... puffy? And salty!"
+                if (year > BABY_MAX):
+                    kid surprised "It's... puffy? And salty!"
                 her sleeping "Delicious..."
     return
 
@@ -477,7 +479,7 @@ label carrots2:
         her surprised "You're going to make nori?"
         him concerned "...maybe not this time. It'll be something kind of like sushi, anyway."
         her happy "Sounds delicious!"
-        if (year >= 7):
+        if (year >= TODDLER_MAX):
             scene black with fade
             scene farm_interior with fade
             show her normal at midright
@@ -516,7 +518,7 @@ label carrots3:
     scene fields with fade
 
     "I was glad I had managed to get rid of the pests on the carrots."
-    "But this year, we had a ton. [kid_name] was eating them all the time, which is good, but her hands are starting to turn yellow... Is it healthy to eat that many carrots?!"
+    "But this year, we had a ton. [kid_name]'s eating them all the time, which is good, but her hands are starting to turn yellow... Is it healthy to eat that many carrots?!"
     menu:
         "What should I do?"
         "Ask [her_name].":
@@ -648,7 +650,7 @@ label potatoes2:
             ilian normal "Very well. Just make sure you bring some of those chips by here first, all right?"
             scene farm_interior with fade
             show him normal at midleft with moveinleft
-            if (year >= 7):
+            if (year >= TODDLER_MAX):
                 show kid normal at midright with moveinright
                 kid surprised "Is dinner ready yet?"
                 him normal "No, but I'm making a special treat. You make us a salad, and I'm going to make a wonderful thing called potato chips."
@@ -748,7 +750,7 @@ label potatoes3:
         "What should I say?"
         "Fine.":
             him pout "Fine."
-            if (year >= 7):
+            if (year >= TODDLER_MAX):
                 kid sad "What's that smell?"
             else:
                 her surprised "What's that smell?"
@@ -895,7 +897,7 @@ label squash2:
             "Then I burned the squash plants instead of composting them.  I didn't want to have this problem next year."
         "Apply pesticide.":
             $ squash2_method = "exterminate"
-            if ("bees" in farm.crops):
+            if ("honey" in farm.crops):
                 "I didn't want to hurt my plants or bees, so I decided to spray the bugs with soapy water."
             else:
                 "I didn't want to hurt my plants, so I decided to spray the bugs with soapy water."
@@ -1123,7 +1125,7 @@ label goats2:
             with moveinleft
             him happy "Dinner's ready!"
             her surprised "Is this a... pepperoni pizza?! Ohhh, [his_name]!"
-            if (year >= 7):
+            if (year >= TODDLER_MAX):
                 kid surprised "What's pepponi pitsa?"
                 him determined "Only the best food ever invented."
                 her concerned "It might taste weird to her, though."
@@ -1141,12 +1143,12 @@ label goats2:
             "Pizza after a soccer game, pizza at a video game party with friends, pizza with [her_name] on a rainy night in, feeding each other and laughing and cuddling on the couch..."
             her surprised "Are... are you crying?"
             him sad "This... is the best pizza I've ever had. It tastes like... Earth."
-            if (year >= 7):
+            if (year >= TODDLER_MAX):
                 kid normal "Earth is spicy?"
                 her concerned "Spicy and sweet and creamy and saucy and complicated."
                 him flirting "Sounds like someone else I know."
                 her flirting "Shut up and eat your pizza."
-                if (year >= 20):
+                if (year >= CHILD_MAX):
                     kid annoyed "Dad, that was so bad."
                     him surprised "Was it so bad it's... cheesy?"
                     kid normal "Ohhh, dad!"
@@ -1169,7 +1171,7 @@ label goats3:
     "But not one time..."
     scene fields with fade
     show him normal at center with dissolve
-    if (year > 7):
+    if (year > TODDLER_MAX):
         show kid normal at midleft with dissolve
     him surprised "Hey, did the goats all go inside...?"
     "That seemed unlikely, so I went to go check it out."
@@ -1178,10 +1180,10 @@ label goats3:
     with moveoutleft
     scene fields with fade
     show him normal at center with moveinleft
-    if (year > 7):
+    if (year > TODDLER_MAX):
         show kid normal at midleft with moveinleft
     "The gate was wide open and all the goats were gone. Really gone. Not a goat in sight."
-    if (year > 7):
+    if (year > TODDLER_MAX):
         him annoyed "Did you leave this gate open?!"
         kid nervous "No, I know I closed it all the way!"
         "I wasn't sure if I believed her, but either way, we needed to find those goats."
@@ -1198,7 +1200,7 @@ label goats3:
     show goat at midright
     with dissolve
     show him determined at midleft behind goat with moveinleft
-    if (year > 7):
+    if (year > TODDLER_MAX):
         show kid concerned at quarterleft with moveinleft
     "Sure, enough, Julia was there scowling and flapping a dishtowel, trying to drive the goats away."
     show julia at midright with move
@@ -1219,7 +1221,7 @@ label goats3:
     show him determined at center
     show goat at midleft
     with moveinright
-    if (year > 7):
+    if (year > TODDLER_MAX):
         "With me leading the way and [kid_name] chivvying them from behind, we managed to get the goats back in their pen."
     else:
         "I got the goats' attention and led them back to their pen. They recognized me as their herd leader and mostly followed, though they kept getting distracted by interesting plants along the way."
@@ -1266,7 +1268,7 @@ label goats3:
             "I added some wire to hold the slide bolt in place, and the goats stayed in their pen after that."
             him determined "Now, let's see you open {b}that{/b}."
 
-        "Scold [kid_name]." if (year > 7):
+        "Scold [kid_name]." if (year > TODDLER_MAX):
             "It must have been [kid_name]. There's no other possibility."
             show kid concerned at midright with moveinright
             him determined "[kid_name], I'm disappointed that you let the goats escape."
@@ -1519,13 +1521,13 @@ label plums2:
         show ilian normal at midright
         show him normal at midleft with dissolve
 
-    "While I was at the storehouse, I saw that they had a ton of onions for just 15 credits."
+    "While I was at the storehouse, I saw that they had a ton of onions for just 25 credits."
     "If I bought them, I could plant some and grow my own..."
-    if (credits >= 15):
+    if (credits >= 25):
         menu:
             "What should I do?"
             "Buy onions.":
-                $ modify_credits(-15)
+                $ modify_credits(-25)
                 "I decided to buy them. It's always good to have more crops to choose from, and onions go well with everything."
                 $ enable_crop("onions")
             "Don't buy onions":
@@ -1549,11 +1551,11 @@ label beans1:
     "Then I fed them into the sheller to separate the pods from the beans."
     scene farm_exterior with fade
     show him normal at center with dissolve
-    if (year >= 7):
+    if (year >= TODDLER_MAX):
         show kid normal at midleft with moveinleft
         kid surprised "Can I turn the crank?"
         him happy "Of course!"
-        if (year <= CHILD_MAX):
+        if (year < CHILD_MAX):
             "She only lasted for a few minutes, but it gave me a chance to move some things around so that the shelling would be more efficient."
         else:
             "She cranked and cranked... I wasn't sure she ever would have admitted she was tired, so I made her give me a turn."
@@ -1973,7 +1975,7 @@ label onions1:
     return
 
 # Honey event
-# Can only happen year 11+
+# Can only happen year 11+; 8+ for NG+
 label honey1:
     scene fields with fade
     show him normal at center with dissolve

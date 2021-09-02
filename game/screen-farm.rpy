@@ -9,7 +9,7 @@ screen plan_farm():
     frame:
         background  "computer_pad_with_screen"
         text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
-        imagebutton auto "gui/computerpadbutton_%s.png" action ShowMenu("save") xpos 1233 yalign 0.5
+        imagebutton auto "gui/computerpadbutton_%s.png" action ShowMenu("save") alt "Game Menu" xpos 1233 yalign 0.5
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -113,7 +113,7 @@ screen farm_details_screen():
                         xspacing 30
                         xalign 0.5
                         vbox:
-                            imagebutton auto "gui/messages_%s.png" action Jump("yearly_messages")
+                            imagebutton auto "gui/messages_%s.png" action Jump("yearly_messages") alt "Messages"
                             text "Messages" style "tiny_text"
 
                             showif (not read_messages):
@@ -121,7 +121,7 @@ screen farm_details_screen():
                             else:
                                 text " " ypos -40 style "alert_text" xalign 0.0 # We have to have this here or it messes up all the positions
                         vbox:
-                            imagebutton auto "gui/parenting_%s.png" action Show("parenting_handbook", transition=irisout)
+                            imagebutton auto "gui/parenting_%s.png" action Show("parenting_handbook", transition=irisout) alt "Parenting"
                             text "Parenting" style "tiny_text"
                             showif ((year in TRANSITION_YEARS) and (not read_handbook)):
                                 text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
@@ -129,7 +129,7 @@ screen farm_details_screen():
                                 text " " ypos -40 style "alert_text" # We have to have this here or it messes up all the positions
 
                         vbox:
-                            imagebutton auto "gui/bios_%s.png" action Show("biographies", irisout, bios.getFirstUnreadPersonName())
+                            imagebutton auto "gui/bios_%s.png" action Show("biographies", irisout, bios.getFirstUnreadPersonName()) alt "Bios"
                             text "Bios" style "tiny_text"
                             showif (bios.hasUnread()):
                                 text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
@@ -137,7 +137,7 @@ screen farm_details_screen():
                                 text " " ypos -40 style "alert_text"
                         vbox:
                             showif(len(word_board.poems) > 0):
-                                imagebutton auto "gui/poetry_%s.png" action Show("poetry_display", irisout, word_board)
+                                imagebutton auto "gui/poetry_%s.png" action Show("poetry_display", irisout, word_board) alt "Poetry"
                                 text "Poetry" style "tiny_text"
                             else:
                                 text "" xalign 0.0
@@ -265,6 +265,7 @@ screen choose_crop(crop_index=0):
                                     insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), Solid(gray_transparent))
                                     xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                     anchor (0.5, 0.5)
+                                    alt crop_name
                                     align  (0.5, 0.5)
                                     selected is_selected
                                     sensitive (crop_info[crop_info_index][NITROGEN_INDEX] < farm.health[crop_index][Field.NITROGEN_LEVEL_INDEX])
@@ -297,6 +298,7 @@ screen sort_buttons():
         $ imagefile =  STAT_ICON_BASE + this_button + ".png"
         imagebutton:
             idle imagefile
+            alt this_button
             hover Composite((CROP_STATUS_ICON_SIZE,CROP_STATUS_ICON_SIZE), (0,0), imagefile,
             (0,0), im.FactorScale("gui/crop icons/selected.png", 0.5))
             selected_idle Composite((CROP_STATUS_ICON_SIZE,CROP_STATUS_ICON_SIZE), (0,0), imagefile,
@@ -385,6 +387,7 @@ screen crops_layout():
                                 $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
                                 # image file, then boosting, then any selection box
+                                alt current_crop_name
                                 idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
                                 (0,0), imagefile,
                                 (CROP_ICON_SIZE/2,0), get_boost_image(i),
@@ -488,7 +491,7 @@ screen crops_totals():
                 null width 50
                 vbox:
                     text "Kids' Assignment"
-                    bar value kid_work_slider range 100 style "work_slider" changed set_kid_work
+                    bar value kid_work_slider range 100 style "work_slider" changed set_kid_work alt "Kids' Work" + str(kid_work_slider) + "percent"
                     hbox:
                         xfill True
                         text "Free Time" italic True

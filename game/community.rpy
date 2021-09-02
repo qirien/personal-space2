@@ -716,7 +716,7 @@ label community4:
                 him determined "I'll make sure RET understands what we need and won't let them push us around."
                 $ mavericks += 1
                 $ is_liaison = True
-            "I'll balance the needs of RET and the colony":
+            "I'll balance the needs of RET and the colony.":
                 him surprised "I would try to balance the colony's needs with the needs of the company."
                 $ miners += 1
                 $ colonists += 1
@@ -784,7 +784,7 @@ label community5:
                 $ require_whole_harvest = True
                 jump whole_harvest_required
             "Have farmers bring in a certain amount of surplus each harvest, and encourage them to grow more food.":
-                him "Let's have the farmers bring their surplus to the storehouse, and I'll ask them to grow extra beans and wheat."
+                him "Let's have the farmers bring their surplus to the storehouse, and I'll ask them to grow extra beans and grain."
                 $ miners += 1
                 $ rationing = True
                 jump ration_harvest
@@ -817,8 +817,8 @@ label community5:
 
     label whole_harvest_required:
         him pout "Let's have the farmers bring their whole harvest to the storehouse, so you can measure it."
-        him normal "I'll ask them to start farming more beans and wheat too, since those store well."
-        ilian happy "I'll need some help to build silos for the wheat."
+        him normal "I'll ask them to start farming more beans and grain too, since those store well."
+        ilian happy "I'll need some help to build silos for the grain."
         him surprised "This way we'll definitely have enough for the miners, right?"
         ilian normal "Yes. They won't even need to forage, unless they want some extra meat."
         him normal "Good. I don't want any trouble with RET."
@@ -1399,7 +1399,7 @@ label community9:
             stop sound fadeout 1.0
             show night_overlay
             "We recovered our arrows and bolts, and I noticed it was getting dark."
-            him normal "I'm going to go setup those snares."
+            him normal "I'm going to go set up those snares."
             thuc normal "I saw some trails back there. Might be a good spot."
             pete "I'm going to get a fire going. We'll eat when you get back."
             hide him
@@ -1785,7 +1785,7 @@ label community11:
     $ bios.activate("Brennan")
     him surprised "Brennan!"
     brennan flirting "Oh, hello [his_name]. You look surprised. No one mentioned I was coming?"
-    him pout "No, no one mentioned it. I hope you're not looking to get your old job in the clinc back; [her_name] has a real nurse assisting her now."
+    him pout "No, no one mentioned it. I hope you're not looking to get your old job in the clinic back; [her_name] has a real nurse assisting her now."
     brennan normal "Oh no. That was never my main objective. Someone here needs to have ties to Earth to care enough to make sure everyone does their jobs."
     brennan angry "Plus, I was the only applicant with relevant experience, having lived here before."
     her normal "Hi Brennan, I didn't think we'd ever see you again! How's it going?"
@@ -3082,7 +3082,7 @@ label community14:
     elif (parenting_style == "authoritative"):
         pete angry "In the end, I don't like anyone telling me what to do, no matter how they do it."
     elif (parenting_style == "permissive"):
-        pete angry "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that their tearin' down the house."
+        pete angry "In the end, they're always talking outta both sides of their mouth. They throw us a bone and expect us to ignore the fact that they're tearin' down the house."
     elif (parenting_style == "neglectful"):
         pete angry "In the end, all they care about is that stuff they're diggin' out of the ground, and that's not what I'm about at all."
     pete normal "I know what my contract says. Basically everything we own belongs to RET unless we made it with our own hands. But I reckon credits don't count."
@@ -8201,7 +8201,7 @@ label community30:
         "I was walking home from the library with a fresh load of ebooks in my tablet when I ran into Kevin, headed there himself."
         kevin happy "Hello [his_name]. I was thinking of e-mailing you but I was unable to formulate a cohesive message."
         kevin normal "I'd like your help with something that happened in the mining camp."
-        him pout "I'm intruiged. Want to tell me about it in the library? I don't really want to stand outside in the rain."
+        him pout "I'm intrigued. Want to tell me about it in the library? I don't really want to stand outside in the rain."
         kevin sad "It is a sensitive matter, and I would not like to be overheard..."
         him doubt "No one's in there, it's fine."
         scene library with fade
@@ -9252,7 +9252,7 @@ label community30:
                             him concerned "These are the photos of the brake on Joel's wheelchair."
                             him determined "Here's a video of me holding the brakes down and spinning the wheelchair wheels."
                             him concerned "It's obvious that the brakes were not functional at the time of Joel's death."
-                            him explaining "No one sabotaged the brakes; they simply wore out over time,"
+                            him explaining "No one sabotaged the brakes; they simply wore out over time."
                             him surprised "Usually the spouse of a disabled person is considered their primary caregiver."
                             him pout "However, Noel has been experiencing some disabilities of her own."
                             him doubt "Therefore her caregiver, Van Ngyuen, bears some of the blame for the neglect that caused Joel's death."
@@ -9264,10 +9264,10 @@ label community30:
                             thuc sad "We all forget things from time to time even if we don't want to."
                             thuc normal "Once I forgot to close my goat pen and one of my goats died from eating something poisonous."
                             thuc happy "That's different from when I slaughter a goat on purpose to eat its meat."
-                            thuc sad "It is sad that Joel died. But Van has not been and was not responsible for Joels' health."
+                            thuc sad "It is sad that Joel died. But Van has not been and was not responsible for Joel's health."
                             thuc normal "When he started working with Noel's family, his responsibility was explicitly to help Noel and her children, not Joel."
                             thuc normal "I've sent everyone screenshots of the relevant messages where Mayor Grayson and [her_name] first set up Van's visits with Noel."
-                            him determined "Maybe on paper, Van was only tasked with helping Noel and the kids, but he helped with Van's care too."
+                            him determined "Maybe on paper, Van was only tasked with helping Noel and the kids, but he helped with Joel's care too."
                             him annoyed "Besides, any caregiver has a responsibility to report abuse they observe, even if it's not of their patient."
                             thuc sad "Okay, how easy is it to observe that someone's brakes are worn out?"
                             him yell "I saw it right away!"
@@ -9344,7 +9344,7 @@ label community30:
                                     him doubt "Failing to do so was a clear message on Noel's part."
                                     him determined "She wanted him to die."
                                 else:
-                                    him explaining "No one sabotaged the brakes; they simply wore out over time,"
+                                    him explaining "No one sabotaged the brakes; they simply wore out over time."
                                     him surprised "Usually the spouse of a disabled person is considered their primary caregiver."
                                 show her determined coat at right with moveinright
                                 her annoyed coat "Joel's head injury was consistent with his fall."

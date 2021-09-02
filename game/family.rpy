@@ -6691,7 +6691,7 @@ label family22:
 # Chatting with friends on family tablet
 # Address several statistics: teens that spend more time on screens and less doing actual stuff
 # are more depressed, get less sleep, and feel more lonely and left out.
-# Solutions include: screen-free time, a new hobby, helping her setup a hangout space/time
+# Solutions include: screen-free time, a new hobby, helping her set up a hangout space/time
 # with friends, etc.
 
 label family23:

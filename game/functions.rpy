@@ -333,6 +333,8 @@ init -100 python:
                             pass
                         elif ((event_label == "garlic1") and (year < CHILD_MAX)):
                             pass
+                        elif ((event_label == "wheat1") and (year <= MINERS_ARRIVE_YEAR)):
+                            pass
                         else:
                             possible_events.add(event_label)
 

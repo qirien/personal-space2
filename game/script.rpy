@@ -184,7 +184,7 @@ label start:
     # Yield of most recent set of crops, in percentages
     default credits = 0
     default years_yield = [100] * farm_size
-    default annual_expenses_base = 2500
+    default annual_expenses_base = 2550
     default debt_consecutive_years = 0
     default debt_event_count = 0
     default seen_miners_debt = False
@@ -209,8 +209,8 @@ label start:
                         ["wheat",        10, 5, 5, 6, 9, 9, 20, False, False, False, 2],
                         ["peppers",      2, 2, 9, 0, 5, 5, 25, False, False, True, 100],    # "Fruits"
                         ["tomatoes",     3, 3, 4, 2, 8, 6, 15, True, False, True, 100],
-                        ["plums",        3, 1, 1, 1, 7, 7, 15, False, True, True, 1],
-                        ["plums+",       3, 1, 1, 1, 7, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
+                        ["plums",        3, 1, 1, 1, 6, 7, 15, False, True, True, 1],
+                        ["plums+",       3, 1, 1, 1, 6, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
                         ["squash",       4, 8, 3, 2, 2, 4, 15, True, False, True, 100],
                         ["strawberries", 1, 0, 2, 0, 6, 4, 15, False, True, True, 1],
                         ["strawberries+",1, 0, 2, 0, 6, 2, 0, False, True, True, 0],
@@ -282,14 +282,20 @@ label start:
     #"Welcome to the beta of Space to Grow! Please report any bugs/inconsistencies/typos to andrea@icecavern.net. You can take a screenshot with the 's' key and attach it or just describe the bug."
 
     if (persistent.times_beaten):
-        "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen. We've also increase your starting farm size and enabled crops you've unlocked."
+        "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen."
         $ work_increase = 10
-        if (persistent.crops_unlocked):
-            $ i = 0
-            while (i < len(crop_info)):
-                if crop_info[i][NAME_INDEX] in persistent.crops_unlocked:
-                    $ enable_crop(crop_info[i][NAME_INDEX], False)
-                $ i += 1
+        menu:
+            "Would you like to keep the crops you unlocked last time?"
+            "Yes":
+                "Okay, we'll unlock those for you!"
+                if (persistent.crops_unlocked):
+                    $ i = 0
+                    while (i < len(crop_info)):
+                        if crop_info[i][NAME_INDEX] in persistent.crops_unlocked:
+                            $ enable_crop(crop_info[i][NAME_INDEX], False)
+                        $ i += 1
+            "No":
+                "Okay, we'll start with just the basic crops."
         "Choices you've made before will show up in italics so you can decide if you want to see something different."
         "Unavailable choices will show up crossed out so you can see what they are."
         $ renpy.hide_screen("show_notification") #Just in case this got stuck on or something

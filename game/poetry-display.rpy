@@ -90,6 +90,7 @@ screen p_display(board, call_return=False):
                                 vbox:
                                     spacing 5
                                     imagebutton auto "gui/twitter_%s.png" action TweetPoem(board.poems[count]) tooltip "Share this poem on Twitter" 
+                                    alt "Tweet Poem"
                                     textbutton " × " action Confirm("Delete this poem?", DeletePoem(board, count)) tooltip "Delete this poem" xalign 0.5
                                 vbox:
                                     spacing 5

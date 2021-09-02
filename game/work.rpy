@@ -532,7 +532,7 @@ label work4:
     thuc "This goat is almost as smart as [kid_name]!"
     him happy "And probably more obedient!"
 
-    if (work4_showoff):
+    if (work4_showoff and (random_crop != "wheat")):
         thuc happy "Hey, are those your [random_crop] on display over there?"
         him normal "Yeah!"
         thuc normal "They turned out really well. How often do you fertilize them?"
@@ -1928,7 +1928,7 @@ label work28:
     "...but I had underestimated the appeal of Talaam's first restaurant. We probably weren't even in the first 30 customers."
     "Miners, colonists, Travis' parents -- it was the largest gathering I'd seen on this planet."
     "Plus, the place wasn't that big."
-    "Basically, he had hooked up a fridge to his tractor's power, setup a little griddle, and put out some benches and tables."
+    "Basically, he had hooked up a fridge to his tractor's power, set up a little griddle, and put out some benches and tables."
     "There was no menu, just lots and lots of pancakes, along with all sorts of toppings: plum syrup, lab-grown sausage gravy, and honey butter."
     hide miners with moveoutright
     show him normal at center
@@ -2074,6 +2074,9 @@ label work29_potatoes:
         "He had paid me 1000 credits more than the storehouse would have, so I was pretty happy with the arrangement."
         him happy "No problem. You need anything else?"
         travis happy "Yeah, actually. I was hoping to buy some honey from you so I can sell ice cream."
+        if (number_events_seen["honey"] >= 1):
+            him doubt "You still love honey, huh?"
+            travis normal "Yeah, it's too much work to keep bees, though."
         if ("honey" in farm.crops):
             him concerned "I am going to have some honey this year..."
             travis normal "Great, will you sell it to me? I can pay in advance."

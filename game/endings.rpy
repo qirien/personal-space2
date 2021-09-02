@@ -127,6 +127,10 @@ label ending:
     $ renpy.pause(2.0)
 
     "New Game+ unlocked! Bonus section unlocked! Unlocked crops saved!"
+    if (renpy.mobile):
+        "We're a tiny indie game studio and depend on word of mouth and user reviews! If you can, please {a=https://play.google.com/store/apps/details?id=net.icecavern.metasepia.spacetogrow}leave us a review!{/a}"
+    else:
+        "We're a tiny indie game studio and depend on word of mouth and user reviews! If you can, please leave us a review on {a=https://store.steampowered.com/app/1706470/Space_to_Grow/}Steam{/a} or {a=https://metasepia.itch.io/space-to-grow}itch.io{/a}!"
     "Thank you for playing Our Personal Space 2: Space to Grow!"
     return
 
@@ -529,7 +533,7 @@ label ending_AC:
         "[kid_name] listened as Oleg extolled the virtues of his favorite physics engine."
     "I put my arm around [her_name] and pulled her close just as she was about to put a forkful of food in her mouth."
     "The food fell on her lap and she elbowed me in mock indignation."
-    her flirting "Oh, now look one you've done. You've ruined my fanciest clothes."
+    her flirting "Oh, now look what you've done. You've ruined my fanciest clothes."
     him flirting "Want me to help you clean that off?"
     kid happy "Mom, Dad, can you not? Some of us are trying to eat here."
     if (boyfriend_name == "Travis"):
@@ -547,6 +551,8 @@ label ending_AC:
     kid happy "Great! Zaina is answering my questions about astronomy, Thuc is teaching me Earth biology, and Sara's helping me with sociology. Every book is so Earth-centric, though."
     her flirting "It's almost as if that was the only planet humans lived on for thousands of years."
     kid nervous "Well, it's not now, so they need to update their materials!"
+    him happy "Sounds like the perfect job for you."
+    kid normal "Maybe..."
     if (boyfriend_name == "Travis"):
         travis normal "We went stargazing the other night and found a bunch of constellations using Earth's charts."
     else:
