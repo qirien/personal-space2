@@ -163,12 +163,12 @@ screen yearly_summary(endgame=False):
                                             text "Jellypeople's Friend" xpos 30
                                         # Info about Kelly 
                                         if (strong_marriage):
-                                            label "[her_name] {emoji=heart}"
+                                            label "[her_name] {emoji=heart} {alt}loved{/alt}"
                                         else:
                                             label "[her_name] {emoji=nutrition-half}"
                                         # Info about Terra          
                                         if (total_attachment >= ATTACHMENT_HIGH):
-                                            label "[kid_name] {emoji=heart}"
+                                            label "[kid_name] {emoji=heart} {alt}loved{/alt}"
                                         else:
                                             label "[kid_name] {emoji=nutrition-half}"
                                         text "Attachment: [att_percent]%" xpos 30
@@ -189,7 +189,7 @@ screen yearly_summary(endgame=False):
                                         if (total_attachment < ATTACHMENT_HIGH):
                                             label "[bro_name] {emoji=nutrition-half}"
                                         else:
-                                            label "[bro_name] {emoji=heart}"
+                                            label "[bro_name] {emoji=heart} {alt}loved{/alt}"
                                     else:
                                         label "Quote"
                                         hbox:

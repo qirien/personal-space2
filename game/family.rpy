@@ -7343,11 +7343,12 @@ label family25:
     him normal "I'll go get that squash."
 
     if (is_independent()):
-        kid normal "I can handle it by myself dad."
+        kid normal "I can handle it by myself, dad."
         him surprised "Are you sure?"
         kid shifty "Yes! I know you're trying to finish harvesting, so come back in an hour and I'll have it all ready for you."
         him happy "Thanks, [kid_name], that'd be great."
         hide him with moveoutleft
+        show kid normal with dissolve
 
         if (is_competent()):
             show him normal at midleft with moveinleft

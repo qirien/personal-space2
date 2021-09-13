@@ -54,6 +54,7 @@ screen poetry_display(board, call_return=False):
         style_prefix "pp"
         xfill True
         yfill True
+        modal True
         background "#000"
         use p_display(board, call_return)
 
@@ -63,10 +64,12 @@ screen poetry_display(board, call_return=False):
         style_prefix "pps"
         xfill True
         yfill True
+        modal True
         background "#000"
         use p_display(board, call_return)
 
 screen p_display(board, call_return=False):
+    key "x" action Hide("poetry_display")
     frame:
         #background None
         left_padding 100
@@ -91,7 +94,7 @@ screen p_display(board, call_return=False):
                                     spacing 5
                                     imagebutton auto "gui/twitter_%s.png" action TweetPoem(board.poems[count]) tooltip "Share this poem on Twitter" 
                                     alt "Tweet Poem"
-                                    textbutton " × " action Confirm("Delete this poem?", DeletePoem(board, count)) tooltip "Delete this poem" xalign 0.5
+                                    textbutton " × " action Confirm("Delete this poem?", DeletePoem(board, count)) tooltip "Delete this poem"  alt "Delete Poem" xalign 0.5
                                 vbox:
                                     spacing 5
                                     for i in range(0, board.MAX_LINES):

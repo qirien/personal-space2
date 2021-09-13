@@ -6,9 +6,18 @@ screen plan_farm():
     tag plan_farm
     style_prefix "plan_farm"
     $ valid_layout = farm.is_valid_layout()
+    if (not valid_layout):
+        if (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
+            $ info_msg = "Need to allocate all goats!"
+        elif (crop_enabled("honey") and (farm.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
+            $ info_msg = "Need to allocate all bees!"
+        else:
+            $ info_msg = "Need to fix crops needing more nitrogen!"
+    else:
+        $ info_msg = "OK!"
     frame:
         background  "computer_pad_with_screen"
-        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff"
+        text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff" alt "Farm status: " + info_msg # read the info_msg first if in self-voicing mode
         imagebutton auto "gui/computerpadbutton_%s.png" action ShowMenu("save") alt "Game Menu" xpos 1233 yalign 0.5
         vbox:
             area (60, 50, 1150, 620)
@@ -35,14 +44,9 @@ screen plan_farm():
                                     if (not valid_layout):
                                         # if (farm.get_total_calories() < get_calories_required(year)):
                                         #     text "Need more energy!" style "alert_text"
-                                        if (farm.crops.count("goats") != crop_info[get_crop_index("goats")][MAXIMUM_INDEX]):
-                                            text "Need to allocate all goats!" style "alert_text"
-                                        elif (crop_enabled("honey") and (farm.crops.count("honey") != crop_info[get_crop_index("honey")][MAXIMUM_INDEX])):
-                                            text "Need to allocate all bees!" style "alert_text"
-                                        else:
-                                            text "Need to fix crops needing more nitrogen!" style "alert_text"
+                                        text info_msg style "alert_text"
                                     else:
-                                        text "OK!" style "plan_farm_status_text" color green_dark
+                                        text info_msg style "plan_farm_status_text" color green_dark
                             hbox:
                                 xsize RIGHT_COLUMN_WIDTH
                                 textbutton "Clear":
@@ -72,6 +76,7 @@ label yearly_messages:
 # Subscreen letting the user see information on crops and choose which to plant this year
 ##
 screen farm_details_screen():
+    key 'p' action [auto_place_crops, renpy.restart_interaction]
     hbox:
         xalign 0.5
         xfill True
@@ -116,27 +121,27 @@ screen farm_details_screen():
                             imagebutton auto "gui/messages_%s.png" action Jump("yearly_messages") alt "Messages"
                             text "Messages" style "tiny_text"
 
-                            showif (not read_messages):
-                                text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
+                            if (not read_messages):
+                                text " {b}!{/b} " ypos -40 style "alert_text" alt "New" at tiny_bounce
                             else:
                                 text " " ypos -40 style "alert_text" xalign 0.0 # We have to have this here or it messes up all the positions
                         vbox:
                             imagebutton auto "gui/parenting_%s.png" action Show("parenting_handbook", transition=irisout) alt "Parenting"
                             text "Parenting" style "tiny_text"
-                            showif ((year in TRANSITION_YEARS) and (not read_handbook)):
-                                text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
+                            if ((year in TRANSITION_YEARS) and (not read_handbook)):
+                                text " {b}!{/b} " ypos -40 style "alert_text" alt "New" at tiny_bounce
                             else:
-                                text " " ypos -40 style "alert_text" # We have to have this here or it messes up all the positions
+                                text " " ypos -40 alt "" style "alert_text" # We have to have this here or it messes up all the positions
 
                         vbox:
                             imagebutton auto "gui/bios_%s.png" action Show("biographies", irisout, bios.getFirstUnreadPersonName()) alt "Bios"
                             text "Bios" style "tiny_text"
-                            showif (bios.hasUnread()):
-                                text " {b}!{/b} " ypos -40 style "alert_text" at tiny_bounce
+                            if (bios.hasUnread()):
+                                text " {b}!{/b} " ypos -40 style "alert_text" alt "New" at tiny_bounce
                             else:
                                 text " " ypos -40 style "alert_text"
                         vbox:
-                            showif(len(word_board.poems) > 0):
+                            if(len(word_board.poems) > 0):
                                 imagebutton auto "gui/poetry_%s.png" action Show("poetry_display", irisout, word_board) alt "Poetry"
                                 text "Poetry" style "tiny_text"
                             else:
@@ -167,6 +172,7 @@ screen choose_crop(crop_index=0):
     modal True
     default show_sort = False
     add "gui/overlay/confirm.png"
+    key "x" action Hide("choose_crop")
     frame:
         style_prefix "crop_details"
         yalign 0.5
@@ -355,6 +361,7 @@ screen crops_layout():
             cols 5#round(farm_size**0.5)
             side_xalign 0.5
             for i in range(0, farm_size):
+                $ alt_add = ""
                 vbox:
                     xalign 0.5
                     hbox:
@@ -372,6 +379,7 @@ screen crops_layout():
                         frame:
                             if (nitrogen_usage > current_nitrogen_level):
                                 background red_dark
+                                $ alt_add = " low nitrogen"
                             else:
                                 # make poor soils lighter,
                                 # (optionally) put the pests on top
@@ -387,7 +395,7 @@ screen crops_layout():
                                 $ imagefile = get_crop_filename(current_crop_name)
                             imagebutton:
                                 # image file, then boosting, then any selection box
-                                alt current_crop_name
+                                alt current_crop_name + alt_add
                                 idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
                                 (0,0), imagefile,
                                 (CROP_ICON_SIZE/2,0), get_boost_image(i),
@@ -458,8 +466,8 @@ screen crops_totals():
         #grid 2 4
         hbox:
             text "Energy     "# + str(total_calories) + " / " + str(calories_needed)
-            showif (total_calories < calories_needed):
-                text "{b}!{/b}" style "alert_text" at tiny_bounce
+            if (total_calories < calories_needed):
+                text "{b}!{/b}" style "alert_text" alt "low" at tiny_bounce
         hbox:
             use stat_icons(2, CALORIES_INDEX)
             text " "
@@ -467,8 +475,8 @@ screen crops_totals():
         if ((year > NUTRITION_YEAR) and (bad_nutrition_count > 0)):
             hbox:
                 text "Nutrition  "# + str(vitA) + " | " + str(vitC) + " | " + str(vitM) + "/" + str(vitamins_needed)
-                showif ((vitA < vitamins_needed) or (vitC < vitamins_needed) or (vitM < vitamins_needed)):
-                    text "{b}!{/b}" style "alert_text" at tiny_bounce
+                if ((vitA < vitamins_needed) or (vitC < vitamins_needed) or (vitM < vitamins_needed)):
+                    text "{b}!{/b}" style "alert_text" alt "low" at tiny_bounce
             hbox:
                 yalign 0.5
                 add "gui/emoji/vitA.png"
@@ -481,7 +489,7 @@ screen crops_totals():
         hbox:
             text "Work          "# + str(total_work) + " / " + str(get_work_available())
             showif (total_work > get_work_available()):
-                text "{b}!{/b}" style "alert_text" at tiny_bounce
+                text "{b}!{/b}" style "alert_text" alt "high" at tiny_bounce
         hbox:
             use stat_icons(2, WORK_INDEX)
             text " "

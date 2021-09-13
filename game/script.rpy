@@ -9,6 +9,7 @@ label splashscreen:
     with Pause(0.5)
 
     show metasepia-logo with dissolve
+    alt "Metasepia Games presents Our Personal Space 2: Space to Grow"
     with Pause(1)
     
     scene black
@@ -304,6 +305,7 @@ label start:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
             "If you haven't played {a=https://www.metasepiagames.com/OurPersonalSpace/index.html}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+        alt "Press the ESC key at any time to access the game menu to save your game or change options."
 
     scene stars with fade
     show familyphoto0 at center, baby_pos with dissolve
@@ -499,6 +501,7 @@ label life_loop:
                 show text "End Baby Years"
                 $ renpy.pause(1.5)
                 show baby_cg
+                alt "image: [his_name] drives the tractor with happy baby [kid_name] on his lap."
                 $ renpy.pause(6.0)
                 $ renpy.pause()
 
@@ -508,6 +511,7 @@ label life_loop:
                 show text "End Toddler Years"
                 $ renpy.pause(1.5)
                 show toddler_cg
+                alt "image: [his_name] picks tomatoes while [kid_name] stuffs her face with them, seeds dripping down her chin."
                 $ renpy.pause(6.0)
                 $ renpy.pause()
 
@@ -517,6 +521,7 @@ label life_loop:
                 show text "End Childhood Years"
                 $ renpy.pause(1.5)
                 show child_cg
+                alt "image: [his_name] crawls on the ground with [kid_name] riding on his back. His horse watches with a bemused expression."
                 $ renpy.pause(6.0)
                 $ renpy.pause()
 
@@ -526,6 +531,7 @@ label life_loop:
                 show text "End Tween Years"
                 $ renpy.pause(1.5)
                 show tween_cg
+                alt "image: [kid_name], wearing a farm apron, ruffles a nanny goat's fur while looking into her eyes."
                 $ renpy.pause(6.0)
                 $ renpy.pause()
 
@@ -535,6 +541,7 @@ label life_loop:
                 show text "End Young Teen Years"
                 $ renpy.pause(1.5)
                 show yteen_cg
+                alt "[his_name] looks on with nervous laughter while [kid_name] drives the tractor."
                 $ renpy.pause(6.0)
                 $ renpy.pause()
 

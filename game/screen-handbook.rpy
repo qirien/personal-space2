@@ -8,6 +8,7 @@ screen parenting_handbook():
     zorder 1
     style_prefix "parenting"
     on "show" action [SetVariable("show_year", year), SetVariable("read_handbook", True)]
+    key "x" action Hide("parenting_handbook")
 
     frame:
         xalign 0.5

@@ -14,13 +14,13 @@ init -10:
 
     # CGs
     image baby_cg:
-        "images/cgs/chapter-baby.png"
+        "images/cgs/chapter-baby.png"        
         xalign 0.0 yalign 0.5
         linear 3.0 xalign 0.8 yalign 0.5
         linear 3.0 zoom 0.5
 
     image toddler_cg:
-        "images/cgs/chapter-toddler.png"
+        "images/cgs/chapter-toddler.png"        
         xalign 0.0 yalign 0.5
         linear 3.0 xalign 0.6 yalign 0.2
         linear 3.0 zoom 0.5       
@@ -32,13 +32,13 @@ init -10:
         linear 3.0 zoom 0.5
 
     image tween_cg:
-        "images/cgs/chapter-tween.png"
+        "images/cgs/chapter-tween.png"        
         xalign 0.0 yalign 0.5
         linear 3.0 xalign 0.5 yalign 0.3
         linear 3.0 zoom 0.5
 
     image yteen_cg:
-        "images/cgs/chapter-teen.png"
+        "images/cgs/chapter-teen.png"        
         xalign 0.0 yalign 0.6
         linear 3.0 xalign 0.8 yalign 0.3
         linear 3.0 zoom 0.5

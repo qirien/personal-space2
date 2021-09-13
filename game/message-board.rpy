@@ -809,64 +809,64 @@ label message30:
 
 # NVL mode characters for chat rooms, etc
 define her_c = Character("her_name", dynamic=True, who_suffix = "  {image=images/icons/her-icon.png} ",
-    color=rose, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=rose, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="[her_name]: [text]")
 define him_c = Character("his_name", dynamic=True, who_suffix = "  {image=images/icons/him-icon.png} ",
-    color=red_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=red_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="[his_name]: [text]")
 define kid_c = Character("kid_name", dynamic=True,
     who_suffix = "  {image=images/icons/kid-icon.png} ",
-    color=magenta, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=magenta, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="[kid_name]: [text]")
 define naomi_c = Character("Naomi", who_suffix = "  {image=images/icons/naomi-icon.png} ",
-    color=lavendar_gray, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=lavendar_gray, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Naomi: [text]")
 define pavel_c = Character("Pavel", who_suffix = "  {image=images/icons/pavel-icon.png} ",
-    color=tan_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=tan_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Pavel: [text]")
 define lily_c = Character("Dr. Lily", who_suffix = "  {image=images/icons/lily-icon.png} ",
-    color=lavendar, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=lavendar, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Dr. Lily: [text]")
 define sara_c = Character("Sara", who_suffix = "  {image=images/icons/sara-icon.png} ",
-    color=rose_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=rose_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Sara: [text]")
 define thuc_c = Character("Thuc", who_suffix = "  {image=images/icons/thuc-icon.png} ",
-    color=green_sage, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=green_sage, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Thuc: [text]")
 define ilian_c = Character("Ilian", who_suffix = "  {image=images/icons/ilian-icon.png} ",
-    color=yellow_light, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=yellow_light, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Ilian: [text]")
 define brennan_c = Character("Brennan", who_suffix = "  {image=images/icons/brennan-icon.png} ",
-    color=green_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=green_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Brennan: [text]")
 define pete_c = Character("Pete", who_suffix = "  {image=images/icons/pete-icon.png} ",
-    color=brown_light, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=brown_light, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Pete: [text]")
 define natalia_c = Character("Natalia", who_suffix = "  {image=images/icons/natalia-icon.png} ",
-    color=orange_you_glad, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=orange_you_glad, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Natalia: [text]")
 define helen_c = Character("Helen", who_suffix = "  {image=images/icons/helen-icon.png} ",
-    color=gray_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=gray_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Helen: [text]")
 define julia_c = Character("Julia", who_suffix = "  {image=images/icons/julia-icon.png} ",
-    color=blue_ice, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=blue_ice, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Julia: [text]")
 define martin_c = Character("Martín", who_suffix = "  {image=images/icons/martin-icon.png} ",
-    color=dust_of_the_earth, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=dust_of_the_earth, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="XXX: [text]")
 define anya_c = Character("Anya",
-    color="#53b5ab", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  #cyan
+    color="#53b5ab", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Anya: [text]")  #cyan
 define lewis_c = Character("Mr. Lewis",
-    color="#be4a25", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  #red-orange
+    color="#be4a25", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Mr. Lewis: [text]")  #red-orange
 define zaina_c = Character ("Zaina",
     who_suffix = "  {image=images/icons/zaina-icon.png} ",
-    color=yellow_gold, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=yellow_gold, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Zaina: [text]")
 define kevin_c = Character ("Kevin",
     who_suffix = "  {image=images/icons/kevin-icon.png} ",
-    color=yellow, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=yellow, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Kevin: [text]")
 define oleg_c = Character("Oleg",
     who_suffix = "  {image=images/icons/oleg-icon.png} ",
-    color=blue_mako, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=blue_mako, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Oleg: [text]")
 define travis_c = Character("Travis",
     who_suffix = "  {image=images/icons/travis-icon.png} ",
-    color=red_light, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=red_light, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Travis: [text]")
 define bro_c = Character("[bro_name]",
     who_suffix = "  {image=images/icons/bro-icon.png} ",
-    color=blue_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color=blue_med, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="[bro_name]: [text]")
 define van_c = Character("Van",
-    color="#1c30a1", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")  #dark blue
-define chaco_c = Character("Chaco", color=blue_dusty_ice, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+    color="#1c30a1", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Van: [text]")  #dark blue
+define chaco_c = Character("Chaco", color=blue_dusty_ice, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Chaco: [text]")
 define ret_c = Character("RET",
 #who_suffix = "  {image=images/icons/ret-icon.png} ",
-        color="555555", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close") #gray
+        color="555555", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="RET: [text]") #gray
 
 define computer = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/FreeMono.ttf")
 
 define legalese = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
-define bandile_c = Character("Bandile", color=tan_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")
+define bandile_c = Character("Bandile", color=tan_dark, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close", what_alt="Bandile: [text]")
 define note_c = Character(None, kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")

@@ -6,6 +6,7 @@ screen biographies(name):
     modal True
     zorder 1
     style_prefix "bio"
+    key "x" action Hide("biographies")
 
     frame:
         xalign 0.5
@@ -33,9 +34,9 @@ screen biographies(name):
                         if (active):
                             hbox:
                                 showif (not read):
-                                    text " {b}!{/b} " xalign 1.0 yalign 0.0 style "alert_text" at tiny_bounce
+                                    text " {b}!{/b} " xalign 1.0 yalign 0.0 alt "" style "alert_text" at tiny_bounce
                                 else:
-                                    text "" xalign 0.0
+                                    text "" xalign 0.0 alt ""
                                 textbutton fname action SetVariable("show_person", name)
 
                 null width 10

@@ -108,7 +108,7 @@ screen say(who, what):
     $ nickname = get_nickname(who)
 
     showif show_menutab:
-        imagebutton xpos 1245 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab") alt "Hide Menu Tab"
+        imagebutton xpos 1245 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab")
         frame: 
             background "gui/menutabbg.png"
             xpos 1130
@@ -127,11 +127,13 @@ screen say(who, what):
                         imagebutton auto "gui/skip_%s.png" action Skip() tooltip "Skip Already-Seen Content" alt "Skip"
                     
     else:
-        imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab") alt "Show Menu Tab"
+        imagebutton xpos 1132 ypos 555 auto "gui/menutab_%s.png" action ToggleScreenVariable("show_menutab") keyboard_focus False
 
     window:
         id "window"
 
+        if who is not None:
+            text "{alt}[who]{/alt}"
         text what id "what"     
 
         if who is not None:    
@@ -1154,6 +1156,14 @@ screen keyboard_help():
         label "V"
         text _("Toggles assistive {a=https://www.renpy.org/l/voicing}self-voicing{/a}.")
 
+    hbox:
+        label "P"
+        text _("Automatically place crops on the farming screen.")
+
+    hbox:
+        label "X"
+        text _("Close sub screens.")
+
 
 screen mouse_help():
 
@@ -1505,7 +1515,7 @@ screen nvl_dialogue(dialogue):
                 xfill True
                 yfit gui.nvl_height is None
                 if d.who is not None:
-                    $ nickname = get_nickname(d.who)
+                    $ nickname = get_nickname(d.who)                    
                     $ is_jack = d.who.startswith(his_name)
                     $ who_color = d.who_args["color"]
                     if (who_color is None):

@@ -163,7 +163,7 @@ init -100:
     define chaco = Character("Chaco", who_color=blue_dusty_ice, image="chaco", ctc="ctc_blink", ctc_position="nestled-close") 
     define kevin = Character("Kevin", who_color=yellow, image="kevin", ctc="ctc_blink", ctc_position="nestled-close")
     define zaina = Character("Zaina", who_color=yellow_gold, image="zaina", ctc="ctc_blink", ctc_position="nestled-close") #golden yellow
-    define jellysquid = Character("Jellysquid", kind=nvl, who_color="#614bb5", ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/KidZone.ttf")  #purple
+    define jellysquid = Character("Jellysquid", kind=nvl, who_color="#614bb5", ctc="ctc_blink", ctc_position="nestled-close", what_font="fonts/KidZone.ttf", what_alt="Jellysquid: [text]")  #purple
 
     define tutorial = Character("Tutorial", who_color="#ededed", ctc="ctc_blink", ctc_position="nestled-close")  #light gray
     define note = Character("note", kind=nvl, ctc="ctc_blink", ctc_position="nestled-close")

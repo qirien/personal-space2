@@ -265,6 +265,7 @@ label ending_ac:
     "Ending 1/4: Bring Back My Baby."
     window auto hide
     show ending1_cg
+    alt "Image: [kid_name] sits on the shuttle, pouting, while [her_name] cries and [his_name] look on in dismay back on the planet."
     $ renpy.pause(6.0)
     $ renpy.pause()
 
@@ -369,6 +370,7 @@ label ending_aC:
     "Ending 2/4: Proving Herself."
     window auto hide
     show ending2_cg
+    alt "Image: [kid_name] is in the clinic treating a patient, while [his_name] looks on with fondness."
     $ renpy.pause(6.0)
     $ renpy.pause()
     return
@@ -450,6 +452,7 @@ label ending_Ac:
     "Ending 3/4: Forever My Little Girl"
     window auto hide
     show ending3_cg
+    alt "Image: [kid_name] speeds down the hill on her bicycle with the delivery trailer attached, a carefree smile on her face."
     $ renpy.pause(6.0)
     $ renpy.pause()
     return
@@ -599,6 +602,7 @@ label ending_AC:
     else:
         $ achievement_dict["The Stars are Bright"]["file"] = "ending4.png"
         show ending4o_cg
+    alt "Image: [bro_name], [kid_name], [boyfriend_name] and [her_name] are all sitting at the kitchen table, chatting, while [his_name] brings out more food."
     $ renpy.pause(6.0)
     $ renpy.pause()
 

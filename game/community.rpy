@@ -7426,6 +7426,7 @@ label call_to_squid:
             jump boat_capsized
 
 label boat_capsized:
+    play sound "sfx/splash.ogg"
     "The creature capsized my boat, and I fell into the water."
     "We grabbed onto the boat and tried to turn it over."
     if (ate_jellyfish) and (touched_jellystar_25):
@@ -7434,6 +7435,7 @@ label boat_capsized:
     "[kid_name] slapped the jellysquid off with an oar."
     kid yell "Come on Dad! Flip the boat with me!"
     "After flinging away a few jellystars, we flipped the boat."
+    play sound "sfx/splash.ogg"
     "I helped [kid_name] in."
     kid angry "Just hang on the side while I try to get us away!"
     him blush "I'm hanging on! Go for it!"
@@ -9053,6 +9055,8 @@ label community30:
             "Explore other options.":
 #            else: #in this branch, you don't talk to pete or kid, so you don't know that Noel was receiving shipments of firegrass. you have talked to Oleg though, which so far isn't dependent on another variable.
 #                "I didn't think Pete would want to talk to me, and I didn't really have any way to contact him either."
+                scene farm_interior with fade
+                show him determined at center with dissolve
                 "Oleg said that he thought Brennan was the only one who could make deposits and withdrawals without the recipient's permission."
                 "But maybe [her_name] would also have this right?"
                 "I asked [her_name] if she could make deposits and withdrawals automatically."

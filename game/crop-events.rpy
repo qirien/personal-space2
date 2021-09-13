@@ -275,7 +275,7 @@ label garlic1:
             bro surprised "Can I have some more?"
             him happy "You like them? Sure! I made lots!"
     kid surprised "Why would someone eat something that smells like that?"
-    her concerned "Garlic actually tastes really good, and it's has a lot of health benefits."
+    her concerned "Garlic actually tastes really good, and it has a lot of health benefits."
     him normal "And it keeps vampires away."
     kid annoyed "Vampires?"
     him happy "That's what legends say, anyway!"
