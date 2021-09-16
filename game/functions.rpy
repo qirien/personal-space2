@@ -328,8 +328,8 @@ init -100 python:
                     next_event = number_events_seen[crop_name] + 1
                     event_label = crop_name + str(next_event)
                     if renpy.has_label(event_label):
-                        # Exclude crop events where characters would be too young
-                        if ((event_label == "honey1") and (year < TODDLER_MAX)):
+                        # Exclude crop events where characters would be too young or too old
+                        if ((event_label == "honey1") and ((year < TODDLER_MAX) or (year > YTEEN_MAX))):
                             pass
                         elif ((event_label == "garlic1") and (year < CHILD_MAX)):
                             pass

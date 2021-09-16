@@ -2964,7 +2964,7 @@ label family9:
     "School completely changed our family dynamics."
     "Instead of yearning for a few minutes of uninterrupted time and slogging through our weekly turn in the kids' co-op, I found myself looking forward to her coming home from school."
     if (year6_have_baby):
-        "And now that [bro_name]'s cleft lip has been repaired and he's older, he's more independent, too."
+        "[bro_name] is actually sleeping through the night now, so it's easier to appreciate him, too."
     else:
         "[kid_name] seemed to appreciate me more, too."
     scene fields with fade

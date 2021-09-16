@@ -284,7 +284,6 @@ label start:
 
     if (persistent.times_beaten):
         "Welcome back to Space to Grow! Since you've played it before, you can use the Skip button to skip past text you've already seen."
-        $ work_increase = 10
         menu:
             "Would you like to keep the crops you unlocked last time?"
             "Yes":
@@ -401,8 +400,8 @@ label life_loop:
                 elif (credits <= -1000):
                     $ achieved("Poor Dad")
 
-        if (crop_enabled("wheat")):
-            $ modify_credits(-WHEAT_COST)
+                if (crop_enabled("wheat")):
+                    $ modify_credits(-WHEAT_COST)
 
         # TUTORIALS FOR NEW STUFF
         if (year == MONEY_YEAR):
