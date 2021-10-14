@@ -210,12 +210,20 @@ init -100 python:
     def get_nickname(name):
         if (not name):
             return name
-        elif (name.startswith("Dr.")):
+        elif (name.startswith("Dr. Lily")):
             return "Lily"
-        elif (name.startswith("Mayor")):
+        elif (name.startswith("Mayor Pavel")):
             return "Pavel"
-        elif (name.startswith("Sister")):
+        elif (name.startswith("Sister Naomi")):
             return "Naomi"
+        elif (name.startswith(his_name)): # need to have these in here in case custom names have spaces in them
+            return his_name
+        elif (name.startswith(her_name)):
+            return her_name
+        elif (name.startswith(kid_name)):
+            return kid_name
+        elif (name.startswith(bro_name)):
+            return bro_name
 
         else:
             return name.split()[0]

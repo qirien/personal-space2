@@ -76,6 +76,7 @@ label message3:
         him_c "I thought Kevin was bringing all your stuff to the storehouse?"
         zaina_c "He was, but there's nothing there to get in exchange. Ilian said you guys all trade on here."
         ilian_c "Despite the inefficiency, that is the current modus operandi."
+        nvl clear
         zaina_c "Anyway, I've already done zucchini pickles, stuffed zucchini, zucchini noodles, baked zucchini, fried zucchini, and if I have to eat another zucchini I seriously think they might all perish in a tragic 'accident'. So please tell me someone is willing to trade?!"
         natalia_c "I'll trade you some eggs."
         him_c "I'll trade you potatoes!"

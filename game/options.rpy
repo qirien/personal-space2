@@ -15,7 +15,7 @@
 define config.name = _("Space to Grow")
 
 ## The version of the game.
-define config.version = "1.3"
+define config.version = "1.4"
 # Uncomment if you want the cheat/developer console enabled.
 #define config.console = True
 
