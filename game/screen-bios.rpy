@@ -14,7 +14,7 @@ screen biographies(name):
         vbox:
             hbox:
                 label "Community Bios"
-                textbutton "X" xalign 0.97 text_font "fonts/Questrial-Regular.otf" text_bold True text_size 42 action Hide("biographies", irisin) xfill False
+                textbutton "X" xalign 0.97 text_font "fonts/Questrial-Regular.otf" text_bold True text_size 42 focus_mask None action Hide("biographies", irisin) xfill False
             hbox:
                 null width 10
 

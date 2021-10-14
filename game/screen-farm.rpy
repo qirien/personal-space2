@@ -18,7 +18,7 @@ screen plan_farm():
     frame:
         background  "computer_pad_with_screen"
         text "User {color=#888}[his_name]{/color} has logged on." size 12 xalign 0.1 ypos 30 color "#fff" alt "Farm status: " + info_msg # read the info_msg first if in self-voicing mode
-        imagebutton auto "gui/computerpadbutton_%s.png" action ShowMenu("save") alt "Game Menu" xpos 1233 yalign 0.5
+        imagebutton auto "gui/computerpadbutton_%s.png" action ShowMenu("save") alt "Game Menu" xpos 1233 yalign 0.5 focus_mask None
         vbox:
             area (60, 50, 1150, 620)
             yfill True
@@ -195,6 +195,7 @@ screen choose_crop(crop_index=0):
                             text_size 40
                             text_font "fonts/Questrial-Regular.otf"
                             text_bold True
+                            focus_mask None
                             if not renpy.variant("touch"):
                                 action Hide("choose_crop", irisin)
                             if renpy.variant("touch"):
@@ -270,6 +271,7 @@ screen choose_crop(crop_index=0):
                                     selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
                                     insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), Solid(gray_transparent))
                                     xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
+                                    focus_mask None
                                     anchor (0.5, 0.5)
                                     alt crop_name
                                     align  (0.5, 0.5)
@@ -311,6 +313,7 @@ screen sort_buttons():
             (0,0), im.FactorScale("gui/crop icons/selected.png", 0.5))
             at highlight_imagebutton
             xysize (CROP_STATUS_ICON_SIZE,CROP_STATUS_ICON_SIZE)
+            focus_mask None
             anchor (0.5, 0.5)
             align  (0.5, 0.5)
             action SetVariable("sortby", this_button)
@@ -407,6 +410,7 @@ screen crops_layout():
                                 xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                 anchor (0.5, 0.5)
                                 align  (0.5, 0.5)
+                                focus_mask None
                                 action [If(
                                 (current_crop_name[-1] == "+"),
                                     Confirm("Are you sure you want to destroy this perennial plant? You can't get it back.", ShowTransient("choose_crop", irisout, i)),

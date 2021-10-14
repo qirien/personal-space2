@@ -22,6 +22,7 @@ screen parenting_handbook():
                     text_font "fonts/Questrial-Regular.otf"
                     text_bold True 
                     text_size 42
+                    focus_mask None
                     action Hide("parenting_handbook", irisin) 
             hbox:
                 null width 30
