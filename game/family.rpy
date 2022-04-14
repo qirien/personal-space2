@@ -7963,7 +7963,7 @@ label family28:
                 "What should I do?"
                 "Ask around.":
                     "I decided to ask around. Maybe someone else had seen her."
-                    if (mavericks > 10):
+                    if (mavericks_strong()):
                         him_c "Hey, Pete, I'm looking for [kid_name]. Any idea where she's at?"
                         pete_c "She usually comes over here around this time. Want me to tell her something?"
                         him_c "Oh, is she hanging out with Travis?"
@@ -7978,14 +7978,14 @@ label family28:
                             pete_c "Ha! You're about as sly as a newborn calf, you know that?"
                             him_c "Yeah, yeah."
 
-                    if (miners > 10):
+                    if (miners_strong()):
                         him_c "Brennan, have you seen [kid_name]?"
                         brennan_c "Not today."
                         him_c "You don't happen to know where she's at?"
                         brennan_c "No. Sorry."
                         "It was hard to tell online, but it seemed like he was hiding something."
 
-                    if (colonists > 10):
+                    if (colonists_strong()):
                         him_c "Hey, Sara, any idea where [her_name] is? I'm looking for her..."
                         sara_c "Oh, she was just here, buying some stuff from Ilian. {emoji=grin}"
                         him_c "What kind of stuff?"
@@ -8787,7 +8787,7 @@ label family30:
             $ confident += 2
             him determined "There is a lot you can learn on Earth that you can't learn here. I think it would be good for you."
             kid surprised "You think I should go?!"
-            if (parenting_style == "authoritative"):
+            if (parenting_style == "authoritarian"):
                 him normal "This is a rare opportunity. I love Talaam, but if you want to become a doctor you really should study there."
             else:
                 him normal "This is a rare opportunity. I love Talaam, but you can learn so much more about biology from experts there."
