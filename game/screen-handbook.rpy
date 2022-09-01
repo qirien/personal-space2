@@ -28,7 +28,6 @@ screen parenting_handbook():
                 null width 30
                 vbox:
                     xsize LEFT_COLUMN_WIDTH-50
-                    ysize 400
                     textbutton "General" selected (show_year < 0) action SetVariable("show_year", -1)
                     textbutton "Baby (0-1)" selected (0 <= show_year <= BABY_MAX) action SetVariable("show_year", BABY_MAX)
                     showif (year > BABY_MAX):
@@ -43,6 +42,8 @@ screen parenting_handbook():
                         textbutton "Older Teen (16-18)" selected (YTEEN_MAX < show_year) action SetVariable("show_year", MAX_YEARS)
                 null width 5
                 vbox:
+                    yalign 0.0
+                    ysize 480
                     xsize MIDDLE_COLUMN_WIDTH-32
                     use kid_info
 
@@ -65,11 +66,11 @@ screen kid_info():
 
 screen general_info():
     tag kid_info
-    text childs_mind["general"] yalign 0.0
+    text childs_mind["general"] 
     
 screen baby_info():
     tag kid_info
-    text childs_mind["baby"]
+    text childs_mind["baby"] 
 
 screen toddler_info():
     tag kid_info
@@ -99,7 +100,8 @@ style parenting_frame is computer_sub_frame:
     xsize MIDDLE_COLUMN_WIDTH + LEFT_COLUMN_WIDTH + 48
 style parenting_label is computer_sub_label
 style parenting_label_text is computer_sub_label_text
-style parenting_text is computer_sub_text
+style parenting_text is computer_sub_text:
+    yalign 0.0
 style parenting_vbox is computer_sub_vbox
 style parenting_hbox is computer_sub_hbox
 

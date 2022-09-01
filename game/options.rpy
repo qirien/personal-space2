@@ -15,7 +15,7 @@
 define config.name = _("Space to Grow")
 
 ## The version of the game.
-define config.version = "1.4"
+define config.version = "2.0"
 # Uncomment if you want the cheat/developer console enabled.
 #define config.console = True
 
@@ -26,6 +26,7 @@ define config.autosave_on_choice = False
 define config.autosave_on_quit = True
 
 define config.load_failed_label = "life_loop" #If it can't find where to return to, just replay the current year.
+define config.allow_underfull_grids = True # let our vpgrids not be full
 
 ## Text that is placed on the game's about screen. To insert a blank line
 ## between paragraphs, write \n\n.

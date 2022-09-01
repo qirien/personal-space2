@@ -64,7 +64,8 @@ screen plan_farm():
 
 # To change appearance, see screens.rpy, screen nvl
 label yearly_messages:
-    $ message = "message" + `year`
+    $ year_string = repr(year)
+    $ message = "message" + year_string
     $ read_messages = True
     nvl clear
     call expression message from _call_expression_4
@@ -237,7 +238,7 @@ screen choose_crop(crop_index=0):
 
                     # Buttons to sort by different stats
                     hbox:
-                        spacing 15
+                        spacing 10
                         textbutton "Sort By" xalign 0.0 style "plan_farm_button" action ToggleScreenVariable("show_sort")
 
                         showif show_sort:
@@ -245,18 +246,18 @@ screen choose_crop(crop_index=0):
                                 at popside
                                 use sort_buttons
 
+                    $ crop_columns = count_enabled_crops()//4 + 2   #more columns with more enabled crops
                     # Available crops to choose from
                     vpgrid:
-                        cols (count_enabled_crops()//4 + 2) #more columns with more enabled crops
+                        cols crop_columns
                         spacing 10
                         side_xalign 0.5
 
-                        # Sort by proper key
-                        $ sortwith = "sortby_" + sortby
+                        # Sort by proper key 
                         if (sortby == "name"):
                             $ crops_to_show = sorted(crop_info)
                         else:
-                            $ crops_to_show = sorted(crop_info, eval(sortwith), reverse=True)
+                            $ crops_to_show = sorted(crop_info,key= lambda x: x[eval(sortby.upper() + "_INDEX")], reverse=True)
                         for j in range(0, len(crop_info)):
                             # only show currently enabled crops where we haven't planted the maximum yet
                             if (crops_to_show[j][ENABLED_INDEX] and (crops_to_show[j][MAXIMUM_INDEX] > 0) and
@@ -266,10 +267,10 @@ screen choose_crop(crop_index=0):
                                 $ imagefile = get_crop_filename(crop_name)
                                 $ is_selected = (selected_crop_index == crop_info_index)                            
                                 imagebutton:
-                                    idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index))
-                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
-                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
-                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE/2,0), get_boosted_image(crop_name, crop_index), (0,0), Solid(gray_transparent))
+                                    idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE//2,0), get_boosted_image(crop_name, crop_index))
+                                    hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE//2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
+                                    selected_idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE//2,0), get_boosted_image(crop_name, crop_index), (0,0), "gui/crop icons/selected.png")
+                                    insensitive Composite((CROP_ICON_SIZE, CROP_ICON_SIZE), (0,0), imagefile, (CROP_ICON_SIZE//2,0), get_boosted_image(crop_name, crop_index), (0,0), Solid(gray_transparent))
                                     xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                     focus_mask None
                                     anchor (0.5, 0.5)
@@ -324,11 +325,11 @@ screen stat_icons(stat_value, stat_index):
         # must be a nitrogen-giving thing
         if (stat_value < 0):
             $ stat_icon_name = "nitrogen-add"
-            $ stat_value = -stat_value/2
+            $ stat_value = -stat_value//2
         else:
             $ stat_icon_name = CROP_INFO_INDEX_NAMES[stat_index].lower()
 
-        for i in range(0, stat_value//2):
+        for i in range(0, int(stat_value//2)):
             add STAT_ICON_BASE + stat_icon_name + ".png"
         if (stat_value%2 > 0):
             add STAT_ICON_BASE + stat_icon_name + "-half.png"
@@ -401,11 +402,11 @@ screen crops_layout():
                                 alt current_crop_name + alt_add
                                 idle Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
                                 (0,0), imagefile,
-                                (CROP_ICON_SIZE/2,0), get_boost_image(i),
+                                (CROP_ICON_SIZE//2,0), get_boost_image(i),
                                 (0,0), "gui/crop icons/idle.png")
                                 hover Composite((CROP_ICON_SIZE,CROP_ICON_SIZE),
                                 (0,0), imagefile,
-                                (CROP_ICON_SIZE/2,0), get_boost_image(i),
+                                (CROP_ICON_SIZE//2,0), get_boost_image(i),
                                 (0,0), "gui/crop icons/selected.png")
                                 xysize (CROP_ICON_SIZE,CROP_ICON_SIZE)
                                 anchor (0.5, 0.5)
@@ -514,25 +515,31 @@ screen crops_totals():
             if (crop_enabled("wheat")):
                 $ total_expenses += WHEAT_COST
             hbox:
-                text "Value  "
+                text "Finances  "
                 use stat_icons(2, VALUE_INDEX)
             hbox:
                 style_prefix "plan_farm_total"
                 xfill True
                 vbox:
                     text "Current Balance"
-                    text "Value"
-                    text "Expenses"
+                    text "Projected Change"
+                    #text "Value"
+                    #text "Expenses"
                     text "{font=fonts/OpenSansEmoji.otf}_____________________{/font}"
                     text "Expected Balance"
                 vbox:
                     xalign 1.0
                     text str(credits) xalign 1.0
-                    if (total_expenses > total_value):
-                        text "+" + str(total_value) color red_med xalign 1.0
+                    $ year_net = total_value - total_expenses
+                    if (year_net < 0):
+                        text str(year_net) color red_med xalign 1.0
                     else:
-                        text "+" + str(total_value) xalign 1.0
-                    text "-" + str(total_expenses) xalign 1.0
+                        text "+" + str(year_net) xalign 1.0    
+                    #if (total_expenses > total_value):
+                    #    text "+" + str(total_value) color red_med xalign 1.0
+                    #else:
+                    #    text "+" + str(total_value) xalign 1.0
+                    #text "-" + str(total_expenses) xalign 1.0
                     text "{font=fonts/OpenSansEmoji.otf}_____{/font}" xalign 1.0
                     text str(credits + total_value - total_expenses) xalign 1.0
 

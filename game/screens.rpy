@@ -842,13 +842,14 @@ screen preferences():
                     textbutton _("Left") action Preference("rollback side", "left") tooltip "Clicking on the left side of the screen will roll back text"
                     textbutton _("Right") action Preference("rollback side", "right") tooltip "Clicking on the right side of the screen will roll back text"
 
-                vbox:
-                    style_prefix "check"
-                    label _("Skip")
-                    if (config.developer):
-                        textbutton _("Unseen Text") action Preference("skip", "toggle") tooltip "Skip text even if you haven't seen it before"                        
-                    textbutton _("After Choices") action Preference("after choices", "toggle") tooltip "After a choice is made, continue skipping"
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle")) tooltip "Disable transitions while skipping"
+                showif persistent.times_beaten:
+                    vbox:
+                        style_prefix "check"
+                        label _("Skip")
+                        if (config.developer):
+                            textbutton _("Unseen Text") action Preference("skip", "toggle") tooltip "Skip text even if you haven't seen it before"                        
+                        textbutton _("After Choices") action Preference("after choices", "toggle") tooltip "After a choice is made, continue skipping"
+                        textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle")) tooltip "Disable transitions while skipping"
 
                 vbox:
                     style_prefix "radio"

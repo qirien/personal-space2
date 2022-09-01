@@ -1846,7 +1846,7 @@ label spinach2_pick_early:
     him annoyed "This is something that I cannot forgive."
     him angry "This means war!"
     "My nights were filled with killing turtle-snails."
-    "They appeared in my dreams, giant, house-sized turtle-snails with ever-chewing mouths, the entire earth disappearing beneath their slavering jaws until Talaam was just an empty spot in the vast blackness of space."
+    "They appeared in my dreams: house-sized turtle-snails with ever-chewing mouths, the entire planet disappearing beneath their slavering jaws until Talaam was an empty spot in the vast blackness of space."
     "I started seeing them everywhere I looked -- in the fields, in the barn, in the outhouse."
     "I trapped and tossed and stamped and squished, but the next night there were still more. For a week I barely slept trying to kill them all."
     "Finally, their numbers were greatly reduced, and I could rest.  Until the next invasion..."

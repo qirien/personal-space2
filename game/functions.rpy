@@ -360,10 +360,11 @@ init -100 python:
     def modify_credits(amount, show_notification=True):
         global credits, notifications
         amount = roundint(amount)
-        if show_notification:
-            credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
-            notify_change(credit_msg)
-        credits += amount
+        if (year > MONEY_YEAR): # only if credits are used yet
+            if show_notification:
+                credit_msg = "{image=" + STAT_ICON_BASE + "value.png} " + str(amount)
+                notify_change(credit_msg)
+            credits += amount
         return
 
     def modify_farm_size(amount):
@@ -419,9 +420,9 @@ init -100 python:
 
     def get_calories_kid(age):
         if (0 <= age < BABY_MAX):
-            return 4
+            return 2
         if (BABY_MAX <= age < TODDLER_MAX):
-            return 9
+            return 5
         if (TODDLER_MAX <= age < CHILD_MAX):
             return 14
         if (CHILD_MAX <= age < YTEEN_MAX):
@@ -599,23 +600,6 @@ init -100 python:
 
     def roundint(number):
         return int(round(number))
-
-    # Sorting functions (Python 2.7)
-    # For Python 3+, only return the value on which to sort.
-    def sortby_calories(val1, val2):
-        return val1[CALORIES_INDEX] - val2[CALORIES_INDEX]
-    def sortby_vita(val1, val2):
-        return val1[VITA_INDEX] - val2[VITA_INDEX]
-    def sortby_vitc(val1, val2):
-        return val1[VITC_INDEX] - val2[VITC_INDEX]
-    def sortby_vitm(val1, val2):
-        return val1[VITM_INDEX] - val2[VITM_INDEX]
-    def sortby_work(val2, val1):
-        return val1[WORK_INDEX] - val2[WORK_INDEX]
-    def sortby_nitrogen(val1, val2):
-        return val2[NITROGEN_INDEX] - val1[NITROGEN_INDEX]
-    def sortby_value(val1, val2):
-        return val1[VALUE_INDEX] - val2[VALUE_INDEX]
 
     def achieved(a_name):
         if (achievement.has(a_name)):

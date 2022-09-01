@@ -6196,8 +6196,8 @@ label luxury_good:
             "I'd go pick up the kids in the morning, and then I'd drop them off at the co-op daycare after lunch."
             "At first it was really difficult. The kids had a hard time changing their routines."
             "I had forgotten how hard it is to do anything with kids in the house, so often I'd still be working on my farm after dinner."
-            $ modify_credits(2000)
-            "I did make a lot of money though!" #+2000/200 credits but more stress?
+            $ modify_credits(1200)
+            "I did make a lot of money though!" #+1200/200 credits but more stress?
         "Consult on small farming projects.":
             "I advertised my professional farm consulting in the {i}Talaam Times{/i}."
             "I was surprised when Oleg was my first customer."

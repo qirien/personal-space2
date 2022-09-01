@@ -6174,11 +6174,13 @@ label family20:
             him doubt "What happened to a 'personal instructor'?"
             ilian happy "If you're paying less, you get less. That's how the world works."
             him pout "All right, fine."
-            $ modify_credits(-20*28)
+            "20 credits per week for the rest of the year... that was not cheap."
+            $ modify_credits(-20*14)
         "You have a deal.":
             him normal "You have a deal. It's not like you have any competition in the instrument teaching business."
             ilian happy "I'm glad you realize the value of the musical arts."
-            $ modify_credits(-25*28)
+            "25 credits per week for the rest of the year... that was not cheap."
+            $ modify_credits(-25*14)
         "Isn't there something else we could exchange?" if get_extra_work():
             him concerned "Isn't there something else we could exchange?"
             ilian angry "You don't have anything I want."

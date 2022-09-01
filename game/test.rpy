@@ -849,7 +849,7 @@ label test_message_board:
     $ i = 1
     while (i <= MAX_YEARS):
         call interscene_text(i, "Message Board") from _call_interscene_text_6
-        $ message = "message" + `i`
+        $ message = "message" + repr(i)
         call expression message from _call_expression_5
         $ i += 1
     return

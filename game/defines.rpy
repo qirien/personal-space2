@@ -63,7 +63,7 @@ init -100:
 
     # Money data
     define KELLY_SALARY = 2000
-    define CALORIES_TO_MONEY_MULTIPLIER = 14
+    define CALORIES_TO_MONEY_MULTIPLIER = 25 #represents how much more it costs to feed kids. As their calories increase, expenses also increase
     define MONEY_YEAR = 6
     define KID_WORK_YEAR = 7
     define NUTRITION_YEAR = 10
@@ -71,7 +71,7 @@ init -100:
     # GUI display sizes
     define CROP_ICON_SIZE = 64
     define CROP_LAYOUT_BAR_SIZE = CROP_ICON_SIZE + 8
-    define CROP_LAYOUT_BAR_WIDTH = CROP_ICON_SIZE / 10
+    define CROP_LAYOUT_BAR_WIDTH = int(CROP_ICON_SIZE / 10)
     define CROP_STATUS_ICON_SIZE = 32
 
     # Static variables used for endings

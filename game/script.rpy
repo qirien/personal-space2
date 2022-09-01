@@ -185,7 +185,7 @@ label start:
     # Yield of most recent set of crops, in percentages
     default credits = 0
     default years_yield = [100] * farm_size
-    default annual_expenses_base = 2550
+    default annual_expenses_base = 2600
     default debt_consecutive_years = 0
     default debt_event_count = 0
     default seen_miners_debt = False
@@ -209,7 +209,7 @@ label start:
                         ["potatoes",     10, 0, 6, 2, 6, 6, 40, True, False, False, 100],
                         ["wheat",        10, 5, 5, 6, 9, 9, 20, False, False, False, 2],
                         ["peppers",      2, 2, 9, 0, 5, 5, 25, False, False, True, 100],    # "Fruits"
-                        ["tomatoes",     3, 3, 4, 2, 8, 6, 15, True, False, True, 100],
+                        ["tomatoes",     3, 3, 4, 2, 7, 6, 15, True, False, True, 100],
                         ["plums",        3, 1, 1, 1, 6, 7, 15, False, True, True, 1],
                         ["plums+",       3, 1, 1, 1, 6, 2, 0, False, True, True, 0],    # Perennials are easier after year 1, but can't be moved
                         ["squash",       4, 8, 3, 2, 2, 4, 15, True, False, True, 100],
@@ -405,6 +405,7 @@ label life_loop:
 
         # TUTORIALS FOR NEW STUFF
         if (year == MONEY_YEAR):
+            $ credits = 0
             "I now earn credits for the crops I choose, after deductions for expenses."
             scene tutorial-credits with fade
             "This part of the screen shows how much I'll earn and how much my expenses are."
@@ -540,7 +541,7 @@ label life_loop:
                 show text "End Young Teen Years"
                 $ renpy.pause(1.5)
                 show yteen_cg
-                alt "[his_name] looks on with nervous laughter while [kid_name] drives the tractor."
+                alt "image: [his_name] looks on with nervous laughter while [kid_name] drives the tractor."
                 $ renpy.pause(6.0)
                 $ renpy.pause()
 

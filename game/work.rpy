@@ -1397,8 +1397,8 @@ label work20:
             him surprised "WATER, as in 'We oughtta'? W'otta? You don't think it works?"
             thuc normal "Nope, sorry. It... SINKS."
             show him laugh with dissolve
-            "We managed to keep most of our crops from dying, but they probably wouldn't yield as much this year."
-            $ modify_credits(-100)
+            "We managed to keep most of our crops from dying, but they definitely didn't yield as much."
+            $ modify_credits(farm.income_loss(80))
     return
 
 # Year 22, 13.6 years old
