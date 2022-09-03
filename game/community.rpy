@@ -8595,7 +8595,6 @@ label community30:
             ilian "She'd have had to get on the waitlist like... FIFTEEN YEARS ago."
             ilian angry "UGHHHH I HATE HER SO MUCH THAT WITCH!"
             him_c "He's freaking out! What the heck?"
-            #got a crash here but after rollback, it didn't crash.
             oleg_c "ghgh i knew it"
             nvl clear
 
@@ -9077,6 +9076,7 @@ label community30:
                             her_c "That's clever. Also highly unethical, but I think in a real investigation you'd have a way to see this kind of thing."
                             her_c "You want to check on Noel and Joel, right? It looks like Noel only has about 100 credits."
                             her_c "Joel on the other hand..."
+                            $ checked_joel = True
                             if ban_firegrass:
                                 her_c "Joel has over 10,000 credits. Wowza."
                             else:
