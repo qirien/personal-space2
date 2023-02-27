@@ -582,7 +582,7 @@ label community3:
                     with dissolve
                     him surprised "How was the lecture?"
                     her happy "Good! Dr. Lily talked about how the solar flare detectors work. She wants us all to install her app so that she can gather more real-time data from different locations. How about you?"
-                    him normal "Sister Naomi and I talked about poetry while Travis and Terra demolished can towers. There's a parable in there, somewhere..."
+                    him normal "Sister Naomi and I talked about poetry while Travis and [kid_name] demolished can towers. There's a parable in there, somewhere..."
                     her normal "Thanks for taking [kid_name]; it was really nice to hang out without worrying about her or work or anything."
 
     return
@@ -3429,7 +3429,7 @@ label community15:
         "I'll miss her.":
             him concerned "Sorry, you're right... I will miss her."
             her sad "Me, too."
-        "Farewell to a great leader.":            
+        "Farewell to a great leader.":
             him concerned "Farewell to a great leader. She loved and worked hard, even for people who didn't agree with her."
             her sad "Yes . . . I want to be more like that."
         "I'm not going to die like that.":
@@ -4588,7 +4588,7 @@ label community18:
                 jump cow_options
 
     scene cabins with fade
-    show brennan normal at center with dissolve    
+    show brennan normal at center with dissolve
     show horse behind brennan at left, flip
     show him determined at quarterleft
     with moveinleft
@@ -5379,7 +5379,7 @@ label community22:
     scene barn with fade
     show horse at center
     show him normal at center
-    with dissolve 
+    with dissolve
     nvl clear
     "I was finishing up brushing Lettie one day when I got a message on my compter pad."
     $ bios.addToBio("Oleg", "He writes his own apps and is the one people turn to if they can't figure out their computer pad.")
@@ -6249,11 +6249,11 @@ label luxury_good:
                     show kid normal at midright with dissolve
                     kid excited "It's so cute!! Thank you, dad!"
                     if (ate_jellyfish):
-                        $ modify_credits(-100)                    
+                        $ modify_credits(-100)
                         him happy "It was so adorable I ended up buying one for myself, too!"
                         "Everyone complimented our matching hats."
                     else:
-                        $ modify_credits(-50)                    
+                        $ modify_credits(-50)
                         him happy "It was so cute I almost bought one for myself, too."
                         kid normal "It's so warm! Like a cozy alien hug."
                     $ community24_bought = True
@@ -6266,7 +6266,7 @@ label luxury_good:
                     her "Oh, [his_name], you didn't have to get me anything..."
                     him happy "I wanted to! I know you miss a lot of things from Earth..."
                     her concerned "I do... and I know you don't like to spend money on unnecessary things. So this means a lot to me."
-                    her normal "Thank you, sweetie."                
+                    her normal "Thank you, sweetie."
                     $ community24_bought = True
                     jump community24_buy
                 "Cool rocks from the miners for [bro_name] (60)":
