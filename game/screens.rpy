@@ -377,8 +377,12 @@ screen navigation():
 
         spacing gui.navigation_spacing
         if main_menu:
-            if ((persistent.max_year) and renpy.can_load("quitsave")):
-                textbutton _("Resume") action FileLoad("quitsave", slot=True) text_size 50
+            $ newest_game = renpy.newest_slot(regexp="[^_]")
+            if persistent.max_year:
+                if renpy.can_load("quitsave"):
+                    textbutton _("Resume") action FileLoad("quitsave", slot=True) text_size 50
+                elif renpy.can_load(newest_game):
+                    textbutton _("Resume") action FileLoad(newest_game, slot=True) text_size 50
 
             if (persistent.times_beaten):
                 textbutton _("New Game +") action Start()    
@@ -910,9 +914,11 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
-            
+
             if tooltip:
                 text "[tooltip]" yalign 1.0 italic True
+            else:
+                text " "
 
 
 style pref_label is gui_label
