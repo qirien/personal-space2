@@ -303,7 +303,10 @@ label start:
     else:
         "Parts of this game deal with pregnancy loss, euthanasia, mental and physical disabilities, sexual education, and drug policies. We have tried to depict these situations sensitively."
         if (not mp.jack_name):
-            "If you haven't played {a=https://www.metasepiagames.com/OurPersonalSpace/index.html}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+            if (renpy.android):
+                "If you haven't played {a=https://play.google.com/store/apps/details?id=net.icecavern.metasepia.PersonalSpace}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
+            else:
+                "If you haven't played {a=https://www.metasepiagames.com/OurPersonalSpace/index.html}Our Personal Space 1{/a}, it's available for free and takes place right before this game. You don't have to have played it to enjoy Space to Grow."
         alt "Press the ESC key at any time to access the game menu to save your game or change options."
 
     scene stars with fade

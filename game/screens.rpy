@@ -377,12 +377,9 @@ screen navigation():
 
         spacing gui.navigation_spacing
         if main_menu:
-            $ newest_game = renpy.newest_slot(regexp="[^_]")
-            if persistent.max_year:
-                if renpy.can_load("quitsave"):
-                    textbutton _("Resume") action FileLoad("quitsave", slot=True) text_size 50
-                elif renpy.can_load(newest_game):
-                    textbutton _("Resume") action FileLoad(newest_game, slot=True) text_size 50
+
+            if renpy.newest_slot():
+                textbutton _("Continue") action FileLoad(renpy.newest_slot(),newest=False,slot=True)
 
             if (persistent.times_beaten):
                 textbutton _("New Game +") action Start()    

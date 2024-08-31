@@ -15,7 +15,7 @@
 define config.name = _("Space to Grow")
 
 ## The version of the game.
-define config.version = "2.1"
+define config.version = "2.21"
 # Uncomment if you want the cheat/developer console enabled.
 #define config.console = True
 
@@ -199,6 +199,7 @@ init python:
     build.classify('**/#**', None)
     build.classify('**/thumbs.db', None)
     build.classify('resources/**', None)
+    build.classify('**.keystore', None) # don't distribute keystores
 
     ## To archive files, classify them as 'archive'.
 
